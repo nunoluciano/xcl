@@ -1,4 +1,10 @@
-##Legacy
+## XOOPS Cube Legacy 2.3.0 Alpha
+
+2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha User Interface.
+
+
+TOC
+====
 
 * [About](#about)
 * [License](#license)
@@ -31,12 +37,12 @@ About
 License
 ====
 
-###XOOPS Cube  
+### XOOPS Cube  
 
 XOOPS Cube was started from scratch and the XOOPS Cube Core source code is released under the BSD licence.
 
  
-###XOOPS Cube Legacy  
+### XOOPS Cube Legacy  
 
 XOOPS Cube Legacy source code which is one of base modules to ensure compatibility with old versions of Xoops 2 is released under a GPL licence.
 
@@ -79,7 +85,7 @@ Language</th>
 </tr>
 </table>
 
-###Software
+### Software
 
 Useful Wikipedia articles with tables comparing general and technical information of Proprietary software, Free and open-source software.  
 
@@ -176,17 +182,17 @@ XOOPS Cube functionality can also be easily extended with Preloads - one file cl
 Modules
 ====
 
-###Xoops X (Ten)  
+### Xoops X (Ten)  
 Modules maintained by the community members
 
 https://github.com/XoopsX
 
-###Xoopscube.jp  
+### Xoopscube.jp  
 Modules up-to-date 
 
 [News, Announcements and Release Notes](http://xoopscube.jp/module/)
 
-###Xoopscube.org  
+### Xoopscube.org  (archive)
 
 [Module Compatibility Informations](http://xoopscube.org/modules/pukiwiki/?XOOPSCubeLegacy%2FModuleCompatibility)
 
@@ -209,9 +215,9 @@ http://xoopscube.org/documentation/api
 Site and Support
 ====
 
-http://xoopscube.org
+http://xoopscube.org (archive)
 
-http://xoopscube.jp
+http://xoopscube.jp (uptodate)
 
 Contribute
 ====
