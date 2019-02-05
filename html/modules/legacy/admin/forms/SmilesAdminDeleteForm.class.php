@@ -45,4 +45,4 @@ class Legacy_SmilesAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

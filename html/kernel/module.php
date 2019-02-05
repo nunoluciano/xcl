@@ -658,4 +658,4 @@ class XoopsModuleHandler extends XoopsObjectHandler
 		return $ret;
 	}
 }
-?>
+

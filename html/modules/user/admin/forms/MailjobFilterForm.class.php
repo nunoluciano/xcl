@@ -60,4 +60,4 @@ class User_MailjobFilterForm extends User_AbstractFilterForm
 	}
 }
 
-?>
+

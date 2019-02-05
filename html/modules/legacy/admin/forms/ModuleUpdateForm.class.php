@@ -39,4 +39,4 @@ class Legacy_ModuleUpdateForm extends XCube_ActionForm
 	}
 }
 
-?>
+

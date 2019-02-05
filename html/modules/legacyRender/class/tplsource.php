@@ -24,4 +24,4 @@ class LegacyRenderTplsourceHandler extends XoopsObjectGenericHandler
 	var $mClass = "LegacyRenderTplsourceObject";
 }
 
-?>
+

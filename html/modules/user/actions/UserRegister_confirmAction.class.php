@@ -184,4 +184,4 @@ class User_UserRegister_confirmAction extends User_Action
 		}
 	}
 }
-?>
+

@@ -33,4 +33,4 @@ $adminmenu[2]['show'] = true;
 
 ##[/cubson:adminmenu]
 
-?>
+

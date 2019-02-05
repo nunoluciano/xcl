@@ -71,4 +71,4 @@ class User_AbstractFilterForm
 	}
 }
 
-?>
+

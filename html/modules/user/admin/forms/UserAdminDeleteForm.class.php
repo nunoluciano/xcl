@@ -41,4 +41,4 @@ class User_UserAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

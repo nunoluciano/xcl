@@ -108,4 +108,4 @@ abstract class AbstractAction
   abstract public function execute();
   abstract public function executeView(&$render);
 }
-?>
+

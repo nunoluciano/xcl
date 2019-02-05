@@ -52,4 +52,4 @@ class LegacyRender_BannerDeleteAction extends LegacyRender_AbstractDeleteAction
 	}
 }
 
-?>
+

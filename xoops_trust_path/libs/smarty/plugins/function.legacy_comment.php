@@ -49,4 +49,4 @@ function smarty_function_legacy_comment($params, &$smarty)
 }
 
 
-?>
+

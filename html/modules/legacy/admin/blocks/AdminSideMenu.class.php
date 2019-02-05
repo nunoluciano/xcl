@@ -148,4 +148,4 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 	}
 }
 
-?>
+

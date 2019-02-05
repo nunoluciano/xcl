@@ -99,4 +99,4 @@ class Profile_Admin_DefinitionsFilterForm extends Profile_AbstractFilterForm
 	}
 }
 
-?>
+

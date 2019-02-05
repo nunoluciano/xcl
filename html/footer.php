@@ -28,4 +28,4 @@ require_once XOOPS_ROOT_PATH.'/include/notification_select.php';
 
 // Display view
 $root->mController->executeView();
-?>
+

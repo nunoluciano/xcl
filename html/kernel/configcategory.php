@@ -224,4 +224,4 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>
+

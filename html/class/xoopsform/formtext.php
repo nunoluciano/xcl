@@ -144,4 +144,4 @@ class XoopsFormText extends XoopsFormElement {
 		return $renderTarget->getResult();
 	}
 }
-?>
+

@@ -57,4 +57,4 @@ class Legacy_ImageEditAction extends Legacy_ImageCreateAction
 	}
 }
 
-?>
+

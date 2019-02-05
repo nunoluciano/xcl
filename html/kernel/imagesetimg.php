@@ -197,4 +197,4 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         return false;
     }
 }
-?>
+

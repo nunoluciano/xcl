@@ -76,4 +76,4 @@ class XoopsFormSelectGroup extends XoopsFormSelect
 		}
 	}
 }
-?>
+

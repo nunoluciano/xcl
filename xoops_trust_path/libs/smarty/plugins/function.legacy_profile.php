@@ -52,4 +52,4 @@ function smarty_function_legacy_profile($params, &$smarty)
 	echo $render->getResult();
 }
 
-?>
+

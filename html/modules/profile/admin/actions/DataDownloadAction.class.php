@@ -89,4 +89,4 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 	}
 }
 
-?>
+

@@ -81,4 +81,4 @@ class User_AvatarDeleteAction extends User_AbstractDeleteAction
 	}
 }
 
-?>
+

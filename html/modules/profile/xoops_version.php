@@ -61,4 +61,4 @@ $modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";
 
-?>
+

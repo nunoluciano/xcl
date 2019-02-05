@@ -557,4 +557,4 @@ class Criteria extends CriteriaElement
     }
 }
 
-?>
+

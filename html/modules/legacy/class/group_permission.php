@@ -67,4 +67,4 @@ class LegacyGroup_permissionHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

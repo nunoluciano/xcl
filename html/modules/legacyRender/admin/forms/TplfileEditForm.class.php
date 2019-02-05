@@ -67,4 +67,4 @@ class LegacyRender_TplfileEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

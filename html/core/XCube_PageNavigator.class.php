@@ -391,4 +391,4 @@ class XCube_PageNavigator
 	}
 }
 
-?>
+

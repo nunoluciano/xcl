@@ -53,4 +53,4 @@ class Legacy_ImagecategoryAdminNewForm extends Legacy_ImagecategoryAdminEditForm
 	}
 }
 
-?>
+

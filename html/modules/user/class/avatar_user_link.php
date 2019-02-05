@@ -50,4 +50,4 @@ class UserAvatar_user_linkHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

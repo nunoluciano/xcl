@@ -120,4 +120,4 @@ class XCube_IniHandler
 	}
 
 }
-?>
+

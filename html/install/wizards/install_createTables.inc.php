@@ -21,4 +21,4 @@
         $wizard->assign('message',_INSTALL_L115);
     }
     $wizard->render('install_createTables.tpl.php');
-?>
+

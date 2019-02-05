@@ -101,4 +101,4 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
     return true;
   }
 }
-?>
+

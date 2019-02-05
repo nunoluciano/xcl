@@ -79,4 +79,4 @@ class indexAction extends AbstractAction
     $render->setAttribute('status', $this->status);
   }
 }
-?>
+

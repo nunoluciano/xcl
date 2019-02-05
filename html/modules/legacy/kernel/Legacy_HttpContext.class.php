@@ -103,4 +103,4 @@ class Legacy_HttpContext extends XCube_HttpContext
 	}
 }
 
-?>
+

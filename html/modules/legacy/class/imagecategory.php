@@ -258,4 +258,4 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

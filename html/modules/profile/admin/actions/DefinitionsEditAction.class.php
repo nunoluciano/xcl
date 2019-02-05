@@ -119,4 +119,4 @@ $("#legacy_xoopsform_type").change(function(){
     }
 }
 
-?>
+

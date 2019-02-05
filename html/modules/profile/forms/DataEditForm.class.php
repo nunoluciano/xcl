@@ -95,4 +95,4 @@ class Profile_DataEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

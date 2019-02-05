@@ -57,4 +57,4 @@ function b_user_topusers_edit($options)
     $form .= '</select>';
     return $form;
 }
-?>
+

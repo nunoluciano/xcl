@@ -49,4 +49,4 @@ class Legacy_CommentAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

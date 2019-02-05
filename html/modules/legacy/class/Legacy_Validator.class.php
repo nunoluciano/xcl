@@ -36,4 +36,4 @@ class XCube_ObjectExistValidator extends XCube_Validator
 	}
 }
 
-?>
+

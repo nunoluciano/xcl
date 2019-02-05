@@ -85,4 +85,4 @@ if(isset($xoopsTpl)&&is_object($xoopsTpl)) {
 	$xoopsTpl->assign('xoops_notification', $xoops_notification);
 }
 
-?>
+

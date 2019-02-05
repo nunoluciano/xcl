@@ -52,4 +52,4 @@ class deleteallAction extends AbstractAction
   {
   }
 }
-?>
+

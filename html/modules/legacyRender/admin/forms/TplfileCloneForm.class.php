@@ -63,4 +63,4 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
 	}
 }
 
-?>
+

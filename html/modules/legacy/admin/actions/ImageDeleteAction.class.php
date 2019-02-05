@@ -57,4 +57,4 @@ class Legacy_ImageDeleteAction extends Legacy_AbstractDeleteAction
 	}
 }
 
-?>
+

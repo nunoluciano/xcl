@@ -107,4 +107,4 @@ class User_MailjobEditAction extends User_AbstractEditAction
 	}
 }
 
-?>
+

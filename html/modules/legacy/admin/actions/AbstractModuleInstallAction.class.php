@@ -113,4 +113,4 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
 	}
 }
 
-?>
+

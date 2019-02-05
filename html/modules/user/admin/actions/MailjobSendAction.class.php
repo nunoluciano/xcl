@@ -144,4 +144,4 @@ class User_MailjobSendAction extends User_Action
 	}
 }
 
-?>
+

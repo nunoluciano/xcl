@@ -30,4 +30,4 @@ class XCube_Role
 	}
 }
 
-?>
+

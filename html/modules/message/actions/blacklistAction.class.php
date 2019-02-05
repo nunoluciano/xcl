@@ -103,4 +103,4 @@ class blacklistAction extends AbstractAction
     $render->setAttribute('blackuser', $this->blackuser);
   }
 }
-?>
+

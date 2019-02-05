@@ -69,4 +69,4 @@ class User_AvatarSelectForm extends XCube_ActionForm
 	}
 }
 
-?>
+

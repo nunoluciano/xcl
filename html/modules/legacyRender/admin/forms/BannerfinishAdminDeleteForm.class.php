@@ -42,4 +42,4 @@ class LegacyRender_BannerfinishAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -169,4 +169,4 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 	}
 }
 
-?>
+

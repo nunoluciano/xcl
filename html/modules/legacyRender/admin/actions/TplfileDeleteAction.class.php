@@ -66,4 +66,4 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
 	}
 }
 
-?>
+

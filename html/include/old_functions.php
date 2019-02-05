@@ -206,4 +206,4 @@ function closeThread()
 {
 	echo '</table></td></tr></table>';
 }
-?>
+

@@ -79,4 +79,4 @@ class Legacy_MiscFriendAction extends Legacy_Action
 	}
 }
 
-?>
+

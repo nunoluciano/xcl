@@ -51,4 +51,4 @@ if ($image_id > 0) {
 header('Content-type: image/gif');
 readfile('./images/blank.gif');
 
-?>
+

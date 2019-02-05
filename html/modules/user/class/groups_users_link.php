@@ -35,4 +35,4 @@ class UserGroups_users_linkHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

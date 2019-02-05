@@ -49,4 +49,4 @@ class User_AvatarUploadForm extends XCube_ActionForm
 	}
 }
 
-?>
+

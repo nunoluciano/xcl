@@ -35,4 +35,4 @@ class Legacy_InstallListAction extends Legacy_Action
 	}
 }
 
-?>
+

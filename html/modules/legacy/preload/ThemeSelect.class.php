@@ -78,4 +78,4 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
 	}
 }
 
-?>
+

@@ -124,4 +124,4 @@ class User_AbstractUserEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

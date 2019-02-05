@@ -113,4 +113,4 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

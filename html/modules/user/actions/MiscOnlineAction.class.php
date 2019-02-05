@@ -47,4 +47,4 @@ class User_MiscOnlineAction extends User_AbstractListAction
 	}
 }
 
-?>
+

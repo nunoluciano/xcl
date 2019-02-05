@@ -162,4 +162,4 @@ class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
 	}
 }
 
-?>
+

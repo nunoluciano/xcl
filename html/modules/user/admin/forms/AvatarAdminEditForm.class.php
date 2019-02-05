@@ -86,4 +86,4 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -171,4 +171,4 @@ class XCube_MaxfilesizeValidator extends XCube_Validator
 	}
 }
 
-?>
+

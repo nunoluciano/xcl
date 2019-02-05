@@ -363,4 +363,4 @@ class Xupdate_Ftp_Abstract {
 		return false ;
 	}
 } // end class
-?>
+

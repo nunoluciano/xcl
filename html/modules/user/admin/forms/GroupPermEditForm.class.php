@@ -27,4 +27,4 @@ class User_GroupPermEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

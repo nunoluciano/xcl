@@ -47,4 +47,4 @@ class Legacy_InstallWizardForm extends XCube_ActionForm
 	}
 }
 
-?>
+

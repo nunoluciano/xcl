@@ -742,4 +742,4 @@ class RssSourceHandler extends XmlTagHandler
         }
     }
 }
-?>
+

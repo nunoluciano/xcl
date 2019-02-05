@@ -306,4 +306,4 @@ class Xupdate_AssetManager
     }
 }
 
-?>
+

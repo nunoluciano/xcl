@@ -56,4 +56,4 @@ define('_MD_A_MYBLOCKSADMIN_PERMRESETNG','Could not reset group permission for m
 define('_MD_A_MYBLOCKSADMIN_PERMADDNGP', 'All parent items must be selected.');
 
 
-?>
+

@@ -72,4 +72,4 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
 	}
 }
 
-?>
+

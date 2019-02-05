@@ -714,4 +714,4 @@ if (!extension_loaded('sockets')) {
 	}
 }
 require_once "Custom_".($mod_sockets?"sockets":"pure").".class.php";
-?>
+

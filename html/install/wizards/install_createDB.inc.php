@@ -18,4 +18,4 @@
         $wizard->setContent('<div class="confirmOk">'.sprintf(_INSTALL_L43, XOOPS_DB_NAME).'</div>');
     }
     $wizard->render();
-?>
+

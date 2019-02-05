@@ -219,4 +219,4 @@ class Legacy_ModuleInstallAction extends Legacy_Action
 	}
 }
 
-?>
+

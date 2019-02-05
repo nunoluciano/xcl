@@ -118,4 +118,4 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

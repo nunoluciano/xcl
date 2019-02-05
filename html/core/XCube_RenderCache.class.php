@@ -79,4 +79,4 @@ class XCube_RenderCache
 }
 
 
-?>
+

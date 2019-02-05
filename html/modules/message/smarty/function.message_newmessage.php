@@ -23,4 +23,4 @@ function smarty_function_message_newmessage($params, &$smarty)
   }
   $smarty->assign($name, $new_messages);
 }
-?>
+

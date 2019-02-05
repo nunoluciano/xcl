@@ -247,4 +247,4 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>
+

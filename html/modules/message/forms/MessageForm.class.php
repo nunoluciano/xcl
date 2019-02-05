@@ -111,4 +111,4 @@ class MessageForm extends XCube_ActionForm
     $this->set('uname', $user->get('uname'));
   }
 }
-?>
+

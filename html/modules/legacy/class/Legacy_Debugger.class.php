@@ -156,4 +156,4 @@ class Legacy_SmartyDebugger extends Legacy_AbstractDebugger
 	}
 }
 
-?>
+

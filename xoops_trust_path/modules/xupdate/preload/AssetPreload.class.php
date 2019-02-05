@@ -284,4 +284,4 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 		return 'Legacy_AdminRenderSystem';
 	}
 }
-?>
+

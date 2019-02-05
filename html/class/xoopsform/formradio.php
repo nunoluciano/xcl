@@ -154,4 +154,4 @@ class XoopsFormRadio extends XoopsFormElement {
 		return $renderTarget->getResult();
 	}
 }
-?>
+

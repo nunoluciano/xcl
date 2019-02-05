@@ -49,4 +49,4 @@ class Legacy_NotifyDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

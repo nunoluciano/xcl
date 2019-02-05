@@ -248,4 +248,4 @@ class Legacy_Action
 	}
 }
 
-?>
+

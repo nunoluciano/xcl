@@ -73,4 +73,4 @@ class XoopsFormSelectMatchOption extends XoopsFormSelect
 		$this->addOption(XOOPS_MATCH_CONTAIN, _CONTAINS);
 	}
 }
-?>
+

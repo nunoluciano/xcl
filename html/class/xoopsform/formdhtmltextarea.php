@@ -194,4 +194,4 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
 	}
 
 }
-?>
+

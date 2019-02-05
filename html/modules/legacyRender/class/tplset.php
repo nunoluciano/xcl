@@ -103,4 +103,4 @@ class LegacyRenderTplsetHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

@@ -6,4 +6,4 @@ require '../../mainfile.php' ;
 
 header( 'Location: '.XOOPS_URL.'/user.php' ) ;
 
-?>
+

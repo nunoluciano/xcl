@@ -69,4 +69,4 @@ class Legacy_AdminActionSearch extends Legacy_AbstractBlockProcedure
 	}
 }
 
-?>
+

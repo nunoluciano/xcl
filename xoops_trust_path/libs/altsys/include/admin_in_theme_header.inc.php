@@ -259,4 +259,4 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 
 	$xoopsTpl->xoops_setCaching(0);
 
-?>
+

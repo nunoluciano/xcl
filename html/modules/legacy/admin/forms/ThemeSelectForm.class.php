@@ -65,4 +65,4 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
 	}
 }
 
-?>
+

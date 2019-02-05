@@ -63,4 +63,4 @@ class MessageSettingsForm extends XCube_ActionForm
     $this->set('blacklist', $obj->get('blacklist'));
   }
 }
-?>
+

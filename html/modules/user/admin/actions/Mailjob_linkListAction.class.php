@@ -85,4 +85,4 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 	}
 }
 
-?>
+

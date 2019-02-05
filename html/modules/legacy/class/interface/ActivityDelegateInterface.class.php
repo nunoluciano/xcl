@@ -69,4 +69,4 @@ interface Legacy_iActivityDelegate
 	public static function getActivities(/*** mixed[] ***/ &$list, /*** mixed[] ***/ $categoryArr=null, /*** mixed[] ***/ $moduleArr=null, /*** int ***/ $uid, /*** int ***/ $limit, /*** int ***/ $start);
 }
 
-?>
+

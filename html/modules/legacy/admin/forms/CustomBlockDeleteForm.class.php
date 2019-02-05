@@ -45,4 +45,4 @@ class Legacy_CustomBlockDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

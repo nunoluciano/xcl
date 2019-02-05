@@ -191,4 +191,4 @@ define('_INSTALL_LANG_XOOPS_SALT', "SALT");
 define('_INSTALL_LANG_XOOPS_SALT_DESC', "This plays a supplementary role to generate secret code and token. You don't need to change the default value.");
 
 define('_INSTALL_HEADER_MESSAGE','Please follow the onscreen instructions to install.');
-?>
+

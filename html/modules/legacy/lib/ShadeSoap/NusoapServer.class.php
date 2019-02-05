@@ -148,4 +148,4 @@ class ShadeSoap_NusoapServer extends soap_server
 }
 
 
-?>
+

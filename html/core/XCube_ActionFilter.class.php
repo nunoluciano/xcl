@@ -85,4 +85,4 @@ class XCube_ActionFilter
 	}
 }
 
-?>
+

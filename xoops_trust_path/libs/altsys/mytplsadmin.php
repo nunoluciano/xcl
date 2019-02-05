@@ -363,4 +363,4 @@ echo "</table></form>" ;
 xoops_cp_footer() ;
 
 
-?>
+

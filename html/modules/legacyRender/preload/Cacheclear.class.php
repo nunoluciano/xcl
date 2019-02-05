@@ -33,4 +33,4 @@ class LegacyRender_Cacheclear extends XCube_ActionFilter {
 		}
     }
 }
-?>
+

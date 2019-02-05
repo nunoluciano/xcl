@@ -20,4 +20,4 @@ class User_UserConfirmForm extends XCube_ActionForm
 	}
 }
 
-?>
+

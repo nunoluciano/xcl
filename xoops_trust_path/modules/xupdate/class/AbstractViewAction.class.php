@@ -112,4 +112,4 @@ abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
     }
 }
 
-?>
+

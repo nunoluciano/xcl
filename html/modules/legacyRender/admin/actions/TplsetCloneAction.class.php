@@ -81,4 +81,4 @@ class LegacyRender_TplsetCloneAction extends LegacyRender_TplsetEditAction
 	}
 }
 
-?>
+

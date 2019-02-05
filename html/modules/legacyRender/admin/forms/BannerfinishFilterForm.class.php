@@ -47,4 +47,4 @@ class LegacyRender_BannerfinishFilterForm extends LegacyRender_AbstractFilterFor
 	}
 }
 
-?>
+

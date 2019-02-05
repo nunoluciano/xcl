@@ -60,4 +60,4 @@ class Legacy_SmilesListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

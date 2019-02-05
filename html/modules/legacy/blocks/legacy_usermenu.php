@@ -62,4 +62,4 @@ function b_legacy_usermenu_show()
     }
     return false;
 }
-?>
+

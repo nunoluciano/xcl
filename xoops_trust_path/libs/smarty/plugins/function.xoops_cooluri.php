@@ -39,4 +39,4 @@ function smarty_function_xoops_cooluri($params, &$smarty)
 	echo htmlspecialchars(Legacy_Utils::renderUri($dirname, $dataname, $dataId, $action, $query), ENT_QUOTES);
 }
 
-?>
+

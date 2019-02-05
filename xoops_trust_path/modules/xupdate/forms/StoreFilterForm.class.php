@@ -97,4 +97,4 @@ class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
     }
 }
 
-?>
+

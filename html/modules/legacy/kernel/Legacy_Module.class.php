@@ -647,4 +647,4 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         return $this->mAdminMenu;
     }
 }
-?>
+

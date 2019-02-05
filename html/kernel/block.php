@@ -932,4 +932,4 @@ class XoopsBlockHandler extends XoopsObjectHandler
     	}
     }
 }
-?>
+

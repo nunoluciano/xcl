@@ -70,4 +70,4 @@ class User_GroupDeleteAction extends User_AbstractDeleteAction
 	}
 }
 
-?>
+

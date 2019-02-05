@@ -64,4 +64,4 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     }
 }
 
-?>
+

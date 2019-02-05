@@ -181,4 +181,4 @@ class User_AvatarUploadAction extends User_Action
 	}
 }
 
-?>
+

@@ -31,4 +31,4 @@ class XCube_TextFilter
     }
 
 }
-?>
+

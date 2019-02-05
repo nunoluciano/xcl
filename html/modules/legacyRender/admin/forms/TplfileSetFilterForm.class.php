@@ -61,4 +61,4 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
 	}
 }
 
-?>
+

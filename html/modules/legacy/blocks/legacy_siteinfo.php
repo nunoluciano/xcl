@@ -81,4 +81,4 @@ function b_legacy_siteinfo_edit($options) {
     $form .= "&nbsp;<input type='radio' name='options[3]' value='0'".$chk." />"._NO."";
     return $form;
 }
-?>
+

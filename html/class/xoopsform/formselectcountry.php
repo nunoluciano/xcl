@@ -75,4 +75,4 @@ class XoopsFormSelectCountry extends XoopsFormSelect
 		$this->addOptionArray(XoopsLists::getCountryList());
 	}
 }
-?>
+

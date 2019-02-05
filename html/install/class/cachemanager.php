@@ -60,4 +60,4 @@ class cache_manager {
 }
 
 
-?>
+

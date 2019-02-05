@@ -223,4 +223,4 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 	}
 }
 
-?>
+

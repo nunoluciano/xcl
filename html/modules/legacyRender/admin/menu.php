@@ -16,4 +16,4 @@ $adminmenu[40]['title']=_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW;
 $adminmenu[40]['link']="admin/index.php?action=HtaccessView";
 $adminmenu[40]['show']=true;
 
-?>
+

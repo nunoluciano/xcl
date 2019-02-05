@@ -12,4 +12,4 @@ class XoopsFormBreak extends XoopsFormElement {
         return true;
     }
 }
-?>
+

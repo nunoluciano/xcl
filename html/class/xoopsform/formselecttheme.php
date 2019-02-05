@@ -72,4 +72,4 @@ class XoopsFormSelectTheme extends XoopsFormSelect
 		$this->addOptionArray(XoopsLists::getThemesList());
 	}
 }
-?>
+

@@ -169,4 +169,4 @@ class UserMailjobHandler extends XoopsObjectGenericHandler
 	var $mClass = "UserMailjobObject";
 }
 
-?>
+

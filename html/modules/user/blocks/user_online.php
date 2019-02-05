@@ -52,4 +52,4 @@ function b_user_online_show() {
     }
 	return false;
 }
-?>
+

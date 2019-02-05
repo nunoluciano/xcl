@@ -75,4 +75,4 @@ class User_RanksFilterForm extends User_AbstractFilterForm
 	}
 }
 
-?>
+

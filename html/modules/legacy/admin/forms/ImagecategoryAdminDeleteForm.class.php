@@ -46,4 +46,4 @@ class Legacy_ImagecategoryAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

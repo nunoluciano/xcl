@@ -69,4 +69,4 @@ class Legacy_MiscFriendForm extends XCube_ActionForm
 	}
 }
 
-?>
+

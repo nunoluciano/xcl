@@ -176,4 +176,4 @@ class Legacy_CommentEditForm_Admin extends Legacy_CommentEditForm
 	}
 }
 
-?>
+

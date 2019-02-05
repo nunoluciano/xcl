@@ -55,4 +55,4 @@ class Profile_Admin_DefinitionsDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

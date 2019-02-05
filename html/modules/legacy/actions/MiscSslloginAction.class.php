@@ -41,4 +41,4 @@ class Legacy_MiscSslloginAction extends Legacy_Action
 	}
 }
 
-?>
+

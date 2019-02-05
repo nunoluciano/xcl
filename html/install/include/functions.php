@@ -201,4 +201,4 @@ function b_next($option=null){
     return $content;
 }
 
-?>
+

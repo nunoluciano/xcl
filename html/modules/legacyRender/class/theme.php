@@ -151,4 +151,4 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

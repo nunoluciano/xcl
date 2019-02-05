@@ -279,4 +279,4 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         return true;
     }
 }
-?>
+

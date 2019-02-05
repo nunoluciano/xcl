@@ -80,4 +80,4 @@ class XoopsTableForm extends XoopsForm
 		return $renderTarget->getResult();
 	}
 }
-?>
+

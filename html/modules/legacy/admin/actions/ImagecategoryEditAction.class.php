@@ -69,4 +69,4 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

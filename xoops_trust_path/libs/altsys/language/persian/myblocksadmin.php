@@ -68,4 +68,4 @@ define('_MD_A_MYBLOCKSADMIN_PERMADDNG', 'نا توانی در اختصاص دس�
 define('_MD_A_MYBLOCKSADMIN_PERMADDOK','دسترسی %s به قسمت %s برای گروه %s اضافه شد');
 define('_MD_A_MYBLOCKSADMIN_PERMRESETNG','نا توانی در ریست کردن دسترسی گروه‌ها برای گروه %s');
 define('_MD_A_MYBLOCKSADMIN_PERMADDNGP', 'تمام موارد اصلی باید انتخاب شوند');
-?>
+

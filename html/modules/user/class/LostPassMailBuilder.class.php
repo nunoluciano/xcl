@@ -129,4 +129,4 @@ class User_LostPass2MailBuilder extends User_LostPass1MailBuilder
 		$this->mMailer->assign("NEWPWD", $extraVars['newpass']);
 	}
 }
-?>
+

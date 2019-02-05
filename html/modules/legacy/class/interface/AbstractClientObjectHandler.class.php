@@ -421,4 +421,4 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
 	}
 }
 
-?>
+

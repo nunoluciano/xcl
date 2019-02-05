@@ -241,4 +241,4 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

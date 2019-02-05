@@ -33,4 +33,4 @@ class User_AdminPreload extends XCube_ActionFilter
 	}
 }
 
-?>
+

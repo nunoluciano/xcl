@@ -242,4 +242,4 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

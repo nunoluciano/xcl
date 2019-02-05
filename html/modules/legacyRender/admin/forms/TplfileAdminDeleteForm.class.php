@@ -39,4 +39,4 @@ class LegacyRender_TplfileAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

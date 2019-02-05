@@ -139,4 +139,4 @@ class LegacyNewblocksHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

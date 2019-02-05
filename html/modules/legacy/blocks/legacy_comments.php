@@ -64,4 +64,4 @@ function b_legacy_comments_edit($options) {
     $form = sprintf(_MB_LEGACY_DISPLAYC, $inputtag);
     return $form;
 }
-?>
+

@@ -25,4 +25,4 @@ class Legacy_AbstractDeleteAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

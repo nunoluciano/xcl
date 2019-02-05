@@ -85,4 +85,4 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
 	print $ret;
 }
 
-?>
+

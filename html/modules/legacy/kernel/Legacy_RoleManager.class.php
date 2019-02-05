@@ -86,4 +86,4 @@ class Legacy_RoleManager
 	}
 }
 
-?>
+

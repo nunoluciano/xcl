@@ -198,4 +198,4 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
 }
 
-?>
+

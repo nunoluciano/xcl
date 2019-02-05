@@ -52,4 +52,4 @@ $root->mController->_mStrategy->setupModuleLanguage();	//< Umm...
 // TODO
 //
 
-?>
+

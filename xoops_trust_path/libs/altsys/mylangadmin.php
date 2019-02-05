@@ -279,4 +279,4 @@ $tpl->display( 'db:altsys_main_mylangadmin.html' ) ;
 xoops_cp_footer() ;
 exit ;
 
-?>
+

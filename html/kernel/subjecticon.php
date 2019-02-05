@@ -69,4 +69,4 @@ class XoopsSubjecticonHandler extends XoopsObjectHandler
 	}
 }
 
-?>
+

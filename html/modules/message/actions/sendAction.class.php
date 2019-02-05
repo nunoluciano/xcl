@@ -78,4 +78,4 @@ class sendAction extends AbstractAction
     $render->setAttribute('subject', $this->subject);
   }
 }
-?>
+

@@ -69,4 +69,4 @@ class ShadePlus_SoapClient extends XCube_AbstractServiceClient
 	}
 }
 
-?>
+

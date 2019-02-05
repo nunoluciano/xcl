@@ -87,4 +87,4 @@ class Legacy_ModuleListFilterForm extends Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

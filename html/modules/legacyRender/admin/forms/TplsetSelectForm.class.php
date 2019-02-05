@@ -32,4 +32,4 @@ class LegacyRender_TplsetSelectForm extends XCube_ActionForm
 	}
 }
 
-?>
+

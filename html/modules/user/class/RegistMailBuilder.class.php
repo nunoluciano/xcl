@@ -201,4 +201,4 @@ class User_RegistAdminCommitMailBuilder extends User_RegistUserActivateMailBuild
 	}
 }
 
-?>
+

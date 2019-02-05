@@ -22,4 +22,4 @@ class User_Module extends Legacy_ModuleAdapter
 	}
 }
 
-?>
+

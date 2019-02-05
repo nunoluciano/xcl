@@ -1237,4 +1237,4 @@ class Xupdate_InstallUtils
     }
 }
 
-?>
+

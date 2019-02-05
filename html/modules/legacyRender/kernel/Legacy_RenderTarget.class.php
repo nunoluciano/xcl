@@ -75,4 +75,4 @@ class Legacy_RenderTargetMain extends XCube_RenderTarget
 	}
 }
 
-?>
+

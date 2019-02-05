@@ -71,4 +71,4 @@ interface Legacy_iImageDelegate
 	public static function getImageObjects(/*** Legacy_AbstractImageObject[] ***/ &$objects, /*** string ***/ $dirname, /*** string ***/ $dataname, /*** int ***/ $dataId=0, /*** int ***/ $num=0, /*** int ***/ $limit=10, /*** int ***/ $start=0);
 }
 
-?>
+

@@ -35,4 +35,4 @@
     }
 
     $wizard->render('install_mainfile.tpl.php');
-?>
+

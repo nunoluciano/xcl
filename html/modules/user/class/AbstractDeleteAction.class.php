@@ -17,4 +17,4 @@ class User_AbstractDeleteAction extends User_AbstractEditAction
 	}
 }
 
-?>
+

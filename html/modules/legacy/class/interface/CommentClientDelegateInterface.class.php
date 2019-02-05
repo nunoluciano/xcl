@@ -29,4 +29,4 @@ interface Legacy_iCommentClientDelegate
 	 */ 
 	public static function getClientList(/*** mixed[] ***/ &$list, /*** string ***/ $cDirname);
 }
-?>
+

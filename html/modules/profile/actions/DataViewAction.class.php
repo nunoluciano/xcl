@@ -56,4 +56,4 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
 	}
 }
 
-?>
+

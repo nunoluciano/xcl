@@ -107,4 +107,4 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

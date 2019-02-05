@@ -54,4 +54,4 @@ class User_GroupAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

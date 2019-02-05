@@ -26,4 +26,4 @@ class Legacy_BlockInstallEditForm extends Legacy_BlockEditForm
 	}
 }
 
-?>
+

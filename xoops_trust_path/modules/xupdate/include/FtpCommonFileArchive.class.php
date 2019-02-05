@@ -318,4 +318,4 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	}
 } // end class
 
-?>
+

@@ -56,4 +56,4 @@ class File_Archive_Predicate_Ereg extends File_Archive_Predicate
     }
 }
 
-?>
+

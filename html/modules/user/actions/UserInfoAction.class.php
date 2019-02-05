@@ -152,4 +152,4 @@ class User_UserInfoAction extends User_Action
 	}
 }
 
-?>
+

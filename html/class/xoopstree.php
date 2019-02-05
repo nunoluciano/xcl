@@ -254,4 +254,4 @@ class XoopsTree
 		return $parray;
 	}
 }
-?>
+

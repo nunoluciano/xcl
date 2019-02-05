@@ -604,4 +604,4 @@ class Legacy_TextFilter extends XCube_TextFilter
 		return $this->convertXCode(htmlspecialchars(str_replace('\"', '"', base64_decode($text)),ENT_QUOTES,_CHARSET), $image);
 	}
 }
-?>
+

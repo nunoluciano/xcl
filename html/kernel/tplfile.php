@@ -339,4 +339,4 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         return false;
     }
 }
-?>
+

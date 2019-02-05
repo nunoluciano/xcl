@@ -24,4 +24,4 @@ class User_MailjobPreload extends XCube_ActionFilter
 	}
 }
 
-?>
+

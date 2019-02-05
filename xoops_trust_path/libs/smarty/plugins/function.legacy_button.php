@@ -65,4 +65,4 @@ function smarty_function_legacy_button($params, &$smarty)
 	}
 }
 
-?>
+

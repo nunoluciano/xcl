@@ -262,4 +262,4 @@ class TextSanitizer
         return $this->nl2br($text);
     }
 }
-?>
+

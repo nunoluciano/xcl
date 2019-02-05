@@ -331,4 +331,4 @@ class setting_manager {
 }
 
 
-?>
+

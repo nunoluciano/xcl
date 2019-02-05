@@ -110,4 +110,4 @@ class User_RegisterAgreeEditForm extends User_RegisterEditForm
 	}
 }
 
-?>
+

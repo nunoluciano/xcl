@@ -50,4 +50,4 @@ class User_GroupEditAction extends User_AbstractEditAction
 	}
 }
 
-?>
+

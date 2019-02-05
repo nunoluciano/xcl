@@ -73,4 +73,4 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

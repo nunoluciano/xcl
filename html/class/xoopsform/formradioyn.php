@@ -73,4 +73,4 @@ class XoopsFormRadioYN extends XoopsFormRadio
 		$this->addOption(0, $no);
 	}
 }
-?>
+

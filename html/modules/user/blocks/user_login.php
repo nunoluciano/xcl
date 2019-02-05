@@ -26,4 +26,4 @@ function b_user_login_show() {
     }
     return false;
 }
-?>
+

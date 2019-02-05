@@ -55,4 +55,4 @@ class Legacy_ImagecategoryDeleteAction extends Legacy_AbstractDeleteAction
 	}
 }
 
-?>
+

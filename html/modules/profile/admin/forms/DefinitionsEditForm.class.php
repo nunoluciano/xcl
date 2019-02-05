@@ -132,4 +132,4 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 
 }
 
-?>
+

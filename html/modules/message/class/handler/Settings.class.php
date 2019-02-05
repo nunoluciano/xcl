@@ -52,4 +52,4 @@ class MessageSettingsHandler extends XoopsObjectGenericHandler
     return $uid;
   }
 }
-?>
+

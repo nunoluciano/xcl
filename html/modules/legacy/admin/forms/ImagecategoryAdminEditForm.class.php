@@ -136,4 +136,4 @@ class Legacy_ImagecategoryAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

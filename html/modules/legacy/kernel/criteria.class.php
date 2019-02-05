@@ -194,4 +194,4 @@ class Legacy_Criteria
 	}
 }
 
-?>
+

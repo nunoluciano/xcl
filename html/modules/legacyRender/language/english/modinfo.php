@@ -41,4 +41,4 @@ define('_MI_LR_JQUERY_CORE_DESC', "If you use Google Libraries API, set the jQue
 define('_MI_LR_JQUERY_UI', "jQuery UI Library");
 define('_MI_LR_JQUERY_UI_DESC', "If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.");
 
-?>
+

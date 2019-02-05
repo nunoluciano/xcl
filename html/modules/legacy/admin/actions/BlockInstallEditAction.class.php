@@ -55,4 +55,4 @@ class Legacy_BlockInstallEditAction extends Legacy_BlockEditAction
 	}
 }
 
-?>
+

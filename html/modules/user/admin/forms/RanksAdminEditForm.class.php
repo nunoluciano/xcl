@@ -99,4 +99,4 @@ class User_RanksAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

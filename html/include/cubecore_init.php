@@ -47,4 +47,4 @@ $root=&XCube_Root::getSingleton();
 $root->loadSiteConfig(XCUBE_SITE_SETTING_FILE, XCUBE_SITE_CUSTOM_FILE, XCUBE_SITE_CUSTOM_FILE_SALT);
 $root->setupController();
 
-?>
+

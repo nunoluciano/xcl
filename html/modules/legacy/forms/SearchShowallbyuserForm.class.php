@@ -54,4 +54,4 @@ class Legacy_SearchShowallbyuserForm extends Legacy_SearchShowallForm
 	}
 }
 
-?>
+

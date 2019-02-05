@@ -269,4 +269,4 @@ class Legacy_ModuleInstaller
 	}
 }
 
-?>
+

@@ -494,4 +494,4 @@ class Xupdate_Updater
     }
 }
 
-?>
+

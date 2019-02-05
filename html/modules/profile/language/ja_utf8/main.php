@@ -51,4 +51,4 @@ define('_MD_PROFILE_LANG_DATA_DELETE', 'プロフィールデータを削除');
 define('_MD_PROFILE_LANG_DEFINITIONS_DELETE', 'フォームフィールド削除する');
 
 
-?>
+

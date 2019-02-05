@@ -125,4 +125,4 @@ function altsys_message_append_oninstall( &$module_obj , &$log )
 
 }
 
-?>
+

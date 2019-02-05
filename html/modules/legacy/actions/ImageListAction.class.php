@@ -101,4 +101,4 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 	}
 }
 
-?>
+

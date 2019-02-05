@@ -251,4 +251,4 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
 }
 
-?>
+

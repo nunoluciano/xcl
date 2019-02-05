@@ -81,4 +81,4 @@ function _smarty_function_legacy_tag_cloud_get_size(/*** array **/ $tagList, /**
 	}
 	return $sizeArr;
 }
-?>
+

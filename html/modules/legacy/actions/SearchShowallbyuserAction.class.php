@@ -63,4 +63,4 @@ class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
 	}
 }
 
-?>
+

@@ -63,4 +63,4 @@ class searchAction extends AbstractAction
     $render->setAttribute('listdata', $this->listdata);
   }
 }
-?>
+

@@ -112,4 +112,4 @@ class favoritesAction extends AbstractAction
     $render->setAttribute('fuser', $this->favorites);
   }
 }
-?>
+

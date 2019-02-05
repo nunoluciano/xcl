@@ -25,4 +25,4 @@ class LegacyRender_TplfileUploadForm extends XCube_ActionForm
 	}
 }
 
-?>
+

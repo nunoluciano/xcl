@@ -80,4 +80,4 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
 	}
 }
 
-?>
+

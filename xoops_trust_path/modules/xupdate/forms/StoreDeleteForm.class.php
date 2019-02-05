@@ -77,4 +77,4 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
     }
 }
 
-?>
+

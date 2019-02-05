@@ -134,4 +134,4 @@ class My_Mailer extends PHPMailer
     return $text;
   }
 }
-?>
+

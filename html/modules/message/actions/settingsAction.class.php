@@ -44,4 +44,4 @@ class settingsAction extends AbstractAction
     $render->setAttribute('mActionForm', $this->mActionForm);
   }
 }
-?>
+

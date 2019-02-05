@@ -99,4 +99,4 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

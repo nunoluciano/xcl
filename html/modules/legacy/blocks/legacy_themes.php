@@ -78,4 +78,4 @@ function b_legacy_themes_edit($options)
     $form .= '<input type="text" name="options[1]" value="'.$options[1].'" />';
     return $form;
 }
-?>
+

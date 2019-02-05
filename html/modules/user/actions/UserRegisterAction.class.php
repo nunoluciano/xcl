@@ -105,4 +105,4 @@ class User_UserRegisterAction extends User_Action
 	}
 }
 
-?>
+

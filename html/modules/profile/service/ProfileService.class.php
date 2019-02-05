@@ -294,4 +294,4 @@ class Profile_Service extends XCube_Service
 }
 
 
-?>
+

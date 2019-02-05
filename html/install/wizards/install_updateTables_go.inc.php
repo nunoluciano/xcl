@@ -49,4 +49,4 @@
         $b_next = array('updateConfig', _INSTALL_L14);
     }
     include './install_tpl.php';
-?>
+

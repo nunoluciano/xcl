@@ -14,4 +14,4 @@ $root->mController->mExecute->add(array($modrun, 'execute'));
 $root->mController->execute();
 
 $root->mController->executeView();
-?>
+

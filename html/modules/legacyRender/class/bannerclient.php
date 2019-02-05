@@ -109,4 +109,4 @@ class LegacyRenderBannerclientHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

@@ -35,4 +35,4 @@ define("_TZ_GMTP10", "(GMT+10:00) Brisbane, Canberra, Melbourne, Sydney, Guam, V
 define("_TZ_GMTP11", "(GMT+11:00) Magadan, Solomon Islands, New Caledonia");
 define("_TZ_GMTP12", "(GMT+12:00) Auckland, Wellington, Fiji, Kamchatka, Marshall Island");
 define("_TZ_GMTP13", "(GMT+13:00) Tongatapu");
-?>
+

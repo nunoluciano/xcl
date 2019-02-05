@@ -125,4 +125,4 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

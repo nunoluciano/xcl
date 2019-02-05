@@ -170,4 +170,4 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

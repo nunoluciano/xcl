@@ -324,4 +324,4 @@ class XoopsFormElement {
 		return $eltmsg;
 	}
 }
-?>
+

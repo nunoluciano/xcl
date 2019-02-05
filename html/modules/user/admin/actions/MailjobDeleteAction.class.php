@@ -52,4 +52,4 @@ class User_MailjobDeleteAction extends User_AbstractDeleteAction
 	}
 }
 
-?>
+

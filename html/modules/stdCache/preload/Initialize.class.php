@@ -51,4 +51,4 @@ class StdCache_Initialize extends XCube_ActionFilter
 	}
 }
 
-?>
+

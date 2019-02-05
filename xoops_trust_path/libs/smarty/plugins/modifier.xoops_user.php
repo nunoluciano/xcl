@@ -45,4 +45,4 @@ function smarty_modifier_xoops_user($uid, $key, $flag=2)
 	return null;
 }
 
-?>
+

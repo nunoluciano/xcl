@@ -252,4 +252,4 @@ class Xupdate_Utils
     }
 }
 
-?>
+

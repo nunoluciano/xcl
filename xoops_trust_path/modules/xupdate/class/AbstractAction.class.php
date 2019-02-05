@@ -347,4 +347,4 @@ define(\'XUPDATE_INSTALLERCHECKER_ACTIVE\', false);';
     
 }
 
-?>
+

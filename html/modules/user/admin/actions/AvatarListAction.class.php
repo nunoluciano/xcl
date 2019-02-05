@@ -200,4 +200,4 @@ class User_AvatarListAction extends User_AbstractListAction
 
 }
 
-?>
+

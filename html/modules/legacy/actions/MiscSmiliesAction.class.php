@@ -67,4 +67,4 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
     }
 }
 
-?>
+

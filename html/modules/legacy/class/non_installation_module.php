@@ -100,4 +100,4 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
 	}
 }
 
-?>
+

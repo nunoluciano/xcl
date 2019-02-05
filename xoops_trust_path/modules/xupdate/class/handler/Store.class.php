@@ -78,4 +78,4 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

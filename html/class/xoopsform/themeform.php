@@ -94,4 +94,4 @@ class XoopsThemeForm extends XoopsForm
 		return $ret;
 	}
 }
-?>
+

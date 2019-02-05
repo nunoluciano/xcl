@@ -74,4 +74,4 @@ class Profile_DataDeleteAction extends Profile_AbstractDeleteAction
 	}
 }
 
-?>
+

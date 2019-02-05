@@ -66,4 +66,4 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
     return $ret;
   }
 }
-?>
+

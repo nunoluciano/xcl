@@ -98,4 +98,4 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager
 
 }
 
-?>
+

@@ -41,4 +41,4 @@ class User_AvatarAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -238,4 +238,4 @@ class Legacy_ModuleUninstaller
 	}
 }
 
-?>
+

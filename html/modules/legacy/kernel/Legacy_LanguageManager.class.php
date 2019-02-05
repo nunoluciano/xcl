@@ -261,4 +261,4 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 	}
 }
 
-?>
+

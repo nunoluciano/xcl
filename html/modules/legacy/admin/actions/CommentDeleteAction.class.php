@@ -124,4 +124,4 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
 	}
 }
 
-?>
+

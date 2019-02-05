@@ -451,4 +451,4 @@ $modversion['blocks'] = array(
 ##[/cubson:block]
 );
 
-?>
+

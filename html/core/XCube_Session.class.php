@@ -162,4 +162,4 @@ class XCube_Session
         return $sessionCookiePath;
     }
 }
-?>
+

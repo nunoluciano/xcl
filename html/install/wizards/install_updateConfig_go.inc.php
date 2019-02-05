@@ -143,4 +143,4 @@
     //$content .= $cm->report();
     $b_next = array('updateModules', _INSTALL_L14);
     include './install_tpl.php';
-?>
+

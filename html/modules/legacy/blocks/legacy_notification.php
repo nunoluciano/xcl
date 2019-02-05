@@ -64,4 +64,4 @@ function b_legacy_notification_show()
     $block['submit_button'] = _NOT_UPDATENOW;
     return $block;
 }
-?>
+

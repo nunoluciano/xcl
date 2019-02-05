@@ -138,4 +138,4 @@ class XoopsDownloader
 		//EMPTY
 	}
 }
-?>
+

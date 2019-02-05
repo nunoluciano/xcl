@@ -406,4 +406,4 @@ default:
     redirect_header(XOOPS_URL.'/',3);
     break;
 }
-?>
+

@@ -208,4 +208,4 @@ class XoopsSimpleObject extends AbstractXoopsObject
 	}
 }
 
-?>
+

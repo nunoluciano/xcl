@@ -249,4 +249,4 @@ if( $edit_mode == 'create' ) {
 
 xoops_cp_footer() ;
 
-?>
+

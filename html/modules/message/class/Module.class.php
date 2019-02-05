@@ -38,4 +38,4 @@ class Message_Module extends Legacy_ModuleAdapter
     return $this->mAdminMenu;
   }
 }
-?>
+

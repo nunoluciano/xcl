@@ -677,4 +677,4 @@ class XCube_DelegateUtils
         return false;
     }
 }
-?>
+

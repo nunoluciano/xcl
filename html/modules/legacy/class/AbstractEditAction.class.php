@@ -94,4 +94,4 @@ class Legacy_AbstractEditAction extends Legacy_Action
 	}
 }
 
-?>
+

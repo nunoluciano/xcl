@@ -133,4 +133,4 @@ class User_LostPassAction extends User_Action
 	}
 }
 
-?>
+

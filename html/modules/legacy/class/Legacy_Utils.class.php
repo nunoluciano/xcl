@@ -401,4 +401,4 @@ class Legacy_Utils
 	}
 }
 
-?>
+

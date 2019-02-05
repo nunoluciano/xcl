@@ -117,4 +117,4 @@ class LegacyThemeHandler extends XoopsObjectHandler
 	}
 }
 
-?>
+

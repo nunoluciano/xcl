@@ -32,4 +32,4 @@ class LegacyBlock_module_linkHandler extends XoopsObjectGenericHandler
 	var $mClass = "LegacyBlock_module_linkObject";
 }
 
-?>
+

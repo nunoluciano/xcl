@@ -196,4 +196,4 @@ class Legacy_ActSearchAction extends Legacy_Action
 	}
 }
 
-?>
+

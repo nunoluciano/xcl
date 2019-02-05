@@ -161,4 +161,4 @@ class Legacy_BlockEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

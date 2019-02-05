@@ -413,4 +413,4 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
         return 0;
     }
 }
-?>
+

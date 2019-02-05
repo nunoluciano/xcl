@@ -44,4 +44,4 @@ class LegacyRenderBannerHandler extends XoopsObjectGenericHandler
 	var $mClass = "LegacyRenderBannerObject";
 }
 
-?>
+

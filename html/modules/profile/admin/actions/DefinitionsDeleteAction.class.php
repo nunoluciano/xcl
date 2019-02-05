@@ -74,4 +74,4 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 	}
 }
 
-?>
+

@@ -479,4 +479,4 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         $this->source->rewind($nbSkipped+4);
     }
 }
-?>
+

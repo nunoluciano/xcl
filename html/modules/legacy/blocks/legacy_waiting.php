@@ -18,4 +18,4 @@ function b_legacy_waiting_show() {
     $block['modules'] = $modules;
     return $block;
 }
-?>
+

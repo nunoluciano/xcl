@@ -30,4 +30,4 @@ class Legacy_IndexRedirector extends XCube_ActionFilter
 	}
 }
 
-?>
+

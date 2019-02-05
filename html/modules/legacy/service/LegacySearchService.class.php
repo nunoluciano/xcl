@@ -249,4 +249,4 @@ class Legacy_SearchUtils
     }
 }
 
-?>
+

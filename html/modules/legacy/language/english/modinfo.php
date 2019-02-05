@@ -38,4 +38,4 @@ define('_MI_LEGACY_MENU_XOOPS_CONFIG', "XOOPS Config");
 define('_MI_LEGACY_NAME', "Legacy System");
 define('_MI_LEGACY_NAME_DESC', "This module provides compatibility between XOOPS Cube and XOOPS 2.0.x.");
 
-?>
+

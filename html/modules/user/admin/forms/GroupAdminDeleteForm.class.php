@@ -49,4 +49,4 @@ class User_GroupAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

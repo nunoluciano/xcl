@@ -37,4 +37,4 @@ class User_MailjobViewAction extends User_AbstractViewAction
 	}
 }
 
-?>
+

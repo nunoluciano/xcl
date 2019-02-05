@@ -55,4 +55,4 @@ class Profile_DataDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

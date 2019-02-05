@@ -181,4 +181,4 @@ class User_GroupPropertyAction extends User_Action
 	}
 }
 
-?>
+

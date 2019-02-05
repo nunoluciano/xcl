@@ -20,4 +20,4 @@ function xoops_session_regenerate()
     $root =& XCube_Root::getSingleton();
     $root->mSession->regenerate();
 }
-?>
+

@@ -49,4 +49,4 @@ class Legacy_SmilesUploadForm extends XCube_ActionForm
 	}
 }
 
-?>
+

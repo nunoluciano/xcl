@@ -862,4 +862,4 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
 	}
 }
 
-?>
+

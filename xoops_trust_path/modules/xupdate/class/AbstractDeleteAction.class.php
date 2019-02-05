@@ -71,4 +71,4 @@ abstract class Xupdate_AbstractDeleteAction extends Xupdate_AbstractEditAction
     }
 }
 
-?>
+

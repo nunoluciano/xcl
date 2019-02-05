@@ -301,4 +301,4 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     }
 }
 
-?>
+

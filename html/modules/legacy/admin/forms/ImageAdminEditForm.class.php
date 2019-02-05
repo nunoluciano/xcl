@@ -81,4 +81,4 @@ class Legacy_ImageAdminEditForm extends Legacy_ImageAdminCreateForm
 	}
 }
 
-?>
+

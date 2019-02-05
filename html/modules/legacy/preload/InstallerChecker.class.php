@@ -46,4 +46,4 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
     }
 }
 
-?>
+

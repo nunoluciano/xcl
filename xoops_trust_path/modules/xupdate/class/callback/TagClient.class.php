@@ -84,4 +84,4 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
     }
 }
 
-?>
+

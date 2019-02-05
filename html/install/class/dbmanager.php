@@ -251,4 +251,4 @@ class db_manager {
 	}
 }
 
-?>
+

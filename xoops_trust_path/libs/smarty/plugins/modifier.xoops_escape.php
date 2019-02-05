@@ -45,4 +45,4 @@ function smarty_modifier_xoops_escape($string, $esc_type = 'show')
             return $string;
     }
 }
-?>
+

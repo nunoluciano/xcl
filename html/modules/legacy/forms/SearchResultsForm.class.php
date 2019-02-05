@@ -103,4 +103,4 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
 	}
 }
 
-?>
+

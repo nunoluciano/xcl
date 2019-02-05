@@ -115,4 +115,4 @@ class Profile_AbstractFilterForm
 	}
 }
 
-?>
+

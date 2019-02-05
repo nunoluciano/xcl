@@ -66,4 +66,4 @@ class User_RanksListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

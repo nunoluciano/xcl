@@ -78,4 +78,4 @@ class Lenum_ImageType
 	}
 }
 
-?>
+

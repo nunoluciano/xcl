@@ -96,4 +96,4 @@ class XoopsFormLabel extends XoopsFormElement {
 		return $renderTarget->getResult();
 	}
 }
-?>
+

@@ -45,4 +45,4 @@ class User_RecountForm extends XCube_ActionForm
 	}
 }
 
-?>
+

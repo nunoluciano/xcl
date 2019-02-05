@@ -38,4 +38,4 @@ function b_user_newusers_edit($options)
     $form .= ' />&nbsp;'._NO;
     return $form;
 }
-?>
+

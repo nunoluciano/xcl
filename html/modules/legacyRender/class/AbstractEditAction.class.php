@@ -86,4 +86,4 @@ class LegacyRender_AbstractEditAction extends LegacyRender_Action
 	}
 }
 
-?>
+

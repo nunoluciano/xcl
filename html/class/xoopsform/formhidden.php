@@ -107,4 +107,4 @@ class XoopsFormHidden extends XoopsFormElement {
 		return $renderTarget->getResult();
 	}
 }
-?>
+

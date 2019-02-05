@@ -142,4 +142,4 @@ class User_UserViewAction extends User_AbstractViewAction
 	}
 }
 
-?>
+

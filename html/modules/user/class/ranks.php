@@ -34,4 +34,4 @@ class UserRanksHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

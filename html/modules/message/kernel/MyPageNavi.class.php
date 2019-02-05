@@ -64,4 +64,4 @@ class MyPageNavi
     return $this->_mCriteria;
   }
 }
-?>
+

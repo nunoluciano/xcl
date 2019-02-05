@@ -32,4 +32,4 @@ class LegacyImagebodyHandler extends XoopsObjectGenericHandler
 	var $mClass = "LegacyImagebodyObject";
 }
 
-?>
+

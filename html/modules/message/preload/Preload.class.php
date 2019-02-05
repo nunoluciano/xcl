@@ -78,4 +78,4 @@ class Message_Preload extends XCube_ActionFilter
     }
   }
 }
-?>
+

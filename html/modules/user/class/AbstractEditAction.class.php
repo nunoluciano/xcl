@@ -119,4 +119,4 @@ class User_AbstractEditAction extends User_Action
 	}
 }
 
-?>
+

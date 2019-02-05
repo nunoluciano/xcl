@@ -55,4 +55,4 @@ class Legacy_CommentListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

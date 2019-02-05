@@ -308,4 +308,4 @@ echo "
 
 
 xoops_cp_footer() ;
-?>
+

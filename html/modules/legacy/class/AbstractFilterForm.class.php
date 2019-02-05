@@ -93,4 +93,4 @@ class Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

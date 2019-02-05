@@ -38,4 +38,4 @@ class XCube_AbstractPermissionProvider
 	}
 }
 
-?>
+

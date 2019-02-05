@@ -62,4 +62,4 @@ $adminmenu[120]['title']=_MI_LEGACY_MENU_XOOPS_CONFIG;
 $adminmenu[120]['link']="admin/index.php?action=PreferenceList";
 $adminmenu[120]['show']=true;
 
-?>
+

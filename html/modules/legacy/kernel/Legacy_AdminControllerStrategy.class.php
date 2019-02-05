@@ -184,4 +184,4 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 	}
 }
 
-?>
+

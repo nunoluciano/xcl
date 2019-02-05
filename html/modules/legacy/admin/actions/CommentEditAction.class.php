@@ -185,4 +185,4 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 	}
 }
 
-?>
+

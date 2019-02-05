@@ -60,4 +60,4 @@ class Message_Block extends Legacy_BlockProcedure
     $renderSystem->renderBlock($render);
   }
 }
-?>
+

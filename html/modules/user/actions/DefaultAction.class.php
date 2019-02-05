@@ -49,4 +49,4 @@ class User_DefaultAction extends User_Action
 	}
 }
 
-?>
+

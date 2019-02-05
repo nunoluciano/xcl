@@ -25,4 +25,4 @@ class message_DeletePreload extends XCube_ActionFilter
 	$outHand->deleteDays($modconf['savedays']);
   }
 }
-?>
+

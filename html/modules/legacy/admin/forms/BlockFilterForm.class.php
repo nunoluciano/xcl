@@ -206,4 +206,4 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

@@ -86,4 +86,4 @@ class Profile_DataHandler extends XoopsObjectGenericHandler
 
 }
 
-?>
+

@@ -98,4 +98,4 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 	}
 }
 
-?>
+

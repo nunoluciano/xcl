@@ -58,4 +58,4 @@ class XoopsFormHiddenToken extends XoopsFormHidden {
         $this->XoopsFormHidden($name, $token->getTokenValue());
     }
 }
-?>
+

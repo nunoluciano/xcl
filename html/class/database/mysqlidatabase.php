@@ -500,4 +500,4 @@ class XoopsMysqliDatabaseProxy extends XoopsMysqliDatabase
 		return $ret;
 	}
 }
-?>
+

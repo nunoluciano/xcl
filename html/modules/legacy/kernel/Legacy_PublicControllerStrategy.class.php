@@ -119,4 +119,4 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 	}
 }
 
-?>
+

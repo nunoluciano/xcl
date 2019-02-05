@@ -9,4 +9,4 @@ $mytrustdirname = 'altsys' ;
 
 require XOOPS_TRUST_PATH.'/libs/'.$mytrustdirname.'/admin_menu.php' ;
 
-?>
+

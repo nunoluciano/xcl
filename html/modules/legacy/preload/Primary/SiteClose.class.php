@@ -104,4 +104,4 @@ class Legacy_SiteClose extends XCube_ActionFilter
 	}
 }
 
-?>
+

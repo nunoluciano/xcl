@@ -194,4 +194,4 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 	}
 }
 
-?>
+

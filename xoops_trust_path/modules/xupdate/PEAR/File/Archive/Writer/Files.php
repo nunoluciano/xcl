@@ -256,4 +256,4 @@ class File_Archive_Writer_Files extends File_Archive_Writer
     }
 }
 
-?>
+

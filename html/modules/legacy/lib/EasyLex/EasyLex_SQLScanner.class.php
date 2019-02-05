@@ -385,4 +385,4 @@ class EasyLex_SQLScanner
 	}
 }
 
-?>
+

@@ -221,4 +221,4 @@ class UserUsersHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

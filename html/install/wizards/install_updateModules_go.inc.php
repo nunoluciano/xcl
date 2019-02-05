@@ -253,4 +253,4 @@
     ob_end_clean();
     $b_next = array('updateComments', _INSTALL_L14);
     include './install_tpl.php';
-?>
+

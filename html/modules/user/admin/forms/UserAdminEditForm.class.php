@@ -361,4 +361,4 @@ class User_UserAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

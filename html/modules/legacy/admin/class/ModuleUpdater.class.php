@@ -389,4 +389,4 @@ class Legacy_ModulePhasedUpgrader
 	}
 }
 
-?>
+

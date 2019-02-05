@@ -42,4 +42,4 @@ class User_MailjobAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -358,4 +358,4 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
 		$controller->executeForward($module->getAdminIndex());
 	}
 }
-?>
+

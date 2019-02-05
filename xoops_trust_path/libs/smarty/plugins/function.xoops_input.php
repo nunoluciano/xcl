@@ -129,4 +129,4 @@ function smarty_function_xoops_input($params, &$smarty)
 	}
 }
 
-?>
+

@@ -67,4 +67,4 @@ class LegacyRender_BannerEditAction extends LegacyRender_AbstractEditAction
 	}
 }
 
-?>
+

@@ -39,4 +39,4 @@ class Legacy_ModuleUninstallForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -202,4 +202,4 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 	}
 }
 
-?>
+

@@ -188,4 +188,4 @@ class Profile_Module extends Legacy_ModuleAdapter
 	}
 }
 
-?>
+

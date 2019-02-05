@@ -93,4 +93,4 @@ function smarty_function_xoops_dhtmltarea($params, &$smarty)
 	}
 }
 
-?>
+

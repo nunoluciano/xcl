@@ -18,4 +18,4 @@ $xoopsLogger=&$root->mController->getLogger();
 $xoopsLogger->stopTime();
 $root->mController->executeView();
 
-?>
+

@@ -47,4 +47,4 @@ class Legacy_SearchShowallForm extends Legacy_SearchResultsForm
 	}
 }
 
-?>
+

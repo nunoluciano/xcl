@@ -103,4 +103,4 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
         }
     }
 }
-?>
+

@@ -669,4 +669,4 @@ class XCube_DependClassFactory
 	}
 }
 
-?>
+

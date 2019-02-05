@@ -90,4 +90,4 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

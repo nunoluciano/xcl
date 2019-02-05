@@ -312,4 +312,4 @@ function xoops_module_write_admin_menu($content)
     fclose($file);
     return true;
 }
-?>
+

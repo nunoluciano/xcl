@@ -26,4 +26,4 @@ class LegacyRender_ThemeSelect extends XCube_ActionFilter
     }
 }
 
-?>
+

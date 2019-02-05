@@ -212,4 +212,4 @@ class Legacy_HelpAction extends Legacy_Action
 	}
 }
 
-?>
+

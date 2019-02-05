@@ -290,4 +290,4 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
 	}
 }
 
-?>
+

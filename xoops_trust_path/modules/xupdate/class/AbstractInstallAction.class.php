@@ -387,4 +387,4 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
 	}
 }
 
-?>
+

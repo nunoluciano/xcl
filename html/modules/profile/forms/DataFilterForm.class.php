@@ -87,4 +87,4 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
     }
 }
 
-?>
+

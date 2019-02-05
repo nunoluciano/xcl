@@ -412,4 +412,4 @@ class ThemeSetTagHandler extends XmlTagHandler
 		}
 	}
 }
-?>
+

@@ -30,4 +30,4 @@ interface Legacy_iImageClientDelegate
 	 */ 
 	public static function getClientList(/*** array ***/ &$list);
 }
-?>
+

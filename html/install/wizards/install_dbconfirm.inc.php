@@ -19,4 +19,4 @@
         $wizard->setContent($sm->confirmForm());
     }
     $wizard->render();
-?>
+

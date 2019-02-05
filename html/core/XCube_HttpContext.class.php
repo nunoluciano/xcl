@@ -255,4 +255,4 @@ class XCube_GenericRequest extends XCube_AbstractRequest
 	}
 }
 
-?>
+

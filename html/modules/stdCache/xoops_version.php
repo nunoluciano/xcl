@@ -30,4 +30,4 @@ $modversion['blocks'][1]['class'] = "CacheclearBlock";
 $modversion['blocks'][1]['template'] = 'stdcache_block_cacheclear.html';
 $modversion['blocks'][1]['options'] = '60';
 
-?>
+

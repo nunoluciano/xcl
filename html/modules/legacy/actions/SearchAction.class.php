@@ -55,4 +55,4 @@ class Legacy_SearchAction extends Legacy_SearchResultsAction
 	}
 }
 
-?>
+

@@ -56,4 +56,4 @@ class Legacy_ImageListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -11,4 +11,4 @@ if (!defined('XOOPS_ROOT_PATH')) {
  * Load the new object class 
  **/
 require_once XOOPS_ROOT_PATH.'/kernel/object.php';
-?>
+

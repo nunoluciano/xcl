@@ -27,4 +27,4 @@
     $b_back = array();
     $b_next = array('updateTables_go', _INSTALL_L132);
     include './install_tpl.php';
-?>
+

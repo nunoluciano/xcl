@@ -241,4 +241,4 @@ class File_Archive_Predicate_TARCompatible extends File_Archive_Predicate
     }
 }
 
-?>
+

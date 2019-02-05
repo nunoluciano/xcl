@@ -221,4 +221,4 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
 		}
 	}
 }
-?>
+

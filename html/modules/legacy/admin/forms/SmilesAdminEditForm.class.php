@@ -92,4 +92,4 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

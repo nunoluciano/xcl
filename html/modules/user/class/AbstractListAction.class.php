@@ -51,4 +51,4 @@ class User_AbstractListAction extends User_Action
 	}
 }
 
-?>
+

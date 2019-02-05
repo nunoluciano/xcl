@@ -51,4 +51,4 @@ class User_RanksDeleteAction extends User_AbstractDeleteAction
 	}
 }
 
-?>
+

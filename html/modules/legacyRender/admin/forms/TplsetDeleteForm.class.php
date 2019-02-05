@@ -45,4 +45,4 @@ class LegacyRender_TplsetDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

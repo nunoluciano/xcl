@@ -37,4 +37,4 @@
         }
     }
     $wizard->render('install_checkDB.tpl.php');
-?>
+

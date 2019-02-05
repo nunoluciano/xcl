@@ -31,4 +31,4 @@ class Legacy_IPbanningFilter extends XCube_ActionFilter
 	}
 }
 
-?>
+

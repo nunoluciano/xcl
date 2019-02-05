@@ -183,4 +183,4 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
 }
 
-?>
+

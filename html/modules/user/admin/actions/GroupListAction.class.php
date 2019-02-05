@@ -32,4 +32,4 @@ class User_GroupListAction extends User_AbstractListAction
 	}
 }
 
-?>
+

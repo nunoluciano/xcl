@@ -86,4 +86,4 @@ class User_AvatarEditAction extends User_AbstractEditAction
 	}
 }
 
-?>
+

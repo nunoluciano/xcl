@@ -195,4 +195,4 @@ class XoopsFormSelect extends XoopsFormElement {
 		return $renderTarget->getResult();
 	}
 }
-?>
+

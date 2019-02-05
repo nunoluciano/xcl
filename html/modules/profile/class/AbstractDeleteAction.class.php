@@ -41,4 +41,4 @@ class Profile_AbstractDeleteAction extends Profile_AbstractEditAction
 	}
 }
 
-?>
+

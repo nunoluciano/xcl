@@ -144,4 +144,4 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
     }
 }
 
-?>
+

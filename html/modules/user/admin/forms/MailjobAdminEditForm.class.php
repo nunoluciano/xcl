@@ -97,4 +97,4 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

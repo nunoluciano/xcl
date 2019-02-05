@@ -60,4 +60,4 @@ class Legacy_ModuleListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

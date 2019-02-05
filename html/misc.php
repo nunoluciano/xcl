@@ -17,4 +17,4 @@ require_once XOOPS_ROOT_PATH . "/header.php";
 
 XCube_DelegateUtils::call('Legacypage.Misc.Access');
 
-?>
+

@@ -57,4 +57,4 @@ define('LEGACY_SYSTEM_COMMENT', 14);
 define('XOOPSFORM_DEPENDENCE_RENDER_SYSTEM', 'Legacy_RenderSystem');
 
 
-?>
+

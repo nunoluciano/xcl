@@ -28,4 +28,4 @@ class Xupdate_Admin_PreloadInstallAction extends Xupdate_AbstractInstallAction
 		$this->my_dir_path = XOOPS_ROOT_PATH . '/preload';
 	}
 }
-?>
+

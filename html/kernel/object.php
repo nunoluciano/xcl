@@ -745,4 +745,4 @@ class XoopsObjectHandler
 	}
 
 }
-?>
+

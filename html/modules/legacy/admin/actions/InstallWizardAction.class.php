@@ -90,4 +90,4 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
 	}
 }
 
-?>
+

@@ -468,4 +468,4 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>
+

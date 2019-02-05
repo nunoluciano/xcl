@@ -38,4 +38,4 @@
 		$wizard->setReload(true);
 	}
 	$wizard->render('install_modcheck.tpl.php');
-?>
+

@@ -33,4 +33,4 @@ class protectorLE_Filter extends XCube_ActionFilter
 	}
 }
 
-?>
+

@@ -77,4 +77,4 @@ class XoopsSimpleForm extends XoopsForm
 		return $renderTarget->getResult();
 	}
 }
-?>
+

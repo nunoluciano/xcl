@@ -1465,4 +1465,4 @@ class Legacy_AbstractControllerStrategy
 	{
 	}
 }
-?>
+

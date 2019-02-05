@@ -65,4 +65,4 @@ class Legacy_GenericPrincipal extends XCube_Principal
 	}
 }
 
-?>
+

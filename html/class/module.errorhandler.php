@@ -122,4 +122,4 @@ if ( !defined("XOOPS_C_ERRORHANDLER_INCLUDED") ) {
         }
     }
 }
-?>
+

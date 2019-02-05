@@ -65,4 +65,4 @@ class Legacy_ModuleInfoAction extends Legacy_Action
 	}
 }
 
-?>
+

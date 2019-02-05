@@ -7,4 +7,4 @@
 
 require_once XOOPS_TRUST_PATH . '/modules/xupdate/language/english/admin.php';
 
-?>
+

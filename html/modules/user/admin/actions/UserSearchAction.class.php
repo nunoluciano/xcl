@@ -57,4 +57,4 @@ class User_UserSearchAction extends User_Action
 	}
 }
 
-?>
+

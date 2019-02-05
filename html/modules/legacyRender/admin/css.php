@@ -72,4 +72,4 @@ if (is_file($path . "/" . $file))
 header('Content-Type:text/css; charset='._CHARSET);
 echo $result;
 
-?>
+

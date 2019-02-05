@@ -20,4 +20,4 @@
 	}
 	$wizard->render('install_start.tpl.php');
 
-?>
+

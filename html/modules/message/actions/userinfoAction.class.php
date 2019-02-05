@@ -84,4 +84,4 @@ class UserinfoAction extends User_UserInfoAction
     $render->setAttribute('data', $profile);
   }
 }
-?>
+

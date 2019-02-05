@@ -86,5 +86,4 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 
 }
 
-?>
 

@@ -30,4 +30,4 @@ class Legacy_Module extends Legacy_ModuleAdapter
 	}
 }
 
-?>
+

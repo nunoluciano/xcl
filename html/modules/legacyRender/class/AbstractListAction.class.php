@@ -39,4 +39,4 @@ class LegacyRender_AbstractListAction extends LegacyRender_Action
 	}
 }
 
-?>
+

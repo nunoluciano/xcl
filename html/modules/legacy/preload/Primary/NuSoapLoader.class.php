@@ -58,4 +58,4 @@ class Legacy_NuSoapLoader extends XCube_ActionFilter
 	}
 }
 
-?>
+

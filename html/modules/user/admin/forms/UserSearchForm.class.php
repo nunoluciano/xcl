@@ -166,4 +166,4 @@ class User_UserSearchForm extends XCube_ActionForm
 	}
 }
 
-?>
+

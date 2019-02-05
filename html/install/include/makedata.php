@@ -306,4 +306,4 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
 	}
 }
 
-?>
+

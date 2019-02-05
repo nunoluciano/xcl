@@ -23,4 +23,4 @@ class Legacy_NotifyCancelAction extends Legacy_Action
 	}
 }
 
-?>
+

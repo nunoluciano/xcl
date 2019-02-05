@@ -195,4 +195,4 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 		return $objs;
 	}
 }
-?>
+

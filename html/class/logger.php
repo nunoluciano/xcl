@@ -235,4 +235,4 @@ class XoopsLogger
         return $ret;
     }
 }
-?>
+

@@ -196,4 +196,4 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 	abstract public function getFileUrl($tsize=0);
 }
 
-?>
+

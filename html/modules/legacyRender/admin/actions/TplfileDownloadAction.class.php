@@ -53,4 +53,4 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
 	}
 }
 
-?>
+

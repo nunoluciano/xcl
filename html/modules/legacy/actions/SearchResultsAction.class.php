@@ -159,4 +159,4 @@ class Legacy_SearchResultsAction extends Legacy_Action
 	}
 }
 
-?>
+

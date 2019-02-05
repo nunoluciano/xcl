@@ -27,4 +27,4 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 	}
 }
 
-?>
+

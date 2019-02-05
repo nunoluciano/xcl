@@ -53,4 +53,4 @@ class Message_Service extends XCube_Service
     return 0;
   }
 }
-?>
+

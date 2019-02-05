@@ -72,4 +72,4 @@ class Message_myInstaller extends Legacy_ModuleInstaller
     //--- End ---
   }
 }
-?>
+

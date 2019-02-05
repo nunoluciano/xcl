@@ -35,4 +35,4 @@ $root=&XCube_Root::getSingleton();
 $root->mDelegateManager->add("Legacypage.Admin.SystemCheck", "DefaultSystemCheckFunction::DefaultCheck");
 XCube_DelegateUtils::call("Legacypage.Admin.SystemCheck");
 require_once XOOPS_ROOT_PATH . "/footer.php";
-?>
+

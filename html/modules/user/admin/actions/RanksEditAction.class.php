@@ -59,4 +59,4 @@ class User_RanksEditAction extends User_AbstractEditAction
 	}
 }
 
-?>
+

@@ -150,4 +150,4 @@ class User_GroupMemberAction extends User_Action
 	}
 }
 
-?>
+

@@ -22,4 +22,4 @@ class LegacyRender_Module extends Legacy_ModuleAdapter
 	}
 }
 
-?>
+

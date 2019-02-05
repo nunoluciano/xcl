@@ -76,4 +76,4 @@ class User_UserActivateAction extends User_AbstractEditAction
 		}
 	}
 }
-?>
+

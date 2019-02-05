@@ -41,4 +41,4 @@ class User_MailjobListAction extends User_AbstractListAction
 	}
 }
 
-?>
+

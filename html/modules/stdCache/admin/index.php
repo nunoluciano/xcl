@@ -7,4 +7,4 @@ redirect_header(XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirn
 
 require_once XOOPS_ROOT_PATH . "/footer.php";
 
-?>
+

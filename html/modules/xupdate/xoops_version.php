@@ -13,4 +13,4 @@ require $mydirpath.'/mytrustdirname.php' ; // set $mytrustdirname
 
 require XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/xoops_version.php' ;
 
-?>
+

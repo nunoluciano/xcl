@@ -54,4 +54,4 @@ class User_GroupFilterForm extends User_AbstractFilterForm
 	}
 }
 
-?>
+

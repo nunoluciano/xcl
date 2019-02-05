@@ -15,4 +15,4 @@ require_once '../../../mainfile.php';
 
 require_once XOOPS_TRUST_PATH . '/modules/xupdate/admin/index.php';
 
-?>
+

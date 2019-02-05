@@ -103,4 +103,4 @@ if (file_exists($fname)) {
 } else {
     $wizard->render();
 }
-?>
+

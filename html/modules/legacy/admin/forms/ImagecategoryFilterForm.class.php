@@ -127,4 +127,4 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

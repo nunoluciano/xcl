@@ -59,4 +59,4 @@ class User_UserListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

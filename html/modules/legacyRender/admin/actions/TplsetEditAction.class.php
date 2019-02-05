@@ -72,4 +72,4 @@ class LegacyRender_TplsetEditAction extends LegacyRender_AbstractEditAction
 	}
 }
 
-?>
+

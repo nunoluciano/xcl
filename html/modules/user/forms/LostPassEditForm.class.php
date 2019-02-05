@@ -33,4 +33,4 @@ class User_LostPassEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

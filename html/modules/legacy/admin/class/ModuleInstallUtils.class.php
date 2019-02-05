@@ -1308,4 +1308,4 @@ class Legacy_ModuleInstallUtils
 	}
 }
 
-?>
+

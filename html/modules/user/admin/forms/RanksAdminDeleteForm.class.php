@@ -41,4 +41,4 @@ class User_RanksAdminDeleteForm extends XCube_ActionForm
 	}
 }
 
-?>
+

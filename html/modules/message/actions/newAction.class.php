@@ -161,4 +161,4 @@ class newAction extends AbstractAction
     $render->setAttribute('errMsg', $this->errMsg);
   }
 }
-?>
+

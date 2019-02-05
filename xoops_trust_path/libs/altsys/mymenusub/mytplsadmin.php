@@ -53,4 +53,4 @@ $tpl->assign( array(
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenusub.html' ) ;
 
-?>
+

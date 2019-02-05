@@ -37,4 +37,4 @@ class User_MailjobAdminSendForm extends XCube_ActionForm
 	}
 }
 
-?>
+

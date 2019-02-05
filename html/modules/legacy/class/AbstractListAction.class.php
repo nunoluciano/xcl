@@ -48,4 +48,4 @@ class Legacy_AbstractListAction extends Legacy_Action
 	}
 }
 
-?>
+

@@ -47,4 +47,4 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
 	}
 }
 
-?>
+

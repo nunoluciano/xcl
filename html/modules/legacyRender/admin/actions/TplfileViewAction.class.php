@@ -38,4 +38,4 @@ class LegacyRender_TplfileViewAction extends LegacyRender_Action
 	}
 }
 
-?>
+

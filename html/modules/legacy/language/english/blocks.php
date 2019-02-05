@@ -37,4 +37,4 @@ define('_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE', "Sorry, you can't change theme
 
 define('_MB_LEGACY_MAINMENU_EXPAND_SUB', "Show all submenus");
 
-?>
+

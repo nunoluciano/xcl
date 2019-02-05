@@ -899,4 +899,4 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 
 
 }
-?>
+

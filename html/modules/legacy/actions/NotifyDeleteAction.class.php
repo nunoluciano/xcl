@@ -89,4 +89,4 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
 	}
 }
 
-?>
+

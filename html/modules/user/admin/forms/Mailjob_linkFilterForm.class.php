@@ -41,4 +41,4 @@ class User_Mailjob_linkFilterForm extends User_AbstractFilterForm
 	}
 }
 
-?>
+

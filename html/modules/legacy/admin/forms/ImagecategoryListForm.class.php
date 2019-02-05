@@ -73,4 +73,4 @@ class Legacy_ImagecategoryListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

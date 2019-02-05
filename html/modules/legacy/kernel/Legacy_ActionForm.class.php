@@ -35,4 +35,4 @@ class Legacy_ActionForm extends XCube_ActionForm
 }
 
 
-?>
+

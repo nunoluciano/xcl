@@ -90,4 +90,4 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 	}
 }
 
-?>
+

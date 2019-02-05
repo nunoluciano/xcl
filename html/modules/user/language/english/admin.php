@@ -173,4 +173,4 @@ define('_AD_USER_TIPS3_DATA_UPLOAD', 'Please describe only the user who wants to
 define('_AD_USER_TIPS4_DATA_UPLOAD', 'When the row of leftmost UID is emptied(or 0), it registers as a new user.');
 define('_AD_USER_TIPS5_DATA_UPLOAD', 'The user information is updated when there is a value of the row of leftmost(UID).<br>If you set password,set it within 30bytes.');
 
-?>
+

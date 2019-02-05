@@ -84,4 +84,4 @@ class XoopsZipDownloader extends XoopsDownloader
 		echo $file;
     }
 }
-?>
+

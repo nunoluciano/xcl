@@ -37,4 +37,4 @@ class LegacyRender_TplsetFilterForm extends LegacyRender_AbstractFilterForm
 	}
 }
 
-?>
+

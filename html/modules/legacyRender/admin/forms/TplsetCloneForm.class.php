@@ -72,4 +72,4 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
 	}
 }
 
-?>
+

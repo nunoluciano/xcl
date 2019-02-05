@@ -142,4 +142,4 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 	}
 }
 
-?>
+

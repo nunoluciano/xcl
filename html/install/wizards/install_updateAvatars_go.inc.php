@@ -62,4 +62,4 @@
 
     $b_next = array('finish', _INSTALL_L14);
     include './install_tpl.php';
-?>
+

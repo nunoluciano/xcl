@@ -194,4 +194,4 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
 	}
 }
 
-?>
+

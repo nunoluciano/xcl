@@ -97,4 +97,4 @@ class XCube_ObjectArray
 	}
 }
 
-?>
+

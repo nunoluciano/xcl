@@ -135,4 +135,4 @@ class Legacy_ThemeListAction extends Legacy_Action
 	}
 }
 
-?>
+

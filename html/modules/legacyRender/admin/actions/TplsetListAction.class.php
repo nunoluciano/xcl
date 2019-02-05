@@ -86,4 +86,4 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
 	}
 }
 
-?>
+

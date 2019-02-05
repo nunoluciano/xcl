@@ -442,4 +442,4 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     }
 }
 
-?>
+

@@ -157,4 +157,4 @@ class User_UserDeleteAction extends User_Action
 	}
 }
 
-?>
+

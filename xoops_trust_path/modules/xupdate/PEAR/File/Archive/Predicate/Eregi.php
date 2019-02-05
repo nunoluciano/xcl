@@ -58,4 +58,4 @@ class File_Archive_Predicate_Eregi extends File_Archive_Predicate
     }
 }
 
-?>
+

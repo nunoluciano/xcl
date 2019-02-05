@@ -47,4 +47,4 @@ class LegacyRender_BannerfinishListAction extends LegacyRender_AbstractListActio
 	}
 }
 
-?>
+

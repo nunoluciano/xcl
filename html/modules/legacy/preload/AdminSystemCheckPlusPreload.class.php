@@ -248,4 +248,4 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 	}
 }
 
-?>
+

@@ -94,4 +94,4 @@ class viewAction extends AbstractAction
     $render->setAttribute('msgdata', $this->msgdata);
   }
 }
-?>
+

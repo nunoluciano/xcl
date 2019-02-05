@@ -51,4 +51,4 @@ class Profile_Admin_DefinitionsListAction extends Profile_AbstractListAction
 	}
 }
 
-?>
+

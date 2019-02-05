@@ -514,4 +514,4 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         return $criteria;
     }
 }
-?>
+

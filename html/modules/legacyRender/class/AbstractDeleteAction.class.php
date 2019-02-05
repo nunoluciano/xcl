@@ -17,4 +17,4 @@ class LegacyRender_AbstractDeleteAction extends LegacyRender_AbstractEditAction
 	}
 }
 
-?>
+

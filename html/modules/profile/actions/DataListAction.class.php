@@ -52,4 +52,4 @@ class Profile_DataListAction extends Profile_AbstractListAction
 	}
 }
 
-?>
+

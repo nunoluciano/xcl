@@ -125,4 +125,4 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
     }
   }
 }
-?>
+

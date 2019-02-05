@@ -89,4 +89,4 @@ class Legacy_BlockListForm extends XCube_ActionForm
 	}
 }
 
-?>
+

@@ -86,4 +86,4 @@ define ('_NOT_MODE_SENDALWAYS', 'Notify me of all selected updates');
 define ('_NOT_MODE_SENDONCE', 'Notify me only once');
 define ('_NOT_MODE_SENDONCEPERLOGIN', 'Notify me once then disable until I log in again');
 
-?>
+

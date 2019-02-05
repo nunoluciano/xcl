@@ -20,4 +20,4 @@ class LegacyRender_StartupXoopsTpl extends XCube_ActionFilter
 	}
 }
 
-?>
+

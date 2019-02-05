@@ -547,4 +547,4 @@ class Profile_ActionType
     const VIEW = 2;
 }
 
-?>
+

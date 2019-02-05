@@ -63,4 +63,4 @@ class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
 	}
 }
 
-?>
+

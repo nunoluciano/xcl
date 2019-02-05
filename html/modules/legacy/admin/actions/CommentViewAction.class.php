@@ -63,4 +63,4 @@ class Legacy_CommentViewAction extends Legacy_Action
 	}
 }
 
-?>
+

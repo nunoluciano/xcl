@@ -49,4 +49,4 @@ function smarty_function_legacy_tag_select($params, &$smarty)
 	echo $render->getResult();
 }
 
-?>
+

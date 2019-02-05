@@ -139,4 +139,4 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
     }
 }
 
-?>
+

@@ -27,4 +27,4 @@ class Legacy_BlockUninstallForm extends Legacy_CustomBlockDeleteForm
 	}
 }
 
-?>
+

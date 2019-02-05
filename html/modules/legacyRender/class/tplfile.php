@@ -215,4 +215,4 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

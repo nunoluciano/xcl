@@ -1278,4 +1278,4 @@ class Snoopy
 	}
 }
 
-?>
+

@@ -98,4 +98,4 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 	}
 }
 
-?>
+

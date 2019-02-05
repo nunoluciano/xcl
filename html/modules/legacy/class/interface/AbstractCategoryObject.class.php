@@ -99,4 +99,4 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 
 }
 
-?>
+

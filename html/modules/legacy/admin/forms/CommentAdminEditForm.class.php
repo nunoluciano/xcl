@@ -122,4 +122,4 @@ class Legacy_ApprovalCommentAdminEditForm extends Legacy_AbstractCommentAdminEdi
 }
 
 
-?>
+

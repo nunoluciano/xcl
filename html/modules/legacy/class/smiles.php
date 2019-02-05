@@ -42,4 +42,4 @@ class LegacySmilesHandler extends XoopsObjectGenericHandler
 	}
 }
 
-?>
+

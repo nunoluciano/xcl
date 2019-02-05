@@ -79,4 +79,4 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
 	}
 }
 
-?>
+

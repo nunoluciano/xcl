@@ -40,4 +40,4 @@ class Legacy_PreferenceListAction extends Legacy_Action
 	}
 }
 
-?>
+

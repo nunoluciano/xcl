@@ -53,4 +53,4 @@ class LegacyRender_BannerclientEditAction extends LegacyRender_AbstractEditActio
 	}
 }
 
-?>
+

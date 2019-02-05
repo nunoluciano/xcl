@@ -36,4 +36,4 @@ function smarty_function_legacy_tree($params, &$smarty)
 
 	echo $render->getResult();
 }
-?>
+

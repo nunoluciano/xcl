@@ -227,4 +227,4 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
 	}
 }
 
-?>
+

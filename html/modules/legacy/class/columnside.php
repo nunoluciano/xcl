@@ -91,4 +91,4 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
 	}
 }
 
-?>
+

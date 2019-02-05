@@ -200,4 +200,4 @@ class XCube_ServiceClient extends XCube_AbstractServiceClient
 	}
 }
 
-?>
+

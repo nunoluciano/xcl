@@ -226,4 +226,4 @@ class User_EditUserForm extends User_AbstractUserEditForm
 	}
 }
 
-?>
+

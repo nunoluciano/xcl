@@ -88,4 +88,4 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
 	}
 }
 
-?>
+

@@ -320,4 +320,4 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
     }
 }
 
-?>
+

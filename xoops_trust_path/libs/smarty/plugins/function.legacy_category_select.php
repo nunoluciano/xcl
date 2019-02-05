@@ -48,4 +48,4 @@ function smarty_function_legacy_category_select($params, &$smarty)
 
 	echo $selectHtml;
 }
-?>
+

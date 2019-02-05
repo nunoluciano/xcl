@@ -60,4 +60,4 @@ class LegacyRender_BannerFilterForm extends LegacyRender_AbstractFilterForm
 	}
 }
 
-?>
+

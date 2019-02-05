@@ -154,4 +154,4 @@ class Legacy_NotifyListAction extends Legacy_Action
 	}
 }
 
-?>
+

@@ -298,4 +298,4 @@ class File_Archive_Reader_File extends File_Archive_Reader
     }
 }
 
-?>
+

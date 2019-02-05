@@ -86,4 +86,4 @@ function smarty_function_flvplayer($params, &$smarty)
 	print $ret;
 }
 
-?>
+

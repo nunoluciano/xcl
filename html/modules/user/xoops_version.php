@@ -342,4 +342,4 @@ $modversion['blocks'][4]['template'] = 'user_block_topusers.html';
 $modversion['blocks'][4]['edit_func'] = "b_user_topusers_edit";
 $modversion['blocks'][4]['options'] = "10|1";
 $modversion['blocks'][4]['show_all_module'] = true;
-?>
+

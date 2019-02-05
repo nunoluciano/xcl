@@ -32,4 +32,4 @@ class UserGroupsHandler extends XoopsObjectGenericHandler
 	var $mClass = "UserGroupsObject";
 }
 
-?>
+

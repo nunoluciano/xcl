@@ -6,4 +6,4 @@
 
 define("XOOPS_VERSION", "XOOPS Cube Legacy 2.2.3 Beta 1");
 
-?>
+

@@ -30,4 +30,4 @@ class User_GroupMemberEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

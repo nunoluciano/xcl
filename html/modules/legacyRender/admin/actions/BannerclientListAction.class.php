@@ -40,4 +40,4 @@ class LegacyRender_BannerclientListAction extends LegacyRender_AbstractListActio
 	}
 }
 
-?>
+

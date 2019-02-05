@@ -156,4 +156,4 @@ $modversion['config'][]=array (
 // Menu
 $modversion['hasMain']=0;
 
-?>
+

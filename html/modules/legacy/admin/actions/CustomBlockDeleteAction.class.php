@@ -96,4 +96,4 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 	}
 }
 
-?>
+

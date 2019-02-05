@@ -122,4 +122,4 @@ foreach (array_keys($redirect_args) as $arg) {
 redirect_header ($_POST['not_redirect'].$argstring, 3, _NOT_UPDATEOK);
 exit();
 
-?>
+

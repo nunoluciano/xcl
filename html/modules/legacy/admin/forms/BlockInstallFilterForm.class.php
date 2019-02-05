@@ -20,4 +20,4 @@ class Legacy_BlockInstallFilterForm extends Legacy_BlockFilterForm
 	}
 }
 
-?>
+

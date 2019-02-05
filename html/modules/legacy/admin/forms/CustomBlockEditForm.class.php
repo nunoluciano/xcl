@@ -81,4 +81,4 @@ class Legacy_CustomBlockEditForm extends Legacy_BlockEditForm
 	}
 }
 
-?>
+

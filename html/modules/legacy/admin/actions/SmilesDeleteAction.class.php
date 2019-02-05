@@ -55,4 +55,4 @@ class Legacy_SmilesDeleteAction extends Legacy_AbstractDeleteAction
 	}
 }
 
-?>
+

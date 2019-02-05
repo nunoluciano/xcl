@@ -346,4 +346,4 @@ function xoops_template_clear_module_cache($mid)
 		}
 	}
 }
-?>
+

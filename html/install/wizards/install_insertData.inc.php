@@ -66,4 +66,4 @@
 
     setcookie('xoops_session', '', time() - 3600);
     $wizard->render('install_insertData.tpl.php');
-?>
+

@@ -26,4 +26,4 @@ class LegacyRender_HtaccessViewAction extends LegacyRender_Action
 	}
 }
 
-?>
+

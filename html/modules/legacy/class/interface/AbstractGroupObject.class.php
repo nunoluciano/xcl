@@ -89,4 +89,4 @@ abstract class Legacy_AbstractGroupObject extends XoopsSimpleObject
 	}
 }
 
-?>
+

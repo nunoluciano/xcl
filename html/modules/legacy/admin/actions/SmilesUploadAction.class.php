@@ -179,4 +179,4 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 	}
 }
 
-?>
+

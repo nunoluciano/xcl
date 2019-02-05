@@ -68,4 +68,4 @@ class Profile_AbstractViewAction extends Profile_AbstractAction
 	}
 }
 
-?>
+

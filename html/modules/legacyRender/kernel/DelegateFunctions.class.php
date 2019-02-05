@@ -34,4 +34,4 @@ class LegacyRender_DelegateFunctions
 	}
 }
 
-?>
+

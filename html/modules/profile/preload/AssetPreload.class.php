@@ -51,4 +51,4 @@ class Profile_AssetPreload extends XCube_ActionFilter
 	}
 }
 
-?>
+

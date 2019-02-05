@@ -110,4 +110,4 @@ class Legacy_Mailer extends PHPMailer
 	}
 }
 
-?>
+

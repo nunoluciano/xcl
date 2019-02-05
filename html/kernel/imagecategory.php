@@ -214,4 +214,4 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return $ret;
     }
 }
-?>
+

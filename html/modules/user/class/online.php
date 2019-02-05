@@ -37,4 +37,4 @@ class UserOnlineHandler extends XoopsObjectGenericHandler
 	var $mClass = "UserOnlineObject";
 }
 
-?>
+

@@ -70,4 +70,4 @@ class Stdcache_CacheclearBlock extends Legacy_BlockProcedure
 	}
 }
 
-?>
+

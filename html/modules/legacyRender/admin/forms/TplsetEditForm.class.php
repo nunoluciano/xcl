@@ -53,4 +53,4 @@ class LegacyRender_TplsetEditForm extends XCube_ActionForm
 	}
 }
 
-?>
+

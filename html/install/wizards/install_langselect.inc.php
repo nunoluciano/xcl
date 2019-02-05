@@ -22,4 +22,4 @@
         }
     }
     $wizard->render('install_langselect.tpl.php');
-?>
+

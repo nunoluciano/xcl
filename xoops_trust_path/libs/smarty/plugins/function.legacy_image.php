@@ -42,4 +42,4 @@ function smarty_function_legacy_image($params, &$smarty)
    	echo $returnUri ? $imageObj->getFileUrl($size) : $imageObj->makeImageTag($size);
 }
 
-?>
+

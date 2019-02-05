@@ -344,4 +344,4 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
 }
 
-?>
+

@@ -36,4 +36,4 @@ class User_OnlineFilterForm extends User_AbstractFilterForm
 	}
 }
 
-?>
+

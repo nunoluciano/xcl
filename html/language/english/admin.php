@@ -12,4 +12,4 @@ define("_AD_AVATAR","Avatar");
 define("_AD_REGISTERED","Registered"); //Registered Date
 define('_AD_PRESSGEN', 'This is your first time to enter the administration section. Press the button below to proceed.');
 define('_AD_LOGINADMIN', 'Logging you in..');
-?>
+

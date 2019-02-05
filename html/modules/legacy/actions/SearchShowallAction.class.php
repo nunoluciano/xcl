@@ -53,4 +53,4 @@ class Legacy_SearchShowallAction extends Legacy_SearchResultsAction
 	}
 }
 
-?>
+

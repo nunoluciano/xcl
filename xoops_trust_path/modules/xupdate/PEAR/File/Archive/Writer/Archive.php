@@ -126,4 +126,4 @@ class File_Archive_Writer_Archive extends File_Archive_Writer
 //  function writeFile($filename)
 }
 
-?>
+

@@ -28,4 +28,4 @@ class Xupdate_Admin_ModuleInstallAction extends Xupdate_AbstractInstallAction
 		$this->my_dir_path = XOOPS_MODULE_PATH;
 	}
 }
-?>
+

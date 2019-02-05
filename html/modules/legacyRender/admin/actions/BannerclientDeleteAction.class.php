@@ -53,4 +53,4 @@ class LegacyRender_BannerclientDeleteAction extends LegacyRender_AbstractDeleteA
 	}
 }
 
-?>
+
