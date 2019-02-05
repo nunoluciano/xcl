@@ -24,7 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author: Jochen B—¬nagel (job@buennagel.com)                               //
+// Author: Jochen Bï¿½ï¿½nagel (job@buennagel.com)                               //
 // URL:  http://www.xoops.org                        //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
@@ -34,7 +34,7 @@
  * 
  * @filesource 
  *
- * @author    Jochen B—¬nagel <jb@buennagel.com>
+ * @author    Jochen Bï¿½ï¿½nagel <jb@buennagel.com>
  * @copyright copyright (c) 2000-2003 The XOOPS Project (http://www.xoops.org)
  *
  * @version   $Revision: 1.4 $ - $Date: 2008/09/21 06:45:39 $

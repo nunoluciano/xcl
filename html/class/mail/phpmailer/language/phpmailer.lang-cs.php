@@ -6,18 +6,18 @@
 
 $PHPMAILER_LANG = array();
 
-$PHPMAILER_LANG["provide_address"] = 'Musíte zadat nejménì jednu ' .
-                                     'adresu pøíjemce elektronické pošty.';
-$PHPMAILER_LANG["mailer_not_supported"] = ' mailer není podporován.';
-$PHPMAILER_LANG["execute"] = 'Nepodaøilo se provést: ';
-$PHPMAILER_LANG["instantiate"] = 'Nepodaøilo se inicializovat poštovní funkce.';
-$PHPMAILER_LANG["authenticate"] = 'Chyba SMTP: Nepodaøilo se provést autentifikaci.';
-$PHPMAILER_LANG["from_failed"] = 'Následující adresa odesílatele je chybná: ';
-$PHPMAILER_LANG["recipients_failed"] = 'Chyba SMTP : Následující ' .
-                                       'pøíjemci jsou chybní: ';
-$PHPMAILER_LANG["data_not_accepted"] = 'Chyba SMTP: Data nebyla pøijata.';
-$PHPMAILER_LANG["connect_host"] = 'Chyba SMTP: Nepodaøilo se pøipojit k SMTP serveru.';
-$PHPMAILER_LANG["file_access"] = 'Není pøístup k souboru: ';
-$PHPMAILER_LANG["file_open"] = 'Chyba souboru: Nepodaøilo se otevøít soubor: ';
-$PHPMAILER_LANG["encoding"] = 'Neznámé kódování: ';
+$PHPMAILER_LANG["provide_address"] = 'Musï¿½te zadat nejmï¿½nï¿½ jednu ' .
+                                     'adresu pï¿½ï¿½jemce elektronickï¿½ poï¿½ty.';
+$PHPMAILER_LANG["mailer_not_supported"] = ' mailer nenï¿½ podporovï¿½n.';
+$PHPMAILER_LANG["execute"] = 'Nepodaï¿½ilo se provï¿½st: ';
+$PHPMAILER_LANG["instantiate"] = 'Nepodaï¿½ilo se inicializovat poï¿½tovnï¿½ funkce.';
+$PHPMAILER_LANG["authenticate"] = 'Chyba SMTP: Nepodaï¿½ilo se provï¿½st autentifikaci.';
+$PHPMAILER_LANG["from_failed"] = 'Nï¿½sledujï¿½cï¿½ adresa odesï¿½latele je chybnï¿½: ';
+$PHPMAILER_LANG["recipients_failed"] = 'Chyba SMTP : Nï¿½sledujï¿½cï¿½ ' .
+                                       'pï¿½ï¿½jemci jsou chybnï¿½: ';
+$PHPMAILER_LANG["data_not_accepted"] = 'Chyba SMTP: Data nebyla pï¿½ijata.';
+$PHPMAILER_LANG["connect_host"] = 'Chyba SMTP: Nepodaï¿½ilo se pï¿½ipojit k SMTP serveru.';
+$PHPMAILER_LANG["file_access"] = 'Nenï¿½ pï¿½ï¿½stup k souboru: ';
+$PHPMAILER_LANG["file_open"] = 'Chyba souboru: Nepodaï¿½ilo se otevï¿½ï¿½t soubor: ';
+$PHPMAILER_LANG["encoding"] = 'Neznï¿½mï¿½ kï¿½dovï¿½nï¿½: ';
 ?>

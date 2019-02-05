@@ -10,7 +10,7 @@ require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
 
 class User_UserDataUploadDoAction extends User_UserDataUploadAction
 {
-	/// ƒAƒbƒv‚³‚ê‚½CSVƒtƒ@ƒCƒ‹‚ğƒf[ƒ^‚É“ü‚ê‚é
+	/// ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ê‚½CSVï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½É“ï¿½ï¿½ï¿½ï¿½
 	function execute(&$controller, &$xoopsUser)
 	{
 		/// back
@@ -26,7 +26,7 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
 	}
 	
 	
-	/// Às
+	/// ï¿½ï¿½ï¿½s
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)
 	{
 		$csv_data = $_SESSION['user_csv_upload_data'];

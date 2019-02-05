@@ -10,7 +10,7 @@ require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
 
 class User_UserDataUploadConfAction extends User_UserDataUploadAction
 {
-	/// ƒAƒbƒv‚³‚ê‚½CSVƒtƒ@ƒCƒ‹‚ğo—Í‚·‚é
+	/// ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ê‚½CSVï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Í‚ï¿½ï¿½ï¿½
 	function execute(&$controller, &$xoopsUser)
 	{
 	
@@ -23,7 +23,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
 	}
 	
 	
-	/// Šm”F‰æ–Ê‚ğ•\¦
+	/// ï¿½mï¿½Fï¿½ï¿½Ê‚ï¿½\ï¿½ï¿½
 	function executeViewSuccess(&$controller, &$xoopsUser, &$render)
 	{
 		/// success
@@ -137,12 +137,12 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
 	
     // {{{ explodeCSV(Ethna_Util.php)
     /**
-     *  CSVŒ`®‚Ì•¶š—ñ‚ğ”z—ñ‚É•ªŠ„‚·‚é
+     *  CSVï¿½`ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½É•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
      *  @access public
-     *  @param  string  $csv        CSVŒ`®‚Ì•¶š—ñ(1s•ª)
-     *  @param  string  $delimiter  ƒtƒB[ƒ‹ƒh‚Ì‹æØ‚è•¶š
-     *  @return mixed   (array):•ªŠ„Œ‹‰Ê Ethna_Error:ƒGƒ‰[(sŒp‘±)
+     *  @param  string  $csv        CSVï¿½`ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½(1ï¿½sï¿½ï¿½)
+     *  @param  string  $delimiter  ï¿½tï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½Ì‹ï¿½Ø‚è•¶ï¿½ï¿½
+     *  @return mixed   (array):ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ethna_Error:ï¿½Gï¿½ï¿½ï¿½[(ï¿½sï¿½pï¿½ï¿½)
      */
     function explodeCSV($csv, $delimiter = ",")
     {
@@ -206,7 +206,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                             $field .= $line_end;
 
                             // request one more line
-//                          return Ethna::raiseNotice('CSV•ªŠ„ƒGƒ‰[(sŒp‘±)', E_UTIL_CSV_CONTINUE);
+//                          return Ethna::raiseNotice('CSVï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½[(ï¿½sï¿½pï¿½ï¿½)', E_UTIL_CSV_CONTINUE);
                         }
                     }
                 }

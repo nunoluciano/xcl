@@ -6,18 +6,18 @@
 
 $PHPMAILER_LANG = array();
 
-$PHPMAILER_LANG["provide_address"] = 'Àû¾îµµ ÇÏ³ªÀÌ»óÀÇ ¼ö½ÅÀÚ ¸ÞÀÏÁÖ¼Ò¸¦ ÁöÁ¤ÇØ ÁÖ¼Å¾ß ÇÕ´Ï´Ù.';
-$PHPMAILER_LANG["mailer_not_supported"] = ' mailer ´Â Áö¿øµÇÁö ¾Ê½À´Ï´Ù.';
-$PHPMAILER_LANG["execute"] = '½ÇÇà ½ÇÆÐ: ';
-$PHPMAILER_LANG["instantiate"] = '¸ÞÀÏ±â´ÉÀÇ ÃÊ±âÈ­¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.';
-$PHPMAILER_LANG["authenticate"] = 'SMTP ¿¡·¯: ÀÎÁõ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.';
-$PHPMAILER_LANG["from_failed"] = '´ÙÀ½ From ÁÖ¼Ò°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù: ';
-$PHPMAILER_LANG["recipients_failed"] = 'SMTP ¿¡·¯: ´ÙÀ½ ¼ö½ÅÀÚ Á¤º¸°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù: ';
-$PHPMAILER_LANG["data_not_accepted"] = 'SMTP ¿¡·¯: µ¥ÀÌÅ¸ ¼ö½Å¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.';
-$PHPMAILER_LANG["connect_host"] = 'SMTP ¿¡·¯: SMTP ¼­¹ö¿¡ Á¢¼ÓÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.';
-$PHPMAILER_LANG["file_access"] = 'ÆÄÀÏ ¾×¼¼½º ½ÇÆÐ: ';
-$PHPMAILER_LANG["file_open"] = 'ÆÄÀÏ ¿¡·¯: ÆÄÀÏÀ» ¿­¼ö°¡ ¾ø½À´Ï´Ù: ';
-$PHPMAILER_LANG["encoding"] = '¾Ë¼ö¾ø´Â ÀÎÄÚµù¹æ½ÄÀÔ´Ï´Ù: ';
+$PHPMAILER_LANG["provide_address"] = 'ï¿½ï¿½ï¿½îµµ ï¿½Ï³ï¿½ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Å¾ï¿½ ï¿½Õ´Ï´ï¿½.';
+$PHPMAILER_LANG["mailer_not_supported"] = ' mailer ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.';
+$PHPMAILER_LANG["execute"] = 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ';
+$PHPMAILER_LANG["instantiate"] = 'ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
+$PHPMAILER_LANG["authenticate"] = 'SMTP ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
+$PHPMAILER_LANG["from_failed"] = 'ï¿½ï¿½ï¿½ï¿½ From ï¿½Ö¼Ò°ï¿½ ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½: ';
+$PHPMAILER_LANG["recipients_failed"] = 'SMTP ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½: ';
+$PHPMAILER_LANG["data_not_accepted"] = 'SMTP ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½Å¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
+$PHPMAILER_LANG["connect_host"] = 'SMTP ï¿½ï¿½ï¿½ï¿½: SMTP ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.';
+$PHPMAILER_LANG["file_access"] = 'ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ';
+$PHPMAILER_LANG["file_open"] = 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: ';
+$PHPMAILER_LANG["encoding"] = 'ï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½: ';
 $PHPMAILER_LANG["signing"] = 'Signing Error: ';
 
 ?>

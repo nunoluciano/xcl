@@ -35,7 +35,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 	}
 	
 	
-	/// CSVƒtƒ@ƒCƒ‹‚ğo—Í‚·‚é
+	/// CSVï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Í‚ï¿½ï¿½ï¿½
 	function execute()
 	{
 		$filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
