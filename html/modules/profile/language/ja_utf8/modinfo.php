@@ -15,4 +15,3 @@ define('_MI_PROFILE_KEYWORD_DOWNLOAD', 'プロフィールデータをCSV形式�
 define('_MI_PROFILE_LANG_CSVUPLOAD', 'プロフィールの一括登録');
 define('_MI_PROFILE_KEYWORD_CSVUPLOAD', 'プロフィールデータをCSV形式でアップロードする');
 define('_MI_PROFILE_DATA_CSVUPLOAD', 'プロフィールの一括登録');
-
