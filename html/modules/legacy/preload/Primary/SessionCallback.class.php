@@ -8,30 +8,46 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
+
+// registration `session_write_close()` on shutdown procedure final.
+// For the environment in which the object before writing session is destroyed when PHP execution end.
+// ex. APC, memcached etc...
+// !Fix
+// ob_start(create_function('', '(session_id() && session_write_close());return false;'));
+function xclCallback($session_id, $session_write_close)
+{
+return false;
+}
+
+ob_start("xclCallback");
+// !Fix end
 
 class Legacy_SessionCallback extends XCube_ActionFilter
 {
-	function preBlockFilter()
-	{
-		$this->mRoot->mDelegateManager->add('XCube_Session.SetupSessionHandler', 'Legacy_SessionCallback::setupSessionHandler');
-		$this->mRoot->mDelegateManager->add('XCube_Session.GetSessionCookiePath', 'Legacy_SessionCallback::getSessionCookiePath');
-	}
+    public function preBlockFilter()
+    {
+        $this->mRoot->mDelegateManager->add('XCube_Session.SetupSessionHandler', 'Legacy_SessionCallback::setupSessionHandler');
+        $this->mRoot->mDelegateManager->add('XCube_Session.GetSessionCookiePath', 'Legacy_SessionCallback::getSessionCookiePath');
+    }
 
-	public static function setupSessionHandler()
-	{
-		$sessionHandler =& xoops_gethandler('session');
-		session_set_save_handler(
-			array(&$sessionHandler, 'open'),
-			array(&$sessionHandler, 'close'),
-			array(&$sessionHandler, 'read'),
-			array(&$sessionHandler, 'write'),
-			array(&$sessionHandler, 'destroy'),
-			array(&$sessionHandler, 'gc'));
-	}
-	
-	public static function getSessionCookiePath(&$cookiePath) {
-		$parse_array = parse_url(XOOPS_URL);
-		$cookiePath = @$parse_array['path'].'/';
-	}
+    public static function setupSessionHandler()
+    {
+        $sessionHandler =& xoops_gethandler('session');
+        session_set_save_handler(
+            array(&$sessionHandler, 'open'),
+            array(&$sessionHandler, 'close'),
+            array(&$sessionHandler, 'read'),
+            array(&$sessionHandler, 'write'),
+            array(&$sessionHandler, 'destroy'),
+            array(&$sessionHandler, 'gc'));
+    }
+    
+    public static function getSessionCookiePath(&$cookiePath)
+    {
+        $parse_array = parse_url(XOOPS_URL);
+        $cookiePath = @$parse_array['path'].'/';
+    }
 }
