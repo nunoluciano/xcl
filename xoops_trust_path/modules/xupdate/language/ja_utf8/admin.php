@@ -36,7 +36,10 @@ define('_AD_XUPDATE_LANG_STORE', 'ストア');
 define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "一括操作");
 define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "待機中");
 define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "完了");
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES_PRE', "配置準備");
 define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "配置");
+define('_AD_XUPDATE_UPDATE_PRE', "アップデート準備");
+define('_AD_XUPDATE_INSTALL_PRE', "インストール準備");
 define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "中");
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', '更新');
 
@@ -53,5 +56,5 @@ define('_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY', 'ファイル配置の続きを実
 define('_AD_XUPDATE_LANG_STAGE_TASK_RETRY', '続きの処理を実行をするにはここをクリック');
 define('_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE', 'ファイルの配置が不完全なため [ <a href="%s">こちらのリンク</a> ] からアーカイブを取得して、手作業で FTP アップロードを行いファイルを適切に配置してください。');
 
-define('_AD_XUPDATE_LANG_THM_TOTAL'  , 'テーマの合計');
-define('_AD_XUPDATE_LANG_ITEM_TOTAL'  , 'アイテムの合計');
+define('_AD_XUPDATE_LANG_THM_TOTAL', 'テーマの合計');
+define('_AD_XUPDATE_LANG_ITEM_TOTAL', 'アイテムの合計');
