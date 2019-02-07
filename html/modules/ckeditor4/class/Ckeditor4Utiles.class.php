@@ -200,7 +200,7 @@ class Ckeditor4_Utils
 			);
 			
 			$config['contentsCss'] = array();
-			$config['removePlugins'] = 'save,newpage,forms,preview,print';
+			$config['removePlugins'] = 'save,newpage,forms,preview,print,about';  // Gigamaster remove 'about'
 			$config['extraPlugins'] = '';
 			if (defined('XOOPS_CUBE_LEGACY')) {
 				$delegate->register('Ckeditor4.Utils.PreParseBuild_ckconfig');

@@ -74,8 +74,8 @@ class ckeditor4_ThemePreload extends XCube_ActionFilter
 	
 	/**
 	 * preSetConfig
-	 * ckeditor.config をカスタムする用
-	 * (Params 解釈前: Smarty プラグインで指定した toolbar や管理画面:一般設定の config は上書きできない)
+	 * For customizing ckeditor.config
+	 * (Before interpretation: toolbar specified by Smarty plugin and administrator screen: config of general setting can not be overwritten)
 	 * 
 	 * @param array $config
 	 * @param array $params
@@ -91,8 +91,8 @@ class ckeditor4_ThemePreload extends XCube_ActionFilter
 	
 	/**
 	 * postSetConfig
-	 * ckeditor.config をカスタムする用
-	 * (最終段階: すべての config を上書きできる)
+	 * For customizing ckeditor.config
+	 * (Final stage: you can overwrite all configs)
 	 * 
 	 * @param array $config
 	 * @param array $params

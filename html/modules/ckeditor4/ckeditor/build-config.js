@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/a97f31b9a5e1e8ed87669c1126251ee6
+ * (2) http://ckeditor.com/builder/0ff16fc1c79566db4dad87a39c0e0476
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/a97f31b9a5e1e8ed87669c1126251ee6
+ * (3) http://ckeditor.com/builder/download/0ff16fc1c79566db4dad87a39c0e0476
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -25,7 +25,7 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'moono-lisa',
+	skin: 'moono-dark',
 	preset: 'full',
 	ignore: [
 		'.DS_Store',
@@ -39,7 +39,6 @@ var CKBUILDER_CONFIG = {
 		'.jshintrc',
 		'.mailmap',
 		'.travis.yml',
-		'README.md',
 		'bender-err.log',
 		'bender-out.log',
 		'bender.ci.js',
@@ -53,11 +52,9 @@ var CKBUILDER_CONFIG = {
 	],
 	plugins : {
 		'a11yhelp' : 1,
-		'about' : 1,
 		'basicstyles' : 1,
-		'bidi' : 1,
 		'blockquote' : 1,
-		'clipboard' : 1,
+		/**'clipboard' : 1,**/
 		'colorbutton' : 1,
 		'colordialog' : 1,
 		'contextmenu' : 1,
@@ -86,15 +83,9 @@ var CKBUILDER_CONFIG = {
 		'liststyle' : 1,
 		'magicline' : 1,
 		'maximize' : 1,
-		'newpage' : 1,
 		'pagebreak' : 1,
-		'pastefromword' : 1,
-		'pastetext' : 1,
-		'preview' : 1,
-		'print' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
-		'save' : 1,
 		'scayt' : 1,
 		'selectall' : 1,
 		'showblocks' : 1,
@@ -105,6 +96,7 @@ var CKBUILDER_CONFIG = {
 		'stylescombo' : 1,
 		'tab' : 1,
 		'table' : 1,
+		'tableselection' : 1,
 		'tabletools' : 1,
 		'templates' : 1,
 		'toolbar' : 1,

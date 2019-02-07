@@ -46,22 +46,27 @@ class ckeditor4_myConfig extends XCube_ActionFilter
 
 	public function PostBuild(&$config, $params) {
 		/******************************
-		 * ckeditor 用の JavaScript を生成するのに先立ち、
-		 * ckeditor の config 値を変更できます。
-		 * $config 配列のキー名が ckeditor.config のキー名に対応しています。
-		 * この設定のタイミングは、ckeditor4 モジュールの一般設定の値を評価後に
-		 * なりますので、一般設定の値を上書きできます。
-		 * また、モード毎の設定が $config['_modeconf'] に
-		 * モード("html", "bbcode")をキーとして保存されているので、モード別の値は
-		 * $config['_modeconf']['html']['toolbar'] などを変更する必要があります。
-		 * モード別に予め設定されているものは次の通りです。
+		 * Before generating JavaScript for ckeditor,
+		 * You can change config value of ckeditor.
+		 * The key name of the $ config array corresponds to the key name of ckeditor.config.
+		 * The timing of this setting, after evaluating the value of general setting of ckeditor 4 module
+		 * Since it will be, you can overwrite the value of the general setting.
+		 * Also, if the setting for each mode is $config['_modeconf'] into
+		 * mode ("html", "bbcode")As the key is saved, the value for each mode is
+		 * $config['_modeconf']['html']['toolbar'] It is necessary to change etc.
+		 * The preset one by mode is as follows.
 		 * ['fontSize_sizes'], ['extraPlugins'], ['enterMode'], ['shiftEnterMode'], ['toolbar']
 		 * 
 		 ******************************/
 		
 		// 例: カレントモジュールが d3forum の場合の html モードのツールバーを設定する
 		if ($this->mRoot->mContext->mXoopsModule->get('trust_dirname') === 'd3forum') {
-			$config['_modeconf']['html']['toolbar'] = '[["PasteText","-","Undo","Redo"],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks","-","About"]]';
+			$config['_modeconf']['html']['toolbar'] = '[
+				["PasteText","-","Undo","Redo"],
+				["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],
+				["NumberedList","BulletedList","Outdent","Indent","Blockquote"],
+				["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks"]
+				]';
 		}
 		
 	}
