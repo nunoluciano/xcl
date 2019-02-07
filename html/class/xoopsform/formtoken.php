@@ -8,22 +8,27 @@
  *
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit();
+}
 
-class XoopsFormToken extends XoopsFormHidden {
+class XoopsFormToken extends XoopsFormHidden
+{
     /**
      * Constructor
      *
      * @param object    $token  XoopsToken instance
     */
-    function XoopsFormToken($token)
+    public function __construct($token)
     {
-        if(is_object($token)) {
-            parent::XoopsFormHidden($token->getTokenName(), $token->getTokenValue());
-        }
-        else {
-            parent::XoopsFormHidden('','');
+        if (is_object($token)) {
+            parent::__construct($token->getTokenName(), $token->getTokenValue());
+        } else {
+            parent::__construct('', '');
         }
     }
+    public function XoopsFormToken($token)
+    {
+        return self::__construct($token);
+    }
 }
-
