@@ -9,7 +9,9 @@ if (! class_exists('XoopsGTicket')) {
         public $_latest_token = '' ;
         public $messages = array() ;
 
-        public function XoopsGTicket()
+        // ! Fix PHP7
+        // public function XoopsGTicket()
+        public function __construct()
         {
             global $xoopsConfig ;
 
