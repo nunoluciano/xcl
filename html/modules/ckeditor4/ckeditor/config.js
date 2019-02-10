@@ -40,9 +40,13 @@ CKEDITOR.editorConfig = function( config ) {
 		buttons: 'Link,Unlink,Image',
 		widgets: 'image'
 	} ); */
-
-	config.extraPlugins='codesnippet,inserthtmlfile',
-	codeSnippet_theme: 'monokai_sublime';
+	config.skin = 'moono-dark';
+	config.extraPlugins='codesnippet,inserthtmlfile';
+	config.codeSnippet_theme = 'monokai_sublime';
+	config.codeSnippet_languages = {
+		javascript: 'JavaScript',
+		php: 'PHP'
+	};
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
