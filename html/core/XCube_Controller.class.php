@@ -341,7 +341,10 @@ class XCube_Controller
      */
     public function _setupSession()
     {
-        $this->mRoot->setSession(new XCube_Session());
+        // ! Fix PHP7 Only variables should be passed by reference
+        // $this->mRoot->setSession(new XCube_Session());
+        $start = new XCube_Session();
+        $this->mRoot->setSession($start);
     }
     
     /**
