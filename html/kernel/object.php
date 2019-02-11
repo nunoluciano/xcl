@@ -459,7 +459,11 @@ class XoopsObject extends AbstractXoopsObject
 
     public function get($key)
     {
-        return $this->vars[$key]['value'];
+        // ! Fix PHP7 Undefined index, variable not initialized with Null coalesce operator.
+        // The coalesce, or ??, operator is added, which returns the result of its first operand if it exists and is not NULL, 
+        // or else its second operand. This means the $_GET['mykey'] ?? "" is completely safe and will not raise an E_NOTICE.
+        //  https://wiki.php.net/rfc/isset_ternary
+        return $this->vars[$key]['value'] ?? '';
     }
 
     /**
