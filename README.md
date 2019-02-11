@@ -1,5 +1,7 @@
 ## XOOPS Cube Legacy 2.3.0 Alpha
 
+2019-02-11 Merge and fix branch 2.3.0 
+
 2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha User Interface.
 
 
