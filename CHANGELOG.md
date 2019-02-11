@@ -1,6 +1,6 @@
 # Change Log
 
-## XCL [2.3.0]
+## XCL 2.3.0 (2019-02-11)
 
 **Update to PHP7:**
 
