@@ -1,6 +1,6 @@
 # XCL - Web Application Platform
 
-2019-03-5 Crete new repository for XCL project 
+2019-03-5 Create new repository for XCL project 
 
 2019-02-11 Merge and fix branch  2.3.0 alpha 
 
