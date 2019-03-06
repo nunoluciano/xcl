@@ -1,8 +1,10 @@
-## XOOPS Cube Legacy 2.3.0 Alpha
+# XCL - Web Application Platform
 
-2019-02-11 Merge and fix branch 2.3.0 
+2019-03-5 Crete new repository for XCL project 
 
-2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha User Interface.
+2019-02-11 Merge and fix branch  2.3.0 alpha 
+
+2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha
 
 
 TOC
