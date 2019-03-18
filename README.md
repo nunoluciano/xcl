@@ -1,231 +1,100 @@
-# XCL - Web Application Platform
+# X-elFinder
 
-2019-03-5 Create new repository for XCL project 
+A modular version of the web-based file manager [elFinder 2.0](http://elfinder.org/) that works with JavaScript + PHP for XCL.
 
-2019-02-11 Merge and fix branch  2.3.0 alpha 
+Installing this module with XCL wizard will automatically replace the default image manager.
 
-2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha
+## Download
 
+* You can clone or download the module from XCL repo.
+* X-elfinder is released with XCL package ensuring backwards copatibility
+* For any other Xoops package download from [nao-pon/xelfinder - GitHub](https://github.com/nao-pon/xelfinder)
 
-TOC
-====
+For issues, questions and requests regarding X-elFinder you can use the XCL **Issue** tracker of Github.
 
-* [About](#about)
-* [License](#license)
-* [Requirements](#requirements)
-* [Features](#features)
-* [Download](#download)
-* [Installation](#installation)
-* [Overview](#overview)
-* [Screenshots](#screenshots)
-* [Extensibility](#extensibility)
-* [Modules](#modules)
-* [Themes](#themes)
-* [Documentation](#documentation)
-* [Site and Support](#site-and-support)
-* [Contribute](#contribute)
+Japanese support available at the forum :
 
-***
+* [X-elFinder- Forums XOOPS Mania](http://xoops.hypweb.net/modules/forum/index.php?forum_id=25)
 
-About
-====
 
-**XOOPS Cube** is an Open Source Web Application Platform built with PHP and MySQL empowering webmasters to make a custom content management system and create dynamic and content rich websites with ease.
+## Requirements
 
-**XOOPS Cube Legacy** is a Simple, Secure and Scalable content management system and the package distribution of XOOPS Cube Project Team.
+* XOOPS based platform
+ * Tested with the following packages:
+  * XOOPS Cube Legacy 2.2.0, 2.2.1, 2.3.0
+  * XOOPS 2.1.16-JP
+  * XOOPS 2.5.5
+* PHP 5.2 or higher
 
-**The XOOPS Cube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team spirit  aims to strengthen everyone's social network, share the essential knowledge and understanding of the “spirit of open source” necessary to encourage creativity.
+## Installation
 
-***
+* Install from XCL modules management following the GUI wizard steps.
+* Install manually. You need write permissions (such as 777 or 707) in the following directories to create files:
 
-License
-====
+* html/modules/xelfinder/cache
+* html/modules/xelfinder/cache/tmb
+* xoops_trust_path/uploads/xelfinder
 
-### XOOPS Cube  
+Although PathInfo is used for image reference, depending on the server environment, PathInfo may not be used and may not be displayed properly.
 
-XOOPS Cube was started from scratch and the XOOPS Cube Core source code is released under the BSD licence.
+In this case, set "Disable PathInfo of file reference URL" to "Yes" in the general settings of the management screen.
 
- 
-### XOOPS Cube Legacy  
+### How to change the popup to IFRAME
 
-XOOPS Cube Legacy source code which is one of base modules to ensure compatibility with old versions of Xoops 2 is released under a GPL licence.
+The X-elFinder popup uses openWithSelfMain () which is included in xoops.js, but openWithSelfMain () opens another window. If you want to change this to an IFRAME, you can change the file theme.html to load <{$xoops_js}> and then load  openWithSelfMain_iframe.js.
 
-***
+* HypConf (setting of HypCommon module) in "other settings" set to "tag inserted at the end of < head >"
 
-Requirements
-====
+ `<script type="text/javascript" src="<{$xoops_url}>/modules/xelfinder/include/js/openWithSelfMain_iframe.js"></script>`
 
-Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP.
+Add or edit theme.html as follows:
 
-XOOPS Cube will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
+Example (theme.html):
 
+    `<script type="text/javascript">
+    <!--
+    <{$xoops_js}>
+    //-->
+    </script>
+    <script type="text/javascript" src="<{$xoops_url}>/modules/xelfinder/include/js/openWithSelfMain_iframe.js"></script>`
 
-<table>
-<tr>
-<th align="center">
-Server
-</th>
-<th align="center">
-Database</th>
-<th align="center">
-Language</th>
-</tr>
-<tr>
-<td align="center">Apache version 2.xx</td>
-<td align="center">MySQL version 5.xx</td>
-<td align="center">PHP version 5.xx</td>
-</tr>
-<tr>
-<td align="center"><a href="http://apache.org/"><img src="http://xoopscube.org/uploads/fckeditor/logo-apache.png" alt="Apache" title="Apache" /></a></td>
-<td align="center"><br />
-<br />
-<a href="http://mysql.com/"><img src="http://xoopscube.org/uploads/fckeditor/logo-mysql.png" alt="Mysql" title="Mysql" /></a></td>
-<td align="center"><a href="http://php.net/"><img src="http://xoopscube.org/uploads/fckeditor/logo-php.png" alt="php" title="php" /></a></td>
-</tr>
-<tr>
-<td align="center">http://apache.org/</td>
-<td align="center">http://www.mysql.com/</td>
-<td align="center">http://php.net/</td>
-</tr>
-</table>
+## X-elFinder main features
 
-### Software
+In addition to the default elFinder, X-elfinder has the following features.
 
-Useful Wikipedia articles with tables comparing general and technical information of Proprietary software, Free and open-source software.  
+* Drag and drop file upload between browser windows (Firefox, Chrome, Safari)
+* Image editing using Pixlr.com
+* Direct management of cloud storage with [Dropbox.com](http://db.tt/w0gZJglT) ( [Here you can get 500MB bonus](http://db.tt/w0gZJglT) for new registration & installation)
+* Permissions and restrictions can be specified for each group
+* Add a plug-in type volume (like a drive)
+    * Group ID can be specified for each volume
+    * Detailed response by the xelfinder_db plug-in
+        * User-specific folder
+        * Group folder
+        * Guest folder
+        * Folder and file permissions (read, write, unlock, hide can be set for owner, group, guest respectively)
+        * Set permissions of new items per folder
+    * Specify an arbitrary directory in the server and manipulate image files in that directory with the xelfinder plug-in
+    * Includes plug-ins for XOOPS d3diary, GNAVI, MailBBS and MyAlbum modules
+        * Available images stored relatively to each module
 
-<img src="http://xoopscube.org/uploads/fckeditor/server_database.png"> <a href="http://en.wikipedia.org/wiki/List_of_AMP_packages"> Local Test Server</a> : List of Apache–MySQL–PHP packages  
-<img src="http://xoopscube.org/uploads/fckeditor/script_edit.png"> <a href="http://en.wikipedia.org/wiki/Source_code_editor"> Source Code Editor</a> : Some well-known source code editors  
-<img src="http://xoopscube.org/uploads/fckeditor/picture_edit.png"> <a href="http://en.wikipedia.org/wiki/Comparison_of_raster_graphics_editors"> Graphics Editor</a> : Comparison of raster graphics editors  
-<img src="http://xoopscube.org/uploads/fckeditor/computer_go.png"> <a href="http://en.wikipedia.org/wiki/FTP_clients"> FTP Clients</a> : Comparison of FTP client software  
+## Image Manager
 
-***
+* XCL ensures backwards compatibility
+* Other Xoops packages require a simple edit of the file imagemanager.php
 
-Features
-====
-Below is a list of some of XOOPS Cube Legacy features.
+Edit imagemanager.php and add the following include after the line mainfile.php :
 
-* Easy install procedure based on a wizard
-* Modular architecture
-* Module API for unlimited expandability
-* Simple core to build up a custom cms
-* Debug function for easy development
-* Group-based permission system
-* Intuitive Interface for management
-* Smarty Template engine
-* Caching mechanism
-* Themes and Templates management
-* Embedded WYSIWYG HTML Editor
-* Free choice of PHP, JS, CSS frameworks
-* Abundant third-party modules and extensions (preloads to customize functionality)
+    `include 'modules/xelfinder/manager.php';`
 
-***
+Save and it's done.
 
-Download
-====
+## Uninstallation
 
-The source code of XOOPS Cube Legacy is available on [Github](https://github.com/xoopscube/legacy)
+If you uninstall X-elfinder, the uploaded files will remain, but all information about folders, permissions and owners will be lost.
 
-XOOPS Cube Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads) area.
+If you want to save such information, backup first your database.
 
-If you are a beginner about XOOPS Cube, we recommend to use [distributions](https://github.com/xoopscube/legacy/wiki/Distributions) contain fine modules and themes.
+The table name of X-elFinder starts with "[XOOPS DB prefix] [X-elFinder module directory name] ".
 
-Installation
-====
-
-XOOPS Cube Legacy Installation Guide
-
-http://xoopscube.sourceforge.net/documentation/
-
-***
-
-Overview
-====
-
-XOOPS Cube Legacy Administration
-
-Graphical User Interface (GUI)
-
-
-
-Screenshots
-====
-
-Screenshots and description.
-
-### Legacy System Preferences
-
-<img src="https://lh4.googleusercontent.com/-Rnhk9YUrttg/SB6gFWZAAQI/AAAAAAAAAe4/OT62wYd3w4I/s756/xcl_admin_settings.png">
-
-### User Groups Management
-
-<img src="http://gigamaster.myht.org/uploads/imgcad6d972581f658bc849f.png">
-
-### Modules Management
-
-<img src="http://gigamaster.myht.org/uploads/img84a2a7de03c93e7932649.png">
-
-### Blocks Management
-
-<img src="http://gigamaster.myht.org/uploads/imgb2e53f9cd9e93013b68c3.png">
-
-### Themes Management
-
-<img src="http://gigamaster.myht.org/uploads/img02a99ae6c063f277b2d71.png">
-
-
-***
-
-Extensibility
-====
-You can add functions to your website by installing modules. Modules can be easily add by installation wizard.
-XOOPS Cube 2.1 has high compatibility with the earlier XOOPS 2.0.x. We recommend the last modules generation, known as Cube modules and D3 modules which can be easily duplicated and renamed but also provide a GUI to manage the language catalog and templates.
-XOOPS Cube functionality can also be easily extended with Preloads - one file class based extension.
-
-***
-
-Modules
-====
-
-### Xoops X (Ten)  
-Modules maintained by the community members
-
-https://github.com/XoopsX
-
-### Xoopscube.jp  
-Modules up-to-date 
-
-[News, Announcements and Release Notes](http://xoopscube.jp/module/)
-
-### Xoopscube.org  (archive)
-
-[Module Compatibility Informations](http://xoopscube.org/modules/pukiwiki/?XOOPSCubeLegacy%2FModuleCompatibility)
-
-
-
-***
-
-Themes
-====
-
-***
-
-Documentation
-====
-
-XOOPS Cube Legacy API documentation generated by Apigen 2.7.0
-
-http://xoopscube.org/documentation/api
-
-Site and Support
-====
-
-http://xoopscube.org (archive)
-
-http://xoopscube.jp (uptodate)
-
-Contribute
-====
-
-XOOPS Cube Legacy is open source project community driven. We encourage everyone in the community to contribute their knowledge and expertise.
-Everyone in the community benefits from every [enhancement request](https://github.com/xoopscube/legacy/issues), submit [bug report](https://github.com/xoopscube/legacy/issues) and [patch](https://github.com/xoopscube/legacy/pulls) implemented to improve **Legacy**. 
-You can influence what happens to Open Source and the direction for **Legacy** future growth.
+If you want to uninstall and delete all the uploaded files, just find the ".../uploads/xelfinder" directory.
