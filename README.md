@@ -1,11 +1,9 @@
 # XCL - Web Application Platform
 
-2019-03-5 Create new repository for XCL project 
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)
 
-2019-02-11 Merge and fix branch  2.3.0 alpha 
-
-2019-01-29 Prepare to merge PHP7 branch and merge XCL 2.3.0 alpha
-
+2019-01-29 XCL update to PHP7  
+This new repository avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend XCL - Web Application Platform.
 
 TOC
 ====
