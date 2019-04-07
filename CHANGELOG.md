@@ -2,17 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-- Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/)
+- Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
 
 ## [unreleased] - 2019-02-11.
 
-**Update to PHP7:**
+**XCL 2.3.0 Update to PHP7:**
 
 ### Added
 
-- Merge branch 'master' into 2.3, Nao-pon
+- Merge branch 'master' into 2.3.0, Nao-pon
 
 ### Changed
 
