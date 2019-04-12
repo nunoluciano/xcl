@@ -32,7 +32,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
      * @access private
      */
     public $_mSpecialActions = array("Help", "CommentList");
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$controller)
     //public function Legacy_AdminControllerStrategy(&$controller)
     {
@@ -42,7 +42,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         //parent::Legacy_AbstractControllerStrategy($controller);
         
         //
-        // TODO We have to develop complated-switching-controller-mechanizm.
+        // TODO We have to develop completed-switching-controller-mechanism.
         //
         if (!defined("LEGACY_DEPENDENCE_RENDERER")) {
             define("LEGACY_DEPENDENCE_RENDERER", "Legacy_AdminRenderSystem");
