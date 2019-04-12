@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] - 2019-04-12.
+
+### Deprecated
+
+- Deprecated constructors
+- Variables passed by reference
+
+### Fixed
+
+- Core
+- Legacy
+- Search
+- Sync branches
+- Sync Trust Path
+
 
 ## [unreleased] - 2019-02-11.
 
