@@ -27,10 +27,10 @@
  * @author Monte Ohrt <monte at ohrt dot com>
  * @author Andrei Zmievski <andrei@php.net>
  * @package Smarty
- * @version 2.6.28
+ * @version 2.6.31-dev
  */
 
-/* $Id: Smarty.class.php 4660 2012-09-24 20:05:15Z uwe.tews@googlemail.com $ */
+/* $Id$ */
 
 /**
  * DIR_SEP isn't used anymore, but third party apps might
@@ -63,6 +63,14 @@ define('SMARTY_PHP_ALLOW',      3);
  */
 class Smarty
 {
+    /**
+     * For backward compatibility of XOOPS Cube
+     */
+    public function Smarty()
+    {
+        self::__construct();
+    }
+
     /**#@+
      * Smarty Configuration Section
      */
@@ -465,7 +473,7 @@ class Smarty
      *
      * @var string
      */
-    var $_version              = '2.6.28';
+    var $_version              = '2.6.31';
 
     /**
      * current template inclusion depth
@@ -562,19 +570,20 @@ class Smarty
      */
     var $_cache_including = false;
 
+    /**
+     * plugin filepath cache
+     *
+     * @var array
+     */
+    var $_filepaths_cache = array();
     /**#@-*/
     /**
      * The class constructor.
      */
-    // ! Fix PHP7
     public function __construct()
     {
-        $this->assign('SCRIPT_NAME', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME']
+      $this->assign('SCRIPT_NAME', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME']
                     : @$GLOBALS['HTTP_SERVER_VARS']['SCRIPT_NAME']);
-    }
-    public function Smarty()
-    {
-        self::__construct();             
     }
 
     /**
@@ -1964,4 +1973,4 @@ class Smarty
 
 /* vim: set expandtab: */
 
-
+?>
