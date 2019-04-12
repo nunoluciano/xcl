@@ -41,7 +41,7 @@ require_once XCUBE_CORE_PATH . '/XCube_FormFile.class.php';
  *   of the context.
  * 
  * @remarks
- *     This class is diable for XCube_Service, because the class uses SESSION
+ *     This class is disable for XCube_Service, because the class uses SESSION
  *     directly. XCube_ActionForm will be changed in the near feature. Developers
  *     need to pay attention to spec change.
  * 
@@ -108,7 +108,7 @@ class XCube_ActionForm
      * @public
      * @brief Constructor.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_ActionForm()
     {
@@ -502,7 +502,7 @@ class XCube_FieldProperty
      * @remarks
      *     Only sub-classes of XCube_ActionForm calles this constructor. 
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$form)
     //public function XCube_FieldProperty(&$form)
     {
