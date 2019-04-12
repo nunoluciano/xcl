@@ -34,7 +34,7 @@ class XCube_FormFile
     public $_mTmpFileName=null;
     
     public $mUploadFileFlag=false;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name = null, $key = null)
     //public function XCube_FormFile($name = null, $key = null)
     {

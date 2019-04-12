@@ -132,7 +132,7 @@ class XCube_Controller
      * @var XCube_Delegate
      */
     public $mSetupTextFilter = null;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Controller()
     {
@@ -341,10 +341,11 @@ class XCube_Controller
      */
     public function _setupSession()
     {
-        // ! Fix PHP7 Only variables should be passed by reference
-        // $this->mRoot->setSession(new XCube_Session());
-        $start = new XCube_Session();
-        $this->mRoot->setSession($start);
+        // !Fix PHP7 NOTICE: Only variables should be passed by reference
+        //$this->mRoot->setSession(new XCube_Session());
+        $session = new XCube_Session();
+        $this->mRoot->setSession($session);
+        
     }
     
     /**

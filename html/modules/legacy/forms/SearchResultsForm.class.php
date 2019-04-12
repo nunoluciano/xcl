@@ -20,9 +20,13 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
     public $mQueries = array();
     public $_mKeywordMin = 0;
     
-    public function Legacy_SearchResultsForm($keywordMin)
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct($keywordMin)
+    // public function Legacy_SearchResultsForm($keywordMin)
     {
-        parent::XCube_ActionForm();
+        // !FIX PHP7 parent constructor
+        parent::__construct();
+        //parent::XCube_ActionForm();
         $this->_mKeywordMin = intval($keywordMin);
     }
         

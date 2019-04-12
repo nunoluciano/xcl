@@ -41,7 +41,7 @@ class XCube_Object
     public function getPropertyDefinition()
     {
     }
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Object()
     {

@@ -22,7 +22,7 @@ class XCube_PropertyInterface
      * @brief Constructor.
      * @param $name string - A name of this property.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_PropertyInterface($name)
     {
@@ -150,7 +150,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
      * @brief Constructor.
      * @param $name string - A name of this property.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_AbstractProperty($name)
     {
@@ -281,7 +281,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      * @param $classname string - <T>
      * @param $name string - A name of the property.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($classname, $name)
     //public function XCube_GenericArrayProperty($classname, $name)
     {
@@ -448,7 +448,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
  */
 class XCube_AbstractArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_AbstractArrayProperty($name)
     {
@@ -477,7 +477,7 @@ class XCube_BoolProperty extends XCube_AbstractProperty
  */
 class XCube_BoolArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_BoolArrayProperty($name)
     {
@@ -506,7 +506,7 @@ class XCube_IntProperty extends XCube_AbstractProperty
  */
 class XCube_IntArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_IntArrayProperty($name)
     {
@@ -535,7 +535,7 @@ class XCube_FloatProperty extends XCube_AbstractProperty
  */
 class XCube_FloatArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_FloatArrayProperty($name)
     {
@@ -576,7 +576,7 @@ class XCube_StringProperty extends XCube_AbstractProperty
  */
 class XCube_StringArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_StringArrayProperty($name)
     {
@@ -620,7 +620,7 @@ class XCube_TextProperty extends XCube_AbstractProperty
 class XCube_TextArrayProperty extends XCube_GenericArrayProperty
 {
 
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_TextArrayProperty($name)
     {
@@ -644,7 +644,7 @@ class XCube_FileProperty extends XCube_AbstractProperty
      * friend XCube_FileArrayProperty;
      */
     public $mIndex = null;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_FileProperty($name)
     {
@@ -703,7 +703,7 @@ class XCube_FileProperty extends XCube_AbstractProperty
  */
 class XCube_FileArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_FileArrayProperty($name)
     {
@@ -738,7 +738,7 @@ class XCube_FileArrayProperty extends XCube_GenericArrayProperty
  */
 class XCube_ImageFileProperty extends XCube_FileProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_ImageFileProperty($name)
     {
@@ -756,7 +756,7 @@ class XCube_ImageFileProperty extends XCube_FileProperty
  */
 class XCube_ImageFileArrayProperty extends XCube_FileArrayProperty
 {
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
     //public function XCube_ImageFileArrayProperty($name)
     {

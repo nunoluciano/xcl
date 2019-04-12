@@ -49,6 +49,7 @@ class Legacy_AdminActionSearch extends Legacy_AbstractBlockProcedure
         $render->setTemplateName('legacy_admin_block_actionsearch.html');
         
         $root =& XCube_Root::getSingleton();
+        
         $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
         
         $renderSystem->renderBlock($render);

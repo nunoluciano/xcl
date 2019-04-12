@@ -47,7 +47,7 @@ class XCube_ActionFilter
      * @brief Constructor.
      * @param $controller XCube_Controller
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$controller)
     //public function XCube_ActionFilter(&$controller)
     {
