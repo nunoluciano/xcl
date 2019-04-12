@@ -15,8 +15,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
-        // !Fix PHP7
-        public function __construct(&$controller)
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct(&$controller)
     //public function Legacy_PublicControllerStrategy(&$controller)
     {
         // ! call parent::__construct() instead of parent::Controller()
