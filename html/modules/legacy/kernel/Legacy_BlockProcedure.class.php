@@ -23,8 +23,8 @@ class Legacy_AbstractBlockProcedure
      * @var XCube_RenderTarget
      */
     public $mRender = null;
-        // !Fix PHP7
-        public function __construct()
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct()
     //public function Legacy_AbstractBlockProcedure()
     {
     }
@@ -168,8 +168,8 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
      */
     public $mRender = null;
     
-        // !Fix PHP7
-        public function __construct(&$block)
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct(&$block)
     //public function Legacy_BlockProcedure(&$block)
     {
         $this->_mBlock =& $block;

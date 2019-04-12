@@ -55,8 +55,8 @@ class Legacy_AbstractCacheInformation
      * @var array
      */
     public $mAttributes = array();
-        // !Fix PHP7
-        public function __construct()
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct()
     //public function Legacy_AbstractCacheInformation()
     {
     }
@@ -127,7 +127,7 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
       * @var XCube_Delegate
       */
      public $mGetCacheFilePath = null;
-         // !Fix PHP7
+     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function Legacy_ModuleCacheInformation()
     {
@@ -187,7 +187,7 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
       * @var XCube_Delegate
       */
      public $mGetCacheFilePath = null;
-         // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function Legacy_BlockCacheInformation()
     {
