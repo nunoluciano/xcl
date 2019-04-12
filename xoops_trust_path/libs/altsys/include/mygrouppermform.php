@@ -80,8 +80,8 @@ class MyXoopsGroupPermForm extends XoopsForm
     /**
      * Constructor
      */
-//HACK by domifara
-//	public function MyXoopsGroupPermForm($title, $modid, $permname, $permdesc)
+    //HACK by domifara
+    //	public function MyXoopsGroupPermForm($title, $modid, $permname, $permdesc)
     public function __construct($title, $modid, $permname, $permdesc)
     {
         //		$this->XoopsForm($title, 'groupperm_form', XOOPS_URL.'/modules/system/admin/groupperm.php', 'post'); GIJ
@@ -89,7 +89,10 @@ class MyXoopsGroupPermForm extends XoopsForm
         $this->_modid = intval($modid);
         $this->_permName = $permname;
         $this->_permDesc = $permdesc;
-        $this->addElement(new XoopsFormHidden('modid', $this->_modid));
+        // !Fix PHP7 NOTICE: Only variables should be passed by reference
+        $instance = new XoopsFormHidden('modid', $this->_modid);
+        $this->addElement($instance);
+        //$this->addElement(new XoopsFormHidden('modid', $this->_modid));
     }
 
     /**
@@ -189,8 +192,14 @@ class MyXoopsGroupPermForm extends XoopsForm
         // GIJ end
 
         $tray = new XoopsFormElementTray('');
-        $tray->addElement(new XoopsFormButton('', 'reset', _CANCEL, 'reset'));
-        $tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+        // !Fix PHP7 NOTICE: Only variables should be passed by reference
+        $buttonReset = new XoopsFormButton('', 'reset', _CANCEL, 'reset');
+        $tray->addElement($buttonReset);
+        // $tray->addElement(new XoopsFormButton('', 'reset', _CANCEL, 'reset'));
+        // !Fix PHP7 NOTICE: Only variables should be passed by reference
+        $buttonSubmit = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');
+        $tray->addElement($buttonSubmit);
+        // $tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
         $this->addElement($tray);
 
         $ret = '<h4>'.$this->getTitle().'</h4>'.$this->_permDesc.'<br />';
@@ -215,6 +224,7 @@ class MyXoopsGroupPermForm extends XoopsForm
         return $ret;
     }
 }
+
 
 /**
  * Renders checkbox options for a group permission form
@@ -252,7 +262,9 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
     /**
      * Constructor
      */
-    public function MyXoopsGroupFormCheckBox($caption, $name, $groupId, $values = null)
+    // !Fix PHP7 NOTICE: deprecated constructor
+	public function __construct($caption, $name, $groupId, $values = null)
+    //public function MyXoopsGroupFormCheckBox($caption, $name, $groupId, $values = null)
     {
         $this->setCaption($caption);
         $this->setName($name);
