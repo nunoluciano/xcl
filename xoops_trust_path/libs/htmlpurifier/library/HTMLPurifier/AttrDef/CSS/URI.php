@@ -33,9 +33,6 @@ class HTMLPurifier_AttrDef_CSS_URI extends HTMLPurifier_AttrDef_URI
             return false;
         }
         $uri_string = substr($uri_string, 4);
-        if (strlen($uri_string) == 0) {
-            return false;
-        }
         $new_length = strlen($uri_string) - 1;
         if ($uri_string[$new_length] != ')') {
             return false;
@@ -75,3 +72,4 @@ class HTMLPurifier_AttrDef_CSS_URI extends HTMLPurifier_AttrDef_URI
 }
 
 // vim: et sw=4 sts=4
+
