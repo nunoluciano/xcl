@@ -69,7 +69,7 @@ if ($op == 'showmod') {
     $modname = $module->getVar('name');
     $button_tray = new XoopsFormElementTray("");
     // if ($module->getInfo('adminindex')) {
-        //	$form->addElement(new XoopsFormHidden('redirect', XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$module->getInfo('adminindex')));
+    //	$form->addElement(new XoopsFormHidden('redirect', XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$module->getInfo('adminindex')));
     // }
     for ($i = 0; $i < $count; $i++) {
         $title_icon = ($config[$i]->getVar('conf_valuetype') === 'encrypt')? '<img src="'.XOOPS_MODULE_URL.'/legacy/admin/theme/icons/textfield_key.png" alt="Encrypted">' : ''; // support XCL 2.2.3 'encrypt' of 'conf_valuetype'
@@ -165,7 +165,11 @@ if ($op == 'showmod') {
     }
     // $button_tray->addElement(new XoopsFormHidden('op', 'save'));
     $xoopsGTicket->addTicketXoopsFormElement($button_tray, __LINE__, 1800, 'mypreferences') ;
-    $button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
+
+    // !Fix PHP7 NOTICE: Only variables should be passed by reference
+    $button = new XoopsFormButton('', 'button', _GO, 'submit');
+    $button_tray->addElement($button);
+    // $button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
     $form->addElement($button_tray) ;
     xoops_cp_header();
 
@@ -192,8 +196,8 @@ if ($op == 'save') {
     }
     require_once XOOPS_ROOT_PATH.'/class/template.php' ;
     $xoopsTpl = new XoopsTpl();
-//HACK by domifara for new XOOPS and XCL etc.
-//old xoops
+    //HACK by domifara for new XOOPS and XCL etc.
+    //old xoops
     $core_type = intval(altsys_get_core_type());
     if ($core_type <= 10) {
         $xoopsTpl->clear_all_cache();
@@ -248,16 +252,16 @@ if ($op == 'save') {
 
                         altsys_clear_templates_c() ;
 
-/*						for ($i = 0; $i < $dcount; $i++) {
+                        /*	for ($i = 0; $i < $dcount; $i++) {
                             $found =& $tplfile_handler->find($newtplset, 'block', $dtemplates[$i]->getVar('tpl_refid'), null);
-                            if (count($found) > 0) {
+                                if (count($found) > 0) {
                                 // template for the new theme found, compile it
                                 xoops_template_touch($found[0]->getVar('tpl_id'));
-                            } else {
+                                } else {
                                 // not found, so compile 'default' template file
                                 xoops_template_touch($dtemplates[$i]->getVar('tpl_id'));
-                            }
-                        }*/
+                                }
+                            }*/
 
                         // generate image cache files from image binary data, save them under cache/
                         $image_handler =& xoops_gethandler('imagesetimg');
