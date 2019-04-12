@@ -60,6 +60,8 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadModule();
         }
+        // TODO: NOTICE: Undefined variable: mods.
+        // ! WARNING: Invalid argument supplied for foreach()
         foreach ($mods as $mod) {
             $rtn    = array();
             $sadmin = $moduleperm_handler->checkRight('module_admin', $mod->getVar('mid'), $xoopsUser->getGroups());

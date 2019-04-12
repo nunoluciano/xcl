@@ -71,7 +71,7 @@ class Legacy_AbstractModule
      *     Basically, only Legacy_Controller and its utility functions should call the
      *     constructor.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$module, $loadConfig=true)
     //public function Legacy_AbstractModule(&$module, $loadConfig=true)
     {
@@ -400,8 +400,8 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
      * @brief Complex Array - cached
      */
     public $mAdminMenu = null;
-        // !Fix PHP7
-        public function __construct($module, $loadConfig=true)
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct($module, $loadConfig=true)
     //public function Legacy_ModuleAdapter($module, $loadConfig=true)
     {
         // ! call parent::__construct() instead of parent::Controller()

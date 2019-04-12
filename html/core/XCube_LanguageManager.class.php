@@ -37,7 +37,7 @@ class XCube_LanguageManager
      * @var string
      */
     public $mLocaleName;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_LanguageManager()
     {
