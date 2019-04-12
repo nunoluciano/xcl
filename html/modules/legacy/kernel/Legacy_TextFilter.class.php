@@ -80,8 +80,8 @@ class Legacy_TextFilter extends XCube_TextFilter
      * @todo
      *	  This method keeps a deprecated delegate.
      */
-          // !Fix PHP7
-          public function __construct()
+    // !Fix PHP7 NOTICE: deprecated constructor
+    public function __construct()
     //public function Legacy_TextFilter()
     {
         $obj = $this->mMakeClickableConvertTable = new XCube_Delegate;

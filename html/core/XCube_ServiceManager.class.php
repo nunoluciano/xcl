@@ -59,7 +59,7 @@ class XCube_ServiceManager
      * @var XCube_Delegate
      */
     public $mCreateServer = null;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_ServiceManager()
     {

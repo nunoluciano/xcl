@@ -1,0 +1,15 @@
+<div class="tips">
+<{$smarty.const._MB_LEGACY_ONLINEINFO}>
+</div>
+<div id="t<{$blockid}>" class="head">
+<a href="javascript:void(0)" onclick="ccToggle('<{$blockid}>')"><img src="<{"design/navy.gif"|theme}>" alt="" id="i<{$blockid}>" /></a>
+</div>
+<div id="c<{$blockid}>" class="submenu">
+<{$contents.online_total}><br /><br />
+<{$smarty.const._MB_USER_MEMBERS}>: <{$contents.online_members}><br />
+<{$smarty.const._MB_USER_GUESTS}>: <{$contents.online_guests}><br /><br />
+<{foreach item=member from=$contents.online_member_list}>
+<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>"><{$member.uname}></a>
+<{/foreach}>
+<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+</div>

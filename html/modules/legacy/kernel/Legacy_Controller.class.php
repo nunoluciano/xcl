@@ -105,7 +105,7 @@ class Legacy_Controller extends XCube_Controller
      * @var XoopsLogger
      */
     public $mLogger = null;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function Legacy_Controller()
     {
@@ -793,10 +793,12 @@ class Legacy_Controller extends XCube_Controller
                             $className = ucfirst($mod_dir) . '_' . basename($file, '.class.php');
                         
                             if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
-                                $this->_mLoadedFilterNames[$className] = true;
-                                // ! Fix PHP7 Only variables should be passed by reference
-                                // $this->addActionFilter(new $className($this));
-                                $this->addActionFilter = new $className($this);
+                                //$this->_mLoadedFilterNames[$className] = true;
+                                // !Fix PHP7 NOTICE: Only variables should be passed by reference
+                                // $this->addActionFilter(new $className($this)); 
+                                $instance = new $className($this);
+                                $this->addActionFilter($instance);
+                                unset($instance);
                             }
                         }
                     }
@@ -1374,7 +1376,7 @@ class Legacy_AbstractControllerStrategy
     public $mController = null;
     
     public $mStatusFlag;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$controller)
     //public function Legacy_AbstractControllerStrategy(&$controller)
     {
