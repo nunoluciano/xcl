@@ -21,7 +21,6 @@ function myDeleteByModule($DB, $gperm_modid, $gperm_name = null, $gperm_itemid =
 }
 
 
-
 // include '../../../include/cp_header.php'; GIJ
 $modid = isset($_POST['modid']) ? intval($_POST['modid']) : 1;
 

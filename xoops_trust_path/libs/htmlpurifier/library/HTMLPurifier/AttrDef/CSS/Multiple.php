@@ -44,7 +44,7 @@ class HTMLPurifier_AttrDef_CSS_Multiple extends HTMLPurifier_AttrDef
      */
     public function validate($string, $config, $context)
     {
-        $string = $this->mungeRgb($this->parseCDATA($string));
+        $string = $this->parseCDATA($string);
         if ($string === '') {
             return false;
         }
@@ -69,3 +69,4 @@ class HTMLPurifier_AttrDef_CSS_Multiple extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
+
