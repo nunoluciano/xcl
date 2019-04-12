@@ -24,7 +24,7 @@ class XCube_Identity
      * @var string
      */
     public $_mAuthenticationType = "";
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Identity()
     {
@@ -91,7 +91,7 @@ class XCube_Principal
      * @var string[]
      */
     public $_mRoles = array();
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($identity, $roles = array())
     //public function XCube_Principal($identity, $roles = array())
     {

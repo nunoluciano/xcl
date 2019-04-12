@@ -34,7 +34,7 @@ class XCube_Session
      */
     public $mGetSessionCookiePath = null;
 
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($sessionName='', $sessionExpire=0)
     //public function XCube_Session($sessionName='', $sessionExpire=0)
     {

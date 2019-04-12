@@ -67,7 +67,7 @@ class XCube_Service
     
     public $_mFunctions = array();
     
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Service()
     {
@@ -127,7 +127,7 @@ class XCube_AbstractServiceClient
     
     public $mUser = null;
     
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$service)
     //public function XCube_AbstractServiceClient(&$service)
     {

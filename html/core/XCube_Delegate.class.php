@@ -36,7 +36,7 @@ class XCube_Ref
      * @public Constructor.
      * @param $obj mixed
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$obj)
     //public function XCube_Ref(&$obj)
     {
@@ -153,7 +153,7 @@ class XCube_Delegate
      *   $delegate =new XCube_Delegate("string", "string");
      * \endcode
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Delegate()
     {
@@ -416,7 +416,7 @@ class XCube_DelegateManager
      * @public
      * @brief Constructor.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     ///public function XCube_DelegateManager()
     {
@@ -563,7 +563,7 @@ class XCube_DelegateUtils
      * @private
      * @brief Private Construct. In other words, it's possible to create an instance of this class.
      */
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_DelegateUtils()
     {

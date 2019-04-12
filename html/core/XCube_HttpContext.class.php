@@ -51,7 +51,7 @@ class XCube_HttpContext
      * @access private
      */
     public $mThemeName = null;
-    // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_HttpContext()
     {
@@ -237,7 +237,7 @@ class XCube_GenericRequest extends XCube_AbstractRequest
      * @var Array
      */
     public $mAttributes = array();
-     // !Fix PHP7
+    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($arr = null)  
     //public function XCube_GenericRequest($arr = null)
     {
