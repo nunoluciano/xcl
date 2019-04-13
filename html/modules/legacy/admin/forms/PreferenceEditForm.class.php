@@ -29,7 +29,9 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
         // ! call parent::__construct() instead of parent::Controller()
         parent::__construct();
         //parent::XCube_ActionForm();
-        $this->mKeyValue = $category->get('confcat_id');
+        if (isset($mKeyName['confcat_id'])) {
+            $this->mKeyValue = $category->get('confcat_id');
+        }
     }
     
     public function getTokenName()
