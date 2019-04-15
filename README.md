@@ -79,11 +79,11 @@ Useful Wikipedia articles with tables comparing general and technical informatio
 ***
 
 
-## 📦 The Packages Download
+## 📦 The Packages
 
-The source code of XOOPS Cube Legacy is available on [Github](https://github.com/xoopscube/xcl).
+Download the source code of XCL available on [Github](https://github.com/xoopscube/xcl).
 
-:construction: A new XCL package is coming out in 2019.
+:construction: A new XCL package is coming out in may 2019.
 
 :memo: The Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads) area.
 
