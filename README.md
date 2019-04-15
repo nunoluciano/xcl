@@ -137,6 +137,6 @@ http://xoopscube.org/documentation/api
 
 ## The Contribution
 
-XOOPS Cube is open source project community driven. We encourage everyone in the community to contribute their knowledge and expertise.
-Everyone in the community benefits from every [enhancement request](https://github.com/xoopscube/xl/issues), submit [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls) implemented to improve **Legacy**. 
-You can influence what happens to Open Source and the direction for **Legacy** future growth.
+The XOOPS Cube project is community driven. We encourage everyone in the community to contribute their knowledge and expertise.
+Everyone benefits from every [enhancement request](https://github.com/xoopscube/xl/issues),  [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls). 
+You can influence what happens to Open Source and the direction for **XCL** future growth.
