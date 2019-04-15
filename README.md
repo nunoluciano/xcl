@@ -80,7 +80,6 @@ Useful Wikipedia articles with tables comparing general and technical informatio
 
 
 ## 📦 The Packages Download
-====
 
 The source code of XOOPS Cube Legacy is available on [Github](https://github.com/xoopscube/xcl).
 
@@ -93,7 +92,6 @@ The source code of XOOPS Cube Legacy is available on [Github](https://github.com
 
 
 ## :bust_in_silhouette: The Contributors
-====
 
 10key, Aaki, Argon, Asunta, Bandit-x, Beduino, Bindi, Bluemooninc, Domifara, Fugafuga, Gara, Gigamaster, GIJOE, Gusagi, Halt, Hamanaka, Hiroki, Hypweb (Nao-pon), Hxrr, JardaR, Jidaikobo, Kilica, Leco, Lumbago, Marijuana, Marine, Mat, Matchan, Metal, Mikhail Miguel, Minahito, Moegiiro, Mumincacao, Masarap, Naao, Nao-pon, Neko88, Nobunobu, Nor, Nbuy (Nobu, OhYear, Ohwada, Okuhiki, Onokazu, Orrisroot, Otneg, Plusangel, Pcboy, Roger, Sacchan,  Sak-Axyz, Salamander, Shige-p, Shiraga, Slayer_cg, Sohgo, Sow, Suin, Toemon, Tokitam, Tohokuaiki, Tom_g3x, Tomoro, Wanderer, Wanikoo.
 
@@ -102,7 +100,6 @@ The source code of XOOPS Cube Legacy is available on [Github](https://github.com
 
 
 ## :copyright: The License
-====
 
 #### :page_with_curl: XOOPS Cube  
 
@@ -118,7 +115,6 @@ The Legacy Package source code which is one set of base modules to ensure backwa
 
 
 ## The Installation
-====
 
 XOOPS Cube Legacy Installation Guide
 
@@ -140,7 +136,6 @@ http://xoopscube.org/documentation/api
 
 
 ## The Contribution
-====
 
 XOOPS Cube is open source project community driven. We encourage everyone in the community to contribute their knowledge and expertise.
 Everyone in the community benefits from every [enhancement request](https://github.com/xoopscube/xl/issues), submit [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls) implemented to improve **Legacy**. 
