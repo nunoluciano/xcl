@@ -1,61 +1,73 @@
 # Change Log
 
-## XCL 2.3.0 (2019-02-11)
+All notable changes to this project will be documented in this file.
 
-**Update to PHP7:**
+- Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
+- This project adheres to [Semantic Versioning](https://semver.org/).
 
-Merge branch 'master' into 2.3, Nao-pon
+## [unreleased] - 2019-04-12.
 
-Remove ?> from PHP files, Kilica
+### Deprecated
 
-Update to LF, Kilica
+- Deprecated constructors
+- Variables passed by reference
 
-Update README.md, Gigamaster (Info opensource)
+### Fixed
 
-Move folder 'docs' to new repo
+- Core
+- Legacy
+- Search
+- Sync branches
+- Sync Trust Path
 
-Move folder 'extras' to new repo
 
-Update /common
+## [unreleased] - 2019-02-11.
 
-update /core
+**XCL 2.3.0 Update to PHP7:**
 
-Update version /include
+### Added
 
-update /install
+- Merge branch 'master' into 2.3.0, Nao-pon
 
-update/kernel
+### Changed
 
-update /language/english
+- README.md, Gigamaster (Info opensource)
+- upload /modules/xupdate
+- upload modules/ckeditor4
+- upload modules/altsys
+- upload modules/protector
+- installer en, ja_utf8
+- language/english
 
-update /modules/legacyRender
+### Deprecated
 
-update /modules/message
+- PHP5 rem.
 
-update modules/profile
+### Removed
 
-update modules/stdCache
+- Remove ?> from PHP files, Kilica
+- Move folder 'docs' to new repo
+- Move folder 'extras' to new repo
 
-update modules/user
+### Fixed
 
-update /modules/xupdate
+- Update to LF, Kilica
+- Update version /include
+- Update /common
+- update /core
+- update /install
+- update /kernel
+- update /modules/legacyRender
+- update /modules/message
+- update modules/profile
+- update modules/stdCache
+- update modules/user
+- update modules/ckeditor4 0.74
+- Fixed installer template
+- Kernel Object, Fix PHP7 Undefined index variable not initialized with Null coalesce operator
+- XCube controller, Fix PHP7 Only variables should be passed by reference - XCube Session
+- Legacy Controller, processModulePreload, Fix PHP7 Only variables should be passed by reference
 
-upload modules/ckeditor4
+### Security
 
-update modules/ckeditor4 0.74
-
-upload modules/altsys
-
-upload modules/protector
-
-update class.phpmailer 5.2.27
-
-installer /en /ja_utf8
-
-Fixed installer template
-
-Kernel Object, Fix PHP7 Undefined index variable not initialized with Null coalesce operator
-
-XCube controller, Fix PHP7 Only variables should be passed by reference - XCube Session
-
-Legacy Controller, processModulePreload, Fix PHP7 Only variables should be passed by reference
+- update class.phpmailer 5.2.27
