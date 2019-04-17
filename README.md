@@ -5,8 +5,6 @@
 ## :construction: 2019-01-29 XCL update to PHP7  
 The new **XCL** development avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend the Web Application Platform.
 
-***
-
 ## :information_source: The App
 
 
@@ -37,46 +35,7 @@ Below is a list of some of XOOPS Cube Legacy features.
 
 Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
 
-<table>
-<tr>
-<th align="center">
-Server
-</th>
-<th align="center">
-Database</th>
-<th align="center">
-Language</th>
-</tr>
-<tr>
-<td align="center">Apache version 2.xx</td>
-<td align="center">MySQL version 5.xx</td>
-<td align="center">PHP version 5.xx</td>
-</tr>
-<tr>
-<td align="center"><a href="http://apache.org/"><img src="http://xoopscube.org/uploads/fckeditor/logo-apache.png" alt="Apache" title="Apache" /></a></td>
-<td align="center"><br />
-<br />
-<a href="http://mysql.com/"><img src="http://xoopscube.org/uploads/fckeditor/logo-mysql.png" alt="Mysql" title="Mysql" /></a></td>
-<td align="center"><a href="http://php.net/"><img src="http://xoopscube.org/uploads/fckeditor/logo-php.png" alt="php" title="php" /></a></td>
-</tr>
-<tr>
-<td align="center">http://apache.org/</td>
-<td align="center">http://www.mysql.com/</td>
-<td align="center">http://php.net/</td>
-</tr>
-</table>
-
 #### :floppy_disk: The Software
-
-Useful Wikipedia articles with tables comparing general and technical information of Proprietary software, Free and open-source software.  
-
-<img src="http://xoopscube.org/uploads/fckeditor/server_database.png"> <a href="http://en.wikipedia.org/wiki/List_of_AMP_packages"> Local Test Server</a> : List of Apache–MySQL–PHP packages  
-<img src="http://xoopscube.org/uploads/fckeditor/script_edit.png"> <a href="http://en.wikipedia.org/wiki/Source_code_editor"> Source Code Editor</a> : Some well-known source code editors  
-<img src="http://xoopscube.org/uploads/fckeditor/picture_edit.png"> <a href="http://en.wikipedia.org/wiki/Comparison_of_raster_graphics_editors"> Graphics Editor</a> : Comparison of raster graphics editors  
-<img src="http://xoopscube.org/uploads/fckeditor/computer_go.png"> <a href="http://en.wikipedia.org/wiki/FTP_clients"> FTP Clients</a> : Comparison of FTP client software  
-
-
-***
 
 
 ## 📦 The Packages
