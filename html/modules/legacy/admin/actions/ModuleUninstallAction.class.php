@@ -77,6 +77,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
      * @var XCube_Delegate
      */
     public $mUninstallFail = null;
+
     
     /**
      * @private
@@ -95,7 +96,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
         self::__construct($flag);
     }
 
-    public function __construct()
+    public function __construct($flag)
     {
         parent::__construct($flag);
         

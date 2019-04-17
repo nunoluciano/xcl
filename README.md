@@ -1,100 +1,95 @@
-# X-elFinder
+# XCL Web Application Platform
 
-A modular version of the web-based file manager [elFinder 2.0](http://elfinder.org/) that works with JavaScript + PHP for XCL.
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)
 
-Installing this module with XCL wizard will automatically replace the default image manager.
+## :construction: 2019-01-29 XCL update to PHP7  
+The new **XCL** development avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend the Web Application Platform.
 
-## Download
-
-* You can clone or download the module from XCL repo.
-* X-elfinder is released with XCL package ensuring backwards copatibility
-* For any other Xoops package download from [nao-pon/xelfinder - GitHub](https://github.com/nao-pon/xelfinder)
-
-For issues, questions and requests regarding X-elFinder you can use the XCL **Issue** tracker of Github.
-
-Japanese support available at the forum :
-
-* [X-elFinder- Forums XOOPS Mania](http://xoops.hypweb.net/modules/forum/index.php?forum_id=25)
+## :information_source: The App
 
 
-## Requirements
+**The XCL** is a simple, secure and scalable web application platform. The modular architecture is built in PHP with Cube core, SQL and a smarty theming system. The graphical user interface empowers everyone to create dynamic and content rich apps with HTML, CSS and Javascript - from the best looking blogs, forums, portfolios, intranet and business websites to the much safer desktop applications on Linux, Mac or Windows.
 
-* XOOPS based platform
- * Tested with the following packages:
-  * XOOPS Cube Legacy 2.2.0, 2.2.1, 2.3.0
-  * XOOPS 2.1.16-JP
-  * XOOPS 2.5.5
-* PHP 5.2 or higher
+**The XOOPS Cube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team Core values are integrity, innovation, passion and respect. When you know who you are, you know what to do, you know what story to tell and the stories that you want to hear. We share the essential knowledge and understanding of the “spirit of open source” necessary to create tools that encourage creativity.
 
-## Installation
+## :ballot_box_with_check: The Features
 
-* Install from XCL modules management following the GUI wizard steps.
-* Install manually. You need write permissions (such as 777 or 707) in the following directories to create files:
+Below is a list of some of XOOPS Cube Legacy features.
 
-* html/modules/xelfinder/cache
-* html/modules/xelfinder/cache/tmb
-* xoops_trust_path/uploads/xelfinder
+* Easy Wizard installation
+* Modular architecture
+* Module API for unlimited expandability
+* Simple core to build up a custom cms
+* Debug function for easy development
+* User and Group-based permission system
+* Intuitive Interface for management
+* Smarty Template engine
+* Caching mechanism
+* Themes and Templates management
+* Embedded WYSIWYG HTML Editor
+* Filemanger with remote drives (Dropbox, One Drive, Google Drive,...)
+* Free choice of PHP, JS, CSS frameworks
+* Abundant third-party modules and extensions (preloads to customize functionality)
 
-Although PathInfo is used for image reference, depending on the server environment, PathInfo may not be used and may not be displayed properly.
+## :computer: The Requirements
 
-In this case, set "Disable PathInfo of file reference URL" to "Yes" in the general settings of the management screen.
+Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
 
-### How to change the popup to IFRAME
+#### :floppy_disk: The Software
 
-The X-elFinder popup uses openWithSelfMain () which is included in xoops.js, but openWithSelfMain () opens another window. If you want to change this to an IFRAME, you can change the file theme.html to load <{$xoops_js}> and then load  openWithSelfMain_iframe.js.
 
-* HypConf (setting of HypCommon module) in "other settings" set to "tag inserted at the end of < head >"
+## 📦 The Packages
 
- `<script type="text/javascript" src="<{$xoops_url}>/modules/xelfinder/include/js/openWithSelfMain_iframe.js"></script>`
+Download the source code of XCL available on [Github](https://github.com/xoopscube/xcl).
 
-Add or edit theme.html as follows:
+:construction: A new XCL package is coming out in may 2019.
 
-Example (theme.html):
+:memo: The Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads) area.
 
-    `<script type="text/javascript">
-    <!--
-    <{$xoops_js}>
-    //-->
-    </script>
-    <script type="text/javascript" src="<{$xoops_url}>/modules/xelfinder/include/js/openWithSelfMain_iframe.js"></script>`
 
-## X-elFinder main features
+***
 
-In addition to the default elFinder, X-elfinder has the following features.
 
-* Drag and drop file upload between browser windows (Firefox, Chrome, Safari)
-* Image editing using Pixlr.com
-* Direct management of cloud storage with [Dropbox.com](http://db.tt/w0gZJglT) ( [Here you can get 500MB bonus](http://db.tt/w0gZJglT) for new registration & installation)
-* Permissions and restrictions can be specified for each group
-* Add a plug-in type volume (like a drive)
-    * Group ID can be specified for each volume
-    * Detailed response by the xelfinder_db plug-in
-        * User-specific folder
-        * Group folder
-        * Guest folder
-        * Folder and file permissions (read, write, unlock, hide can be set for owner, group, guest respectively)
-        * Set permissions of new items per folder
-    * Specify an arbitrary directory in the server and manipulate image files in that directory with the xelfinder plug-in
-    * Includes plug-ins for XOOPS d3diary, GNAVI, MailBBS and MyAlbum modules
-        * Available images stored relatively to each module
+## :game_die: The Installation
 
-## Image Manager
+XOOPS Cube Legacy Installation Guide
 
-* XCL ensures backwards compatibility
-* Other Xoops packages require a simple edit of the file imagemanager.php
+http://xoopscube.sourceforge.net/documentation/
 
-Edit imagemanager.php and add the following include after the line mainfile.php :
 
-    `include 'modules/xelfinder/manager.php';`
+## :blue_book: The Documentation
 
-Save and it's done.
 
-## Uninstallation
+XOOPS Cube Legacy API documentation generated by Apigen 2.7.0
 
-If you uninstall X-elfinder, the uploaded files will remain, but all information about folders, permissions and owners will be lost.
+http://xoopscube.org/documentation/api
 
-If you want to save such information, backup first your database.
 
-The table name of X-elFinder starts with "[XOOPS DB prefix] [X-elFinder module directory name] ".
+## :copyright: The License
 
-If you want to uninstall and delete all the uploaded files, just find the ".../uploads/xelfinder" directory.
+#### :page_with_curl: XOOPS Cube  
+
+XOOPS Cube was started from scratch and the **Cube Core** source code is released under the BSD licence.
+
+ 
+#### :page_with_curl: Legacy Package  
+
+The Legacy Package source code which is one set of base modules to ensure backwards compatibility is released under a GPL licence.
+
+
+***
+
+
+## :bust_in_silhouette: The Contributors
+
+10key, Aaki, Argon, Asunta, Bandit-x, Beduino, Bindi, Bluemooninc, Domifara, Fugafuga, Gara, Gigamaster, GIJOE, Gusagi, Halt, Hamanaka, Hiroki, Hypweb (Nao-pon), Hxrr, JardaR, Jidaikobo, Kilica, Leco, Lumbago, Marijuana, Marine, Mat, Matchan, Metal, Mikhail Miguel, Minahito, Moegiiro, Mumincacao, Masarap, Naao, Nao-pon, Neko88, Nobunobu, Nor, Nbuy (Nobu, OhYear, Ohwada, Okuhiki, Onokazu, Orrisroot, Otneg, Plusangel, Pcboy, Roger, Sacchan,  Sak-Axyz, Salamander, Shige-p, Shiraga, Slayer_cg, Sohgo, Sow, Suin, Toemon, Tokitam, Tohokuaiki, Tom_g3x, Tomoro, Wanderer, Wanikoo.
+
+
+***
+
+
+## :clipboard: The Contribution
+
+The XOOPS Cube project is community driven. We encourage everyone in the community to contribute their knowledge and expertise.
+Everyone benefits from every [enhancement request](https://github.com/xoopscube/xl/issues),  [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls). 
+You can influence what happens to Open Source and the direction for **XCL** future growth.

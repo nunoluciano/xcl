@@ -41,7 +41,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_META_KEYWORDS_DESC",
         "formtype"=>"textarea",
         "valuetype"=>"text",
-        "default"=>"news, technology, headlines, xoops, cube, legacy, social, network, module, plugin, theme, templates, css, web 2.0, ajax, cms, content management, software, blog, download, downloads, free, community, mp3, forum, forums, bulletin, board, boards, bbs, php, survey, poll, polls, kernel, comment, comments, portal, odp, open, source, opensource, FreeSoftware, bsd, gnu, gpl, license, Unix, *nix, mysql, sql, database, databases, web site"
+        "default"=>"application, bootstrap, css, code, components, delegate, design, deploy, development, extension, frameworks, free, html, interface, internet, javascript, libraries, metro, modular architecture, module, object, plugin, query, soap, sql, theme, templates, ui, update, ux, website, wizard, wysiwyg"
     );
 
 $modversion['config'][]=array(
@@ -50,7 +50,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_META_DESCRIPTION_DESC",
         "formtype"=>"textarea",
         "valuetype"=>"text",
-        "default"=>"XOOPS Cube Legacy is a dynamic Object Oriented based open source portal script written in PHP."
+        "default"=>"XCL is a modular architecture and extensible web application written in PHP."
     );
 
 $modversion['config'][]=array(
@@ -79,7 +79,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_META_AUTHOR_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"XOOPS Cube"
+        "default"=>"XOOPS Cube Project"
     );
 
 $modversion['config'][]=array(
@@ -88,7 +88,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_META_COPYRIGHT_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"Copyright &copy; 2001-2012"
+        "default"=>"Copyright &copy; 2001-2019"
     );
 
 $modversion['config'][]=array(
@@ -97,7 +97,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_FOOTER_DESC",
         "formtype"=>"textarea",
         "valuetype"=>"text",
-        "default"=>"Powered by <a href=\"http://xoopscube.org/\" rel=\"external\">XOOPS Cube</a> 2.2 &copy; 2001-2012 <a href=\"https://github.com/xoopscube/legacy/\" rel=\"external\">XOOPS Cube Project</a>"
+        "default"=>"Powered by XCL 2.3.0 &copy; 2001-2019 <a href=\"https://github.com/xoopscube/\" rel=\"external\">The XOOPSCube Project</a>"
     );
 
 $modversion['config'][]=array(
@@ -123,7 +123,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_CSS_FILE_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css"
+        "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dot-luv/jquery-ui.min.css"
     );
 
 $modversion['config'][]=array(
@@ -141,7 +141,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_JQUERY_CORE_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"
+        "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"
     );
 
 $modversion['config'][]=array(
@@ -150,7 +150,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_JQUERY_UI_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+        "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     );
 
 // Menu
