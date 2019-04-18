@@ -215,7 +215,7 @@ class protector
             }
 
         // clear autologin cookie
-        $xoops_cookie_path = defined('XOOPS_COOKIE_PATH') ? XOOPS_COOKIE_PATH : preg_replace('?http://[^/]+(/.*)$?', '$1', XOOPS_URL);
+        $xoops_cookie_path = defined('XOOPS_COOKIE_PATH') ? XOOPS_COOKIE_PATH : preg_replace('?https://[^/]+(/.*)$?', '$1', XOOPS_URL);
             if ($xoops_cookie_path == XOOPS_URL) {
                 $xoops_cookie_path = '/';
             }
@@ -1084,7 +1084,7 @@ class protector
                 $this->_spamcount_uri += $count;
             }
 
-        // count BBCode likd [url=www....] up (without [url=http://...])
+        // count BBCode likd [url=www....] up (without [url=https://...])
         $this->_spamcount_uri += count(preg_split('/\[url=(?!http|\\"http|\\\'http|'.$http_host.')/i', $val)) - 1;
         }
     }

@@ -151,7 +151,7 @@ define('_MD_PICO_FILTERS_EVALTITLE','phpコード');
 define('_MD_PICO_FILTERS_EVALDESC','eval()に渡してPHPコードとして解釈/実行されます');
 define('_MD_PICO_FILTERS_HTMLSPECIALCHARSTITLE','HTML特殊文字エスケープ');
 define('_MD_PICO_FILTERS_HTMLSPECIALCHARSDESC','明示的にHTMLとしての解釈を禁止したい時に有効にします。BBCode等の各種修飾処理と併用する時には必ず先頭に置いてください。');
-define('_MD_PICO_FILTERS_TEXTWIKITITLE','PEAR TextWiki <a href="http://wiki.ciaweb.net/yawiki/index.php?area=Text_Wiki&amp;page=SamplePage" target="_blank">サンプル</a>');
+define('_MD_PICO_FILTERS_TEXTWIKITITLE','PEAR TextWiki <a href="https://wiki.ciaweb.net/yawiki/index.php?area=Text_Wiki&amp;page=SamplePage" target="_blank">サンプル</a>');
 define('_MD_PICO_FILTERS_TEXTWIKIDESC','TextWikiルールで整形されます');
 define('_MD_PICO_FILTERS_XOOPSTPLTITLE','Smarty(XoopsTpl)');
 define('_MD_PICO_FILTERS_XOOPSTPLDESC','Smartyテンプレートとして解釈されます');

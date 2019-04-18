@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on 2012/01/20 by nao-pon http://xoops.hypweb.net/
+ * Created on 2012/01/20 by nao-pon https://xoops.hypweb.net/
  * $Id: xoops_elFinder.class.php,v 1.1 2012/01/20 13:32:02 nao-pon Exp $
  */
 
@@ -75,7 +75,7 @@ class xoops_elFinder {
 		$this->defaultVolumeOptions = array_merge($this->defaultVolumeOptions, $opt);
 		$this->base64encodeSessionData = ((!defined('_CHARSET') || _CHARSET !== 'UTF-8') && substr($this->getSessionTableType(), -4) !== 'blob');
 		$https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
-		$this->myOrigin = ($https? 'https://' : 'http://')
+		$this->myOrigin = ($https? 'https://' : 'https://')
 			.$_SERVER['SERVER_NAME'] // host
 			.(((! $https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']));  // port
 		$this->tokeDataPrefix = XOOPS_MODULE_PATH.'/'.$mydirname.'/cache/tokendata_';

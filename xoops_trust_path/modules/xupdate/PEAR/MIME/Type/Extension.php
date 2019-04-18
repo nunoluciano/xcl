@@ -8,8 +8,8 @@
  * @category File
  * @package  MIME_Type
  * @author   Christian Schmidt <schmidt@php.net>
- * @license  http://www.gnu.org/copyleft/lesser.html LGPL
- * @link     http://pear.php.net/package/MIME_Type
+ * @license  https://www.gnu.org/copyleft/lesser.html LGPL
+ * @link     https://pear.php.net/package/MIME_Type
  */
 
 require_once 'PEAR.php';
@@ -20,9 +20,9 @@ require_once 'PEAR.php';
  * @category MIME
  * @package  MIME_Type
  * @author   Christian Schmidt <schmidt@php.net>
- * @license  http://www.gnu.org/copyleft/lesser.html LGPL
+ * @license  https://www.gnu.org/copyleft/lesser.html LGPL
  * @version  Release: @version@
- * @link     http://pear.php.net/package/MIME_Type
+ * @link     https://pear.php.net/package/MIME_Type
  */
 class MIME_Type_Extension
 {

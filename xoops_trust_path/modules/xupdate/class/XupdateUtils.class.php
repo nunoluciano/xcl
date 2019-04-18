@@ -209,7 +209,7 @@ class Xupdate_Utils
                 
                 if (isset($proxy['port'])) {
                     $proxyURL .= ":" . $proxy['port'];
-                } elseif ('http://' === substr($proxyURL, 0, 7)) {
+                } elseif ('https://' === substr($proxyURL, 0, 7)) {
                     $proxyURL .= ":80";
                 } elseif ('https://' === substr($proxyURL, 0, 8)) {
                     $proxyURL .= ":443";

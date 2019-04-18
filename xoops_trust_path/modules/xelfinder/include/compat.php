@@ -59,9 +59,9 @@ if (!function_exists('sys_get_temp_dir')) {
  *
  * @category  PHP
  * @package   PHP_Compat
- * @license   LGPL - http://www.gnu.org/licenses/lgpl.html
+ * @license   LGPL - https:///www.gnu.org/licenses/lgpl.html
  * @copyright 2004-2009 Aidan Lister <aidan@php.net>, Arpad Ray <arpad@php.net>
- * @link      http://php.net/function.str_getcsv
+ * @link      https:///php.net/function.str_getcsv
  * @author    HM2K <hm2k@php.net>
  * @version   $CVS: 1.0 $
  * @since     5.3.0
@@ -81,7 +81,7 @@ function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $esca
 /**
  * Wraps fgetcsv() for the correct PHP version
  *
- * @link http://php.net/function.fgetcsv
+ * @link https:///php.net/function.fgetcsv
  */
 function php_compat_fgetcsv_wrap($fh, $length, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 	// The escape parameter was added
@@ -99,7 +99,7 @@ if (!function_exists('str_getcsv')) {
 	/**
 	 * Backwards compatbility for str_getcsv()
 	 *
-	 * @link http://php.net/function.fgetcsv
+	 * @link https:///php.net/function.fgetcsv
 	 */
 	function str_getcsv($input, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 		return php_compat_str_getcsv($input, $delimiter, $enclosure, $escape);

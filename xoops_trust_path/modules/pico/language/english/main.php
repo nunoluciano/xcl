@@ -152,7 +152,7 @@ define('_MD_PICO_FILTERS_EVALTITLE','php code');
 define('_MD_PICO_FILTERS_EVALDESC','It will be the parameter of eval() function');
 define('_MD_PICO_FILTERS_HTMLSPECIALCHARSTITLE','HTML special character escape');
 define('_MD_PICO_FILTERS_HTMLSPECIALCHARSDESC','If you want to use BBCode etc. also, set it the first place.');
-define('_MD_PICO_FILTERS_TEXTWIKITITLE','PEAR TextWiki <a href="http://wiki.ciaweb.net/yawiki/index.php?area=Text_Wiki&amp;page=SamplePage" target="_blank">Sample</a>');
+define('_MD_PICO_FILTERS_TEXTWIKITITLE','PEAR TextWiki <a href="https://wiki.ciaweb.net/yawiki/index.php?area=Text_Wiki&amp;page=SamplePage" target="_blank">Sample</a>');
 define('_MD_PICO_FILTERS_TEXTWIKIDESC','Rendered by TextWiki rule');
 define('_MD_PICO_FILTERS_XOOPSTPLTITLE','Smarty(XoopsTpl)');
 define('_MD_PICO_FILTERS_XOOPSTPLDESC','Rendered as a Smarty template');

@@ -369,7 +369,7 @@ $modversion['config'] = array(
         'description'    => '',
         'formtype'    => 'text',
         'valuetype'    => 'string',
-        'default'    => 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
+        'default'    => 'https://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
         'options'    => array(),
     ) ,
 
@@ -379,7 +379,7 @@ $modversion['config'] = array(
         'description'    => '',
         'formtype'    => 'text',
         'valuetype'    => 'string',
-        'default'    => 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
+        'default'    => 'https://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
         'options'    => array(),
     ) ,
 
