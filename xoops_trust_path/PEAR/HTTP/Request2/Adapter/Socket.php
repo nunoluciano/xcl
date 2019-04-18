@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Socket.php 324953 2012-04-08 07:24:12Z avb $
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 
 /** Base class for HTTP_Request2 adapters */
@@ -56,9 +56,9 @@ require_once 'HTTP/Request2/SocketWrapper.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Adapter_Socket extends HTTP_Request2_Adapter
 {
@@ -337,7 +337,7 @@ class HTTP_Request2_Adapter_Socket extends HTTP_Request2_Adapter
      * sees that we are connected to a proxy server (duh!) rather than the server
      * that presents its certificate.
      *
-     * @link     http://tools.ietf.org/html/rfc2817#section-5.2
+     * @link     https://tools.ietf.org/html/rfc2817#section-5.2
      * @throws   HTTP_Request2_Exception
      */
     protected function establishTunnel()
@@ -440,7 +440,7 @@ class HTTP_Request2_Adapter_Socket extends HTTP_Request2_Adapter
                 HTTP_Request2_Exception::NON_HTTP_REDIRECT
             );
         }
-        // Theoretically URL should be absolute (see http://tools.ietf.org/html/rfc2616#section-14.30),
+        // Theoretically URL should be absolute (see https://tools.ietf.org/html/rfc2616#section-14.30),
         // but in practice it is often not
         if (!$redirectUrl->isAbsolute()) {
             $redirectUrl = $request->getUrl()->resolve($redirectUrl);
@@ -677,7 +677,7 @@ class HTTP_Request2_Adapter_Socket extends HTTP_Request2_Adapter
      * @param array  &$challenge digest challenge parameters
      *
      * @return   string  value of [Proxy-]Authorization request header
-     * @link     http://tools.ietf.org/html/rfc2617#section-3.2.2
+     * @link     https://tools.ietf.org/html/rfc2617#section-3.2.2
      */
     protected function createDigestResponse($user, $password, $url, &$challenge)
     {

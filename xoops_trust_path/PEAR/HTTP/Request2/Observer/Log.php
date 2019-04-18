@@ -37,9 +37,9 @@
  * @package  HTTP_Request2
  * @author   David Jean Louis <izi@php.net>
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Log.php 324415 2012-03-21 10:50:50Z avb $
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -59,7 +59,7 @@ require_once 'HTTP/Request2/Exception.php';
  * require_once 'HTTP/Request2.php';
  * require_once 'HTTP/Request2/Observer/Log.php';
  *
- * $request  = new HTTP_Request2('http://www.example.com');
+ * $request  = new HTTP_Request2('https://www.example.com');
  * $observer = new HTTP_Request2_Observer_Log();
  * $request->attach($observer);
  * $request->send();
@@ -71,7 +71,7 @@ require_once 'HTTP/Request2/Exception.php';
  * require_once 'HTTP/Request2/Observer/Log.php';
  * require_once 'Log.php';
  *
- * $request  = new HTTP_Request2('http://www.example.com');
+ * $request  = new HTTP_Request2('https://www.example.com');
  * // we want to log with PEAR log
  * $observer = new HTTP_Request2_Observer_Log(Log::factory('console'));
  *
@@ -86,9 +86,9 @@ require_once 'HTTP/Request2/Exception.php';
  * @package  HTTP_Request2
  * @author   David Jean Louis <izi@php.net>
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Observer_Log implements SplObserver
 {

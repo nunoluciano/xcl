@@ -6,7 +6,7 @@
  * @package Dropbox
  * @copyright Copyright (C) 2010 Rooftop Solutions. All rights reserved.
  * @author Michael Johansen <michael@taskcamp.com>
- * @license http://code.google.com/p/dropbox-php/wiki/License MIT
+ * @license https://code.google.com/p/dropbox-php/wiki/License MIT
  */
 
 /**

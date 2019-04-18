@@ -37,9 +37,9 @@
  * @package I18N_UnicodeNormalizer
  * @author Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license http://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license https://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version SVN: $Id: CompatibilityDecompositionsX.php 29 2007-07-04 16:01:23Z mcorne $
- * @link http://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link https://pear.php.net/package/I18N_UnicodeNormalizer
  */
 
 return array (

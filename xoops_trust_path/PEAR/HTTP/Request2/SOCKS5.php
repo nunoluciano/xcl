@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: SOCKS5.php 324953 2012-04-08 07:24:12Z avb $
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 
 /** Socket wrapper class used by Socket Adapter */
@@ -50,11 +50,11 @@ require_once 'HTTP/Request2/SocketWrapper.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     http://pear.php.net/package/HTTP_Request2
- * @link     http://pear.php.net/bugs/bug.php?id=19332
- * @link     http://tools.ietf.org/html/rfc1928
+ * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/bugs/bug.php?id=19332
+ * @link     https://tools.ietf.org/html/rfc1928
  */
 class HTTP_Request2_SOCKS5 extends HTTP_Request2_SocketWrapper
 {
@@ -110,7 +110,7 @@ class HTTP_Request2_SOCKS5 extends HTTP_Request2_SocketWrapper
      *
      * @throws HTTP_Request2_ConnectionException
      * @throws HTTP_Request2_MessageException
-     * @link http://tools.ietf.org/html/rfc1929
+     * @link https://tools.ietf.org/html/rfc1929
      */
     protected function performAuthentication($username, $password)
     {

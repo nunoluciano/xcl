@@ -5,7 +5,7 @@
  * 
  * @package Dropbox 
  * @copyright Copyright (C) 2010 Stefan Motz
- * @author Stefan Motz (http://www.multimediamotz.de/)
+ * @author Stefan Motz (https://www.multimediamotz.de/)
  * @license MIT
  */
 
@@ -185,7 +185,7 @@ class Dropbox_OAuth_Wordpress extends Dropbox_OAuth {
 
     /**
      * Helper function to properly urlencode parameters.
-     * See http://php.net/manual/en/function.oauth-urlencode.php
+     * See https://php.net/manual/en/function.oauth-urlencode.php
      *
      * @param string $string
      * @return string
