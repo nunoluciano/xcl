@@ -1,14 +1,14 @@
 <?php
 /**
- * SWFUpload: http://www.swfupload.org, http://swfupload.googlecode.com
+ * SWFUpload: https://www.swfupload.org, https://swfupload.googlecode.com
  *
- * mmSWFUpload 1.0: Flash upload dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
+ * mmSWFUpload 1.0: Flash upload dialog - https://profandesign.se/swfupload/,  https://www.vinterwebb.se/
  *
- * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzén and Mammon Media and is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzï¿½n and Mammon Media and is released under the MIT License:
+ * https://www.opensource.org/licenses/mit-license.php
  *
  * SWFUpload 2 is (c) 2007-2008 Jake Roberts and is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ * https://www.opensource.org/licenses/mit-license.php
  *
  * modifed Hiroki Seike
  * TODO Error handring
@@ -77,7 +77,7 @@ $config_handler = &xoops_gethandler('config');
 $moduleConfig =& $config_handler->getConfigsByDirname('fileManager');
 $extension_whitelist = explode('|', $moduleConfig['extensions']);
 
-// Check post_max_size (http://us3.php.net/manual/en/features.file-upload.php#73762)
+// Check post_max_size (https://us3.php.net/manual/en/features.file-upload.php#73762)
 $POST_MAX_SIZE = ini_get('post_max_size');
 $unit = strtoupper(substr($POST_MAX_SIZE, -1));
 $multiplier = ($unit == 'M' ? 1048576 : ($unit == 'K' ? 1024 : ($unit == 'G' ? 1073741824 : 1)));

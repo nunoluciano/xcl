@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: NobuNobu (Nobuki@Kowa.ORG)                                        //
-// URL:  http://jp.xoops.org                                                 //
+// URL:  https://jp.xoops.org                                                 //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -70,7 +70,7 @@ class XoopsMailerLocal extends XoopsMailer
 
     /*-------------------------------------
      PHP FORM MAIL 1.01 by TOMO
-     URL : http://www.spencernetwork.org/
+     URL : https://www.spencernetwork.org/
      E-Mail : groove@spencernetwork.org
     --------------------------------------*/
     public function STRtoJIS($str, $from_charset)

@@ -9,7 +9,7 @@
  */
 /*------------------------------------------------------------------------*
  |  This file was entirely rewritten by the XOOPS Cube Legacy project for |
- |   keeping compatibility with XOOPS 2.0.x <http://www.xoops.org>        |
+ |   keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>        |
  *------------------------------------------------------------------------*/
 
 require_once "./mainfile.php";

@@ -322,7 +322,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/])([a-z]+?):\/\/($hpath)/i";
         $replacements[] = "\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.($hpath)/i";
-        $replacements[] = "\\1<a href=\"http://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>";
+        $replacements[] = "\\1<a href=\"https://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/])ftp\.([a-z0-9\-]+)\.($hpath)/i";
         $replacements[] = "\\1<a href=\"ftp://ftp.\\2.\\3\" rel=\"external\">ftp.\\2.\\3</a>";
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/:\.])([a-z0-9\-_\.]+?)@([a-z0-9!#\$%&'\*\+\-\/=\?^_\`{\|}~\.]+)/i";
@@ -427,7 +427,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         $patterns[] = "/\[url\=(['\"]?)(ftp?:\/\/[^\"'<>]*)\\1\](.*)\[\/url\]/sU";
         $replacements[0][] = $replacements[1][] = '<a href="\\2" rel="external">\\3</a>';
         $patterns[] = "/\[url\=(['\"]?)([^\"'<>]*)\\1\](.*)\[\/url\]/sU";
-        $replacements[0][] = $replacements[1][] = '<a href="http://\\2" rel="external">\\3</a>';
+        $replacements[0][] = $replacements[1][] = '<a href="https://\\2" rel="external">\\3</a>';
         $patterns[] = "/\[color\=(['\"]?)([a-zA-Z0-9]*)\\1\](.*)\[\/color\]/sU";
         $replacements[0][] = $replacements[1][] = '<span style="color: #\\2;">\\3</span>';
         $patterns[] = "/\[size\=(['\"]?)([a-z-]*)\\1\](.*)\[\/size\]/sU";

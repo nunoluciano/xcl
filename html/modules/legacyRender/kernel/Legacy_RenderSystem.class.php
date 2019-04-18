@@ -524,9 +524,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         global $xoopsConfig, $xoopsTheme, $xoopsConfigMetaFooter;
 
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
 
-        echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" lang="'._LANGCODE.'">
+        echo '<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" lang="'._LANGCODE.'">
 		<head>
 		<meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" />
 		<meta http-equiv="content-language" content="'._LANGCODE.'" />

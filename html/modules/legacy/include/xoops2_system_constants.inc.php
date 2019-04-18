@@ -3,7 +3,7 @@
  *
  * @package XOOPS2
  * @version $Id: xoops2_system_constants.inc.php,v 1.3 2008/09/25 15:12:38 kilica Exp $
- * @copyright Copyright (c) 2000 XOOPS.org  <http://www.xoops.org/>
+ * @copyright Copyright (c) 2000 XOOPS.org  <https://www.xoops.org/>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  * This file defines constants which were defined in system module of XOOPS2.
