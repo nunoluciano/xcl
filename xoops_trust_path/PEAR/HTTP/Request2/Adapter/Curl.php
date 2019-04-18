@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Curl.php 324746 2012-04-03 15:09:16Z avb $
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -52,9 +52,9 @@ require_once 'HTTP/Request2/Adapter.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
 {
@@ -272,7 +272,7 @@ class HTTP_Request2_Adapter_Curl extends HTTP_Request2_Adapter
             if (defined('CURLOPT_REDIR_PROTOCOLS')) {
                 curl_setopt($ch, CURLOPT_REDIR_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS);
             }
-            // works in 5.3.2+, http://bugs.php.net/bug.php?id=49571
+            // works in 5.3.2+, https://bugs.php.net/bug.php?id=49571
             if ($this->request->getConfig('strict_redirects') && defined('CURLOPT_POSTREDIR')) {
                 curl_setopt($ch, CURLOPT_POSTREDIR, 3);
             }

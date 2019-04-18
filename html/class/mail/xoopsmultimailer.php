@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -24,8 +24,8 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author: Jochen B—¬nagel (job@buennagel.com)                               //
-// URL:  http://www.xoops.org                        //
+// Author: Jochen Bï¿½ï¿½nagel (job@buennagel.com)                               //
+// URL:  https://www.xoops.org                        //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 /**
@@ -34,8 +34,8 @@
  * 
  * @filesource 
  *
- * @author    Jochen B—¬nagel <jb@buennagel.com>
- * @copyright copyright (c) 2000-2003 The XOOPS Project (http://www.xoops.org)
+ * @author    Jochen Bï¿½ï¿½nagel <jb@buennagel.com>
+ * @copyright copyright (c) 2000-2003 The XOOPS Project (https://www.xoops.org)
  *
  * @version   $Revision: 1.4 $ - $Date: 2008/09/21 06:45:39 $
  */

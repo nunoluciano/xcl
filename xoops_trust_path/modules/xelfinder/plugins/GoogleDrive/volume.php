@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on 2017/04/01 by nao-pon http://xoops.hypweb.net/
+ * Created on 2017/04/01 by nao-pon https://xoops.hypweb.net/
  */
 
 if (version_compare(PHP_VERSION, '5.4.0', '>=') && class_exists('\Google_Client')) {

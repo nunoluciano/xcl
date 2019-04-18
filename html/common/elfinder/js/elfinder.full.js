@@ -1,7 +1,7 @@
 /*!
  * elFinder - file manager for web
  * Version 2.1.48 (2.1 Nightly: 7917e3c) (2019-02-26)
- * http://elfinder.org
+ * https://elfinder.org
  * 
  * Copyright 2009-2019, Studio 42
  * Licensed under a 3-clauses BSD license
@@ -8036,7 +8036,7 @@ elFinder.prototype = {
 				/*
 				 * Natural Sort algorithm for Javascript - Version 0.7 - Released under MIT license
 				 * Author: Jim Palmer (based on chunking idea from Dave Koelle)
-				 * http://opensource.org/licenses/mit-license.php
+				 * https://opensource.org/licenses/mit-license.php
 				 */
 				self.sort = function(a, b) {
 					var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
@@ -10096,8 +10096,8 @@ if (!Array.from) {
 }
 // window.requestAnimationFrame and window.cancelAnimationFrame
 if (!window.cancelAnimationFrame) {
-// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// https://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// https://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
 (function() {
@@ -19949,7 +19949,7 @@ $.fn.elfinderstat = function(fm) {
  * @class  elFinder toast
  * 
  * This was created inspired by the toastr. Thanks to developers of toastr.
- * CodeSeven/toastr: http://johnpapa.net <https://github.com/CodeSeven/toastr>
+ * CodeSeven/toastr: https://johnpapa.net <https://github.com/CodeSeven/toastr>
  *
  * @author Naoki Sawada
  **/
@@ -24927,7 +24927,7 @@ elFinder.prototype.commands.fullscreen = function() {
 			html.push(linktpltgt[r](url, 'https://studio-42.github.io/elFinder/')[r](link, fm.i18n('homepage')));
 			html.push(linktpltgt[r](url, 'https://github.com/Studio-42/elFinder/wiki')[r](link, fm.i18n('docs')));
 			html.push(linktpltgt[r](url, 'https://github.com/Studio-42/elFinder')[r](link, fm.i18n('github')));
-			//html.push(linktpltgt[r](url, 'http://twitter.com/elrte_elfinder')[r](link, fm.i18n('twitter')));
+			//html.push(linktpltgt[r](url, 'https://twitter.com/elrte_elfinder')[r](link, fm.i18n('twitter')));
 			
 			html.push(sep);
 			
@@ -24947,7 +24947,7 @@ elFinder.prototype.commands.fullscreen = function() {
 			html.push(getTheme());
 
 			html.push(sep);
-			html.push('<div class="'+lic+'">'+fm.i18n('icons')+': Pixelmixer, <a href="http://p.yusukekamiyamane.com" target="_blank">Fugue</a>, <a href="https://icons8.com" target="_blank">Icons8</a></div>');
+			html.push('<div class="'+lic+'">'+fm.i18n('icons')+': Pixelmixer, <a href="https://p.yusukekamiyamane.com" target="_blank">Fugue</a>, <a href="https://icons8.com" target="_blank">Icons8</a></div>');
 			
 			html.push(sep);
 			html.push('<div class="'+lic+'">Licence: 3-clauses BSD Licence</div>');
@@ -29118,7 +29118,7 @@ elFinder.prototype.commands.quicklook.plugins = [
 			if (file.mime === mime && ql.dispInlineRegex.test(file.mime)) {
 				e.stopImmediatePropagation();
 				ql.hideinfo();
-				node = $('<embed class="elfinder-quicklook-preview-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" src="'+fm.openUrl(file.hash)+'" quality="high" type="application/x-shockwave-flash" wmode="transparent" />')
+				node = $('<embed class="elfinder-quicklook-preview-flash" pluginspage="https://www.macromedia.com/go/getflashplayer" src="'+fm.openUrl(file.hash)+'" quality="high" type="application/x-shockwave-flash" wmode="transparent" />')
 					.appendTo(preview);
 			}
 		});

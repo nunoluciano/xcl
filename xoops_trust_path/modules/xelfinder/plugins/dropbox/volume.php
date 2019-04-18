@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on 2014/03/12 by nao-pon http://xoops.hypweb.net/
+ * Created on 2014/03/12 by nao-pon https://xoops.hypweb.net/
  */
 
 if (version_compare(PHP_VERSION, '5.5.0', '>=') && defined('ELFINDER_DROPBOX_CONSUMERKEY') && $mConfig['dropbox_acc_token'] && class_exists('\Kunnu\Dropbox\DropboxApp')) {

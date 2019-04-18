@@ -255,12 +255,12 @@
 
 
  * -------- -------- -------- -------- -------- -------- -------- --------
- * SWFUpload 0.7: Flash upload dialog - http://profandesign.se/swfupload/
- * SWFUpload is (c) 2006 Lars Huring, Olov Nilzén and Mammon Media and is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ * SWFUpload 0.7: Flash upload dialog - https://profandesign.se/swfupload/
+ * SWFUpload is (c) 2006 Lars Huring, Olov Nilzï¿½n and Mammon Media and is released under the MIT License:
+ * https://www.opensource.org/licenses/mit-license.php
  * -------- -------- -------- -------- -------- -------- -------- --------
 
- * SWFUpload 0.7: Flash upload dialog - http://profandesign.se/swfupload/
+ * SWFUpload 0.7: Flash upload dialog - https://profandesign.se/swfupload/
  *
  * VERSION HISTORY
  * 0.5 - First release

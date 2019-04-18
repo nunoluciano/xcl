@@ -555,7 +555,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				$mime = $this->mimetype($localpath);
 				$upload = true; // default to allow
 				if ($check_mime_accept) {
-					// logic based on http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
+					// logic based on https://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
 					$allow  = $this->mimeAccepted($mime, $this->uploadAllow, null);
 					$deny   = $this->mimeAccepted($mime, $this->uploadDeny,  null);
 					if (strtolower($this->uploadOrder[0]) == 'allow') {

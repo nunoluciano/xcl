@@ -62,7 +62,7 @@ define( $constpref.'_FTP_SEARCH_DESC' ,         'If in search results include FT
 define( $constpref.'_BOXAPI_ID' ,               'Box API OAuth2 client_id' );
 define( $constpref.'_BOXAPI_ID_DESC' ,          'Box API Console [ https://app.box.com/developers/services ]' );
 define( $constpref.'_BOXAPI_SECRET' ,           'Box API OAuth2 client_secret' );
-define( $constpref.'_BOXAPI_SECRET_DESC' ,      'When using OneDrive as a network volume, please set "'.str_replace('http://','https://',XOOPS_URL).'/modules/'.$mydirname.'/connector.php" in the Box API application setting - redirect_url.(https: Required. Optional paths after domain can be omitted)' );
+define( $constpref.'_BOXAPI_SECRET_DESC' ,      'When using OneDrive as a network volume, please set "'.str_replace('https://','https://',XOOPS_URL).'/modules/'.$mydirname.'/connector.php" in the Box API application setting - redirect_url.(https: Required. Optional paths after domain can be omitted)' );
 define( $constpref.'_GOOGLEAPI_ID' ,            'Google API Client ID' );
 define( $constpref.'_GOOGLEAPI_ID_DESC' ,       'Google API Console [ https://console.developers.google.com ]' );
 define( $constpref.'_GOOGLEAPI_SECRET' ,        'Google API Client Secret' );
@@ -181,7 +181,7 @@ define( $constpref.'_CONN_URL_IS_EXT',          'Is external connector URL' );
 define( $constpref.'_CONN_URL_IS_EXT_DESC',     '"Yes", when connector URL which carried out arbitrary specification is an external site, in the case of URL to which connector URL makes SSL connection only of the back end communication, please choose "no".<br />When connecting it with the connector of an external site, the origin domain here needs to be permitted at the partner point site.' );
 
 define( $constpref.'_ALLOW_ORIGINS',            'Domain origins to permit' );
-define( $constpref.'_ALLOW_ORIGINS_DESC',       'The domain origin (example: "http://example.com" the last slash is unnecessary) of the external site which permits connection to the connector of this site is set up by line pause.<br />In the case of URL to which connector URL makes SSL connection only of the back end communication, it is necessary to specify " <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> ".' );
+define( $constpref.'_ALLOW_ORIGINS_DESC',       'The domain origin (example: "https://example.com" the last slash is unnecessary) of the external site which permits connection to the connector of this site is set up by line pause.<br />In the case of URL to which connector URL makes SSL connection only of the back end communication, it is necessary to specify " <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> ".' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'Local for unzip' );
 define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'Local (LANG) for unzip exec' );

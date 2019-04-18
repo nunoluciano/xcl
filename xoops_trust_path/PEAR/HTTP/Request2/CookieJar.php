@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: CookieJar.php 324415 2012-03-21 10:50:50Z avb $
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 
 /** Class representing a HTTP request message */
@@ -50,9 +50,9 @@ require_once 'HTTP/Request2.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  https://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: @package_version@
- * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     https://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_CookieJar implements Serializable
 {
@@ -87,7 +87,7 @@ class HTTP_Request2_CookieJar implements Serializable
     /**
      * Array with Public Suffix List data
      * @var  array
-     * @link http://publicsuffix.org/
+     * @link https://publicsuffix.org/
      */
     protected static $psl = array();
 
@@ -348,7 +348,7 @@ class HTTP_Request2_CookieJar implements Serializable
      *
      * @param boolean $useList use the list?
      *
-     * @link     http://publicsuffix.org/learn/
+     * @link     https://publicsuffix.org/learn/
      */
     public function usePublicSuffixList($useList)
     {

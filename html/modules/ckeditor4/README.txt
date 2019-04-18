@@ -9,7 +9,7 @@ Requirement
 
 Main Feature
 ------------
-- Implement CK Editor(http://ckeditor.com/) to textarea
+- Implement CK Editor(https://ckeditor.com/) to textarea
 
 How to Use
 ----------

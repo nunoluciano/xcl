@@ -48,9 +48,9 @@
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   SVN: $Id: UnicodeNormalizer.php 39 2007-07-25 12:33:15Z mcorne $
- * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
  */
 
 require_once 'UnicodeNormalizer/String.php';
@@ -78,11 +78,11 @@ require_once 'UnicodeNormalizer/String.php';
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   Release: @package_version@
- * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
- * @link      http://www.unicode.org/unicode/reports/tr15 : Unicode Normalization Forms
- * @link      http://en.wikipedia.org/wiki/Unicode_normalization : Unicode Normalization Definition
+ * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      https://www.unicode.org/unicode/reports/tr15 : Unicode Normalization Forms
+ * @link      https://en.wikipedia.org/wiki/Unicode_normalization : Unicode Normalization Definition
  */
 class I18N_UnicodeNormalizer
 {

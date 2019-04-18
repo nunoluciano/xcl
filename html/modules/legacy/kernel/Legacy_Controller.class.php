@@ -1045,7 +1045,7 @@ class Legacy_Controller extends XCube_Controller
                 $url = XOOPS_URL;
                 if (!empty($_POST['xoops_redirect']) && !strpos(xoops_getrequest('xoops_redirect'), 'register')) {
                     $parsed = parse_url(XOOPS_URL);
-                    $url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'http://';
+                    $url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'https://';
                     
                     if (isset($parsed['host'])) {
                         $url .= isset($parsed['port']) ? $parsed['host'] . ':' . $parsed['port'] . '/'.ltrim(trim(xoops_getrequest('xoops_redirect')), '/') : $parsed['host'] . '/'. ltrim(trim(xoops_getrequest('xoops_redirect')), '/');

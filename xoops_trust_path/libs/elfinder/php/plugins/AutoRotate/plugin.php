@@ -28,7 +28,7 @@
  *            array(
  *                'driver' => 'LocalFileSystem',
  *                'path'   => '/path/to/files/',
- *                'URL'    => 'http://localhost/to/files/'
+ *                'URL'    => 'https://localhost/to/files/'
  *                'plugin' => array(
  *                    'AutoRotate' => array(
  *                        'enable'         => true,       // For control by volume driver

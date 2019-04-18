@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //                      mypreferences.php (altsys)                           //
 //                   - XOOPS altenative preferences -                        //
-//                     GIJOE <http://www.peak.ne.jp/>                        //
+//                     GIJOE <https://www.peak.ne.jp/>                        //
 // ------------------------------------------------------------------------- //
 
 require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;

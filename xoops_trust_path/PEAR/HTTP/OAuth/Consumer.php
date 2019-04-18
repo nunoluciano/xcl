@@ -8,7 +8,7 @@
  *
  * LICENSE: This source file is subject to the New BSD license that is
  * available through the world-wide-web at the following URI:
- * http://www.opensource.org/licenses/bsd-license.php. If you did not receive
+ * https://www.opensource.org/licenses/bsd-license.php. If you did not receive
  * a copy of the New BSD License and are unable to obtain it through the web,
  * please send a note to license@php.net so we can mail you a copy immediately.
  *
@@ -16,9 +16,9 @@
  * @package   HTTP_OAuth
  * @author    Jeff Hodsdon <jeffhodsdon@gmail.com>
  * @copyright 2009 Jeff Hodsdon <jeffhodsdon@gmail.com>
- * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link      http://pear.php.net/package/HTTP_OAuth
- * @link      http://github.com/jeffhodsdon/HTTP_OAuth
+ * @license   https://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @link      https://pear.php.net/package/HTTP_OAuth
+ * @link      https://github.com/jeffhodsdon/HTTP_OAuth
  */
 
 require_once 'HTTP/OAuth.php';
@@ -33,35 +33,35 @@ require_once 'HTTP/OAuth/Consumer/Exception/InvalidResponse.php';
  *
  * <code>
  * $consumer = new HTTP_OAuth_Consumer('key', 'secret');
- * $consumer->getRequestToken('http://example.com/oauth/request_token', $callback);
+ * $consumer->getRequestToken('https://example.com/oauth/request_token', $callback);
  *
  * // Store tokens
  * $_SESSION['token']        = $consumer->getToken();
  * $_SESSION['token_secret'] = $consumer->getTokenSecret();
  *
- * $url = $consumer->getAuthorizeUrl('http://example.com/oauth/authorize');
+ * $url = $consumer->getAuthorizeUrl('https://example.com/oauth/authorize');
  * http_redirect($url); // function from pecl_http
  *
  * // When they come back via the $callback url
  * $consumer = new HTTP_OAuth_Consumer('key', 'secret', $_SESSION['token'],
  *     $_SESSION['token_secret']);
- * $consumer->getAccessToken('http://example.com/oauth/access_token');
+ * $consumer->getAccessToken('https://example.com/oauth/access_token');
  *
  * // Store tokens
  * $_SESSION['token']        = $consumer->getToken();
  * $_SESSION['token_secret'] = $consumer->getTokenSecret();
  *
  * // $response is an instance of HTTP_OAuth_Consumer_Response
- * $response = $consumer->sendRequest('http://example.com/oauth/protected_resource');
+ * $response = $consumer->sendRequest('https://example.com/oauth/protected_resource');
  * </code>
  *
  * @category  HTTP
  * @package   HTTP_OAuth
  * @author    Jeff Hodsdon <jeffhodsdon@gmail.com>
  * @copyright 2009 Jeff Hodsdon <jeffhodsdon@gmail.com>
- * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @link      http://pear.php.net/package/HTTP_OAuth
- * @link      http://github.com/jeffhodsdon/HTTP_OAuth
+ * @license   https://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @link      https://pear.php.net/package/HTTP_OAuth
+ * @link      https://github.com/jeffhodsdon/HTTP_OAuth
  */
 class HTTP_OAuth_Consumer extends HTTP_OAuth
 {

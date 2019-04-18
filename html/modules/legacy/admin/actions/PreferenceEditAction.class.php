@@ -14,7 +14,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/PreferenceEditForm.class.php";
 
-define("LEGACY_PEREFERENCE_ID_GENERAL", 1);
+define("LEGACY_PREFERENCE_ID_GENERAL", 1);
 
 class Legacy_PreferenceEditAction extends Legacy_Action
 {
@@ -41,7 +41,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_modid', $this->mActionForm->getModuleId()));
-            $criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId()));
+            $criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId())); //!Fix conf_catid or confcat_id
             
             $this->mObjects =& $handler->getConfigs($criteria);
             $this->mActionForm->prepare($this->mObjects);
@@ -212,10 +212,10 @@ class Legacy_AbstractPreferenceEditState
 {
     public $_mMaster = null;
 
-    public function Legacy_AbstractPreferenceEditState(&$master)
-    {
-        self::__construct($master);
-    }
+    // public function Legacy_AbstractPreferenceEditState(&$master)
+    // {
+    //     self::__construct($master);
+    // }
 
     public function __construct(&$master)
     {
@@ -292,8 +292,8 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         if ($name != null && $allowedThemes != null) {
             XCube_DelegateUtils::call('Legacy.Event.ThemeSettingChanged', $themeName, $allowedThemes);
         }
-        
-        if ($this->_mMaster->mCategory->get('confcat_id') == LEGACY_PEREFERENCE_ID_GENERAL) { //GIJ
+        // !Fix typo pereference = preference?
+        if ($this->_mMaster->mCategory->get('confcat_id') == LEGACY_PREFERENCE_ID_GENERAL) { //GIJ 
             $root =& XCube_Root::getSingleton();
             if ($useMysession) {
                 $root->mSession->setParam($sessionName, $sessionExpire);

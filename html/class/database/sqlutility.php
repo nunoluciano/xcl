@@ -21,7 +21,7 @@
 class sqlutility
 {
     /**
-    * Function from phpMyAdmin (http://phpwizard.net/projects/phpMyAdmin/)
+    * Function from phpMyAdmin (https://phpwizard.net/projects/phpMyAdmin/)
     *
     * Removes comment and splits large sql files into individual queries
     *

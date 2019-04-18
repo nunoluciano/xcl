@@ -45,7 +45,7 @@ class HTMLPurifier_Lexer_PH5P extends HTMLPurifier_Lexer_DOMLex
 
 /*
 
-Copyright 2007 Jeroen van der Meer <http://jero.net/>
+Copyright 2007 Jeroen van der Meer <https:///jero.net/>
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the

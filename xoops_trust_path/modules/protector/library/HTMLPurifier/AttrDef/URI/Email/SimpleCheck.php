@@ -2,7 +2,7 @@
 
 /**
  * Primitive email validation class based on the regexp found at
- * http://www.regular-expressions.info/email.html
+ * https://www.regular-expressions.info/email.html
  */
 class HTMLPurifier_AttrDef_URI_Email_SimpleCheck extends HTMLPurifier_AttrDef_URI_Email
 {

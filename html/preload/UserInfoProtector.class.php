@@ -5,7 +5,7 @@
  * 
  * If you need more expressions, you may modify a template.
  * 
- * @see http://sourceforge.net/tracker/index.php?func=detail&aid=1718508&group_id=159211&atid=943472
+ * @see https://sourceforge.net/tracker/index.php?func=detail&aid=1718508&group_id=159211&atid=943472
  */
 class UserInfoProtector extends XCube_ActionFilter
 {

@@ -1212,7 +1212,7 @@ abstract class elFinderVolumeDriver
         $this->mimeDetect = $type;
 
         // load mimes from external file for mimeDetect == 'internal'
-        // based on Alexey Sukhotin idea and patch: http://elrte.org/redmine/issues/163
+        // based on Alexey Sukhotin idea and patch: https://elrte.org/redmine/issues/163
         // file must be in file directory or in parent one
         if ($this->mimeDetect === 'internal' && !elFinderVolumeDriver::$mimetypesLoaded) {
             elFinderVolumeDriver::loadMimeTypes(!empty($this->options['mimefile']) ? $this->options['mimefile'] : '');
@@ -1400,7 +1400,7 @@ abstract class elFinderVolumeDriver
             $reqs = explode('/', dirname($req));
             $uri = join('/', array_slice($reqs, 0, count($reqs) - 1)) . substr($this->tmpLinkPath, strlen($cur));
             $https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
-            $this->tmpLinkUrl = ($https ? 'https://' : 'http://')
+            $this->tmpLinkUrl = ($https ? 'https://' : 'https://')
                 . $_SERVER['SERVER_NAME'] // host
                 . (((!$https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']))  // port
                 . $uri;
@@ -4303,7 +4303,7 @@ abstract class elFinderVolumeDriver
      */
     protected function allowPutMime($mime)
     {
-        // logic based on http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
+        // logic based on https://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
         $allow = $this->mimeAccepted($mime, $this->uploadAllow, null);
         $deny = $this->mimeAccepted($mime, $this->uploadDeny, null);
         if (strtolower($this->uploadOrder[0]) == 'allow') { // array('allow', 'deny'), default is to 'deny'
@@ -5591,8 +5591,8 @@ abstract class elFinderVolumeDriver
                 }
 
                 // Imagick::FILTER_BOX faster than FILTER_LANCZOS so use for createTmb
-                // resize bench: http://app-mgng.rhcloud.com/9
-                // resize sample: http://www.dylanbeattie.net/magick/filters/result.html
+                // resize bench: https://app-mgng.rhcloud.com/9
+                // resize sample: https://www.dylanbeattie.net/magick/filters/result.html
                 $filter = ($destformat === 'png' /* createTmb */) ? Imagick::FILTER_BOX : Imagick::FILTER_LANCZOS;
 
                 $ani = ($img->getNumberImages() > 1);

@@ -2750,7 +2750,7 @@ class elFinder
                 // finfo return this mime for empty files
                 $mime = 'text/plain';
             } elseif ($mime == 'application/x-zip') {
-                // http://elrte.org/redmine/issues/163
+                // https://elrte.org/redmine/issues/163
                 $mime = 'application/zip';
             }
         }
@@ -4527,7 +4527,7 @@ class elFinder
     public static function getConnectorUrl()
     {
         $https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
-        $url = ($https ? 'https://' : 'http://')
+        $url = ($https ? 'https://' : 'https://')
             . $_SERVER['SERVER_NAME']                                              // host
             . (((!$https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']))  // port
             . $_SERVER['REQUEST_URI'];                                             // path & query

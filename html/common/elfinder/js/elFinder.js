@@ -8005,7 +8005,7 @@ elFinder.prototype = {
 				/*
 				 * Natural Sort algorithm for Javascript - Version 0.7 - Released under MIT license
 				 * Author: Jim Palmer (based on chunking idea from Dave Koelle)
-				 * http://opensource.org/licenses/mit-license.php
+				 * https://opensource.org/licenses/mit-license.php
 				 */
 				self.sort = function(a, b) {
 					var re = /(^-?[0-9]+(\.?[0-9]*)[df]?e?[0-9]?$|^0x[0-9a-f]+$|[0-9]+)/gi,
@@ -10065,8 +10065,8 @@ if (!Array.from) {
 }
 // window.requestAnimationFrame and window.cancelAnimationFrame
 if (!window.cancelAnimationFrame) {
-// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// https://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// https://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
 // MIT license
 (function() {

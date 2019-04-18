@@ -1,7 +1,7 @@
 <?php
 
 // Implement similar functionality in PHP 5.2 or 5.3
-// http://php.net/manual/class.recursivecallbackfilteriterator.php#110974
+// https://php.net/manual/class.recursivecallbackfilteriterator.php#110974
 if (!class_exists('RecursiveCallbackFilterIterator', false)) {
     class RecursiveCallbackFilterIterator extends RecursiveFilterIterator
     {

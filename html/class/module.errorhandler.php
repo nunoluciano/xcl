@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -24,7 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author of File: Goghs (http://www.eqiao.com/)                             //
+// Author of File: Goghs (https://www.eqiao.com/)                             //
 ################################################################################
 
 if (!defined("XOOPS_C_ERRORHANDLER_INCLUDED")) {
@@ -36,7 +36,7 @@ if (!defined("XOOPS_C_ERRORHANDLER_INCLUDED")) {
      * @package     kernel
      * @subpackage  core
      *
-     * @author      Goghs (http://www.eqiao.com/)
+     * @author      Goghs (https://www.eqiao.com/)
      * @copyright   (c) 2000-2003 The Xoops Project - www.xoops.org
      */
     class ErrorHandler

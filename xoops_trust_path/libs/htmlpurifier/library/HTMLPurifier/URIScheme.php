@@ -72,7 +72,7 @@ abstract class HTMLPurifier_URIScheme
             (!is_null($uri->scheme) && ($uri->host === '' || is_null($uri->host))) ||
             // if the scheme is not present, a *blank* host is in error,
             // since this translates into '///path' which most browsers
-            // interpret as being 'http://path'.
+            // interpret as being 'https://path'.
             (is_null($uri->scheme) && $uri->host === '')
         ) {
             do {

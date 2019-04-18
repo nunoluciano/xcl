@@ -12,7 +12,7 @@
  * Type:     function<br>
  * Name:     popup<br>
  * Purpose:  make text pop up in windows via overlib
- * @link http://smarty.php.net/manual/en/language.function.popup.php {popup}
+ * @link https://smarty.php.net/manual/en/language.function.popup.php {popup}
  *          (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @param array

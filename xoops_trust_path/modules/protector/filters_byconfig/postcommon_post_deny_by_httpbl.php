@@ -1,6 +1,6 @@
 <?php
 
-// get your 12-character access key from http://www.projecthoneypot.org/
+// get your 12-character access key from https://www.projecthoneypot.org/
 define('PROTECTOR_HTTPBL_KEY', '............') ;
 
 class protector_postcommon_post_deny_by_httpbl extends ProtectorFilterAbstract

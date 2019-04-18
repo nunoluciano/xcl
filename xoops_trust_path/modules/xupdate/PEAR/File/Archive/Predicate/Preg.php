@@ -24,9 +24,9 @@
  * @package    File_Archive
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
- * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
+ * @license    https://www.gnu.org/copyleft/lesser.html  LGPL
  * @version    CVS: $Id: Ereg.php 260736 2008-06-04 13:16:07Z cbrunet $
- * @link       http://pear.php.net/package/File_Archive
+ * @link       https://pear.php.net/package/File_Archive
  */
 
 require_once "File/Archive/Predicate.php";

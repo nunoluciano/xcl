@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on 2012/01/20 by nao-pon http://xoops.hypweb.net/
+ * Created on 2012/01/20 by nao-pon https://xoops.hypweb.net/
  */
 
 $_path = '';

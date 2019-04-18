@@ -22,9 +22,9 @@
  * @package    File_Archive
  * @author     Pablo Fischer <pablo@pablo.com.mx>
  * @copyright  1997-2005 The PHP Group
- * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
+ * @license    https://www.gnu.org/copyleft/lesser.html  LGPL
  * @version    CVS: $Id:
- * @link       http://pear.php.net/package/File_Archive
+ * @link       https://pear.php.net/package/File_Archive
  */
 
 require_once "File/Archive/Writer/Archive.php";
@@ -69,7 +69,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      * Returns the header of the current file.
      *
      * More Info:
-     *  http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/files/aixfiles/ar_IA64.htm
+     *  https://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/files/aixfiles/ar_IA64.htm
      *
      * @access  private
      * @param   string  $filename  Name of the current file

@@ -153,8 +153,8 @@ class Xupdate_ModulesIniDadaSet
         $json_url = XCube_Root::getSingleton()->mContext->mModuleConfig['stores_json_url'];
         $json_fname = 'stores_json.ini.php';
 
-        if ($json_url === 'http://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
-            $json_url = 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt';
+        if ($json_url === 'https://xoopscube.net/uploads/xupdatemaster/stores_json.txt') {
+            $json_url = 'https://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt';
         }
 
         $this->Func->_downloadFile('stores_master', $json_url, $json_fname, $downloadedFilePath, $this->cacheTTL);
