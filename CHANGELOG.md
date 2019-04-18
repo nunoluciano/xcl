@@ -9,7 +9,31 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- New branch for Module Pico
+- Module lecat (temporary, to be released with elPackage)
+- Module Pico
+- Module Xelfinder
+- login.php
+
+### Fixed
+
+- HTTPS everywhere : Chrome ! #82
+- Profile missing _MI_PROFILE_ADMENU_DATA_DOWNLOAD #67
+- Profile_Admin_DefinitionsListAction getBaseUrl #66
+- Module Uninstall Action $flag #65
+- Protector gtickets constructor #64
+- Meta Copyright 2019 #62
+- Legacy constructors #43
+- XCube constructors #42
+- XCube controller setupSession #41
+- Legacy_AdminControllerStrategy #38
+- Legacy_AbstractDebugger #37
+- Search Form Error #36
+- ProtectorFilterHandler deprecated constructor #35
+- ProtectorFilterAbstract deprecated constructor #34
+- Protector missing directory configs #33
+- smarty_compiler.class #32
+- ckeditor missing smarty function #31
+
 
 ## [unreleased] - 2019-04-12.
 
