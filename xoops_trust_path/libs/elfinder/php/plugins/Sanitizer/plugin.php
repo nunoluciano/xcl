@@ -27,7 +27,7 @@
  *            array(
  *                'driver' => 'LocalFileSystem',
  *                'path'   => '/path/to/files/',
- *                'URL'    => 'http://localhost/to/files/'
+ *                'URL'    => 'https://localhost/to/files/'
  *                'plugin' => array(
  *                    'Sanitizer' => array(
  *                        'enable' => true,

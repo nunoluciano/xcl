@@ -38,7 +38,7 @@
  * {mailto address="me@domain.com" cc="you@domain.com,they@domain.com"}
  * {mailto address="me@domain.com" extra='class="mailto"'}
  * </pre>
- * @link http://smarty.php.net/manual/en/language.function.mailto.php {mailto}
+ * @link https://smarty.php.net/manual/en/language.function.mailto.php {mailto}
  *          (Smarty online manual)
  * @version  1.2
  * @author   Monte Ohrt <monte at ohrt dot com>

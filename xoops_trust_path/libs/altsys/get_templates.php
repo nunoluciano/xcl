@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //                        get_templates.php  (altsys)                        //
 //                    - XOOPS templates admin module -                       //
-//                       GIJOE <http://www.peak.ne.jp/>                      //
+//                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
 error_reporting(0) ;

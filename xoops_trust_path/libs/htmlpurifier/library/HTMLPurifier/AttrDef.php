@@ -40,7 +40,7 @@ abstract class HTMLPurifier_AttrDef
      * Convenience method that parses a string as if it were CDATA.
      *
      * This method process a string in the manner specified at
-     * <http://www.w3.org/TR/html4/types.html#h-6.2> by removing
+     * <https://www.w3.org/TR/html4/types.html#h-6.2> by removing
      * leading and trailing whitespace, ignoring line feeds, and replacing
      * carriage returns and tabs with spaces.  While most useful for HTML
      * attributes specified as CDATA, it can also be applied to most CSS

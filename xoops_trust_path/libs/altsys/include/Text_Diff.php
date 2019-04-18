@@ -249,7 +249,7 @@ class Text_MappedDiff extends Text_Diff
 
 /**
  * Class used internally by Diff to actually compute the diffs.  This class
- * uses the xdiff PECL package (http://pecl.php.net/package/xdiff) to compute
+ * uses the xdiff PECL package (https://pecl.php.net/package/xdiff) to compute
  * the differences between the two input arrays.
  *
  * @author  Jon Parise <jon@horde.org>
@@ -305,10 +305,10 @@ class Text_Diff_Engine_xdiff
  *
  * The algorithm used here is mostly lifted from the perl module
  * Algorithm::Diff (version 1.06) by Ned Konz, which is available at:
- * http://www.perl.com/CPAN/authors/id/N/NE/NEDKONZ/Algorithm-Diff-1.06.zip
+ * https://www.perl.com/CPAN/authors/id/N/NE/NEDKONZ/Algorithm-Diff-1.06.zip
  *
  * More ideas are taken from:
- * http://www.ics.uci.edu/~eppstein/161/960229.html
+ * https://www.ics.uci.edu/~eppstein/161/960229.html
  *
  * Some ideas (and a bit of code) are taken from analyze.c, of GNU
  * diffutils-2.7, which can be found at:

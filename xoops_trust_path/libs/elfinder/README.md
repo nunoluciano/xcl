@@ -149,7 +149,7 @@ Check out the [wiki](https://github.com/studio-42/elFinder/wiki#howtos) for indi
 ### The procedure of language files created or modified?
 
 You can create or modify the language file to use translation tool. Please refer to the pull request the results to the respective branch.
- * [2.1 branch translation tool](http://studio-42.github.io/elFinder/tools/langman/#2.1)
+ * [2.1 branch translation tool](https://studio-42.github.io/elFinder/tools/langman/#2.1)
 
 
 3rd party connectors
@@ -185,13 +185,13 @@ Hint: [How to load CSS with RequireJS?](https://github.com/Studio-42/elFinder/wi
  * [Tiki Wiki](https://doc.tiki.org/elFinder)
  * [WordPress](https://wordpress.org/plugins/file-manager/)
  * [XOOPS](https://github.com/nao-pon/xelfinder)
- * [Yii](http://www.yiiframework.com/extension/elfinder/)
- * [Zenphoto](http://www.zenphoto.org/news/elfinder/)
+ * [Yii](https://www.yiiframework.com/extension/elfinder/)
+ * [Zenphoto](https://www.zenphoto.org/news/elfinder/)
 
 Support
 -------
 
- * [Homepage](http://elfinder.org)
+ * [Homepage](https://elfinder.org)
  * [Wiki](https://github.com/Studio-42/elFinder/wiki)
  * [Issues](https://github.com/Studio-42/elFinder/issues)
  * <dev@std42.ru>
@@ -204,7 +204,7 @@ Authors
  * Chief developer: Dmitry "dio" Levashov <dio@std42.ru>
  * Maintainer: Troex Nevelin <troex@fury.scancode.ru>
  * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb+elfinder@gmail.com>
- * Icons: PixelMixer, [Yusuke Kamiyamane](http://p.yusukekamiyamane.com), [Icons8](https://icons8.com)
+ * Icons: PixelMixer, [Yusuke Kamiyamane](https://p.yusukekamiyamane.com), [Icons8](https://icons8.com)
 
 We hope our tools will be helpful for you.
 

@@ -9,7 +9,7 @@
  *
  * @note Size is an interesting case because it doesn't map cleanly to CSS.
  *       Thanks to
- *       http://style.cleverchimp.com/font_size_intervals/altintervals.html
+ *       https://style.cleverchimp.com/font_size_intervals/altintervals.html
  *       for reasonable mappings.
  * @warning This doesn't work completely correctly; specifically, this
  *          TagTransform operates before well-formedness is enforced, so

@@ -127,11 +127,11 @@ class HTMLPurifier_AttrDef_CSS_FontFamily extends HTMLPurifier_AttrDef
             //    show up in non-Western pages and are supported by most
             //    major browsers, for example: "ＭＳ 明朝" is a
             //    legitimate font-name
-            //    <http://ja.wikipedia.org/wiki/MS_明朝>.  See
+            //    <https://ja.wikipedia.org/wiki/MS_明朝>.  See
             //    the CSS3 spec for more examples:
-            //    <http://www.w3.org/TR/2011/WD-css3-fonts-20110324/localizedfamilynames.png>
+            //    <https://www.w3.org/TR/2011/WD-css3-fonts-20110324/localizedfamilynames.png>
             //    You can see live samples of these on the Internet:
-            //    <http://www.google.co.jp/search?q=font-family+ＭＳ+明朝|ゴシック>
+            //    <https://www.google.co.jp/search?q=font-family+ＭＳ+明朝|ゴシック>
             //    However, most of these fonts have ASCII equivalents:
             //    for example, 'MS Mincho', and it's considered
             //    professional to use ASCII font names instead of

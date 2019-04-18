@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //                        put_tplsvarsinfo.php (altsys)                      //
 //                      - XOOPS templates admin module -                     //
-//                        GIJOE <http://www.peak.ne.jp/>                     //
+//                        GIJOE <https://www.peak.ne.jp/>                     //
 // ------------------------------------------------------------------------- //
 
 include_once dirname(__FILE__).'/include/gtickets.php' ;

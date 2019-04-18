@@ -36,7 +36,7 @@ class HTMLPurifier_HTMLModule_SafeObject extends HTMLPurifier_HTMLModule
                 'data' => 'URI#embedded',
                 'codebase' => new HTMLPurifier_AttrDef_Enum(
                     array(
-                        'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0'
+                        'https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0'
                     )
                 ),
             )

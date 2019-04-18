@@ -32,7 +32,7 @@
  *   //$image = imagecreatefrombmp(file_get_contents("test.bmp"));
  *   imagedestroy($image);
  *   //その他任意のストリームからの読み込みも可能
- *   $stream = fopen("http://127.0.0.1/test.bmp");
+ *   $stream = fopen("https://127.0.0.1/test.bmp");
  *   $image = GdBmp::loadFromStream($stream);
  *   //自動判定されるのでこれでもいい
  *   //$image = imagecreatefrombmp($stream);

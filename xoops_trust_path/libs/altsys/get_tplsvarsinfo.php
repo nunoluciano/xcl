@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //                        get_tplsvarsinfo.php  (altsys)                     //
 //                      - XOOPS templates admin module -                     //
-//                        GIJOE <http://www.peak.ne.jp/>                     //
+//                        GIJOE <https://www.peak.ne.jp/>                     //
 // ------------------------------------------------------------------------- //
 
 error_reporting(0) ;
@@ -77,9 +77,9 @@ function get_mxi_body($mxi_name, $file_entries)
 	<license-agreement><![CDATA[
 
 XoopsDWSnipettets is published under the CC-GNU LGPL
-http://creativecommons.org/licenses/LGPL/2.1/
+https://creativecommons.org/licenses/LGPL/2.1/
 
-(C) 2006 GIJOE http://www.peak.ne.jp/xoops/
+(C) 2006 GIJOE https://www.peak.ne.jp/xoops/
 
 	]]></license-agreement>
 	<description><![CDATA[
@@ -91,7 +91,7 @@ Usable template variables in '.$mxi_name.'
 
 Available template-variables.
 For more information:
-http://www.peak.ne.jp/xoops/
+https://www.peak.ne.jp/xoops/
 
 	]]></ui-access>
 	<files>

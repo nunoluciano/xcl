@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Validates a URI in CSS syntax, which uses url('http://example.com')
+ * Validates a URI in CSS syntax, which uses url('https://example.com')
  * @note While theoretically speaking a URI in a CSS document could
  *       be non-embedded, as of CSS2 there is no such usage so we're
  *       generalizing it. This may need to be changed in the future.
