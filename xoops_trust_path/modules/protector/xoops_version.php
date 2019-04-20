@@ -13,7 +13,7 @@ $modversion['description'] = constant($constpref.'_DESC');
 $modversion['version'] = file_get_contents(dirname(__FILE__).'/include/version.txt');
 $modversion['detailed_version'] = $modversion['version'].'.3';
 $modversion['credits'] = 'PEAK Corp.';
-$modversion['author'] = 'GIJ=CHECKMATE<br />PEAK Corp.(http://www.peak.ne.jp/)';
+$modversion['author'] = 'GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)';
 $modversion['help'] = '';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;

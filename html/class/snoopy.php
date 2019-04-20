@@ -24,7 +24,7 @@
  * monte@ohrt.com
  *
  * The latest version of Snoopy can be obtained from:
- * http://snoopy.sourceforge.net/
+ * https://snoopy.sourceforge.net/
  *************************************************/
 class snoopy
 {
@@ -622,9 +622,9 @@ class snoopy
         $match_root =
             $match_part["scheme"] . "://" . $match_part["host"];
 
-        $search = array("|^http://" . preg_quote($this->host) . "|i",
+        $search = array("|^https://" . preg_quote($this->host) . "|i",
             "|^(\/)|i",
-            "|^(?!http://)(?!mailto:)|i",
+            "|^(?!https://)(?!mailto:)|i",
             "|/\./|",
             "|/[^\/]+/\.\./|"
         );
@@ -803,7 +803,7 @@ class snoopy
 
         // gunzip
         if ($is_gzipped) {
-            // per http://www.php.net/manual/en/function.gzencode.php
+            // per https://www.php.net/manual/en/function.gzencode.php
             $results = substr($results, 10);
             $results = gzinflate($results);
         }

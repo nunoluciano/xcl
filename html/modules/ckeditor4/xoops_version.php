@@ -13,7 +13,7 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 $modversion['name'] = _MI_CKEDITOR4_LANG_CKEDITOR4;
 $modversion['version'] = 0.74;
 $modversion['description'] = _MI_CKEDITOR4_DESC_CKEDITOR4 . ' (CKEditor 4.11.2 Full version + Upload Image plugin)';
-$modversion['author'] = "nao-pon http://xoops.hypweb.net/";
+$modversion['author'] = "nao-pon https://xoops.hypweb.net/";
 $modversion['credits'] = "Naoki Sawada aka nao-pon";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";

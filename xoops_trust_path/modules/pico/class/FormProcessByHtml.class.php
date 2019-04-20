@@ -546,7 +546,7 @@ class FormProcessByHtml
 	}
 
 
-	// http://www.ilovejackdaniels.com/php/email-address-validation/
+	// https://www.ilovejackdaniels.com/php/email-address-validation/
 	function checkEmailAddress( $email )
 	{
 		// First, we check that there's one @ symbol, and that the lengths are right

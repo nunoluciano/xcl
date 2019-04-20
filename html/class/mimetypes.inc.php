@@ -7,10 +7,10 @@
 * Common types have been provided, but feel free to add your own one if you need it.
 * <br /><br />
 * See the enclosed file LICENSE for licensing information.
-* If you did not receive this file, get it at http://www.fsf.org/copyleft/gpl.html
+* If you did not receive this file, get it at https://www.fsf.org/copyleft/gpl.html
 *
-* @copyright    The Xoops project http://www.xoops.org/
-* @license      http://www.fsf.org/copyleft/gpl.html GNU public license
+* @copyright    The Xoops project https://www.xoops.org/
+* @license      https://www.fsf.org/copyleft/gpl.html GNU public license
 * @author       Skalpa Keo <skalpa@xoops.org>
 * @since        2.0.9.3
 */

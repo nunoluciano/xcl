@@ -2,13 +2,13 @@
 /*=====================================================================
     (C)2008 BeaBo by Hiroki Seike 
  ======================================================================
-    URL       : http://beabo.net/
+    URL       : https://beabo.net/
     Email     : info@beabo.net
     File      : JW FLV Media Player PHP Class Library
     Version   : 0.5
     Date      : 2007-04-17
     Memo      : JW FLV Media Player Ver 3.15
-              : http://www.jeroenwijering.com/?item=JW_FLV_Media_Player
+              : https://www.jeroenwijering.com/?item=JW_FLV_Media_Player
 =====================================================================*/
 
 class JWFLVmediaplayer
@@ -409,12 +409,12 @@ class JWFLVmediaplayer
     {
         $_output = '<!-- '. "\n";
         $_output.= 'JW FLVmediaplayer v3.15'. "\n";
-        $_output.= 'http://www.jeroenwijering.com/?item=JW_FLV_Media_Player'. "\n";
+        $_output.= 'https://www.jeroenwijering.com/?item=JW_FLV_Media_Player'. "\n";
         $_output.= 'JW FLVmediaplayer.class.php v0.1'. "\n";
-        $_output.= 'http://beabo.net/'. "\n";
+        $_output.= 'https://beabo.net/'. "\n";
         $_output.= '-->'. "\n";
 
-        $_output.= '<div id="'.$this -> divName.'"><a href="http://www.macromedia.com/go/getflashplayer">Get the Flash Player</a> to see this player.</div>'. "\n";
+        $_output.= '<div id="'.$this -> divName.'"><a href="https://www.macromedia.com/go/getflashplayer">Get the Flash Player</a> to see this player.</div>'. "\n";
         $_output.= '<script type="text/javascript" src="swfobject.js"></script>'. "\n";
         $_output.= '<script type="text/javascript">'. "\n";
         $_output.= '  var s1 = new SWFObject("mediaplayer.swf","mediaplayer","'.$this -> width.'","'.$this -> height.'","7");'. "\n";

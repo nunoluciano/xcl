@@ -10,7 +10,7 @@ DEFAULT: false
 </p>
 <p>
   This directive enables YouTube video embedding in HTML Purifier. Check
-  <a href="http://htmlpurifier.org/docs/enduser-youtube.html">this document
+  <a href="https://htmlpurifier.org/docs/enduser-youtube.html">this document
   on embedding videos</a> for more information on what this filter does.
 </p>
 --# vim: et sw=4 sts=4

@@ -6,7 +6,7 @@
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
-	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	// https://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// Define changes to default configuration here. For example:
 	// config.language = 'en';

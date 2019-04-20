@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -37,7 +37,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  * @package		kernel
  *
  * @author		Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 The XOOPS Project (http://www.xoops.org)
+ * @copyright	copyright (c) 2000-2003 The XOOPS Project (https://www.xoops.org)
  *
  * @version		$Revision: 1.1 $ - $Date: 2007/05/15 02:34:38 $
  */
@@ -86,7 +86,7 @@ class XoopsPrivmessage extends XoopsObject
  * @package		kernel
  *
  * @author		Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 The XOOPS Project (http://www.xoops.org)
+ * @copyright	copyright (c) 2000-2003 The XOOPS Project (https://www.xoops.org)
  *
  * @version		$Revision: 1.1 $ - $Date: 2007/05/15 02:34:38 $
  */

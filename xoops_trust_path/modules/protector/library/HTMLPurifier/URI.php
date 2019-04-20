@@ -151,7 +151,7 @@ class HTMLPurifier_URI
         $segments_encoder = new HTMLPurifier_PercentEncoder($chars_pchar . '/');
         if (!is_null($this->host)) { // this catches $this->host === ''
             // path-abempty (hier and relative)
-            // http://www.example.com/my/path
+            // https://www.example.com/my/path
             // //www.example.com/my/path (looks odd, but works, and
             //                            recognized by most browsers)
             // (this set is valid or invalid on a scheme by scheme
@@ -167,7 +167,7 @@ class HTMLPurifier_URI
                 if (strlen($this->path) >= 2 && $this->path[1] === '/') {
                     // This could happen if both the host gets stripped
                     // out
-                    // http://my/path
+                    // https://my/path
                     // //my/path
                     $this->path = '';
                 } else {
@@ -220,7 +220,7 @@ class HTMLPurifier_URI
         $authority = null;
         // there is a rendering difference between a null authority
         // (http:foo-bar) and an empty string authority
-        // (http:///foo-bar).
+        // (https:///foo-bar).
         if (!is_null($this->host)) {
             $authority = '';
             if (!is_null($this->userinfo)) {
@@ -236,7 +236,7 @@ class HTMLPurifier_URI
         // One might wonder about parsing quirks from browsers after
         // this reconstruction.  Unfortunately, parsing behavior depends
         // on what *scheme* was employed (file:///foo is handled *very*
-        // differently than http:///foo), so unfortunately we have to
+        // differently than https:///foo), so unfortunately we have to
         // defer to the schemes to do the right thing.
         $result = '';
         if (!is_null($this->scheme)) {

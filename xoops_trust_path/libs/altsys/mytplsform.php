@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //                          mytplsform.php (altsys)                          //
 //               - XOOPS templates admin for each modules -                  //
-//                       GIJOE <http://www.peak.ne.jp/>                      //
+//                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
 require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;

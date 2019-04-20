@@ -9,7 +9,7 @@ DEFAULT: NULL
     absolute URIs into another URI, usually a URI redirection service.
     This directive accepts a URI, formatted with a <code>%s</code> where
     the url-encoded original URI should be inserted (sample:
-    <code>http://www.google.com/url?q=%s</code>).
+    <code>https://www.google.com/url?q=%s</code>).
 </p>
 <p>
     Uses for this directive:

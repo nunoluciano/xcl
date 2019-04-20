@@ -597,7 +597,7 @@ class HTMLPurifier_Config
                             'modify your code to use maybeGetRawDefinition, and test if the returned ' .
                             'value is null before making any edits (if it is null, that means that a ' .
                             'cached version is available, and no raw operations are necessary).  See ' .
-                            '<a href="http://htmlpurifier.org/docs/enduser-customize.html#optimized">' .
+                            '<a href="https://htmlpurifier.org/docs/enduser-customize.html#optimized">' .
                             'Customize</a> for more details',
                             E_USER_WARNING
                         );

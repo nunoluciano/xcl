@@ -7,7 +7,7 @@
  *
  * @author ?
  * @copyright   copyright (c) 2000-2003 XOOPS.org
- * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+ * @license		https://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
  */
 
 /**
@@ -20,7 +20,7 @@
  *
  * @author ?
  * @copyright   copyright (c) 2000-2003 XOOPS.org
- * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+ * @license		https://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
  */
 class XoopsDatabaseFactory
 {

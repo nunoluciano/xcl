@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -242,7 +242,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_USER_CONF_BAD_UNAMES_DESC",
         "formtype"=>"textarea",
         "valuetype"=>"array",
-        "default"=>array('webmaster', '^xoops', '^admin')
+        "default"=>array('^admin', 'webmaster', '^xoops', '^cube', '^legacy', '^xcl', '^developer', '^design', '^support', '^info', '^client', '^customer')
     );
 
 $modversion['config'][]=array(
@@ -278,7 +278,7 @@ $modversion['config'][]=array(
         "description"=>"_MI_USER_CONF_USERCOOKIE_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"string",
-        "default"=>"xoops_user"
+        "default"=>"xcl_user"
     );
 
 $modversion['config'][]=array(
@@ -286,7 +286,7 @@ $modversion['config'][]=array(
         "title"=>"_MI_USER_CONF_USE_SSL",
         "formtype"=>"yesno",
         "valuetype"=>"int",
-        "default"=>0
+        "default"=>1
     );
     
 $modversion['config'][]=array(
@@ -294,7 +294,7 @@ $modversion['config'][]=array(
         "title"=>"_MI_USER_CONF_SSLPOST_NAME",
         "formtype"=>"textbox",
         "valuetype"=>"string",
-        "default"=>"xoops_ssl"
+        "default"=>"xcl_ssl"
     );
 
 $modversion['config'][]=array(
@@ -302,7 +302,7 @@ $modversion['config'][]=array(
         "title"=>"_MI_USER_CONF_SSLLOGINLINK",
         "formtype"=>"textbox",
         "valuetype"=>"string",
-        "default"=>"https://"
+        "default"=> XOOPS_URL."/login.php"
     );
 
 // Menu

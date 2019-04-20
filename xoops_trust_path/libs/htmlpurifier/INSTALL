@@ -58,7 +58,7 @@ codebase.  If you don't know what doctype you are using, you can determine
 the doctype from this identifier at the top of your source code:
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 ...and the character encoding from this code:
 
@@ -66,7 +66,7 @@ the doctype from this identifier at the top of your source code:
 
 If the character encoding declaration is missing, STOP NOW, and
 read 'docs/enduser-utf8.html' (web accessible at
-http://htmlpurifier.org/docs/enduser-utf8.html).  In fact, even if it is
+https://htmlpurifier.org/docs/enduser-utf8.html).  In fact, even if it is
 present, read this document anyway, as many websites specify their
 document's character encoding incorrectly.
 
@@ -233,7 +233,7 @@ However, switching to UTF-8 is not always immediately feasible, so we can
 adapt.
 
 HTML Purifier uses iconv to support other character encodings, as such,
-any encoding that iconv supports <http://www.gnu.org/software/libiconv/>
+any encoding that iconv supports <https://www.gnu.org/software/libiconv/>
 HTML Purifier supports with this code:
 
     $config->set('Core.Encoding', /* put your encoding here */);
@@ -270,10 +270,10 @@ Other supported doctypes include:
 4.3. Other settings
 
 There are more configuration directives which can be read about
-here: <http://htmlpurifier.org/live/configdoc/plain.html>  They're a bit boring,
+here: <https://htmlpurifier.org/live/configdoc/plain.html>  They're a bit boring,
 but they can help out for those of you who like to exert maximum control over
 your code.  Some of the more interesting ones are configurable at the
-demo <http://htmlpurifier.org/demo.php> and are well worth looking into
+demo <https://htmlpurifier.org/demo.php> and are well worth looking into
 for your own system.
 
 For example, you can fine tune allowed elements and attributes, convert
@@ -287,7 +287,7 @@ translates to:
 E.g.
 
     $config->set('HTML.Allowed', 'p,b,a[href],i');
-    $config->set('URI.Base', 'http://www.example.com');
+    $config->set('URI.Base', 'https://www.example.com');
     $config->set('URI.MakeAbsolute', true);
     $config->set('AutoFormat.AutoParagraph', true);
 

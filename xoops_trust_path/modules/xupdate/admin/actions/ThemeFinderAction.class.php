@@ -29,7 +29,7 @@ class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction
 {
     const THEME_FINDER_API_VERSION = '1';
 
-    protected $themeFinderUrl = "http://cmsthemefinder.com/store/enter_store.php";
+    protected $themeFinderUrl = "https://cmsthemefinder.com/store/enter_store.php";
 
     public function __construct()
     {

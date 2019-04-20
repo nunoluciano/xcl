@@ -8,8 +8,8 @@
  * @category File
  * @package  MIME_Type
  * @author   Ian Eure <ieure@php.net>
- * @license  http://www.gnu.org/copyleft/lesser.html LGPL
- * @link     http://pear.php.net/package/MIME_Type
+ * @license  https://www.gnu.org/copyleft/lesser.html LGPL
+ * @link     https://pear.php.net/package/MIME_Type
  */
 
 /**
@@ -18,9 +18,9 @@
  * @category File
  * @package  MIME_Type
  * @author   Ian Eure <ieure@php.net>
- * @license  http://www.gnu.org/copyleft/lesser.html LGPL
+ * @license  https://www.gnu.org/copyleft/lesser.html LGPL
  * @version  Release: @version@
- * @link     http://pear.php.net/package/MIME_Type
+ * @link     https://pear.php.net/package/MIME_Type
  */
 class MIME_Type_Parameter
 {

@@ -6,7 +6,7 @@
  */
 
 define('_MI_CKEDITOR4_LANG_CKEDITOR4', "CKEditor 4");
-define('_MI_CKEDITOR4_DESC_CKEDITOR4', "http://ckeditor.com/");
+define('_MI_CKEDITOR4_DESC_CKEDITOR4', "https://ckeditor.com/");
 
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN', '管理者用ツールバー');
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN_DESC', '管理者向け、CKEditor の config.toolbar の設定');

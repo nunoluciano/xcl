@@ -14,7 +14,7 @@ DEFAULT: NULL
     If you attempt to allow an element that HTML Purifier does not know
     about, HTML Purifier will raise an error.  You will need to manually
     tell HTML Purifier about this element by using the
-    <a href="http://htmlpurifier.org/docs/enduser-customize.html">advanced customization features.</a>
+    <a href="https://htmlpurifier.org/docs/enduser-customize.html">advanced customization features.</a>
 </p>
 <p>
     <strong>Warning:</strong> If another directive conflicts with the

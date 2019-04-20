@@ -1,6 +1,6 @@
 <?php
 /**
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 3
+ * @license https://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 3
  * @author Marijuana
  */
 
