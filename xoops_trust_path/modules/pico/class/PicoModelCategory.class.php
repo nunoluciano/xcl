@@ -8,7 +8,9 @@ class PicoCategoryHandler {
 var $mydirname ;
 var $permissions ;
 
-function PicoCategoryHandler( $mydirname , $permissions = null )
+// !Fix deprecated constructor
+function __construct( $mydirname , $permissions = null )
+//function PicoCategoryHandler( $mydirname , $permissions = null )
 {
 	$this->mydirname = $mydirname ;
 	if( $permissions ) {
@@ -92,7 +94,9 @@ var $errorno = 0 ;
 var $isadmin = false ;
 var $child_ids = null ;
 
-function PicoCategory( $mydirname , $cat_id , $permissions , $allow_makenew = false , $parentObj = null )
+// !Fix deprecated constructor
+function __construct( $mydirname , $cat_id , $permissions , $allow_makenew = false , $parentObj = null )
+//function PicoCategory( $mydirname , $cat_id , $permissions , $allow_makenew = false , $parentObj = null )
 {
 	$this->mydirname = $mydirname ;
 
@@ -172,7 +176,9 @@ function getData4edit()
 		'vpath' => htmlspecialchars( $this->data['cat_vpath'] , ENT_QUOTES ) ,
 		'desc' => htmlspecialchars( $this->data['cat_desc'] , ENT_QUOTES ) ,
 		'options' => $options4edit ,
-		'children_count' => count( @$this->data['redundants']['subcattree_raw'] ) ,
+		// !Fix WARNING: count(): Parameter must be an array or an object that implements Countable
+		'children_count' => count( @$this->data['redundants'] ) ,
+		//'children_count' => count( @$this->data['redundants']['subcattree_raw'] ) ,
 	) + $this->getData4html() ;
 
 	return $ret4edit ;

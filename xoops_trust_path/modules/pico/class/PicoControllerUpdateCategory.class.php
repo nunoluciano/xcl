@@ -56,7 +56,8 @@ function execute( $request )
 	$this->is_need_header_footer = false ;
 }
 
-function render()
+// !Fix compatible with PicoControllerAbstract
+function render($target = NULL)
 {
 	redirect_header( XOOPS_URL."/modules/$this->mydirname/".pico_common_make_category_link4html( $this->mod_config , $this->cat_id , $this->mydirname ) , 2 , _MD_PICO_MSG_CATEGORYUPDATED ) ;
 	exit ;
