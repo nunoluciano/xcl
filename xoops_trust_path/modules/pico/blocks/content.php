@@ -67,8 +67,6 @@ function b_pico_content_show( $options )
 	}
 }
 
-
-
 function b_pico_content_edit( $options )
 {
 	// options
@@ -101,7 +99,3 @@ function b_pico_content_edit( $options )
 	) ) ;
 	return $tpl->fetch( 'db:'.$mydirname.'_blockedit_content.html' ) ;
 }
-
-
-
-?>

@@ -22,5 +22,3 @@ $pico_configs_can_be_override = array(
 	'comment_dirname' => 'text' ,
 	'comment_forum_id' => 'int' ,
 ) ;
-
-?>

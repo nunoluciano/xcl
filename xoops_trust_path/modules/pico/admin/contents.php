@@ -48,7 +48,6 @@ if( $cat_id == SPECIAL_CAT_ID_ALL ) {
 	}
 }
 
-
 //
 // transaction stage
 //
@@ -112,8 +111,6 @@ if( ! empty( $_POST['contents_delete'] ) && ! empty( $_POST['action_selects'] ) 
 		if( empty( $value ) ) continue ;
 		$content_id = intval( $content_id ) ;
 		pico_delete_content( $mydirname , $content_id , true ) ;
-		/* $db->query( "DELETE FROM ".$db->prefix($mydirname."_contents")." WHERE content_id=$content_id" ) ;
-		$db->query( "DELETE FROM ".$db->prefix($mydirname."_content_votes")." WHERE content_id=$content_id" ) ; */
 	}
 	pico_sync_all( $mydirname ) ;
 
@@ -139,7 +136,6 @@ if( ! empty( $_POST['contents_export'] ) && ! empty( $_POST['action_selects'] ) 
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id" , 3 , _MD_A_PICO_MSG_CONTENTSEXPORTED ) ;
 	exit ;
 }
-
 
 //
 // form stage
@@ -177,7 +173,6 @@ while( $content_row = $db->fetchArray( $ors ) ) {
 	$contents4assign[] = $content4assign + $content_row ;
 }
 
-
 //
 // display stage
 //
@@ -202,5 +197,3 @@ $tpl->assign( array(
 ) ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_contents.html' ) ;
 xoops_cp_footer();
-
-?>

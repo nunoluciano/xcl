@@ -20,7 +20,6 @@ function pico_common_get_cat_id_from_content_id( $mydirname , $content_id )
 	return intval( $cat_id ) ;
 }
 
-
 // get both $categoryObj and $contentObj from specified content_id
 function pico_common_get_objects_from_content_id( $mydirname , $content_id )
 {
@@ -32,8 +31,6 @@ function pico_common_get_objects_from_content_id( $mydirname , $content_id )
 
 	return array( $categoryObj , $contentObj ) ;
 }
-
-
 
 // deprecated
 function pico_get_categories_can_read( $mydirname ) { return pico_common_get_categories_can_read( $mydirname ) ; }
@@ -74,7 +71,6 @@ function pico_common_get_categories_can_read( $mydirname , $uid = null )
 	else return $cat_ids ;
 }
 
-
 // deprecated
 function pico_make_content_link4html( $mod_config , $content_row , $mydirname = null ) { return pico_common_make_content_link4html( $mod_config , $content_row , $mydirname ) ; }
 
@@ -102,7 +98,6 @@ function pico_common_make_content_link4html( $mod_config , $content_row , $mydir
 	}
 }
 
-
 function pico_common_make_category_link4html( $mod_config , $cat_row , $mydirname = null )
 {
 	if( ! empty( $mod_config['use_wraps_mode'] ) ) {
@@ -126,7 +121,6 @@ function pico_common_make_category_link4html( $mod_config , $cat_row , $mydirnam
 		else return '' ;
 	}
 }
-
 
 function pico_common_get_submenu( $mydirname , $caller = 'xoops_version' )
 {
@@ -178,7 +172,6 @@ function pico_common_get_submenu( $mydirname , $caller = 'xoops_version' )
 	return $submenus_cache[$caller][$mydirname] ;
 }
 
-
 function pico_common_restruct_categories( $categories , $parent )
 {
 	$ret = array() ;
@@ -197,7 +190,6 @@ function pico_common_restruct_categories( $categories , $parent )
 	return $ret ;
 }
 
-
 function pico_common_utf8_encode_recursive( &$data )
 {
 	if( is_array( $data ) ) {
@@ -215,7 +207,6 @@ function pico_common_utf8_encode_recursive( &$data )
 	}
 }
 
-
 // create category options as array
 function pico_common_get_cat_options( $mydirname )
 {
@@ -230,7 +221,6 @@ function pico_common_get_cat_options( $mydirname )
 	return $cat_options ;
 }
 
-
 // convert timezone user -> server
 function pico_common_get_server_timestamp( $time )
 {
@@ -240,7 +230,6 @@ function pico_common_get_server_timestamp( $time )
 
 	return $time - ( $offset - $xoopsConfig['server_TZ'] ) * 3600 ;
 }
-
 
 // reverse filter function of htmlspecialchars( , ENT_QUOTES ) ;
 function pico_common_unhtmlspecialchars( $data )
@@ -255,12 +244,10 @@ function pico_common_unhtmlspecialchars( $data )
 	}
 }
 
-
 function pico_common_serialize( $data )
 {
 	return var_export( $data , true ) ;
 }
-
 
 function pico_common_unserialize( $serialized_data )
 {
@@ -280,12 +267,9 @@ function pico_common_unserialize( $serialized_data )
 	return $ret ;
 }
 
-
 if( ! function_exists( 'htmlspecialchars_ent' ) ) {
-function htmlspecialchars_ent( $string )
-{
-	return htmlspecialchars( $string , ENT_QUOTES ) ;
+	function htmlspecialchars_ent( $string )
+	{
+		return htmlspecialchars( $string , ENT_QUOTES ) ;
+	}
 }
-}
-
-?>

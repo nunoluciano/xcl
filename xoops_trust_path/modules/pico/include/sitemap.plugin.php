@@ -37,5 +37,3 @@ function b_sitemap_pico_crawl_submenu( $submenus , $depth = 2 )
 	}
 	return $ret ;
 }
-
-?>

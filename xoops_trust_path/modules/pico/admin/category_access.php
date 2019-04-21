@@ -108,8 +108,6 @@ if( ! empty( $_POST['user_update'] ) ) {
 	exit ;
 }
 
-
-
 //
 // form stage
 //
@@ -199,5 +197,3 @@ $tpl->assign( array(
 ) ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_category_access.html' ) ;
 xoops_cp_footer();
-
-?>

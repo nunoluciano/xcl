@@ -85,12 +85,9 @@ if( ! empty( $_POST['do_import'] ) && ! empty( $_POST['import_mid'] ) ) {
 	exit ;
 }
 
-
-
 //
 // form stage
 //
-
 
 //
 // display stage
@@ -110,5 +107,3 @@ $tpl->assign( array(
 ) ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_import.html' ) ;
 xoops_cp_footer();
-
-?>

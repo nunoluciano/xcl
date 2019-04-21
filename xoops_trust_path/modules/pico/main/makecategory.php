@@ -56,5 +56,3 @@ if( $controller->isNeedHeaderFooter() ) {
 	$controller->render() ;
 }
 exit ;
-
-?>

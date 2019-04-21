@@ -13,11 +13,9 @@ function pico_xpwiki( $mydirname , $text , $content4assign )
 
 	if( ! class_exists( 'XpWiki' ) ) die( 'xpWiki is not installed correctly' ) ;
 
-	// °ú¿ô¤Ï¡¢xpWiki¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤¿¥Ç¥£¥ì¥¯¥È¥êÌ¾¤Ç¤¹¡£
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½xpWikiï¿½ò¥¤¥ó¥¹¥È¡ï¿½ï¿½ë¤·ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½Ì¾ï¿½Ç¤ï¿½ï¿½ï¿½
 	$wiki = new XpWiki('xpwiki'); // create instance. option is xpWiki module's directory name.
 
-	// ÂèÆó°ú¿ô¤Ï¡¢xpWiki¤ÎCSS¤òÅ¬ÍÑ¤¹¤ë¤¿¤á¤ÎDIV¥¯¥é¥¹Ì¾¤Ç¤¹¡£
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½xpWikiï¿½ï¿½CSSï¿½ï¿½Å¬ï¿½Ñ¤ï¿½ï¿½ë¤¿ï¿½ï¿½ï¿½DIVï¿½ï¿½ï¿½é¥¹Ì¾ï¿½Ç¤ï¿½ï¿½ï¿½
 	return $wiki->transform($text, 'pico_body');
 }
-
-?>

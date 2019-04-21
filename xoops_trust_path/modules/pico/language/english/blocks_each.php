@@ -12,5 +12,3 @@ define($constpref."_CATEGORY","Category");
 define($constpref."_TOPCATEGORY","Top category");
 
 }
-
-?>

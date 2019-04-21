@@ -35,5 +35,3 @@ function smarty_function_pico_list( $params , &$smarty )
 		echo @$block['content'] ;
 	}
 }
-
-?>

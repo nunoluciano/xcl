@@ -9,5 +9,3 @@ define('_MD_PICO_WRAPS_DISALLOWEDCHARS4PREGEX','?[^a-zA-Z0-9_./+-]?');
 define('_MD_PICO_ALLOWEDEXTSINVPATH','htm|html|php');
 define('_MD_PICO_EXTS4HTMLWRAPPING','htm|html|php');
 define('_MD_PICO_AUTOREGIST4PREGEX','?^[a-zA-Z0-9_./+-]+\.(html|htm)$?');
-
-?>

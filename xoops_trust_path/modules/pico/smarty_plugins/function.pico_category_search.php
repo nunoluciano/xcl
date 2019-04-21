@@ -59,5 +59,3 @@ function smarty_function_pico_category_search( $params , &$smarty )
 
 	$smarty->assign( $var_name , $categories4assign ) ;
 }
-
-?>

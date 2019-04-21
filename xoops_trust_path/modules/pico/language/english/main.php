@@ -194,5 +194,3 @@ if( ! defined( 'FOR_XOOPS_LANG_CHECKER' ) && ! function_exists( 'pico_convert_en
 		return $str ;
 	}
 }
-
-?>

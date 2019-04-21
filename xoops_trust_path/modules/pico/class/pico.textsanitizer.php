@@ -6,9 +6,12 @@ class PicoTextSanitizer extends MyTextSanitizer
 {
 	var $nbsp = 0 ;
 
-	function PicoTextSanitizer()
+	// !Fix deprecated constructor
+	function __construct()
+	//function PicoTextSanitizer()
 	{
-		parent::MyTextSanitizer() ;
+		parent::__construct();
+		//parent::MyTextSanitizer() ;
 	}
 
 	public static function &sGetInstance()
@@ -120,10 +123,6 @@ class PicoTextSanitizer extends MyTextSanitizer
 		$replacements[] = '<img src="'.XOOPS_URL.'/\\3" align="\\2" alt="" />';
 		$replacements[] = '<img src="'.XOOPS_URL.'/\\1" alt="" />';
 
-/*		// [1.1.3.1] etc.
-		$patterns[] = '/\[(1(\.\d)*)]/' ;
-		$replacements[] = '<a href="#post_path\\1">\\0</a>' ;*/
-
 		// [quote sitecite=]
 		$patterns[] = "/\[quote sitecite=([^\"'<>]*)\]/sU";
 		$replacements[] = _QUOTEC.'<div class="xoopsQuote"><blockquote cite="'.XOOPS_URL.'/\\1">';
@@ -178,10 +177,6 @@ class PicoTextSanitizer extends MyTextSanitizer
 
 		$patterns[] = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
 		$replacements[] = '<span style="color: #\\2;">\\3</span>';
-//		$patterns[] = "/\[size=(['\"]?)([a-z0-9-]*)\\1](.*)\[\/size\]/sU";
-//		$replacements[] = '<span style="font-size: \\2;">\\3</span>';
-//		$patterns[] = "/\[font=(['\"]?)([^;<>\*\(\)\"']*)\\1](.*)\[\/font\]/sU";
-//		$replacements[] = '<span style="font-family: \\2;">\\3</span>';
 		$patterns[] = "/\[b](.*)\[\/b\]/sU";
 		$replacements[] = '<strong>\\1</strong>';
 		$patterns[] = "/\[i](.*)\[\/i\]/sU";
@@ -231,8 +226,4 @@ class PicoTextSanitizer extends MyTextSanitizer
 
 		return $html . '<div class="pico_pagebreak">' . $navi . '</div>' . $js ;
 	}
-
-
 }
-
-?>
