@@ -4,7 +4,6 @@
  * Smarty plugin
  */
 
-
 /**
  * Smarty pico_extra_fields modifier plugin
  *
@@ -24,5 +23,3 @@ function smarty_modifier_pico_extra_fields( $key = '' , $content_row )
 	$extra_fields = pico_common_unserialize( @$content_row['extra_fields'] ) ;
 	return empty( $key ) ? $extra_fields : @$extra_fields[ $key ] ;
 }
-
-?>

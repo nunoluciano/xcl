@@ -10,7 +10,9 @@ class XoopsGTicket {
 	var $_latest_token = '' ;
 	var $messages = array() ;
 
-	function XoopsGTicket()
+	// !Fix deprecated constructor
+	function __construct()
+	//function XoopsGTicket()
 	{
 		global $xoopsConfig ;
 
@@ -242,13 +244,11 @@ class XoopsGTicket {
 		return array( $table , $form ) ;
 	}
 
-
 	// clear all stubs
 	function clear()
 	{
 		$_SESSION['XOOPS_G_STUBS'] = array() ;
 	}
-
 
 	// Ticket Using
 	function using()
@@ -259,7 +259,6 @@ class XoopsGTicket {
 			return false;
 		}
 	}
-
 
 	// return errors
 	function getErrors( $ashtml = true )
@@ -294,20 +293,17 @@ $GLOBALS['xoopsGTicket'] = new XoopsGTicket() ;
 
 if( ! function_exists( 'admin_refcheck' ) ) {
 
-//Admin Referer Check By Marijuana(Rev.011)
-function admin_refcheck($chkref = "") {
-	if( empty( $_SERVER['HTTP_REFERER'] ) ) {
-		return true ;
-	} else {
-		$ref = $_SERVER['HTTP_REFERER'];
+	//Admin Referer Check By Marijuana(Rev.011)
+	function admin_refcheck($chkref = "") {
+		if( empty( $_SERVER['HTTP_REFERER'] ) ) {
+			return true ;
+		} else {
+			$ref = $_SERVER['HTTP_REFERER'];
+		}
+		$cr = XOOPS_URL;
+		if ( $chkref != "" ) { $cr .= $chkref; }
+		if ( strpos($ref, $cr) !== 0 ) { return false; }
+		return true;
 	}
-	$cr = XOOPS_URL;
-	if ( $chkref != "" ) { $cr .= $chkref; }
-	if ( strpos($ref, $cr) !== 0 ) { return false; }
-	return true;
-}
 
 }
-
-
-?>

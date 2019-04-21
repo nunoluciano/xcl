@@ -20,7 +20,6 @@ function smarty_function_formmail( $params , &$smarty )
 	$controller->execute( $params , $smarty ) ;
 }
 
-
 class PicoFormProcessBySmartyFormmail extends PicoFormProcessBySmartyBase
 {
 	function __construct()
@@ -35,6 +34,3 @@ class PicoFormProcessBySmartyFormmail extends PicoFormProcessBySmartyBase
 	}
 
 }
-
-
-?>

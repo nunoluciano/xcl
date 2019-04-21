@@ -19,39 +19,36 @@ class PicoControllerInsertCategory extends PicoControllerAbstract {
 //var $html_header = '' ;
 //var $contentObjs = array() ;
 
-var $new_cat_id = -1 ;
+	var $new_cat_id = -1 ;
 
-function execute( $request )
-{
-	// Ticket Check
-	if ( ! $GLOBALS['xoopsGTicket']->check( true , 'pico' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$GLOBALS['xoopsGTicket']->getErrors());
+	function execute( $request )
+	{
+		// Ticket Check
+		if ( ! $GLOBALS['xoopsGTicket']->check( true , 'pico' ) ) {
+			redirect_header(XOOPS_URL.'/',3,$GLOBALS['xoopsGTicket']->getErrors());
+		}
+
+		parent::execute( $request ) ;
+
+		// initialize
+		$pcat_data = $this->currentCategoryObj->getData() ;
+
+		// permission check
+		if( empty( $pcat_data['can_makesubcategory'] ) ) {
+			redirect_header( XOOPS_URL.'/' , 2 , _MD_PICO_ERR_MAKECATEGORY ) ;
+		}
+
+		// insert a category
+		$this->new_cat_id = pico_makecategory( $this->mydirname ) ;
+
+		// view
+		$this->is_need_header_footer = false ;
 	}
 
-	parent::execute( $request ) ;
-
-	// initialize
-	$pcat_data = $this->currentCategoryObj->getData() ;
-
-	// permission check
-	if( empty( $pcat_data['can_makesubcategory'] ) ) {
-		redirect_header( XOOPS_URL.'/' , 2 , _MD_PICO_ERR_MAKECATEGORY ) ;
+	function render()
+	{
+		redirect_header( XOOPS_URL."/modules/$this->mydirname/".pico_common_make_category_link4html( $this->mod_config , $this->new_cat_id , $this->mydirname ) , 2 , _MD_PICO_MSG_CATEGORYMADE ) ;
+		exit ;
 	}
 
-	// insert a category
-	$this->new_cat_id = pico_makecategory( $this->mydirname ) ;
-
-	// view
-	$this->is_need_header_footer = false ;
 }
-
-function render()
-{
-	redirect_header( XOOPS_URL."/modules/$this->mydirname/".pico_common_make_category_link4html( $this->mod_config , $this->new_cat_id , $this->mydirname ) , 2 , _MD_PICO_MSG_CATEGORYMADE ) ;
-	exit ;
-}
-
-
-}
-
-?>

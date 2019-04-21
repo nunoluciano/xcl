@@ -19,51 +19,48 @@ class PicoControllerUpdateCategory extends PicoControllerAbstract {
 //var $html_header = '' ;
 //var $contentObjs = array() ;
 
-var $cat_id = 0 ;
+	var $cat_id = 0 ;
 
-function execute( $request )
-{
-	// Ticket Check
-	if ( ! $GLOBALS['xoopsGTicket']->check( true , 'pico' ) ) {
-		redirect_header(XOOPS_URL.'/',3,$GLOBALS['xoopsGTicket']->getErrors());
+	function execute( $request )
+	{
+		// Ticket Check
+		if ( ! $GLOBALS['xoopsGTicket']->check( true , 'pico' ) ) {
+			redirect_header(XOOPS_URL.'/',3,$GLOBALS['xoopsGTicket']->getErrors());
+		}
+
+		parent::execute( $request ) ;
+
+		// initialize
+		$this->cat_id = $request['cat_id'] ;
+
+		// $categoryObj (not parent)
+		$picoPermission =& PicoPermission::getInstance() ;
+		$categoryObj = new PicoCategory( $this->mydirname , $request['cat_id'] , $picoPermission->getPermissions( $this->mydirname ) ) ;
+
+		// check existence
+		if( $categoryObj->isError() ) {
+			redirect_header( XOOPS_URL."/modules/$this->mydirname/index.php" , 2 , _MD_PICO_ERR_READCONTENT ) ;
+			exit ;
+		}
+		$cat_data = $categoryObj->getData() ;
+
+		// permission check
+		if( empty( $cat_data['isadminormod'] ) ) {
+			redirect_header( XOOPS_URL.'/' , 2 , _MD_PICO_ERR_CATEGORYMANAGER ) ;
+		}
+
+		// insert a category
+		pico_updatecategory( $this->mydirname , $this->cat_id ) ;
+
+		// view
+		$this->is_need_header_footer = false ;
 	}
 
-	parent::execute( $request ) ;
-
-	// initialize
-	$this->cat_id = $request['cat_id'] ;
-
-	// $categoryObj (not parent)
-	$picoPermission =& PicoPermission::getInstance() ;
-	$categoryObj = new PicoCategory( $this->mydirname , $request['cat_id'] , $picoPermission->getPermissions( $this->mydirname ) ) ;
-
-	// check existence
-	if( $categoryObj->isError() ) {
-		redirect_header( XOOPS_URL."/modules/$this->mydirname/index.php" , 2 , _MD_PICO_ERR_READCONTENT ) ;
+	// !Fix compatible with PicoControllerAbstract
+	function render($target = NULL)
+	{
+		redirect_header( XOOPS_URL."/modules/$this->mydirname/".pico_common_make_category_link4html( $this->mod_config , $this->cat_id , $this->mydirname ) , 2 , _MD_PICO_MSG_CATEGORYUPDATED ) ;
 		exit ;
 	}
-	$cat_data = $categoryObj->getData() ;
-
-	// permission check
-	if( empty( $cat_data['isadminormod'] ) ) {
-		redirect_header( XOOPS_URL.'/' , 2 , _MD_PICO_ERR_CATEGORYMANAGER ) ;
-	}
-
-	// insert a category
-	pico_updatecategory( $this->mydirname , $this->cat_id ) ;
-
-	// view
-	$this->is_need_header_footer = false ;
-}
-
-// !Fix compatible with PicoControllerAbstract
-function render($target = NULL)
-{
-	redirect_header( XOOPS_URL."/modules/$this->mydirname/".pico_common_make_category_link4html( $this->mod_config , $this->cat_id , $this->mydirname ) , 2 , _MD_PICO_MSG_CATEGORYUPDATED ) ;
-	exit ;
-}
-
 
 }
-
-?>

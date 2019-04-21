@@ -50,5 +50,3 @@ function pico_xoopstpl( $mydirname , $text , $content4assign )
 
 	return $text ;
 }
-
-?>

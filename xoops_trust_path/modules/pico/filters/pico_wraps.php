@@ -28,5 +28,3 @@ function pico_wraps( $mydirname , $text , $content4assign )
 		return $text ;
 	}
 }
-
-?>

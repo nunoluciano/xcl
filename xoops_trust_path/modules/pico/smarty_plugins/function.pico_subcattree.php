@@ -25,5 +25,3 @@ function smarty_function_pico_subcattree( $params , &$smarty )
 
 	$smarty->assign( $var_name , $redundants ) ;
 }
-
-?>

@@ -23,6 +23,3 @@ if( defined( '_ADM_USE_RTL' ) ) {
 	@define( '_ALIGN_START' , 'left' ) ; // change it right for RTL
 	@define( '_ALIGN_END' , 'right' ) ;  // change it left for RTL
 }
-
-
-?>

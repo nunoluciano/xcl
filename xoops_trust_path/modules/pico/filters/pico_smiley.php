@@ -10,5 +10,3 @@ function pico_smiley( $mydirname , $text , $content4assign )
 	$text = $myts->smiley( $text ) ;
 	return $text ;
 }
-
-?>

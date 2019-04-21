@@ -19,5 +19,3 @@ function pico_xcode( $mydirname , $text , $content4assign )
 
 	return $text ;
 }
-
-?>

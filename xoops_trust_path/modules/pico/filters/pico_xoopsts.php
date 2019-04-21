@@ -17,5 +17,3 @@ function pico_xoopsts( $mydirname , $text , $content4assign )
 
 	return $text ;
 }
-
-?>

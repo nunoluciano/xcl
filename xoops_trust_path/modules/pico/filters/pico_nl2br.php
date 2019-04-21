@@ -11,5 +11,3 @@ function pico_nl2br( $mydirname , $text , $content4assign )
 {
 	return nl2br( $text ) ;
 }
-
-?>

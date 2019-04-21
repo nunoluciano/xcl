@@ -10,5 +10,3 @@ require_once dirname(dirname(__FILE__)).'/class/PicoControllerVoteContent.class.
 $controller = new PicoControllerVoteContent( $currentCategoryObj ) ;
 $controller->execute( $picoRequest ) ;
 $controller->render() ;
-
-?>

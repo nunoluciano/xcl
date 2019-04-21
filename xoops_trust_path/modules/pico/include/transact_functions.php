@@ -25,7 +25,6 @@ function pico_delete_content( $mydirname , $content_id , $skip_sync = false )
 	return true ;
 }
 
-
 // delete a category
 function pico_delete_category( $mydirname , $cat_id , $delete_also_contents = true )
 {
@@ -60,7 +59,6 @@ function pico_delete_category( $mydirname , $cat_id , $delete_also_contents = tr
 
 	return true ;
 }
-
 
 // store tree informations of categories
 function pico_sync_cattree( $mydirname )
@@ -105,7 +103,6 @@ function pico_sync_cattree( $mydirname )
 	}
 }
 
-
 function pico_makecattree_recursive( $mydirname , $cat_id , $order = 'cat_weight' , $parray = array() , $depth = 0 , $cat_title = '' )
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection() ;
@@ -145,7 +142,6 @@ function pico_makecattree_recursive( $mydirname , $cat_id , $order = 'cat_weight
 	return array( $parray , $myarray , $parray[ $myindex ]['contents_total'] , $parray[ $myindex ]['subcategories_total'] , $myarray['subcategories_ids_cs'] ) ;
 }
 
-
 // store redundant informations to a content from its content_votes
 function pico_sync_content_votes( $mydirname , $content_id )
 {
@@ -165,7 +161,6 @@ function pico_sync_content_votes( $mydirname , $content_id )
 
 	return true ;
 }
-
 
 // store tags from contents
 function pico_sync_tags( $mydirname )
@@ -202,7 +197,6 @@ function pico_sync_tags( $mydirname )
 	return true ;
 }
 
-
 // clear body caches of all contents
 function pico_clear_body_cache( $mydirname )
 {
@@ -210,7 +204,6 @@ function pico_clear_body_cache( $mydirname )
 	$db->queryF( "UPDATE ".$db->prefix($mydirname."_contents")." SET body_cached='', for_search='', last_cached_time=0" ) ;
 	return true ;
 }
-
 
 // sync content_votes and category's tree
 function pico_sync_all( $mydirname )
@@ -256,7 +249,6 @@ function pico_sync_all( $mydirname )
 	pico_sync_cattree( $mydirname ) ;
 }
 
-
 // serialize_type conversion from PHP built-in serialize() to var_export()
 function pico_convert_serialized_data( $mydirname )
 {
@@ -282,7 +274,6 @@ function pico_convert_serialized_data( $mydirname )
 		}
 	}
 }
-
 
 // get requests for category's sql (parse options)
 function pico_get_requests4category( $mydirname , $cat_id = null )
@@ -337,7 +328,6 @@ function pico_get_requests4category( $mydirname , $cat_id = null )
 	) ;
 }
 
-
 // create a category
 function pico_makecategory( $mydirname )
 {
@@ -378,7 +368,6 @@ function pico_makecategory( $mydirname )
 	return $new_cat_id ;
 }
 
-
 // update category
 function pico_updatecategory( $mydirname , $cat_id )
 {
@@ -410,7 +399,6 @@ function pico_updatecategory( $mydirname , $cat_id )
 
 	return $cat_id ;
 }
-
 
 // get requests for content's sql (parse options)
 function pico_get_requests4content( $mydirname , &$errors , $auto_approval = true , $isadminormod = false , $content_id = 0 )
@@ -583,7 +571,6 @@ function pico_get_requests4content( $mydirname , &$errors , $auto_approval = tru
 	return $ret ;
 }
 
-
 // get uid from free form (numeric=uid, not numeric=uname)
 function pico_main_get_uid( $text )
 {
@@ -601,7 +588,6 @@ function pico_main_get_uid( $text )
 		else return 0 ;
 	}
 }
-
 
 // create content
 function pico_makecontent( $mydirname , $auto_approval = true , $isadminormod = false )
@@ -651,7 +637,6 @@ function pico_makecontent( $mydirname , $auto_approval = true , $isadminormod = 
 	return $new_content_id ;
 }
 
-
 // update content
 function pico_updatecontent( $mydirname , $content_id , $auto_approval = true , $isadminormod = false )
 {
@@ -699,7 +684,6 @@ function pico_updatecontent( $mydirname , $content_id , $auto_approval = true , 
 	return $content_id ;
 }
 
-
 // sync body_cached as body (HTML tags are stripped) for searching
 function pico_transact_reset_body_cached( $mydirname , $content_id )
 {
@@ -709,7 +693,6 @@ function pico_transact_reset_body_cached( $mydirname , $content_id )
 	$body4sql = $use_cache ? '\'\'' : $db->quoteString( strip_tags( $body ) ) ;
 	$db->queryF( "UPDATE ".$db->prefix($mydirname."_contents")." SET body_cached=$body4sql WHERE content_id=$content_id" ) ;
 }
-
 
 // copy from waiting fields
 function pico_transact_copyfromwaitingcontent( $mydirname , $content_id )
@@ -728,7 +711,6 @@ function pico_transact_copyfromwaitingcontent( $mydirname , $content_id )
 
 	return $content_id ;
 }
-
 
 // store a content into history table (before delete or update)
 function pico_transact_backupcontent( $mydirname , $content_id , $forced = false )
@@ -767,6 +749,3 @@ function pico_transact_backupcontent( $mydirname , $content_id , $forced = false
 	$uid = is_object( $xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 	if( ! $db->queryF( "INSERT INTO ".$db->prefix($mydirname."_content_histories")." (content_id,vpath,cat_id,created_time,modified_time,poster_uid,poster_ip,modifier_uid,modifier_ip,subject,htmlheader,body,filters,tags,extra_fields) SELECT content_id,vpath,cat_id,created_time,modified_time,poster_uid,poster_ip,modifier_uid,modifier_ip,subject,htmlheader,body,filters,tags,extra_fields FROM ".$db->prefix($mydirname."_contents")." WHERE content_id=".intval($content_id) ) ) die( _MD_PICO_ERR_SQL.__LINE__ ) ;
 }
-
-
-?>

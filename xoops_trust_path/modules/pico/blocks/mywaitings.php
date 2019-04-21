@@ -59,8 +59,6 @@ function b_pico_mywaitings_show( $options )
 	}
 }
 
-
-
 function b_pico_mywaitings_edit( $options )
 {
 	$mydirname = empty( $options[0] ) ? 'pico' : $options[0] ;
@@ -76,5 +74,3 @@ function b_pico_mywaitings_edit( $options )
 	) ) ;
 	return $tpl->fetch( 'db:'.$mydirname.'_blockedit_mywaitings.html' ) ;
 }
-
-?>

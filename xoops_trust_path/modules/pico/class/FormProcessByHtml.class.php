@@ -13,7 +13,6 @@ class FormProcessByHtml
 		return $this->__construct() ;
 	}
 
-
 	function __construct()
 	{
 		// register validators
@@ -25,7 +24,6 @@ class FormProcessByHtml
 			}
 		}
 	}
-
 
 	function setFieldsByForm( $form_html , $ignore_names = array() )
 	{
@@ -155,7 +153,6 @@ class FormProcessByHtml
 		}
 	}
 
-
 	function importSession( $session_data , $check_fields = true )
 	{
 		if( $check_fields ) {
@@ -168,7 +165,6 @@ class FormProcessByHtml
 			$this->fields = $session_data ;
 		}
 	}
-
 
 	function fetchPost( $input_encoding = null )
 	{
@@ -202,7 +198,6 @@ class FormProcessByHtml
 
 		return $this->fields ;
 	}
-
 
 	function _validateValueRecursive( $value , $fn = null , $at = null )
 	{
@@ -255,7 +250,6 @@ class FormProcessByHtml
 					}
 					break ;
 
-
 				case 'telephone' :
 					$value = $this->convertZenToHan( trim( $value ) ) ;
 					if( ! empty( $value ) && preg_match( '/[^()0-9+.-]/' , $value ) ) {
@@ -288,7 +282,6 @@ class FormProcessByHtml
 		}
 	}
 
-
 	function stripMQGPC( $data )
 	{
 		if( ! get_magic_quotes_gpc() ) return $data ;
@@ -300,7 +293,6 @@ class FormProcessByHtml
 		}
 	}
 
-
 	function convertEncodingToIE( $string , $input_encoding )
 	{
 		if( function_exists( 'mb_convert_encoding' ) ) {
@@ -310,7 +302,6 @@ class FormProcessByHtml
 		}
 		return $string ;
 	}
-
 
 	// fetch post data from RAW DATA
 	function _getPostAsArray( $input_encoding = null )
@@ -347,7 +338,6 @@ class FormProcessByHtml
 		return $ret ;
 	}
 
-
 	function getErrors()
 	{
 		$ret = array() ;
@@ -365,7 +355,6 @@ class FormProcessByHtml
 
 		return $ret ;
 	}
-
 
 	function replaceValues( $form_html = null )
 	{
@@ -395,7 +384,6 @@ class FormProcessByHtml
 		return $form_html ;
 	}
 
-
 	function replaceValueTextbox( $form_html , $attribs )
 	{
 		$values = $attribs['value'] ;
@@ -418,7 +406,6 @@ class FormProcessByHtml
 		return $form_html ;
 	}
 
-
 	function replaceContentTextarea( $form_html , $attribs )
 	{
 		$value4html = htmlspecialchars($attribs['value'],ENT_QUOTES) ;
@@ -427,7 +414,6 @@ class FormProcessByHtml
 		list( $content_html , $after ) = explode( '</textarea>' , $content_html_tmp , 2 ) ;
 		return $before . $attribs['tags'][0] . $value4html . '</textarea>' . $after ;
 	}
-
 
 	function replaceSelectedOptions( $form_html , $attribs )
 	{
@@ -446,7 +432,6 @@ class FormProcessByHtml
 		return $before . $attribs['tags'][0] . $new_options_html . '</select>' . $after ;
 	}
 
-
 	function replaceCheckedRadios( $form_html , $attribs , $field_name )
 	{
 		$value4html = htmlspecialchars($attribs['value'],ENT_QUOTES) ;
@@ -463,7 +448,6 @@ class FormProcessByHtml
 		}
 		return $ret ;
 	}
-
 
 	function replaceCheckedCheckboxes( $form_html , $attribs , $field_name )
 	{
@@ -487,7 +471,6 @@ class FormProcessByHtml
 		return $ret ;
 	}
 
-
 	function validateSelectOption( $tag , $value )
 	{
 		$value4html = htmlspecialchars($value,ENT_QUOTES) ;
@@ -497,7 +480,6 @@ class FormProcessByHtml
 		if( strstr( $options_html , 'value="'.$value4html.'"' ) ) return true ;
 		else false ;
 	}
-
 
 	function renderForMail( $field_separator = "\n" , $mid_separator = "\n" )
 	{
@@ -516,7 +498,6 @@ class FormProcessByHtml
 		return $ret ;
 	}
 
-
 	function renderForDB()
 	{
 		$ret = array() ;
@@ -526,7 +507,6 @@ class FormProcessByHtml
 		return $ret ;
 	}
 
-
 	function convertZenToHan( $text )
 	{
 		if( function_exists( 'mb_convert_kana' ) ) {
@@ -534,7 +514,6 @@ class FormProcessByHtml
 		}
 		return $text ;
 	}
-
 
 	function fildValueFromTag( $tag )
 	{
@@ -544,7 +523,6 @@ class FormProcessByHtml
 			return 'on' ;
 		}
 	}
-
 
 	// https://www.ilovejackdaniels.com/php/email-address-validation/
 	function checkEmailAddress( $email )
@@ -577,5 +555,3 @@ class FormProcessByHtml
 		return true;
 	}
 }
-
-?>

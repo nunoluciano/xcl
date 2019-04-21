@@ -27,6 +27,3 @@ class PicoFormProcessBySmartySurvey extends PicoFormProcessBySmartyBase
 	}
 
 }
-
-
-?>

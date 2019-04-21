@@ -42,31 +42,3 @@ $xoopsModuleConfig = $currentCategoryObj->getOverriddenModConfig() ;
 
 // append paths from each categories into breadcrumbs
 $breadcrumbsObj->appendPath( $currentCategoryObj->getBreadcrumbs() ) ;
-
-
-/*
-$myts =& PicoTextSanitizer::sGetInstance() ;
-$db = XoopsDatabaseFactory::getDatabaseConnection() ;
-
-// for compatibility "wraps mode" and "GET" in some environment
-if( substr( $_SERVER['REQUEST_URI'] , -19 ) == '?page=singlecontent' ) {
-	$_GET['page'] = 'singlecontent' ;
-} else if( substr( $_SERVER['REQUEST_URI'] , -11 ) == '?page=print' ) {
-	$_GET['page'] = 'print' ;
-} else if( substr( $_SERVER['REQUEST_URI'] , -9 ) == '?page=rss' ) {
-	$_GET['page'] = 'rss' ;
-}
-
-// GET $uid
-$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
-$isadmin = $uid > 0 ? $xoopsUser->isAdmin() : false ;
-
-// get this user's permissions as perm array
-$category_permissions = pico_main_get_category_permissions_of_current_user( $mydirname ) ;
-$whr_read4cat = 'c.`cat_id` IN (' . implode( "," , array_keys( $category_permissions ) ) . ')' ;
-$whr_read4content = 'o.`cat_id` IN (' . implode( "," , array_keys( $category_permissions ) ) . ')' ;
-
-// init xoops_breadcrumbs
-$xoops_breadcrumbs[0] = array( 'url' => XOOPS_URL.'/modules/'.$mydirname.'/index.php' , 'name' => $xoopsModule->getVar( 'name' ) ) ;
-*/
-?>

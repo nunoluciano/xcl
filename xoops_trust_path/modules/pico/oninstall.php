@@ -117,5 +117,3 @@ function pico_message_append_oninstall( &$module_obj , &$log )
 }
 
 }
-
-?>

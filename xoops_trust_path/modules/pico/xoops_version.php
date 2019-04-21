@@ -11,10 +11,10 @@ $constpref = '_MI_' . strtoupper( $mydirname ) ;
 
 $modversion['name'] = $mydirname ;
 $modversion['description'] = constant($constpref.'_DESC') ;
-$modversion['version'] = 1.87 ;
-$modversion['detailed_version'] = "1.87.11" ;
+$modversion['version'] = "2.3.0" ;
+$modversion['detailed_version'] = "2.3.0" ;
 $modversion['credits'] = "PEAK Corp.";
-$modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)<br />XOOPS X�@(ten)�@Distribution�ihttps://github.com/XoopsX/pico�j" ;
+$modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)<br />Update by XOOPS X (ten) and XOOPS Cube Project" ;
 $modversion['help'] = "" ;
 $modversion['license'] = "GPL" ;
 $modversion['official'] = 0 ;
@@ -607,5 +607,3 @@ $modversion['onUninstall'] = 'onuninstall.php' ;
 if( ! defined( 'XOOPS_CUBE_LEGACY' ) && substr( XOOPS_VERSION , 6 , 3 ) < 2.1 && ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
 	include dirname(__FILE__).'/include/x20_keepblockoptions.inc.php' ;
 }
-
-?>

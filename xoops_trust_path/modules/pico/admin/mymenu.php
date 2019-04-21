@@ -61,5 +61,3 @@ $tpl->assign( array(
 	'adminmenu' => $adminmenu ,
 ) ) ;
 $tpl->display( 'db:altsys_inc_mymenu.html' ) ;
-
-?>

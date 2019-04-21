@@ -72,6 +72,3 @@ define('_MD_A_PICO_H2_TAGS','Tag Manager');
 define('_MD_A_PICO_TH_TAG','Tag');
 define('_MD_A_PICO_TH_USED','Used');
 define('_MD_A_PICO_LABEL_ORDER','Order');
-
-
-?>

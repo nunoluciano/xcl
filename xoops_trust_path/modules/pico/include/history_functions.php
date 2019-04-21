@@ -43,7 +43,6 @@ $ef4display
 " ) ;
 }
 
-
 // get content_histories for form
 function pico_get_content_histories4assign( $mydirname , $content_id )
 {
@@ -74,6 +73,3 @@ function pico_get_content_histories4assign( $mydirname , $content_id )
 
 	return $ret ;
 }
-
-
-?>
