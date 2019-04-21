@@ -2,7 +2,6 @@
 
 // this file can be included only from main or admin (not from blocks)
 
-
 // add fields for tree structure into $categories
 function pico_main_make_treeinformations( $data )
 {
@@ -48,7 +47,6 @@ function pico_main_make_treeinformations( $data )
 	return $data ;
 }
 
-
 // get permissions of current user
 function pico_main_get_category_permissions_of_current_user( $mydirname , $uid = null )
 {
@@ -87,7 +85,6 @@ function pico_main_get_category_permissions_of_current_user( $mydirname , $uid =
 	else return $ret ;
 }
 
-
 // moderator groups
 function pico_main_get_category_moderate_groups4show( $mydirname , $cat_id )
 {
@@ -108,7 +105,6 @@ function pico_main_get_category_moderate_groups4show( $mydirname , $cat_id )
 
 	return $ret ;
 }
-
 
 // moderator users
 function pico_main_get_category_moderate_users4show( $mydirname , $cat_id )
@@ -131,7 +127,6 @@ function pico_main_get_category_moderate_users4show( $mydirname , $cat_id )
 	return $ret ;
 }
 
-
 // select box for jumping into a specified category
 function pico_main_make_cat_jumpbox_options( $mydirname , $whr4cat , $cat_selected = 0 )
 {
@@ -153,7 +148,6 @@ function pico_main_make_cat_jumpbox_options( $mydirname , $whr4cat , $cat_select
 	return $ret ;
 }
 
-
 // trigger event for D3
 function pico_main_trigger_event( $mydirname , $category , $item_id , $event , $extra_tags=array() , $user_list=array() , $omit_user_id=null )
 {
@@ -162,7 +156,6 @@ function pico_main_trigger_event( $mydirname , $category , $item_id , $event , $
 	$not_handler =& D3NotificationHandler::getInstance() ;
 	$not_handler->triggerEvent( $mydirname , 'pico' , $category , $item_id , $event , $extra_tags , $user_list , $omit_user_id ) ;
 }
-
 
 // get category's moderators as array
 function pico_main_get_moderators( $mydirname , $cat_id )
@@ -196,8 +189,6 @@ function pico_main_get_moderators( $mydirname , $cat_id )
 	return array_unique( $cat_uids ) ;
 }
 
-
-
 // get top $content_id from $cat_id
 function pico_main_get_top_content_id_from_cat_id( $mydirname , $cat_id )
 {
@@ -208,7 +199,6 @@ function pico_main_get_top_content_id_from_cat_id( $mydirname , $cat_id )
 	return intval( $content_id ) ;
 }
 
-
 // escape string for <a href="mailto:..."> (eg. tellafriend)
 function pico_main_escape4mailto( $text )
 {
@@ -217,7 +207,6 @@ function pico_main_escape4mailto( $text )
 	}
 	return rawurlencode( $text ) ;
 }
-
 
 // get filter's informations under XOOPS_TRUST_PATH/modules/pico/filters/
 function pico_main_get_filter_infos( $filters_separated_pipe , $isadminormod = false )
@@ -288,7 +277,6 @@ function pico_main_get_filter_infos( $filters_separated_pipe , $isadminormod = f
 	return $filters ;
 }
 
-
 // for usort() in pico_main_get_filter_infos()
 function pico_main_filter_cmp( $a , $b )
 {
@@ -298,7 +286,6 @@ function pico_main_filter_cmp( $a , $b )
 		return $a['weight'] > $b['weight'] ? 1 : -1 ;
 	}
 }
-
 
 // get return_uri from "ret" after editing
 function pico_main_parse_ret2uri( $mydirname , $ret )
@@ -324,7 +311,6 @@ function pico_main_parse_ret2uri( $mydirname , $ret )
 	}
 }
 
-
 // get <link> to CSS for main
 function pico_main_render_moduleheader( $mydirname , $mod_config , $appendix_header4disp = '' )
 {
@@ -337,7 +323,6 @@ function pico_main_render_moduleheader( $mydirname , $mod_config , $appendix_hea
 
 	return str_replace( $searches , $replacements , $header4disp ) ;
 }
-
 
 // get directories recursively under WRAP
 function pico_main_get_wraps_directories_recursively( $mydirname , $dir_path = '/' )
@@ -370,7 +355,6 @@ function pico_main_get_wraps_directories_recursively( $mydirname , $dir_path = '
 
 	return $ret ;
 }
-
 
 // get files recursively under WRAP
 function pico_main_get_wraps_files_recursively( $mydirname , $dir_path = '/' )
@@ -414,7 +398,3 @@ function pico_main_get_wraps_files_recursively( $mydirname , $dir_path = '/' )
 
 	return $ret ;
 }
-
-
-
-?>

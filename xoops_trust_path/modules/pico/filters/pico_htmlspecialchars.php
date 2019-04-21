@@ -6,5 +6,3 @@ function pico_htmlspecialchars( $mydirname , $text , $content4assign )
 {
 	return htmlspecialchars( $text , ENT_QUOTES ) ;
 }
-
-?>

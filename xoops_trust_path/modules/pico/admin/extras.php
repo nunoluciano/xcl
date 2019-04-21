@@ -11,7 +11,6 @@ require_once XOOPS_ROOT_PATH.'/class/pagenav.php' ;
 $myts =& PicoTextSanitizer::sGetInstance() ;
 $db = XoopsDatabaseFactory::getDatabaseConnection() ;
 
-
 //
 // transaction stage
 //
@@ -83,7 +82,6 @@ if( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) ) 
 	exit ;
 }
 
-
 // extras delete
 
 //
@@ -129,7 +127,6 @@ while( $extra_row = $db->fetchArray( $ers ) ) {
 	$extras4assign[] = $extra4assign + $extra_row ;
 }
 
-
 //
 // display stage
 //
@@ -158,7 +155,6 @@ if( $extra_id ) {
 }
 xoops_cp_footer();
 
-
 //
 // local function stage
 //
@@ -182,7 +178,6 @@ function pico_admin_make_summary4extras( $data )
 	return $ret ;
 }
 
-
 function pico_admin_easiestml( $s )
 {
 	if( function_exists( 'easiestml' ) ) {
@@ -191,6 +186,3 @@ function pico_admin_easiestml( $s )
 		return $s ;
 	}
 }
-
-
-?>

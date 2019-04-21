@@ -105,7 +105,6 @@ $GLOBALS['pico_tables'] = array(
 	) ,
 ) ;
 
-
 function pico_import_errordie()
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection() ;
@@ -114,8 +113,6 @@ function pico_import_errordie()
 	echo $db->logger->dumpQueries() ;
 	exit ;
 }
-
-
 
 function pico_import_from_smartsection( $mydirname , $import_mid )
 {
@@ -232,7 +229,6 @@ function pico_import_from_pico( $mydirname , $import_mid )
 	}
 }
 
-
 // just import a content (contents and content_votes only)
 function pico_import_a_content_from_pico( $mydirname , $import_mid , $content_id )
 {
@@ -256,6 +252,3 @@ function pico_import_a_content_from_pico( $mydirname , $import_mid , $content_id
 	$irs = $db->query( "INSERT INTO `$to_table` ($columns4sql,content_id) SELECT $columns4sql,$new_content_id FROM `$from_table` WHERE content_id=".intval($content_id) ) ;
 	if( ! $irs ) pico_import_errordie() ;
 }
-
-
-?>

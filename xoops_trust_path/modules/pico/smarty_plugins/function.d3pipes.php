@@ -21,5 +21,3 @@ function smarty_function_d3pipes( $params , &$smarty )
 
 	echo @$block['content'] ;
 }
-
-?>

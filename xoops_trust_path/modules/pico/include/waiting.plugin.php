@@ -17,5 +17,3 @@ function b_waiting_pico( $mydirname )
 	
 	return $ret ;
 }
-
-?>

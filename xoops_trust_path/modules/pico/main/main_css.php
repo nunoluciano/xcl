@@ -23,7 +23,6 @@ if( is_object( $xoopsUser ) ) {
 	$xoops_isadmin = false ;
 }
 
-
 require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 $tpl = new XoopsTpl() ;
 $tpl->assign( array(
@@ -41,5 +40,3 @@ $tpl->assign( array(
 ) ) ;
 $tpl->display( 'db:'.$mydirname.'_main.css' ) ;
 exit ;
-
-?>

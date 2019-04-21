@@ -98,6 +98,3 @@ function pico_global_search_base( $mydirname , $keywords , $andor , $limit , $of
 }
 
 }
-
-
-?>

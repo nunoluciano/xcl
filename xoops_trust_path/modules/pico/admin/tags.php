@@ -82,7 +82,6 @@ if( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	exit ;
 }
 
-
 //
 // form stage
 //
@@ -124,7 +123,6 @@ while( $tag_row = $db->fetchArray( $trs ) ) {
 	$tags4assign[] = $tag4assign + $tag_row ;
 }
 
-
 //
 // display stage
 //
@@ -147,5 +145,3 @@ $tpl->assign( array(
 ) ) ;
 $tpl->display( 'db:'.$mydirname.'_admin_tags.html' ) ;
 xoops_cp_footer();
-
-?>

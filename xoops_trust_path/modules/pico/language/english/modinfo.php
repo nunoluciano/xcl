@@ -11,7 +11,7 @@ define( $constpref.'_LOADED' , 1 ) ;
 define($constpref."_NAME","pico");
 
 // A brief description of this module
-define($constpref."_DESC","a module for staic contents");
+define($constpref."_DESC","The module handles publishing of content with historical versions, diff and granular permissions.");
 
 // admin menus
 define( $constpref.'_ADMENU_CONTENTSADMIN' , 'Contents list' ) ;
@@ -117,6 +117,3 @@ define($constpref.'_NOTIFY_CONTENT_COMMENTCAP', 'Notify if a new comment is post
 define($constpref.'_NOTIFY_CONTENT_COMMENTSBJ', '[{X_SITENAME}] {X_MODULE} : a new comment');
 
 }
-
-
-?>

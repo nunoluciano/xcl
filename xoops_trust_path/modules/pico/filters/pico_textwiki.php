@@ -34,5 +34,3 @@ function pico_textwiki( $mydirname , $text , $content4assign )
 	// special thx to minahito! you are great!!
 	return $wiki->transform($text);
 }
-
-?>

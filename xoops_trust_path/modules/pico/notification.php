@@ -72,5 +72,3 @@ function pico_notify_base( $mydirname , $category , $item_id )
 }
 
 }
-
-?>

@@ -22,7 +22,6 @@ function b_pico_list_allowed_order()
 	) ;
 }
 
-
 function b_pico_list_show( $options )
 {
 	// options
@@ -98,8 +97,6 @@ function b_pico_list_show( $options )
 	}
 }
 
-
-
 function b_pico_list_edit( $options )
 {
 	// options
@@ -127,5 +124,3 @@ function b_pico_list_edit( $options )
 	) ) ;
 	return $tpl->fetch( 'db:'.$mydirname.'_blockedit_list.html' ) ;
 }
-
-?>

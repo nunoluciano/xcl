@@ -35,17 +35,17 @@ class PicoFormProcessBySmartyBase
 	var $ignore_field_names = array( 'cancel' ) ; // public
 	var $cancel_field_name = 'cancel' ; // public
 
-	function PicoFormProcessBySmartyBase()
+	// !Fix deprecated constructor
+	function __construct()
+	//function PicoFormProcessBySmartyBase()
 	{
 		return $this->__construct() ;
 	}
-
 
 	function __construct()
 	{
 		$this->mypluginname = 'base' ;
 	}
-
 
 	function init( $params , &$smarty )
 	{
@@ -55,7 +55,6 @@ class PicoFormProcessBySmartyBase
 		$this->content_uri = pico_common_unhtmlspecialchars( XOOPS_URL.'/modules/'.$this->mydirname.'/'.$this->content4disp['link'] ) ;
 		$this->session_index = $this->mydirname . '_' . $this->content4disp['id'] . '_' . $this->mypluginname ;
 	}
-
 
 	function parseParameters( $params )
 	{
@@ -140,7 +139,6 @@ class PicoFormProcessBySmartyBase
 		}
 	}
 
-
 	function checkCurrentPage()
 	{
 		global $xoopsModule ;
@@ -159,7 +157,6 @@ class PicoFormProcessBySmartyBase
 		return true ;
 	}
 
-
 	function readLanguage( $filename = null )
 	{
 		if( empty( $filename ) ) $filename = $this->mypluginname ;
@@ -170,7 +167,6 @@ class PicoFormProcessBySmartyBase
 		$langman =& D3LanguageManager::getInstance() ;
 		$langman->read( $filename . '.php' , $this->mydirname , 'pico' ) ;
 	}
-
 
 	function fetchFormBody( $params , &$smarty )
 	{
@@ -186,7 +182,6 @@ class PicoFormProcessBySmartyBase
 		$this->form_body4disp = $this->form_body ;
 	}
 
-
 	function isMobile()
 	{
 		if( class_exists( 'Wizin_User' , false ) ) {
@@ -200,7 +195,6 @@ class PicoFormProcessBySmartyBase
 			return false ;
 		}
 	}
-
 
 	function getInputEncoding()
 	{
@@ -218,7 +212,6 @@ class PicoFormProcessBySmartyBase
 		}
 	}
 
-
 	function reload()
 	{
 		if( ! headers_sent() && ! $this->isMobile() ) {
@@ -229,25 +222,21 @@ class PicoFormProcessBySmartyBase
 		exit ;
 	}
 
-
 	function replaceFormTag()
 	{
 		$this->form_body4disp = str_replace( '<form>' , '<form action="'.htmlspecialchars($this->content_uri,ENT_QUOTES).'" method="post">' , $this->form_body4disp ) ;
 	}
-
 
 	function getTokenName()
 	{
 		return $this->mypluginname.'_confirm' ;
 	}
 
-
 	function getTokenValue( $time = null )
 	{
 		if( empty( $time ) ) $time = time() ;
 		return md5( gmdate( 'YmdH' , $time ) . XOOPS_DB_PREFIX . XOOPS_DB_NAME . XOOPS_ROOT_PATH ) ;
 	}
-
 
 	function validateToken()
 	{
@@ -258,13 +247,11 @@ class PicoFormProcessBySmartyBase
 		return false ;
 	}
 
-
 	function processConfirm()
 	{
 		// display confirm
 		$this->extra_form = isset( $this->confirm_message ) ? $this->confirm_message : '<form action="'.htmlspecialchars($this->content_uri,ENT_QUOTES).'" method="post">'._MD_PICO_FORMMAIL_BLOCK_POSTCONFIRM.'<input type="hidden" name="'.$this->getTokenName().'" value="'.$this->getTokenValue().'" /></form>' ;
 	}
-
 
 	function displayFinished()
 	{
@@ -280,7 +267,6 @@ class PicoFormProcessBySmartyBase
 		}
 	}
 
-
 	function displayConfirm()
 	{
 		echo @$this->extra_form ;
@@ -288,12 +274,10 @@ class PicoFormProcessBySmartyBase
 		echo @$this->form_body4disp ;
 	}
 
-
 	function displayDefault()
 	{
 		echo @$this->form_body4disp ;
 	}
-
 
 	function processError( $errors )
 	{
@@ -308,7 +292,6 @@ class PicoFormProcessBySmartyBase
 		}
 		$this->error_html .= _MD_PICO_FORMMAIL_BLOCK_ERROR_END ;
 	}
-
 
 	function execute( $params , &$smarty )
 	{
@@ -380,7 +363,6 @@ class PicoFormProcessBySmartyBase
 
 	}
 
-
 	// abstract
 	function executeLast()
 	{
@@ -388,7 +370,6 @@ class PicoFormProcessBySmartyBase
 		// store into db
 		// etc.
 	}
-
 
 	// methods for inside executeLast()
 	function sendMail()
@@ -449,7 +430,6 @@ class PicoFormProcessBySmartyBase
 		}
 	}
 
-
 	// mail utilities
 	function makeMailBody()
 	{
@@ -501,5 +481,3 @@ class PicoFormProcessBySmartyBase
 	}
 
 }
-
-?>

@@ -90,8 +90,6 @@ function b_pico_tags_show( $options )
 	}
 }
 
-
-
 function b_pico_tags_edit( $options )
 {
 	global $pico_blocks_tags_order_options ;
@@ -118,5 +116,3 @@ function b_pico_tags_edit( $options )
 	) ) ;
 	return $tpl->fetch( 'db:'.$mydirname.'_blockedit_tags.html' ) ;
 }
-
-?>
