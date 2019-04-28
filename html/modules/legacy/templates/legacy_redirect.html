@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>" />
 <meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" />
@@ -9,5 +9,25 @@
   <h4><{$message}></h4>
   <p><{$lang_ifnotreload}></p>
 </div>
+</body>
+</html> -->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>" />
+  <{if !class_exists('AdelieDebug_Preload')}>
+  <meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" />
+  <{/if}>
+
+<title><{$xoops_sitename}></title>
+</head>
+<body>
+<div style="text-align:center; background-color: #EBEBEB; border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #AAAAAA; border-bottom: 1px solid #AAAAAA; font-weight : bold;">
+  <h4><{$message}></h4>
+  <p><{$lang_ifnotreload}></p>
+</div>
+<{if class_exists('AdelieDebug_Preload')}>
+<p style="color:red;text-align: center">No automatic redirect during AdelieDebug execution.</p>
+<{/if}>
 </body>
 </html>
