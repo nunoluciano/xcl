@@ -4,15 +4,15 @@
  * @package legacyRender
  */
 
-$modversion['name']=_MI_LEGACYRENDER_NAME;
-$modversion['version']=2.03;
-$modversion['description']=_MI_LEGACYRENDER_NAME_DESC;
-$modversion['author']="";
-$modversion['credits']="The XOOPS Cube Project";
+$modversion['name'] = _MI_LEGACYRENDER_NAME;
+$modversion['version'] = "2.3.0";
+$modversion['description'] = _MI_LEGACYRENDER_NAME_DESC;
+$modversion['author'] = "XOOPS Cube Project";
+$modversion['credits'] = "The XOOPS Cube Project";
 $modversion['help'] = "help.html";
-$modversion['license']="GPL see LICENSE";
-$modversion['image']="images/legacyRender.png";
-$modversion['dirname']="legacyRender";
+$modversion['license'] = "GPL see LICENSE";
+$modversion['image'] = "images/legacyRender.png";
+$modversion['dirname'] = "legacyRender";
 
 $modversion['cube_style'] = true;
 
@@ -90,6 +90,56 @@ $modversion['config'][]=array(
         "valuetype"=>"text",
         "default"=>"Copyright &copy; 2001-2019"
     );
+
+
+// Extra Meta Webmaster Tools
+
+$modversion['config'][]=array(
+    "name"=>"meta_bing",
+    "title"=>"Bing meta tag",
+    "description"=>"Log into Bing Webmaster Tools and get the meta tag option to verify your site.",
+    "formtype"=>"textbox",
+    "valuetype"=>"text",
+    "default"=>""
+);
+
+$modversion['config'][]=array(
+    "name"=>"meta_google",
+    "title"=>"Webmaster Google",
+    "description"=>"Log into Google Search Console and get the meta tag verification",
+    "formtype"=>"textbox",
+    "valuetype"=>"text",
+    "default"=>""
+);
+
+$modversion['config'][]=array(
+    "name"=>"meta_yandex",
+    "title"=>"Webmaster Yandex",
+    "description"=>"Log into Yandex search console and get the meta tag verification",
+    "formtype"=>"textbox",
+    "valuetype"=>"text",
+    "default"=>""
+);
+
+$modversion['config'][]=array(
+    "name"=>"meta_fb_app",
+    "title"=>"Facebook App",
+    "description"=>"Get your Facebook App ID",
+    "formtype"=>"textbox",
+    "valuetype"=>"text",
+    "default"=>""
+);
+
+$modversion['config'][]=array(
+    "name"=>"meta_twitter_site",
+    "title"=>"Twitter site user",
+    "description"=>"Get your Twitter site ID",
+    "formtype"=>"textbox",
+    "valuetype"=>"text",
+    "default"=>"@cubson"
+);
+
+// Extra Meta Webmaster Tools End
 
 $modversion['config'][]=array(
         "name"=>"footer",
