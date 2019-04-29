@@ -12,7 +12,7 @@ class Legacy_HeaderScript
 
     protected $_mLibrary = array();
     protected $_mScript = array();
-    protected $_mMeta = array('keywords'=>'','description'=>'','robots'=>'','rating'=>'','author'=>'','copyright'=>'',);
+    protected $_mMeta = array('keywords'=>'','description'=>'','robots'=>'','rating'=>'','author'=>'','copyright'=>'','msvalidate.01'=>'','google-site-verification'=>'','yandex-verification'=>'','fb:app_id'=>'','twitter:site'=>'' );
     protected $_mOnloadScript = array();
     protected $_mStylesheet = array();
     protected $_mLink = array();
