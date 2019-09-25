@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] - 2019-09-25.
+
+### Removed
+
+- Remove duplicated lib HTMLPurifier from Protector #94
+- Remove dir "doc" (french) from Protector #94
+
+### Fixed
+
+- Protector path to TRUST_PATH/libs/htmlpurifier
+
+### Update
+
+- HTML Purifier 4.11.0
 
 ## [unreleased] - 2019-04-30.
 
