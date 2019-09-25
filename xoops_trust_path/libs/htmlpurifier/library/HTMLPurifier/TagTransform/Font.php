@@ -9,7 +9,7 @@
  *
  * @note Size is an interesting case because it doesn't map cleanly to CSS.
  *       Thanks to
- *       https://style.cleverchimp.com/font_size_intervals/altintervals.html
+ *       http://style.cleverchimp.com/font_size_intervals/altintervals.html
  *       for reasonable mappings.
  * @warning This doesn't work completely correctly; specifically, this
  *          TagTransform operates before well-formedness is enforced, so
@@ -112,4 +112,3 @@ class HTMLPurifier_TagTransform_Font extends HTMLPurifier_TagTransform
 }
 
 // vim: et sw=4 sts=4
-

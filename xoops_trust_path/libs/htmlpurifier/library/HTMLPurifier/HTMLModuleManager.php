@@ -99,7 +99,7 @@ class HTMLPurifier_HTMLModuleManager
             array('Tidy_Transitional', 'Tidy_Proprietary'),
             array(),
             '-//W3C//DTD HTML 4.01 Transitional//EN',
-            'https://www.w3.org/TR/html4/loose.dtd'
+            'http://www.w3.org/TR/html4/loose.dtd'
         );
 
         $this->doctypes->register(
@@ -109,7 +109,7 @@ class HTMLPurifier_HTMLModuleManager
             array('Tidy_Strict', 'Tidy_Proprietary', 'Tidy_Name'),
             array(),
             '-//W3C//DTD HTML 4.01//EN',
-            'https://www.w3.org/TR/html4/strict.dtd'
+            'http://www.w3.org/TR/html4/strict.dtd'
         );
 
         $this->doctypes->register(
@@ -119,7 +119,7 @@ class HTMLPurifier_HTMLModuleManager
             array('Tidy_Transitional', 'Tidy_XHTML', 'Tidy_Proprietary', 'Tidy_Name'),
             array(),
             '-//W3C//DTD XHTML 1.0 Transitional//EN',
-            'https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+            'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
         );
 
         $this->doctypes->register(
@@ -129,7 +129,7 @@ class HTMLPurifier_HTMLModuleManager
             array('Tidy_Strict', 'Tidy_XHTML', 'Tidy_Strict', 'Tidy_Proprietary', 'Tidy_Name'),
             array(),
             '-//W3C//DTD XHTML 1.0 Strict//EN',
-            'https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'
+            'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'
         );
 
         $this->doctypes->register(
@@ -141,8 +141,9 @@ class HTMLPurifier_HTMLModuleManager
             array('Tidy_Strict', 'Tidy_XHTML', 'Tidy_Proprietary', 'Tidy_Strict', 'Tidy_Name'), // Tidy_XHTML1_1
             array(),
             '-//W3C//DTD XHTML 1.1//EN',
-            'https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'
+            'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'
         );
+
     }
 
     /**
@@ -270,6 +271,14 @@ class HTMLPurifier_HTMLModuleManager
         if ($config->get('HTML.TargetBlank')) {
             $modules[] = 'TargetBlank';
         }
+        // NB: HTML.TargetNoreferrer and HTML.TargetNoopener must be AFTER HTML.TargetBlank
+        // so that its post-attr-transform gets run afterwards.
+        if ($config->get('HTML.TargetNoreferrer')) {
+            $modules[] = 'TargetNoreferrer';
+        }
+        if ($config->get('HTML.TargetNoopener')) {
+            $modules[] = 'TargetNoopener';
+        }
 
         // merge in custom modules
         $modules = array_merge($modules, $this->userModules);
@@ -362,6 +371,7 @@ class HTMLPurifier_HTMLModuleManager
         }
 
         return $elements;
+
     }
 
     /**
@@ -455,4 +465,3 @@ class HTMLPurifier_HTMLModuleManager
 }
 
 // vim: et sw=4 sts=4
-
