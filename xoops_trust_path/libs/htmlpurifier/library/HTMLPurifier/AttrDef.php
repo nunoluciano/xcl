@@ -40,7 +40,7 @@ abstract class HTMLPurifier_AttrDef
      * Convenience method that parses a string as if it were CDATA.
      *
      * This method process a string in the manner specified at
-     * <https://www.w3.org/TR/html4/types.html#h-6.2> by removing
+     * <http://www.w3.org/TR/html4/types.html#h-6.2> by removing
      * leading and trailing whitespace, ignoring line feeds, and replacing
      * carriage returns and tabs with spaces.  While most useful for HTML
      * attributes specified as CDATA, it can also be applied to most CSS
@@ -86,7 +86,13 @@ abstract class HTMLPurifier_AttrDef
      */
     protected function mungeRgb($string)
     {
-        return preg_replace('/rgb\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\)/', 'rgb(\1,\2,\3)', $string);
+        $p = '\s*(\d+(\.\d+)?([%]?))\s*';
+
+        if (preg_match('/(rgba|hsla)\(/', $string)) {
+            return preg_replace('/(rgba|hsla)\('.$p.','.$p.','.$p.','.$p.'\)/', '\1(\2,\5,\8,\11)', $string);
+        }
+
+        return preg_replace('/(rgb|hsl)\('.$p.','.$p.','.$p.'\)/', '\1(\2,\5,\8)', $string);
     }
 
     /**
@@ -136,4 +142,3 @@ abstract class HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
-

@@ -48,7 +48,7 @@ class HTMLPurifier_AttrDef_HTML_Pixels extends HTMLPurifier_AttrDef
         }
 
         // upper-bound value, extremely high values can
-        // crash operating systems, see <https://ha.ckers.org/imagecrash.html>
+        // crash operating systems, see <http://ha.ckers.org/imagecrash.html>
         // WARNING, above link WILL crash you if you're using Windows
 
         if ($this->max !== null && $int > $this->max) {
@@ -74,4 +74,3 @@ class HTMLPurifier_AttrDef_HTML_Pixels extends HTMLPurifier_AttrDef
 }
 
 // vim: et sw=4 sts=4
-

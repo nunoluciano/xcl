@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Validates a URI in CSS syntax, which uses url('https://example.com')
+ * Validates a URI in CSS syntax, which uses url('http://example.com')
  * @note While theoretically speaking a URI in a CSS document could
  *       be non-embedded, as of CSS2 there is no such usage so we're
  *       generalizing it. This may need to be changed in the future.
@@ -33,6 +33,9 @@ class HTMLPurifier_AttrDef_CSS_URI extends HTMLPurifier_AttrDef_URI
             return false;
         }
         $uri_string = substr($uri_string, 4);
+        if (strlen($uri_string) == 0) {
+            return false;
+        }
         $new_length = strlen($uri_string) - 1;
         if ($uri_string[$new_length] != ')') {
             return false;
@@ -72,4 +75,3 @@ class HTMLPurifier_AttrDef_CSS_URI extends HTMLPurifier_AttrDef_URI
 }
 
 // vim: et sw=4 sts=4
-
