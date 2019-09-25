@@ -12,16 +12,25 @@ class protector_postcommon_post_htmlpurify4everyone extends ProtectorFilterAbstr
             die('Turn postcommon_post_htmlpurify4everyone.php off because this filter cannot run with PHP4') ;
         }
 
-        if (file_exists(XOOPS_TRUST_PATH.'/libs/htmlpurifier/library/HTMLPurifier.auto.php')) {
-            // !Fix se HTMLPurifier inside TRUST_PATH/libs
-            
-            require_once XOOPS_TRUST_PATH.'/libs/htmlpurifier/library/HTMLPurifier.auto.php' ;
+        if (file_exists(XOOPS_ROOT_PATH.'/class/icms.htmlpurifier.php')) {
+            // use HTMLPurifier inside ImpressCMS
+            if (! class_exists('icms_HTMLPurifier')) {
+                require_once ICMS_ROOT_PATH.'/class/icms.htmlpurifier.php' ;
+            }
+//			$pure =& icms_HTMLPurifier::getPurifierInstance() ;
+//			$_POST = $pure->icms_html_purifier( $_POST , 'protector' ) ;
+            $this->purifier =& icms_HTMLPurifier::getPurifierInstance() ;
+            $this->method = 'icms_html_purifier' ;
+        } else {
+            // use HTMLPurifier inside Protector
+            require_once dirname(dirname(__FILE__)).'/library/HTMLPurifier.auto.php' ;
             $config = HTMLPurifier_Config::createDefault();
             $config->set('Cache.SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
             $config->set('Core.Encoding', 'UTF-8');
             //$config->set('HTML.Doctype', 'HTML 4.01 Transitional');
             $this->purifier = new HTMLPurifier($config);
             $this->method = 'purify' ;
+        }
 
         $_POST = $this->purify_recursive($_POST) ;
     }
