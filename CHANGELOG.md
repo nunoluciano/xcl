@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+
+## [unreleased] - 2019-04-30.
+
+### Added
+
+- Extra Meta Webmaster Tools
+- Hack by Ryuji to prevent Legacy_redirect if AdelieDebug
+- Fixes Pico Category
+
 ## [unreleased] - 2019-04-18.
 
 ### Added
