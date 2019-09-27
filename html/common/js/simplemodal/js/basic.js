@@ -1,11 +1,11 @@
 /*
  * SimpleModal Basic Modal Dialog
- * https://simplemodal.com
+ * http://simplemodal.com
  *
- * Copyright (c) 2013 Eric Martin - https://ericmmartin.com
+ * Copyright (c) 2013 Eric Martin - http://ericmmartin.com
  *
  * Licensed under the MIT license:
- *   https://www.opensource.org/licenses/mit-license.php
+ *   http://www.opensource.org/licenses/mit-license.php
  */
 
 jQuery(function ($) {
