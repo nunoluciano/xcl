@@ -21,7 +21,7 @@ class XCube_IniHandler
     /*** bool ***/    protected $_mSectionFlag = false;
 
     /**
-     * __constract
+     * __construct
      * 
      * @param	string	$filePath
      * @param	bool	$section

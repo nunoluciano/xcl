@@ -27,7 +27,7 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
   
     public function __construct(&$db)
     {
-        parent::XoopsObjectGenericHandler($db);
+        parent::__construct($db);
     }
   
     public function getOutboxCount($uid)
