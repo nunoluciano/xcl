@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] - 2019-10-07.
+
+### Added
+
+- Merged Module D3Forum 0.89.5
+
+### Changed
+
+- include/cp_functions.php --version
+- include/cubecore_init.php --version
+
+### Fixed
+
+- Numeric value in install/class/settingmanager.php
+- Legacy - Module Information #99
+- MySQL 5.7.+ Strict Mode #97
+
+### Update
+
+- XCL and modules version (legacy,profile,stdCache,user)
+- modules doc/help
+
 ## [unreleased] - 2019-09-25.
 
 ### Removed

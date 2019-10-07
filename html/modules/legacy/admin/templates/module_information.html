@@ -289,12 +289,12 @@
 	<th><{$smarty.const._AD_LEGACY_LANG_CONFIG_VAL}></th>
   </tr>
   <{foreach from=$config key=config_key item=config_val name=config}>
-  <tr class="<{cycle values="odd,even" name=config}>">
+  <tr class="<{cycle values='odd,even' name=config}>">
 	<td class="head legacy_list_name" style="width:30%;"><{$config_key|xoops_escape}></td>
 	<td>
 	  <{if $config_key == "name" }>
 	    <b><{$config_val|xoops_escape}></b>
-      <{elseif $config_key == options }>
+      <{elseif $config_key == "options" }>
 	    <{foreach from=$config_val item=opt key=opt_key }>
 	      <{$opt_key}> &raquo; <{$opt|xoops_escape}><br />
 	    <{/foreach}>

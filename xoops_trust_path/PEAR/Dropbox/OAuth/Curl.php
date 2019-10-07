@@ -58,7 +58,7 @@ class Dropbox_OAuth_Curl extends Dropbox_OAuth {
      */
 	public function fetch($uri, $arguments = array(), $method = 'GET', $httpHeaders = array()) {
 
-		$uri=str_replace('https://', 'https://', $uri); // all https, upload makes problems if not
+		$uri=str_replace('http://', 'https://', $uri); // all https, upload makes problems if not
 		if (is_string($arguments) and strtoupper($method) == 'POST') {
 			preg_match("/\?file=(.*)$/i", $uri, $matches);
 			if (isset($matches[1])) {
