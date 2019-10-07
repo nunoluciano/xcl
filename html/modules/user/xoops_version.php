@@ -26,9 +26,9 @@
 //  ------------------------------------------------------------------------ //
 
 $modversion['name'] = _MI_USER_NAME;
-$modversion['version'] = 2.03;
+$modversion['version'] = "2.3.0";
 $modversion['description'] = _MI_USER_NAME_DESC;
-$modversion['author'] = "";
+$modversion['author'] = "XOOPS Cube Project";
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL see LICENSE";

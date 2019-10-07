@@ -94,7 +94,7 @@ class XoopsModule extends XoopsObject
             $this->loadInfo($dirname, $verbose);
         }
         $this->setVar('name', $this->modinfo['name'], true);
-        $this->setVar('version', Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
+        $this->setVar('version', Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version'])); // TODO semver
         $this->setVar('dirname', $this->modinfo['dirname'], true);
         $trustDirname = isset($this->modinfo['trust_dirname']) ? $this->modinfo['trust_dirname'] : null;
         $this->setVar('trust_dirname', $trustDirname, true);
@@ -312,7 +312,7 @@ class XoopsModule extends XoopsObject
     public function hasNeedUpdate()
     {
         $info =& $this->getInfo();
-        return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
+        return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version'])); // TODO semver
     }
     
     /**#@+
