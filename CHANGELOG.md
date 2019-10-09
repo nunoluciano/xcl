@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+
+## [unreleased] - 2019-10-09.
+
+### Changed
+
+- revert xelFinderSession.class.php - fixCookieRegist error #102
+- xoops_cookie and session to xcl_wap
+
+### Fixed
+
+- Old style constructor to "__construct" #98 Nobuhiro YASUTOMI aka nbuy
+- Theme legacy_default - Smarty typo og:title #109
+- MySQL 5.7.+ Strict Mode #97 Kilica
+- xelFinder Use of mbstring.internal_encoding is deprecated #101
+- xelfinder Admin failed to open googledrive.php #106
+- xelfinder Couldn't find constant _DROPBOX_TOKEN #107
+- xoopsmailer deprecated constructor and utf-8 #103
+- Undefined variable: mods in Block Install List Action #104
+
+### Update
+
+- class, kernel, legacy, message "__construct" #98 Nobuhiro YASUTOMI aka nbuy
+- Catalog english : install, legacy, profile, stdCache, user
+- xelfinder version 2.50 by Naoki Sawada aka nao-pon
+
 ## [unreleased] - 2019-10-07.
 
 ### Added
@@ -20,7 +45,7 @@ All notable changes to this project will be documented in this file.
 
 - Numeric value in install/class/settingmanager.php
 - Legacy - Module Information #99
-- MySQL 5.7.+ Strict Mode #97
+- MySQL 5.7.+ Strict Mode #97 by Kilica
 
 ### Update
 
