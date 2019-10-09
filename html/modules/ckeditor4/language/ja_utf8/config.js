@@ -1,7 +1,7 @@
 /*
 $Id: config.js ver0.04 2011/5/21 11:56:00 domifara Exp $
 Copyright (c) 2003-2009, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
+For licensing, see LICENSE.html or https://ckeditor.com/license
 */
 
 CKEDITOR.editorConfig = function( config )

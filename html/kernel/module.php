@@ -3,7 +3,7 @@
 //	------------------------------------------------------------------------ //
 //				  XOOPS - PHP Content Management System 					 //
 //					  Copyright (c) 2000 XOOPS.org							 //
-//						 <http://www.xoops.org/>							 //
+//						 <https://www.xoops.org/>							 //
 //	------------------------------------------------------------------------ //
 //	This program is free software; you can redistribute it and/or modify	 //
 //	it under the terms of the GNU General Public License as published by	 //
@@ -25,7 +25,7 @@
 //	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //	------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu) 										 //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://xoopscube.jp/ //
 // Project: The XOOPS Project												 //
 // ------------------------------------------------------------------------- //
 
@@ -55,9 +55,9 @@ class XoopsModule extends XoopsObject
     /**
      * Constructor
      */
-    public function XoopsModule()
+    public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         static $initVars;
         if (isset($initVars)) {
             $this->vars = $initVars;
@@ -94,7 +94,7 @@ class XoopsModule extends XoopsObject
             $this->loadInfo($dirname, $verbose);
         }
         $this->setVar('name', $this->modinfo['name'], true);
-        $this->setVar('version', Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version']));
+        $this->setVar('version', Legacy_Utils::convertVersionFromModinfoToInt($this->modinfo['version'])); // TODO semver
         $this->setVar('dirname', $this->modinfo['dirname'], true);
         $trustDirname = isset($this->modinfo['trust_dirname']) ? $this->modinfo['trust_dirname'] : null;
         $this->setVar('trust_dirname', $trustDirname, true);
@@ -312,7 +312,7 @@ class XoopsModule extends XoopsObject
     public function hasNeedUpdate()
     {
         $info =& $this->getInfo();
-        return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version']));
+        return ($this->getVar('version') < Legacy_Utils::convertVersionFromModinfoToInt($info['version'])); // TODO semver
     }
     
     /**#@+

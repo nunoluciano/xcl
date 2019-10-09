@@ -1,6 +1,6 @@
 <?php
 /**
- * @license http://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 3
+ * @license https://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 3
  * @author Marijuana
  */
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -27,7 +27,7 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
   
     public function __construct(&$db)
     {
-        parent::XoopsObjectGenericHandler($db);
+        parent::__construct($db);
     }
   
     public function getOutboxCount($uid)

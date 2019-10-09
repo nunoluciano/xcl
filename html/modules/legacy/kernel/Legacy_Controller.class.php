@@ -1021,7 +1021,8 @@ class Legacy_Controller extends XCube_Controller
 
             if (is_object($this->mRoot->mContext->mXoopsUser)) {
                 // If the current user doesn't bring to any groups, kick out him for XCL's security.
-                $t_groups =& $this->mRoot->mContext->mXoopsUser->getGroups();
+                // !Fix TODO : Strict Standards: Only variables should be passed by reference - php error
+                $t_groups = $this->mRoot->mContext->mXoopsUser->getGroups();
                 if (!is_array($t_groups)) {
                     // exception
                     $this->logout();
@@ -1045,7 +1046,7 @@ class Legacy_Controller extends XCube_Controller
                 $url = XOOPS_URL;
                 if (!empty($_POST['xoops_redirect']) && !strpos(xoops_getrequest('xoops_redirect'), 'register')) {
                     $parsed = parse_url(XOOPS_URL);
-                    $url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'http://';
+                    $url = isset($parsed['scheme']) ? $parsed['scheme'].'://' : 'https://';
                     
                     if (isset($parsed['host'])) {
                         $url .= isset($parsed['port']) ? $parsed['host'] . ':' . $parsed['port'] . '/'.ltrim(trim(xoops_getrequest('xoops_redirect')), '/') : $parsed['host'] . '/'. ltrim(trim(xoops_getrequest('xoops_redirect')), '/');

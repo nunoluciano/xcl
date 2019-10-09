@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://jp.xoops.org/ //
+// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -46,7 +46,7 @@ class xoopscomments extends XoopsObject
     {
         $this->ctable = $ctable;
         $this->db =& Database::getInstance();
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('comment_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('item_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('order', XOBJ_DTYPE_INT, null, false);
@@ -290,7 +290,7 @@ class xoopscomments extends XoopsObject
                 $www_image = "";
             }
             if ($poster->getVar("user_icq") != "") {
-                $icq_image = "<a href='http://wwp.icq.com/scripts/search.dll?to=".$poster->getVar("user_icq", "E")."'><img src='".XOOPS_URL."/images/icons/icq_add.gif' alt='"._ADD."' /></a>";
+                $icq_image = "<a href='https://wwp.icq.com/scripts/search.dll?to=".$poster->getVar("user_icq", "E")."'><img src='".XOOPS_URL."/images/icons/icq_add.gif' alt='"._ADD."' /></a>";
             } else {
                 $icq_image = "";
             }
@@ -300,7 +300,7 @@ class xoopscomments extends XoopsObject
                 $aim_image = "";
             }
             if ($poster->getVar("user_yim") != "") {
-                $yim_image = "<a href='http://edit.yahoo.com/config/send_webmesg?.target=".$poster->getVar("user_yim", "E")."&amp;.src=pg'><img src='".XOOPS_URL."/images/icons/yim.gif' alt='yim' /></a>";
+                $yim_image = "<a href='https://edit.yahoo.com/config/send_webmesg?.target=".$poster->getVar("user_yim", "E")."&amp;.src=pg'><img src='".XOOPS_URL."/images/icons/yim.gif' alt='yim' /></a>";
             } else {
                 $yim_image = "";
             }

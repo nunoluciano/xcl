@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //                         mylangadmin.php (altsys)                          //
 //                    - XOOPS language constants admin -                     //
-//                       GIJOE <http://www.peak.ne.jp/>                      //
+//                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
 require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;

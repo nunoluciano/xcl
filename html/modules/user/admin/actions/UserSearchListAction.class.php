@@ -12,6 +12,7 @@ require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
 require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchFilterForm.class.php";
 require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchListForm.class.php";
 
+//!Fix WARNING: Declaration of User_UserSearchListAction::prepare(&$controller, &$xoopsUser) should be compatible with User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
 class User_UserSearchListAction extends User_AbstractListAction
 {
     public $mUserObjects = array();
@@ -19,7 +20,8 @@ class User_UserSearchListAction extends User_AbstractListAction
     public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
     public $mExtraURL = "";
 
-    public function prepare(&$controller, &$xoopsUser)
+    // !Fix public function prepare(&$controller, &$xoopsUser)
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_UserSearchListForm();
         $this->mActionForm->prepare();
@@ -199,8 +201,8 @@ class User_UserSearchListAction extends User_AbstractListAction
         }
         return $extraurl;
     }
-    
-    public function renderOtherUrlControl(&$buf, $params)
+    // !Fix Public static function
+    public static function renderOtherUrlControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
@@ -225,8 +227,8 @@ class User_UserSearchListAction extends User_AbstractListAction
             }
         }
     }
-
-    public function renderHiddenControl(&$buf, $params)
+    // !Fix Public static function
+    public static function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];

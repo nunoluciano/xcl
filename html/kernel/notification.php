@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,8 +25,8 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.xoops.org/ http://xoopscube.jp/  http://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (http://www.xoops.org/)                        //
+// URL: https://www.xoops.org/ https://xoopscube.jp/  https://www.myweb.ne.jp/  //
+// Project: The XOOPS Project (https://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -63,7 +63,7 @@ class XoopsNotification extends XoopsObject
      **/
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('not_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('not_modid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('not_category', XOBJ_DTYPE_TXTBOX, null, false, 30);

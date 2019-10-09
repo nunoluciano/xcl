@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -40,8 +40,8 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
 
     // XOOPS Virtual Path (URL)
     // Virtual path to your main XOOPS directory WITHOUT trailing slash
-    // Example: define('XOOPS_URL', 'http://url_to_xoops_directory');
-    define('XOOPS_URL', 'http://');
+    // Example: define('XOOPS_URL', 'https://url_to_xoops_directory');
+    define('XOOPS_URL', 'https://');
 
     // Database
     // Choose the database to be used

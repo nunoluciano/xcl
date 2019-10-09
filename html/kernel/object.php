@@ -3,7 +3,7 @@
 //	------------------------------------------------------------------------ //
 //				  XOOPS - PHP Content Management System 					 //
 //					  Copyright (c) 2000 XOOPS.org							 //
-//						 <http://www.xoops.org/>							 //
+//						 <https://www.xoops.org/>							 //
 //	------------------------------------------------------------------------ //
 //	This program is free software; you can redistribute it and/or modify	 //
 //	it under the terms of the GNU General Public License as published by	 //
@@ -25,7 +25,7 @@
 //	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //	------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu) 										 //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://xoopscube.jp/ //
 // Project: The XOOPS Project												 //
 // ------------------------------------------------------------------------- //
 
@@ -173,7 +173,7 @@ class XoopsObject extends AbstractXoopsObject
     * normally, this is called from child classes only
     * @access public
     */
-    public function XoopsObject()
+    public function __construct()
     {
     }
 
@@ -502,11 +502,11 @@ class XoopsObject extends AbstractXoopsObject
                 case XOBJ_DTYPE_TXTBOX:
                     if ($v['required'] && $cleanv != '0' && $cleanv == '') {
                         $this->setErrors("$k is required.");
-                        continue;
+                        break;
                     }
                     if (isset($v['maxlength']) && strlen($cleanv) > (int)$v['maxlength']) {
                         $this->setErrors("$k must be shorter than ".(int)$v['maxlength']." characters.");
-                        continue;
+                        break;
                     }
                     if (!$v['not_gpc']) {
                         $cleanv = $ts->stripSlashesGPC($ts->censorString($cleanv));
@@ -517,7 +517,7 @@ class XoopsObject extends AbstractXoopsObject
                 case XOBJ_DTYPE_TXTAREA:
                     if ($v['required'] && $cleanv != '0' && $cleanv == '') {
                         $this->setErrors("$k is required.");
-                        continue;
+                        break;
                     }
                     if (!$v['not_gpc']) {
                         $cleanv = $ts->stripSlashesGPC($ts->censorString($cleanv));
@@ -548,11 +548,11 @@ class XoopsObject extends AbstractXoopsObject
                 case XOBJ_DTYPE_EMAIL:
                     if ($v['required'] && $cleanv == '') {
                         $this->setErrors("$k is required.");
-                        continue;
+                        break;
                     }
                     if ($cleanv != '' && !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $cleanv)) {
                         $this->setErrors("Invalid Email");
-                        continue;
+                        break;
                     }
                     if (!$v['not_gpc']) {
                         $cleanv = $ts->stripSlashesGPC($cleanv);
@@ -561,10 +561,10 @@ class XoopsObject extends AbstractXoopsObject
                 case XOBJ_DTYPE_URL:
                     if ($v['required'] && $cleanv == '') {
                         $this->setErrors("$k is required.");
-                        continue;
+                        break;
                     }
                     if ($cleanv != '' && !preg_match("/^http[s]*:\/\//i", $cleanv)) {
-                        $cleanv = 'http://' . $cleanv;
+                        $cleanv = 'https://' . $cleanv;
                     }
                     if (!$v['not_gpc']) {
                         $cleanv =& $ts->stripSlashesGPC($cleanv);
@@ -705,7 +705,7 @@ class XoopsObjectHandler
      * @param object $db reference to the {@link XoopsDatabase} object
      * @access protected
      */
-    public function XoopsObjectHandler(&$db)
+    public function __construct(&$db)
     {
         $this->db =& $db;
     }

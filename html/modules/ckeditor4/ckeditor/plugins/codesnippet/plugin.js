@@ -419,7 +419,7 @@
 
 /**
  * A CSS class of the `<code>` element used internally for styling
- * (by default [highlight.js](http://highlightjs.org) themes, see
+ * (by default [highlight.js](https://highlightjs.org) themes, see
  * {@link CKEDITOR.config#codeSnippet_theme config.codeSnippet_theme}),
  * which means that it is **not present** in the editor output data.
  *
@@ -427,7 +427,7 @@
  *		config.codeSnippet_codeClass = 'myCustomClass';
  *
  * **Note**: The class might need to be changed when you are using a custom
- * highlighter (the default is [highlight.js](http://highlightjs.org)).
+ * highlighter (the default is [highlight.js](https://highlightjs.org)).
  * See {@link CKEDITOR.plugins.codesnippet.highlighter} to read more.
  *
  * Read more in the {@glink guide/dev_codesnippet documentation}
@@ -443,7 +443,7 @@ CKEDITOR.config.codeSnippet_codeClass = 'hljs';
  * Restricts languages available in the "Code Snippet" dialog window.
  * An empty value is always added to the list.
  *
- * **Note**: If using a custom highlighter library (the default is [highlight.js](http://highlightjs.org)),
+ * **Note**: If using a custom highlighter library (the default is [highlight.js](https://highlightjs.org)),
  * you may need to refer to external documentation to set `config.codeSnippet_languages` properly.
  *
  * Read more in the [documentation](#!/guide/dev_codesnippet-section-changing-supported-languages)
@@ -461,10 +461,10 @@ CKEDITOR.config.codeSnippet_codeClass = 'hljs';
  */
 
 /**
- * A theme used to render code snippets. See [available themes](http://highlightjs.org/static/test.html).
+ * A theme used to render code snippets. See [available themes](https://highlightjs.org/static/test.html).
  *
  * **Note**: This will only work with the default highlighter
- * ([highlight.js](http://highlightjs.org/static/test.html)).
+ * ([highlight.js](https://highlightjs.org/static/test.html)).
  *
  * Read more in the [documentation](#!/guide/dev_codesnippet-section-changing-highlighter-theme)
  * and see the [SDK sample](https://sdk.ckeditor.com/samples/codesnippet.html).

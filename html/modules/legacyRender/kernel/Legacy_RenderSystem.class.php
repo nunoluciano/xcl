@@ -400,7 +400,15 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $vars['xoops_meta_rating'] = $textFilter->toShow($headerScript->getMeta('rating') ? $headerScript->getMeta('rating') : $configs['meta_rating']);
         $vars['xoops_meta_author'] = $textFilter->toShow($headerScript->getMeta('author') ? $headerScript->getMeta('author') : $configs['meta_author']);
         $vars['xoops_meta_copyright'] = $textFilter->toShow($headerScript->getMeta('copyright') ? $headerScript->getMeta('copyright') : $configs['meta_copyright']);
-        $vars['xoops_footer'] = $configs['footer']; // footer may be raw HTML text.
+        // Extra Meta Webmaster Tools
+        $vars['xoops_meta_bing'] = $textFilter->toShow($headerScript->getMeta('msvalidate.01') ? $headerScript->getMeta('msvalidate.01') : $configs['meta_bing']);
+        $vars['xoops_meta_google'] = $textFilter->toShow($headerScript->getMeta('google-site-verification') ? $headerScript->getMeta('google-site-verification') : $configs['meta_google']);
+        $vars['xoops_meta_yandex'] = $textFilter->toShow($headerScript->getMeta('yandex-verification') ? $headerScript->getMeta('yandex-verification') : $configs['meta_yandex']);
+        // Extra Meta App ID
+        $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ? $headerScript->getMeta('fb:app_id') : $configs['meta_fb_app']);
+        $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ? $headerScript->getMeta('twitter:site') : $configs['meta_twitter_site']);
+        // footer may be raw HTML text.
+        $vars['xoops_footer'] = $configs['footer']; 
 
         //
         // If this site has the setting of banner.
@@ -482,7 +490,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         }
     }
     //
-    // There must not be the following functions here!
+    // These deprecated functionsmust should not be  here!
     //
     //
 
@@ -516,7 +524,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $this->_renderHeader($closeHead);
     }
     
-    // TODO never direct putput
+    // TODO never output directly
     /**
      * @deprecated
      */
@@ -524,9 +532,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         global $xoopsConfig, $xoopsTheme, $xoopsConfigMetaFooter;
 
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
 
-        echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" lang="'._LANGCODE.'">
+        echo '<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" lang="'._LANGCODE.'">
 		<head>
 		<meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" />
 		<meta http-equiv="content-language" content="'._LANGCODE.'" />

@@ -92,8 +92,8 @@ class User_MailjobEditAction extends User_AbstractEditAction
     {
         $controller->executeForward("./index.php?action=MailjobList");
     }
-    
-    public function renderHiddenControl(&$buf, $params)
+    // !Fix public static function
+    public static function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];

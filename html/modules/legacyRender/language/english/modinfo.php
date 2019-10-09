@@ -9,7 +9,7 @@ define('_MI_LEGACYRENDER_CONF_BANNERS', "Activate banner ads?");
 define('_MI_LEGACYRENDER_NAME', "Legacy Renderer");
 define('_MI_LEGACYRENDER_NAME_DESC', "This rendering engine (renderer) is compatibile with XOOPS 2.0.9 and XOOPS JP 2.0.x. You can use XOOPS2 Themes with this system.");
 define('_MI_LR_FOOTER', "Footer");
-define('_MI_LR_FOOTER_DESC', "Be sure to type full links with the path starting from http://, otherwise the links will not work correctly in modules pages.");
+define('_MI_LR_FOOTER_DESC', "Be sure to type full links with the path starting from https://, otherwise the links will not work correctly in modules pages.");
 define('_MI_LR_META_AUTHOR', "Meta Author");
 define('_MI_LR_META_AUTHOR_DESC', "The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.");
 define('_MI_LR_META_COPYRIGHT', "Meta Copyright");

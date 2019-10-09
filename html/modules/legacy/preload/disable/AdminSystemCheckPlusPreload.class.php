@@ -1,7 +1,7 @@
 <?php
 /**
  AdminSystemCheckPlus Preload version 1.0 by wanikoo
- ( http://www.wanisys.net/ )
+ ( https://www.wanisys.net/ )
 */
 
 if (!defined('XOOPS_ROOT_PATH')) {

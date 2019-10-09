@@ -2,7 +2,7 @@
 /**
  * PHPMailer language file.
  * Japanese Version
- * By Mitsuhiro Yoshida - http://mitstek.com/
+ * By Mitsuhiro Yoshida - https://mitstek.com/
  * This file is written in EUC-JP.
  */
 

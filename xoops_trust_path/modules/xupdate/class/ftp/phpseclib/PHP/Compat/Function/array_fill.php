@@ -7,9 +7,9 @@
  *
  * @category    PHP
  * @package     PHP_Compat
- * @license     http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license     https://www.opensource.org/licenses/mit-license.html  MIT License
  * @copyright   2004-2007 Aidan Lister <aidan@php.net>, Arpad Ray <arpad@php.net>
- * @link        http://php.net/function.array_fill
+ * @link        https://php.net/function.array_fill
  * @author      Jim Wigginton <terrafrost@php.net>
  * @version     $Revision: 1.1 $
  * @since       PHP 4.2.0

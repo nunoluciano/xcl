@@ -23,7 +23,7 @@
  *
  * Examples: {html_image file="/images/masthead.gif"}
  * Output:   <img src="/images/masthead.gif" width=400 height=23>
- * @link http://smarty.php.net/manual/en/language.function.html.image.php {html_image}
+ * @link https://smarty.php.net/manual/en/language.function.html.image.php {html_image}
  *      (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
  * @author credits to Duda <duda@big.hu> - wrote first image function

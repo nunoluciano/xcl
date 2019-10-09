@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -134,7 +134,9 @@ function xoops_module_get_admin_menu()
         $tree[$cnt][2] = "\".XOOPS_URL.\"/modules/".$mod->getVar('dirname')."/".trim($mod->getInfo('adminindex'));
         $tree[$cnt][3] = "";
         $tree[$cnt][4] = $mod->getVar('mid');
-        $tree[$cnt][6] = "<b>\"._VERSION.\":</b> ".round($mod->getVar('version')/100, 2)."<br /><b>\"._DESCRIPTION.\":</b> ".$mod->getInfo('description');
+        // !Fix TODO replace round a float by specifc version 0.0.0
+        //$tree[$cnt][6] = "<b>\"._VERSION.\":</b> ".round($mod->getVar('version')/100, 2)."<br /><b>\"._DESCRIPTION.\":</b> ".$mod->getInfo('description');
+        $tree[$cnt][6] = "<b>\"._VERSION.\":</b> ".$mod->getVar('version')."<br /><b>\"._DESCRIPTION.\":</b> ".$mod->getInfo('description');
         $layer_label[$cnt] = "L" . $cnt;
         if ($tree[$cnt][0] > $maxlevel) {
             $maxlevel = $tree[$cnt][0];

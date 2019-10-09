@@ -154,7 +154,7 @@ class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
 
     public function __construct(&$module)
     {
-        // ! call parent::__construct() instead of parent::Controller()
+        // !Fix call parent::__construct() instead of parent::Controller()
         parent::__construct($module);       
         //parent::XCube_ActionForm();
         $this->mKeyValue = $module->get('mid');

@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,7 +25,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 // Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: http://www.myweb.ne.jp/, http://www.xoops.org/, http://xoopscube.jp/ //
+// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://xoopscube.jp/ //
 // Project: The XOOPS Project                                                //
 // ------------------------------------------------------------------------- //
 
@@ -37,7 +37,7 @@ class XoopsImagesetimg extends XoopsObject
 {
     public function XoopsImagesetimg()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('imgsetimg_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('imgsetimg_file', XOBJ_DTYPE_OTHER, null, false);
         $this->initVar('imgsetimg_body', XOBJ_DTYPE_SOURCE, null, false);

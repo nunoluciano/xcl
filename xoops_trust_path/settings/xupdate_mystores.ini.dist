@@ -8,5 +8,5 @@ sid = 10000           ; Store ID: It restricts to 10000 or more.
 name = "My Store"     ; Store name
 contents = "module"   ; module or theme
 setting_type = "ini"  ; ini or json
-addon_url = "http://" ; modules ini or json URL
+addon_url = "https://" ; modules ini or json URL
 

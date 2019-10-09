@@ -3,7 +3,7 @@
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -24,9 +24,9 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (http://www.myweb.ne.jp/, http://jp.xoops.org/)        //
-//         Goghs Cheng (http://www.eqiao.com, http://www.devbeez.com/)       //
-// Project: The XOOPS Project (http://www.xoops.org/)                        //
+// Author: Kazumi Ono (https://www.myweb.ne.jp/, https://jp.xoops.org/)        //
+//         Goghs Cheng (https://www.eqiao.com, https://www.devbeez.com/)       //
+// Project: The XOOPS Project (https://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
 
 /**
@@ -76,7 +76,7 @@ class MyTextSanitizer
     *
     * @todo Sofar, this does nuttin' ;-)
     */
-    public function MyTextSanitizer()
+    public function __construct()
     {
         $this->mMakeClickablePostFilter =new XCube_Delegate();
         $this->mMakeClickablePostFilter->register('MyTextSanitizer.MakeClickablePostFilter');

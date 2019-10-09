@@ -6,7 +6,7 @@
  * Module   : Legacy
  * Author   : Nuno Luciano aka Gigamaster
  * Credits  : Original AdminSystemCheckPlus Preload
- *            by wanikoo ( http://www.wanisys.net/ )
+ *            by wanikoo ( https://www.wanisys.net/ )
 */
 
 if (!defined('XOOPS_ROOT_PATH')) {
