@@ -34,7 +34,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     public function __construct(&$db)
     // public function LegacyNon_installation_moduleHandler(&$db)
     {
-        parent::XoopsObjectHandler($db);
+        parent::__construct($db);
         $this->_setupObjects();
     }
 

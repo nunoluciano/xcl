@@ -103,7 +103,7 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
     public function __construct(&$db)
     // public function LegacyCommentHandler(&$db)
     {
-        parent::XoopsObjectGenericHandler($db);
+        parent::__construct($db);
         
         $this->mUpdateSuccess =new XCube_Delegate();
         $this->mDeleteSuccess =new XCube_Delegate();
