@@ -52,7 +52,7 @@ class XoopsGroup extends XoopsObject
             $this->vars = $initVars;
             return;
         }
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('groupid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('name', XOBJ_DTYPE_TXTBOX, null, true, 100);
         $this->initVar('description', XOBJ_DTYPE_TXTAREA, null, false);

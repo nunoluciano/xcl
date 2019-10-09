@@ -70,7 +70,7 @@ class XoopsGroupPerm extends XoopsObject
             $this->vars = $initVars;
             return;
         }
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar('gperm_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('gperm_groupid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('gperm_itemid', XOBJ_DTYPE_INT, null, false);
