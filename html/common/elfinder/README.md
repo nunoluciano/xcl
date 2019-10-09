@@ -1,7 +1,7 @@
 elFinder
 ========
 
-**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.47 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
+**WARNING: IF YOU HAVE OLDER (IN PARTICULAR 2.1.48 OR EARLIER) VERSIONS OF ELFINDER ON PUBLIC SERVERS, IT MAY CAUSE SERIOUS DAMAGE TO YOUR SERVER AND VISITED USER. YOU SHOULD UPDATE TO THE LATEST VERSION OR REMOVE IT FROM THE SERVER.**
 
 [![elFinder file manager for the Web](https://studio-42.github.io/elFinder/images/elFinderScr.png "elFinder file manager for the Web")](https://studio-42.github.io/elFinder/)
 
@@ -124,7 +124,7 @@ Installation
 Downloads
 ------------
 **Stable releases** ([Changelog](https://github.com/Studio-42/elFinder/blob/master/Changelog))
- + [elFinder 2.1.48](https://github.com/Studio-42/elFinder/archive/2.1.48.zip)
+ + [elFinder 2.1.50](https://github.com/Studio-42/elFinder/archive/2.1.50.zip)
  + [elFinder 2.0.9](https://github.com/Studio-42/elFinder/archive/2.0.9.zip) (deprecated)
 
 **Nightly builds**
@@ -149,7 +149,7 @@ Check out the [wiki](https://github.com/studio-42/elFinder/wiki#howtos) for indi
 ### The procedure of language files created or modified?
 
 You can create or modify the language file to use translation tool. Please refer to the pull request the results to the respective branch.
- * [2.1 branch translation tool](https://studio-42.github.io/elFinder/tools/langman/#2.1)
+ * [2.1 branch translation tool](http://studio-42.github.io/elFinder/tools/langman/#2.1)
 
 
 3rd party connectors
@@ -185,8 +185,8 @@ Hint: [How to load CSS with RequireJS?](https://github.com/Studio-42/elFinder/wi
  * [Tiki Wiki](https://doc.tiki.org/elFinder)
  * [WordPress](https://wordpress.org/plugins/file-manager/)
  * [XOOPS](https://github.com/nao-pon/xelfinder)
- * [Yii](https://www.yiiframework.com/extension/elfinder/)
- * [Zenphoto](https://www.zenphoto.org/news/elfinder/)
+ * [Yii](http://www.yiiframework.com/extension/elfinder/)
+ * [Zenphoto](http://www.zenphoto.org/news/elfinder/)
 
 Support
 -------

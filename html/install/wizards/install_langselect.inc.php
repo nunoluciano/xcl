@@ -8,10 +8,10 @@
  *
  */
     if (!defined('_INSTALL_L128')) {
-        define('_INSTALL_L128', 'Choose language to be used for the installation process');
+        define('_INSTALL_L128', 'Select a language for the installation process');
     }
     $langarr = getDirList('./language/');
-    $php54 = (version_compare(PHP_VERSION, '5.4.0') >= 0);
+    $php54 = (version_compare(PHP_VERSION, '5.5.0') >= 0);
     foreach ($langarr as $lang) {
         if ($php54 && $lang !== 'english' && substr($lang, -5) !== '_utf8') {
             continue;

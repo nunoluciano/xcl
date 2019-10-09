@@ -64,5 +64,5 @@
     $result = $mm->doRewrite();
     $wizard->assign('mm_reports', $mm->report());
 
-    setcookie('xoops_session', '', time() - 3600);
+    setcookie('xcl_wap_session', '', time() - 3600);
     $wizard->render('install_insertData.tpl.php');
