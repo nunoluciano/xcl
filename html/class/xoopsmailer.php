@@ -127,7 +127,9 @@ class xoopsmailer
     public $templatedir;
 
     // protected
-    public $charSet = 'iso-8859-1';
+    // replace iso by utf-8
+    // public $charSet = 'iso-8859-1';
+    public $charSet = 'UTF-8';
 
     // protected
     public $encoding = '8bit';
@@ -152,8 +154,9 @@ class xoopsmailer
         // Change below to \r\n if you have problem sending mail
         'LE'           => "\n"
     );
-
-    public function XoopsMailer()
+// !Fix PHP7 deprecated contructor
+    //public function XoopsMailer()
+    public function __construct()
     {
         $this->multimailer = new XoopsMultiMailer();
         $this->reset();
