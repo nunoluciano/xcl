@@ -1020,7 +1020,7 @@ class Legacy_Controller extends XCube_Controller
             $this->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
 
             if (is_object($this->mRoot->mContext->mXoopsUser)) {
-                // If the current user doesn't bring to any groups, kick out him for XCL's security.
+                // If the current user doesn't belong to any groups, kick out him for XCL's security.
                 // !Fix TODO : Strict Standards: Only variables should be passed by reference - php error
                 $t_groups = $this->mRoot->mContext->mXoopsUser->getGroups();
                 if (!is_array($t_groups)) {

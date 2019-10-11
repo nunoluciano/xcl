@@ -20,5 +20,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 function xoops_session_regenerate()
 {
     $root =& XCube_Root::getSingleton();
-    $root->mSession->regenerate();
+    if (!isset($_SESSION)) {
+      $root->mSession->regenerate();
+    }
 }

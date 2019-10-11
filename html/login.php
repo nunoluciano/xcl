@@ -39,7 +39,8 @@ $header .= '
 
 if ($op == 'dologin') {
     $member_handler =& xoops_gethandler('member');
-    $myts =& MyTextsanitizer::getInstance();
+    $myts = new MyTextsanitizer();
+    $myts->getInstance();
     $user =& $member_handler->loginUser(addslashes($myts->stripSlashesGPC($username)), $myts->stripSlashesGPC($password));
     if (is_object($user)) {
         if (0 == $user->getVar('level')) {
@@ -63,6 +64,7 @@ if ($op == 'dologin') {
         if (!$member_handler->insertUser($user)) {
         }
         require_once XOOPS_ROOT_PATH . '/include/session.php';
+
         xoops_session_regenerate();
         $_SESSION = array();
         $_SESSION['xoopsUserId'] = $user->getVar('uid');

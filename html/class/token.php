@@ -91,8 +91,10 @@ class XoopsToken
      */
     public function _generateToken()
     {
-        srand(microtime()*100000);
-        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(), true));
+        // !Fix Warning: A non-numeric value encountered
+        //srand(microtime()*100000);
+        srand ( (int) microtime() * 10000 );
+        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(), true ));
     }
 
     /**
