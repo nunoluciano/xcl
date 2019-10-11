@@ -284,13 +284,8 @@ class FormProcessByHtml
 
 	function stripMQGPC( $data )
 	{
-		if( ! get_magic_quotes_gpc() ) return $data ;
-	
-		if( is_array( $data ) ) {
-			return array_map( array( $this , 'stripMQGPC' ) , $data ) ;
-		} else {
-			return stripslashes( $data ) ;
-		}
+		//trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
+		return $data ;
 	}
 
 	function convertEncodingToIE( $string , $input_encoding )
