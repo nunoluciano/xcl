@@ -317,8 +317,13 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
  * This class publish a token of the different same name of a serial number
  * for the tab browser.
  */
-class XoopsMultiTokenHandler extends XoopsTokenHandler
+class XoopsMultiTokenHandler
 {
+    /**
+     * @access private
+     */
+    public $_prefix ="";
+
     public function &create($name, $timeout=XOOPS_TOKEN_TIMEOUT)
     {
         $token =new XoopsToken($name, $timeout);
