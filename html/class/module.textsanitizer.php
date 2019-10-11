@@ -214,17 +214,14 @@ class MyTextSanitizer
     }
 
     /**
-     * Add slashes to the text if magic_quotes_gpc is turned off.
+     * Add slashes to the text.
      *
      * @param   string  $text
      * @return  string
      **/
     public function &addSlashes($text)
     {
-        if (!get_magic_quotes_gpc()) {
-            $text = addslashes($text);
-        }
-        return $text;
+        return addslashes($text);
     }
     /*
     * if magic_quotes_gpc is on, stirip back slashes
@@ -235,9 +232,7 @@ class MyTextSanitizer
     */
     public function &stripSlashesGPC($text)
     {
-        if (get_magic_quotes_gpc()) {
-            $text = stripslashes($text);
-        }
+        //trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
         return $text;
     }
 
