@@ -21,7 +21,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     public $mExtraURL = "";
 
     // !Fix public function prepare(&$controller, &$xoopsUser)
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
+    public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
     {
         $this->mActionForm =new User_UserSearchListForm();
         $this->mActionForm->prepare();

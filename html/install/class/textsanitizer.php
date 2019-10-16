@@ -29,9 +29,6 @@
 // Project: The XOOPS Project (http://www.xoops.org/)                        //
 // ------------------------------------------------------------------------- //
 // This is subset and modified version of module.textsanitizer.php
-if (get_magic_quotes_runtime()) {
-    set_magic_quotes_runtime(0);
-}
 
 class textsanitizer
 {
@@ -72,9 +69,6 @@ class textsanitizer
             $ret = addslashes($text);
             return $ret;
         }
-        if (!get_magic_quotes_gpc()) {
-            $text = addslashes($text);
-        }
         return $text;
     }
 
@@ -83,9 +77,7 @@ class textsanitizer
     */
     public function &stripSlashesGPC($text)
     {
-        if (get_magic_quotes_gpc()) {
-            $text = stripslashes($text);
-        }
+        //trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
         return $text;
     }
 
@@ -222,8 +214,6 @@ class textsanitizer
 
     public function makeTareaData4PreviewInForm($text)
     {
-        //if magic_quotes_gpc is on, do stipslashes
-        $text = $this->stripSlashesGPC($text);
         return htmlSpecialChars($text, ENT_QUOTES);
     }
 
@@ -239,9 +229,7 @@ class textsanitizer
 
     public function &oopsStripSlashesRT($text)
     {
-        if (get_magic_quotes_runtime()) {
-            $text =& stripslashes($text);
-        }
+        //trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
         return $text;
     }
 

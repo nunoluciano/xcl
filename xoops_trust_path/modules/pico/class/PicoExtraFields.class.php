@@ -188,12 +188,8 @@ class PicoExtraFields {
 
 	function stripSlashesGPC( $data )
 	{
-		if( ! get_magic_quotes_gpc() ) return $data ;
-		if( is_array( $data ) ) {
-			return array_map( array( $this , 'stripSlashesGPC' ) , $data ) ;
-		} else {
-			return stripslashes( $data ) ;
-		}
+		//trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
+		return $data ;
 	}
 
 }

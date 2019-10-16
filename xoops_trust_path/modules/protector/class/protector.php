@@ -513,7 +513,6 @@ class protector
             if (strlen($val) < 6) {
                 return;
             }
-            $val = get_magic_quotes_gpc() ? stripslashes($val) : $val;
             foreach ($this->_dblayertrap_doubtful_needles as $needle) {
                 if (stristr($val, $needle)) {
                     $this->_dblayertrap_doubtfuls[] = $val;
