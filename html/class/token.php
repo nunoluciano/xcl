@@ -91,8 +91,10 @@ class XoopsToken
      */
     public function _generateToken()
     {
-        srand(microtime()*100000);
-        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(), true));
+        // !Fix Warning: A non-numeric value encountered
+        //srand(microtime()*100000);
+        srand ( (int) microtime() * 10000 );
+        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(), true ));
     }
 
     /**
@@ -315,8 +317,13 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
  * This class publish a token of the different same name of a serial number
  * for the tab browser.
  */
-class XoopsMultiTokenHandler extends XoopsTokenHandler
+class XoopsMultiTokenHandler
 {
+    /**
+     * @access private
+     */
+    public $_prefix ="";
+
     public function &create($name, $timeout=XOOPS_TOKEN_TIMEOUT)
     {
         $token =new XoopsToken($name, $timeout);

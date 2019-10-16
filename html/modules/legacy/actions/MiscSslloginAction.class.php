@@ -35,7 +35,9 @@ class Legacy_MiscSslloginAction extends Legacy_Action
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
     
         if ($moduleConfigUser['use_ssl'] == 1 && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
-            session_id($_POST[$moduleConfigUser['sslpost_name']]);
+            if (!isset($_SESSION)) {
+                session_id($_POST[$moduleConfigUser['sslpost_name']]);
+              }
         }
     
         $render->setTemplateName("legacy_misc_ssllogin.html");

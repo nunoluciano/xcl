@@ -277,7 +277,9 @@ class User_LegacypageFunctions
         //
         // Regist to session
         //
-        $root->mSession->regenerate();
+        if (!isset($_SESSION)) {
+            $root->mSession->regenerate();
+        }
         $_SESSION = array();
         $_SESSION['xoopsUserId'] = $xoopsUser->get('uid');
         $_SESSION['xoopsUserGroups'] = $xoopsUser->getGroups();
