@@ -6,7 +6,84 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
 
-## [unreleased] - 2019-10-09.
+## [unreleased] 2019-10-19
+
+### Added
+
+- Accessibility Help #145
+- Accessibility Checker #145
+- Ajax Data Loading 
+- Build-config #146
+- Code Snippets
+- Content Templates
+- Toolbar Editor 
+- oEmbed Media #147
+
+### Changed
+
+- ThemePreload comments translated from Ja to En
+- MyConfig comments translated from Ja to En
+- D3module changed _TRUST_PATH by _LIBRARY_PATH HTMLPurifier #131
+- D3forum version
+- Pico changed _TRUST_PATH by _LIBRARY_PATH #131
+- Protector filters changed _TRUST_PATH by _LIBRARY_PATH #131
+- Protector README
+- Protector version ref 2.3.0
+- D3Forum readme (merged)
+- Pico changed english catalog
+- SVG icons and graphics
+- Site_default.ini required and recommended modules
+- X-Update version
+- X-Update stores urls 
+
+### Fixed
+
+- Altsys gtickets NOTICE: Only variables should be passed by reference #136
+- Altsys mygrouppermform NOTICE: Only variables should be passed by reference #137
+- Altsys Text_Diff.php calling assert() with a string argument is deprecated #138
+- Altsys Text_Diff.php deprecated constructors #139
+- Class xoopsmultimailer deprecated constructors #140
+- EasyLex_SQLScanner constructor #141
+- Kernel group call to undefined method #130
+- Pico SQL Error Update in include transact_functions #128
+- PicoModelContent #129
+- PicoControllerVoteContent #129
+- PicoControllerUpdateContent #132
+- PicoControllerInsertCategory #129
+- PicoControllerInsertContent #129
+- PicoControllerGetHistory #129
+- PicoControllerDiffHistories #129
+- User RegistMailBuilder deprecated constructors
+- xelFinder session by @nao-pon #102
+
+### Removed
+
+- Module Lecat #143
+- Ckeditor html files
+- Ckeditor skin moono-lisa #151
+- Extra files for localization
+- Protector CHANGES_OLD
+- Protector MEMO_ja
+- Protector README_PL.txt
+- Protector TODO
+- Protector version.txt 
+
+### Update
+
+- Ckeditor v.4.13.0 #144
+- Skin Moono Dark
+- Default Theme 
+- Default Session  
+- Default General Settings #149
+- D3Forum Preferences #150
+- Render Preferences #150
+- Search Options #150
+- User Preferences #150
+- CKEditor Preferences #150
+- Pico Preferences #150
+- xelFinder Preferences #150
+
+## [unreleased] - 2019-10-09
 
 ### Changed
 
@@ -30,7 +107,7 @@ All notable changes to this project will be documented in this file.
 - Catalog english : install, legacy, profile, stdCache, user
 - xelfinder version 2.50 by Naoki Sawada aka nao-pon
 
-## [unreleased] - 2019-10-07.
+## [unreleased] - 2019-10-07
 
 ### Added
 
@@ -52,7 +129,7 @@ All notable changes to this project will be documented in this file.
 - XCL and modules version (legacy,profile,stdCache,user)
 - modules doc/help
 
-## [unreleased] - 2019-09-25.
+## [unreleased] - 2019-09-25
 
 ### Removed
 
@@ -67,7 +144,7 @@ All notable changes to this project will be documented in this file.
 
 - HTML Purifier 4.11.0
 
-## [unreleased] - 2019-04-30.
+## [unreleased] - 2019-04-30
 
 ### Added
 
@@ -75,7 +152,7 @@ All notable changes to this project will be documented in this file.
 - Hack by Ryuji to prevent Legacy_redirect if AdelieDebug
 - Fixes Pico Category
 
-## [unreleased] - 2019-04-18.
+## [unreleased] - 2019-04-18
 
 ### Added
 
@@ -105,7 +182,7 @@ All notable changes to this project will be documented in this file.
 - ckeditor smarty function [#31](https://github.com/xoopscube/xcl/issues/31)
 
 
-## [unreleased] - 2019-04-12.
+## [unreleased] - 2019-04-12
 
 ### Deprecated
 
@@ -121,7 +198,7 @@ All notable changes to this project will be documented in this file.
 - Sync Trust Path
 
 
-## [unreleased] - 2019-02-11.
+## [unreleased] - 2019-02-11
 
 **XCL 2.3.0 Update to PHP7:**
 
