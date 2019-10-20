@@ -2,9 +2,7 @@
 [xlang:en]
 = SUMMARY =
 
-Protector is a module to defend your CMS origined from XOOPS2 from various and malicious attacks.
-
-This module can protect a various kind of attacks like:
+This module can protect a web site from most common Web Application attacks:
 
 - DoS
 - Bad Crawlers (like bots collecting e-mails...)
@@ -14,167 +12,96 @@ This module can protect a various kind of attacks like:
 - Session hi-jacking
 - Null-bytes
 - Directory Traversal
-- Some kind of CSRF (fatal in XOOPS <= 2.0.9.2)
+- Some sort of CSRF
 - Brute Force
 - Camouflaged Image File Uploading (== IE Content-Type XSS)
 - Executable File Uploading Attack
 - XMLRPC's eval() and SQL Injection Attacks
 - SPAMs for comment, trackback etc.
 
-Protector defends you CMS from these attacks, and it records into its log. 
+Protector defends from these attacks, and records the activity into its log. 
 
 Of course, all vulnerablities can't be prevented.
-Be not overconfident, please.
 
-However, I [color=ff0000][b]strongly[/b][/color] recommend installing this module to all XOOPS/ImpressCMS/XCL sites with any versions.
+However, It's recommended to install this module with any version.
 
 
 
 = INSTALL =
 
-First, define XOOPS_TRUST_PATH into mainfile.php if you've never done it yet.
 
-Copy html/modules/protector in the archive into your XOOPS_ROOT_PATH/modules/
-Copy xoops_trust_path/modules/protector in the archive into your XOOPS_TRUST_PATH/modules/
+The XCL install wizard will process the requirements to include in the mainfile.php
 
-Turn permission of XOOPS_TRUST_PATH/modules/protector/configs writable
+and chek the permission to write in _TRUST_PATH/modules/protector/configs
 
-After Protector is installed, edit your mainfile.php like this:
-[code]
-	[color=ff0000]include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;[/color]
-	if (!isset($xoopsOption['nocommon']) [color=0000ff]&& XOOPS_ROOT_PATH != ''[/color] ) {
-		include XOOPS_ROOT_PATH."/include/common.php";
-	}
-	[color=ff0000]include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;[/color]
-[/code]
-Just add two red-colored lines.
-If the blue-colored part is different from your mainfile.php, don't mind it.
-
-Both pre-check and post-check are needed.
-
-An option "DENY by .htaccess" is added on version 2.34.
-If you try this option, set writable XOOPS_ROOT_PATH/.htaccess
-Before installing this, you should compare it to the security risks which .htaccess is writable.
+An option "DENY by .htaccess" was added on a previous version.
+This option requires to set writable _ROOT_PATH/.htaccess
+Before any use of this option, it is recommended to check the security risks if .htaccess is writable.
 
 
-= How to rescue =
+= How to rescue from 'Access denied' =
 
-If you've been banned from Protector, just delete files under XOOPS_TRUST_PATH/modules/protector/configs/
-
-The setting and controller of "rescue password" has been eliminated.
-
-
-= How to install it into XOOPS Cube Legacy 2.1 =
-
-Almost the same as installing into XOOPS 2.0.x.
-There is just a different with the patching point in mainfile.php.
-Refer this.
-[code]
-    if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
-        include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
-        @include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';
-        if (!isset($xoopsOption['nocommon']) && !defined('_LEGACY_PREVENT_EXEC_COMMON_')) {
-            include XOOPS_ROOT_PATH.'/include/common.php';
-        }
-        include XOOPS_TRUST_PATH.'/modules/protector/include/postcheck.inc.php' ;
-    }
-[/code]
+If Protector redirects with an "Access Denied" error message or a similar, 
+just delete the files from _TRUST_PATH/modules/protector/configs/
 
 
-= How to install it into ImpressCMS =
+= Using a filter-plugin =
 
-You need not patch to mainfile.php.
-Just copy extras/ImpressCMS/preload/protector.php in the archive into your preload/ of ImpressCMS.
+Protector can be extended with filter-plugins in _TRUST_PATH/modules/protector/filters_byconfig/ just by copying them into filters_enabled.
+Since _TRUST_PATH can be shared by multi-sites, it is possible to set a filter enabled for a site but disabled for anoother.
+Turn a filter on for a specific site by adding the name of the filter into Protector's preferences.
 
-I thank vaughan about releasing the preload.
+= Make a filter-plugin =
 
-original usage written by vaughan:
-----------------------------------
-Install the module the same way as any other module.
+Make a filter-plugins to a specific purpose is straightforward.
 
-You do not need to edit mainfile.php when using ImpressCMS, instead locate the ImpressCMS_Extras directory
-inside the protector package, and copy the preload directory to your root ImpressCMS directory, so that your
-ImpressCMS preload folder contains the file protector.php
-
-your root ImpressCMS directory is the directory on your server where mainfile.php is located.
-
-example: htdocs/preload/protector.php
-----------------------------------
-
-
-= UPGRADE from Protector 2.x =
-
-- remove two lines for Protector from your mainfile.php
-- remove all files under XOOPS_ROOT_PATH/modules/protector/ via FTP etc.
-- upload files in the archive (refer INSTALL)
-- do "upgrade" Protector in modulesadmin
-- add two lines for Protector into your mainfile.php
-
-Note: "XOOPS_TRUST_PATH" for 3.0 instead of "XOOPS_ROOT_PATH" for 2.x
-
-
-= Using filter-plugin =
-
-You can try filter-plugins in XOOPS_TRUST_PATH/modules/protector/filters_byconfig/ just by copying them into filters_enabled.
-Since XOOPS_TRUST_PATH can be shared by multi-sites, you may want to set a filter enabled for a site but disabled for the other site.
-If you want to turn a filter on for a specific site, input the name of the filter into Protector's preferences.
-Of course, you can make filter-plugins as you like because it is easy to create.
-
-Here is an introduction for filter-plugins in this archive.
+A Quick Introduction to Using Filters-plugins
 
 - postcommon_post_deny_by_rbl.php
 an anti-SPAM plugin.
-All of Post from IP registered in RBL will be rejected.
-This plugin can slow the performance of Post, especially chat modules.
+Any Post from a registered IP in RBL will be rejected.
+This plugin can slow the performance when Posting, specifically chat modules.
 
 - postcommon_post_deny_by_httpbl.php
 an anti-SPAM plugin.
-All of Post from IP registered in http:BL will be rejected.
-Before using it, get HTTPBL_KEY from https://www.projecthoneypot.org/ and set it into the filter file.
-define( 'PROTECTOR_HTTPBL_KEY' , '............' ) ;
+Any Post from a registered IP in http:BL will be rejected.
+Before using this filter-plugin, get a HTTPBL_KEY from https://www.projecthoneypot.org/ and add it to the filter file.
+define( 'PROTECTOR_HTTPBL_KEY' , 'My HTTPBL_KEY Here' ) ;
 
 - postcommon_post_need_multibyte.php
 an anti-SPAM plugin.
-Post without multi-byte characters will be rejected.
-This plugin is only for sites of japanese, tchinese, schinese, and korean.
+Any Post without multi-byte characters will be rejected.
+This plugin is mainly for sites in japanese, tchinese, schinese, and korean.
 
 -postcommon_post_htmlpurify4guest.php
 All post data sent by guests will be purified by HTMLPurifier.
-If you allow guests posting HTML, I strongly recommend you to enable it.
+If a module preferences is set to allow guests posting HTML, it is strongly recommend to enable this filter.
 
 -postcommon_register_insert_js_check.php
-This plugin prevents your site from robot's user registering.
-Required JavaScript working on the vistors browser.
+This plugin prevents a site from robot's user registering.
+Requires JavaScript working on the visitors browser.
 
 -bruteforce_overrun_message.php
-Specify a message for visitors tried wrong passwords more than the specified times.
-All plugins named *_message.php specifys the message for rejected accesses.
+Specify a message for visitors that tried wrong passwords more than the specified times.
+All plugins named *_message.php specify a message for Access Denied.
 
 -precommon_bwlimit_errorlog.php
-When band width limitaion works unfortunately, this plugin logs it into Apache's error_log.
+When a site exceeded its bandwidth limit this plugin logs it into Apache's error_log.
 All plugins named *_errorlog.php log some informations into Apaches error_log.
 
 
-= NEW FEATURE SINCE 3.3: DBLayer trapping anti-SQL-Injection
+= LATEST FEATURE : DBLayer trapping anti-SQL-Injection
 
-This feature can beat almost malicious SQL Injection attacks if you uses some modules vulnerable to "SQL Injection".
+This feature can defend from almost any malicious SQL Injection attacks if a running module is vulnerable to "SQL Injection".
 
-However, you have to patch a file "class/database/databasefactory.php" to enable the feature.
-
-I prepared patches/ folder, and it contains patched databasefactory.php for each cores.
-
-Of course, I welcome if each core teams adpot the patches as HEAD :-)
-
-The latest version of these cores are ready for this feature:
-
-- XCL2.1.x
-- ImpressCMS 1.x
-
-Thank you minahito and marcan!
 
 
 = CHANGES =
 
+2.3.0 alpha [2019/10/19) Module version ref. to XCL 2.3.0 alpha 
+|
+3.56 Module Maintained by XoopsX Team 
+|
 3.50 beta (2009/11/17)
 - modified filters can be turned on/off by preferences of Protector
 - moved filters under filters_disabled/ into filters_byconfig/
