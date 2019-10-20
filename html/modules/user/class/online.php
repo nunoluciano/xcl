@@ -21,14 +21,14 @@ class UserOnlineObject extends XoopsSimpleObject
         $this->initVar('online_updated', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('online_module', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('online_ip', XOBJ_DTYPE_STRING, '', true, 15);
-        $initVars=$this->mVars;
+        $initVars = $this->mVars;
     }
-    
+
     public function loadModule()
     {
         if ($this->get('online_module')) {
-            $handler =& xoops_gethandler('module');
-            $this->mModule =& $handler->get($this->get('online_module'));
+            $handler = &xoops_gethandler('module');
+            $this->mModule = &$handler->get($this->get('online_module'));
         }
     }
 }

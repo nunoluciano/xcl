@@ -12,10 +12,10 @@ class protector_postcommon_post_htmlpurify4everyone extends ProtectorFilterAbstr
             die('Turn postcommon_post_htmlpurify4everyone.php off because this filter cannot run with PHP4') ;
         }
 
-        if (file_exists(XOOPS_TRUST_PATH.'/libs/htmlpurifier/library/HTMLPurifier.auto.php')) {
+        if (file_exists( XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php' )) {
             // !Fix se HTMLPurifier inside TRUST_PATH/libs
             
-            require_once XOOPS_TRUST_PATH.'/libs/htmlpurifier/library/HTMLPurifier.auto.php' ;
+            require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php' ;
             $config = HTMLPurifier_Config::createDefault();
             $config->set('Cache.SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
             $config->set('Core.Encoding', 'UTF-8');

@@ -21,7 +21,7 @@ class UserGroups_users_linkObject extends XoopsSimpleObject
         $this->initVar('linkid', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('groupid', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('uid', XOBJ_DTYPE_INT, '0', true);
-        $initVars=$this->mVars;
+        $initVars = $this->mVars;
     }
 }
 
@@ -30,14 +30,14 @@ class UserGroups_users_linkHandler extends XoopsObjectGenericHandler
     public $mTable = "groups_users_link";
     public $mPrimary = "linkid";
     public $mClass = "UserGroups_users_linkObject";
-    
+
     public function isUserOfGroup($uid, $groupid)
     {
-        $criteria =new CriteriaCompo();
+        $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('groupid', $groupid));
         $criteria->add(new Criteria('uid', $uid));
-        
-        $objs =& $this->getObjects($criteria);
+
+        $objs = &$this->getObjects($criteria);
         return (count($objs) > 0 && is_object($objs[0]));
     }
 }
