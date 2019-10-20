@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @file
  * @package xupdate
  * @version $Id$
-**/
+ **/
 
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_INSTALLED', 'Module not installed.');
 define('_MI_XUPDATE_INSTALL_ERROR_PERM_ADMIN_SET', 'Module admin permission could not set.');
@@ -48,9 +49,9 @@ define('_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED', 'Module update is finished.');
 define('_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED', 'Module could not updated.');
 define('_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED', 'Module \'{0}\' is updated.');
 define('_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED', 'Module \'{0}\' could not updated.');
-define('_MI_XUPDATE_LANG_XUPDATE', 'Install, Update Manager');
+define('_MI_XUPDATE_LANG_XUPDATE', 'X-Update Manager');
 define('_MI_XUPDATE_DESC_XUPDATE', 'provides fast update your modules');
-define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM : naao, domifara, nao-pon');
+define('_MI_XUPDATE_LANG_AUTHOR', 'XCL Pack201X DISTRIBUTION TEAM : Naao, Domifara, Nao-pon');
 define('_MI_XUPDATE_LANG_CREDITS', 'CREDITS');
 define('_MI_XUPDATE_TPL_STORE_LIST', 'STORE_LIST');
 define('_MI_XUPDATE_TPL_STORE_EDIT', 'STORE_EDIT');
@@ -129,9 +130,9 @@ define('_MI_XUPDATE_FTP_ADDON_URL', 'Module Add-on URL');
 define('_MI_XUPDATE_FTP_THEME_URL', 'Theme Add-on URL');
 define('_MI_XUPDATE_FTP_STORE_URL', 'Add-on Store URL');
 define('_MI_XUPDATE_TAG_DIRNAME', 'Tag Module');
-define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'Set tag module\'s dirname if you want to use.');
+define('_MI_XUPDATE_TAG_DIRNAMEDSC', 'Set the tag module\'s dirname if installed.');
 define('_MI_XUPDATE_XEL_DIRNAME', 'X-elFinder Module');
-define('_MI_XUPDATE_XEL_DIRNAMEDSC', 'You can manege preload with X-elFinder. If add setting in X-elFinder config "Volume Driver"<br />"<b>xelfinder:xelfinder:preload:Preload:gid=1</b>" (X-update work on Direct mode)<br />Or<br />"<b>xelfinder:ftp:preload:Preload:gid=1</b>" (Use X-elFinder FTP settings)');
+define('_MI_XUPDATE_XEL_DIRNAMEDSC', 'Preload files (php extensions) can be edited with X-elFinder. X-elFinder settings require a config to "Volume Driver"<br />"<b>xelfinder:xelfinder:preload:Preload:gid=1</b>" (X-update on Direct mode)<br />Or<br />"<b>xelfinder:ftp:preload:Preload:gid=1</b>" (X-elFinder FTP settings)');
 define('_MI_XUPDATE_SHOW_DISABLED_STORE', 'Show disabled stores');
 define('_MI_XUPDATE_SHOW_DISABLED_STOREDSC', 'Show the store that was disabled at the Add-on store. (This is for developers)');
 define('_MI_XUPDATE_PARALLEL_FETCH_MAX',     'HTTP connection Max');
