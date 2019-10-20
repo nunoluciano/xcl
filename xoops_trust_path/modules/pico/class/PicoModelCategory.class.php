@@ -171,8 +171,8 @@ class PicoCategory
 			'desc' => htmlspecialchars($this->data['cat_desc'], ENT_QUOTES),
 			'options' => $options4edit,
 			// !Fix WARNING: count(): Parameter must be an array or an object that implements Countable
-			//'children_count' => count( @$this->data['redundants'] ) ,
-			'children_count' => count(@$this->data['redundants']['subcattree_raw']),
+			'children_count' => count( @$this->data['redundants'] ) ,
+			//'children_count' => count(@$this->data['redundants']['subcattree_raw']),
 		) + $this->getData4html();
 
 		return $ret4edit;

@@ -111,5 +111,3 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 		return '<'.$tag.$style.'>' . $m[2] . '</'.$tag.'>';
 	}
 }
-
-?>

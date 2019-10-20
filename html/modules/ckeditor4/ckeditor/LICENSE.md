@@ -8,15 +8,15 @@ Licensed under the terms of any of the following licenses at your
 choice:
 
  - GNU General Public License Version 2 or later (the "GPL")
-   https://www.gnu.org/licenses/gpl.html
+   http://www.gnu.org/licenses/gpl.html
    (See Appendix A)
 
  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
-   https://www.gnu.org/licenses/lgpl.html
+   http://www.gnu.org/licenses/lgpl.html
    (See Appendix B)
 
  - Mozilla Public License Version 1.1 or later (the "MPL")
-   https://www.mozilla.org/MPL/MPL-1.1.html
+   http://www.mozilla.org/MPL/MPL-1.1.html
    (See Appendix C)
 
 You are not required to, but if you want to explicitly declare the
@@ -40,10 +40,11 @@ The following libraries are included in CKEditor under the MIT license (see Appe
 * CKSource Samples Framework (included in the samples) - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
 * PicoModal (included in `samples/js/sf.js`) - Copyright (c) 2012 James Frasca.
 * CodeMirror (included in the samples) - Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others.
+* ES6Promise - Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors.
 
 Parts of code taken from the following libraries are included in CKEditor under the MIT license (see Appendix D):
 
-* jQuery (inspired the domReady function, ckeditor_base.js) - Copyright (c) 2011 John Resig, https://jquery.com/
+* jQuery (inspired the domReady function, ckeditor_base.js) - Copyright (c) 2011 John Resig, http://jquery.com/
 
 The following libraries are included in CKEditor under the SIL Open Font License, Version 1.1 (see Appendix E):
 
@@ -1255,7 +1256,7 @@ EXHIBIT A -Mozilla Public License.
      ``The contents of this file are subject to the Mozilla Public License
      Version 1.1 (the "License"); you may not use this file except in
      compliance with the License. You may obtain a copy of the License at
-     https://www.mozilla.org/MPL/
+     http://www.mozilla.org/MPL/
 
      Software distributed under the License is distributed on an "AS IS"
      basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the

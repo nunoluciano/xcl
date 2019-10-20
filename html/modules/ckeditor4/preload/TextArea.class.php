@@ -31,5 +31,3 @@ class ckeditor4_TextArea extends Ckeditor4_ParentTextArea
 		}
 	}
 }
-
-?>

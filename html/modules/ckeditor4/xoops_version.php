@@ -11,8 +11,8 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_CKEDITOR4_LANG_CKEDITOR4;
-$modversion['version'] = 0.74;
-$modversion['description'] = _MI_CKEDITOR4_DESC_CKEDITOR4 . ' (CKEditor 4.11.2 Full version + Upload Image plugin)';
+$modversion['version'] = 2.30;
+$modversion['description'] = _MI_CKEDITOR4_DESC_CKEDITOR4 . ' (CKEditor 4.13.0 Full version + Upload Image plugin)';
 $modversion['author'] = "nao-pon https://xoops.hypweb.net/";
 $modversion['credits'] = "Naoki Sawada aka nao-pon";
 $modversion['help'] = "help.html";
@@ -102,7 +102,7 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_TOOLBAR_GUEST_DESC',
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks","-","About"]]'
+		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks"]]'
 ) ;
 
 $modversion['config'][] = array(
@@ -207,4 +207,3 @@ $modversion['config'][] = array(
 ) ;
 
 $modversion['onUpdate'] = 'admin/onupdate.inc.php';
-?>

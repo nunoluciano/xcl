@@ -3,7 +3,19 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)
 
 ## :construction: 2019-01-29 XCL update to PHP7  
+
 The new **XCL** development avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend the Web Application Platform.
+
+
+## :computer: The Requirements  
+
+✅ Tested PHP 7.2.x
+✅ Tested MySQL 5.6.x
+⁉️ Tested PHP 7.3.x
+❌ Tested MySQL8 #152
+
+Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
+
 
 ## :information_source: The App
 
@@ -31,9 +43,6 @@ Below is a list of some of XOOPS Cube Legacy features.
 * Free choice of PHP, JS, CSS frameworks
 * Abundant third-party modules and extensions (preloads to customize functionality)
 
-## :computer: The Requirements
-
-Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
 
 #### :floppy_disk: The Software
 

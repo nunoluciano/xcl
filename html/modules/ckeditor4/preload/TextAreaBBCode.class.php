@@ -31,5 +31,3 @@ class ckeditor4_TextAreaBBCode extends Ckeditor4_ParentTextArea
 		}
 	}
 }
-
-?>
