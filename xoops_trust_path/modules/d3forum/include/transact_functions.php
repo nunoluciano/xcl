@@ -726,8 +726,8 @@ function d3forum_transact_turnsolvedon_in_forum( $mydirname , $forum_id )
 // return purified HTML
 function d3forum_transact_htmlpurify( $text , $mydirname )
 {
-	if( substr( PHP_VERSION , 0 , 1 ) != 4 && file_exists( XOOPS_TRUST_PATH.'/modules/protector/library/HTMLPurifier.auto.php' ) ) {
-		require_once XOOPS_TRUST_PATH.'/modules/protector/library/HTMLPurifier.auto.php' ;
+	if( substr( PHP_VERSION , 0 , 1 ) != 4 && file_exists( XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
+		require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php' ;
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.SerializerPath', XOOPS_TRUST_PATH.'/modules/protector/configs');
 		$config->set('Core.Encoding', 'UTF-8');
@@ -737,7 +737,7 @@ function d3forum_transact_htmlpurify( $text , $mydirname )
 			mb_substitute_character('none');
 			$text = mb_convert_encoding($text, 'UTF-8', _CHARSET);
 		}
-		// lazy registering & call "(dirname).Transact.PreHTMLPurifier" delegate
+		// lazy registering & call "(dirname).Transact.PreHTMLPurifier" delegate !Fix if defined version instead
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 			$delegate = new XCube_Delegate();
 			$delegate->register( ucfirst( $mydirname ) . '.Transact.PreHTMLPurifier' );
