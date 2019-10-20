@@ -26,7 +26,7 @@ class User_ActionFrame
      * @var XCube_Delegate
      */
     public $mCreateAction = null;
-    
+
     public function User_ActionFrame($admin)
     {
         self::__construct($admin);
@@ -35,7 +35,7 @@ class User_ActionFrame
     public function __construct($admin)
     {
         $this->mAdminFlag = $admin;
-        $this->mCreateAction =new XCube_Delegate();
+        $this->mCreateAction = new XCube_Delegate();
         $this->mCreateAction->register('User_ActionFrame.CreateAction');
         $this->mCreateAction->add(array(&$this, '_createAction'));
     }
@@ -43,11 +43,11 @@ class User_ActionFrame
     public function setActionName($name)
     {
         $this->mActionName = $name;
-        
+
         //
         // Temp FIXME!
         //
-        $root =& XCube_Root::getSingleton();
+        $root = &XCube_Root::getSingleton();
         $root->mContext->setAttribute('actionName', $name);
         $root->mContext->mModule->setAttribute('actionName', $name);
     }
@@ -57,7 +57,7 @@ class User_ActionFrame
         if (is_object($this->mAction)) {
             return;
         }
-        
+
         //
         // Create action object by mActionName
         //
@@ -68,33 +68,33 @@ class User_ActionFrame
         } else {
             $fileName = XOOPS_MODULE_PATH . "/user/actions/${fileName}.class.php";
         }
-    
+
         if (!file_exists($fileName)) {
             die();
         }
-    
+
         require_once $fileName;
-    
+
         if (XC_CLASS_EXISTS($className)) {
-            $actionFrame->mAction =new $className($actionFrame->mAdminFlag);
+            $actionFrame->mAction = new $className($actionFrame->mAdminFlag);
         }
     }
-    
+
     public function execute(&$controller)
     {
         if (!preg_match("/^\w+$/", $this->mActionName)) {
             die();
         }
-        
+
         //
         // Create action object by mActionName
         //
         $this->mCreateAction->call(new XCube_Ref($this));
-        
+
         if (!(is_object($this->mAction) && is_a($this->mAction, 'User_Action'))) {
             die();    //< TODO
         }
-    
+
         if ($this->mAction->isSecure() && !is_object($controller->mRoot->mContext->mXoopsUser)) {
             //
             // error
@@ -102,9 +102,9 @@ class User_ActionFrame
 
             $controller->executeForward(XOOPS_URL . '/');
         }
-        
+
         $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModuleConfig);
-    
+
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModuleConfig)) {
             //
             // error
@@ -112,37 +112,37 @@ class User_ActionFrame
 
             $controller->executeForward(XOOPS_URL . '/');
         }
-    
+
         if (xoops_getenv("REQUEST_METHOD") == "POST") {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
         }
-    
+
         $render = $controller->mRoot->mContext->mModule->getRenderTarget();
         $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());
-    
+
         switch ($viewStatus) {
             case USER_FRAME_VIEW_SUCCESS:
                 $this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-        
+
             case USER_FRAME_VIEW_ERROR:
                 $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-        
+
             case USER_FRAME_VIEW_INDEX:
                 $this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-        
+
             case USER_FRAME_VIEW_INPUT:
                 $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-                
+
             case USER_FRAME_VIEW_PREVIEW:
                 $this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
-                
+
             case USER_FRAME_VIEW_CANCEL:
                 $this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $render);
                 break;
@@ -158,9 +158,8 @@ class User_Action
     }
 
     public function __construct()
-    {
-    }
-    
+    { }
+
     public function isSecure()
     {
         return false;
@@ -172,7 +171,7 @@ class User_Action
      * @param	void
      * 
      * @return	string
-    **/
+     **/
     protected function _getPageAction()
     {
         return null;
@@ -184,7 +183,7 @@ class User_Action
      * @param	void
      * 
      * @return	string
-    **/
+     **/
     protected function _getPagetitle()
     {
         return null;
@@ -201,8 +200,7 @@ class User_Action
     }
 
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
-    {
-    }
+    { }
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
@@ -215,26 +213,20 @@ class User_Action
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
-    {
-    }
+    { }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
-    {
-    }
+    { }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
-    {
-    }
+    { }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
-    {
-    }
+    { }
 
     public function executeViewPreview(&$controller, &$xoopsUser, &$render)
-    {
-    }
+    { }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
-    {
-    }
+    { }
 }

@@ -153,7 +153,7 @@ class xoopsmultimailer extends PHPMailer
    * 
    * @global  $xoopsConfig
    */
-  public function XoopsMultiMailer()
+  public function __construct ()
   {
       global $xoopsConfig;
       $this->ClearAllRecipients();

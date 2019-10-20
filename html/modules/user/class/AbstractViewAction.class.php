@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package User
  * @version $Id: AbstractViewAction.class.php,v 1.1 2007/05/15 02:34:49 minahito Exp $
@@ -15,24 +16,21 @@ class User_AbstractViewAction extends User_Action
     // !Fix PHP7
     public function __construct()
     //public function User_AbstractViewAction()
-    {
-    }
+    { }
 
     public function _getId()
-    {
-    }
+    { }
 
     public function &_getHandler()
-    {
-    }
+    { }
 
     public function _setupObject()
     {
         $id = $this->_getId();
-        
-        $this->mObjectHandler =& $this->_getHandler();
-        
-        $this->mObject =& $this->mObjectHandler->get($id);
+
+        $this->mObjectHandler = &$this->_getHandler();
+
+        $this->mObject = &$this->mObjectHandler->get($id);
     }
 
     /**
@@ -41,7 +39,7 @@ class User_AbstractViewAction extends User_Action
      * @param	void
      * 
      * @return	string
-    **/
+     **/
     protected function _getPageAction()
     {
         return _VIEW;
@@ -57,7 +55,7 @@ class User_AbstractViewAction extends User_Action
         if ($this->mObject == null) {
             return USER_FRAME_VIEW_ERROR;
         }
-    
+
         return USER_FRAME_VIEW_SUCCESS;
     }
 
