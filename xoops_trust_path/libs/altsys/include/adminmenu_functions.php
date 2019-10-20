@@ -1,17 +1,17 @@
 <?php
-require_once dirname(dirname(__FILE__)).'/class/altsysUtils.class.php' ;
+require_once dirname(dirname(__FILE__)) . '/class/altsysUtils.class.php';
 
-define('ALTSYS_ADMINMENU_FILE', XOOPS_CACHE_PATH.'/adminmenu.php') ;
-define('ALTSYS_ADMINMENU_HACK_NONE', 0) ;
-define('ALTSYS_ADMINMENU_HACK_2COL', 1) ;
-define('ALTSYS_ADMINMENU_HACK_NOIMG', 2) ;
-define('ALTSYS_ADMINMENU_HACK_XCSTY', 3) ;
+define('ALTSYS_ADMINMENU_FILE', XOOPS_CACHE_PATH . '/adminmenu.php');
+/* define('ALTSYS_ADMINMENU_HACK_NONE', 0);
+define('ALTSYS_ADMINMENU_HACK_2COL', 1);
+define('ALTSYS_ADMINMENU_HACK_NOIMG', 2);
+define('ALTSYS_ADMINMENU_HACK_XCSTY', 3); */
 
 
 //
 // insert/replace items of mymenu into adminmenu
 //
-function altsys_adminmenu_insert_mymenu(&$module)
+/* function altsys_adminmenu_insert_mymenu(&$module)
 {
     global $altsysModuleConfig ;
 
@@ -22,9 +22,9 @@ function altsys_adminmenu_insert_mymenu(&$module)
     if (altsys_get_core_type() < ALTSYS_CORE_TYPE_ORE) {
         altsys_adminmenu_insert_mymenu_x20($module) ;
     }
-}
+} */
 
-function altsys_adminmenu_insert_mymenu_x20(&$module)
+/* function altsys_adminmenu_insert_mymenu_x20(&$module)
 {
     // read
     if (! file_exists(ALTSYS_ADMINMENU_FILE)) {
@@ -80,12 +80,12 @@ function altsys_adminmenu_insert_mymenu_x20(&$module)
 
     // write back
     altsys_adminmenu_save_x20(array( 'xoops_admin_menu_js' => $xoops_admin_menu_js, 'xoops_admin_menu_ml' => $xoops_admin_menu_ml, 'xoops_admin_menu_sd' => $xoops_admin_menu_sd, 'xoops_admin_menu_ft' => $xoops_admin_menu_ft, 'xoops_admin_menu_dv' => $xoops_admin_menu_dv, 'altsys_adminmenu_ft_hacked' => intval(@$altsys_adminmenu_ft_hacked), 'altsys_adminmenu_dv_updated' => true )) ;
-}
+} */
 
 //
 // modify the first layer of adminmenu (just for X20)
 //
-function altsys_adminmenu_hack_ft()
+/* function altsys_adminmenu_hack_ft()
 {
     global $altsysModuleConfig ;
 
@@ -103,9 +103,9 @@ function altsys_adminmenu_hack_ft()
     } elseif ($altsysModuleConfig['adminmenu_hack_ft'] == ALTSYS_ADMINMENU_HACK_XCSTY) {
         altsys_adminmenu_hack_ft_xcsty_x20() ;
     }
-}
+} */
 
-function altsys_adminmenu_hack_ft_2col_x20()
+/* function altsys_adminmenu_hack_ft_2col_x20()
 {
     // read
     if (! file_exists(ALTSYS_ADMINMENU_FILE)) {
@@ -161,10 +161,10 @@ function altsys_adminmenu_hack_ft_2col_x20()
 
     // write back
     altsys_adminmenu_save_x20(array( 'xoops_admin_menu_js' => $xoops_admin_menu_js, 'xoops_admin_menu_ml' => $xoops_admin_menu_ml, 'xoops_admin_menu_sd' => $xoops_admin_menu_sd, 'xoops_admin_menu_ft' => $xoops_admin_menu_ft, 'xoops_admin_menu_dv' => $xoops_admin_menu_dv, 'altsys_adminmenu_ft_hacked' => ALTSYS_ADMINMENU_HACK_2COL )) ;
-}
+} */
 
 
-function altsys_adminmenu_hack_ft_noimg_x20()
+/* function altsys_adminmenu_hack_ft_noimg_x20()
 {
     // read
     if (! file_exists(ALTSYS_ADMINMENU_FILE)) {
@@ -203,10 +203,10 @@ function altsys_adminmenu_hack_ft_noimg_x20()
 
     // write back
     altsys_adminmenu_save_x20(array( 'xoops_admin_menu_js' => $xoops_admin_menu_js, 'xoops_admin_menu_ml' => $xoops_admin_menu_ml, 'xoops_admin_menu_sd' => $xoops_admin_menu_sd, 'xoops_admin_menu_ft' => $xoops_admin_menu_ft, 'xoops_admin_menu_dv' => $xoops_admin_menu_dv, 'altsys_adminmenu_ft_hacked' => ALTSYS_ADMINMENU_HACK_NOIMG )) ;
-}
+} */
 
 
-function altsys_adminmenu_hack_ft_xcsty_x20()
+/* function altsys_adminmenu_hack_ft_xcsty_x20()
 {
     // read
     if (! file_exists(ALTSYS_ADMINMENU_FILE)) {
@@ -235,60 +235,61 @@ function altsys_adminmenu_hack_ft_xcsty_x20()
             $xoops_admin_menu_dv = $backup_admin_menu_dv ;
         }
     }
+*/
+    // $module_handler =& xoops_gethandler('module') ;
+    // $mids = array_keys($xoops_admin_menu_ft) ;
+    // foreach ($mids as $mid) {
+    //     $module =& $module_handler->get($mid) ;
+    //     $submenuitems = array() ;
+    //     if (preg_match('/popUpL\d+/', $xoops_admin_menu_ft[$mid], $regs)) {
+    //         $popup = $regs[0] ;
+    //         preg_match_all('#\<a href.*'.$popup.'\(\).*\</a>#U', $xoops_admin_menu_dv, $regs) ;
+    //         foreach ($regs[0] as $submenuitem) {
+    //             $submenuitems[] = str_replace($popup.'();', '', $submenuitem) ;
+    //         }
+    //     } else {
+    //         return ;
+    //     }
+    //     // module icon
+    //     if (preg_match('#\<img .*/\>#U', $xoops_admin_menu_ft[$mid], $regs)) {
 
-    $module_handler =& xoops_gethandler('module') ;
-    $mids = array_keys($xoops_admin_menu_ft) ;
-    foreach ($mids as $mid) {
-        $module =& $module_handler->get($mid) ;
-        $submenuitems = array() ;
-        if (preg_match('/popUpL\d+/', $xoops_admin_menu_ft[$mid], $regs)) {
-            $popup = $regs[0] ;
-            preg_match_all('#\<a href.*'.$popup.'\(\).*\</a>#U', $xoops_admin_menu_dv, $regs) ;
-            foreach ($regs[0] as $submenuitem) {
-                $submenuitems[] = str_replace($popup.'();', '', $submenuitem) ;
-            }
-        } else {
-            return ;
-        }
-        // module icon
-        if (preg_match('#\<img .*/\>#U', $xoops_admin_menu_ft[$mid], $regs)) {
-            $icon_img = str_replace("alt=''", 'alt="'.$module->getVar('name').'"', $regs[0]) ;
-        } else {
-            $icon_img = '' ;
-        }
-        // version number
-        $icon_img .= '<span class="version" style="">' . sprintf('%.2f', $module->getVar('version') / 100.0) . '</span>' ;
-        $newline = preg_replace('/ onmouseover.*$/', '', $xoops_admin_menu_ft[$mid]) ;
-        $newline = "\n".'<!-- '.$popup.' --><div id="adminmenu_ft'.$mid.'" style="text-align:'._GLOBAL_LEFT.';background-color:#CCC;" title="'.$module->getVar('dirname').'"><a id="adminmenu_ftpoint'.$mid.'" href="javascript:void(0);" onclick="submenuToggle('.$mid.');">+</a> '.$newline.'>'.$module->getVar('name').'</a></div><div id="adminmenu_ftsub'.$mid.'" style="display:none;"><ul>' ;
-        foreach ($submenuitems as $submenuitem) {
-            $newline .= '<li>'.$submenuitem.'</li>' ;
-        }
-        $newline .= '</ul>'.$icon_img.'</div>' ;
-        $xoops_admin_menu_ft[$mid] = $newline ;
-    }
+//             $icon_img = str_replace("alt=''", 'alt="'.$module->getVar('name').'"', $regs[0]) ;
+//         } else {
+//             $icon_img = '' ;
+//         }
+//         // version number
+//         $icon_img .= '<span class="version" style="">' . sprintf('%.2f', $module->getVar('version') / 100.0) . '</span>' ;
+//         $newline = preg_replace('/ onmouseover.*$/', '', $xoops_admin_menu_ft[$mid]) ;
+//         $newline = "\n".'<!-- '.$popup.' --><div id="adminmenu_ft'.$mid.'" style="text-align:'._GLOBAL_LEFT.';background-color:#CCC;" title="'.$module->getVar('dirname').'"><a id="adminmenu_ftpoint'.$mid.'" href="javascript:void(0);" onclick="submenuToggle('.$mid.');">+</a> '.$newline.'>'.$module->getVar('name').'</a></div><div id="adminmenu_ftsub'.$mid.'" style="display:none;"><ul>' ;
+//         foreach ($submenuitems as $submenuitem) {
+//             $newline .= '<li>'.$submenuitem.'</li>' ;
+//         }
+//         $newline .= '</ul>'.$icon_img.'</div>' ;
+//         $xoops_admin_menu_ft[$mid] = $newline ;
+//     }
 
-    $xoops_admin_menu_js = "
-	function submenuToggle(mid) {
-		el = xoopsGetElementById('adminmenu_ftsub'+mid).style;
-		if (el.display == 'block') {
-			el.display = 'none';
-			xoopsGetElementById('adminmenu_ftpoint'+mid).innerHTML = '+' ;
-		} else {
-			el.display = 'block';
-			xoopsGetElementById('adminmenu_ftpoint'+mid).innerHTML = '-' ;
-		}
-	}" ;
+//     $xoops_admin_menu_js = "
+// 	function submenuToggle(mid) {
+// 		el = xoopsGetElementById('adminmenu_ftsub'+mid).style;
+// 		if (el.display == 'block') {
+// 			el.display = 'none';
+// 			xoopsGetElementById('adminmenu_ftpoint'+mid).innerHTML = '+' ;
+// 		} else {
+// 			el.display = 'block';
+// 			xoopsGetElementById('adminmenu_ftpoint'+mid).innerHTML = '-' ;
+// 		}
+// 	}" ;
 
-    // write back
-    altsys_adminmenu_save_x20(array( 'xoops_admin_menu_js' => $xoops_admin_menu_js, 'xoops_admin_menu_ml' => array(), 'xoops_admin_menu_sd' => array(), 'xoops_admin_menu_ft' => $xoops_admin_menu_ft, 'xoops_admin_menu_dv' => $xoops_admin_menu_dv, 'altsys_adminmenu_ft_hacked' => ALTSYS_ADMINMENU_HACK_XCSTY )) ;
-}
+//     // write back
+//     altsys_adminmenu_save_x20(array( 'xoops_admin_menu_js' => $xoops_admin_menu_js, 'xoops_admin_menu_ml' => array(), 'xoops_admin_menu_sd' => array(), 'xoops_admin_menu_ft' => $xoops_admin_menu_ft, 'xoops_admin_menu_dv' => $xoops_admin_menu_dv, 'altsys_adminmenu_ft_hacked' => ALTSYS_ADMINMENU_HACK_XCSTY )) ;
+// } 
 
 
 //
 // common functions about adminmenu
 //
 
-function altsys_adminmenu_save_x20($xoops_admin_vars)
+/* function altsys_adminmenu_save_x20($xoops_admin_vars)
 {
     // variable definitions
     ob_start() ;
@@ -327,3 +328,4 @@ if( is_object( @$GLOBALS["xoopsModule"] ) && empty( $not_inside_cp_functions ) )
     fwrite($fp, $output) ;
     fclose($fp) ;
 }
+ */

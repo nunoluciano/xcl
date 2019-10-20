@@ -193,13 +193,15 @@ class MyXoopsGroupPermForm extends XoopsForm
 
         $tray = new XoopsFormElementTray('');
         // !Fix PHP7 NOTICE: Only variables should be passed by reference
+        // $tray->addElement(new XoopsFormButton('', 'reset', _CANCEL, 'reset'));
         $buttonReset = new XoopsFormButton('', 'reset', _CANCEL, 'reset');
         $tray->addElement($buttonReset);
-        // $tray->addElement(new XoopsFormButton('', 'reset', _CANCEL, 'reset'));
+        
         // !Fix PHP7 NOTICE: Only variables should be passed by reference
+        // $tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
         $buttonSubmit = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');
         $tray->addElement($buttonSubmit);
-        // $tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+        
         $this->addElement($tray);
 
         $ret = '<h4>'.$this->getTitle().'</h4>'.$this->_permDesc.'<br />';

@@ -167,9 +167,10 @@ if ($op == 'showmod') {
     $xoopsGTicket->addTicketXoopsFormElement($button_tray, __LINE__, 1800, 'mypreferences') ;
 
     // !Fix PHP7 NOTICE: Only variables should be passed by reference
+    // $button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
     $button = new XoopsFormButton('', 'button', _GO, 'submit');
     $button_tray->addElement($button);
-    // $button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
+    
     $form->addElement($button_tray) ;
     xoops_cp_header();
 

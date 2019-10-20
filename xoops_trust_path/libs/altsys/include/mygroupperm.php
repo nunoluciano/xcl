@@ -31,12 +31,12 @@ if ($modid == 1) {
     if (! is_object($module)) {
         $module =& $module_handler->getByDirname('system') ;
         if (! is_object($module)) {
-            die('there is no altsys nor system.') ;
+            die('there is no UI Components nor base system.') ;
         }
     }
     $moduleperm_handler =& xoops_gethandler('groupperm') ;
     if (! is_object(@$GLOBALS['xoopsUser']) || ! $moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $GLOBALS['xoopsUser']->getGroups())) {
-        die('only admin of altsys can access this area') ;
+        die('only admin of UI Components can access this area') ;
     }
 } else {
     // check the permission of 'module_admin' of the module
