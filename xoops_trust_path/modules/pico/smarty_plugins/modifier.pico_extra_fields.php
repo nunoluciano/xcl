@@ -16,10 +16,10 @@
  * @return string
  */
 
-require_once XOOPS_TRUST_PATH.'/modules/pico/include/common_functions.php' ;
+require_once XOOPS_TRUST_PATH . '/modules/pico/include/common_functions.php';
 
-function smarty_modifier_pico_extra_fields( $key = '' , $content_row )
+function smarty_modifier_pico_extra_fields($key = '', $content_row)
 {
-	$extra_fields = pico_common_unserialize( @$content_row['extra_fields'] ) ;
-	return empty( $key ) ? $extra_fields : @$extra_fields[ $key ] ;
+	$extra_fields = pico_common_unserialize(@$content_row['extra_fields']);
+	return empty($key) ? $extra_fields : @$extra_fields[$key];
 }
