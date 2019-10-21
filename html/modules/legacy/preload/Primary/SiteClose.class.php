@@ -20,6 +20,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
     public function preBlockFilter()
     {
         if ($this->mRoot->mContext->getXoopsConfig('closesite') == 1) {
+            
             $this->mController->mSetupUser->add("Legacy_SiteClose::callbackSetupUser", XCUBE_DELEGATE_PRIORITY_FINAL);
             $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
         }
@@ -31,7 +32,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
      * @var XoopsUser &$xoopsUser
      * @see preBlockFilter()
      */
-    public function callbackSetupUser(&$principal, &$controller, &$context)
+    public static function callbackSetupUser(&$principal, &$controller, &$context)
     {
         $accessAllowFlag = false;
         $xoopsConfig = $controller->mRoot->mContext->getXoopsConfig();
