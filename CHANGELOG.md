@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file.
 - Altsys Text_Diff.php calling assert() with a string argument is deprecated #138
 - Altsys Text_Diff.php deprecated constructors #139
 - Class xoopsmultimailer deprecated constructors #140
+- DEPRECATED: Non-static method Legacy_SiteClose #135
 - EasyLex_SQLScanner constructor #141
 - Kernel group call to undefined method #130
 - Pico SQL Error Update in include transact_functions #128
