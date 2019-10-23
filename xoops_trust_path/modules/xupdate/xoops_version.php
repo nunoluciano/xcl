@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @file
  * @package xupdate
  * @version $Id$
-**/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;
@@ -56,27 +57,27 @@ $modversion['disable_legacy_2nd_installer'] = false;
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['sqlfile']['pdo_pgsql'] = 'sql/pdo_pgsql.sql';
 $modversion['tables'] = array(
-//	  '{prefix}_{dirname}_xxxx',
-##[cubson:tables]
+    //	  '{prefix}_{dirname}_xxxx',
+    ##[cubson:tables]
     '{prefix}_{dirname}_store',
     '{prefix}_{dirname}_modulestore',
-##[/cubson:tables]
+    ##[/cubson:tables]
 );
 
 //
 // Templates. You must never change [cubson] chunk to get the help of cubson.
 //
 $modversion['templates'] = array(
-/*
+    /*
     array(
         'file'		  => '{dirname}_xxx.html',
         'description' => _MI_XUPDATE_TPL_XXX
     ),
 */
-##[cubson:templates]
-        //array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
-        array('file' => '{dirname}_modulestore_inc.html','description' => _MI_XUPDATE_TPL_MODULESTORE_INC),
-##[/cubson:templates]
+    ##[cubson:templates]
+    //array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
+    array('file' => '{dirname}_modulestore_inc.html', 'description' => _MI_XUPDATE_TPL_MODULESTORE_INC),
+    ##[/cubson:templates]
 );
 
 //
@@ -89,19 +90,19 @@ $modversion['adminindex'] = 'admin/index.php?action=ModuleView';
 ##[cubson:adminmenu]
 $modversion['adminmenu'] = array(
     array(
-            'title'        => _MI_XUPDATE_ADMENU_STORELIST,
-            'link'    => 'admin/index.php?action=ModuleView',
-            'keywords'    => _MI_XUPDATE_ADMENU_STORELIST,
-            'show'    => true,
-            'absolute' => false
+        'title'        => _MI_XUPDATE_ADMENU_STORELIST,
+        'link'    => 'admin/index.php?action=ModuleView',
+        'keywords'    => _MI_XUPDATE_ADMENU_STORELIST,
+        'show'    => true,
+        'absolute' => false
     ),
-//	array(
-//		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
-//		'link'	=> 'admin/index.php?action=PackageStore',
-//		'keywords'	=> _MI_XUPDATE_ADMENU_PACKAGE,
-//		'show'	=> true,
-//		'absolute' => false
-//	),
+    //	array(
+    //		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
+    //		'link'	=> 'admin/index.php?action=PackageStore',
+    //		'keywords'	=> _MI_XUPDATE_ADMENU_PACKAGE,
+    //		'show'	=> true,
+    //		'absolute' => false
+    //	),
     array(
         'title'        => _MI_XUPDATE_ADMENU_MODULE,
         'link'    => 'admin/index.php?action=ModuleStore',
@@ -131,21 +132,21 @@ $modversion['adminmenu'] = array(
         'show'    => true,
         'absolute' => false
     )
-    );
+);
 //
 // Public side control setting
 //
 $modversion['hasMain'] = 0;
 $modversion['hasSearch'] = 0;
 $modversion['sub'] = array(
-/*
+    /*
     array(
         'name' => _MI_XUPDATE_LANG_SUB_XXX,
         'url'  => 'index.php?action=XXX'
     ),
 */
-##[cubson:submenu]
-##[/cubson:submenu]
+    ##[cubson:submenu]
+    ##[/cubson:submenu]
 );
 
 ##[/cubson:adminmenu]
@@ -156,9 +157,9 @@ $modversion['sub'] = array(
 if (!defined('XOOPSX_COREPACK_VERSION') && defined('_MI_LEGACY_DETAILED_VERSION') && substr(_MI_LEGACY_DETAILED_VERSION, 0, 9) === 'CorePack ') {
     define('XOOPSX_COREPACK_VERSION', substr(_MI_LEGACY_DETAILED_VERSION, 9));
 }
-$_encrypt = defined('XOOPSX_COREPACK_VERSION')? (version_compare(XOOPSX_COREPACK_VERSION, '20140125', '>=')? 'encrypt' : 'string') : (version_compare(LEGACY_BASE_VERSION, '2.2.2.3', '>')? 'encrypt' : 'string');
+$_encrypt = defined('XOOPSX_COREPACK_VERSION') ? (version_compare(XOOPSX_COREPACK_VERSION, '20140125', '>=') ? 'encrypt' : 'string') : (version_compare(LEGACY_BASE_VERSION, '2.2.2.3', '>') ? 'encrypt' : 'string');
 $modversion['config'] = array(
-/*	array(
+    /*	array(
         'name'			=> 'xxxx',
         'title' 		=> '_MI_XUPDATE_TITLE_XXXX',
         'description'	=> '_MI_XUPDATE_DESC_XXXX',
@@ -179,261 +180,262 @@ $modversion['config'] = array(
 */
 
     array(
-        'name'        => 'temp_path' ,
+        'name'        => 'temp_path',
         'title'        => '_MI_XUPDATE_TEMP_PATH',
         'description'    => '_MI_XUPDATE_TEMP_PATHDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => 'uploads/xupdate',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'ftp_method' ,
+        'name'        => 'ftp_method',
         'title'        => '_MI_XUPDATE_FTP_METHOD',
         'description'    => '_MI_XUPDATE_FTP_METHODDSC',
-        'formtype'    => defined('XOOPSX_COREPACK_VERSION')? (version_compare(XOOPSX_COREPACK_VERSION, '20121230', '>=')? 'radio' : (version_compare(XOOPSX_COREPACK_VERSION, '20120825', '>=')? 'radio_br' : 'select')) : (version_compare(LEGACY_BASE_VERSION, '2.2.2.1', '>=')? 'radio' : 'select'),
+        'formtype'    => defined('XOOPSX_COREPACK_VERSION') ? (version_compare(XOOPSX_COREPACK_VERSION, '20121230', '>=') ? 'radio' : (version_compare(XOOPSX_COREPACK_VERSION, '20120825', '>=') ? 'radio_br' : 'select')) : (version_compare(LEGACY_BASE_VERSION, '2.2.2.1', '>=') ? 'radio' : 'select'),
         'valuetype'    => 'int',
         'default'    => '4',
-        'options'    => array( '_MI_XUPDATE_DIRECT' => 4,
-                        '_MI_XUPDATE_CUSTOM_FTP' => 0,
-                        '_MI_XUPDATE_PHP_FTP' => 1,
-                        '_MI_XUPDATE_CUSTOM_SFTP' => 2,
-                        '_MI_XUPDATE_CUSTOM_SSH2' => 3
-                        )
-    ) ,
+        'options'    => array(
+            '_MI_XUPDATE_DIRECT' => 4,
+            '_MI_XUPDATE_CUSTOM_FTP' => 0,
+            '_MI_XUPDATE_PHP_FTP' => 1,
+            '_MI_XUPDATE_CUSTOM_SFTP' => 2,
+            '_MI_XUPDATE_CUSTOM_SSH2' => 3
+        )
+    ),
 
     array(
         'name'        => 'FTP_SSL',
-        'title'        => '_MI_XUPDATE_FTP_USESSL' ,
-        'description'    => '_MI_XUPDATE_FTP_USESSLDSC' ,
-        'formtype'    => 'yesno' ,
-        'valuetype'    => 'int' ,
-        'default'    => 0 ,
+        'title'        => '_MI_XUPDATE_FTP_USESSL',
+        'description'    => '_MI_XUPDATE_FTP_USESSLDSC',
+        'formtype'    => 'yesno',
+        'valuetype'    => 'int',
+        'default'    => 0,
         'options'    => array()
-    ) ,
+    ),
 
     array(
-        'name'        => 'FTP_server' ,
+        'name'        => 'FTP_server',
         'title'        => '_MI_XUPDATE_FTP_SERVER',
         'description'    => '_MI_XUPDATE_FTP_SERVERDSC',
         'formtype'    => 'text',
         'valuetype'    => $_encrypt,
         'default'    => '127.0.0.1',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'FTP_UserName' ,
+        'name'        => 'FTP_UserName',
         'title'        => '_MI_XUPDATE_FTP_UNAME',
         'description'    => '_MI_XUPDATE_FTP_UNAMEDSC',
         'formtype'    => 'text',
         'valuetype'    => $_encrypt,
         'default'    => '',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
         'name'        => 'FTP_password',
-        'title'        => '_MI_XUPDATE_FTP_PASS' ,
-        'description'        => '_MI_XUPDATE_FTP_PASSDSC' ,
+        'title'        => '_MI_XUPDATE_FTP_PASS',
+        'description'        => '_MI_XUPDATE_FTP_PASSDSC',
         'formtype'    => 'password',
         'valuetype'    => $_encrypt,
         'default'    => '',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'SSH_port' ,
+        'name'        => 'SSH_port',
         'title'        => '_MI_XUPDATE_SSH_PORT',
         'description'    => '_MI_XUPDATE_SSH_PORTDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '22',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'SSH_key' ,
+        'name'        => 'SSH_key',
         'title'        => '_MI_XUPDATE_SSH_KEY',
         'description'    => '_MI_XUPDATE_SSH_KEYDSC',
         'formtype'    => 'textarea',
         'valuetype'    => $_encrypt,
         'default'    => '',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'writable_file_perm' ,
+        'name'        => 'writable_file_perm',
         'title'        => '_MI_XUPDATE_WRITABLE_FILE_PERM',
         'description'    => '_MI_XUPDATE_WRITABLE_FILE_PERMDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '666',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'writable_dir_perm' ,
+        'name'        => 'writable_dir_perm',
         'title'        => '_MI_XUPDATE_WRITABLE_DIR_PERM',
         'description'    => '_MI_XUPDATE_WRITABLE_DIR_PERMDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '777',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'writable_file_perm_t' ,
+        'name'        => 'writable_file_perm_t',
         'title'        => '_MI_XUPDATE_WRITABLE_FILE_PERM_T',
         'description'    => '_MI_XUPDATE_WRITABLE_FILE_PERM_TDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '666',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'writable_dir_perm_t' ,
+        'name'        => 'writable_dir_perm_t',
         'title'        => '_MI_XUPDATE_WRITABLE_DIR_PERM_T',
         'description'    => '_MI_XUPDATE_WRITABLE_DIR_PERM_TDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '777',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'        => 'php_perm' ,
+        'name'        => 'php_perm',
         'title'        => '_MI_XUPDATE_PHP_PERM',
         'description'    => '_MI_XUPDATE_PHP_PERMDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
         'name'        => 'only_conf_lang',
-        'title'        => '_MI_XUPDATE_ONLY_CONF_LANG' ,
+        'title'        => '_MI_XUPDATE_ONLY_CONF_LANG',
         'description'    => '_MI_XUPDATE_ONLY_CONF_LANGDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
-        'default'    => 0 ,
+        'default'    => 0,
         'options'    => array(),
-    ) ,
-    
+    ),
+
     array(
-        'name'        => 'disabled_items' ,
+        'name'        => 'disabled_items',
         'title'        => '_MI_XUPDATE_DISABLED_ITEMS',
         'description'    => '_MI_XUPDATE_DISABLED_ITEMSDSC',
         'formtype'    => 'textarea',
         'valuetype'    => 'string',
         'default'    => '',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
-        'name'          => 'tag_dirname' ,
-        'title'         => '_MI_XUPDATE_TAG_DIRNAME' ,
-        'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC' ,
+        'name'          => 'tag_dirname',
+        'title'         => '_MI_XUPDATE_TAG_DIRNAME',
+        'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC',
         'formtype'      => 'server_module',
         'valuetype'     => 'text',
         'default'       => '',
-        'options'       => array('none','tag')
-    ) ,
+        'options'       => array('none', 'tag')
+    ),
 
     array(
-        'name'          => 'xelfinder_dirname' ,
-        'title'         => '_MI_XUPDATE_XEL_DIRNAME' ,
-        'description'   => '_MI_XUPDATE_XEL_DIRNAMEDSC' ,
+        'name'          => 'xelfinder_dirname',
+        'title'         => '_MI_XUPDATE_XEL_DIRNAME',
+        'description'   => '_MI_XUPDATE_XEL_DIRNAMEDSC',
         'formtype'      => 'text',
         'valuetype'     => 'string',
         'default'       => 'xelfinder',
         'options'       => array()
-    ) ,
+    ),
 
     array(
         'name'        => 'Show_debug',
-        'title'        => '_MI_XUPDATE_DEBUG' ,
+        'title'        => '_MI_XUPDATE_DEBUG',
         'description'    => '',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
-        'default'    => 0 ,
+        'default'    => 0,
         'options'    => array(),
-    ) ,
+    ),
 
     array(
         'name'        => 'Theme_download_Url_format',
-        'title'        => '_MI_XUPDATE_FTP_THEME_URL' ,
+        'title'        => '_MI_XUPDATE_FTP_THEME_URL',
         'description'    => '',
         'formtype'    => 'text',
         'valuetype'    => 'string',
-        'default'    => 'https://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
+        'default'    => 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
         'name'        => 'stores_json_url',
-        'title'        => '_MI_XUPDATE_FTP_STORE_URL' ,
+        'title'        => '_MI_XUPDATE_FTP_STORE_URL',
         'description'    => '',
         'formtype'    => 'text',
         'valuetype'    => 'string',
-        'default'    => 'https://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
+        'default'    => 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
         'options'    => array(),
-    ) ,
+    ),
 
     array(
         'name'        => 'show_disabled_store',
-        'title'        => '_MI_XUPDATE_SHOW_DISABLED_STORE' ,
+        'title'        => '_MI_XUPDATE_SHOW_DISABLED_STORE',
         'description'    => '_MI_XUPDATE_SHOW_DISABLED_STOREDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
-        'default'    => 0 ,
+        'default'    => 0,
         'options'    => array(),
-    ) ,
-    
+    ),
+
     //parallel_fetch_max
     array(
         'name'        => 'parallel_fetch_max',
-        'title'        => '_MI_XUPDATE_PARALLEL_FETCH_MAX' ,
+        'title'        => '_MI_XUPDATE_PARALLEL_FETCH_MAX',
         'description'    => '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',
         'formtype'    => 'text',
         'valuetype'    => 'int',
-        'default'    => 50 ,
+        'default'    => 50,
         'options'    => array(),
-    ) ,
+    ),
 
     //parallel_fetch_max
     array(
         'name'        => 'curl_multi_select_not_use',
-        'title'        => '_MI_XUPDATE_CURL_MULTI_SELECT' ,
+        'title'        => '_MI_XUPDATE_CURL_MULTI_SELECT',
         'description'    => '_MI_XUPDATE_CURL_MULTI_SELECTDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
-        'default'    => 0 ,
+        'default'    => 0,
         'options'    => array(),
-    ) ,
+    ),
 
     array(
         'name'        => 'curl_ssl_no_verify',
-        'title'        => '_MI_XUPDATE_CURL_SSL_NO_VERIFY' ,
+        'title'        => '_MI_XUPDATE_CURL_SSL_NO_VERIFY',
         'description'    => '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
-        'default'    => 0 ,
+        'default'    => 0,
         'options'    => array(),
     )
 
-##[cubson:config]
-##[/cubson:config]
+    ##[cubson:config]
+    ##[/cubson:config]
 );
 
 //
 // Block setting
 //
 $modversion['blocks'] = array(
-/*
+    /*
     x => array(
         'func_num'			=> x,
         'file'				=> 'xxxBlock.class.php',
@@ -447,17 +449,17 @@ $modversion['blocks'] = array(
     ),
 */
     1 => array(
-            'func_num'          => 1,
-            'file'              => 'NotifyBlock.class.php',
-            'class'             => 'NotifyBlock',
-            'name'              => 'X-update Notify',
-            'description'       => '',
-            'options'           => '',
-            'template'          => '',
-            'show_all_module'   => true,
-            'can_clone'         => true,
-            'visible_any'       => false
+        'func_num'          => 1,
+        'file'              => 'NotifyBlock.class.php',
+        'class'             => 'NotifyBlock',
+        'name'              => 'X-update Notify',
+        'description'       => '',
+        'options'           => '',
+        'template'          => '',
+        'show_all_module'   => true,
+        'can_clone'         => true,
+        'visible_any'       => false
     ),
-##[cubson:block]
-##[/cubson:block]
+    ##[cubson:block]
+    ##[/cubson:block]
 );

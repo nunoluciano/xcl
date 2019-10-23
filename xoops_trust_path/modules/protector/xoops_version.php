@@ -10,11 +10,11 @@ $constpref = '_MI_'.strtoupper($mydirname);
 
 $modversion['name'] = constant($constpref.'_NAME');
 $modversion['description'] = constant($constpref.'_DESC');
-$modversion['version'] = file_get_contents(dirname(__FILE__).'/include/version.txt');
-$modversion['detailed_version'] = $modversion['version'].'.3';
-$modversion['credits'] = 'PEAK Corp.';
-$modversion['author'] = 'GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)';
-$modversion['help'] = '';
+$modversion['version'] = '2.3.0';
+$modversion['detailed_version'] = '2.3.0.0';
+$modversion['credits'] = 'PEAK Corp. version 3.54';
+$modversion['author'] = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';
+$modversion['help'] = 'help.html';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
 $modversion['image'] = file_exists($mydirpath.'/module_icon.png') ? 'module_icon.png' : 'module_icon.php';

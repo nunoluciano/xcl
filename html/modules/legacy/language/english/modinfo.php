@@ -35,5 +35,5 @@ define('_MI_LEGACY_MENU_PREFERENCE', "Preferences");
 define('_MI_LEGACY_MENU_SMILES_MANAGE', "Smilies Management");
 define('_MI_LEGACY_MENU_THEME_MANAGE', "Theme Management");
 define('_MI_LEGACY_MENU_XOOPS_CONFIG', "Preferences");
-define('_MI_LEGACY_NAME', "XCL Settings");
+define('_MI_LEGACY_NAME', "General Settings");
 define('_MI_LEGACY_NAME_DESC', "This module provides compatibility between XCL and XOOPS Cube Legacy.");

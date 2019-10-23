@@ -17,7 +17,7 @@ class UserMailjob_linkObject extends XoopsSimpleObject
         $this->initVar('uid', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('retry', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('message', XOBJ_DTYPE_STRING, '', false, 255);
-        $initVars=$this->mVars;
+        $initVars = $this->mVars;
     }
 }
 
@@ -26,40 +26,40 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
     public $mTable = "user_mailjob_link";
     public $mPrimary = "mailjob_id";
     public $mClass = "UserMailjob_linkObject";
-    
+
     public function &get($mailjob_id, $uid)
     {
         $ret = null;
 
-        $criteria =new CriteriaCompo();
+        $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('mailjob_id', $mailjob_id));
         $criteria->add(new Criteria('uid', $uid));
 
-        $objArr =& $this->getObjects($criteria);
-        
+        $objArr = &$this->getObjects($criteria);
+
         if (count($objArr) == 1) {
-            $ret =& $objArr[0];
+            $ret = &$objArr[0];
         }
 
         return $ret;
     }
-    
+
     public function getCurrentRetry($mailjob_id)
     {
         $mailjob_id = intval($mailjob_id);
         $table = $this->mTable;
-        
+
         $sql = "SELECT min(retry) AS cretry FROM ${table} where mailjob_id='${mailjob_id}'";
-        
+
         $result = $this->db->query($sql);
         $row = $this->db->fetchArray($result);
-        
+
         return $row['cretry'];
     }
-    
+
     public function _update(&$obj)
     {
-        $set_lists=array();
+        $set_lists = array();
         $where = "";
 
         $arr = $this->_makeVars4sql($obj);
@@ -76,14 +76,14 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
         return $sql;
     }
-    
+
     public function delete(&$obj, $force = false)
     {
         //
         // Because Criteria can generate the most appropriate sentence, use
         // criteria even if this approach is few slow.
         //
-        $criteria =new CriteriaCompo();
+        $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('mailjob_id', $obj->get('mailjob_id')));
         $criteria->add(new Criteria('uid', $obj->get('uid')));
         $sql = "DELETE FROM " . $this->mTable . " WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj);

@@ -222,7 +222,9 @@ class Text_MappedDiff extends Text_Diff
      * @param array $mapped_to_lines    This array should have the same number
      *                                  of elements as $to_lines.
      */
-    public function Text_MappedDiff($from_lines, $to_lines,
+
+     // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
+    public function __construct($from_lines, $to_lines,
                              $mapped_from_lines, $mapped_to_lines)
     {
         assert(count($from_lines) == count($mapped_from_lines));
@@ -625,8 +627,8 @@ class Text_Diff_Engine_native
     {
         $i = 0;
         $j = 0;
-
-        assert('count($lines) == count($changed)');
+        // !Fix DEPRECATED: assert(): Calling assert() with a string argument is deprecated
+        assert(count($lines) == count($changed));
         $len = count($lines);
         $other_len = count($other_changed);
 
@@ -647,7 +649,8 @@ class Text_Diff_Engine_native
             }
 
             while ($i < $len && ! $changed[$i]) {
-                assert('$j < $other_len && ! $other_changed[$j]');
+                // !Fix DEPRECATED: assert(): Calling assert() with a string argument is deprecated
+                assert($j < $other_len && ! $other_changed[$j]);
                 $i++;
                 $j++;
                 while ($j < $other_len && $other_changed[$j]) {
@@ -767,8 +770,8 @@ class Text_Diff_Op
  */
 class Text_Diff_Op_copy extends Text_Diff_Op
 {
-
-    public function Text_Diff_Op_copy($orig, $final = false)
+    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
+    public function __construct($orig, $final = false)
     {
         if (!is_array($final)) {
             $final = $orig;
@@ -791,8 +794,8 @@ class Text_Diff_Op_copy extends Text_Diff_Op
  */
 class Text_Diff_Op_delete extends Text_Diff_Op
 {
-
-    public function Text_Diff_Op_delete($lines)
+    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
+    public function __construct($lines)
     {
         $this->orig = $lines;
         $this->final = false;
@@ -812,8 +815,8 @@ class Text_Diff_Op_delete extends Text_Diff_Op
  */
 class Text_Diff_Op_add extends Text_Diff_Op
 {
-
-    public function Text_Diff_Op_add($lines)
+    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
+    public function __construct($lines)
     {
         $this->final = $lines;
         $this->orig = false;
@@ -833,8 +836,8 @@ class Text_Diff_Op_add extends Text_Diff_Op
  */
 class Text_Diff_Op_change extends Text_Diff_Op
 {
-
-    public function Text_Diff_Op_change($orig, $final)
+    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
+    public function __construct($orig, $final)
     {
         $this->orig = $orig;
         $this->final = $final;
