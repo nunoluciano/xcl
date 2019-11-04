@@ -4,7 +4,7 @@
 [Manifesto]
 Name="XCL Flex Starter"
 Depends=Legacy_RenderSystem,legacy
-Url="https://github.com/xoopscube/legacy/"
+Url="https://github.com/xoopscube/xcl"
 Version="0.0.1"
 
 [Theme]
