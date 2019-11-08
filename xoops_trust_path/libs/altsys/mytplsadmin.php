@@ -283,7 +283,8 @@ if ($breadcrumbsObj->hasPaths()) {
     $breadcrumbsObj->appendPath('', $target_mname) ;
 }
 
-echo "<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MYTPLSADMIN_H3_MODULE." : $target_mname</h3>\n" ;
+echo "<div class='ui-card-main'>\n\n
+<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MYTPLSADMIN_H3_MODULE." : $target_mname</h3>\n" ;
 
 // link to create a new custom template
 if ($target_dirname == '_custom') {
@@ -398,7 +399,7 @@ echo "
 echo "	</tr>\n" ;
 
 
-echo "</table></form>" ;
+echo "</table></form></div>" ;
 // end of table & form
 
 xoops_cp_footer() ;

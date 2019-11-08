@@ -116,7 +116,7 @@ if ($op == 'showmod') {
             for ($j = 0; $j < $opcount; $j++) {
                 $optval = defined($options[$j]->getVar('confop_value')) ? constant($options[$j]->getVar('confop_value')) : $options[$j]->getVar('confop_value');
                 $optkey = defined($options[$j]->getVar('confop_name')) ? constant($options[$j]->getVar('confop_name')) : $options[$j]->getVar('confop_name');
-                
+
                 $ele->addOption($optval, $optkey.$addBr);
             }
             break;
@@ -170,7 +170,7 @@ if ($op == 'showmod') {
     // $button_tray->addElement(new XoopsFormButton('', 'button', _GO, 'submit'));
     $button = new XoopsFormButton('', 'button', _GO, 'submit');
     $button_tray->addElement($button);
-    
+
     $form->addElement($button_tray) ;
     xoops_cp_header();
 
@@ -180,10 +180,11 @@ if ($op == 'showmod') {
     if ($breadcrumbsObj->hasPaths()) {
         $breadcrumbsObj->appendPath(XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mypreferences', _PREFERENCES) ;
     }
-    echo "<h3 style='text-align:"._GLOBAL_LEFT.";'>".$module->getvar('name').' &nbsp; '._PREFERENCES."</h3>\n" ;
+    echo "<div class='ui-card-main'><h3 style='text-align:"._GLOBAL_LEFT.";'>".$module->getvar('name').' &nbsp; '._PREFERENCES."</h3>\n" ;
     // GIJ patch end
 
     $form->display();
+    echo "</div>";
     xoops_cp_footer();
     exit();
 }

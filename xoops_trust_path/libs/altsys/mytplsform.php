@@ -177,7 +177,8 @@ $mymenu_fake_uri = 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$
 // mymenu
 altsys_include_mymenu() ;
 
-echo "<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</h3>\n" ;
+echo "<div class='ui-card-main'>\n\n
+<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</h3>\n" ;
 
 
 // diff from file to selected DB template
@@ -241,7 +242,7 @@ echo "
 <a name='altsys_tplsform_top' id='altsys_tplsform_top'></a>
 <form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file, ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".$target_mname."' method='post'>
 	".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys_tplsform')."
-	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:600px;height:400px;'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES)."</textarea>
+	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:100%; height:20vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES)."</textarea>
 	<br />
 " ;
 if ($edit_mode == 'create') {
@@ -252,11 +253,13 @@ if ($edit_mode == 'create') {
 	<input type='submit' name='do_create' id='do_create' value='"._MD_A_MYTPLSFORM_BTN_CREATE."' />\n" ;
 } else {
     // modify form
-    echo "
+    echo "<br>
+    <div class='foot'>
 	<input type='submit' name='do_modifycont' id='do_modifycont' value='"._MD_A_MYTPLSFORM_BTN_MODIFYCONT."' />
 	<input type='submit' name='do_modify' id='do_modify' value='"._MD_A_MYTPLSFORM_BTN_MODIFYEND."' />
-	<input type='reset' name='reset' value='"._MD_A_MYTPLSFORM_BTN_RESET."' />
-</form>\n" ;
+    <input type='reset' name='reset' value='"._MD_A_MYTPLSFORM_BTN_RESET."' />
+    </div>
+</form></div>\n" ;
 }
 
 xoops_cp_footer() ;
