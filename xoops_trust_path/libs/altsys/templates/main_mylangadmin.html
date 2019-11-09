@@ -1,3 +1,8 @@
+
+<!-- Main Render -->
+<div class="ui-card-main">
+<{$smarty.template}>
+
 <form name="SelectLangFile" action="index.php" method="get">
 	<input type="hidden" name="mode" value="admin" />
 	<input type="hidden" name="lib" value="altsys" />
@@ -12,7 +17,7 @@
 	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>
 
-<h3 style="text-align:<{$smarty.const._GLOBAL_LEFT}>;"><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h3>
+<h3><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h3>
 
 <dl class="altsys_langman_information">
 	<{if $use_my_language}>
@@ -47,9 +52,9 @@
 			<td>
 				<{if empty($mylang_constants.$langfile_name)}>
 					<{if strlen(constant($langfile_name)) < 32}>
-						<input type="text" name="<{$langfile_name|escape}>" id="input_<{$langfile_name|escape}>" value="<{$langfile_uservalue|escape}>" style="width:240px;<{if $langfile_uservalue}>background-color:#ffffcc;<{/if}>" />
+						<input type="text" name="<{$langfile_name|escape}>" id="input_<{$langfile_name|escape}>" value="<{$langfile_uservalue|escape}>" style="width:240px;<{if $langfile_uservalue}>background-color:#777;<{/if}>" />
 					<{else}>
-						<textarea name="<{$langfile_name|escape}>" id="input_<{$langfile_name|escape}>" style="width:240px;<{if $langfile_uservalue}>background-color:#ffffcc;<{/if}>"><{$langfile_uservalue|escape}></textarea>
+						<textarea name="<{$langfile_name|escape}>" id="input_<{$langfile_name|escape}>" style="width:240px;<{if $langfile_uservalue}>background-color:#777;<{/if}>"><{$langfile_uservalue|escape}></textarea>
 					<{/if}>
 				<{else}>
 					<span class="my_language"><{$mylang_constants.$langfile_name}></span>
@@ -59,13 +64,16 @@
 		<{/foreach}>
 
 	</table>
-	<div align="center">
-		<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>" />
-		<input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>" />
+	<div class="foot">
+		<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>">
+		<input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>">
 		<{$gticket_hidden}>
 	</div>
 </form>
 
 <div class="altsys_mylangadmin_notice">
 	<{$notice}>
+</div>
+
+<!-- Main Render -->
 </div>

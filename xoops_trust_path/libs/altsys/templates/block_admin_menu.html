@@ -24,7 +24,7 @@
 					</li>
 				<{/foreach}>
 			</ul>
-			<img src="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.image}>" alt="<{$module.name}>" />
+			<!-- <img src="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.image}>" alt="<{$module.name}>" /> -->
 			<span class="version"><{if $module.version_in_db < $module.version_in_file}><strong class="module_versionup"><{$module.version_in_db}>-&gt;<{$module.version_in_file}></strong><{else}><{$module.version_in_db}><{/if}></span>
 		</div>
 	<{/foreach}>

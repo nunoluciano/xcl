@@ -2,16 +2,10 @@
 
 <h3 style='text-align:<{$smarty.const._GLOBAL_LEFT}>;'><{$target_mname}></h3>
 
-<style>
-	td.blockposition	{width:135px;white-space:nowrap;}
-	div.blockposition	{float:<{$smarty.const._GLOBAL_LEFT}>;border:solid 1px #333333;padding:1px;}
-	div.unselected		{background-color:#FFFFFF;}
-	div.selected		{background-color:#00FF00;}
-	div.disabled		{background-color:#FF0000;}
-	input[type='radio'] {margin:2px;}
-	input[type='text'] {min-width:0%;}
-	label				{display:inline;}
-</style>
+
+<!-- Main Render -->
+<div class="ui-card-main">
+<{$smarty.template}>
 
 <{if $block.ctype != 'P' }>
 <{if $block.ctype == 'H' || empty($block.ctype) }>
@@ -174,4 +168,7 @@
 		<{$block.content_preview}>
 	</div>
 <{/if}>
+
+<!-- Main Render -->
+</div>
 
