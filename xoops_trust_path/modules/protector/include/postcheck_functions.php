@@ -20,8 +20,8 @@ function protector_postcommon()
 
     // Protector object
     require_once dirname(dirname(__FILE__)).'/class/protector.php';
-    $db = &Database::getInstance();
-    $protector = &Protector::getInstance();
+    $db = Database::getInstance();
+    $protector = Protector::getInstance();
     $protector->setConn($db->conn);
     $protector->updateConfFromDb();
     $conf = $protector->getConf();
@@ -53,7 +53,7 @@ function protector_postcommon()
         if (implode('', array_keys($group1_ips))) {
             $group1_allow = $protector->ip_match($group1_ips);
             if (empty($group1_allow)) {
-                die('This account is disabled for your IP by Protector.<br />Clear cookie if you want to access this site as a guest.');
+                die('This account is disabled for your IP by Protector.<br>Clear cookie if you want to access this site as a guest.');
             }
         }
     }

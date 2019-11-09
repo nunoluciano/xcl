@@ -7,7 +7,15 @@ function '.$mydirname.'_notify_iteminfo( $category, $item_id )
 }
 ') ;
 
-if (! function_exists('protector_notify_base')) {
+if (!function_exists('protector_notify_base')) {
+
+    /**
+     * @param $mydirname
+     * @param $category
+     * @param $item_id
+     *
+     * @return mixed
+     */
     function protector_notify_base($mydirname, $category, $item_id)
     {
         include_once dirname(__FILE__).'/include/common_functions.php' ;

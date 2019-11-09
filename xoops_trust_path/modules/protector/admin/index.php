@@ -115,7 +115,8 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php';
 
 // title
-echo "<h3 style='text-align:left;'>".$xoopsModule->name()."</h3>\n";
+echo "<div class='ui-card-main'>\n
+        <h2>".$xoopsModule->name()."</h3>\n";
 
 // configs writable check
 if (!is_writable(dirname(dirname(__FILE__)).'/configs')) {
@@ -141,7 +142,7 @@ $group1_ips4disp = htmlspecialchars(implode("\n", $group1_ips), ENT_QUOTES);
 echo "
 <form name='ConfigForm' action='' method='POST'>
 ".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin')."
-<input type='hidden' name='action' value='update_ips' />
+<input type='hidden' name='action' value='update_ips'>
 <table width='95%' class='outer' cellpadding='4' cellspacing='1'>
   <tr valign='top' align='left'>
     <td class='head'>
@@ -149,7 +150,7 @@ echo "
     </td>
     <td class='even'>
       <textarea name='bad_ips' id='bad_ips' style='width:200px;height:60px;'>$bad_ips4disp</textarea>
-      <br />
+      <br>
       ".htmlspecialchars($protector->get_filepath4badips())."
     </td>
   </tr>
@@ -159,7 +160,7 @@ echo "
     </td>
     <td class='even'>
       <textarea name='group1_ips' id='group1_ips' style='width:200px;height:60px;'>$group1_ips4disp</textarea>
-      <br />
+      <br>
       ".htmlspecialchars($protector->get_filepath4group1ips())."
     </td>
   </tr>
@@ -167,7 +168,7 @@ echo "
     <td class='head'>
     </td>
     <td class='even'>
-      <input type='submit' value='"._GO."' />
+      <input type='submit' value='"._GO."'>
     </td>
   </tr>
 </table>
@@ -192,13 +193,13 @@ echo "
 </form>
 <form name='MainForm' action='' method='POST' style='margin-top:0px;'>
 ".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin')."
-<input type='hidden' name='action' value='' />
+<input type='hidden' name='action' value=''>
 <table width='95%' class='outer' cellpadding='4' cellspacing='1'>
   <tr valign='middle'>
-    <th width='5'><input type='checkbox' name='dummy' onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'){elements[i].checked=this.checked;}}}\" /></th>
+    <th width='5'><input type='checkbox' name='dummy' onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'){elements[i].checked=this.checked;}}}\"></th>
     <th>"._AM_TH_DATETIME.'</th>
     <th>'._AM_TH_USER.'</th>
-    <th>'._AM_TH_IP.'<br />'._AM_TH_AGENT.'</th>
+    <th>'._AM_TH_IP.'<br>'._AM_TH_AGENT.'</th>
     <th>'._AM_TH_TYPE.'</th>
     <th>'._AM_TH_DESCRIPTION.'</th>
   </tr>
@@ -223,14 +224,14 @@ while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = 
         $agent_short = substr($agent, 0, strpos($agent, ' '));
     }
     $agent4disp = htmlspecialchars($agent, ENT_QUOTES);
-    $agent_desc = $agent == $agent_short ? $agent4disp : htmlspecialchars($agent_short, ENT_QUOTES)."<img src='../images/dotdotdot.gif' alt='$agent4disp' title='$agent4disp' />";
+    $agent_desc = $agent == $agent_short ? $agent4disp : htmlspecialchars($agent_short, ENT_QUOTES)."<img src='../images/dotdotdot.gif' alt='$agent4disp' title='$agent4disp'>";
 
     echo "
   <tr>
-    <td class='$oddeven'><input type='checkbox' name='ids[]' value='$lid' /></td>
+    <td class='$oddeven'><input type='checkbox' name='ids[]' value='$lid'></td>
     <td class='$oddeven'>".formatTimestamp($timestamp)."</td>
     <td class='$oddeven'>$uname</td>
-    <td class='$oddeven'>$ip<br />$agent_desc</td>
+    <td class='$oddeven'>$ip<br>$agent_desc</td>
     <td class='$oddeven'>$type</td>
     <td class='$oddeven' width='100%'>$description</td>
   </tr>\n";
@@ -239,20 +240,21 @@ while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = 
 // footer of log listing
 echo "
   <tr>
-    <td colspan='8' align='left'>"._AM_LABEL_REMOVE."<input type='button' value='"._AM_BUTTON_REMOVE."' onclick='if(confirm(\""._AM_JS_REMOVECONFIRM."\")){document.MainForm.action.value=\"delete\"; submit();}' /></td>
+    <td colspan='8' align='left'>"._AM_LABEL_REMOVE." <input type='button' value='"._AM_BUTTON_REMOVE."' onclick='if(confirm(\""._AM_JS_REMOVECONFIRM."\")){document.MainForm.action.value=\"delete\"; submit();}'></td>
   </tr>
 </table>
 <div align='right'>
   $nav_html
 </div>
-<div style='clear:both;'><br /><br /></div>
+<div style='clear:both;'><br><br></div>
 <div align='right'>
-"._AM_LABEL_COMPACTLOG."<input type='button' value='"._AM_BUTTON_COMPACTLOG."' onclick='if(confirm(\""._AM_JS_COMPACTLOGCONFIRM."\")){document.MainForm.action.value=\"compactlog\"; submit();}' />
+"._AM_LABEL_COMPACTLOG." <input type='button' value='"._AM_BUTTON_COMPACTLOG."' onclick='if(confirm(\""._AM_JS_COMPACTLOGCONFIRM."\")){document.MainForm.action.value=\"compactlog\"; submit();}'>
 &nbsp;
-"._AM_LABEL_REMOVEALL."<input type='button' value='"._AM_BUTTON_REMOVEALL."' onclick='if(confirm(\""._AM_JS_REMOVEALLCONFIRM."\")){document.MainForm.action.value=\"deleteall\"; submit();}' />
+"._AM_LABEL_REMOVEALL." <input type='button' value='"._AM_BUTTON_REMOVEALL."' onclick='if(confirm(\""._AM_JS_REMOVEALLCONFIRM."\")){document.MainForm.action.value=\"deleteall\"; submit();}'>
 </div>
 </form>
-</td></tr></table>
+</td></tr></table>\n
+</div>
 ";
 
 xoops_cp_footer();
