@@ -62,7 +62,7 @@ define( $constpref.'_FTP_SEARCH_DESC' ,         'FTP ネットボリュームを
 define( $constpref.'_BOXAPI_ID' ,               'Box API OAuth2 client_id' );
 define( $constpref.'_BOXAPI_ID_DESC' ,          'Box API Console [ https://app.box.com/developers/services ]' );
 define( $constpref.'_BOXAPI_SECRET' ,           'Box API OAuth2 client_secret' );
-define( $constpref.'_BOXAPI_SECRET_DESC' ,      'Boxをネットワークボリュームとして利用する場合はバックエンドとの接続を https に設定し Box API アプリケーションの設定 - redirect_uri に "'.str_replace('https://','https://',XOOPS_URL).'/modules/'.$mydirname.'/connector.php" を追加してください。(ドメイン以降のパスは省略可)' );
+define( $constpref.'_BOXAPI_SECRET_DESC' ,      'Boxをネットワークボリュームとして利用する場合はバックエンドとの接続を https に設定し Box API アプリケーションの設定 - redirect_uri に "'.str_replace('http://','https://',XOOPS_URL).'/modules/'.$mydirname.'/connector.php" を追加してください。(ドメイン以降のパスは省略可)' );
 define( $constpref.'_GOOGLEAPI_ID' ,            'Google API クライアント ID' );
 define( $constpref.'_GOOGLEAPI_ID_DESC' ,       'Google API Console [ https://console.developers.google.com ]' );
 define( $constpref.'_GOOGLEAPI_SECRET' ,        'Google API クライアント シークレット' );
@@ -182,7 +182,7 @@ define( $constpref.'_CONN_URL_IS_EXT',          '外部のコネクタURL' );
 define( $constpref.'_CONN_URL_IS_EXT_DESC',     '任意指定したコネクタURLが外部サイトの場合に「はい」、コネクタURLがバックエンド通信のみSSL接続するURLの場合は「いいえ」を選択してください。<br />外部サイトのコネクタに接続する場合は相手先サイトにて、当サイトのオリジンドメインが許可されている必要があります。' );
 
 define( $constpref.'_ALLOW_ORIGINS',            '許可するドメインオリジン' );
-define( $constpref.'_ALLOW_ORIGINS_DESC',       '当サイトのコネクタに接続を許可する外部サイトのドメインオリジン（例:"https://example.com" 最後のスラッシュは不要）を行区切りで設定します。<br />コネクタURLがバックエンド通信のみSSL接続するURLの場合は「 <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> 」を指定する必要があります。' );
+define( $constpref.'_ALLOW_ORIGINS_DESC',       '当サイトのコネクタに接続を許可する外部サイトのドメインオリジン（例:"http://example.com" 最後のスラッシュは不要）を行区切りで設定します。<br />コネクタURLがバックエンド通信のみSSL接続するURLの場合は「 <strong>'.preg_replace('#^(https?://[^/]+).*$#', '$1', XOOPS_URL).'</strong> 」を指定する必要があります。' );
 
 define( $constpref.'_UNZIP_LANG_VALUE' ,        'unzip 実行時のロケール' );
 define( $constpref.'_UNZIP_LANG_VALUE_DESC' ,   'アーカイブ解凍のコマンド unzip 使用時の言語ロケール設定。<br />通常は指定なしで問題ないと思われるが、解凍後のファイル名が文字化けする場合には ja_JP.Shift_JIS などとすると解消される場合がある。' );
