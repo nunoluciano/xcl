@@ -1,15 +1,10 @@
-<style>
-	dt { font-weight: bold; }
-	dd { margin-left: 100px; }
-</style>
+<div class="ui-card-main">
 
-
-<h3><{$mod_name}></h3>
+<h2><{$mod_name}></h2>
 
 <{assign var="extra" value=$extras.0}>
 
 <h2 class="head"><{$smarty.const._MD_A_PICO_H2_EXTRAS}> - <{$extra.id}></h2>
-
 
 <dl>
 	<dt><{$smarty.const._MD_A_PICO_TH_ID}></dt>
@@ -43,3 +38,4 @@
 		<{$extra.data_summary_raw|escape|nl2br}>
 	</dd>
 </dl>
+</div>

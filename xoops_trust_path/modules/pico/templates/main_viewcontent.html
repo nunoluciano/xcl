@@ -41,12 +41,12 @@
 
 <!-- print icon -->
 <{if $mod_config.show_printicon}>
-	<div class="pico_print_icon"><a href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print"><img src="<{$mod_imageurl}>/icon_print.gif" border="0" alt="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>" /></a></div>
+	<div class="pico_print_icon"><a href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print"><img src="<{$mod_imageurl}>/icon_print.gif" border="0" alt="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>"></a></div>
 <{/if}>
 
 <!-- tell a friend -->
 <{if $mod_config.show_tellafriend && $content.tellafriend_uri}>
-	<div class="pico_tellafriend_icon"><a href="<{$content.tellafriend_uri}>" target="_top"><img src="<{$mod_imageurl}>/icon_tellafriend.gif" border="0" alt="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>" /></a></div>
+	<div class="pico_tellafriend_icon"><a href="<{$content.tellafriend_uri}>" target="_top"><img src="<{$mod_imageurl}>/icon_tellafriend.gif" border="0" alt="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>"></a></div>
 <{/if}>
 
 <!-- vote -->
@@ -56,16 +56,16 @@
 		<{$smarty.const._MD_PICO_VOTEPOINTAVG}>:<{$content.votes_avg|string_format:"%.2f"}>
 		<{if $content.can_vote}>
 			<form action="<{$mod_url}>/index.php" method="get" name="pico_vote_best" id="pico_vote_best">
-				<input type="hidden" name="page" value="vote_to_content" />
-				<input type="hidden" name="content_id" value="<{$content.id}>" />
-				<input type="hidden" name="point" value="10" />
-				<input type="submit" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}>" />
+				<input type="hidden" name="page" value="vote_to_content">
+				<input type="hidden" name="content_id" value="<{$content.id}>">
+				<input type="hidden" name="point" value="10">
+				<input type="submit" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}>">
 			</form>
 			<{* <form action="<{$mod_url}>/index.php" method="get" name="pico_vote_worst" id="pico_vote_worst">
-				<input type="hidden" name="page" value="vote_to_content" />
-				<input type="hidden" name="content_id" value="<{$content.id}>" />
-				<input type="hidden" name="point" value="0" />
-				<input type="submit" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCWORST}>" />
+				<input type="hidden" name="page" value="vote_to_content">
+				<input type="hidden" name="content_id" value="<{$content.id}>">
+				<input type="hidden" name="point" value="0">
+				<input type="submit" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCWORST}>">
 			</form> *}>
 		<{/if}>
 	</div>
@@ -76,14 +76,14 @@
 
 <{if $category.isadminormod}>
 	<!-- informations for admin -->
-	<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}> <{$content.poster_uname}> 
+	<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}> <{$content.poster_uname}>
 	<{if $content.modified_time > $content.created_time}>
 		&nbsp;
-		<{$smarty.const._MD_PICO_MODIFIED}>:<{$content.modified_time_formatted}> <{$content.modifier_uname}> 
+		<{$smarty.const._MD_PICO_MODIFIED}>:<{$content.modified_time_formatted}> <{$content.modifier_uname}>
 	<{/if}>
 	&nbsp;
 	<{$smarty.const._MD_PICO_VIEWED}>:<{$content.viewed}>
-	<br />
+	<br>
 <{/if}>
 
 <{if trim($smarty.capture.controllers)}>
@@ -99,17 +99,17 @@
 <tr>
 	<td width="33%" align="<{$smarty.const._ALIGN_START}>" valign="top">
 	<{if $prev_content.id}>
-		<a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="F"><img src="<{$mod_imageurl}>/navicon_<{if $smarty.const._ALIGN_START=='left'}>prev<{else}>next<{/if}>.gif" alt="<{$smarty.const._MD_PICO_PREV}>" /></a><br />
+		<a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="F"><img src="<{$mod_imageurl}>/navicon_<{if $smarty.const._ALIGN_START=='left'}>prev<{else}>next<{/if}>.gif" alt="<{$smarty.const._MD_PICO_PREV}>"></a><br>
 		<{$prev_content.subject}>
 	<{/if}>
 	</td>
 	<td width="34%" align="center" valign="top">
-		<a href="<{$mod_url}>/<{$category.link}>" accesskey="P"><img src="<{$mod_imageurl}>/navicon_up.gif" alt="<{$smarty.const._MD_PICO_CATEGORYINDEX}>" /></a><br />
+		<a href="<{$mod_url}>/<{$category.link}>" accesskey="P"><img src="<{$mod_imageurl}>/navicon_up.gif" alt="<{$smarty.const._MD_PICO_CATEGORYINDEX}>"></a><br>
 		<{$category.title}>
 	</td>
 	<td width="33%" align="<{$smarty.const._ALIGN_END}>" valign="top">
 	<{if $next_content.id}>
-		<a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F"><img src="<{$mod_imageurl}>/navicon_<{if $smarty.const._ALIGN_START=='left'}>next<{else}>prev<{/if}>.gif" alt="<{$smarty.const._MD_PICO_NEXT}>" /></a><br />
+		<a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F"><img src="<{$mod_imageurl}>/navicon_<{if $smarty.const._ALIGN_START=='left'}>next<{else}>prev<{/if}>.gif" alt="<{$smarty.const._MD_PICO_NEXT}>"></a><br>
 		<{$next_content.subject}>
 	<{/if}>
 	</td>
@@ -123,7 +123,7 @@
 	<{d3comment mydirname=$mydirname class="PicoD3commentContent"}>
 <{/if}>
 
-<hr class="notification" />
+<hr class="notification">
 <{include file='db:system_notification_select.html'}>
 
 </div>
