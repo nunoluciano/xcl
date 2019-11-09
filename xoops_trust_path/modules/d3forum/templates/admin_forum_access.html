@@ -1,12 +1,14 @@
-<h3><{$mod_name}></h3>
+<div class="ui-card-main">
+
+<h2><{$mod_name}></h2>
 
 <!-- forum selection -->
 <form name="selectforum" action="<{$mod_url}>/admin/index.php" method="get" style="margin: 20px 0px">
 
-	<input type="hidden" name="page" value="forum_access" />
+	<input type="hidden" name="page" value="forum_access">
 	<label for="select_forum_id"><{$smarty.const._MD_A_D3FORUM_LABEL_SELECTFORUM}></label>:
 	<select name="forum_id" id="select_forum_id"><{$forum_jumpbox_options}></select>
-	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
+	<input type="submit" value="<{$smarty.const._SUBMIT}>">
 </form>
 
 <!-- forum title -->
@@ -51,7 +53,7 @@
 		</tr>
 		<{$group_trs}>
 	</table>
-	<input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>" />
+	<input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>">
 </form>
 
 
@@ -88,8 +90,8 @@
 		<{$user_trs}>
 		<{$newuser_trs}>
 	</table>
-	<input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>" />
-	<br />
+	<input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>">
+	<br>
 	<{$smarty.const._MD_A_D3FORUM_NOTICE_ADDUSERS}>
 </form>
-
+</div>

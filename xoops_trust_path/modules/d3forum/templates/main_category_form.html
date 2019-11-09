@@ -1,6 +1,6 @@
 <!-- start module contents -->
 <{if $mod_config.show_breadcrumbs}>
-<div class="d3f_breadcrumbs"><a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>&nbsp;&gt;&nbsp;<{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></div>
+<div class="breadcrumbs"><a href="<{$mod_url}>/index.php"><{$smarty.const._MD_D3FORUM_TOP}></a>&nbsp;&gt;&nbsp;<{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></div>
 <{/if}>
 
 <h1 class="d3f_title"><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></h1>
@@ -21,7 +21,7 @@
 		<tr valign="top" align="left">
 			<th class="d3f_head"><label for="category_title"><{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE}></label></th>
 			<td class="even">
-				<input type="text" name="title" id="category_title" size="50" maxlength="255" value="<{$category.title}>" />
+				<input type="text" name="title" id="category_title" size="50" maxlength="255" value="<{$category.title}>">
 			</td>
 		</tr>
 
@@ -45,7 +45,7 @@
 		<tr valign="top" align="left">
 			<th class="d3f_head"><label for="category_weight"><{$smarty.const._MD_D3FORUM_TH_CATEGORYWEIGHT}></label></th>
 			<td class="even">
-				<input type="text" name="weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>" />
+				<input type="text" name="weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>">
 			</td>
 		</tr>
 
@@ -54,12 +54,12 @@
 				<{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}>
 			</th>
 			<td class="even">
-				<input type="checkbox" id="category_option_controller_onoff" onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"  <{if $category.options}>checked="checked"<{/if}> /><label for="category_option_controller_onoff"><{$smarty.const._MD_D3FORUM_ONOFF}></label>
+				<input type="checkbox" id="category_option_controller_onoff" onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"  <{if $category.options}>checked="checked"<{/if}>><label for="category_option_controller_onoff"><{$smarty.const._MD_D3FORUM_ONOFF}></label>
 				<div id="category_option_controller" <{if ! $category.options}>style="display:none;"<{/if}>>
 					<textarea name="options" id="category_options" cols="50" rows="10"><{$category.options}></textarea>
-					<br />
+					<br>
 					<{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>:
-					<br />
+					<br>
 					<span class="categoryoptiondesc"><{$category.option_desc}></span>
 				</div>
 			</td>
@@ -79,15 +79,15 @@
 				<{$smarty.const._MD_D3FORUM_BATCH_ACTIONS}>
 			</th>
 			<td class="even">
-				<input type="checkbox" name="batch_action_turnsolvedon" id="batch_action_turnsolvedon" value="1" onclick="if(this.checked){alert('<{$smarty.const._MD_D3FORUM_BA_MSG_CONFIRM}>');}" /><label for="batch_action_turnsolvedon"><{$smarty.const._MD_D3FORUM_BA_TURNSOLVEDON}></label>
+				<input type="checkbox" name="batch_action_turnsolvedon" id="batch_action_turnsolvedon" value="1" onclick="if(this.checked){alert('<{$smarty.const._MD_D3FORUM_BA_MSG_CONFIRM}>');}"><label for="batch_action_turnsolvedon"><{$smarty.const._MD_D3FORUM_BA_TURNSOLVEDON}></label>
 			</td>
 		</tr>
 
 	</table>
 
-<p class="d3f_submit"><input type="submit" name="categoryman_post" value="<{$smarty.const._SUBMIT}>" />
+<p class="d3f_submit"><input type="submit" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
 <{if $page == 'categorymanager' && $children_count == 0}>
-<input type="submit" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')" />
+<input type="submit" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
 <{/if}></p>
 
 </form>

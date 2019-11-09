@@ -30,7 +30,7 @@
     <{* <{/if}> *}>
 	<{/if}>
 
-	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>" /><{/if}>
+	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>"><{/if}>
 	<{* displays the last post's subject or topic title *}>
 	<{if $block.disp_last_subject }>
 	<{$topic.last_subject}>
@@ -38,7 +38,7 @@
 	<{$topic.title}>
 	<{/if}>
 	<{if $block.current_topic_id == $topic.id}></span><{else}></a><{/if}>
-	<{if ! $topic.solved}><img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>" /><{/if}></td>
+	<{if ! $topic.solved}><img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>"><{/if}></td>
 	<td align="center"><{$topic.replies}></td>
 	<td align="center"><{$topic.views}></td>
 	<td align="center" nowrap="nowrap">
@@ -88,7 +88,7 @@
     <{else}> *}>
         <span><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
     <{* <{/if}> *}>
-    <{$topic.title}></a>(<{$topic.replies}>) 
+    <{$topic.title}></a>(<{$topic.replies}>)
     <{else}>
     <span><{$topic.title}>(<{$topic.replies}>)
     <{/if}>

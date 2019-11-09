@@ -28,9 +28,9 @@
 <!-- start post tree  -->
 <{foreach from=$posts item=eachpost}>
 	<ul class='d3f_eachbranch'><{"<span style='padding-left:`$eachpost.depth_in_tree`0px; padding-top: 0;'>"}>
-	<a href="#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" name="post_path<{$eachpost.unique_path}>"><img src="<{$mod_imageurl}>/posticon<{$eachpost.icon}>.gif" alt="<{$icon_meanings[$eachpost.icon]}>" /> <{$eachpost.subject}></a>
+	<a href="#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" name="post_path<{$eachpost.unique_path}>"><img src="<{$mod_imageurl}>/posticon<{$eachpost.icon}>.gif" alt="<{$icon_meanings[$eachpost.icon]}>"> <{$eachpost.subject}></a>
 	(<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
-	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a><{/if}></span>
+	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>"></a><{/if}></span>
 </ul>
 <{/foreach}>
 <!-- end post tree  -->
@@ -40,15 +40,15 @@
     <{foreach from=$tree item=eachpost}>
 	<{if $eachpost.depth_in_tree == 0}>
 	<ul class='d3f_eachbranch'><{"<span style='padding-left:`$eachpost.depth_in_tree`0px; padding-top: 0;'>"}>
-	<a href="<{$mod_url}>/index.php?topic_id=<{$eachpost.topic_id}>#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" name="post_path<{$eachpost.unique_path}>"><img src="<{$mod_imageurl}>/posticon<{$eachpost.icon}>.gif" alt="<{$icon_meanings[$eachpost.icon]}>" /> <{$eachpost.subject}></a>
+	<a href="<{$mod_url}>/index.php?topic_id=<{$eachpost.topic_id}>#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" name="post_path<{$eachpost.unique_path}>"><img src="<{$mod_imageurl}>/posticon<{$eachpost.icon}>.gif" alt="<{$icon_meanings[$eachpost.icon]}>"> <{$eachpost.subject}></a>
 	(<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
-	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$eachpost.topic_id}>"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>" /></a><{/if}>
+	<{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$eachpost.topic_id}>"><img src="<{$mod_imageurl}>/adminicon_cutpaste.gif" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>"></a><{/if}>
 	<{if $eachpost.topic_id==$topic.id}><font color="red"><{$smarty.const._MD_D3FORUM_THIS_TOPIC}></font><{/if}>
 	<{/if}>
 </ul>
     <{/foreach}>
 <{/if}>
-<hr />
+<hr>
 <{/if}><{*/$post_hits > 1*}>
 
 <{if $plugin_params.order != 'asc'}>
@@ -104,7 +104,7 @@
 <!-- bottom of posts -->
 <{/if}><{*/$post_hits*}>
 <{if $post_hits > 1}>
-<br /><br />
+<br><br>
 
 <div class="d3f_link">
 <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
