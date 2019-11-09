@@ -1,13 +1,16 @@
 <div id="xupdate">
 
-	<{include file="admin_navi.html"}>
-	
-	<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h3>
 	<{include file="admin_menunavi.html"}>
+	<{include file="admin_navi.html"}>
+
+	<div class="ui-card-main">
+
+	<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h2>
+
 	<{include file="admin_tips.html"}>
-	
+
 	<script>jQuery(function($){$( "#tabs" ).tabs();});</script>
-	
+
 	<div id="tabs">
 		<ul>
 			<{if !empty($package_items) }><li><a href="#xupdate-tabs-package"><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}> <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li><{/if}>
@@ -37,7 +40,7 @@
 			<div style="clear:both;;">&nbsp;</div>
 		</div>
 		<{/if}>
-	
+
 		<{if !empty($module_items) }>
 		<div id="xupdate-tabs-module" class="storelist">
 			<{foreach item=data from=$module_items}>
@@ -60,7 +63,7 @@
 			<div style="clear:both;;">&nbsp;</div>
 		</div>
 		<{/if}>
-	
+
 		<{if !empty($theme_items) }>
 		<div id="xupdate-tabs-theme" class="storelist">
 			<{foreach item=data from=$theme_items}>
@@ -83,7 +86,7 @@
 			<div style="clear:both;;">&nbsp;</div>
 		</div>
 		<{/if}>
-	
+
 		<{if !empty($preload_items) }>
 		<div id="xupdate-tabs-preload" class="storelist">
 			<{foreach item=data from=$preload_items}>
@@ -106,7 +109,10 @@
 			<div style="clear:both;;">&nbsp;</div>
 		</div>
 		<{/if}>
-	
+
 	</div>
 	<div class="fetchLog"><{$fetchLog}>	</div>
+
+</div><!-- ui-card-main -->
+
 </div>
