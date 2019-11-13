@@ -45,17 +45,18 @@ if (!defined('XOOPS_ROOT_PATH')) {
     }
 
 
-// Admin Sidemenu blocks only 'admin_theme.html'
-//!Fix Cannot be displayed on 'admin-dashboard.html'
-//you can determine which block should be displayed!
-//display(1) or not display(0): waiting-contents block
-if (!defined('XC_ADMINBLOCK_WAITING')) define('XC_ADMINBLOCK_WAITING', 0);
-//display(1) or not display(0): system info block
-if (!defined('XC_ADMINBLOCK_SYSINFO')) define('XC_ADMINBLOCK_SYSINFO', 0);
-//display(1) or not display(0): online-info block
-if (!defined('XC_ADMINBLOCK_ONLINEINFO')) define('XC_ADMINBLOCK_ONLINEINFO', 0);
-//display(1) or not display(0): admin-theme select block
-if (!defined('XC_ADMINBLOCK_ADMINTHEME')) define('XC_ADMINBLOCK_ADMINTHEME', 0);
+    // Admin Sidemenu blocks only 'admin_theme.html'
+    //!Fix Cannot be displayed on 'admin-dashboard.html'
+
+    //you can determine which block should be displayed!
+    //display(1) or not display(0): waiting-contents block
+    if (!defined('XC_ADMINBLOCK_WAITING')) define('XC_ADMINBLOCK_WAITING', 0);
+    //display(1) or not display(0): system info block
+    if (!defined('XC_ADMINBLOCK_SYSINFO')) define('XC_ADMINBLOCK_SYSINFO', 0);
+    //display(1) or not display(0): online-info block
+    if (!defined('XC_ADMINBLOCK_ONLINEINFO')) define('XC_ADMINBLOCK_ONLINEINFO', 1);
+    //display(1) or not display(0): admin-theme select block
+    if (!defined('XC_ADMINBLOCK_ADMINTHEME')) define('XC_ADMINBLOCK_ADMINTHEME', 0);
 
 
 class Legacy_AdminDashboard extends XCube_ActionFilter
