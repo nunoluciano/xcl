@@ -1,0 +1,69 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></span>
+</div>
+
+
+<!-- UI-Main Render -->
+<div class="ui-card-main">
+<{$smarty.template}>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
+
+<ul class="toptab">
+  <li class="add"><a href="index.php?action=GroupEdit"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></a></li>
+</ul>
+
+<table class="outer">
+  <tr>
+    <th>&nbsp;</th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_GID}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUPID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_GROUPID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_NAME}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_DESC}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_TYPE}>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+  </tr>
+  <{foreach item=group from=$objects}>
+    <tr class="<{cycle values='odd,even'}>">
+      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><span class="iconify" data-icon="mdi:account-multiple" data-width="24px" data-height="24px"></span></i></td>
+      <td class="user_list_id"><{$group->getShow('groupid')}></td>
+      <td class="user_list_title"><{$group->getShow('name')}></td>
+      <td class="user_list_description"><{$group->getShow('description')}></td>
+      <td class="user_list_type"><{$group->getShow('group_type')}></td>
+      <td class="user_list_number"><{$group->getUserCount()|xoops_escape}></td>
+      <td class="user_list_control">
+        <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._EDIT}>">
+          <span class="iconify" data-icon="mdi:account-edit" data-width="24px" data-height="24px"></span>
+        </a>
+        <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
+          <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._DELETE}>" class="red">
+            <span class="iconify" data-icon="mdi:account-multiple-remove" data-width="24px" data-height="24px"></span>
+          </a>
+        <{/if}>
+        <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
+          <span class="iconify" data-icon="mdi:account-check" data-width="24px" data-height="24px"></span>
+        </a>
+        <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
+          <span class="iconify" data-icon="mdi:account-lock" data-width="24px" data-height="24px"></span>
+        </a>
+        <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
+          <span class="iconify" data-icon="mdi:account-arrow-left" data-width="24px" data-height="24px"></span>
+        </a>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+</div><!-- UI-Main Render -->
