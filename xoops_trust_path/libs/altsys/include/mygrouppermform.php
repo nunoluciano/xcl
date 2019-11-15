@@ -196,16 +196,18 @@ class MyXoopsGroupPermForm extends XoopsForm
         // $tray->addElement(new XoopsFormButton('', 'reset', _CANCEL, 'reset'));
         $buttonReset = new XoopsFormButton('', 'reset', _CANCEL, 'reset');
         $tray->addElement($buttonReset);
-        
+
         // !Fix PHP7 NOTICE: Only variables should be passed by reference
         // $tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
         $buttonSubmit = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');
         $tray->addElement($buttonSubmit);
-        
+
         $this->addElement($tray);
 
-        $ret = '<h4>'.$this->getTitle().'</h4>'.$this->_permDesc.'<br />';
-        $ret .= "<form name='".$this->getName()."' id='".$this->getName()."' action='".$this->getAction()."' method='".$this->getMethod()."'".$this->getExtra().">\n<table width='100%' class='outer' cellspacing='1'>\n";
+        $ret = '<div class="ui-block-permissions">';
+        $ret .= '<h4>'.$this->getTitle().'</h4>'.$this->_permDesc.'<br />';
+        $ret .= "<form name='".$this->getName()."' id='".$this->getName()."' action='".$this->getAction()."' method='".$this->getMethod()."'".$this->getExtra().">\n";
+        $ret .= "<table width='100%' class='outer'>\n";
         $elements =& $this->getElements();
         foreach (array_keys($elements) as $i) {
             if (!is_object($elements[$i])) {
@@ -222,7 +224,7 @@ class MyXoopsGroupPermForm extends XoopsForm
                 $ret .= $elements[$i]->render();
             }
         }
-        $ret .= "</table>".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'myblocksadmin')."</form>";
+        $ret .= "</table>".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'myblocksadmin')."</form></div>";
         return $ret;
     }
 }
@@ -328,7 +330,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
             $ret .= '<table class="outer"><tr>';
             $cols = 1;
             foreach ($this->_appendix as $append) {
-                if ($cols > 4) {
+                if ($cols > 3) {
                     $ret .= '</tr><tr>';
                     $cols = 1;
                 }
@@ -346,7 +348,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
         $cols = 1;
         if (! empty($this->_optionTree[0]['children'])) {
             foreach ($this->_optionTree[0]['children'] as $topitem) {
-                if ($cols > 4) {
+                if ($cols > 3) {
                     $ret .= '</tr><tr>';
                     $cols = 1;
                 }

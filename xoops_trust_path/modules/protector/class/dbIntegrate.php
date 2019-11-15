@@ -27,7 +27,7 @@ class protectorDbIntegrate
                     return false;
                 }
             default:
-                return mysql_field_flags($result, $field_offset);
+                return mysqli_field_flags($result, $field_offset);
         }
     }
     
@@ -60,7 +60,7 @@ class protectorDbIntegrate
                 }
                 return $res;
             default:
-                return mysql_fetch_field($result, $field_offset);
+                return mysqli_fetch_field($result, $field_offset);
         }
     }
 }

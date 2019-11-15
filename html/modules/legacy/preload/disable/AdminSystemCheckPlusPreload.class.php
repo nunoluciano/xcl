@@ -32,11 +32,11 @@ if (!defined('XC_ADMINSYSTEMCHECK_PHPSETTING')) {
 }
 //display(1) or not display(0): Waiting(pending) contents
 if (!defined('XC_ADMINSYSTEMCHECK_WAITING')) {
-    define('XC_ADMINSYSTEMCHECK_WAITING', 1);
+    define('XC_ADMINSYSTEMCHECK_WAITING', 0);
 }
 //display(1) or not display(0): Full PHP Info!
 if (!defined('XC_ADMINSYSTEMCHECK_PHPINFO')) {
-    define('XC_ADMINSYSTEMCHECK_PHPINFO', 1);
+    define('XC_ADMINSYSTEMCHECK_PHPINFO', 0);
 }
 
 class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
@@ -52,68 +52,44 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
         $root =& XCube_Root::getSingleton();
         ////////////////////////////////////////////////
         if (XC_ADMINSYSTEMCHECK_WELCOME) {
-            // Output Render Options 
-            // Direct raw output                    : $type = 0
-            // Template 'legacy_dummy.html'         : $type = 1
-            // Template 'legacy_admin_welcome.html' : $type = 2   
-            $type = 2;
-            
-            // Custom 'admin.php'
+            //ex) 
+        //direct output(0), output with legacy_dummy.html(1), output with legacy_admin_welcome.html(2)   
+        $type = 2;
+        //Umm...Just example!!
+        //please customize it to design/decorate your html/admin.php
 
-            if ($type == 0) {
-                $welcome = '<b>Welcome to XOOPS Cube Legacy!</b><br />Have a nice time!';
-                echo $welcome;
-            } // if type=0
+        if ($type == 0) {
+            $welcome = '<b>Welcome to XOOPS Cube Legacy!!</b><br />Have a nice time!!';
+            echo $welcome;
+        }//type0 if
 
-            elseif ($type == 1) {
-                $welcome = '<b>Welcome to XOOPS Cube Legacy!!</b><br />Have a nice and happy time!';
+        elseif ($type == 1) {
+            $welcome = '<b>Welcome to XOOPS Cube Legacy!!</b><br />Have a nice and happy time!!';
+            $attributes = array();
+            $attributes['dummy_content'] = $welcome;
+            $template = self::getTemplate('legacy_dummy.html');
+            Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
+        }//type1 if
 
+        elseif ($type == 2) {
+        
+        //you must prepare your own legacy_admin_welcome.html
+        $template = self::getTemplate('legacy_admin_welcome.html');
+            if (file_exists($template)) {
+                //it's just a example! please customize it!
+        $welcome_title = 'Welcome Message!';
+                $welcome_msg = array();
+                $welcome_msg[] = 'Welcome to XOOPS Cube Legacy!!';
+                $welcome_msg[] = 'Have a nice and happy time!!';
                 $attributes = array();
-                $attributes['dummy_content'] = $welcome;
-                $template = self::getTemplate('legacy_dummy.html');
-
+                $attributes['title'] = $welcome_title;
+                $attributes['messages'] = $welcome_msg;
                 Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
-            } // if type=1
-
-            elseif ($type == 2) {
-            // Template 'legacy_admin_welcome.html'
-            $template = self::getTemplate('legacy_admin_welcome.html');
-
-                if (file_exists($template)) {
-                // Module Total
-                $moduleHandler =& xoops_gethandler('module');
-                $module_total = $moduleHandler->getCount();
-                $active_module_total = $moduleHandler->getCount(new Criteria('isactive', 1));
-
-                $welcome_title = 'Welcome Message!';
-
-                    $welcome_msg = array();
-                    $welcome_msg[] = 'Welcome to XOOPS Cube Legacy!';
-                    $welcome_msg[] = 'Have a nice and happy time!';
-
-                    $attributes = array();
-                    $attributes['title'] = $welcome_title;
-                    $attributes['messages'] = $welcome_msg;
-                    $attributes['ModuleTotal'] = $module_total;
-                    $attributes['activeModuleTotal'] = $active_module_total;
-                    $attributes['inactiveModuleTotal'] = $module_total - $active_module_total;
-
-                    $moduleHandler =& xoops_gethandler('module');
-                    $module_total = $moduleHandler->getCount();
-
-                    Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
-                } // if Template file_exists
-            } // if type=2
-        } // WELCOME
-
-
-
-        /**
-         * ADMIN SYSTEM CHECK
-         * System Info
-         */ 
+            }//file_exists if
+        }//type2 if
+        }
+        ////////////////////////////////////////////////
         if (XC_ADMINSYSTEMCHECK_SYSTEMINFO) {
-            
             $systeminfo_message = array();
 
             if (defined('XOOPS_DISTRIBUTION_VERSION')) {
@@ -140,7 +116,6 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
             $db = &$root->mController->getDB();
             $result = $db->query("SELECT VERSION()");
             list($mysqlversion) = $db->fetchRow($result);
-
             $systemconfig['mysqlversion'] = $mysqlversion;
             $systemconfig['os'] = substr(php_uname(), 0, 7);
             $systemconfig['server'] = xoops_getenv('SERVER_SOFTWARE');
@@ -153,7 +128,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
             $systeminfo_message[] = _AD_LEGACY_MYSQLVERSION." : ".$systemconfig['mysqlversion'];
 
             xoops_result($systeminfo_message, _AD_LEGACY_SYSTEMINFO, 'tips');
-        } // if Systeminfo
+        }//systeminfo if
 
         
         /////////////////////////////////////////

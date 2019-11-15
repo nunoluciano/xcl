@@ -1,28 +1,13 @@
+<div class="adminnavi breadcrumbs">
 <a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>"><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$form_title}><br /><br />
+</div>
 
-<h3 style='text-align:<{$smarty.const._GLOBAL_LEFT}>;'><{$target_mname}></h3>
 
-<style>
-	td.blockposition	{width:135px;white-space:nowrap;}
-	div.blockposition	{float:<{$smarty.const._GLOBAL_LEFT}>;border:solid 1px #333333;padding:1px;}
-	div.unselected		{background-color:#FFFFFF;}
-	div.selected		{background-color:#00FF00;}
-	div.disabled		{background-color:#FF0000;}
-	input[type='radio'] {margin:2px;}
-	input[type='text'] {min-width:0%;}
-	label				{display:inline;}
-</style>
+<!-- Main Render -->
+<div class="ui-card-main">
+<{$smarty.template}>
 
-<{if $common_fck_installed}>
-<script type="text/javascript" src="<{$xoops_url}>/common/fckeditor/fckeditor.js"></script>
-<script type="text/javascript"><!--
-	function fckeditor_exec() {
-		var oFCKeditor = new FCKeditor( "textarea_content" , "100%" , "500" , "Default" );
-		oFCKeditor.BasePath = "<{$xoops_url}>/common/fckeditor/";
-		oFCKeditor.ReplaceTextarea();
-	}
-// --></script>
-<{/if}>
+<h3><{$target_mname}></h3>
 
 <form name="blockform" id="blockform" action="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;bid=<{$block.bid}>" method="post">
 
@@ -51,7 +36,7 @@
 	<tr>
 		<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_WEIGHT}></td>
 		<td class="even">
-			<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="3" maxlength="5" style="text-align:<{$smarty.const._GLOBAL_RIGHT}>;" />
+			<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="3" maxlength="5">
 		</td>
 	</tr>
 	<tr>
@@ -114,7 +99,7 @@
 			</select>
 		</td>
 	</tr>
-	<tr>
+	<tr class="foot">
 		<td class="head"></td>
 		<td class="even">
 			<{if $block.is_custom}>
@@ -134,3 +119,5 @@
 	</div>
 <{/if}>
 
+<!-- Main Render -->
+</div>

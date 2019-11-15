@@ -737,8 +737,8 @@ EOD;
 		$link = (is_object($db->conn) && get_class($db->conn) === 'mysqli') ? $db->conn : false;
 		if ($link && function_exists('mysqli_set_charset')) {
 			mysqli_set_charset($link, $enc);
-		} else if (function_exists('mysql_set_charset')) {
-			mysql_set_charset($enc);
+		// } else if (function_exists('mysql_set_charset')) {
+		// 	mysql_set_charset($enc);
 		} else {
 			$db->queryF('SET NAMES \'' . $enc . '\'');
 		}

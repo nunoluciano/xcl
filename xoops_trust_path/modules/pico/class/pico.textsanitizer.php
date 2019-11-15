@@ -139,7 +139,7 @@ class PicoTextSanitizer extends MyTextSanitizer
 		if ($this->nbsp) {
 			$patterns = array('  ', '\"');
 			$replaces = array(' &nbsp;', '"');
-			$text = substr(preg_replace('/\>.*\</esU', "str_replace(\$patterns,\$replaces,'\\0')", ">$text<"), 1, -1);
+			$text = substr(preg_replace('/\>.*\</sU', "str_replace(\$patterns,\$replaces,'\\0')", ">$text<"), 1, -1);
 		}
 		return $text;
 	}

@@ -227,7 +227,7 @@ altsys_include_mymenu() ;
 $breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
 $breadcrumbsObj->appendPath(XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=compilehookadmin', _MI_ALTSYS_MENU_COMPILEHOOKADMIN) ;
 
-echo "
+echo "<div class='ui-card-main'>
 	<style>
 		dl	{ margin: 10px; }
 		dt	{ margin-bottom:5px; }
@@ -315,8 +315,8 @@ echo "
 				</dd>
 			</dl>
 		</p>
-	</form>
-\n" ;
+    </form>\n
+    </div>" ;
 
 
 xoops_cp_footer() ;

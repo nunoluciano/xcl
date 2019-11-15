@@ -36,7 +36,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
 
         $crs = $db->queryF('SHOW CREATE TABLE '.$old_table) ;
         if (! $db->getRowsNum($crs)) {
-            echo "error: SHOW CREATE TABLE ($old_table)<br />\n" ;
+            echo "error: SHOW CREATE TABLE ($old_table)<br>\n" ;
             continue ;
         }
         $row_create = $db->fetchArray($crs) ;
@@ -44,13 +44,13 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
 
         $crs = $db->queryF($create_sql) ;
         if (! $crs) {
-            echo "error: CREATE TABLE ($new_table)<br />\n" ;
+            echo "error: CREATE TABLE ($new_table)<br>\n" ;
             continue ;
         }
 
         $irs = $db->queryF("INSERT INTO `$new_table` SELECT * FROM `$old_table`") ;
         if (! $irs) {
-            echo "error: INSERT INTO ($new_table)<br />\n" ;
+            echo "error: INSERT INTO ($new_table)<br>\n" ;
             continue ;
         }
     }
@@ -216,7 +216,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     // check if prefix_xoopscomments exists
     $check_rs = $db->queryF("SELECT * FROM {$prefix}_xoopscomments LIMIT 1") ;
     if (! $check_rs) {
-        die("This is not a prefix for XOOPS") ;
+        die("This is not a prefix for comments") ;
     }
 
     // get table list
@@ -267,9 +267,9 @@ while ($row_table = $db->fetchArray($srs)) {
 
 
 // table
-echo "
-<h3>"._AM_H3_PREFIXMAN."</h3>
-<table class='outer' width='95%'>
+echo "<div class='ui-card-main'>
+<h2>"._AM_H3_PREFIXMAN."</h2>
+<table class='outer'>
 	<tr>
 		<th>PREFIX</th>
 		<th>TABLES</th>
@@ -303,36 +303,36 @@ foreach ($prefixes as $prefix) {
 
     if ($prefix['name'] == XOOPS_DB_PREFIX) {
         $del_button = '' ;
-        $style_append = 'background-color:#FFFFFF' ;
+        $style_append = 'background:transparent' ;
     } else {
-        $del_button = "<input type='submit' name='delete' value='delete' onclick='return confirm(\""._AM_CONFIRM_DELETE."\")' />" ;
+        $del_button = "<input type='submit' name='delete' value='delete' onclick='return confirm(\""._AM_CONFIRM_DELETE."\")'>" ;
         $style_append = '' ;
     }
 
     echo "
 	<tr>
-		<td class='odd' style='$style_append;'>$prefix4disp</td>
-		<td class='odd' style='text-align:right;$style_append;'>$table_count</td>
-		<td class='odd' style='text-align:right;$style_append;'>{$prefix['updated']}</td>
-		<td class='odd' style='text-align:center;$style_append;' nowrap='nowrap'>
-			<form action='?page=prefix_manager' method='POST' style='margin:0px;'>
+		<td class='odd'>$prefix4disp</td>
+		<td class='odd'>$table_count</td>
+		<td class='odd'>{$prefix['updated']}</td>
+		<td class='odd'>
+			<form action='?page=prefix_manager' method='POST'>
 				$ticket_input
-				<input type='hidden' name='old_prefix' value='$prefix4disp' />
-				<input type='text' name='new_prefix' size='8' maxlength='16' />
-				<input type='submit' name='copy' value='copy' />
+				<input type='hidden' name='old_prefix' value='$prefix4disp'>
+				<input type='text' name='new_prefix' size='8' maxlength='16'>
+				<input type='submit' name='copy' value='copy'>
 			</form>
 		</td>
-		<td class='odd' style='text-align:center;$style_append;'>
-			<form action='?page=prefix_manager' method='POST' style='margin:0px;'>
+		<td class='odd'>
+			<form action='?page=prefix_manager' method='POST'>
 				$ticket_input
-				<input type='hidden' name='prefix' value='$prefix4disp' />
+				<input type='hidden' name='prefix' value='$prefix4disp'>
 				$del_button
-				<input type='submit' name='backup' value='backup' onclick='this.form.target=\"_blank\"' />";
+				<input type='submit' name='backup' value='backup' onclick='this.form.target=\"_blank\"'>";
     if (function_exists("gzcompress")) {
-        echo "<input type='submit' name='download_zip' value='zip' onclick='this.form.target=\"_blank\"' />" ;
+        echo "<input type='submit' name='download_zip' value='zip' onclick='this.form.target=\"_blank\"'>" ;
     }
     if (function_exists("gzencode")) {
-        echo "<input type='submit' name='download_tgz' value='tar.gz' onclick='this.form.target=\"_blank\"' />";
+        echo "<input type='submit' name='download_tgz' value='tar.gz' onclick='this.form.target=\"_blank\"'>";
     }
     echo "	</form>
 		</td>
@@ -342,7 +342,7 @@ foreach ($prefixes as $prefix) {
 echo "
 </table>
 <p>".sprintf(_AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX)."</p>
-
+</div>
 " ;
 
 // Display Log if exists

@@ -1,20 +1,25 @@
 <div id="xupdate">
-	<{include file="admin_navi.html"}>
-	
-	<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
+
 	<{include file="admin_menunavi.html"}>
+	<{include file="admin_navi.html"}>
+
+	<div class="ui-card-main">
+
+	<h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h2>
+
+
 	<{include file="admin_tips.html"}>
-	
+
 	<{if $storeObject}>
 	<h4><{$storeObject->getShow('name')}></h4>
 	<{/if}>
-	
+
 	<{if $mod_config.xelfinder_dirname}>
 	<ul class="toptab">
 	  <li class="addModule"><a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;" href="#"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}><{$smarty.const._MI_XUPDATE_MANAGE}></a></li>
 	</ul>
 	<{/if}>
-	
+
 	<{if $actionForm->hasError()}>
 	<div class="error">
 	  <ul>
@@ -37,11 +42,11 @@
 	<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 	<{/if}>
-	
+
 	<form  action="index.php?action=<{$action}>" method="post" >
 	<{xoops_input type=hidden name=sid value=$sid}>
 	<{xoops_input type=hidden name=do_confirm value=1}>
-	
+
 	<table class="outer">
 	  <tr>
 	    <!--
@@ -188,7 +193,9 @@
 	<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 	<{/if}>
-	
+
 	<{include file="admin_tagcloud.html"}>
-	
+
+</div><!-- ui-card-main -->
+
 </div>

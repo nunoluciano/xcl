@@ -290,6 +290,7 @@ abstract class elFinderVolumeDriver
             'css:text/x-asm' => 'text/css',
             'css:text/plain' => 'text/css',
             'csv:text/plain' => 'text/csv',
+            'java:text/x-c' => 'text/x-java-source',
             'json:text/plain' => 'application/json',
             'sql:text/plain' => 'text/x-sql',
             'rtf:text/rtf' => 'application/rtf',
@@ -1212,7 +1213,7 @@ abstract class elFinderVolumeDriver
         $this->mimeDetect = $type;
 
         // load mimes from external file for mimeDetect == 'internal'
-        // based on Alexey Sukhotin idea and patch: https://elrte.org/redmine/issues/163
+        // based on Alexey Sukhotin idea and patch: http://elrte.org/redmine/issues/163
         // file must be in file directory or in parent one
         if ($this->mimeDetect === 'internal' && !elFinderVolumeDriver::$mimetypesLoaded) {
             elFinderVolumeDriver::loadMimeTypes(!empty($this->options['mimefile']) ? $this->options['mimefile'] : '');
@@ -1400,7 +1401,7 @@ abstract class elFinderVolumeDriver
             $reqs = explode('/', dirname($req));
             $uri = join('/', array_slice($reqs, 0, count($reqs) - 1)) . substr($this->tmpLinkPath, strlen($cur));
             $https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
-            $this->tmpLinkUrl = ($https ? 'https://' : 'https://')
+            $this->tmpLinkUrl = ($https ? 'https://' : 'http://')
                 . $_SERVER['SERVER_NAME'] // host
                 . (((!$https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']))  // port
                 . $uri;
@@ -2042,7 +2043,7 @@ abstract class elFinderVolumeDriver
     }
 
     /**
-     * Create thumbnail for required file and return its name of false on failed
+     * Create thumbnail for required file and return its name or false on failed
      *
      * @param $hash
      *
@@ -2576,6 +2577,7 @@ abstract class elFinderVolumeDriver
         if (!$archivers) {
             return false;
         }
+        $file = $mime = '';
         foreach (array('zip', 'tgz') as $ext) {
             $mime = $this->mimetype('file.' . $ext, true);
             if (isset($archivers[$mime])) {
@@ -2589,7 +2591,6 @@ abstract class elFinderVolumeDriver
                 $mime = $this->mimetype('file.' . $ext, true);
             }
         }
-        $file = $mime = '';
         $ext = $cmd['ext'];
         $res = false;
         $mixed = false;
@@ -4303,7 +4304,7 @@ abstract class elFinderVolumeDriver
      */
     protected function allowPutMime($mime)
     {
-        // logic based on https://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
+        // logic based on http://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
         $allow = $this->mimeAccepted($mime, $this->uploadAllow, null);
         $deny = $this->mimeAccepted($mime, $this->uploadDeny, null);
         if (strtolower($this->uploadOrder[0]) == 'allow') { // array('allow', 'deny'), default is to 'deny'
@@ -4627,7 +4628,7 @@ abstract class elFinderVolumeDriver
             $name = $path;
             $nameCheck = true;
         }
-        $ext = (false === $pos = strrpos($name, '.')) ? '' : substr($name, $pos + 1);
+        $ext = (false === $pos = strrpos($name, '.')) ? '' : strtolower(substr($name, $pos + 1));
         if ($size === null) {
             $size = file_exists($path) ? filesize($path) : -1;
         }
@@ -4880,7 +4881,7 @@ abstract class elFinderVolumeDriver
      * @param string $path
      * @param bool   $subdirs
      *
-     * @returnv void
+     * @return void
      */
     protected function updateSubdirsCache($path, $subdirs)
     {
@@ -5073,8 +5074,16 @@ abstract class elFinderVolumeDriver
 
             $dst = $this->decode($testStat['hash']);
 
+            // start time
+            $stime = microtime(true);
             foreach ($this->getScandir($src) as $stat) {
                 if (empty($stat['hidden'])) {
+                    // current time
+                    $ctime = microtime(true);
+                    if (($ctime - $stime) > 2) {
+                        $stime = $ctime;
+                        elFinder::checkAborted();
+                    }
                     $name = $stat['name'];
                     $_src = $this->decode($stat['hash']);
                     if (!$this->copy($_src, $dst, $name)) {
@@ -5591,8 +5600,8 @@ abstract class elFinderVolumeDriver
                 }
 
                 // Imagick::FILTER_BOX faster than FILTER_LANCZOS so use for createTmb
-                // resize bench: https://app-mgng.rhcloud.com/9
-                // resize sample: https://www.dylanbeattie.net/magick/filters/result.html
+                // resize bench: http://app-mgng.rhcloud.com/9
+                // resize sample: http://www.dylanbeattie.net/magick/filters/result.html
                 $filter = ($destformat === 'png' /* createTmb */) ? Imagick::FILTER_BOX : Imagick::FILTER_LANCZOS;
 
                 $ani = ($img->getNumberImages() > 1);
