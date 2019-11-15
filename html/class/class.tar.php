@@ -109,11 +109,10 @@ class tar
     public $numDirectories;
     /**#@-*/
 
-
     /**
      * Class Constructor -- Does nothing...
      */
-    public function tar()
+    public function __construct()
     {
         return true;
     }
