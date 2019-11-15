@@ -45,7 +45,7 @@ class XoopsImage extends XoopsObject
     /**
      * Constructor
      **/
-    public function XoopsImage()
+    public function __construct()
     {
         parent::__construct();
         $this->initVar('image_id', XOBJ_DTYPE_INT, null, false);
