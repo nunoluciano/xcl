@@ -30,7 +30,7 @@ class Legacy_ActionForm extends XCube_ActionForm
      * @public
      * @brief Constructor.
      */
-    public function Legacy_ActionForm()
+    public function __construct()
     {
         parent::XCube_ActionForm();
     }

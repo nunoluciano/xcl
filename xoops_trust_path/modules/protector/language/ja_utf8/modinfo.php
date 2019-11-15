@@ -12,7 +12,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
     define($constpref.'_NAME', 'Protector');
 
     // A brief description of this module
-    define($constpref.'_DESC', '悪意ある攻撃からXOOPSを守るためのモジュール<br />DoS,SQL Injection,変数汚染といった攻撃を主に防ぎます。');
+    define($constpref.'_DESC', '悪意ある攻撃からXOOPSを守るためのモジュール<br>DoS,SQL Injection,変数汚染といった攻撃を主に防ぎます。');
 
     // Menu
     define($constpref.'_ADMININDEX', 'Protect Center');
@@ -22,7 +22,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
 
     // Configs
     define($constpref.'_GLOBAL_DISBL', '動作の一時的中断');
-    define($constpref.'_GLOBAL_DISBLDSC', 'あらゆる防御動作を一時的に無効化します。<br />問題が解決されたら無効化を解除することをお忘れなく');
+    define($constpref.'_GLOBAL_DISBLDSC', 'あらゆる防御動作を一時的に無効化します。<br>問題が解決されたら無効化を解除することをお忘れなく');
 
     define($constpref.'_DEFAULT_LANG', 'サイトのデフォルト言語');
     define($constpref.'_DEFAULT_LANGDSC', 'common処理前の強制終了メッセージを表示する言語を指定します');
@@ -44,23 +44,23 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
     define($constpref.'_LOGLEVEL255', '全種類のロギングを有効とする');
 
     define($constpref.'_HIJACK_TOPBIT', 'セッションを継続する保護ビット(IPv4)');
-    define($constpref.'_HIJACK_TOPBITDSC', 'セッションハイジャック対策：<br />通常は32(bit)で、全ビットを保護します。<br />Proxyの利用などで、アクセス毎にIPアドレスが変わる場合には、変動しない最長のビット数を指定します。<br />例えば、192.168.0.0〜192.168.0.255で変動する可能性がある場合、ここには24(bit)と指定します。');
+    define($constpref.'_HIJACK_TOPBITDSC', 'セッションハイジャック対策：<br>通常は32(bit)で、全ビットを保護します。<br>Proxyの利用などで、アクセス毎にIPアドレスが変わる場合には、変動しない最長のビット数を指定します。<br>例えば、192.168.0.0〜192.168.0.255で変動する可能性がある場合、ここには24(bit)と指定します。');
     define($constpref.'_HIJACK_TOPBITV6', 'セッションを継続する保護ビット(IPv6)');
-    define($constpref.'_HIJACK_TOPBITV6DSC', 'セッションハイジャック対策：<br />通常は128(bit)で、全ビットを保護します。<br />Proxyの利用などで、アクセス毎にIPアドレスが変わる場合には、変動しない最長のビット数を指定します。');
+    define($constpref.'_HIJACK_TOPBITV6DSC', 'セッションハイジャック対策：<br>通常は128(bit)で、全ビットを保護します。<br>Proxyの利用などで、アクセス毎にIPアドレスが変わる場合には、変動しない最長のビット数を指定します。');
     define($constpref.'_HIJACK_DENYGP', 'IP変動を禁止するグループ');
-    define($constpref.'_HIJACK_DENYGPDSC', 'セッションハイジャック対策：<br />セッション中に異なるIPアドレス範囲（上にてビット数指定）からのアクセスを禁止するグループを指定します<br />（管理者についてONにすることをお勧めします）');
+    define($constpref.'_HIJACK_DENYGPDSC', 'セッションハイジャック対策：<br>セッション中に異なるIPアドレス範囲（上にてビット数指定）からのアクセスを禁止するグループを指定します<br>（管理者についてONにすることをお勧めします）');
     define($constpref.'_SAN_NULLBYTE', 'ヌル文字列をスペースに変更する');
-    define($constpref.'_SAN_NULLBYTEDSC', '文字列終了キャラクターである "\\0" は、悪意ある攻撃に利用されます。<br />これを見つけた時点でスペースに書き換えます<br />（ONがお勧めです）');
+    define($constpref.'_SAN_NULLBYTEDSC', '文字列終了キャラクターである "\\0" は、悪意ある攻撃に利用されます。<br>これを見つけた時点でスペースに書き換えます<br>（ONがお勧めです）');
     define($constpref.'_DIE_NULLBYTE', 'ヌル文字列を見つけた時点での強制終了');
-    define($constpref.'_DIE_NULLBYTEDSC', '文字列終了キャラクターである "\\0" は、悪意ある攻撃に利用されます。<br />（ONがお勧めです）');
+    define($constpref.'_DIE_NULLBYTEDSC', '文字列終了キャラクターである "\\0" は、悪意ある攻撃に利用されます。<br>（ONがお勧めです）');
     define($constpref.'_DIE_BADEXT', '実行可能ファイルアップロードによる強制終了');
-    define($constpref.'_DIE_BADEXTDSC', '拡張子が.phpなど、サーバ上で実行可能となりえるファイルがアップロードされた場合に強制終了します。<br />B-WikiやPukiWikiModをお使いで、頻繁にPHPソースファイルを添付する方は、OFFにして下さい');
+    define($constpref.'_DIE_BADEXTDSC', '拡張子が.phpなど、サーバ上で実行可能となりえるファイルがアップロードされた場合に強制終了します。<br>B-WikiやPukiWikiModをお使いで、頻繁にPHPソースファイルを添付する方は、OFFにして下さい');
     define($constpref.'_CONTAMI_ACTION', '変数汚染が見つかった時の処理');
-    define($constpref.'_CONTAMI_ACTIONDS', 'XOOPSのシステムグローバルを上書きしようとする攻撃を見つけた場合の処理を選択します。<br />（初期値は「強制終了」）');
+    define($constpref.'_CONTAMI_ACTIONDS', 'XOOPSのシステムグローバルを上書きしようとする攻撃を見つけた場合の処理を選択します。<br>（初期値は「強制終了」）');
     define($constpref.'_ISOCOM_ACTION', '孤立コメントが見つかった時の処理');
-    define($constpref.'_ISOCOM_ACTIONDSC', 'SQLインジェクション対策：<br />ペアになる*/のない/*を見つけた時の処理を決めます。<br />無害化方法：最後に */ をつけます<br />「無害化」がお勧めです');
+    define($constpref.'_ISOCOM_ACTIONDSC', 'SQLインジェクション対策：<br>ペアになる*/のない/*を見つけた時の処理を決めます。<br>無害化方法：最後に */ をつけます<br>「無害化」がお勧めです');
     define($constpref.'_UNION_ACTION', 'UNIONが見つかった時の処理');
-    define($constpref.'_UNION_ACTIONDSC', 'SQLインジェクション対策：<br />SQLのUNION構文を検出した時の処理を決めます。<br />無害化方法：UNION を uni-on とします<br />「無害化」がお勧めです');
+    define($constpref.'_UNION_ACTIONDSC', 'SQLインジェクション対策：<br>SQLのUNION構文を検出した時の処理を決めます。<br>無害化方法：UNION を uni-on とします<br>「無害化」がお勧めです');
     define($constpref.'_ID_INTVAL', 'ID風変数の強制変換');
     define($constpref.'_ID_INTVALDSC', '変数名がidで終わるものを、数字だと強制認識させます。myLinks派生モジュールに特に有効で、XSSなども防げますが、一部のモジュールで動作不良の原因となる可能性があります。');
     define($constpref.'_FILE_DOTDOT', 'DirectoryTraversalの禁止');
@@ -79,15 +79,15 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
     define($constpref.'_DOS_EXPIREDSC', 'DoSや悪意あるクローラーのアクセス頻度を追うための監視単位時間');
 
     define($constpref.'_DOS_F5COUNT', 'F5アタックと見なす回数');
-    define($constpref.'_DOS_F5COUNTDSC', 'DoS攻撃の防御<br />上で設定した監視時間内に、この回数以上、同一URIへのアクセスがあったら、攻撃されたと見なします');
+    define($constpref.'_DOS_F5COUNTDSC', 'DoS攻撃の防御<br>上で設定した監視時間内に、この回数以上、同一URIへのアクセスがあったら、攻撃されたと見なします');
     define($constpref.'_DOS_F5ACTION', 'F5アタックへの対処');
 
     define($constpref.'_DOS_CRCOUNT', '悪意あるクローラーと見なす回数');
-    define($constpref.'_DOS_CRCOUNTDSC', '悪意あるクローラー（メアド収集ボット等）への対策<br />上で設定した監視時間内に、この回数以上、サイト内をさぐったら、悪意あるクローラーと見なします');
+    define($constpref.'_DOS_CRCOUNTDSC', '悪意あるクローラー（メアド収集ボット等）への対策<br>上で設定した監視時間内に、この回数以上、サイト内をさぐったら、悪意あるクローラーと見なします');
     define($constpref.'_DOS_CRACTION', '悪意あるクローラーへの対処');
 
     define($constpref.'_DOS_CRSAFE', '拒否しない User-Agent');
-    define($constpref.'_DOS_CRSAFEDSC', '無条件でクロール許可するエージェント名を、perlの正規表現で記述します<br />例) /(msnbot|Googlebot|Yahoo! Slurp)/i');
+    define($constpref.'_DOS_CRSAFEDSC', '無条件でクロール許可するエージェント名を、perlの正規表現で記述します<br>例) /(msnbot|Googlebot|Yahoo! Slurp)/i');
 
     define($constpref.'_OPT_NONE', 'なし (ログのみ取る)');
     define($constpref.'_OPT_SAN', '無害化');

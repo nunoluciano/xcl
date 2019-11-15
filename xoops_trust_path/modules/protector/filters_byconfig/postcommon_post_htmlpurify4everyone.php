@@ -23,12 +23,11 @@ class protector_postcommon_post_htmlpurify4everyone extends ProtectorFilterAbstr
             $this->purifier = new HTMLPurifier($config);
             $this->method = 'purify' ;
 
-        $_POST = $this->purify_recursive($_POST) ;
+            $_POST = $this->purify_recursive($_POST) ;
+        }
     }
 
-
-    public function purify_recursive($data)
-    {
+    public function purify_recursive($data) {
         static $encoding = null;
         is_null($encoding) && ($encoding = (_CHARSET === 'UTF-8'? '' : _CHARSET));
         if (is_array($data)) {

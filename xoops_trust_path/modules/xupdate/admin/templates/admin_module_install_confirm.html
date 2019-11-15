@@ -1,10 +1,14 @@
 <div id="xupdate">
 <div id="contentBody">
 
+<{include file="admin_menunavi.html"}>
 <{include file="admin_navi.html"}>
 
-<h3 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h3>
-<{include file="admin_menunavi.html"}>
+<div class="ui-card-main">
+
+<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
+
+
 <{include file="admin_tips.html"}>
 
 <div class="confirm"><{$smarty.const._MI_XUPDATE_ADMENU_MODULE}> - <{$smarty.const._MI_XUPDATE_DEPLOY}></div>
@@ -105,9 +109,11 @@
     <{$smarty.const._MI_XUPDATE_PROG_PROCESSING}>
     <div class="progress_bar"><img src="../images/progress-bar.gif" alt=""></div>
     </div>
-    <!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
+    <!-- Do not remove div#mask, because you'll need it to fill the whole screen -->
     <div id="xupdate_mask"></div>
 </div>
+
+</div><!-- ui-card-main -->
 
 </div><!-- id="contentBody" -->
 </div><!-- id="xupdate" -->

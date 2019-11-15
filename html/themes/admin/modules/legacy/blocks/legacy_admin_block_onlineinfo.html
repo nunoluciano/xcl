@@ -1,0 +1,50 @@
+<!-- Custom Admin Block Online Info -->
+	<div class="ui-ui-card-header">
+
+		<div class="ui-card-hero">
+
+				<div class="ui-card-hero-center">
+					<div class="ui-card-hero-title">Welcome, <strong><{$uid|xoops_user:"name"}></strong></div>
+					<div class="ui-card-hero-subtitle">
+						Gambatte kudasai. Have fun today!<br>
+						<{$contents.online_total}><br>
+						<{foreach item=member from=$contents.online_member_list}>
+						<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>" target="new"><{$member.uname}></a>
+						<{/foreach}>
+					</div>
+				</div>
+
+			<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Main Stats -->
+			<div class="ui-card-block-stats">
+
+				<div class="ui-card-block-stats-info">
+					<div class="ui-card-block-stats-total"><{$contents.online_members}></div>
+					<div class="ui-card-block-stats-text">
+						<span class="iconify" data-icon="mdi:account-clock" style="color: #face74;" data-width="24px"></span>
+						<span class="font-light"><{$smarty.const._MB_USER_MEMBERS}></span>
+					</div>
+				</div>
+
+
+				<div class="ui-card-block-stats-info">
+					<div class="ui-card-block-stats-total"><{$contents.online_guests}></div>
+					<div class="ui-card-block-stats-text">
+						<span class="iconify" data-icon="mdi:account-clock-outline" style="color: #face74;" data-width="24px"></span>
+						<span class="font-light"><{$smarty.const._MB_USER_GUESTS}></span>
+					</div>
+				</div>
+
+				<div class="ui-card-block-stats-info">
+					<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);">
+					<div class="ui-card-block-stats-total">
+						<{$smarty.const._MB_LEGACY_ONLINEINFO}>?
+					</div>
+					<div class="ui-card-block-stats-text"><span class="iconify" data-icon="mdi:account-search" style="color: #face74;" data-width="24px"></span> <{$smarty.const._MB_USER_MORE}></div>
+					</a>
+				</div>
+
+			</div><!-- ui-card-block-stats -->
+
+		</div><!-- ui-card-hero- -->
+
+	</div><!-- ui-ui-card-header -->

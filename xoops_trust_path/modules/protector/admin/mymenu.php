@@ -1,10 +1,5 @@
 <?php
 
-// Skip for ORETEKI XOOPS
-if (defined('XOOPS_ORETEKI')) {
-    return ;
-}
-
 global $xoopsModule ;
 if (! is_object($xoopsModule)) {
     die('$xoopsModule is not set')  ;
@@ -24,12 +19,11 @@ if (file_exists("$mydirpath/language/$language/modinfo.php")) {
 }
 
 include dirname(dirname(__FILE__)).'/admin_menu.php' ;
-
-if (file_exists(XOOPS_TRUST_PATH.'/libs/altsys/mytplsadmin.php')) {
-    // mytplsadmin (TODO check if this module has tplfile)
-    $title = defined('_MD_A_MYMENU_MYTPLSADMIN') ? _MD_A_MYMENU_MYTPLSADMIN : 'tplsadmin' ;
-    array_push($adminmenu, array( 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mytplsadmin' )) ;
-}
+// mytplsadmin (TODO check if this module has tplfile)
+// if (file_exists(XOOPS_TRUST_PATH.'/libs/altsys/mytplsadmin.php')) {
+//     $title = defined('_MD_A_MYMENU_MYTPLSADMIN') ? _MD_A_MYMENU_MYTPLSADMIN : 'tplsadmin' ;
+//     array_push($adminmenu, array( 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mytplsadmin' )) ;
+// }
 
 if (file_exists(XOOPS_TRUST_PATH.'/libs/altsys/myblocksadmin.php')) {
     // myblocksadmin
@@ -59,27 +53,6 @@ $mymenu_uri = empty($mymenu_fake_uri) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_u
 $mymenu_link = substr(strstr($mymenu_uri, '/admin/'), 1) ;
 
 
-
-// highlight (you can customize the colors)
-foreach (array_keys($adminmenu) as $i) {
-    if ($mymenu_link == $adminmenu[$i]['link']) {
-        $adminmenu[$i]['color'] = '#FFCCCC' ;
-        $adminmenu_hilighted = true ;
-        $GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'] ;
-    } else {
-        $adminmenu[$i]['color'] = '#DDDDDD' ;
-    }
-}
-if (empty($adminmenu_hilighted)) {
-    foreach (array_keys($adminmenu) as $i) {
-        if (stristr($mymenu_uri, $adminmenu[$i]['link'])) {
-            $adminmenu[$i]['color'] = '#FFCCCC' ;
-            $GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'] ;
-            break ;
-        }
-    }
-}
-
 // link conversion from relative to absolute
 foreach (array_keys($adminmenu) as $i) {
     if (stristr($adminmenu[$i]['link'], XOOPS_URL) === false) {
@@ -88,8 +61,8 @@ foreach (array_keys($adminmenu) as $i) {
 }
 
 // display (you can customize htmls)
-echo "<div style='text-align:left;width:98%;'>" ;
+echo "<div class='admin-menu'>" ;
 foreach ($adminmenu as $menuitem) {
-    echo "<div style='float:left;height:1.5em;'><nobr><a href='".htmlspecialchars($menuitem['link'], ENT_QUOTES)."' style='background-color:{$menuitem['color']};font:normal normal bold 9pt/12pt;'>".htmlspecialchars($menuitem['title'], ENT_QUOTES)."</a> | </nobr></div>\n" ;
+    echo "<div><a href='".htmlspecialchars($menuitem['link'], ENT_QUOTES)."'>".htmlspecialchars($menuitem['title'], ENT_QUOTES)."</a></div>\n" ;
 }
-echo "</div>\n<hr style='clear:left;display:block;' />\n" ;
+echo "</div>\n" ;

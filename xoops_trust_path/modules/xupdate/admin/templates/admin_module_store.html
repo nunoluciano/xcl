@@ -1,18 +1,22 @@
 <div id="xupdate">
-	<{include file="admin_navi.html"}>
-	
-	<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
+
 	<{include file="admin_menunavi.html"}>
+	<{include file="admin_navi.html"}>
+
+	<div class="ui-card-main">
+
+	<h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h2>
+
 	<{include file="admin_tips.html"}>
-	
+
 	<{if $storeObject}>
 	<h4><{$storeObject->getShow('name')}></h4>
 	<{/if}>
-	
+
 	<ul class="toptab">
 	  <li class="addModule"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></li>
 	</ul>
-	
+
   <div class="category-list">
     <{foreach item=category from=$categoryList key=k}>
     <span> | <a href="./index.php?action=ModuleStore&category_id=<{$k}>"><{$category}></a> | </span>
@@ -41,11 +45,11 @@
 	<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 	<{/if}>
-	
+
 	<form  action="index.php?action=<{$action}>" method="post" >
 	<{xoops_input type=hidden name=sid value=$sid}>
 	<{xoops_input type=hidden name=do_confirm value=1}>
-	
+
 	<table class="outer">
 	  <tr>
 	    <!--
@@ -228,7 +232,9 @@
 	<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 	<{/if}>
-	
+
 	<{include file="admin_tagcloud.html"}>
-	
+
+	</div><!-- ui-card-main -->
+
 </div>

@@ -134,7 +134,7 @@ class Archive_Zip
     * @param    string  $p_zipname  The name of the zip archive to create
     * @access public
     */
-    public function Archive_Zip($p_zipname)
+    public function __construct($p_zipname)
     {
 
       // ----- Check the zlib
@@ -1824,7 +1824,9 @@ class Archive_Zip
       // ----- Look for extract by ereg rule
       elseif ((isset($p_params[ARCHIVE_ZIP_PARAM_BY_EREG]))
                && ($p_params[ARCHIVE_ZIP_PARAM_BY_EREG] != "")) {
-          if (ereg($p_params[ARCHIVE_ZIP_PARAM_BY_EREG], $v_header['stored_filename'])) {
+          //!Fix PHP7
+          if (preg_match('/\.([^\.]*$)/', $p_params[ARCHIVE_ZIP_PARAM_BY_EREG], $v_header['stored_filename'])) {
+          //if (ereg($p_params[ARCHIVE_ZIP_PARAM_BY_EREG], $v_header['stored_filename'])) {
               $v_extract = true;
           }
       }

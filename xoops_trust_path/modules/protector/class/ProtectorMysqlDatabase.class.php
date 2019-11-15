@@ -24,9 +24,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
     '#' ,
 ) ;
 
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
-    // public function ProtectorMySQLDatabase()
     {
         $protector =& Protector::getInstance() ;
         $this->doubtful_requests = $protector->getDblayertrapDoubtfuls() ;

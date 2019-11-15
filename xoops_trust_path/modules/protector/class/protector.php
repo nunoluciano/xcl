@@ -126,7 +126,7 @@ class protector
         }
     }
 
-    public static function &getInstance()
+    public static function getInstance()
     {
         static $instance;
         if (!isset($instance)) {
@@ -163,7 +163,8 @@ class protector
             while (list($key, $val) = mysqli_fetch_row($result)) {
                 $db_conf[ $key ] = $val;
             }
-        } else {
+        } 
+/*         else {
             $result = @mysql_query($query, $this->_conn);
             if (!$result || mysql_num_rows($result) < 5) {
                 return false;
@@ -171,7 +172,7 @@ class protector
             while (list($key, $val) = mysql_fetch_row($result)) {
                 $db_conf[ $key ] = $val;
             }
-        }
+        } */
         $db_conf_serialized = serialize($db_conf);
 
     // update config cache
@@ -364,6 +365,11 @@ class protector
     {
         return XOOPS_TRUST_PATH.'/modules/protector/configs/badips'.substr(md5(XOOPS_ROOT_PATH.XOOPS_DB_USER.XOOPS_DB_PREFIX), 0, 6);
     }
+    /**
+     * @param bool $with_info
+     *
+     * @return array|mixed
+     */
 
     public function get_group1_ips($with_info = false)
     {
@@ -380,16 +386,27 @@ class protector
         return $group1_ips;
     }
 
-    public function get_filepath4group1ips()
+    /**
+     * @return string
+     */
+    public static function get_filepath4group1ips()
     {
         return XOOPS_TRUST_PATH.'/modules/protector/configs/group1ips'.substr(md5(XOOPS_ROOT_PATH.XOOPS_DB_USER.XOOPS_DB_PREFIX), 0, 6);
     }
 
+    /**
+     * @return string
+     */
     public function get_filepath4confighcache()
     {
         return XOOPS_TRUST_PATH.'/modules/protector/configs/configcache'.substr(md5(XOOPS_ROOT_PATH.XOOPS_DB_USER.XOOPS_DB_PREFIX), 0, 6);
     }
 
+    /**
+     * @param $ips
+     *
+     * @return bool
+     */
     public function ip_match($ips)
     {
         foreach ($ips as $ip => $info) {
@@ -520,6 +537,10 @@ class protector
             }
         }
     }
+    /**
+     * @param  bool $force_override
+     * @return null
+     */
 
     public function dblayertrap_init($force_override = false)
     {
@@ -541,7 +562,10 @@ class protector
         }
     }
 
-    public function _bigumbrella_check_recursive($val)
+    /**
+     * @param $val
+     */
+    protected function _bigumbrella_check_recursive($val)
     {
         if (is_array($val)) {
             foreach ($val as $subval) {
@@ -565,6 +589,11 @@ class protector
         }
     }
 
+    /**
+     * @param $s
+     *
+     * @return string
+     */
     public function bigumbrella_outputcheck($s)
     {
         if (defined('BIGUMBRELLA_DISABLED')) {
@@ -590,6 +619,9 @@ class protector
         }
 
         return $s;
+    /**
+     * @return bool
+     */
     }
 
     public function intval_allrequestsendid()
@@ -633,6 +665,9 @@ class protector
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function eliminate_dotdot()
     {
         global $HTTP_GET_VARS , $HTTP_POST_VARS , $HTTP_COOKIE_VARS;
@@ -691,7 +726,13 @@ class protector
     }*/
 
     return true;
-    }
+}
+    /**
+     * @param $current
+     * @param $indexes
+     *
+     * @return bool
+     */
 
     public function &get_ref_from_base64index(&$current, $indexes)
     {
@@ -706,6 +747,10 @@ class protector
         return $current;
     }
 
+    /**
+     * @param $key
+     * @param $val
+     */
     public function replace_doubtful($key, $val)
     {
         global $HTTP_GET_VARS , $HTTP_POST_VARS , $HTTP_COOKIE_VARS;
@@ -741,6 +786,9 @@ class protector
         $legacy_ref = $val;
     }
 
+    /**
+     * @return bool
+     */
     public function check_uploaded_files()
     {
         if ($this->_done_badext) {
@@ -809,6 +857,9 @@ class protector
         return $this->_safe_badext;
     }
 
+    /**
+     * @return bool
+     */
     public function check_contami_systemglobals()
     {
         /*	if( $this->_done_contami ) return $this->_safe_contami ;
@@ -851,6 +902,11 @@ class protector
         return $this->_safe_isocom;
     }
 
+    /**
+     * @param bool $sanitize
+     *
+     * @return bool
+     */
     public function check_sql_union($sanitize = true)
     {
         if ($this->_done_union) {

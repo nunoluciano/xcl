@@ -191,7 +191,7 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
     public function __construct()
     //public function Legacy_BlockCacheInformation()
     {
-        parent::Legacy_AbstractCacheInformation();
+        parent::__construct();
         $this->mGetCacheFilePath = new XCube_Delegate();
         $this->mGetCacheFilePath->register('Legacy_BlockCachInformation.getCacheFilePath');
     }
@@ -203,7 +203,7 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
       */
      public function setBlock(&$blockProcedure)
      {
-         $this->mBlock =& $blockProcedure->_mBlock;
+         $this->mBlock = $blockProcedure->_mBlock;
      }
      
     public function reset()

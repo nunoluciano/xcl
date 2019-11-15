@@ -5,6 +5,79 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] 2019-11-15
+
+### Added
+
+- Admin Theme (WIP)
+- Theme Flex Starter (WIP)
+- Admin Dashboard Preload
+
+### Changed
+
+- Admin Blocks & Dashboard
+- Admin Dashboard Settings
+- Archive_Zip preg_match
+- Pico Form Process by HTML regex
+- D3Forum Text Sanitizer
+- Pico Text Sanitizer
+
+### Fixed
+
+- **class constructors**
+- XoopsCommentRenderer
+- XoopsDownloader
+- XoopsTarDownloader
+- XoopsObjectTree
+- XoopsMediaUploader
+- XoopsXmlRpcApi
+- XoopsXmlRpcParser
+- XoopsXmlRpcDocument
+- XoopsXmlRss2Parser
+- XoopsThemeSetParser
+- XoopsGroupPermForm
+- XoopsZipDownloader
+- AltsysFormCheckboxGroup
+- LegacyImagebodyObject
+- Legacy_AbstractCacheInformation
+- Legacy_ActionForm
+- Legacy kernel criteria.class
+- Legacy_Mailer
+- Protector Postcommon HTMLPurify4everyone
+- Protector Postcommon HTMLPurify4guest
+- ShadePlus_ServiceServer
+- ShadePlus_SoapClient
+- nusoap_base
+- LegacyTheme
+- LegacyThemeHandler
+- LegacyRenderThemeObject
+- Profile_ActionFrame
+- Profile_Action
+- User_Permission
+- User_PermissionModuleItem
+- User_PermissionBlockItem
+- User_PermissionSystemAdminItem
+- User_LostPassMailDirector
+- User_LostPass1MailBuilder
+- UserMailjob_linkObject
+- XoopsAvatar
+- XoopsImage
+- XoopsImagecategory
+- XoopsImageset
+- XoopsImagesetimg
+- XoopsSubjecticon
+- XCube_RenderCache
+
+### Removed
+
+- CKEditor4Utilities mysql_set_charset
+- Legacy_Controller magic_quotes 
+- Protector patches
+- Protector Myysql_query
+
+### Update
+
+- XelFinder v2.50
 
 ## [unreleased] 2019-10-19
 

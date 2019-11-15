@@ -13,7 +13,7 @@ class ShadePlus_ServiceServer
     
     public $_mServer;
     
-    public function ShadePlus_ServiceServer(&$service)
+    public function __construct(&$service)
     {
         $this->_mService =& $service;
         $this->_mServer =new ShadeSoap_NusoapServer();
@@ -118,7 +118,11 @@ class ShadePlus_ServiceServer
     
     public function executeService()
     {
-        $HTTP_RAW_POST_DATA = isset($GLOBALS['HTTP_RAW_POST_DATA'])? $GLOBALS['HTTP_RAW_POST_DATA'] : null;
-        $this->_mServer->service($HTTP_RAW_POST_DATA);
+        $postdata = file_get_contents("php://input"); 
+        //$HTTP_RAW_POST_DATA = isset($GLOBALS['HTTP_RAW_POST_DATA'])? $GLOBALS['HTTP_RAW_POST_DATA'] : null;
+        $this->_mServer->service($postdata);
+        //Instead php://input should be used.
+        //PHP Code:
+        //file_get_contents("php://input"); 
     }
 }

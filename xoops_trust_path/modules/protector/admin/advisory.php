@@ -7,8 +7,7 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 
 // open table for ADVISORY
-echo "<style>dd {margin-left: 32px;}</style>\n" ;
-echo "<br />\n<div style='border: 2px solid #2F5376;padding:8px;width:95%;' class='bg4'>\n" ;
+echo "<div class='ui-card-main'>\n" ;
 
 // calculate the relative path between XOOPS_ROOT_PATH and XOOPS_TRUST_PATH
 $root_paths = explode('/', XOOPS_ROOT_PATH) ;
@@ -21,108 +20,98 @@ foreach ($root_paths as $i => $rpath) {
 $relative_path = str_repeat('../', count($root_paths) - $i) . implode('/', array_slice($trust_paths, $i)) ;
 
 // the path of XOOPS_TRUST_PATH accessible check
-echo "<dl><dt>'XOOPS_TRUST_PATH' : " ;
-echo "<img src='".XOOPS_URL.'/'.htmlspecialchars($relative_path)."/modules/protector/public_check.png' width='40' height='20' alt='' style='border:1px solid black;' /><br /><a href='".XOOPS_URL.'/'.htmlspecialchars($relative_path)."/modules/protector/public_check.php'>"._AM_ADV_TRUSTPATHPUBLICLINK."</a></dt>\n" ;
-echo "<dd>"._AM_ADV_TRUSTPATHPUBLIC."</dd></dl>" ;
+echo "<h3>XOOPS_TRUST_PATH</h3>" ;
+echo "<p>Public check [ image ] : <img src='".XOOPS_URL.'/'.htmlspecialchars($relative_path)."/modules/protector/public_check.png' width='40' height='20' alt='' style='border:1px solid black;'></p>" ;
+echo "<p>Public check [ link ] : <a href='".XOOPS_URL.'/'.htmlspecialchars($relative_path)."/modules/protector/public_check.php'>"._AM_ADV_TRUSTPATHPUBLICLINK."</a></p>\n" ;
+echo "<p>"._AM_ADV_TRUSTPATHPUBLIC."</p>" ;
 
 // register_globals
-echo "<dl><dt>'register_globals' : " ;
+echo "<h3>register_globals</h3>" ;
 $safe = ! ini_get("register_globals") ;
 if ($safe) {
-    echo "off &nbsp; <span style='color:green;font-weight:bold;'>ok</span></dt>\n" ;
+    echo "<p>[ off ] &nbsp; <span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 } else {
-    echo "on  &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></dt>\n" ;
-    echo "<dd>"._AM_ADV_REGISTERGLOBALS."<br /><br />
-			".XOOPS_ROOT_PATH."/.htaccess<br /><br />
-			<b>php_flag &nbsp; register_globals &nbsp; off</b>
-		</dd>" ;
+    echo "<p>[ on ]  &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></p>\n" ;
+    echo "<p>"._AM_ADV_REGISTERGLOBALS."</p>
+		  <p>".XOOPS_ROOT_PATH."/.htaccess</p>
+		  <p><b>php_flag &nbsp; register_globals &nbsp; off</b></p>" ;
 }
-echo "</dl>\n" ;
+
 
 
 // allow_url_fopen
-echo "<dl><dt>'allow_url_fopen' : " ;
+echo "<h3>allow_url_fopen</h3>" ;
 $safe = ! ini_get("allow_url_fopen") ;
 if ($safe) {
-    echo "off &nbsp; <span style='color:green;font-weight:bold;'>ok</span></dt>\n" ;
+    echo "<p>[ off ] &nbsp; <span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 } else {
-    echo "on  &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></dt>\n" ;
-    echo "<dd>"._AM_ADV_ALLOWURLFOPEN."</dd>" ;
+    echo "<p>[ on ] &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></p>\n" ;
+    echo "<p>"._AM_ADV_ALLOWURLFOPEN."</p>" ;
 }
-echo "</dl>\n" ;
+
 
 
 // session.use_trans_sid
-echo "<dl><dt>'session.use_trans_sid' : " ;
+echo "<h3>session.use_trans_sid</h3>" ;
 $safe = ! ini_get("session.use_trans_sid") ;
 if ($safe) {
-    echo "off &nbsp; <span style='color:green;font-weight:bold;'>ok</span></dt>\n" ;
+    echo "<p>[ off ] &nbsp; <span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 } else {
-    echo "on  &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></dt>\n" ;
-    echo "<dd>"._AM_ADV_USETRANSSID."</dd>" ;
+    echo "<p>[ on ] &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></p>\n" ;
+    echo "<p>"._AM_ADV_USETRANSSID."</p>" ;
 }
-echo "</dl>\n" ;
+
 
 
 // XOOPS_DB_PREFIX
-echo "<dl><dt>'XOOPS_DB_PREFIX' : " ;
+echo "<h3>XOOPS_DB_PREFIX</h3>" ;
 $safe = strtolower(XOOPS_DB_PREFIX) != 'xoops' ;
 if ($safe) {
-    echo XOOPS_DB_PREFIX." &nbsp; <span style='color:green;font-weight:bold;'>ok</span></dt>\n<dd>" ;
+    echo "<p>[ ".XOOPS_DB_PREFIX." ] &nbsp; <span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 } else {
-    echo XOOPS_DB_PREFIX." &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></dt>\n" ;
-    echo "<dd>"._AM_ADV_DBPREFIX."<br />\n" ;
+    echo  "<p>[ ".XOOPS_DB_PREFIX." ] &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></p>\n" ;
+    echo "<p>"._AM_ADV_DBPREFIX."</p>\n" ;
 }
-echo "<a href='index.php?page=prefix_manager'>"._AM_ADV_LINK_TO_PREFIXMAN."</a></dd>" ;
-echo "</dl>\n" ;
+echo "<p><a href='index.php?page=prefix_manager'>"._AM_ADV_LINK_TO_PREFIXMAN."</a></p>\n" ;
 
 
 // patch to mainfile.php
-echo "<dl><dt>'mainfile.php' : " ;
+echo "<h3>mainfile.php</h3>" ;
 if (! defined('PROTECTOR_PRECHECK_INCLUDED')) {
-    echo "missing precheck &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></dt>\n" ;
-    echo "<dd>"._AM_ADV_MAINUNPATCHED."</dd>" ;
+    echo "<p>missing precheck &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></p>\n" ;
+    echo "<p>"._AM_ADV_MAINUNPATCHED."</p>" ;
 } elseif (! defined('PROTECTOR_POSTCHECK_INCLUDED')) {
-    echo "missing postcheck &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></dt>\n" ;
-    echo "<dd>"._AM_ADV_MAINUNPATCHED."</dd>" ;
+    echo "<p>missing postcheck &nbsp; <span style='color:red;font-weight:bold;'>"._AM_ADV_NOTSECURE."</span></p>\n" ;
+    echo "<p>"._AM_ADV_MAINUNPATCHED."</p>" ;
 } else {
-    echo "patched &nbsp; <span style='color:green;font-weight:bold;'>ok</span></dt>\n" ;
+    echo "<p>patched &nbsp; <span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 }
-echo "</dl>\n" ;
+
 
 // patch to databasefactory.php
-echo "<dl><dt>'databasefactory.php' : " ;
+echo "<h3>databasefactory.php</h3>" ;
 $db =& Database::getInstance() ;
 if (strtolower(get_class($db)) != 'protectormysqldatabase') {
-    echo "<span style='color:red;font-weight:bold;'>"._AM_ADV_DBFACTORYUNPATCHED."</span></dt>\n" ;
+    echo "<p><span style='color:red;font-weight:bold;'>"._AM_ADV_DBFACTORYUNPATCHED."</span></p>\n" ;
 } else {
-    echo _AM_ADV_DBFACTORYPATCHED."<span style='color:green;font-weight:bold;'>ok</span></dt>\n" ;
+    echo _AM_ADV_DBFACTORYPATCHED."<p><span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 }
-echo "</dl>\n" ;
-
-// close table for ADVISORY
-echo "</div><br />\n" ;
 
 
-
-// open table for PROTECTION CHECK
-echo "<br />\n<div style='border: 2px solid #2F5376;padding:8px;width:95%;' class='bg4'>\n" ;
+// PROTECTION CHECK
 
 echo "<h3>"._AM_ADV_SUBTITLECHECK."</h3>\n" ;
 // Check contaminations
 $uri_contami = XOOPS_URL."/index.php?xoopsConfig%5Bnocommon%5D=1" ;
-echo "<dl><dt>"._AM_ADV_CHECKCONTAMI.":</dt>\n" ;
-echo "<dd><a href='$uri_contami' target='_blank'>$uri_contami</a></dd>" ;
-echo "</dl>\n" ;
+echo "<p>"._AM_ADV_CHECKCONTAMI.":</p>\n" ;
+echo "<p><a href='$uri_contami' target='_blank'>$uri_contami</a></p>" ;
 
 // Check isolated comments
 $uri_isocom = XOOPS_URL."/index.php?cid=".urlencode(",password /*") ;
-echo "<dl><dt>"._AM_ADV_CHECKISOCOM.":</dt>\n" ;
-echo "<dd><a href='$uri_isocom' target='_blank'>$uri_isocom</a></dd>" ;
-echo "</dl>\n" ;
-// close table for PROTECTION CHECK
+echo "<p>"._AM_ADV_CHECKISOCOM.":</p>\n" ;
+echo "<p><a href='$uri_isocom' target='_blank'>$uri_isocom</a></p>" ;
+
+// close div 'ui-card-main'
 echo "</div>\n" ;
-
-
 
 xoops_cp_footer();
