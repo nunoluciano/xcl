@@ -163,7 +163,8 @@ class protector
             while (list($key, $val) = mysqli_fetch_row($result)) {
                 $db_conf[ $key ] = $val;
             }
-        } else {
+        } 
+/*         else {
             $result = @mysql_query($query, $this->_conn);
             if (!$result || mysql_num_rows($result) < 5) {
                 return false;
@@ -171,7 +172,7 @@ class protector
             while (list($key, $val) = mysql_fetch_row($result)) {
                 $db_conf[ $key ] = $val;
             }
-        }
+        } */
         $db_conf_serialized = serialize($db_conf);
 
     // update config cache

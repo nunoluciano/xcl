@@ -519,34 +519,61 @@ class FormProcessByHtml
 		}
 	}
 
-	// https://www.ilovejackdaniels.com/php/email-address-validation/
+	// The regex to match according to the RFC standard
+	// "/^([0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+|(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+\.\"(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~. (),:;
+	//	<>@[]\E]+|\\\\\\\\|\\\\\")+\"\.)+[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+|\"(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~. (),:;
+	//	<>@[]\E]+|\\\\\\\\|\\\\\")+\")@(?:[0-9A-Za-z\-\.]+|\[[0-9A-Za-z\-\.]+\])$/"
+
 	function checkEmailAddress($email)
 	{
-		// First, we check that there's one @ symbol, and that the lengths are right
-		if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email)) {
-			// Email invalid because wrong number of characters in one section, or wrong number of @ symbols.
+		// 1) Check that neither the local or domain part of the e-mail address have leading, trailing, or consecutive dots, and that it is in the correct format:
+		if (!preg_match("/^\.|\.\.|\.@|@\.|\.$/",$email) && preg_match("/^[^@]+?@[^\\.]+?\..+$/",$email)) {
+			// Email invalid because wrong characters or @ symbols.
 			return false;
 		}
-
+		// 2) Tokenize the e-mail address by '@:'
 		// Split it into sections to make life easier
 		$email_array = explode("@", $email);
 		$local_array = explode(".", $email_array[0]);
+
+		//3) loop through each and re-concatenate all to get two strings: the local part (before the mandatory '@') and the domain part
+		
 		for ($i = 0; $i < sizeof($local_array); $i++) {
-			if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i])) {
+			if (!preg_match("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i])) {
 				return false;
 			}
 		}
-		if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1])) { // Check if domain is IP. If not, it should be valid domain name
+
+		//4) If the first element/local part of the address does not contain any quotation marks, then use this pattern:
+		// $pattern = "/^[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+$/";
+
+		//5) Else if the local part begins AND ends with quotation marks, use this pattern:	
+		// $pattern = "/^\"(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~. (),:;<>@[]\E]+|\\\\\\\\|\\\\\")+\"$/";
+		
+		//6) Else if the local part contains TWO quotation marks (one only would invalidate), use this pattern:
+		// $pattern = "/^(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+\.\"(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~. (),:;<>@[]\E]+|\\\\\\\\|\\\\\")+\"\.)+[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+$/";
+			
+		//7) Else the first part is invalid
+			
+
+		if (!preg_match("^\[?[0-9\.]+\]?$", $email_array[1])) { 
+			
+			//8) If the local part was valid: check if domain is IP. If not, it should be valid domain name
 			$domain_array = explode(".", $email_array[1]);
+
 			if (sizeof($domain_array) < 2) {
 				return false; // Not enough parts to domain
 			}
+			// If the second domain part is either encapsulated within square brackets ([]) or contains NO square brackets 
+			// (just use substr and substr_count, it is much faster than regex), and it matches the pattern:
+			// preg_match("/^\[?[0-9A-Za-z\-\.]+\]?$/", $domain_array[$1]);
 			for ($i = 0; $i < sizeof($domain_array); $i++) {
-				if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i])) {
+				//if (!preg_match("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i])) {
+					if (!preg_match("/^\[?[0-9A-Za-z\-\.]+\]?$/", $domain_array[$i])) {
 					return false;
 				}
 			}
 		}
-		return true;
+		return true; //	Then it is valid.
 	}
 }
