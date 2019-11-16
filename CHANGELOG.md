@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] 2019-11-16
+
+### Added
+
+- 
+
+### Changed
+
+- 
+
+### Fixed
+
+- Xupdate Store preg_replace /e
+
+### Removed
+
+- 
+
+### Update
+
+- Xupdate Store phpseclib-2.0.23
+
+
+
 ## [unreleased] 2019-11-15
 
 ### Added
