@@ -863,7 +863,7 @@ class Xupdate_ModulesIniDadaSet
                     $arg = mb_convert_encoding($arg, 'UTF-8', $fromencode);
                 }
                 $arg = mb_convert_encoding($arg, $toencode, 'UTF-8');
-                $arg = preg_replace('/U\+([0-9A-F]{2,5})/e', '"&#".base_convert("$1",16,10).";"', $arg);
+                $arg = preg_replace('/U\+([0-9A-F]{2,5})/', '"&#".base_convert("$1",16,10).";"', $arg);
                 $arg = preg_replace('/\x08([0-9A-F]{2,5})/', 'U+$1', $arg);
                 mb_substitute_character($_sub);
                 $arg = mb_convert_encoding($arg, $fromencode, $toencode);
