@@ -18,7 +18,7 @@ $modversion['credits'] = "Naoki Sawada aka nao-pon";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image'] = "images/mydhtml.png";
+$modversion['image'] = "images/module_ckeditor.svg";
 $modversion['dirname'] = "ckeditor4";
 
 $modversion['cube_style'] = true;

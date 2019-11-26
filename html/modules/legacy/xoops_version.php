@@ -15,7 +15,7 @@ $modversion['author'] = "";
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['image'] = "images/legacy.png";
+$modversion['image'] = "images/module_settings.svg";
 $modversion['dirname'] = "legacy";
 
 $modversion['cube_style'] = true;

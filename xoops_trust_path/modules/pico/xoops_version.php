@@ -18,7 +18,8 @@ $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)<
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image'] = file_exists($mydirpath . '/module_icon.png') ? 'module_icon.png' : 'module_icon.php';
+// $modversion['image'] = file_exists($mydirpath . '/module_icon.png') ? 'module_icon.png' : 'module_icon.php';
+$modversion['image'] = '/images/module_pico.svg' ;
 $modversion['dirname'] = $mydirname;
 $modversion['trust_dirname'] = $mytrustdirname;
 $modversion['read_any'] = true;
