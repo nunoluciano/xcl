@@ -1,9 +1,8 @@
-<!-- User Groups Overview -->
-<div class="main-overview">
+<div class="ui-card-overview">
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-        <span class="iconify" data-icon="mdi:account-multiple"></span>
+      <img src="<{$xoops_url}>/themes/admin/images/icon-user-group.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong></h3>
@@ -13,7 +12,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-        <span class="iconify" data-icon="mdi:account"></span>
+      <img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <strong><{$activeUserTotal}></strong></h3>
@@ -23,7 +22,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-red">
-        <span class="iconify" data-icon="mdi:account-outline" data-width="24px" data-height="24px"></span>
+      <img src="<{$xoops_url}>/themes/admin/images/icon-user-inactive.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong></h3>
@@ -33,7 +32,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-orange">
-        <span class="iconify" data-icon="mdi:account-card-details" data-width="24px" data-height="24px"></span>
+      <img src="<{$xoops_url}>/themes/admin/images/icon-profile.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title">New <strong>FIELD</strong></h3>
@@ -49,7 +48,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 	<{$smarty.template}>
 
@@ -69,17 +67,27 @@
 </div>
 <{/if}>
 
-<div>
+
 <form action="./index.php" method="get">
   <input type="hidden" name="action" value="UserList" />
+
+  <section class="search">
+
+  <article>
   <{$smarty.const._SEARCH}> :
   <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
+  </article>
+
+  <article>
   <{$smarty.const._AD_USER_LANG_DISPLAY_USER_LEVEL}> :
   <select name="option_field">
     <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></option>
     <option value="inactive" <{if $filterForm->mOptionField == 'inactive'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_PENDING_USERS_ONLY}></option>
     <option value="active" <{if $filterForm->mOptionField == 'active'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_APPROVE_USERS_ONLY}></option>
   </select>
+  </article>
+
+  <article>
   <{$smarty.const._VIEW}> :
   <select name="perpage">
     <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
@@ -95,9 +103,17 @@
       <{/if}>
     <{/foreach}>
   </select>
-  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+  </article>
+
+  <article>
+    <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+  </article>
+
+</section>
+
 </form>
-</div>
+
+
 
 <form name="userlistform" method="post" action="./index.php?action=UserList">
   <{xoops_token form=$actionForm}>
@@ -131,7 +147,7 @@
   </tr>
   <{foreach item=user from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><span class="iconify" data-icon="mdi:account" data-width="24px" data-height="24px"></span></i></td>
+      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg"></i></td>
       <td class="user_list_id"><{$user->getShow('uid')}></td>
       <td class="user_list_title"><a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$user->getShow('uid')}>"><{$user->getShow('uname')}></a></td>
       <td class="user_list_name"><{$user->getShow('name')}></td>
@@ -142,14 +158,14 @@
       <td class="user_list_select"> <{if $user->get('uid') != 1 }><input type="checkbox" name="delete[<{$user->getShow('uid')}>]" value="1" /> <{/if}></td>
       <td class="user_list_control">
         <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._VIEW}>">
-          <span class="iconify" data-icon="mdi:account-check" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-check.svg" class="svg">
         </a>
         <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:account-edit" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-edit.svg" class="svg">
         </a>
         <{if $user->get('uid') != 1 }>
           <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._DELETE}>" class="red">
-            <span class="iconify" data-icon="mdi:account-minus" data-width="24px" data-height="24px"></span>
+            <img src="<{$xoops_url}>/themes/admin/images/icon-user-delete.svg" class="svg">
           </a>
         <{/if}>
       </td>
@@ -157,7 +173,7 @@
   <{/foreach}>
     <tr>
       <td colspan="10" class="foot">
-        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
       </td>
     </tr>
 </table>
@@ -165,4 +181,4 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-</div><!-- UI-Main Render -->
+</div>

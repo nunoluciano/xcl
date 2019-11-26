@@ -5,7 +5,7 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -14,7 +14,7 @@
 
 <div class="tips"><{$smarty.const._AD_USER_TIPS_DELETE_AVATAR}></div>
 
-<div class="confirm"><i class="red"><span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span></i> <{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-file-delete.svg" class="svg"></i> <{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=AvatarDelete">
   <{xoops_token form=$actionForm}>
@@ -79,4 +79,4 @@
 </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

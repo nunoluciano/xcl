@@ -88,9 +88,9 @@ em.d3f_attn{
 	border-bottom			:1px #333 dotted;
 	cursor				:help;}
 
-/* breadcrumbs */
+/* ui-breadcrumbs */
 
-div.breadcrumbs{
+div.ui-breadcrumbs{
 	font-size				:95%;
 	padding				:0 0 3px;
 	border-bottom			:1px #aaa solid;}

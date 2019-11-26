@@ -5,7 +5,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
     <{$smarty.template}>
 
@@ -86,7 +85,7 @@
   </tr>
   <{foreach item=user from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><span class="iconify" data-icon="mdi:account" data-width="24px" data-height="24px"></span></i></td>
+      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg"></i></td>
       <td class="user_list_id"><{$user->getShow('uid')}></td>
       <td class="user_list_name"><{$user->getShow('uname')}></td>
       <td class="user_list_name"><{$user->getShow('name')}></td>
@@ -97,14 +96,14 @@
       <td class="user_list_select"> <{if $user->get('uid') != 1 }><input type="checkbox" name="delete[<{$user->getShow('uid')}>]" value="1" /> <{/if}></td>
       <td class="user_list_control">
         <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._VIEW}>">
-          <span class="iconify" data-icon="mdi:account-check" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-check.svg" class="svg">
         </a>
         <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:account-edit" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-edit.svg" class="svg">
         </a>
         <{if $user->get('uid') != 1 }>
           <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._DELETE}>" class="red">
-            <span class="iconify" data-icon="mdi:account-minus" data-width="24px" data-height="24px"></span>
+            <img src="<{$xoops_url}>/themes/admin/images/icon-user-delete.svg" class="svg">
           </a>
         <{/if}>
       </td>
@@ -112,7 +111,7 @@
   <{/foreach}>
     <tr>
       <td colspan="10" class="foot">
-        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
       </td>
     </tr>
 </table>
@@ -120,4 +119,4 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-</div><!-- UI-Main Render -->
+</div>

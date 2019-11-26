@@ -5,7 +5,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -33,31 +32,39 @@
 <form method="post" action="">
 <{xoops_token form=$actionForm}>
 <{xoops_input type=hidden name=dirname value=$module->get('dirname')}>
+
 <table class="outer">
+  <!-- <tr>
+    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></th>
+  </tr> -->
+
   <tr>
-    <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></th>
-  </tr>
-  <tr>
-    <td class="head legacy_list_image" rowspan="6">
-      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
-      <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
+    <td class="head ui-module-image" width="240" colspan="2">
+      <div style="max-width: 80%;"><img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" title="<{$module->getShow('name')}>" /></div>
+      <!-- <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div> -->
     </td>
-	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
-	<td class="<{cycle values='odd,even'}>"><{$module->getShow('name')}></td>
+  <!-- <td class="head"></td> -->
   </tr>
+  <tr>
+	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+  <td class="<{cycle values='odd,even'}>"><{$module->getShow('name')}></td>
+  </tr>
+
   <tr>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
 	<td class="<{cycle values='odd,even'}>"><{$module->getShow('dirname')}></td>
   </tr>
+
   <tr>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
 	<td class="<{cycle values='odd,even'}>"><{$currentVersion|string_format:"%01.2f"}>
 	<{if $currentVersion != $targetVersion}>
-	  &raquo; <span class="legacy_module_versionMsg"><{$targetVersion|string_format:"%01.2f"}></span>
+	  &raquo; <span class="ui-module-update-now"><{$targetVersion|string_format:"%01.2f"}></span>
 	  <{if $isPhasedMode}>(Phased Mode)<{/if}>
 	<{/if}>
 	</td>
   </tr>
+
   <tr>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
 	<td class="<{cycle values='odd,even'}>">
@@ -68,6 +75,7 @@
 	  <{/if}>
 	</td>
   </tr>
+
   <tr>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
 	<td class="<{cycle values='odd,even'}>">
@@ -78,17 +86,21 @@
       <{/if}>
     </td>
   </tr>
+
   <tr>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
 	<td class="<{cycle values='odd,even'}>"><{$module->modinfo.description|xoops_escape}></td>
   </tr>
+
   <tr>
-    <td class="foot" colspan="3">
+    <td class="foot" colspan="2">
       <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" />
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
   </tr>
+
 </table>
+
 </form>
 
-</div><!-- UI-Main Render -->
+</div><{* ui-card-main *}>

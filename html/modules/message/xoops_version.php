@@ -17,7 +17,7 @@ $modversion['author'] = 'Marijuana';
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "MIT LICENSE";
-$modversion['image']       = 'images/module_icon.png';
+$modversion['image']       = 'images/module_message.svg';
 $modversion['mcl_update'] = 'message';
 
 $modversion['cube_style'] = true;

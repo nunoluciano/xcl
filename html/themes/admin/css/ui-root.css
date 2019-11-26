@@ -1,0 +1,204 @@
+/*
+    Theme : XCL Flex Grid Admin
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.2
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-01
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- ROOT SETTINGS */
+
+	/* Theme customization
+
+		- Body background
+		- Body font-family
+		- Body font-size
+		- Background colors
+		- Text colors
+		- Text Link colors
+		- Grid template
+		- User Menu
+		- Card
+		- UI Elements Colorscheme
+		- UI Navigation : Adminnavi, adminmenu, ui-breadcrumbs
+		- Table
+		- Shadow
+		- Spacing : relative margin and padding
+		- Typography scalable
+		- Dev-Mode
+		- Scrollbar
+
+	*/
+	/* 	Set Operating Systems default font-family */
+	@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 300;
+	src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
+		local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
+		local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+	}
+
+:root {
+
+	/* Fallback for Custom Properties */
+	--vh: 1vh; 
+
+	/* Body background */
+	/* --ui-body-bg	: rgb(21, 27, 42); */
+	--ui-body-bg	: #424547;
+	--ui-body-gd	: linear-gradient( 0deg, hsla(208, 24%, 10%, 1) 0%, rgba(29, 37, 47, 1) 50%, hsla(208, 24%, 10%, 1) 100% );
+
+	/* Body font-family */
+	--ui-font1		: "system";
+	--ui-font2		: serif;
+
+	/* Body font-size */
+	--text-base-size: 14px;
+
+	/* Background colors */
+	--ui-bg2		: #151a27;
+	--ui-bg2		: #1d252f;
+	--ui-bg3		: #37474f;
+	--ui-bg4		: #455a64;
+	--ui-bg5		: #273444;
+
+	/* Text colors */
+	--ui-text1		: #abc;
+	--ui-text2		: #bcd;
+	--ui-text3		: #cde;
+	--ui-text4		: #efa;
+
+	/* Text Link colors */
+	--ui-active		: #face74;
+	--ui-hover		: #fff;
+	--ui-link		: #face74;
+	--ui-visited	: #fff;
+
+	/* Grid template */
+	--ui-grid-header-bg	: #1d252f; /* Header Nav */
+	--ui-grid-footer-bg : transparent;
+	--ui-grid-main-bg	: #151a275a;
+	--ui-grid-side-bg	: #1d252f;
+	--ui-grid-side-hover: #456074;
+
+	/* User Menu */
+    --ui-user-menu-bg   : #273442;
+    --ui-user-menu-hover: rgba(0, 0, 0, 0.5);
+
+	/* Card */
+	--bg-ui-card-main	: #1d252f;
+	--bg-ui-card-md		: #273240;
+	--bg-ui-card-sm		: #182027;
+	--bg-ui-tips		: #456074;
+	--bg-ui-tips2		: #1e2730;
+
+	/* UI Elements Colorscheme */
+	--ui-color-amber	: #ffc107;
+	--ui-color-blue		: #2196f3;
+	--ui-color-green	: #27ae74;
+	--ui-color-indigo	: #3f51b5;
+	--ui-color-orange	: #ff9800;
+	--ui-color-purple	: #673ab7;
+	--ui-color-red		: #f44336;
+
+	/* UI Navigation: Adminnavi, adminmenu, ui-breadcrumbs */
+	--ui-adminnavi  	: #182027;
+	--ui-adminmenu	    : #456074;
+	--ui-breadcrumbs    : #1d252f;
+
+	/* Table */
+	--ui-table-bg	    : #1e2730;
+	--ui-table-hover    : rgba(0, 159, 251, 0.27);
+	--ui-table-th	    : transparent;
+	--ui-table-odd  	: #212a35;
+	--ui-table-even 	: transparent;
+	--ui-table-foot	    : #212a35;
+
+	/* Shadow */
+	--ui-shadow-sm      : 1px 2px 3px #111;
+	--ui-shadow-md      : 0px 5px 20px rgba(0, 0, 0, 0.05);
+	--ui-shadow-lg      : 0px 5px 20px rgba(0, 0, 0, 0.05);
+	--ui-shadow-xl      : 0px 5px 20px rgba(0, 0, 0, 0.05);
+
+	/* Spacing : relative margin and padding */
+	--space-unit: 1em;
+	--space-xxxxs: calc(var(--space-unit) * 0.125);
+	--space-xxxs: calc(var(--space-unit) * 0.25);
+	--space-xxs: calc(var(--space-unit) * 0.375);
+	--space-xs: calc(var(--space-unit) * 0.5);
+	--space-sm: calc(var(--space-unit) * 0.75);
+	--space-md: calc(var(--space-unit) * 1.25);
+	--space-lg: calc(var(--space-unit) * 2);
+	--space-xl: calc(var(--space-unit) * 3.25);
+	--space-xxl: calc(var(--space-unit) * 5.25);
+	--space-xxxl: calc(var(--space-unit) * 8.5);
+	--space-xxxxl: calc(var(--space-unit) * 13.75);
+
+	/* Typography scalable */
+	--text-scale-ratio: 1.2;
+	--text-xs: calc((1em / var(--text-scale-ratio)) / var(--text-scale-ratio));
+	--text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
+	--text-md: calc(var(--text-sm) * var(--text-scale-ratio) * var(--text-scale-ratio));
+	--text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+	--text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+	--text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+	--text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+
+	/* DEV-MODE : semantic layout visual help-border */
+	--color-border          : 2px dotted #1b548033;
+	--color-border-aside1   : 2px dotted #90a4ae;
+	--color-border-aside2   : 2px dotted #90a4ae;
+	--color-border-header   : 2px dotted #90a4ae;
+	--color-border-center   : 2px dotted #7cb342;
+	--color-border-footer   : 2px dotted #3f51b5;
+	--color-border-main     : 2px dotted #2196f3;
+	--color-border-nav-prim : 2px dotted #f44336;
+	--color-border-nav-sec  : 2px dotted #f44336;
+	--color-border-section  : 2px dotted #4caf50;
+
+}
+
+/* Text Selection */
+::selection {
+	background-color   : #0e2750;
+	color              : #f1f1f1;
+	}
+
+
+/*  TODO
+	Implement crosshover css/js scrollbar
+*/
+::-webkit-scrollbar {
+	background        : #403020;
+	width             : 10px;
+	}
+	
+	/* Track */
+	::-webkit-scrollbar-track {
+		background    : #face74b4; 
+		box-shadow    : inset 0px 4px 0px 4px #272727; 
+		border-radius : 0px;
+	}
+	 
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background    : #face7488; 
+		border-radius : 10px;
+	}
+	
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background    : #face74cc; 
+	}
+
+	::-webkit-scrollbar-thumb:active {
+		background    : linear-gradient(left, #272727, #face74);
+	  }
+	::-webkit-scrollbar-corner {
+		border        : none;
+	}
+	/* transparent resizer */
+	::-webkit-resizer {
+		background    :transparent;
+	}

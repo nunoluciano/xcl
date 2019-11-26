@@ -6,14 +6,13 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
 
 <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_DELETE}></h3>
 
-<div class="confirm"><i class="red"><span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=BannerfinishDelete">
   <{xoops_token form=$actionForm}>
@@ -48,11 +47,11 @@
     </tr>
     <tr>
       <td class="foot" colspan="2">
-        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

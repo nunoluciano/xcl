@@ -1,10 +1,10 @@
 
 <!-- Ranks Overview -->
-<div class="main-overview">
+<div class="ui-card-overview">
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-        <span class="iconify" data-icon="mdi:star" data-width="24px" data-height="24px"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-ranks.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_TOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_RANK_TOTAL}>: <strong><{$rankTotal}></strong></h3>
@@ -14,7 +14,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-        <span class="iconify" data-icon="mdi:account-star"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-rank-special.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>: <strong><{$rankTotal_S}></strong></h3>
@@ -24,7 +24,7 @@
 
 	<div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-orange">
-          <span class="iconify" data-icon="mdi:account-star-outline"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-rank-new.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_CREATE_NEW}>">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><a href="index.php?action=RanksEdit"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a></h3>
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-</div><!-- Ranks Overview -->
+</div>
 
 
 <div class="adminnavi">
@@ -41,7 +41,7 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
     <{$smarty.template}>
 
@@ -62,35 +62,52 @@
 </div>
 <{/if}>
 
-<div>
+
 <form action="./index.php" method="get">
-  <input type="hidden" name="action" value="RanksList" />
-  <{$smarty.const._SEARCH}> :
-  <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
-  <{$smarty.const._AD_USER_LANG_RANK_SPECIAL}> :
-  <select name="option_field">
-    <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-    <option value="special" <{if $filterForm->mOptionField == 'special'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
-    <option value="normal" <{if $filterForm->mOptionField == 'normal'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
-  </select>
-  <{$smarty.const._VIEW}> :
-  <select name="perpage">
-    <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-    <{foreach item=page from=$pageArr}>
-      <{if $pageNavi->mPerpage == $page && $page != 0}>
-        <option value="<{$page}>" selected="selected"><{$page}></option>
-      <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-      <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-        <option value="<{$page}>"><{$smarty.const._ALL}></option>
-      <{else}>
-        <option value="<{$page}>"><{$page}></option>
-      <{/if}>
-    <{/foreach}>
-  </select>
+  <input type="hidden" name="action" value="RanksList">
+
+  <section class="search"> 
+
+    <article>
+      <{$smarty.const._SEARCH}><br>
+      <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
+    </article>
+
+    <article>
+    <{$smarty.const._AD_USER_LANG_RANK_SPECIAL}><br>
+      <select name="option_field">
+        <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+        <option value="special" <{if $filterForm->mOptionField == 'special'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+        <option value="normal" <{if $filterForm->mOptionField == 'normal'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+      </select>
+    </article>
+  
+  <article>
+  <{$smarty.const._VIEW}><br>
+    <select name="perpage">
+      <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+      <{foreach item=page from=$pageArr}>
+        <{if $pageNavi->mPerpage == $page && $page != 0}>
+          <option value="<{$page}>" selected="selected"><{$page}></option>
+        <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+          <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+        <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+          <option value="<{$page}>"><{$smarty.const._ALL}></option>
+        <{else}>
+          <option value="<{$page}>"><{$page}></option>
+        <{/if}>
+      <{/foreach}>
+    </select>
+  </article>
+
+<article>
   <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+</article>
+
+</section>
+
 </form>
-</div>
+
 
 <form name="rankslistform" method="post" action="./index.php?action=RanksList">
   <{xoops_token form=$actionForm}>
@@ -133,17 +150,17 @@
       <td class="user_list_select"><input type="checkbox" name="delete[<{$obj->getShow('rank_id')}>]" value="1" /></td>
       <td class="user_list_control">
         <a href="index.php?action=RanksEdit&amp;rank_id=<{$obj->getShow('rank_id')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
         </a>
         <a href="index.php?action=RanksDelete&amp;rank_id=<{$obj->getShow('rank_id')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
         </a>
       </td>
     </tr>
   <{/foreach}>
     <tr>
       <td colspan="10" class="foot">
-        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
       </td>
     </tr>
 </table>

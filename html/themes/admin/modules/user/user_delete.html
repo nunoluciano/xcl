@@ -5,14 +5,14 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
     <{$smarty.template}>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_DELETE}> (<{$object->getShow('uname')}>)</h2>
 
-<div class="confirm"><i class="red"><span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span></i> <{$smarty.const._AD_USER_LANG_USER_DELETE_ADVICE}></div>
+<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg"></i> <{$smarty.const._AD_USER_LANG_USER_DELETE_ADVICE}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -68,4 +68,4 @@
 </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

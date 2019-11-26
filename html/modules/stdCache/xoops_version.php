@@ -7,7 +7,7 @@ $modversion['description'] = _MI_STDCACHE_NAME_DESC;
 $modversion['author'] = "XOOPS Cube Project";
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['image'] = "images/stdCache.png";
+$modversion['image'] = "images/module_cache.svg";
 $modversion['dirname'] = "stdCache";
 $modversion['help'] = "help.html";
 

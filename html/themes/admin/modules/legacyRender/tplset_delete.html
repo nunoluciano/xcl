@@ -5,14 +5,14 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
 <{$smarty.template}>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE}> (<{$object->getShow('tplset_name')}>)</h2>
 
-<div class="confirm"><i class="red"><span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span></i> <{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE_CONF|replace:"%s":$object->getShow('tplset_name')}></div>
+<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE_CONF|replace:"%s":$object->getShow('tplset_name')}></div>
 
 <form action="index.php?action=TplsetDelete" method="post">
 <{xoops_token form=$actionForm}>
@@ -50,4 +50,4 @@
 </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

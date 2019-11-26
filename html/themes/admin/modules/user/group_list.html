@@ -4,7 +4,7 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -35,7 +35,7 @@
   </tr>
   <{foreach item=group from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><span class="iconify" data-icon="mdi:account-multiple" data-width="24px" data-height="24px"></span></i></td>
+      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{$xoops_url}>/themes/admin/images/icon-user-group.svg" class="svg"></i></td>
       <td class="user_list_id"><{$group->getShow('groupid')}></td>
       <td class="user_list_title"><{$group->getShow('name')}></td>
       <td class="user_list_description"><{$group->getShow('description')}></td>
@@ -43,21 +43,21 @@
       <td class="user_list_number"><{$group->getUserCount()|xoops_escape}></td>
       <td class="user_list_control">
         <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:account-edit" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-edit.svg" class="svg">
         </a>
         <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
           <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._DELETE}>" class="red">
-            <span class="iconify" data-icon="mdi:account-multiple-remove" data-width="24px" data-height="24px"></span>
+            <img src="<{$xoops_url}>/themes/admin/images/icon-user-delete.svg" class="svg">
           </a>
         <{/if}>
         <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
-          <span class="iconify" data-icon="mdi:account-check" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-check.svg" class="svg">
         </a>
         <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
-          <span class="iconify" data-icon="mdi:account-lock" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-permissions.svg" class="svg">
         </a>
         <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
-          <span class="iconify" data-icon="mdi:account-arrow-left" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-user-assign.svg" class="svg">
         </a>
       </td>
     </tr>
@@ -66,4 +66,4 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-</div><!-- UI-Main Render -->
+</div>

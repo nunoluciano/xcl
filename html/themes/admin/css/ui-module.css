@@ -1,0 +1,231 @@
+/*
+    Theme : XCL Flex Grid Admin
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.2
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-01
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- -------------------- BLOCK SECTION SEARCH */
+
+	section.search { 
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin: 1rem auto;
+		max-width: 90%;
+	  }
+
+	  section.search article {
+	  flex: 1 0 33%;
+	  padding-bottom:1rem;
+	  }
+
+	  section .search-button {
+		flex-basis: 100%;
+		padding-top:1rem;
+	  }
+
+/* -------------------- -------------------- -------------------- -------------------- BLOCK SECTION FILTER */
+
+	section.filter { 
+		align-items: center;
+		background: #273444;
+		border-radius: 5px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin: 1rem auto;
+		max-width: 90%;
+		  
+	  }
+
+/* -------------------- -------------------- -------------------- -------------------- BLOCK STATE SWITCH */
+
+  /* Switch Block - color indicator */
+  .ui-update-change {
+    transition       : all 1s;
+  }
+  .ui-block-type.ui-update-change {
+    background-color : var(--ui-color-red);
+  } 
+  .ui-update-change svg, 
+  .ui-update-change > svg path.block-icon,
+  .ui-update-change > svg text.block-name {
+    color            : var(--ui-color-red);
+  }
+/* -------------------- -------------------- -------------------- -------------------- Module STATE SWITCH */
+
+  /* Update indicator */
+  .ui-update-change {
+    transition       : all 1s;
+  } 
+  .ui-update-change a {
+    background-color : var(--ui-color-red);
+  }
+  .ui-update-change svg,
+  .ui-update-change > svg path.module-icon,
+  .ui-update-change > svg text.module-name {
+    color            : var(--ui-color-red);
+  }
+
+/* -------------------- -------------------- -------------------- -------------------- BLOCK PREVIEW */
+
+.ui-block-admin-preview,
+.ui-block-permissions {
+
+}
+
+/* -------------------- -------------------- -------------------- -------------------- LEGACY */
+
+/* fix this > remove altsys css */
+.admin-menu,
+.altsys_mymenu {
+	align-items: flex-start;
+	border: 0px;
+	border-radius: 5px;
+	box-shadow: var(--ui-shadow-sm);
+	background: var(--ui-adminmenu);
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+}
+.admin-menu > div,
+.altsys_mymenu > div {
+	background: var(--ui-adminmenu);
+	border-radius: 5px;
+	padding: 1rem;
+}
+
+.adminnavi,
+.ui-breadcrumbs,
+.pagenavi {
+	/* background: var(--ui-adminnavi); */
+	background: var(--ui-bg5);
+    border-radius: 5px;
+    padding: 1rem;
+	margin: 2rem 0;
+	/* text-align: center; */
+}
+.adminnavi a,
+.ui-breadcrumbs a,
+.pagenavi a {
+	background: var(--ui-bg2);
+    padding: 7px 15px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+	box-shadow: var(--ui-shadow-sm);
+    border-radius: 5px;
+}
+
+/* -------------------- -------------------- -------------------- Table */
+
+/* TODO 
+Clean up D3 templates
+Responsive tables and 
+Alternative rendering of data
+*/
+td.blockposition {
+	align-items: center;
+	display: flex;
+	flex-flow: row;
+}
+
+table {
+	/* background-color: transparent; */
+	/* background: var(--ui-table-bg); */
+	background: #273444;
+	border-collapse: collapse;
+	border: 1px solid var(--ui-bg2);
+	width: 100%;
+}
+
+tr,
+th,
+td {
+	padding: 1rem;
+}
+
+table.outer tbody tr:nth-of-type(odd),
+.table-striped tbody tr:nth-of-type(odd) {
+	background: var(--ui-table-odd);
+}
+
+table.outer tbody tr:hover,
+.table-striped tbody tr:hover {
+	background: var(--ui-table-hover);
+}
+
+div.foot,
+table.outer td.foot,
+table.outer > tr:last-child,
+.table-striped > tr:last-child {
+	/* background-color: #212527db; */
+}
+
+div.foot,
+table td.foot,
+.legacy_list_id,
+.ui-module-image,
+.legacy_list_order,
+.legacy_list_date,
+.legacy_list_select,
+.legacy_list_control {
+	text-align: center;
+}
+
+table.altsys_mytplsadmin .dbtplset_active {
+	background-color: var(--ui-color-green);
+}
+
+table.altsys_mytplsadmin .dbtplset_active sup {
+	/*display: none;*/
+}
+
+table.altsys_mytplsadmin .fingerprint1 {
+	background: var(--ui-color-green);
+}
+
+table.altsys_mytplsadmin .fingerprint2 {
+	background: var(--ui-color-green);
+}
+
+table.altsys_mytplsadmin .fingerprint3 {
+	background: var(--ui-color-amber);
+}
+
+table.altsys_mytplsadmin .fingerprint4 {
+	background: var(--ui-color-blue);
+}
+
+table.altsys_mytplsadmin .fingerprint5 {
+	background: var(--ui-color-orange);
+}
+
+table.altsys_mytplsadmin .fingerprint6 {
+	background: var(--ui-color-indigo);
+}
+
+table.altsys_mytplsadmin .fingerprint7 {
+	background: var(--ui-color-indigo);
+}
+
+td.blockposition {
+	width: 135px;
+	white-space: nowrap;
+}
+div.blockposition {
+	float: left;
+	padding: 1px;
+}
+div.unselected {
+	background: #37474f;
+}
+div.selected {
+	background: var(--ui-color-green);
+}
+div.disabled {
+	background: var(--ui-color-red);
+}

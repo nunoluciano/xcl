@@ -6,7 +6,7 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -25,7 +25,7 @@
     <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></th>
   </tr>
   <tr>
-    <td class="head legacy_list_image">
+    <td class="head ui-module-image">
       <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.installer.image|xoops_escape:link}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
     </td>
     <td class="even">
@@ -45,5 +45,5 @@
 </table>
 </form>
 
-<!-- UI-Main Render -->
+
 </div>

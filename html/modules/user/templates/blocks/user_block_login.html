@@ -1,7 +1,7 @@
 <form action="<{$xoops_url}>/user.php" method="post" style="margin-top: 0px;">
-<br />    
+<br />
 <{$smarty.const._MB_USER_USERNAME}><br />
-<{xoops_input type=text name=uname size=14 value=$block.unamevalue maxlength=25 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}>
+<{xoops_input type=text name=uname autocomplete=username value=$block.unamevalue maxlength=25 id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}>
 <br />
 <br />
     <{$smarty.const._MB_USER_PASSWORD}><br />
@@ -15,7 +15,7 @@
 
 <br /><br />
 <{xoops_input type=submit name=submit value=$smarty.const._MB_USER_LOGIN id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_submit"}>
-   
+
 </form>
 
 <br />
@@ -24,7 +24,7 @@
 <{/if}>
 
 <br />
-<a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a> 
+<a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
 <{if $block.allow_register == '1'}>
 &nbsp;|<a href="<{$xoops_url}>/register.php"><{$smarty.const._MB_USER_USERREG}></a>
 <{/if}>

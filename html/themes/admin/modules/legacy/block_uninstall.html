@@ -5,14 +5,13 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALL}></h2>
 
-<div class="confirm"><i class="red"><span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span></i> <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg" alt="<{$smarty.const._DELETE}>"></i> <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_DELETE}></div>
 
 <div class="tips">
   <{if $object->get('block_type') == 'C'}>
@@ -134,5 +133,4 @@
 </table>
 </form>
 
-<!-- UI-Main Render -->
 </div>

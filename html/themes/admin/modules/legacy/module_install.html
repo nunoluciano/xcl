@@ -6,7 +6,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -33,8 +32,8 @@
     <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></th>
   </tr>
   <tr>
-    <td class="head legacy_list_image" rowspan="6">
-      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->modinfo.name|xoops_escape}>" title="<{$module->modinfo.name|xoops_escape}>" />
+    <td class="head ui-module-image" rowspan="6">
+      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->modinfo.name|xoops_escape}>" title="<{$module->modinfo.name|xoops_escape}>"  class="svg">
       <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
     </td>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
@@ -83,4 +82,4 @@
 </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>
