@@ -5,7 +5,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -52,10 +51,10 @@
         <a href="./index.php?action=BannerList&amp;cid=<{$obj->getShow('cid')}>"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}>(<{$obj->mBannerCount|xoops_escape}>)</a><br />
         <a href="./index.php?action=BannerfinishList&amp;cid=<{$obj->getShow('cid')}>"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}>(<{$obj->mFinishBannerCount|xoops_escape}>)</a><br />
         <a href="./index.php?action=BannerclientEdit&amp;cid=<{$obj->getShow('cid')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
         </a>
         <a href="./index.php?action=BannerclientDelete&amp;cid=<{$obj->getShow('cid')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
         </a>
       </td>
     </tr>
@@ -64,4 +63,4 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-</div><!-- UI-Main Render -->
+</div>

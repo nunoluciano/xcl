@@ -106,11 +106,12 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
                 
                 require_once XOOPS_ROOT_PATH . '/class/template.php';
                 $xoopsTpl =new XoopsTpl();
+                $objMsg = XCube_Utils::formatMessage();
                 $xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename'], ENT_COMPAT, _CHARSET),
                         'xoops_themecss' => xoops_getcss(),
                         'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                        'lang_message_confirm' => XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . "/install"),
-                        'lang_message_warning' => XCube_Utils::formatMessage(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . "/install")
+                        'lang_message_confirm' => $objMsg (_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . "/install"),
+                        'lang_message_warning' => $objMsg (_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . "/install")
                 ));
                 
                 $xoopsTpl->compile_check = true;

@@ -1,9 +1,9 @@
 <!-- Comments Overview -->
-<div class="main-overview">
+<div class="ui-card-overview">
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-        <span class="iconify" data-icon="mdi:comment-multiple"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-comments.svg" class="svg">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_COMMENT_TOTAL}>: <strong><{$CommentTotal}></strong></h3>
@@ -13,7 +13,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-        <span class="iconify" data-icon="mdi:comment-processing"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-comment-active.svg" class="svg">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._CM_ACTIVE}>: <strong><{$activeCommentTotal}></strong></h3>
@@ -23,7 +23,7 @@
 
   <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-red">
-          <span class="iconify" data-icon="mdi:message-bulleted-off"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-inactive.svg" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._CM_HIDDEN}>: <strong><{$hiddenCommentTotal}></strong></h3>
@@ -33,7 +33,7 @@
 
 	<div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-orange">
-          <span class="iconify" data-icon="mdi:message-text-clock"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-pending.svg" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._CM_PENDING}>: <strong><{$pendingCommentTotal}></strong></h3>
@@ -50,7 +50,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -63,16 +62,23 @@
 
 
   <form method="get" action="./index.php">
-  <input type="hidden" name="action" value="CommentList" />
-  <{$smarty.const._SEARCH}> :
+  <input type="hidden" name="action" value="CommentList">
+
+  <section class="search">
+
+  <article>
+  <{$smarty.const._SEARCH}><br>
   <select name="search_field">
     <option value="com_title" <{if $filterForm->mSearchField == 'com_title'}>selected="selected"<{/if}>><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></option>
     <option value="com_text" <{if $filterForm->mSearchField == 'com_text'}>selected="selected"<{/if}>><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></option>
     <option value="com_both" <{if $filterForm->mSearchField == 'com_both'}>selected="selected"<{/if}>><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}>,<{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></option>
     <option value="com_uid" <{if $filterForm->mSearchField == 'com_uid'}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_COM_UID}></option>
   </select>
-  <input type="text" name="keyword" value="<{$filterForm->mKeyword}>" />
-  <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> :
+  <input type="text" name="keyword" value="<{$filterForm->mKeyword}>">
+</article>
+
+  <article>
+  <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><br>
   <select name="com_modid">
     <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
     <{foreach item=module from=$moduleArr}>
@@ -83,7 +89,10 @@
       <{/if}>
     <{/foreach}>
   </select>
-  <{$smarty.const._AD_LEGACY_LANG_COM_STATUS}> :
+</article>
+
+  <article>
+  <{$smarty.const._AD_LEGACY_LANG_COM_STATUS}><br>
   <select name="com_status">
     <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_STATUS}></option>
     <{foreach item=status from=$statusArr}>
@@ -94,7 +103,10 @@
       <{/if}>
     <{/foreach}>
   </select>
-  <{$smarty.const._VIEW}> :
+</article>
+
+  <article>
+  <{$smarty.const._VIEW}><br>
   <select name="perpage">
     <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
     <{foreach item=page from=$pageArr}>
@@ -109,9 +121,16 @@
       <{/if}>
     <{/foreach}>
   </select>
-  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+</article>
+
+  <article>
+    <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
+  </article>
+
+</section>
+
 </form>
-</div>
+
 
 <form name="commentlistform" method="post" action="./index.php?action=CommentList">
   <{xoops_token form=$actionForm}>
@@ -155,9 +174,9 @@
       </td>
       <td class="legacy_list_title">
         <{if $obj->getShow('com_icon')}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$obj->getShow('com_icon')}>" alt="" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$obj->getShow('com_icon')}>" alt="">
         <{else}>
-          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" alt="" />
+          <img src="<{$smarty.const.XOOPS_URL}>/images/icons/no_posticon.gif" alt="">
         <{/if}>
         <a href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>"><{$obj->getShow('com_title')}></a></td>
       <td class="legacy_list_date"><{$obj->getShow('com_created')|xoops_formattimestamp:l}></td>
@@ -182,13 +201,13 @@
       <td class="legacy_list_select"><input type="checkbox" name="delete[<{$obj->getShow('com_id')}>]" value="1" /></td>
       <td class="legacy_list_control">
         <a href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>" title="<{$smarty.const._VIEW}>">
-          <span class="iconify" data-icon="mdi:comment-eye" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-view.svg" class="svg" alt="<{$smarty.const._VIEW}>">
         </a>
         <a href="./index.php?action=CommentEdit&amp;com_id=<{$obj->getShow('com_id')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:comment-edit" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-edit.svg" class="svg" alt="<{$smarty.const._EDIT}>">
         </a>
         <a href="./index.php?action=CommentDelete&amp;com_id=<{$obj->getShow('com_id')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <span class="iconify" data-icon="mdi:comment-remove" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-delete.svg" class="svg" alt="<{$smarty.const._DELETE}>">
         </a>
       </td>
     </tr>
@@ -203,5 +222,5 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-<!-- UI-Main Render -->
+
 </div>

@@ -18,7 +18,8 @@ $modversion['author'] = "GIJ=CHECKMATE and JIDAIKOBO. Improved by Naao, Nao-pon,
 $modversion['help'] = "";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image'] = file_exists($mydirpath . '/module_icon.png') ? 'module_icon.png' : 'module_icon.php';
+// $modversion['image'] = file_exists($mydirpath . '/images/module_forum.svg') ? '/images/module_forum.svg' : 'module_icon.php';
+$modversion['image'] = '/images/module_forum.svg' ;
 $modversion['dirname'] = $mydirname;
 $modversion['trust_dirname'] = $mytrustdirname;
 

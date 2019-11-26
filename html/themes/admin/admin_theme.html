@@ -3,7 +3,7 @@
 <!-- ===========================
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.1
+    Version : 0.0.2
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
     URL : https://github.com/xoopscube/xcl/
@@ -16,259 +16,242 @@
 	<meta http-equiv="content-style-type" content="text/css">
 	<meta name="description" content="XCL Admin Dashboard">
 	<meta name="author" content="Nuno Luciano aka Gigamaster">
-
-
-		<!-- Mobile Screen Responsive Width - Strict Not Scalable -->
-		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
-		<!-- Mobile Screen Responsive Width Simple Viewport - Scalable -->
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-		<!-- MSIE-->
-		<{if $smarty.server.HTTP_USER_AGENT|regex_replace:'/^.*MSIE\s*([0-9]+).*$/i':'\1'> 7}>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<{/if}>
+	<meta name="generator" content="XOOPS Cube">
 
 
 	<title>Admin : <{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
 
+		<{* ---------- ---------- ---------- ---------- ---------- Mobile Screen Responsive Width - Strict Not Scalable *}>
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
+		<{* ---------- ---------- ---------- ---------- ---------- Mobile Simple Viewport *}>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+		<{* ---------- ---------- ---------- ---------- ---------- MSIE *}>
 
-		<!-- Load Default Styles
-		<{* stylesheet file=style.css static=true *}>-->
+		<{if $smarty.server.HTTP_USER_AGENT|regex_replace:'/^.*MSIE\s*([0-9]+).*$/i':'\1'> 7}>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<{/if}>
 
-		<!-- style --------------------------------- static - true -->
+		<{* ---------- ---------- ---------- ---------- ---------- Mobile App Manifest *}>
+
+		<link rel="manifest" href="<{$xoops_url}>/themes/admin/site.webmanifest">
+
+		<{* ---------- ---------- ---------- ---------- ---------- Fav icon *}>
+		<link rel="apple-touch-icon" href="<{$xoops_url}>/images/favicon.ico">
+
+		<{* ---------- ---------- ---------- ---------- ---------- Static Style *}>
+
+		<{* stylesheet file=style.css static=true *}>
+
+		<{* ---------- ---------- ---------- ---------- ---------- Module Style Overview *}>
+
 		<{stylesheet file=module.css static=true}>
 
-		<!-- module header ------------------------- xoop -->
+		<{* ---------- ---------- ---------- ---------- ---------- Module Header *}>
+
 		<{$xoops_module_header}>
 
+		<{* ---------- ---------- ---------- ---------- ---------- Teme Admin Style *}>
 
-		<!-- link rel -----------------------------style  -->
 		<link rel="stylesheet" href="<{$xoops_url}>/themes/admin/style.css">
-
 
 		<!-- <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script> -->
 
+		<{* ---------- ---------- ---------- ---------- ---------- TODO - local icons  *}>
 
-		<!-- Icons SVG -->
 		<script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
 
-		<!-- Xoops js -->
+		<{* ---------- ---------- ---------- ---------- ---------- Xoops javascript *}>
+
 		<!-- <script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script> -->
 
 </head>
 
 <body>
+	<{* include file="./ui-menuopt.html" *}>
+	<{* include file="./ui-context-menu.html" *}>
+	<{* ---------- ---------- ---------- ---------- ---------- Mobile Screen Mode *}>
+	<div class="ui-screen-mode">
+		<div class="ui-smi">Orientation</div>
+		<div class="ui-smi">
+			<img src="<{$xoops_url}>/themes/admin/images/icon-screen-rotate.svg" class="svg">
+		</div>
+		<div class="ui-smi">Please</div>
+		<div class="ui-smi">Rotate your device!</div>
+		<div class="ui-smi">Thank you.</div>
+	</div>
+
+<{* ---------- ---------- ---------- ---------- ---------- Grid Admin Dashboard *}>
+
+<div class="grid">
+
+	<{* ---------- ---------- ---------- ---------- ---------- Header *}>
+
+	<{* Icons size - the most commonly used : 16x16, 24x24, 32x32, 48x48, 64x64 *}>
+	<{* CSS .iconify {width: 20px; height: 20px;} *}>
+	<header class="header">
+	<a id="container"></a>
+		<{* ---------- ---------- ---------- ---------- ---------- Nav Mobile *}>
+
+		<div class="nav-mobile">
+			<img src="<{$xoops_url}>/themes/admin/images/icon-mobile-menu.svg" class="svg">
+		</div>
 
 
-	<!-- Admin Dashboard Grid -->
-	<div class="grid">
+		<{* ---------- ---------- ---------- ---------- ---------- Nav User Menu *}>
 
+		<div class="nav-user-control">			
+			
+			<img src="<{$uid|xoops_user_avatarize}>">
+			
+			<div class="nav-user-dropdown">
+				<ul class="nav-user-menu">
 
-		<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Header -->
-		<!-- Icons size - the most commonly used : 16x16, 24x24, 32x32, 48x48, 64x64... -->
-		<!-- CSS .iconify { width: 20px; height: 20px; } -->
-		<header class="header">
-
-			<!-- Nav Mobile Menu Control -->
-			<div class="header-nav-mobile">
-				<span class="iconify" data-icon="mdi:menu-open" data-inline="false" style="color: #face74;" data-width="24" data-height="24"></span>
-			</div>
-
-			<!-- ---------- ---------- ---------- ---------- ---------- ---------- Header User Menu -->
-			<div class="header-nav-user"><img src="<{$uid|xoops_user_avatarize}>">
-				<div class="user-dropdown">
-					<ul class="user-dropdown-menu">
-
-						<li class="user-dropdown-menu-link">
-							<a href="<{$xoops_url}>/">
-								<span class="user-dropdown-menu-icon">
-									<span class="iconify" data-icon="mdi:home-circle-outline" data-inline="false" style="color: #face74;" data-width="24px" data-height="24px"></span>
-								</span>
-								<span class="user-dropdown-menu-title">
-									<{$smarty.const._YOURHOME}>
-								</span>
-							</a>
-						</li>
-
-						<li class="user-dropdown-menu-link">
-							<a href="<{$xoops_url}>/edituser.php">
-								<span class="user-dropdown-menu-icon">
-									<span class="iconify" data-icon="mdi:account-circle-outline" style="color: #face74;" data-width="24px" data-height="24px"></span>
-								</span>
-								<span class="user-dropdown-menu-title">Account Setting</span>
-							</a>
-						</li>
-
-						<li class="user-dropdown-menu-link">
-							<a href="<{$xoops_url}>/viewpmsg.php">
-								<span class="user-dropdown-menu-icon">
-									<span class="iconify" data-icon="mdi:email-multiple-outline" style="color: #face74;" data-width="24px" data-height="24px"></span>
-								</span>
-								<span class="user-dropdown-menu-title">Inbox</span>
-							</a>
-						</li>
-
-						<li class="user-dropdown-menu-link">
-							<a href="<{$xoops_url}>/notifications.php">
-								<span class="user-dropdown-menu-icon">
-									<span class="iconify" data-icon="mdi:bell-outline" style="color: #face74;" data-width="24px" data-height="24px"></span>
-								</span>
-								<span class="user-dropdown-menu-title">Notifications</span>
-							</a>
-						</li>
-
-						<li class="user-dropdown-menu-link">
-							<a href="<{$xoops_url}>/user.php?op=logout">
-								<span class="user-dropdown-menu-icon">
-									<span class="iconify" data-icon="mdi:logout-variant" style="color: #face74;" data-width="24px" data-height="24px"></span>
-								</span>
-								<span class="user-dropdown-menu-title">
-									<{$smarty.const._LOGOUT}>
-								</span>
-							</a>
-						</li>
-
-					</ul>
-					</div><!-- dropdown user menu-->
-			</div><!-- header-nav-user -->
-
-		</header>
-
-
-		<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Aside Navigation -->
-		<aside class="side-nav">
-
-			<div class="side-nav-logo">
-
-				<div class="side-nav-logo-icon">
-						<span class="iconify" data-icon="mdi:cube-outline" style="color: #face74;" data-width="24" data-height="24"></span>
-				</div>
-
-				<a class="side-nav-logo-link" href="<{$xoops_url}>/admin.php">
-					<{$legacy_sitename|xoops_escape}>
-				</a>
-
-			</div>
-
-
-			<!-- ---------- ---------- ---------- ---------- ---------- ---------- Side Nav Menu -->
-			<div class="side-nav-quicklink">
-			<!-- TODO - animate search and custom quick links GUI -->
-			<span class="iconify" data-icon="ic:outline-apps" style="color: #face74;" data-width="20px" data-height="20px"></span> Modules
-			<span class="iconify" data-icon="ic:baseline-storage" style="color: #face74;" data-width="20px" data-height="20px"></span> Server
-			<span class="iconify" data-icon="ic:outline-dashboard" style="color: #face74;" data-width="20px" data-height="20px"></span> Theme
-
-			<br>
-
-				<form action="<{$xoops_url}>/modules/legacy/admin/index.php?action=actSearch" method="post">
-					<input type="search" name="keywords" placeholder="Search..." >
-					<input type="hidden" value="<{$smarty.const._SEARCH}>">
-					<{$uid|xoops_user:user_name}>
-				</form>
-
-			</div>
-
-
-			<div class="row row-align-items row-align-center">
-
-				<ul class="side-nav-menu">
-
-					<li class="side-nav-name">Settings<span class="iconify" data-icon="ic:tune" data-width="20px" data-height="20px"></span></li>
-					<!-- Quick Access To Common Tasks -->
-					<li>
-						<div class="side-module-block row row-align-items">
-							<si class="side-module-icon"><span class="iconify" data-icon="ic:baseline-settings-applications" data-width="24px" data-height="24px"></span></i>
-							<span class="side-module-name">Common Tasks</span>
-						</div>
-						<!-- Custom Side Menu -->
-						<ul class="module-admin side-nav-close">
-							<li class="module-admin-link">
-								<span class="iconify" data-icon="ic:sharp-comment" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList"><{$smarty.const._COMMENTS}></a>
-							</li>
-							<li class="module-admin-link">
-								<span class="iconify" data-icon="ic:baseline-widgets" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
-							</li>
-
-							<li class="module-admin-link">
-									<span class="iconify" data-icon="ic:sharp-archive" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/xelfinder/" target="new"><{$smarty.const._IMGMANAGER}></a>
-							</li>
-							<li class="module-admin-link">
-								<span class="iconify" data-icon="ic:people" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/user/admin/index.php"><{$smarty.const._MEMBERS}></a>
-							</li>
-							<li class="module-admin-link">
-								<span class="iconify" data-icon="ic:sharp-library-add" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}></a>
-							</li>
-							<li class="module-admin-link">
-									<span class="iconify" data-icon="ic:sharp-developer-board" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
-							</li>
-							<li class="module-admin-link">
-								<span class="iconify" data-icon="ic:palette" data-width="20px" data-height="20px"></span>
-								<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACY_BLOCK_THEMES_NAME}></a>
-							</li>
-						</ul>
+					<li class="nav-user-link">
+						<a href="<{$xoops_url}>/">
+							<span class="nav-user-icon">
+							 <img src="<{$xoops_url}>/themes/admin/images/icon-user-home.svg" class="svg">
+							</span>
+							<span class="nav-user-title">
+								<{$smarty.const._YOURHOME}>
+							</span>
+						</a>
 					</li>
 
-					<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Module Block -->
+					<li class="nav-user-link">
+						<a href="<{$xoops_url}>/edituser.php">
+							<span class="nav-user-icon">
+								<img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg">
+							</span>
+							<span class="nav-user-title">Account Setting</span>
+						</a>
+					</li>
 
-					<{$xoops_lblocks.sidemenu.content}>
+					<li class="nav-user-link">
+						<a href="<{$xoops_url}>/viewpmsg.php">
+							<span class="nav-user-icon">
+								<img src="<{$xoops_url}>/themes/admin/images/icon-user-mail.svg" class="svg">
+							</span>
+							<span class="nav-user-title">Inbox</span>
+						</a>
+					</li>
 
-					<{foreach name=lblock item=block from=$xoops_lblocks}>
-					<{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'  }>
-					<{$block.content}>
-					<{/if}> <{/foreach}>
+					<li class="nav-user-link">
+						<a href="<{$xoops_url}>/notifications.php">
+							<span class="nav-user-icon">
+									<img src="<{$xoops_url}>/themes/admin/images/icon-user-notify.svg" class="svg">
+							</span>
+							<span class="nav-user-title">Notifications</span>
+						</a>
+					</li>
 
-				</ul><!-- side-nav-menu -->
+					<li class="nav-user-link">
+						<a href="<{$xoops_url}>/user.php?op=logout">
+							<span class="nav-user-icon">
+								<img src="<{$xoops_url}>/themes/admin/images/icon-user-logout.svg" class="svg">
+							</span>
+							<span class="nav-user-title">
+								<{$smarty.const._LOGOUT}>
+							</span>
+						</a>
+					</li>
 
-			</div><!-- row -->
+				</ul>
+				</div><{* /nav-user-dropdown *}>
+		</div><{* /Header User Menu *}>
 
-		</aside>
+	</header>
 
 
-	<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Main Dashboard -->
+	<{* ---------- ---------- ---------- ---------- ---------- Aside Navigation *}>
+
+	<aside class="side-nav">
+
+		<div class="nav-logo-site">
+
+			<div class="nav-logo-icon">
+				<img src="<{$xoops_url}>/themes/admin/images/icon-cube-logo.svg">
+			</div>
+
+			<a class="nav-logo-link" href="<{$xoops_url}>/admin.php">
+				<{$legacy_sitename|xoops_escape}>
+			</a>
+
+		</div>
+
+
+		<{* ---------- ---------- ---------- ---------- ---------- Side-Nav-QuickLink *}>
+
+		<div class="nav-quicklink">
+		
+			<form action="<{$xoops_url}>/modules/legacy/admin/index.php?action=actSearch" method="post">
+				<input type="search" name="keywords" placeholder="Search..." >
+				<input type="hidden" value="<{$smarty.const._SEARCH}>">
+				<{$uid|xoops_user:user_name}>
+			</form>
+
+		</div>
+
+
+		<div class="row row-align-items row-align-center">
+
+			<ul class="nav-side-menu">
+
+				<li class="nav-side-name">Settings <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" style="vertical-align: -0.125em;-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="icon-settings"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" fill="currentColor"></path></svg></li>
+
+				
+
+
+				<{* ---------- ---------- ---------- ---------- ---------- Module Block *}>
+
+				<{$xoops_lblocks.sidemenu.content}>
+
+				<{foreach name=lblock item=block from=$xoops_lblocks}>
+				<{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'  }>
+				<{$block.content}>
+				<{/if}> <{/foreach}>
+
+			</ul><{* /nav-side-menu *}>
+
+		</div><{* /row center *}>
+
+	</aside>
+
+
+	<{* ---------- ---------- ---------- ---------- ---------- Main *}>
+
 	<main class="main">
 
-		<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Block Online -->
+		<{* ---------- ---------- ---------- ---------- ---------- Block Online Info *}>
+
 		<{foreach name=lblock item=block from=$xoops_lblocks}>
 		<{if $block.name =='onlineinfo' && $block.name !='sidemenu'}>
 		<{$block.content}>
 		<{/if}>
 		<{/foreach}>
 
-		<!-- main-overview -->
+	
 
-		<!-- Admin Dashboard : Server & Apps   -->
+	<{* ---------- ---------- ---------- ---------- ---------- Module Content *}>
 
-		<!-- Start Page Content
-		<{* include file="./modules/server/server_dashboard.php" *}>
-		<{* if file_exists('tools.html') *}>
-		<{* include file="tools.html" *}>
-		<{* /if *}>  -->
-
-	<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Module -->
 	<{$xoops_contents}>
 
 
-	</main><!-- main dashboard -->
+	</main><{* /Main *}>
 
-	<!-- ---------- ---------- ---------- ---------- ---------- ---------- ---------- Footer -->
+
+	<{* ---------- ---------- ---------- ---------- ---------- Footer *}>
+
 	<footer class="footer">
 		Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>
-			<p><span class="footer-copy">&copy;</span> 2005-2019 <a href="https://github.com/xoopscube/" rel="external">The XOOPS Cube Project</a><span class="iconify" data-icon="mdi:github-box" data-width="24px" data-height="24px"></span></p>
+			<p><span class="footer-copy">&copy;</span> 2005-2019 <a href="https://github.com/xoopscube/" rel="external">The XOOPS Cube Project</a></p>
 			<p><a href="https://github.com/gigamaster/" target="_blank" class="footer-credits">Gigamaster <span class="iconify footer-icon" data-icon="ic:sharp-favorite" data-width="14px" data-height="14px"></span>2019 UI Design</a></p>
 	</footer>
 
-	</div><!-- Admin Dashboard Grid -->
+	</div><{* /Grid *}>
 
 
-
-
-	<script src="<{$xoops_url}>/themes/admin/script.js"></script>
+	<script src="<{$xoops_url}>/themes/admin/js/script.js"></script>
 
 </body>
 

@@ -1,10 +1,10 @@
 
 <!-- User Groups Overview -->
-<div class="main-overview">
+<div class="ui-card-overview">
 
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-blue">
-          <span class="iconify" data-icon="mdi:account-multiple"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-user-group.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong></h3>
@@ -14,7 +14,7 @@
   
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-green">
-          <span class="iconify" data-icon="mdi:account"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <strong><{$activeUserTotal}></strong></h3>
@@ -24,7 +24,7 @@
   
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-red">
-          <span class="iconify" data-icon="mdi:account-outline" data-width="24px" data-height="24px"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-user-inactive.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong></h3>
@@ -34,7 +34,7 @@
   
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-orange">
-          <span class="iconify" data-icon="mdi:account-card-details" data-width="24px" data-height="24px"></span>
+        <img src="<{$xoops_url}>/themes/admin/images/icon-profile.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}>">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title">New <strong>FIELD</strong></h3>
@@ -51,7 +51,7 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
     <{$smarty.template}>
     
@@ -234,4 +234,4 @@
   </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

@@ -1,48 +1,48 @@
-<!-- Modules Overview -->
-    <div class="main-overview">
+<{* ---------- ---------- ---------- ---------- ---------- Modules Overview *}>
+  <div class="ui-card-overview">
 
-        <div class="ui-card-small">
-            <div class="ui-card-small-icon ui-icon-blue">
-                <span class="iconify" data-icon="mdi:cube"></span>
-            </div>
-            <div class="ui-card-small-info">
-                <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <strong><{$ModuleTotal}></strong></h3>
-                <p class="ui-card-small-subtitle"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></p>
-            </div>
+      <div class="ui-card-small">
+          <div class="ui-card-small-icon ui-icon-blue">
+            <img src="<{$xoops_url}>/themes/admin/images/icon-modules.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>">
           </div>
-        
-          <div class="ui-card-small">
-            <div class="ui-card-small-icon ui-icon-green">
-                <span class="iconify" data-icon="mdi:hexagon-slice-6"></span>
-            </div>
-            <div class="ui-card-small-info">
-                <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <strong><{$activeModuleTotal}></strong></h3>
-                <p class="ui-card-small-subtitle"></p>
-            </div>
+          <div class="ui-card-small-info">
+              <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <strong><{$ModuleTotal}></strong></h3>
+              <p class="ui-card-small-subtitle"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></p>
           </div>
-        
-          <div class="ui-card-small">
-            <div class="ui-card-small-icon ui-icon-red">
-                <span class="iconify" data-icon="mdi:hexagon-outline"></span>
-                
-            </div>
-            <div class="ui-card-small-info">
-                <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>: <strong><{$inactiveModuleTotal}></strong></h3>
-                <p class="ui-card-small-subtitle"></p>
-            </div>
-          </div>
-        
-          <div class="ui-card-small">
-            <div class="ui-card-small-icon ui-icon-orange">
-              <span class="iconify" data-icon="mdi:package-variant-closed"></span>
-            </div>
-            <div class="ui-card-small-info">
-              <h3 class="ui-card-small-title"><a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></h3>
-              <h3 class="ui-card-small-title"><a href="index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></h3>
         </div>
-			</div>
+      
+        <div class="ui-card-small">
+          <div class="ui-card-small-icon ui-icon-green">
+            <img src="<{$xoops_url}>/themes/admin/images/icon-module-active.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>">
+          </div>
+          <div class="ui-card-small-info">
+              <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <strong><{$activeModuleTotal}></strong></h3>
+              <p class="ui-card-small-subtitle"></p>
+          </div>
+        </div>
+      
+        <div class="ui-card-small">
+          <div class="ui-card-small-icon ui-icon-red">
+            <img src="<{$xoops_url}>/themes/admin/images/icon-module-inactive.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>">
+              
+          </div>
+          <div class="ui-card-small-info">
+              <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>: <strong><{$inactiveModuleTotal}></strong></h3>
+              <p class="ui-card-small-subtitle"></p>
+          </div>
+        </div>
+      
+        <div class="ui-card-small">
+          <div class="ui-card-small-icon ui-icon-orange">
+            <img src="<{$xoops_url}>/themes/admin/images/icon-package.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>">
+          </div>
+          <div class="ui-card-small-info">
+            <h3 class="ui-card-small-title"><a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></h3>
+            <p class="ui-card-small-subtitle"></p>
+      </div>
+    </div>
 
-		</div><!-- Modules Overview -->
+  </div><{* Modules Overview *}>
 
 
 <div class="adminnavi">
@@ -51,9 +51,9 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
-<{$smarty.template}>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h2>
@@ -73,80 +73,134 @@
 </div>
 <{/if}>
 
+
 <form method="post" action="">
 <{xoops_token form=$actionForm}>
-<table class="outer">
-  <tr>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_MID}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
-      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-  </tr>
-  <{foreach item=module from=$moduleObjects}>
-    <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
-      <tr class="<{cycle values='odd,even'}> active">
-    <{else}>
-    <tr class="<{cycle values='odd,even'}>">
-    <{/if}>
-      <td class="legacy_list_id"><{$module->getVar('mid')}></td>
-      <td class="legacy_list_image">
-        <{if $module->getVar('hasadmin')}><a href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>"><{/if}><img src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getVar('name')}>" /><{if $module->getVar('hasadmin')}></a><{/if}>
-        <br />
-        <input type="text" size="24" name="name[<{$module->getVar('mid')}>]" value="<{$module->getVar('name')}>" /></td>
-      <td class="legacy_list_order">
-        <{if $module->hasNeedUpdate()}>
-          <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
-          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>"><img src="<{"icons/upgrade.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" /></a>
-        <{else}>
-          <{$module->getRenderedVersion()}>
-        <{/if}>
-      </td>
-      <td class="legacy_list_date"><{$module->getVar('last_update')|xoops_formattimestamp:l}></td>
-      <td class="legacy_list_select">
-        <input type="text" size="4" maxlength="4" name="weight[<{$module->getVar('mid')}>]" value="<{$module->getVar('weight','e')}>" class=legacy_list_number />
-      </td>
-      <td class="legacy_list_select"><input type="checkbox" name="isactive[<{$module->getVar('mid')}>]" value="1" <{if $module->getVar('isactive')}>checked="checked"<{/if}> /></td>
-      <td class="legacy_list_control">
-        <{if $module->getVar('isactive') == 1 }>
-          <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getVar('mid')}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>">
-            <span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span>
-          </a>
-        <{/if}>
-        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="green">
-          <span class="iconify" data-icon="mdi:update" data-width="24px" data-height="24px"></span>
-        </a>
-        <{if $module->getVar('isactive') == 0 }>
-          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getVar('dirname')}>" alt="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" class="red">
-            <span class="iconify" data-icon="mdi:package-variant-closed" data-width="24px" data-height="24px"></span>
-          </a>
-        <{/if}>
-        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" alt="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" class="blue">
-          <span class="iconify" data-icon="mdi:information" data-width="24px" data-height="24px"></span>
-        </a>
-      </td>
-    </tr>
-  <{/foreach}>
-  <tr>
-    <td class="foot" colspan="7">
-      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
-    </td>
-  </tr>
-</table>
-</form>
 
-</div><!-- UI-Main Render -->
+    <section class="filter">
+      <{$smarty.const._AD_LEGACY_LANG_MOD_MID}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_MID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+    
+      <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+    
+      <{$smarty.const._AD_LEGACY_LANG_VERSION}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+    
+      <{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+  
+      <{$smarty.const._AD_LEGACY_LANG_WEIGHT}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_WEIGHT}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+
+      <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
+      <a href="index.php?action=ModuleList&amp;sort=<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+      <a href="index.php?action=ModuleList&amp;sort=-<{$smarty.const.MODULE_SORT_KEY_ISACTIVE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+    
+      <{$smarty.const._AD_LEGACY_LANG_CONTROL}>
+    </section>
+
+</div><{* /ui-card-main *}>
+
+
+<{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
+<div class="ui-grid-blocks">
+
+
+<{foreach item=module from=$moduleObjects}>
+
+  <div class="ui-card-block">
+
+    <div class="ui-card-header">
+
+      <div class="ui-card-info">
+        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" title="Mid[<{$module->getVar('mid')}>] - <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
+          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-info.svg">
+        </a>
+      </div>
+
+      <div class="ui-card-settings">
+        <label class="ui-checkbox">
+          <input type="checkbox" name="isactive[<{$module->getVar('mid')}>]" value="1" <{if $module->getVar('isactive')}>checked="checked"<{/if}>>
+          <span class="ui-checkbox-custom"></span>
+        </label>
+
+        <{if $module->getVar('isactive') == 1 }>
+        <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getVar('mid')}>" title="<{$smarty.const._EDIT}>">
+          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-edit.svg">
+        </a>
+        <{/if}>
+
+        <{if $module->getVar('isactive') == 0 }>
+          <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getVar('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" class="ui-update-change">
+            <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-package.svg">
+          </a>
+        <{/if}>
+
+        <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-update.svg">
+        </a>
+
+        </div><{* /ui-card-settings *}>
+    
+    </div><{* /ui-card-header *}>
+
+
+    <div class="ui-card-content">
+
+      <{* Module [has-admin-active] *}>
+
+      <div class="ui-module-image">
+        <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
+          <a class="ui-module-state" href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>">
+        <{elseif $module->getVar('isactive') == 0 }>
+          <a class="ui-module-state ui-update-change" href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>">
+        <{/if}>
+        <img class="svg" src="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{$module->modinfo.image}>" title="<{$module->getVar('name')}>">
+        <{if $module->getVar('hasadmin')}>
+          </a>
+        <{/if}>
+      </div><{* /ui-nodule-image [has-admin-active] *}>
+
+      <div class="ui-module-info">
+        <div class="ui-module-name">
+          <input type="text" size="1" maxlength="4" name="weight[<{$module->getVar('mid')}>]" value="<{$module->getVar('weight','e')}>" title="<{$smarty.const._AD_LEGACY_LANG_WEIGHT}>"> 
+          <input type="text" size="20" name="name[<{$module->getVar('mid')}>]" value="<{$module->getVar('name')}>" title="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>">
+        </div>
+        <{if $module->hasNeedUpdate()}>
+        <div class="ui-module-update" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
+          <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>">
+          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-package-update.svg">
+          <strong class="ui-module-update-now"><{$module->getRenderedVersion()}></strong>
+          </a>  
+        </div>
+        <{else}>
+        <div class="ui-module-version" title="<{$smarty.const._AD_LEGACY_LANG_VERSION}>">
+          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-package.svg"> <{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$module->getRenderedVersion()}>
+        </div>
+        <{/if}>
+        <div class="ui-module-date" title="<{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>">
+          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-date-time.svg">
+          <{$module->getVar('last_update')|xoops_formattimestamp:l}>
+        </div>
+      </div><{* /ui-module-info *}>
+
+    </div><{* /ui-card-content *}>
+        
+
+  </div><{* / ui-card-block *}>
+  
+<{/foreach}>
+
+</div><{* /ui-grid-blocks *}>
+  
+  <div class="foot">
+    <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton">
+  </div>
+
+</form>

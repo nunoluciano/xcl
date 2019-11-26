@@ -4,7 +4,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -41,7 +40,7 @@
     <{else}>
       <tr class="<{cycle values="odd,even"}> inactive">
     <{/if}>
-      <td class="legacy_list_image">
+      <td class="ui-module-image">
         <{if $theme->get('screenshot')}>
           <img src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>" width="120" height="90" alt="<{$theme->getShow('name')}>" title="<{$theme->getShow('name')}>" />
         <{/if}>
@@ -63,14 +62,18 @@
         </ul>
       </td>
       <td class="legacy_list_select">
-        <input type="checkbox" name="select[<{$theme->getShow('dirname')}>]" value="1" <{if $actionForm->get('select', $theme->get('dirname'))}>checked="checked"<{/if}> />
+      <label class="ui-checkbox">
+        <input type="checkbox" name="select[<{$theme->getShow('dirname')}>]" value="1" <{if $actionForm->get('select', $theme->get('dirname'))}>checked="checked"<{/if}> >
+        <span class="ui-checkbox-custom"></span>
+      </label>
       </td>
       <td class="legacy_list_control">
         <{if $currentThemeName != $theme->get('dirname')}>
           <input name="choose[<{$theme->getShow('dirname')}>]" type="submit" value="<{$smarty.const._SELECT}>" class="formButton" />
         <{else}>
-          <i class="green" title="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
-            <span class="iconify" data-icon="mdi:checkbox-marked" data-width="24px" data-height="24px"></span></i>
+          <i class="green" ara-label="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
+            <img src="<{$xoops_url}>/themes/admin/images/icon-check.svg" class="svg">
+          </i>
         <{/if}>
       </td>
     </tr>
@@ -78,11 +81,11 @@
   <tr>
     <td colspan="2" class="foot"></td>
     <td class="foot">
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" name="submit" />
+      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" name="submit">
     </td>
     <td class="foot"></td>
   </tr>
 </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

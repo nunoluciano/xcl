@@ -10,7 +10,7 @@
 </div>
 
 
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -46,7 +46,7 @@
     </tr>
     <{if $actionForm->get('image_id')}>
     <tr>
-      <td class="<{cycle values="odd,even"}> legacy_list_image" colspan="2">
+      <td class="<{cycle values="odd,even"}> ui-module-image" colspan="2">
       <{if $object->mImageCategory->get('imgcat_storetype') == 'file'}>
         <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('image_name')}>" alt="<{$object->getShow('image_nicename')}>" title="<{$object->getShow('image_nicename')}>">
       <{else}>
@@ -96,5 +96,5 @@
   </table>
 </form>
 
-<!-- UI-Main Render -->
+
 </div>

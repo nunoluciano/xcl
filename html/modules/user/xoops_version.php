@@ -32,7 +32,7 @@ $modversion['author'] = "XOOPS Cube Project";
 $modversion['credits'] = "XOOPS Cube Project";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['image'] = "images/user.png";
+$modversion['image'] = "images/module_users.svg";
 $modversion['dirname'] = "user";
 
 $modversion['cube_style'] = true;

@@ -26,7 +26,7 @@ define('_MI_USER_CONF_ACTV_USER', "Require activation by user");
 define('_MI_USER_CONF_ALLOW_REGISTER', "Allow new user registration?");
 define('_MI_USER_CONF_ALW_RG_DESC', "Select yes to accept new user registration.");
 define('_MI_USER_CONF_AVATAR_HEIGHT', "Avatar image max height (pixel)");
-define('_MI_USER_CONF_AVATAR_MAXSIZE', "Avatar image max filesize (byte)");
+define('_MI_USER_CONF_AVATAR_MAXSIZE', "Avatar image max filesize 1 Megabytes (MB)	=	1,048,576 Bytes");
 define('_MI_USER_CONF_AVATAR_MINPOSTS', "Minimum posts required");
 define('_MI_USER_CONF_AVT_MIN_DESC', "Enter the minimum number of posts required to upload a custom avatar.");
 define('_MI_USER_CONF_AVATAR_WIDTH', "Avatar image max width (pixel)");

@@ -103,7 +103,7 @@
 	  <{foreach item=module from=$moduleObjects}>
 	    <tr class="<{cycle values='odd,even'}>">
 	      <td>
-					<div class="legacy_list_image">
+					<div class="ui-module-image">
 							 <{if $module->getShow('target_type') == 'TrustModule' && $module->getShow('replicatable') && (!$module->mModule->getVar('mid') || $module->get('dirname') == $module->get('trust_dirname')  ) }>
 						<input type="text" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
 						<{else}>
@@ -111,7 +111,7 @@
             <strong><{$module->getShow('dirname')}></strong>
 						<{/if}>
 					</div>
-          <div class="legacy_list_image">
+          <div class="ui-module-image">
           (
 	        <{if $module->isDirnameError()}>
 	          <{if $module->modinfo.trust_dirname}>
@@ -142,7 +142,7 @@
           <div class="legacy_list_order">
             <{if $module->hasNeedUpdate()}>
             <{assign var="hasupdate" value=1}>
-            <{$module->mModule->getRenderedVersion()}> &rarr; <strong class="legacy_module_versionMsg"><{$module->getRenderedVersion()}></strong>
+            <{$module->mModule->getRenderedVersion()}> &rarr; <strong class="ui-module-update-now"><{$module->getRenderedVersion()}></strong>
             <{else}>
             <{$module->getRenderedVersion()}>
             <{/if}>
@@ -151,7 +151,7 @@
           <div class="legacy_list_control">
             <{if $module->hasNeedUpdateDetail()}>
             <{assign var="hasupdate" value=1}>
-            <{$module->modinfo.detailed_version}> &rarr; <strong class="legacy_module_versionMsg"><{$module->options.detailed_version}></strong>
+            <{$module->modinfo.detailed_version}> &rarr; <strong class="ui-module-update-now"><{$module->options.detailed_version}></strong>
             <{else}>
             <{$module->options.detailed_version}>
             <{/if}>
@@ -189,8 +189,8 @@
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->mModule && $module->mModule->getVar('mid') > 0}>
 	          <{if $module->mModule->getVar('isactive')}>
-						<a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}> class="green">
-							<span class="iconify" data-icon="mdi:update" data-width="24px" data-height="24px"></span>
+						<a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="green">
+							<img src="<{$xoops_url}>/themes/admin/images/icon-update.svg" class="svg">
 						</a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
 						<{if $module->mModule->getVar('dirname') === 'legacy'}>

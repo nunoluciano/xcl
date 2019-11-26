@@ -1,0 +1,92 @@
+/*
+    Theme : XCL Flex Grid Admin
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.2
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-01
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- -------------------- GRID FLEX */
+
+	.grid {
+		background: #1d252f;
+		box-shadow: 0px 2px 20px #131b27ad;
+
+	display: grid;
+    grid-template-columns: 235px calc(100% - 235px);
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+        "side-nav header"
+        "side-nav main"
+        "side-nav footer";
+		min-height: 100vh;
+		position: relative;
+		overflow-x: hidden;
+		overflow-y: hidden;
+		max-width: 1174px;
+		margin: 0 auto;
+	}
+
+		.row {
+			display: flex;
+		}
+		.row-center {
+			align-items: center;
+			justify-content: center;
+		}
+
+/* -------------------- -------------------- -------------------- -------------------- HEADER */
+
+	.header {
+		align-items: center;
+		display: flex;
+		grid-area: header;
+		justify-content: space-between;
+	}
+
+		.nav-mobile {
+			background: #37474f;
+			height: 30px;
+			left:0px; /*required for transition */
+			padding: 3px;
+			position: fixed;
+			width: 30px;
+			transition: all 0.6s ease-in-out;
+			z-index: 10;
+			top: 210px;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			box-shadow: 1px 2px 3px #111;
+		}
+		.nav-mobile-close {
+			left: 235px;
+			top: 210px;
+		}
+
+/* -------------------- -------------------- -------------------- -------------------- Main */
+
+	.main {
+		grid-area: main;
+		padding: 1rem;
+	}
+
+/* -------------------- -------------------- -------------------- -------------------- Footer */
+
+	.footer {
+		align-items: center;
+		display: flex;
+		font-size: 0.8rem;
+		grid-area: footer;
+		justify-content: space-between;
+		padding: 1rem;
+	}
+		.footer-copy {
+			color: #1bbae1;
+		}
+		.footer-icon {
+			color: #c52727;
+		}
+		.footer-credits {
+			color: #1bbae1;
+			cursor: pointer;
+		}

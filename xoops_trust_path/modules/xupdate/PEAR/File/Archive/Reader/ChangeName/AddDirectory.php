@@ -45,7 +45,7 @@ require_once "File/Archive/Reader/ChangeName.php";
 class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_ChangeName
 {
     public $baseName;
-    public function File_Archive_Reader_ChangeName_AddDirectory($baseName, &$source)
+    public function __construct($baseName, &$source)
     {
         parent::File_Archive_Reader_ChangeName($source);
         $this->baseName = $this->getStandardURL($baseName);

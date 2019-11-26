@@ -22,7 +22,7 @@ $modversion['credits'] = "";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
-$modversion['image']       = 'images/module_icon.png';
+$modversion['image']       = 'images/module_profile.svg';
 $modversion['dirname'] = "profile";
 
 $modversion['cube_style'] = true;

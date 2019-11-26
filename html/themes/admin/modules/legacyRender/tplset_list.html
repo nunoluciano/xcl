@@ -5,7 +5,6 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -84,7 +83,7 @@
       </td>
       <td class="legacyRender_list_control">
         <{if $activeTemplateSet == $obj->get('tplset_name')}>
-          <i title="<{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}>" class="green"><span class="iconify" data-icon="mdi:checkbox-marked" data-width="24px" data-height="24px"></span></i>
+          <i title="<{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}>" class="green"><img src="<{$xoops_url}>/themes/admin/images/icon-check.svg" class="svg"></i>
             <br>
         <{else}>
           <form method="post" action="./index.php?action=TplsetList">
@@ -95,19 +94,19 @@
         <{/if}>
 
         <a href="index.php?action=TplsetDownload&amp;tplset_id=<{$obj->get('tplset_id')}>&amp;method=tar" title="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-          <span class="iconify" data-icon="mdi:file-download" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-file-download.svg" class="svg">
         </a>
         <a href="index.php?action=TplsetClone&amp;tplset_id=<{$obj->get('tplset_id')}>" title="<{$smarty.const._CLONE}>">
-          <span class="iconify" data-icon="mdi:file-replace" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-file-duplicate.svg" class="svg">
         </a>
         <br />
         <{if $obj->get('tplset_name') != "default"}>
           <a href="index.php?action=TplsetEdit&amp;tplset_id=<{$obj->get('tplset_id')}>" title="<{$smarty.const._EDIT}>">
-            <span class="iconify" data-icon="mdi:file-edit" data-width="24px" data-height="24px"></span>
+            <img src="<{$xoops_url}>/themes/admin/images/icon-file-edit.svg" class="svg">
           </a>
           <{if $activeTemplateSet != $obj->get('tplset_name')}>
             <a href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>" title="<{$smarty.const._DELETE}>" class="red">
-              <span class="iconify" data-icon="mdi:file-remove" data-width="24px" data-height="24px"></span>
+              <img src="<{$xoops_url}>/themes/admin/images/icon-file-delete.svg" class="svg">
             </a>
           <{/if}>
         <{/if}>
@@ -160,11 +159,11 @@
       <td class="legacyRender_list_control">
         <{if $obj->get('tpl_tplset') == "default"}>
           <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-            <span class="iconify" data-icon="mdi:file-eye" data-width="24px" data-height="24px"></span>
+            <img src="<{$xoops_url}>/themes/admin/images/icon-file-view.svg" class="svg">
           </a>
         <{else}>
           <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._EDIT}>">
-            <span class="iconify" data-icon="mdi:file-edit" data-width="24px" data-height="24px"></span>
+            <img src="<{$xoops_url}>/themes/admin/images/icon-file-edit.svg" class="svg">
           </a>
         <{/if}>
       </td>
@@ -179,4 +178,4 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-</div><!-- UI-Main Render -->
+</div>
