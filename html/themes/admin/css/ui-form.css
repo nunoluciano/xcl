@@ -1,0 +1,159 @@
+/*
+    Theme : XCL Flex Grid Admin
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.2
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-01
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- -------------------- Form elements  */
+	
+/* TODO
+test overwrite default templates
+*/
+
+input[type="color"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+textarea {
+	background-color : #3c4c61;
+	border           : 1px solid #1d252f;
+	box-shadow       : 0px 1px 3px #455a74ad;
+	color            : #abc;
+	padding          : 0.4rem;
+	}
+
+  input[type="color"]:hover,
+  input[type="email"]:hover,
+  input[type="number"]:hover,
+  input[type="search"]:hover,
+  input[type="tel"]:hover,
+  input[type="text"]:hover,
+  input[type="url"]:hover,
+  textarea:hover {
+    border         : 1px solid #1e88e5;
+    box-shadow     : 0px 1px 3px #455a74ad;
+    color          : #def;
+  }
+
+input[type="submit"] {
+	background-color : #272c33;
+	border-color     : #ffb22b;
+	box-shadow       : 0 1px 2px 0 rgba(248, 194, 0, 0.14), 0 3px 1px -2px rgba(248, 194, 0, 0.2), 0 1px 5px 0 rgba(248, 194, 0, 0.12);
+	color            : #ffb22b;
+	cursor           : pointer;
+	padding          : 5px 20px;
+	transition       : 0.2s ease-in;
+}
+
+input[type="submit"]:hover {
+	background       : #ffb22b;
+	border-color     : #ffb22b;
+	box-shadow       : 0 12px 20px -10px rgba(248, 194, 0, 0.42), 0 4px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(248, 194, 0, 0.2);
+	color            : #ffffff;
+}
+
+input.button-delete,
+input.button-unassign,
+input.buttom-uninstall,
+input[type="reset"] {
+	background-color : #272c33;
+	border-color     : #ff5722;
+	box-shadow       : 0 2px 2px 0 #ff572224, 0 3px 1px -2px #ff572233, 0 1px 5px 0 #ff57221f;
+	color            : #ff5722;
+	cursor           : pointer;
+	padding          : 5px 20px;
+	transition       : 0.2s ease-in;
+}
+
+input.button-delete:hover,
+input.button-unassign:hover,
+input.buttom-uninstall:hover,
+input[type="reset"]:hover {
+	background       : #ff5722;
+	border-color     : #ff5722;
+	box-shadow       : 0 14px 26px -12px #ff57226b, 0 4px 23px 0 #0000001f, 0 8px 10px -5px #ff572233;
+	color            : #ffffff;
+}
+
+select {
+	background-color : #343a40;
+	border           : 1px solid #455a74;
+	box-shadow       : 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
+	color            : #abc;
+	padding          : 0.2rem;
+	transition       : 0.2s ease-in;
+}
+select:active,
+select:hover,
+select:focus {
+	background-color : #343a40;
+	border-color     : #1e88e5;
+	color            : #def;
+}
+/* -------------------- -------------------- -------------------- -------------------- Custom checkbox */
+
+  /* Test custom checkbox */
+  .ui-checkbox {
+    cursor             : pointer;
+    display            : block;
+    font-size          : 24px;
+    height             : 24px;
+    line-height        : 24px;
+    position           : relative;
+    user-select        : none;
+    width              : 24px;
+    -webkit-user-select: none;
+    -moz-user-select   : none;
+    -ms-user-select    : none;
+  }
+  /* Hide the browser's default checkbox */
+  .ui-checkbox input {
+    cursor             : pointer;
+    height             : 0;
+    position           : absolute;
+    opacity            : 0;
+    width              : 0;
+  }
+  /* Create .ui-checkbox-custom (default unchecked) */
+  .ui-checkbox-custom {
+    background-color   : #343a40;
+    border             : 1px solid #455a74;
+    left               : 0;
+    height             : 24px;
+    position           : absolute;
+    top                : 0;
+    width              : 24px;
+  }
+  /* On mouse-over background */
+  .ui-checkbox:hover input ~ .ui-checkbox-custom {
+    border-color       : var(--ui-active);
+  }
+  /* Checkbox is checked */
+  .ui-checkbox input:checked ~ .ui-checkbox-custom path {
+    background-color   : #2196F3; 
+  }
+  /* (hidden not checked) */
+  .ui-checkbox-custom:after {
+    content            : "";
+    position           : absolute;
+    display            : none;
+  } 
+  /* Show checked */
+  .ui-checkbox input:checked ~ .ui-checkbox-custom:after {
+    display            : block;
+  }
+  /* Style the checkmark/indicator */
+  .ui-checkbox .ui-checkbox-custom:after {
+    border             : solid var(--ui-active);
+    border-width       : 0 3px 3px 0;
+    height             : 12px;
+    left               : 5px;
+    top                : 2px;
+    transform          : rotate(45deg);
+    width              : 12px;
+  }

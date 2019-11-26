@@ -1,14 +1,9 @@
-
-
-
-
 <div class="adminnavi">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></span>
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -27,7 +22,8 @@
       <td class="legacy_list_title"><{$obj->getName()|xoops_escape}></td>
       <td class="legacy_list_control">
         <a href="./index.php?action=PreferenceEdit&amp;confcat_id=<{$obj->getVar('confcat_id')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span></a>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg" aria-label="<{$obj->getName()|xoops_escape}> - <{$smarty.const._EDIT}>">
+        </a>
       </td>
     </tr>
   <{/foreach}>
@@ -39,7 +35,8 @@
   <td class="legacy_list_title">User</td>
       <td class="legacy_list_control">
         <a href="./index.php?action=PreferenceEdit&confmod_id=4" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span></a>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg" aria-label="Users - <{$smarty.const._EDIT}>">
+        </a>
       </td>
       </tr>
   <tr class="even">
@@ -47,10 +44,11 @@
   <td class="legacy_list_title">Meta Keywords</td>
       <td class="legacy_list_control">
         <a href="./index.php?action=PreferenceEdit&confmod_id=3" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span></a>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg" aria-label="Meta Keywords - <{$smarty.const._EDIT}>">
+        </a>
       </td>
       </tr>
     </tfoot>
 </table>
 
-</div><!-- UI-Main Render -->
+</div>

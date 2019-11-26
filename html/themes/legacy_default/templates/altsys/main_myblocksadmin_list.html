@@ -1,4 +1,4 @@
-<!-- UI-Main Render -->
+
 <div class="ui-card-main">
 <{$smarty.template}>
 
@@ -45,20 +45,19 @@
 				<{if $block.can_edit}>
 
 					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>" title="<{$smarty.const._EDIT}>">
-						<span class="iconify" data-icon="mdi:pencil" data-width="24px" data-height="24px"></span>
+						<img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
 					</a>
 				<{/if}>
 
 				<{if $block.can_delete}>
 					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>" title="<{$smarty.const._DELETE}>">
-						<span class="iconify" data-icon="mdi:file-document-box-remove" data-width="24px" data-height="24"></span>
+						<img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
 					</a>
 				<{/if}>
 
 				<{if $block.can_clone}>
 					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>" title="<{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>">
-						<span class="iconify" data-icon="mdi:content-duplicate" data-width="24px" data-height="24px"></span>
-
+						<img src="<{$xoops_url}>/themes/admin/images/icon-duplicate.svg" class="svg">
 					</a>
 				<{/if}>
 			</td>
@@ -76,5 +75,5 @@
 	</table>
 </form>
 
-<!-- UI-Main Render -->
+
 </div>

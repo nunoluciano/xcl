@@ -1,9 +1,10 @@
+<{* ---------- ---------- ---------- ---------- ---------- Admin Dashboard Overview *}>
 
-<div class="main-overview">
+<div class="ui-card-overview">
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-				<span class="iconify" data-icon="mdi:hexagon" data-inline="false"></span>
+			<img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-modules.svg">
 		</div>
 		<div class="ui-card-small-info">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy">
@@ -15,7 +16,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-				<span class="iconify" data-icon="mdi:hexagon-slice-6" data-inline="false"></span>
+				<img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-module-active.svg">
 		</div>
 		<div class="ui-card-small-info">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList">
@@ -27,7 +28,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-red">
-				<span class="iconify" data-icon="mdi:cube-outline" data-inline="false"></span>
+				<img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-module-inactive.svg">
 		</div>
 		<div class="ui-card-small-info">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=InstallList">
@@ -37,178 +38,49 @@
 		</div>
 	</div>
 
+	<{* ---------- ---------- ---------- ---------- ---------- Module Pico Options *}>
+
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-orange">
-				<span class="iconify" data-icon="mdi:card-plus" data-inline="false"></span>
+				<img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-add-plus.svg">
 		</div>
 		<div class="ui-card-small-info">
-			<p class="ui-card-small-title"><a href="<{$xoops_url}>/modules/pico/index.php?page=makecontent">
-					<span class="iconify" data-icon="mdi:file-edit-outline" data-inline="false" data-width="18px" data-height="18px"></span> New Document</a></p>
-			<p class="ui-card-small-title"><a href="<{$xoops_url}>/modules/pico/index.php?page=makecategory">
-					<span class="iconify" data-icon="mdi:folder-edit-outline" data-inline="false" data-width="20px" data-height="20px"></span> New Category</a></p>
+			<p class="ui-card-small-subtitle"><a href="<{$xoops_url}>/modules/pico/index.php?page=makecontent">
+					<img src="<{$xoops_url}>/themes/admin/images/icon-doc-new.svg" class="svg"> New Document</a></p>
+			<p class="ui-card-small-subtitle"><a href="<{$xoops_url}>/modules/pico/index.php?page=makecategory">
+					<img src="<{$xoops_url}>/themes/admin/images/icon-category-new.svg" class="svg"> New Category</a></p>
 		</div>
 	</div>
 
-</div><!-- main-overview -->
+</div><{* ui-card-overview *}>
 
 
-<!-- Breadcrumb Admin Dashboard -->
-<div class="breadcrumbs"><a href="<{$xoops_url}>/admin.php">Dashboard</a> >
-  <span class="breadcrumbs-item"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1"><{$smarty.const._MI_LEGACY_NAME}></a></span> >
-  <span class="breadcrumbs-item active"><{$smarty.const._CPHOME}></span>
+<{* ---------- ---------- ---------- ---------- ---------- Breadcrumb Admin Dashboard *}>
+
+<div class="ui-breadcrumbs"><a href="<{$xoops_url}>/admin.php">Dashboard</a> >
+  <span class="ui-breadcrumbs-item"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1"><{$smarty.const._MI_LEGACY_NAME}></a></span> >
+  <span class="ui-breadcrumbs-item active"><{$smarty.const._CPHOME}></span>
 </div>
-<!-- End Breadcrumb Admin Dashboard -->
-
-
-<div class="ui-card-main-2-columns">
-
-
-	<div class="ui-card-admin">
-
-		<div class="ui-card-header">
-			<div class="ui-card-header-title">Timeline <strong>Tasks</strong>
-				<!-- <a href="#" class="ui-card-header-link text-bold">View All</a> -->
-			</div>
-			<div class="ui-card-settings">
-				<!-- <div class="ui-card-settings-block"><span class="iconify" data-icon="ic:baseline-edit-attributes" style="color: #face74;" data-width="24px" data-height="24px"></span></div> -->
-				<div class="ui-card-settings-block"><span class="iconify" data-icon="mdi-light:cog" style="color: #face74;" data-width="24px" data-height="24px"></span></div>
-			</div>
-		</div><!-- ui-card-header -->
-
-
-		<div class="ui-card-content">
-
-			<div class="ui-card-flex-row">
-				<div class="ui-card-flex-icon"><span class="iconify" data-icon="ic:outline-check-circle" data-width="24px" data-height="24px"></span></div>
-				<div class="ui-card-flex-timeline">
-					<div>2019-11-08 18h00</div>
-				</div>
-				<div class="ui-card-flex-detail">
-					<div class="ui-card-flex-title">Webmaster</div>
-					<div class="card__description">Add card-main-2columns to dashboard.</div>
-					<div class="ui-card-note">Module Legacy</div>
-				</div>
-			</div>
-
-			<div class="ui-card-flex-row">
-				<div class="ui-card-flex-icon"><span class="iconify" data-icon="ic:outline-check-circle" data-width="24px" data-height="24px"></span></div>
-				<div class="ui-card-flex-timeline">
-					<div>2019-11-07 10h00</div>
-				</div>
-				<div class="ui-card-flex-detail">
-					<div class="ui-card-flex-title">Admin</div>
-					<div class="card__description">Set options of admin dashboard.</div>
-					<div class="ui-card-note">Legacy Preload</div>
-				</div>
-			</div>
-
-			<div class="ui-card-flex-row">
-				<div class="ui-card-flex-icon"><span class="iconify" data-icon="ic:outline-check-circle" data-width="24px" data-height="24px"></span></div>
-				<div class="ui-card-flex-timeline">
-					<div>2019-11-06 11h00</div>
-				</div>
-				<div class="ui-card-flex-detail">
-					<div class="ui-card-flex-title">Design</div>
-					<div class="card__description">Edit D3 templates.</div>
-					<div class="ui-card-note">Themename/templates/module</div>
-				</div>
-			</div>
-
-			<div class="ui-card-flex-row">
-				<div class="ui-card-flex-icon"><span class="iconify" data-icon="ic:outline-assignment" style="color: #face74;" data-width="24px" data-height="24px"></span></div>
-				<div class="ui-card-flex-timeline">
-					<div>2019-11-05 15h30</div>
-				</div>
-				<div class="ui-card-flex-detail">
-					<div class="ui-card-flex-title">Brainstorm</div>
-					<div class="card__description">Plan Tasks management.</div>
-					<div class="ui-card-note">New Admin UI</div>
-				</div>
-			</div>
-
-			<div class="ui-card-flex-row">
-				<div class="ui-card-flex-icon"><span class="iconify" data-icon="ic:outline-check-circle" data-width="24px" data-height="24px"></span></div>
-				<div class="ui-card-flex-timeline">
-					<div>2019-11-04 13h30</div>
-				</div>
-				<div class="ui-card-flex-detail">
-					<div class="ui-card-flex-title">Webmaster</div>
-					<div class="card__description">Test workflow and blocks features</div>
-					<div class="ui-card-note">Obsolete blocks: Waiting, pending</div>
-				</div>
-			</div>
-
-		</div><!-- ui-card-content -->
-
-	</div><!-- ui-card -->
 
 
 
-	<div class="ui-card-admin">
 
-		<div class="ui-card-header">
-			<div class="ui-card-header-title">Recent <strong>Documents</strong>
-				<!-- <a href="#" class="ui-card-header-link text-bold">View All</a> -->
-			</div>
-			<div class="settings">
-				<div class="ui-card-settings-block">
-					<span class="iconify" data-icon="ic:baseline-edit-attributes" style="color: #face74;" data-width="24px" data-height="24px"></span>
-				</div>
-	
-			</div>
-		</div>
+<{* ---------- ---------- ---------- ---------- ---------- Admin Options *}>
 
-		<div class="ui-card-admin">
-
-			<div class="ui-card-file-grid">
-				<div class="ui-card-file-flex">
-					<div class="ui-card-file-flex-img"></div>
-					<div class="ui-card-file-flex-title">Design-patterns</div>
-					<div class="ui-card-file-flex-date">2019-01-19</div>
-				</div>
-				<div class="ui-card-file-flex">
-					<div class="ui-card-file-flex-img"></div>
-					<div class="ui-card-file-flex-title">Version Alpha</div>
-					<div class="ui-card-file-flex-date">2019-01-29</div>
-				</div>
-				<div class="ui-card-file-flex">
-					<div class="ui-card-file-flex-img"></div>
-					<div class="ui-card-file-flex-title">Theme Starter</div>
-					<div class="ui-card-file-flex-date">2019-10-29</div>
-				</div>
-				<div class="ui-card-file-flex">
-					<div class="ui-card-file-flex-img"></div>
-					<div class="ui-card-file-flex-title">Admin UI</div>
-					<div class="ui-card-file-flex-date">2019-11-09</div>
-				</div>
-			</div>
-		</div>
-		<!-- ui-card -->
-
-	</div>
-	<!-- ui-card-admin -->
+<div class="ui-card-2-columns">
 
 
-	<div class="card ui-card-system">
-		<div class="ui-card-header">
-			<div class="ui-card-header-title">Server <strong>Info</strong></div>
-			<div class="ui-card-settings-block">
-				<span class="iconify" data-icon="ic:baseline-edit-attributes" style="color: #face74;" data-width="24px" data-height="24px"></span>
-			</div>
-		</div>
-		<div id="app-server"></div>
-	</div>
+
+</div><{* ui-card-2-columns *}>
 
 
-</div><!-- .ui-card-main-2columns -->
+<{* ---------- ---------- ---------- ---------- ---------- Admin Custom Preload Message Options *}>
 
-
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 
 
 	<{if $title}>
-	<h3 class="text-info"><span class="iconify" data-icon="mdi:comma" data-width="24px" data-height="24px"></span><{$title}></h3>
+	<h3 class="text-info"><{$title}></h3>
 	<{/if}>
 
 	<{if is_array($messages)}>
@@ -220,121 +92,4 @@
 	<{/if}>
 
 
-<h2 class="font-light">Theme Smarty Variables</h2>
-
-<p>Note : These variables are usable with front-end theme!
-
-<div class="ui-card-admin"><!-- card smarty -->
-<ul>
-	<li>uid|xoops_user_avatarize : <{$uid|xoops_user_avatarize}>
-		<pre><code><{literal}><{$uid|xoops_user_avatarize}><{/literal}></code></pre>
-	<li>smarty.template : <{$smarty.template}>
-		<pre><code><{literal}><{$smarty.template}><{/literal}></code></pre>
-	<li>True if the visitor is Administrator : <{if $xoops_isadmin}>1<{/if}>
-		<pre><code><{literal}><{if $xoops_isadmin}>1<{/if}><{/literal}></code></pre>
-	<li>xoops_isadmin : <{$xoops_isadmin}>
-	<li>True if the visitor is a logged in user : <{if $xoops_isuser}>1<{/if}>
-		<pre><code><{literal}><{if $xoops_isuser}>1<{/if}><{/literal}></code></pre>
-	<li>User ID of the member : <{$xoops_userid}>
-	<li>xoops_userid : <{$xoops_userid}>
-		<pre><code><{literal}><{$xoops_userid}><{/literal}></code></pre>
-	<li>Uname for the member : <{$xoops_uname}>
-	<li>xoops_uname : <{$xoops_uname}>
-		<pre><code><{literal}><{$xoops_uname}><{/literal}></code></pre>
-	<li>xoops_version : <{$xoops_version}>
-		<pre><code><{literal}><{$xoops_version}><{/literal}></code></pre>
-	<li>xoops_theme : <{$xoops_theme}>
-
-	<li>Inserts the characterset info (meta tag info) e.g "iso-8859-1", "UTF-8"
-		<pre><code><{literal}><{$xoops_charset}><{/literal}></code></pre>
-
-	<li>Content Language e.g. "EN", "JP"
-		<pre><code><{literal}><{$xoops_langcode}><{/literal}></code></pre>
-
-	<li>Inserts the keyword list from the Meta/Footer settings (meta tag info)
-		<pre><code><{literal}><{$xoops_meta_keywords}><{/literal}></code></pre>
-
-	<li>Inserts the meta tag site description
-		<pre><code><{literal}><{$xoops_meta_description}><{/literal}></code></pre>
-
-	<li>Inserts the meta tag copyright text
-		<pre><code><{literal}><{$meta_copyright}><{/literal}></code></pre>
-
-	<li>Inserts the W3C robot meta tag info
-		<pre><code><{literal}><{$meta_robots}><{/literal}></code></pre>
-
-	<li>Inserts the meta tag rating information
-		<pre><code><{literal}><{$meta_rating}><{/literal}></code></pre>
-
-	<li>Inserts the site name
-		<pre><code><{literal}><{$xoops_sitename}><{/literal}></code></pre>
-
-	<li>Inserts the site slogan
-			<pre><code><{literal}><{$xoops_slogan}><{/literal}></code></pre>
-
-	<li>Inserts the page title
-		<pre><code><{literal}><{$xoops_pagetitle}><{/literal}></code></pre>
-
-	<li>Theme name in directory "/themes/" e.g "default", "xt2"
-			<pre><code><{literal}><{$xoops_theme}><{/literal}></code></pre>
-
-	<li>Inserts the style.css e.g "http://www.xoops.org/themes/default/style.css"
-		<pre><code><{literal}><{$xoops_themecss}><{/literal}></code></pre>
-
-	<li>Inserts the site URL e.g "http://www.xoops.org"
-		<pre><code><{literal}><{$xoops_url}><{/literal}></code></pre>
-
-	<li>Inserts XOOPS javascript code
-		<pre><code><{literal}><{$xoops_js}><{/literal}></code></pre>
-
-	<li>Displays banners
-		<pre><code><{literal}><{$xoops_banner}><{/literal}></code></pre>
-
-	<li>Code snippet to display the left blocks
-	<pre><code><{literal}><{foreach item=block from=$xoops_lblocks}>
-	<{$block.title}>
-	<{$block.content}>
-	<{/foreach}><{/literal}></code></pre>
-
-	<li>Tests for system settings to display center blocks
-		<pre><code><{literal}><{if $xoops_showcblock == 1}>1<{/if}><{/literal}></code></pre>
-
-	<li>Code snippet to show the center-center blocks
-	<pre><code><{literal}><{foreach item=block from=$xoops_ccblocks}>
-	<{$block.title}>
-	<{$block.content}>
-	<{/foreach}><{/literal}></code></pre>
-
-	<li>Code snippet to show the center-left blocks
-	<pre><code><{literal}><{foreach item=block from=$xoops_clblocks}>
-	<{$block.title}>
-	<{$block.content}>
-	<{/foreach}><{/literal}></code></pre>
-
-	<li>Code snippet to show the center-right blocks
-	<pre><code><{literal}><{foreach item=block from=$xoops_crblocks}>
-	<{$block.title}>
-	<{$block.content}>
-	<{/foreach}><{/literal}></code></pre>
-
-	<li>Show the news and other contents
-		<pre><code><{literal}><{$xoops_contents}><{/literal}></code></pre>
-
-	<li>Test for showing center blocks
-		<pre><code><{literal}><{if $xoops_showcblock == 1}>1<{/if}><{/literal}></code></pre>
-
-	<li>Test for showing right blocks
-		<pre><code><{literal}><{if $xoops_showrblock == 1}>1<{/if}><{/literal}></code></pre>
-
-	<li>Code snippet to show right blocks
-	<pre><code><{literal}><{foreach item=block from=$xoops_rblocks}>
-	<{$block}>
-	<{/foreach}><{/literal}></code></pre>
-
-	<li>Shows the footer
-	<pre><code><{literal}><{$xoops_footer}><{/literal}></code></pre>
-</ul>
-</div><!-- card smarty -->
-
-
-</div><!-- UI-Main Render -->
+</div><{* ui-card-main *}>

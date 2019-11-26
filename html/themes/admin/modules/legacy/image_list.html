@@ -5,10 +5,8 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
-
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h2>
@@ -41,43 +39,63 @@
 </div>
 <{/if}>
 
-<div>
+ 
 <form action="./index.php" method="get">
-  <input type="hidden" name="action" value="ImageList" />
-  <input type="hidden" name="imgcat_id" value="<{$category->getShow('imgcat_id')}>" />
-  <{$smarty.const._SEARCH}> :
-  <input type="text" name="search" value="<{$filterForm->mKeyword}>" />
-  <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}> :
-  <select name="option_field">
-    <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-    <option value="visible" <{if $filterForm->mOptionField == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
-    <option value="invisible" <{if $filterForm->mOptionField == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
-  </select>
-  <{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}> :
-  <select name="option_field2">
-    <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-    <option value="gif" <{if $filterForm->mOptionField2 == 'gif'}>selected="selected"<{/if}>>image/gif</option>
-    <option value="png" <{if $filterForm->mOptionField2 == 'png'}>selected="selected"<{/if}>>image/png</option>
-    <option value="jpeg" <{if $filterForm->mOptionField2 == 'jpeg'}>selected="selected"<{/if}>>image/jpeg</option>
-  </select>
-  <{$smarty.const._VIEW}> :
-  <select name="perpage">
-    <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-    <{foreach item=page from=$pageArr}>
-      <{if $pageNavi->mPerpage == $page && $page != 0}>
-        <option value="<{$page}>" selected="selected"><{$page}></option>
-      <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-      <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-        <option value="<{$page}>"><{$smarty.const._ALL}></option>
-      <{else}>
-        <option value="<{$page}>"><{$page}></option>
-      <{/if}>
-    <{/foreach}>
-  </select>
-  <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
+  <input type="hidden" name="action" value="ImageList">
+  <input type="hidden" name="imgcat_id" value="<{$category->getShow('imgcat_id')}>">
+
+  <section class="search">
+  
+  <article>
+    <{$smarty.const._SEARCH}><br>
+    <input type="text" name="search" value="<{$filterForm->mKeyword}>">
+  </article>
+
+  <article>
+    <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}><br>
+    <select name="option_field">
+      <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+      <option value="visible" <{if $filterForm->mOptionField == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+      <option value="invisible" <{if $filterForm->mOptionField == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+    </select>
+  </article>
+
+  <article>
+    <{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}><br>
+    <select name="option_field2">
+      <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+      <option value="gif" <{if $filterForm->mOptionField2 == 'gif'}>selected="selected"<{/if}>>image/gif</option>
+      <option value="png" <{if $filterForm->mOptionField2 == 'png'}>selected="selected"<{/if}>>image/png</option>
+      <option value="jpeg" <{if $filterForm->mOptionField2 == 'jpeg'}>selected="selected"<{/if}>>image/jpeg</option>
+    </select>
+  </article>
+
+  <article>
+    <{$smarty.const._VIEW}><br>
+    <select name="perpage">
+      <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+      <{foreach item=page from=$pageArr}>
+        <{if $pageNavi->mPerpage == $page && $page != 0}>
+          <option value="<{$page}>" selected="selected"><{$page}></option>
+        <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+          <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+        <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+          <option value="<{$page}>"><{$smarty.const._ALL}></option>
+        <{else}>
+          <option value="<{$page}>"><{$page}></option>
+        <{/if}>
+      <{/foreach}>
+    </select>
+  </article>
+  
+  <article>
+    <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
+  </article>
+
+  </section>
+
 </form>
-</div>
+ 
 
 <form name="imagelistform" method="post" action="./index.php?action=ImageList">
   <{xoops_token form=$actionForm}>
@@ -113,12 +131,12 @@
       <tr class="<{cycle values='odd,even'}>">
     <{/if}>
       <td class="legacy_list_id"><{$obj->getShow('image_id')}></td>
-      <td class="legacy_list_image">
+      <td class="ui-module-image">
         <{if $obj->mImageCategory != null}>
           <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
-            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" />
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
           <{else}>
-            <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" />
+            <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
           <{/if}>
         <{/if}>
         <div class="legacy_list_imagetitle"><input type="text" size="12" name="nicename[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_nicename')}>" /></div>
@@ -130,9 +148,11 @@
       <td class="legacy_list_select"><input type="checkbox" name="delete[<{$obj->getShow('image_id')}>]" value="1" /></td>
       <td class="legacy_list_control">
         <a href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>" title="<{$smarty.const._EDIT}>">
-          <span class="iconify" data-icon="mdi:image-edit" data-width="24px" data-height="24px"></span></a>
-        <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>" title="<{$smarty.const._DELETE}>">
-          <span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span>
+          <img src="<{$xoops_url}>/themes/admin/images/icon-image-edit.svg" class="svg" alt="<{$smarty.const._EDIT}>">
+        </a>
+        <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>" title="<{$smarty.const._EDIT}>">
+          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg" alt="<{$smarty.const._DELETE}>">
+        </a>
       </td>
     </tr>
   <{/foreach}>
@@ -147,5 +167,5 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
-<!-- UI-Main Render -->
+
 </div>

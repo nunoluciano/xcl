@@ -5,14 +5,13 @@
 </div>
 
 
-<!-- UI-Main Render -->
 <div class="ui-card-main">
 <{$smarty.template}>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLFILE_DELETE}></h2>
 
-<div class="confirm"><i class="red"><span class="iconify" data-icon="mdi:delete-forever" data-width="24px" data-height="24px"></span></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=TplfileDelete">
   <{xoops_token form=$actionForm}>
@@ -59,11 +58,11 @@
     <tr>
       <td class="foot" colspan="2">
         <{xoops_input type=hidden name=tpl_id value=$actionForm->get('tpl_id')}>
-        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>
 </form>
 
-</div><!-- UI-Main Render -->
+</div>

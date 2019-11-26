@@ -5,83 +5,115 @@
 
 <{if $module->hasAdminIndex()}>
 
-	<li>
+<li>
 
-			<div class="side-module-block row row-align-items">
-				<span class="side-module-icon"><i class="fas fa-plane"></i></span>
-				<span class="side-module-name t<{$mid}>"><{$module->mXoopsModule->getVar('name')}></span>
-			</div>
+	<div class="nav-block row row-align-items">
+		<span class="nav-module-icon"><i class="fas fa-plane"></i></span>
+		<span class="nav-module-name t<{$mid}>"><{$module->mXoopsModule->getVar('name')}></span>
+	</div>
 
-			<ul class="module-admin side-nav-close c<{$mid}>">
 
-			<{if $module->getAdminMenu()}>
-        <{foreach item=menu from=$module->getAdminMenu()}>
+		<ul class="nav-module-admin nav-block-close c<{$mid}>">
+
+		<{if $module->getAdminMenu()}>
+
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Admin Links *}>
+
+
+			<{foreach item=menu from=$module->getAdminMenu()}>	
 				<{if $menu.show !== false}>
-
-				<li class="module-admin-link"><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
-
-         <{/if}>
-				<{/foreach}>
-
-				<{if $module->mXoopsModule->getInfo('blocks') && $dirname != "legacy" && $dirname != "altsys"  && $dirname != "system"}>
-				<li class="module-admin-link">
-					<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$dirname}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
-				</li>
-				<li class="module-admin-link">
-				  <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$dirname}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a>
-			  </li>
+				<li class="nav-module-link"><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
 				<{/if}>
+			<{/foreach}>
 
-				<{if $dirname != "legacyRender" && $dirname != "altsys"  && $dirname != "system"}>
-			  <{foreach item=tplmodule from=$tplmodules}>
-				  <{if $dirname == $tplmodule}>
-					  <li class="module-admin-link">
-						  <a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$dirname}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a>
-					  </li>
-				  <{/if}>
-			  <{/foreach}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Blocks *}>
+
+
+			<{if $module->mXoopsModule->getInfo('blocks') && $dirname != "legacy" && $dirname != "altsys"  && $dirname != "system"}>
+			<li class="nav-module-link">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$dirname}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
+			</li>
+			<li class="nav-module-link">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$dirname}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a>
+			</li>
+			<{/if}>
+
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Templates *}>
+
+
+			<{if $dirname != "legacyRender" && $dirname != "altsys"  && $dirname != "system"}>
+			<{foreach item=tplmodule from=$tplmodules}>
+				<{if $dirname == $tplmodule}>
+					<li class="nav-module-link">
+						<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$dirname}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a>
+					</li>
 				<{/if}>
-
-        <{if $module->mXoopsModule->getInfo('hasComments')}>
-			  <li class="module-admin-link">
-				  <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$mid}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
-			  </li>
-				<{/if}>
+			<{/foreach}>
+			<{/if}>
 
 
-        <{if $module->mXoopsModule->hasNeedUpdate()}>
-			  <li class="module-admin-link">
-					<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
-				  <{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
-				  </a>
-			  </li>
-
-        <{else}>
-
-			  <li class="module-admin-link">
-				  <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
-				  <{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
-				  </a>
-			  </li>
-				<{/if}>
+			<{* ---------- ---------- ---------- ---------- ---------- Module Comments *}>
 
 
-				<li class="module-admin-link">
-			  <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$mid}>"><{$smarty.const._EDIT}></a>
-				</li>
+			<{if $module->mXoopsModule->getInfo('hasComments')}>
+			<li class="nav-module-link">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$mid}>&amp;sort=-8"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
+			</li>
+			<{/if}>
 
-				<li class="module-admin-link">
-			  <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$dirname}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a>
-				</li>
 
-				<{else}>
+			<{* ---------- ---------- ---------- ---------- ---------- Module Update *}>
 
-        <li class="module-admin-link">
-          <{$smarty.const._AD_LEGACY_LANG_NO_SETTING}>
-        </li>
-      <{/if}>
-			</ul>
-		</li>
+
+			<{if $module->mXoopsModule->hasNeedUpdate()}>
+			<li class="nav-module-link">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
+				<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+				</a>
+			</li>
+
+
+			<{else}>
+
+
+			<li class="nav-module-link">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
+				<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+				</a>
+			</li>
+			<{/if}>
+
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Options *}>
+
+
+			<li class="nav-module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$mid}>"><{$smarty.const._EDIT}></a>
+			</li>
+
+			<li class="nav-module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$dirname}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a>
+			</li>
+
+			<{else}>
+
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module No-Settings *}>
+
+			<li class="nav-module-link">
+		
+				<{$smarty.const._AD_LEGACY_LANG_NO_SETTING}>
+	
+			</li>
+	
+			<{/if}>
+		
+		</ul>
+	
+	</li>
 
   <{/if}>
 

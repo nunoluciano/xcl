@@ -1,0 +1,197 @@
+/*
+    Theme : XCL Flex Grid Admin
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.2
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-01
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- -------------------- NORMALIZE */
+
+html{box-sizing:border-box}
+/* 	Applying CSS box-sizing Property to all elements
+	The box-sizing property includes the 'padding' & 'border' in elements total width & height. */
+*,*:before,
+*:after{box-sizing:inherit}
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}
+summary{display:list-item}
+audio,canvas,progress,video{display:inline-block}
+progress{vertical-align:baseline}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+a{background-color:transparent}
+a:active,a:hover{outline-width:0}
+abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+b,strong{font-weight:bolder}
+dfn{font-style:italic}
+mark{background:#b49900;color:#000}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sub{bottom:-0.25em}
+sup{top:-0.5em}
+figure{margin:1em 40px}
+img{border-style:none}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}
+hr{box-sizing:content-box;height:0;overflow:visible}
+button,input,select,textarea,optgroup{font:inherit;margin:0}
+optgroup{font-weight:bold}
+button,input{overflow:visible}button,select{text-transform:none}
+button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}
+button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+fieldset{border:1px solid #888;margin:0 2px;padding:.35em .625em .75em}
+legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
+textarea{overflow:auto}
+[type=checkbox],[type=radio]{padding:0}
+[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+
+/* -------------------- -------------------- -------------------- -------------------- HTML BODY */
+
+html,body {
+	background   : var(--ui-body-bg);
+	background   : var(--ui-body-gd); /* css gradient */
+	color        : var(--ui-text1);
+	box-sizing   : border-box;
+	font-family  : "system", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Use first the OS font-family */
+    font-size    : var(--text-base-size);
+    line-height  : 1.5rem;
+	margin       : 0;
+	padding      : 0;
+}
+
+html{
+	overflow-x   : hidden
+}
+
+/* -------------------- -------------------- -------------------- -------------------- HTML Elements */
+
+a,
+a:link {
+	color           : var(--ui-link);
+	text-decoration : none;
+}
+a:active,
+a:focus {
+	color           : var(--ui-active);
+}
+
+a:hover,
+a:visited:hover {
+	color           : var(--ui-hover);
+}
+
+h1 { font-size      : var(--text-xl) }
+h2 { font-size      : var(--text-lg) }
+h3 { font-size      : var(--text-md) }
+h4 { font-size      : var(--text-sm) }
+h5 { font-size      : var(--text-xs) }
+h6 { font-size      : var(--text-xs) }
+
+h1,
+h2,
+h3 {
+	color           : var(--ui-text2);
+	font-weight     : 300;
+}
+
+h4,
+h5,
+.font-bold {
+	font-weight     : bold;
+}
+
+hr { 
+	border          : 0;
+	border-top      : 1px solid var(--ui-text2);
+	margin          : 20px 0 
+}
+
+
+/* -------------------- -------------------- -------------------- Notifications */
+
+/* TODO
+Test overwrite default legacy templates */
+
+
+.tips, .error, .confirm {
+	background     : var(--bg-ui-tips);
+	color          : var(--ui-text2);
+	margin         : 2.5rem;
+	padding        : 1rem;
+}
+.tips {	
+	border-left    : 5px solid var(--ui-color-blue);
+}
+
+.error {
+	border-left    : 5px solid var(--ui-color-red);
+}
+.confirm {
+	border-left    : 5px solid var(--ui-color-orange);
+}
+
+/* TODO
+Test overwrite default notification */
+
+.notificatiion {
+	display        : flex;
+    flex-basis     : 100%;
+    flex-direction : row-reverse;
+    align-items    : center;
+    justify-content: center;
+    float          : none!important;
+}
+
+.sticky {
+	background     : #273240;
+	border-bottom  : 1px solid rgb(69, 90, 116) !important;
+	border-left    : 1px solid rgb(29, 37, 47) !important;
+    border-right   : 1px solid rgb(29, 37, 47) !important;
+	box-shadow     : 1px 1px 7px #212121;
+	left           : unset;
+	margin         : 0 calc(50% - 200px);
+	width          : 400px;
+	z-index        : 1000;
+}
+ .ondemand {
+	background     : #273240;
+	border-left    : 1px solid rgb(29, 37, 47) !important;
+    border-right   : 1px solid rgb(29, 37, 47) !important;
+    border-bottom  : 1px solid rgb(69, 90, 116) !important;
+    border-radius  : 7px;
+    box-shadow     : 0px 3px 5px #455a74ad;
+    color          : #def;
+    height         : 50px;
+    left           : unset;
+    margin         : 0 calc(50% - 200px);
+	width          : 400px;
+	z-index        : 2000;
+}
+.ondemand > div > a { color: var(--ui-color-amber); }
+
+.ondemand-button {
+    background     : #3c4c61;
+	border         : 1px solid #1d252f;
+	border-radius  : 5px;
+	box-shadow     : 0px 3px 5px #455a74ad;
+    float          : none!important;
+	height         : 24px;
+	left           : unset!important;
+    margin         : 0 50% !important;
+    padding        : 0 5px;
+    position       : absolute;
+    top            : 0;
+    width          : 32px !important;
+    z-index        : 1999;
+}
+.hide .ondemand-button {
+
+}
+/* -------------------- -------------------- -------------------- Tooltip  */
+/* TODO
+Implement Aria-label */
