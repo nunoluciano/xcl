@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="<{$xoops_langcode}>">
+<!doctype html>
+<html class="no-js" lang="<{$xoops_langcode}>">
 <!-- ===========================
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
@@ -24,7 +24,7 @@
 		<{* ---------- ---------- ---------- ---------- ---------- Mobile Screen Responsive Width - Strict Not Scalable *}>
 		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
 		<{* ---------- ---------- ---------- ---------- ---------- Mobile Simple Viewport *}>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 		<{* ---------- ---------- ---------- ---------- ---------- MSIE *}>
 
@@ -59,7 +59,7 @@
 
 		<{* ---------- ---------- ---------- ---------- ---------- TODO - local icons  *}>
 
-		<script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+
 
 		<{* ---------- ---------- ---------- ---------- ---------- Xoops javascript *}>
 
@@ -80,7 +80,7 @@
 		<div class="ui-smi">Rotate your device!</div>
 		<div class="ui-smi">Thank you.</div>
 	</div>
-
+	
 <{* ---------- ---------- ---------- ---------- ---------- Grid Admin Dashboard *}>
 
 <div class="grid">
@@ -234,6 +234,8 @@
 
 	<{* ---------- ---------- ---------- ---------- ---------- Module Content *}>
 
+
+
 	<{$xoops_contents}>
 
 
@@ -244,14 +246,14 @@
 
 	<footer class="footer">
 		Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>
-			<p><span class="footer-copy">&copy;</span> 2005-2019 <a href="https://github.com/xoopscube/" rel="external">The XOOPS Cube Project</a></p>
-			<p><a href="https://github.com/gigamaster/" target="_blank" class="footer-credits">Gigamaster <span class="iconify footer-icon" data-icon="ic:sharp-favorite" data-width="14px" data-height="14px"></span>2019 UI Design</a></p>
+		<p><span class="footer-copy">&copy;</span> 2005-2019 <a href="https://github.com/xoopscube/" rel="external">The XOOPS Cube Project</a></p>
+		<p><a href="https://github.com/gigamaster/" target="_blank" class="footer-credits">Gigamaster 2019 UI Design</a></p>
 	</footer>
 
 	</div><{* /Grid *}>
-
-
-	<script src="<{$xoops_url}>/themes/admin/js/script.js"></script>
+	<script src="<{'js/vendor/modernizr-3.7.1.min.js'|theme}>"></script>
+	<script>window.jQuery || document.write('<script src="<{"js/jquery-3.4.1.min.js"|theme}>"><\/script>')</script>
+	<script src="<{'js/script.js'|theme}>"></script>
 
 </body>
 

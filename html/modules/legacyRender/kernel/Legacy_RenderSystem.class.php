@@ -171,7 +171,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         
         $mTpl->xoops_setCaching(0);
 
-        // If debugger request debugging to me, send debug mode signal by any methods.
+        // If debugger request debugging , send debug mode signal by any methods.
         if ($controller->mDebugger->isDebugRenderSystem()) {
             $mTpl->xoops_setDebugging(true);
         }
@@ -426,7 +426,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         //
         // $this->_processLegacyTemplate();
 
-        // assing
+        // assign
         /// @todo I must move these to somewhere.
         $assignNameMap = array(
                 XOOPS_SIDEBLOCK_LEFT=>array('showflag'=>'xoops_showlblock','block'=>'xoops_lblocks'),
@@ -490,7 +490,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         }
     }
     //
-    // These deprecated functionsmust should not be  here!
+    // These deprecated functions should not be here!
     //
     //
 
@@ -532,26 +532,26 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         global $xoopsConfig, $xoopsTheme, $xoopsConfigMetaFooter;
 
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+        echo '<!DOCTYPE html>';
 
-        echo '<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" lang="'._LANGCODE.'">
+        echo '<html lang="<{$xoops_langcode}>">
 		<head>
-		<meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" />
-		<meta http-equiv="content-language" content="'._LANGCODE.'" />
-		<meta name="robots" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_robots']).'" />
-		<meta name="keywords" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_keywords']).'" />
-		<meta name="description" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_desc']).'" />
-		<meta name="rating" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_rating']).'" />
-		<meta name="author" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_author']).'" />
-		<meta name="copyright" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_copyright']).'" />
-		<meta name="generator" content="XOOPS" />
+		<meta http-equiv="content-type" content="text/html; charset='._CHARSET.'">
+		<meta http-equiv="content-language" content="'._LANGCODE.'">
+		<meta name="robots" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_robots']).'">
+		<meta name="keywords" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_keywords']).'">
+		<meta name="description" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_desc']).'">
+		<meta name="rating" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_rating']).'">
+		<meta name="author" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_author']).'">
+		<meta name="copyright" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_copyright']).'">
+		<meta name="generator" content="XOOPS Cube">
 		<title>'.htmlspecialchars($xoopsConfig['sitename']).'</title>
 		<script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script>
 		';
         $themecss = getcss($xoopsConfig['theme_set']);
-        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css" />';
+        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css">';
         if ($themecss) {
-            echo '<link rel="stylesheet" type="text/css" media="all" href="'.$themecss.'" />';
+            echo '<link rel="stylesheet" type="text/css" media="all" href="'.$themecss.'">';
             //echo '<style type="text/css" media="all"><!-- @import url('.$themecss.'); --></style>';
         }
         if ($closehead) {

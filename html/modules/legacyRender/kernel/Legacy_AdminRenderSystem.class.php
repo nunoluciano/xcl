@@ -30,7 +30,7 @@ class Legacy_AdminSmarty extends Smarty
     public $mModulePrefix = null;
 
     //
-    // If you don't hope to override for theme, set false.
+    // If you don't intend to override the theme, set false.
     //
     public $overrideMode = true;
     
@@ -99,7 +99,7 @@ class Legacy_AdminSmarty extends Smarty
 
 /**
  * @brief The specific FILE-TYPE render-system.
- * @todo We depends on Legacy_RenderSystem that a add-in module defines. We must stop this situation.
+ * @todo We depend on Legacy_RenderSystem that an add-in module defines. We must stop this situation.
  */
 class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 {
@@ -226,7 +226,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         foreach ($target->getAttributes() as $key=>$value) {
             $this->mSmarty->assign($key, $value);
         }
-        
+       
         $result = null;
         
         if ($target->getTemplateName()) {
@@ -273,7 +273,7 @@ function Legacy_modifier_theme($string)
     } elseif ($infoArr['dirname'] != null) {
         return XOOPS_MODULE_URL . '/' . $infoArr['dirname'] . '/admin/templates/' . $string;
     }
-    
+   
     return LEGACY_ADMIN_RENDER_FALLBACK_URL . '/' . $string;
 }
 
@@ -386,6 +386,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
         $ret['dirname'] = null;
 
         if (file_exists(LEGACY_ADMIN_RENDER_FALLBACK_PATH . '/' . $file)) {
+            
             return $checkCache[$mfile] = &$ret;
         }
         
