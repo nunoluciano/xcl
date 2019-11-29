@@ -7,7 +7,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></h2>
@@ -32,8 +32,8 @@
     <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_CONF}></th>
   </tr>
   <tr>
-    <td class="head ui-module-image" rowspan="6">
-      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->modinfo.name|xoops_escape}>" title="<{$module->modinfo.name|xoops_escape}>"  class="svg">
+    <td class="head ui-card-image" rowspan="6">
+      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" alt="<{$module->modinfo.name|xoops_escape}>" title="<{$module->modinfo.name|xoops_escape}>">
       <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
     </td>
 	<td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>

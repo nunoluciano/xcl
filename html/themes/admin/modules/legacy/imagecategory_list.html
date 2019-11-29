@@ -3,7 +3,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-images.svg" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_IMGCAT_TOTAL}>">
+      <img src="<{"icons/icon-images.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_IMGCAT_TOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
       <p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_TOTAL}>: <strong><{$ImgcatTotal}></strong></p>
@@ -13,7 +13,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-active.svg" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>">
+      <img src="<{"icons/icon-image-active.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
       <p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}></p>
@@ -23,7 +23,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-red">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-image-inactive.svg" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>">
+      <img src="<{"icons/icon-image-inactive.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
       <p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}></p>
@@ -33,7 +33,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-orange">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-image-plus.svg" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}>">
+      <img src="<{"icons/icon-image-plus.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}>">
 		</div>
 		<div class="ui-card-small-info">
       <p class="ui-card-small-subtitle"><a href="index.php?action=ImagecategoryEdit"><{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}></a></p>
@@ -53,7 +53,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}></h2>
@@ -182,26 +182,40 @@
       <td class="legacy_list_title">
         <input type="text" size="12" name="name[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_name')}>" />
       </td>
-      <td class="legacy_list_number"><input type="text" size="6" maxlength="10" name="maxsize[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxsize')}>" class=legacy_list_number /></td>
-      <td class="legacy_list_number"><input type="text" size="4" maxlength="6" name="maxwidth[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxwidth')}>" class=legacy_list_number /></td>
-      <td class="legacy_list_number"><input type="text" size="4" maxlength="6" name="maxheight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxheight')}>" class=legacy_list_number /></td>
-      <td class="legacy_list_select"><input type="checkbox" name="display[<{$obj->getShow('imgcat_id')}>]" value="1" <{if $obj->getShow('imgcat_display')}>checked="checked"<{/if}> /></td>
-      <td class="legacy_list_order"><input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_weight')}>" class=legacy_list_number /></td>
-      <td class="legacy_list_type"><{$obj->getShow('imgcat_storetype')}></td>
-      <td class="legacy_list_number"><{$obj->getImageCount()|xoops_escape}></td>
-      <td class="legacy_list_select"><input type="checkbox" name="delete[<{$obj->getShow('imgcat_id')}>]" value="1" /></td>
+      <td class="legacy_list_number">
+        <input type="text" size="6" maxlength="10" name="maxsize[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxsize')}>" class=legacy_list_number /></td>
+      <td class="legacy_list_number">
+        <input type="text" size="4" maxlength="6" name="maxwidth[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxwidth')}>" class=legacy_list_number /></td>
+      <td class="legacy_list_number">
+        <input type="text" size="4" maxlength="6" name="maxheight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxheight')}>" class=legacy_list_number /></td>
+      <td class="legacy_list_select">
+
+        <input type="checkbox" name="display[<{$obj->getShow('imgcat_id')}>]" value="1" <{if $obj->getShow('imgcat_display')}>checked="checked"<{/if}> />
+
+      </td>
+      <td class="legacy_list_order">
+        <input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_weight')}>" class=legacy_list_number /></td>
+      <td class="legacy_list_type">
+        <{$obj->getShow('imgcat_storetype')}></td>
+      <td class="legacy_list_number">
+        <{$obj->getImageCount()|xoops_escape}></td>
+      <td class="legacy_list_select">  
+  
+          <input type="checkbox" name="delete[<{$obj->getShow('imgcat_id')}>]" value="1" />
+
+      </td>
       <td class="legacy_list_control">
         <a href="./index.php?action=ImageList&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" title="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-image-view.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
+          <img src="<{"icons/icon-image-view.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
         </a>
         <a href="./index.php?action=ImageCreate&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" title="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-image-new.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
+          <img src="<{"icons/icon-image-new.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
         </a>
         <a href="./index.php?action=ImagecategoryEdit&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-image-edit.svg" class="svg" aria-label="<{$smarty.const._EDIT}>">
+          <img src="<{"icons/icon-image-edit.svg"|theme}>" class="svg" aria-label="<{$smarty.const._EDIT}>">
         </a>
         <a href="./index.php?action=ImagecategoryDelete&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" title="<{$smarty.const._DELETE}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg" aria-label="<{$smarty.const._DELETE}>">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg" aria-label="<{$smarty.const._DELETE}>">
         </a>
       </td>
     </tr>

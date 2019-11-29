@@ -7,7 +7,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></h2>
@@ -22,17 +22,17 @@
   </tr>
   <{foreach item=module from=$moduleObjects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="ui-module-image">
+      <td class="ui-card-image">
         <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name','e')}>" title="<{$module->getShow('name','e')}>" class="svg">
         <div class="legacy_list_imagetitle"><{$module->getShow('name')}></div>
       </td>
       <td class="legacy_list_order"><{$module->getRenderedVersion()}></td>
       <td class="legacy_list_control">
         <a href="index.php?action=ModuleInstall&amp;dirname=<{$module->getShow('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-package.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+          <img src="<{"icons/icon-package.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
         </a>
         <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" class="blue">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-info.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
+          <img src="<{"icons/icon-info.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
         </a>
       </td>
     </tr>

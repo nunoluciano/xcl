@@ -31,14 +31,23 @@
         </tr>
 <{foreach item=module from=$uninstalled}>
         <tr>
-          <td style="border: 1px solid silver;width:30px; padding: 2px;"><input type="checkbox" name="uninstalled_modules_dummy[]" value="<{$module}>" checked="checked" disabled /><input type="hidden" name="uninstalled_modules[]" value="<{$module}>"/>&nbsp;</td>
+          <td style="border: 1px solid silver;width:30px; padding: 2px;">
+     
+            <input type="checkbox" name="uninstalled_modules_dummy[]" value="<{$module}>" checked="checked" disabled /><input type="hidden" name="uninstalled_modules[]" value="<{$module}>"/>
+
+          </td>
           <td style="border: 1px solid silver;width:150px; padding: 2px;"><b><{$module}></b></td>
           <td colspan="2" style="border: 1px solid silver;width:200px; padding: 2px;"><{$smarty.const._SYS_MODULE_UNINSTALLED}></td>
         </tr>
 <{/foreach}>
 <{foreach item=module from=$disabled}>
         <tr>
-          <td style="border: 1px solid silver;width:30px; padding: 2px;"><input type="checkbox" name="disabled_modules_dummy[]" value="<{$module}>" checked="checked" disabled /><input type="hidden" name="disabled_modules[]" value="<{$module}>"/>&nbsp;</td>
+          <td style="border: 1px solid silver;width:30px; padding: 2px;">
+
+            <input type="checkbox" name="disabled_modules_dummy[]" value="<{$module}>" checked="checked" disabled />
+
+            <input type="hidden" name="disabled_modules[]" value="<{$module}>"/>
+          </td>
           <td style="border: 1px solid silver;width:150px; padding: 2px;"><b><{$module}></b></td>
           <td style="border: 1px solid silver;width:100px; padding: 2px;"><{$smarty.const._SYS_MODULE_DISABLED}></td>
           <td style="border: 1px solid silver;width:100px; padding: 2px;"><a href="<{$xoops_url}>/index.php?cube_module_uninstall=<{$module}>"><{$smarty.const._UNINSTALL}></a></td>

@@ -5,7 +5,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></h2>
@@ -40,7 +40,7 @@
     <{else}>
       <tr class="<{cycle values="odd,even"}> inactive">
     <{/if}>
-      <td class="ui-module-image">
+      <td class="ui-card-image">
         <{if $theme->get('screenshot')}>
           <img src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>" width="120" height="90" alt="<{$theme->getShow('name')}>" title="<{$theme->getShow('name')}>" />
         <{/if}>
@@ -62,28 +62,24 @@
         </ul>
       </td>
       <td class="legacy_list_select">
-      <label class="ui-checkbox">
         <input type="checkbox" name="select[<{$theme->getShow('dirname')}>]" value="1" <{if $actionForm->get('select', $theme->get('dirname'))}>checked="checked"<{/if}> >
-        <span class="ui-checkbox-custom"></span>
-      </label>
       </td>
       <td class="legacy_list_control">
         <{if $currentThemeName != $theme->get('dirname')}>
           <input name="choose[<{$theme->getShow('dirname')}>]" type="submit" value="<{$smarty.const._SELECT}>" class="formButton" />
         <{else}>
           <i class="green" ara-label="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-check.svg" class="svg">
+            <img src="<{"icons/icon-check.svg"|theme}>" class="svg">
           </i>
         <{/if}>
       </td>
     </tr>
   <{/foreach}>
   <tr>
-    <td colspan="2" class="foot"></td>
-    <td class="foot">
+    <td colspan="4" class="foot">
       <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" name="submit">
     </td>
-    <td class="foot"></td>
+
   </tr>
 </table>
 </form>

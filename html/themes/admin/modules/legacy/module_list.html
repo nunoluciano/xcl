@@ -3,7 +3,7 @@
 
       <div class="ui-card-small">
           <div class="ui-card-small-icon ui-icon-blue">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-modules.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>">
+            <img src="<{"icons/icon-modules.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>">
           </div>
           <div class="ui-card-small-info">
               <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <strong><{$ModuleTotal}></strong></h3>
@@ -13,7 +13,7 @@
       
         <div class="ui-card-small">
           <div class="ui-card-small-icon ui-icon-green">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-module-active.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>">
+            <img src="<{"icons/icon-module-active.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>">
           </div>
           <div class="ui-card-small-info">
               <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <strong><{$activeModuleTotal}></strong></h3>
@@ -23,7 +23,7 @@
       
         <div class="ui-card-small">
           <div class="ui-card-small-icon ui-icon-red">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-module-inactive.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>">
+            <img src="<{"icons/icon-module-inactive.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>">
               
           </div>
           <div class="ui-card-small-info">
@@ -34,7 +34,7 @@
       
         <div class="ui-card-small">
           <div class="ui-card-small-icon ui-icon-orange">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-package.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>">
+            <img src="<{"icons/icon-package.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>">
           </div>
           <div class="ui-card-small-info">
             <h3 class="ui-card-small-title"><a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></h3>
@@ -53,7 +53,7 @@
 
 <div class="ui-card-main">
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
+  <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h2>
@@ -72,6 +72,7 @@
   </ul>
 </div>
 <{/if}>
+</div><{*  /ui-card-main *}>
 
 
 <form method="post" action="">
@@ -105,7 +106,7 @@
       <{$smarty.const._AD_LEGACY_LANG_CONTROL}>
     </section>
 
-</div><{* /ui-card-main *}>
+
 
 
 <{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
@@ -120,30 +121,28 @@
 
       <div class="ui-card-info">
         <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" title="Mid[<{$module->getVar('mid')}>] - <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-info.svg">
+          <img class="svg" src="<{"icons/icon-info.svg"|theme}>">
         </a>
       </div>
 
       <div class="ui-card-settings">
-        <label class="ui-checkbox">
+ 
           <input type="checkbox" name="isactive[<{$module->getVar('mid')}>]" value="1" <{if $module->getVar('isactive')}>checked="checked"<{/if}>>
-          <span class="ui-checkbox-custom"></span>
-        </label>
 
         <{if $module->getVar('isactive') == 1 }>
         <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getVar('mid')}>" title="<{$smarty.const._EDIT}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-edit.svg">
+          <img class="svg" src="<{"icons/icon-edit.svg"|theme}>">
         </a>
         <{/if}>
 
         <{if $module->getVar('isactive') == 0 }>
           <a href="index.php?action=ModuleUninstall&amp;dirname=<{$module->getVar('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>" class="ui-update-change">
-            <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-package.svg">
+            <img class="svg" src="<{"icons/icon-package.svg"|theme}>">
           </a>
         <{/if}>
 
         <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-update.svg">
+          <img class="svg" src="<{"icons/icon-update.svg"|theme}>">
         </a>
 
         </div><{* /ui-card-settings *}>
@@ -155,7 +154,7 @@
 
       <{* Module [has-admin-active] *}>
 
-      <div class="ui-module-image">
+      <div class="ui-card-image">
         <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0 }>
           <a class="ui-module-state" href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>">
         <{elseif $module->getVar('isactive') == 0 }>
@@ -175,17 +174,17 @@
         <{if $module->hasNeedUpdate()}>
         <div class="ui-module-update" title="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
           <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getVar('dirname')}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-package-update.svg">
+          <img class="svg" src="<{"icons/icon-package-update.svg"|theme}>">
           <strong class="ui-module-update-now"><{$module->getRenderedVersion()}></strong>
           </a>  
         </div>
         <{else}>
         <div class="ui-module-version" title="<{$smarty.const._AD_LEGACY_LANG_VERSION}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-package.svg"> <{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$module->getRenderedVersion()}>
+          <img class="svg" src="<{"icons/icon-package.svg"|theme}>"> <{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$module->getRenderedVersion()}>
         </div>
         <{/if}>
         <div class="ui-module-date" title="<{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-date-time.svg">
+          <img class="svg" src="<{"icons/icon-date-time.svg"|theme}>">
           <{$module->getVar('last_update')|xoops_formattimestamp:l}>
         </div>
       </div><{* /ui-module-info *}>

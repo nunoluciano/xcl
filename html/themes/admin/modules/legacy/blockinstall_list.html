@@ -3,7 +3,7 @@
 
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-blue">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-blocks.svg" class="svg">
+          <img src="<{"icons/icon-blocks.svg"|theme}>" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}>: <strong><{$BlockTotal}></strong></h3>
@@ -13,7 +13,7 @@
     
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-green">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-block-active.svg" class="svg">
+          <img src="<{"icons/icon-block-active.svg"|theme}>" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>: <strong><{$ActiveBlockTotal}></strong></h3>
@@ -25,7 +25,7 @@
 
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-block-inactive.svg" class="svg">
+          <img src="<{"icons/icon-block-inactive.svg"|theme}>" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>: <strong><{$InactiveBlockTotal}></strong></h3>
@@ -36,7 +36,7 @@
   
     <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-amber">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-block-plus.svg" class="svg">
+          <img src="<{"icons/icon-block-plus.svg"|theme}>" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><a href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a></h3>
@@ -56,7 +56,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+  <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></h2>
@@ -172,14 +172,14 @@
       <td class="legacy_list_control">
         <{if $obj->get('block_type') == 'C'}>
           <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+            <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
           </a>
           <a href="./index.php?action=CustomBlockDelete&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._DELETE}>" class="red">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
+            <img src="<{"icons/icon-delete.svg"|theme}>" class="svg">
           </a>
         <{else}>
           <a href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-block-install.svg" class="svg">
+            <img src="<{"icons/icon-block-install.svg"|theme}>" class="svg">
           </a>
         <{/if}>
       </td>

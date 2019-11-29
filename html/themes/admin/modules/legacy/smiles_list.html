@@ -2,7 +2,7 @@
 
   <div class="ui-card-small">
     <div class="ui-card-small-icon ui-icon-blue">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-smilies.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_SMILES_TOTAL}>">
+      <img src="<{"icons/icon-smilies.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_SMILES_TOTAL}>">
     </div>
     <div class="ui-card-small-info">
       <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_SMILES_TOTAL}>: <strong><{$SmilesTotal}></strong></h3>
@@ -12,7 +12,7 @@
 
   <div class="ui-card-small">
     <div class="ui-card-small-icon ui-icon-green">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-smilies-active.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_SMILES_DISPLAYTOTAL}>">
+      <img src="<{"icons/icon-smilies-active.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_SMILES_DISPLAYTOTAL}>">
     </div>
     <div class="ui-card-small-info">
       <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_SMILES_DISPLAYTOTAL}>: <strong><{$displaySmilesTotal}></strong></h3>
@@ -22,7 +22,7 @@
 
   <div class="ui-card-small">
     <div class="ui-card-small-icon ui-icon-red">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-smilies-inactive.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL}>">
+        <img src="<{"icons/icon-smilies-inactive.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL}>">
     </div>
     <div class="ui-card-small-info">
       <h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL}>: <strong><{$notdisplaySmilesTotal}></strong></h3>
@@ -32,7 +32,7 @@
 
   <div class="ui-card-small">
     <div class="ui-card-small-icon ui-icon-orange">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-smilies-plus.svg" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}>">
+        <img src="<{"icons/icon-smilies-plus.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}>">
     </div>
     <div class="ui-card-small-info">
       <p class="ui-card-small-subtitle"><a href="index.php?action=SmilesEdit"><{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}></a></p>
@@ -51,7 +51,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></h2>
@@ -154,26 +154,20 @@
     <{/if}>
       <td class="legacy_list_id"><{$obj->getShow('id')}></td>
       <td class="legacy_list_name"><input type="text" size="6" name="code[<{$obj->getShow('id')}>]" value="<{$obj->getShow('code')}>"></td>
-      <td class="ui-module-image"><img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('smile_url')}>" alt="<{$obj->getShow('emotion')}>" title="<{$obj->getShow('emotion')}>"></td>
+      <td class="ui-card-image"><img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('smile_url')}>" alt="<{$obj->getShow('emotion')}>" title="<{$obj->getShow('emotion')}>"></td>
       <td class="legacy_list_text"><input type="text" size="20" name="emotion[<{$obj->getShow('id')}>]" value="<{$obj->getShow('emotion')}>"></td>
       <td class="legacy_list_select">
-        <label class="ui-checkbox">
           <input type="checkbox" name="display[<{$obj->getShow('id')}>]" <{if $obj->getShow('display')}>checked="checked"<{/if}> value="1">
-        <span class="ui-checkbox-custom"></span>
-      </label>
       </td>
       <td class="legacy_list_select">
-        <label class="ui-checkbox">
           <input type="checkbox" name="delete[<{$obj->getShow('id')}>]" value="1">
-        <span class="ui-checkbox-custom"></span>
-      </label>
       </td>
       <td class="legacy_list_control">
         <a href="./index.php?action=SmilesEdit&amp;id=<{$obj->getShow('id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+          <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
         </a>
         <a href="./index.php?action=SmilesDelete&amp;id=<{$obj->getShow('id')}>" title="<{$smarty.const._DELETE}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>

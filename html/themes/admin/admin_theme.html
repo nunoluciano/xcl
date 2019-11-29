@@ -18,11 +18,9 @@
 	<meta name="author" content="Nuno Luciano aka Gigamaster">
 	<meta name="generator" content="XOOPS Cube">
 
-
 	<title>Admin : <{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
 
-		<{* ---------- ---------- ---------- ---------- ---------- Mobile Screen Responsive Width - Strict Not Scalable *}>
-		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
+
 		<{* ---------- ---------- ---------- ---------- ---------- Mobile Simple Viewport *}>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -39,27 +37,26 @@
 		<{* ---------- ---------- ---------- ---------- ---------- Fav icon *}>
 		<link rel="apple-touch-icon" href="<{$xoops_url}>/images/favicon.ico">
 
-		<{* ---------- ---------- ---------- ---------- ---------- Static Style *}>
-
-		<{* stylesheet file=style.css static=true *}>
 
 		<{* ---------- ---------- ---------- ---------- ---------- Module Style Overview *}>
 
 		<{stylesheet file=module.css static=true}>
 
+
+
 		<{* ---------- ---------- ---------- ---------- ---------- Module Header *}>
 
 		<{$xoops_module_header}>
+		
+		<{* ---------- ---------- ---------- ---------- ---------- Admin Static Style *}>
+		<{* Admin style override notification *}>
 
-		<{* ---------- ---------- ---------- ---------- ---------- Teme Admin Style *}>
-
+		<{* stylesheet file=style.css static=true *}>
+		
 		<link rel="stylesheet" href="<{$xoops_url}>/themes/admin/style.css">
-
-		<!-- <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script> -->
-
-		<{* ---------- ---------- ---------- ---------- ---------- TODO - local icons  *}>
-
-
+		<{* ---------- ---------- ---------- ---------- ---------- CDN Script Fallback *}>
+		<script>
+		   window.jQuery || document.write('<script src=\'<{"js/jquery.min.js"|theme}>\'><\/script>');
 
 		<{* ---------- ---------- ---------- ---------- ---------- Xoops javascript *}>
 

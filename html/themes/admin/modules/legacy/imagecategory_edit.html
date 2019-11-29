@@ -11,7 +11,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <{if $actionForm->get('imgcat_id')}>
@@ -86,7 +86,9 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></td>
       <td class="<{cycle values="odd,even"}>">
+  
         <{xoops_input type=checkbox name=imgcat_display value=1 default=$actionForm->get('imgcat_display')}>
+ 
       </td>
     </tr>
     <tr>
