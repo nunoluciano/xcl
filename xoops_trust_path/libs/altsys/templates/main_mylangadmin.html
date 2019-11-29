@@ -1,7 +1,7 @@
 
-<!-- Main Render -->
+
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <form name="SelectLangFile" action="index.php" method="get">
 	<input type="hidden" name="mode" value="admin" />
@@ -17,7 +17,7 @@
 	<input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>
 
-<h3><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h3>
+<h2><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h2>
 
 <dl class="altsys_langman_information">
 	<{if $use_my_language}>
@@ -75,5 +75,5 @@
 	<{$notice}>
 </div>
 
-<!-- Main Render -->
+
 </div>

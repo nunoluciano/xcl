@@ -1,27 +1,27 @@
-<div class="adminnavi breadcrumbs">
+<div class="adminnavi ui-breadcrumbs">
 <a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>"><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$form_title}><br /><br />
 </div>
 
 
-<!-- Main Render -->
-<div class="ui-card-main">
-<{$smarty.template}>
 
-<h3><{$target_mname}></h3>
+<div class="ui-card-main">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<h2><{$target_mname}></h2>
 
 <form name="blockform" id="blockform" action="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;bid=<{$block.bid}>" method="post">
 
 <table class="outer">
-	<tr>
+	<tr class="head">
 		<th colspan="2"><{$form_title}></th>
 	</tr>
-	<tr>
+	<tr class="<{cycle values="odd,even"}>"></tr>>
 		<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_NAME}></td>
 		<td class="even">
 			<{$block.name_raw|escape}>
 		</td>
 	</tr>
-	<tr>
+	<tr class="<{cycle values="odd,even"}>">
 		<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_TITLE}></td>
 		<td class="even">
 			<input type="text" name="titles[<{$block.bid}>]" value="<{$block.title_raw|escape}>" size="40" />
@@ -54,7 +54,7 @@
 			<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_CONTENT}></td>
 			<td class="even">
 				<{if $block.ctype == 'P' || ! $common_fck_installed}>
-					<textarea name="contents[<{$block.bid}>]" id="textarea_content" cols="80" rows="20"><{$block.content_raw|escape}></textarea>
+					<textarea name="contents[<{$block.bid}>]" id="textarea_content" style="width: 100%;" rows="20"><{$block.content_raw|escape}></textarea>
 					<{if ! $common_fck_installed}><br /><{$smarty.const._MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK}><{/if}>
 				<{else}>
 					<textarea name="contents[<{$block.bid}>]" id="textarea_content"><{$block.content_raw|escape}></textarea>
@@ -119,5 +119,5 @@
 	</div>
 <{/if}>
 
-<!-- Main Render -->
+
 </div>

@@ -335,32 +335,30 @@ class MyBlocksAdmin
         }
 
         return "
-				<div class='blockposition $scol0'>
+				<div title='Block-Left'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_LEFT . "' class='blockposition' $ssel0 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_LEFT . ";' />
 				</div>
-				<div style='float:" . _GLOBAL_LEFT . ";'>-</div>
-				<div class='blockposition $scol2'>
+				<div>-</div>
+				<div title='Center-Block-Left'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_LEFT . "' class='blockposition' $ssel2 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_LEFT . ";' />
 				</div>
-				<div class='blockposition $scol3'>
+				<div title='Center-Block-Center'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_CENTER . "' class='blockposition' $ssel3 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_CENTER . ";' />
 				</div>
-				<div class='blockposition $scol4'>
+				<div title='Center-Block-Right'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_RIGHT . "' class='blockposition' $ssel4 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_RIGHT . ";' />
 				</div>
-				<div style='float:" . _GLOBAL_LEFT . ";'>-</div>
-				<div class='blockposition $scol1'>
+				<div>-</div>
+				<div title='Block-Right'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";' />
 				</div>
-				<br />
-				<br />
-				<div style='float:" . _GLOBAL_LEFT . ";width:50px;' class='$stextbox'>
-					<input type='text' name='extra_sides[$bid]' value='" . $value4extra_side . "' style='width:20px;' id='extra_side_$bid' />
+		
+				<div style='width:45px;' title='Block-Extra'>
+					<input type='text' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid' />
 				</div>
-				<div class='blockposition $scoln'>
-					<input type='radio' name='sides[$bid]' value='-1' class='blockposition' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;' />
+				<div title='" . _NONE . "'>
+					<input type='radio' name='sides[$bid]' value='-1' class='blockposition ui-input-red' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;' />
 				</div>
-				<div style='float:" . _GLOBAL_LEFT . ";'>" . _NONE . "</div>
 	";
     }
 
