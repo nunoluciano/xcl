@@ -6,12 +6,12 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_DELETE}></h2>
 
-<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=BannerDelete">
   <{xoops_token form=$actionForm}>
