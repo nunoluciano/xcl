@@ -58,7 +58,10 @@
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=text name=email value=$actionForm->get('email') size=30 maxlength=60}>
         <br />
-        <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
+        <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}>
+        
+          <{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> 
+
       </td>
     </tr>
     <tr>

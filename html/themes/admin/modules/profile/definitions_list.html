@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></h2>
@@ -51,13 +51,13 @@
       <td><{$obj->getShow('weight')}></td>
       <td align="center">
         <a href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>" title="<{$smarty.const._VIEW}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-file-view.svg" class="svg">
+          <img src="<{"icons/icon-file-view.svg"|theme}>" class="svg">
         </a>
         <a href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-file-edit.svg" class="svg">
+          <img src="<{"icons/icon-file-edit.svg"|theme}>" class="svg">
         </a>
         <a href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>" title="<{$smarty.const._DELETE}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-file-delete.svg" class="svg">
+          <img src="<{"icons/icon-file-delete.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>

@@ -5,7 +5,7 @@
 
 	
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 	<h3 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h3>
@@ -100,12 +100,16 @@
         </span>
       </th>
 	    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-	    <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
+		<th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br>
+
+				<input id="rapidInstallCheckboxAll" type="checkbox">
+
+		</th>
 	  </tr>
 	  <{foreach item=module from=$moduleObjects}>
 	    <tr class="<{cycle values='odd,even'}>">
 	      <td>
-					<div class="ui-module-image">
+					<div class="ui-card-image">
 							 <{if $module->getShow('target_type') == 'TrustModule' && $module->getShow('replicatable') && (!$module->mModule->getVar('mid') || $module->get('dirname') == $module->get('trust_dirname')  ) }>
 						<input type="text" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
 						<{else}>
@@ -113,7 +117,7 @@
             <strong><{$module->getShow('dirname')}></strong>
 						<{/if}>
 					</div>
-          <div class="ui-module-image">
+          <div class="ui-card-image">
           (
 	        <{if $module->isDirnameError()}>
 	          <{if $module->modinfo.trust_dirname}>
@@ -192,7 +196,7 @@
 	        <{if $module->mModule && $module->mModule->getVar('mid') > 0}>
 	          <{if $module->mModule->getVar('isactive')}>
 			  <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
-				<img src="<{$xoops_url}>/themes/admin/images/icon-update.svg" class="svg">
+				<img src="<{"icons/icon-update.svg"|theme}>" class="svg">
 			  </a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
 	          <{if $module->mModule->getVar('dirname') === 'legacy'}><br /><span class="legacy_list_select" style="white-space:nowrap;"><a href="<{$module->get_StoreUrl()}>"><{$smarty.const._AD_LEGACY_LANG_UPDATE}></a></span><{/if}>
@@ -201,7 +205,7 @@
 	          <{/if}>
 	        <{else}>
 			  <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-				<img src="<{$xoops_url}>/themes/admin/images/icon-package-update.svg" class="svg">
+				<img src="<{"icons/icon-package-update.svg"|theme}>" class="svg">
 			  </a>
 	          <a href="<{$module->get_InstallUrl()}>"></a>
 	        <{/if}>
@@ -211,11 +215,15 @@
 	      <td class="legacy_list_select center">
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->mModule && $module->mModule->getVar('mid') > 0 }>
-	          <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
-	         <input type="checkbox" class="rapidInstallCheckbox" />
+			  <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
+
+				<input type="checkbox" class="rapidInstallCheckbox">
+
 	          <{/if}>
-	        <{else}>
-	         <input type="checkbox" class="rapidInstallCheckbox" />
+			<{else}>
+
+				<input type="checkbox" class="rapidInstallCheckbox">
+
 	        <{/if}>
 	     <{/if}>
 	      </td>

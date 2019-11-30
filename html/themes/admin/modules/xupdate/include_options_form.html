@@ -10,7 +10,9 @@
         <{counter assign=count}>
         <tr>
         <td class='even'><label for='writable_dir_<{$count}>'><{$_item}></label></td>
-        <td class='even center'><input type='checkbox' name='writable_dir[]' id='writable_dir_<{$count}>' value='<{$_item}>' <{if $_item}>checked="checked"<{/if}> /></td>
+        <td class='even center'>
+            <input type='checkbox' name='writable_dir[]' id='writable_dir_<{$count}>' value='<{$_item}>' <{if $_item}>checked="checked"<{/if}> >
+        </td>
         </tr>
         <{/foreach}>
         <{/if}>
@@ -21,7 +23,9 @@
         <{counter assign=count}>
         <tr>
             <td class='even'><label for='writable_file_<{$count}>'><{$_item}></label></td>
-            <td class='even center'><input type='checkbox' name='writable_file[]' id='writable_file_<{$count}>' value='<{$_item}>' <{if $_item}>checked="checked"<{/if}> /></td>
+            <td class='even center'>
+                <input type='checkbox' name='writable_file[]' id='writable_file_<{$count}>' value='<{$_item}>' <{if $_item}>checked="checked"<{/if}> >
+            </td>
         </tr>
         <{/foreach}>
         <{/if}>
@@ -32,7 +36,9 @@
         <{counter assign=count}>
         <tr>
             <td class='even'><label for='no_overwrite_<{$count}>'><{$_item}></label></td>
-            <td class='even center'><input type='checkbox' name='no_overwrite[]' id='no_overwrite_<{$count}>' value='<{$_item}>' /></td>
+            <td class='even center'>
+              <input type='checkbox' name='no_overwrite[]' id='no_overwrite_<{$count}>' value='<{$_item}>'>
+            </td>
         </tr>
         <{/foreach}>
         <{/if}>
@@ -43,7 +49,9 @@
         <{counter assign=count}>
         <tr>
             <td class='even'><label for='no_update_<{$count}>'><{$_item}></label></td>
-            <td class='even center'><input type='checkbox' name='no_update[]' id='no_update_<{$count}>' value='<{$_item}>' /></td>
+            <td class='even center'>
+              <input type='checkbox' name='no_update[]' id='no_update_<{$count}>' value='<{$_item}>'>
+            </td>
         </tr>
         <{/foreach}>
         <{/if}>
@@ -54,7 +62,9 @@
        <{counter assign=count}>
         <tr>
         <td class='even'><label for='delete_dir_{$count}>'><{$_item}></label></td>
-        <td class='even center'><input type='checkbox' name='delete_dir[]' id='delete_dir_<{$count}>' value='<{$_item}>' <{if $_item|strpos:$my_dir_path === 0 or $_item|strpos:$my_trust_path === 0}>checked='checked' <{/if}>/></td>
+        <td class='even center'>
+            <input type='checkbox' name='delete_dir[]' id='delete_dir_<{$count}>' value='<{$_item}>' <{if $_item|strpos:$my_dir_path === 0 or $_item|strpos:$my_trust_path === 0}>checked='checked' <{/if}> >
+        </td>
         </tr>
         <{/foreach}>
         <{/if}>
@@ -65,7 +75,9 @@
        <{counter assign=count}>
         <tr>
         <td class='even'><label for='delete_file_<{$count}>'><{$_item}></label></td>
-        <td class='even center'><input type='checkbox' name='delete_file[]' id='delete_file_<{$count}>' value='<{$_item}>' <{if $_item|strpos:$my_dir_path === 0 or $_item|strpos:$my_trust_path === 0}>checked='checked' <{/if}>/></td>
+        <td class='even center'>
+            <input type='checkbox' name='delete_file[]' id='delete_file_<{$count}>' value='<{$_item}>' <{if $_item|strpos:$my_dir_path === 0 or $_item|strpos:$my_trust_path === 0}>checked='checked' <{/if}> >
+        </td>
         </tr>
         <{/foreach}>
         <{/if}>

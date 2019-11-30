@@ -1,5 +1,5 @@
 <{* ---------- ---------- ---------- ---------- ---------- Admin Block Online Info *}>
-<div class="ui-ui-card-header">
+<div class="ui-card-online-header">
 
 	<div class="ui-card-online">
 
@@ -25,7 +25,7 @@
 			<div class="ui-card-block-stats-info">
 				<div class="ui-card-block-stats-total"><{$contents.online_members}></div>
 				<div class="ui-card-block-stats-text">
-					<img src="<{$xoops_url}>/themes/admin/images/icon-user-time.svg" class="svg">
+					<img src="<{"icons/icon-user-time.svg"|theme}>" class="svg">
 					<span class="font-light"><{$smarty.const._MB_USER_MEMBERS}></span>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 			<div class="ui-card-block-stats-info">
 				<div class="ui-card-block-stats-total"><{$contents.online_guests}></div>
 				<div class="ui-card-block-stats-text">
-					<img src="<{$xoops_url}>/themes/admin/images/icon-user-guest-time.svg" class="svg">
+					<img src="<{"icons/icon-user-guest-time.svg"|theme}>" class="svg">
 					<span class="font-light"><{$smarty.const._MB_USER_GUESTS}></span>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 					<{$smarty.const._MB_LEGACY_ONLINEINFO}>?
 				</div>
 				<div class="ui-card-block-stats-text">
-					<img src="<{$xoops_url}>/themes/admin/images/icon-user-online.svg" class="svg"> <{$smarty.const._MB_USER_MORE}></div>
+					<img src="<{"icons/icon-user-online.svg"|theme}>" class="svg"> <{$smarty.const._MB_USER_MORE}></div>
 				</a>
 			</div>
 
@@ -57,4 +57,4 @@
 
 	</div><{* ui-card-online- *}>
 
-</div><{* ui-ui-card-header *}>
+</div><{* ui-card-online-header *}>

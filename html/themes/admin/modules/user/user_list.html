@@ -2,7 +2,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-user-group.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
+      <img src="<{"icons/icon-user-group.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong></h3>
@@ -12,7 +12,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
+      <img src="<{"icons/icon-user-account.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <strong><{$activeUserTotal}></strong></h3>
@@ -22,7 +22,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-red">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-user-inactive.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
+      <img src="<{"icons/icon-user-inactive.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong></h3>
@@ -32,7 +32,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-orange">
-      <img src="<{$xoops_url}>/themes/admin/images/icon-profile.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}>">
+      <img src="<{"icons/icon-profile.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title">New <strong>FIELD</strong></h3>
@@ -49,7 +49,7 @@
 
 
 <div class="ui-card-main">
-	<{$smarty.template}>
+	<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_LIST}></h2>
@@ -147,7 +147,7 @@
   </tr>
   <{foreach item=user from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg"></i></td>
+      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{"icons/icon-user-account.svg"|theme}>" class="svg"></i></td>
       <td class="user_list_id"><{$user->getShow('uid')}></td>
       <td class="user_list_title"><a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$user->getShow('uid')}>"><{$user->getShow('uname')}></a></td>
       <td class="user_list_name"><{$user->getShow('name')}></td>
@@ -155,17 +155,23 @@
       <td class="user_list_date"><{$user->get('last_login')|xoops_formattimestamp:l}></td>
       <td class="user_list_number"><{if $user->get('uid') != 1 }><input type="text" size="4" maxlength="6" name="posts[<{$user->getShow('uid')}>]" value="<{$user->getShow('posts')}>" class=user_list_number /><{else}><{$user->getShow('posts')}><{/if}></td>
       <td class="user_list_order"><{if $user->get('uid') != 1 }><input type="text" size="2" maxlength="4" name="level[<{$user->getShow('uid')}>]" value="<{$user->getShow('level')}>" class=user_list_number /><{else}><{$user->getShow('level')}><{/if}></td>
-      <td class="user_list_select"> <{if $user->get('uid') != 1 }><input type="checkbox" name="delete[<{$user->getShow('uid')}>]" value="1" /> <{/if}></td>
+      <td class="user_list_select">
+        <{if $user->get('uid') != 1 }>
+
+        <input type="checkbox" name="delete[<{$user->getShow('uid')}>]" value="1" />
+
+        <{/if}>
+      </td>
       <td class="user_list_control">
         <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._VIEW}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-user-check.svg" class="svg">
+          <img src="<{"icons/icon-user-check.svg"|theme}>" class="svg">
         </a>
         <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-user-edit.svg" class="svg">
+          <img src="<{"icons/icon-user-edit.svg"|theme}>" class="svg">
         </a>
         <{if $user->get('uid') != 1 }>
           <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" title="<{$smarty.const._DELETE}>" class="red">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-user-delete.svg" class="svg">
+            <img src="<{"icons/icon-user-delete.svg"|theme}>" class="svg">
           </a>
         <{/if}>
       </td>

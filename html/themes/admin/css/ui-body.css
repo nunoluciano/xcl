@@ -1,7 +1,7 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
 	URL : https://github.com/xoopscube/xcl/
@@ -50,66 +50,114 @@ textarea{overflow:auto}
 [type=search]::-webkit-search-decoration{-webkit-appearance:none}
 ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 
+
 /* -------------------- -------------------- -------------------- -------------------- HTML BODY */
 
-html,body {
-	background   : var(--ui-body-bg);
-	background   : var(--ui-body-gd); /* css gradient */
-	color        : var(--ui-text1);
-	box-sizing   : border-box;
-	font-family  : "system", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Use first the OS font-family */
-    font-size    : var(--text-base-size);
-    line-height  : 1.5rem;
-	margin       : 0;
-	padding      : 0;
-}
+	html,body {
 
-html{
-	overflow-x   : hidden
-}
+		background		: var(--ui-body-bg1);
+		color			: var(--ui-text1);
+		box-sizing		: border-box;
+		font-family		: "system", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", -apple-system, BlinkMacSystemFont; /* Use first the OS font-family */
+		font-size		: var(--ui-font-size);
+		font-weight		: var(--ui-font-weight);
+		line-height		: 1.5rem;
+		margin			: var(--ui-space-none);
+		padding			: var(--ui-space-none);
+
+	}
+
+	html{
+
+		overflow-x		: hidden
+
+	}
+
+	.ui-dev-mode {
+		
+		display			: var(--ui-dev-mode);
+	
+	}
+
 
 /* -------------------- -------------------- -------------------- -------------------- HTML Elements */
 
-a,
-a:link {
-	color           : var(--ui-link);
-	text-decoration : none;
-}
-a:active,
-a:focus {
-	color           : var(--ui-active);
-}
+	a,
+	a:link,
+	a:visited {
 
-a:hover,
-a:visited:hover {
-	color           : var(--ui-hover);
-}
+		color           : var(--ui-link);
+		text-decoration : none;
+		text-shadow		: var(--ui-link-shadow);
 
-h1 { font-size      : var(--text-xl) }
-h2 { font-size      : var(--text-lg) }
-h3 { font-size      : var(--text-md) }
-h4 { font-size      : var(--text-sm) }
-h5 { font-size      : var(--text-xs) }
-h6 { font-size      : var(--text-xs) }
+	}
 
-h1,
-h2,
-h3 {
-	color           : var(--ui-text2);
-	font-weight     : 300;
-}
+	a:active,
+	a:focus {
 
-h4,
-h5,
-.font-bold {
-	font-weight     : bold;
-}
+		color           : var(--ui-link-active);
 
-hr { 
-	border          : 0;
-	border-top      : 1px solid var(--ui-text2);
-	margin          : 20px 0 
-}
+	}
+
+	a:hover,
+	a:visited:hover {
+
+		color           : var(--ui-link-hover);
+
+	}
+
+	h1 { 
+		
+		font-size      : var(--ui-text-xl) 
+
+	}
+
+	h2 { 
+
+		font-size      : var(--ui-text-lg)
+
+	}
+	h3 { 
+		
+		font-size      : var(--ui-text-md) 
+
+	}
+
+	h4 { 
+		
+		font-size      : var(--ui-text-sm) 
+
+	}
+
+	h5 { 
+		
+		font-size      : var(--ui-text-xs) 
+	}
+
+	h6 { 
+		
+		font-size      : var(--ui-text-xs) 
+
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+
+		color           : var(--ui-text2);
+		font-weight     : bold;
+
+	}
+
+	hr { 
+
+		border          : 0;
+		border-top      : 1px solid var(--ui-text4);
+		margin          : 20px 0 
+
+	}
 
 
 /* -------------------- -------------------- -------------------- Notifications */
@@ -118,80 +166,133 @@ hr {
 Test overwrite default legacy templates */
 
 
-.tips, .error, .confirm {
-	background     : var(--bg-ui-tips);
-	color          : var(--ui-text2);
-	margin         : 2.5rem;
-	padding        : 1rem;
-}
-.tips {	
-	border-left    : 5px solid var(--ui-color-blue);
-}
+	.tips, .error, .confirm {
 
-.error {
-	border-left    : 5px solid var(--ui-color-red);
-}
-.confirm {
-	border-left    : 5px solid var(--ui-color-orange);
-}
+		background		: var(--ui-card-bg1);
+
+		border-color	: var(--ui-border-color);
+		border-radius	: var(--ui-border-radius);
+		border-style	: var(--ui-border-style);		
+		border-width	: var(--ui-border-width);
+		box-shadow		: var(--ui-shadow-md);		
+		
+		color			: var(--ui-text2);
+		padding			: var(--ui-space-lg);
+		margin			: var(--ui-space-xl);
+		max-width		: 55%;
+
+	}
+
+	.tips {	
+
+		border-left		: 7px solid var(--ui-color-blue);
+
+	}
+
+	.error {
+
+		border-left		: 7px solid var(--ui-color-red);
+
+	}
+	.confirm {
+
+		border-left		: 7px solid var(--ui-color-orange);
+
+	}
 
 /* TODO
 Test overwrite default notification */
 
-.notificatiion {
-	display        : flex;
-    flex-basis     : 100%;
-    flex-direction : row-reverse;
-    align-items    : center;
-    justify-content: center;
-    float          : none!important;
-}
+	.notificatiion {
 
-.sticky {
-	background     : #273240;
-	border-bottom  : 1px solid rgb(69, 90, 116) !important;
-	border-left    : 1px solid rgb(29, 37, 47) !important;
-    border-right   : 1px solid rgb(29, 37, 47) !important;
-	box-shadow     : 1px 1px 7px #212121;
-	left           : unset;
-	margin         : 0 calc(50% - 200px);
-	width          : 400px;
-	z-index        : 1000;
-}
- .ondemand {
-	background     : #273240;
-	border-left    : 1px solid rgb(29, 37, 47) !important;
-    border-right   : 1px solid rgb(29, 37, 47) !important;
-    border-bottom  : 1px solid rgb(69, 90, 116) !important;
-    border-radius  : 7px;
-    box-shadow     : 0px 3px 5px #455a74ad;
-    color          : #def;
-    height         : 50px;
-    left           : unset;
-    margin         : 0 calc(50% - 200px);
-	width          : 400px;
-	z-index        : 2000;
-}
-.ondemand > div > a { color: var(--ui-color-amber); }
+		color			: var(--ui-text4);
+		display			: flex;
+		flex-basis		: 100%;
+		flex-direction	: row-reverse;
+		align-items		: center;
+		justify-content	: center;
+		float			: none!important;
 
-.ondemand-button {
-    background     : #3c4c61;
-	border         : 1px solid #1d252f;
-	border-radius  : 5px;
-	box-shadow     : 0px 3px 5px #455a74ad;
-    float          : none!important;
-	height         : 24px;
-	left           : unset!important;
-    margin         : 0 50% !important;
-    padding        : 0 5px;
-    position       : absolute;
-    top            : 0;
-    width          : 32px !important;
-    z-index        : 1999;
-}
-.hide .ondemand-button {
+	}
 
-}
+	.sticky {
+
+		background		: var(--ui-card-bg4);
+
+		border-color	: var(--ui-border-color);
+		border-radius	: var(--ui-border-radius);
+		border-style	: var(--ui-border-style);		
+		border-width	: var(--ui-border-width);
+		box-shadow		: var(--ui-shadow-md);
+
+/* 		background     : var(--ui-card-bg1);
+		border-bottom  : 1px solid rgb(69, 90, 116) !important;
+		border-left    : 1px solid rgb(29, 37, 47) !important;
+		border-right   : 1px solid rgb(29, 37, 47) !important;
+		box-shadow     : var(--ui-shadow-sm); */
+		left			: unset;
+		margin			: 0 calc(50% - 200px);
+		width			: 400px;
+		z-index			: 1000;
+
+	}
+
+	.ondemand {
+
+		background		: var(--ui-card-dark);
+
+		border-color	: var(--ui-border-color);
+		border-radius	: var(--ui-border-radius);
+		border-style	: var(--ui-border-style);		
+		border-width	: var(--ui-border-width);
+
+		box-shadow		: var(--ui-shadow-md);
+
+		border-left		: 1px solid var(--ui-border-color) !important;
+		border-right	: 1px solid var(--ui-border-color) !important;
+		border-bottom	: 1px solid var(--ui-border-color) !important;
+
+		color			: var(--ui-text4);
+		height			: 50px;
+		left			: unset;
+		margin			: 0 calc(50% - 200px);
+		width			: 400px;
+		z-index			: 2000;
+
+	}
+
+	.ondemand > div > a { 
+		
+		color			: var(--ui-color-amber); 
+	
+	}
+
+	.ondemand-button {
+
+		background		: var(--ui-ondemand-bg);
+
+		border-color	: var(--ui-border-color);
+		border-radius	: var(--ui-border-radius);
+		border-style	: var(--ui-border-style);		
+		border-width	: var(--ui-border-width);
+		box-shadow		: var(--ui-shadow-md);
+
+		float			: none!important;
+		height			: 24px;
+		left			: unset!important;
+		margin			: 0 50% !important;
+		padding			: 0 5px;
+		position		: absolute;
+		top				: 0;
+		width			: 32px !important;
+		z-index			: 1999;
+
+	}
+
+	.hide .ondemand-button {
+
+	}
+
 /* -------------------- -------------------- -------------------- Tooltip  */
 /* TODO
 Implement Aria-label */

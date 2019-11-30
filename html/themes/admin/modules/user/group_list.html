@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
@@ -35,7 +35,7 @@
   </tr>
   <{foreach item=group from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
-      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{$xoops_url}>/themes/admin/images/icon-user-group.svg" class="svg"></i></td>
+      <td class="user_list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
       <td class="user_list_id"><{$group->getShow('groupid')}></td>
       <td class="user_list_title"><{$group->getShow('name')}></td>
       <td class="user_list_description"><{$group->getShow('description')}></td>
@@ -43,21 +43,21 @@
       <td class="user_list_number"><{$group->getUserCount()|xoops_escape}></td>
       <td class="user_list_control">
         <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-user-edit.svg" class="svg">
+          <img src="<{"icons/icon-user-edit.svg"|theme}>" class="svg">
         </a>
         <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
           <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._DELETE}>" class="red">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-user-delete.svg" class="svg">
+            <img src="<{"icons/icon-user-delete.svg"|theme}>" class="svg">
           </a>
         <{/if}>
         <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-user-check.svg" class="svg">
+          <img src="<{"icons/icon-user-check.svg"|theme}>" class="svg">
         </a>
         <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-user-permissions.svg" class="svg">
+          <img src="<{"icons/icon-user-permission.svg"|theme}>" class="svg">
         </a>
         <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-user-assign.svg" class="svg">
+          <img src="<{"icons/icon-user-assign.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>

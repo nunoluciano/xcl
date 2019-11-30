@@ -7,13 +7,13 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</h2>
 
 <div class="confirm">
-    <i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg"></i>  <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE}><br />
+    <i class="red"><img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i>  <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE}><br />
   <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE2}>
 </div>
 
@@ -32,7 +32,7 @@
   <{xoops_input type=hidden name=groupid value=$object->get('groupid')}>
 <table class="outer">
   <tr>
-    <th colspan="2"><i class="red" title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{$xoops_url}>/themes/admin/images/icon-group.svg" class="svg"></i> <{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</th>
+    <th colspan="2"><i class="red" title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{"icons/icon-group.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</th>
   </tr>
   <tr>
     <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_GID}></td>

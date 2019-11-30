@@ -5,23 +5,23 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h3><{$target_mname}></h3>
+<h2><{$target_mname}></h2>
 
 <form name="blockform" id="blockform" action="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;bid=<{$block.bid}>" method="post">
 
 <table class="outer">
-	<tr>
+	<tr class="head">
 		<th colspan="2"><{$form_title}></th>
 	</tr>
-	<tr>
+	<tr class="<{cycle values="odd,even"}>"></tr>>
 		<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_NAME}></td>
 		<td class="even">
 			<{$block.name_raw|escape}>
 		</td>
 	</tr>
-	<tr>
+	<tr class="<{cycle values="odd,even"}>">
 		<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_TITLE}></td>
 		<td class="even">
 			<input type="text" name="titles[<{$block.bid}>]" value="<{$block.title_raw|escape}>" size="40" />

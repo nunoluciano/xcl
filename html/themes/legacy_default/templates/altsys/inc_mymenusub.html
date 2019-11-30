@@ -1,8 +1,6 @@
 <!-- <div class="adminnavi altsys_mymenusub_<{$mypage}>"> -->
-		<div class="adminnavi">
+<div class="adminavi-sub">
 	<{foreach from=$adminmenu item="menuitem"}>
-		<div>
-		<a href="<{$menuitem.link|escape}>" class="<{if $menuitem.selected}>selected<{else}>unselected<{/if}>"><{$menuitem.title|escape}></a>
-		</div>
+		<a href="<{$menuitem.link|escape}>" class="adminavi-item <{if $menuitem.selected}>selected<{else}>unselected<{/if}>"><{$menuitem.title|escape}></a>
 	<{/foreach}>
 </div>

@@ -1,12 +1,12 @@
-<div class="adminnavi breadcrumbs">
+<div class="adminnavi ui-breadcrumbs">
 <a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>"><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></a> <span>&raquo;&raquo;</span> <{$form_title}>
 </div>
 
-<!-- Main Render -->
-<div class="ui-card-main">
-<{$smarty.template}>
 
-<h3><{$target_mname}></h3>
+<div class="ui-card-main">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<h2><{$target_mname}></h2>
 
 <form name="blockform" id="blockform" action="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;bid=<{$block.bid}>" method="post">
 
@@ -28,7 +28,7 @@
 	</tr>
 	<tr>
 		<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_SIDE}></td>
-		<td class="even">
+		<td class="even ui-block-side">
 			<{$block.cell_position}>
 		</td>
 	</tr>
@@ -50,28 +50,20 @@
 	<{if $block.is_custom}>
 
 		<tr>
-			<td class="head"><{$smarty.const._MD_A_MYBLOCKSADMIN_CONTENT}></td>
+			<td class="head"> <{$smarty.const._MD_A_MYBLOCKSADMIN_CONTENT}></td>
 			<td class="even">
 				<{if $xoops_cube_legacy}>
+
 					<{if $block.ctype == 'P'}>
-						<textarea name="contents[<{$block.bid}>]" id="textarea_content" class="none" cols="80" rows="20"><{$block.content_raw|escape}></textarea>
-						<{if ! $common_fck_installed}><br /><{$smarty.const._MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK}><{/if}>
-					<{elseif  $block.ctype == 'H' && $common_fck_installed}>
-						<textarea name="contents[<{$block.bid}>]" id="textarea_content" class="html"><{$block.content_raw|escape}></textarea>
-						<script>fckeditor_exec();</script>
+						<textarea name="contents[<{$block.bid}>]" id="textarea_content" style="width: 100%;" rows="20"><{$block.content_raw|escape}></textarea>
+
 					<{elseif $block.ctype == 'H' || empty($block.ctype) }>
 						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" class=html editor=html}>
 					<{else}>
 						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" myckeditor=true class=bbcode editor=bbcode}>
 					<{/if}>
-				<{else}>
-					<{if $block.ctype == 'P' || ! $common_fck_installed}>
-						<textarea name="contents[<{$block.bid}>]" id="textarea_content" cols="80" rows="20"><{$block.content_raw|escape}></textarea>
-						<{if ! $common_fck_installed}><br /><{$smarty.const._MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK}><{/if}>
-					<{else}>
-						<textarea name="contents[<{$block.bid}>]" id="textarea_content"><{$block.content_raw|escape}></textarea>
-						<script>fckeditor_exec();</script>
-					<{/if}>
+
+
 				<{/if}>
 			</td>
 		</tr>
@@ -132,5 +124,5 @@
 	</div>
 <{/if}>
 
-<!-- Main Render -->
+
 </div>

@@ -34,13 +34,19 @@
 <td class="even"><a href="index.php?action=view&amp;inout=out&amp;outbox=<{$val.outbox_id}>"><{$val.title}></a></td>
 <td class="odd"><{$val.fromname}></td>
 <td class="even"><{$val.utime|xoops_formattimestamp:l}></td>
-<td class="odd" align="center"><input type="checkbox" name="delmsg[]" value="<{$val.outbox_id}>" /></td>
+<td class="odd">
+    <input type="checkbox" name="delmsg[]" value="<{$val.outbox_id}>">
+</td>
 </tr>
 <{/foreach}>
-<tr><td class="foot" colspan="5" style="text-align: center;"><input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>" /></td></tr>
+<tr>
+    <td class="foot" colspan="5" style="text-align: center;">
+        <input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>">
+    </td>
+</tr>
 </table>
-<input type="hidden" name="inout" value="out" />
+<input type="hidden" name="inout" value="out">
 </form>
-<div class="pagenavi" align="center"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
 
 </div>

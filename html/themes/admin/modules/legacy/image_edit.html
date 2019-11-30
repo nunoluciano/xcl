@@ -12,7 +12,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
   <{if $actionForm->get('image_id')}>
@@ -46,7 +46,7 @@
     </tr>
     <{if $actionForm->get('image_id')}>
     <tr>
-      <td class="<{cycle values="odd,even"}> ui-module-image" colspan="2">
+      <td class="<{cycle values="odd,even"}> ui-card-image" colspan="2">
       <{if $object->mImageCategory->get('imgcat_storetype') == 'file'}>
         <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('image_name')}>" alt="<{$object->getShow('image_nicename')}>" title="<{$object->getShow('image_nicename')}>">
       <{else}>
@@ -69,7 +69,7 @@
     </tr>
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}></td>
-      <td class="<{cycle values="odd,even"}>">
+      <td>
         <{xoops_input type=checkbox name=image_display value=1 default=$actionForm->get('image_display') size=45}>
       </td>
     </tr>

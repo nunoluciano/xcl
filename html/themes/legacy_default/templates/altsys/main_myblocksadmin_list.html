@@ -1,15 +1,16 @@
-
 <div class="ui-card-main">
-<{$smarty.template}>
+
+	<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
-<h3><{$target_mname}></h3>
+	<h2><{$target_mname}></h2>
 
-<h4><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></h4>
+	<h3><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></h3>
 
 
 <form action="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>" name="blockadmin" method="post">
-	<table>
+
+<!-- 	<table>
 	<tr>
 		<th><{$smarty.const._MD_A_MYBLOCKSADMIN_TITLE}></th>
 		<th><{$smarty.const._MD_A_MYBLOCKSADMIN_SIDE}></th>
@@ -18,62 +19,108 @@
 		<th><{$smarty.const._MD_A_MYBLOCKSADMIN_BCACHETIME}></th>
 		<th><{$smarty.const._MD_A_MYBLOCKSADMIN_ACTION}></th>
 	</tr>
+	</table> -->
+
+
+<div class="ui-grid-blocks">
 
 	<{foreach from=$blocks item="block"}>
-		<tr class="<{cycle values="even,odd"}>">
-			<td>
-				<{$block.name_raw|escape}>
-				<br />
-				<input type="text" name="titles[<{$block.bid}>]" value="<{$block.title_raw|escape}>" size="20">
-			</td>
-			<td class="blockposition">
-				<{$block.cell_position}>
-			</td>
-			<td>
-				<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="3" maxlength="5">
-			</td>
-			<td>
-				<{$block.cell_module_link}>
-				<{$block.cell_group_perm}>
-			</td>
-			<td>
-				<select name="bcachetimes[<{$block.bid}>]" size="1">
-					<{html_options options=$cachetime_options selected=$block.bcachetime}>
-				</select>
-			</td>
-			<td>
-				<{if $block.can_edit}>
+	
+	<div class="ui-card-block">
 
-					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>" title="<{$smarty.const._EDIT}>">
-						<img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
-					</a>
+		<div class="ui-card-header">
+
+			<div class="ui-card-info">
+				<a href="#" title="<{$block.name_raw|escape}>">
+					<img class="svg" src="<{$xoops_url}>/themes/admin/icons/icon-info.svg" data-width="24px" data-height="24px">
+				</a>
+			</div>
+			
+			<div class="ui-card-settings">
+
+				<{if $block.can_edit}>
+				<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>" title="<{$smarty.const._EDIT}>">
+					<img src="<{$xoops_url}>/themes/admin/icons/icon-edit.svg" class="svg">
+				</a>
 				<{/if}>
 
 				<{if $block.can_delete}>
-					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>" title="<{$smarty.const._DELETE}>">
-						<img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
-					</a>
+				<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>" title="<{$smarty.const._DELETE}>">
+					<img src="<{$xoops_url}>/themes/admin/icons/icon-delete.svg" class="svg"> 
+				</a>
 				<{/if}>
 
 				<{if $block.can_clone}>
-					<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>" title="<{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>">
-						<img src="<{$xoops_url}>/themes/admin/images/icon-duplicate.svg" class="svg">
-					</a>
+				<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>" title="<{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>">
+					<img src="<{$xoops_url}>/themes/admin/icons/icon-duplicate.svg" class="svg">
+				</a>
 				<{/if}>
-			</td>
-		</tr>
+	
+			</div><{* /ui-card-settings *}>
+			
+		</div><{* /ui-card-header *}>
+	
+	
+		<div class="ui-card-content">
+	
+			<div class="ui-card-image">  
+			
+				<a class="ui-block-type" href="#" title="<{$block.name_raw|escape}>">
+				<svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-module">
+					<g id="ui-block-module">
+					<path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
+					<text class="block-name" x="120px" y="50px" fill="currentColor">
+					<tspan><![CDATA[<{$block.name_raw|escape}>]]></tspan>
+					</text>
+					</g>
+				</svg>
+				</a>
+		
+			</div><{* /ui-card-image *}>
+	
+		<div class="ui-block-info">
+	
+			<div class="ui-block-name">
+				<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="1" maxlength="5">
+				<input type="text" name="titles[<{$block.bid}>]" value="<{$block.title_raw|escape}>" size="20" title="<{$block.name_raw|escape}>">
+			</div>
+	
+			<div class="ui-block-side">
+				<{$block.cell_position}>
+			</div>
+
+			<div class="ui-block-date">
+				<{$block.cell_module_link}>
+
+				<{$block.cell_group_perm}>
+			</div>
+
+			<div class="ui-block-cache">
+				<select name="bcachetimes[<{$block.bid}>]" size="1">
+					<{html_options options=$cachetime_options selected=$block.bcachetime}>
+				</select>
+			</div>
+	
+		</div><{* /ui-block-info *}>
+				
+		</div><{* /ui-card-content *}>
+	
+	</div><{* ui-card-block *}>
+	
+	
 	<{/foreach from=$blocks item="block"}>
+		
+		
+</div><{* ui-grid-blocks *}>
 
-	<tr>
-		<td class="foot" colspan="6">
-			<input type="hidden" name="fct" value="blocksadmin" />
-			<input type="hidden" name="op" value="order" />
-			<{$gticket_hidden}>
-			<input type="submit" name="submit" value="<{$smarty.const._SUBMIT}>" />
-		</td>
-	</tr>
-	</table>
+
+<div class="foot">
+	<input type="hidden" name="fct" value="blocksadmin" />
+	<input type="hidden" name="op" value="order" />
+	<{$gticket_hidden}>
+	<input type="submit" name="submit" value="<{$smarty.const._SUBMIT}>">
+</div>
+
 </form>
-
 
 </div>

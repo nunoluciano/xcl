@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h2>
@@ -131,7 +131,7 @@
       <tr class="<{cycle values='odd,even'}>">
     <{/if}>
       <td class="legacy_list_id"><{$obj->getShow('image_id')}></td>
-      <td class="ui-module-image">
+      <td class="ui-card-image">
         <{if $obj->mImageCategory != null}>
           <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" title="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
@@ -143,15 +143,23 @@
       </td>
       <td class="legacy_list_type"><{$obj->getShow('image_mimetype')}></td>
       <td class="legacy_list_date"><{$obj->getShow('image_created')|xoops_formattimestamp:l}></td>
-      <td class="legacy_list_select"><input type="checkbox" name="display[<{$obj->getShow('image_id')}>]" value="1" <{if $obj->getShow('image_display')}>checked="checked"<{/if}> /></td>
+      <td class="legacy_list_select">
+  
+        <input type="checkbox" name="display[<{$obj->getShow('image_id')}>]" value="1" <{if $obj->getShow('image_display')}>checked="checked"<{/if}> />
+
+      </td>
       <td class="legacy_list_number"><input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_weight')}>" class=legacy_list_number /></td>
-      <td class="legacy_list_select"><input type="checkbox" name="delete[<{$obj->getShow('image_id')}>]" value="1" /></td>
+      <td class="legacy_list_select">
+
+        <input type="checkbox" name="delete[<{$obj->getShow('image_id')}>]" value="1" />
+
+      </td>
       <td class="legacy_list_control">
         <a href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-image-edit.svg" class="svg" alt="<{$smarty.const._EDIT}>">
+          <img src="<{"icons/icon-image-edit.svg"|theme}>" class="svg" alt="<{$smarty.const._EDIT}>">
         </a>
         <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg" alt="<{$smarty.const._DELETE}>">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg" alt="<{$smarty.const._DELETE}>">
         </a>
       </td>
     </tr>

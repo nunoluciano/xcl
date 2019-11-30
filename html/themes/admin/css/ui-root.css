@@ -1,7 +1,7 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
 	URL : https://github.com/xoopscube/xcl/
@@ -13,10 +13,12 @@
 		- Body background
 		- Body font-family
 		- Body font-size
-		- Background colors
+		- Grid template
+		- Card colors
+		- Form input
 		- Text colors
 		- Text Link colors
-		- Grid template
+
 		- User Menu
 		- Card
 		- UI Elements Colorscheme
@@ -28,124 +30,213 @@
 		- Dev-Mode
 		- Scrollbar
 
-	*/
+
+	-------------------- -------------------- -------------------- FONT-FAMILY */
+	
 	/* 	Set Operating Systems default font-family */
 	@font-face {
 	font-family: system;
 	font-style: normal;
-	font-weight: 300;
 	src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
 		local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
 		local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 	}
 
+/*	-------------------- -------------------- -------------------- ROOT CSS */
+
 :root {
 
+	/* Smarty Template Name Display : block /none */
+	--ui-dev-mode 			: none;
+
 	/* Fallback for Custom Properties */
-	--vh: 1vh; 
+	--vh					: 1vh; 
 
 	/* Body background */
-	/* --ui-body-bg	: rgb(21, 27, 42); */
-	--ui-body-bg	: #424547;
-	--ui-body-gd	: linear-gradient( 0deg, hsla(208, 24%, 10%, 1) 0%, rgba(29, 37, 47, 1) 50%, hsla(208, 24%, 10%, 1) 100% );
+
+	--ui-body-bg1			: rgba(1, 1, 1, 0.05);
+	--ui-body-gd1			: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 1%, rgba(0, 0, 0, 0.1) 100%);
+	
+	--ui-gradient-top		: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.05) 1%, rgba(0, 0, 0, 0) 100%);
 
 	/* Body font-family */
-	--ui-font1		: "system";
-	--ui-font2		: serif;
+	--ui-font1				: "system";
+	--ui-font2				: serif;
+	--ui-font-size  		: 14px;
+	--ui-font-weight		: 600;
 
-	/* Body font-size */
-	--text-base-size: 14px;
 
-	/* Background colors */
-	--ui-bg2		: #151a27;
-	--ui-bg2		: #1d252f;
-	--ui-bg3		: #37474f;
-	--ui-bg4		: #455a64;
-	--ui-bg5		: #273444;
+	/*	-------------------- -------------------- -------------------- Grid template */
 
-	/* Text colors */
-	--ui-text1		: #abc;
-	--ui-text2		: #bcd;
-	--ui-text3		: #cde;
-	--ui-text4		: #efa;
+	--ui-aside-bg			: none;
+	--ui-footer-bg  		: none;
+	--ui-grid-bg   			: none; /* #f5f9ff; */
+	--ui-header-bg			: none;
+	--ui-main-bg			: none;
 
-	/* Text Link colors */
-	--ui-active		: #face74;
-	--ui-hover		: #fff;
-	--ui-link		: #face74;
-	--ui-visited	: #fff;
 
-	/* Grid template */
-	--ui-grid-header-bg	: #1d252f; /* Header Nav */
-	--ui-grid-footer-bg : transparent;
-	--ui-grid-main-bg	: #151a275a;
-	--ui-grid-side-bg	: #1d252f;
-	--ui-grid-side-hover: #456074;
+	/*	-------------------- -------------------- -------------------- Border style */
 
-	/* User Menu */
-    --ui-user-menu-bg   : #273442;
-    --ui-user-menu-hover: rgba(0, 0, 0, 0.5);
+	--ui-border-none   		: 0;
+	--ui-border-color  		: rgba(0, 0, 0, 0.05);
+	--ui-border-radius 		: 5px;
+	--ui-border-style  		: solid;
+	--ui-border-width  		: 1px;
 
-	/* Card */
-	--bg-ui-card-main	: #1d252f;
-	--bg-ui-card-md		: #273240;
-	--bg-ui-card-sm		: #182027;
-	--bg-ui-tips		: #456074;
-	--bg-ui-tips2		: #1e2730;
 
-	/* UI Elements Colorscheme */
-	--ui-color-amber	: #ffc107;
-	--ui-color-blue		: #2196f3;
-	--ui-color-green	: #27ae74;
-	--ui-color-indigo	: #3f51b5;
-	--ui-color-orange	: #ff9800;
-	--ui-color-purple	: #673ab7;
-	--ui-color-red		: #f44336;
+	/*	-------------------- -------------------- -------------------- Card colors */
 
-	/* UI Navigation: Adminnavi, adminmenu, ui-breadcrumbs */
-	--ui-adminnavi  	: #182027;
-	--ui-adminmenu	    : #456074;
-	--ui-breadcrumbs    : #1d252f;
+	--ui-card-bg1			: rgba(0, 0, 0, 0.05);
+	--ui-card-bg2			: rgba(0, 0, 0, 0.1);
+	--ui-card-bg3			: rgba(0, 0, 0, 0.5);
+	--ui-card-bg4			: rgba(0, 0, 0, 0.9);
 
-	/* Table */
-	--ui-table-bg	    : #1e2730;
-	--ui-table-hover    : rgba(0, 159, 251, 0.27);
-	--ui-table-th	    : transparent;
-	--ui-table-odd  	: #212a35;
-	--ui-table-even 	: transparent;
-	--ui-table-foot	    : #212a35;
+	--ui-card-dark			: rgba(0, 0, 0, 0.7);
+	--ui-card-light			: rgba(255, 255, 255, 0.8);
 
-	/* Shadow */
-	--ui-shadow-sm      : 1px 2px 3px #111;
-	--ui-shadow-md      : 0px 5px 20px rgba(0, 0, 0, 0.05);
-	--ui-shadow-lg      : 0px 5px 20px rgba(0, 0, 0, 0.05);
-	--ui-shadow-xl      : 0px 5px 20px rgba(0, 0, 0, 0.05);
+	--ui-card-block-bg		: #f1f1f1db;
+	--ui-card-main			: #f1f1f1;
 
-	/* Spacing : relative margin and padding */
-	--space-unit: 1em;
-	--space-xxxxs: calc(var(--space-unit) * 0.125);
-	--space-xxxs: calc(var(--space-unit) * 0.25);
-	--space-xxs: calc(var(--space-unit) * 0.375);
-	--space-xs: calc(var(--space-unit) * 0.5);
-	--space-sm: calc(var(--space-unit) * 0.75);
-	--space-md: calc(var(--space-unit) * 1.25);
-	--space-lg: calc(var(--space-unit) * 2);
-	--space-xl: calc(var(--space-unit) * 3.25);
-	--space-xxl: calc(var(--space-unit) * 5.25);
-	--space-xxxl: calc(var(--space-unit) * 8.5);
-	--space-xxxxl: calc(var(--space-unit) * 13.75);
+	/*	-------------------- -------------------- -------------------- Color Background Image */
 
-	/* Typography scalable */
-	--text-scale-ratio: 1.2;
-	--text-xs: calc((1em / var(--text-scale-ratio)) / var(--text-scale-ratio));
-	--text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
-	--text-md: calc(var(--text-sm) * var(--text-scale-ratio) * var(--text-scale-ratio));
-	--text-lg: calc(var(--text-md) * var(--text-scale-ratio));
-	--text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
-	--text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
-	--text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+	--ui-card-image-bg		: rgba(35, 55, 75, 1);
 
-	/* DEV-MODE : semantic layout visual help-border */
+
+	/*	-------------------- -------------------- -------------------- Color Block Type SVG Image */
+
+	--ui-color-block-html	: rgba(35, 55, 75, 1);
+	--ui-color-block-module	: rgba(35, 55, 75, 1);
+	--ui-color-block-php	: rgba(35, 55, 75, 1);
+	--ui-color-block-smilies: rgba(35, 55, 75, 1);
+
+
+	/*	-------------------- -------------------- -------------------- Colorscheme elements */
+
+	--ui-color-amber		: #ffc107;
+	--ui-color-blue			: #2196f3;
+	--ui-color-green		: #27ae74;
+	--ui-color-indigo		: #1b275a;
+	--ui-color-orange		: #ff9800;
+	--ui-color-purple		: #673ab7;
+	--ui-color-red			: #f44336;
+	--ui-color-light		: #FAFAFA;
+
+
+	/*	-------------------- -------------------- -------------------- Form input */
+
+	--ui-input-bg	 		: rgba(15, 15, 15, 0.75);
+	--ui-input-border		: 1px solid rgba(255, 255, 255, 0.5);
+	--ui-input-color 		: rgba(255, 255, 255, 0.9);
+	--ui-input-hover 		: rgba(255, 255, 255, 0.5);
+	--ui-input-shadow		: 0 1px 2px 0 rgba(47, 27, 5, 0.15), 0 3px 1px -2px rgba(47, 27, 5, 0.2), 0 1px 5px 0 rgba(47, 27, 5, 0.12);
+
+	--input-check-active          : rgba(0, 0, 0, 0.75);
+	--input-check-active-inner    : rgba(255, 255, 255, 0.9);
+	--input-check-border          : rgba(255, 255, 255, 0.5);
+	--input-check-border-hover    : rgba(21, 101, 201, 0.9);
+	--input-check-bg              : rgba(74, 74, 74, 0.8);
+	--input-check-disabled        : #F5F9FF;
+	--input-check-disabled-inner  : #E4ECFA;
+	--input-check-shadow-inner    : rgba(21, 25, 27, 0.15);
+
+	/*	-------------------- -------------------- -------------------- Link colors */
+
+	--ui-link				: rgba(44, 105, 174, 1);
+	--ui-link-active		: orange;
+	--ui-link-hover			: orange; 
+	--ui-link-visited		: rgba(44, 105, 174, 1);
+	--ui-link-shadow		: 0px 0px 0px rgba(1, 1, 1, 1);
+
+
+	/*	-------------------- -------------------- -------------------- Navigation: Adminnavi, adminmenu, breadcrumbs */
+
+	--ui-adminnavi  		: rgba(74, 74, 74, 0.8);
+	--ui-adminmenu	    	: rgba(74, 74, 74, 0.8);
+	--ui-breadcrumbs    	: rgba(74, 74, 74, 0.8);
+	--ui-breadcrumbs-bg 	: #f1f1f1db;
+	/* Notificatios */
+	--ui-ondemand-bg		: rgba(74, 74, 74, 0.8);
+		
+	/*	-------------------- -------------------- -------------------- Nav Menu */
+
+	--ui-side-menu			: rgb(241, 241, 241); /* Nav-Side-Menu Background */
+	/* Nav Block */
+	--ui-nav-bg				: rgba(255, 255, 255, .9);
+	--ui-nav-border			: 3px solid rgba(0, 0, 0, .5);
+	--ui-nav-color			: rgba(0, 0, 0, 0.9);
+	--ui-nav-hover			: rgba(255, 255, 255, .2);
+	--ui-nav-open			: rgba(0, 0, 0, 0.05);
+	--ui-nav-admin-bg		: rgba(15, 15, 15, 0.75);
+	--ui-nav-link-color		: orange;
+	--ui-nav-link-border	: 3px solid orange;
+
+
+	/*	-------------------- -------------------- -------------------- Shadow */
+
+	--ui-shadow-sm      	: 1px 2px 3px rgba(0, 0, 0, 0.05);
+	--ui-shadow-md      	: 0px 5px 10px rgba(0, 0, 0, 0.05);
+	--ui-shadow-lg      	: 0 8px 20px -6px rgba(0,0,0,0.7);
+	--ui-shadow-xl      	: 0px 5px 20px rgba(0, 0, 0, 0.05);
+
+	--ui-shadow-in      	: 0 5px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px #ddd inset;
+
+
+	/*	-------------------- -------------------- -------------------- Spacing : relative margin and padding */
+
+	--ui-space-none: 0;
+	--ui-space-unit: 0.5em;
+	--ui-space-xxxxs: calc(var(--ui-space-unit) * 0.125);
+	--ui-space-xxxs: calc(var(--ui-space-unit) * 0.25);
+	--ui-space-xxs: calc(var(--ui-space-unit) * 0.375);
+	--ui-space-xs: calc(var(--ui-space-unit) * 0.5);
+	--ui-space-sm: calc(var(--ui-space-unit) * 0.75);
+	--ui-space-md: calc(var(--ui-space-unit) * 1.25);
+	--ui-space-lg: calc(var(--ui-space-unit) * 2);
+	--ui-space-xl: calc(var(--ui-space-unit) * 3.25);
+	--ui-space-xxl: calc(var(--ui-space-unit) * 5.25);
+	--ui-space-xxxl: calc(var(--ui-space-unit) * 8.5);
+	--ui-space-xxxxl: calc(var(--ui-space-unit) * 13.75);
+
+
+	/*	-------------------- -------------------- -------------------- Table */
+
+	--ui-table-bg	    	: rgba(0, 0, 0, 0.05);
+	--ui-table-hover    	: rgba(255, 255, 255, 0.5);
+	--ui-table-th	    	: transparent;
+	--ui-table-odd  		: rgba(0, 0, 0, 0.1);
+	--ui-table-even 		: transparent;
+	--ui-table-foot	    	: rgba(0, 0, 0, 0.1);
+
+
+	/*	-------------------- -------------------- -------------------- Text colors */
+
+	--ui-text				: #101010db;
+	--ui-text1				: rgba(0, 0, 0, 0.9);
+	--ui-text2				: rgba(0, 0, 0, 0.7);
+	--ui-text3				: rgba(0, 0, 0, 0.5);
+	--ui-text4				: rgb(200, 205, 210);
+
+
+	/*	-------------------- -------------------- -------------------- Typography scalable */
+
+	--ui-text-scale-ratio: 1.2;
+	--ui-text-xs: calc((1em / var(--ui-text-scale-ratio)) / var(--ui-text-scale-ratio));
+	--ui-text-sm: calc(var(--ui-text-xs) * var(--ui-text-scale-ratio));
+	--ui-text-md: calc(var(--ui-text-sm) * var(--ui-text-scale-ratio));
+	--ui-text-lg: calc(var(--ui-text-md) * var(--ui-text-scale-ratio));
+	--ui-text-xl: calc(var(--ui-text-lg) * var(--ui-text-scale-ratio));
+	--ui-text-xxl: calc(var(--ui-text-xl) * var(--ui-text-scale-ratio));
+	--ui-text-xxxl: calc(var(--ui-text-xxl) * var(--ui-text-scale-ratio));
+
+
+	/*	-------------------- -------------------- -------------------- User Menu */
+
+    --ui-user-menu-bg   	: #f1f1f1;
+    --ui-user-menu-hover	: rgba(0, 0, 0, 0.5);
+
+
+	/*	-------------------- -------------------- -------------------- DEV-MODE : semantic layout visual help-border */
+
 	--color-border          : 2px dotted #1b548033;
 	--color-border-aside1   : 2px dotted #90a4ae;
 	--color-border-aside2   : 2px dotted #90a4ae;
@@ -159,46 +250,63 @@
 
 }
 
-/* Text Selection */
-::selection {
-	background-color   : #0e2750;
-	color              : #f1f1f1;
-	}
+	/*	-------------------- -------------------- -------------------- Text Selection */
+	::selection {
+
+		background-color	: rgba(15, 15, 15, 0.85);
+		color				: var(--ui-color-light);
+
+		}
 
 
-/*  TODO
-	Implement crosshover css/js scrollbar
-*/
-::-webkit-scrollbar {
-	background        : #403020;
-	width             : 10px;
+	/*	-------------------- -------------------- -------------------- TODO
+		Implement crosshover css/js scrollbar
+	*/
+	::-webkit-scrollbar {
+
+		background			: transparent;
+		width				: 10px;
+
 	}
 	
 	/* Track */
 	::-webkit-scrollbar-track {
-		background    : #face74b4; 
-		box-shadow    : inset 0px 4px 0px 4px #272727; 
-		border-radius : 0px;
+
+		background			: rgba(255, 147, 5, 0.5);
+		box-shadow			: inset 0px 4px 0px 4px rgba(15, 15, 15, 0.85); 
+		border-radius		: 0px;
+
 	}
 	 
 	/* Handle */
 	::-webkit-scrollbar-thumb {
-		background    : #face7488; 
-		border-radius : 10px;
+
+		background			: rgba(15, 15, 15, 0.80); 
+		border-radius		: 10px;
+
 	}
 	
 	/* Handle on hover */
 	::-webkit-scrollbar-thumb:hover {
-		background    : #face74cc; 
+
+		background			: rgba(255, 147, 5, 0.5);
+
 	}
 
 	::-webkit-scrollbar-thumb:active {
-		background    : linear-gradient(left, #272727, #face74);
+
+		background			: linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
+
 	  }
 	::-webkit-scrollbar-corner {
-		border        : none;
+
+		border				: none;
+
 	}
+
 	/* transparent resizer */
 	::-webkit-resizer {
-		background    :transparent;
+
+		background			: transparent;
+
 	}
