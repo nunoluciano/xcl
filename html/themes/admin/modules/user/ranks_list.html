@@ -4,7 +4,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-ranks.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_TOTAL}>">
+        <img src="<{"icons/icon-ranks.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_TOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_RANK_TOTAL}>: <strong><{$rankTotal}></strong></h3>
@@ -14,7 +14,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-rank-special.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>">
+        <img src="<{"icons/icon-rank-special.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>: <strong><{$rankTotal_S}></strong></h3>
@@ -24,7 +24,7 @@
 
 	<div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-orange">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-rank-new.svg" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_CREATE_NEW}>">
+          <img src="<{"icons/icon-rank-new.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_CREATE_NEW}>">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><a href="index.php?action=RanksEdit"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a></h3>
@@ -43,7 +43,7 @@
 
 
 <div class="ui-card-main">
-    <{$smarty.template}>
+    <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_LIST}></h2>
@@ -146,14 +146,22 @@
           <{$smarty.const._NO}>
         <{/if}>
       </td>
-      <td class="user_list_image"><img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('rank_image')}>" alt="<{$obj->getShow('rank_title')}>" title="<{$obj->getShow('rank_title')}>" /></td>
-      <td class="user_list_select"><input type="checkbox" name="delete[<{$obj->getShow('rank_id')}>]" value="1" /></td>
+      <td class="user_list_image">
+
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('rank_image')}>" alt="<{$obj->getShow('rank_title')}>" title="<{$obj->getShow('rank_title')}>" />
+      
+      </td>
+      <td class="user_list_select">
+
+        <input type="checkbox" name="delete[<{$obj->getShow('rank_id')}>]" value="1">
+
+      </td>
       <td class="user_list_control">
         <a href="index.php?action=RanksEdit&amp;rank_id=<{$obj->getShow('rank_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+          <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
         </a>
         <a href="index.php?action=RanksDelete&amp;rank_id=<{$obj->getShow('rank_id')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>

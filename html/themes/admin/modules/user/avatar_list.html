@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></h2>
@@ -147,7 +147,9 @@
         <div class="user_list_imagetitle"><input type="text" size="12" name="name[<{$obj->getShow('avatar_id')}>]" value="<{$obj->getShow('avatar_name')}>" /></div>
       <td class="user_list_type"><{$obj->getShow('avatar_mimetype')}></td>
       <td class="user_list_date"><{$obj->get('avatar_created')|xoops_formattimestamp:l}></td>
-      <td class="user_list_select"><input type="checkbox" name="display[<{$obj->getShow('avatar_id')}>]" value="1" <{if $obj->getShow('avatar_display')}>checked="checked"<{/if}> /></td>
+      <td class="user_list_select">
+        <input type="checkbox" name="display[<{$obj->getShow('avatar_id')}>]" value="1" <{if $obj->getShow('avatar_display')}>checked="checked"<{/if}> />
+      </td>
       <td class="user_list_number"><input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('avatar_id')}>]" value="<{$obj->getShow('avatar_weight')}>" class=user_list_number /></td>
       <td class="user_list_type">
         <{if $obj->getShow('avatar_type') == "C"}>
@@ -157,13 +159,15 @@
         <{/if}>
       </td>
       <td class="user_list_order"><{$obj->getUsingCount()|xoops_escape}></td>
-      <td class="user_list_select"><input type="checkbox" name="delete[<{$obj->getShow('avatar_id')}>]" value="1" /></td>
+      <td class="user_list_select">
+        <input type="checkbox" name="delete[<{$obj->getShow('avatar_id')}>]" value="1" />
+      </td>
       <td class="user_list_control">
         <a href="index.php?action=AvatarEdit&amp;avatar_id=<{$obj->getShow('avatar_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+          <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
         </a>
         <a href="index.php?action=AvatarDelete&amp;avatar_id=<{$obj->getShow('avatar_id')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>
