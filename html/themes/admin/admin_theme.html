@@ -3,7 +3,7 @@
 <!-- ===========================
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
     URL : https://github.com/xoopscube/xcl/
@@ -35,6 +35,7 @@
 		<link rel="manifest" href="<{$xoops_url}>/themes/admin/site.webmanifest">
 
 		<{* ---------- ---------- ---------- ---------- ---------- Fav icon *}>
+
 		<link rel="apple-touch-icon" href="<{$xoops_url}>/images/favicon.ico">
 
 
@@ -43,20 +44,22 @@
 		<{stylesheet file=module.css static=true}>
 
 
-
 		<{* ---------- ---------- ---------- ---------- ---------- Module Header *}>
 
 		<{$xoops_module_header}>
-		
+
+
 		<{* ---------- ---------- ---------- ---------- ---------- Admin Static Style *}>
 		<{* Admin style override notification *}>
 
 		<{* stylesheet file=style.css static=true *}>
 		
 		<link rel="stylesheet" href="<{$xoops_url}>/themes/admin/style.css">
-		<{* ---------- ---------- ---------- ---------- ---------- CDN Script Fallback *}>
+
+		<{* ---------- ---------- ---------- ---------- ---------- CDN Script Fallback Local *}>
 		<script>
 		   window.jQuery || document.write('<script src=\'<{"js/jquery.min.js"|theme}>\'><\/script>');
+		</script>
 
 		<{* ---------- ---------- ---------- ---------- ---------- Xoops javascript *}>
 
@@ -65,13 +68,14 @@
 </head>
 
 <body>
-	<{* include file="./ui-menuopt.html" *}>
+
 	<{* include file="./ui-context-menu.html" *}>
+	
 	<{* ---------- ---------- ---------- ---------- ---------- Mobile Screen Mode *}>
 	<div class="ui-screen-mode">
 		<div class="ui-smi">Orientation</div>
 		<div class="ui-smi">
-			<img src="<{$xoops_url}>/themes/admin/images/icon-screen-rotate.svg" class="svg">
+			<img src="<{"icons/icon-screen-rotate.svg"|theme}>" class="svg">
 		</div>
 		<div class="ui-smi">Please</div>
 		<div class="ui-smi">Rotate your device!</div>
@@ -88,11 +92,7 @@
 	<{* CSS .iconify {width: 20px; height: 20px;} *}>
 	<header class="header">
 	<a id="container"></a>
-		<{* ---------- ---------- ---------- ---------- ---------- Nav Mobile *}>
 
-		<div class="nav-mobile">
-			<img src="<{$xoops_url}>/themes/admin/images/icon-mobile-menu.svg" class="svg">
-		</div>
 
 
 		<{* ---------- ---------- ---------- ---------- ---------- Nav User Menu *}>
@@ -107,18 +107,16 @@
 					<li class="nav-user-link">
 						<a href="<{$xoops_url}>/">
 							<span class="nav-user-icon">
-							 <img src="<{$xoops_url}>/themes/admin/images/icon-user-home.svg" class="svg">
+								<img src="<{"icons/icon-user-home.svg"|theme}>" class="svg">
 							</span>
-							<span class="nav-user-title">
-								<{$smarty.const._YOURHOME}>
-							</span>
+							<span class="nav-user-title"><{$smarty.const._YOURHOME}></span>
 						</a>
 					</li>
 
 					<li class="nav-user-link">
 						<a href="<{$xoops_url}>/edituser.php">
 							<span class="nav-user-icon">
-								<img src="<{$xoops_url}>/themes/admin/images/icon-user-account.svg" class="svg">
+								<img src="<{"icons/icon-user-account.svg"|theme}>" class="svg">
 							</span>
 							<span class="nav-user-title">Account Setting</span>
 						</a>
@@ -127,7 +125,7 @@
 					<li class="nav-user-link">
 						<a href="<{$xoops_url}>/viewpmsg.php">
 							<span class="nav-user-icon">
-								<img src="<{$xoops_url}>/themes/admin/images/icon-user-mail.svg" class="svg">
+								<img src="<{"icons/icon-user-mail.svg"|theme}>" class="svg">
 							</span>
 							<span class="nav-user-title">Inbox</span>
 						</a>
@@ -136,7 +134,7 @@
 					<li class="nav-user-link">
 						<a href="<{$xoops_url}>/notifications.php">
 							<span class="nav-user-icon">
-									<img src="<{$xoops_url}>/themes/admin/images/icon-user-notify.svg" class="svg">
+								<img src="<{"icons/icon-user-notify.svg"|theme}>" class="svg">
 							</span>
 							<span class="nav-user-title">Notifications</span>
 						</a>
@@ -145,56 +143,68 @@
 					<li class="nav-user-link">
 						<a href="<{$xoops_url}>/user.php?op=logout">
 							<span class="nav-user-icon">
-								<img src="<{$xoops_url}>/themes/admin/images/icon-user-logout.svg" class="svg">
+								<img src="<{"icons/icon-user-logout.svg"|theme}>" class="svg">
 							</span>
-							<span class="nav-user-title">
-								<{$smarty.const._LOGOUT}>
-							</span>
+							<span class="nav-user-title"><{$smarty.const._LOGOUT}></span>
 						</a>
 					</li>
 
 				</ul>
 				</div><{* /nav-user-dropdown *}>
-		</div><{* /Header User Menu *}>
+		</div><{* /nav-user-control *}>
 
 	</header>
+
+	<{* ---------- ---------- ---------- ---------- ---------- Nav Mobile *}>
+
+	<div class="nav-mobile">
+		<img src="<{"icons/icon-mobile-menu.svg"|theme}>" class="svg">
+	</div>
 
 
 	<{* ---------- ---------- ---------- ---------- ---------- Aside Navigation *}>
 
 	<aside class="side-nav">
 
-		<div class="nav-logo-site">
-
-			<div class="nav-logo-icon">
-				<img src="<{$xoops_url}>/themes/admin/images/icon-cube-logo.svg">
-			</div>
-
-			<a class="nav-logo-link" href="<{$xoops_url}>/admin.php">
-				<{$legacy_sitename|xoops_escape}>
-			</a>
-
-		</div>
 
 
-		<{* ---------- ---------- ---------- ---------- ---------- Side-Nav-QuickLink *}>
 
-		<div class="nav-quicklink">
-		
-			<form action="<{$xoops_url}>/modules/legacy/admin/index.php?action=actSearch" method="post">
-				<input type="search" name="keywords" placeholder="Search..." >
-				<input type="hidden" value="<{$smarty.const._SEARCH}>">
-				<{$uid|xoops_user:user_name}>
-			</form>
-
-		</div>
-
-
-		<div class="row row-align-items row-align-center">
+		<div class="ui-row-flex ui-flex-center">
 
 			<ul class="nav-side-menu">
 
-				<li class="nav-side-name">Settings <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" style="vertical-align: -0.125em;-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="icon-settings"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" fill="currentColor"></path></svg></li>
+				<li class="nav-side-name">
+
+						<div class="nav-logo-site">
+
+							<div class="nav-logo-icon">
+
+									<img src="<{"design/logo.png"|theme}>">
+
+							</div>
+				
+							<a class="nav-logo-link" href="<{$xoops_url}>/admin.php">
+								<{$legacy_sitename|xoops_escape}>
+							</a>
+						
+						</div>
+						
+						
+							<{* ---------- ---------- ---------- ---------- ---------- Nav-QuickLink *}>
+					
+							<div class="nav-quicklink">
+							
+								<form action="<{$xoops_url}>/modules/legacy/admin/index.php?action=actSearch" method="post">
+									<input type="search" name="keywords" placeholder="Search..." >
+									<input type="hidden" value="<{$smarty.const._SEARCH}>">
+									<{$uid|xoops_user:user_name}>
+								</form>
+					
+							</div>
+
+					<!-- <img src="<{"icons/icon-settings.svg"|theme}>" class="svg" title="<{$smarty.const._CPHOME}>">  Settings -->
+
+				</li>
 
 				
 
@@ -248,8 +258,9 @@
 	</footer>
 
 	</div><{* /Grid *}>
-	<script src="<{'js/vendor/modernizr-3.7.1.min.js'|theme}>"></script>
-	<script>window.jQuery || document.write('<script src="<{"js/jquery-3.4.1.min.js"|theme}>"><\/script>')</script>
+
+
+	
 	<script src="<{'js/script.js'|theme}>"></script>
 
 </body>

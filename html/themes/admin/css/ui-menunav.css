@@ -1,331 +1,521 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
 	URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- HEADER USER MENU */
+	-------------------- -------------------- -------------------- NAV-USER-MENU */
 
-	.nav-user-control img {
-		border-radius: 50%;
-		border: 2px solid var(--ui-bg2);
-		cursor: pointer;
-		height: 40px;
-		position: absolute;
-		right: 14px;
-		width: 40px;
-		top: 5px;
-	}
+	.nav-user-control > img {
 
-	.nav-user-control span.user {
-		align-items: center;
-		background: var(--ui-text1);
-		border-radius: 50%;
-		border: 2px solid var(--ui-bg2);
-		cursor: pointer;
-		height: 40px;
-		position: absolute;
-		width: 40px;
+		border-radius	: 50%;
+		border			: 2px solid var(--ui-user-menu-bg);
+		cursor			: pointer;
+		height			: 40px;
+		position		: absolute;
+		right			: 14px;
+		width			: 40px;
+		top				: 5px;
+
 	}
 
 	.nav-user-control:after {
-		background: none;
-		border-left: 2px solid #face74;
-		border-bottom: 2px solid #face74;
-		content: "";
-		height: 7px;
-		position: absolute;
-		right: 27px;
-		width: 7px;
-		transform: rotate(-45deg) translateY(-50%);
-		top: 44px;
+
+		/* background		: var(--ui-link); */
+		border-left   	: 2px solid var(--ui-link);
+		border-bottom 	: 2px solid var(--ui-link);
+		content      	: "";
+		height			: 7px;
+		position		: absolute;
+		right			: 27px;
+		width			: 7px;
+		transform		: rotate(-45deg) translateY(-50%);
+		top				: 44px;
+
 	}
 
 	.nav-user-dropdown {
-		background: var(--ui-user-menu-bg);
-		border-radius: 5px;	
-		box-shadow: var(--ui-shadow-sm);
-		height: auto;
-		opacity: 0;
-		position: absolute;
-		right: 20px;
-		top: 54px;
-		transform: translateY(-10px);
-		transition: all 0.5s;
-		visibility: hidden;
-		width: 210px;
-		z-index: 1;
+
+		background		: var(--ui-user-menu-bg);
+		border-radius	: 5px;	
+		box-shadow		: var(--ui-shadow-sm);
+		height			: auto;
+		opacity			: 0;
+		position		: absolute;
+		right			: 20px;
+		top				: 54px;
+		transform		: translateY(-10px);
+		transition		: all 0.5s;
+		visibility		: hidden;
+		width			: 210px;
+		z-index			: 1;
+
 	}
 
 	.nav-user-dropdown:before {
-		border-left: 4px solid transparent;
-		border-right: 4px solid transparent;
-		border-bottom: 7px solid var(--color-bg);
-		content: "";
-		height: 0;
-		position: absolute;
-		top: -7px;
-		width: 0;
+
+		border-left		: 4px solid transparent;
+		border-right	: 4px solid transparent;
+		border-bottom	: 7px solid var(--color-bg);
+		content			: "";
+		height			: 0;
+		position		: absolute;
+		top				: -7px;
+		width			: 0;
+
 	}
 
 	.nav-user-menu {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
+
+		list-style-type : none;
+		margin			: 0;
+		padding			: 0;
+
 	}
+
 	.nav-user-menu-active {
-		opacity: 1;
-		transform: translateY(0);
-		visibility: visible;
+
+		opacity			: 1;
+		transform		: translateY(0);
+		visibility		: visible;
 	}
+
 	.nav-user-link {
-		color: var(--ui-link);
-		padding: .8rem;
-		text-transform: capitalize;
+
+		color			: var(--ui-link);
+		padding			: .8rem;
+		text-transform	: capitalize;
+
 	}
+
 	.nav-user-link:hover {
+
 		background-color: rgba(0, 0, 0, 0.5);
+
 	}
+
 	.nav-user-icon {
-		color: var(--ui-text1);
+
+		color			: var(--ui-text1);
+
 	}
+
 	.nav-user-title {
-		line-height: 2rem;
-		margin-left: 10px;
-		vertical-align: top;
+
+		line-height		: 2rem;
+		margin-left		: 10px;
+		vertical-align	: top;
+
 	}
 
 
-/* -------------------- -------------------- -------------------- -------------------- SIDE NAV */
+/* -------------------- -------------------- -------------------- NAV-SIDE-MENU */
 
-	.side-nav {
-		background: var(--ui-grid-side-bg);
-		color: var(--ui-text1);
-		grid-area: side-nav;
-		height: 100%;
-		overflow-y: auto;
-		position: fixed;
-		transform: translateX(-245px);
-		transition: all 0.6s ease-in-out;
-		width: 235px;
-		z-index: 2;
-	}
-	.nav-logo-site {
-		align-items: center;
-		display: flex;
-		height: 50px;
-		padding: 20px 0 0 20px;
-		position: relative;
-	}
-	.nav-logo-icon {
-		color: var(--ui-hover);
-		font-size: 1.2rem;
-		margin-top: 5px;
-	}
-	.nav-logo-link {
-		color: var(--ui-link);
-		font-size: 1.2rem;
-		letter-spacing: 1.5px;
-		margin-left: 1rem;
+	.nav-side-menu {
+
+		background		: var(--ui-side-menu);
+
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		box-shadow		: var(--ui-shadow-sm);
+		
+		list-style-type : none;
+		padding			: 0;
+		width			: 232px;
+
 	}
 
-/* -------------------- -------------------- -------------------- SIDE NAV - Quick Link */
+	.nav-side-name {
 
-.nav-quicklink {
-	align-items: center;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	min-height: 160px;
-	padding: 20px;
+		/* align-items		: center;
+		display			: flex;
+		justify-content : space-between; */
+		padding			: 10px;
+		text-transform	: uppercase;
+
+	}
+
+
+	/* -------------------- -------------------- -------------------- NAV-SIDE Quick Link */
+
+	.nav-quicklink {
+
+		display			: flex;
+		justify-content : space-around;
+		padding			: var(--ui-space-lg);
+		
+	}
+
+	.nav-quicklink-search {
+
+		color			: var(--ui-text1);
+		margin-left		: 55px;
+
+	}
+
+	.nav-quicklink-search-input {
+
+		background		: var(--ui-card-bg1);
+		
+		border			: none;
+		color			: var(--ui-text1);
+		padding			: 12px;
+
+	}
+
+	.nav-quicklink-search-input:focus {
+
+		border			: none;
+		outline			: none;
+
+	}
+
+	.nav-quicklink-search-input {
+
+/* 		background			: var(--ui-card-bg1);
+		background-image	: url("./icons/icon-search.svg");
+		background-position	: 1px 1px;
+		background-repeat	: no-repeat; */
+
+		box-sizing		: border-box;
+		border-radius	: 3px;
+		font-size		: 1rem;
+		padding			: 12px 20px 12px 40px;
+		transition		: width 0.4s ease-in-out;
+		width			: 80px;
+
+	}
+
+	.nav-quicklink-search-input:focus {
+
+		width			: 80%;
+
+	}
+
+
+	/* -------------------- -------------------- -------------------- NAV-SIDE Arrow */
+
+	/* TODO side-nav arrow and nav-module-admin*/
+
+	.nav-side-arrow {
+
+		border-left		: 2px solid rgba(255, 255, 255, 0.5);
+		border-bottom	: 2px solid rgba(255, 255, 255, 0.5);
+		content			: "";
+		height			: 7px;
+		position		: absolute;
+		right			: 20px;
+		top				: 50%;
+		transform		: translateY(-50%) rotate(225deg);
+		width			: 6px;
+
+	}
+
+	.nav-side-arrow:hover {
+
+		color			: var(--ui-link-hover);
+
+	}
+
+	.nav-module-admin {
+
+		list-style-type : none;
+		margin			: 0;
+		padding			: 10px 0 0;
+
+	}
+
+
+	/* -------------------- -------------------- NAV-SIDE - Module Block */
+
+	/* > nav-block | .nav-block-open:after
+			nav-module-icon | nav-module-name
+				> module-admin
+					nav-module-link
+	*/
+
+	.nav-block {
+
+		border-left		: 3px solid transparent;
+		color			: var(--ui-link);
+		padding			: 10px 10px;
+		position		: relative;
+		text-transform	: capitalize;
+
+	}
+
+	/* Animation 1/2 Open */
+	.nav-block:after {
+
+		border-width	: 1px 0 0 1px;
+		border-style	: solid;
+		border-color	: var(--ui-link);
+
+		content			: "";
+
+		height			: 7px;
+		position		: absolute;
+		right			: 1em;
+		transform		: rotate(135deg) translate(0, -50%);
+		transform-origin: top;
+		top				: 47%;
+		transition		: all 0.3s ease-out;
+		width			: 7px;
+
+	}
+
+	.nav-block:hover {
+
+		background		: var(--ui-card-bg1);
+		border-left		: 3px solid transparent;
+		color			: var(--ui-link-hover);
+
+	}
+
+	.nav-side-menu li:last-child .nav-block:hover {
+
+		border-bottom-right-radius: 5px;
+
+	}
+
+	/* .nav-block:first-child:hover{
+		border-top-right-radius: 5px;
+		} */
+
+	.nav-module-icon {
+
+		align-items		: center;
+		display			: flex;
+		justify-content : center;
+
+	}
+
+	/* -------------------- -------------------- NAV-SIDE - Module Name */
+
+	.nav-module-name {
+
+		margin			: 0 10px;
+
+	}
+
+	
+	.nav-block-open {
+
+		background		: var(--ui-nav-bg);
+		border-left		: var(--ui-nav-border);
+		color			: var(--ui-nav-color);
+
+	}
+	
+	.nav-block:hover {
+	
+		border-left		: var(--ui-nav-link-border);
+
+	}
+
+	.nav-block-open:after {
+
+		transform		: rotate(-135deg) translate(0, -50%); /* Animation */
+
+	}
+
+	.nav-side-menu .nav-block-close {
+
+		max-height		: 0;
+		visibility		: hidden;
+
+	}
+
+
+	/* -------------------- -------------------- NAV-Module-Admin */
+
+	.nav-module-admin {
+
+		background		: var(--ui-nav-admin-bg);
+
+		list-style-type : none;
+		margin			: 0;
+		overflow		: hidden;
+		padding			: 0;
+		transition		: all 0.4s ease-in-out;
+		visibility		: visible;
+
+	}
+
+	.nav-module-link {
+
+		align-items		: center;		
+		border-left		: var(--ui-nav-border);
+		display			: flex;
+		line-height		: 2.5rem;
+
+	}
+
+	.nav-module-link a,
+	.nav-module-link a:hover {
+
+		color			: var(--ui-nav-link-color);
+		padding			: 0 0 0 1.5rem;
+		width			: 100%;
+
+	}
+
+
+
+	.nav-module-link:hover {
+
+		background		: var(--ui-nav-hover);
+		border-left		: var(--ui-nav-link-border);
+		color			: var(--ui-nav-link-color);
+
+	}
+
+	.nav-module-link:first-child {
+
+		border-top		: 1px solid var(--ui-border-color);
+
+	}
+
+
+	/* -------------------- -------------------- NAV-Module-Options Icons */
+
+	.nav-module-options > a,
+	.nav-module-options > a:hover {
+
+		align-items		: center;
+		display			: flex;
+		justify-content	: center;
+		padding			: .5rem 0;
+		width			: 100%;
+
+	}
+
+
+
+
+/* -------------------- -------------------- -------------------- NAV D3 */
+
+	.adminavi,
+	.adminavi-sub {
+
+		background		: var(--ui-card-light);
+
+		border-radius	: var(--ui-border-radius);
+
+		box-shadow		: 0 10px 20px rgba(159, 162, 177, 0.8);
+
+		display			: inline-flex;
+		overflow		: hidden;
+		max-width		: 100%;
+
+	}
+
+	.adminavi-sub {
+	
+		box-shadow		: var(--ui-shadow-md);
+		font-size		: var(--ui-text-sm);
+		margin			: var(--ui-space-xxl) 0 0;
+		text-align		: center;
+
+	}
+
+
+
+	a.adminavi-item {
+
+		border-bottom	: 3px solid var(--ui-link);
+
+		color			: var(--ui-link);
+		font-weight		: 600;
+		padding			: 10px;
+		text-decoration	: none;
+		transition		: .3s;
+		z-index			: 1;
+		
+	}
+
+	a.adminavi-item:not(.selected) {
+	
+	}
+
+	a.adminavi-item:not(.selected):hover {
+		color: var(-ui-link-hover);
+		border-bottom: 3px solid var(--ui-link);
+		
+	}
+	
+
+	a.adminavi-item.selected,
+	a.adminavi-item.selected:active {
+		outline-width: 0;
+		color: var(--ui-link-hover);
+		border-bottom: 3px solid var(--ui-link-hover);
+	}
+
+
+
+
+
+/* fix this > remove altsys css */
+
+.admin-menu,
+.altsys_mymenu {
+
+	align-items		: flex-start;
+	background      : var(--ui-card-bg1);
+
+	border          : 0px;
+	border-radius   : 5px;
+	box-shadow      : var(--ui-shadow-sm);
+
+	display         : flex;
+	flex-flow       : row;
+	flex-wrap       : wrap;
+
 }
 
-.nav-quicklink-search {
-	color: var(--ui-text1);
-	margin-left: 55px;
-}
-.nav-quicklink-search-input {
-	border: none;
-	background-color: var(--ui-bg2);
-	padding: 12px;
-	color: var(--ui-text1);
-}
-.nav-quicklink-search-input:focus {
-	border: none;
-	outline: none;
-}
-.nav-quicklink-search-input {
-	width: 80px;
-	box-sizing: border-box;
-	border-radius: 3px;
-	font-size: 1rem;
-	background-color: var(--ui-bg2);
-	background-image: url("../images/icon-search.svg");
-	background-position: 1px 1px;
-	background-repeat: no-repeat;
-	padding: 12px 20px 12px 40px;
-	-webkit-transition: width 0.4s ease-in-out;
-	transition: width 0.4s ease-in-out;
+.admin-menu > div,
+.altsys_mymenu > div {
+
+	background		: var(--ui-card-bg1);
+	border-radius   : 5px;
+	padding         : 1rem;
+
 }
 
-.nav-quicklink-search-input:focus {
-	width: 80%;
+
+.ui-breadcrumbs,
+.adminnavi,
+.pagenavi {
+
+	background		: var(--ui-card-bg1	);
+
+	border-color	: var(--ui-border-color);
+	border-radius	: var(--ui-border-radius);
+	border-style	: var(--ui-border-style);		
+	border-width	: var(--ui-border-width);
+	box-shadow		: var(--ui-shadow-md);
+
+	padding			: 1rem;
+	margin			: 2rem 0;
+
 }
 
-/* -------------------- -------------------- -------------------- SIDE NAV - Arrow */
+.ui-breadcrumbs a,
+.adminnavi a,
+.pagenavi a {
 
-/* TODO side-nav arrow and nav-module-admin*/
-.nav-side-arrow {
-	border-left: 2px solid rgba(255, 255, 255, 0.5);
-	border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-	content: "";
-	height: 7px;
-	position: absolute;
-	right: 20px;
-	top: 50%;
-	transform: translateY(-50%) rotate(225deg);
-	width: 6px;
-}
-.nav-side-arrow:hover {
-	color: var(--ui-hover);
-}
-.nav-module-admin{
-	list-style-type: none;
-	margin: 0;
-	padding: 10px 0 0;
-}
-.side-menu-active {
-	transform: translateX(0);
-}
+	background		: var(--ui-breadcrumbs-bg);
 
-/* -------------------- -------------------- -------------------- SIDE NAV - MENU */
+	border-color	: var(--ui-border-color);
+	border-radius	: var(--ui-border-radius );
+	border-style	: var(--ui-border-style);		
+	border-width	: var(--ui-border-width);
+	box-shadow		: var(--ui-shadow-md);
 
-.nav-side-menu {
-	background: #273442;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-	box-shadow: var(--ui-shadow-sm);
-	box-shadow: 1px 2px 3px #131b27ad;	
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	width: 232px;
-}
-.nav-side-name {
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-	padding: 10px;
-	text-transform: uppercase;
-}
+	padding			: .5rem;
+	transition		: all 0.3s ease;
 
-/* -------------------- -------------------- SIDE NAV - Module Block */
-
-/* > nav-block
-		 nav-module-icon
-	 	 nav-module-name
-			> module-admin
-				nav-module-link
-*/
-
-.nav-block {
-	color: var(--ui-link);
-	border-left: 3px solid transparent;
-	padding: 10px 20px;
-	position: relative;
-	text-transform: capitalize;
-}
-
-/* Animation 1/2 Open */
-.nav-block:after {
-	content: "";
-	height: 7px;
-	border-width: 1px 0 0 1px;
-	border-style: solid;
-	border-color: var(--ui-link);
-	position: absolute;
-	right: 1em;
-	transform: rotate(135deg) translate(0, -50%);
-	transform-origin: top;
-	top: 47%;
-	transition: all 0.3s ease-out;
-	width: 7px;
-}
-
-.nav-block:hover {
-	color: var(--ui-hover);
-	background-color: var(--ui-grid-side-hover);
-}
-.nav-side-menu li:last-child .nav-block:hover {
-border-bottom-right-radius: 5px;
-}
-/* .nav-block:first-child:hover{
-	border-top-right-radius: 5px;
-	} */
-
-.nav-module-icon {
-	align-items: center;
-	display: flex;
-	justify-content: center;
-}
-
-/* -------------------- -------------------- SIDE NAV - Module Name */
-
-.nav-module-name {
-	margin: 0 10px;
-}
-
-.nav-module-name:hover {
-	cursor: pointer;
-}
-
-.nav-block-open {
-	color: var(--ui-link);
-	background-color: var(--ui-grid-side-hover);
-	border-left: 3px solid var(--ui-link);
-}
-
-.nav-block-open:after {
-	transform: rotate(-135deg) translate(0, -50%); /* Animation */
-}
-
-.nav-side-menu .nav-block-close {
-	max-height: 0;
-	visibility: hidden;
-}
-
-/* -------------------- -------------------- SIDE NAV - Module Admin */
-
-.nav-module-admin{
-	background: #131517;
-	list-style-type: none;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	transition: all 0.4s ease-in-out;
-	visibility: visible;
-}
-
-.nav-module-link {
-	align-items: center;
-	border-left: 3px solid var(--ui-link);
-	display: flex;
-	line-height: 2.5rem;
-	padding: 0 30px;
-}
-
-.nav-module-link a {
-	color: var(--ui-link);
-	width: 100%;
-}
-
-.nav-module-link:first-child {
-	border-top: 1px solid var(--color-bg);
-}
-
-.nav-module-link:hover {
-	color: var(--ui-hover);
-	background-color: var(--ui-grid-side-hover);
 }
