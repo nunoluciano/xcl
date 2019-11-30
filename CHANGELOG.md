@@ -5,29 +5,38 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
-## [unreleased] 2019-11-16
+## [unreleased] 2019-11-29
 
 ### Added
 
-- 
+- Admin Theme version 0.0.3
+- CDN Script Fallback Local
 
 ### Changed
 
-- 
+- HTML5
+- Legacy Render System
+- Modules icons svg
+- Smarty modifier
+- Templates (Admin)
 
 ### Fixed
 
+- Legacy xoops error
+- Lost Pass action
+- User Login
+- Xupdate Store AssetPreload class
 - Xupdate Store preg_replace /e
 
 ### Removed
 
-- 
+- [WIP] Admin-UI images
+- Deprecated Fck-htmlarea
 
 ### Update
 
+- HTML Purifier 4.12.0 - Standards Compliant HTML Filtering
 - Xupdate Store phpseclib-2.0.23
-
-
 
 ## [unreleased] 2019-11-15
 

@@ -1,7 +1,7 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
 	URL : https://github.com/xoopscube/xcl/
@@ -16,147 +16,231 @@
 @media only screen and (min-width: 320px) and (orientation:portrait) {
 
 	body {
-		height: 100vw;
+
+		height			: 100vw;
+
 	}
+
 	.grid,
 	.ondemand,
 	.ondemand-button  { 
-		display:none;
-		visibility: hidden;
-		left: -30px;
+
+		display			: none;
+		left			: -30px;
+		visibility		: hidden;
+
 	}
-	.ui-screen-mode {
-		background: var(--bg-ui-card-sm);
-		background: #ff21104d;
-		border: 2px solid var(--ui-color-red);
-		font-size: 1.5rem;
-		height: 100vh; /* vh fallback for Custom Properties */
-		height: calc(var(--vh, 1vh) * 100); /* CSS fallback for Javascript */
-		margin: 0 auto;
-		width: 100%;
-		}
-		.ui-smi {
-		align-items: center;
-		display: flex;
-		height: 20%;
-		justify-content: center;
-		}
-		.ui-smi:nth-child(1) {
-		color: #fc3232;
-		}
-		.ui-smi:nth-child(5) {
-		color: #face74;
-		}
+
 	/*Screen Orientation Notification */
+	.ui-screen-mode {
+
+		background		: var(--ui-card-bg1);
+		background		: #ff21104d;
+		border			: 2px solid var(--ui-color-red);
+		font-size		: 1.5rem;
+		height			: 100vh; /* vh fallback for Custom Properties */
+		height			: calc(var(--vh, 1vh) * 100); /* CSS fallback for Javascript */
+		margin			: 0 auto;
+		width			: 100%;
+
+		}
+
+		.ui-smi {
+
+		align-items		: center;
+		display			: flex;
+		height			: 20%;
+		justify-content	: center;
+
+		}
+
+		.ui-smi:nth-child(1) {
+
+		color			: #fc3232;
+
+		}
+
+		.ui-smi:nth-child(5) {
+
+		color			: #face74;
+
+		}
+
 }
+
 
 /* -------------------- -------------------- -------------------- -------------------- Screen Landscape */
 
 @media only screen and (min-width: 320px) and (orientation:landscape) {
 
 	.grid {
-		display: grid;
+
+		display			: grid;
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
 	}
 
 	.ui-screen-mode { 
-		display:none; 
+
+		display			: none; 
+
+	}
+
+	.nav-side-menu {
+
+		margin			: 0;
+
 	}
 
 	.ui-card-online {
-		padding: 0 1.5rem;
+
+		/* padding		: 0 1.5rem; */
+
 	}
 
 	.ui-card-small {
+
 	}
 
 	.ui-card-2-columns {
-		column-count: 1;
-		display: block;
-		margin: 0;
+
+		column-count	: 1;
+		display			: block;
+		margin			: 0;
+
 	}
 
 }
+
 
 /* -------------------- -------------------- -------------------- -------------------- Screen max 420px */
 
 @media only screen and (min-width: 420px) and (orientation:landscape) {
 
 	.ui-card-overview {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		grid-auto-rows: 74px;
-		grid-gap: 16px;
-		margin: 18px 0;
-	}
 
+		display			: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		grid-auto-rows	: 74px;
+		grid-gap		: 16px;
+		margin			: 18px 0;
+
+	}
 }
  
+
 /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
 
 @media only screen and (min-width: 46.875em) {
 
+
 	table {
-		border: 0;
-		overflow-x: auto;
+
+		border			: 0;
+		overflow-x		: auto;
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
-		width: 100%;
+		width			: 100%;
+
 	}
+
 	table tr {
-		padding: 0.5rem;
+
+		padding			: 0.5rem;
+
 	}
+
 	table tbody td.legacy_blockside {
-		display: flex;
-		justify-content: center;
+
+		display			: flex;
+		justify-content	: center;
+
 	}
+
 	.table-responsive {
-		display: block;
-		overflow-x: auto;
+
+		display			: block;
+		overflow-x		: auto;
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
-		width: 100%;
+		width			: 100%;
+
 	}
+
 	.table-responsive > .table-bordered {
-		border: 0;
+
+		border			: 0;
+
 	}
 }
+
 
 /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
 @media only screen and (min-width: 65.625em) {
 
 	.nav-mobile {
-		visibility: hidden;
+
+		visibility		: hidden;
+
 	}
+
 	.grid {
-		display: grid;
-		grid-template-columns: 235px calc(100% - 235px);
-		grid-template-rows: 50px 1fr 50px;
-		grid-template-areas: "side-nav header" "side-nav main" "side-nav footer";
-		/* min-height: 100vh; */
+
+		display					: grid;
+		grid-template-columns	: 235px calc(100% - 235px);
+		grid-template-rows		: 50px 1fr 50px;
+		grid-template-areas		: "side-nav header" "side-nav main" "side-nav footer";
+		/* min-height			: 100vh; */
+
 	}
+
 	.side-nav {
-		visibility: unset;
-		overflow: hidden;
-		position: relative;
-		transform: translateX(0);
+
+		visibility		: unset;
+		overflow		: hidden;
+		position		: relative;
+		transform		: translateX(0);
+
 	}
+
+	.nav-side-menu {
+
+		margin			: 2rem 0;
+
+	}
+
 	.ui-card-overview {
+
 		grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
+
 	}
+
 	.ui-card-2-columns {
-		column-count: 2;
+
+		column-count	: 2;
+
 	}
+
 	.ui-card-main {
-		column-count: 1;
+
+		column-count	: 1;
+
 	}
 	.ui-card-online {
-		flex-direction: row;
+
+		flex-direction	: row;
+
 	}
+
 	.ui-card-online-center {
-		align-items: flex-start;
+
+		align-items		: flex-start;
+
 	}
+
 	.ui-card-small {
-		padding: .5rem;
+
+		padding			: .5rem;
+
 	}
 }

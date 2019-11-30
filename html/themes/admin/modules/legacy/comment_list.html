@@ -3,7 +3,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-comments.svg" class="svg">
+        <img src="<{"icons/icon-comments.svg"|theme}>" class="svg">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_COMMENT_TOTAL}>: <strong><{$CommentTotal}></strong></h3>
@@ -13,7 +13,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-comment-active.svg" class="svg">
+        <img src="<{"icons/icon-comment-active.svg"|theme}>" class="svg">
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._CM_ACTIVE}>: <strong><{$activeCommentTotal}></strong></h3>
@@ -23,7 +23,7 @@
 
   <div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-inactive.svg" class="svg">
+          <img src="<{"icons/icon-comment-inactive.svg"|theme}>" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._CM_HIDDEN}>: <strong><{$hiddenCommentTotal}></strong></h3>
@@ -33,7 +33,7 @@
 
 	<div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-orange">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-pending.svg" class="svg">
+          <img src="<{"icons/icon-comment-pending.svg"|theme}>" class="svg">
       </div>
       <div class="ui-card-small-info">
         <h3 class="ui-card-small-title"><{$smarty.const._CM_PENDING}>: <strong><{$pendingCommentTotal}></strong></h3>
@@ -51,7 +51,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></h2>
@@ -201,13 +201,13 @@
       <td class="legacy_list_select"><input type="checkbox" name="delete[<{$obj->getShow('com_id')}>]" value="1" /></td>
       <td class="legacy_list_control">
         <a href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>" title="<{$smarty.const._VIEW}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-view.svg" class="svg" alt="<{$smarty.const._VIEW}>">
+          <img src="<{"icons/icon-comment-view.svg"|theme}>" class="svg" alt="<{$smarty.const._VIEW}>">
         </a>
         <a href="./index.php?action=CommentEdit&amp;com_id=<{$obj->getShow('com_id')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-edit.svg" class="svg" alt="<{$smarty.const._EDIT}>">
+          <img src="<{"icons/icon-comment-edit.svg"|theme}>" class="svg" alt="<{$smarty.const._EDIT}>">
         </a>
         <a href="./index.php?action=CommentDelete&amp;com_id=<{$obj->getShow('com_id')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-comment-delete.svg" class="svg" alt="<{$smarty.const._DELETE}>">
+          <img src="<{"icons/icon-comment-delete.svg"|theme}>" class="svg" alt="<{$smarty.const._DELETE}>">
         </a>
       </td>
     </tr>

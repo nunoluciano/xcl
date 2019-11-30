@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></h2>
@@ -131,7 +131,7 @@
       <td class="legacy_list_order"><{$obj->getShow('com_ip')}></td>
       <td class="legacy_list_select">
         <{if $obj->get('com_status') == 2 }>
-          <i title="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>"><img src="<{$xoops_url}>/themes/admin/images/icon-comment-active.svg" class="svg"></i>
+          <i title="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>"><img src="<{"icons/icon-comment-active.svg"|theme}>" class="svg"></i>
         <{/if}>
       </td>
     </tr>

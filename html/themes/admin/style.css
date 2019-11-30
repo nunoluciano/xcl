@@ -1,19 +1,19 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
 	URL : https://github.com/xoopscube/xcl/
 
-    -------------------- -------------------- -------------------- -------------------- IMPORT DEV */
+    -------------------- -------------------- -------------------- IMPORT */
 
-@import "./css/ui-root.css";	/*  Theme colorscheme 	 */
-@import "./css/ui-body.css";	/*  UI Body and legacy 	 */
-@import "./css/ui-layout.css";	/*  UI Layout Grid-Flex  */
-@import "./css/ui-card.css";	/*  Ui Card elements	 */
-@import "./css/ui-form.css";	/*  UI Form Elements 	 */
-@import "./css/ui-menunav.css";	/*  UI Menu Navigation	 */
-@import "./css/ui-module.css";	/*  UI Modules CSS  	 */
-@import "./css/ui-media.css";	/*  UI Media Queries	 */
-@import "./css/ui-svg.css";	    /*  UI SVG settings 	 */
+    @import "./css/ui-root.css";	    /*      UI Default Settings 	*/
+    @import "./css/ui-body.css";	    /*      Body and legacy        */
+    @import "./css/ui-layout.css";	    /*      Layout Grid-Flex      */
+    @import "./css/ui-card.css";	    /*      Card elements   	 */
+    @import "./css/ui-form.css";	    /*      Form Elements    	*/
+    @import "./css/ui-menunav.css";	    /*      Menu Navigation    */
+    @import "./css/ui-module.css";	    /*      Modules CSS       */
+    @import "./css/ui-media.css";	    /*      Media Queries    */
+    @import "./css/ui-svg.css";	        /*      SVG settings    */

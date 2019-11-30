@@ -1,7 +1,7 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
     URL : https://github.com/xoopscube/xcl/
@@ -70,7 +70,7 @@
   $(this).parent('.ui-checkbox').next('a').toggleClass('ui-update-change');
   
   // Switch only the svg background !
-  // $(this).closest(".ui-card-block").find('.ui-block-image').toggleClass('ui-update-change');
+  // $(this).closest(".ui-card-block").find('.ui-card-image').toggleClass('ui-update-change');
 
   // Switch color of elements: <a> (affects border bottom), svg icon + text ! 
   $(this).closest(".ui-card-block").find('.ui-block-type').toggleClass('ui-update-change');
@@ -80,7 +80,7 @@
   // Module State Switch
   $('input[name^=isactive]').on('change', function() {
     $(this).parent('.ui-checkbox').next('a').toggleClass('ui-update-change');
-    $(this).closest(".ui-card-block").find('.ui-module-image,.ui-module-state').toggleClass('ui-update-change');
+    $(this).closest(".ui-card-block").find('.ui-card-image,.ui-module-state').toggleClass('ui-update-change');
 
     // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
     });
@@ -90,7 +90,7 @@ const MAIN_LAYOUT   = $('.grid');
 const MAIN_SCROLL   = 'scrollbar';
 const MOBILE_ACTIVE = '.nav-mobile';
 const SIDE_NAV      = $('.side-nav');
-const SIDE_ACTIVE   = 'side-menu-active';
+const SIDE_ACTIVE   = 'side-nav-active';
 
 // Local Storage
 // Get the current timestamp and print it to the console

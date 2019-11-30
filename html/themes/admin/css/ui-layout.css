@@ -1,7 +1,7 @@
 /*
     Theme : XCL Flex Grid Admin
     Distribution : XCL 2.3 Alpha
-    Version : 0.0.2
+    Version : 0.0.3
     Author : Nuno Luciano aka Gigamaster
     Date : 2019-11-01
 	URL : https://github.com/xoopscube/xcl/
@@ -9,84 +9,199 @@
 	-------------------- -------------------- -------------------- -------------------- GRID FLEX */
 
 	.grid {
-		background: #1d252f;
-		box-shadow: 0px 2px 20px #131b27ad;
 
-	display: grid;
-    grid-template-columns: 235px calc(100% - 235px);
-    grid-template-rows: 50px 1fr 50px;
-    grid-template-areas:
-        "side-nav header"
-        "side-nav main"
-        "side-nav footer";
-		min-height: 100vh;
-		position: relative;
-		overflow-x: hidden;
-		overflow-y: hidden;
-		max-width: 1174px;
-		margin: 0 auto;
+		background				: var(--ui-grid-bg);
+		box-shadow				: var(--ui-border-none);
+
+		display					: grid;
+		grid-template-columns	: 235px calc(100% - 235px);
+		grid-template-rows		: 50px 1fr 80px;
+		grid-template-areas		:
+							  	  "side-nav header"
+							  	  "side-nav main"
+							  	  "side-nav footer";
+
+		min-height				: 100vh;
+		position				: relative;
+		overflow-x				: hidden;
+		overflow-y				: hidden;
+		max-width				: 90%;
+		margin					: 0 auto;
+
 	}
 
-		.row {
-			display: flex;
+		.ui-row-flex {
+
+			display				: flex;
+
 		}
-		.row-center {
-			align-items: center;
-			justify-content: center;
+
+		.ui-flex-center {
+
+			align-items			: center;
+			justify-content		: center;
+
 		}
 
 /* -------------------- -------------------- -------------------- -------------------- HEADER */
 
 	.header {
-		align-items: center;
-		display: flex;
-		grid-area: header;
-		justify-content: space-between;
+
+		align-items				: center;
+
+		background				: var(--ui-header-bg);
+
+		border-color			: var(--ui-border-none);
+		border-radius			: var(--ui-border-none);
+		border-style			: var(--ui-border-none);		
+		border-width			: var(--ui-border-none);
+
+		box-shadow				: var(--ui-border-none);
+
+		display					: flex;
+		grid-area				: header;
+		justify-content			: space-between;
+
 	}
 
-		.nav-mobile {
-			background: #37474f;
-			height: 30px;
-			left:0px; /*required for transition */
-			padding: 3px;
-			position: fixed;
-			width: 30px;
-			transition: all 0.6s ease-in-out;
-			z-index: 10;
-			top: 210px;
-			border-top-right-radius: 5px;
-			border-bottom-right-radius: 5px;
-			box-shadow: 1px 2px 3px #111;
-		}
-		.nav-mobile-close {
-			left: 235px;
-			top: 210px;
-		}
+	
+/* -------------------- -------------------- -------------------- -------------------- NAV MOBILE */
+
+	.nav-mobile {
+
+		background				: var(--ui-card-bg4);
+
+		border-color			: var(--ui-border-color);
+		border-radius			: var(--ui-border-none);
+		border-style			: var(--ui-border-style);		
+		border-width			: var(--ui-border-width);
+		box-shadow				: var(--ui-shadow-md);
+
+		height					: 30px;
+		left					: 0px; /*required for transition */
+		padding					: 3px;
+		position				: fixed;
+		width					: 30px;
+		transition				: all 0.6s ease-in-out;
+		z-index					: 10;
+		top						: 165px;
+		border-top-right-radius	: 5px;
+		border-bottom-right-radius: 5px;
+		/* box-shadow: var(--ui-shadow-sm); */
+
+	}
+
+	.nav-mobile-close {
+
+		left					: 235px;
+		top						: 165px;
+
+	}
+
+
+/* -------------------- -------------------- -------------------- -------------------- SIDE NAV */
+
+	.side-nav {
+
+		background				: var(--ui-aside-bg);
+		color					: var(--ui-text1);
+
+		grid-area				: side-nav;
+		height					: 100%;
+		left					: 0;
+		overflow-y				: auto;
+		position				: fixed;
+		transform				: translateX(-245px);
+		transition				: all 0.6s ease-in-out;
+		width					: 235px;
+		z-index					: 2;
+
+	}
+
+	.side-nav-active {
+
+		transform				: translateX(0);
+
+	}
+
+	.nav-logo-site {
+
+		justify-content 		: space-around;
+		display					: flex;
+		flex-wrap				: wrap;
+
+	}
+
+	.nav-logo-icon {
+
+		justify-content 		: space-around;
+		display					: flex;
+		flex-basis				: 100%;
+		padding					: var(--ui-space-md);
+
+	}
+
+	.nav-logo-link {
+
+		font-size				: 1.2rem;
+		letter-spacing			: 1.5px;
+
+	}
+
 
 /* -------------------- -------------------- -------------------- -------------------- Main */
 
 	.main {
-		grid-area: main;
-		padding: 1rem;
+
+		background				: var(--ui-main-bg);
+
+		border-color			: var(--ui-border-none);
+		border-radius			: var(--ui-border-none);
+		border-style			: var(--ui-border-none);		
+		border-width			: var(--ui-border-none);
+		box-shadow				: var(--ui-border-none);
+
+		grid-area				: main;
+		padding					: 2rem;
+
 	}
 
 /* -------------------- -------------------- -------------------- -------------------- Footer */
 
 	.footer {
-		align-items: center;
-		display: flex;
-		font-size: 0.8rem;
-		grid-area: footer;
-		justify-content: space-between;
-		padding: 1rem;
+
+		align-items				: center;
+		
+		background				: var(--ui-footer-bg );
+
+		border-color			: var(--ui-border-none);
+		border-radius			: var(--ui-border-none);
+		border-style			: var(--ui-border-none);		
+		border-width			: var(--ui-border-none);
+
+		box-shadow				: var(--ui-border-none);
+
+		display					: flex;
+		font-size				: 0.8rem;
+		grid-area				: footer;
+		justify-content			: space-between;
+		padding					: 2rem 0;
+
 	}
 		.footer-copy {
-			color: #1bbae1;
+
+			color				: #1bbae1;
+
 		}
 		.footer-icon {
-			color: #c52727;
+
+			color				: #c52727;
+
 		}
+
 		.footer-credits {
-			color: #1bbae1;
-			cursor: pointer;
+
+			color				: #1bbae1;
+			cursor				: pointer;
+
 		}

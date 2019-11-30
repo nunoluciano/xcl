@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_CONF}></h2>
@@ -32,7 +32,7 @@
     <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_CONF}></th>
   </tr>
   <tr>
-    <td rowspan="6" class="head ui-module-image">
+    <td rowspan="6" class="head ui-card-image">
       <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>">
       <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
     </td>
@@ -75,7 +75,7 @@
   </tr>
   <tr>
     <td class="foot" colspan="3">
-      <label><input type="checkbox" name="force" value="1" /><{$smarty.const._AD_LEGACY_LANG_FORCE_MODE}></label>
+        <input type="checkbox" name="force" value="1" /><{$smarty.const._AD_LEGACY_LANG_FORCE_MODE}>
     </td>
   </tr>
   <tr>

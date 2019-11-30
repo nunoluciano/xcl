@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h2>
@@ -39,7 +39,7 @@
   </tr> -->
 
   <tr>
-    <td class="head ui-module-image" width="240" colspan="2">
+    <td class="head ui-card-image" width="240" colspan="2">
       <div style="max-width: 80%;"><img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" title="<{$module->getShow('name')}>" /></div>
       <!-- <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div> -->
     </td>

@@ -6,7 +6,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></h2>
@@ -51,10 +51,10 @@
         <a href="./index.php?action=BannerList&amp;cid=<{$obj->getShow('cid')}>"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}>(<{$obj->mBannerCount|xoops_escape}>)</a><br />
         <a href="./index.php?action=BannerfinishList&amp;cid=<{$obj->getShow('cid')}>"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}>(<{$obj->mFinishBannerCount|xoops_escape}>)</a><br />
         <a href="./index.php?action=BannerclientEdit&amp;cid=<{$obj->getShow('cid')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+          <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
         </a>
         <a href="./index.php?action=BannerclientDelete&amp;cid=<{$obj->getShow('cid')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>

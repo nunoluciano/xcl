@@ -266,9 +266,9 @@ xoops_cp_header() ;
 // css display
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
-echo '<style scoped="scoped">';
+/* echo '<style scoped="scoped">';
 $tpl->display('db:altsys_inc_mytplsadmin.css') ;
-echo '</style>';
+echo '</style>'; */
 
 // javascript
 echo $javascript;

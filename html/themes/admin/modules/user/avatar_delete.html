@@ -7,14 +7,14 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_DELETE}> (<{$object->getShow('avatar_name')}>)</h2>
 
 <div class="tips"><{$smarty.const._AD_USER_TIPS_DELETE_AVATAR}></div>
 
-<div class="confirm"><i class="red"><img src="<{$xoops_url}>/themes/admin/images/icon-file-delete.svg" class="svg"></i> <{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{"icons/icon-file-delete.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=AvatarDelete">
   <{xoops_token form=$actionForm}>

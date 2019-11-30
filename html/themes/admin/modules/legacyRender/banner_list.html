@@ -5,7 +5,7 @@
 
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}>
@@ -68,10 +68,10 @@
       <td class="legacyRender_list_select"><{if $obj->getShow('htmlbanner') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
       <td class="legacyRender_list_control">
         <a href="./index.php?action=BannerEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+          <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
         </a>
         <a href="./index.php?action=BannerDelete&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._DELETE}>" class="red">
-          <img src="<{$xoops_url}>/themes/admin/images/icon-delete.svg" class="svg">
+          <img src="<{"icons/icon-delete.svg"|theme}>" class="svg">
         </a>
       </td>
     </tr>

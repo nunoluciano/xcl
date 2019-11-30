@@ -1,51 +1,4 @@
-<{* ---------- ---------- ---------- ---------- ---------- Blocks Overview *}>
-<div class="ui-card-overview">
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-blue">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-blocks.svg" class="svg">
-		</div>
-		<div class="ui-card-small-info">
-			<h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}>: <strong><{$BlockTotal}></strong></h3>
-			<p class="ui-card-small-subtitle"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></p>
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-green">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-block-active.svg" class="svg">
-		</div>
-		<div class="ui-card-small-info">
-			<h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>: <strong><{$ActiveBlockTotal}></strong></h3>
-			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>:
-				<strong><{$ActiveInstalledBlockTotal}></strong> &nbsp;|&nbsp;
-				<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <strong><{$ActiveUninstalledBlockTotal}></strong></p>
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-red">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-block-inactive.svg" class="svg">
-		</div>
-		<div class="ui-card-small-info">
-			<h3 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>: <strong><{$InactiveBlockTotal}></strong></h3>
-			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>: <strong><{$InactiveInstalledBlockTotal}></strong> &nbsp;|&nbsp;
-				<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <strong><{$InactiveUninstalledBlockTotal}></strong></p>
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-orange">
-        <img src="<{$xoops_url}>/themes/admin/images/icon-block-plus.svg" class="svg">
-		</div>
-		<div class="ui-card-small-info">
-        <p class="ui-card-small-subtitle"><a href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a></p>
-        <p class="ui-card-small-subtitle"><a href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></p>
-		</div>
-	</div>
-
-</div><{* Module Blocks Overview *}>
-
+<{ include file="./components/blocks-overview.html" }>
 
 <div class="adminnavi">
 	<a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
@@ -61,104 +14,6 @@
  <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}>
 </div>
 
-
-
-
-<form action="./index.php" method="get">
-  <input type="hidden" name="action" value="BlockList">
-
-<section class="search"> 
-
-    <article class="search-input">
-        <{$smarty.const._SEARCH}><br>
-        <input type="text" name="search" value="<{$filterForm->mKeyword}>">
-
-    </article>
-
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><br>
-        <select name="dirname">
-            <option value="0"><{$smarty.const._ALL}></option>
-            <{foreach from=$modules item=module}>
-              <{if is_object($filterForm->mModule)}>
-                <option value="<{$module->getVar('dirname')}>" <{if $filterForm->mModule->getVar('dirname') == $module->getVar('dirname')}>selected="selected"<{/if}> >
-                <{$module->getVar('name')}></option>
-              <{else}>
-                <option value="<{$module->getVar('dirname')}>">
-                <{$module->getVar('name')}></option>
-              <{/if}>
-            <{/foreach}>
-             <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
-          </select>
-    </article>
-
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}><br>
-        <select name="selmid">
-            <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
-            <option value="-1" <{if $selectedMid == -1}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_TOPPAGE}></option>
-            <{foreach from=$view_modules item=module}>
-                <option value="<{$module->getVar('mid')}>" <{if $module->getVar('mid') == $selectedMid}>selected="selected"<{/if}>>
-                <{$module->getVar('name')}></option>
-            <{/foreach}>
-          </select>
-    </article>
-
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}> <br>
-        <select name="selgid">
-          <option value="0"><{$smarty.const._ALL}></option>
-          <{foreach from=$groupArr item=groups}>
-              <option value="<{$groups->getVar('groupid')}>" <{if $groups->getVar('groupid') == $selectedGid }>selected="selected"<{/if}>>
-              <{$groups->getVar('name')}></option>
-          <{/foreach}>
-        </select>
-    </article>
-
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_SIDE}> <br>
-        <select name="option_field">
-        <{if $filterForm->mOptionField == "all"}>
-        <option value="all" selected="selected"><{$smarty.const._ALL}></option>
-        <{foreach from=$columnSideArr item=columnSide}>
-        <option value="<{$columnSide->getShow('id')}>">	<{$columnSide->getShow('name')}></option>
-        <{/foreach}>
-        <{else}>
-        <option value="all"><{$smarty.const._ALL}></option>
-        <{foreach from=$columnSideArr item=columnSide}>
-        <option value="<{$columnSide->getShow('id')}>" <{if $filterForm->mOptionField == $columnSide->getShow('id')}>selected="selected"<{/if}> >
-        <{$columnSide->getShow('name')}></option>
-        <{/foreach}>
-        <{/if}>
-        </select>
-    </article>
-
-    <article>
-        <{$smarty.const._VIEW}> <br>
-        <select name="perpage">
-          <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-          <{foreach item=page from=$pageArr}>
-            <{if $pageNavi->mPerpage == $page && $page != 0}>
-              <option value="<{$page}>" selected="selected"><{$page}></option>
-            <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-              <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-            <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-              <option value="<{$page}>"><{$smarty.const._ALL}></option>
-            <{else}>
-              <option value="<{$page}>"><{$page}></option>
-            <{/if}>
-          <{/foreach}>
-        </select>
-    </article>
-
-    <article class="search-button">
-        <input class="formButton" type="submit" value="<{$smarty.const._SEARCH}>" />
-    </article>
-
-
-</section>
-</form>
-
 <{if $actionForm->hasError()}>
 <div class="error">
   <ul>
@@ -169,7 +24,10 @@
 </div>
 <{/if}>
 
+</div><{*  /ui-card-main *}>
 
+
+<{ include file="./components/blocks-search.html" }>
 
 <section class="filter">
 <{$smarty.const._AD_LEGACY_LANG_BID}>
@@ -207,7 +65,7 @@
   <{$smarty.const._AD_LEGACY_LANG_CONTROL}>
 </section>
 
-</div><{* UI-card-main *}>
+
 
 
 <form name="blockform" method="post" action="./index.php?action=BlockList">
@@ -236,29 +94,26 @@
               <{elseif $obj->get('c_type') == "T"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITHOUT_SMILIES}>
               <{/if}>
             <{/if}>">
-          <img class="svg" src="<{$xoops_url}>/themes/admin/images/ico-info.svg" data-width="24px" data-height="24px">
+          <img class="svg" src="<{"icons/icon-info.svg"|theme}>" data-width="24px" data-height="24px">
         </a>
       <{/strip}>
       </div>
       
 			<div class="ui-card-settings">
 
-        <label class="ui-checkbox">
           <input type="checkbox" name="uninstall[<{$obj->get('bid')}>]" value="1">
-          <span class="ui-checkbox-custom"></span>
-        </label>
 
         <{if $obj->get('block_type') == 'C'}>
           <a class="ui-block-edit" href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+            <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
           </a>
         <{else}>
           <a class="ui-block-edit" href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
-            <img src="<{$xoops_url}>/themes/admin/images/icon-edit.svg" class="svg">
+            <img src="<{"icons/icon-edit.svg"|theme}>" class="svg">
           </a>
         <{/if}>
         <a href="./index.php?action=BlockUninstall&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>">
-               <img src="<{$xoops_url}>/themes/admin/images/icon-block-uninstall.svg" class="svg">
+               <img src="<{"icons/icon-block-uninstall.svg"|theme}>" class="svg">
         </a>
 
       </div><{* /ui-card-settings *}>
@@ -268,12 +123,12 @@
 
     <div class="ui-card-content">
 
-      <div class="ui-block-image">  
+      <div class="ui-card-image">  
       <{* Block [c_type] *}>
 
       <{if $obj->mModule}>
         <a class="ui-block-type" href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-module">
+        <svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-module">
           <g id="ui-block-module">
           <path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
           <text class="block-name" x="120px" y="50px" fill="currentColor">
@@ -285,7 +140,7 @@
       <{else}>
         <a class="ui-block-type" href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
         <{if $obj->get('c_type') == "H" }>   
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-html">
+          <svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-html">
             <g id="ui-block-html">
             <path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
             <text class="block-name" x="120px" y="50px" fill="currentColor">
@@ -294,7 +149,7 @@
             </g>
           </svg>
         <{elseif $obj->get('c_type') == "P"}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-php">
+          <svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-php">
             <g id="ui-block-php">
             <path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
             <text class="block-name" x="120px" y="50px" fill="currentColor">
@@ -303,7 +158,7 @@
             </g>
           </svg>
         <{elseif $obj->get('c_type') == "S"}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-smilies">
+          <svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-smilies">
             <g id="ui-block-smilies">
             <path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
             <text class="block-name" x="120px" y="50px" fill="currentColor">
@@ -312,7 +167,7 @@
             </g>
           </svg>
         <{elseif $obj->get('c_type') == "T"}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-no-smilies">
+          <svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-no-smilies">
             <g id="ui-block-no-smilies">
             <path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
             <text class="block-name" x="120px" y="50px" fill="currentColor">
@@ -328,11 +183,11 @@
     <div class="ui-block-info">
 
       <div class="ui-block-name">
-        
-      <!-- <label for="weight[<{$obj->get('bid')}>]"><{$smarty.const._AD_LEGACY_LANG_WEIGHT}>[<{$obj->get('bid')}>]</label> -->
-      <input type="text" size="1" maxlength="4" name="weight[<{$obj->get('bid')}>]" value="<{$obj->get('weight','e')}>" title="<{$smarty.const._AD_LEGACY_LANG_WEIGHT}>">
-     
-      <input type="text" size="20" maxlength="255" name="title[<{$obj->get('bid')}>]" value="<{$obj->get('title')}>" title="<{$smarty.const._AD_LEGACY_LANG_TITLE}>">
+  
+        <input type="text" size="1" maxlength="4" name="weight[<{$obj->get('bid')}>]" value="<{$obj->get('weight','e')}>" title="<{$smarty.const._AD_LEGACY_LANG_WEIGHT}>">
+      
+        <input type="text" size="20" maxlength="255" name="title[<{$obj->get('bid')}>]" value="<{$obj->get('title')}>" title="<{$smarty.const._AD_LEGACY_LANG_TITLE}>">
+
       </div>
   
 
@@ -387,7 +242,7 @@
           </div>
 
           <div class="ui-block-date">
-              <img class="svg" src="<{$xoops_url}>/themes/admin/images/icon-date-time.svg">
+              <img class="svg" src="<{"icons/icon-date-time.svg"|theme}>">
               <{$obj->getShow('last_modified')|xoops_formattimestamp:l}>
             </div>
 
