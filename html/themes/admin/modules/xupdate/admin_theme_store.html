@@ -3,7 +3,7 @@
 
 	
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 	<h3>Admin-Template-xupgrade</h3>
@@ -87,14 +87,17 @@
 	      </th>
 	    -->
 	    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-	      <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
+		  <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br>
+
+				<input id="rapidInstallCheckboxAll" type="checkbox">
+		</th>
 	  </tr>
 	  <{foreach item=module from=$moduleObjects}>
 	    <tr class="<{cycle values='odd,even'}>">
 	      <!--<td class="legacy_list_id"><{$module->getShow('id')}></td>-->
 	      <{if !$sid}><td class="legacy_list_id"><a href="index.php?action=ThemeStore&amp;sid=<{$module->getShow('sid')}>"><{$module->getShow('sid')}></a></td><{/if}>
 	      <td>
-	      <div class="ui-module-image">
+	      <div class="ui-card-image">
 	          <input type="hidden" size="24" name="dirname[<{$module->get('id')}>]" value="<{$module->get('dirname')}>" />
 	         <{$module->getShow('dirname')}>
 	      </div>
@@ -151,12 +154,12 @@
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->getVar('isactive') > 0}>
 			  <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
-				<img src="<{$xoops_url}>/themes/admin/images/icon-update.svg" class="svg">
+				<img src="<{"icons/icon-update.svg"|theme}>" class="svg">
 			  </a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
 	        <{else}>
 			  <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-				<img src="<{$xoops_url}>/themes/admin/images/icon-package-update.svg" class="svg">
+				<img src="<{"icons/icon-package-update.svg"|theme}>" class="svg">
 			  </a>
 	          <a href="<{$module->get_InstallUrl()}>"></a>
 	        <{/if}>
@@ -165,11 +168,15 @@
 	        <td class="legacy_list_select">
 	            <{if $xupdate_writable.result==true}>
 	            <{if $module->mModule && $module->mModule->getVar('mid') > 0 }>
-	            <{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
-	            <input type="checkbox" class="rapidInstallCheckbox" />
+				<{if $module->mModule->getVar('isactive') && $module->isDirnameError() == false}>
+
+					<input type="checkbox" class="rapidInstallCheckbox">
+
 	            <{/if}>
-	            <{else}>
-	            <input type="checkbox" class="rapidInstallCheckbox" />
+				<{else}>
+
+					<input type="checkbox" class="rapidInstallCheckbox">
+
 	            <{/if}>
 	            <{/if}>
 	        </td>
