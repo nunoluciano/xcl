@@ -1,6 +1,6 @@
 
 <div class="ui-card-main">
-<{$smarty.template}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <h2><{$smarty.const._MD_USERSEARCH_1}></h2>
@@ -24,7 +24,7 @@
 <{if $listdata!=false}>
 <form method="post" action="index.php">
 <{foreach item=user from=$listdata.udata}>
-<input type="checkbox" name="adduid[]" value="<{$user->get('uid')}>" />
+    <input type="checkbox" name="adduid[]" value="<{$user->get('uid')}>">
 <a href="<{$xoops_url}>/modules/message/index.php?action=new&to_userid=<{$user->get('uid')}>"><{$user->get('uname')}></a>
 <br />
 <{/foreach}>
