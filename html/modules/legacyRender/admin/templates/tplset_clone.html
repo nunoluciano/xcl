@@ -4,6 +4,12 @@
   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE}></span>
 </div>
 
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE}></h3>
 
 <{if $actionForm->hasError()}>
@@ -26,7 +32,7 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
       <td class="<{cycle values="odd,even"}>">
-        <b><{$object->getShow('tplset_name')}></b> &raquo; &raquo; 
+        <b><{$object->getShow('tplset_name')}></b> &raquo; &raquo;
        <{xoops_input type=text name=tplset_name value=$actionForm->get('tplset_name') size=30 maxlength=50}>
       </td>
     </tr>
@@ -50,3 +56,5 @@
     </tr>
   </table>
 </form>
+
+</div>

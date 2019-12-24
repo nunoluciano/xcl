@@ -1,13 +1,19 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="<{$xoops_url}>/admin.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._CPHOME}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
 </div>
+
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 <div class="tips">
   <{if $title}>
     <h4 class="admintitle"><b><{$title}></b></h4>
   <{/if}>
-  
+
   <{if is_array($messages)}>
     <{foreach item=msg from=$messages}>
       <{$msg}><br/>
@@ -15,5 +21,9 @@
   <{else}>
     <{$messages}>
   <{/if}>
+
+</div>
+
+
 
 </div>

@@ -5,7 +5,7 @@
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
 </div>
 
-<div class="ui-card-main">
+<div class="ui-card-full">
 
 <h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h2>
 
@@ -24,14 +24,19 @@
 <form method="post">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=confirm value=1}>
-  <{xoops_input type=hidden name=sid value=$sid}>
+	<{xoops_input type=hidden name=sid value=$sid}>
+
 <table class="outer">
-  <tr>
+
+<thead>
+	<tr>
     <th>id</th>
     <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></th>
     <th>TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></th>
-  </tr>
+	</tr>
+</thead>
 
+<tbody>
 <{foreach item=id from=$ids}>
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_id"><{$id}></td>
@@ -48,13 +53,19 @@
     </td>
   </tr>
 <{/foreach}>
+</tbody>
+
+<tfoot>
   <tr>
     <td class="foot" colspan="3">
       <input class="formButton" type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_BUTTON_UPDATE}>"/>
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
-  </tr>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
 
-</div><!-- ui-card-main -->
+</div><{* ui-card-full *}>

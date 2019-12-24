@@ -1,3 +1,8 @@
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <h1><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></h1>
 <p>
 <{$smarty.const._AD_LEGACYRENDER_DESC_HTACCESS}>
@@ -16,4 +21,7 @@ RewriteRule ^(\w+)/(\w+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name
 RewriteRule ^(\w+)/(\w+)/(\d+)/(.+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$4&<{$data_id}>=$3 [L,QSA]
 RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]
 </textarea>
+</div>
+
+
 </div>

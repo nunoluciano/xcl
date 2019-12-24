@@ -1,12 +1,18 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
   <{if $actionForm->get('imgcat_id')}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_EDIT}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_EDIT}></span>
   <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_NEW}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_NEW}></span>
   <{/if}>
 </div>
+
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 <{if $actionForm->get('imgcat_id')}>
   <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_EDIT}></h3>
@@ -27,8 +33,11 @@
 
 <form action="index.php?action=ImagecategoryEdit" method="post">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=imgcat_id value=$actionForm->get('imgcat_id')}>
+	<{xoops_input type=hidden name=imgcat_id value=$actionForm->get('imgcat_id')}>
+
   <table class="outer">
+
+		<thead>
     <tr>
       <th colspan="2">
         <{if $actionForm->get('imgcat_id')}>
@@ -36,8 +45,12 @@
         <{else}>
           <{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_NEW}>
         <{/if}>
-      </th>
-    <tr>
+			</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		<tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}></td>
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=text name=imgcat_name value=$actionForm->get('imgcat_name') size=40 maxlength=100}>
@@ -80,7 +93,9 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></td>
       <td class="<{cycle values="odd,even"}>">
+
         <{xoops_input type=checkbox name=imgcat_display value=1 default=$actionForm->get('imgcat_display')}>
+
       </td>
     </tr>
     <tr>
@@ -97,12 +112,20 @@
           <label><{xoops_input type=radio name=imgcat_storetype value="db" default=$actionForm->get('imgcat_storetype')}>DB</label>
         </td>
       </tr>
-    <{/if}>
+		<{/if}>
+	</tbody>
+
+	<tfoot>
     <tr>
       <td colspan="2" class="foot">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
-    </tr>
+		</tr>
+	</tfoot>
+
   </table>
+
 </form>
+
+</div>

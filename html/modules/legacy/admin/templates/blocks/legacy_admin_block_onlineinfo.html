@@ -1,15 +1,60 @@
-<div class="tips">
-<{$smarty.const._MB_LEGACY_ONLINEINFO}>
-</div>
-<div id="t<{$blockid}>" class="head">
-<a href="javascript:void(0)" onclick="ccToggle('<{$blockid}>')"><img src="<{"design/navy.gif"|theme}>" alt="" id="i<{$blockid}>" /></a>
-</div>
-<div id="c<{$blockid}>" class="submenu">
-<{$contents.online_total}><br /><br />
-<{$smarty.const._MB_USER_MEMBERS}>: <{$contents.online_members}><br />
-<{$smarty.const._MB_USER_GUESTS}>: <{$contents.online_guests}><br /><br />
-<{foreach item=member from=$contents.online_member_list}>
-<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>"><{$member.uname}></a>
-<{/foreach}>
-<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
-</div>
+<{* ---------- ---------- ---------- ---------- ---------- Admin Block Online Info *}>
+<div class="ui-block-online">
+
+	<div class="ui-block-online-content">
+
+		<{* ---------- ---------- ---------- ---------- ---------- Online Welcome *}>
+
+		<div class="ui-block-online-welcome">
+			<div class="ui-block-online-title">Welcome, <strong><{$uid|xoops_user:"name"}></strong></div>
+			<div class="ui-block-online-text">
+				Gambatte kudasai. Have fun today!<br>
+				<{$contents.online_total}><br>
+				<{foreach item=member from=$contents.online_member_list}>
+				<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>" target="new"><{$member.uname}></a>
+				<{/foreach}>
+			</div>
+		</div>
+
+		<{* ---------- ---------- ---------- ---------- ---------- Online Stats *}>
+
+		<div class="ui-block-online-stats">
+
+			<{* ---------- ---------- ---------- ---------- ---------- Online Members *}>
+
+			<div class="ui-block-online-stats-info">
+				<div class="ui-block-online-stats-total"><{$contents.online_members}></div>
+				<div class="ui-block-online-stats-text">
+					<img src="<{"icons/icon-user-time.svg"|theme}>" class="svg">
+					<span class="font-light"><{$smarty.const._MB_USER_MEMBERS}></span>
+				</div>
+			</div>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Online Guests *}>
+
+			<div class="ui-block-online-stats-info">
+				<div class="ui-block-online-stats-total"><{$contents.online_guests}></div>
+				<div class="ui-block-online-stats-text">
+					<img src="<{"icons/icon-user-guest-time.svg"|theme}>" class="svg">
+					<span class="font-light"><{$smarty.const._MB_USER_GUESTS}></span>
+				</div>
+			</div>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Online Info *}>
+			<{* TODO : Ajax popup modal *}>
+
+			<div class="ui-block-online-stats-info">
+				<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);">
+				<div class="ui-block-online-stats-title">
+					<{$smarty.const._MB_LEGACY_ONLINEINFO}>?
+				</div>
+				<div class="ui-block-online-stats-text">
+					<img src="<{"icons/icon-user-online.svg"|theme}>" class="svg"> <{$smarty.const._MB_USER_MORE}></div>
+				</a>
+			</div>
+
+		</div><{* ui-block-online-stats *}>
+
+	</div><{* ui-block-online-content- *}>
+
+</div><{* ui-block-online *}>

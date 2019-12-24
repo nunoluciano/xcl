@@ -1,11 +1,18 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
   &raquo;&raquo; <{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPDATECONF}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPDATECONF}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPDATECONF}></h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPDATECONF}></h2>
 
 <div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMGCAT}></div>
 
@@ -21,8 +28,11 @@
 
 <form method="post"  action="./index.php?action=ImagecategoryList">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=confirm value=1}>
+	<{xoops_input type=hidden name=confirm value=1}>
+
 <table class="outer">
+
+	<thead>
   <tr>
     <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}></th>
@@ -32,8 +42,10 @@
     <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_WEIGHT}></th>
     <th><{$smarty.const._DELETE}></th>
-  </tr>
+	</tr>
+</thead>
 
+<tbody>
 <{foreach item=icid from=$icids}>
   <tr class="even">
     <td class="legacy_list_id"><{$icid}></td>
@@ -81,9 +93,9 @@
           <{$smarty.const._YES}>
         <{else}>
           <{$smarty.const._NO}>
-        <{/if}>) 
+        <{/if}>)
         &raquo;
-        
+
         <{if $actionForm->get('display',$icid) == 1}>
         <b class="legacy_module_error">
           <{$smarty.const._YES}>
@@ -107,7 +119,7 @@
       <input type="hidden" name="weight[<{$icid}>]" value="<{$actionForm->get('weight',$icid)|xoops_escape:edit}>" />
     </td>
     <td class="legacy_list_select">
-       
+
         <{if $actionForm->get('delete',$icid) == 1}>
         <b class="legacy_module_error">
           <{$smarty.const._YES}>
@@ -115,7 +127,7 @@
         <b class="legacy_module_warning">
           <{$smarty.const._NO}>
         <{/if}>
-	</b>
+				</b>
       <{if $actionForm->get('delete',$icid)}>
         <input type="hidden" name="delete[<{$icid}>]" value="1" />
       <{else}>
@@ -124,11 +136,19 @@
     </td>
   </tr>
 <{/foreach}>
+</tbody>
+
+<tfoot>
   <tr>
     <td class="foot" colspan="8">
       <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
-  </tr>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
+
+</div>

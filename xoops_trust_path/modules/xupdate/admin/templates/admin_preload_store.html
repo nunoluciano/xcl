@@ -3,7 +3,7 @@
 	<{include file="admin_menunavi.html"}>
 	<{include file="admin_navi.html"}>
 
-	<div class="ui-card-main">
+	<div class="ui-card-full">
 
 	<h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h2>
 
@@ -15,9 +15,11 @@
 	<{/if}>
 
 	<{if $mod_config.xelfinder_dirname}>
-	<ul class="toptab">
-	  <li class="addModule"><a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;" href="#"><{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}><{$smarty.const._MI_XUPDATE_MANAGE}></a></li>
-	</ul>
+	<div class="toptab">
+		<a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;" href="#" class="ui-btn">
+			<{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}><{$smarty.const._MI_XUPDATE_MANAGE}>
+		</a>
+	</div>
 	<{/if}>
 
 	<{if $actionForm->hasError()}>
@@ -31,11 +33,11 @@
 	<{/if}>
 
 	<div class="filtermenu">
-	<ul class="submenunavi">
-		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>"><{$smarty.const._MI_XUPDATE_ALL}></a></li>
-		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=installed"><{$smarty.const._MI_XUPDATE_INSTALLED}></a></li>
-		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=updated"><{$smarty.const._MI_XUPDATE_UPDATED}></a></li>
-		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=future"><{$smarty.const._MI_XUPDATE_FUTURE}></a></li>
+	<ul class="adminavi-sub">
+		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>" class="adminavi-item"><{$smarty.const._MI_XUPDATE_ALL}></a></li>
+		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=installed" class="adminavi-item"><{$smarty.const._MI_XUPDATE_INSTALLED}></a></li>
+		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=updated" class="adminavi-item"><{$smarty.const._MI_XUPDATE_UPDATED}></a></li>
+		<li><a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=future" class="adminavi-item"><{$smarty.const._MI_XUPDATE_FUTURE}></a></li>
 	</ul>
 	</div>
 
@@ -48,13 +50,9 @@
 	<{xoops_input type=hidden name=do_confirm value=1}>
 
 	<table class="outer">
+
+		<thead>
 	  <tr>
-	    <!--
-	    <th>id
-	      <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-	      <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_ID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
-	      </th>
-	    -->
 	    <{if !$sid}>
 	    <th><{$smarty.const._MD_XUPDATE_LANG_SID}>
 	      <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -86,7 +84,10 @@
 	      </th>
 	    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
 	    <th><{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}><br><input id="rapidInstallCheckboxAll" type="checkbox" /></th>
-	  </tr>
+		</tr>
+	</thead>
+
+	<tbody>
 	  <{foreach item=module from=$moduleObjects}>
 	    <tr class="<{cycle values='odd,even'}>">
 	      <!--<td class="legacy_list_id"><{$module->getShow('id')}></td>-->
@@ -155,10 +156,14 @@
 	      <td class="legacy_list_control">
 	      <{if $xupdate_writable.result==true}>
 	        <{if $module->getVar('isactive') > 0}>
-	          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"><img src="<{"icons/update.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" /></a>
+						<a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+							<img src="<{"icons/icon-package-update.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+						</a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
 	        <{else}>
-	          <a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>"><img src="<{"icons/module_add.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>" /></a>
+						<a href="<{$module->get_StoreUrl()}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+							<img src="<{"icons/icon-package.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+						</a>
 	          <a href="<{$module->get_InstallUrl()}>"></a>
 	        <{/if}>
 	     <{/if}>
@@ -175,9 +180,12 @@
 	     <{/if}>
 	      </td>
 	    </tr>
-	  <{/foreach}>
+		<{/foreach}>
+	</tbody>
+
+	<tfoot class="foot" >
 	  <tr>
-	    <td class="foot" colspan="<{if $sid}>4<{else}>5<{/if}>">
+	    <tdcolspan="<{if $sid}>4<{else}>5<{/if}>">
 	      <{xoops_token form=$actionForm}>
 	      <input class="formButton" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><{$smarty.const._EDIT}>" />
 	      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
@@ -187,8 +195,11 @@
 	      <input class="formButton" type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"  id="rapidModuleInstallButton" />
 	    <{/if}>
 	    </td>
-	  </tr>
+		</tr>
+	</tfoot>
+
 	</table>
+
 	</form>
 	<{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
 	<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
@@ -196,6 +207,6 @@
 
 	<{include file="admin_tagcloud.html"}>
 
-</div><!-- ui-card-main -->
+</div><{* ui-card-full *}>
 
 </div>

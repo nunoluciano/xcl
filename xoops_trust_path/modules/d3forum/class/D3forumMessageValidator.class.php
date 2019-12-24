@@ -8,7 +8,7 @@ function get_errors4html()
 {
 	$ret = '' ;
 	foreach( $this->errors as $error ) {
-		$ret .= '<span style="color:#f00;">'.htmlspecialchars($error).'</span><br />' ;
+		$ret .= '<span style="color:#f00;">'.htmlspecialchars($error).'</span><br>' ;
 	}
 
 	return $ret ;

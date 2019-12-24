@@ -4,9 +4,15 @@
   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_DELETE_RANK}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_DELETE_RANK}> (<{$object->getShow('rank_title')}>)</h3>
 
-<div class="confirm"><{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE_RANK}></div>
+
+<div class="ui-card-full">
+    <div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_DELETE_RANK}> (<{$object->getShow('rank_title')}>)</h2>
+
+<div class="confirm"><i class="red">  <img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i>  <{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE_RANK}></div>
 
 <form method="post" action="./index.php?action=RanksDelete">
   <{xoops_token form=$actionForm}>
@@ -43,9 +49,11 @@
     </tr>
     <tr>
       <td class="foot" colspan="2">
-        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
     </tr>
 </table>
 </form>
+
+</div>

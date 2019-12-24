@@ -1,18 +1,24 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
   <{if $actionForm->get('content')}>
     <{if $object->get('visible') == 1 }>
-      &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></span>
+      &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></span>
     <{else}>
-      &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></span>
+      &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></span>
     <{/if}>
   <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></span>
   <{/if}>
 </div>
 
-<h3 class="admintitle">
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle">
   <{if $actionForm->get('content')}>
     <{if $object->get('visible') == 1 }>
       <{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}>
@@ -22,7 +28,7 @@
   <{else}>
     <{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}>
   <{/if}>
-</h3>
+</h2>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -36,8 +42,11 @@
 
 <form action="index.php?action=CustomBlockEdit" method="post">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
+	<{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
+
   <table class="outer">
+
+		<thead>
     <tr>
       <th colspan="2">
         <{if $actionForm->get('content')}>
@@ -50,7 +59,10 @@
           <{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}>
         <{/if}>
       </th>
-    </tr>
+		</tr>
+	</thead>
+
+	<tbody>
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACY_LANG_TITLE}></td>
       <td class="<{cycle values="odd,even"}>">
@@ -125,12 +137,20 @@ skin=silver value=$actionForm->get('content') *}>
           <{/if}>
         </select>
       </td>
-    </tr>
+		</tr>
+	</tbody>
+
+	<tfoot>x
     <tr>
       <td colspan="2" class="foot">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
-    </tr>
-  </table>
+		</tr>
+	</tbody>
+
+	</table>
+
 </form>
+
+</div>

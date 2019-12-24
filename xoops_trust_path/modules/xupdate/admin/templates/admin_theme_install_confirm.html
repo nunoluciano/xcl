@@ -4,7 +4,7 @@
 <{include file="admin_menunavi.html"}>
 <{include file="admin_navi.html"}>
 
-<div class="ui-card-main">
+<div class="ui-card-full">
 
 <h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
 
@@ -32,11 +32,17 @@
   <{xoops_input type=hidden name=addon_url value=$addon_url }>
   <{xoops_input type=hidden name=unzipdirlevel value=$unzipdirlevel }>
   <{xoops_input type=hidden name=target_key value=$target_key }>
-  <{xoops_input type=hidden name=target_type value=$target_type }>
+	<{xoops_input type=hidden name=target_type value=$target_type }>
+
 <table class="outer">
-  <tr>
+
+	<thead>
+	<tr>
     <th colspan="2"><{$target_key|xoops_escape:show}></th>
-  </tr>
+	</tr>
+</thead>
+
+<tbody>
   <tr class="<{cycle values='odd,even'}>">
       <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></td>
       <td class="legacy_list_select">
@@ -65,14 +71,20 @@
         <{$description}>
     </td>
   </tr>
-  <{include file='include_options_form.html'}>
-  <tr>
-    <td class="foot" colspan="2">
+	<{include file='include_options_form.html'}>
+</tbody>
+
+<tfoot>
+  <tr class="foot" >
+    <tdcolspan="2">
       <input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>" />
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
-  </tr>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
 
 <div id="xupdate_boxes">
@@ -85,7 +97,7 @@
     <div id="xupdate_mask"></div>
 </div>
 
-</div><!-- ui-card-main -->
+</div><!-- ui-card-full -->
 
 </div><!-- id="contentBody" -->
 </div><!-- id="xupdate" -->

@@ -1,10 +1,15 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></h3>
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></h2>
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_LOG}></h4>
 
@@ -22,7 +27,14 @@
 </ul>
 </div>
 
-<div class="tips">
-<div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
-<div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
+<div class="legacy_module_return">
+	<a href="index.php?action=ModuleList" class="ui-btn">
+		<img src="<{"icons/icon-package-open.svg"|theme}>" class="svg">	<{$smarty.const._AD_LEGACY_LANG_MODLIST}>
+	</a>
+
+	<a href="index.php?action=InstallList" class="ui-btn">
+		<img src="<{"icons/icon-package.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>
+	</a>
+</div>
+
 </div>

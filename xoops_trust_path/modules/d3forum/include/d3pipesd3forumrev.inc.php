@@ -96,15 +96,15 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 
 		// options[1]  (cat_ids)
 		$options[1] = preg_replace( '/[^0-9,]/' , '' , @$options[1] ) ;
-		$ret_1 = _MD_D3PIPES_N4J_CID.'<input type="text" name="joint_options['.$index.'][1]" value="'.$options[1].'" size="8" />' ;
+		$ret_1 = _MD_D3PIPES_N4J_CID.'<input type="text" name="joint_options['.$index.'][1]" value="'.$options[1].'" size="8">' ;
 
 		// options[2]  (max_entries)
 		$options[2] = empty( $options[2] ) ? 10 : intval( $options[2] ) ;
-		$ret_2 = _MD_D3PIPES_N4J_MAXENTRIES.'<input type="text" name="joint_options['.$index.'][2]" value="'.$options[2].'" size="2" style="text-align:right;" />' ;
+		$ret_2 = _MD_D3PIPES_N4J_MAXENTRIES.'<input type="text" name="joint_options['.$index.'][2]" value="'.$options[2].'" size="2" style="text-align:right;">' ;
 
 		// options[3]  (forum_ids)
 		$options[3] = preg_replace( '/[^0-9,]/' , '' , @$options[3] ) ;
-		$ret_3 = 'forum_id<input type="text" name="joint_options['.$index.'][3]" value="'.$options[3].'" size="8" />' ;
+		$ret_3 = 'forum_id<input type="text" name="joint_options['.$index.'][3]" value="'.$options[3].'" size="8">' ;
 
         	// options[4]  (show topics or posts)
         	$options[4] = empty($options[4]) ? 0 : intval($options[4]);
@@ -117,11 +117,11 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 		}
 
         	$ret_4 ='Topics/Posts:<input type="radio" name="joint_options['.$index.'][4]" value="0" '
-        		.$topics_checked.' /><label for="o40">Topics</label>
+        		.$topics_checked.'><label for="o40">Topics</label>
         		<input type="radio" name="joint_options['.$index.'][4]" value="1" '
-        		.$posts_checked.' /><label for="o41">Posts</label>';
+        		.$posts_checked.'><label for="o41">Posts</label>';
 
-		return '<input type="hidden" name="joint_option['.$index.']" id="joint_option_'.$index.'" value="" />'.$ret_0.'<br />'.$ret_1.' '.$ret_2.' '.$ret_3.'<br />'.$ret_4 ;
+		return '<input type="hidden" name="joint_option['.$index.']" id="joint_option_'.$index.'" value="">'.$ret_0.'<br>'.$ret_1.' '.$ret_2.' '.$ret_3.'<br>'.$ret_4 ;
 
 	}
 

@@ -1,6 +1,11 @@
 <{include file="legacy_admin_actionsearch_form.html"}>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_RESULT}></h4>
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_RESULT}></h3>
 
 <ul class="legacy_actionsearch_records">
   <{foreach item=record from=$records}>
@@ -11,3 +16,5 @@
     </li>
   <{/foreach}>
 </ul>
+
+</div>

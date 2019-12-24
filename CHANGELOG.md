@@ -5,6 +5,62 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] 2019-12-19
+
+### Added
+
+- Admin Theme version 0.0.4
+- Buttons ( custom properties)
+- Cards (custom properties)
+- Components (Admin Templates: sections filter, sort)
+- HTML5 Web Storage ( local storage )
+- @media (prefers-color-scheme: dark)
+- @media (prefers-reduced-motion: reduce)
+- Select color-mode Light or Dark 
+- Script fallback to local
+- UI-root components custom properties
+
+### Changed
+
+- Accessible Rich Internet Applications (ARIA)
+- Cards (clean-up components html and css)
+- Components (Admin Templates)
+- Custom Properties ( alphabetical order )
+- HTML5 Layout ( simple and scalable )
+- Legacy Render System ( header script )
+- Media Queries ( @media rule) 
+- SVG Icons ( simple vertical-align & scalable )
+- Tables structure ( thead, tbody, tfoot ) 
+- UI root consistency : 
+  replaced reference of fabric industry (xs, md, xl...)
+- with #xoopscube order/weight numeric values
+
+### Fixed
+
+- Altsys ( UI-Components )
+- D3 Modules Templates
+- .editorconfig [**.css] 
+  ( indent_style = tab
+  indent_size = 2 )
+- Javascript ( jQuery and Vanilla )
+- Grid and Flex (simplified and scalable)
+- X-Update Store Templates
+- X-Update Store SVG Icons
+
+### Removed
+
+- Altsys Core Version check
+- Deprecated Fck-htmlarea
+- [WIP] Admin-UI ( test files )
+
+### Update
+
+- Admin Theme
+- Altsys
+- D3 Modules
+- HTML Purifier HTML5 attributes 
+- Standards Compliant HTML Filtering
+
 ## [unreleased] 2019-11-29
 
 ### Added

@@ -19,7 +19,7 @@ class D3forumTextSanitizer extends MyTextSanitizer
 		}
 		return $instance;
 	}
-	
+
 	function &getInstance()
 	{
 		$instance =& self::sGetInstance();
@@ -99,16 +99,16 @@ class D3forumTextSanitizer extends MyTextSanitizer
 	function prepareXcode( $text )
 	{
 		$patterns = array(
-			'#\n?\[code\]\r?\n?#' , 
-			'#\n?\[\/code\]\r?\n?#' , 
-			'#\n?\[quote\]\r?\n?#' , 
-			'#\n?\[\/quote\]\r?\n?#' , 
+			'#\n?\[code\]\r?\n?#' ,
+			'#\n?\[\/code\]\r?\n?#' ,
+			'#\n?\[quote\]\r?\n?#' ,
+			'#\n?\[\/quote\]\r?\n?#' ,
 		) ;
 		$replacements = array(
-			'[code]' , 
-			'[/code]' , 
-			'[quote]' , 
-			"\n".'[/quote]' , 
+			'[code]' ,
+			'[/code]' ,
+			'[quote]' ,
+			"\n".'[/quote]' ,
 		) ;
 		return preg_replace( $patterns , $replacements , $text ) ;
 	}
@@ -125,8 +125,8 @@ class D3forumTextSanitizer extends MyTextSanitizer
 		// [siteimg]
 		$patterns[] = "/\[siteimg align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
 		$patterns[] = "/\[siteimg]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
-		$replacements[] = '<img src="'.XOOPS_URL.'/\\3" align="\\2" alt="" />';
-		$replacements[] = '<img src="'.XOOPS_URL.'/\\1" alt="" />';
+		$replacements[] = '<img src="'.XOOPS_URL.'/\\3" align="\\2" alt="">';
+		$replacements[] = '<img src="'.XOOPS_URL.'/\\1" alt="">';
 
 		// [1.1.3.1] etc.
 		$patterns[] = '/\[(1(\.\d)+)]/' ;
@@ -198,7 +198,7 @@ class D3forumTextSanitizer extends MyTextSanitizer
 		$replacements[] = '<span style="text-decoration:underline">\\1</span>';
 		$patterns[] = "/\[d](.*)\[\/d\]/sU";
 		$replacements[] = '<del>\\1</del>';
-		
+
 		return preg_replace( $patterns , $replacements , $text ) ;
 	}
 }

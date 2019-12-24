@@ -1,0 +1,105 @@
+/*
+	Theme : XCL Admin Flex Grid
+	Distribution : XCL 2.3 Alpha
+	Version : 0.0.4
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2019-11-11
+	URL : https://github.com/xoopscube/xcl/
+
+
+	-------------------- -------------------- -------------------- -------------------- NAV IMPORT */
+
+	@import "./ui-nav-aside.css";	     			/*      Nav-side			 */
+	@import "./ui-nav-header.css";	     	 /*      Nav-header		  */
+
+/* -------------------- -------------------- -------------------- NAV ADMIN */
+
+.adminavi,
+.adminavi-sub,
+.admin-menu {
+
+	background			: var(  --ui-color-200			);
+
+	border-radius		: var(  --ui-border-radius	);
+
+	box-shadow			: 0 10px 20px rgba(159, 162, 177, 0.8);
+
+	display					: inline-flex;
+	overflow				: hidden;
+	max-width				: 100%;
+
+}
+
+.adminavi-sub {
+
+	box-shadow			: var(  --ui-shadow-300		);
+	font-size				: var(  --ui-text-100			);
+	margin					: var(  --ui-space-700		) 0 ;
+	text-align			: center;
+	list-style-type: none;
+}
+
+
+
+a.adminavi-item {
+
+	border-bottom		: 3px solid var(--ui-color-link);
+
+	color						: var(--ui-color-link);
+	font-weight			: 600;
+	padding					: 10px;
+	text-decoration	: none;
+	transition			: .3s;
+	z-index					: 1;
+
+}
+
+a.adminavi-item:not(.selected) {
+
+}
+
+a.adminavi-item:not(.selected):hover {
+	color						: var(--ui-color-link-hover);
+	border-bottom		: 3px solid var(--ui-color-link-hover);
+
+}
+
+
+a.adminavi-item.selected,
+a.adminavi-item.selected:active {
+
+	color		 				: var(--ui-color-link-hover);
+	border-bottom		: 3px solid var(--ui-color-link-hover);
+	outline-width		: 0;
+}
+
+
+
+
+
+/* fix this > remove altsys css */
+
+/* .admin-menu, */
+.altsys_mymenu {
+
+align-items				: flex-start;
+background      	: var(--ui-color-400);
+
+border          	: 0px;
+border-radius   	: 5px;
+box-shadow      	: var(--ui-shadow-200);
+
+display         	: flex;
+flex-flow       	: row;
+flex-wrap       	: wrap;
+
+}
+
+.admin-menu > div,
+.altsys_mymenu > div {
+
+background				: var(--ui-color-400);
+border-radius   	: 5px;
+padding         	: 1rem;
+
+}

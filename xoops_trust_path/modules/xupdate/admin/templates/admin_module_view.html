@@ -3,7 +3,7 @@
 	<{include file="admin_menunavi.html"}>
 	<{include file="admin_navi.html"}>
 
-	<div class="ui-card-main">
+	<div class="ui-card-full">
 
 	<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h2>
 
@@ -30,7 +30,15 @@
 							<div class="module_count">(<{$smarty.const._AD_XUPDATE_LANG_ITEM_TOTAL}>: <{$data.items_count}>)</div>
 							<ul>
 							<{foreach item=itemsobj from=$data.itemsobj}>
-								<li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if $itemsobj.hasupdate}> <img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16"><{/if}></a> <{if $itemsobj.category_id>0}>(<{$categoryList[$itemsobj.category_id]}>)<{/if}></li>
+								<li>
+									<a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>" class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>">
+										<{$itemsobj.dirname}><{if $itemsobj.hasupdate}>
+										<img src="<{$smarty.const.XOOPS_MODULE_URL}>/xupdate/images/new.png" alt="New!" style="vertical-align:middle;" width="16" height="16">
+										<{/if}>
+									</a>
+									<{if $itemsobj.category_id>0}>(<{$categoryList[$itemsobj.category_id]}>)
+									<{/if}>
+								</li>
 							<{/foreach}>
 							</ul>
 						</dd>
@@ -113,6 +121,6 @@
 	</div>
 	<div class="fetchLog"><{$fetchLog}>	</div>
 
-</div><!-- ui-card-main -->
+</div><!-- ui-card-full -->
 
 </div>

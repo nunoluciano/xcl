@@ -324,7 +324,7 @@ function d3forum_main_get_comment_object( $forum_dirname, $external_link_format,
 
 	$params['forum_dirname'] = $forum_dirname ;
 
-	@list( $params['external_dirname'] , $params['classname'] , $params['external_trustdirname'] ) 
+	@list( $params['external_dirname'] , $params['classname'] , $params['external_trustdirname'] )
 		= explode( '::' , $external_link_format ) ;
 
 	$obj = D3commentObj::getInstance ( $params ) ;
@@ -349,7 +349,7 @@ function d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override
 			$lines[] = htmlspecialchars( $key . ':' . $val , ENT_QUOTES ) ;
 		}
 	}
-	return implode( '<br />' , $lines ) ;
+	return implode( '<br>' , $lines ) ;
 }
 
 

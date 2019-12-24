@@ -3,7 +3,13 @@
   &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
 </div>
 
-<h3><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></h2>
 
 <ul class="toptab">
   <li class="add"><a href="index.php?action=DefinitionsEdit"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></a></li>
@@ -44,11 +50,19 @@
       <td><{$obj->getShow('show_form')}></td>
       <td><{$obj->getShow('weight')}></td>
       <td align="center">
-        <a href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>"><img src="<{"icons/view.png"|theme}>" alt="<{$smarty.const._VIEW}>" title="<{$smarty.const._VIEW}>" /></a>
-        <a href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>"><img src="<{"icons/edit.png"|theme}>" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._EDIT}>" /></a>
-        <a href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
+        <a href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>" title="<{$smarty.const._VIEW}>">
+          <img src="<{"icons/icon-file-view.svg"|theme}>" class="svg">
+        </a>
+        <a href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>" title="<{$smarty.const._EDIT}>">
+          <img src="<{"icons/icon-file-edit.svg"|theme}>" class="svg">
+        </a>
+        <a href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>" title="<{$smarty.const._DELETE}>">
+          <img src="<{"icons/icon-file-delete.svg"|theme}>" class="svg">
+        </a>
       </td>
     </tr>
   <{/foreach}>
 </table>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+</div>

@@ -15,7 +15,7 @@ $log_table = $db->prefix($mydirname.'_log');
 // Protector object
 require_once dirname(dirname(__FILE__)).'/class/protector.php';
 $db = &Database::getInstance();
-$protector = &Protector::getInstance($db->conn);
+$protector = Protector::getInstance($db->conn);
 $conf = $protector->getConf();
 
 // transaction stage

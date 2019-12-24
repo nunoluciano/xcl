@@ -70,7 +70,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 			$db->query( "INSERT INTO ".$db->prefix($mydirname."_forum_access")." SET forum_id=$forum_id, uid=$uid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator" ) ;
 		}
 	}
-	
+
 	$member_hander =& xoops_gethandler( 'member' ) ;
 	if( is_array( @$_POST['new_uids'] ) ) foreach( $_POST['new_uids'] as $i => $uid ) {
 		$can_post = empty( $_POST['new_can_posts'][$i] ) ? 0 : 1 ;
@@ -88,7 +88,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 			$db->query( "INSERT INTO ".$db->prefix($mydirname."_forum_access")." SET forum_id=$forum_id, uid=".$user->getVar('uid').", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator" ) ;
 		}
 	}
-	
+
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=forum_access&amp;forum_id=$forum_id" , 3 , _MD_D3FORUM_MSG_UPDATED ) ;
 	exit ;
 }
@@ -123,12 +123,12 @@ foreach( $groups as $group ) {
 	$group_trs .= "
 		<tr>
 			<td class='even'>".$group->getVar('name')."</td>
-			<td class='even'><input type='checkbox' name='can_reads[$gid]' id='gcol_1_{$gid}' value='1' $can_read_checked /></td>
-			<td class='even'><input type='checkbox' name='can_posts[$gid]' id='gcol_2_{$gid}' value='1' $can_post_checked /></td>
-			<td class='even'><input type='checkbox' name='can_edits[$gid]' id='gcol_3_{$gid}' value='1' $can_edit_checked /></td>
-			<td class='even'><input type='checkbox' name='can_deletes[$gid]' id='gcol_4_{$gid}' value='1' $can_delete_checked /></td>
-			<td class='even'><input type='checkbox' name='post_auto_approveds[$gid]' id='gcol_5_{$gid}' value='1' $post_auto_approved_checked /></td>
-			<td class='even'><input type='checkbox' name='is_moderators[$gid]' id='gcol_6_{$gid}' value='1' $is_moderator_checked /></td>
+			<td class='even'><input type='checkbox' name='can_reads[$gid]' id='gcol_1_{$gid}' value='1' $can_read_checked></td>
+			<td class='even'><input type='checkbox' name='can_posts[$gid]' id='gcol_2_{$gid}' value='1' $can_post_checked></td>
+			<td class='even'><input type='checkbox' name='can_edits[$gid]' id='gcol_3_{$gid}' value='1' $can_edit_checked></td>
+			<td class='even'><input type='checkbox' name='can_deletes[$gid]' id='gcol_4_{$gid}' value='1' $can_delete_checked></td>
+			<td class='even'><input type='checkbox' name='post_auto_approveds[$gid]' id='gcol_5_{$gid}' value='1' $post_auto_approved_checked></td>
+			<td class='even'><input type='checkbox' name='is_moderators[$gid]' id='gcol_6_{$gid}' value='1' $is_moderator_checked></td>
 		</tr>\n" ;
 }
 
@@ -148,14 +148,14 @@ while( list( $uid , $uname , $can_post , $can_edit , $can_delete , $post_auto_ap
 	$is_moderator_checked = $is_moderator ? "checked='checked'" : "" ;
 	$user_trs .= "
 		<tr>
-			<td class='even'>$uid</td>
-			<td class='even'>$uname4disp</td>
-			<td class='even'><input type='checkbox' name='can_reads[$uid]' id='ucol_1_{$uid}' value='1' checked='checked' /></td>
-			<td class='even'><input type='checkbox' name='can_posts[$uid]' id='ucol_2_{$uid}' value='1' $can_post_checked /></td>
-			<td class='even'><input type='checkbox' name='can_edits[$uid]' id='ucol_3_{$uid}' value='1' $can_edit_checked /></td>
-			<td class='even'><input type='checkbox' name='can_deletes[$uid]' id='ucol_4_{$uid}' value='1' $can_delete_checked /></td>
-			<td class='even'><input type='checkbox' name='post_auto_approveds[$uid]' id='ucol_5_{$uid}' value='1' $post_auto_approved_checked /></td>
-			<td class='even'><input type='checkbox' name='is_moderators[$uid]' id='ucol_6_{$uid}' value='1' $is_moderator_checked /></td>
+			<td>$uid</td>
+			<td>$uname4disp</td>
+			<td><input type='checkbox' name='can_reads[$uid]' id='ucol_1_{$uid}' value='1' checked='checked'></td>
+			<td><input type='checkbox' name='can_posts[$uid]' id='ucol_2_{$uid}' value='1' $can_post_checked></td>
+			<td><input type='checkbox' name='can_edits[$uid]' id='ucol_3_{$uid}' value='1' $can_edit_checked></td>
+			<td><input type='checkbox' name='can_deletes[$uid]' id='ucol_4_{$uid}' value='1' $can_delete_checked></td>
+			<td><input type='checkbox' name='post_auto_approveds[$uid]' id='ucol_5_{$uid}' value='1' $post_auto_approved_checked></td>
+			<td><input type='checkbox' name='is_moderators[$uid]' id='ucol_6_{$uid}' value='1' $is_moderator_checked></td>
 		</tr>\n" ;
 }
 
@@ -164,15 +164,15 @@ while( list( $uid , $uname , $can_post , $can_edit , $can_delete , $post_auto_ap
 $newuser_trs = '' ;
 for( $i = 0 ; $i < 5 ; $i ++ ) {
 	$newuser_trs .= "
-		<tr>
-			<td class='head'><input type='text' size='4' name='new_uids[$i]' value='' /></th>
-			<td class='head'><input type='text' size='12' name='new_unames[$i]' value='' /></th>
-			<td class='head'><input type='checkbox' name='new_can_reads[$i]' id='ncol_1_{$i}' checked='checked' disabled='disabled' /></th>
-			<td class='head'><input type='checkbox' name='new_can_posts[$i]' id='ncol_2_{$i}' value='1' /></th>
-			<td class='head'><input type='checkbox' name='new_can_edits[$i]' id='ncol_3_{$i}' value='1' /></td>
-			<td class='head'><input type='checkbox' name='new_can_deletes[$i]' id='ncol_4_{$i}' value='1' /></td>
-			<td class='head'><input type='checkbox' name='new_post_auto_approveds[$i]' id='ncol_5_{$i}' value='1' /></td>
-			<td class='head'><input type='checkbox' name='new_is_moderators[$i]' id='ncol_6_{$i}' value='1' /></td>
+		<tr class='head'>
+			<td><input type='text' size='4' name='new_uids[$i]' value=''></th>
+			<td><input type='text' size='12' name='new_unames[$i]' value=''></th>
+			<td><input type='checkbox' name='new_can_reads[$i]' id='ncol_1_{$i}' checked='checked' disabled='disabled'></th>
+			<td><input type='checkbox' name='new_can_posts[$i]' id='ncol_2_{$i}' value='1'></th>
+			<td><input type='checkbox' name='new_can_edits[$i]' id='ncol_3_{$i}' value='1'></td>
+			<td><input type='checkbox' name='new_can_deletes[$i]' id='ncol_4_{$i}' value='1'></td>
+			<td><input type='checkbox' name='new_post_auto_approveds[$i]' id='ncol_5_{$i}' value='1'></td>
+			<td><input type='checkbox' name='new_is_moderators[$i]' id='ncol_6_{$i}' value='1'></td>
 		</tr>
 	\n" ;
 }

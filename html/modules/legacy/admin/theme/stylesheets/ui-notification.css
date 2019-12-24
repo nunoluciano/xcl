@@ -1,0 +1,144 @@
+/*
+	Theme : XCL Admin Flex Grid
+	Distribution : XCL 2.3 Alpha
+	Version : 0.0.4
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2019-11-11
+	URL : https://github.com/xoopscube/xcl/
+
+  -------------------- -------------------- -------------------- Notifications */
+
+	/* TODO override with modal notification */
+
+
+	.tips, .error, .confirm {
+
+		background			: var(  --ui-notification-background		);
+
+		border-color		: var(  --ui-notification-border-color	);
+		border-radius		: var(  --ui-notification-border-radius	);
+		border-style		: var(  --ui-notification-border-style	);
+		border-width		: var(  --ui-notification-border-width	);
+
+		box-shadow			: var(  --ui-notification-box-shadow		);
+
+		color						: var(  --ui-notification-color-text		);
+
+		padding					: var(  --ui-notification-padding				);
+		margin					: var(  --ui-notification-margin				);
+		max-width				: var(  --ui-notification-max-width			);
+
+	}
+
+	.tips {
+
+		border-left			: 7px solid var(  --ui-color-blue				);
+
+	}
+
+	.error {
+
+		border-left			: 7px solid var(  --ui-color-red				);
+
+	}
+	.confirm {
+
+		border-left			: 7px solid var(  --ui-color-orange			);
+
+	}
+
+
+	/* Test override default update notification */
+
+	.notification {
+
+		color						: var(  --ui-text-color			);
+		display					: flex;
+		flex-basis			: 100%;
+		flex-direction	: row-reverse;
+		align-items			: center;
+		justify-content	: center;
+		float						: none!important;
+
+	}
+
+	.sticky {
+
+		background			: var(  --ui-color-400			);
+
+		border-color		: var(  --ui-border-color		);
+		border-radius		: var(  --ui-border-radius	);
+		border-style		: var(  --ui-border-style		);
+		border-width		: var(  --ui-border-width		);
+		box-shadow			: var(  --ui-shadow-300			);
+
+		left						: unset;
+		margin					: 0 calc(50% - 200px);
+		width						: 400px;
+		z-index					: 1000;
+
+	}
+
+	.ondemand {
+
+		background			: var(  --ui-color-400			);
+
+		border-color		: var(  --ui-border-color		)!important;
+		border-radius		: var(  --ui-border-radius	);
+		border-style		: var(  --ui-border-style		);
+		border-width		: var(  --ui-border-width		);
+
+		box-shadow			: var(  --ui-shadow-300			);
+
+		color						: var(  --ui-text-color			);
+
+		height					: 50px;
+		left						: unset;
+		margin					: 0 calc(	50% - 200px	);
+		width						: 400px;
+		z-index					: 2000;
+
+	}
+
+	.ondemand > div > a {
+
+		color						: var(  --ui-color-amber	);
+
+	}
+
+	.sticky a, .floated a, .fixed a, .ondemand a {
+
+		float						: none;
+		margin					: 5px 10px 0px 0px;
+
+	}
+
+	.ondemand-button {
+
+		background			: var(  --ui-color-400			);
+
+		border-color		: var(  --ui-border-color		);
+		border-radius		: var(  --ui-border-radius	);
+		border-style		: var(  --ui-border-style		);
+		border-width		: var(  --ui-border-width		);
+
+		border-top-right-radius	: unset;
+    border-top-left-radius	: unset;
+
+		box-shadow			: var(  --ui-shadow-300			);
+
+		float						: none!important;
+		height					: 24px;
+		left						: unset!important;
+		margin					: 0 50% !important;
+		padding					: 0 5px;
+		position				: absolute;
+		top							: 0;
+		width						: 32px !important;
+		z-index					: 1999;
+
+	}
+
+	.hide .ondemand-button {
+
+	}

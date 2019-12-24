@@ -4,10 +4,16 @@
   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_DELETE}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</h2>
 
 <div class="confirm">
-  <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE}><br />
+    <i class="red"><img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i>  <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE}><br />
   <{$smarty.const._AD_USER_LANG_GROUP_DELETE_ADVICE2}>
 </div>
 
@@ -26,7 +32,7 @@
   <{xoops_input type=hidden name=groupid value=$object->get('groupid')}>
 <table class="outer">
   <tr>
-    <th colspan="2"><img src="<{"icons/group.png"|theme}>" alt="<{$smarty.const._AD_USER_LANG_GROUP}>" title="<{$smarty.const._AD_USER_LANG_GROUP}>" /> <{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</th>
+    <th colspan="2"><i class="red" title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{"icons/icon-group.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_USER_LANG_GROUP_DELETE}> (<{$object->getShow('name')}>)</th>
   </tr>
   <tr>
     <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_GID}></td>
@@ -50,9 +56,11 @@
   </tr>
   <tr>
     <td class="foot" colspan="2">
-        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
   </tr>
 </table>
 </form>
+
+</div>

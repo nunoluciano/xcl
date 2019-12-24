@@ -1,11 +1,17 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
   &raquo;&raquo; <a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h2>
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LOG}></h4>
 
@@ -29,13 +35,32 @@
 </ul>
 <{/if}>
 
-<div class="legacy_module_return"><img src="<{"icons/info.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></a></div>
-<div class="legacy_module_return"><img src="<{"icons/module_edit.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>"><{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}></a></div>
+<div class="legacy_module_return">
+
+	<a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>" class="ui-btn">
+		<img src="<{"icons/icon-info.svg"|theme}>" class="svg"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
+	</a>
+
+	<a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>" class="ui-btn">
+		<img src="<{"icons/icon-edt.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}>
+	</a>
+
 <{if $module->getInfo('blocks')}>
-<div class="legacy_module_return"><img src="<{"icons/block_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=BlockInstallList&amp;dirname=<{$module->getShow('dirname')}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></a></div>
+	<a href="index.php?action=BlockInstallList&amp;dirname=<{$module->getShow('dirname')}>" class="ui-btn">
+		<img src="<{"icons/icon-block-install.svg"|theme}>" class="svg"> <{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
+	</a>
 <{/if}>
+
 <{if $module->getInfo('templates')}>
-<div class="legacy_module_return"><img src="<{"icons/templates.png"|theme}>" alt="" title="" /> <a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$module->getShow('dirname')}>&amp;sort=-9"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></a></div>
+	<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$module->getShow('dirname')}>&amp;sort=-9">
+		<img src="<{"icons/icon-file-view.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
+	</a>
 <{/if}>
-<div class="legacy_module_return"><img src="<{"icons/module.png"|theme}>" alt="" title="" /> <a href="index.php?action=ModuleList"><{$smarty.const._AD_LEGACY_LANG_MODLIST}></a></div>
-<div class="legacy_module_return"><img src="<{"icons/module_add.png"|theme}>" alt="" title="" /> <a href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
+
+	<a href="index.php?action=ModuleList" class="ui-btn"><img src="<{"icons/icon-package.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}></a>
+
+	<a href="index.php?action=InstallList" class="ui-btn"><img src="<{"icons/icon-package-update.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a>
+
+</div>
+
+</div><{* /ui-card-full *}>
