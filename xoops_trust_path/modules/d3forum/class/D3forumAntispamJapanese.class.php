@@ -8,7 +8,7 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract {
 
 private $dictionary_cache = array() ;
 
-private $dictionary_file; 
+private $dictionary_file;
 
 public function __construct()
 {
@@ -18,7 +18,7 @@ public function __construct()
 function getKanaKanji( $time = null )
 {
 	if( empty( $time ) ) $time = time() ;
-	
+
 	if( !isset( $this->dictionary_cache[$this->dictionary_file] ) ) {
 		// SKK EUC dictionary
 		$lines = file( $this->dictionary_file ) ;
@@ -32,7 +32,7 @@ function getKanaKanji( $time = null )
 			}
 		}
 	}
-	
+
 	$size = sizeof( $this->dictionary_cache[$this->dictionary_file] ) ;
 	$ret = array() ;
 	for( $i = 0 ; $i < 3 ; $i ++ ) {
@@ -49,7 +49,7 @@ function getHtml4Assign()
 	$yomi_kan = $yomi_kans[0] ;
 	$kanji = $yomi_kan['kanji'] ;
 
-	$html = '<label for="antispam_yomigana">'._MD_D3FORUM_LABEL_JAPANESEINPUTYOMI.': <strong class="antispam_kanji">'.htmlspecialchars($kanji).'</strong></label><input type="text" name="antispam_yomigana" id="antispam_yomigana" value="" />' ;
+	$html = '<label for="antispam_yomigana">'._MD_D3FORUM_LABEL_JAPANESEINPUTYOMI.': <strong class="antispam_kanji">'.htmlspecialchars($kanji).'</strong></label><input type="text" name="antispam_yomigana" id="antispam_yomigana" value="">' ;
 
 	return array(
 		'html_in_form' => $html ,

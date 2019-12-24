@@ -4,6 +4,12 @@
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a></span>
 </div>
 
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}>
 <{if $currentClient}>
   ( <{$currentClient->getShow('name')}> )
@@ -53,3 +59,6 @@
 </table>
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+
+</div>

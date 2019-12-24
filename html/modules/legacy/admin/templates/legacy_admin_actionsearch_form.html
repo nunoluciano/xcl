@@ -1,9 +1,14 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ActSearch"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></a></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ActSearch"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></a></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></h3>
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></h2>
 
 <div class="tips"><{$smarty.const._AD_LEGACY_LANG_ACTIONSEARCH_INFO}></div>
 <div class="legacy_actionsearch_form">
@@ -13,4 +18,6 @@
   <input type="text" size="40" name="keywords" <{if $actionForm}>value="<{$actionForm->get('keywords')|xoops_escape:edit}>"<{/if}> />
   <input type="submit" value="<{$smarty.const._SEARCH}>" class="formButton" />
 </form>
+</div>
+
 </div>

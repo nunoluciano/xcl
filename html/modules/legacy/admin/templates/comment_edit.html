@@ -1,20 +1,26 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
   <{if $actionForm->get('com_id')}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}></span>
   <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_NEW}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_NEW}></span>
   <{/if}>
 </div>
 
-<h3 class="admintitle">
+
+
+<div class="ui-card-full">
+  <div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle">
 <{if $actionForm->get('com_id')}>
   <{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}>
 <{else}>
   <{$smarty.const._AD_LEGACY_LANG_COMMENT_NEW}>
 <{/if}>
-</h3>
+</h2>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -28,8 +34,11 @@
 
 <form action="" method="post">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=com_id value=$actionForm->get('com_id')}>
+	<{xoops_input type=hidden name=com_id value=$actionForm->get('com_id')}>
+
   <table class="outer">
+
+		<tbody>
     <tr>
       <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
       <td class="<{cycle values="odd,even"}>">
@@ -74,12 +83,21 @@
         <label><{xoops_input type=checkbox name=doimage value=1 default=$actionForm->get('doimage')}> <{$smarty.const._AD_LEGACY_LANG_DOIMAGE}></label><br />
         <label><{xoops_input type=checkbox name=dobr value=1 default=$actionForm->get('dobr')}> <{$smarty.const._MD_LEGACY_LANG_DOBR}></label>
       </td>
-    </tr>
+		</tr>
+	</tbody>
+
+	<tfoot class="foot">
     <tr>
-      <td colspan="2" class="foot">
+      <td colspan="2">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
-    </tr>
-  </table>
+		</tr>
+	</tfoot>
+
+	</table>
+
 </form>
+
+
+</div>

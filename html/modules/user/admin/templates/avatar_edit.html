@@ -1,7 +1,7 @@
 <div class="adminnavi">
   <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a>
-  &raquo;&raquo; 
+  &raquo;&raquo;
   <{if $actionForm->get('avatar_id')}>
     <span class="adminnaviTitle"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></span>
   <{else}>
@@ -9,10 +9,16 @@
   <{/if}>
 </div>
 
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <{if $actionForm->get('avatar_id')}>
-  <h3 class="admintitle"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}> (<{$actionForm->get('avatar_name')}>)</h3>
+  <h2 class="admintitle"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}> (<{$actionForm->get('avatar_name')}>)</h2>
 <{else}>
-  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></h3>
+  <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></h2>
 <{/if}>
 
 <{if $actionForm->hasError()}>
@@ -87,3 +93,5 @@
     </tr>
   </table>
 </form>
+
+</div>

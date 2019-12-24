@@ -1,10 +1,15 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></h3>
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_COMMENT_VIEW}></h2>
 
 <ul class="toptab">
   <li><a href="./index.php?action=CommentEdit&amp;com_id=<{$object->getShow('com_id')}>"><{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}></a></li>
@@ -126,9 +131,12 @@
       <td class="legacy_list_order"><{$obj->getShow('com_ip')}></td>
       <td class="legacy_list_select">
         <{if $obj->get('com_status') == 2 }>
-          <img src="<{"icons/active.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>" title="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>" />
+          <i title="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>"><img src="<{"icons/icon-comment-active.svg"|theme}>" class="svg"></i>
         <{/if}>
       </td>
     </tr>
   <{/foreach}>
 </table>
+
+
+</div>

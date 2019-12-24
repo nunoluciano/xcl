@@ -8,10 +8,16 @@
   <{/if}>
 </div>
 
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
   <{if $actionForm->get('bid')}>
-    <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_EDIT}></h3>
+    <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_EDIT}></h2>
   <{else}>
-    <h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></h3>
+    <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></h2>
   <{/if}>
 
 <{if $actionForm->hasError()}>
@@ -77,8 +83,18 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLCODE}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_textarea name=htmlcode cols=50 rows=10 value=$actionForm->get('htmlcode')}><br />
-        <label><{xoops_input type=checkbox name=htmlbanner value=1 default=$actionForm->get('htmlbanner')}> <{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></label>
+        <{xoops_textarea name=htmlcode cols=50 rows=10 value=$actionForm->get('htmlcode')}>
+      </td>
+    </tr>
+    <tr>
+      <td class="head">
+        <{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}>
+      </td>
+      <td class="<{cycle values="odd,even"}>">
+        <label class="ui-checkbox" title="">
+        <{xoops_input type=checkbox name=htmlbanner value=1 default=$actionForm->get('htmlbanner')}>
+        <span class="ui-checkbox-custom"></span>
+      </label>
       </td>
     </tr>
     <tr>
@@ -89,3 +105,5 @@
     </tr>
   </table>
 </form>
+
+</div>

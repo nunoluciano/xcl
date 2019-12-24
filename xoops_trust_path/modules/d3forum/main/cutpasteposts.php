@@ -91,7 +91,7 @@ if( ! empty( $_POST['cutpastepostsok'] ) ) {
 		'topic' => $topic4assign ,
 		'post' => $post4assign ,
 		'forum_jumpbox_options' => d3forum_make_jumpbox_options( $mydirname , '1' , $isadmin ? '1' : $whr4forum_jump_box , $forum_row['forum_id'] ) ,
-		'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\" />" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
+		'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
 		'xoops_pagetitle' => _MD_D3FORUM_CUTPASTEPOSTS ,
 		'xoops_breadcrumbs' => array_merge( $xoops_breadcrumbs , array( array( 'name' => _MD_D3FORUM_CUTPASTEPOSTS ) ) ) ,
 	) ) ;

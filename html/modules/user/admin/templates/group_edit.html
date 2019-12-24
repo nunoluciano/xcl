@@ -9,10 +9,16 @@
   <{/if}>
 </div>
 
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <{if $actionForm->get('groupid') }>
-  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_EDIT}> (<{$actionForm->get('name')}>)</h3>
+  <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_EDIT}> (<{$actionForm->get('name')}>)</h2>
 <{else}>
-  <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></h3>
+  <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></h2>
 <{/if}>
 
 <{if $actionForm->hasError()}>
@@ -58,3 +64,5 @@
     </tr>
   </table>
 </form>
+
+</div>

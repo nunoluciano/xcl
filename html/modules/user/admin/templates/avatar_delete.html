@@ -4,11 +4,17 @@
   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_AVATAR_DELETE}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_DELETE}> (<{$object->getShow('avatar_name')}>)</h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_DELETE}> (<{$object->getShow('avatar_name')}>)</h2>
 
 <div class="tips"><{$smarty.const._AD_USER_TIPS_DELETE_AVATAR}></div>
 
-<div class="confirm"><{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><i class="red"><img src="<{"icons/icon-file-delete.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_USER_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=AvatarDelete">
   <{xoops_token form=$actionForm}>
@@ -66,9 +72,11 @@
     </tr>
     <tr>
       <td class="foot" colspan="2">
-        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
+        <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
     </tr>
 </table>
 </form>
+
+</div>

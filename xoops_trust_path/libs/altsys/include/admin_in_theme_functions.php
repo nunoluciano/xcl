@@ -154,8 +154,8 @@ function altsys_admin_in_theme_in_last($contents = null)
     $xoopsTpl->display($xoopsConfig['theme_set'].'/theme.html') ;
 
     // for XOOPS 2.0.14/15/16 from xoops.org
-    if (is_object(@$xoopsLogger) && method_exists($xoopsLogger, 'render') && in_array($xoopsConfig['debug_mode'], array( 1, 2 ))) {
-        $xoopsLogger->activated = true ;
-        echo $xoopsLogger->render('') ;
-    }
+    // if (is_object(@$xoopsLogger) && method_exists($xoopsLogger, 'render') && in_array($xoopsConfig['debug_mode'], array( 1, 2 ))) {
+    //     $xoopsLogger->activated = true ;
+    //     echo $xoopsLogger->render('') ;
+    // }
 }

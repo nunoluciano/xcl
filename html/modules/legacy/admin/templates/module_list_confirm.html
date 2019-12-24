@@ -1,25 +1,36 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h2>
 
 <div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE}></div>
 
 <form method="post">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=confirm value=1}>
+	<{xoops_input type=hidden name=confirm value=1}>
+
+
 <table class="outer">
+
+	<thead>
   <tr>
     <th><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}></th>
   </tr>
+	</thead>
 
-<{foreach item=mid from=$mids}>
+	<tbody>
+	<{foreach item=mid from=$mids}>
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_id"><{$mid}></td>
     <td class="legacy_list_name">
@@ -44,9 +55,9 @@
           <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
         <{else}>
           <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>
-        <{/if}>) 
+        <{/if}>)
         &raquo;
-        
+
         <{if $actionForm->get('isactive',$mid) == 1}>
         <b class="legacy_module_error">
           <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
@@ -65,11 +76,19 @@
     </td>
   </tr>
 <{/foreach}>
-  <tr>
+</tbody>
+
+<tfoot>
+	<tr>
     <td class="foot" colspan="4">
       <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
-  </tr>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
+
+</div>

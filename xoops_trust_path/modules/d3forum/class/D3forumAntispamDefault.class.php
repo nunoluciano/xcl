@@ -35,7 +35,7 @@ function getHtml4Assign()
 	" ;
 
 	return array(
-		'html_in_form' => '<input type="hidden" name="antispam_md5" id="antispam_md5" value="" />' ,
+		'html_in_form' => '<input type="hidden" name="antispam_md5" id="antispam_md5" value="">' ,
 		'js_global' => '' ,
 		'js_in_validate_function' => $js_in_validate_function ,
 	) ;

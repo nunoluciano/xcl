@@ -21,13 +21,13 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     public $mBlockObjects = array();
     public $mActionForm = null;
     public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new Legacy_BlockListForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('newblocks');
@@ -39,7 +39,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $filter =new Legacy_BlockFilterForm($this->_getPageNavi(), $this->_getHandler());
         return $filter;
     }
-    
+
     public function &_getPageNavi()
     {
         $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
@@ -76,7 +76,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
             $this->mObjects[$key]->loadColumn();
             $this->mObjects[$key]->loadCachetime();
         }
-        
+
         $render->setAttribute("objects", $this->mObjects);
         $render->setAttribute("pageNavi", $this->mFilter->mNavi);
 
@@ -222,7 +222,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $render->setTemplateName("block_list_confirm.html");
         $render->setAttribute('blockObjects', $this->mBlockObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         $t_arr = $this->mActionForm->get('title');
         $render->setAttribute('bids', array_keys($t_arr));
 
@@ -238,7 +238,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     {
         $controller->executeForward('./index.php?action=BlockList');
     }
-    
+
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeRedirect("./index.php?action=BlockInstallList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);

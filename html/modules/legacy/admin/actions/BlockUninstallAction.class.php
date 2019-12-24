@@ -33,7 +33,7 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_BlockUninstallForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
@@ -47,14 +47,14 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
     {
         $render->setTemplateName("block_uninstall.html");
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // lazy loading
         //
         $this->mObject->loadModule();
         $this->mObject->loadColumn();
         $this->mObject->loadCachetime();
-        
+
         $render->setAttribute('object', $this->mObject);
     }
 
@@ -67,7 +67,7 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
     {
         $controller->executeRedirect("./index.php?action=BlockList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward("./index.php?action=BlockList");

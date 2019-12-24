@@ -8,7 +8,7 @@
 	  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ThemeFinder"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
 	</div>
 
-	<div class="ui-card-main">
+	<div class="ui-card-full">
 
 	<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
 
@@ -19,11 +19,11 @@
 	</div>
 
 	<{if $xupdate_nextlink}>
-	<ul class="toptab">
-	<li id="xupdate_addModule" class="theme" style="float:left;">
-	  <{$xupdate_nextlink}>
-	</li>
-	</ul>
+	<div class="toptab">
+		<div id="xupdate_addModule" class="ui-btn">
+		<{$xupdate_nextlink}>
+		</div>
+	</div>
 	<div style="clear:both;"></div>
 	<{/if}>
 
@@ -31,6 +31,6 @@
 	<{$xupdate_message}>
 	</div>
 
-</div><!-- ui-card-main -->
+</div><!-- ui-card-full -->
 
 </div>

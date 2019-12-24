@@ -23,16 +23,16 @@ define("XCUBE_FORMFILE_CHMOD", 0644);
 class XCube_FormFile
 {
     public $mName=null;
-    
+
     public $mKey = null;
-    
+
     public $mContentType=null;
-    
+
     public $mFileName=null;
     public $mFileSize=0;
-    
+
     public $_mTmpFileName=null;
-    
+
     public $mUploadFileFlag=false;
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name = null, $key = null)
@@ -41,7 +41,7 @@ class XCube_FormFile
         $this->mName = $name;
         $this->mKey = $key;
     }
-    
+
     /**
      * Fetch necessary information from $_FILES by $mName
      */
@@ -59,18 +59,18 @@ class XCube_FormFile
                 $this->setFileSize($_FILES[$this->mName]['size']);
                 $this->_mTmpFileName = $_FILES[$this->mName]['tmp_name'];
             }
-            
+
             if ($this->getFileSize()>0) {
                 $this->mUploadFileFlag=true;
             }
         }
     }
-    
+
     public function hasUploadFile()
     {
         return $this->mUploadFileFlag;
     }
-    
+
     /**
      * Return content type
      * @return string
@@ -79,12 +79,12 @@ class XCube_FormFile
     {
         return $this->mContentType;
     }
-    
+
     public function getFileData()
     {
         // Now, implemeting.
     }
-    
+
     /**
      * Return file name.
      * @return string
@@ -93,7 +93,7 @@ class XCube_FormFile
     {
         return $this->mFileName;
     }
-    
+
     /**
      * Return file size.
      * @return int
@@ -102,7 +102,7 @@ class XCube_FormFile
     {
         return $this->mFileSize;
     }
-    
+
     /**
      * Return extension from file name.
      * @return string
@@ -114,10 +114,10 @@ class XCube_FormFile
         if (preg_match("/\.([a-z\.]+)$/i", $filename, $match)) {
             $ret=$match[1];
         }
-        
+
         return $ret;
     }
-    
+
     /**
      * Set extension.
      * @return string
@@ -129,7 +129,7 @@ class XCube_FormFile
             $this->setFileName($match[1].".${ext}");
         }
     }
-    
+
     /**
      * Set content type
      * @param $contenttype string
@@ -138,7 +138,7 @@ class XCube_FormFile
     {
         $this->mContentType=$contenttype;
     }
-    
+
     /**
      * Set file name
      * @param $filename string
@@ -147,7 +147,7 @@ class XCube_FormFile
     {
         $this->mFileName = $filename;
     }
-    
+
     /**
      * Set file size
      * @param $filesize int
@@ -156,7 +156,7 @@ class XCube_FormFile
     {
         $this->mFileSize = $filesize;
     }
-    
+
     /**
      * Set file body name. The extension is never changed.
      * @param $bodyname string
@@ -165,7 +165,7 @@ class XCube_FormFile
     {
         $this->setFileName($bodyname.".".$this->getExtension());
     }
-    
+
     /**
      * Get file body name.
      * @return string
@@ -175,10 +175,10 @@ class XCube_FormFile
         if (preg_match("/(.+)\.\w+$/", $this->getFileName(), $match)) {
             return $match[1];
         }
-        
+
         return null;
     }
-    
+
     /**
      * Set random string to file body name. The extension is never changed.
      * @param $prefix string Prefix for random string.
@@ -189,7 +189,7 @@ class XCube_FormFile
         $filename = $prefix . $this->_getRandomString($salt) . "." . $this->getExtension();
         $this->setFileName($filename);
     }
-    
+
     /**
      * Set random string to file body name. The extension is changed.
      * @param $prefix string Prefix for random string.
@@ -200,12 +200,12 @@ class XCube_FormFile
         $filename = $prefix . $this->_getRandomString($salt);
         $this->setFileName($filename);
     }
-    
+
     /**
-    @brief Generate random string.
-    @param $salt string Salt for generating token.
-    @return string
-    */
+     * @brief Generate random string.
+     * @param $salt string Salt for generating token.
+     * @return string
+     */
     public function _getRandomString($salt='')
     {
         if (empty($salt)) {
@@ -215,7 +215,7 @@ class XCube_FormFile
         srand(microtime() *1000000);
         return md5($salt . rand());
     }
-    
+
     /**
      * Name this, and store it. If the name is specified as complete file name, store it as the same name.
      * If the name is specified as directory name, store it as the own name to the directory specified.
@@ -233,16 +233,16 @@ class XCube_FormFile
         } else {
             $destFile = $file;
         }
-        
+
         $ret = move_uploaded_file($this->_mTmpFileName, $destFile);
-            
+
 //		$prevMask = @umask(XCUBE_FORMFILE_PREVMASK);
 //		@umask($prevMask);
         @chmod($destFile, XCUBE_FORMFILE_CHMOD);
-        
+
         return $ret;
     }
-    
+
     /**
      * Set random string to file body name, and store it. The extension is never changed.
      * @see saveAs()
@@ -257,7 +257,7 @@ class XCube_FormFile
         $this->setRandomToBodyName($prefix, $salt);
         return $this->saveAs($dir);
     }
-    
+
     /**
      * Set random string to file name, and store it. The extension is never changed.
      * @see saveAs()
@@ -282,14 +282,14 @@ class XCube_FormImageFile extends XCube_FormFile
     public function fetch()
     {
         parent::fetch();
-        
+
         if ($this->hasUploadFile()) {
             if (!$this->_checkFormat()) {
                 $this->mUploadFileFlag = false;
             }
         }
     }
-    
+
     /**
      * Gets a width of the uploaded file.
      * @return int
@@ -299,7 +299,7 @@ class XCube_FormImageFile extends XCube_FormFile
         list($width, $height, $type, $attr)=getimagesize($this->_mTmpFileName);
         return $width;
     }
-    
+
     /**
      * Gets a height of the uploaded file.
      * @return int
@@ -309,7 +309,7 @@ class XCube_FormImageFile extends XCube_FormFile
         list($width, $height, $type, $attr)=getimagesize($this->_mTmpFileName);
         return $height;
     }
-    
+
     /**
      * Gets a value indicating whether a format of the uploaded file is allowed.
      * @access private
@@ -320,26 +320,26 @@ class XCube_FormImageFile extends XCube_FormFile
         if (!$this->hasUploadFile()) {
             return false;
         }
-        
+
         list($width, $height, $type, $attr)=getimagesize($this->_mTmpFileName);
-        
+
         switch ($type) {
             case IMAGETYPE_GIF:
                 $this->setExtension("gif");
                 break;
-            
+
             case IMAGETYPE_JPEG:
                 $this->setExtension("jpg");
                 break;
-            
+
             case IMAGETYPE_PNG:
                 $this->setExtension("png");
                 break;
-            
+
             default:
                 return false;
         }
-        
+
         return true;
     }
 }

@@ -8,7 +8,7 @@
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=ThemeFinder"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTOREDEC}></a></span>
 </div>
 
-<div class="ui-card-main">
+<div class="ui-card-full">
 
 <h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
 
@@ -29,10 +29,15 @@
   <{xoops_input type=hidden name=confirm value=1}>
 
 <table class="outer">
+
+	<thead>
   <tr>
     <th>name</th>
     <th>value</th>
-  </tr>
+	</tr>
+</thead>
+
+<tbody>
   <tr class="<{cycle values='odd,even'}>">
     <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
     <td class="legacy_list_select">
@@ -53,14 +58,19 @@
         <{xoops_input type=hidden name=target_type value=$target_type }>
         <{$target_type|xoops_escape:show}>
     </td>
-  </tr>
-  <tr>
-    <td class="foot" colspan="2">
+	</tr>
+</tbody>
+<tfoot>
+<tr class="foot">
+    <td colspan="2">
       <input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>" />
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
-  </tr>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
 
 <div id="xupdate_boxes">
@@ -73,7 +83,7 @@
     <div id="xupdate_mask"></div>
 </div>
 
-</div><!-- ui-card-main -->
+</div><!-- ui-card-full -->
 
 </div><!-- id="contentBody" -->
 </div><!-- id="xupdate" -->

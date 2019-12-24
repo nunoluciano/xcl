@@ -76,7 +76,7 @@ $xoopsTpl->assign( array(
 	'page' => 'makeforum' ,
 	'formtitle' => _MD_D3FORUM_LINK_MAKEFORUM ,
 	'cat_jumpbox_options' => d3forum_make_cat_jumpbox_options( $mydirname , $whr_read4cat , $cat_id ) ,
-	'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\" />" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
+	'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
 	'xoops_pagetitle' => _MD_D3FORUM_LINK_MAKEFORUM ,
 	'xoops_breadcrumbs' => array_merge( $xoops_breadcrumbs , array( array( 'name' => _MD_D3FORUM_LINK_MAKEFORUM ) ) ) ,
 ) ) ;

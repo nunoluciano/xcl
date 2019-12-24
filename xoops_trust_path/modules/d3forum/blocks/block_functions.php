@@ -40,7 +40,7 @@ function b_d3forum_list_forums_show( $options )
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array( 
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -100,13 +100,13 @@ function b_d3forum_list_forums_edit( $options )
 	}
 
 	$form = "
-		<input type='hidden' name='options[0]' value='$mydirname' />
+		<input type='hidden' name='options[0]' value='$mydirname'>
 		<label for='categories'>"._MB_D3FORUM_CATLIMIT."</label>&nbsp;:
-		<input type='text' size='20' name='options[1]' id='categories' value='".implode(',',$categories)."' />"._MB_D3FORUM_CATLIMITDSC."
-		<br />
+		<input type='text' size='20' name='options[1]' id='categories' value='".implode(',',$categories)."'>"._MB_D3FORUM_CATLIMITDSC."
+		<br>
 		<label for='this_template'>"._MB_D3FORUM_THISTEMPLATE."</label>&nbsp;:
-		<input type='text' size='60' name='options[2]' id='this_template' value='".htmlspecialchars($this_template,ENT_QUOTES)."' />
-		<br />
+		<input type='text' size='60' name='options[2]' id='this_template' value='".htmlspecialchars($this_template,ENT_QUOTES)."'>
+		<br>
 	\n" ;
 
 	return $form;
@@ -138,11 +138,11 @@ function b_d3forum_list_topics_show( $options )
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 
 	// naao from
-	// get all forums 
+	// get all forums
 	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 	$frs = $db->query( $sql ) ;
 	$d3com = array() ;
-	
+
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
 		$temp_forum_id = intval($forum_row['forum_id']);
@@ -152,7 +152,7 @@ function b_d3forum_list_topics_show( $options )
 			$d3com[$temp_forum_id] = false ;
 		}
 	}	// naao to
-	
+
 	// allow markup or not
 	if( empty( $configs['allow_mark'] ) ) {
 		$is_markup = false ;
@@ -237,27 +237,27 @@ function b_d3forum_list_topics_show( $options )
 
 	// naao from
 	if( $uid > 0 && $is_markup ) {
-		$sql = "SELECT t.topic_id, t.topic_title, t.topic_last_uid, t.topic_last_post_id, t.topic_last_post_time, 
-			t.topic_views, t.topic_votes_count, t.topic_votes_sum, t.topic_posts_count, t.topic_external_link_id, 
-			$sel_solved, t.forum_id, 
-			p.post_id, p.subject, p.post_text, p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path, 
+		$sql = "SELECT t.topic_id, t.topic_title, t.topic_last_uid, t.topic_last_post_id, t.topic_last_post_time,
+			t.topic_views, t.topic_votes_count, t.topic_votes_sum, t.topic_posts_count, t.topic_external_link_id,
+			$sel_solved, t.forum_id,
+			p.post_id, p.subject, p.post_text, p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path,
 			f.forum_title, u2t.u2t_marked FROM "
 			.$db->prefix($mydirname."_topics")." t LEFT JOIN "
 			.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id LEFT JOIN "
 			.$db->prefix($mydirname."_posts")." p ON t.topic_last_post_id=p.post_id LEFT JOIN "
-			.$db->prefix($mydirname."_users2topics")." u2t ON u2t.topic_id=t.topic_id AND u2t.uid=$uid 
-			WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums) 
+			.$db->prefix($mydirname."_users2topics")." u2t ON u2t.topic_id=t.topic_id AND u2t.uid=$uid
+			WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums)
 			AND ($whr_topic) AND ($whr_order) ORDER BY u2t.u2t_marked<=>1 DESC , $odr" ;
 	} else {
-		$sql = "SELECT t.topic_id, t.topic_title, t.topic_last_uid, t.topic_last_post_id, t.topic_last_post_time, 
-			t.topic_views, t.topic_votes_count, t.topic_votes_sum, t.topic_posts_count, t.topic_external_link_id, 
-			$sel_solved, t.forum_id, 
-			p.post_id, p.subject, p.post_text, p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path, 
+		$sql = "SELECT t.topic_id, t.topic_title, t.topic_last_uid, t.topic_last_post_id, t.topic_last_post_time,
+			t.topic_views, t.topic_votes_count, t.topic_votes_sum, t.topic_posts_count, t.topic_external_link_id,
+			$sel_solved, t.forum_id,
+			p.post_id, p.subject, p.post_text, p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path,
 			f.forum_title, 0 AS u2t_marked FROM "
 			.$db->prefix($mydirname."_topics")." t LEFT JOIN "
 			.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id LEFT JOIN "
-			.$db->prefix($mydirname."_posts")." p ON t.topic_last_post_id=p.post_id 
-			 WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums) 
+			.$db->prefix($mydirname."_posts")." p ON t.topic_last_post_id=p.post_id
+			 WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums)
 			 AND ($whr_topic) AND ($whr_order) ORDER BY $odr" ;
 	}
 	// naao to
@@ -267,7 +267,7 @@ function b_d3forum_list_topics_show( $options )
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array( 
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -301,9 +301,9 @@ function b_d3forum_list_topics_show( $options )
 				$can_display = false;
 			}
 		}	// naao to
-		
+
 		if ($can_display == true) {	// naao
-		
+
 		    $topic4assign = array(
 			'id' => intval( $topic_row['topic_id'] ) ,
 			'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] ) ,
@@ -387,31 +387,31 @@ function b_d3forum_list_topics_edit( $options )
 	}
 
 	$form = "
-		<input type='hidden' name='options[0]' value='$mydirname' />
-		<label for='o1'>" . sprintf( _MB_D3FORUM_DISPLAY , "</label><input type='text' size='4' name='options[1]' id='o1' value='$max_topics' style='text-align:right;' />" ) . "
-		<br />
+		<input type='hidden' name='options[0]' value='$mydirname'>
+		<label for='o1'>" . sprintf( _MB_D3FORUM_DISPLAY , "</label><input type='text' size='4' name='options[1]' id='o1' value='$max_topics' style='text-align:right;'>" ) . "
+		<br>
 		"._MB_D3FORUM_DISPLAYF."&nbsp;:
-		<input type='radio' name='options[2]' id='o21' value='1' $fullyes_checked /><label for='o21'>"._YES."</label>
-		<input type='radio' name='options[2]' id='o20' value='0' $fullno_checked /><label for='o20'>"._NO."</label>
-		<br />
+		<input type='radio' name='options[2]' id='o21' value='1' $fullyes_checked><label for='o21'>"._YES."</label>
+		<input type='radio' name='options[2]' id='o20' value='0' $fullno_checked><label for='o20'>"._NO."</label>
+		<br>
 		<label for='orderrule'>"._MB_D3FORUM_ORDERRULE."</label>&nbsp;:
 		<select name='options[3]' id='orderrule'>
 			$order_options
 		</select>
-		<br />
+		<br>
 		"._MB_D3FORUM_MARKISUP."&nbsp;:
-		<input type='radio' name='options[4]' id='markupyes' value='1' $markupyes_checked /><label for='markupyes'>"._YES."</label>
-		<input type='radio' name='options[4]' id='markupno' value='0' $markupno_checked /><label for='markupno'>"._NO."</label>
-		<br />
+		<input type='radio' name='options[4]' id='markupyes' value='1' $markupyes_checked><label for='markupyes'>"._YES."</label>
+		<input type='radio' name='options[4]' id='markupno' value='0' $markupno_checked><label for='markupno'>"._NO."</label>
+		<br>
 		<label for='categories'>"._MB_D3FORUM_CATLIMIT."</label>&nbsp;:
-		<input type='text' size='20' name='options[5]' id='categories' value='".implode(',',$categories)."' />"._MB_D3FORUM_CATLIMITDSC."
-		<br />
+		<input type='text' size='20' name='options[5]' id='categories' value='".implode(',',$categories)."'>"._MB_D3FORUM_CATLIMITDSC."
+		<br>
 		<label for='this_template'>"._MB_D3FORUM_THISTEMPLATE."</label>&nbsp;:
-		<input type='text' size='60' name='options[6]' id='this_template' value='".htmlspecialchars($this_template,ENT_QUOTES)."' />
-		<br />
+		<input type='text' size='60' name='options[6]' id='this_template' value='".htmlspecialchars($this_template,ENT_QUOTES)."'>
+		<br>
 		<label for='forums'>"._MB_D3FORUM_FORUMLIMIT."</label>&nbsp;:
-		<input type='text' size='20' name='options[7]' id='forums' value='".implode(',',$forums)."' />"._MB_D3FORUM_FORUMLIMITDSC."
-		<br />
+		<input type='text' size='20' name='options[7]' id='forums' value='".implode(',',$forums)."'>"._MB_D3FORUM_FORUMLIMITDSC."
+		<br>
 	\n" ;
 
 	return $form;
@@ -441,7 +441,7 @@ function b_d3forum_list_posts_show( $options )
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 
 	// naao from
-	// get all forums 
+	// get all forums
 	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 	$frs = $db->query( $sql ) ;
 	$d3com = array() ;
@@ -512,14 +512,14 @@ function b_d3forum_list_posts_show( $options )
 	$forums4assign = implode(',',$forums) ;
 	$whr_forums = empty( $forums ) ? '1' : 'f.forum_id IN ('.implode(',',$forums).')' ;
 
-	// naao 
-	$sql = "SELECT p.post_id, p.subject, p.votes_sum, p.votes_count, p.post_time, p.post_text, p.uid, 
-		p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path, 
+	// naao
+	$sql = "SELECT p.post_id, p.subject, p.votes_sum, p.votes_count, p.post_time, p.post_text, p.uid,
+		p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path,
 		f.forum_id, f.forum_title, t.topic_external_link_id FROM "
 		.$db->prefix($mydirname."_posts")." p LEFT JOIN "
 		.$db->prefix($mydirname."_topics")." t ON p.topic_id=t.topic_id LEFT JOIN "
-		.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id 
-		WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums) 
+		.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id
+		WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums)
 		AND ($whr_order) ORDER BY $odr" ;
 
 //	var_dump( $sql ) ;
@@ -528,7 +528,7 @@ function b_d3forum_list_posts_show( $options )
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array( 
+	$block = array(
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -558,7 +558,7 @@ function b_d3forum_list_posts_show( $options )
 				$can_display = false;
 			}
 		}	// naao to
-		
+
 		if ($can_display == true) {	// naao
 		    $post4assign = array(
 			'id' => intval( $post_row['post_id'] ) ,
@@ -575,7 +575,7 @@ function b_d3forum_list_posts_show( $options )
 			'post_text' => strip_tags( $myts->displayTarea(strip_tags($post_row['post_text']), $post_row['html'], $post_row['smiley'], $post_row['xcode'], 1, $post_row['br'] ) ) , //naao
 			'guest_name' => htmlspecialchars( $post_row['guest_name'] ) , //naao
 		    ) ;
-		
+
 		    $block['posts'][] = $post4assign ;
 		}	//naao
 	}
@@ -620,23 +620,23 @@ function b_d3forum_list_posts_edit( $options )
 	}
 
 	$form = "
-		<input type='hidden' name='options[0]' value='$mydirname' />
-		<label for='o1'>" . sprintf( _MB_D3FORUM_DISPLAY , "</label><input type='text' size='4' name='options[1]' id='o1' value='$max_posts' style='text-align:right;' />" ) . "
-		<br />
+		<input type='hidden' name='options[0]' value='$mydirname'>
+		<label for='o1'>" . sprintf( _MB_D3FORUM_DISPLAY , "</label><input type='text' size='4' name='options[1]' id='o1' value='$max_posts' style='text-align:right;'>" ) . "
+		<br>
 		<label for='orderrule'>"._MB_D3FORUM_ORDERRULE."</label>&nbsp;:
 		<select name='options[2]' id='orderrule'>
 			$order_options
 		</select>
-		<br />
+		<br>
 		<label for='categories'>"._MB_D3FORUM_CATLIMIT."</label>&nbsp;:
-		<input type='text' size='20' name='options[3]' id='categories' value='".implode(',',$categories)."' />"._MB_D3FORUM_CATLIMITDSC."
-		<br />
+		<input type='text' size='20' name='options[3]' id='categories' value='".implode(',',$categories)."'>"._MB_D3FORUM_CATLIMITDSC."
+		<br>
 		<label for='this_template'>"._MB_D3FORUM_THISTEMPLATE."</label>&nbsp;:
-		<input type='text' size='60' name='options[4]' id='this_template' value='".htmlspecialchars($this_template,ENT_QUOTES)."' />
-		<br />
+		<input type='text' size='60' name='options[4]' id='this_template' value='".htmlspecialchars($this_template,ENT_QUOTES)."'>
+		<br>
 		<label for='forums'>"._MB_D3FORUM_FORUMLIMIT."</label>&nbsp;:
-		<input type='text' size='20' name='options[5]' id='forums' value='".implode(',',$forums)."' />"._MB_D3FORUM_FORUMLIMITDSC."
-		<br />
+		<input type='text' size='20' name='options[5]' id='forums' value='".implode(',',$forums)."'>"._MB_D3FORUM_FORUMLIMITDSC."
+		<br>
 	\n" ;
 
 	return $form;

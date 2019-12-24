@@ -1,0 +1,175 @@
+/*
+	Theme : XCL Admin Flex Grid
+	Distribution : XCL 2.3 Alpha
+	Version : 0.0.4
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2019-11-11
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- -------------------- NORMALIZE */
+
+	html{box-sizing:border-box}
+	/* 	Applying CSS box-sizing Property to all elements
+		The box-sizing property includes the 'padding' & 'border' in elements total width & height. */
+	*,*:before,
+	*:after{box-sizing:inherit}
+	html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+	body{margin:0}
+	article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}
+	summary{display:list-item}
+	audio,canvas,progress,video{display:inline-block}
+	progress{vertical-align:baseline}
+	audio:not([controls]){display:none;height:0}
+	[hidden],template{display:none}
+	a{background-color:transparent}
+	a:active,a:hover{outline-width:0}
+	abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
+	b,strong{font-weight:bolder}
+	dfn{font-style:italic}
+	mark{background:#b49900;color:#000}
+	small{font-size:80%}
+	sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+	sub{bottom:-0.25em}
+	sup{top:-0.5em}
+	figure{margin:1em 40px}
+	img{border-style:none}
+	code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}
+	hr{box-sizing:content-box;height:0;overflow:visible}
+	button,input,select,textarea,optgroup{font:inherit;margin:0}
+	optgroup{font-weight:bold}
+	button,input{overflow:visible}button,select{text-transform:none}
+	button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}
+	button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
+	button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+	fieldset{border:1px solid #888;margin:0 2px;padding:.35em .625em .75em}
+	legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
+	textarea{overflow:auto}
+	[type=checkbox],[type=radio]{padding:0}
+	[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+	[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
+	[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+	::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+
+
+	/* -------------------- -------------------- -------------------- -------------------- HTML BODY */
+
+	html,
+	body {
+
+		background			: var(  --ui-body-background	);
+
+		color						: var(  --ui-text-color				);
+
+		font-family			: var(  --ui-font-family			);
+		font-size				: var(  --ui-font-size				);
+		font-weight			: var(  --ui-font-weight			);
+		line-height			: var(  --ui-font-line-height	);
+
+		margin					: var(  --ui-space-no					);
+		padding					: var(  --ui-space-no					);
+
+		text-rendering	: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+
+	}
+
+	html{
+
+		overflow-x			: hidden
+
+	}
+
+	body {
+
+		transition			: background 500ms ease-in-out, color 200ms ease;
+
+	}
+
+	.ui-dev-mode {
+
+		display					: var(  --ui-dev-mode					);
+
+	}
+
+	/* -------------------- -------------------- -------------------- -------------------- HTML Elements */
+
+	a,
+	a:link,
+	a:visited {
+
+		color           : var(  --ui-color-link				);
+		display					: inline-block;
+		text-decoration : none;
+
+	}
+
+	a:active,
+	a:focus {
+
+		color           : var(  --ui-color-link-active	);
+
+	}
+
+	a:hover,
+	a:visited:hover {
+
+		color           : var(  --ui-color-link-hover		);
+
+	}
+	/* Add icon to link */
+	/* a[href^="http"]::after {
+
+		font-size				: 0.75rem;
+		vertical-align	: text-top;
+		content					: '\0020\2197';
+		text-decoration	: none;
+
+	} */
+
+	h1 {
+
+		font-size      	: var(  --ui-text-500		);
+
+	}
+
+	h2 {
+
+		font-size      	: var(  --ui-text-500		);
+
+	}
+	h3 {
+
+		font-size      	: var(  --ui-text-400		);
+
+	}
+
+	h4 {
+
+		font-size      	: var(  --ui-text-400		);
+
+	}
+
+	h5 {
+
+		font-size      	: var(  --ui-text-300		);
+	}
+
+	h6 {
+
+		font-size      	: var(  --ui-text-300		);
+
+	}
+
+	h1, h2, h3, h4, h5 {
+
+		font-weight     :300;
+
+	}
+
+	hr {
+
+		border          : 0;
+		border-top      : 1px solid var(  --ui-color-300			);
+		margin          : 20px 0
+
+	}

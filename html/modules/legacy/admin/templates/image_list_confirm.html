@@ -1,9 +1,17 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
   &raquo;&raquo; <{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPDATECONF}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPDATECONF}></span>
 </div>
+
+
+
+
+<div class="ui-card-full">
+	
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPDATECONF}> (<{$category->getShow('imgcat_name')}>)</h3>
 
@@ -21,8 +29,12 @@
 
 <form method="post"  action="./index.php?action=ImageList">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=confirm value=1}>
+	<{xoops_input type=hidden name=confirm value=1}>
+
+
 <table class="outer">
+
+	<thead>
   <tr>
     <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_ID}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}></th>
@@ -30,8 +42,10 @@
     <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}></th>
     <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}></th>
     <th><{$smarty.const._DELETE}></th>
-  </tr>
+	</tr>
+</thead>
 
+<tbody>
 <{foreach item=imid from=$imids}>
   <tr class="even">
     <td class="legacy_list_id"><{$imid}></td>
@@ -56,9 +70,9 @@
           <{$smarty.const._YES}>
         <{else}>
           <{$smarty.const._NO}>
-        <{/if}>) 
+        <{/if}>)
         &raquo;
-        
+
         <{if $actionForm->get('display',$imid) == 1}>
           <b class="legacy_module_error">
           <{$smarty.const._YES}>
@@ -82,15 +96,15 @@
       <input type="hidden" name="weight[<{$imid}>]" value="<{$actionForm->get('weight',$imid)|xoops_escape:edit}>" />
     </td>
     <td class="legacy_list_select">
-        
+
         <{if $actionForm->get('delete',$imid) == 1}>
         <b class="legacy_module_error">
           <{$smarty.const._YES}>
         <{else}>
         <b class="legacy_module_warning">
           <{$smarty.const._NO}>
-        <{/if}>
-	</b>
+				<{/if}>
+				</b>
       <{if $actionForm->get('delete',$imid)}>
         <input type="hidden" name="delete[<{$imid}>]" value="1" />
       <{else}>
@@ -99,12 +113,20 @@
     </td>
   </tr>
 <{/foreach}>
+</tbody>
+
+<tfoot>
   <tr>
     <td class="foot" colspan="6">
       <input type="hidden" name="imgcatid" value="<{$category->getShow('imgcat_id')}>" />
       <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
       <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
     </td>
-  </tr>
+	</tr>
+</tfoot>
+
 </table>
+
 </form>
+
+</div>

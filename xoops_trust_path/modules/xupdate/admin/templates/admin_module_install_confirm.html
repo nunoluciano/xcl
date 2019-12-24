@@ -4,7 +4,7 @@
 <{include file="admin_menunavi.html"}>
 <{include file="admin_navi.html"}>
 
-<div class="ui-card-main">
+<div class="ui-card-full">
 
 <h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
 
@@ -33,74 +33,89 @@
   <{xoops_input type=hidden name=target_key value=$target_key }>
   <{xoops_input type=hidden name=dirname value=$dirname }>
   <{xoops_input type=hidden name=target_type value=$target_type }>
-  <{xoops_input type=hidden name=trust_dirname value=$trust_dirname }>
+	<{xoops_input type=hidden name=trust_dirname value=$trust_dirname }>
+
 <table class="outer">
-  <tr>
-    <th colspan="2"><{$target_key|xoops_escape:show}></th>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></td>
-    <td class="legacy_list_select">
-        <a href="index.php?action=<{$action}>&amp;sid=<{$sid}>"><{$store_name|xoops_escape:show}></a>
-        <{if $detail_url}>
-        ( <a href="<{$detail_url|xoops_escape:show}>" target="_blank"><{$target_key|xoops_escape:show}></a> )
-        <{/if}>
-    </td>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
-    <td class="legacy_list_select">
-        <{$addon_url|xoops_escape:show}>
-    </td>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_LANG_TYPE}></td>
-    <td class="legacy_list_select">
-        <{$target_type|xoops_escape:show}>
-    </td>
-  </tr>
-  <{if $trust_dirname}>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select">TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
-    <td class="legacy_list_select">
-        <{$trust_dirname|xoops_escape:show}>
-    </td>
-  </tr>
-  <{/if}>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
-    <td class="legacy_list_select">
-        <{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
-        <{if $options.changes_url}><a href="<{$options.changes_url|escape:'html'}>" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}></a><{/if}>
-    </td>
-  </tr>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_DESCRIPTION}></td>
-    <td class="legacy_list_select">
-        <{$description}>
-    </td>
-  </tr>
-  <{if $target_type == 'TrustModule'}>
-  <tr class="<{cycle values='odd,even'}>">
-    <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_HTML_ONLY}></td>
-    <td class="legacy_list_select">
-      <table>
-        <tr>
-          <td class='even'><label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>html_only_1"><{$smarty.const._AD_XUPDATE_HTML_ONLY_DESC}></label></td>
-          <td class="even center"><{xoops_input type=checkbox name=html_only value=1 default=$htmlOnly}></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <{/if}>
-  <{include file='include_options_form.html'}>
-  <tr>
-    <td class="foot" colspan="2">
-      <input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
-    </td>
-  </tr>
+
+	<thead>
+		<tr>
+			<th colspan="2"><{$target_key|xoops_escape:show}></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></td>
+			<td class="legacy_list_select">
+					<a href="index.php?action=<{$action}>&amp;sid=<{$sid}>"><{$store_name|xoops_escape:show}></a>
+					<{if $detail_url}>
+					<a href="<{$detail_url|xoops_escape:show}>" class="ui-btn ui-btn-small" target="_blank"><{$target_key|xoops_escape:show}></a>
+					<{/if}>
+			</td>
+		</tr>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select"><{$smarty.const._MI_XUPDATE_FTP_ADDON_URL}></td>
+			<td class="legacy_list_select">
+					<{$addon_url|xoops_escape:show}>
+			</td>
+		</tr>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_LANG_TYPE}></td>
+			<td class="legacy_list_select">
+					<{$target_type|xoops_escape:show}>
+			</td>
+		</tr>
+		<{if $trust_dirname}>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select">TRUST or <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+			<td class="legacy_list_select">
+					<{$trust_dirname|xoops_escape:show}>
+			</td>
+		</tr>
+		<{/if}>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+			<td class="legacy_list_select">
+					<{$version}><{if $detailed_version}> ( <{$detailed_version}> )<{/if}>
+					<{if $options.changes_url}>
+					<a href="<{$options.changes_url|escape:'html'}>" class="ui-btn ui-btn-small" target="_blank"><{$smarty.const._AD_XUPDATE_RECENTCHANGES}>
+					</a>
+					<{/if}>
+			</td>
+		</tr>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_DESCRIPTION}></td>
+			<td class="legacy_list_select">
+					<{$description}>
+			</td>
+		</tr>
+		<{if $target_type == 'TrustModule'}>
+		<tr class="<{cycle values='odd,even'}>">
+			<td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_HTML_ONLY}></td>
+			<td class="legacy_list_select">
+				<table>
+					<tr>
+						<td class='even'><label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>html_only_1"><{$smarty.const._AD_XUPDATE_HTML_ONLY_DESC}></label></td>
+						<td class="even center"><{xoops_input type=checkbox name=html_only value=1 default=$htmlOnly}></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<{/if}>
+		<{include file='include_options_form.html'}>
+	</tbody>
+
+	<tfoot>
+		<tr>
+			<td class="foot" colspan="2">
+				<input class="formButton" type="submit" value="<{$smarty.const._MI_XUPDATE_DEPLOY}>" />
+				<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+			</td>
+		</tr>
+	</tfoot>
+
 </table>
+
 </form>
 
 <div id="xupdate_boxes">
@@ -113,7 +128,7 @@
     <div id="xupdate_mask"></div>
 </div>
 
-</div><!-- ui-card-main -->
+</div><!-- ui-card-full -->
 
 </div><!-- id="contentBody" -->
 </div><!-- id="xupdate" -->

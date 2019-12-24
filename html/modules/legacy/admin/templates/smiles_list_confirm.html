@@ -1,8 +1,14 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPDATECONF}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPDATECONF}></span>
 </div>
+
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_UPDATECONF}></h3>
 
@@ -55,9 +61,9 @@
           <{$smarty.const._YES}>
         <{else}>
           <{$smarty.const._NO}>
-        <{/if}>) 
+        <{/if}>)
         &raquo;
-        
+
         <{if $actionForm->get('display',$sid) == 1}>
         <b class="legacy_module_error">
           <{$smarty.const._YES}>
@@ -75,7 +81,7 @@
       <{/if}>
     </td>
     <td class="legacy_list_select">
-        
+
         <{if $actionForm->get('delete',$sid) == 1}>
         <b class="legacy_module_error">
           <{$smarty.const._YES}>
@@ -99,3 +105,5 @@
   </tr>
 </table>
 </form>
+
+</div>

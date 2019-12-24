@@ -1,25 +1,34 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
   <{if !$installed }>
-    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
   <{/if}>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></h3>
+
+<!-- ui-card-full -->
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}></h2>
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></h4>
+
 <table class="outer">
+
+
   <tr>
     <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></th>
   </tr>
   <tr>
-    <td class="head legacy_list_image" rowspan="6">
+    <td class="head ui-card-block-image" rowspan="6">
 <{if $installed && $module->get('hasmain')}>
-      <a href="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/"><img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" /></a>
+      <a href="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/"><img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>"></a>
 <{else}>
-      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>" />
+      <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>">
 <{/if}>
       <div class="legacy_list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
     </td>
@@ -65,8 +74,11 @@
 </table>
 
 <div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>
+
 <hr />
+
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></h4>
+
 <table class="outer">
   <tr>
     <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></th>
@@ -309,6 +321,8 @@
 <{foreachelse}>
   <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_CONFIG}></div>
 <{/foreach}>
+
+</div>
 
 <{*
 <div class="return_top"><a href="#container"><{$smarty.const._RETURN_TOP}></a></div>

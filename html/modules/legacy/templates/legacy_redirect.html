@@ -12,22 +12,70 @@
 </body>
 </html> -->
 
-<html>
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>"></html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>">
+
   <{if !class_exists('AdelieDebug_Preload')}>
   <meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" />
   <{/if}>
 
 <title><{$xoops_sitename}></title>
+
+
+<!-- !TODO : Fix this to default package stylesheet ! -->
+
+<link rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
+
+<style>
+body {
+	margin : 2em;
+	transition			: background 500ms ease-in-out, color 200ms ease;
+}
+
+.wrapper-redirect {
+	align-content		: center;
+	display					: flex;
+	flex-direction	: column;
+  justify-content	: center;
+	min-height			: 100vh;
+}
+
+.wrapper-redirect > * {
+	margin					: 1em auto;
+}
+table {
+	width: 100%;
+	border-spacing: 1px;
+  border-collapse: separate;
+}
+td {
+	padding: 1em 2em;
+}
+.icon-package {
+margin-right			: 1em; /* Space icon -> text */
+vertical-align		: middle; /* Align icon and text */
+width							: 1.5em; /* Size icon to text */
+}
+
+</style>
+
 </head>
 <body>
-<div style="text-align:center; background-color: #EBEBEB; border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #AAAAAA; border-bottom: 1px solid #AAAAAA; font-weight : bold;">
+
+<div class="wrapper-redirect">
+	<h2>Redirect</h2>
   <h4><{$message}></h4>
   <p><{$lang_ifnotreload}></p>
-</div>
+
+
 <{if class_exists('AdelieDebug_Preload')}>
 <p style="color:red;text-align: center">No automatic redirect during AdelieDebug execution.</p>
 <{/if}>
+
+</div>
+
 </body>
 </html>

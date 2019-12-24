@@ -1,17 +1,23 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a>
   <{if $actionForm->get('id')}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_EDIT}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_SMILES_EDIT}></span>
   <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_NEW}></span>
+    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_SMILES_NEW}></span>
   <{/if}>
 </div>
 
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <{if $actionForm->get('id')}>
-  <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_EDIT}></h3>
+  <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_EDIT}></h2>
 <{else}>
-  <h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_NEW}></h3>
+  <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_NEW}></h2>
 <{/if}>
 
 <{if $actionForm->hasError()}>
@@ -74,9 +80,11 @@
     </tr>
     <tr>
       <td colspan="2" class="foot">
-        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>
 </form>
+
+</div>

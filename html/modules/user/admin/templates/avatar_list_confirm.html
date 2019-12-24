@@ -4,7 +4,13 @@
   &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_AVATAR_UPDATECONF}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_UPDATECONF}></h3>
+
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_AVATAR_UPDATECONF}></h2>
 
 <div class="confirm"><{$smarty.const._AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR}></div>
 
@@ -56,7 +62,7 @@
           <{$smarty.const._YES}>
         <{else}>
           <{$smarty.const._NO}>
-        <{/if}>) 
+        <{/if}>)
         &raquo;
         <b class="user_module_error">
         <{if $actionForm->get('display',$aid) == 1}>
@@ -110,3 +116,5 @@
   </tr>
 </table>
 </form>
+
+</div>

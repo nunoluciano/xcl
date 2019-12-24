@@ -1,12 +1,18 @@
-<div class="adminnavi">
+<div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></span>
+  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></span>
 </div>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></h3>
 
-<div class="confirm"><{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_DELETE}></div>
+
+<div class="ui-card-full">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></h2>
+
+<div class="confirm"><i class="red"><img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=SmilesDelete">
   <{xoops_token form=$actionForm}>
@@ -46,9 +52,11 @@
     </tr>
     <tr>
       <td colspan="2" class="foot">
-        <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>" />
-        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+        <input class="button-delete formButton" type="submit" value="<{$smarty.const._DELETE}>">
+        <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
       </td>
     </tr>
   </table>
 </form>
+
+</div>

@@ -1,0 +1,136 @@
+/*
+	Theme : XCL Admin Flex Grid
+	Distribution : XCL 2.3 Alpha
+	Version : 0.0.4
+	Author : Nuno Luciano aka Gigamaster
+	Date : 2019-11-11
+	URL : https://github.com/xoopscube/xcl/
+
+	-------------------- -------------------- -------------------- -------------------- GRID FLEX */
+
+	.grid {
+
+		align-content					: space-around;
+
+		display								: grid;
+
+		grid-gap							: 10px;
+		grid-template-columns	: 200px auto;
+		grid-template-rows		: 55px 1fr 80px;
+		grid-template-areas		:
+													"header  header"
+													"nav-aside main"
+													"footer  footer";
+
+		justify-content				: space-between;
+
+	}
+
+
+	/* -------------------- -------------------- -------------------- -------------------- HEADER */
+
+	.header {
+
+		align-items				: center;
+
+		background				: var(  --ui-header-background	);
+
+		border-color			: var(  --ui-border-none				);
+		border-radius			: var(  --ui-border-none				);
+		border-style			: var(  --ui-border-none				);
+		border-width			: var(  --ui-border-none				);
+
+		box-shadow				: var(  --ui-header-shadow			);
+
+		/* display						: flex; */
+
+		grid-area					: header;
+
+		position					: var(  --ui-header-position		);
+  	width							: 100%;
+  	z-index						: 100;
+
+	}
+
+	/* -------------------- -------------------- -------------------- -------------------- SIDE NAV */
+
+	.nav-aside {
+
+		background				: var(  --ui-aside-background		);
+
+		color							: var(  --ui-text-color					);
+
+		grid-area					: nav-aside;
+
+		height						: 100%;
+		left							: 0;
+		overflow-y				: auto;
+		position					: fixed;
+		padding-top				: 50px;
+		transform					: translateX(-235px);
+		transition				: all 0.6s ease-in-out;
+		width							: 230px;
+		z-index						: 2;
+
+	}
+
+	.nav-aside-active {
+
+		transform					: translateX(0);
+
+	}
+
+
+	/* -------------------- -------------------- -------------------- -------------------- Main */
+
+	.main {
+
+		background				: var(  --ui-main-background	);
+
+		border-color			: var(  --ui-border-none			);
+		border-radius			: var(  --ui-border-none			);
+		border-style			: var(  --ui-border-none			);
+		border-width			: var(  --ui-border-none			);
+		box-shadow				: var(  --ui-border-none			);
+
+		grid-area					: main;
+
+		padding						: 2rem;
+
+	}
+
+	/* -------------------- -------------------- -------------------- -------------------- Footer */
+
+	.footer {
+
+		align-items				: center;
+
+		background				: var(  --ui-footer-background	);
+
+		border-color			: var(  --ui-border-none				);
+		border-radius			: var(  --ui-border-none				);
+		border-style			: var(  --ui-border-none				);
+		border-width			: var(  --ui-border-none				);
+
+		box-shadow				: var(  --ui-border-none				);
+
+		color 						: var(  --ui-footer-color				);
+
+		display						: flex;
+		font-size					: 0.8rem;
+
+		grid-area					: footer;
+
+		justify-content		: space-around;;
+
+		padding						: var(--ui-space-400);
+
+	}
+		.footer-copy,
+		.footer-credits,
+		.footer-link {
+
+			color						: var(  --ui-color-amber	) !important;
+			cursor					: pointer;
+
+		}
