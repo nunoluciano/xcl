@@ -2,7 +2,7 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)
 
-## ✅ 2019-11-19 Merge Feature Branch Admin New-UI [WIP]  
+## ✅ 2019-12-19 Merge Feature Branch Admin New-UI [WIP]  
 ## ✅ 2019-10-19 XCL update to 7.2.x MySQL 5.6.x  
 ## :construction: 2019-01-29 XCL update to PHP7  
 
