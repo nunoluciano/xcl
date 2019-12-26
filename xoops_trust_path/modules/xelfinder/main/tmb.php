@@ -62,7 +62,7 @@ if ($file_id && ($res = $xoopsDB->query($query)) && $xoopsDB->getRowsNum($res)) 
 		
 		$check = max($width, $height);
 		if ($s < $check && function_exists('XC_CLASS_EXISTS') && XC_CLASS_EXISTS('HypCommonFunc')) {
-			$s_file = $tmb . '_' . intval($s / $check * 100) . '.tmb';
+			$s_file = $tmb . '_' . (int)($s / $check * 100) . '.tmb';
 			$out = HypCommonFunc::make_thumb($file, $s_file, $s, $s);
 			if ($out !== $file) {
 				$size = filesize($out);

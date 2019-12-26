@@ -518,10 +518,10 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	$crs = $db->query( "SELECT com_id,com_itemid,com_title FROM `$from_table` WHERE com_modid=$mid AND com_pid=0" ) ;
 	if( ! $crs ) d3forum_import_errordie() ;
 	while( $row = $db->fetchArray( $crs ) ) {
-		$trs = $db->query( "INSERT INTO `$to_table` SET forum_id=$forum_id,topic_external_link_id=".intval($row['com_itemid']).",topic_title='".addslashes($row['com_title'])."'" ) ;
+		$trs = $db->query("INSERT INTO `$to_table` SET forum_id=$forum_id,topic_external_link_id=" . (int)$row['com_itemid'] . ",topic_title='" . addslashes($row['com_title']) . "'" ) ;
 		if( ! $trs ) d3forum_import_errordie() ;
 		$topic_id = $db->getInsertId() ;
-		d3forum_comimport_posts_recursive( $mydirname , $topic_id , intval( $row['com_id'] ) ) ;
+		d3forum_comimport_posts_recursive($mydirname , $topic_id , (int)$row['com_id']) ;
 		d3forum_sync_topic( $mydirname , $topic_id ) ;
 	}
 }

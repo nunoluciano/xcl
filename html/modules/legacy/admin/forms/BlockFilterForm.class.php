@@ -105,7 +105,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         }
 
         if (isset($_REQUEST['dirname']) and 0 == !$_REQUEST['dirname']) {
-            if (-1 == intval($dirname)) {
+            if (-1 == (int)$dirname) {
                 $this->_mCriteria->add(new Criteria('block_type', 'C'));
                 $this->mModule = 'cblock';
             } else {
@@ -127,7 +127,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mOptionField = $option_field;
             if ('all' != $this->mOptionField) {
-                $this->_mCriteria->add(new Criteria('side', intval($this->mOptionField)));
+                $this->_mCriteria->add(new Criteria('side', (int)$this->mOptionField));
             }
             $this->mNavi->addExtra('option_field', $this->mOptionField);
         }

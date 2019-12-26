@@ -34,7 +34,7 @@ class xelFinderMisc {
 		$isOwner = ($isAdmin || ($f_uid && $f_uid == $uid));
 		$inGroup = (array_intersect($this->getGroupsByUid($f_uid), $groups))? true : false;
 	
-		$perm = strval($perm);
+		$perm = (string)$perm;
 		$own = intval($perm[0], 16);
 		$grp = intval($perm[1], 16);
 		$gus = intval($perm[2], 16);

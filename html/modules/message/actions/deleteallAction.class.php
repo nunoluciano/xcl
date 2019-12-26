@@ -31,7 +31,7 @@ class deleteallAction extends AbstractAction
         $modHand = xoops_getmodulehandler($this->inout);
     
         foreach ($delid as $boxid) {
-            $modObj = $modHand->get(intval($boxid));
+            $modObj = $modHand->get((int)$boxid);
             if (!is_object($modObj)) {
                 $this->setErr(_MD_MESSAGE_ACTIONMSG1);
                 return;

@@ -43,7 +43,7 @@ if (!empty($_POST['do_import']) && !empty($_POST['import_mid'])) {
 		redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
 	}
 
-	$import_mid = intval(@$_POST['import_mid']);
+	$import_mid = (int)@$_POST['import_mid'];
 	if (empty($importable_modules[$import_mid])) die(_MD_A_PICO_ERR_INVALIDMID);
 	list($fromtype,) = explode(':', $importable_modules[$import_mid]);
 	switch ($fromtype) {

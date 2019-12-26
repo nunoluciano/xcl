@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . '/class/gtickets.php';
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // get info of the category
-$cat_id = intval(@$_GET['cat_id']);
+$cat_id = (int)@$_GET['cat_id'];
 list($cat_id, $pid, $cat_title, $redundants_serialized, $cat_permission_id) = $db->fetchRow($db->query('SELECT cat_id,pid,cat_title,cat_redundants,cat_permission_id FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id"));
 if (empty($cat_id)) {
 	$cat_id = 0;
@@ -35,7 +35,7 @@ if (!empty($_POST['independentpermission_update']) && 0 != $cat_id) {
 		// get cat_permission_id of the parent category
 		list($cat_permission_id) = $db->fetchRow($db->query('SELECT cat_permission_id FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$pid"));
 		// update permission_id of categories which permission_id is the cat_id
-		$db->queryF('UPDATE ' . $db->prefix($mydirname . '_categories') . ' SET cat_permission_id=' . intval($cat_permission_id) . " WHERE cat_permission_id=$cat_id");
+		$db->queryF('UPDATE ' . $db->prefix($mydirname . '_categories') . ' SET cat_permission_id=' . (int)$cat_permission_id . " WHERE cat_permission_id=$cat_id");
 	}
 	redirect_header(XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED);
 	exit;
@@ -70,7 +70,7 @@ if (!empty($_POST['user_update'])) {
 	$db->queryF('DELETE FROM ' . $db->prefix($mydirname . '_category_permissions') . " WHERE cat_id=$cat_id AND uid>0");
 
 	if (is_array(@$_POST['can_read'])) foreach ($_POST['can_read'] as $uid => $can_read) {
-		$uid = intval($uid);
+		$uid = (int)$uid;
 		if ($can_read) {
 			$perms = [];
 			foreach ($pico_category_permissions as $perm_name) {
@@ -91,7 +91,7 @@ if (!empty($_POST['user_update'])) {
 			@list($user) = $member_handler->getUsers($criteria);
 		} else {
 			// add new user by uid
-			$user = &$member_handler->getUser(intval($_POST['new_uids'][$i]));
+			$user = &$member_handler->getUser((int)$_POST['new_uids'][$i]);
 		}
 		// check the user is valid
 		if (!is_object($user)) continue;
@@ -150,7 +150,7 @@ $cprs = $db->query('SELECT u.uid,u.uname,cp.permissions FROM ' . $db->prefix($my
 $user_trs = '';
 while (list($uid, $uname, $serialized_upermissions) = $db->fetchRow($cprs)) {
 
-	$uid = intval($uid);
+	$uid = (int)$uid;
 	$upermissions = pico_common_unserialize($serialized_upermissions);
 
 	$users4assign[] = [

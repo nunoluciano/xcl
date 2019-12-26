@@ -21,7 +21,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	$db =& Database::getInstance() ;
 
 	$andor = strtoupper( $andor ) ;
-	$userid = intval( $userid ) ;
+	$userid = (int)$userid;
 
 	// naao from
 	require_once __DIR__ . '/include/main_functions.php' ;
@@ -31,7 +31,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
-		$temp_forum_id = intval($forum_row['forum_id']);
+		$temp_forum_id = (int)$forum_row['forum_id'];
 		if( ! empty( $forum_row['forum_external_link_format'] ) ) {
 			$d3com[$temp_forum_id] = d3forum_main_get_comment_object( $mydirname , $forum_row['forum_external_link_format'] , $temp_forum_id ) ;
 		} else {
@@ -89,8 +89,8 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 
 		// naao from
 		$can_display = true;	//default
-		if( is_object( $d3com[intval($forum_id)]) ) {
-			$d3com_obj = $d3com[intval($forum_id)];
+		if( is_object($d3com[(int)$forum_id]) ) {
+			$d3com_obj = $d3com[(int)$forum_id];
 			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}

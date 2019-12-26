@@ -7,7 +7,7 @@ function d3forum_main_d3comment_callback( $mydirname , $topic_id , $mode = 'upda
 {
 	$db =& Database::getInstance() ;
 
-	$topic_id = intval( $topic_id ) ;
+	$topic_id = (int)$topic_id;
 
 	list( $external_link_format , $external_link_id , $forum_id ) = $db->fetchRow( $db->query('SELECT f.forum_external_link_format,t.topic_external_link_id,t.forum_id FROM '
                                                                                               . $db->prefix($mydirname . '_topics') . ' t LEFT JOIN '
@@ -27,7 +27,7 @@ function d3forum_delete_post_recursive( $mydirname , $post_id )
 {
 	$db =& Database::getInstance() ;
 
-	$post_id = intval( $post_id ) ;
+	$post_id = (int)$post_id;
 
 	list( $topic_id ) = $db->fetchRow( $db->query('SELECT topic_id FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ) ) ;
 
@@ -59,7 +59,7 @@ function d3forum_delete_topic( $mydirname , $topic_id , $delete_also_posts = tru
 
 	$db =& Database::getInstance() ;
 
-	$topic_id = intval( $topic_id ) ;
+	$topic_id = (int)$topic_id;
 
 	// delete posts
 	if( $delete_also_posts ) {
@@ -89,7 +89,7 @@ function d3forum_delete_forum( $mydirname , $forum_id , $delete_also_topics = tr
 
 	$db =& Database::getInstance() ;
 
-	$forum_id = intval( $forum_id ) ;
+	$forum_id = (int)$forum_id;
 
 	// delete topics
 	if( $delete_also_topics ) {
@@ -119,7 +119,7 @@ function d3forum_delete_category( $mydirname , $cat_id , $delete_also_forums = t
 
 	$db =& Database::getInstance() ;
 
-	$cat_id = intval( $cat_id ) ;
+	$cat_id = (int)$cat_id;
 
 	// delete forums
 	if( $delete_also_forums ) {
@@ -147,7 +147,7 @@ function d3forum_sync_category( $mydirname , $cat_id )
 {
 	$db =& Database::getInstance() ;
 
-	$cat_id = intval( $cat_id ) ;
+	$cat_id = (int)$cat_id;
 
 	// get children
 	include_once XOOPS_ROOT_PATH . '/class/xoopstree.php';
@@ -169,14 +169,14 @@ function d3forum_sync_category( $mydirname , $cat_id )
 	// update query
 	if( ! $result = $db->queryF('UPDATE '
                                 . $db->prefix($mydirname . '_categories') . ' SET cat_topics_count='
-                                . intval($topics_count) . ',cat_posts_count='
-                                . intval($posts_count) . ', cat_last_post_id='
-                                . intval($last_post_id) . ', cat_last_post_time='
-                                . intval($last_post_time) . ',cat_topics_count_in_tree='
-                                . intval($topics_count_in_tree) . ',cat_posts_count_in_tree='
-                                . intval($posts_count_in_tree) . ', cat_last_post_id_in_tree='
-                                . intval($last_post_id_in_tree) . ', cat_last_post_time_in_tree='
-                                . intval($last_post_time_in_tree) . " WHERE cat_id=$cat_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
+                                . (int)$topics_count . ',cat_posts_count='
+                                . (int)$posts_count . ', cat_last_post_id='
+                                . (int)$last_post_id . ', cat_last_post_time='
+                                . (int)$last_post_time . ',cat_topics_count_in_tree='
+                                . (int)$topics_count_in_tree . ',cat_posts_count_in_tree='
+                                . (int)$posts_count_in_tree . ', cat_last_post_id_in_tree='
+                                . (int)$last_post_id_in_tree . ', cat_last_post_time_in_tree='
+                                . (int)$last_post_time_in_tree . " WHERE cat_id=$cat_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
 
 	// do sync parents
 	list( $pid ) = $db->fetchRow( $db->query('SELECT pid FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id" ) ) ;
@@ -239,7 +239,7 @@ function d3forum_sync_forum( $mydirname , $forum_id , $sync_also_category = true
 {
 	$db =& Database::getInstance() ;
 
-	$forum_id = intval( $forum_id ) ;
+	$forum_id = (int)$forum_id;
 
 	$sql = 'SELECT cat_id FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$forum_id" ;
 	if( ! $result = $db->query( $sql ) ) die('ERROR SELECT forum in sync forum') ;
@@ -251,10 +251,10 @@ function d3forum_sync_forum( $mydirname , $forum_id , $sync_also_category = true
 
 	if( ! $result = $db->queryF('UPDATE '
                                 . $db->prefix($mydirname . '_forums') . ' SET forum_topics_count='
-                                . intval($topics_count) . ',forum_posts_count='
-                                . intval($posts_count) . ', forum_last_post_id='
-                                . intval($last_post_id) . ', forum_last_post_time='
-                                . intval($last_post_time) . " WHERE forum_id=$forum_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
+                                . (int)$topics_count . ',forum_posts_count='
+                                . (int)$posts_count . ', forum_last_post_id='
+                                . (int)$last_post_id . ', forum_last_post_time='
+                                . (int)$last_post_time . " WHERE forum_id=$forum_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
 
 	if( $sync_also_category ) return d3forum_sync_category( $mydirname , $cat_id ) ;
 	else return true ;
@@ -267,7 +267,7 @@ function d3forum_sync_topic( $mydirname , $topic_id , $sync_also_forum = true , 
 {
 	$db =& Database::getInstance() ;
 
-	$topic_id = intval( $topic_id ) ;
+	$topic_id = (int)$topic_id;
 
 	$sql = 'SELECT forum_id FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_id=$topic_id" ;
 	if( ! $result = $db->query( $sql ) ) die('ERROR SELECT topic in sync topic') ;
@@ -300,7 +300,7 @@ function d3forum_sync_topic( $mydirname , $topic_id , $sync_also_forum = true , 
                           . $db->prefix($mydirname . '_topics') . " SET {$topictitle4set} topic_posts_count=$total_posts, topic_first_uid=$first_uid, topic_first_post_id=$first_post_id, topic_first_post_time=$first_post_time, topic_last_uid=$last_uid, topic_last_post_id=$last_post_id, topic_last_post_time=$last_post_time WHERE topic_id=$topic_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
 
 		// rebuild tree informations
-		$tree_array = d3forum_maketree_recursive($db->prefix($mydirname . '_posts') , intval($first_post_id ) , 'post_id' , [], 0 , empty( $unique_path ) ? '.1' : $unique_path ) ;
+		$tree_array = d3forum_maketree_recursive($db->prefix($mydirname . '_posts') , (int)$first_post_id, 'post_id' , [], 0 , empty( $unique_path ) ? '.1' : $unique_path ) ;
 		if( ! empty( $tree_array ) ) foreach( $tree_array as $key => $val ) {
 			$db->queryF('UPDATE ' . $db->prefix($mydirname . '_posts') . ' SET depth_in_tree=' . $val['depth'] . ', order_in_tree=' . ($key + 1) . ", unique_path='" . addslashes($val['unique_path']) . "' WHERE post_id=" . $val['post_id'] ) ;
 		}
@@ -316,7 +316,7 @@ function d3forum_sync_topic_votes( $mydirname , $topic_id )
 {
 	$db =& Database::getInstance() ;
 
-	$topic_id = intval( $topic_id ) ;
+	$topic_id = (int)$topic_id;
 
 	/* $sql = "SELECT forum_id FROM ".$db->prefix($mydirname."_topics")." WHERE topic_id=$topic_id" ;
 	if( ! $result = $db->query( $sql ) ) die( "ERROR SELECT topic in sync topic_votes" ) ;
@@ -326,7 +326,7 @@ function d3forum_sync_topic_votes( $mydirname , $topic_id )
 	if( ! $result = $db->query( $sql ) ) die('ERROR SELECT topic_votes in sync topic_votes') ;
 	list( $votes_count , $votes_sum ) = $db->fetchRow( $result ) ;
 
-	if( ! $db->queryF('UPDATE ' . $db->prefix($mydirname . '_topics') . ' SET topic_votes_count=' . intval($votes_count) . ',topic_votes_sum=' . intval($votes_sum) . " WHERE topic_id=$topic_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
+	if( ! $db->queryF('UPDATE ' . $db->prefix($mydirname . '_topics') . ' SET topic_votes_count=' . (int)$votes_count . ',topic_votes_sum=' . (int)$votes_sum . " WHERE topic_id=$topic_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
 
 	//if( $sync_also_topic_votes ) return d3forum_sync_forum_votes( $mydirname , $forum_id ) ;
 	return true ;
@@ -338,7 +338,7 @@ function d3forum_sync_post_votes( $mydirname , $post_id , $sync_also_topic_votes
 {
 	$db =& Database::getInstance() ;
 
-	$post_id = intval( $post_id ) ;
+	$post_id = (int)$post_id;
 
 	$sql = 'SELECT topic_id FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 	if( ! $result = $db->query( $sql ) ) die('ERROR SELECT post in sync post_votes') ;
@@ -348,7 +348,7 @@ function d3forum_sync_post_votes( $mydirname , $post_id , $sync_also_topic_votes
 	if( ! $result = $db->query( $sql ) ) die('ERROR SELECT post_votes in sync post_votes') ;
 	list( $votes_count , $votes_sum ) = $db->fetchRow( $result ) ;
 
-	if( ! $db->queryF('UPDATE ' . $db->prefix($mydirname . '_posts') . ' SET votes_count=' . intval($votes_count) . ',votes_sum=' . intval($votes_sum) . " WHERE post_id=$post_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
+	if( ! $db->queryF('UPDATE ' . $db->prefix($mydirname . '_posts') . ' SET votes_count=' . (int)$votes_count . ',votes_sum=' . (int)$votes_sum . " WHERE post_id=$post_id" ) ) die(_MD_D3FORUM_ERR_SQL . __LINE__ ) ;
 
 	if( $sync_also_topic_votes ) return d3forum_sync_topic_votes( $mydirname , $topic_id ) ;
 	else return true ;
@@ -369,9 +369,9 @@ function d3forum_maketree_recursive( $tablename , $post_id , $order = 'post_id' 
 	$new_post_ids = [];
 	$max_count_of_last_level = 0 ;
 	while( list( $new_post_id , $new_unique_path ) = $db->fetchRow( $result ) ) {
-		$new_post_ids[ intval( $new_post_id ) ] = $new_unique_path ;
+        $new_post_ids[(int)$new_post_id] = $new_unique_path ;
 		if( ! empty( $new_unique_path ) ) {
-			$count_of_last_level = intval( substr( strrchr( $new_unique_path , '.' ) , 1 ) ) ;
+			$count_of_last_level = (int)substr(strrchr($new_unique_path, '.'), 1);
 			if( $max_count_of_last_level < $count_of_last_level ) {
 				$max_count_of_last_level = $count_of_last_level ;
 			}
@@ -391,9 +391,9 @@ function d3forum_cutpasteposts( $mydirname , $post_id , $pid , $new_forum_id , $
 {
 	$db =& Database::getInstance() ;
 
-	$post_id = intval( $post_id ) ;
-	$pid = intval( $pid ) ;
-	$new_forum_id = intval( $new_forum_id ) ;
+	$post_id = (int)$post_id;
+	$pid = (int)$pid;
+	$new_forum_id = (int)$new_forum_id;
 
 	// get children
 	include_once XOOPS_ROOT_PATH . '/class/xoopstree.php';
@@ -446,7 +446,7 @@ function d3forum_cutpasteposts( $mydirname , $post_id , $pid , $new_forum_id , $
 		if( ! $db->query('UPDATE ' . $db->prefix($mydirname . '_posts') . " SET pid=$pid WHERE post_id=$post_id" ) ) die('DB ERROR IN UPDATE post') ;
 	}
 	foreach( $children as $child_post_id ) {
-		$child_post_id = intval( $child_post_id ) ;
+		$child_post_id = (int)$child_post_id;
 		$sql = 'UPDATE ' . $db->prefix($mydirname . '_posts') . " SET topic_id=$new_topic_id WHERE post_id=$child_post_id" ;
 		$db->query( $sql ) ;
 	}
@@ -464,8 +464,8 @@ function d3forum_update_topic_from_post( $mydirname , $topic_id , $forum_id , $f
 
 	$sql4set = '' ;
 
-	$topic_id = intval( $topic_id ) ;
-	$new_forum_id = intval( @$_POST['forum_id'] ) ;
+	$topic_id = (int)$topic_id;
+	$new_forum_id = (int)@$_POST['forum_id'];
 
 	// prefetch for forum
 	list( $new_forum_external_link_format ) = $db->fetchRow( $db->query('SELECT forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$new_forum_id" ) ) ;
@@ -474,10 +474,10 @@ function d3forum_update_topic_from_post( $mydirname , $topic_id , $forum_id , $f
 	if( ! $isadmin && ! $forum_permissions[ $new_forum_id ]['is_moderator'] ) die( _MD_D3FORUM_ERR_CUTPASTENOTADMINOFDESTINATION ) ;
 
 	$topic_title4sql = addslashes( $myts->stripSlashesGPC( @$_POST['topic_title'] ) ) ;
-	$topic_sticky = intval( @$_POST['topic_sticky'] ) ;
-	$topic_locked = intval( @$_POST['topic_locked'] ) ;
-	$topic_invisible = intval( @$_POST['topic_invisible'] ) ;
-	$topic_solved = intval( @$_POST['topic_solved'] ) ;
+	$topic_sticky = (int)@$_POST['topic_sticky'];
+	$topic_locked = (int)@$_POST['topic_locked'];
+	$topic_invisible = (int)@$_POST['topic_invisible'];
+	$topic_solved = (int)@$_POST['topic_solved'];
 	$external_link_id = $myts->stripSlashesGPC( @$_POST['topic_external_link_id'] ) ;
 
 	// do update
@@ -521,10 +521,10 @@ function d3forum_get_requests4sql_forum( $mydirname )
 						$options[ $key ] = trim( $regs[1] ) ;
 						break ;
 					case 'int' :
-						$options[ $key ] = intval( $regs[1] ) ;
+						$options[ $key ] = (int)$regs[1];
 						break ;
 					case 'bool' :
-						$options[ $key ] = intval( $regs[1] ) > 0 ? 1 : 0 ;
+						$options[ $key ] = (int)$regs[1] > 0 ? 1 : 0 ;
 						break ;
 				}
 			}
@@ -532,18 +532,18 @@ function d3forum_get_requests4sql_forum( $mydirname )
 	}
 
 	// check $cat_id
-	$cat_id = empty( $_POST['cat_id'] ) ? intval( @$_GET['cat_id'] ) : intval( @$_POST['cat_id'] ) ;
+	$cat_id = empty( $_POST['cat_id'] ) ? (int)@$_GET['cat_id'] : (int)@$_POST['cat_id'];
 	$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE c.cat_id=$cat_id" ;
 	if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	if( $db->getRowsNum( $crs ) <= 0 ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 	return [
-		'title' => addslashes( $myts->stripSlashesGPC( @$_POST['title'] ) ) ,
-		'desc' => addslashes( $myts->stripSlashesGPC( @$_POST['desc'] ) ) ,
-		'weight' => intval( @$_POST['weight'] ) ,
-		'external_link_format' => addslashes( $myts->stripSlashesGPC( @$_POST['external_link_format'] ) ) ,
-		'cat_id' => $cat_id ,
-		'options' => addslashes( serialize( $options ) ) ,
+        'title' => addslashes( $myts->stripSlashesGPC( @$_POST['title'] ) ),
+        'desc' => addslashes( $myts->stripSlashesGPC( @$_POST['desc'] ) ),
+        'weight' => (int)@$_POST['weight'],
+        'external_link_format' => addslashes( $myts->stripSlashesGPC( @$_POST['external_link_format'] ) ),
+        'cat_id' => $cat_id,
+        'options' => addslashes( serialize( $options ) ),
     ];
 }
 
@@ -600,10 +600,10 @@ function d3forum_get_requests4sql_category( $mydirname )
 						$options[ $key ] = trim( $regs[1] ) ;
 						break ;
 					case 'int' :
-						$options[ $key ] = intval( $regs[1] ) ;
+						$options[ $key ] = (int)$regs[1];
 						break ;
 					case 'bool' :
-						$options[ $key ] = intval( $regs[1] ) > 0 ? 1 : 0 ;
+						$options[ $key ] = (int)$regs[1] > 0 ? 1 : 0 ;
 						break ;
 				}
 			}
@@ -611,7 +611,7 @@ function d3forum_get_requests4sql_category( $mydirname )
 	}
 
 	// check $pid
-	$pid = intval( @$_POST['pid'] ) ;
+	$pid = (int)@$_POST['pid'];
 	if( $pid ) {
 		$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE c.cat_id=$pid" ;
 		if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
@@ -619,11 +619,11 @@ function d3forum_get_requests4sql_category( $mydirname )
 	}
 
 	return [
-		'title' => addslashes( $myts->stripSlashesGPC( @$_POST['title'] ) ) ,
-		'desc' => addslashes( $myts->stripSlashesGPC( @$_POST['desc'] ) ) ,
-		'weight' => intval( @$_POST['weight'] ) ,
-		'pid' => $pid ,
-		'options' => addslashes( serialize( $options ) ) ,
+        'title' => addslashes( $myts->stripSlashesGPC( @$_POST['title'] ) ),
+        'desc' => addslashes( $myts->stripSlashesGPC( @$_POST['desc'] ) ),
+        'weight' => (int)@$_POST['weight'],
+        'pid' => $pid,
+        'options' => addslashes( serialize( $options ) ),
     ];
 }
 
@@ -645,8 +645,8 @@ function d3forum_makecategory( $mydirname )
 		$sql = 'SELECT uid,groupid,can_post,can_edit,can_delete,post_auto_approved,can_makeforum,is_moderator FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE cat_id={$requests['pid']}" ;
 		if( ! $result = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 		while( $row = $db->fetchArray( $result ) ) {
-			$uid4sql = empty( $row['uid'] ) ? 'null' : intval( $row['uid'] ) ;
-			$groupid4sql = empty( $row['groupid'] ) ? 'null' : intval( $row['groupid'] ) ;
+			$uid4sql = empty( $row['uid'] ) ? 'null' : (int)$row['uid'];
+			$groupid4sql = empty( $row['groupid'] ) ? 'null' : (int)$row['groupid'];
 			$sql = 'INSERT INTO '
                    . $db->prefix($mydirname . '_category_access') . " (cat_id,uid,groupid,can_post,can_edit,can_delete,post_auto_approved,can_makeforum,is_moderator) VALUES ($new_cat_id,$uid4sql,$groupid4sql,{$row['can_post']},{$row['can_edit']},{$row['can_delete']},{$row['post_auto_approved']},{$row['can_makeforum']},{$row['is_moderator']})" ;
 			if( ! $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
@@ -697,7 +697,7 @@ function d3forum_updatecategory( $mydirname , $cat_id )
 function d3forum_transact_make_post_history( $mydirname , $post_id , $full_backup = false )
 {
 	$db =& Database::getInstance() ;
-	$post_id = intval( $post_id ) ;
+	$post_id = (int)$post_id;
 
 	$result = $db->query('SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ) ;
 	if( ! $result || 0 == $db->getRowsNum($result )) return ;
@@ -724,7 +724,7 @@ function d3forum_transact_make_post_history( $mydirname , $post_id , $full_backu
 function d3forum_transact_turnsolvedon_in_category( $mydirname , $cat_id )
 {
 	$db =& Database::getInstance() ;
-	$cat_id = intval( $cat_id ) ;
+	$cat_id = (int)$cat_id;
 
 	$sql = 'SELECT forum_id FROM ' . $db->prefix($mydirname . '_forums') . " WHERE cat_id=$cat_id" ;
 	$result = $db->query( $sql ) ;
@@ -738,7 +738,7 @@ function d3forum_transact_turnsolvedon_in_category( $mydirname , $cat_id )
 function d3forum_transact_turnsolvedon_in_forum( $mydirname , $forum_id )
 {
 	$db =& Database::getInstance() ;
-	$forum_id = intval( $forum_id ) ;
+	$forum_id = (int)$forum_id;
 
 	$sql = 'UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=1 WHERE forum_id=$forum_id" ;
 	if( ! $db->query( $sql ) ) die( 'ERROR IN TURNSOLVEDON '.__LINE__ ) ;

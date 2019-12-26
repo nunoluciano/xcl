@@ -15,7 +15,7 @@ function pico_delete_content($mydirname, $content_id, $skip_sync = false)
 	pico_transact_backupcontent($mydirname, $content_id, true);
 
 	// delete content
-	if (!$db->queryF('DELETE FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id=' . intval($content_id))) die(_MD_PICO_ERR_SQL . __LINE__);
+	if (!$db->queryF('DELETE FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id=' . (int)$content_id)) die(_MD_PICO_ERR_SQL . __LINE__);
 
 	// rebuild category tree
 	if (empty($skip_sync)) {
@@ -32,7 +32,7 @@ function pico_delete_category($mydirname, $cat_id, $delete_also_contents = true)
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$cat_id = intval($cat_id);
+	$cat_id = (int)$cat_id;
 	if ($cat_id <= 0) return false;
 
 	// delete contents
@@ -102,7 +102,7 @@ function pico_sync_cattree($mydirname)
 		$db->queryF(
             'UPDATE '
             . $db->prefix($mydirname . '_categories') . ' SET cat_depth_in_tree='
-            . intval($val['depth']) . ', cat_order_in_tree='
+            . (int)$val['depth'] . ', cat_order_in_tree='
             . ($key) . ', cat_path_in_tree='
             . $db->quoteString(pico_common_serialize($paths)) . ', cat_redundants='
             . $db->quoteString(pico_common_serialize($redundants)) . ' WHERE cat_id='
@@ -123,12 +123,12 @@ function pico_makecattree_recursive($mydirname, $cat_id, $order = 'cat_weight', 
 		return array( $parray , $parray[ $myindex ]['contents_total'] , $parray[ $myindex ]['subcategories_total'] ) ;
 	} */
 	$myindex = count($parray);
-	$myarray = ['cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title, 'contents_count' => intval($contents_count), 'contents_total' => 0, 'subcategories_count' => $db->getRowsNum($result), 'subcategories_ids_cs' => '', 'subcategories_total' => 0, 'subcattree_raw' => []];
+	$myarray = ['cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title, 'contents_count' => (int)$contents_count, 'contents_total' => 0, 'subcategories_count' => $db->getRowsNum($result), 'subcategories_ids_cs' => '', 'subcategories_total' => 0, 'subcattree_raw' => []];
 	$parray[$myindex] = $myarray;
 	//	$parray[ $myindex ]['subcattree_raw'][] = $parray ;
 
-	$contents_total = intval($myarray['contents_count']);
-	$subcategories_total = intval($myarray['subcategories_count']);
+	$contents_total = (int)$myarray['contents_count'];
+	$subcategories_total = (int)$myarray['subcategories_count'];
 
 	while (list($new_cat_id, $new_cat_title) = $db->fetchRow($result)) {
 		list($parray, $subarray, $contents_smallsum, $subcategories_smallsum, $subcateroeis_ids_cs_sub) = pico_makecattree_recursive($mydirname, $new_cat_id, $order, $parray, $depth + 1, $new_cat_title);
@@ -154,7 +154,7 @@ function pico_sync_content_votes($mydirname, $content_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$content_id = intval($content_id);
+	$content_id = (int)$content_id;
 
 	$sql = 'SELECT cat_id FROM ' . $db->prefix($mydirname . '_contents') . " WHERE content_id=$content_id";
 	if (!$result = $db->query($sql)) die('ERROR SELECT content in sync content_votes');
@@ -164,7 +164,7 @@ function pico_sync_content_votes($mydirname, $content_id)
 	if (!$result = $db->query($sql)) die('ERROR SELECT content_votes in sync content_votes');
 	list($votes_count, $votes_sum) = $db->fetchRow($result);
 
-	if (!$db->queryF('UPDATE ' . $db->prefix($mydirname . '_contents') . ' SET votes_count=' . intval($votes_count) . ',votes_sum=' . intval($votes_sum) . " WHERE content_id=$content_id")) die(_MD_PICO_ERR_SQL . __LINE__);
+	if (!$db->queryF('UPDATE ' . $db->prefix($mydirname . '_contents') . ' SET votes_count=' . (int)$votes_count . ',votes_sum=' . (int)$votes_sum . " WHERE content_id=$content_id")) die(_MD_PICO_ERR_SQL . __LINE__);
 
 	return true;
 }
@@ -227,7 +227,7 @@ function pico_sync_all($mydirname)
 	// sync contents <- content_votes
 	$result = $db->query('SELECT content_id FROM ' . $db->prefix($mydirname . '_contents'));
 	while (list($content_id) = $db->fetchRow($result)) {
-		pico_sync_content_votes($mydirname, intval($content_id));
+		pico_sync_content_votes($mydirname, (int)$content_id);
 		//pico_sync_content( $mydirname , intval( $content_id ) ) ;
 	}
 
@@ -239,7 +239,7 @@ function pico_sync_all($mydirname)
 		$target_module = &$module_handler->getByDirname($configs['comment_dirname']);
 		if (is_object($target_module)) {
 			$target_dirname = $target_module->getVar('dirname');
-			$forum_id = intval($configs['comment_forum_id']);
+			$forum_id = (int)$configs['comment_forum_id'];
 			$result = $db->query('SELECT topic_external_link_id,COUNT(*) FROM ' . $db->prefix($target_dirname . '_topics') . " WHERE topic_external_link_id>0 AND forum_id=$forum_id AND ! topic_invisible GROUP BY topic_external_link_id");
 			while (list($content_id, $comments_count) = $db->fetchRow($result)) {
 				$db->queryF('UPDATE ' . $db->prefix($mydirname . '_contents') . " SET comments_count=$comments_count WHERE content_id=$content_id");
@@ -301,10 +301,10 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 						$cat_options[$key] = trim($regs[1]);
 						break;
 					case 'int':
-						$cat_options[$key] = intval($regs[1]);
+						$cat_options[$key] = (int)$regs[1];
 						break;
 					case 'bool':
-						$cat_options[$key] = intval($regs[1]) > 0 ? 1 : 0;
+						$cat_options[$key] = (int)$regs[1] > 0 ? 1 : 0;
 						break;
 				}
 			}
@@ -318,7 +318,7 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 	} else {
 		// normal category
 		$cat_vpath = trim($myts->stripSlashesGPC(@$_POST['cat_vpath']));
-		$pid = intval(@$_POST['pid']);
+		$pid = (int)@$_POST['pid'];
 		// check $pid
 		if ($pid) {
 			$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE c.cat_id=$pid";
@@ -328,12 +328,12 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 	}
 
 	return [
-		'cat_title' => $myts->stripSlashesGPC(@$_POST['cat_title']),
-		'cat_desc' => $myts->stripSlashesGPC(@$_POST['cat_desc']),
-		'cat_weight' => intval(@$_POST['cat_weight']),
-		'cat_vpath' => $cat_vpath,
-		'pid' => $pid,
-		'cat_options' => pico_common_serialize($cat_options),
+        'cat_title' => $myts->stripSlashesGPC(@$_POST['cat_title']),
+        'cat_desc' => $myts->stripSlashesGPC(@$_POST['cat_desc']),
+        'cat_weight' => (int)@$_POST['cat_weight'],
+        'cat_vpath' => $cat_vpath,
+        'pid' => $pid,
+        'cat_options' => pico_common_serialize($cat_options),
     ];
 }
 
@@ -353,7 +353,7 @@ function pico_makecategory($mydirname)
 	}
 
 	// get cat_permission_id of the parent category
-	list($cat_permission_id) = $db->fetchRow($db->query('SELECT cat_permission_id FROM ' . $db->prefix($mydirname . '_categories') . ' WHERE cat_id=' . intval(@$requests['pid'])));
+	list($cat_permission_id) = $db->fetchRow($db->query('SELECT cat_permission_id FROM ' . $db->prefix($mydirname . '_categories') . ' WHERE cat_id=' . (int)@$requests['pid']));
 
 	// get $new_cat_id
 	list($new_cat_id) = $db->fetchRow($db->query('SELECT MAX(cat_id)+1 FROM ' . $db->prefix($mydirname . '_categories')));
@@ -425,7 +425,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	$mod_config = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
 	// check $cat_id
-	$cat_id = intval(@$_POST['cat_id']);
+	$cat_id = (int)@$_POST['cat_id'];
 	if ($cat_id) {
 		$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE c.cat_id=$cat_id";
 		if (!$crs = $db->query($sql)) die(_MD_PICO_ERR_SQL . __LINE__);
@@ -442,7 +442,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 			if (!file_exists($filter_file)) continue;
 			require_once $filter_file;
 			if (!$isadminormod && defined($constpref . 'ISINSECURE')) continue;
-			$filters[$name] = intval(@$_POST['filter_weight_' . $name]);
+			$filters[$name] = (int)@$_POST['filter_weight_' . $name];
 		}
 	}
 	asort($filters);
@@ -465,18 +465,18 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	}
 
 	$ret = [
-		'cat_id' => $cat_id,
-		'vpath' => trim($myts->stripSlashesGPC(@$_POST['vpath'])),
-		'subject' => $myts->stripSlashesGPC(@$_POST['subject']),
-		'htmlheader' => $myts->stripSlashesGPC(@$_POST['htmlheader']),
-		'body' => $myts->stripSlashesGPC(@$_POST['body']),
-		'filters' => implode('|', array_keys($filters)),
-		'tags' => trim($myts->stripSlashesGPC(@$_POST['tags'])),
-		'weight' => intval(@$_POST['weight']),
-		'use_cache' => empty($_POST['use_cache']) ? 0 : 1,
-		'show_in_navi' => empty($_POST['show_in_navi']) ? 0 : 1,
-		'show_in_menu' => empty($_POST['show_in_menu']) ? 0 : 1,
-		'allow_comment' => empty($_POST['allow_comment']) ? 0 : 1,
+        'cat_id' => $cat_id,
+        'vpath' => trim($myts->stripSlashesGPC(@$_POST['vpath'])),
+        'subject' => $myts->stripSlashesGPC(@$_POST['subject']),
+        'htmlheader' => $myts->stripSlashesGPC(@$_POST['htmlheader']),
+        'body' => $myts->stripSlashesGPC(@$_POST['body']),
+        'filters' => implode('|', array_keys($filters)),
+        'tags' => trim($myts->stripSlashesGPC(@$_POST['tags'])),
+        'weight' => (int)@$_POST['weight'],
+        'use_cache' => empty($_POST['use_cache']) ? 0 : 1,
+        'show_in_navi' => empty($_POST['show_in_navi']) ? 0 : 1,
+        'show_in_menu' => empty($_POST['show_in_menu']) ? 0 : 1,
+        'allow_comment' => empty($_POST['allow_comment']) ? 0 : 1,
     ];
 
 	// tags (finding a custom tag filter for each languages)
@@ -491,7 +491,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 
 	// vpath duplication check
 	if ($ret['vpath']) while (1) {
-		list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE vpath=' . $db->quoteString($ret['vpath']) . ' AND content_id<>' . intval($content_id)));
+		list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE vpath=' . $db->quoteString($ret['vpath']) . ' AND content_id<>' . (int)$content_id));
 		if (empty($count)) break;
 		$ext = strrchr($ret['vpath'], '.');
 		if ($ext) $ret['vpath'] = str_replace($ext, '.1' . $ext, $ret['vpath']);
@@ -588,7 +588,7 @@ function pico_main_get_uid($text)
 
 	$text = trim($text);
 	if (is_numeric($text)) {
-		$uid = intval($text);
+		$uid = (int)$text;
 		$user = &$user_handler->get($uid);
 		if (is_object($user)) return $uid;
 		else return 0;
@@ -757,16 +757,16 @@ function pico_transact_backupcontent($mydirname, $content_id, $forced = false)
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$histories_per_content = intval(@$xoopsModuleConfig['histories_per_content']);
-	$minlifetime_per_history = intval(@$xoopsModuleConfig['minlifetime_per_history']);
+	$histories_per_content = (int)@$xoopsModuleConfig['histories_per_content'];
+	$minlifetime_per_history = (int)@$xoopsModuleConfig['minlifetime_per_history'];
 
 	// fetch the latest history first
-	list($last_ch_id) = $db->fetchRow($db->query('SELECT MAX(content_history_id) FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_id=' . intval($content_id)));
+	list($last_ch_id) = $db->fetchRow($db->query('SELECT MAX(content_history_id) FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_id=' . (int)$content_id));
 	//FIX by domifara 2011.09.21
 	//	list( $last_ch_modified , $last_ch_4search ) = $db->fetchRow( $db->query( "SELECT `modified_time`,MD5(`for_search`) FROM ".$db->prefix($mydirname."_content_histories")." WHERE content_history_id=".intval($last_ch_id) ) ) ;
 	//	list( $current_4search ) = $db->fetchRow( $db->query( "SELECT MD5(`for_search`) FROM ".$db->prefix($mydirname."_contents")." WHERE content_id=".intval($content_id) ) ) ;
-	list($last_ch_modified, $last_ch_4search) = $db->fetchRow($db->query('SELECT `modified_time`,MD5(`body`) FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_history_id=' . intval($last_ch_id)));
-	list($current_4search) = $db->fetchRow($db->query('SELECT MD5(`body`) FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id=' . intval($content_id)));
+	list($last_ch_modified, $last_ch_4search) = $db->fetchRow($db->query('SELECT `modified_time`,MD5(`body`) FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_history_id=' . (int)$last_ch_id));
+	list($current_4search) = $db->fetchRow($db->query('SELECT MD5(`body`) FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id=' . (int)$content_id));
 
 	// compare for_search fileld (it is not saved if identical)
 	if (!$forced && $current_4search == $last_ch_4search) return;
@@ -777,9 +777,9 @@ function pico_transact_backupcontent($mydirname, $content_id, $forced = false)
 	// max histories
 	if ($histories_per_content > 0) {
 		do {
-			list($ch_count, $min_ch_id) = $db->fetchRow($db->query('SELECT COUNT(*),MIN(content_history_id) FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_id=' . intval($content_id)));
+			list($ch_count, $min_ch_id) = $db->fetchRow($db->query('SELECT COUNT(*),MIN(content_history_id) FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_id=' . (int)$content_id));
 			if ($ch_count >= $histories_per_content) {
-				$db->queryF('DELETE FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_history_id=' . intval($min_ch_id));
+				$db->queryF('DELETE FROM ' . $db->prefix($mydirname . '_content_histories') . ' WHERE content_history_id=' . (int)$min_ch_id);
 			}
 		} while ($ch_count >= $histories_per_content);
 	}
@@ -789,5 +789,6 @@ function pico_transact_backupcontent($mydirname, $content_id, $forced = false)
         'INSERT INTO '
         . $db->prefix($mydirname . '_content_histories') . ' (content_id,vpath,cat_id,created_time,modified_time,poster_uid,poster_ip,modifier_uid,modifier_ip,subject,htmlheader,body,filters,tags,extra_fields) SELECT content_id,vpath,cat_id,created_time,modified_time,poster_uid,poster_ip,modifier_uid,modifier_ip,subject,htmlheader,body,filters,tags,extra_fields FROM '
         . $db->prefix($mydirname . '_contents') . ' WHERE content_id='
-        . intval($content_id))) die(_MD_PICO_ERR_SQL . __LINE__);
+        . (int)$content_id
+    )) die(_MD_PICO_ERR_SQL . __LINE__);
 }

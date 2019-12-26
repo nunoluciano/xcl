@@ -166,7 +166,7 @@ class PicoContent
         $is_public = $content_row['visible'] && $content_row['created_time'] <= time() && $content_row['expiring_time'] > time();
 
         $this->data = [
-                          'id'                      => intval($content_row['content_id']),
+                          'id'                      => (int)$content_row['content_id'],
                           'created_time_formatted'  => formatTimestamp($content_row['created_time']),
                           'modified_time_formatted' => formatTimestamp($content_row['modified_time']),
                           'expiring_time_formatted' => formatTimestamp($content_row['expiring_time']),
@@ -237,7 +237,7 @@ class PicoContent
             if (_MD_PICO_ERR_COMPILEERROR == $content4assign['body_cached']) {
                 return $content4assign['body_cached'];
             } else {
-                $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString(_MD_PICO_ERR_COMPILEERROR) . ' WHERE content_id=' . intval($content4assign['content_id']));
+                $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString(_MD_PICO_ERR_COMPILEERROR) . ' WHERE content_id=' . (int)$content4assign['content_id']);
             }
         }
 
@@ -288,7 +288,7 @@ class PicoContent
         // if( $content4assign['last_cached_time'] < $content4assign['modified_time'] ) {
         if (empty($content4assign['for_search']) || $content4assign['last_cached_time'] < $content4assign['modified_time']) { // edit by nao-pon ref. https://www.xugj.org/modules/QandA/index.php?topic_id=1891
             $for_search = $content4assign['subject_raw'] . ' ' . strip_tags($text) . ' ' . implode(' ', array_values(pico_common_unserialize(@$content4assign['extra_fields'])));
-            $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString($text) . ', for_search=' . $db->quoteString($for_search) . ', last_cached_time=UNIX_TIMESTAMP() WHERE content_id=' . intval($content4assign['content_id']));
+            $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString($text) . ', for_search=' . $db->quoteString($for_search) . ', last_cached_time=UNIX_TIMESTAMP() WHERE content_id=' . (int)$content4assign['content_id']);
         }
 
         return $text;

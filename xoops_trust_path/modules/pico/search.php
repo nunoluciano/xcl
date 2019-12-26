@@ -41,7 +41,7 @@ if (!function_exists('pico_global_search_base')) {
 			if (empty($configs['search_by_uid'])) {
 				return [];
 			}
-			$whr_uid = 'o.poster_uid=' . intval($uid);
+			$whr_uid = 'o.poster_uid=' . (int)$uid;
 		} else {
 			$whr_uid = '1';
 		}

@@ -110,9 +110,9 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$gids = implode(',', $gids);
 		}
 		if (is_numeric($uid)) {
-			$uid = intval($uid);
+			$uid = (int)$uid;
 		} else {
-			$uid = intval($stat['uid']);
+			$uid = (int)$stat['uid'];
 		}
 		
 		$mime_filter = $this->db->quoteString($mime_filter);
@@ -316,7 +316,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$gid = 0;;
 		$umask = $this->getUmask($path, $gid);
 		if ('NULL' !== $home_of) {
-			$home_of = intval($home_of);
+			$home_of = (int)$home_of;
 			if ($home_of < 0 && $home_of != $this->groupHomeId) {
 				$gid = abs($home_of);
 			}
@@ -334,7 +334,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 
 		$sql = 'INSERT INTO %s (`parent_id`, `name`, `ctime`, `mtime`, `perm`, `umask` , `uid`, `gid`, `home_of`, `mime`) VALUES '
 		                    . '( %d,          %s,     %d,      %d,     "%s",   "%s",     "%d",  "%d",   %s,     "%s")';
-		$sql = sprintf($sql, $this->tbf, intval($path), $this->db->quoteString($name), $time, $time, $perm, $umask, $this->x_uid, $gid, $home_of, $mime);
+		$sql = sprintf($sql, $this->tbf, (int)$path, $this->db->quoteString($name), $time, $time, $perm, $umask, $this->x_uid, $gid, $home_of, $mime);
 		//$this->_debug($sql);
 		if ($this->query($sql) && $this->db->getAffectedRows() > 0) {
 			if ('directory' !== $mime) {
@@ -351,7 +351,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	protected function getUmask($dir, & $gid) {
 		$umask = '';
 		if ($dir > 0) {
-			$sql = 'SELECT `umask`, `home_of` FROM '.$this->tbf.' WHERE `file_id`='.intval($dir).' LIMIT 1';
+			$sql = 'SELECT `umask`, `home_of` FROM '.$this->tbf.' WHERE `file_id`=' . (int)$dir . ' LIMIT 1';
 			//$this->_debug($sql);
 			if ($res = $this->db->query($sql)) {
 				list($umask, $home_of) = $this->db->fetchRow($res);
@@ -363,7 +363,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 
 	protected function getDefaultPerm($umask) {
 		$base = 0xfff;
-		return strval(dechex($base - intval($umask, 16)));
+		return (string)dechex($base - intval($umask, 16));
 	}
 
 	protected function getGroupsByUid($uid) {
@@ -399,7 +399,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			}
 			$inGroup = (array_intersect(explode(',', $dat['gids']), $this->x_groups));
 		}
-		$perm = strval($dat['perm']);
+		$perm = (string)$dat['perm'];
 		$own = isset($perm[0])? intval($perm[0], 16) : 0;
 		$grp = isset($perm[1])? intval($perm[1], 16) : 0;
 		$gus = isset($perm[2])? intval($perm[2], 16) : 0;
@@ -981,7 +981,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _abspath($path) {
-		return intval($path);
+		return (int)$path;
 	}
 
 	/**

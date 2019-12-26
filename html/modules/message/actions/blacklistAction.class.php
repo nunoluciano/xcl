@@ -17,7 +17,7 @@ class blacklistAction extends AbstractAction
     {
         $this->setUrl('index.php?action=blacklist');
         $modobj = $this->getSettings();
-        $uid = intval($this->root->mContext->mRequest->getRequest('uid'));
+        $uid = (int)$this->root->mContext->mRequest->getRequest('uid');
         if (0 != $uid) {  //Add
       $this->addblklist($modobj, $uid);
         } else {

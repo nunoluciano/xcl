@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 function smarty_function_message_suggestlist($params, &$smarty)
 {
     $name = isset($params['name']) ? trim($params['name']) : 'uname';
-    $size = isset($params['size']) ? intval($params['size']) : 30;
+    $size = isset($params['size']) ? (int)$params['size'] : 30;
     $username = isset($params['uname']) ? trim($params['uname']) : '';
   
     $root = XCube_Root::getSingleton();

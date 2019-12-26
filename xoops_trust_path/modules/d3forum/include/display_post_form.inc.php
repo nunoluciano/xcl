@@ -7,23 +7,23 @@ $br = isset( $br ) ? $br : 1 ;
 $number_entity = isset( $number_entity ) ? $number_entity : 1 ; // default on
 $special_entity = isset( $special_entity ) ? $special_entity : 0 ; // default off
 $solved = isset( $solved ) ? $solved : 1 ;
-$pid = empty( $pid ) ? 0 : intval( $pid ) ;
-$post_id = empty( $post_id ) ? 0 : intval( $post_id ) ;
-$topic_id = empty( $topic_id ) ? 0 : intval( $topic_id ) ;
-$forum_id = empty( $forum_id ) ? 0 : intval( $forum_id ) ;
+$pid = empty( $pid ) ? 0 : (int)$pid;
+$post_id = empty( $post_id ) ? 0 : (int)$post_id;
+$topic_id = empty( $topic_id ) ? 0 : (int)$topic_id;
+$forum_id = empty( $forum_id ) ? 0 : (int)$forum_id;
 $formTitle = empty( $formTitle ) ? '' : $formTitle ;
 $mode = ! in_array(@$mode , ['newtopic', 'edit', 'reply', 'preview']) ? 'newtopic' : $mode ;
 $allow_html = $xoopsModuleConfig['allow_html'] ;
-$html = isset( $html ) ? intval( $html ) : 0 ;
+$html = isset( $html ) ? (int)$html : 0 ;
 
 if( $uid > 0 ) {
 	$allow_sig = $xoopsModuleConfig['allow_sig'] ;
-	$attachsig = isset( $attachsig ) ? intval( $attachsig ) : $xoopsUser->getVar('attachsig') ;
+	$attachsig = isset( $attachsig ) ? (int)$attachsig : $xoopsUser->getVar('attachsig') ;
 	// notification (what a buggy functions ... :-x
 	if( ! empty( $xoopsModuleConfig['notification_enabled'] ) && in_array( 'topic-newpost' , @$xoopsModuleConfig['notification_events'] ) ) {
 		$allow_notify = true ;
 		if( isset( $notify ) ) {
-			$notify = intval( $notify ) ;
+			$notify = (int)$notify;
 		} else {
 			$notification_handler =& xoops_gethandler('notification') ;
 			if( ! empty( $topic_id ) && $notification_handler->isSubscribed('topic' , $topic_id , 'newpost' , $xoopsModule->getVar('mid') , $uid ) ) {
@@ -83,7 +83,7 @@ $xoopsTpl->assign([
                       'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'],
                       'mod_config' => $xoopsModuleConfig,
                       'mode' => $mode,
-                      'ispreview' => intval( @$ispreview ),
+                      'ispreview' => (int)@$ispreview,
                       'formtitle' => $formTitle,
                       'uid' => $uid,
                       //'uname' => $uid ? $xoopsUser->getVar('uname') : @$guest_name4html ,
@@ -103,7 +103,7 @@ $xoopsTpl->assign([
                       'preview_subject' => @$preview_subject4html,
                       'preview_message' => @$preview_message4html,
                       'icon_options' => $d3forum_icon_meanings,
-                      'icon_selected' => intval( @$icon ),
+                      'icon_selected' => (int)@$icon,
                       'pid' => $pid,
                       'post_id' => $post_id,
                       'topic_id' => $topic_id,
@@ -113,14 +113,14 @@ $xoopsTpl->assign([
                       'solved' => $solved,
                       'solved_checked' => $solved ? 'checked="checked"' : '',
                       'allow_mark' => @$xoopsModuleConfig['allow_mark'],
-                      'u2t_marked' => intval( @$u2t_marked ),
+                      'u2t_marked' => (int)@$u2t_marked,
                       'u2t_marked_checked' => @$u2t_marked ? 'checked="checked"' : '',
                       'allow_hideuid' => @$xoopsModuleConfig['allow_hideuid'] && $uid,
-                      'hide_uid' => intval( @$hide_uid ),
+                      'hide_uid' => (int)@$hide_uid,
                       'hide_uid_checked' => @$hide_uid ? 'checked="checked"' : '',
-                      'invisible' => intval( @$invisible ),
+                      'invisible' => (int)@$invisible,
                       'invisible_checked' => @$invisible ? 'checked="checked"' : '',
-                      'approval' => intval( @$approval ),
+                      'approval' => (int)@$approval,
                       'approval_checked' => @$approval ? 'checked="checked"' : '',
                       'smiley' => $smiley,
                       'smiley_checked' => $smiley ? 'checked="checked"' : '',

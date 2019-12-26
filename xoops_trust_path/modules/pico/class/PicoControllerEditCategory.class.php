@@ -100,7 +100,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
             if (isset($this->mod_config[$key])) {
                 $val = $this->mod_config[$key];
                 if ('int' == $type || 'bool' == $type) {
-                    $val = intval($val);
+                    $val = (int)$val;
                 }
                 $lines[] = htmlspecialchars($key . ':' . $val, ENT_QUOTES);
             }

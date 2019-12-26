@@ -106,7 +106,7 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
 
         // parse full_content (get subject, body etc.)
         $file  = substr(strrchr($wrap_full_path, '/'), 1);
-        $mtime = intval(@filemtime($wrap_full_path));
+        $mtime = (int)@filemtime($wrap_full_path);
         if (preg_match('/\<title\>([^<>]+)\<\/title\>/is', $full_content, $regs)) {
             $subject = $regs[1];
         } else {

@@ -128,7 +128,7 @@ class XoopsMultiMailerLocal extends XoopsMultiMailer
         $this->needs_encode = true;
         if (function_exists('mb_convert_encoding')) {
             $mb_overload = ini_get('mbstring.func_overload');
-            if (('mail' == $this->Mailer) && (intval($mb_overload) & 1)) { //check if mbstring extension overloads mail()
+            if (('mail' == $this->Mailer) && ((int)$mb_overload & 1)) { //check if mbstring extension overloads mail()
                 $this->needs_encode = false;
             }
         }

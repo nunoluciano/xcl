@@ -41,7 +41,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
-        if (isset($perpage) && 0 == intval($perpage)) {
+        if (isset($perpage) && 0 == (int)$perpage) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -92,7 +92,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
         $image_handler =& $this->_getHandler();
         $imgcat_id = $controller->mRoot->mContext->mRequest->getRequest('imgcat_id');
-        $cat_id = isset($imgcat_id) ? intval($imgcat_id) : 0;
+        $cat_id = isset($imgcat_id) ? (int)$imgcat_id : 0;
         $total_criteria =new CriteriaCompo(new Criteria('imgcat_id', $cat_id));
         $image_total = $image_handler->getCount($total_criteria);
         $total_criteria->add(new Criteria('image_display', 1));

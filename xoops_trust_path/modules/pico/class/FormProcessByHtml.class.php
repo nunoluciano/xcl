@@ -182,7 +182,7 @@ class FormProcessByHtml
             $value4reqcheck = $value;
             if (is_array($value)) {
                 if ($attribs['count'] <= 1) {
-                    $value          = strval(array_pop($value));
+                    $value          = (string)array_pop($value);
                     $value4reqcheck = $value;
                 } else {
                     $value          = array_slice($value, 0, $attribs['count']);
@@ -238,7 +238,7 @@ class FormProcessByHtml
                     $value = $this->convertZenToHan(trim($value));
                     if (!empty($value)) {
                         if (is_numeric($value)) {
-                            $value = intval($value);
+                            $value = (int)$value;
                         } else {
                             $this->fields[$field_name]['errors'][] = 'invalid number';
                         }

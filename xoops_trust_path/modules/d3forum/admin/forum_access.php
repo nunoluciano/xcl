@@ -8,7 +8,7 @@ $myts =& D3forumTextSanitizer::sGetInstance() ;
 $db =& Database::getInstance() ;
 
 // get right $forum_id
-$forum_id = intval( @$_GET['forum_id'] ) ;
+$forum_id = (int)@$_GET['forum_id'];
 list( $forum_id , $forum_title ) = $db->fetchRow( $db->query('SELECT forum_id,forum_title FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$forum_id" ) ) ;
 if( empty( $forum_id ) ) {
 	$invalid_forum_id = true ;
@@ -59,7 +59,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 	$can_reads = is_array( @$_POST['can_reads'] ) ? $_POST['can_reads'] + $can_posts : $can_posts ;
 
 	foreach( $can_reads as $uid => $can_read ) {
-		$uid = intval( $uid ) ;
+		$uid = (int)$uid;
 		if( $can_read ) {
 			$can_post = empty( $_POST['can_posts'][$uid] ) ? 0 : 1 ;
 			$can_edit = empty( $_POST['can_edits'][$uid] ) ? 0 : 1 ;
@@ -82,7 +82,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 			$criteria = new Criteria( 'uname' , addslashes( @$_POST['new_unames'][$i] ) ) ;
 			@list( $user ) = $member_handler->getUsers( $criteria ) ;
 		} else {
-			$user =& $member_handler->getUser( intval( $uid ) ) ;
+			$user =& $member_handler->getUser((int)$uid) ;
 		}
 		if( is_object( $user ) ) {
 			$db->query('INSERT INTO ' . $db->prefix($mydirname . '_forum_access') . " SET forum_id=$forum_id, uid=" . $user->getVar('uid') . ", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator" ) ;
@@ -140,7 +140,7 @@ $fars = $db->query('SELECT u.uid,u.uname,fa.can_post,fa.can_edit,fa.can_delete,f
 $user_trs = '' ;
 while( list( $uid , $uname , $can_post , $can_edit , $can_delete , $post_auto_approved , $is_moderator ) = $db->fetchRow( $fars ) ) {
 
-	$uid = intval( $uid ) ;
+	$uid = (int)$uid;
 	$uname4disp = htmlspecialchars( $uname , ENT_QUOTES ) ;
 
 	$can_post_checked = $can_post ? "checked='checked'" : '';

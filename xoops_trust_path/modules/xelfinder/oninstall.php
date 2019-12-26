@@ -69,7 +69,7 @@ function xelfinder_oninstall_base( $module , $mydirname )
 			if('.' == substr($file , 0 , 1 )) continue ;
 			$file_path = $tpl_path . '/' . $file ;
 			if( is_file( $file_path ) ) {
-				$mtime = intval( @filemtime( $file_path ) ) ;
+				$mtime = (int)@filemtime($file_path);
 				$tplfile = $tplfile_handler->create() ;
 				$tplfile->setVar( 'tpl_source' , file_get_contents( $file_path ) , true ) ;
 				$tplfile->setVar( 'tpl_refid' , $mid ) ;

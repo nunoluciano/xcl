@@ -200,7 +200,7 @@ if ('save' == $op) {
     $xoopsTpl = new XoopsTpl();
     //HACK by domifara for new XOOPS and XCL etc.
     //old xoops
-    $core_type = intval(altsys_get_core_type());
+    $core_type = (int)altsys_get_core_type();
     if ($core_type <= 10) {
         $xoopsTpl->clear_all_cache();
         // regenerate admin menu file

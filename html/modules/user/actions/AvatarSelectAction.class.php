@@ -36,7 +36,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     
     public function _getId()
     {
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : 0;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
     
     public function &_getHandler()

@@ -60,9 +60,9 @@ class XoopsPageNav
      **/
     public function __construct($total_items, $items_perpage, $current_start, $start_name= 'start', $extra_arg= '')
     {
-        $this->total = intval($total_items);
-        $this->perpage = intval($items_perpage);
-        $this->current = intval($current_start);
+        $this->total = (int)$total_items;
+        $this->perpage = (int)$items_perpage;
+        $this->current = (int)$current_start;
         if ('' != $extra_arg && ('&amp;' != substr($extra_arg, -5) || '&' != substr($extra_arg, -1))) {
             $extra_arg .= '&amp;';
         }
@@ -92,7 +92,7 @@ class XoopsPageNav
                 $ret .= '<a href="'.$this->url.$prev.'"><u>&laquo;</u></a> ';
             }
             $counter = 1;
-            $current_page = intval(floor(($this->current + $this->perpage) / $this->perpage));
+            $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($counter <= $total_pages) {
                 if ($counter == $current_page) {
                     $ret .= '<b>('.$counter.')</b> ';
@@ -132,7 +132,7 @@ class XoopsPageNav
             $ret = '<form name="pagenavform" action="'.xoops_getenv('PHP_SELF').'">';
             $ret .= '<select name="pagenavselect" onchange="location=this.options[this.options.selectedIndex].value;">';
             $counter = 1;
-            $current_page = intval(floor(($this->current + $this->perpage) / $this->perpage));
+            $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($counter <= $total_pages) {
                 if ($counter == $current_page) {
                     $ret .= '<option value="'.$this->url.(($counter - 1) * $this->perpage).'" selected="selected">'.$counter.'</option>';
@@ -170,7 +170,7 @@ class XoopsPageNav
                 $ret .= '<td class="pagneutral"><a href="'.$this->url.$prev.'">&lt;</a></td><td><img src="'.XOOPS_URL.'/images/blank.gif" width="6" alt="" /></td>';
             }
             $counter = 1;
-            $current_page = intval(floor(($this->current + $this->perpage) / $this->perpage));
+            $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($counter <= $total_pages) {
                 if ($counter == $current_page) {
                     $ret .= '<td class="pagact"><b>'.$counter.'</b></td>';

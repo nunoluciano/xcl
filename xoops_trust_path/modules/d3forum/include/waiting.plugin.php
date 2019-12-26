@@ -9,9 +9,9 @@ function b_waiting_d3forum( $mydirname )
 	if( $result = $db->query($sql) ) {
 		list( $waiting_count , $post_id ) = $db->fetchRow( $result ) ;
 		$ret = [
-			'adminlink' => XOOPS_URL.'/modules/'.$mydirname.'/index.php?post_id='.intval($post_id) ,
-			'pendingnum' => intval( $waiting_count ) ,
-			'lang_linkname' => _PI_WAITING_WAITINGS ,
+            'adminlink' => XOOPS_URL.'/modules/'.$mydirname.'/index.php?post_id=' . (int)$post_id,
+            'pendingnum' => (int)$waiting_count,
+            'lang_linkname' => _PI_WAITING_WAITINGS,
         ];
 	}
 	

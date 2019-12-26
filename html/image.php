@@ -30,7 +30,7 @@ if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 
-$image_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$image_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($image_id > 0) {
     include './mainfile.php';
     $imagehandler = & xoops_gethandler('image');

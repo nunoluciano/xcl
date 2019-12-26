@@ -26,7 +26,7 @@ function b_legacy_comments_show($options)
     include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
     $comment_handler =& xoops_gethandler('comment');
     $criteria = new CriteriaCompo(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
-    $criteria->setLimit(intval($options[0]));
+    $criteria->setLimit((int)$options[0]);
     $criteria->setSort('com_created');
     $criteria->setOrder('DESC');
     $comments =& $comment_handler->getObjects($criteria, true);
@@ -63,7 +63,7 @@ function b_legacy_comments_show($options)
 
 function b_legacy_comments_edit($options)
 {
-    $inputtag = "<input type='text' name='options[]' value='".intval($options[0])."' />";
+    $inputtag = "<input type='text' name='options[]' value='" . (int)$options[0] . "' />";
     $form = sprintf(_MB_LEGACY_DISPLAYC, $inputtag);
     return $form;
 }

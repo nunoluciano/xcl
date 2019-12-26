@@ -141,15 +141,15 @@ class XCube_PageNavigator
         
         if ($navi->mFlags & XCUBE_PAGENAVI_START) {
             $t_start = $root->mContext->mRequest->getRequest($navi->getStartKey());
-            if (null != $t_start && intval($t_start) >= 0) {
-                $navi->mStart = intval($t_start);
+            if (null != $t_start && (int)$t_start >= 0) {
+                $navi->mStart = (int)$t_start;
             }
         }
 
         if ($navi->mFlags & XCUBE_PAGENAVI_PERPAGE && !$navi->mPerpageFreeze) {
             $t_perpage = $root->mContext->mRequest->getRequest($navi->getPerpageKey());
-            if (null != $t_perpage && intval($t_perpage) > 0) {
-                $navi->mPerpage = intval($t_perpage);
+            if (null != $t_perpage && (int)$t_perpage > 0) {
+                $navi->mPerpage = (int)$t_perpage;
             }
         }
     }
@@ -272,7 +272,7 @@ class XCube_PageNavigator
         $tarr[] = $this->getPerpageKey() . '=' . $this->getPerpage();
     
         if (null !== $page) {
-            $tarr[] = $this->getStartKey() . '=' . intval($page);
+            $tarr[] = $this->getStartKey() . '=' . (int)$page;
         }
     
         if (false !== strpos($this->mUrl, '?')) {
@@ -295,7 +295,7 @@ class XCube_PageNavigator
 
     public function setStart($start)
     {
-        $this->mStart = intval($start);
+        $this->mStart = (int)$start;
     }
     
     public function getStart()
@@ -305,7 +305,7 @@ class XCube_PageNavigator
     
     public function setTotalItems($total)
     {
-        $this->mTotal = intval($total);
+        $this->mTotal = (int)$total;
         $this->_mIsSpecifiedTotal = true;
     }
     
@@ -330,7 +330,7 @@ class XCube_PageNavigator
 
     public function setPerpage($perpage)
     {
-        $this->mPerpage = intval($perpage);
+        $this->mPerpage = (int)$perpage;
     }
     
     public function freezePerpage()
@@ -365,7 +365,7 @@ class XCube_PageNavigator
     
     public function getCurrentPage()
     {
-        return intval(floor(($this->getStart() + $this->getPerpage()) / $this->getPerpage()));
+        return (int)floor(($this->getStart() + $this->getPerpage()) / $this->getPerpage());
     }
     
     public function hasPrivPage()

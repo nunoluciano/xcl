@@ -21,7 +21,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
      */
     public function _getId()
     {
-        return intval(xoops_getrequest('field_id'));
+        return (int)xoops_getrequest('field_id');
     }
 
     /**

@@ -54,8 +54,8 @@
 		$whr_solved = $solved_sqls[0] ;
 	} else {
 		if( ! empty( $solved_options[ @$_GET['solved'] ] ) ) {
-			$query4assign['solved'] = intval( $_GET['solved'] ) ;
-			$query4nav .= '&amp;solved=' . intval($_GET['solved'] ) ;
+			$query4assign['solved'] = (int)$_GET['solved'];
+			$query4nav .= '&amp;solved=' . (int)$_GET['solved'];
 			$whr_solved = $solved_sqls[ $query4assign['solved'] ] ;
 		} else {
 			$query4assign['solved'] = 0 ;
@@ -97,8 +97,8 @@
 		14 => 't.topic_votes_sum/(t.topic_votes_count+0.0001)' ,
     ];
 	if( ! empty( $odr_options[ @$_GET['odr'] ] ) ) {
-		$query4assign['odr'] = intval( $_GET['odr'] ) ;
-		$query4nav .= '&amp;odr=' . intval($_GET['odr'] ) ;
+		$query4assign['odr'] = (int)$_GET['odr'];
+		$query4nav .= '&amp;odr=' . (int)$_GET['odr'];
 		$odr_query = $odr_sqls[ $query4assign['odr'] ] ;
 	} else {
 		$query4assign['odr'] = 1 ;
@@ -106,9 +106,9 @@
 	}
 
 	// POS
-	$pos = intval( @$_GET['pos'] ) <= 0 ? 0 : intval( $_GET['pos'] ) ;
+	$pos = (int)@$_GET['pos'] <= 0 ? 0 : (int)$_GET['pos'];
 	
 	// LIMIT
-	$num = $xoopsModuleConfig['topics_per_page'] < 5 ? 5 : intval( $xoopsModuleConfig['topics_per_page'] ) ;
+	$num = $xoopsModuleConfig['topics_per_page'] < 5 ? 5 : (int)$xoopsModuleConfig['topics_per_page'];
 
 ?>

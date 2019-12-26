@@ -6,8 +6,8 @@ require_once dirname(__DIR__) . '/class/gtickets.php';
 $db = &Database::getInstance();
 
 // GET vars
-$pos = empty($_GET[ 'pos' ]) ? 0 : intval($_GET[ 'pos' ]);
-$num = empty($_GET[ 'num' ]) ? 20 : intval($_GET[ 'num' ]);
+$pos = empty($_GET[ 'pos' ]) ? 0 : (int)$_GET['pos'];
+$num = empty($_GET[ 'num' ]) ? 20 : (int)$_GET['num'];
 
 // Table Name
 $log_table = $db->prefix($mydirname.'_log');
@@ -34,7 +34,7 @@ if (!empty($_POST['action'])) {
         $bad_ips = [];
         foreach ($lines as $line) {
             @list($bad_ip, $jailed_time) = explode('-', $line, 2);
-            $bad_ips[ trim($bad_ip) ] = empty($jailed_time) ? 0x7fffffff : intval($jailed_time);
+            $bad_ips[ trim($bad_ip) ] = empty($jailed_time) ? 0x7fffffff : (int)$jailed_time;
         }
         if (!$protector->write_file_badips($bad_ips)) {
             $error_msg .= _AM_MSG_BADIPSCANTOPEN;
@@ -60,7 +60,7 @@ if (!empty($_POST['action'])) {
     } elseif ('delete' == $_POST['action'] && isset($_POST['ids']) && is_array($_POST['ids'])) {
         // remove selected records
         foreach ($_POST['ids'] as $lid) {
-            $lid = intval($lid);
+            $lid = (int)$lid;
             $db->query("DELETE FROM $log_table WHERE lid='$lid'");
         }
         redirect_header('index.php', 2, _AM_MSG_REMOVED);

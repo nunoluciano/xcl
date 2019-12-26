@@ -160,7 +160,7 @@ class Legacy_Utils
      */
     public static function convertVersionFromModinfoToInt($version)
     {
-        return round(100 * floatval($version));
+        return round(100 * (float)$version);
     }
 
     /***
@@ -170,7 +170,7 @@ class Legacy_Utils
      */
     public static function convertVersionIntToFloat($version)
     {
-        return round(floatval(intval($version) / 100), 2);
+        return round((float)(intval($version) / 100), 2);
     }
 
     /**
@@ -199,7 +199,7 @@ class Legacy_Utils
         XCube_DelegateUtils::call('Legacy_User.GetUserName', new XCube_Ref($name), $uid);
         if (! $name) {
             $handler =& xoops_gethandler('member');
-            $user =& $handler->getUser(intval($uid));
+            $user =& $handler->getUser((int)$uid);
             if ($user) {
                 $name = $user->getShow('uname');
             }

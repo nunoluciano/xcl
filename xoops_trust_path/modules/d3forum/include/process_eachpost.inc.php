@@ -17,7 +17,7 @@
 
 	// get this poster's object
 	$user_handler =& xoops_gethandler( 'user' ) ;
-	$poster_obj =& $user_handler->get( intval( $post_row['uid'] ) ) ;
+	$poster_obj =& $user_handler->get((int)$post_row['uid']) ;
 	if( is_object( $poster_obj ) ) {
 		// active user's post
 		// naao from
@@ -33,7 +33,7 @@
 		$poster_rank_title4disp = htmlspecialchars( @$poster_rank['title'] , ENT_QUOTES ) ;
 		$poster_rank_image4disp = htmlspecialchars( @$poster_rank['image'] , ENT_QUOTES ) ;
 		$poster_is_online = $poster_obj->isOnline() ;
-		$poster_posts_count = intval( $poster_obj->getVar( 'posts' ) ) ;
+		$poster_posts_count = (int)$poster_obj->getVar('posts');
 
 		// avatar
 		if( is_file( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ) {

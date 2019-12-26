@@ -35,7 +35,7 @@ foreach ($modules as $module) {
 }
 
 // get $cat_id
-$cat_id = intval(@$_GET['cat_id']);
+$cat_id = (int)@$_GET['cat_id'];
 if (SPECIAL_CAT_ID_ALL == $cat_id) {
 	$cat_title = _MD_PICO_ALLCONTENTS;
 } else if (SPECIAL_CAT_ID_DELETED == $cat_id) {
@@ -60,8 +60,8 @@ if (!empty($_POST['contents_update']) && !empty($_POST['weights'])) {
 
 	$errors = [];
 	foreach ($_POST['weights'] as $content_id => $weight) {
-		$content_id = intval($content_id);
-		$weight = intval($weight);
+		$content_id = (int)$content_id;
+		$weight = (int)$weight;
 		$subject4sql = $db->quoteString($myts->stripSlashesGPC(@$_POST['subjects'][$content_id]));
 		$vpath4sql = empty($_POST['vpaths'][$content_id]) ? 'null' : $db->quoteString($myts->stripSlashesGPC($_POST['vpaths'][$content_id]));
 		$visible = empty($_POST['visibles'][$content_id]) ? 0 : 1;
@@ -84,7 +84,7 @@ if (!empty($_POST['contents_move']) && !empty($_POST['action_selects']) && isset
 	}
 
 	// cat_id check
-	$dest_cat_id = intval($_POST['dest_cat_id']);
+	$dest_cat_id = (int)$_POST['dest_cat_id'];
 	if (0 !== $dest_cat_id) {
 		list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$dest_cat_id"));
 		if (empty($count)) die(_MD_PICO_ERR_READCATEGORY);
@@ -92,7 +92,7 @@ if (!empty($_POST['contents_move']) && !empty($_POST['action_selects']) && isset
 
 	foreach ($_POST['action_selects'] as $content_id => $value) {
 		if (empty($value)) continue;
-		$content_id = intval($content_id);
+		$content_id = (int)$content_id;
 		$db->query('UPDATE ' . $db->prefix($mydirname . '_contents') . " SET cat_id=$dest_cat_id WHERE content_id=$content_id");
 	}
 	pico_sync_all($mydirname);
@@ -109,7 +109,7 @@ if (!empty($_POST['contents_delete']) && !empty($_POST['action_selects'])) {
 
 	foreach ($_POST['action_selects'] as $content_id => $value) {
 		if (empty($value)) continue;
-		$content_id = intval($content_id);
+		$content_id = (int)$content_id;
 		pico_delete_content($mydirname, $content_id, true);
 	}
 	pico_sync_all($mydirname);
@@ -124,7 +124,7 @@ if (!empty($_POST['contents_export']) && !empty($_POST['action_selects']) && !em
 		redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
 	}
 
-	$export_mid = intval(@$_POST['export_mid']);
+	$export_mid = (int)@$_POST['export_mid'];
 	if (empty($exportable_modules[$export_mid])) die(_MD_A_PICO_ERR_INVALIDMID);
 	$export_module = &$module_handler->get($export_mid);
 
@@ -168,7 +168,7 @@ while ($content_row = $db->fetchArray($ors)) {
 	$wrap_full_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . str_replace('..', '', $content_row['vpath']);
 
 	$content4assign = [
-        'id' => intval($content_row['content_id']),
+        'id' => (int)$content_row['content_id'],
         'link' => pico_common_make_content_link4html($xoopsModuleConfig, $content_row),
         'cat_title' => $myts->makeTboxData4Show($content_row['cat_title'], 1, 1),
         'created_time_formatted' => formatTimestamp($content_row['created_time'], 'm'),
@@ -179,7 +179,7 @@ while ($content_row = $db->fetchArray($ors)) {
         'subject' => $myts->makeTboxData4Edit($content_row['subject']),
         'vpath' => htmlspecialchars($content_row['vpath']),
         'wrap_file' => is_file($wrap_full_path) ? ['mtime_formatted' => formatTimestamp(filemtime($wrap_full_path), 'm'), 'size' => filesize($wrap_full_path)] : false,
-        'histories' => $content_row['is_deleted'] ? pico_get_content_histories4assign($mydirname, intval($content_row['content_id'])) : [],
+        'histories' => $content_row['is_deleted'] ? pico_get_content_histories4assign($mydirname, (int)$content_row['content_id']) : [],
         'ef' => pico_common_unserialize($content_row['extra_fields']),
     ];
 	$contents4assign[] = $content4assign + $content_row;

@@ -34,7 +34,7 @@ class User_EditUserAction extends User_AbstractEditAction
         $root =& XCube_Root::getSingleton();
         $uid = is_object($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
         
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : $uid;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : $uid;
     }
     
     public function &_getHandler()

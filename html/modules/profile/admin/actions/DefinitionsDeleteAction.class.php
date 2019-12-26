@@ -18,7 +18,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
      */
     public function _getId()
     {
-        return intval(xoops_getrequest('field_id'));
+        return (int)xoops_getrequest('field_id');
     }
 
     /**

@@ -34,7 +34,7 @@ function b_pico_list_show($options)
 		list($offset, $limit) = array_map('intval', explode(',', $limit_offset));
 	} else {
 		$offset = 0;
-		$limit = intval($limit_offset);
+		$limit = (int)$limit_offset;
 	}
 	$this_template = empty($options[4]) ? 'db:' . $mydirname . '_block_list.html' : trim($options[4]);
 	$display_body = empty($options[5]) ? false : true;

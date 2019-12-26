@@ -22,7 +22,7 @@ foreach ($tplsadmin_autoupdate_mydirnames as $tplsadmin_mydirname) {
         while (false !== ($file = readdir($handler))) {
             $file_path = $tplsadmin_autoupdate_path . '/' . $file ;
             if (is_file($file_path)) {
-                $mtime = intval(@filemtime($file_path)) ;
+                $mtime = (int)@filemtime($file_path);
                 $tpl_file = $tplsadmin_mydirname . '_' . $file ;
                 list($count) = $xoopsDB->fetchRow($xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('tplfile') . " WHERE tpl_tplset='" . addslashes($xoopsConfig['template_set']) . "' AND tpl_file='" . addslashes($tpl_file) . "' AND tpl_lastmodified >= $mtime")) ;
                 if ($count <= 0) {

@@ -58,7 +58,7 @@ class PicoControllerVoteContent extends PicoControllerAbstract
         }
 
         // get POINT and validation
-        $point = intval(@$_GET['point']);
+        $point = (int)@$_GET['point'];
         if ($point < 0 || $point > 10) {
             die(_MD_PICO_ERR_VOTEINVALID . __LINE__);
         }

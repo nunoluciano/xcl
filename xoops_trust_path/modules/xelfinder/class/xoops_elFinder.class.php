@@ -219,7 +219,7 @@ class xoops_elFinder {
 				$_parts = array_map('trim', explode(':', $this->config['disabled_cmds_by_gids']));
 				foreach($_parts as $_part) {
 					list($_gid, $_cmds) = explode('=', $_part, 2);
-					$_gid = intval($_gid);
+					$_gid = (int)$_gid;
 					$_cmds = trim($_cmds);
 					if (! $_gid || ! $_cmds) continue;
 					if (in_array($_gid, $this->mygids)) {
@@ -412,13 +412,13 @@ class xoops_elFinder {
 	public function getAutoSyncSec() {
 		if (isset($this->config['autosync_sec_admin'])) {
 			if ($this->isAdmin) {
-				return intval($this->config['autosync_sec_admin']);
+				return (int)$this->config['autosync_sec_admin'];
 			} else if ($this->inSpecialGroup) {
-				return intval($this->config['autosync_sec_spgroups']);
+				return (int)$this->config['autosync_sec_spgroups'];
 			} else if ($this->uid > 0) {
-				return intval($this->config['autosync_sec_user']);
+				return (int)$this->config['autosync_sec_user'];
 			} else {
-				return intval($this->config['autosync_sec_guest']);
+				return (int)$this->config['autosync_sec_guest'];
 			}
 		}
 		return 0;
@@ -494,7 +494,7 @@ class xoops_elFinder {
 		if (is_object($this->xoopsUser) && (!empty($result['sync']) || !empty($result['added']) || !empty($result['removed']))) {
 			if ($uid = $this->xoopsUser->getVar('uid')) {
 				$session = $elfinder->getSession();
-				$uid = intval($uid);
+				$uid = (int)$uid;
 				$table = $this->db->prefix($this->mydirname.'_userdat');
 				$netVolumes = $this->db->quoteString(serialize($session->get('netvolume', [])));
 				$sql = 'SELECT `id` FROM `'.$table.'` WHERE `key`=\'netVolumes\' AND `uid`='.$uid;
@@ -922,7 +922,7 @@ EOD;
 			$this->xoopsUser = $user;
 			$this->isAdmin = (is_object($user) && $user->isAdmin($this->xoopsModule->getVar('mid')));
 			$this->mygids = is_object($user)? $user->getGroups() : [XOOPS_GROUP_ANONYMOUS];
-			$this->uid = is_object($user)? intval($user->getVar('uid')) : 0;
+			$this->uid = is_object($user)? (int)$user->getVar('uid') : 0;
 			if ($this->config) {
 				$this->inSpecialGroup = (array_intersect($this->mygids, ( isset($this->config['special_groups'])? $this->config['special_groups'] : [])));
 			}

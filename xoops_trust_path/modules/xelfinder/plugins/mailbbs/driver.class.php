@@ -23,7 +23,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 		$ret = [];
 		foreach ($logs as $log) {
 			$data = array_pad(explode('<>', $log), 8, '');
-			if (intval($data[7]) || ! $data[5]) continue; // 未承認 or ファイルなし
+			if ((int)$data[7] || !$data[5]) continue; // 未承認 or ファイルなし
 			$ext = strtolower(substr($data[5], strrpos($data[5], '.')));
 			if ('.jpeg' === $ext) {
 				$ext = '.jpg';

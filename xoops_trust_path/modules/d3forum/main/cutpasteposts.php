@@ -2,14 +2,14 @@
 
 include dirname(__DIR__) . '/include/common_prepend.php';
 
-$post_id = intval( @$_GET['post_id'] ) ;
+$post_id = (int)@$_GET['post_id'];
 
 // get this "post" from given $post_id
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
-$topic_id = intval( $post_row['topic_id'] ) ;
+$topic_id = (int)$post_row['topic_id'];
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
@@ -34,8 +34,8 @@ if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATEFORUM ) ;
 if( ! empty( $_POST['cutpastepostsok'] ) ) {
 	// TRANSACTION PART
 	require_once dirname(__DIR__) . '/include/transact_functions.php' ;
-	$new_pid = intval( @$_POST['pid'] ) ;
-	$new_forum_id = intval( @$_POST['forum_id'] ) ;
+	$new_pid = (int)@$_POST['pid'];
+	$new_forum_id = (int)@$_POST['forum_id'];
 
 	if( empty( $new_pid ) && empty( $new_forum_id ) ) die( _MD_D3FORUM_ERR_NOSPECIFICID ) ;
 
@@ -51,7 +51,7 @@ if( ! empty( $_POST['cutpastepostsok'] ) ) {
 
 	// references to confirm the post will be deleted
 	$reference_message4html = $myts->displayTarea( $post_row['post_text'] , $post_row['html'] , $post_row['smiley'] , $post_row['xcode'] , $xoopsModuleConfig['allow_textimg'] , $post_row['br'] ) ;
-	$reference_time = intval( $post_row['post_time'] ) ;
+	$reference_time = (int)$post_row['post_time'];
 	if( ! empty( $post_row['guest_name'] ) ) {
 		$reference_name4html = htmlspecialchars( $post_row['guest_name'] , ENT_QUOTES ) ;
 	} else if( $post_row['uid'] ) {
@@ -79,7 +79,7 @@ if( ! empty( $_POST['cutpastepostsok'] ) ) {
                           'mod_config' => $xoopsModuleConfig,
                           'mode' => 'delete',
                           'post_id' => $post_id,
-                          'post' => ['pid' => intval($post_row['pid'] )],
+                          'post' => ['pid' => (int)$post_row['pid']],
                           'reference_subject' => @$reference_subject4html,
                           'reference_message' => @$reference_message4html,
                           'reference_name' => @$reference_name4html,

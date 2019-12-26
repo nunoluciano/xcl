@@ -4,7 +4,7 @@ function smarty_function_d3pipes($params, &$smarty)
 {
 	$dirname = @$params['dir'] . @$params['dirname'];
 	$pipe_id = @$params['id'] + @$params['pipe_id'];
-	$max = empty($params['max']) ? 10 : intval($params['max']);
+	$max = empty($params['max']) ? 10 : (int)$params['max'];
 
 	if (empty($pipe_id)) {
 		echo 'error smarty_function_pico [specify pipe_id]';

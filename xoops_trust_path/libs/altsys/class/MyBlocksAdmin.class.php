@@ -179,7 +179,7 @@ class MyBlocksAdmin
     // options
     public function renderCell4BlockOptions($block_data)
     {
-        $bid = intval($block_data['bid']);
+        $bid = (int)$block_data['bid'];
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
@@ -197,7 +197,7 @@ class MyBlocksAdmin
     // link blocks - modules
     public function renderCell4BlockModuleLink($block_data)
     {
-        $bid = intval($block_data['bid']);
+        $bid = (int)$block_data['bid'];
 
         // get selected targets
         if (is_array(@$block_data['bmodule'])) {
@@ -208,7 +208,7 @@ class MyBlocksAdmin
             $result = $this->db->query('SELECT module_id FROM ' . $this->db->prefix('block_module_link') . " WHERE block_id='$bid'");
             $selected_mids = [];
             while (list($selected_mid) = $this->db->fetchRow($result)) {
-                $selected_mids[] = intval($selected_mid);
+                $selected_mids[] = (int)$selected_mid;
             }
             if (empty($selected_mids)) {
                 $selected_mids = [0];
@@ -246,7 +246,7 @@ class MyBlocksAdmin
     // group_permission - 'block_read'
     public function renderCell4BlockReadGroupPerm($block_data)
     {
-        $bid = intval($block_data['bid']);
+        $bid = (int)$block_data['bid'];
 
         // get selected targets
         if (is_array(@$block_data['bgroup'])) {
@@ -257,7 +257,7 @@ class MyBlocksAdmin
             $result = $this->db->query('SELECT gperm_groupid FROM ' . $this->db->prefix('group_permission') . " WHERE gperm_itemid='$bid' AND gperm_name='block_read'");
             $selected_gids = [];
             while (list($selected_gid) = $this->db->fetchRow($result)) {
-                $selected_gids[] = intval($selected_gid);
+                $selected_gids[] = (int)$selected_gid;
             }
             if (0 == $bid && empty($selected_gids)) {
                 $selected_gids = $GLOBALS['xoopsUser']->getGroups();
@@ -293,9 +293,9 @@ class MyBlocksAdmin
     // visible and side
     public function renderCell4BlockPosition($block_data)
     {
-        $bid = intval($block_data['bid']);
-        $side = intval($block_data['side']);
-        $visible = intval($block_data['visible']);
+        $bid = (int)$block_data['bid'];
+        $side = (int)$block_data['side'];
+        $visible = (int)$block_data['visible'];
 
         $sseln = $ssel0 = $ssel1 = $ssel2 = $ssel3 = $ssel4 = '';
         $scoln = $scol0 = $scol1 = $scol2 = $scol3 = $scol4 = 'unselected';
@@ -395,13 +395,13 @@ class MyBlocksAdmin
         $blocks4assign = [];
         foreach ($block_arr as $i => $block) {
             $block_data = [
-                'bid' => intval($block->getVar('bid')),
+                'bid' => (int)$block->getVar('bid'),
                 'name' => $block->getVar('name', 'n'),
                 'title' => $block->getVar('title', 'n'),
-                'weight' => intval($block->getVar('weight')),
-                'bcachetime' => intval($block->getVar('bcachetime')),
-                'side' => intval($block->getVar('side')),
-                'visible' => intval($block->getVar('visible')),
+                'weight' => (int)$block->getVar('weight'),
+                'bcachetime' => (int)$block->getVar('bcachetime'),
+                'side' => (int)$block->getVar('side'),
+                'visible' => (int)$block->getVar('visible'),
                 'can_edit' => $this->canEdit($block),
                 'can_delete' => $this->canDelete($block),
                 'can_clone' => $this->canClone($block),
@@ -548,13 +548,13 @@ class MyBlocksAdmin
     // virtual
     public function updateBlockModuleLink($bid, $bmodules)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
         $table = $this->db->prefix('block_module_link');
 
         $sql = "DELETE FROM `$table` WHERE `block_id`=$bid";
         $this->db->query($sql);
         foreach ($bmodules as $mid) {
-            $mid = intval($mid);
+            $mid = (int)$mid;
             $sql = "INSERT INTO `$table` (`block_id`,`module_id`) VALUES ($bid,$mid)";
             $this->db->query($sql);
         }
@@ -564,7 +564,7 @@ class MyBlocksAdmin
     // virtual
     public function updateBlockReadGroupPerm($bid, $req_gids)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
         $table = $this->db->prefix('group_permission');
         $req_gids = array_map('intval', $req_gids);
         sort($req_gids);
@@ -587,7 +587,7 @@ class MyBlocksAdmin
         $sql = "DELETE FROM `$table` WHERE gperm_name='block_read' AND `gperm_itemid`=$bid";
         $this->db->query($sql);
         foreach ($req_gids as $gid) {
-            $gid = intval($gid);
+            $gid = (int)$gid;
             $sql = "INSERT INTO `$table` (`gperm_groupid`,`gperm_itemid`,`gperm_modid`,`gperm_name`) VALUES ($gid,$bid,1,'block_read')";
             $this->db->query($sql);
         }
@@ -615,11 +615,11 @@ class MyBlocksAdmin
 
     public function fetchRequest4Block($bid)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
         (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
         if (@$_POST['extra_sides'][$bid] > 0) {
-            $_POST['sides'][$bid] = intval($_POST['extra_sides'][$bid]);
+            $_POST['sides'][$bid] = (int)$_POST['extra_sides'][$bid];
         }
 
         if (@$_POST['sides'][$bid] < 0) {
@@ -631,13 +631,13 @@ class MyBlocksAdmin
 
         return [
             'bid' => $bid,
-            'side' => intval(@$_POST['sides'][$bid]),
-            'weight' => intval(@$_POST['weights'][$bid]),
+            'side' => (int)@$_POST['sides'][$bid],
+            'weight' => (int)@$_POST['weights'][$bid],
             'visible' => $visible,
             'title' => $myts->stripSlashesGPC(@$_POST['titles'][$bid]),
             'content' => $myts->stripSlashesGPC(@$_POST['contents'][$bid]),
             'ctype' => preg_replace('/[^A-Z]/', '', @$_POST['ctypes'][$bid]),
-            'bcachetime' => intval(@$_POST['bcachetimes'][$bid]),
+            'bcachetime' => (int)@$_POST['bcachetimes'][$bid],
             'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : [0],
             'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : [],
             'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : [],
@@ -647,7 +647,7 @@ class MyBlocksAdmin
 
     public function do_delete($bid)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
@@ -672,7 +672,7 @@ class MyBlocksAdmin
     //HACK add by domifara
     public function do_deleteBlockReadGroupPerm($bid)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
         $table = $this->db->prefix('group_permission');
         $sql = "DELETE FROM `$table` WHERE gperm_name='block_read' AND `gperm_itemid`=$bid";
         $this->db->query($sql);
@@ -680,7 +680,7 @@ class MyBlocksAdmin
 
     public function form_delete($bid)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
 
         //HACK by domifara
         //HACK by domifara
@@ -709,7 +709,7 @@ class MyBlocksAdmin
 
     public function do_clone($bid)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
 
         $request = $this->fetchRequest4Block($bid);
 
@@ -778,7 +778,7 @@ class MyBlocksAdmin
         $func_num = 256;
         do {
             $func_num--;
-            list($count) = $this->db->fetchRow($this->db->query('SELECT COUNT(*) FROM ' . $this->db->prefix('newblocks') . ' WHERE mid=' . intval($mid) . ' AND func_num=' . $func_num));
+            list($count) = $this->db->fetchRow($this->db->query('SELECT COUNT(*) FROM ' . $this->db->prefix('newblocks') . ' WHERE mid=' . (int)$mid . ' AND func_num=' . $func_num));
         } while ($count > 0);
 
         return $func_num > 128 ? $func_num : 255;
@@ -787,7 +787,7 @@ class MyBlocksAdmin
 
     public function do_edit($bid)
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
 
         if ($bid <= 0) {
             // new custom block
@@ -830,7 +830,7 @@ class MyBlocksAdmin
 
     public function form_edit($bid, $mode = 'edit')
     {
-        $bid = intval($bid);
+        $bid = (int)$bid;
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
@@ -894,20 +894,20 @@ class MyBlocksAdmin
     }
 */
         $block_data = $this->preview_request + [
-            'bid' => $bid,
-            'name' => $block->getVar('name', 'n'),
-            'title' => $block->getVar('title', 'n'),
-            'weight' => intval($block->getVar('weight')),
-            'bcachetime' => intval($block->getVar('bcachetime')),
-            'side' => intval($block->getVar('side')),
-            'visible' => intval($block->getVar('visible')),
-            'template' => $block_template,
-            'template_tplset' => $block_template_tplset,
-            'options' => $block->getVar('options'),
-            'content' => $block->getVar('content', 'n'),
-            'is_custom' => $is_custom,
-            'type' => $block->getVar('block_type'),
-            'ctype' => $block->getVar('c_type'),
+                'bid' => $bid,
+                'name' => $block->getVar('name', 'n'),
+                'title' => $block->getVar('title', 'n'),
+                'weight' => (int)$block->getVar('weight'),
+                'bcachetime' => (int)$block->getVar('bcachetime'),
+                'side' => (int)$block->getVar('side'),
+                'visible' => (int)$block->getVar('visible'),
+                'template' => $block_template,
+                'template_tplset' => $block_template_tplset,
+                'options' => $block->getVar('options'),
+                'content' => $block->getVar('content', 'n'),
+                'is_custom' => $is_custom,
+                'type' => $block->getVar('block_type'),
+                'ctype' => $block->getVar('c_type'),
             ];
 
         $block4assign = [
@@ -964,7 +964,7 @@ class MyBlocksAdmin
 
     public function previewContent($block_data)
     {
-        $bid = intval($block_data['bid']);
+        $bid = (int)$block_data['bid'];
 
         if (!$block_data['is_custom']) {
             return '';
@@ -1019,7 +1019,7 @@ class MyBlocksAdmin
         }
 
         $msg = '';
-        $bid = intval(@$_GET['bid']);
+        $bid = (int)@$_GET['bid'];
         if (!empty($_POST['preview'])) {
             // preview
             $this->preview_request = $this->fetchRequest4Block($bid);
@@ -1050,7 +1050,7 @@ class MyBlocksAdmin
 
     public function processGet()
     {
-        $bid = intval(@$_GET['bid']);
+        $bid = (int)@$_GET['bid'];
         switch (@$_GET['op']) {
             case 'clone':
                 $this->form_edit($bid, 'clone');

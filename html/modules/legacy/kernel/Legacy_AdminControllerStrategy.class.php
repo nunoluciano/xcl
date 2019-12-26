@@ -116,7 +116,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
                 }
             } elseif ('legacy' == $module->get('dirname') && 'PreferenceEdit' == xoops_getrequest('action') && isset($_REQUEST['confmod_id'])) {
                 $handler =& xoops_gethandler('module');
-                $t_xoopsModule =& $handler->get(intval(xoops_getrequest('confmod_id')));
+                $t_xoopsModule =& $handler->get((int)xoops_getrequest('confmod_id'));
                 $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
             }
             

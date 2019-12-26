@@ -259,7 +259,7 @@ class CriteriaElement
      */
     public function setLimit($limit=0)
     {
-        $this->limit = intval($limit);
+        $this->limit = (int)$limit;
     }
 
     /**
@@ -275,7 +275,7 @@ class CriteriaElement
      */
     public function setStart($start=0)
     {
-        $this->start = intval($start);
+        $this->start = (int)$start;
     }
 
     /**
@@ -484,7 +484,7 @@ class Criteria extends CriteriaElement
         // Recive DTYPE. This is a prolongation of criterion life operation.
         //
         if (is_array($value) && 2 == count($value) && 'IN' != $operator && 'NOT IN' != $operator) {
-            $this->dtype = intval($value[0]);
+            $this->dtype = (int)$value[0];
             $this->value = $value[1];
         } else {
             $this->value = $value;

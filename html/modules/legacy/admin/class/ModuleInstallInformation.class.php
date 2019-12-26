@@ -41,7 +41,7 @@ class Legacy_BlockInformation
 
     public function __construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
     {
-        $this->mFuncNum = intval($funcNum);
+        $this->mFuncNum = (int)$funcNum;
         $this->mName = $name;
         $this->mFuncFile = $funcFile;
         $this->mShowFunc = $showFunc;
@@ -203,7 +203,7 @@ class Legacy_PreferenceInformation
         $this->mFormType = $formType;
         $this->mValueType = $valueType;
         $this->mDefault = $default;
-        $this->mOrder = intval($order);
+        $this->mOrder = (int)$order;
 
         $this->mOption =new Legacy_PreferenceOptionInfoCollection();
     }

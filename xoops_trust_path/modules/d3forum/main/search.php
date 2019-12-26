@@ -16,7 +16,7 @@ if( ! isset( $_GET['submit'] ) ) {
 	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
-		$temp_forum_id = intval($forum_row['forum_id']);
+		$temp_forum_id = (int)$forum_row['forum_id'];
 		if( ! empty( $forum_row['forum_external_link_format'] ) ) {
 			$d3com[$temp_forum_id] = d3forum_main_get_comment_object( $mydirname , $forum_row['forum_external_link_format'] , $temp_forum_id ) ;
 		} else {
@@ -66,7 +66,7 @@ if( ! isset( $_GET['submit'] ) ) {
 	}
 
 	// forum_id
-	$forum_id = intval( @$_GET['forum_id'] ) ;
+	$forum_id = (int)@$_GET['forum_id'];
 	if( ! empty( $forum_id ) ) {
 		$whr_forum = "f.forum_id=$forum_id" ;
 	} else {
@@ -128,9 +128,9 @@ if( ! isset( $_GET['submit'] ) ) {
 	while ( $row = $db->fetchArray( $result ) ) {
 		// naao from
 		$can_display = true;	//default
-		if( is_object( $d3com[intval($row['forum_id'])]) ) {
-			$d3com_obj = $d3com[intval($row['forum_id'])];
-			$external_link_id = intval($row['topic_external_link_id']);
+		if( is_object($d3com[(int)$row['forum_id']]) ) {
+			$d3com_obj = $d3com[(int)$row['forum_id']];
+			$external_link_id = (int)$row['topic_external_link_id'];
 			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
@@ -138,24 +138,24 @@ if( ! isset( $_GET['submit'] ) ) {
 
 		if (true == $can_display) {	// naao
 			$results4assign[] = [
-				'cat_title' => $myts->makeTboxData4Show($row['cat_title']) ,
-				'cat_id' => intval( $row['cat_id'] ) ,
-				'forum_title' => $myts->makeTboxData4Show($row['forum_title']) ,
-				'forum_id' => intval( $row['forum_id'] ) ,
-				'topic_title' => $myts->makeTboxData4Show($row['topic_title']) ,
-				'topic_id' => intval( $row['topic_id'] ) ,
-				'topic_replies' => $row['topic_posts_count'] - 1 ,
-				'topic_views' => intval( $row['topic_views'] ) ,
-				'post_id' => intval( $row['post_id'] ) ,
-				'subject' => $myts->makeTboxData4Show( $row['subject'] ) ,
-				'icon' => intval( $row['icon'] ) ,
-				'body_length' => intval( $row['body_length'] ) ,
-				'poster_uid' => intval( $row['uid'] ) ,
-				'poster_uname' => $myts->makeTboxData4Show($row['uname']),
-				'poster_name' => $myts->makeTboxData4Show($row['name']),	//naao added
-				'post_time' => intval( $row['post_time'] ) ,
-				'post_time_formatted' => formatTimestamp( $row['post_time'] , 'm' ) ,
-				'votes_avg' => $row['votes_count'] ? $row['votes_sum'] / (double)$row['votes_count'] : 0 ,
+                                    'cat_title' => $myts->makeTboxData4Show($row['cat_title']),
+                                    'cat_id' => (int)$row['cat_id'],
+                                    'forum_title' => $myts->makeTboxData4Show($row['forum_title']),
+                                    'forum_id' => (int)$row['forum_id'],
+                                    'topic_title' => $myts->makeTboxData4Show($row['topic_title']),
+                                    'topic_id' => (int)$row['topic_id'],
+                                    'topic_replies' => $row['topic_posts_count'] - 1,
+                                    'topic_views' => (int)$row['topic_views'],
+                                    'post_id' => (int)$row['post_id'],
+                                    'subject' => $myts->makeTboxData4Show( $row['subject'] ),
+                                    'icon' => (int)$row['icon'],
+                                    'body_length' => (int)$row['body_length'],
+                                    'poster_uid' => (int)$row['uid'],
+                                    'poster_uname' => $myts->makeTboxData4Show($row['uname']),
+                                    'poster_name' => $myts->makeTboxData4Show($row['name']),    //naao added
+                                    'post_time' => (int)$row['post_time'],
+                                    'post_time_formatted' => formatTimestamp( $row['post_time'] , 'm' ),
+                                    'votes_avg' => $row['votes_count'] ? $row['votes_sum'] / (double)$row['votes_count'] : 0,
                                 ] + $row ;
 		}	// naao
 	}
@@ -171,7 +171,7 @@ $xoopsTpl->assign(
         'mod_url' => XOOPS_URL.'/modules/'.$mydirname,
         'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'],
         'mod_config' => $xoopsModuleConfig,
-        'hits_count' => intval( @$hits_count ),
+        'hits_count' => (int)@$hits_count,
         'keyword' => @$keyword4disp,
         'andor_options' => ['or' => _MD_D3FORUM_LABEL_SEARCHOR, 'and' => _MD_D3FORUM_LABEL_SEARCHAND],
         'andor_selected' => empty( $andor_selected ) ? 'or' : $andor_selected,

@@ -11,7 +11,7 @@
  *
  */
 include '../../../include/cp_header.php';
-$modid = isset($_POST['modid']) ? intval($_POST['modid']) : 0;
+$modid = isset($_POST['modid']) ? (int)$_POST['modid'] : 0;
 
 //
 // Load Message catalog

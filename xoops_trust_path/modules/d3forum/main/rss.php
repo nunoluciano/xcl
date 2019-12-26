@@ -9,8 +9,8 @@ $cat_ids = [];
 
 require_once $mytrustdirpath.'/include/rss_functions.php';
 
-$forum = (!empty($_GET['forum_id']))? intval($_GET['forum_id']) : 0;
-if (! $forum ) $forum = (!empty($_GET['forum']))? intval($_GET['forum']) : 0;
+$forum = (!empty($_GET['forum_id']))? (int)$_GET['forum_id'] : 0;
+if (! $forum ) $forum = (!empty($_GET['forum']))? (int)$_GET['forum'] : 0;
 
 if ($forum) {
 	$cat = '0';
@@ -25,7 +25,7 @@ if ($forum) {
 		$cat_ids = [];
 		foreach( explode( ',' , $cat ) as $_id ) {
 			if( $_id > 0 ) {
-				$cat_ids[] = intval( $_id ) ;
+				$cat_ids[] = (int)$_id;
 			}
 		}
 		$cat_ids = array_unique($cat_ids);

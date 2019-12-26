@@ -31,7 +31,7 @@ $modversion['blocks'][1] = [
     'description'    => '',
     'show_func'        => 'b_altsys_admin_menu_show',
     'edit_func'        => 'b_altsys_admin_menu_edit',
-    'options'        => "$mydirname",
+    'options'        => (string)$mydirname,
     'template'        => '', // use "module" template instead
 ];
 

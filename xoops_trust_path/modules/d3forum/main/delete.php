@@ -3,14 +3,14 @@
 include dirname(__DIR__) . '/include/common_prepend.php';
 require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
-$post_id = intval( @$_GET['post_id'] ) ;
+$post_id = (int)@$_GET['post_id'];
 
 // get this "post" from given $post_id
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
-$topic_id = intval( $post_row['topic_id'] ) ;
+$topic_id = (int)$post_row['topic_id'];
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
@@ -38,7 +38,7 @@ if( $isadminormod ) {
 	// ok
 } else if( ( $uid == $post_row['uid'] || $uid == $post_row['uid_hidden'] ) && $xoopsModuleConfig['selfdellimit'] > 0 ) {
 	// self delete
-	if( time() < $post_row['post_time'] + intval( $xoopsModuleConfig['selfdellimit'] ) ) {
+	if( time() < $post_row['post_time'] + (int)$xoopsModuleConfig['selfdellimit']) {
 		// before time limit
 		if( count( $children ) > 0 ) {
 			// child(ren) exist(s)
@@ -89,7 +89,7 @@ if( ! empty( $_POST['deletepostsok'] ) ) {
 
 	// references to confirm the post will be deleted
 	$reference_message4html = $myts->displayTarea( $post_row['post_text'] , $post_row['html'] , $post_row['smiley'] , $post_row['xcode'] , $xoopsModuleConfig['allow_textimg'] , $post_row['br'] , 0 , $post_row['number_entity'] , $post_row['special_entity'] ) ;
-	$reference_time = intval( $post_row['post_time'] ) ;
+	$reference_time = (int)$post_row['post_time'];
 	if( ! empty( $post_row['guest_name'] ) ) {
 		$reference_name4html = htmlspecialchars( $post_row['guest_name'] , ENT_QUOTES ) ;
 	} else if( $post_row['uid'] ) {

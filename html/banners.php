@@ -188,8 +188,8 @@ function EmailStats($login, $cid, $bid, $pass)
 {
     global $xoopsDB, $xoopsConfig;
     if ('' != $login && '' != $pass) {
-        $cid = intval($cid);
-        $bid = intval($bid);
+        $cid = (int)$cid;
+        $bid = (int)$bid;
         if ($result2 = $xoopsDB->query(sprintf('select name, email, passwd from %s where cid=%u AND login=%s', $xoopsDB->prefix('bannerclient'), $cid, $xoopsDB->quoteString($login)))) {
             list($name, $email, $passwd) = $xoopsDB->fetchRow($result2);
             if ($pass == $passwd) {
@@ -242,8 +242,8 @@ function change_banner_url_by_client($login, $pass, $cid, $bid, $url)
 {
     global $xoopsDB;
     if ('' != $login && '' != $pass && '' != $url) {
-        $cid = intval($cid);
-        $bid = intval($bid);
+        $cid = (int)$cid;
+        $bid = (int)$bid;
         $sql = sprintf('select passwd from %s where cid=%u and login=%s', $xoopsDB->prefix('bannerclient'), $cid, $xoopsDB->quoteString($login));
         if ($result = $xoopsDB->query($sql)) {
             list($passwd) = $xoopsDB->fetchRow($result);
@@ -286,7 +286,7 @@ switch ($op) {
 case 'click':
     $bid = 0;
     if (!empty($_GET['bid'])) {
-        $bid = intval($_GET['bid']);
+        $bid = (int)$_GET['bid'];
     }
     clickbanner($bid);
     break;
@@ -330,10 +330,10 @@ case 'Change':
         $url = $myts->stripslashesGPC(trim($_POST['url']));
     }
     if (!empty($_POST['bid'])) {
-        $bid = intval($_POST['bid']);
+        $bid = (int)$_POST['bid'];
     }
     if (!empty($_POST['cid'])) {
-        $cid = intval($_POST['cid']);
+        $cid = (int)$_POST['cid'];
     }
     change_banner_url_by_client($login, $pass, $cid, $bid, $url);
     break;
@@ -351,10 +351,10 @@ case 'EmailStats':
         $pass = $myts->stripslashesGPC(trim($_GET['pass']));
     }
     if (!empty($_GET['bid'])) {
-        $bid = intval($_GET['bid']);
+        $bid = (int)$_GET['bid'];
     }
     if (!empty($_GET['cid'])) {
-        $cid = intval($_GET['cid']);
+        $cid = (int)$_GET['cid'];
     }
     EmailStats($login, $cid, $bid, $pass);
     break;

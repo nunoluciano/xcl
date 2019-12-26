@@ -46,7 +46,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
     public function getCurrentRetry($mailjob_id)
     {
-        $mailjob_id = intval($mailjob_id);
+        $mailjob_id = (int)$mailjob_id;
         $table = $this->mTable;
 
         $sql = "SELECT min(retry) AS cretry FROM ${table} where mailjob_id='${mailjob_id}'";

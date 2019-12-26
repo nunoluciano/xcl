@@ -26,7 +26,7 @@ class PicoControllerDiffHistories extends PicoControllerAbstract
         // get $history_profile from the id
         $older_profile = pico_get_content_history_profile($this->mydirname, $request['older_history_id']);
         if (empty($request['newer_history_id'])) {
-            $newer_profile = pico_get_content_history_profile($this->mydirname, 0, intval($older_profile[1]));
+            $newer_profile = pico_get_content_history_profile($this->mydirname, 0, (int)$older_profile[1]);
         } else {
             $newer_profile = pico_get_content_history_profile($this->mydirname, $request['newer_history_id']);
         }

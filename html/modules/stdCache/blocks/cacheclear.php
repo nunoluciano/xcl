@@ -30,7 +30,7 @@ class Stdcache_CacheclearBlock extends Legacy_BlockProcedure
             $this->updateTimer();
         }
         
-        if (filemtime($this->_mFilePath) < time() - intval($options[0]) * 60) {
+        if (filemtime($this->_mFilePath) < time() - (int)$options[0] * 60) {
             if ($handler = opendir(XOOPS_CACHE_PATH)) {
                 while (false !== ($file = readdir($handler))) {
                     if (preg_match("/\w+\.cache\.html$/", $file, $matches)) {

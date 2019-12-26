@@ -32,7 +32,7 @@ class sendAction extends AbstractAction
         $this->mPagenavi->addSort('utime', 'DESC');
         $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
-            $fromuid = intval($this->root->mContext->mRequest->getRequest('touid'));
+            $fromuid = (int)$this->root->mContext->mRequest->getRequest('touid');
             if ($fromuid > 0) {
                 $this->mPagenavi->addCriteria(new Criteria('to_uid', $fromuid));
             }

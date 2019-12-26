@@ -74,7 +74,7 @@ class Legacy_ModuleListFilterForm extends Legacy_AbstractFilterForm
         $this->fetchSort();
 
         if (isset($_REQUEST['special'])) {
-            $this->mSpecial = intval(xoops_getreqeust('special'));
+            $this->mSpecial = (int)xoops_getreqeust('special');
         }
         
         $this->_mCriteria->add(new Criteria('mid', 0, '>'));

@@ -2,8 +2,8 @@
 
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 
-$cat_id = intval( @$_GET['cat_id'] ) ;
-if( ! empty( $_POST['cat_id'] ) ) $cat_id = intval( $_POST['cat_id'] ) ;
+$cat_id = (int)@$_GET['cat_id'];
+if( ! empty( $_POST['cat_id'] ) ) $cat_id = (int)$_POST['cat_id'];
 
 if( $cat_id ) {
 	// get&check this category ($category4assign, $category_row), override options

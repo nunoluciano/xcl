@@ -15,9 +15,9 @@ function b_sitemap_d3forum( $mydirname )
 
 	while( list( $forum_id , $forum_title ) = $db->fetchRow( $result ) ) {
         $ret['parent'][] = [
-            'id'    => intval($forum_id ),
+            'id'    => (int)$forum_id,
             'title' => $myts->makeTboxData4Show($forum_title ),
-            'url'   => 'index.php?forum_id=' . intval($forum_id ),
+            'url'   => 'index.php?forum_id=' . (int)$forum_id,
         ];
 	}
 

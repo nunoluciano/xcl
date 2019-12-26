@@ -414,7 +414,7 @@ class XoopsMultiTokenHandler
         $str = XOOPS_TOKEN_PREFIX.$name . '_';
         foreach ($_REQUEST as $key=>$val) {
             if (preg_match('/' . $str . "(\d+)/", $key, $match)) {
-                return intval($match[1]);
+                return (int)$match[1];
             }
         }
 

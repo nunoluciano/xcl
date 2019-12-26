@@ -987,9 +987,9 @@ class snoopy
 
     public function _prepare_post_body($formvars, $formfiles)
     {
-        settype($formvars, 'array');
-        settype($formfiles, 'array');
-        $postdata = '';
+        $formvars  = (array)$formvars;
+        $formfiles = (array)$formfiles;
+        $postdata  = '';
 
         if (0 == count($formvars) && 0 == count($formfiles)) {
             return;
@@ -1029,7 +1029,7 @@ class snoopy
 
                 reset($formfiles);
                 while (list($field_name, $file_names) = each($formfiles)) {
-                    settype($file_names, 'array');
+                    $file_names = (array)$file_names;
                     while (list(, $file_name) = each($file_names)) {
                         if (!is_readable($file_name)) {
                             continue;

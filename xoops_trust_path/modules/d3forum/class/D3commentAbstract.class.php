@@ -45,7 +45,7 @@ class D3commentAbstract
 
     public function setForumId($id)
     {
-        $this->forum_id = intval($id);
+        $this->forum_id = (int)$id;
     }
 
     // abstract (override it)
@@ -68,7 +68,7 @@ class D3commentAbstract
         if ($this->forum_id) {
             return $this->forum_id;
         } elseif (!empty($params['forum_id'])) {
-            return intval($params['forum_id']);
+            return (int)$params['forum_id'];
         } elseif (!empty($this->mod_config['comment_forum_id'])) {
             return $this->mod_config['comment_forum_id'];
         } else {
@@ -195,7 +195,7 @@ class D3commentAbstract
     // if you want to allow "string id", override it
     public function validate_id($link_id)
     {
-        $ret = intval($link_id);
+        $ret = (int)$link_id;
         if ($ret <= 0) {
             return false;
         }
@@ -289,7 +289,7 @@ class D3commentAbstract
         $not_itemid   = $link_id;
         $not_event    = 'comment'; // 'comment_submit'?
 
-        $comment_tags = ['X_COMMENT_URL' => XOOPS_URL . '/modules/' . $this->d3forum_dirname . '/index.php?post_id=' . intval($post_id)];
+        $comment_tags = ['X_COMMENT_URL' => XOOPS_URL . '/modules/' . $this->d3forum_dirname . '/index.php?post_id=' . (int)$post_id];
 
         $users2notify = d3forum_get_users_can_read_forum($this->d3forum_dirname, $forum_id);
         if (empty($users2notify)) {
@@ -337,7 +337,7 @@ class D3commentAbstract
 
         list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_posts') . ' p LEFT JOIN ' . $db->prefix($this->d3forum_dirname . '_topics') . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'"));
 
-        return intval($count);
+        return (int)$count;
     }
 
     // returns topics count (does not check the permissions)
@@ -347,7 +347,7 @@ class D3commentAbstract
 
         list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_topics') . " t WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'"));
 
-        return intval($count);
+        return (int)$count;
     }
 
     // unhtmlspecialchars (utility)

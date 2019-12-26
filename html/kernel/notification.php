@@ -231,10 +231,10 @@ class XoopsNotificationHandler extends XoopsObjectHandler
                 $value = $value ? '1' : '0';
                 break;
             case XOBJ_DTYPE_INT:
-                $value = intval($value);
+                $value = (int)$value;
                 break;
             case XOBJ_DTYPE_FLOAT:
-                $value = floatval($value);
+                $value = (float)$value;
                 break;
             case XOBJ_DTYPE_STRING:
             case XOBJ_DTYPE_TEXT:

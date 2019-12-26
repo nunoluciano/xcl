@@ -529,7 +529,7 @@ class Legacy_ModuleInstallUtils
         $blockObj->set('last_modified', time());
         $blockObj->set('visible', $visible);
         
-        $func_num = isset($block['func_num']) ? intval($block['func_num']) : $func_num;
+        $func_num = isset($block['func_num']) ? (int)$block['func_num'] : $func_num;
         $blockObj->set('func_num', $func_num);
 
         return $blockObj;

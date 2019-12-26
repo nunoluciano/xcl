@@ -199,7 +199,7 @@ class XoopsXmlRpcParser extends SaxParser
     public function setTempValue($value)
     {
         if (is_array($value)) {
-            settype($this->_tempValue, 'array');
+            $this->_tempValue = (array)$this->_tempValue;
             foreach ($value as $k => $v) {
                 $this->_tempValue[$k] = $v;
             }
@@ -519,7 +519,7 @@ class RpcIntHandler extends XmlTagHandler
      */
     public function handleCharacterData(&$parser, &$data)
     {
-        $parser->setTempValue(intval($data));
+        $parser->setTempValue((int)$data);
     }
 }
 
@@ -617,7 +617,7 @@ class RpcStringHandler extends XmlTagHandler
      */
     public function handleCharacterData(&$parser, &$data)
     {
-        $parser->setTempValue(strval($data));
+        $parser->setTempValue((string)$data);
     }
 }
 

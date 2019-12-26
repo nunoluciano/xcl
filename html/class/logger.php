@@ -174,7 +174,7 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->blocks as $b) {
             if ($b['cached']) {
-                $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> Cached (regenerates every '.intval($b['cachetime']).' seconds)</td></tr>';
+                $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> Cached (regenerates every ' . (int)$b['cachetime'] . ' seconds)</td></tr>';
             } else {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> No Cache</td></tr>';
             }

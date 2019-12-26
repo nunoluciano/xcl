@@ -2,7 +2,7 @@
 
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 
-$topic_id = intval( @$_GET['topic_id'] ) ;
+$topic_id = (int)@$_GET['topic_id'];
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;

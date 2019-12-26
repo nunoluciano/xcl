@@ -3,7 +3,7 @@
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
-$forum_id = intval( @$_GET['forum_id'] ) ;
+$forum_id = (int)@$_GET['forum_id'];
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
 if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
@@ -67,8 +67,8 @@ if( ! empty( $_POST['forumman_export_copy'] ) || ! empty( $_POST['forumman_expor
 	if( ! $xoopsGTicket->check( true , 'd3forum' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
-	$export_mid = intval( @$_POST['export_mid'] ) ;
-	$export_cat_id = intval( @$_POST['export_cat_id'][$export_mid] ) ;
+	$export_mid = (int)@$_POST['export_mid'];
+	$export_cat_id = (int)@$_POST['export_cat_id'][$export_mid];
 	if( ! empty( $exportable_modules[ $export_mid ] ) && $export_cat_id > 0 ) {
 		d3forum_export_forum_to_d3forum( $mydirname , $export_mid , $export_cat_id , $cat_id , $forum_id , ! empty( $_POST['forumman_export_move'] ) ) ;
 		redirect_header( XOOPS_URL."/modules/$mydirname/index.php?cat_id=$cat_id" , 2 , _MD_D3FORUM_MSG_FORUMUPDATED ) ;
@@ -89,13 +89,13 @@ if( is_array( $forum_configs ) ) foreach( $forum_configs as $key => $val ) {
 }
 
 $forum4assign = [
-	'id' => $forum_id ,
-	'title' => htmlspecialchars( $forum_row['forum_title'] , ENT_QUOTES ) ,
-	'weight' => intval( $forum_row['forum_weight'] ) ,
-	'external_link_format' => htmlspecialchars( $forum_row['forum_external_link_format'] , ENT_QUOTES ) ,
-	'desc' => htmlspecialchars( $forum_row['forum_desc'] , ENT_QUOTES ) ,
-	'options' => $options4html ,
-	'option_desc' => d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override ) ,
+    'id' => $forum_id,
+    'title' => htmlspecialchars( $forum_row['forum_title'] , ENT_QUOTES ),
+    'weight' => (int)$forum_row['forum_weight'],
+    'external_link_format' => htmlspecialchars( $forum_row['forum_external_link_format'] , ENT_QUOTES ),
+    'desc' => htmlspecialchars( $forum_row['forum_desc'] , ENT_QUOTES ),
+    'options' => $options4html,
+    'option_desc' => d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override ),
 ];
 
 

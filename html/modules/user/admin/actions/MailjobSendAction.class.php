@@ -13,7 +13,7 @@ class User_MailjobSendAction extends User_Action
     
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
-        $id = intval(xoops_getrequest('mailjob_id'));
+        $id = (int)xoops_getrequest('mailjob_id');
         
         $handler =& xoops_getmodulehandler('mailjob');
         

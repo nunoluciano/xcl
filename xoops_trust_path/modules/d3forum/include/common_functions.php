@@ -9,7 +9,7 @@ function d3forum_get_forums_can_read( $mydirname )
 	$db =& Database::getInstance() ;
 
 	if( is_object( $xoopsUser ) ) {
-		$uid = intval( $xoopsUser->getVar('uid') ) ;
+		$uid = (int)$xoopsUser->getVar('uid');
 		$groups = $xoopsUser->getGroups() ;
 		if( ! empty( $groups ) ) {
 			$whr4forum = "fa.`uid`=$uid || fa.`groupid` IN (".implode(',', $groups) . ')';
@@ -19,15 +19,15 @@ function d3forum_get_forums_can_read( $mydirname )
 			$whr4cat = "`uid`=$uid" ;
 		}
 	} else {
-		$whr4forum = 'fa.`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
-		$whr4cat = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
+		$whr4forum = 'fa.`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
+		$whr4cat = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
 
 	// get categories
 	$sql = 'SELECT distinct cat_id FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE ($whr4cat)" ;
 	$result = $db->query( $sql ) ;
 	if( $result ) while( list( $cat_id ) = $db->fetchRow( $result ) ) {
-		$cat_ids[] = intval( $cat_id ) ;
+		$cat_ids[] = (int)$cat_id;
 	}
 	if( empty( $cat_ids ) ) return [0];
 
@@ -35,7 +35,7 @@ function d3forum_get_forums_can_read( $mydirname )
 	$sql = 'SELECT distinct f.forum_id FROM ' . $db->prefix($mydirname . '_forums') . ' f LEFT JOIN ' . $db->prefix($mydirname . '_forum_access') . " fa ON fa.forum_id=f.forum_id WHERE ($whr4forum) AND f.cat_id IN (" . implode(',', $cat_ids) . ')' ;
 	$result = $db->query( $sql ) ;
 	if( $result ) while( list( $forum_id ) = $db->fetchRow( $result ) ) {
-		$forums[] = intval( $forum_id ) ;
+		$forums[] = (int)$forum_id;
 	}
 
 	if( empty( $forums ) ) return [0];
@@ -50,7 +50,7 @@ function d3forum_get_categories_can_read( $mydirname )
 	$db =& Database::getInstance() ;
 
 	if( is_object( $xoopsUser ) ) {
-		$uid = intval( $xoopsUser->getVar('uid') ) ;
+		$uid = (int)$xoopsUser->getVar('uid');
 		$groups = $xoopsUser->getGroups() ;
 		if( ! empty( $groups ) ) {
 			$whr4cat = "`uid`=$uid || `groupid` IN (".implode(',', $groups) . ')';
@@ -58,14 +58,14 @@ function d3forum_get_categories_can_read( $mydirname )
 			$whr4cat = "`uid`=$uid" ;
 		}
 	} else {
-		$whr4cat = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
+		$whr4cat = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
 
 	// get categories
 	$sql = 'SELECT distinct cat_id FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE ($whr4cat)" ;
 	$result = $db->query( $sql ) ;
 	if( $result ) while( list( $cat_id ) = $db->fetchRow( $result ) ) {
-		$cat_ids[] = intval( $cat_id ) ;
+		$cat_ids[] = (int)$cat_id;
 	}
 
 	if( empty( $cat_ids ) ) return [0];
@@ -96,7 +96,7 @@ function d3forum_get_submenu( $mydirname )
 	$sql = 'SELECT cat_id,pid,cat_title FROM ' . $db->prefix($mydirname . '_categories') . " WHERE ($whr_read4cat) ORDER BY cat_order_in_tree" ;
 	$crs = $db->query( $sql ) ;
 	if( $crs ) while( $cat_row = $db->fetchArray( $crs ) ) {
-		$cat_id = intval( $cat_row['cat_id'] ) ;
+		$cat_id = (int)$cat_row['cat_id'];
 		$categories[ $cat_id ] = [
 			'name' => $myts->makeTboxData4Show( $cat_row['cat_title'] ) ,
 			'url' => 'index.php?cat_id='.$cat_id ,
@@ -107,10 +107,10 @@ function d3forum_get_submenu( $mydirname )
 	// forums query
 	$frs = $db->query('SELECT cat_id,forum_id,forum_title FROM ' . $db->prefix($mydirname . '_forums') . " WHERE ($whr_read4forum) ORDER BY forum_weight" ) ;
 	if( $frs ) while( $forum_row = $db->fetchArray( $frs ) ) {
-		$cat_id = intval( $forum_row['cat_id'] ) ;
+		$cat_id = (int)$forum_row['cat_id'];
 		$categories[ $cat_id ]['sub'][] = [
-			'name' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
-			'url' => '?forum_id='.intval( $forum_row['forum_id'] ) ,
+            'name' => $myts->makeTboxData4Show( $forum_row['forum_title'] ),
+            'url' => '?forum_id=' . (int)$forum_row['forum_id'],
         ];
 	}
 
@@ -191,7 +191,7 @@ function d3forum_common_simple_request( $params )
 		switch( $type ) {
 			case 'int' :
 				// 0 means null
-				$val = intval( @$_GET[ $key ] ) ;
+				$val = (int)@$_GET[$key];
 				if( empty( $val ) ) $val = '' ;
 				$requests[ $key ] = $val ;
 				$whrs[] = $val ? "($whr_prefix$key='$val')" : '1' ;

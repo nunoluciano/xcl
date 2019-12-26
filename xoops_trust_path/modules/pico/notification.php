@@ -36,9 +36,9 @@ if (!function_exists('pico_notify_base')) {
 		// category
 		if ('category' == $category) {
 			// Assume we have a valid cat_id
-			$cat_id = intval($item_id);
+			$cat_id = (int)$item_id;
 
-			$currentCategoryObj = new PicoCategory($mydirname, intval($cat_id), $permissions);
+			$currentCategoryObj = new PicoCategory($mydirname, (int)$cat_id, $permissions);
 			$cat_data = $currentCategoryObj->getData();
 			if (!$cat_data['can_read']) return false;
 
@@ -52,11 +52,11 @@ if (!function_exists('pico_notify_base')) {
 		// content
 		if ('content' == $category) {
 			// Assume we have a valid content_id
-			$content_id = intval($item_id);
+			$content_id = (int)$item_id;
 
 			$cat_id = pico_common_get_cat_id_from_content_id($mydirname, $content_id);
 
-			$currentCategoryObj = new PicoCategory($mydirname, intval($cat_id), $permissions);
+			$currentCategoryObj = new PicoCategory($mydirname, (int)$cat_id, $permissions);
 			$cat_data = $currentCategoryObj->getData();
 			if (!$cat_data['can_read']) return false;
 

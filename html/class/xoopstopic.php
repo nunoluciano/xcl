@@ -51,7 +51,7 @@ class XoopsTopic
         if (is_array($topicid)) {
             $this->makeTopic($topicid);
         } elseif (0 != $topicid) {
-            $this->getTopic(intval($topicid));
+            $this->getTopic((int)$topicid);
         } else {
             $this->topic_id = $topicid;
         }
@@ -332,7 +332,7 @@ class XoopsTopic
 
     public function topicExists($pid, $title)
     {
-        $sql = 'SELECT COUNT(*) from ' . $this->table . ' WHERE topic_pid = ' . intval($pid) . " AND topic_title = '" . trim($title) . "'";
+        $sql = 'SELECT COUNT(*) from ' . $this->table . ' WHERE topic_pid = ' . (int)$pid . " AND topic_title = '" . trim($title) . "'";
         $rs = $this->db->query($sql);
         list($count) = $this->db->fetchRow($rs);
         if ($count > 0) {

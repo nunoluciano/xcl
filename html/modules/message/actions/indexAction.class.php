@@ -33,7 +33,7 @@ class indexAction extends AbstractAction
         $this->mPagenavi->addSort('utime', 'DESC');
         $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
-            $fromuid = intval($this->root->mContext->mRequest->getRequest('fromuid'));
+            $fromuid = (int)$this->root->mContext->mRequest->getRequest('fromuid');
             if ($fromuid > 0) {
                 $this->mPagenavi->addCriteria(new Criteria('from_uid', $fromuid));
             }
@@ -43,7 +43,7 @@ class indexAction extends AbstractAction
             }
             $this->status = $this->root->mContext->mRequest->getRequest('status');
             if ('' !== $this->status) {
-                $this->status = intval($this->status);
+                $this->status = (int)$this->status;
                 $this->mPagenavi->addCriteria(new Criteria('is_read', $this->status));
             }
         }

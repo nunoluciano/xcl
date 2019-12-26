@@ -19,7 +19,7 @@
     }
     foreach ($avatars as $avatar_file) {
         if (preg_match("/^([0-9]+)\.([a-zA-Z]+)$/", $avatar_file, $matched)) {
-            $user_id = intval($matched[1]);
+            $user_id = (int)$matched[1];
             if ($user_id > 0 && false != $fp = fopen('../images/avatar/users/'.$avatar_file, 'rb')) {
                 $binary = fread($fp, filesize('../images/avatar/users/'.$avatar_file));
                 fclose($fp);

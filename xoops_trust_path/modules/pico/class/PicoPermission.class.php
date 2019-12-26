@@ -64,7 +64,7 @@ class PicoPermission
                 $whr = "`uid`=$this->uid";
             }
         } else {
-            $whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS);
+            $whr = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
         }
 
         $sql    = 'SELECT cat_id,permissions FROM ' . $this->db->prefix($mydirname . '_category_permissions') . " WHERE ($whr)";
@@ -95,7 +95,7 @@ class PicoPermission
         $whr_type = $permission_type ? "permissions LIKE '%" . $permission_type . "\";i:1%'" : '1';
 
         // get permission_id
-        $cat_id = intval($cat_id);
+        $cat_id = (int)$cat_id;
         $sql    = 'SELECT cat_permission_id FROM ' . $this->db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id";
         list($permission_id) = $this->db->fetchRow($this->db->query($sql));
 

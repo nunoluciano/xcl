@@ -20,7 +20,7 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
      */
     public function _getId()
     {
-        return intval(xoops_getrequest('uid'));
+        return (int)xoops_getrequest('uid');
     }
 
     /**

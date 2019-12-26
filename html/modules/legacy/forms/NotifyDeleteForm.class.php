@@ -45,7 +45,7 @@ class Legacy_NotifyDeleteForm extends XCube_ActionForm
                 return;
             }
             foreach ($t_idArr as $t_id) {
-                $this->mNotifiyIds[] = ['modid' => intval($t_modid), 'id' => intval($t_id)];
+                $this->mNotifiyIds[] = ['modid' => (int)$t_modid, 'id' => (int)$t_id];
             }
         }
     }

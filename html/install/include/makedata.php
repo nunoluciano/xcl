@@ -68,7 +68,7 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
         date_default_timezone_set($timezone);
     }
     $time_diff_val = date('O');
-    $time_diff = floatval(substr($time_diff_val, 0, 1).(substr($time_diff_val, 1, 2) + substr($time_diff_val, 3, 2)/60));
+    $time_diff = (float)(substr($time_diff_val, 0, 1) . (substr($time_diff_val, 1, 2) + substr($time_diff_val, 3, 2) / 60));
     $dbm->insert('config', " VALUES (5, 0, 1, 'server_TZ', '_MD_AM_SERVERTZ', '".$time_diff."', '_MD_AM_SERVERTZDSC', 'timezone', 'float', 8)");
     $dbm->insert('config', " VALUES (6, 0, 1, 'default_TZ', '_MD_AM_DEFAULTTZ', '".$time_diff."', '_MD_AM_DEFAULTTZDSC', 'timezone', 'float', 10)");
     $dbm->insert('config', " VALUES (7, 0, 1, 'theme_set', '_MD_AM_DTHEME', 'legacy_default', '_MD_AM_DTHEMEDSC', 'theme', 'other', 12)");

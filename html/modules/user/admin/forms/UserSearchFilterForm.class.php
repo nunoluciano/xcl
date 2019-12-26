@@ -126,10 +126,10 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
                 if (isset($user_field_match) || isset($field_match)) {
                     $formvalue =  0;
                     if (isset($user_field_match)) {
-                        $formvalue = intval($form->get('user_'.$field.'_match')) ;
+                        $formvalue = (int)$form->get('user_' . $field . '_match');
                         $this->mNavi->addExtra('user_'.$field.'_match', $formvalue);
                     } elseif (isset($field_match)) {
-                        $formvalue = intval($form->get($field.'_match')) ;
+                        $formvalue = (int)$form->get($field . '_match');
                         $this->mNavi->addExtra($field.'_match', $formvalue);
                     }
                     switch ($formvalue) {

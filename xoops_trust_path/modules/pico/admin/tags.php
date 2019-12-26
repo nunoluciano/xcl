@@ -26,7 +26,7 @@ if (!empty($_POST['tags_update'])) {
 	foreach (array_keys($_POST['labels']) as $old_label) {
 		if (empty($_POST['labels'][$old_label])) continue;
 		$new_label = $myts->stripSlashesGPC($_POST['labels'][$old_label]);
-		$weight = intval($_POST['weights'][$old_label]);
+		$weight = (int)$_POST['weights'][$old_label];
 		$db->query('UPDATE ' . $db->prefix($mydirname . '_tags') . ' SET label=' . $db->quoteString($new_label) . ",weight='$weight' WHERE label=" . $db->quoteString($old_label));
 
 		if ($new_label != $old_label) {
@@ -87,8 +87,8 @@ if (!empty($_POST['tags_delete']) && !empty($_POST['action_selects'])) {
 //
 
 // requests for form
-$pos = empty($_GET['pos']) ? 0 : intval($_GET['pos']);
-$num = empty($_GET['num']) ? 30 : intval($_GET['num']);
+$pos = empty($_GET['pos']) ? 0 : (int)$_GET['pos'];
+$num = empty($_GET['num']) ? 30 : (int)$_GET['num'];
 $order = in_array(@$_GET['order'], $allowed_orders) ? $_GET['order'] : $allowed_orders[0];
 
 // pre query
@@ -109,9 +109,9 @@ while ($tag_row = $db->fetchArray($trs)) {
 	$ors = $db->query('SELECT content_id,vpath,subject FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id IN (' . $tag_row['content_ids'] . ') LIMIT 10');
 	while ($content_row = $db->fetchArray($ors)) {
 		$contents4assign[] = [
-			'id' => intval($content_row['content_id']),
-			'link' => pico_common_make_content_link4html($xoopsModuleConfig, $content_row),
-			'subject' => $myts->makeTboxData4Show($content_row['subject'], 1, 1),
+                                 'id' => (int)$content_row['content_id'],
+                                 'link' => pico_common_make_content_link4html($xoopsModuleConfig, $content_row),
+                                 'subject' => $myts->makeTboxData4Show($content_row['subject'], 1, 1),
                              ] + $content_row;
 	}
 

@@ -11,8 +11,8 @@ $db =& Database::getInstance() ;
 // form stage
 //
 
-$pos = intval( @$_GET['pos'] ) ;
-$num = empty( $_GET['num'] ) ? 50 : intval( $_GET['num'] ) ;
+$pos = (int)@$_GET['pos'];
+$num = empty( $_GET['num'] ) ? 50 : (int)$_GET['num'];
 $request = d3forum_common_simple_request(['p.topic_id' => 'int', 'p.post_id' => 'int', 'ph.data' => 'like']) ;
 
 list( $hits ) = $db->fetchRow( $db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_post_histories') . ' ph LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON ph.post_id=p.post_id WHERE {$request['whr']}" ) ) ;

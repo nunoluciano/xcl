@@ -20,13 +20,13 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
 
         // configurations (file, name, block_options)
         $this->func_file = XOOPS_ROOT_PATH . '/modules/' . $this->target_dirname . '/blocks/blocks.php';
-        if (isset($params[4]) && intval($params[4]) > 0) {
+        if (isset($params[4]) && (int)$params[4] > 0) {
             //posts
             $this->func_name     = 'b_d3forum_list_posts_show';
             $this->block_options = [
                 'disable_renderer' => true,
                 0                  => $this->target_dirname, // mydirname of pico
-                1                  => empty($params[2]) ? 10 : intval($params[2]), // max_entries
+                1                  => empty($params[2]) ? 10 : (int)$params[2], // max_entries
                 2                  => 'time', // order by
                 3                  => preg_replace('/[^0-9,]/', '', @$params[1]), // category limitation
                 5                  => preg_replace('/[^0-9,]/', '', @$params[3]), // forum limitation
@@ -37,7 +37,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
             $this->block_options = [
                 'disable_renderer' => true,
                 0                  => $this->target_dirname, // mydirname of pico
-                1                  => empty($params[2]) ? 10 : intval($params[2]), // max_entries
+                1                  => empty($params[2]) ? 10 : (int)$params[2], // max_entries
                 2                  => false, // show_fullsize
                 3                  => 'time', // order by
                 4                  => false, // is_markup
@@ -84,7 +84,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
 
     public function renderOptions($index, $current_value = null)
     {
-        $index   = intval($index);
+        $index   = (int)$index;
         $options = explode('|', $current_value);
 
         // options[0]  (dirname)
@@ -100,7 +100,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
         $ret_1      = _MD_D3PIPES_N4J_CID . '<input type="text" name="joint_options[' . $index . '][1]" value="' . $options[1] . '" size="8">';
 
         // options[2]  (max_entries)
-        $options[2] = empty($options[2]) ? 10 : intval($options[2]);
+        $options[2] = empty($options[2]) ? 10 : (int)$options[2];
         $ret_2      = _MD_D3PIPES_N4J_MAXENTRIES . '<input type="text" name="joint_options[' . $index . '][2]" value="' . $options[2] . '" size="2" style="text-align:right;">';
 
         // options[3]  (forum_ids)
@@ -108,7 +108,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
         $ret_3      = 'forum_id<input type="text" name="joint_options[' . $index . '][3]" value="' . $options[3] . '" size="8">';
 
         // options[4]  (show topics or posts)
-        $options[4] = empty($options[4]) ? 0 : intval($options[4]);
+        $options[4] = empty($options[4]) ? 0 : (int)$options[4];
         if ($options[4] > 0) {
             $topics_checked = '';
             $posts_checked  = 'checked="checked"';

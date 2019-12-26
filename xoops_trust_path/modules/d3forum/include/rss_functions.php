@@ -34,7 +34,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	(method_exists('D3forumTextSanitizer', 'sGetInstance') and  $myts =& D3forumTextSanitizer::sGetInstance()) || $myts =& D3forumTextSanitizer::getInstance() ;
 	$db =& Database::getInstance() ;
 	
-	$forum_id = ($forum_id)? ' AND f.forum_id='.intval($forum_id) : '';
+	$forum_id = ($forum_id)? ' AND f.forum_id=' . (int)$forum_id : '';
 	$cat_id = ($whr_cat_ids)? ' AND ' . $whr_cat_ids : '';
 	$last_post = ($last_post) ? ' AND t.topic_last_post_id = p.post_id' : '';
 	
@@ -145,7 +145,7 @@ function d3forum_make_context($text,$words= [],$l=255) {
 	if (preg_match("/$q_word/i",$text,$match)) 	{
 		$ret = ltrim(preg_replace('/\s+/', ' ', $text));
 		list($pre, $aft) = array_pad(preg_split("/$q_word/i", $ret, 2), 2, '');
-		$m = intval($l/2);
+		$m = (int)($l / 2);
 		$ret = (strlen($pre) > $m)? '... ' : '';
 		$ret .= $strcut($pre, max(strlen($pre)-$m+1,0),$m).$match[0];
 		$m = $l-strlen($ret);

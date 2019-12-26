@@ -2,14 +2,14 @@
 
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 
-$post_id = intval( @$_GET['post_id'] ) ;
+$post_id = (int)@$_GET['post_id'];
 
 // get this "post" from given $post_id
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
-$topic_id = intval( $post_row['topic_id'] ) ;
+$topic_id = (int)$post_row['topic_id'];
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;

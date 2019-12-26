@@ -70,7 +70,7 @@ abstract class AbstractAction
   
     public function getLinkUnameFromId($uid, $uname = '')
     {
-        $uid = intval($uid);
+        $uid = (int)$uid;
     
         if ($uid > 0) {
             if (isset($this->unamelink[$uid])) {

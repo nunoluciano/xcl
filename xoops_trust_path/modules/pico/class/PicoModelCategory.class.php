@@ -50,7 +50,7 @@ class PicoCategoryHandler
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $cat_id = intval($cat_id);
+        $cat_id = (int)$cat_id;
         $sql    = 'SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . " WHERE pid=$cat_id ORDER BY cat_order_in_tree";
         if (!$crs = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
@@ -81,7 +81,7 @@ class PicoCategoryHandler
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $mtime = empty($mtime) ? time() : intval($mtime);
+        $mtime = empty($mtime) ? time() : (int)$mtime;
         $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_categories') . " SET `cat_vpath_mtime`=$mtime WHERE cat_id=$cat_id");
     }
 }
@@ -126,7 +126,7 @@ class PicoCategory
         $this->isadmin      = $permissions['is_module_admin'];
         $this->isadminormod = !empty($this->permission['is_moderator']) || $this->isadmin;
         $this->data         = [
-                                  'id'                  => intval($cat_row['cat_id']),
+                                  'id'                  => (int)$cat_row['cat_id'],
                                   'isadmin'             => $this->isadmin,
                                   'isadminormod'        => $this->isadminormod,
                                   'depth_in_tree'       => $cat_row['cat_depth_in_tree'] + 1,
@@ -166,7 +166,7 @@ class PicoCategory
                    'link'   => pico_common_make_category_link4html($this->mod_config, $this->data),
                    'title'  => $myts->makeTboxData4Show($this->data['cat_title'], 1, 1),
                    'desc'   => $myts->displayTarea($this->data['cat_desc'], 1),
-                   'weight' => intval($this->data['cat_weight']),
+                   'weight' => (int)$this->data['cat_weight'],
                ] + $this->data;
     }
 

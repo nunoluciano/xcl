@@ -3,7 +3,7 @@
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
-$cat_id = intval( @$_GET['cat_id'] ) ;
+$cat_id = (int)@$_GET['cat_id'];
 
 // get&check this category ($category4assign, $category_row), override options
 if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
@@ -48,12 +48,12 @@ if( is_array( $category_configs ) ) foreach( $category_configs as $key => $val )
 }
 
 $category4assign = [
-	'id' => $cat_id ,
-	'title' => htmlspecialchars( $cat_row['cat_title'] , ENT_QUOTES ) ,
-	'weight' => intval( $cat_row['cat_weight'] ) ,
-	'desc' => htmlspecialchars( $cat_row['cat_desc'] , ENT_QUOTES ) ,
-	'options' => $options4html ,
-	'option_desc' => d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override ) ,
+    'id' => $cat_id,
+    'title' => htmlspecialchars( $cat_row['cat_title'] , ENT_QUOTES ),
+    'weight' => (int)$cat_row['cat_weight'],
+    'desc' => htmlspecialchars( $cat_row['cat_desc'] , ENT_QUOTES ),
+    'options' => $options4html,
+    'option_desc' => d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override ),
 ];
 
 

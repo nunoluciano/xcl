@@ -21,16 +21,16 @@ if (!empty($_POST['extras_output']) && is_array(@$_POST['action_selects'])) {
 	$columns = ['id' => 0, 'content_id' => 0, 'type' => '', 'created' => '', 'modified' => ''];
 	foreach ($_POST['action_selects'] as $extra_id => $value) {
 		if (empty($value)) continue;
-		$extra_id = intval($extra_id);
+		$extra_id = (int)$extra_id;
 		$extra_row = $db->fetchArray($db->query('SELECT ce.*,o.vpath,o.subject AS content_subject FROM ' . $db->prefix($mydirname . '_content_extras') . ' ce LEFT JOIN ' . $db->prefix($mydirname . '_contents') . " o ON o.content_id=ce.content_id WHERE content_extra_id=$extra_id"));
 		$data = pico_common_unserialize($extra_row['data']);
 		if (!is_array($data)) $data = [$extra_row['data']];
 		$extra_rows[] = [
-			'id' => intval($extra_row['content_extra_id']),
-			'content_id' => intval($extra_row['content_id']),
-			'type' => $extra_row['extra_type'],
-			'created' => formatTimestamp($extra_row['created_time']),
-			'modified' => formatTimestamp($extra_row['modified_time']),
+                            'id' => (int)$extra_row['content_extra_id'],
+                            'content_id' => (int)$extra_row['content_id'],
+                            'type' => $extra_row['extra_type'],
+                            'created' => formatTimestamp($extra_row['created_time']),
+                            'modified' => formatTimestamp($extra_row['modified_time']),
                         ] + $data;
 		$columns += $data;
 	}
@@ -74,7 +74,7 @@ if (!empty($_POST['extras_delete']) && !empty($_POST['action_selects'])) {
 
 	foreach ($_POST['action_selects'] as $extra_id => $value) {
 		if (empty($value)) continue;
-		$extra_id = intval($extra_id);
+		$extra_id = (int)$extra_id;
 		$db->query('DELETE FROM ' . $db->prefix($mydirname . '_content_extras') . " WHERE content_extra_id=$extra_id");
 	}
 
@@ -89,11 +89,11 @@ if (!empty($_POST['extras_delete']) && !empty($_POST['action_selects'])) {
 //
 
 // requests for form
-$extra_id = intval(@$_GET['extra_id']);
-$content_id = intval(@$_GET['content_id']);
+$extra_id = (int)@$_GET['extra_id'];
+$content_id = (int)@$_GET['content_id'];
 $txt = preg_replace('/[%_]/', '', $myts->stripSlashesGPC(@$_GET['txt']));
-$pos = empty($_GET['pos']) ? 0 : intval($_GET['pos']);
-$num = empty($_GET['num']) ? 30 : intval($_GET['num']);
+$pos = empty($_GET['pos']) ? 0 : (int)$_GET['pos'];
+$num = empty($_GET['num']) ? 30 : (int)$_GET['num'];
 $order = in_array(@$_GET['order'], ['ce.created_time', 'ce.created_time', 'ce.extra_type', 'c.content_id']) ? $_GET['order'] : 'ce.created_time DESC';
 // create WHERE part
 $whr_extra_id = $extra_id > 0 ? "ce.content_extra_id=$extra_id" : '1';
@@ -117,13 +117,13 @@ while ($extra_row = $db->fetchArray($ers)) {
 	$data = pico_common_unserialize($extra_row['data']);
 	if (empty($data)) $data = $extra_row['data'];
 	$extra4assign = [
-		'id' => intval($extra_row['content_extra_id']),
-		'link' => pico_common_make_content_link4html($xoopsModuleConfig, $extra_row),
-		'extra_type_formatted' => str_replace('::', '<br />', htmlspecialchars($extra_row['extra_type'], ENT_QUOTES)),
-		'created_time_formatted' => formatTimestamp($extra_row['created_time']),
-		'data' => $data,
-		'data_summary_short_raw' => xoops_substr(pico_admin_make_summary4extras($data), 0, 100),
-		'data_summary_raw' => pico_admin_make_summary4extras($data),
+        'id' => (int)$extra_row['content_extra_id'],
+        'link' => pico_common_make_content_link4html($xoopsModuleConfig, $extra_row),
+        'extra_type_formatted' => str_replace('::', '<br />', htmlspecialchars($extra_row['extra_type'], ENT_QUOTES)),
+        'created_time_formatted' => formatTimestamp($extra_row['created_time']),
+        'data' => $data,
+        'data_summary_short_raw' => xoops_substr(pico_admin_make_summary4extras($data), 0, 100),
+        'data_summary_raw' => pico_admin_make_summary4extras($data),
     ];
 	$extras4assign[] = $extra4assign + $extra_row;
 }

@@ -94,7 +94,7 @@ class XCube_IntRangeValidator extends XCube_Validator
         if ($form->isNull()) {
             return true;
         } else {
-            return (intval($form->toNumber()) >= $vars['min'] && intval($form->toNumber()) <= $vars['max']);
+            return ((int)$form->toNumber() >= $vars['min'] && (int)$form->toNumber() <= $vars['max']);
         }
     }
 }

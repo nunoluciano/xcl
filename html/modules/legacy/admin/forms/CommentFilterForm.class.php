@@ -85,7 +85,7 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         $keyword = $root->mContext->mRequest->getRequest('keyword');
         $search_field = $root->mContext->mRequest->getRequest('search_field');
 
-        if (isset($_REQUEST['com_modid']) && intval(xoops_getrequest('com_modid')) > 0) {
+        if (isset($_REQUEST['com_modid']) && (int)xoops_getrequest('com_modid') > 0) {
             $this->mNavi->addExtra('com_modid', xoops_getrequest('com_modid'));
             $this->_mCriteria->add(new Criteria('com_modid', xoops_getrequest('com_modid')));
         } elseif (isset($_REQUEST['dirname'])) {

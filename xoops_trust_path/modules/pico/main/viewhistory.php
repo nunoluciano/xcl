@@ -4,7 +4,7 @@ require_once dirname(__DIR__) . '/include/main_functions.php';
 require_once dirname(__DIR__) . '/include/history_functions.php';
 
 // set $cat_id,$content_id from $content_history_id
-$content_history_id = intval(@$_GET['content_history_id']);
+$content_history_id = (int)@$_GET['content_history_id'];
 list($_REQUEST['cat_id'], $_REQUEST['content_id'],) = pico_get_content_history_profile($mydirname, $content_history_id);
 
 // common prepend

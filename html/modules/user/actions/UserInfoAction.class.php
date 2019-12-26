@@ -56,7 +56,7 @@ class User_UserInfoAction extends User_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $uid = isset($_GET['uid']) ? intval(xoops_getrequest('uid')) : 0;
+        $uid = isset($_GET['uid']) ? (int)xoops_getrequest('uid') : 0;
         
         $handler =& xoops_gethandler('user');
         $this->mObject =& $handler->get($uid);

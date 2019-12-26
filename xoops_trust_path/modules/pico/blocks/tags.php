@@ -18,7 +18,7 @@ function b_pico_tags_show($options)
 	// options
 	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
-	$limit = empty($options[1]) ? 10 : intval($options[1]);
+	$limit = empty($options[1]) ? 10 : (int)$options[1];
 	$listorder = in_array(@$options[2], $pico_blocks_tags_order_options) ? $options[2] : 'count DESC';
 	$sqlorder = in_array(@$options[3], $pico_blocks_tags_order_options) ? $options[3] : 'count DESC';
 	$this_template = empty($options[4]) ? 'db:' . $mydirname . '_block_tags.html' : trim($options[4]);
@@ -97,7 +97,7 @@ function b_pico_tags_edit($options)
 	// options
 	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
-	$limit = empty($options[1]) ? 10 : intval($options[1]);
+	$limit = empty($options[1]) ? 10 : (int)$options[1];
 	$listorder = in_array(@$options[2], $pico_blocks_tags_order_options) ? $options[2] : 'count DESC';
 	$sqlorder = in_array(@$options[3], $pico_blocks_tags_order_options) ? $options[3] : 'count DESC';
 	$this_template = empty($options[4]) ? 'db:' . $mydirname . '_block_tags.html' : trim($options[4]);

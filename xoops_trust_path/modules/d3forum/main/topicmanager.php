@@ -3,7 +3,7 @@
 include dirname(__DIR__) . '/include/common_prepend.php';
 require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
-$topic_id = intval( @$_GET['topic_id'] ) ;
+$topic_id = (int)@$_GET['topic_id'];
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
@@ -70,8 +70,8 @@ if( ! empty( $_POST['topicman_export_copy'] ) || ! empty( $_POST['topicman_expor
 	if( ! $xoopsGTicket->check( true , 'd3forum' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
-	$export_mid = intval( @$_POST['export_mid'] ) ;
-	$export_forum_id = intval( @$_POST['export_forum_id'][$export_mid] ) ;
+	$export_mid = (int)@$_POST['export_mid'];
+	$export_forum_id = (int)@$_POST['export_forum_id'][$export_mid];
 	if( ! empty( $exportable_modules[ $export_mid ] ) && $export_forum_id > 0 ) {
 		d3forum_export_topic_to_d3forum( $mydirname , $export_mid , $export_forum_id , $forum_id , $topic_id , ! empty( $_POST['topicman_export_move'] ) ) ;
 		redirect_header( XOOPS_URL."/modules/$mydirname/index.php?forum_id=$forum_id" , 2 , _MD_D3FORUM_TOPICMANAGERDONE ) ;

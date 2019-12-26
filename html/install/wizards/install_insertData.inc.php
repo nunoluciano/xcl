@@ -59,7 +59,7 @@
     include_once './class/mainfilemanager.php';
     $mm = new mainfile_manager('../mainfile.php');
     foreach ($group as $key => $val) {
-        $mm->setRewrite($key, intval($val));
+        $mm->setRewrite($key, (int)$val);
     }
     $result = $mm->doRewrite();
     $wizard->assign('mm_reports', $mm->report());

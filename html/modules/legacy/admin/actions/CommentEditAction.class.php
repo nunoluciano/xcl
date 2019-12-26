@@ -31,7 +31,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
     
     public function _getId()
     {
-        return isset($_REQUEST['com_id']) ? intval(xoops_getrequest('com_id')) : 0;
+        return isset($_REQUEST['com_id']) ? (int)xoops_getrequest('com_id') : 0;
     }
 
     public function &_getHandler()

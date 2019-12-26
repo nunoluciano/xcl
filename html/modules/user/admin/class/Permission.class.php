@@ -38,7 +38,7 @@ class User_Permission
 
     public function setValue($value)
     {
-        $value = intval($value);
+        $value = (int)$value;
         $this->mValue = $value & (USER_PERMISSION_READ | USER_PERMISSION_ADMIN);
     }
     

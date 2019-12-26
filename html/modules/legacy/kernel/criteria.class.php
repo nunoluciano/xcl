@@ -178,11 +178,11 @@ class Legacy_Criteria
                     break;
                     
                 case XOBJ_DTYPE_INT:
-                    $value = intval($value);
+                    $value = (int)$value;
                     break;
                     
                 case XOOPS_DTYPE_FLOAT:
-                    $value = floatval($value);
+                    $value = (float)$value;
                     break;
 
                 case XOOPS_DTYPE_STRING:

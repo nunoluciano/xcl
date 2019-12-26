@@ -2,7 +2,7 @@
 
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 
-$forum_id = intval( @$_GET['forum_id'] ) ;
+$forum_id = (int)@$_GET['forum_id'];
 $external_link_id = @$_GET['external_link_id'] ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options

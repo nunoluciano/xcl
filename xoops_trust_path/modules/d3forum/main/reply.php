@@ -2,14 +2,14 @@
 
 include dirname(__DIR__) . '/include/common_prepend.php' ;
 
-$post_id = intval( @$_GET['post_id'] ) ;
+$post_id = (int)@$_GET['post_id'];
 
 // get this "post" from given $post_id
 $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
-$topic_id = intval( $post_row['topic_id'] ) ;
+$topic_id = (int)$post_row['topic_id'];
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
@@ -33,7 +33,7 @@ if( ! $isadminormod && ( $post_row['invisible'] || ! $post_row['approval'] ) ) {
 
 // references to post reply
 $reference_message4html = $myts->displayTarea( $post_row['post_text'] , $post_row['html'] , $post_row['smiley'] , $post_row['xcode'] , $xoopsModuleConfig['allow_textimg'] , $post_row['br'] , 0 , $post_row['number_entity'] , $post_row['special_entity'] ) ;
-$reference_time = intval( $post_row['post_time'] ) ;
+$reference_time = (int)$post_row['post_time'];
 if( ! empty( $post_row['guest_name'] ) ) {
 	$reference_name4html = htmlspecialchars( $post_row['guest_name'] , ENT_QUOTES ) ;
 } else if( $post_row['uid'] ) {
@@ -53,8 +53,8 @@ $post_id = 0 ;
 $subject4html = 'Re:' == substr($reference_subject4html , 0 , 3 ) ? $reference_subject4html : 'Re: ' . $reference_subject4html ;
 $message4html = '' ;
 $topic_id = $topic_row['topic_id'] ;
-$u2t_marked = intval( $topic_row['u2t_marked'] ) ;
-$solved = $isadminormod ? 1 : intval( $topic_row['topic_solved'] ) ;
+$u2t_marked = (int)$topic_row['u2t_marked'];
+$solved = $isadminormod ? 1 : (int)$topic_row['topic_solved'];
 $invisible = 0 ;
 $approval = 1 ;
 $post_default_options = array_map( 'trim' , explode( ',' , strtolower( @$xoopsModuleConfig['default_options'] ) ) ) ;

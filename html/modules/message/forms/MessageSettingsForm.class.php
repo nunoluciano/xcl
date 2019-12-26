@@ -43,7 +43,7 @@ class MessageSettingsForm extends XCube_ActionForm
             $lists = array_unique($lists);
             $this->set('blacklist', implode(',', $lists));
         } else {
-            $this->set('blacklist', intval($blacklist));
+            $this->set('blacklist', (int)$blacklist);
         }
     }
   

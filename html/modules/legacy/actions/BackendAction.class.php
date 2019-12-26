@@ -55,7 +55,7 @@ class Legacy_BackendAction extends Legacy_Action
 
         $sortArr = [];
         foreach ($items as $item) {
-            $i = intval($item['pubdate']);
+            $i = (int)$item['pubdate'];
             for (; isset($sortArr[$i]) ; $i++);
             
             $sortArr[$i] = $item;

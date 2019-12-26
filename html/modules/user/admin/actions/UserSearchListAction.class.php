@@ -42,7 +42,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     public function &_getPageNavi()
     {
         $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && 0 == intval($_REQUEST[$navi->mPrefix . 'perpage'])) {
+        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && 0 == (int)$_REQUEST[$navi->mPrefix . 'perpage']) {
             $navi->setPerpage(0);
         }
         return $navi;

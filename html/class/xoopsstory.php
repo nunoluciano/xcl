@@ -68,23 +68,23 @@ class xoopsstory
         if (is_array($storyid)) {
             $this->makeStory($storyid);
         } elseif (-1 != $storyid) {
-            $this->getStory(intval($storyid));
+            $this->getStory((int)$storyid);
         }
     }
 
     public function setStoryId($value)
     {
-        $this->storyid = intval($value);
+        $this->storyid = (int)$value;
     }
 
     public function setTopicId($value)
     {
-        $this->topicid = intval($value);
+        $this->topicid = (int)$value;
     }
 
     public function setUid($value)
     {
-        $this->uid = intval($value);
+        $this->uid = (int)$value;
     }
 
     public function setTitle($value)
@@ -104,12 +104,12 @@ class xoopsstory
 
     public function setPublished($value)
     {
-        $this->published = intval($value);
+        $this->published = (int)$value;
     }
 
     public function setExpired($value)
     {
-        $this->expired = intval($value);
+        $this->expired = (int)$value;
     }
 
     public function setHostname($value)
@@ -144,7 +144,7 @@ class xoopsstory
 
     public function setApproved($value)
     {
-        $this->approved = intval($value);
+        $this->approved = (int)$value;
     }
 
     public function setTopicdisplay($value)
@@ -159,7 +159,7 @@ class xoopsstory
 
     public function setComments($value)
     {
-        $this->comments = intval($value);
+        $this->comments = (int)$value;
     }
 
     public function store($approved=false)

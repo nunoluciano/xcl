@@ -27,7 +27,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         // !FIX PHP7 parent constructor
         parent::__construct();
         //parent::XCube_ActionForm();
-        $this->_mKeywordMin = intval($keywordMin);
+        $this->_mKeywordMin = (int)$keywordMin;
     }
         
     public function prepare()

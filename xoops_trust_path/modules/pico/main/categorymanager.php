@@ -18,7 +18,7 @@ $picoPermission = &PicoPermission::getInstance();
 $permissions = $picoPermission->getPermissions($mydirname);
 
 // current category object (this "current" means "targeted")
-$currentCategoryObj = new PicoCategory($mydirname, intval(@$_REQUEST['cat_id']), $permissions);
+$currentCategoryObj = new PicoCategory($mydirname, (int)@$_REQUEST['cat_id'], $permissions);
 if ($currentCategoryObj->isError()) {
 	redirect_header(XOOPS_URL . "/modules/$mydirname/index.php", 2, _MD_PICO_ERR_READCATEGORY);
 	exit;
@@ -32,7 +32,7 @@ $breadcrumbsObj->appendPath($currentCategoryObj->getBreadcrumbs());
 
 // request
 $picoRequest = [];
-$picoRequest['cat_id'] = intval(@$_REQUEST['cat_id']);
+$picoRequest['cat_id'] = (int)@$_REQUEST['cat_id'];
 
 if (!empty($_POST['categoryman_post'])) {
 	$controller_class = 'PicoControllerUpdateCategory';

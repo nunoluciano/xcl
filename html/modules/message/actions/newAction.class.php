@@ -22,8 +22,8 @@ class newAction extends AbstractAction
             $this->setUrl('index.php?action=settings');
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
         } else {
-            $inboxid = intval($this->root->mContext->mRequest->getRequest('res'));
-            $to_userid = intval($this->root->mContext->mRequest->getRequest('to_userid'));
+            $inboxid = (int)$this->root->mContext->mRequest->getRequest('res');
+            $to_userid = (int)$this->root->mContext->mRequest->getRequest('to_userid');
       
             if ('POST' == $_SERVER['REQUEST_METHOD']) {
                 $this->mActionForm->fetch();

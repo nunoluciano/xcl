@@ -11,7 +11,7 @@ $uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : 0 ;
 $isadmin = $uid > 0 ? $xoopsUser->isAdmin() : false ;
 
 // post orders (default post_time desc)
-$postorder = isset( $_COOKIE[$mydirname.'_postorder'] ) ? intval( $_COOKIE[$mydirname.'_postorder'] ) : 2 ;
+$postorder = isset( $_COOKIE[$mydirname.'_postorder'] ) ? (int)$_COOKIE[$mydirname . '_postorder'] : 2 ;
 
 // icon meanings
 $d3forum_icon_meanings = explode( '|' , $xoopsModuleConfig['icon_meanings'] ) ;

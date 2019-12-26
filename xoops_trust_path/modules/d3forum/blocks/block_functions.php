@@ -60,18 +60,18 @@ function b_d3forum_list_forums_show( $options )
 	$cat4assign = [];
 //	$prev_cat_id = 0 ;
 	while( $forum_row = $db->fetchArray( $result ) ) {
-		$cat_id = intval( $forum_row['cat_id'] ) ;
-		$cat4assign[$cat_id]['id'] = intval( $forum_row['cat_id'] ) ;
+		$cat_id = (int)$forum_row['cat_id'];
+		$cat4assign[$cat_id]['id'] = (int)$forum_row['cat_id'];
 		$cat4assign[$cat_id]['title'] = $myts->makeTboxData4Show( $forum_row['cat_title'] ) ;
-		$cat4assign[$cat_id]['depth_in_tree'] = intval( $forum_row['cat_depth_in_tree'] ) ;
+		$cat4assign[$cat_id]['depth_in_tree'] = (int)$forum_row['cat_depth_in_tree'];
 
 		$cat4assign[$cat_id]['forums'][] = [
-			'id' => intval( $forum_row['forum_id'] ) ,
-			'title' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
-			'topics_count' => intval( $forum_row['forum_topics_count'] ) ,
-			'posts_count' => intval( $forum_row['forum_posts_count'] ) ,
-			'last_post_time' => intval( $forum_row['forum_last_post_time'] ) ,
-			'last_post_time_formatted' => $forum_row['forum_last_post_time'] ? formatTimestamp( $forum_row['forum_last_post_time'] ) : '' ,
+            'id' => (int)$forum_row['forum_id'],
+            'title' => $myts->makeTboxData4Show( $forum_row['forum_title'] ),
+            'topics_count' => (int)$forum_row['forum_topics_count'],
+            'posts_count' => (int)$forum_row['forum_posts_count'],
+            'last_post_time' => (int)$forum_row['forum_last_post_time'],
+            'last_post_time_formatted' => $forum_row['forum_last_post_time'] ? formatTimestamp( $forum_row['forum_last_post_time'] ) : '',
         ];
 	}
 	$block['categories'] = $cat4assign ;
@@ -98,7 +98,7 @@ function b_d3forum_list_forums_edit( $options )
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
 
 	for( $i = 0 ; $i < count( $categories ) ; $i ++ ) {
-		$categories[ $i ] = intval( $categories[ $i ] ) ;
+		$categories[ $i ] = (int)$categories[$i];
 	}
 
 	$form = "
@@ -120,7 +120,7 @@ function b_d3forum_list_topics_show( $options )
 	global $xoopsUser ;
 
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
-	$max_topics = empty( $options[1] ) ? 10 : intval( $options[1] ) ;
+	$max_topics = empty( $options[1] ) ? 10 : (int)$options[1];
 	$show_fullsize = empty( $options[2] ) ? false : true ;
 	$now_order = empty( $options[3] ) ? 'time' : trim( $options[3] ) ;
 	$is_markup = empty( $options[4] ) ? false : true ;
@@ -147,7 +147,7 @@ function b_d3forum_list_topics_show( $options )
 
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
-		$temp_forum_id = intval($forum_row['forum_id']);
+		$temp_forum_id = (int)$forum_row['forum_id'];
 		if( ! empty( $forum_row['forum_external_link_format'] ) ) {
 			$d3com[$temp_forum_id] = d3forum_b_get_comment_object( $mydirname , $forum_row['forum_external_link_format'] , $temp_forum_id ) ;
 		} else {
@@ -223,7 +223,7 @@ function b_d3forum_list_topics_show( $options )
 	}
 
 	// topic ( with out current topic )
-	$current_topic_id = ( isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['topic']) )? intval($GLOBALS[$_globalKey]['topic']['id']) : 0;
+	$current_topic_id = ( isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['topic']) )? (int)$GLOBALS[$_globalKey]['topic']['id'] : 0;
 	$whr_topic = '1';
 	if (isset( $GLOBALS[$_globalKey]) && isset( $GLOBALS[$_globalKey]['topic']) ) {
 		//$whr_topic = 't.topic_id != '.intval($GLOBALS[$_globalKey]['topic']['id']);
@@ -296,9 +296,9 @@ function b_d3forum_list_topics_show( $options )
 		// naao from
 		// d3comment overridings
 		$can_display = true;	//default
-		if( is_object( $d3com[intval($topic_row['forum_id'])]) ) {
-			$d3com_obj = $d3com[intval($topic_row['forum_id'])];
-			$external_link_id = intval($topic_row['topic_external_link_id']);
+		if( is_object($d3com[(int)$topic_row['forum_id']]) ) {
+			$d3com_obj = $d3com[(int)$topic_row['forum_id']];
+			$external_link_id = (int)$topic_row['topic_external_link_id'];
 			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
@@ -307,24 +307,24 @@ function b_d3forum_list_topics_show( $options )
 		if (true == $can_display) {	// naao
 
 		    $topic4assign = [
-			'id' => intval( $topic_row['topic_id'] ) ,
-			'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] ) ,
-			'forum_id' => intval( $topic_row['forum_id'] ) ,
-			'forum_title' => $myts->makeTboxData4Show( $topic_row['forum_title'] ) ,
-			'replies' => $topic_row['topic_posts_count'] - 1 ,
-			'views' => intval( $topic_row['topic_views'] ) ,
-			'votes_count' => $topic_row['topic_votes_count'] ,
-			'votes_sum' => intval( $topic_row['topic_votes_sum'] ) ,
-			'last_post_id' => intval( $topic_row['topic_last_post_id'] ) ,
-			'last_post_time' => intval( $topic_row['topic_last_post_time'] ) ,
-			'last_post_time_formatted' => formatTimestamp($topic_row['topic_last_post_time'] , 'm' ) ,
-			'last_uid' => intval( $topic_row['topic_last_uid'] ) ,
-			'last_uname' => XoopsUser::getUnameFromId( $topic_row['topic_last_uid'] , $configs['use_name']) , //naao usereal=1
-			'solved' => intval( $topic_row['topic_solved'] ) ,
-			'u2t_marked' => intval( $topic_row['u2t_marked'] ) ,
-			'external_link_id' => intval( $topic_row['topic_external_link_id'] ) ,	//naao
-			'post_text' => strip_tags( $myts->displayTarea(strip_tags($topic_row['post_text']), $topic_row['html'], $topic_row['smiley'], $topic_row['xcode'], 1, $topic_row['br'] ) ) ,	//naao
-			'guest_name' => htmlspecialchars( $topic_row['guest_name'] ) , //naao
+                'id' => (int)$topic_row['topic_id'],
+                'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] ),
+                'forum_id' => (int)$topic_row['forum_id'],
+                'forum_title' => $myts->makeTboxData4Show( $topic_row['forum_title'] ),
+                'replies' => $topic_row['topic_posts_count'] - 1,
+                'views' => (int)$topic_row['topic_views'],
+                'votes_count' => $topic_row['topic_votes_count'],
+                'votes_sum' => (int)$topic_row['topic_votes_sum'],
+                'last_post_id' => (int)$topic_row['topic_last_post_id'],
+                'last_post_time' => (int)$topic_row['topic_last_post_time'],
+                'last_post_time_formatted' => formatTimestamp($topic_row['topic_last_post_time'] , 'm' ),
+                'last_uid' => (int)$topic_row['topic_last_uid'],
+                'last_uname' => XoopsUser::getUnameFromId( $topic_row['topic_last_uid'] , $configs['use_name']), //naao usereal=1
+                'solved' => (int)$topic_row['topic_solved'],
+                'u2t_marked' => (int)$topic_row['u2t_marked'],
+                'external_link_id' => (int)$topic_row['topic_external_link_id'],    //naao
+                'post_text' => strip_tags( $myts->displayTarea(strip_tags($topic_row['post_text']), $topic_row['html'], $topic_row['smiley'], $topic_row['xcode'], 1, $topic_row['br'] ) ),    //naao
+                'guest_name' => htmlspecialchars( $topic_row['guest_name'] ), //naao
             ];
 		    $block['topics'][] = $topic4assign ;
 		}	// naao
@@ -345,7 +345,7 @@ function b_d3forum_list_topics_show( $options )
 function b_d3forum_list_topics_edit( $options )
 {
 	$mydirname = empty( $options[0] ) ? $GLOBALS['mydirname'] : $options[0] ;
-	$max_topics = empty( $options[1] ) ? 10 : intval( $options[1] ) ;
+	$max_topics = empty( $options[1] ) ? 10 : (int)$options[1];
 	$show_fullsize = empty( $options[2] ) ? false : true ;
 	$now_order = empty( $options[3] ) ? 'time' : trim( $options[3] ) ;
 	$is_markup = empty( $options[4] ) ? false : true ;
@@ -425,7 +425,7 @@ function b_d3forum_list_posts_show( $options )
 	global $xoopsUser ;
 
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
-	$max_posts = empty( $options[1] ) ? 10 : intval( $options[1] ) ;
+	$max_posts = empty( $options[1] ) ? 10 : (int)$options[1];
 	$now_order = empty( $options[2] ) ? 'time' : trim( $options[2] ) ;
 	$categories = empty( $options[3] ) ? [] : explode(',', $options[3]) ;
 	$forums = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
@@ -449,7 +449,7 @@ function b_d3forum_list_posts_show( $options )
 	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
-		$temp_forum_id = intval($forum_row['forum_id']);
+		$temp_forum_id = (int)$forum_row['forum_id'];
 		if( ! empty( $forum_row['forum_external_link_format'] ) ) {
 			$d3com[$temp_forum_id] = d3forum_b_get_comment_object( $mydirname , $forum_row['forum_external_link_format'] , $temp_forum_id ) ;
 		} else {
@@ -553,9 +553,9 @@ function b_d3forum_list_posts_show( $options )
 		// naao from
 		// d3comment overridings
 		$can_display = true;	//default
-		if( is_object( $d3com[intval($post_row['forum_id'])]) ) {
-			$d3com_obj = $d3com[intval($post_row['forum_id'])];
-			$external_link_id = intval($post_row['topic_external_link_id']);
+		if( is_object($d3com[(int)$post_row['forum_id']]) ) {
+			$d3com_obj = $d3com[(int)$post_row['forum_id']];
+			$external_link_id = (int)$post_row['topic_external_link_id'];
 			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
@@ -563,19 +563,19 @@ function b_d3forum_list_posts_show( $options )
 
 		if (true == $can_display) {	// naao
 		    $post4assign = [
-			'id' => intval( $post_row['post_id'] ) ,
-			'subject' => $myts->makeTboxData4Show( $post_row['subject'] ) ,
-			'forum_id' => intval( $post_row['forum_id'] ) ,
-			'forum_title' => $myts->makeTboxData4Show( $post_row['forum_title'] ) ,
-			'votes_count' => $post_row['votes_count'] ,
-			'votes_sum' => intval( $post_row['votes_sum'] ) ,
-			'post_time' => intval( $post_row['post_time'] ) ,
-			'post_time_formatted' => formatTimestamp( $post_row['post_time'] , 'm' ) ,
-			'uid' => intval( $post_row['uid'] ) ,
-			'uname' => XoopsUser::getUnameFromId( $post_row['uid'] , $configs['use_name']) , //naao usereal=1
-			'external_link_id' => intval( $post_row['topic_external_link_id'] ) ,	//naao
-			'post_text' => strip_tags( $myts->displayTarea(strip_tags($post_row['post_text']), $post_row['html'], $post_row['smiley'], $post_row['xcode'], 1, $post_row['br'] ) ) , //naao
-			'guest_name' => htmlspecialchars( $post_row['guest_name'] ) , //naao
+                'id' => (int)$post_row['post_id'],
+                'subject' => $myts->makeTboxData4Show( $post_row['subject'] ),
+                'forum_id' => (int)$post_row['forum_id'],
+                'forum_title' => $myts->makeTboxData4Show( $post_row['forum_title'] ),
+                'votes_count' => $post_row['votes_count'],
+                'votes_sum' => (int)$post_row['votes_sum'],
+                'post_time' => (int)$post_row['post_time'],
+                'post_time_formatted' => formatTimestamp( $post_row['post_time'] , 'm' ),
+                'uid' => (int)$post_row['uid'],
+                'uname' => XoopsUser::getUnameFromId( $post_row['uid'] , $configs['use_name']), //naao usereal=1
+                'external_link_id' => (int)$post_row['topic_external_link_id'],    //naao
+                'post_text' => strip_tags( $myts->displayTarea(strip_tags($post_row['post_text']), $post_row['html'], $post_row['smiley'], $post_row['xcode'], 1, $post_row['br'] ) ), //naao
+                'guest_name' => htmlspecialchars( $post_row['guest_name'] ), //naao
             ];
 
 		    $block['posts'][] = $post4assign ;
@@ -598,7 +598,7 @@ function b_d3forum_list_posts_show( $options )
 function b_d3forum_list_posts_edit( $options )
 {
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
-	$max_posts = empty( $options[1] ) ? 10 : intval( $options[1] ) ;
+	$max_posts = empty( $options[1] ) ? 10 : (int)$options[1];
 	$now_order = empty( $options[2] ) ? 'time' : trim( $options[2] ) ;
 	$categories = empty( $options[3] ) ? [] : explode(',', $options[3]) ;
 	$forums = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
@@ -647,7 +647,7 @@ function b_d3forum_list_posts_edit( $options )
 
 function b_d3forum_check_limits( $var )
 {
-	return ('auto' !== trim(strtolower($var ) ))? intval($var ) : 'auto';
+	return ('auto' !== trim(strtolower($var ) ))? (int)$var : 'auto';
 }
 
 // get object for comment integration

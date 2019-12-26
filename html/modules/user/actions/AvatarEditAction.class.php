@@ -95,7 +95,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     public function _getId()
     {
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : 0;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
     
     public function &_getHandler()
@@ -353,7 +353,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             die();
         }
         $scale = min($maxWidth / $width, $maxHeight / $height, 1);
-        return ['width' => intval($width * $scale), 'height' => intval($height * $scale)];
+        return ['width' => (int)($width * $scale), 'height' => (int)($height * $scale)];
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)

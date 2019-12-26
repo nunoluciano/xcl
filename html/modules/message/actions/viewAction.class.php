@@ -21,7 +21,7 @@ class viewAction extends AbstractAction
             $this->inout = 'outbox';
         }
     
-        $boxid = intval($this->root->mContext->mRequest->getRequest($this->inout));
+        $boxid = (int)$this->root->mContext->mRequest->getRequest($this->inout);
         $modHand = xoops_getmodulehandler($this->inout);
         $modObj = $modHand->get($boxid);
         if (!is_object($modObj)) {
@@ -37,7 +37,7 @@ class viewAction extends AbstractAction
         if ('inbox' == $this->inout) {
             if ('POST' == $_SERVER['REQUEST_METHOD']) {
                 if ('lock' == $this->root->mContext->mRequest->getRequest('cmd')) {
-                    if (1 == intval($this->root->mContext->mRequest->getRequest('lock'))) {
+                    if (1 == (int)$this->root->mContext->mRequest->getRequest('lock')) {
                         $modObj->set('is_read', 2);
                     } else {
                         $modObj->set('is_read', 1);

@@ -11,7 +11,7 @@ function smarty_function_formmail4fleamarket($params, &$smarty)
 
 	// add a toEmail from xoopsUser
 	$content = $smarty->get_template_vars('content');
-	$poster_uid = intval($content['poster_uid']);
+	$poster_uid = (int)$content['poster_uid'];
 	$user_handler = &xoops_gethandler('user');
 	$poster = $user_handler->get($poster_uid);
 	if (is_object($poster)) {

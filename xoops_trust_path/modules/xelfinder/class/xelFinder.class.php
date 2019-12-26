@@ -43,7 +43,7 @@ class xelFinder extends elFinder {
 					return ['error' => $this->error(self::ERROR_PERM_DENIED)];
 				}
 
-				$uid = ($this->isAdmin && is_numeric($args['uid']))? intval($args['uid']) : null;
+				$uid = ($this->isAdmin && is_numeric($args['uid']))? (int)$args['uid'] : null;
 				// @todo uid 存在するか？妥当性検査
 				
 				if ('getgroups' === $args['perm']) {

@@ -9,9 +9,9 @@
  */
     include_once '../mainfile.php';
     $error = false;
-    $g_webmasters = isset($g_webmasters) ? intval($g_webmasters) : 0;
-    $g_users = isset($g_users) ? intval($g_users) : 0;
-    $g_anonymous = isset($g_anonymous) ? intval($g_anonymous) : 0;
+    $g_webmasters = isset($g_webmasters) ? (int)$g_webmasters : 0;
+    $g_users = isset($g_users) ? (int)$g_users : 0;
+    $g_anonymous = isset($g_anonymous) ? (int)$g_anonymous : 0;
     if (empty($g_webmasters) || empty($g_users) || empty($g_anonymous)) {
         $error = true;
     } else {

@@ -18,7 +18,7 @@ $picoPermission = &PicoPermission::getInstance();
 $permissions = $picoPermission->getPermissions($mydirname);
 
 // current category object (this "current" means "parent"
-$currentCategoryObj = new PicoCategory($mydirname, intval(@$_REQUEST['pid']), $permissions);
+$currentCategoryObj = new PicoCategory($mydirname, (int)@$_REQUEST['pid'], $permissions);
 if ($currentCategoryObj->isError()) {
 	redirect_header(XOOPS_URL . "/modules/$mydirname/index.php", 2, _MD_PICO_ERR_READCATEGORY);
 	exit;

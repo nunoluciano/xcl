@@ -60,12 +60,12 @@ function pico_main_get_category_permissions_of_current_user($mydirname, $uid = n
 	}
 
 	if (is_object($user)) {
-		$uid = intval($user->getVar('uid'));
+		$uid = (int)$user->getVar('uid');
 		$groups = $user->getGroups();
 		if (!empty($groups)) $whr = "`uid`=$uid || `groupid` IN (" . implode(',', $groups) . ')';
 		else $whr = "`uid`=$uid";
 	} else {
-		$whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS);
+		$whr = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
 
 	$sql = 'SELECT c.cat_id,cp.permissions FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_category_permissions') . " cp ON c.cat_permission_id=cp.cat_id  WHERE ($whr)";
@@ -90,7 +90,7 @@ function pico_main_get_category_moderate_groups4show($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$cat_id = intval($cat_id);
+	$cat_id = (int)$cat_id;
 
 	$ret = [];
 	$sql = 'SELECT g.groupid, g.name FROM '
@@ -115,7 +115,7 @@ function pico_main_get_category_moderate_users4show($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$cat_id = intval($cat_id);
+	$cat_id = (int)$cat_id;
 
 	$ret = [];
 	$sql = 'SELECT u.uid, u.uname FROM '
@@ -169,7 +169,7 @@ function pico_main_trigger_event($mydirname, $category, $item_id, $event, $extra
 function pico_main_get_moderators($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
-	$cat_id = intval($cat_id);
+	$cat_id = (int)$cat_id;
 	$cat_uids = [];
 
 	// get uid directly
@@ -202,9 +202,9 @@ function pico_main_get_top_content_id_from_cat_id($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	list($content_id) = $db->fetchRow($db->query('SELECT o.content_id FROM ' . $db->prefix($mydirname . '_contents') . ' o WHERE o.cat_id=' . intval($cat_id) . ' AND o.visible AND o.created_time <= UNIX_TIMESTAMP() AND o.expiring_time > UNIX_TIMESTAMP() ORDER BY o.weight,o.content_id LIMIT 1'));
+	list($content_id) = $db->fetchRow($db->query('SELECT o.content_id FROM ' . $db->prefix($mydirname . '_contents') . ' o WHERE o.cat_id=' . (int)$cat_id . ' AND o.visible AND o.created_time <= UNIX_TIMESTAMP() AND o.expiring_time > UNIX_TIMESTAMP() ORDER BY o.weight,o.content_id LIMIT 1'));
 
-	return intval($content_id);
+	return (int)$content_id;
 }
 
 // escape string for <a href="mailto:..."> (eg. tellafriend)
@@ -300,7 +300,7 @@ function pico_main_parse_ret2uri($mydirname, $ret)
 {
 	if (preg_match('/^([a-z]{2})([0-9-]*)$/', $ret, $regs)) {
 		// specify it by codes inside the module like ret=mm, ret=mc0 or ret=ac0
-		$id = intval($regs[2]);
+		$id = (int)$regs[2];
 		switch ($regs[1]) {
 			case 'ac':
 				return XOOPS_URL . '/modules/' . $mydirname . '/admin/index.php?page=contents&cat_id=' . $id;

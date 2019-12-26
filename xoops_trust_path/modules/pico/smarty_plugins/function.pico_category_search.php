@@ -41,16 +41,16 @@ function smarty_function_pico_category_search($params, &$smarty)
 		$result = $db->query($sql);
 		while ($cat_row = $db->fetchArray($result)) {
 			$category4assign = [
-				'mod_mid' => $module->getVar('mid'),
-				'mod_dirname' => $mydirname,
-				'mod_name' => $module->getVar('name'),
-				'id' => intval($cat_row['cat_id']),
-				'link' => pico_common_make_category_link4html($configs, $cat_row),
-				'title' => $myts->makeTboxData4Show($cat_row['cat_title']),
-				'desc' => $myts->displayTarea($cat_row['cat_desc'], 1),
-				'paths_raw' => pico_common_unserialize($cat_row['cat_path_in_tree']),
-				'paths_value' => array_values(pico_common_unserialize($cat_row['cat_path_in_tree'])),
-				'redundants' => pico_common_unserialize($cat_row['cat_redundants']),
+                                   'mod_mid' => $module->getVar('mid'),
+                                   'mod_dirname' => $mydirname,
+                                   'mod_name' => $module->getVar('name'),
+                                   'id' => (int)$cat_row['cat_id'],
+                                   'link' => pico_common_make_category_link4html($configs, $cat_row),
+                                   'title' => $myts->makeTboxData4Show($cat_row['cat_title']),
+                                   'desc' => $myts->displayTarea($cat_row['cat_desc'], 1),
+                                   'paths_raw' => pico_common_unserialize($cat_row['cat_path_in_tree']),
+                                   'paths_value' => array_values(pico_common_unserialize($cat_row['cat_path_in_tree'])),
+                                   'redundants' => pico_common_unserialize($cat_row['cat_redundants']),
                                ] + $cat_row;
 
 			$categories4assign[] = $category4assign;

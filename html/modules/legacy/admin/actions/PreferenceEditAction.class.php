@@ -250,7 +250,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         parent::prepare($controller, $xoopsUser);
         
         $handler =& xoops_gethandler('configcategory');
-        $this->_mMaster->mCategory =& $handler->get(intval(xoops_getrequest('confcat_id')));
+        $this->_mMaster->mCategory =& $handler->get((int)xoops_getrequest('confcat_id'));
         
         if (!is_object($this->_mMaster->mCategory)) {
             return;
@@ -322,7 +322,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
         parent::prepare($controller, $xoopsUser);
         
         $handler =& xoops_gethandler('module');
-        $this->_mMaster->mModule =& $handler->get(intval(xoops_getrequest('confmod_id')));
+        $this->_mMaster->mModule =& $handler->get((int)xoops_getrequest('confmod_id'));
 
         if (!(is_object($this->_mMaster->mModule) && $this->_mMaster->mModule->get('isactive') &&
               ($this->_mMaster->mModule->get('hasconfig') ||

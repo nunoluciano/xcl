@@ -100,7 +100,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
             $systeminfo_message[] = _MD_AM_DTPLSET . ' : ' . $root->mContext->mXoopsConfig['template_set'];
             $systeminfo_message[] = _MD_AM_LANGUAGE . ' : ' . $root->mContext->mXoopsConfig['language'];
         
-            $debugmode = intval($root->mContext->mXoopsConfig['debug_mode']);
+            $debugmode = (int)$root->mContext->mXoopsConfig['debug_mode'];
             if (0 == $debugmode) {
                 $systeminfo_message[] = _MD_AM_DEBUGMODE . ' : ' . _MD_AM_DEBUGMODE0;
             } elseif (1 == $debugmode) {

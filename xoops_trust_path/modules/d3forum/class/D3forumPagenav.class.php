@@ -10,9 +10,9 @@ class D3forumPageNav
 
     public function __construct($total_items, $items_perpage, $current_start, $start_name = 'start', $extra_arg = '')
     {
-        $this->total   = intval($total_items);
-        $this->perpage = intval($items_perpage);
-        $this->current = intval($current_start);
+        $this->total   = (int)$total_items;
+        $this->perpage = (int)$items_perpage;
+        $this->current = (int)$current_start;
         if ('' != $extra_arg && ('&amp;' != substr($extra_arg, -5) || '&' != substr($extra_arg, -1))) {
             $extra_arg .= '&amp;';
         }
@@ -39,7 +39,7 @@ class D3forumPageNav
                 $ret .= '<a href="' . $this->url . $prev . '"><u>&laquo;</u></a> ';
             }
             $i            = 1;
-            $current_page = intval(floor(($this->current + $this->perpage) / $this->perpage));
+            $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($i <= $total_pages) {
                 if ($i == $current_page) {
                     $ret .= '<b>(' . $i . ')</b> ';
@@ -86,7 +86,7 @@ class D3forumPageNav
 
             $i            = 1;
             $j            = 1;
-            $current_page = intval(floor(($this->current + $this->perpage) / $this->perpage));
+            $current_page = (int)floor(($this->current + $this->perpage) / $this->perpage);
             while ($i <= $total_pages) {
                 if ($i == $current_page) {
                     $nav[$j]['txt']   = $i;

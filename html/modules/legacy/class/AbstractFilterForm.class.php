@@ -48,7 +48,7 @@ class Legacy_AbstractFilterForm
     public function fetchSort()
     {
         $root =& XCube_Root::getSingleton();
-        $this->mSort = intval($root->mContext->mRequest->getRequest('sort'));
+        $this->mSort = (int)$root->mContext->mRequest->getRequest('sort');
         
         if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
@@ -81,13 +81,13 @@ class Legacy_AbstractFilterForm
         if (null === $start) {
             $t_start = $this->mNavi->getStart();
         } else {
-            $t_start = intval($start);
+            $t_start = (int)$start;
             $this->mNavi->setStart($t_start);
         }
         if (null === $limit) {
             $t_limit = $this->mNavi->getPerpage();
         } else {
-            $t_limit = intval($limit);
+            $t_limit = (int)$limit;
             $this->mNavi->setPerpage($t_limit);
         }
         

@@ -20,7 +20,7 @@ class PicoAutoRegisterWraps
     public function updateContent($content_id, $vpath)
     {
         $db         = XoopsDatabaseFactory::getDatabaseConnection();
-        $content_id = intval($content_id);
+        $content_id = (int)$content_id;
         $file_info  = $this->getFileInfo($vpath);
 
         // check the file is newer than the contents
@@ -73,7 +73,7 @@ class PicoAutoRegisterWraps
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $cat_id = intval($cat_id);
+        $cat_id = (int)$cat_id;
 
         // insert a new record into the category
         $sql = 'INSERT INTO ' . $db->prefix($this->mydirname . '_contents') . ' ' . $this->getInsertSQL($cat_id, $vpath);
@@ -146,7 +146,7 @@ class PicoAutoRegisterWraps
     // public
     public function registerByCatvpath($category_row)
     {
-        $cat_id        = intval($category_row['cat_id']);
+        $cat_id        = (int)$category_row['cat_id'];
         $cat_vpath     = str_replace('..', '', $category_row['cat_vpath']);
         $wrap_dir      = $this->wrap_base . $cat_vpath;
         $affected_rows = 0;
@@ -189,7 +189,7 @@ class PicoAutoRegisterWraps
         }
 
         return [
-            'mtime'       => intval(@filemtime($wrap_full_path)),
+            'mtime'       => (int)@filemtime($wrap_full_path),
             'subject'     => $subject,
             'subject_alt' => $subject ?: $filename,
             'filename'    => $filename,

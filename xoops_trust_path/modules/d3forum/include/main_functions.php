@@ -57,12 +57,12 @@ function d3forum_get_forum_permissions_of_current_user( $mydirname )
 	$db =& Database::getInstance() ;
 
 	if( is_object( $xoopsUser ) ) {
-		$uid = intval( $xoopsUser->getVar('uid') ) ;
+		$uid = (int)$xoopsUser->getVar('uid');
 		$groups = $xoopsUser->getGroups() ;
 		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(',', $groups) . ')';
 		else $whr = "`uid`=$uid" ;
 	} else {
-		$whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
+		$whr = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
 
 	$sql = 'SELECT forum_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved,SUM(is_moderator) AS is_moderator FROM ' . $db->prefix($mydirname . '_forum_access') . " WHERE ($whr) GROUP BY forum_id" ;
@@ -84,12 +84,12 @@ function d3forum_get_category_permissions_of_current_user( $mydirname )
 	$db =& Database::getInstance() ;
 
 	if( is_object( $xoopsUser ) ) {
-		$uid = intval( $xoopsUser->getVar('uid') ) ;
+		$uid = (int)$xoopsUser->getVar('uid');
 		$groups = $xoopsUser->getGroups() ;
 		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(',', $groups) . ')';
 		else $whr = "`uid`=$uid" ;
 	} else {
-		$whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
+		$whr = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
 
 	$sql = 'SELECT cat_id,SUM(can_makeforum) AS can_makeforum,SUM(is_moderator) AS is_moderator FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE ($whr) GROUP BY cat_id" ;
@@ -107,7 +107,7 @@ function d3forum_get_category_permissions_of_current_user( $mydirname )
 function d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id = null )
 {
 	$db =& Database::getInstance() ;
-	$forum_id = intval( $forum_id ) ;
+	$forum_id = (int)$forum_id;
 	$forum_uids = [];
 	$cat_uids = [];
 
@@ -149,7 +149,7 @@ function d3forum_get_forum_moderate_groups4show( $mydirname , $forum_id )
 {
 	$db =& Database::getInstance() ;
 
-	$forum_id = intval( $forum_id ) ;
+	$forum_id = (int)$forum_id;
 
 	$ret = [];
 	$sql = 'SELECT g.groupid, g.name FROM '.$db->prefix($mydirname.'_forum_access').' fa LEFT JOIN '.$db->prefix('groups').' g ON fa.groupid=g.groupid WHERE fa.groupid IS NOT NULL AND fa.is_moderator AND forum_id='.$forum_id ;
@@ -172,7 +172,7 @@ function d3forum_get_forum_moderate_users4show( $mydirname , $forum_id )
 
 	$db =& Database::getInstance() ;
 
-	$forum_id = intval( $forum_id ) ;
+	$forum_id = (int)$forum_id;
 
 	$ret = [];
 	$sql = 'SELECT u.uid, u.uname, u.name FROM '.$db->prefix($mydirname.'_forum_access').' fa LEFT JOIN '.$db->prefix('users').' u ON fa.uid=u.uid WHERE fa.uid IS NOT NULL AND fa.is_moderator AND forum_id='.$forum_id ;
@@ -198,7 +198,7 @@ function d3forum_get_category_moderate_groups4show( $mydirname , $cat_id )
 {
 	$db =& Database::getInstance() ;
 
-	$cat_id = intval( $cat_id ) ;
+	$cat_id = (int)$cat_id;
 
 	$ret = [];
 	$sql = 'SELECT g.groupid, g.name FROM '.$db->prefix($mydirname.'_category_access').' ca LEFT JOIN '.$db->prefix('groups').' g ON ca.groupid=g.groupid WHERE ca.groupid IS NOT NULL AND ca.is_moderator AND cat_id='.$cat_id ;
@@ -221,7 +221,7 @@ function d3forum_get_category_moderate_users4show( $mydirname , $cat_id )
 
 	$db =& Database::getInstance() ;
 
-	$cat_id = intval( $cat_id ) ;
+	$cat_id = (int)$cat_id;
 
 	$ret = [];
 	$sql = 'SELECT u.uid, u.uname, u.name FROM '.$db->prefix($mydirname.'_category_access').' ca LEFT JOIN '.$db->prefix('users').' u ON ca.uid=u.uid WHERE ca.uid IS NOT NULL AND ca.is_moderator AND cat_id='.$cat_id ;
@@ -344,7 +344,7 @@ function d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override
 		if( isset( $xoopsModuleConfig[ $key ] ) ) {
 			$val = $xoopsModuleConfig[ $key ] ;
 			if('int' == $type || 'bool' == $type) {
-				$val = intval( $val ) ;
+				$val = (int)$val;
 			}
 			$lines[] = htmlspecialchars( $key . ':' . $val , ENT_QUOTES ) ;
 		}
@@ -361,11 +361,11 @@ function d3forum_main_posthook_sametopic( $mydirname )
 	if( ! empty( $_POST['external_link_id'] ) ) {
 		// search the first post of the latest topic with the external_link_id
 		$external_link_id4sql = addslashes( @$_POST['external_link_id'] ) ;
-		$forum_id = intval( @$_POST['forum_id'] ) ;
+		$forum_id = (int)@$_POST['forum_id'];
 		$result = $db->query('SELECT topic_first_post_id,topic_locked FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_external_link_id='$external_link_id4sql' AND forum_id=$forum_id AND ! topic_invisible ORDER BY topic_last_post_time DESC LIMIT 1" ) ;
 	} else if( ! empty( $_POST['topic_id'] ) ) {
 		// search the first post of the topic with the topic_id
-		$topic_id = intval( @$_POST['topic_id'] ) ;
+		$topic_id = (int)@$_POST['topic_id'];
 		$result = $db->query('SELECT topic_first_post_id,topic_locked FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_id=$topic_id AND ! topic_invisible" ) ;
 	}
 

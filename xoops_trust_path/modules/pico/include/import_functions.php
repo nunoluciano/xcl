@@ -117,7 +117,7 @@ function pico_import_errordie()
 function pico_import_from_smartsection($mydirname, $import_mid)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
-	$import_mid = intval($import_mid);
+	$import_mid = (int)$import_mid;
 
 	// get name of `contents` table 
 	$module_handler = &xoops_gethandler('module');
@@ -240,7 +240,7 @@ function pico_import_a_content_from_pico($mydirname, $import_mid, $content_id)
 	$to_table = $db->prefix($mydirname . '_contents');
 	$from_table = $db->prefix($from_module->getVar('dirname') . '_contents');
 	$columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['contents'], ['content_id', 'cat_id']));
-	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,cat_id) SELECT $columns4sql,0 FROM `$from_table` WHERE content_id=" . intval($content_id));
+	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,cat_id) SELECT $columns4sql,0 FROM `$from_table` WHERE content_id=" . (int)$content_id);
 	if (!$irs) pico_import_errordie();
 
 	// content_votes table
@@ -248,6 +248,6 @@ function pico_import_a_content_from_pico($mydirname, $import_mid, $content_id)
 	$to_table = $db->prefix($mydirname . '_content_votes');
 	$from_table = $db->prefix($from_module->getVar('dirname') . '_content_votes');
 	$columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['content_votes'], ['vote_id', 'content_id']));
-	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,content_id) SELECT $columns4sql,$new_content_id FROM `$from_table` WHERE content_id=" . intval($content_id));
+	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,content_id) SELECT $columns4sql,$new_content_id FROM `$from_table` WHERE content_id=" . (int)$content_id);
 	if (!$irs) pico_import_errordie();
 }

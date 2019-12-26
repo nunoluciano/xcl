@@ -30,15 +30,15 @@ foreach( $modules as $module ) {
 if( ! empty( $_POST['do_synctopics'] ) ) {
 	set_time_limit( 0 ) ;
 
-	$synctopics_start = intval( @$_POST['synctopics_start'] ) ;
-	$synctopics_num = empty( $_POST['synctopics_num'] ) ? 100 : intval( $_POST['synctopics_num'] ) ;
+	$synctopics_start = (int)@$_POST['synctopics_start'];
+	$synctopics_num = empty( $_POST['synctopics_num'] ) ? 100 : (int)$_POST['synctopics_num'];
 
 	// sync topics
 	$trs = $db->query('SELECT topic_id FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_id>=$synctopics_start AND topic_id<" . ($synctopics_start + $synctopics_num) ) ;
 	$topic_counter = 0 ;
 	while( list( $topic_id ) = $db->fetchRow( $trs ) ) {
 		$topic_counter ++ ;
-		$topic_id = intval( $topic_id ) ;
+		$topic_id = (int)$topic_id;
 		// sync posts from post_votes
 		$prs = $db->query('SELECT post_id FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id" ) ;
 		while( list( $post_id ) = $db->fetchRow( $prs ) ) {
@@ -94,7 +94,7 @@ if( ! empty( $_POST['do_import'] ) && ! empty( $_POST['import_mid'] ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 
-	$import_mid = intval( @$_POST['import_mid'] ) ;
+	$import_mid = (int)@$_POST['import_mid'];
 	if( empty( $importable_modules[ $import_mid ] ) ) die( _MD_A_D3FORUM_ERR_INVALIDMID ) ;
 	list( $fromtype , ) = explode( ':' , $importable_modules[ $import_mid ] ) ;
 	switch( $fromtype ) {
@@ -124,9 +124,9 @@ if( ! empty( $_POST['do_comimport'] ) && ! empty( $_POST['comimport_mid'] ) && !
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 
-	$mid = intval( @$_POST['comimport_mid'] ) ;
+	$mid = (int)@$_POST['comimport_mid'];
 	if( empty( $comimportable_modules[ $mid ] ) ) die( _MD_A_D3FORUM_ERR_INVALIDMID ) ;
-	$forum_id = intval( @$_POST['comimport_forum_id'] ) ;
+	$forum_id = (int)@$_POST['comimport_forum_id'];
 	d3forum_comimport_as_topics( $mydirname , $mid , $forum_id ) ;
 
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=advanced_admin" , 3 , _MD_A_D3FORUM_MSG_COMIMPORTDONE ) ;
@@ -138,8 +138,8 @@ if( ! empty( $_POST['do_comimport'] ) && ! empty( $_POST['comimport_mid'] ) && !
 // form stage
 //
 
-$synctopics_start = intval( @$_SESSION[$mydirname.'_synctopics_start'] ) ;
-$synctopics_num = empty( $_SESSION[$mydirname.'_synctopics_num'] ) ? 100 : intval( $_SESSION[$mydirname.'_synctopics_num'] ) ;
+$synctopics_start = (int)@$_SESSION[$mydirname . '_synctopics_start'];
+$synctopics_num = empty( $_SESSION[$mydirname.'_synctopics_num'] ) ? 100 : (int)$_SESSION[$mydirname . '_synctopics_num'];
 list( $max_topic_id ) = $db->fetchRow( $db->query('SELECT MAX(topic_id) FROM ' . $db->prefix($mydirname . '_topics') ) ) ;
 
 

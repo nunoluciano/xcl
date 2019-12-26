@@ -17,7 +17,7 @@ class PicoD3commentContent extends D3commentAbstract
         $configs        = $config_handler->getConfigList($module->mid());
 
         // external_link_id means $content_id
-        $content_id = intval($external_link_id);
+        $content_id = (int)$external_link_id;
         $mydirname  = $this->mydirname;
         if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {
             die('Invalid mydirname');
@@ -52,7 +52,7 @@ class PicoD3commentContent extends D3commentAbstract
     public function validate_id($link_id)
     {
         // assume that link_id as content_id
-        $content_id = intval($link_id);
+        $content_id = (int)$link_id;
         $mydirname  = $this->mydirname;
 
         // get categoryObject and contentObject
@@ -73,7 +73,7 @@ class PicoD3commentContent extends D3commentAbstract
 
     public function onUpdate($mode, $link_id, $forum_id, $topic_id, $post_id = 0)
     {
-        $content_id = intval($link_id);
+        $content_id = (int)$link_id;
         $mydirname  = $this->mydirname;
 
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -88,7 +88,7 @@ class PicoD3commentContent extends D3commentAbstract
     public function external_link_id($params)
     {
         $content = $this->smarty->get_template_vars('content');
-        return intval($content['id']);
+        return (int)$content['id'];
     }
 
     // get escaped subject from <{$content.subject}>

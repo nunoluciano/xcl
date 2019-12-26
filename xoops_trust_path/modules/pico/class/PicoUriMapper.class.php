@@ -34,9 +34,9 @@ class PicoUriMapper
 
     public function parseRequest()
     {
-        if (intval(@$_REQUEST['content_id']) > 0) {
+        if ((int)@$_REQUEST['content_id'] > 0) {
             // 1st check $_REQUEST['content_id']
-            $content_id = intval(@$_REQUEST['content_id']);
+            $content_id = (int)@$_REQUEST['content_id'];
             $cat_id     = pico_common_get_cat_id_from_content_id($this->mydirname, $content_id);
         } else {
             // 2nd check path_info
@@ -55,7 +55,7 @@ class PicoUriMapper
             } else {
                 // 3rd check $_REQUEST['cat_id']
                 $content_id = 0;
-                $cat_id     = intval(@$_REQUEST['cat_id']);
+                $cat_id     = (int)@$_REQUEST['cat_id'];
             }
         }
 
@@ -64,12 +64,12 @@ class PicoUriMapper
 
         // cat_id modification (makecontent/contentmanager etc.)
         if (defined('PICO_URI_MAPPER_ALLOW_CAT_ID_OVERWRITING') && isset($_REQUEST['cat_id'])) {
-            $cat_id = intval(@$_REQUEST['cat_id']);
+            $cat_id = (int)@$_REQUEST['cat_id'];
         }
 
         // content_id modification (contentmanager)
         if (defined('PICO_URI_MAPPER_ALLOW_CONTENT_ID_OVERWRITING') && isset($_REQUEST['content_id'])) {
-            $content_id = intval(@$_REQUEST['content_id']);
+            $content_id = (int)@$_REQUEST['content_id'];
         }
 
         // for notification
@@ -180,7 +180,7 @@ class PicoUriMapper
             $result = $db->query('SELECT content_id,cat_id FROM ' . $db->prefix($this->mydirname . '_contents') . ' WHERE vpath=' . $db->quoteString($path_info));
             list($content_id, $cat_id) = $db->fetchRow($result);
             if ($content_id > 0) {
-                return [intval($content_id), intval($cat_id)];
+                return [(int)$content_id, (int)$cat_id];
             }
         }
 
@@ -190,19 +190,19 @@ class PicoUriMapper
             $result = $db->query('SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . ' WHERE cat_vpath=' . $db->quoteString($path_info) . ' OR cat_vpath=' . $db->quoteString(substr($path_info, 0, -1)));
             list($cat_id) = $db->fetchRow($result);
             if ($cat_id > 0) {
-                return [0, intval($cat_id)];
+                return [0, (int)$cat_id];
             }
         }
 
         // check path_info obeys the ruled for autonaming for contents (3rd)
         if (preg_match(_MD_PICO_AUTONAME4PREGEX, $path_info, $regs)) {
-            $content_id = intval(@$regs[1]);
+            $content_id = (int)@$regs[1];
             return [$content_id, pico_common_get_cat_id_from_content_id($this->mydirname, $content_id)];
         }
 
         // check path_info obeys the ruled for autonaming for category (4th)
         if (preg_match(_MD_PICO_AUTOCATNAME4PREGEX, $path_info, $regs)) {
-            return [0, intval(@$regs[1])];
+            return [0, (int)@$regs[1]];
         }
 
         return [null, null];
@@ -251,12 +251,12 @@ class PicoUriMapper
             list($cat_id) = $db->fetchRow($result);
             if ($path_info_is_dir) {
                 // just return $cat_id
-                return [0, intval($cat_id)];
+                return [0, (int)$cat_id];
             } else {
                 // just HTML wrapping (without content_id)
                 $this->request['path_info']  = $path_info;
                 $this->request['controller'] = 'htmlwrapped';
-                return [0, intval($cat_id)];
+                return [0, (int)$cat_id];
             }
         } else {
             // just transfer (image files etc.)
@@ -278,12 +278,12 @@ class PicoUriMapper
         }
 
         // headers for browser cache
-        $cache_limit = intval(@$this->config['browser_cache']);
+        $cache_limit = (int)@$this->config['browser_cache'];
         if ($cache_limit > 0) {
             session_cache_limiter('public');
-            header('Expires: ' . date('r', intval(time() / $cache_limit) * $cache_limit + $cache_limit));
+            header('Expires: ' . date('r', (int)(time() / $cache_limit) * $cache_limit + $cache_limit));
             header("Cache-Control: public, max-age=$cache_limit");
-            header('Last-Modified: ' . date('r', intval(time() / $cache_limit) * $cache_limit));
+            header('Last-Modified: ' . date('r', (int)(time() / $cache_limit) * $cache_limit));
         }
 
         require dirname(__DIR__) . '/include/mimes.php';
@@ -310,8 +310,8 @@ class PicoUriMapper
             unset($_SESSION[$sess_index]);
         } elseif (!empty($_POST['contentman_preview'])) {
             // set targeted_cat_id into uri for redirection
-            $cat_id     = intval(@$_POST['cat_id']);
-            $content_id = intval(@$_GET['content_id']);
+            $cat_id     = (int)@$_POST['cat_id'];
+            $content_id = (int)@$_GET['content_id'];
 
             // save POST into SESSION, then redirect
             $_POST['content_id']   = $content_id;
@@ -319,7 +319,7 @@ class PicoUriMapper
 
             // duplicated? almost same as pico_common_make_content_link4html()
             $link = $this->config['use_rewrite'] ? '' : '/index.php';
-            $link .= empty($_POST['vpath']) ? sprintf(_MD_PICO_AUTONAME4SPRINTF, intval($_GET['content_id'])) : preg_replace('#[^0-9a-zA-Z_/.+-]#', '', $_POST['vpath']);
+            $link .= empty($_POST['vpath']) ? sprintf(_MD_PICO_AUTONAME4SPRINTF, (int)$_GET['content_id']) : preg_replace('#[^0-9a-zA-Z_/.+-]#', '', $_POST['vpath']);
             $page = $content_id > 0 ? 'contentmanager' : 'makecontent';
 
             header('Location: ' . XOOPS_URL . '/modules/' . $this->mydirname . $link . '?page=' . $page . '&cat_id=' . $cat_id . '&content_id=' . $content_id . '&ret=' . urlencode(@$_GET['ret']));

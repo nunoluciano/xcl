@@ -40,13 +40,13 @@ class D3commentUserinfo extends D3commentAbstract
 
     public function external_link_id($params)
     {
-        return intval(@$_GET[$params['itemname']]);
+        return (int)@$_GET[$params['itemname']];
     }
 
     // check by user handler
     public function validate_id($link_id)
     {
-        $link_id = intval($link_id);
+        $link_id = (int)$link_id;
 
         $user_handler =& xoops_gethandler('user');
         $user         =& $user_handler->get($link_id);

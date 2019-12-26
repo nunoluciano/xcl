@@ -21,7 +21,7 @@ class deleteAction extends AbstractAction
             $this->inout = 'outbox';
         }
     
-        $boxid = intval($this->root->mContext->mRequest->getRequest($this->inout));
+        $boxid = (int)$this->root->mContext->mRequest->getRequest($this->inout);
         $modHand = xoops_getmodulehandler($this->inout, _MY_DIRNAME);
         $modObj = $modHand->get($boxid);
         if (!is_object($modObj)) {
