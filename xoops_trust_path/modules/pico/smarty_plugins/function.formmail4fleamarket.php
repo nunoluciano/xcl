@@ -24,14 +24,14 @@ function smarty_function_formmail4fleamarket($params, &$smarty)
 
 class PicoFormProcessBySmartyFormmail4fleamarket extends PicoFormProcessBySmartyBase
 {
-	function __construct()
-	{
-		$this->mypluginname = 'formmail4fleamarket';
-	}
+    public function __construct()
+    {
+        $this->mypluginname = 'formmail4fleamarket';
+    }
 
-	function executeLast()
-	{
-		$this->sendMail();
-		$this->storeDB();
-	}
+    public function executeLast()
+    {
+        $this->sendMail();
+        $this->storeDB();
+    }
 }

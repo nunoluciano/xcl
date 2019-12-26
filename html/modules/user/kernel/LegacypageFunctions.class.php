@@ -14,7 +14,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 class User_LegacypageFunctions
 {
-    static $passwordNeedsRehash;
+    static public $passwordNeedsRehash;
     /***
      * @internal
      * The process for userinfo.php. This process doesn't execute anything

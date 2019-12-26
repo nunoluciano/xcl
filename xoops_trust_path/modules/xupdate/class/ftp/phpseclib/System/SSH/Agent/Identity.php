@@ -48,7 +48,7 @@ class Identity
      *
      * @var \phpseclib\Crypt\RSA
      * @access private
-     * @see self::getPublicKey()
+     * @see    self::getPublicKey()
      */
     var $key;
 
@@ -57,7 +57,7 @@ class Identity
      *
      * @var string
      * @access private
-     * @see self::sign()
+     * @see    self::sign()
      */
     var $key_blob;
 
@@ -66,7 +66,7 @@ class Identity
      *
      * @var resource
      * @access private
-     * @see self::sign()
+     * @see    self::sign()
      */
     var $fsock;
 
@@ -75,8 +75,8 @@ class Identity
      *
      * @var int
      * @access private
-     * @see self::sign()
-     * @see self::setHash()
+     * @see    self::sign()
+     * @see    self::setHash()
      */
     var $flags = 0;
 
@@ -87,7 +87,7 @@ class Identity
      * @return \phpseclib\System\SSH\Agent\Identity
      * @access private
      */
-    function __construct($fsock)
+    public function __construct($fsock)
     {
         $this->fsock = $fsock;
     }
@@ -100,7 +100,7 @@ class Identity
      * @param \phpseclib\Crypt\RSA $key
      * @access private
      */
-    function setPublicKey($key)
+    public function setPublicKey($key)
     {
         $this->key = $key;
         $this->key->setPublicKey();
@@ -115,7 +115,7 @@ class Identity
      * @param string $key_blob
      * @access private
      */
-    function setPublicKeyBlob($key_blob)
+    public function setPublicKeyBlob($key_blob)
     {
         $this->key_blob = $key_blob;
     }
@@ -129,7 +129,7 @@ class Identity
      * @return mixed
      * @access public
      */
-    function getPublicKey($format = null)
+    public function getPublicKey($format = null)
     {
         return !isset($format) ? $this->key->getPublicKey() : $this->key->getPublicKey($format);
     }
@@ -143,7 +143,7 @@ class Identity
      * @param int $mode
      * @access public
      */
-    function setSignatureMode($mode)
+    public function setSignatureMode($mode)
     {
     }
 
@@ -155,7 +155,7 @@ class Identity
      * @param string $hash
      * @access public
      */
-    function setHash($hash)
+    public function setHash($hash)
     {
         $this->flags = 0;
         switch ($hash) {
@@ -181,7 +181,7 @@ class Identity
      * @return string
      * @access public
      */
-    function sign($message)
+    public function sign($message)
     {
         // the last parameter (currently 0) is for flags and ssh-agent only defines one flag (for ssh-dss): SSH_AGENT_OLD_SIGNATURE
         $packet = pack('CNa*Na*N', Agent::SSH_AGENTC_SIGN_REQUEST, strlen($this->key_blob), $this->key_blob, strlen($message), $message, $this->flags);
@@ -191,13 +191,13 @@ class Identity
         }
 
         $length = current(unpack('N', fread($this->fsock, 4)));
-        $type = ord(fread($this->fsock, 1));
+        $type   = ord(fread($this->fsock, 1));
         if ($type != Agent::SSH_AGENT_SIGN_RESPONSE) {
             user_error('Unable to retrieve signature');
         }
 
         $signature_blob = fread($this->fsock, $length - 1);
-        $length = current(unpack('N', $this->_string_shift($signature_blob, 4)));
+        $length         = current(unpack('N', $this->_string_shift($signature_blob, 4)));
         if ($length != strlen($signature_blob)) {
             user_error('Malformed signature blob');
         }
@@ -217,11 +217,11 @@ class Identity
      * Inspired by array_shift
      *
      * @param string $string
-     * @param int $index
+     * @param int    $index
      * @return string
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);

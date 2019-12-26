@@ -10,44 +10,44 @@ require_once dirname(dirname(__FILE__)) . '/include/history_functions.php';
 class PicoControllerDeleteContent extends PicoControllerAbstract
 {
 
-	var $contentObj;
+    var $contentObj;
 
-	function execute($request)
-	{
-		// Ticket Check
-		if (!$GLOBALS['xoopsGTicket']->check(true, 'pico')) {
-			redirect_header(XOOPS_URL . '/', 3, $GLOBALS['xoopsGTicket']->getErrors());
-		}
+    public function execute($request)
+    {
+        // Ticket Check
+        if (!$GLOBALS['xoopsGTicket']->check(true, 'pico')) {
+            redirect_header(XOOPS_URL . '/', 3, $GLOBALS['xoopsGTicket']->getErrors());
+        }
 
-		parent::execute($request);
+        parent::execute($request);
 
-		// contentObj
-		$cat_data = $this->currentCategoryObj->getData();
-		$this->contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj);
+        // contentObj
+        $cat_data         = $this->currentCategoryObj->getData();
+        $this->contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj);
 
-		// check existence
-		if ($this->contentObj->isError()) {
-			redirect_header(XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT);
-			exit;
-		}
-		$content_data = $this->contentObj->getData();
+        // check existence
+        if ($this->contentObj->isError()) {
+            redirect_header(XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT);
+            exit;
+        }
+        $content_data = $this->contentObj->getData();
 
-		// permission check (can_delete)
-		if (empty($content_data['can_delete'])) {
-			redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_DELETECONTENT);
-			exit;
-		}
+        // permission check (can_delete)
+        if (empty($content_data['can_delete'])) {
+            redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_DELETECONTENT);
+            exit;
+        }
 
-		// delete transaction
-		pico_delete_content($this->mydirname, $request['content_id']);
+        // delete transaction
+        pico_delete_content($this->mydirname, $request['content_id']);
 
-		// view
-		$this->is_need_header_footer = false;
-	}
+        // view
+        $this->is_need_header_footer = false;
+    }
 
-	function render()
-	{
-		redirect_header(XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html($this->mod_config, $this->currentCategoryObj->getData()), 2, _MD_PICO_MSG_CONTENTDELETED);
-		exit;
-	}
+    public function render()
+    {
+        redirect_header(XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html($this->mod_config, $this->currentCategoryObj->getData()), 2, _MD_PICO_MSG_CONTENTDELETED);
+        exit;
+    }
 }

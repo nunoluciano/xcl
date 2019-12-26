@@ -101,7 +101,7 @@ class System_SSH_Agent_Identity
      *
      * @var Crypt_RSA
      * @access private
-     * @see self::getPublicKey()
+     * @see    self::getPublicKey()
      */
     var $key;
 
@@ -110,7 +110,7 @@ class System_SSH_Agent_Identity
      *
      * @var string
      * @access private
-     * @see self::sign()
+     * @see    self::sign()
      */
     var $key_blob;
 
@@ -119,7 +119,7 @@ class System_SSH_Agent_Identity
      *
      * @var resource
      * @access private
-     * @see self::sign()
+     * @see    self::sign()
      */
     var $fsock;
 
@@ -130,7 +130,7 @@ class System_SSH_Agent_Identity
      * @return System_SSH_Agent_Identity
      * @access private
      */
-    function __construct($fsock)
+    public function __construct($fsock)
     {
         $this->fsock = $fsock;
     }
@@ -143,7 +143,7 @@ class System_SSH_Agent_Identity
      * @param Crypt_RSA $key
      * @access private
      */
-    function setPublicKey($key)
+    public function setPublicKey($key)
     {
         $this->key = $key;
         $this->key->setPublicKey();
@@ -158,7 +158,7 @@ class System_SSH_Agent_Identity
      * @param string $key_blob
      * @access private
      */
-    function setPublicKeyBlob($key_blob)
+    public function setPublicKeyBlob($key_blob)
     {
         $this->key_blob = $key_blob;
     }
@@ -172,7 +172,7 @@ class System_SSH_Agent_Identity
      * @return mixed
      * @access public
      */
-    function getPublicKey($format = null)
+    public function getPublicKey($format = null)
     {
         return !isset($format) ? $this->key->getPublicKey() : $this->key->getPublicKey($format);
     }
@@ -186,7 +186,7 @@ class System_SSH_Agent_Identity
      * @param int $mode
      * @access public
      */
-    function setSignatureMode($mode)
+    public function setSignatureMode($mode)
     {
     }
 
@@ -199,7 +199,7 @@ class System_SSH_Agent_Identity
      * @return string
      * @access public
      */
-    function sign($message)
+    public function sign($message)
     {
         // the last parameter (currently 0) is for flags and ssh-agent only defines one flag (for ssh-dss): SSH_AGENT_OLD_SIGNATURE
         $packet = pack('CNa*Na*N', SYSTEM_SSH_AGENTC_SIGN_REQUEST, strlen($this->key_blob), $this->key_blob, strlen($message), $message, 0);
@@ -209,7 +209,7 @@ class System_SSH_Agent_Identity
         }
 
         $length = current(unpack('N', fread($this->fsock, 4)));
-        $type = ord(fread($this->fsock, 1));
+        $type   = ord(fread($this->fsock, 1));
         if ($type != SYSTEM_SSH_AGENT_SIGN_RESPONSE) {
             user_error('Unable to retreive signature');
         }
@@ -269,7 +269,7 @@ class System_SSH_Agent
      * @return System_SSH_Agent
      * @access public
      */
-    function __construct()
+    public function __construct()
     {
         switch (true) {
             case isset($_SERVER['SSH_AUTH_SOCK']):
@@ -298,7 +298,7 @@ class System_SSH_Agent
      * @return array
      * @access public
      */
-    function requestIdentities()
+    public function requestIdentities()
     {
         if (!$this->fsock) {
             return [];
@@ -310,22 +310,22 @@ class System_SSH_Agent
         }
 
         $length = current(unpack('N', fread($this->fsock, 4)));
-        $type = ord(fread($this->fsock, 1));
+        $type   = ord(fread($this->fsock, 1));
         if ($type != SYSTEM_SSH_AGENT_IDENTITIES_ANSWER) {
             user_error('Unable to request identities');
         }
 
         $identities = [];
-        $keyCount = current(unpack('N', fread($this->fsock, 4)));
+        $keyCount   = current(unpack('N', fread($this->fsock, 4)));
         for ($i = 0; $i < $keyCount; $i++) {
-            $length = current(unpack('N', fread($this->fsock, 4)));
+            $length   = current(unpack('N', fread($this->fsock, 4)));
             $key_blob = fread($this->fsock, $length);
-            $key_str = 'ssh-rsa ' . base64_encode($key_blob);
-            $length = current(unpack('N', fread($this->fsock, 4)));
+            $key_str  = 'ssh-rsa ' . base64_encode($key_blob);
+            $length   = current(unpack('N', fread($this->fsock, 4)));
             if ($length) {
-                $key_str.= ' ' . fread($this->fsock, $length);
+                $key_str .= ' ' . fread($this->fsock, $length);
             }
-            $length = current(unpack('N', substr($key_blob, 0, 4)));
+            $length   = current(unpack('N', substr($key_blob, 0, 4)));
             $key_type = substr($key_blob, 4, $length);
             switch ($key_type) {
                 case 'ssh-rsa':
@@ -360,7 +360,7 @@ class System_SSH_Agent
      * @return bool
      * @access public
      */
-    function startSSHForwarding($ssh)
+    public function startSSHForwarding($ssh)
     {
         if ($this->forward_status == SYSTEM_SSH_AGENT_FORWARD_NONE) {
             $this->forward_status = SYSTEM_SSH_AGENT_FORWARD_REQUEST;
@@ -374,7 +374,7 @@ class System_SSH_Agent
      * @return bool
      * @access private
      */
-    function _request_forwarding($ssh)
+    public function _request_forwarding($ssh)
     {
         $request_channel = $ssh->_get_open_channel();
         if ($request_channel === false) {
@@ -402,7 +402,7 @@ class System_SSH_Agent
         }
 
         $ssh->channel_status[$request_channel] = NET_SSH2_MSG_CHANNEL_OPEN;
-        $this->forward_status = SYSTEM_SSH_AGENT_FORWARD_ACTIVE;
+        $this->forward_status                  = SYSTEM_SSH_AGENT_FORWARD_ACTIVE;
 
         return true;
     }
@@ -417,7 +417,7 @@ class System_SSH_Agent
      * @param Net_SSH2 $ssh
      * @access private
      */
-    function _on_channel_open($ssh)
+    public function _on_channel_open($ssh)
     {
         if ($this->forward_status == SYSTEM_SSH_AGENT_FORWARD_REQUEST) {
             $this->_request_forwarding($ssh);
@@ -431,14 +431,14 @@ class System_SSH_Agent
      * @return data from SSH Agent
      * @access private
      */
-    function _forward_data($data)
+    public function _forward_data($data)
     {
         if ($this->expected_bytes > 0) {
-            $this->socket_buffer.= $data;
+            $this->socket_buffer  .= $data;
             $this->expected_bytes -= strlen($data);
         } else {
-            $agent_data_bytes = current(unpack('N', $data));
-            $current_data_bytes = strlen($data);
+            $agent_data_bytes    = current(unpack('N', $data));
+            $current_data_bytes  = strlen($data);
             $this->socket_buffer = $data;
             if ($current_data_bytes != $agent_data_bytes + 4) {
                 $this->expected_bytes = ($agent_data_bytes + 4) - $current_data_bytes;
@@ -450,7 +450,7 @@ class System_SSH_Agent
             user_error('Connection closed attempting to forward data to SSH agent');
         }
 
-        $this->socket_buffer = '';
+        $this->socket_buffer  = '';
         $this->expected_bytes = 0;
 
         $agent_reply_bytes = current(unpack('N', fread($this->fsock, 4)));

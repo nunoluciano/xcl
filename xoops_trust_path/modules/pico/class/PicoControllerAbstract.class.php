@@ -3,105 +3,107 @@
 class PicoControllerAbstract
 {
 
-	var $mydirname = '';
-	var $mytrustdirname = 'pico';
-	var $assign = [];
-	var $mod_config = [];
-	var $uid = 0;
-	var $currentCategoryObj = null;
-	var $permissions = [];
-	var $is_need_header_footer = true;
-	var $template_name = '';
-	var $html_header = '';
-	var $contentObjs = [];
+    var $mydirname             = '';
+    var $mytrustdirname        = 'pico';
+    var $assign                = [];
+    var $mod_config            = [];
+    var $uid                   = 0;
+    var $currentCategoryObj    = null;
+    var $permissions           = [];
+    var $is_need_header_footer = true;
+    var $template_name         = '';
+    var $html_header           = '';
+    var $contentObjs           = [];
 
-	// !Fix deprecated constructor
-	function __construct(&$currentCategoryObj)
-	//function PicoControllerAbstract( &$currentCategoryObj )
-	{
-		global $xoopsUser;
+    // !Fix deprecated constructor
+    public function __construct(&$currentCategoryObj)
+        //function PicoControllerAbstract( &$currentCategoryObj )
+    {
+        global $xoopsUser;
 
-		$this->currentCategoryObj = &$currentCategoryObj;
-		$this->mydirname = $currentCategoryObj->mydirname;
-		$this->mod_config = $currentCategoryObj->getOverriddenModConfig();
-		$this->uid = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
+        $this->currentCategoryObj = &$currentCategoryObj;
+        $this->mydirname          = $currentCategoryObj->mydirname;
+        $this->mod_config         = $currentCategoryObj->getOverriddenModConfig();
+        $this->uid                = is_object($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 
-		$picoPermission = &PicoPermission::getInstance();
-		$this->permissions = $picoPermission->getPermissions($this->mydirname);
-		$this->assign = [
-			'mymodname' => htmlspecialchars($currentCategoryObj->mod_name, ENT_QUOTES),
-			'mydirname' => $this->mydirname,
-			'mytrustdirname' => $this->mytrustdirname,
-			'mod_url' => XOOPS_URL . '/modules/' . $this->mydirname,
-			'mod_imageurl' => XOOPS_URL . '/modules/' . $this->mydirname . '/' . $this->mod_config['images_dir'],
-			'xoops_config' => $GLOBALS['xoopsConfig'],
-			'mod_config' => $this->mod_config,
-			'uid' => $this->uid,
+        $picoPermission      = &PicoPermission::getInstance();
+        $this->permissions   = $picoPermission->getPermissions($this->mydirname);
+        $this->assign        = [
+            'mymodname'      => htmlspecialchars($currentCategoryObj->mod_name, ENT_QUOTES),
+            'mydirname'      => $this->mydirname,
+            'mytrustdirname' => $this->mytrustdirname,
+            'mod_url'        => XOOPS_URL . '/modules/' . $this->mydirname,
+            'mod_imageurl'   => XOOPS_URL . '/modules/' . $this->mydirname . '/' . $this->mod_config['images_dir'],
+            'xoops_config'   => $GLOBALS['xoopsConfig'],
+            'mod_config'     => $this->mod_config,
+            'uid'            => $this->uid,
         ];
-		$this->template_name = $this->mydirname . '_index.html';
-	}
+        $this->template_name = $this->mydirname . '_index.html';
+    }
 
-	function execute($request)
-	{
-		// abstract (must override it)
-	}
+    public function execute($request)
+    {
+        // abstract (must override it)
+    }
 
-	function render($target = null)
-	{
-		require_once XOOPS_ROOT_PATH . '/class/template.php';
-		$tpl = new XoopsTpl();
-		$tpl->assign($this->getAssign());
-		$tpl->assign('xoops_module_header', pico_main_render_moduleheader($this->mydirname, $GLOBALS['xoopsModuleConfig'], $this->getHtmlHeader()));
-		$tpl->display($this->getTemplateName());
-	}
+    public function render($target = null)
+    {
+        require_once XOOPS_ROOT_PATH . '/class/template.php';
+        $tpl = new XoopsTpl();
+        $tpl->assign($this->getAssign());
+        $tpl->assign('xoops_module_header', pico_main_render_moduleheader($this->mydirname, $GLOBALS['xoopsModuleConfig'], $this->getHtmlHeader()));
+        $tpl->display($this->getTemplateName());
+    }
 
-	function isNeedHeaderFooter()
-	{
-		return $this->is_need_header_footer;
-	}
+    public function isNeedHeaderFooter()
+    {
+        return $this->is_need_header_footer;
+    }
 
-	function getTemplateName()
-	{
-		$template_name = $this->template_name;
+    public function getTemplateName()
+    {
+        $template_name = $this->template_name;
 
-		// calling a delegate for replacing the main template
-		if (class_exists('XCube_DelegateUtils')) {
-			XCube_DelegateUtils::raiseEvent('ModuleClass.Pico.Controller.GetTemplateName', $this->mydirname, new XCube_Ref($template_name));
-		}
+        // calling a delegate for replacing the main template
+        if (class_exists('XCube_DelegateUtils')) {
+            XCube_DelegateUtils::raiseEvent('ModuleClass.Pico.Controller.GetTemplateName', $this->mydirname, new XCube_Ref($template_name));
+        }
 
-		return $template_name;
-	}
+        return $template_name;
+    }
 
-	function getAssign()
-	{
-		foreach ($this->contentObjs as $index => $contentObj) {
-			if (!is_object($contentObj)) continue;
-			if ($contentObj->need_filter_body) {
-				$this->assign[$index]['body'] = $contentObj->filterBody($contentObj->getData4html());
-			}
-		}
+    public function getAssign()
+    {
+        foreach ($this->contentObjs as $index => $contentObj) {
+            if (!is_object($contentObj)) {
+                continue;
+            }
+            if ($contentObj->need_filter_body) {
+                $this->assign[$index]['body'] = $contentObj->filterBody($contentObj->getData4html());
+            }
+        }
 
-		return $this->assign;
-	}
+        return $this->assign;
+    }
 
-	function getHtmlHeader()
-	{
-		return $this->html_header;
-	}
+    public function getHtmlHeader()
+    {
+        return $this->html_header;
+    }
 
-	function exitFileNotFound()
-	{
-		$error404 = $this->mod_config['err_document_404'];
-		if (!empty($error404)) {
-			$error404 = preg_replace('#^xoops_root_path#i', XOOPS_ROOT_PATH, $error404);
-			$error404 = preg_replace('#^xoops_trust_path#i', XOOPS_TRUST_PATH, $error404);
-		}
-		if ($error404 && is_readable($error404)) {
-			header('HTTP/1.0 404 Not Found');
-			readfile($error404);
-		} else {
-			redirect_header(XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT);
-		}
-		exit;
-	}
+    public function exitFileNotFound()
+    {
+        $error404 = $this->mod_config['err_document_404'];
+        if (!empty($error404)) {
+            $error404 = preg_replace('#^xoops_root_path#i', XOOPS_ROOT_PATH, $error404);
+            $error404 = preg_replace('#^xoops_trust_path#i', XOOPS_TRUST_PATH, $error404);
+        }
+        if ($error404 && is_readable($error404)) {
+            header('HTTP/1.0 404 Not Found');
+            readfile($error404);
+        } else {
+            redirect_header(XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT);
+        }
+        exit;
+    }
 }

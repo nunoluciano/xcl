@@ -445,7 +445,7 @@ class Crypt_RSA
      * For use with parsing XML formatted keys.  PHP's XML Parser functions use utilized - instead of PHP's DOM functions -
      * because PHP's XML Parser functions work on PHP4 whereas PHP's DOM functions - although surperior - don't.
      *
-     * @see self::_start_element_handler()
+     * @see    self::_start_element_handler()
      * @var array
      * @access private
      */
@@ -456,8 +456,8 @@ class Crypt_RSA
      *
      * For use with parsing XML formatted keys.
      *
-     * @see self::_character_handler()
-     * @see self::_stop_element_handler()
+     * @see    self::_character_handler()
+     * @see    self::_stop_element_handler()
      * @var mixed
      * @access private
      */
@@ -467,7 +467,7 @@ class Crypt_RSA
      * OpenSSL configuration file name.
      *
      * Set to null to use system configuration file.
-     * @see self::createKey()
+     * @see    self::createKey()
      * @var mixed
      * @Access public
      */
@@ -491,7 +491,7 @@ class Crypt_RSA
      * @return Crypt_RSA
      * @access public
      */
-    function __construct()
+    public function __construct()
     {
         if (!class_exists('Math_BigInteger')) {
             include_once 'Math/BigInteger.php';
@@ -552,13 +552,13 @@ class Crypt_RSA
         }
 
         $this->zero = new Math_BigInteger();
-        $this->one = new Math_BigInteger(1);
+        $this->one  = new Math_BigInteger(1);
 
-        $this->hash = new Crypt_Hash('sha1');
-        $this->hLen = $this->hash->getLength();
+        $this->hash     = new Crypt_Hash('sha1');
+        $this->hLen     = $this->hash->getLength();
         $this->hashName = 'sha1';
-        $this->mgfHash = new Crypt_Hash('sha1');
-        $this->mgfHLen = $this->mgfHash->getLength();
+        $this->mgfHash  = new Crypt_Hash('sha1');
+        $this->mgfHLen  = $this->mgfHash->getLength();
     }
 
     /**
@@ -571,11 +571,11 @@ class Crypt_RSA
      *                  Will need to be passed back to Crypt_RSA::createKey() as the third parameter for further processing.
      *
      * @access public
-     * @param int $bits
-     * @param int $timeout
+     * @param int             $bits
+     * @param int             $timeout
      * @param Math_BigInteger $p
      */
-    function createKey($bits = 1024, $timeout = false, $partial = [])
+    public function createKey($bits = 1024, $timeout = false, $partial = [])
     {
         if (!defined('CRYPT_RSA_EXPONENT')) {
             // https://en.wikipedia.org/wiki/65537_%28number%29
@@ -603,7 +603,7 @@ class Crypt_RSA
             $publickey = $publickey['key'];
 
             $privatekey = call_user_func_array([$this, '_convertPrivateKey'], array_values($this->_parseKey($privatekey, CRYPT_RSA_PRIVATE_FORMAT_PKCS1)));
-            $publickey = call_user_func_array([$this, '_convertPublicKey'], array_values($this->_parseKey($publickey, CRYPT_RSA_PUBLIC_FORMAT_PKCS1)));
+            $publickey  = call_user_func_array([$this, '_convertPublicKey'], array_values($this->_parseKey($publickey, CRYPT_RSA_PUBLIC_FORMAT_PKCS1)));
 
             // clear the buffer of error strings stemming from a minimalistic openssl.cnf
             while (openssl_error_string() !== false) {
@@ -611,7 +611,7 @@ class Crypt_RSA
 
             return [
                 'privatekey' => $privatekey,
-                'publickey' => $publickey,
+                'publickey'  => $publickey,
                 'partialkey' => false
             ];
         }
@@ -623,10 +623,10 @@ class Crypt_RSA
 
         extract($this->_generateMinMax($bits));
         $absoluteMin = $min;
-        $temp = $bits >> 1; // divide by two to see how many bits P and Q would be
+        $temp        = $bits >> 1; // divide by two to see how many bits P and Q would be
         if ($temp > CRYPT_RSA_SMALLEST_PRIME) {
             $num_primes = floor($bits / CRYPT_RSA_SMALLEST_PRIME);
-            $temp = CRYPT_RSA_SMALLEST_PRIME;
+            $temp       = CRYPT_RSA_SMALLEST_PRIME;
         } else {
             $num_primes = 2;
         }
@@ -641,30 +641,30 @@ class Crypt_RSA
             extract(unserialize($partial));
         } else {
             $exponents = $coefficients = $primes = [];
-            $lcm = [
-                'top' => $this->one->copy(),
+            $lcm       = [
+                'top'    => $this->one->copy(),
                 'bottom' => false
             ];
         }
 
         $start = time();
-        $i0 = count($primes) + 1;
+        $i0    = count($primes) + 1;
 
         do {
             for ($i = $i0; $i <= $num_primes; $i++) {
                 if ($timeout !== false) {
-                    $timeout-= time() - $start;
-                    $start = time();
+                    $timeout -= time() - $start;
+                    $start   = time();
                     if ($timeout <= 0) {
                         return [
                             'privatekey' => '',
                             'publickey'  => '',
                             'partialkey' => serialize(
                                 [
-                                'primes' => $primes,
-                                'coefficients' => $coefficients,
-                                'lcm' => $lcm,
-                                'exponents' => $exponents
+                                    'primes'       => $primes,
+                                    'coefficients' => $coefficients,
+                                    'lcm'          => $lcm,
+                                    'exponents'    => $exponents
                                 ]
                             )
                         ];
@@ -688,10 +688,10 @@ class Crypt_RSA
                         array_pop($primes);
                         $partialkey = serialize(
                             [
-                            'primes' => $primes,
-                            'coefficients' => $coefficients,
-                            'lcm' => $lcm,
-                            'exponents' => $exponents
+                                'primes'       => $primes,
+                                'coefficients' => $coefficients,
+                                'lcm'          => $lcm,
+                                'exponents'    => $exponents
                             ]
                         );
                     }
@@ -715,7 +715,7 @@ class Crypt_RSA
 
                 // textbook RSA implementations use Euler's totient function instead of the least common multiple.
                 // see https://en.wikipedia.org/wiki/Euler%27s_totient_function
-                $lcm['top'] = $lcm['top']->multiply($temp);
+                $lcm['top']    = $lcm['top']->multiply($temp);
                 $lcm['bottom'] = $lcm['bottom'] === false ? $temp : $lcm['bottom']->gcd($temp);
 
                 $exponents[$i] = $e->modInverse($temp);
@@ -723,7 +723,7 @@ class Crypt_RSA
 
             list($temp) = $lcm['top']->divide($lcm['bottom']);
             $gcd = $temp->gcd($e);
-            $i0 = 1;
+            $i0  = 1;
         } while (!$gcd->equals($this->one));
 
         $d = $e->modInverse($temp);
@@ -755,24 +755,24 @@ class Crypt_RSA
      * Convert a private key to the appropriate format.
      *
      * @access private
-     * @see self::setPrivateKeyFormat()
      * @param string $RSAPrivateKey
      * @return string
+     * @see    self::setPrivateKeyFormat()
      */
-    function _convertPrivateKey($n, $e, $d, $primes, $exponents, $coefficients)
+    public function _convertPrivateKey($n, $e, $d, $primes, $exponents, $coefficients)
     {
-        $signed = $this->privateKeyFormat != CRYPT_RSA_PRIVATE_FORMAT_XML;
+        $signed     = $this->privateKeyFormat != CRYPT_RSA_PRIVATE_FORMAT_XML;
         $num_primes = count($primes);
-        $raw = [
-            'version' => $num_primes == 2 ? chr(0) : chr(1), // two-prime vs. multi
-            'modulus' => $n->toBytes($signed),
-            'publicExponent' => $e->toBytes($signed),
+        $raw        = [
+            'version'         => $num_primes == 2 ? chr(0) : chr(1), // two-prime vs. multi
+            'modulus'         => $n->toBytes($signed),
+            'publicExponent'  => $e->toBytes($signed),
             'privateExponent' => $d->toBytes($signed),
-            'prime1' => $primes[1]->toBytes($signed),
-            'prime2' => $primes[2]->toBytes($signed),
-            'exponent1' => $exponents[1]->toBytes($signed),
-            'exponent2' => $exponents[2]->toBytes($signed),
-            'coefficient' => $coefficients[2]->toBytes($signed)
+            'prime1'          => $primes[1]->toBytes($signed),
+            'prime2'          => $primes[2]->toBytes($signed),
+            'exponent1'       => $exponents[1]->toBytes($signed),
+            'exponent2'       => $exponents[2]->toBytes($signed),
+            'coefficient'     => $coefficients[2]->toBytes($signed)
         ];
 
         // if the format in question does not support multi-prime rsa and multi-prime rsa was used,
@@ -782,26 +782,42 @@ class Crypt_RSA
                 if ($num_primes != 2) {
                     return false;
                 }
-                return "<RSAKeyValue>\r\n" .
-                       '  <Modulus>' . base64_encode($raw['modulus']) . "</Modulus>\r\n" .
-                       '  <Exponent>' . base64_encode($raw['publicExponent']) . "</Exponent>\r\n" .
-                       '  <P>' . base64_encode($raw['prime1']) . "</P>\r\n" .
-                       '  <Q>' . base64_encode($raw['prime2']) . "</Q>\r\n" .
-                       '  <DP>' . base64_encode($raw['exponent1']) . "</DP>\r\n" .
-                       '  <DQ>' . base64_encode($raw['exponent2']) . "</DQ>\r\n" .
-                       '  <InverseQ>' . base64_encode($raw['coefficient']) . "</InverseQ>\r\n" .
-                       '  <D>' . base64_encode($raw['privateExponent']) . "</D>\r\n" .
-                       '</RSAKeyValue>';
+                return "<RSAKeyValue>\r\n"
+                       . '  <Modulus>'
+                       . base64_encode($raw['modulus'])
+                       . "</Modulus>\r\n"
+                       . '  <Exponent>'
+                       . base64_encode($raw['publicExponent'])
+                       . "</Exponent>\r\n"
+                       . '  <P>'
+                       . base64_encode($raw['prime1'])
+                       . "</P>\r\n"
+                       . '  <Q>'
+                       . base64_encode($raw['prime2'])
+                       . "</Q>\r\n"
+                       . '  <DP>'
+                       . base64_encode($raw['exponent1'])
+                       . "</DP>\r\n"
+                       . '  <DQ>'
+                       . base64_encode($raw['exponent2'])
+                       . "</DQ>\r\n"
+                       . '  <InverseQ>'
+                       . base64_encode($raw['coefficient'])
+                       . "</InverseQ>\r\n"
+                       . '  <D>'
+                       . base64_encode($raw['privateExponent'])
+                       . "</D>\r\n"
+                       . '</RSAKeyValue>';
                 break;
             case CRYPT_RSA_PRIVATE_FORMAT_PUTTY:
                 if ($num_primes != 2) {
                     return false;
                 }
-                $key = "PuTTY-User-Key-File-2: ssh-rsa\r\nEncryption: ";
+                $key        = "PuTTY-User-Key-File-2: ssh-rsa\r\nEncryption: ";
                 $encryption = (!empty($this->password) || is_string($this->password)) ? 'aes256-cbc' : 'none';
-                $key.= $encryption;
-                $key.= "\r\nComment: " . $this->comment . "\r\n";
-                $public = pack(
+                $key        .= $encryption;
+                $key        .= "\r\nComment: " . $this->comment . "\r\n";
+                $public     = pack(
                     'Na*Na*Na*',
                     strlen('ssh-rsa'),
                     'ssh-rsa',
@@ -810,7 +826,7 @@ class Crypt_RSA
                     strlen($raw['modulus']),
                     $raw['modulus']
                 );
-                $source = pack(
+                $source     = pack(
                     'Na*Na*Na*Na*',
                     strlen('ssh-rsa'),
                     'ssh-rsa',
@@ -821,10 +837,10 @@ class Crypt_RSA
                     strlen($public),
                     $public
                 );
-                $public = base64_encode($public);
-                $key.= "Public-Lines: " . ((strlen($public) + 63) >> 6) . "\r\n";
-                $key.= chunk_split($public, 64);
-                $private = pack(
+                $public     = base64_encode($public);
+                $key        .= "Public-Lines: " . ((strlen($public) + 63) >> 6) . "\r\n";
+                $key        .= chunk_split($public, 64);
+                $private    = pack(
                     'Na*Na*Na*Na*',
                     strlen($raw['privateExponent']),
                     $raw['privateExponent'],
@@ -836,19 +852,19 @@ class Crypt_RSA
                     $raw['coefficient']
                 );
                 if (empty($this->password) && !is_string($this->password)) {
-                    $source.= pack('Na*', strlen($private), $private);
+                    $source  .= pack('Na*', strlen($private), $private);
                     $hashkey = 'putty-private-key-file-mac-key';
                 } else {
-                    $private.= crypt_random_string(16 - (strlen($private) & 15));
-                    $source.= pack('Na*', strlen($private), $private);
+                    $private .= crypt_random_string(16 - (strlen($private) & 15));
+                    $source  .= pack('Na*', strlen($private), $private);
                     if (!class_exists('Crypt_AES')) {
                         include_once 'Crypt/AES.php';
                     }
                     $sequence = 0;
-                    $symkey = '';
+                    $symkey   = '';
                     while (strlen($symkey) < 32) {
-                        $temp = pack('Na*', $sequence++, $this->password);
-                        $symkey.= pack('H*', sha1($temp));
+                        $temp   = pack('Na*', $sequence++, $this->password);
+                        $symkey .= pack('H*', sha1($temp));
                     }
                     $symkey = substr($symkey, 0, 32);
                     $crypto = new Crypt_AES();
@@ -860,14 +876,14 @@ class Crypt_RSA
                 }
 
                 $private = base64_encode($private);
-                $key.= 'Private-Lines: ' . ((strlen($private) + 63) >> 6) . "\r\n";
-                $key.= chunk_split($private, 64);
+                $key     .= 'Private-Lines: ' . ((strlen($private) + 63) >> 6) . "\r\n";
+                $key     .= chunk_split($private, 64);
                 if (!class_exists('Crypt_Hash')) {
                     include_once 'Crypt/Hash.php';
                 }
                 $hash = new Crypt_Hash('sha1');
                 $hash->setKey(pack('H*', sha1($hashkey)));
-                $key.= 'Private-MAC: ' . bin2hex($hash->hash($source)) . "\r\n";
+                $key .= 'Private-MAC: ' . bin2hex($hash->hash($source)) . "\r\n";
 
                 return $key;
             default: // eg. CRYPT_RSA_PRIVATE_FORMAT_PKCS1
@@ -888,18 +904,18 @@ class Crypt_RSA
                         //     exponent          INTEGER,  -- di
                         //     coefficient       INTEGER   -- ti
                         // }
-                        $OtherPrimeInfo = pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($primes[$i]->toBytes(true))), $primes[$i]->toBytes(true));
-                        $OtherPrimeInfo.= pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($exponents[$i]->toBytes(true))), $exponents[$i]->toBytes(true));
-                        $OtherPrimeInfo.= pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($coefficients[$i]->toBytes(true))), $coefficients[$i]->toBytes(true));
-                        $OtherPrimeInfos.= pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($OtherPrimeInfo)), $OtherPrimeInfo);
+                        $OtherPrimeInfo  = pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($primes[$i]->toBytes(true))), $primes[$i]->toBytes(true));
+                        $OtherPrimeInfo  .= pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($exponents[$i]->toBytes(true))), $exponents[$i]->toBytes(true));
+                        $OtherPrimeInfo  .= pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($coefficients[$i]->toBytes(true))), $coefficients[$i]->toBytes(true));
+                        $OtherPrimeInfos .= pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($OtherPrimeInfo)), $OtherPrimeInfo);
                     }
-                    $RSAPrivateKey.= pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($OtherPrimeInfos)), $OtherPrimeInfos);
+                    $RSAPrivateKey .= pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($OtherPrimeInfos)), $OtherPrimeInfos);
                 }
 
                 $RSAPrivateKey = pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($RSAPrivateKey)), $RSAPrivateKey);
 
                 if ($this->privateKeyFormat == CRYPT_RSA_PRIVATE_FORMAT_PKCS8) {
-                    $rsaOID = pack('H*', '300d06092a864886f70d0101010500'); // hex version of MA0GCSqGSIb3DQEBAQUA
+                    $rsaOID        = pack('H*', '300d06092a864886f70d0101010500'); // hex version of MA0GCSqGSIb3DQEBAQUA
                     $RSAPrivateKey = pack(
                         'Ca*a*Ca*a*',
                         CRYPT_RSA_ASN1_INTEGER,
@@ -911,7 +927,7 @@ class Crypt_RSA
                     );
                     $RSAPrivateKey = pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($RSAPrivateKey)), $RSAPrivateKey);
                     if (!empty($this->password) || is_string($this->password)) {
-                        $salt = crypt_random_string(8);
+                        $salt           = crypt_random_string(8);
                         $iterationCount = 2048;
 
                         if (!class_exists('Crypt_DES')) {
@@ -921,7 +937,7 @@ class Crypt_RSA
                         $crypto->setPassword($this->password, 'pbkdf1', 'md5', $salt, $iterationCount);
                         $RSAPrivateKey = $crypto->encrypt($RSAPrivateKey);
 
-                        $parameters = pack(
+                        $parameters           = pack(
                             'Ca*a*Ca*N',
                             CRYPT_RSA_ASN1_OCTETSTRING,
                             $this->_encodeLength(strlen($salt)),
@@ -954,38 +970,27 @@ class Crypt_RSA
 
                         $RSAPrivateKey = pack('Ca*a*', CRYPT_RSA_ASN1_SEQUENCE, $this->_encodeLength(strlen($RSAPrivateKey)), $RSAPrivateKey);
 
-                        $RSAPrivateKey = "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n" .
-                                         chunk_split(base64_encode($RSAPrivateKey), 64) .
-                                         '-----END ENCRYPTED PRIVATE KEY-----';
+                        $RSAPrivateKey = "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n" . chunk_split(base64_encode($RSAPrivateKey), 64) . '-----END ENCRYPTED PRIVATE KEY-----';
                     } else {
-                        $RSAPrivateKey = "-----BEGIN PRIVATE KEY-----\r\n" .
-                                         chunk_split(base64_encode($RSAPrivateKey), 64) .
-                                         '-----END PRIVATE KEY-----';
+                        $RSAPrivateKey = "-----BEGIN PRIVATE KEY-----\r\n" . chunk_split(base64_encode($RSAPrivateKey), 64) . '-----END PRIVATE KEY-----';
                     }
                     return $RSAPrivateKey;
                 }
 
                 if (!empty($this->password) || is_string($this->password)) {
-                    $iv = crypt_random_string(8);
+                    $iv     = crypt_random_string(8);
                     $symkey = pack('H*', md5($this->password . $iv)); // symkey is short for symmetric key
-                    $symkey.= substr(pack('H*', md5($symkey . $this->password . $iv)), 0, 8);
+                    $symkey .= substr(pack('H*', md5($symkey . $this->password . $iv)), 0, 8);
                     if (!class_exists('Crypt_TripleDES')) {
                         include_once 'Crypt/TripleDES.php';
                     }
                     $des = new Crypt_TripleDES();
                     $des->setKey($symkey);
                     $des->setIV($iv);
-                    $iv = strtoupper(bin2hex($iv));
-                    $RSAPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n" .
-                                     "Proc-Type: 4,ENCRYPTED\r\n" .
-                                     "DEK-Info: DES-EDE3-CBC,$iv\r\n" .
-                                     "\r\n" .
-                                     chunk_split(base64_encode($des->encrypt($RSAPrivateKey)), 64) .
-                                     '-----END RSA PRIVATE KEY-----';
+                    $iv            = strtoupper(bin2hex($iv));
+                    $RSAPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n" . "Proc-Type: 4,ENCRYPTED\r\n" . "DEK-Info: DES-EDE3-CBC,$iv\r\n" . "\r\n" . chunk_split(base64_encode($des->encrypt($RSAPrivateKey)), 64) . '-----END RSA PRIVATE KEY-----';
                 } else {
-                    $RSAPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n" .
-                                     chunk_split(base64_encode($RSAPrivateKey), 64) .
-                                     '-----END RSA PRIVATE KEY-----';
+                    $RSAPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n" . chunk_split(base64_encode($RSAPrivateKey), 64) . '-----END RSA PRIVATE KEY-----';
                 }
 
                 return $RSAPrivateKey;
@@ -996,25 +1001,22 @@ class Crypt_RSA
      * Convert a public key to the appropriate format
      *
      * @access private
-     * @see self::setPublicKeyFormat()
      * @param string $RSAPrivateKey
      * @return string
+     * @see    self::setPublicKeyFormat()
      */
-    function _convertPublicKey($n, $e)
+    public function _convertPublicKey($n, $e)
     {
         $signed = $this->publicKeyFormat != CRYPT_RSA_PUBLIC_FORMAT_XML;
 
-        $modulus = $n->toBytes($signed);
+        $modulus        = $n->toBytes($signed);
         $publicExponent = $e->toBytes($signed);
 
         switch ($this->publicKeyFormat) {
             case CRYPT_RSA_PUBLIC_FORMAT_RAW:
                 return ['e' => $e->copy(), 'n' => $n->copy()];
             case CRYPT_RSA_PUBLIC_FORMAT_XML:
-                return "<RSAKeyValue>\r\n" .
-                       '  <Modulus>' . base64_encode($modulus) . "</Modulus>\r\n" .
-                       '  <Exponent>' . base64_encode($publicExponent) . "</Exponent>\r\n" .
-                       '</RSAKeyValue>';
+                return "<RSAKeyValue>\r\n" . '  <Modulus>' . base64_encode($modulus) . "</Modulus>\r\n" . '  <Exponent>' . base64_encode($publicExponent) . "</Exponent>\r\n" . '</RSAKeyValue>';
                 break;
             case CRYPT_RSA_PUBLIC_FORMAT_OPENSSH:
                 // from <https://tools.ietf.org/html/rfc4253#page-15>:
@@ -1032,7 +1034,7 @@ class Crypt_RSA
                 //     publicExponent    INTEGER   -- e
                 // }
                 $components = [
-                    'modulus' => pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($modulus)), $modulus),
+                    'modulus'        => pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($modulus)), $modulus),
                     'publicExponent' => pack('Ca*a*', CRYPT_RSA_ASN1_INTEGER, $this->_encodeLength(strlen($publicExponent)), $publicExponent)
                 ];
 
@@ -1045,12 +1047,10 @@ class Crypt_RSA
                 );
 
                 if ($this->publicKeyFormat == CRYPT_RSA_PUBLIC_FORMAT_PKCS1_RAW) {
-                    $RSAPublicKey = "-----BEGIN RSA PUBLIC KEY-----\r\n" .
-                                    chunk_split(base64_encode($RSAPublicKey), 64) .
-                                    '-----END RSA PUBLIC KEY-----';
+                    $RSAPublicKey = "-----BEGIN RSA PUBLIC KEY-----\r\n" . chunk_split(base64_encode($RSAPublicKey), 64) . '-----END RSA PUBLIC KEY-----';
                 } else {
                     // sequence(oid(1.2.840.113549.1.1.1), null)) = rsaEncryption.
-                    $rsaOID = pack('H*', '300d06092a864886f70d0101010500'); // hex version of MA0GCSqGSIb3DQEBAQUA
+                    $rsaOID       = pack('H*', '300d06092a864886f70d0101010500'); // hex version of MA0GCSqGSIb3DQEBAQUA
                     $RSAPublicKey = chr(0) . $RSAPublicKey;
                     $RSAPublicKey = chr(3) . $this->_encodeLength(strlen($RSAPublicKey)) . $RSAPublicKey;
 
@@ -1061,9 +1061,7 @@ class Crypt_RSA
                         $rsaOID . $RSAPublicKey
                     );
 
-                    $RSAPublicKey = "-----BEGIN PUBLIC KEY-----\r\n" .
-                                     chunk_split(base64_encode($RSAPublicKey), 64) .
-                                     '-----END PUBLIC KEY-----';
+                    $RSAPublicKey = "-----BEGIN PUBLIC KEY-----\r\n" . chunk_split(base64_encode($RSAPublicKey), 64) . '-----END PUBLIC KEY-----';
                 }
 
                 return $RSAPublicKey;
@@ -1074,13 +1072,13 @@ class Crypt_RSA
      * Break a public or private key down into its constituant components
      *
      * @access private
-     * @see self::_convertPublicKey()
-     * @see self::_convertPrivateKey()
      * @param string $key
-     * @param int $type
+     * @param int    $type
      * @return array
+     * @see    self::_convertPrivateKey()
+     * @see    self::_convertPublicKey()
      */
-    function _parseKey($key, $type)
+    public function _parseKey($key, $type)
     {
         if ($type != CRYPT_RSA_PUBLIC_FORMAT_RAW && !is_string($key)) {
             return false;
@@ -1136,59 +1134,58 @@ class Crypt_RSA
                    own implementation.  ie. the implementation *is* the standard and any bugs that may exist in that
                    implementation are part of the standard, as well.
 
-                   * OpenSSL is the de facto standard.  It's utilized by OpenSSH and other projects */
-                if (preg_match('#DEK-Info: (.+),(.+)#', $key, $matches)) {
-                    $iv = pack('H*', trim($matches[2]));
-                    $symkey = pack('H*', md5($this->password . substr($iv, 0, 8))); // symkey is short for symmetric key
-                    $symkey.= pack('H*', md5($symkey . $this->password . substr($iv, 0, 8)));
-                    // remove the Proc-Type / DEK-Info sections as they're no longer needed
-                    $key = preg_replace('#^(?:Proc-Type|DEK-Info): .*#m', '', $key);
-                    $ciphertext = $this->_extractBER($key);
-                    if ($ciphertext === false) {
-                        $ciphertext = $key;
-                    }
-                    switch ($matches[1]) {
-                        case 'AES-256-CBC':
-                            if (!class_exists('Crypt_AES')) {
-                                include_once 'Crypt/AES.php';
-                            }
-                            $crypto = new Crypt_AES();
-                            break;
-                        case 'AES-128-CBC':
-                            if (!class_exists('Crypt_AES')) {
-                                include_once 'Crypt/AES.php';
-                            }
-                            $symkey = substr($symkey, 0, 16);
-                            $crypto = new Crypt_AES();
-                            break;
-                        case 'DES-EDE3-CFB':
-                            if (!class_exists('Crypt_TripleDES')) {
-                                include_once 'Crypt/TripleDES.php';
-                            }
-                            $crypto = new Crypt_TripleDES(CRYPT_DES_MODE_CFB);
-                            break;
-                        case 'DES-EDE3-CBC':
-                            if (!class_exists('Crypt_TripleDES')) {
-                                include_once 'Crypt/TripleDES.php';
-                            }
-                            $symkey = substr($symkey, 0, 24);
-                            $crypto = new Crypt_TripleDES();
-                            break;
-                        case 'DES-CBC':
-                            if (!class_exists('Crypt_DES')) {
-                                include_once 'Crypt/DES.php';
-                            }
-                            $crypto = new Crypt_DES();
-                            break;
-                        default:
-                            return false;
-                    }
-                    $crypto->setKey($symkey);
-                    $crypto->setIV($iv);
-                    $decoded = $crypto->decrypt($ciphertext);
-                } else {
-                    $decoded = $this->_extractBER($key);
+                   * OpenSSL is the de facto standard.  It's utilized by OpenSSH and other projects */ if (preg_match('#DEK-Info: (.+),(.+)#', $key, $matches)) {
+                $iv     = pack('H*', trim($matches[2]));
+                $symkey = pack('H*', md5($this->password . substr($iv, 0, 8))); // symkey is short for symmetric key
+                $symkey .= pack('H*', md5($symkey . $this->password . substr($iv, 0, 8)));
+                // remove the Proc-Type / DEK-Info sections as they're no longer needed
+                $key        = preg_replace('#^(?:Proc-Type|DEK-Info): .*#m', '', $key);
+                $ciphertext = $this->_extractBER($key);
+                if ($ciphertext === false) {
+                    $ciphertext = $key;
                 }
+                switch ($matches[1]) {
+                    case 'AES-256-CBC':
+                        if (!class_exists('Crypt_AES')) {
+                            include_once 'Crypt/AES.php';
+                        }
+                        $crypto = new Crypt_AES();
+                        break;
+                    case 'AES-128-CBC':
+                        if (!class_exists('Crypt_AES')) {
+                            include_once 'Crypt/AES.php';
+                        }
+                        $symkey = substr($symkey, 0, 16);
+                        $crypto = new Crypt_AES();
+                        break;
+                    case 'DES-EDE3-CFB':
+                        if (!class_exists('Crypt_TripleDES')) {
+                            include_once 'Crypt/TripleDES.php';
+                        }
+                        $crypto = new Crypt_TripleDES(CRYPT_DES_MODE_CFB);
+                        break;
+                    case 'DES-EDE3-CBC':
+                        if (!class_exists('Crypt_TripleDES')) {
+                            include_once 'Crypt/TripleDES.php';
+                        }
+                        $symkey = substr($symkey, 0, 24);
+                        $crypto = new Crypt_TripleDES();
+                        break;
+                    case 'DES-CBC':
+                        if (!class_exists('Crypt_DES')) {
+                            include_once 'Crypt/DES.php';
+                        }
+                        $crypto = new Crypt_DES();
+                        break;
+                    default:
+                        return false;
+                }
+                $crypto->setKey($symkey);
+                $crypto->setIV($iv);
+                $decoded = $crypto->decrypt($ciphertext);
+            } else {
+                $decoded = $this->_extractBER($key);
+            }
 
                 if ($decoded !== false) {
                     $key = $decoded;
@@ -1234,10 +1231,9 @@ class Crypt_RSA
                                PBEParameter ::= SEQUENCE {
                                    salt OCTET STRING (SIZE(8)),
                                    iterationCount INTEGER }
-                            */
-                            if (ord($this->_string_shift($temp)) != CRYPT_RSA_ASN1_SEQUENCE) {
-                                return false;
-                            }
+                            */ if (ord($this->_string_shift($temp)) != CRYPT_RSA_ASN1_SEQUENCE) {
+                            return false;
+                        }
                             if ($this->_decodeLength($temp) != strlen($temp)) {
                                 return false;
                             }
@@ -1295,11 +1291,11 @@ class Crypt_RSA
                 }
 
                 $length = $this->_decodeLength($key);
-                $temp = $this->_string_shift($key, $length);
+                $temp   = $this->_string_shift($key, $length);
                 if (strlen($temp) != 1 || ord($temp) > 2) {
                     $components['modulus'] = new Math_BigInteger($temp, 256);
                     $this->_string_shift($key); // skip over CRYPT_RSA_ASN1_INTEGER
-                    $length = $this->_decodeLength($key);
+                    $length                                                                                    = $this->_decodeLength($key);
                     $components[$type == CRYPT_RSA_PUBLIC_FORMAT_PKCS1 ? 'publicExponent' : 'privateExponent'] = new Math_BigInteger($this->_string_shift($key, $length), 256);
 
                     return $components;
@@ -1307,28 +1303,28 @@ class Crypt_RSA
                 if (ord($this->_string_shift($key)) != CRYPT_RSA_ASN1_INTEGER) {
                     return false;
                 }
-                $length = $this->_decodeLength($key);
+                $length                = $this->_decodeLength($key);
                 $components['modulus'] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length                       = $this->_decodeLength($key);
                 $components['publicExponent'] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length                        = $this->_decodeLength($key);
                 $components['privateExponent'] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length               = $this->_decodeLength($key);
                 $components['primes'] = [1 => new Math_BigInteger($this->_string_shift($key, $length), 256)];
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length                 = $this->_decodeLength($key);
                 $components['primes'][] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length                  = $this->_decodeLength($key);
                 $components['exponents'] = [1 => new Math_BigInteger($this->_string_shift($key, $length), 256)];
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length                    = $this->_decodeLength($key);
                 $components['exponents'][] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                 $this->_string_shift($key);
-                $length = $this->_decodeLength($key);
+                $length                     = $this->_decodeLength($key);
                 $components['coefficients'] = [2 => new Math_BigInteger($this->_string_shift($key, $length), 256)];
 
                 if (!empty($key)) {
@@ -1341,14 +1337,14 @@ class Crypt_RSA
                             return false;
                         }
                         $this->_decodeLength($key);
-                        $key = substr($key, 1);
-                        $length = $this->_decodeLength($key);
+                        $key                    = substr($key, 1);
+                        $length                 = $this->_decodeLength($key);
                         $components['primes'][] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                         $this->_string_shift($key);
-                        $length = $this->_decodeLength($key);
+                        $length                    = $this->_decodeLength($key);
                         $components['exponents'][] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                         $this->_string_shift($key);
-                        $length = $this->_decodeLength($key);
+                        $length                       = $this->_decodeLength($key);
                         $components['coefficients'][] = new Math_BigInteger($this->_string_shift($key, $length), 256);
                     }
                 }
@@ -1384,15 +1380,15 @@ class Crypt_RSA
                     extract(unpack('Nlength', $this->_string_shift($key, 4)));
                     $realModulus = new Math_BigInteger($this->_string_shift($key, $length), -256);
                     return strlen($key) ? false : [
-                        'modulus' => $realModulus,
+                        'modulus'        => $realModulus,
                         'publicExponent' => $modulus,
-                        'comment' => $comment
+                        'comment'        => $comment
                     ];
                 } else {
                     return strlen($key) ? false : [
-                        'modulus' => $modulus,
+                        'modulus'        => $modulus,
                         'publicExponent' => $publicExponent,
-                        'comment' => $comment
+                        'comment'        => $comment
                     ];
                 }
             // https://www.w3.org/TR/xmldsig-core/#sec-RSAKeyValue
@@ -1414,35 +1410,35 @@ class Crypt_RSA
             // from PuTTY's SSHPUBK.C
             case CRYPT_RSA_PRIVATE_FORMAT_PUTTY:
                 $components = [];
-                $key = preg_split('#\r\n|\r|\n#', $key);
-                $type = trim(preg_replace('#PuTTY-User-Key-File-2: (.+)#', '$1', $key[0]));
+                $key        = preg_split('#\r\n|\r|\n#', $key);
+                $type       = trim(preg_replace('#PuTTY-User-Key-File-2: (.+)#', '$1', $key[0]));
                 if ($type != 'ssh-rsa') {
                     return false;
                 }
                 $encryption = trim(preg_replace('#Encryption: (.+)#', '$1', $key[1]));
-                $comment = trim(preg_replace('#Comment: (.+)#', '$1', $key[2]));
+                $comment    = trim(preg_replace('#Comment: (.+)#', '$1', $key[2]));
 
                 $publicLength = trim(preg_replace('#Public-Lines: (\d+)#', '$1', $key[3]));
-                $public = base64_decode(implode('', array_map('trim', array_slice($key, 4, $publicLength))));
-                $public = substr($public, 11);
+                $public       = base64_decode(implode('', array_map('trim', array_slice($key, 4, $publicLength))));
+                $public       = substr($public, 11);
                 extract(unpack('Nlength', $this->_string_shift($public, 4)));
                 $components['publicExponent'] = new Math_BigInteger($this->_string_shift($public, $length), -256);
                 extract(unpack('Nlength', $this->_string_shift($public, 4)));
                 $components['modulus'] = new Math_BigInteger($this->_string_shift($public, $length), -256);
 
                 $privateLength = trim(preg_replace('#Private-Lines: (\d+)#', '$1', $key[$publicLength + 4]));
-                $private = base64_decode(implode('', array_map('trim', array_slice($key, $publicLength + 5, $privateLength))));
+                $private       = base64_decode(implode('', array_map('trim', array_slice($key, $publicLength + 5, $privateLength))));
 
                 switch ($encryption) {
                     case 'aes256-cbc':
                         if (!class_exists('Crypt_AES')) {
                             include_once 'Crypt/AES.php';
                         }
-                        $symkey = '';
+                        $symkey   = '';
                         $sequence = 0;
                         while (strlen($symkey) < 32) {
-                            $temp = pack('Na*', $sequence++, $this->password);
-                            $symkey.= pack('H*', sha1($temp));
+                            $temp   = pack('Na*', $sequence++, $this->password);
+                            $symkey .= pack('H*', sha1($temp));
                         }
                         $symkey = substr($symkey, 0, 32);
                         $crypto = new Crypt_AES();
@@ -1473,9 +1469,9 @@ class Crypt_RSA
                 }
                 $components['primes'][] = new Math_BigInteger($this->_string_shift($private, $length), -256);
 
-                $temp = $components['primes'][1]->subtract($this->one);
-                $components['exponents'] = [1 => $components['publicExponent']->modInverse($temp)];
-                $temp = $components['primes'][2]->subtract($this->one);
+                $temp                      = $components['primes'][1]->subtract($this->one);
+                $components['exponents']   = [1 => $components['publicExponent']->modInverse($temp)];
+                $temp                      = $components['primes'][2]->subtract($this->one);
                 $components['exponents'][] = $components['publicExponent']->modInverse($temp);
 
                 extract(unpack('Nlength', $this->_string_shift($private, 4)));
@@ -1496,7 +1492,7 @@ class Crypt_RSA
      * @access public
      * @return int
      */
-    function getSize()
+    public function getSize()
     {
         return !isset($this->modulus) ? 0 : strlen($this->modulus->toBits());
     }
@@ -1508,10 +1504,10 @@ class Crypt_RSA
      *
      * @access private
      * @param resource $parser
-     * @param string $name
-     * @param array $attribs
+     * @param string   $name
+     * @param array    $attribs
      */
-    function _start_element_handler($parser, $name, $attribs)
+    public function _start_element_handler($parser, $name, $attribs)
     {
         //$name = strtoupper($name);
         switch ($name) {
@@ -1549,9 +1545,9 @@ class Crypt_RSA
      *
      * @access private
      * @param resource $parser
-     * @param string $name
+     * @param string   $name
      */
-    function _stop_element_handler($parser, $name)
+    public function _stop_element_handler($parser, $name)
     {
         if (isset($this->current)) {
             $this->current = new Math_BigInteger(base64_decode($this->current), 256);
@@ -1566,14 +1562,14 @@ class Crypt_RSA
      *
      * @access private
      * @param resource $parser
-     * @param string $data
+     * @param string   $data
      */
-    function _data_handler($parser, $data)
+    public function _data_handler($parser, $data)
     {
         if (!isset($this->current) || is_object($this->current)) {
             return;
         }
-        $this->current.= trim($data);
+        $this->current .= trim($data);
     }
 
     /**
@@ -1583,22 +1579,22 @@ class Crypt_RSA
      *
      * @access public
      * @param string $key
-     * @param int $type optional
+     * @param int    $type optional
      */
-    function loadKey($key, $type = false)
+    public function loadKey($key, $type = false)
     {
         if (is_object($key) && strtolower(get_class($key)) == 'crypt_rsa') {
             $this->privateKeyFormat = $key->privateKeyFormat;
-            $this->publicKeyFormat = $key->publicKeyFormat;
-            $this->k = $key->k;
-            $this->hLen = $key->hLen;
-            $this->sLen = $key->sLen;
-            $this->mgfHLen = $key->mgfHLen;
-            $this->encryptionMode = $key->encryptionMode;
-            $this->signatureMode = $key->signatureMode;
-            $this->password = $key->password;
-            $this->configFile = $key->configFile;
-            $this->comment = $key->comment;
+            $this->publicKeyFormat  = $key->publicKeyFormat;
+            $this->k                = $key->k;
+            $this->hLen             = $key->hLen;
+            $this->sLen             = $key->sLen;
+            $this->mgfHLen          = $key->mgfHLen;
+            $this->encryptionMode   = $key->encryptionMode;
+            $this->signatureMode    = $key->signatureMode;
+            $this->password         = $key->password;
+            $this->configFile       = $key->configFile;
+            $this->comment          = $key->comment;
 
             if (is_object($key->hash)) {
                 $this->hash = new Crypt_Hash($key->hash->getHash());
@@ -1617,8 +1613,8 @@ class Crypt_RSA
                 $this->publicExponent = $key->publicExponent->copy();
             }
 
-            $this->primes = [];
-            $this->exponents = [];
+            $this->primes       = [];
+            $this->exponents    = [];
             $this->coefficients = [];
 
             foreach ($this->primes as $prime) {
@@ -1659,18 +1655,18 @@ class Crypt_RSA
         if (isset($components['comment']) && $components['comment'] !== false) {
             $this->comment = $components['comment'];
         }
-        $this->modulus = $components['modulus'];
-        $this->k = strlen($this->modulus->toBytes());
+        $this->modulus  = $components['modulus'];
+        $this->k        = strlen($this->modulus->toBytes());
         $this->exponent = isset($components['privateExponent']) ? $components['privateExponent'] : $components['publicExponent'];
         if (isset($components['primes'])) {
-            $this->primes = $components['primes'];
-            $this->exponents = $components['exponents'];
-            $this->coefficients = $components['coefficients'];
+            $this->primes         = $components['primes'];
+            $this->exponents      = $components['exponents'];
+            $this->coefficients   = $components['coefficients'];
             $this->publicExponent = $components['publicExponent'];
         } else {
-            $this->primes = [];
-            $this->exponents = [];
-            $this->coefficients = [];
+            $this->primes         = [];
+            $this->exponents      = [];
+            $this->coefficients   = [];
             $this->publicExponent = false;
         }
 
@@ -1696,12 +1692,12 @@ class Crypt_RSA
      * Private keys can be encrypted with a password.  To unset the password, pass in the empty string or false.
      * Or rather, pass in $password such that empty($password) && !is_string($password) is true.
      *
-     * @see self::createKey()
-     * @see self::loadKey()
-     * @access public
      * @param string $password
+     * @see    self::loadKey()
+     * @access public
+     * @see    self::createKey()
      */
-    function setPassword($password = false)
+    public function setPassword($password = false)
     {
         $this->password = $password;
     }
@@ -1721,13 +1717,13 @@ class Crypt_RSA
      *
      * Returns true on success, false on failure
      *
-     * @see self::getPublicKey()
-     * @access public
-     * @param string $key optional
-     * @param int $type optional
+     * @param string $key  optional
+     * @param int    $type optional
      * @return bool
+     * @see    self::getPublicKey()
+     * @access public
      */
-    function setPublicKey($key = false, $type = false)
+    public function setPublicKey($key = false, $type = false)
     {
         // if a public key has already been loaded return false
         if (!empty($this->publicExponent)) {
@@ -1761,7 +1757,7 @@ class Crypt_RSA
         }
 
         if (empty($this->modulus) || !$this->modulus->equals($components['modulus'])) {
-            $this->modulus = $components['modulus'];
+            $this->modulus  = $components['modulus'];
             $this->exponent = $this->publicExponent = $components['publicExponent'];
             return true;
         }
@@ -1781,13 +1777,13 @@ class Crypt_RSA
      *
      * Returns true on success, false on failure
      *
-     * @see self::getPublicKey()
-     * @access public
-     * @param string $key optional
-     * @param int $type optional
+     * @param string $key  optional
+     * @param int    $type optional
      * @return bool
+     * @see    self::getPublicKey()
+     * @access public
      */
-    function setPrivateKey($key = false, $type = false)
+    public function setPrivateKey($key = false, $type = false)
     {
         if ($key === false && !empty($this->publicExponent)) {
             $this->publicExponent = false;
@@ -1812,20 +1808,20 @@ class Crypt_RSA
      * or if the public key was set via setPublicKey().  If the currently loaded key is supposed to be the public key this
      * function won't return it since this library, for the most part, doesn't distinguish between public and private keys.
      *
-     * @see self::getPublicKey()
-     * @access public
      * @param string $key
-     * @param int $type optional
+     * @param int    $type optional
+     * @see    self::getPublicKey()
+     * @access public
      */
-    function getPublicKey($type = CRYPT_RSA_PUBLIC_FORMAT_PKCS8)
+    public function getPublicKey($type = CRYPT_RSA_PUBLIC_FORMAT_PKCS8)
     {
         if (empty($this->modulus) || empty($this->publicExponent)) {
             return false;
         }
 
-        $oldFormat = $this->publicKeyFormat;
+        $oldFormat             = $this->publicKeyFormat;
         $this->publicKeyFormat = $type;
-        $temp = $this->_convertPublicKey($this->modulus, $this->publicExponent);
+        $temp                  = $this->_convertPublicKey($this->modulus, $this->publicExponent);
         $this->publicKeyFormat = $oldFormat;
         return $temp;
     }
@@ -1839,16 +1835,16 @@ class Crypt_RSA
      *
      * @access public
      * @param string $algorithm The hashing algorithm to be used. Valid options are 'md5' and 'sha256'. False is returned
-     * for invalid values.
+     *                          for invalid values.
      * @return mixed
      */
-    function getPublicKeyFingerprint($algorithm = 'md5')
+    public function getPublicKeyFingerprint($algorithm = 'md5')
     {
         if (empty($this->modulus) || empty($this->publicExponent)) {
             return false;
         }
 
-        $modulus = $this->modulus->toBytes(true);
+        $modulus        = $this->modulus->toBytes(true);
         $publicExponent = $this->publicExponent->toBytes(true);
 
         $RSAPublicKey = pack('Na*Na*Na*', strlen('ssh-rsa'), 'ssh-rsa', strlen($publicExponent), $publicExponent, strlen($modulus), $modulus);
@@ -1870,21 +1866,21 @@ class Crypt_RSA
      *
      * The private key is only returned if the currently loaded key contains the constituent prime numbers.
      *
-     * @see self::getPublicKey()
-     * @access public
      * @param string $key
-     * @param int $type optional
+     * @param int    $type optional
      * @return mixed
+     * @see    self::getPublicKey()
+     * @access public
      */
-    function getPrivateKey($type = CRYPT_RSA_PUBLIC_FORMAT_PKCS1)
+    public function getPrivateKey($type = CRYPT_RSA_PUBLIC_FORMAT_PKCS1)
     {
         if (empty($this->primes)) {
             return false;
         }
 
-        $oldFormat = $this->privateKeyFormat;
+        $oldFormat              = $this->privateKeyFormat;
         $this->privateKeyFormat = $type;
-        $temp = $this->_convertPrivateKey($this->modulus, $this->publicExponent, $this->exponent, $this->primes, $this->exponents, $this->coefficients);
+        $temp                   = $this->_convertPrivateKey($this->modulus, $this->publicExponent, $this->exponent, $this->primes, $this->exponents, $this->coefficients);
         $this->privateKeyFormat = $oldFormat;
         return $temp;
     }
@@ -1895,20 +1891,20 @@ class Crypt_RSA
      * Returns the private key without the prime number constituants.  Structurally identical to a public key that
      * hasn't been set as the public key
      *
-     * @see self::getPrivateKey()
-     * @access private
      * @param string $key
-     * @param int $type optional
+     * @param int    $type optional
+     * @see    self::getPrivateKey()
+     * @access private
      */
-    function _getPrivatePublicKey($mode = CRYPT_RSA_PUBLIC_FORMAT_PKCS8)
+    public function _getPrivatePublicKey($mode = CRYPT_RSA_PUBLIC_FORMAT_PKCS8)
     {
         if (empty($this->modulus) || empty($this->exponent)) {
             return false;
         }
 
-        $oldFormat = $this->publicKeyFormat;
+        $oldFormat             = $this->publicKeyFormat;
         $this->publicKeyFormat = $mode;
-        $temp = $this->_convertPublicKey($this->modulus, $this->exponent);
+        $temp                  = $this->_convertPublicKey($this->modulus, $this->exponent);
         $this->publicKeyFormat = $oldFormat;
         return $temp;
     }
@@ -1919,7 +1915,7 @@ class Crypt_RSA
      * @access public
      * @return string
      */
-    function __toString()
+    public function __toString()
     {
         $key = $this->getPrivateKey($this->privateKeyFormat);
         if ($key !== false) {
@@ -1935,7 +1931,7 @@ class Crypt_RSA
      * @access public
      * @return Crypt_RSA
      */
-    function __clone()
+    public function __clone()
     {
         $key = new Crypt_RSA();
         $key->loadKey($this);
@@ -1949,12 +1945,12 @@ class Crypt_RSA
      * @param int $bits
      * @return array
      */
-    function _generateMinMax($bits)
+    public function _generateMinMax($bits)
     {
         $bytes = $bits >> 3;
-        $min = str_repeat(chr(0), $bytes);
-        $max = str_repeat(chr(0xFF), $bytes);
-        $msb = $bits & 7;
+        $min   = str_repeat(chr(0), $bytes);
+        $max   = str_repeat(chr(0xFF), $bytes);
+        $msb   = $bits & 7;
         if ($msb) {
             $min = chr(1 << ($msb - 1)) . $min;
             $max = chr((1 << $msb) - 1) . $max;
@@ -1978,12 +1974,12 @@ class Crypt_RSA
      * @param string $string
      * @return int
      */
-    function _decodeLength(&$string)
+    public function _decodeLength(&$string)
     {
         $length = ord($this->_string_shift($string));
         if ($length & 0x80) { // definite length, long form
-            $length&= 0x7F;
-            $temp = $this->_string_shift($string, $length);
+            $length &= 0x7F;
+            $temp   = $this->_string_shift($string, $length);
             list(, $length) = unpack('N', substr(str_pad($temp, 4, chr(0), STR_PAD_LEFT), -4));
         }
         return $length;
@@ -1999,7 +1995,7 @@ class Crypt_RSA
      * @param int $length
      * @return string
      */
-    function _encodeLength($length)
+    public function _encodeLength($length)
     {
         if ($length <= 0x7F) {
             return chr($length);
@@ -2015,11 +2011,11 @@ class Crypt_RSA
      * Inspired by array_shift
      *
      * @param string $string
-     * @param int $index
+     * @param int    $index
      * @return string
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);
@@ -2029,11 +2025,11 @@ class Crypt_RSA
     /**
      * Determines the private key format
      *
-     * @see self::createKey()
-     * @access public
      * @param int $format
+     * @see    self::createKey()
+     * @access public
      */
-    function setPrivateKeyFormat($format)
+    public function setPrivateKeyFormat($format)
     {
         $this->privateKeyFormat = $format;
     }
@@ -2041,11 +2037,11 @@ class Crypt_RSA
     /**
      * Determines the public key format
      *
-     * @see self::createKey()
-     * @access public
      * @param int $format
+     * @see    self::createKey()
+     * @access public
      */
-    function setPublicKeyFormat($format)
+    public function setPublicKeyFormat($format)
     {
         $this->publicKeyFormat = $format;
     }
@@ -2059,7 +2055,7 @@ class Crypt_RSA
      * @access public
      * @param string $hash
      */
-    function setHash($hash)
+    public function setHash($hash)
     {
         // Crypt_Hash supports algorithms that PKCS#1 doesn't support.  md5-96 and sha1-96, for example.
         switch ($hash) {
@@ -2069,11 +2065,11 @@ class Crypt_RSA
             case 'sha256':
             case 'sha384':
             case 'sha512':
-                $this->hash = new Crypt_Hash($hash);
+                $this->hash     = new Crypt_Hash($hash);
                 $this->hashName = $hash;
                 break;
             default:
-                $this->hash = new Crypt_Hash('sha1');
+                $this->hash     = new Crypt_Hash('sha1');
                 $this->hashName = 'sha1';
         }
         $this->hLen = $this->hash->getLength();
@@ -2088,7 +2084,7 @@ class Crypt_RSA
      * @access public
      * @param string $hash
      */
-    function setMGFHash($hash)
+    public function setMGFHash($hash)
     {
         // Crypt_Hash supports algorithms that PKCS#1 doesn't support.  md5-96 and sha1-96, for example.
         switch ($hash) {
@@ -2117,7 +2113,7 @@ class Crypt_RSA
      * @access public
      * @param int $format
      */
-    function setSaltLength($sLen)
+    public function setSaltLength($sLen)
     {
         $this->sLen = $sLen;
     }
@@ -2129,10 +2125,10 @@ class Crypt_RSA
      *
      * @access private
      * @param Math_BigInteger $x
-     * @param int $xLen
+     * @param int             $xLen
      * @return string
      */
-    function _i2osp($x, $xLen)
+    public function _i2osp($x, $xLen)
     {
         $x = $x->toBytes();
         if (strlen($x) > $xLen) {
@@ -2151,7 +2147,7 @@ class Crypt_RSA
      * @param string $x
      * @return Math_BigInteger
      */
-    function _os2ip($x)
+    public function _os2ip($x)
     {
         return new Math_BigInteger($x, 256);
     }
@@ -2165,7 +2161,7 @@ class Crypt_RSA
      * @param Math_BigInteger $x
      * @return Math_BigInteger
      */
-    function _exponentiate($x)
+    public function _exponentiate($x)
     {
         if (empty($this->primes) || empty($this->coefficients) || empty($this->exponents)) {
             return $x->modPow($this->exponent, $this->modulus);
@@ -2178,8 +2174,8 @@ class Crypt_RSA
                 1 => $x->modPow($this->exponents[1], $this->primes[1]),
                 2 => $x->modPow($this->exponents[2], $this->primes[2])
             ];
-            $h = $m_i[1]->subtract($m_i[2]);
-            $h = $h->multiply($this->coefficients[2]);
+            $h   = $m_i[1]->subtract($m_i[2]);
+            $h   = $h->multiply($this->coefficients[2]);
             list(, $h) = $h->divide($this->primes[1]);
             $m = $m_i[2]->add($h->multiply($this->primes[2]));
 
@@ -2211,8 +2207,8 @@ class Crypt_RSA
                 1 => $this->_blind($x, $r, 1),
                 2 => $this->_blind($x, $r, 2)
             ];
-            $h = $m_i[1]->subtract($m_i[2]);
-            $h = $h->multiply($this->coefficients[2]);
+            $h   = $m_i[1]->subtract($m_i[2]);
+            $h   = $h->multiply($this->coefficients[2]);
             list(, $h) = $h->divide($this->primes[1]);
             $m = $m_i[2]->add($h->multiply($this->primes[2]));
 
@@ -2242,10 +2238,10 @@ class Crypt_RSA
      * @access private
      * @param Math_BigInteger $x
      * @param Math_BigInteger $r
-     * @param int $i
+     * @param int             $i
      * @return Math_BigInteger
      */
-    function _blind($x, $r, $i)
+    public function _blind($x, $r, $i)
     {
         $x = $x->multiply($r->modPow($this->publicExponent, $this->primes[$i]));
         $x = $x->modPow($this->exponents[$i], $this->primes[$i]);
@@ -2271,7 +2267,7 @@ class Crypt_RSA
      * @param string $y
      * @return bool
      */
-    function _equals($x, $y)
+    public function _equals($x, $y)
     {
         if (strlen($x) != strlen($y)) {
             return false;
@@ -2294,7 +2290,7 @@ class Crypt_RSA
      * @param Math_BigInteger $m
      * @return Math_BigInteger
      */
-    function _rsaep($m)
+    public function _rsaep($m)
     {
         if ($m->compare($this->zero) < 0 || $m->compare($this->modulus) > 0) {
             user_error('Message representative out of range');
@@ -2312,7 +2308,7 @@ class Crypt_RSA
      * @param Math_BigInteger $c
      * @return Math_BigInteger
      */
-    function _rsadp($c)
+    public function _rsadp($c)
     {
         if ($c->compare($this->zero) < 0 || $c->compare($this->modulus) > 0) {
             user_error('Ciphertext representative out of range');
@@ -2330,7 +2326,7 @@ class Crypt_RSA
      * @param Math_BigInteger $m
      * @return Math_BigInteger
      */
-    function _rsasp1($m)
+    public function _rsasp1($m)
     {
         if ($m->compare($this->zero) < 0 || $m->compare($this->modulus) > 0) {
             user_error('Message representative out of range');
@@ -2348,7 +2344,7 @@ class Crypt_RSA
      * @param Math_BigInteger $s
      * @return Math_BigInteger
      */
-    function _rsavp1($s)
+    public function _rsavp1($s)
     {
         if ($s->compare($this->zero) < 0 || $s->compare($this->modulus) > 0) {
             user_error('Signature representative out of range');
@@ -2364,18 +2360,18 @@ class Crypt_RSA
      *
      * @access private
      * @param string $mgfSeed
-     * @param int $mgfLen
+     * @param int    $mgfLen
      * @return string
      */
-    function _mgf1($mgfSeed, $maskLen)
+    public function _mgf1($mgfSeed, $maskLen)
     {
         // if $maskLen would yield strings larger than 4GB, PKCS#1 suggests a "Mask too long" error be output.
 
-        $t = '';
+        $t     = '';
         $count = ceil($maskLen / $this->mgfHLen);
         for ($i = 0; $i < $count; $i++) {
             $c = pack('N', $i);
-            $t.= $this->mgfHash->hash($mgfSeed . $c);
+            $t .= $this->mgfHash->hash($mgfSeed . $c);
         }
 
         return substr($t, 0, $maskLen);
@@ -2392,7 +2388,7 @@ class Crypt_RSA
      * @param string $l
      * @return string
      */
-    function _rsaes_oaep_encrypt($m, $l = '')
+    public function _rsaes_oaep_encrypt($m, $l = '')
     {
         $mLen = strlen($m);
 
@@ -2408,15 +2404,15 @@ class Crypt_RSA
 
         // EME-OAEP encoding
 
-        $lHash = $this->hash->hash($l);
-        $ps = str_repeat(chr(0), $this->k - $mLen - 2 * $this->hLen - 2);
-        $db = $lHash . $ps . chr(1) . $m;
-        $seed = crypt_random_string($this->hLen);
-        $dbMask = $this->_mgf1($seed, $this->k - $this->hLen - 1);
-        $maskedDB = $db ^ $dbMask;
-        $seedMask = $this->_mgf1($maskedDB, $this->hLen);
+        $lHash      = $this->hash->hash($l);
+        $ps         = str_repeat(chr(0), $this->k - $mLen - 2 * $this->hLen - 2);
+        $db         = $lHash . $ps . chr(1) . $m;
+        $seed       = crypt_random_string($this->hLen);
+        $dbMask     = $this->_mgf1($seed, $this->k - $this->hLen - 1);
+        $maskedDB   = $db ^ $dbMask;
+        $seedMask   = $this->_mgf1($maskedDB, $this->hLen);
         $maskedSeed = $seed ^ $seedMask;
-        $em = chr(0) . $maskedSeed . $maskedDB;
+        $em         = chr(0) . $maskedSeed . $maskedDB;
 
         // RSA encryption
 
@@ -2455,7 +2451,7 @@ class Crypt_RSA
      * @param string $l
      * @return string
      */
-    function _rsaes_oaep_decrypt($c, $l = '')
+    public function _rsaes_oaep_decrypt($c, $l = '')
     {
         // Length checking
 
@@ -2479,16 +2475,16 @@ class Crypt_RSA
 
         // EME-OAEP decoding
 
-        $lHash = $this->hash->hash($l);
-        $y = ord($em[0]);
+        $lHash      = $this->hash->hash($l);
+        $y          = ord($em[0]);
         $maskedSeed = substr($em, 1, $this->hLen);
-        $maskedDB = substr($em, $this->hLen + 1);
-        $seedMask = $this->_mgf1($maskedDB, $this->hLen);
-        $seed = $maskedSeed ^ $seedMask;
-        $dbMask = $this->_mgf1($seed, $this->k - $this->hLen - 1);
-        $db = $maskedDB ^ $dbMask;
-        $lHash2 = substr($db, 0, $this->hLen);
-        $m = substr($db, $this->hLen);
+        $maskedDB   = substr($em, $this->hLen + 1);
+        $seedMask   = $this->_mgf1($maskedDB, $this->hLen);
+        $seed       = $maskedSeed ^ $seedMask;
+        $dbMask     = $this->_mgf1($seed, $this->k - $this->hLen - 1);
+        $db         = $maskedDB ^ $dbMask;
+        $lHash2     = substr($db, 0, $this->hLen);
+        $m          = substr($db, $this->hLen);
         if ($lHash != $lHash2) {
             user_error('Decryption error');
             return false;
@@ -2513,11 +2509,11 @@ class Crypt_RSA
      * @param string $m
      * @return string
      */
-    function _raw_encrypt($m)
+    public function _raw_encrypt($m)
     {
         $temp = $this->_os2ip($m);
         $temp = $this->_rsaep($temp);
-        return  $this->_i2osp($temp, $this->k);
+        return $this->_i2osp($temp, $this->k);
     }
 
     /**
@@ -2529,7 +2525,7 @@ class Crypt_RSA
      * @param string $m
      * @return string
      */
-    function _rsaes_pkcs1_v1_5_encrypt($m)
+    public function _rsaes_pkcs1_v1_5_encrypt($m)
     {
         $mLen = strlen($m);
 
@@ -2543,11 +2539,11 @@ class Crypt_RSA
         // EME-PKCS1-v1_5 encoding
 
         $psLen = $this->k - $mLen - 3;
-        $ps = '';
+        $ps    = '';
         while (strlen($ps) != $psLen) {
             $temp = crypt_random_string($psLen - strlen($ps));
             $temp = str_replace("\x00", '', $temp);
-            $ps.= $temp;
+            $ps   .= $temp;
         }
         $type = 2;
         // see the comments of _rsaes_pkcs1_v1_5_decrypt() to understand why this is being done
@@ -2588,7 +2584,7 @@ class Crypt_RSA
      * @param string $c
      * @return string
      */
-    function _rsaes_pkcs1_v1_5_decrypt($c)
+    public function _rsaes_pkcs1_v1_5_decrypt($c)
     {
         // Length checking
 
@@ -2616,7 +2612,7 @@ class Crypt_RSA
         }
 
         $ps = substr($em, 2, strpos($em, chr(0), 2) - 2);
-        $m = substr($em, strlen($ps) + 3);
+        $m  = substr($em, strlen($ps) + 3);
 
         if (strlen($ps) < 8) {
             user_error('Decryption error');
@@ -2635,15 +2631,15 @@ class Crypt_RSA
      *
      * @access private
      * @param string $m
-     * @param int $emBits
+     * @param int    $emBits
      */
-    function _emsa_pss_encode($m, $emBits)
+    public function _emsa_pss_encode($m, $emBits)
     {
         // if $m is larger than two million terrabytes and you're using sha1, PKCS#1 suggests a "Label too long" error
         // be output.
 
         $emLen = ($emBits + 1) >> 3; // ie. ceil($emBits / 8)
-        $sLen = $this->sLen ? $this->sLen : $this->hLen;
+        $sLen  = $this->sLen ? $this->sLen : $this->hLen;
 
         $mHash = $this->hash->hash($m);
         if ($emLen < $this->hLen + $sLen + 2) {
@@ -2651,15 +2647,15 @@ class Crypt_RSA
             return false;
         }
 
-        $salt = crypt_random_string($sLen);
-        $m2 = "\0\0\0\0\0\0\0\0" . $mHash . $salt;
-        $h = $this->hash->hash($m2);
-        $ps = str_repeat(chr(0), $emLen - $sLen - $this->hLen - 2);
-        $db = $ps . chr(1) . $salt;
-        $dbMask = $this->_mgf1($h, $emLen - $this->hLen - 1);
-        $maskedDB = $db ^ $dbMask;
+        $salt        = crypt_random_string($sLen);
+        $m2          = "\0\0\0\0\0\0\0\0" . $mHash . $salt;
+        $h           = $this->hash->hash($m2);
+        $ps          = str_repeat(chr(0), $emLen - $sLen - $this->hLen - 2);
+        $db          = $ps . chr(1) . $salt;
+        $dbMask      = $this->_mgf1($h, $emLen - $this->hLen - 1);
+        $maskedDB    = $db ^ $dbMask;
         $maskedDB[0] = ~chr(0xFF << ($emBits & 7)) & $maskedDB[0];
-        $em = $maskedDB . $h . chr(0xBC);
+        $em          = $maskedDB . $h . chr(0xBC);
 
         return $em;
     }
@@ -2672,16 +2668,16 @@ class Crypt_RSA
      * @access private
      * @param string $m
      * @param string $em
-     * @param int $emBits
+     * @param int    $emBits
      * @return string
      */
-    function _emsa_pss_verify($m, $em, $emBits)
+    public function _emsa_pss_verify($m, $em, $emBits)
     {
         // if $m is larger than two million terrabytes and you're using sha1, PKCS#1 suggests a "Label too long" error
         // be output.
 
         $emLen = ($emBits + 1) >> 3; // ie. ceil($emBits / 8);
-        $sLen = $this->sLen ? $this->sLen : $this->hLen;
+        $sLen  = $this->sLen ? $this->sLen : $this->hLen;
 
         $mHash = $this->hash->hash($m);
         if ($emLen < $this->hLen + $sLen + 2) {
@@ -2693,21 +2689,21 @@ class Crypt_RSA
         }
 
         $maskedDB = substr($em, 0, -$this->hLen - 1);
-        $h = substr($em, -$this->hLen - 1, $this->hLen);
-        $temp = chr(0xFF << ($emBits & 7));
+        $h        = substr($em, -$this->hLen - 1, $this->hLen);
+        $temp     = chr(0xFF << ($emBits & 7));
         if ((~$maskedDB[0] & $temp) != $temp) {
             return false;
         }
         $dbMask = $this->_mgf1($h, $emLen - $this->hLen - 1);
-        $db = $maskedDB ^ $dbMask;
-        $db[0] = ~chr(0xFF << ($emBits & 7)) & $db[0];
-        $temp = $emLen - $this->hLen - $sLen - 2;
+        $db     = $maskedDB ^ $dbMask;
+        $db[0]  = ~chr(0xFF << ($emBits & 7)) & $db[0];
+        $temp   = $emLen - $this->hLen - $sLen - 2;
         if (substr($db, 0, $temp) != str_repeat(chr(0), $temp) || ord($db[$temp]) != 1) {
             return false;
         }
         $salt = substr($db, $temp + 1); // should be $sLen long
-        $m2 = "\0\0\0\0\0\0\0\0" . $mHash . $salt;
-        $h2 = $this->hash->hash($m2);
+        $m2   = "\0\0\0\0\0\0\0\0" . $mHash . $salt;
+        $h2   = $this->hash->hash($m2);
         return $this->_equals($h, $h2);
     }
 
@@ -2720,7 +2716,7 @@ class Crypt_RSA
      * @param string $m
      * @return string
      */
-    function _rsassa_pss_sign($m)
+    public function _rsassa_pss_sign($m)
     {
         // EMSA-PSS encoding
 
@@ -2747,7 +2743,7 @@ class Crypt_RSA
      * @param string $s
      * @return string
      */
-    function _rsassa_pss_verify($m, $s)
+    public function _rsassa_pss_verify($m, $s)
     {
         // Length checking
 
@@ -2784,10 +2780,10 @@ class Crypt_RSA
      *
      * @access private
      * @param string $m
-     * @param int $emLen
+     * @param int    $emLen
      * @return string
      */
-    function _emsa_pkcs1_v1_5_encode($m, $emLen)
+    public function _emsa_pkcs1_v1_5_encode($m, $emLen)
     {
         $h = $this->hash->hash($m);
         if ($h === false) {
@@ -2814,7 +2810,7 @@ class Crypt_RSA
             case 'sha512':
                 $t = pack('H*', '3051300d060960864801650304020305000440');
         }
-        $t.= $h;
+        $t    .= $h;
         $tLen = strlen($t);
 
         if ($emLen < $tLen + 11) {
@@ -2838,7 +2834,7 @@ class Crypt_RSA
      * @param string $m
      * @return string
      */
-    function _rsassa_pkcs1_v1_5_sign($m)
+    public function _rsassa_pkcs1_v1_5_sign($m)
     {
         // EMSA-PKCS1-v1_5 encoding
 
@@ -2868,7 +2864,7 @@ class Crypt_RSA
      * @param string $m
      * @return string
      */
-    function _rsassa_pkcs1_v1_5_verify($m, $s)
+    public function _rsassa_pkcs1_v1_5_verify($m, $s)
     {
         // Length checking
 
@@ -2879,7 +2875,7 @@ class Crypt_RSA
 
         // RSA verification
 
-        $s = $this->_os2ip($s);
+        $s  = $this->_os2ip($s);
         $m2 = $this->_rsavp1($s);
         if ($m2 === false) {
             user_error('Invalid signature');
@@ -2911,7 +2907,7 @@ class Crypt_RSA
      * @access public
      * @param int $mode
      */
-    function setEncryptionMode($mode)
+    public function setEncryptionMode($mode)
     {
         $this->encryptionMode = $mode;
     }
@@ -2924,7 +2920,7 @@ class Crypt_RSA
      * @access public
      * @param int $mode
      */
-    function setSignatureMode($mode)
+    public function setSignatureMode($mode)
     {
         $this->signatureMode = $mode;
     }
@@ -2935,7 +2931,7 @@ class Crypt_RSA
      * @access public
      * @param string $comment
      */
-    function setComment($comment)
+    public function setComment($comment)
     {
         $this->comment = $comment;
     }
@@ -2946,7 +2942,7 @@ class Crypt_RSA
      * @access public
      * @return string
      */
-    function getComment()
+    public function getComment()
     {
         return $this->comment;
     }
@@ -2958,19 +2954,19 @@ class Crypt_RSA
      * If $plaintext exceeds those limits it will be broken up so that it does and the resultant ciphertext's will
      * be concatenated together.
      *
-     * @see self::decrypt()
-     * @access public
      * @param string $plaintext
      * @return string
+     * @see    self::decrypt()
+     * @access public
      */
-    function encrypt($plaintext)
+    public function encrypt($plaintext)
     {
         switch ($this->encryptionMode) {
             case CRYPT_RSA_ENCRYPTION_NONE:
-                $plaintext = str_split($plaintext, $this->k);
+                $plaintext  = str_split($plaintext, $this->k);
                 $ciphertext = '';
                 foreach ($plaintext as $m) {
-                    $ciphertext.= $this->_raw_encrypt($m);
+                    $ciphertext .= $this->_raw_encrypt($m);
                 }
                 return $ciphertext;
             case CRYPT_RSA_ENCRYPTION_PKCS1:
@@ -2979,10 +2975,10 @@ class Crypt_RSA
                     return false;
                 }
 
-                $plaintext = str_split($plaintext, $length);
+                $plaintext  = str_split($plaintext, $length);
                 $ciphertext = '';
                 foreach ($plaintext as $m) {
-                    $ciphertext.= $this->_rsaes_pkcs1_v1_5_encrypt($m);
+                    $ciphertext .= $this->_rsaes_pkcs1_v1_5_encrypt($m);
                 }
                 return $ciphertext;
             //case CRYPT_RSA_ENCRYPTION_OAEP:
@@ -2992,10 +2988,10 @@ class Crypt_RSA
                     return false;
                 }
 
-                $plaintext = str_split($plaintext, $length);
+                $plaintext  = str_split($plaintext, $length);
                 $ciphertext = '';
                 foreach ($plaintext as $m) {
-                    $ciphertext.= $this->_rsaes_oaep_encrypt($m);
+                    $ciphertext .= $this->_rsaes_oaep_encrypt($m);
                 }
                 return $ciphertext;
         }
@@ -3004,18 +3000,18 @@ class Crypt_RSA
     /**
      * Decryption
      *
-     * @see self::encrypt()
-     * @access public
      * @param string $plaintext
      * @return string
+     * @see    self::encrypt()
+     * @access public
      */
-    function decrypt($ciphertext)
+    public function decrypt($ciphertext)
     {
         if ($this->k <= 0) {
             return false;
         }
 
-        $ciphertext = str_split($ciphertext, $this->k);
+        $ciphertext                         = str_split($ciphertext, $this->k);
         $ciphertext[count($ciphertext) - 1] = str_pad($ciphertext[count($ciphertext) - 1], $this->k, chr(0), STR_PAD_LEFT);
 
         $plaintext = '';
@@ -3037,7 +3033,7 @@ class Crypt_RSA
             if ($temp === false) {
                 return false;
             }
-            $plaintext.= $temp;
+            $plaintext .= $temp;
         }
 
         return $plaintext;
@@ -3046,12 +3042,12 @@ class Crypt_RSA
     /**
      * Create a signature
      *
-     * @see self::verify()
-     * @access public
      * @param string $message
      * @return string
+     * @see    self::verify()
+     * @access public
      */
-    function sign($message)
+    public function sign($message)
     {
         if (empty($this->modulus) || empty($this->exponent)) {
             return false;
@@ -3069,13 +3065,13 @@ class Crypt_RSA
     /**
      * Verifies a signature
      *
-     * @see self::sign()
-     * @access public
      * @param string $message
      * @param string $signature
      * @return bool
+     * @see    self::sign()
+     * @access public
      */
-    function verify($message, $signature)
+    public function verify($message, $signature)
     {
         if (empty($this->modulus) || empty($this->exponent)) {
             return false;
@@ -3097,7 +3093,7 @@ class Crypt_RSA
      * @param string $str
      * @return string
      */
-    function _extractBER($str)
+    public function _extractBER($str)
     {
         /* X.509 certs are assumed to be base64 encoded but sometimes they'll have additional things in them
          * above and beyond the ceritificate.

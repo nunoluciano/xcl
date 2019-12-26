@@ -181,8 +181,8 @@ class Net_SSH2
     /**
      * Error information
      *
-     * @see self::getErrors()
-     * @see self::getLastError()
+     * @see    self::getErrors()
+     * @see    self::getLastError()
      * @var string
      * @access private
      */
@@ -191,7 +191,7 @@ class Net_SSH2
     /**
      * Server Identifier
      *
-     * @see self::getServerIdentification()
+     * @see    self::getServerIdentification()
      * @var array|false
      * @access private
      */
@@ -200,7 +200,7 @@ class Net_SSH2
     /**
      * Key Exchange Algorithms
      *
-     * @see self::getKexAlgorithims()
+     * @see    self::getKexAlgorithims()
      * @var array|false
      * @access private
      */
@@ -209,7 +209,7 @@ class Net_SSH2
     /**
      * Minimum Diffie-Hellman Group Bit Size in RFC 4419 Key Exchange Methods
      *
-     * @see self::_key_exchange()
+     * @see    self::_key_exchange()
      * @var int
      * @access private
      */
@@ -218,7 +218,7 @@ class Net_SSH2
     /**
      * Preferred Diffie-Hellman Group Bit Size in RFC 4419 Key Exchange Methods
      *
-     * @see self::_key_exchange()
+     * @see    self::_key_exchange()
      * @var int
      * @access private
      */
@@ -227,7 +227,7 @@ class Net_SSH2
     /**
      * Maximum Diffie-Hellman Group Bit Size in RFC 4419 Key Exchange Methods
      *
-     * @see self::_key_exchange()
+     * @see    self::_key_exchange()
      * @var int
      * @access private
      */
@@ -236,7 +236,7 @@ class Net_SSH2
     /**
      * Server Host Key Algorithms
      *
-     * @see self::getServerHostKeyAlgorithms()
+     * @see    self::getServerHostKeyAlgorithms()
      * @var array|false
      * @access private
      */
@@ -245,7 +245,7 @@ class Net_SSH2
     /**
      * Encryption Algorithms: Client to Server
      *
-     * @see self::getEncryptionAlgorithmsClient2Server()
+     * @see    self::getEncryptionAlgorithmsClient2Server()
      * @var array|false
      * @access private
      */
@@ -254,7 +254,7 @@ class Net_SSH2
     /**
      * Encryption Algorithms: Server to Client
      *
-     * @see self::getEncryptionAlgorithmsServer2Client()
+     * @see    self::getEncryptionAlgorithmsServer2Client()
      * @var array|false
      * @access private
      */
@@ -263,7 +263,7 @@ class Net_SSH2
     /**
      * MAC Algorithms: Client to Server
      *
-     * @see self::getMACAlgorithmsClient2Server()
+     * @see    self::getMACAlgorithmsClient2Server()
      * @var array|false
      * @access private
      */
@@ -272,7 +272,7 @@ class Net_SSH2
     /**
      * MAC Algorithms: Server to Client
      *
-     * @see self::getMACAlgorithmsServer2Client()
+     * @see    self::getMACAlgorithmsServer2Client()
      * @var array|false
      * @access private
      */
@@ -281,7 +281,7 @@ class Net_SSH2
     /**
      * Compression Algorithms: Client to Server
      *
-     * @see self::getCompressionAlgorithmsClient2Server()
+     * @see    self::getCompressionAlgorithmsClient2Server()
      * @var array|false
      * @access private
      */
@@ -290,7 +290,7 @@ class Net_SSH2
     /**
      * Compression Algorithms: Server to Client
      *
-     * @see self::getCompressionAlgorithmsServer2Client()
+     * @see    self::getCompressionAlgorithmsServer2Client()
      * @var array|false
      * @access private
      */
@@ -299,7 +299,7 @@ class Net_SSH2
     /**
      * Languages: Server to Client
      *
-     * @see self::getLanguagesServer2Client()
+     * @see    self::getLanguagesServer2Client()
      * @var array|false
      * @access private
      */
@@ -308,7 +308,7 @@ class Net_SSH2
     /**
      * Languages: Client to Server
      *
-     * @see self::getLanguagesClient2Server()
+     * @see    self::getLanguagesClient2Server()
      * @var array|false
      * @access private
      */
@@ -324,8 +324,8 @@ class Net_SSH2
      *
      *  -- https://tools.ietf.org/html/rfc4253#section-6
      *
-     * @see self::Net_SSH2()
-     * @see self::_send_binary_packet()
+     * @see    self::Net_SSH2()
+     * @see    self::_send_binary_packet()
      * @var int
      * @access private
      */
@@ -334,8 +334,8 @@ class Net_SSH2
     /**
      * Block Size for Client to Server Encryption
      *
-     * @see self::Net_SSH2()
-     * @see self::_get_binary_packet()
+     * @see    self::Net_SSH2()
+     * @see    self::_get_binary_packet()
      * @var int
      * @access private
      */
@@ -344,7 +344,7 @@ class Net_SSH2
     /**
      * Server to Client Encryption Object
      *
-     * @see self::_get_binary_packet()
+     * @see    self::_get_binary_packet()
      * @var object
      * @access private
      */
@@ -353,7 +353,7 @@ class Net_SSH2
     /**
      * Client to Server Encryption Object
      *
-     * @see self::_send_binary_packet()
+     * @see    self::_send_binary_packet()
      * @var object
      * @access private
      */
@@ -362,7 +362,7 @@ class Net_SSH2
     /**
      * Client to Server HMAC Object
      *
-     * @see self::_send_binary_packet()
+     * @see    self::_send_binary_packet()
      * @var object
      * @access private
      */
@@ -371,7 +371,7 @@ class Net_SSH2
     /**
      * Server to Client HMAC Object
      *
-     * @see self::_get_binary_packet()
+     * @see    self::_get_binary_packet()
      * @var object
      * @access private
      */
@@ -384,7 +384,7 @@ class Net_SSH2
      * For the client to server side, the HMAC object will make the HMAC as long as it needs to be.  All we need to do is
      * append it.
      *
-     * @see self::_get_binary_packet()
+     * @see    self::_get_binary_packet()
      * @var int
      * @access private
      */
@@ -393,7 +393,7 @@ class Net_SSH2
     /**
      * Server Public Host Key
      *
-     * @see self::getServerPublicHostKey()
+     * @see    self::getServerPublicHostKey()
      * @var string
      * @access private
      */
@@ -408,7 +408,7 @@ class Net_SSH2
      *
      *  -- https://tools.ietf.org/html/rfc4253#section-7.2
      *
-     * @see self::_key_exchange()
+     * @see    self::_key_exchange()
      * @var string
      * @access private
      */
@@ -419,7 +419,7 @@ class Net_SSH2
      *
      * The current exchange hash
      *
-     * @see self::_key_exchange()
+     * @see    self::_key_exchange()
      * @var string
      * @access private
      */
@@ -428,7 +428,7 @@ class Net_SSH2
     /**
      * Message Numbers
      *
-     * @see self::Net_SSH2()
+     * @see    self::Net_SSH2()
      * @var array
      * @access private
      */
@@ -437,7 +437,7 @@ class Net_SSH2
     /**
      * Disconnection Message 'reason codes' defined in RFC4253
      *
-     * @see self::Net_SSH2()
+     * @see    self::Net_SSH2()
      * @var array
      * @access private
      */
@@ -446,7 +446,7 @@ class Net_SSH2
     /**
      * SSH_MSG_CHANNEL_OPEN_FAILURE 'reason codes', defined in RFC4254
      *
-     * @see self::Net_SSH2()
+     * @see    self::Net_SSH2()
      * @var array
      * @access private
      */
@@ -455,8 +455,8 @@ class Net_SSH2
     /**
      * Terminal Modes
      *
-     * @link https://tools.ietf.org/html/rfc4254#section-8
-     * @see self::Net_SSH2()
+     * @link   https://tools.ietf.org/html/rfc4254#section-8
+     * @see    self::Net_SSH2()
      * @var array
      * @access private
      */
@@ -465,8 +465,8 @@ class Net_SSH2
     /**
      * SSH_MSG_CHANNEL_EXTENDED_DATA's data_type_codes
      *
-     * @link https://tools.ietf.org/html/rfc4254#section-5.2
-     * @see self::Net_SSH2()
+     * @link   https://tools.ietf.org/html/rfc4254#section-5.2
+     * @see    self::Net_SSH2()
      * @var array
      * @access private
      */
@@ -477,7 +477,7 @@ class Net_SSH2
      *
      * See 'Section 6.4.  Data Integrity' of rfc4253 for more info.
      *
-     * @see self::_send_binary_packet()
+     * @see    self::_send_binary_packet()
      * @var int
      * @access private
      */
@@ -488,7 +488,7 @@ class Net_SSH2
      *
      * See 'Section 6.4.  Data Integrity' of rfc4253 for more info.
      *
-     * @see self::_get_binary_packet()
+     * @see    self::_get_binary_packet()
      * @var int
      * @access private
      */
@@ -499,8 +499,8 @@ class Net_SSH2
      *
      * Maps client channels to server channels
      *
-     * @see self::_get_channel_packet()
-     * @see self::exec()
+     * @see    self::_get_channel_packet()
+     * @see    self::exec()
      * @var array
      * @access private
      */
@@ -512,8 +512,8 @@ class Net_SSH2
      * If a client requests a packet from one channel but receives two packets from another those packets should
      * be placed in a buffer
      *
-     * @see self::_get_channel_packet()
-     * @see self::exec()
+     * @see    self::_get_channel_packet()
+     * @see    self::exec()
      * @var array
      * @access private
      */
@@ -524,7 +524,7 @@ class Net_SSH2
      *
      * Contains the type of the last sent message
      *
-     * @see self::_get_channel_packet()
+     * @see    self::_get_channel_packet()
      * @var array
      * @access private
      */
@@ -535,7 +535,7 @@ class Net_SSH2
      *
      * Maximum packet size indexed by channel
      *
-     * @see self::_send_channel_packet()
+     * @see    self::_send_channel_packet()
      * @var array
      * @access private
      */
@@ -544,7 +544,7 @@ class Net_SSH2
     /**
      * Message Number Log
      *
-     * @see self::getLog()
+     * @see    self::getLog()
      * @var array
      * @access private
      */
@@ -553,7 +553,7 @@ class Net_SSH2
     /**
      * Message Log
      *
-     * @see self::getLog()
+     * @see    self::getLog()
      * @var array
      * @access private
      */
@@ -565,8 +565,8 @@ class Net_SSH2
      * Bytes the other party can send before it must wait for the window to be adjusted (0x7FFFFFFF = 2GB)
      *
      * @var int
-     * @see self::_send_channel_packet()
-     * @see self::exec()
+     * @see    self::_send_channel_packet()
+     * @see    self::exec()
      * @access private
      */
     var $window_size = 0x7FFFFFFF;
@@ -576,7 +576,7 @@ class Net_SSH2
      *
      * Window size indexed by channel
      *
-     * @see self::_send_channel_packet()
+     * @see    self::_send_channel_packet()
      * @var array
      * @access private
      */
@@ -587,7 +587,7 @@ class Net_SSH2
      *
      * Window size indexed by channel
      *
-     * @see self::_get_channel_packet()
+     * @see    self::_get_channel_packet()
      * @var array
      * @access private
      */
@@ -598,7 +598,7 @@ class Net_SSH2
      *
      * Verified against $this->session_id
      *
-     * @see self::getServerPublicHostKey()
+     * @see    self::getServerPublicHostKey()
      * @var string
      * @access private
      */
@@ -609,7 +609,7 @@ class Net_SSH2
      *
      * ssh-rsa or ssh-dss.
      *
-     * @see self::getServerPublicHostKey()
+     * @see    self::getServerPublicHostKey()
      * @var string
      * @access private
      */
@@ -618,7 +618,7 @@ class Net_SSH2
     /**
      * Interactive Buffer
      *
-     * @see self::read()
+     * @see    self::read()
      * @var array
      * @access private
      */
@@ -629,8 +629,8 @@ class Net_SSH2
      *
      * Should never exceed NET_SSH2_LOG_MAX_SIZE
      *
-     * @see self::_send_binary_packet()
-     * @see self::_get_binary_packet()
+     * @see    self::_send_binary_packet()
+     * @see    self::_get_binary_packet()
      * @var int
      * @access private
      */
@@ -639,7 +639,7 @@ class Net_SSH2
     /**
      * Timeout
      *
-     * @see self::setTimeout()
+     * @see    self::setTimeout()
      * @access private
      */
     var $timeout;
@@ -647,7 +647,7 @@ class Net_SSH2
     /**
      * Current Timeout
      *
-     * @see self::_get_channel_packet()
+     * @see    self::_get_channel_packet()
      * @access private
      */
     var $curTimeout;
@@ -655,7 +655,7 @@ class Net_SSH2
     /**
      * Real-time log file pointer
      *
-     * @see self::_append_log()
+     * @see    self::_append_log()
      * @var resource
      * @access private
      */
@@ -664,7 +664,7 @@ class Net_SSH2
     /**
      * Real-time log file size
      *
-     * @see self::_append_log()
+     * @see    self::_append_log()
      * @var int
      * @access private
      */
@@ -673,7 +673,7 @@ class Net_SSH2
     /**
      * Has the signature been validated?
      *
-     * @see self::getServerPublicHostKey()
+     * @see    self::getServerPublicHostKey()
      * @var bool
      * @access private
      */
@@ -682,7 +682,7 @@ class Net_SSH2
     /**
      * Real-time log file wrap boolean
      *
-     * @see self::_append_log()
+     * @see    self::_append_log()
      * @access private
      */
     var $realtime_log_wrap;
@@ -690,7 +690,7 @@ class Net_SSH2
     /**
      * Flag to suppress stderr from output
      *
-     * @see self::enableQuietMode()
+     * @see    self::enableQuietMode()
      * @access private
      */
     var $quiet_mode = false;
@@ -715,7 +715,7 @@ class Net_SSH2
      * Flag to request a PTY when using exec()
      *
      * @var bool
-     * @see self::enablePTY()
+     * @see    self::enablePTY()
      * @access private
      */
     var $request_pty = false;
@@ -747,7 +747,7 @@ class Net_SSH2
     /**
      * The Last Interactive Response
      *
-     * @see self::_keyboard_interactive_process()
+     * @see    self::_keyboard_interactive_process()
      * @var string
      * @access private
      */
@@ -756,7 +756,7 @@ class Net_SSH2
     /**
      * Keyboard Interactive Request / Responses
      *
-     * @see self::_keyboard_interactive_process()
+     * @see    self::_keyboard_interactive_process()
      * @var array
      * @access private
      */
@@ -768,8 +768,8 @@ class Net_SSH2
      * Quoting from the RFC, "in some jurisdictions, sending a warning message before
      * authentication may be relevant for getting legal protection."
      *
-     * @see self::_filter()
-     * @see self::getBannerMessage()
+     * @see    self::_filter()
+     * @see    self::getBannerMessage()
      * @var string
      * @access private
      */
@@ -778,7 +778,7 @@ class Net_SSH2
     /**
      * Did read() timeout or return normally?
      *
-     * @see self::isTimeout()
+     * @see    self::isTimeout()
      * @var bool
      * @access private
      */
@@ -787,7 +787,7 @@ class Net_SSH2
     /**
      * Log Boundary
      *
-     * @see self::_format_log()
+     * @see    self::_format_log()
      * @var string
      * @access private
      */
@@ -796,7 +796,7 @@ class Net_SSH2
     /**
      * Log Long Width
      *
-     * @see self::_format_log()
+     * @see    self::_format_log()
      * @var int
      * @access private
      */
@@ -805,7 +805,7 @@ class Net_SSH2
     /**
      * Log Short Width
      *
-     * @see self::_format_log()
+     * @see    self::_format_log()
      * @var int
      * @access private
      */
@@ -814,8 +814,8 @@ class Net_SSH2
     /**
      * Hostname
      *
-     * @see self::Net_SSH2()
-     * @see self::_connect()
+     * @see    self::Net_SSH2()
+     * @see    self::_connect()
      * @var string
      * @access private
      */
@@ -824,8 +824,8 @@ class Net_SSH2
     /**
      * Port Number
      *
-     * @see self::Net_SSH2()
-     * @see self::_connect()
+     * @see    self::Net_SSH2()
+     * @see    self::_connect()
      * @var int
      * @access private
      */
@@ -834,9 +834,9 @@ class Net_SSH2
     /**
      * Number of columns for terminal window size
      *
-     * @see self::getWindowColumns()
-     * @see self::setWindowColumns()
-     * @see self::setWindowSize()
+     * @see    self::getWindowColumns()
+     * @see    self::setWindowColumns()
+     * @see    self::setWindowSize()
      * @var int
      * @access private
      */
@@ -845,9 +845,9 @@ class Net_SSH2
     /**
      * Number of columns for terminal window size
      *
-     * @see self::getWindowRows()
-     * @see self::setWindowRows()
-     * @see self::setWindowSize()
+     * @see    self::getWindowRows()
+     * @see    self::setWindowRows()
+     * @see    self::setWindowSize()
      * @var int
      * @access private
      */
@@ -856,8 +856,8 @@ class Net_SSH2
     /**
      * Crypto Engine
      *
-     * @see self::setCryptoEngine()
-     * @see self::_key_exchange()
+     * @see    self::setCryptoEngine()
+     * @see    self::_key_exchange()
      * @var int
      * @access private
      */
@@ -877,13 +877,13 @@ class Net_SSH2
      * $host can either be a string, representing the host, or a stream resource.
      *
      * @param mixed $host
-     * @param int $port
-     * @param int $timeout
-     * @see self::login()
+     * @param int   $port
+     * @param int   $timeout
      * @return Net_SSH2
      * @access public
+     * @see    self::login()
      */
-    function __construct($host, $port = 22, $timeout = 10)
+    public function __construct($host, $port = 22, $timeout = 10)
     {
         // Include Math_BigInteger
         // Used to do Diffie-Hellman key exchange and DSA/RSA signature verification.
@@ -904,13 +904,13 @@ class Net_SSH2
             include_once 'Crypt/Base.php';
         }
 
-        $this->message_numbers = [
-            1 => 'NET_SSH2_MSG_DISCONNECT',
-            2 => 'NET_SSH2_MSG_IGNORE',
-            3 => 'NET_SSH2_MSG_UNIMPLEMENTED',
-            4 => 'NET_SSH2_MSG_DEBUG',
-            5 => 'NET_SSH2_MSG_SERVICE_REQUEST',
-            6 => 'NET_SSH2_MSG_SERVICE_ACCEPT',
+        $this->message_numbers                  = [
+            1  => 'NET_SSH2_MSG_DISCONNECT',
+            2  => 'NET_SSH2_MSG_IGNORE',
+            3  => 'NET_SSH2_MSG_UNIMPLEMENTED',
+            4  => 'NET_SSH2_MSG_DEBUG',
+            5  => 'NET_SSH2_MSG_SERVICE_REQUEST',
+            6  => 'NET_SSH2_MSG_SERVICE_ACCEPT',
             20 => 'NET_SSH2_MSG_KEXINIT',
             21 => 'NET_SSH2_MSG_NEWKEYS',
             30 => 'NET_SSH2_MSG_KEXDH_INIT',
@@ -920,31 +920,31 @@ class Net_SSH2
             52 => 'NET_SSH2_MSG_USERAUTH_SUCCESS',
             53 => 'NET_SSH2_MSG_USERAUTH_BANNER',
 
-            80 => 'NET_SSH2_MSG_GLOBAL_REQUEST',
-            81 => 'NET_SSH2_MSG_REQUEST_SUCCESS',
-            82 => 'NET_SSH2_MSG_REQUEST_FAILURE',
-            90 => 'NET_SSH2_MSG_CHANNEL_OPEN',
-            91 => 'NET_SSH2_MSG_CHANNEL_OPEN_CONFIRMATION',
-            92 => 'NET_SSH2_MSG_CHANNEL_OPEN_FAILURE',
-            93 => 'NET_SSH2_MSG_CHANNEL_WINDOW_ADJUST',
-            94 => 'NET_SSH2_MSG_CHANNEL_DATA',
-            95 => 'NET_SSH2_MSG_CHANNEL_EXTENDED_DATA',
-            96 => 'NET_SSH2_MSG_CHANNEL_EOF',
-            97 => 'NET_SSH2_MSG_CHANNEL_CLOSE',
-            98 => 'NET_SSH2_MSG_CHANNEL_REQUEST',
-            99 => 'NET_SSH2_MSG_CHANNEL_SUCCESS',
+            80  => 'NET_SSH2_MSG_GLOBAL_REQUEST',
+            81  => 'NET_SSH2_MSG_REQUEST_SUCCESS',
+            82  => 'NET_SSH2_MSG_REQUEST_FAILURE',
+            90  => 'NET_SSH2_MSG_CHANNEL_OPEN',
+            91  => 'NET_SSH2_MSG_CHANNEL_OPEN_CONFIRMATION',
+            92  => 'NET_SSH2_MSG_CHANNEL_OPEN_FAILURE',
+            93  => 'NET_SSH2_MSG_CHANNEL_WINDOW_ADJUST',
+            94  => 'NET_SSH2_MSG_CHANNEL_DATA',
+            95  => 'NET_SSH2_MSG_CHANNEL_EXTENDED_DATA',
+            96  => 'NET_SSH2_MSG_CHANNEL_EOF',
+            97  => 'NET_SSH2_MSG_CHANNEL_CLOSE',
+            98  => 'NET_SSH2_MSG_CHANNEL_REQUEST',
+            99  => 'NET_SSH2_MSG_CHANNEL_SUCCESS',
             100 => 'NET_SSH2_MSG_CHANNEL_FAILURE'
         ];
-        $this->disconnect_reasons = [
-            1 => 'NET_SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT',
-            2 => 'NET_SSH2_DISCONNECT_PROTOCOL_ERROR',
-            3 => 'NET_SSH2_DISCONNECT_KEY_EXCHANGE_FAILED',
-            4 => 'NET_SSH2_DISCONNECT_RESERVED',
-            5 => 'NET_SSH2_DISCONNECT_MAC_ERROR',
-            6 => 'NET_SSH2_DISCONNECT_COMPRESSION_ERROR',
-            7 => 'NET_SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE',
-            8 => 'NET_SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED',
-            9 => 'NET_SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE',
+        $this->disconnect_reasons               = [
+            1  => 'NET_SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT',
+            2  => 'NET_SSH2_DISCONNECT_PROTOCOL_ERROR',
+            3  => 'NET_SSH2_DISCONNECT_KEY_EXCHANGE_FAILED',
+            4  => 'NET_SSH2_DISCONNECT_RESERVED',
+            5  => 'NET_SSH2_DISCONNECT_MAC_ERROR',
+            6  => 'NET_SSH2_DISCONNECT_COMPRESSION_ERROR',
+            7  => 'NET_SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE',
+            8  => 'NET_SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED',
+            9  => 'NET_SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE',
             10 => 'NET_SSH2_DISCONNECT_CONNECTION_LOST',
             11 => 'NET_SSH2_DISCONNECT_BY_APPLICATION',
             12 => 'NET_SSH2_DISCONNECT_TOO_MANY_CONNECTIONS',
@@ -952,10 +952,10 @@ class Net_SSH2
             14 => 'NET_SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE',
             15 => 'NET_SSH2_DISCONNECT_ILLEGAL_USER_NAME'
         ];
-        $this->channel_open_failure_reasons = [
+        $this->channel_open_failure_reasons     = [
             1 => 'NET_SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED'
         ];
-        $this->terminal_modes = [
+        $this->terminal_modes                   = [
             0 => 'NET_SSH2_TTY_OP_END'
         ];
         $this->channel_extended_data_type_codes = [
@@ -990,8 +990,8 @@ class Net_SSH2
         }
 
         if (is_string($host)) {
-            $this->host = $host;
-            $this->port = $port;
+            $this->host    = $host;
+            $this->port    = $port;
             $this->timeout = $timeout;
         }
     }
@@ -1005,7 +1005,7 @@ class Net_SSH2
      * @param int $engine
      * @access private
      */
-    function setCryptoEngine($engine)
+    public function setCryptoEngine($engine)
     {
         $this->crypto_engine = $engine;
     }
@@ -1016,7 +1016,7 @@ class Net_SSH2
      * @return bool
      * @access private
      */
-    function _connect()
+    public function _connect()
     {
         if ($this->bitmap & NET_SSH2_MASK_CONSTRUCTOR) {
             return false;
@@ -1029,7 +1029,7 @@ class Net_SSH2
         $this->last_packet = strtok(microtime(), ' ') + strtok(''); // == microtime(true) in PHP5
 
         if (!is_resource($this->fsock)) {
-            $start = strtok(microtime(), ' ') + strtok(''); // https://php.net/microtime#61838
+            $start       = strtok(microtime(), ' ') + strtok(''); // https://php.net/microtime#61838
             $this->fsock = @fsockopen($this->host, $this->port, $errno, $errstr, $this->curTimeout);
             if (!$this->fsock) {
                 $host = $this->host . ':' . $this->port;
@@ -1038,7 +1038,7 @@ class Net_SSH2
             }
             $elapsed = strtok(microtime(), ' ') + strtok('') - $start;
 
-            $this->curTimeout-= $elapsed;
+            $this->curTimeout -= $elapsed;
 
             if ($this->curTimeout <= 0) {
                 $this->is_timeout = true;
@@ -1053,12 +1053,12 @@ class Net_SSH2
            Feed.  Such lines MUST NOT begin with "SSH-", and SHOULD be encoded
            in ISO-10646 UTF-8 [RFC3629] (language is not specified).  Clients
            MUST be able to process such lines." */
-        $temp = '';
+        $temp  = '';
         $extra = '';
         while (!feof($this->fsock) && !preg_match('#^SSH-(\d\.\d+)#', $temp, $matches)) {
             if (substr($temp, -2) == "\r\n") {
-                $extra.= $temp;
-                $temp = '';
+                $extra .= $temp;
+                $temp  = '';
             }
 
             if ($this->curTimeout) {
@@ -1066,22 +1066,22 @@ class Net_SSH2
                     $this->is_timeout = true;
                     return false;
                 }
-                $read = [$this->fsock];
+                $read  = [$this->fsock];
                 $write = $except = null;
                 $start = strtok(microtime(), ' ') + strtok('');
-                $sec = floor($this->curTimeout);
-                $usec = 1000000 * ($this->curTimeout - $sec);
+                $sec   = floor($this->curTimeout);
+                $usec  = 1000000 * ($this->curTimeout - $sec);
                 // on windows this returns a "Warning: Invalid CRT parameters detected" error
                 // the !count() is done as a workaround for <https://bugs.php.net/42682>
                 if (!@stream_select($read, $write, $except, $sec, $usec) && !count($read)) {
                     $this->is_timeout = true;
                     return false;
                 }
-                $elapsed = strtok(microtime(), ' ') + strtok('') - $start;
-                $this->curTimeout-= $elapsed;
+                $elapsed          = strtok(microtime(), ' ') + strtok('') - $start;
+                $this->curTimeout -= $elapsed;
             }
 
-            $temp.= fgets($this->fsock, 255);
+            $temp .= fgets($this->fsock, 255);
         }
 
         if (feof($this->fsock)) {
@@ -1123,7 +1123,7 @@ class Net_SSH2
             return false;
         }
 
-        $this->bitmap|= NET_SSH2_MASK_CONNECTED;
+        $this->bitmap |= NET_SSH2_MASK_CONNECTED;
 
         return true;
     }
@@ -1136,7 +1136,7 @@ class Net_SSH2
      * @access protected
      * @return string
      */
-    function _generate_identifier()
+    public function _generate_identifier()
     {
         $identifier = 'SSH-2.0-phpseclib_1.0';
 
@@ -1166,7 +1166,7 @@ class Net_SSH2
      * @param string $kexinit_payload_server
      * @access private
      */
-    function _key_exchange($kexinit_payload_server)
+    public function _key_exchange($kexinit_payload_server)
     {
         static $kex_algorithms = [
             'diffie-hellman-group1-sha1', // REQUIRED
@@ -1206,7 +1206,7 @@ class Net_SSH2
                 'twofish192-cbc', // OPTIONAL          Twofish with a 192-bit key
                 'twofish256-cbc',
                 'twofish-cbc',    // OPTIONAL          alias for "twofish256-cbc"
-                                  //                   (this is being retained for historical reasons)
+                //                   (this is being retained for historical reasons)
 
                 'blowfish-ctr',   // OPTIONAL          Blowfish in SDCTR mode
 
@@ -1215,7 +1215,7 @@ class Net_SSH2
                 '3des-ctr',       // RECOMMENDED       Three-key 3DES in SDCTR mode
 
                 '3des-cbc',       // REQUIRED          three-key 3DES in CBC mode
-                 //'none'         // OPTIONAL          no encryption; NOT RECOMMENDED
+                //'none'         // OPTIONAL          no encryption; NOT RECOMMENDED
             ];
 
             if (extension_loaded('openssl') && !extension_loaded('mcrypt')) {
@@ -1279,21 +1279,21 @@ class Net_SSH2
         // some SSH servers have buggy implementations of some of the above algorithms
         switch ($this->server_identifier) {
             case 'SSH-2.0-SSHD':
-                $mac_algorithms = array_values(array_diff(
-                                                   $mac_algorithms,
-                                                   ['hmac-sha1-96', 'hmac-md5-96']
-                ));
+                $mac_algorithms = array_values(
+                    array_diff(
+                        $mac_algorithms,
+                        ['hmac-sha1-96', 'hmac-md5-96']
+                    )
+                );
         }
 
-        static $str_kex_algorithms, $str_server_host_key_algorithms,
-               $encryption_algorithms_server_to_client, $mac_algorithms_server_to_client, $compression_algorithms_server_to_client,
-               $encryption_algorithms_client_to_server, $mac_algorithms_client_to_server, $compression_algorithms_client_to_server;
+        static $str_kex_algorithms, $str_server_host_key_algorithms, $encryption_algorithms_server_to_client, $mac_algorithms_server_to_client, $compression_algorithms_server_to_client, $encryption_algorithms_client_to_server, $mac_algorithms_client_to_server, $compression_algorithms_client_to_server;
 
         if (empty($str_kex_algorithms)) {
-            $str_kex_algorithms = implode(',', $kex_algorithms);
-            $str_server_host_key_algorithms = implode(',', $server_host_key_algorithms);
-            $encryption_algorithms_server_to_client = $encryption_algorithms_client_to_server = implode(',', $encryption_algorithms);
-            $mac_algorithms_server_to_client = $mac_algorithms_client_to_server = implode(',', $mac_algorithms);
+            $str_kex_algorithms                      = implode(',', $kex_algorithms);
+            $str_server_host_key_algorithms          = implode(',', $server_host_key_algorithms);
+            $encryption_algorithms_server_to_client  = $encryption_algorithms_client_to_server = implode(',', $encryption_algorithms);
+            $mac_algorithms_server_to_client         = $mac_algorithms_client_to_server = implode(',', $mac_algorithms);
             $compression_algorithms_server_to_client = $compression_algorithms_client_to_server = implode(',', $compression_algorithms);
         }
 
@@ -1303,34 +1303,34 @@ class Net_SSH2
         $this->_string_shift($response, 1); // skip past the message number (it should be SSH_MSG_KEXINIT)
         $server_cookie = $this->_string_shift($response, 16);
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                 = unpack('Nlength', $this->_string_shift($response, 4));
         $this->kex_algorithms = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                             = unpack('Nlength', $this->_string_shift($response, 4));
         $this->server_host_key_algorithms = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                                         = unpack('Nlength', $this->_string_shift($response, 4));
         $this->encryption_algorithms_client_to_server = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                                         = unpack('Nlength', $this->_string_shift($response, 4));
         $this->encryption_algorithms_server_to_client = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                                  = unpack('Nlength', $this->_string_shift($response, 4));
         $this->mac_algorithms_client_to_server = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                                  = unpack('Nlength', $this->_string_shift($response, 4));
         $this->mac_algorithms_server_to_client = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                                          = unpack('Nlength', $this->_string_shift($response, 4));
         $this->compression_algorithms_client_to_server = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                                          = unpack('Nlength', $this->_string_shift($response, 4));
         $this->compression_algorithms_server_to_client = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                             = unpack('Nlength', $this->_string_shift($response, 4));
         $this->languages_client_to_server = explode(',', $this->_string_shift($response, $temp['length']));
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                             = unpack('Nlength', $this->_string_shift($response, 4));
         $this->languages_server_to_client = explode(',', $this->_string_shift($response, $temp['length']));
 
         extract(unpack('Cfirst_kex_packet_follows', $this->_string_shift($response, 1)));
@@ -1373,14 +1373,14 @@ class Net_SSH2
         // we need to decide upon the symmetric encryption algorithms before we do the diffie-hellman key exchange
         // we don't initialize any crypto-objects, yet - we do that, later. for now, we need the lengths to make the
         // diffie-hellman key exchange as fast as possible
-        $decrypt = $this->_array_intersect_first($encryption_algorithms, $this->encryption_algorithms_server_to_client);
+        $decrypt          = $this->_array_intersect_first($encryption_algorithms, $this->encryption_algorithms_server_to_client);
         $decryptKeyLength = $this->_encryption_algorithm_to_key_size($decrypt);
         if ($decryptKeyLength === null) {
             user_error('No compatible server to client encryption algorithms found');
             return $this->_disconnect(NET_SSH2_DISCONNECT_KEY_EXCHANGE_FAILED);
         }
 
-        $encrypt = $this->_array_intersect_first($encryption_algorithms, $this->encryption_algorithms_client_to_server);
+        $encrypt          = $this->_array_intersect_first($encryption_algorithms, $this->encryption_algorithms_client_to_server);
         $encryptKeyLength = $this->_encryption_algorithm_to_key_size($encrypt);
         if ($encryptKeyLength === null) {
             user_error('No compatible client to server encryption algorithms found');
@@ -1402,7 +1402,7 @@ class Net_SSH2
                 $this->kex_dh_group_size_preferred,
                 $this->kex_dh_group_size_max
             );
-            $packet = pack(
+            $packet                = pack(
                 'Ca*',
                 NET_SSH2_MSG_KEXDH_GEX_REQUEST,
                 $dh_group_sizes_packed
@@ -1424,11 +1424,11 @@ class Net_SSH2
 
             extract(unpack('NprimeLength', $this->_string_shift($response, 4)));
             $primeBytes = $this->_string_shift($response, $primeLength);
-            $prime = new Math_BigInteger($primeBytes, -256);
+            $prime      = new Math_BigInteger($primeBytes, -256);
 
             extract(unpack('NgLength', $this->_string_shift($response, 4)));
             $gBytes = $this->_string_shift($response, $gLength);
-            $g = new Math_BigInteger($gBytes, -256);
+            $g      = new Math_BigInteger($gBytes, -256);
 
             $exchange_hash_rfc4419 = pack(
                 'a*Na*Na*',
@@ -1439,36 +1439,36 @@ class Net_SSH2
                 $gBytes
             );
 
-            $clientKexInitMessage = NET_SSH2_MSG_KEXDH_GEX_INIT;
+            $clientKexInitMessage  = NET_SSH2_MSG_KEXDH_GEX_INIT;
             $serverKexReplyMessage = NET_SSH2_MSG_KEXDH_GEX_REPLY;
         } else {
             switch ($kex_algorithm) {
                 // see https://tools.ietf.org/html/rfc2409#section-6.2 and
                 // https://tools.ietf.org/html/rfc2412, appendex E
                 case 'diffie-hellman-group1-sha1':
-                    $prime = 'FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74' .
-                            '020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F1437' .
-                            '4FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7ED' .
-                            'EE386BFB5A899FA5AE9F24117C4B1FE649286651ECE65381FFFFFFFFFFFFFFFF';
+                    $prime = 'FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74'
+                             . '020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F1437'
+                             . '4FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7ED'
+                             . 'EE386BFB5A899FA5AE9F24117C4B1FE649286651ECE65381FFFFFFFFFFFFFFFF';
                     break;
                 // see https://tools.ietf.org/html/rfc3526#section-3
                 case 'diffie-hellman-group14-sha1':
-                    $prime = 'FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74' .
-                            '020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F1437' .
-                            '4FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7ED' .
-                            'EE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF05' .
-                            '98DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB' .
-                            '9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3B' .
-                            'E39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF695581718' .
-                            '3995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF';
+                    $prime = 'FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74'
+                             . '020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F1437'
+                             . '4FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7ED'
+                             . 'EE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF05'
+                             . '98DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB'
+                             . '9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3B'
+                             . 'E39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF695581718'
+                             . '3995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF';
                     break;
             }
             // For both diffie-hellman-group1-sha1 and diffie-hellman-group14-sha1
             // the generator field element is 2 (decimal) and the hash function is sha1.
-            $g = new Math_BigInteger(2);
-            $prime = new Math_BigInteger($prime, 16);
+            $g                     = new Math_BigInteger(2);
+            $prime                 = new Math_BigInteger($prime, 16);
             $exchange_hash_rfc4419 = '';
-            $clientKexInitMessage = NET_SSH2_MSG_KEXDH_INIT;
+            $clientKexInitMessage  = NET_SSH2_MSG_KEXDH_INIT;
             $serverKexReplyMessage = NET_SSH2_MSG_KEXDH_REPLY;
         }
 
@@ -1487,16 +1487,16 @@ class Net_SSH2
            [VAN-OORSCHOT].
 
            -- https://tools.ietf.org/html/rfc4419#section-6.2 */
-        $one = new Math_BigInteger(1);
+        $one       = new Math_BigInteger(1);
         $keyLength = min($keyLength, $kexHash->getLength());
-        $max = $one->bitwise_leftShift(16 * $keyLength); // 2 * 8 * $keyLength
-        $max = $max->subtract($one);
+        $max       = $one->bitwise_leftShift(16 * $keyLength); // 2 * 8 * $keyLength
+        $max       = $max->subtract($one);
 
         $x = $one->random($one, $max);
         $e = $g->modPow($x, $prime);
 
         $eBytes = $e->toBytes(true);
-        $data = pack('CNa*', $clientKexInitMessage, strlen($eBytes), $eBytes);
+        $data   = pack('CNa*', $clientKexInitMessage, strlen($eBytes), $eBytes);
 
         if (!$this->_send_binary_packet($data)) {
             user_error('Connection closed by server');
@@ -1515,23 +1515,23 @@ class Net_SSH2
             return false;
         }
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp                         = unpack('Nlength', $this->_string_shift($response, 4));
         $this->server_public_host_key = $server_public_host_key = $this->_string_shift($response, $temp['length']);
 
-        $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
+        $temp              = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
         $public_key_format = $this->_string_shift($server_public_host_key, $temp['length']);
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp   = unpack('Nlength', $this->_string_shift($response, 4));
         $fBytes = $this->_string_shift($response, $temp['length']);
-        $f = new Math_BigInteger($fBytes, -256);
+        $f      = new Math_BigInteger($fBytes, -256);
 
-        $temp = unpack('Nlength', $this->_string_shift($response, 4));
+        $temp            = unpack('Nlength', $this->_string_shift($response, 4));
         $this->signature = $this->_string_shift($response, $temp['length']);
 
-        $temp = unpack('Nlength', $this->_string_shift($this->signature, 4));
+        $temp                   = unpack('Nlength', $this->_string_shift($this->signature, 4));
         $this->signature_format = $this->_string_shift($this->signature, $temp['length']);
 
-        $key = $f->modPow($x, $prime);
+        $key      = $f->modPow($x, $prime);
         $keyBytes = $key->toBytes(true);
 
         $this->exchange_hash = pack(
@@ -1616,7 +1616,7 @@ class Net_SSH2
                 if (!class_exists('Crypt_Rijndael')) {
                     include_once 'Crypt/Rijndael.php';
                 }
-                $this->encrypt = new Crypt_Rijndael();
+                $this->encrypt            = new Crypt_Rijndael();
                 $this->encrypt_block_size = 16; // eg. 128 / 8
                 break;
             case 'aes256-ctr':
@@ -1625,21 +1625,21 @@ class Net_SSH2
                 if (!class_exists('Crypt_Rijndael')) {
                     include_once 'Crypt/Rijndael.php';
                 }
-                $this->encrypt = new Crypt_Rijndael(CRYPT_RIJNDAEL_MODE_CTR);
+                $this->encrypt            = new Crypt_Rijndael(CRYPT_RIJNDAEL_MODE_CTR);
                 $this->encrypt_block_size = 16; // eg. 128 / 8
                 break;
             case 'blowfish-cbc':
                 if (!class_exists('Crypt_Blowfish')) {
                     include_once 'Crypt/Blowfish.php';
                 }
-                $this->encrypt = new Crypt_Blowfish();
+                $this->encrypt            = new Crypt_Blowfish();
                 $this->encrypt_block_size = 8;
                 break;
             case 'blowfish-ctr':
                 if (!class_exists('Crypt_Blowfish')) {
                     include_once 'Crypt/Blowfish.php';
                 }
-                $this->encrypt = new Crypt_Blowfish(CRYPT_BLOWFISH_MODE_CTR);
+                $this->encrypt            = new Crypt_Blowfish(CRYPT_BLOWFISH_MODE_CTR);
                 $this->encrypt_block_size = 8;
                 break;
             case 'twofish128-cbc':
@@ -1649,7 +1649,7 @@ class Net_SSH2
                 if (!class_exists('Crypt_Twofish')) {
                     include_once 'Crypt/Twofish.php';
                 }
-                $this->encrypt = new Crypt_Twofish();
+                $this->encrypt            = new Crypt_Twofish();
                 $this->encrypt_block_size = 16;
                 break;
             case 'twofish128-ctr':
@@ -1658,7 +1658,7 @@ class Net_SSH2
                 if (!class_exists('Crypt_Twofish')) {
                     include_once 'Crypt/Twofish.php';
                 }
-                $this->encrypt = new Crypt_Twofish(CRYPT_TWOFISH_MODE_CTR);
+                $this->encrypt            = new Crypt_Twofish(CRYPT_TWOFISH_MODE_CTR);
                 $this->encrypt_block_size = 16;
                 break;
             case 'arcfour':
@@ -1692,7 +1692,7 @@ class Net_SSH2
                 if (!class_exists('Crypt_Rijndael')) {
                     include_once 'Crypt/Rijndael.php';
                 }
-                $this->decrypt = new Crypt_Rijndael();
+                $this->decrypt            = new Crypt_Rijndael();
                 $this->decrypt_block_size = 16;
                 break;
             case 'aes256-ctr':
@@ -1701,21 +1701,21 @@ class Net_SSH2
                 if (!class_exists('Crypt_Rijndael')) {
                     include_once 'Crypt/Rijndael.php';
                 }
-                $this->decrypt = new Crypt_Rijndael(CRYPT_RIJNDAEL_MODE_CTR);
+                $this->decrypt            = new Crypt_Rijndael(CRYPT_RIJNDAEL_MODE_CTR);
                 $this->decrypt_block_size = 16;
                 break;
             case 'blowfish-cbc':
                 if (!class_exists('Crypt_Blowfish')) {
                     include_once 'Crypt/Blowfish.php';
                 }
-                $this->decrypt = new Crypt_Blowfish();
+                $this->decrypt            = new Crypt_Blowfish();
                 $this->decrypt_block_size = 8;
                 break;
             case 'blowfish-ctr':
                 if (!class_exists('Crypt_Blowfish')) {
                     include_once 'Crypt/Blowfish.php';
                 }
-                $this->decrypt = new Crypt_Blowfish(CRYPT_BLOWFISH_MODE_CTR);
+                $this->decrypt            = new Crypt_Blowfish(CRYPT_BLOWFISH_MODE_CTR);
                 $this->decrypt_block_size = 8;
                 break;
             case 'twofish128-cbc':
@@ -1725,7 +1725,7 @@ class Net_SSH2
                 if (!class_exists('Crypt_Twofish')) {
                     include_once 'Crypt/Twofish.php';
                 }
-                $this->decrypt = new Crypt_Twofish();
+                $this->decrypt            = new Crypt_Twofish();
                 $this->decrypt_block_size = 16;
                 break;
             case 'twofish128-ctr':
@@ -1734,7 +1734,7 @@ class Net_SSH2
                 if (!class_exists('Crypt_Twofish')) {
                     include_once 'Crypt/Twofish.php';
                 }
-                $this->decrypt = new Crypt_Twofish(CRYPT_TWOFISH_MODE_CTR);
+                $this->decrypt            = new Crypt_Twofish(CRYPT_TWOFISH_MODE_CTR);
                 $this->decrypt_block_size = 16;
                 break;
             case 'arcfour':
@@ -1760,13 +1760,13 @@ class Net_SSH2
 
             $iv = $kexHash->hash($keyBytes . $this->exchange_hash . 'A' . $this->session_id);
             while ($this->encrypt_block_size > strlen($iv)) {
-                $iv.= $kexHash->hash($keyBytes . $this->exchange_hash . $iv);
+                $iv .= $kexHash->hash($keyBytes . $this->exchange_hash . $iv);
             }
             $this->encrypt->setIV(substr($iv, 0, $this->encrypt_block_size));
 
             $key = $kexHash->hash($keyBytes . $this->exchange_hash . 'C' . $this->session_id);
             while ($encryptKeyLength > strlen($key)) {
-                $key.= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
+                $key .= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
             }
             $this->encrypt->setKey(substr($key, 0, $encryptKeyLength));
         }
@@ -1780,13 +1780,13 @@ class Net_SSH2
 
             $iv = $kexHash->hash($keyBytes . $this->exchange_hash . 'B' . $this->session_id);
             while ($this->decrypt_block_size > strlen($iv)) {
-                $iv.= $kexHash->hash($keyBytes . $this->exchange_hash . $iv);
+                $iv .= $kexHash->hash($keyBytes . $this->exchange_hash . $iv);
             }
             $this->decrypt->setIV(substr($iv, 0, $this->decrypt_block_size));
 
             $key = $kexHash->hash($keyBytes . $this->exchange_hash . 'D' . $this->session_id);
             while ($decryptKeyLength > strlen($key)) {
-                $key.= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
+                $key .= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
             }
             $this->decrypt->setKey(substr($key, 0, $decryptKeyLength));
         }
@@ -1815,23 +1815,23 @@ class Net_SSH2
         switch ($mac_algorithm) {
             case 'hmac-sha2-256':
                 $this->hmac_create = new Crypt_Hash('sha256');
-                $createKeyLength = 32;
+                $createKeyLength   = 32;
                 break;
             case 'hmac-sha1':
                 $this->hmac_create = new Crypt_Hash('sha1');
-                $createKeyLength = 20;
+                $createKeyLength   = 20;
                 break;
             case 'hmac-sha1-96':
                 $this->hmac_create = new Crypt_Hash('sha1-96');
-                $createKeyLength = 20;
+                $createKeyLength   = 20;
                 break;
             case 'hmac-md5':
                 $this->hmac_create = new Crypt_Hash('md5');
-                $createKeyLength = 16;
+                $createKeyLength   = 16;
                 break;
             case 'hmac-md5-96':
                 $this->hmac_create = new Crypt_Hash('md5-96');
-                $createKeyLength = 16;
+                $createKeyLength   = 16;
         }
 
         $mac_algorithm = $this->_array_intersect_first($mac_algorithms, $this->mac_algorithms_server_to_client);
@@ -1840,44 +1840,44 @@ class Net_SSH2
             return $this->_disconnect(NET_SSH2_DISCONNECT_KEY_EXCHANGE_FAILED);
         }
 
-        $checkKeyLength = 0;
+        $checkKeyLength  = 0;
         $this->hmac_size = 0;
         switch ($mac_algorithm) {
             case 'hmac-sha2-256':
                 $this->hmac_check = new Crypt_Hash('sha256');
-                $checkKeyLength = 32;
-                $this->hmac_size = 32;
+                $checkKeyLength   = 32;
+                $this->hmac_size  = 32;
                 break;
             case 'hmac-sha1':
                 $this->hmac_check = new Crypt_Hash('sha1');
-                $checkKeyLength = 20;
-                $this->hmac_size = 20;
+                $checkKeyLength   = 20;
+                $this->hmac_size  = 20;
                 break;
             case 'hmac-sha1-96':
                 $this->hmac_check = new Crypt_Hash('sha1-96');
-                $checkKeyLength = 20;
-                $this->hmac_size = 12;
+                $checkKeyLength   = 20;
+                $this->hmac_size  = 12;
                 break;
             case 'hmac-md5':
                 $this->hmac_check = new Crypt_Hash('md5');
-                $checkKeyLength = 16;
-                $this->hmac_size = 16;
+                $checkKeyLength   = 16;
+                $this->hmac_size  = 16;
                 break;
             case 'hmac-md5-96':
                 $this->hmac_check = new Crypt_Hash('md5-96');
-                $checkKeyLength = 16;
-                $this->hmac_size = 12;
+                $checkKeyLength   = 16;
+                $this->hmac_size  = 12;
         }
 
         $key = $kexHash->hash($keyBytes . $this->exchange_hash . 'E' . $this->session_id);
         while ($createKeyLength > strlen($key)) {
-            $key.= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
+            $key .= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
         }
         $this->hmac_create->setKey(substr($key, 0, $createKeyLength));
 
         $key = $kexHash->hash($keyBytes . $this->exchange_hash . 'F' . $this->session_id);
         while ($checkKeyLength > strlen($key)) {
-            $key.= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
+            $key .= $kexHash->hash($keyBytes . $this->exchange_hash . $key);
         }
         $this->hmac_check->setKey(substr($key, 0, $checkKeyLength));
 
@@ -1905,7 +1905,7 @@ class Net_SSH2
      * @return int|null Number of bytes as an integer or null for unknown
      * @access private
      */
-    function _encryption_algorithm_to_key_size($algorithm)
+    public function _encryption_algorithm_to_key_size($algorithm)
     {
         switch ($algorithm) {
             case 'none':
@@ -1943,13 +1943,13 @@ class Net_SSH2
      * The $password parameter can be a plaintext password, a Crypt_RSA object or an array
      *
      * @param string $username
-     * @param mixed $password
+     * @param mixed  $password
      * @param mixed $...
      * @return bool
-     * @see self::_login()
+     * @see    self::_login()
      * @access public
      */
-    function login($username)
+    public function login($username)
     {
         $args = func_get_args();
         return call_user_func_array([&$this, '_login'], $args);
@@ -1959,13 +1959,13 @@ class Net_SSH2
      * Login Helper
      *
      * @param string $username
-     * @param mixed $password
+     * @param mixed  $password
      * @param mixed $...
      * @return bool
-     * @see self::_login_helper()
+     * @see    self::_login_helper()
      * @access private
      */
-    function _login($username)
+    public function _login($username)
     {
         if (!($this->bitmap & NET_SSH2_MASK_CONSTRUCTOR)) {
             if (!$this->_connect()) {
@@ -1992,11 +1992,11 @@ class Net_SSH2
      * @param string $username
      * @param string $password
      * @return bool
-     * @access private
+     * @access   private
      * @internal It might be worthwhile, at some point, to protect against {@link https://tools.ietf.org/html/rfc4251#section-9.3.9 traffic analysis}
      *           by sending dummy SSH_MSG_IGNORE messages.
      */
-    function _login_helper($username, $password = null)
+    public function _login_helper($username, $password = null)
     {
         if (!($this->bitmap & NET_SSH2_MASK_CONNECTED)) {
             return false;
@@ -2172,7 +2172,7 @@ class Net_SSH2
      * @return bool
      * @access private
      */
-    function _keyboard_interactive_login($username, $password)
+    public function _keyboard_interactive_login($username, $password)
     {
         $packet = pack(
             'CNa*Na*Na*Na*Na*',
@@ -2199,11 +2199,11 @@ class Net_SSH2
     /**
      * Handle the keyboard-interactive requests / responses.
      *
-     * @param string $responses...
+     * @param string $responses ...
      * @return bool
      * @access private
      */
-    function _keyboard_interactive_process()
+    public function _keyboard_interactive_process()
     {
         $responses = func_get_args();
 
@@ -2277,8 +2277,8 @@ class Net_SSH2
                 // see https://tools.ietf.org/html/rfc4256#section-3.4
                 $packet = $logged = pack('CN', NET_SSH2_MSG_USERAUTH_INFO_RESPONSE, count($responses));
                 for ($i = 0; $i < count($responses); $i++) {
-                    $packet.= pack('Na*', strlen($responses[$i]), $responses[$i]);
-                    $logged.= pack('Na*', strlen('dummy-answer'), 'dummy-answer');
+                    $packet .= pack('Na*', strlen($responses[$i]), $responses[$i]);
+                    $logged .= pack('Na*', strlen('dummy-answer'), 'dummy-answer');
                 }
 
                 if (!$this->_send_binary_packet($packet, $logged)) {
@@ -2297,8 +2297,7 @@ class Net_SSH2
                    After receiving the response, the server MUST send either an
                    SSH_MSG_USERAUTH_SUCCESS, SSH_MSG_USERAUTH_FAILURE, or another
                    SSH_MSG_USERAUTH_INFO_REQUEST message.
-                */
-                // maybe phpseclib should force close the connection after x request / responses?  unless something like that is done
+                */ // maybe phpseclib should force close the connection after x request / responses?  unless something like that is done
                 // there could be an infinite loop of request / responses.
                 return $this->_keyboard_interactive_process();
             case NET_SSH2_MSG_USERAUTH_SUCCESS:
@@ -2313,15 +2312,15 @@ class Net_SSH2
     /**
      * Login with an ssh-agent provided key
      *
-     * @param string $username
+     * @param string           $username
      * @param System_SSH_Agent $agent
      * @return bool
      * @access private
      */
-    function _ssh_agent_login($username, $agent)
+    public function _ssh_agent_login($username, $agent)
     {
         $this->agent = $agent;
-        $keys = $agent->requestIdentities();
+        $keys        = $agent->requestIdentities();
         foreach ($keys as $key) {
             if ($this->_privatekey_login($username, $key)) {
                 return true;
@@ -2334,14 +2333,14 @@ class Net_SSH2
     /**
      * Login with an RSA private key
      *
-     * @param string $username
+     * @param string    $username
      * @param Crypt_RSA $password
      * @return bool
-     * @access private
+     * @access   private
      * @internal It might be worthwhile, at some point, to protect against {@link https://tools.ietf.org/html/rfc4251#section-9.3.9 traffic analysis}
      *           by sending dummy SSH_MSG_IGNORE messages.
      */
-    function _privatekey_login($username, $privatekey)
+    public function _privatekey_login($username, $privatekey)
     {
         // see https://tools.ietf.org/html/rfc4253#page-15
         $publickey = $privatekey->getPublicKey(CRYPT_RSA_PUBLIC_FORMAT_RAW);
@@ -2409,7 +2408,7 @@ class Net_SSH2
         $privatekey->setSignatureMode(CRYPT_RSA_SIGNATURE_PKCS1);
         $signature = $privatekey->sign(pack('Na*a*', strlen($this->session_id), $this->session_id, $packet));
         $signature = pack('Na*Na*', strlen('ssh-rsa'), 'ssh-rsa', strlen($signature), $signature);
-        $packet.= pack('Na*', strlen($signature), $signature);
+        $packet    .= pack('Na*', strlen($signature), $signature);
 
         if (!$this->_send_binary_packet($packet)) {
             return false;
@@ -2444,7 +2443,7 @@ class Net_SSH2
      * @param mixed $timeout
      * @access public
      */
-    function setTimeout($timeout)
+    public function setTimeout($timeout)
     {
         $this->timeout = $this->curTimeout = $timeout;
     }
@@ -2454,7 +2453,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function getStdError()
+    public function getStdError()
     {
         return $this->stdErrorLog;
     }
@@ -2465,15 +2464,15 @@ class Net_SSH2
      * If $callback is set to false then Net_SSH2::_get_channel_packet(NET_SSH2_CHANNEL_EXEC) will need to be called manually.
      * In all likelihood, this is not a feature you want to be taking advantage of.
      *
-     * @param string $command
+     * @param string   $command
      * @param Callback $callback
      * @return string
      * @access public
      */
-    function exec($command, $callback = null)
+    public function exec($command, $callback = null)
     {
-        $this->curTimeout = $this->timeout;
-        $this->is_timeout = false;
+        $this->curTimeout  = $this->timeout;
+        $this->is_timeout  = false;
         $this->stdErrorLog = '';
 
         if (!($this->bitmap & NET_SSH2_MASK_LOGIN)) {
@@ -2512,7 +2511,7 @@ class Net_SSH2
 
         if ($this->request_pty === true) {
             $terminal_modes = pack('C', NET_SSH2_TTY_OP_END);
-            $packet = pack(
+            $packet         = pack(
                 'CNNa*CNa*N5a*',
                 NET_SSH2_MSG_CHANNEL_REQUEST,
                 $this->server_channels[NET_SSH2_CHANNEL_EXEC],
@@ -2604,7 +2603,7 @@ class Net_SSH2
                             return true;
                         }
                     } else {
-                        $output.= $temp;
+                        $output .= $temp;
                     }
             }
         }
@@ -2613,19 +2612,19 @@ class Net_SSH2
     /**
      * Creates an interactive shell
      *
-     * @see self::read()
-     * @see self::write()
      * @return bool
      * @access private
+     * @see    self::write()
+     * @see    self::read()
      */
-    function _initShell()
+    public function _initShell()
     {
         if ($this->in_request_pty_exec === true) {
             return true;
         }
 
         $this->window_size_server_to_client[NET_SSH2_CHANNEL_SHELL] = $this->window_size;
-        $packet_size = 0x4000;
+        $packet_size                                                = 0x4000;
 
         $packet = pack(
             'CNa*N3',
@@ -2649,7 +2648,7 @@ class Net_SSH2
         }
 
         $terminal_modes = pack('C', NET_SSH2_TTY_OP_END);
-        $packet = pack(
+        $packet         = pack(
             'CNNa*CNa*N5a*',
             NET_SSH2_MSG_CHANNEL_REQUEST,
             $this->server_channels[NET_SSH2_CHANNEL_SHELL],
@@ -2680,7 +2679,7 @@ class Net_SSH2
 
         switch ($type) {
             case NET_SSH2_MSG_CHANNEL_SUCCESS:
-            // if a pty can't be opened maybe commands can still be executed
+                // if a pty can't be opened maybe commands can still be executed
             case NET_SSH2_MSG_CHANNEL_FAILURE:
                 break;
             default:
@@ -2717,12 +2716,12 @@ class Net_SSH2
     /**
      * Return the channel to be used with read() / write()
      *
-     * @see self::read()
-     * @see self::write()
      * @return int
      * @access public
+     * @see    self::write()
+     * @see    self::read()
      */
-    function _get_interactive_channel()
+    public function _get_interactive_channel()
     {
         switch (true) {
             case $this->in_subsystem:
@@ -2740,7 +2739,7 @@ class Net_SSH2
      * @return int
      * @access public
      */
-    function _get_open_channel()
+    public function _get_open_channel()
     {
         $channel = NET_SSH2_CHANNEL_EXEC;
         do {
@@ -2758,13 +2757,13 @@ class Net_SSH2
      * Returns when there's a match for $expect, which can take the form of a string literal or,
      * if $mode == NET_SSH2_READ_REGEX, a regular expression.
      *
-     * @see self::write()
      * @param string $expect
-     * @param int $mode
+     * @param int    $mode
      * @return string
      * @access public
+     * @see    self::write()
      */
-    function read($expect = '', $mode = NET_SSH2_READ_SIMPLE)
+    public function read($expect = '', $mode = NET_SSH2_READ_SIMPLE)
     {
         $this->curTimeout = $this->timeout;
         $this->is_timeout = false;
@@ -2797,19 +2796,19 @@ class Net_SSH2
                 return $response ? $this->_string_shift($this->interactiveBuffer, strlen($this->interactiveBuffer)) : false;
             }
 
-            $this->interactiveBuffer.= $response;
+            $this->interactiveBuffer .= $response;
         }
     }
 
     /**
      * Inputs a command into an interactive shell.
      *
-     * @see self::read()
      * @param string $cmd
      * @return bool
      * @access public
+     * @see    self::read()
      */
-    function write($cmd)
+    public function write($cmd)
     {
         if (!($this->bitmap & NET_SSH2_MASK_LOGIN)) {
             user_error('Operation disallowed prior to login()');
@@ -2833,12 +2832,12 @@ class Net_SSH2
      * returns that and then that that was passed into stopSubsystem() but that'll be saved for a future date and implemented
      * if there's sufficient demand for such a feature.
      *
-     * @see self::stopSubsystem()
      * @param string $subsystem
      * @return bool
      * @access public
+     * @see    self::stopSubsystem()
      */
-    function startSubsystem($subsystem)
+    public function startSubsystem($subsystem)
     {
         $this->window_size_server_to_client[NET_SSH2_CHANNEL_SUBSYSTEM] = $this->window_size;
 
@@ -2887,7 +2886,7 @@ class Net_SSH2
 
         $this->channel_status[NET_SSH2_CHANNEL_SUBSYSTEM] = NET_SSH2_MSG_CHANNEL_DATA;
 
-        $this->bitmap |= NET_SSH2_MASK_SHELL;
+        $this->bitmap       |= NET_SSH2_MASK_SHELL;
         $this->in_subsystem = true;
 
         return true;
@@ -2896,11 +2895,11 @@ class Net_SSH2
     /**
      * Stops a subsystem.
      *
-     * @see self::startSubsystem()
      * @return bool
      * @access public
+     * @see    self::startSubsystem()
      */
-    function stopSubsystem()
+    public function stopSubsystem()
     {
         $this->in_subsystem = false;
         $this->_close_channel(NET_SSH2_CHANNEL_SUBSYSTEM);
@@ -2914,7 +2913,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function reset()
+    public function reset()
     {
         $this->_close_channel($this->_get_interactive_channel());
     }
@@ -2926,7 +2925,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function isTimeout()
+    public function isTimeout()
     {
         return $this->is_timeout;
     }
@@ -2936,7 +2935,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function disconnect()
+    public function disconnect()
     {
         $this->_disconnect(NET_SSH2_DISCONNECT_BY_APPLICATION);
         if (isset($this->realtime_log_file) && is_resource($this->realtime_log_file)) {
@@ -2952,7 +2951,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function __destruct()
+    public function __destruct()
     {
         $this->disconnect();
     }
@@ -2963,9 +2962,9 @@ class Net_SSH2
      * @return bool
      * @access public
      */
-    function isConnected()
+    public function isConnected()
     {
-        return (bool) ($this->bitmap & NET_SSH2_MASK_CONNECTED);
+        return (bool)($this->bitmap & NET_SSH2_MASK_CONNECTED);
     }
 
     /**
@@ -2974,9 +2973,9 @@ class Net_SSH2
      * @return bool
      * @access public
      */
-    function isAuthenticated()
+    public function isAuthenticated()
     {
-        return (bool) ($this->bitmap & NET_SSH2_MASK_LOGIN);
+        return (bool)($this->bitmap & NET_SSH2_MASK_LOGIN);
     }
 
     /**
@@ -2984,11 +2983,11 @@ class Net_SSH2
      *
      * See '6. Binary Packet Protocol' of rfc4253 for more info.
      *
-     * @see self::_send_binary_packet()
      * @return string
      * @access private
+     * @see    self::_send_binary_packet()
      */
-    function _get_binary_packet()
+    public function _get_binary_packet()
     {
         if (!is_resource($this->fsock) || feof($this->fsock)) {
             user_error('Connection closed prematurely');
@@ -2997,7 +2996,7 @@ class Net_SSH2
         }
 
         $start = strtok(microtime(), ' ') + strtok(''); // https://php.net/microtime#61838
-        $raw = fread($this->fsock, $this->decrypt_block_size);
+        $raw   = fread($this->fsock, $this->decrypt_block_size);
 
         if (!strlen($raw)) {
             return '';
@@ -3031,12 +3030,12 @@ class Net_SSH2
                 $this->bitmap = 0;
                 return false;
             }
-            $buffer.= $temp;
-            $remaining_length-= strlen($temp);
+            $buffer           .= $temp;
+            $remaining_length -= strlen($temp);
         }
         $stop = strtok(microtime(), ' ') + strtok('');
         if (strlen($buffer)) {
-            $raw.= $this->decrypt !== false ? $this->decrypt->decrypt($buffer) : $buffer;
+            $raw .= $this->decrypt !== false ? $this->decrypt->decrypt($buffer) : $buffer;
         }
 
         $payload = $this->_string_shift($raw, $packet_length - $padding_length - 1);
@@ -3061,10 +3060,9 @@ class Net_SSH2
         $this->get_seq_no++;
 
         if (defined('NET_SSH2_LOGGING')) {
-            $current = strtok(microtime(), ' ') + strtok('');
+            $current        = strtok(microtime(), ' ') + strtok('');
             $message_number = isset($this->message_numbers[ord($payload[0])]) ? $this->message_numbers[ord($payload[0])] : 'UNKNOWN (' . ord($payload[0]) . ')';
-            $message_number = '<- ' . $message_number .
-                              ' (since last: ' . round($current - $this->last_packet, 4) . ', network: ' . round($stop - $start, 4) . 's)';
+            $message_number = '<- ' . $message_number . ' (since last: ' . round($current - $this->last_packet, 4) . ', network: ' . round($stop - $start, 4) . 's)';
             $this->_append_log($message_number, $payload);
             $this->last_packet = $current;
         }
@@ -3077,18 +3075,18 @@ class Net_SSH2
      *
      * Because some binary packets need to be ignored...
      *
-     * @see self::_get_binary_packet()
      * @return string
      * @access private
+     * @see    self::_get_binary_packet()
      */
-    function _filter($payload)
+    public function _filter($payload)
     {
         switch (ord($payload[0])) {
             case NET_SSH2_MSG_DISCONNECT:
                 $this->_string_shift($payload, 1);
                 extract(unpack('Nreason_code/Nlength', $this->_string_shift($payload, 8)));
                 $this->errors[] = 'SSH_MSG_DISCONNECT: ' . $this->disconnect_reasons[$reason_code] . "\r\n" . utf8_decode($this->_string_shift($payload, $length));
-                $this->bitmap = 0;
+                $this->bitmap   = 0;
                 return false;
             case NET_SSH2_MSG_IGNORE:
                 $payload = $this->_get_binary_packet();
@@ -3097,7 +3095,7 @@ class Net_SSH2
                 $this->_string_shift($payload, 2);
                 extract(unpack('Nlength', $this->_string_shift($payload, 4)));
                 $this->errors[] = 'SSH_MSG_DEBUG: ' . utf8_decode($this->_string_shift($payload, $length));
-                $payload = $this->_get_binary_packet();
+                $payload        = $this->_get_binary_packet();
                 break;
             case NET_SSH2_MSG_UNIMPLEMENTED:
                 return false;
@@ -3116,7 +3114,7 @@ class Net_SSH2
             $this->_string_shift($payload, 1);
             extract(unpack('Nlength', $this->_string_shift($payload, 4)));
             $this->banner_message = utf8_decode($this->_string_shift($payload, $length));
-            $payload = $this->_get_binary_packet();
+            $payload              = $this->_get_binary_packet();
         }
 
         // only called when we've already logged in
@@ -3162,7 +3160,7 @@ class Net_SSH2
                                 );
 
                                 $this->server_channels[$new_channel] = $server_channel;
-                                $this->channel_status[$new_channel] = NET_SSH2_MSG_CHANNEL_OPEN_CONFIRMATION;
+                                $this->channel_status[$new_channel]  = NET_SSH2_MSG_CHANNEL_OPEN_CONFIRMATION;
                                 if (!$this->_send_binary_packet($packet)) {
                                     return false;
                                 }
@@ -3190,7 +3188,7 @@ class Net_SSH2
                     $this->_string_shift($payload, 1);
                     extract(unpack('Nchannel', $this->_string_shift($payload, 4)));
                     extract(unpack('Nwindow_size', $this->_string_shift($payload, 4)));
-                    $this->window_size_client_to_server[$channel]+= $window_size;
+                    $this->window_size_client_to_server[$channel] += $window_size;
 
                     $payload = ($this->bitmap & NET_SSH2_MASK_WINDOW_ADJUST) ? true : $this->_get_binary_packet();
             }
@@ -3206,7 +3204,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function enableQuietMode()
+    public function enableQuietMode()
     {
         $this->quiet_mode = true;
     }
@@ -3218,7 +3216,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function disableQuietMode()
+    public function disableQuietMode()
     {
         $this->quiet_mode = false;
     }
@@ -3226,13 +3224,13 @@ class Net_SSH2
     /**
      * Returns whether Quiet Mode is enabled or not
      *
-     * @see self::enableQuietMode()
-     * @see self::disableQuietMode()
+     * @return bool
+     * @see    self::disableQuietMode()
      *
      * @access public
-     * @return bool
+     * @see    self::enableQuietMode()
      */
-    function isQuietModeEnabled()
+    public function isQuietModeEnabled()
     {
         return $this->quiet_mode;
     }
@@ -3242,7 +3240,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function enablePTY()
+    public function enablePTY()
     {
         $this->request_pty = true;
     }
@@ -3252,7 +3250,7 @@ class Net_SSH2
      *
      * @access public
      */
-    function disablePTY()
+    public function disablePTY()
     {
         $this->request_pty = false;
     }
@@ -3260,13 +3258,13 @@ class Net_SSH2
     /**
      * Returns whether request-pty is enabled or not
      *
-     * @see self::enablePTY()
-     * @see self::disablePTY()
+     * @return bool
+     * @see    self::disablePTY()
      *
      * @access public
-     * @return bool
+     * @see    self::enablePTY()
      */
-    function isPTYEnabled()
+    public function isPTYEnabled()
     {
         return $this->request_pty;
     }
@@ -3280,7 +3278,7 @@ class Net_SSH2
      * @return mixed
      * @access private
      */
-    function _get_channel_packet($client_channel, $skip_extended = false)
+    public function _get_channel_packet($client_channel, $skip_extended = false)
     {
         if (!empty($this->channel_buffers[$client_channel])) {
             return array_shift($this->channel_buffers[$client_channel]);
@@ -3293,19 +3291,19 @@ class Net_SSH2
                     return true;
                 }
 
-                $read = [$this->fsock];
+                $read  = [$this->fsock];
                 $write = $except = null;
 
                 $start = strtok(microtime(), ' ') + strtok(''); // https://php.net/microtime#61838
-                $sec = floor($this->curTimeout);
-                $usec = 1000000 * ($this->curTimeout - $sec);
+                $sec   = floor($this->curTimeout);
+                $usec  = 1000000 * ($this->curTimeout - $sec);
                 // on windows this returns a "Warning: Invalid CRT parameters detected" error
                 if (!@stream_select($read, $write, $except, $sec, $usec) && !count($read)) {
                     $this->is_timeout = true;
                     return true;
                 }
-                $elapsed = strtok(microtime(), ' ') + strtok('') - $start;
-                $this->curTimeout-= $elapsed;
+                $elapsed          = strtok(microtime(), ' ') + strtok('') - $start;
+                $this->curTimeout -= $elapsed;
             }
 
             $response = $this->_get_binary_packet();
@@ -3330,7 +3328,7 @@ class Net_SSH2
 
             // will not be setup yet on incoming channel open request
             if (isset($channel) && isset($this->channel_status[$channel]) && isset($this->window_size_server_to_client[$channel])) {
-                $this->window_size_server_to_client[$channel]-= strlen($response);
+                $this->window_size_server_to_client[$channel] -= strlen($response);
 
                 // resize the window, if appropriate
                 if ($this->window_size_server_to_client[$channel] < 0) {
@@ -3338,7 +3336,7 @@ class Net_SSH2
                     if (!$this->_send_binary_packet($packet)) {
                         return false;
                     }
-                    $this->window_size_server_to_client[$channel]+= $this->window_size;
+                    $this->window_size_server_to_client[$channel] += $this->window_size;
                 }
 
                 switch ($this->channel_status[$channel]) {
@@ -3349,13 +3347,13 @@ class Net_SSH2
                                 $this->server_channels[$channel] = $server_channel;
                                 extract(unpack('Nwindow_size', $this->_string_shift($response, 4)));
                                 if ($window_size < 0) {
-                                    $window_size&= 0x7FFFFFFF;
-                                    $window_size+= 0x80000000;
+                                    $window_size &= 0x7FFFFFFF;
+                                    $window_size += 0x80000000;
                                 }
                                 $this->window_size_client_to_server[$channel] = $window_size;
-                                $temp = unpack('Npacket_size_client_to_server', $this->_string_shift($response, 4));
+                                $temp                                         = unpack('Npacket_size_client_to_server', $this->_string_shift($response, 4));
                                 $this->packet_size_client_to_server[$channel] = $temp['packet_size_client_to_server'];
-                                $result = $client_channel == $channel ? true : $this->_get_channel_packet($client_channel, $skip_extended);
+                                $result                                       = $client_channel == $channel ? true : $this->_get_channel_packet($client_channel, $skip_extended);
                                 $this->_on_channel_open();
                                 return $result;
                             //case NET_SSH2_MSG_CHANNEL_OPEN_FAILURE:
@@ -3391,8 +3389,7 @@ class Net_SSH2
                         // in OpenSSH it slows things down but only by a couple thousandths of a second.
                         $this->_send_channel_packet($channel, chr(0));
                     }
-                    */
-                    extract(unpack('Nlength', $this->_string_shift($response, 4)));
+                    */ extract(unpack('Nlength', $this->_string_shift($response, 4)));
                     $data = $this->_string_shift($response, $length);
 
                     if ($channel == NET_SSH2_CHANNEL_AGENT_FORWARD) {
@@ -3416,11 +3413,10 @@ class Net_SSH2
                     if ($client_channel == NET_SSH2_CHANNEL_EXEC) {
                         $this->_send_channel_packet($client_channel, chr(0));
                     }
-                    */
-                    // currently, there's only one possible value for $data_type_code: NET_SSH2_EXTENDED_DATA_STDERR
+                    */ // currently, there's only one possible value for $data_type_code: NET_SSH2_EXTENDED_DATA_STDERR
                     extract(unpack('Ndata_type_code/Nlength', $this->_string_shift($response, 8)));
-                    $data = $this->_string_shift($response, $length);
-                    $this->stdErrorLog.= $data;
+                    $data              = $this->_string_shift($response, $length);
+                    $this->stdErrorLog .= $data;
                     if ($skip_extended || $this->quiet_mode) {
                         break;
                     }
@@ -3443,7 +3439,7 @@ class Net_SSH2
                             $this->_string_shift($response, 1);
                             extract(unpack('Nlength', $this->_string_shift($response, 4)));
                             if ($length) {
-                                $this->errors[count($this->errors)].= "\r\n" . $this->_string_shift($response, $length);
+                                $this->errors[count($this->errors)] .= "\r\n" . $this->_string_shift($response, $length);
                             }
 
                             $this->_send_binary_packet(pack('CN', NET_SSH2_MSG_CHANNEL_EOF, $this->server_channels[$client_channel]));
@@ -3470,7 +3466,7 @@ class Net_SSH2
                     $this->curTimeout = 0;
 
                     if ($this->bitmap & NET_SSH2_MASK_SHELL) {
-                        $this->bitmap&= ~NET_SSH2_MASK_SHELL;
+                        $this->bitmap &= ~NET_SSH2_MASK_SHELL;
                     }
                     if ($this->channel_status[$channel] != NET_SSH2_MSG_CHANNEL_EOF) {
                         $this->_send_binary_packet(pack('CN', NET_SSH2_MSG_CHANNEL_CLOSE, $this->server_channels[$channel]));
@@ -3494,11 +3490,11 @@ class Net_SSH2
      *
      * @param string $data
      * @param string $logged
-     * @see self::_get_binary_packet()
      * @return bool
      * @access private
+     * @see    self::_get_binary_packet()
      */
-    function _send_binary_packet($data, $logged = null)
+    public function _send_binary_packet($data, $logged = null)
     {
         if (!is_resource($this->fsock) || feof($this->fsock)) {
             user_error('Connection closed prematurely');
@@ -3515,10 +3511,10 @@ class Net_SSH2
         // 4 (packet length) + 1 (padding length) + 4 (minimal padding amount) == 9
         $packet_length = strlen($data) + 9;
         // round up to the nearest $this->encrypt_block_size
-        $packet_length+= (($this->encrypt_block_size - 1) * $packet_length) % $this->encrypt_block_size;
+        $packet_length += (($this->encrypt_block_size - 1) * $packet_length) % $this->encrypt_block_size;
         // subtracting strlen($data) is obvious - subtracting 5 is necessary because of packet_length and padding_length
         $padding_length = $packet_length - strlen($data) - 5;
-        $padding = crypt_random_string($padding_length);
+        $padding        = crypt_random_string($padding_length);
 
         // we subtract 4 from packet_length because the packet_length field isn't supposed to include itself
         $packet = pack('NCa*', $packet_length - 4, $padding_length, $data . $padding);
@@ -3530,17 +3526,16 @@ class Net_SSH2
             $packet = $this->encrypt->encrypt($packet);
         }
 
-        $packet.= $hmac;
+        $packet .= $hmac;
 
-        $start = strtok(microtime(), ' ') + strtok(''); // https://php.net/microtime#61838
+        $start  = strtok(microtime(), ' ') + strtok(''); // https://php.net/microtime#61838
         $result = strlen($packet) == fputs($this->fsock, $packet);
-        $stop = strtok(microtime(), ' ') + strtok('');
+        $stop   = strtok(microtime(), ' ') + strtok('');
 
         if (defined('NET_SSH2_LOGGING')) {
-            $current = strtok(microtime(), ' ') + strtok('');
+            $current        = strtok(microtime(), ' ') + strtok('');
             $message_number = isset($this->message_numbers[ord($data[0])]) ? $this->message_numbers[ord($data[0])] : 'UNKNOWN (' . ord($data[0]) . ')';
-            $message_number = '-> ' . $message_number .
-                              ' (since last: ' . round($current - $this->last_packet, 4) . ', network: ' . round($stop - $start, 4) . 's)';
+            $message_number = '-> ' . $message_number . ' (since last: ' . round($current - $this->last_packet, 4) . ', network: ' . round($stop - $start, 4) . 's)';
             $this->_append_log($message_number, isset($logged) ? $logged : $data);
             $this->last_packet = $current;
         }
@@ -3556,7 +3551,7 @@ class Net_SSH2
      * @param string $data
      * @access private
      */
-    function _append_log($message_number, $message)
+    public function _append_log($message_number, $message)
     {
         // remove the byte identifying the message type from all but the first two messages (ie. the identification strings)
         if (strlen($message_number) > 2) {
@@ -3571,10 +3566,10 @@ class Net_SSH2
             // the most useful log for SSH2
             case NET_SSH2_LOG_COMPLEX:
                 $this->message_number_log[] = $message_number;
-                $this->log_size+= strlen($message);
-                $this->message_log[] = $message;
+                $this->log_size             += strlen($message);
+                $this->message_log[]        = $message;
                 while ($this->log_size > NET_SSH2_LOG_MAX_SIZE) {
-                    $this->log_size-= strlen(array_shift($this->message_log));
+                    $this->log_size -= strlen(array_shift($this->message_log));
                     array_shift($this->message_number_log);
                 }
                 break;
@@ -3588,7 +3583,7 @@ class Net_SSH2
                         break;
                     default:
                         $start = '<pre>';
-                        $stop = '</pre>';
+                        $stop  = '</pre>';
                 }
                 echo $start . $this->_format_log([$message], [$message_number]) . $stop;
                 @flush();
@@ -3601,8 +3596,8 @@ class Net_SSH2
             case NET_SSH2_LOG_REALTIME_FILE:
                 if (!isset($this->realtime_log_file)) {
                     // PHP doesn't seem to like using constants in fopen()
-                    $filename = NET_SSH2_LOG_REALTIME_FILENAME;
-                    $fp = fopen($filename, 'w');
+                    $filename                = NET_SSH2_LOG_REALTIME_FILENAME;
+                    $fp                      = fopen($filename, 'w');
                     $this->realtime_log_file = $fp;
                 }
                 if (!is_resource($this->realtime_log_file)) {
@@ -3610,11 +3605,11 @@ class Net_SSH2
                 }
                 $entry = $this->_format_log([$message], [$message_number]);
                 if ($this->realtime_log_wrap) {
-                    $temp = "<<< START >>>\r\n";
-                    $entry.= $temp;
+                    $temp  = "<<< START >>>\r\n";
+                    $entry .= $temp;
                     fseek($this->realtime_log_file, ftell($this->realtime_log_file) - strlen($temp));
                 }
-                $this->realtime_log_size+= strlen($entry);
+                $this->realtime_log_size += strlen($entry);
                 if ($this->realtime_log_size > NET_SSH2_LOG_MAX_SIZE) {
                     fseek($this->realtime_log_file, 0);
                     $this->realtime_log_size = strlen($entry);
@@ -3629,19 +3624,19 @@ class Net_SSH2
      *
      * Spans multiple SSH_MSG_CHANNEL_DATAs if appropriate
      *
-     * @param int $client_channel
+     * @param int    $client_channel
      * @param string $data
      * @return bool
      * @access private
      */
-    function _send_channel_packet($client_channel, $data)
+    public function _send_channel_packet($client_channel, $data)
     {
         while (strlen($data)) {
             if (!$this->window_size_client_to_server[$client_channel]) {
-                $this->bitmap^= NET_SSH2_MASK_WINDOW_ADJUST;
+                $this->bitmap ^= NET_SSH2_MASK_WINDOW_ADJUST;
                 // using an invalid channel will let the buffers be built up for the valid channels
                 $this->_get_channel_packet(-1);
-                $this->bitmap^= NET_SSH2_MASK_WINDOW_ADJUST;
+                $this->bitmap ^= NET_SSH2_MASK_WINDOW_ADJUST;
             }
 
             /* The maximum amount of data allowed is determined by the maximum
@@ -3653,15 +3648,15 @@ class Net_SSH2
                 $this->window_size_client_to_server[$client_channel]
             );
 
-            $temp = $this->_string_shift($data, $max_size);
-            $packet = pack(
+            $temp                                                = $this->_string_shift($data, $max_size);
+            $packet                                              = pack(
                 'CN2a*',
                 NET_SSH2_MSG_CHANNEL_DATA,
                 $this->server_channels[$client_channel],
                 strlen($temp),
                 $temp
             );
-            $this->window_size_client_to_server[$client_channel]-= strlen($temp);
+            $this->window_size_client_to_server[$client_channel] -= strlen($temp);
             if (!$this->_send_binary_packet($packet)) {
                 return false;
             }
@@ -3677,12 +3672,12 @@ class Net_SSH2
      * and for SFTP channels are presumably closed when the client disconnects.  This functions is intended
      * for SCP more than anything.
      *
-     * @param int $client_channel
+     * @param int  $client_channel
      * @param bool $want_reply
      * @return bool
      * @access private
      */
-    function _close_channel($client_channel, $want_reply = false)
+    public function _close_channel($client_channel, $want_reply = false)
     {
         // see https://tools.ietf.org/html/rfc4254#section-5.3
 
@@ -3704,7 +3699,7 @@ class Net_SSH2
         }
 
         if ($this->bitmap & NET_SSH2_MASK_SHELL) {
-            $this->bitmap&= ~NET_SSH2_MASK_SHELL;
+            $this->bitmap &= ~NET_SSH2_MASK_SHELL;
         }
     }
 
@@ -3715,7 +3710,7 @@ class Net_SSH2
      * @return bool
      * @access private
      */
-    function _disconnect($reason)
+    public function _disconnect($reason)
     {
         if ($this->bitmap & NET_SSH2_MASK_CONNECTED) {
             $data = pack('CNNa*Na*', NET_SSH2_MSG_DISCONNECT, $reason, 0, '', 0, '');
@@ -3732,11 +3727,11 @@ class Net_SSH2
      * Inspired by array_shift
      *
      * @param string $string
-     * @param int $index
+     * @param int    $index
      * @return string
      * @access private
      */
-    function _string_shift(&$string, $index = 1)
+    public function _string_shift(&$string, $index = 1)
     {
         $substr = substr($string, 0, $index);
         $string = substr($string, $index);
@@ -3753,7 +3748,7 @@ class Net_SSH2
      * @param array $array
      * @access private
      */
-    function _define_array()
+    public function _define_array()
     {
         $args = func_get_args();
         foreach ($args as $arg) {
@@ -3775,7 +3770,7 @@ class Net_SSH2
      * @access public
      * @return array|false|string
      */
-    function getLog()
+    public function getLog()
     {
         if (!defined('NET_SSH2_LOGGING')) {
             return false;
@@ -3801,27 +3796,27 @@ class Net_SSH2
      * @access private
      * @return string
      */
-    function _format_log($message_log, $message_number_log)
+    public function _format_log($message_log, $message_number_log)
     {
         $output = '';
         for ($i = 0; $i < count($message_log); $i++) {
-            $output.= $message_number_log[$i] . "\r\n";
+            $output      .= $message_number_log[$i] . "\r\n";
             $current_log = $message_log[$i];
-            $j = 0;
+            $j           = 0;
             do {
                 if (strlen($current_log)) {
-                    $output.= str_pad(dechex($j), 7, '0', STR_PAD_LEFT) . '0  ';
+                    $output .= str_pad(dechex($j), 7, '0', STR_PAD_LEFT) . '0  ';
                 }
                 $fragment = $this->_string_shift($current_log, $this->log_short_width);
-                $hex = substr(preg_replace_callback('#.#s', [$this, '_format_log_helper'], $fragment), strlen($this->log_boundary));
+                $hex      = substr(preg_replace_callback('#.#s', [$this, '_format_log_helper'], $fragment), strlen($this->log_boundary));
                 // replace non ASCII printable characters with dots
                 // https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
                 // also replace < with a . since < messes up the output on web browsers
-                $raw = preg_replace('#[^\x20-\x7E]|<#', '.', $fragment);
-                $output.= str_pad($hex, $this->log_long_width - $this->log_short_width, ' ') . $raw . "\r\n";
+                $raw    = preg_replace('#[^\x20-\x7E]|<#', '.', $fragment);
+                $output .= str_pad($hex, $this->log_long_width - $this->log_short_width, ' ') . $raw . "\r\n";
                 $j++;
             } while (strlen($current_log));
-            $output.= "\r\n";
+            $output .= "\r\n";
         }
 
         return $output;
@@ -3836,7 +3831,7 @@ class Net_SSH2
      * @access private
      * @return string
      */
-    function _format_log_helper($matches)
+    public function _format_log_helper($matches)
     {
         return $this->log_boundary . str_pad(dechex(ord($matches[0])), 2, '0', STR_PAD_LEFT);
     }
@@ -3850,7 +3845,7 @@ class Net_SSH2
      *
      * @access private
      */
-    function _on_channel_open()
+    public function _on_channel_open()
     {
         if (isset($this->agent)) {
             $this->agent->_on_channel_open($this);
@@ -3866,7 +3861,7 @@ class Net_SSH2
      * @return mixed False if intersection is empty, else intersected value.
      * @access private
      */
-    function _array_intersect_first($array1, $array2)
+    public function _array_intersect_first($array1, $array2)
     {
         foreach ($array1 as $value) {
             if (in_array($value, $array2)) {
@@ -3882,7 +3877,7 @@ class Net_SSH2
      * @return string[]
      * @access public
      */
-    function getErrors()
+    public function getErrors()
     {
         return $this->errors;
     }
@@ -3893,7 +3888,7 @@ class Net_SSH2
      * @return string
      * @access public
      */
-    function getLastError()
+    public function getLastError()
     {
         $count = count($this->errors);
 
@@ -3908,7 +3903,7 @@ class Net_SSH2
      * @return string
      * @access public
      */
-    function getServerIdentification()
+    public function getServerIdentification()
     {
         $this->_connect();
 
@@ -3921,7 +3916,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getKexAlgorithms()
+    public function getKexAlgorithms()
     {
         $this->_connect();
 
@@ -3934,7 +3929,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getServerHostKeyAlgorithms()
+    public function getServerHostKeyAlgorithms()
     {
         $this->_connect();
 
@@ -3947,7 +3942,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getEncryptionAlgorithmsClient2Server()
+    public function getEncryptionAlgorithmsClient2Server()
     {
         $this->_connect();
 
@@ -3960,7 +3955,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getEncryptionAlgorithmsServer2Client()
+    public function getEncryptionAlgorithmsServer2Client()
     {
         $this->_connect();
 
@@ -3973,7 +3968,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getMACAlgorithmsClient2Server()
+    public function getMACAlgorithmsClient2Server()
     {
         $this->_connect();
 
@@ -3986,7 +3981,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getMACAlgorithmsServer2Client()
+    public function getMACAlgorithmsServer2Client()
     {
         $this->_connect();
 
@@ -3999,7 +3994,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getCompressionAlgorithmsClient2Server()
+    public function getCompressionAlgorithmsClient2Server()
     {
         $this->_connect();
 
@@ -4012,7 +4007,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getCompressionAlgorithmsServer2Client()
+    public function getCompressionAlgorithmsServer2Client()
     {
         $this->_connect();
 
@@ -4025,7 +4020,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getLanguagesServer2Client()
+    public function getLanguagesServer2Client()
     {
         $this->_connect();
 
@@ -4038,7 +4033,7 @@ class Net_SSH2
      * @return array
      * @access public
      */
-    function getLanguagesClient2Server()
+    public function getLanguagesClient2Server()
     {
         $this->_connect();
 
@@ -4054,7 +4049,7 @@ class Net_SSH2
      * @return string
      * @access public
      */
-    function getBannerMessage()
+    public function getBannerMessage()
     {
         return $this->banner_message;
     }
@@ -4068,7 +4063,7 @@ class Net_SSH2
      * @return mixed
      * @access public
      */
-    function getServerPublicHostKey()
+    public function getServerPublicHostKey()
     {
         if (!($this->bitmap & NET_SSH2_MASK_CONSTRUCTOR)) {
             if (!$this->_connect()) {
@@ -4076,16 +4071,14 @@ class Net_SSH2
             }
         }
 
-        $signature = $this->signature;
+        $signature              = $this->signature;
         $server_public_host_key = $this->server_public_host_key;
 
         extract(unpack('Nlength', $this->_string_shift($server_public_host_key, 4)));
         $this->_string_shift($server_public_host_key, $length);
 
         if ($this->signature_validated) {
-            return $this->bitmap ?
-                $this->signature_format . ' ' . base64_encode($this->server_public_host_key) :
-                false;
+            return $this->bitmap ? $this->signature_format . ' ' . base64_encode($this->server_public_host_key) : false;
         }
 
         $this->signature_validated = true;
@@ -4095,16 +4088,16 @@ class Net_SSH2
                 $zero = new Math_BigInteger();
 
                 $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
-                $p = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
+                $p    = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
 
                 $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
-                $q = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
+                $q    = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
 
                 $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
-                $g = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
+                $g    = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
 
                 $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
-                $y = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
+                $y    = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
 
                 /* The value for 'dss_signature_blob' is encoded as a string containing
                    r, followed by s (which are 160-bit integers, without lengths or
@@ -4150,11 +4143,11 @@ class Net_SSH2
                 break;
             case 'ssh-rsa':
                 $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
-                $e = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
+                $e    = new Math_BigInteger($this->_string_shift($server_public_host_key, $temp['length']), -256);
 
-                $temp = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
-                $rawN = $this->_string_shift($server_public_host_key, $temp['length']);
-                $n = new Math_BigInteger($rawN, -256);
+                $temp    = unpack('Nlength', $this->_string_shift($server_public_host_key, 4));
+                $rawN    = $this->_string_shift($server_public_host_key, $temp['length']);
+                $n       = new Math_BigInteger($rawN, -256);
                 $nLength = strlen(ltrim($rawN, "\0"));
 
                 /*
@@ -4175,7 +4168,7 @@ class Net_SSH2
                 */
 
                 $temp = unpack('Nlength', $this->_string_shift($signature, 4));
-                $s = new Math_BigInteger($this->_string_shift($signature, $temp['length']), 256);
+                $s    = new Math_BigInteger($this->_string_shift($signature, $temp['length']), 256);
 
                 // validate an RSA signature per "8.2 RSASSA-PKCS1-v1_5", "5.2.2 RSAVP1", and "9.1 EMSA-PSS" in the
                 // following URL:
@@ -4213,7 +4206,7 @@ class Net_SSH2
      * @return false|int
      * @access public
      */
-    function getExitStatus()
+    public function getExitStatus()
     {
         if (is_null($this->exit_status)) {
             return false;
@@ -4227,7 +4220,7 @@ class Net_SSH2
      * @return int
      * @access public
      */
-    function getWindowColumns()
+    public function getWindowColumns()
     {
         return $this->windowColumns;
     }
@@ -4238,7 +4231,7 @@ class Net_SSH2
      * @return int
      * @access public
      */
-    function getWindowRows()
+    public function getWindowRows()
     {
         return $this->windowRows;
     }
@@ -4249,7 +4242,7 @@ class Net_SSH2
      * @param int $value
      * @access public
      */
-    function setWindowColumns($value)
+    public function setWindowColumns($value)
     {
         $this->windowColumns = $value;
     }
@@ -4260,7 +4253,7 @@ class Net_SSH2
      * @param int $value
      * @access public
      */
-    function setWindowRows($value)
+    public function setWindowRows($value)
     {
         $this->windowRows = $value;
     }
@@ -4272,9 +4265,9 @@ class Net_SSH2
      * @param int $rows
      * @access public
      */
-    function setWindowSize($columns = 80, $rows = 24)
+    public function setWindowSize($columns = 80, $rows = 24)
     {
         $this->windowColumns = $columns;
-        $this->windowRows = $rows;
+        $this->windowRows    = $rows;
     }
 }

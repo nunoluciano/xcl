@@ -2,16 +2,17 @@
 
 require_once dirname(__FILE__).'/D3forumAntispamDefault.class.php' ;
 
-class D3forumAntispamDefaultmobile extends D3forumAntispamDefault {
-
-function checkValidate()
+class D3forumAntispamDefaultmobile extends D3forumAntispamDefault
 {
-	if( $this->isMobile() ) {
-		return true ;
-	} else {
-		return parent::checkValidate() ;
-	}
-}
+
+    public function checkValidate()
+    {
+        if ($this->isMobile()) {
+            return true;
+        } else {
+            return parent::checkValidate();
+        }
+    }
 
 }
 

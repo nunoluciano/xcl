@@ -22,14 +22,14 @@ function smarty_function_formmail($params, &$smarty)
 
 class PicoFormProcessBySmartyFormmail extends PicoFormProcessBySmartyBase
 {
-	function __construct()
-	{
-		$this->mypluginname = 'formmail';
-	}
+    public function __construct()
+    {
+        $this->mypluginname = 'formmail';
+    }
 
-	function executeLast()
-	{
-		$this->sendMail();
-		//$this->storeDB() ;
-	}
+    public function executeLast()
+    {
+        $this->sendMail();
+        //$this->storeDB() ;
+    }
 }
