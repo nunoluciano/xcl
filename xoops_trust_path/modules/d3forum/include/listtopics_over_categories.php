@@ -14,7 +14,7 @@ if( empty( $cat_ids ) ) {
 	$cat_ids4param = '0' ;
 	$whr_cat_ids = '1' ;
 	$isadminorcatmod = $isadmin ;
-} else if(1 == sizeof($cat_ids )) {
+} else if(1 == count($cat_ids )) {
 	// topics under the specified category
 	$pagetitle = _MD_D3FORUM_LISTTOPICSINCATEGORY ;
 	$cat_id = $cat_ids[0] ;
@@ -192,7 +192,7 @@ $xoopsTpl->assign(
         'pagenav' => @$pagenav,
         'page' => 'listtopics_over_categories',
         'pagetitle' => $pagetitle,
-        'xoops_pagetitle' => join(' - ', array_filter([$pagetitle, isset($category4assign['title'])? $category4assign['title'] : '', $xoopsModule->getVar('name')])),
+        'xoops_pagetitle' => implode(' - ', array_filter([$pagetitle, isset($category4assign['title'])? $category4assign['title'] : '', $xoopsModule->getVar('name')])),
     ]
 ) ;
 

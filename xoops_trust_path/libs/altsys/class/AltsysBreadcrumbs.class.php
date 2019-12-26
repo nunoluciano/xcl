@@ -36,7 +36,7 @@ public $paths = [];
             $ret[] = $val ;
         }
         }
-        unset($ret[ sizeof($ret) - 1 ]['url']) ;
+        unset($ret[count($ret) - 1 ]['url']) ;
         return $ret ;
     }
 

@@ -36,7 +36,7 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract
             }
         }
 
-        $size = sizeof($this->dictionary_cache[$this->dictionary_file]);
+        $size = count($this->dictionary_cache[$this->dictionary_file]);
         $ret  = [];
         for ($i = 0; $i < 3; $i++) {
             $ret[] = $this->dictionary_cache[$this->dictionary_file][abs(crc32(md5(gmdate('YmdH', $time) . XOOPS_DB_PREFIX . XOOPS_DB_NAME . $i))) % $size];

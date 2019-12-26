@@ -949,7 +949,7 @@ class Archive_Zip
       }
 
     // ----- Create the Central Dir files header
-    for ($i=0, $v_count=0; $i<sizeof($v_header_list); $i++) {
+    for ($i=0, $v_count=0; $i < count($v_header_list); $i++) {
         // ----- Create the file header
       if ('ok' == $v_header_list[$i]['status']) {
           if (1 != ($v_result=$this->_writeCentralFileHeader($v_header_list[$i]))) {
@@ -1113,7 +1113,7 @@ class Archive_Zip
     $v_offset = @ftell($this->_zip_fd);
 
     // ----- Create the Central Dir files header
-    for ($i=0, $v_count=0; $i<sizeof($v_header_list); $i++) {
+    for ($i=0, $v_count=0; $i < count($v_header_list); $i++) {
         // ----- Create the file header
       if ('ok' == $v_header_list[$i]['status']) {
           if (1 != ($v_result = $this->_writeCentralFileHeader($v_header_list[$i]))) {
@@ -1180,7 +1180,7 @@ class Archive_Zip
       $v_header = [];
 
     // ----- Recuperate the current number of elt in list
-    $v_nb = sizeof($p_result_list);
+    $v_nb = count($p_result_list);
 
     // ----- Loop on the files
     for ($j=0; ($j<count($p_list)) && (1 == $v_result); $j++) {
@@ -1248,7 +1248,7 @@ class Archive_Zip
               $v_result = $this->_addFileList($p_temp_list, $p_result_list, $p_add_dir, $p_remove_dir, $p_remove_all_dir, $p_params);
 
             // ----- Update the number of elements of the list
-            $v_nb = sizeof($p_result_list);
+            $v_nb = count($p_result_list);
           }
         }
 
@@ -1535,14 +1535,14 @@ class Archive_Zip
         strlen($p_header['stored_filename']), $p_header['extra_len']);
 
     // ----- Write the first 148 bytes of the header in the archive
-    fputs($this->_zip_fd, $v_binary_data, 30);
+    fwrite($this->_zip_fd, $v_binary_data, 30);
 
     // ----- Write the variable fields
     if (0 != strlen($p_header['stored_filename'])) {
-        fputs($this->_zip_fd, $p_header['stored_filename'], strlen($p_header['stored_filename']));
+        fwrite($this->_zip_fd, $p_header['stored_filename'], strlen($p_header['stored_filename']));
     }
       if (0 != $p_header['extra_len']) {
-          fputs($this->_zip_fd, $p_header['extra'], $p_header['extra_len']);
+          fwrite($this->_zip_fd, $p_header['extra'], $p_header['extra_len']);
       }
 
     // ----- Return
@@ -1585,17 +1585,17 @@ class Archive_Zip
                           $p_header['disk'], $p_header['internal'], $p_header['external'], $p_header['offset']);
 
     // ----- Write the 42 bytes of the header in the zip file
-    fputs($this->_zip_fd, $v_binary_data, 46);
+    fwrite($this->_zip_fd, $v_binary_data, 46);
 
     // ----- Write the variable fields
     if (0 != strlen($p_header['stored_filename'])) {
-        fputs($this->_zip_fd, $p_header['stored_filename'], strlen($p_header['stored_filename']));
+        fwrite($this->_zip_fd, $p_header['stored_filename'], strlen($p_header['stored_filename']));
     }
       if (0 != $p_header['extra_len']) {
-          fputs($this->_zip_fd, $p_header['extra'], $p_header['extra_len']);
+          fwrite($this->_zip_fd, $p_header['extra'], $p_header['extra_len']);
       }
       if (0 != $p_header['comment_len']) {
-          fputs($this->_zip_fd, $p_header['comment'], $p_header['comment_len']);
+          fwrite($this->_zip_fd, $p_header['comment'], $p_header['comment_len']);
       }
 
     // ----- Return
@@ -1627,11 +1627,11 @@ class Archive_Zip
     $v_binary_data = pack('VvvvvVVv', 0x06054b50, 0, 0, $p_nb_entries, $p_nb_entries, $p_size, $p_offset, strlen($p_comment));
 
     // ----- Write the 22 bytes of the header in the zip file
-    fputs($this->_zip_fd, $v_binary_data, 22);
+    fwrite($this->_zip_fd, $v_binary_data, 22);
 
     // ----- Write the variable fields
     if (0 != strlen($p_comment)) {
-        fputs($this->_zip_fd, $p_comment, strlen($p_comment));
+        fwrite($this->_zip_fd, $p_comment, strlen($p_comment));
     }
 
     // ----- Return
@@ -1855,7 +1855,7 @@ class Archive_Zip
 
           // ----- Look if the filename is in the list
           for ($j=0;
-                  ($j<sizeof($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]))
+                  ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]))
                && (!$v_extract);
                $j++) {
 
@@ -1896,7 +1896,7 @@ class Archive_Zip
                && (0 != $p_params[ARCHIVE_ZIP_PARAM_BY_INDEX])) {
 
           // ----- Look if the index is in the list
-          for ($j=$j_start; ($j<sizeof($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX])) && (!$v_extract); $j++) {
+          for ($j=$j_start; ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX])) && (!$v_extract); $j++) {
               if (($i>=$p_params[ARCHIVE_ZIP_PARAM_BY_INDEX][$j]['start']) && ($i<=$p_params[ARCHIVE_ZIP_PARAM_BY_INDEX][$j]['end'])) {
                   $v_extract = true;
               }
@@ -2087,7 +2087,7 @@ class Archive_Zip
         //return $v_result;
       }
       // ----- Look if file is write protected
-      elseif (!is_writeable($p_entry['filename'])) {
+      elseif (!is_writable($p_entry['filename'])) {
 
         // ----- Change the file status
         $p_entry['status'] = 'write_protected';
@@ -2704,7 +2704,7 @@ class Archive_Zip
 
           // ----- Look if the filename is in the list
           for ($j=0;
-               ($j<sizeof($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]))
+               ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]))
                  && (!$v_found);
                $j++) {
 
@@ -2752,7 +2752,7 @@ class Archive_Zip
 
           // ----- Look if the index is in the list
           for ($j=$j_start;
-               ($j<sizeof($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]))
+               ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]))
                  && (!$v_found);
                $j++) {
               if (($i>=$p_params[ARCHIVE_ZIP_PARAM_BY_INDEX][$j]['start'])
@@ -2796,7 +2796,7 @@ class Archive_Zip
         }
 
         // ----- Look which file need to be kept
-        for ($i=0; $i<sizeof($v_header_list); $i++) {
+        for ($i=0; $i < count($v_header_list); $i++) {
 
             // ----- Calculate the position of the header
             @rewind($this->_zip_fd);
@@ -2850,7 +2850,7 @@ class Archive_Zip
         $v_offset = @ftell($v_temp_zip->_zip_fd);
 
         // ----- Re-Create the Central Dir files header
-        for ($i=0; $i<sizeof($v_header_list); $i++) {
+        for ($i=0; $i < count($v_header_list); $i++) {
             // ----- Create the file header
             $v_result=$v_temp_zip->_writeCentralFileHeader($v_header_list[$i]);
             if (1 != $v_result) {
@@ -2875,7 +2875,7 @@ class Archive_Zip
         $v_size = @ftell($v_temp_zip->_zip_fd)-$v_offset;
 
         // ----- Create the central dir footer
-        $v_result = $v_temp_zip->_writeCentralHeader(sizeof($v_header_list),
+        $v_result = $v_temp_zip->_writeCentralHeader(count($v_header_list),
                                                      $v_size, $v_offset,
                                                      $v_comment);
         if (1 != $v_result) {
@@ -3254,7 +3254,7 @@ class Archive_Zip
         'callback_pre_add', 'callback_post_add',
         'callback_pre_extract', 'callback_post_extract'
     ];
-      for ($i=0; $i<sizeof($v_callback_list); $i++) {
+      for ($i=0; $i < count($v_callback_list); $i++) {
           $v_key=$v_callback_list[$i];
           if ((isset($p_params[$v_key])) && ('' != $p_params[$v_key])) {
               if (!function_exists($p_params[$v_key])) {
@@ -3332,7 +3332,7 @@ class Archive_Zip
       $v_list = explode('/', $p_dir);
 
       // ----- Study directories from last to first
-      for ($i=sizeof($v_list)-1; $i>=0; $i--) {
+      for ($i= count($v_list) - 1; $i >= 0; $i--) {
           // ----- Look for current path
         if ('.' == $v_list[$i]) {
             // ----- Ignore this directory
@@ -3340,11 +3340,11 @@ class Archive_Zip
         } elseif ('..' == $v_list[$i]) {
             // ----- Ignore it and ignore the $i-1
           $i--;
-        } elseif (('' == $v_list[$i]) && ($i != (sizeof($v_list) - 1)) && (0 != $i)) {
+        } elseif (('' == $v_list[$i]) && ($i != (count($v_list) - 1)) && (0 != $i)) {
             // ----- Ignore only the double '//' in path,
           // but not the first and last '/'
         } else {
-            $v_result = $v_list[$i].($i!=(sizeof($v_list)-1)? '/' . $v_result: '');
+            $v_result = $v_list[$i].($i!=(count($v_list) - 1)? '/' . $v_result: '');
         }
       }
     }
@@ -3383,9 +3383,9 @@ class Archive_Zip
 
     // ----- Explode dir and path by directory separator
     $v_list_dir = explode('/', $p_dir);
-      $v_list_dir_size = sizeof($v_list_dir);
+      $v_list_dir_size = count($v_list_dir);
       $v_list_path = explode('/', $p_path);
-      $v_list_path_size = sizeof($v_list_path);
+      $v_list_path_size = count($v_list_path);
 
     // ----- Study directories paths
     $i = 0;

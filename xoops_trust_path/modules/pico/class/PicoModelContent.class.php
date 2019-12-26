@@ -89,7 +89,7 @@ class PicoContentHandler
         $ret     = [];
         $waiting = $offset;
         while (list($content_id) = $db->fetchRow($ors)) {
-            if (sizeof($ret) >= $limit) {
+            if (count($ret) >= $limit) {
                 break;
             }
             $objTemp = new PicoContent($this->mydirname, $content_id);
@@ -207,7 +207,7 @@ class PicoContent
                         'link'           => pico_common_make_content_link4html($mod_config, $this->data),
                         'poster_uname'   => $poster_uname,
                         'modifier_uname' => $modifier_uname,
-                        'votes_avg'      => $this->data['votes_count'] ? $this->data['votes_sum'] / doubleval($this->data['votes_count']) : 0,
+                        'votes_avg'      => $this->data['votes_count'] ? $this->data['votes_sum'] / floatval($this->data['votes_count']) : 0,
                         'subject'        => $myts->makeTboxData4Show($this->data['subject'], 1, 1),
                         'body'           => $this->data['body_cached'],
                         'tags_array'     => $this->data['tags'] ? explode(' ', htmlspecialchars($this->data['tags'], ENT_QUOTES)) : [],

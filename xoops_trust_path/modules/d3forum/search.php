@@ -68,7 +68,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 					}
 				}
 			}
-			$word4sql = join(' OR ', $word_or);
+			$word4sql = implode(' OR ', $word_or);
 			$whr_query .= 'EXACT' == $andor ? ' AND' : ' ' . $andor ;
 			$whr_query .= ' (' . $word4sql . ')' ;
 		}

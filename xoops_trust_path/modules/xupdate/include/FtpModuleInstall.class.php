@@ -776,6 +776,6 @@ function xupdate_on_shutdown($cache_dir, $download_url)
         if (! headers_sent()) {
             header('Content-type: text/html; charset='._CHARSET);
         }
-        echo join('<br />'."\n", $msg);
+        echo implode('<br />' . "\n", $msg);
     }
 }

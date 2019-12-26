@@ -615,7 +615,7 @@ EOD;
 				$sitename = $xoopsConfig['sitename'];
 				$modname = $this->xoopsModule->getVar('name');
 				$subject = '[' . $modname . '] Cmd: "'.$cmd.'" Report';
-				$message = join($sep, $msg);
+				$message = implode($sep, $msg);
 				if ('UTF-8' !== strtoupper(_CHARSET)) {
 					ini_set('default_charset', _CHARSET);
 					if (version_compare(PHP_VERSION, '5.6', '<')) {

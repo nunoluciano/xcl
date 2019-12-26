@@ -114,7 +114,7 @@ $GLOBALS['D3forum_'.$mydirname] = [
 $xoopsOption['template_main'] = $mydirname.'_main_listforums.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
-unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
+unset($xoops_breadcrumbs[count($xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
     [
         'total_topics_count' => $total_topics_count,
@@ -128,7 +128,7 @@ $xoopsTpl->assign(
         'subcategories' => $subcategories,
         'category' => $category4assign,
         'page' => 'listforums',
-        'xoops_pagetitle' => join(' - ', [$category4assign['title'], $xoopsModule->getVar('name')]),
+        'xoops_pagetitle' => implode(' - ', [$category4assign['title'], $xoopsModule->getVar('name')]),
         'xoops_breadcrumbs' => $xoops_breadcrumbs,
     ]
 ) ;

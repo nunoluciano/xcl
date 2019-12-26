@@ -194,7 +194,7 @@ class XoopsErrorHandler
                 $count[$md5] = 1;
             }
         }
-        return join("<br />\n", $output);
+        return implode("<br />\n", $output);
     }
 }
 

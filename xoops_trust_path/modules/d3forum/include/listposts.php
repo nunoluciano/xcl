@@ -67,7 +67,7 @@ while( $post_row = $db->fetchArray( $prs ) ) {
 	include __DIR__ . '/process_eachpost.inc.php' ;
 
 	// get row of last_post
-	if( $post_row['post_time'] > $max_post_time ) $last_post_offset = sizeof( $posts ) ;
+	if( $post_row['post_time'] > $max_post_time ) $last_post_offset = count($posts ) ;
 
 	// posts array
 	$posts[] = [
@@ -219,7 +219,7 @@ $GLOBALS['D3forum_'.$mydirname] = [
 $xoopsOption['template_main'] = $mydirname.'_main_listposts.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
-unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
+unset($xoops_breadcrumbs[count($xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
     [
         'category' => $category4assign,
@@ -238,7 +238,7 @@ $xoopsTpl->assign(
         'uname' => $poster_uname4disp,
         'pagenav' => $pagenav,    //naao
         'pos' => $pos,        //naao
-        'xoops_pagetitle' => join(' - ', [$topic4assign['title'], $forum4assign['title'], $xoopsModule->getVar('name')]),
+        'xoops_pagetitle' => implode(' - ', [$topic4assign['title'], $forum4assign['title'], $xoopsModule->getVar('name')]),
         'xoops_meta_description' => $d3forum_meta_description,    // naao
         'xoops_breadcrumbs' => $xoops_breadcrumbs,
     ]

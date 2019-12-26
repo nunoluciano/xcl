@@ -13,7 +13,7 @@
         if (!is_dir('../'.$wok)) {
             if (file_exists('../'.$wok)) {
                 @chmod('../'.$wok, 0666);
-                if (! is_writeable('../'.$wok)) {
+                if (! is_writable('../' . $wok)) {
                     $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L83, $wok));
                     $error = true;
                 } else {
@@ -22,7 +22,7 @@
             }
         } else {
             @chmod('../'.$wok, 0777);
-            if (! is_writeable('../'.$wok)) {
+            if (! is_writable('../' . $wok)) {
                 $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L85, $wok));
                 $error = true;
             } else {

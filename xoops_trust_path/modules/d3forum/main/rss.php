@@ -30,7 +30,7 @@ if ($forum) {
 		}
 		$cat_ids = array_unique($cat_ids);
 		sort($cat_ids);
-		$cat = ($cat_ids)? join(',', $cat_ids) : '0';
+		$cat = ($cat_ids)? implode(',', $cat_ids) : '0';
 	}
 }
 
@@ -62,12 +62,12 @@ if (!isset($outputs['data'])) {
 	$forum_title = '';
 
 	if ($data) {
-		if (sizeof($cat_ids) > 1) {
+		if (count($cat_ids) > 1) {
 			$_titles = [];
 			foreach($data as $item) {
 				$_titles[] = $item['cat_title'];
 			}
-			$cat_title = join(', ', array_unique($_titles));
+			$cat_title = implode(', ', array_unique($_titles));
 		} else {
 			$cat_title = $data[0]['cat_title'];
 		}
@@ -85,9 +85,9 @@ if (!isset($outputs['data'])) {
 
 	foreach($data as $key => $item) {
 		$subtitles = [];
-		if ((!$cat || sizeof($cat_ids) > 1) && !$forum) $subtitles[] = $item['cat_title'];
+		if ((!$cat || count($cat_ids) > 1) && !$forum) $subtitles[] = $item['cat_title'];
 		if (!$forum) $subtitles[] = $item['forum_title'];
-		$data[$key]['subject'] = htmlspecialchars(($subtitles? '[' . join(':',$subtitles) . '] ' : '') . $item['subject'], ENT_COMPAT, _CHARSET);
+		$data[$key]['subject'] = htmlspecialchars(($subtitles? '[' . implode(':', $subtitles) . '] ' : '') . $item['subject'], ENT_COMPAT, _CHARSET);
 		$data[$key]['context'] = htmlspecialchars(d3forum_make_context(strip_tags($item['description'])), ENT_COMPAT, _CHARSET);
 		$data[$key]['cat_title'] = htmlspecialchars($item['cat_title'], ENT_COMPAT, _CHARSET);
 		$data[$key]['forum_title'] = htmlspecialchars($item['forum_title'], ENT_COMPAT, _CHARSET);

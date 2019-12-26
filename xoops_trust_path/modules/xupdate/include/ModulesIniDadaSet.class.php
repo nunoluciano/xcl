@@ -831,7 +831,7 @@ class Xupdate_ModulesIniDadaSet
             $data[$key] = $obj->getVar($key);
         }
         if ($obj->mTag) {
-            $data['tag'] = join(' ', $obj->mTag);
+            $data['tag'] = implode(' ', $obj->mTag);
         } else {
             $data['tag'] = '';
         }

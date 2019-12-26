@@ -271,7 +271,7 @@ class Net_SCP
             if (false === $local_file) {
                 $content .= $data;
             } else {
-                fputs($fp, $data);
+                fwrite($fp, $data);
             }
         }
 

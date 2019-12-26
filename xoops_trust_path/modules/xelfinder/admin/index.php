@@ -20,7 +20,7 @@ foreach($check_dir as $dir){
 	$dir_res[] = $dir;
 }
 
-$dir_res = '<ul><li>'.join('</li><li>', $dir_res).'</li></ul>';
+$dir_res = '<ul><li>' . implode('</li><li>', $dir_res) . '</li></ul>';
 
 if (isset($_POST) && ! empty($_POST['session_table_fix'])) {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();

@@ -296,7 +296,7 @@ class XoopsMediaUploader
         if (!is_dir($this->uploadDir)) {
             $this->setErrors('Failed opening directory: '.$this->uploadDir);
         }
-        if (!is_writeable($this->uploadDir)) {
+        if (!is_writable($this->uploadDir)) {
             $this->setErrors('Failed opening directory with write permission: '.$this->uploadDir);
         }
         if (!$this->checkMaxFileSize()) {

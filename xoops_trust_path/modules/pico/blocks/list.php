@@ -46,10 +46,10 @@ function b_pico_list_show($options)
 	$content_handler = new PicoContentHandler($mydirname);
 
 	// contentObjects
-	if (0 == sizeof($categories)) {
+	if (0 == count($categories)) {
 		// no category specified
 		$contents4assign = $content_handler->getContents4assign('1', $selected_order, $offset, $limit, false);
-	} else if (1 == sizeof($categories)) {
+	} else if (1 == count($categories)) {
 		// single category
 		$contents4assign = $content_handler->getContents4assign('o.cat_id=' . $categories[0], $selected_order, $offset, $limit, false);
 	} else {

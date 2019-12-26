@@ -395,7 +395,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
                     break;
 
                 case 'd':
-                    $replaces[$i]=doubleval(func_get_arg($i+1));
+                    $replaces[$i]=floatval(func_get_arg($i + 1));
                     break;
                 
                 case 'b':

@@ -173,7 +173,7 @@ class Xupdate_FtpCommonFunc
             $this->Ftp->appendMes('succeeded '.$result['ok'].' files into '.$where.'.'.$desc.'<br />');
         }
         if ($result['ng']) {
-            $this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . join('<br />'._MI_XUPDATE_ERR_NOT_UPLOADED.': ', $result['ng']));
+            $this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . implode('<br />' . _MI_XUPDATE_ERR_NOT_UPLOADED . ': ', $result['ng']));
         }
         return true;
     }

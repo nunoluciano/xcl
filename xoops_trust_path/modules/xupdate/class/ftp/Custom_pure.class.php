@@ -71,7 +71,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
         if ($this->LocalEcho) {
             echo 'PUT > ',$cmd,CRLF;
         }
-        $status=@fputs($this->_ftp_control_sock, $cmd.CRLF);
+        $status=@fwrite($this->_ftp_control_sock, $cmd . CRLF);
         if (false === $status) {
             $this->PushError($fnction, 'socket write failed');
             return false;

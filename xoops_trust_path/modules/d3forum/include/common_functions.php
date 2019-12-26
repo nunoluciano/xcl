@@ -181,7 +181,7 @@ function d3forum_common_simple_request( $params )
 	$queries = [];
 	foreach( $params as $key => $type ) {
 		$key_by_dot = explode( '.' , $key , 2 ) ;
-		if(1 == sizeof($key_by_dot )) {
+		if(1 == count($key_by_dot )) {
 			$whr_prefix = '' ;
 		} else {
 			$whr_prefix = $key_by_dot[0].'.' ;

@@ -58,7 +58,7 @@ foreach(explode("\n", $config['volume_setting']) as $_vol) {
 if ($_js_cache_path) {
 	ksort($_js_cache_path);
 	$_keys = array_keys($_js_cache_path);
-	$_managerJs = '/cache/' . join(',', $_keys) . '_manager.js';
+	$_managerJs = '/cache/' . implode(',', $_keys) . '_manager.js';
 	$_js_cacahe = $mydirpath . $_managerJs;
 	if (! is_file($_js_cacahe) || filemtime($_js_cacahe) < max($_js_cache_times)) {
 		$_src = '';

@@ -22,12 +22,12 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	if( empty( $cat_ids ) ) {
 		// all topics in the module
 		$whr_cat_ids = '';
-	} else if(1 == sizeof($cat_ids )) {
+	} else if(1 == count($cat_ids )) {
 		// topics under the specified category
 		$whr_cat_ids = 'f.cat_id='.$cat_ids[0];
 	} else {
 		// topics under categories separated with commma
-		$whr_cat_ids = 'f.cat_id IN (' . join(',' , $cat_ids) . ')';
+		$whr_cat_ids = 'f.cat_id IN (' . implode(',' , $cat_ids) . ')';
 	}
 	
 	require_once dirname(__DIR__) . '/class/d3forum.textsanitizer.php' ;
@@ -139,7 +139,7 @@ function d3forum_make_context($text,$words= [],$l=255) {
 	if (!is_array($words)) $words = [];
 	
 	$ret = '';
-	$q_word = str_replace(' ', '|', preg_quote(join(' ', $words), '/'));
+	$q_word = str_replace(' ', '|', preg_quote(implode(' ', $words), '/'));
 	
 	$match = [];
 	if (preg_match("/$q_word/i",$text,$match)) 	{

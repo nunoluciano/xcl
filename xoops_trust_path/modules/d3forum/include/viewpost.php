@@ -157,7 +157,7 @@ $GLOBALS['D3forum_'.$mydirname] = [
 $xoopsOption['template_main'] = $mydirname.'_main_viewpost.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
-unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
+unset($xoops_breadcrumbs[count($xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
     [
         'category' => $category4assign,
@@ -173,7 +173,7 @@ $xoopsTpl->assign(
         'ret_name' => 'post_id',
         'ret_val' => $post_id,
         'uname' => $poster_uname4disp,
-        'xoops_pagetitle' => join(' - ', [$post4assign['subject'], $forum4assign['title'], $xoopsModule->getVar('name')]),
+        'xoops_pagetitle' => implode(' - ', [$post4assign['subject'], $forum4assign['title'], $xoopsModule->getVar('name')]),
         'xoops_meta_description' => $d3forum_meta_description,    // naao
         'xoops_breadcrumbs' => $xoops_breadcrumbs,
     ]

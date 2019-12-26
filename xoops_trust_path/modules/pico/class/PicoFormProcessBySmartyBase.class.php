@@ -179,7 +179,7 @@ class PicoFormProcessBySmartyBase
         // get captured form
         if (!empty($params['name']) && !empty($smarty->_smarty_vars['capture'][$params['name']])) {
             $this->form_body = $smarty->_smarty_vars['capture'][$params['name']];
-        } elseif (sizeof($smarty->_smarty_vars['capture']) > 0) {
+        } elseif (count($smarty->_smarty_vars['capture']) > 0) {
             $this->form_body = $smarty->_smarty_vars['capture']['default'];
         } else {
             echo '<em>confirm <{capture}><{/capture}> block exists before this tag</em>';

@@ -65,16 +65,16 @@ function b_pico_tags_show($options)
 
 	// make an array named 'block'
 	$block = [
-		'mytrustdirname' => $mytrustdirname,
-		'mydirname' => $mydirname,
-		'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
-		'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
-		'mod_config' => $configs,
-		'limit' => $limit,
-		'listorder' => $listorder,
-		'sqlorder' => $sqlorder,
-		'tagsnum' => sizeof($tags4assign),
-		'tags' => $tags4assign,
+        'mytrustdirname' => $mytrustdirname,
+        'mydirname' => $mydirname,
+        'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
+        'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
+        'mod_config' => $configs,
+        'limit' => $limit,
+        'listorder' => $listorder,
+        'sqlorder' => $sqlorder,
+        'tagsnum' => count($tags4assign),
+        'tags' => $tags4assign,
     ];
 
 	if (empty($options['disable_renderer'])) {

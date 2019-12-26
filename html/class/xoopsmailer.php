@@ -274,7 +274,7 @@ class xoopsmailer
             }
             $this->headers[] = 'X-Mailer: XOOPS Cube';
             $this->headers[] = 'Return-Path: ' . $this->fromEmail;
-            $headers = join($this->LE, $this->headers);
+            $headers = implode($this->LE, $this->headers);
         }
 
 // TODO: we should have an option of no-reply for private messages and emails

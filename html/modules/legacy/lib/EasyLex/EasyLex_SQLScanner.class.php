@@ -370,7 +370,7 @@ class EasyLex_SQLScanner
             foreach ($line as $token) {
                 $t_arr[] = $token->getOutputValue();
             }
-            $sqls[] = join(' ', $t_arr);
+            $sqls[] = implode(' ', $t_arr);
         }
 
         return $sqls;

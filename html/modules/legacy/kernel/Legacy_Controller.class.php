@@ -271,7 +271,7 @@ class Legacy_Controller extends XCube_Controller
         $arr[5] += 1900;
         $arr[4]++;
         $iTztime = gmmktime($arr[2], $arr[1], $arr[0], $arr[4], $arr[3], $arr[5]);
-        $offset = doubleval(($iTztime-$iTime)/(60*60));
+        $offset = floatval(($iTztime - $iTime) / (60 * 60));
         $zonelist =
         [
             'Kwajalein' => -12.00,
@@ -310,7 +310,7 @@ class Legacy_Controller extends XCube_Controller
             'Pacific/Tongatapu' => 13.00
         ];
         $index = array_keys($zonelist, $offset);
-        if (1 != sizeof($index)) {
+        if (1 != count($index)) {
             return false;
         }
         return $index[0];

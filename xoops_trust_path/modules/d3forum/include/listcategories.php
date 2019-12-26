@@ -118,7 +118,7 @@ foreach( $categories4assign as $category ) {
 $xoopsOption['template_main'] = $mydirname.'_main_listcategories.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
-unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
+unset($xoops_breadcrumbs[count($xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
     [
 		'total_topics_count' => $total_topics_count ,

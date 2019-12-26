@@ -8,7 +8,7 @@ function pico_main_make_treeinformations($data)
 	$previous_depth = -1;
 	$path_to_i = [];
 
-	for ($i = 0; $i < sizeof($data); $i++) {
+	for ($i = 0; $i < count($data); $i++) {
 		$unique_path = $data[$i]['unique_path'];
 		$path_to_i[$unique_path] = $i;
 		$parent_path = substr($unique_path, 0, strrpos($unique_path, '.'));
@@ -42,7 +42,7 @@ function pico_main_make_treeinformations($data)
 			$data[$i]['prev_id'] = $data[$i - 1]['id'];
 		}
 	}
-	$data[sizeof($data) - 1]['ul_out'] = str_repeat('</li></ul>', $previous_depth + 1);
+    $data[count($data) - 1]['ul_out'] = str_repeat('</li></ul>', $previous_depth + 1);
 
 	return $data;
 }

@@ -107,7 +107,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		if (empty($gids)) {
 			$gids = ',';
 		} else {
-			$gids = join(',', $gids);
+			$gids = implode(',', $gids);
 		}
 		if (is_numeric($uid)) {
 			$uid = intval($uid);
@@ -393,7 +393,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$inGroup = (in_array($dat['gid'], $this->x_groups));
 		} else {
 			if ('' === $dat['gids']) {
-				$dat['gids'] = join(',', $this->getGroupsByUid($dat['uid']));
+				$dat['gids'] = implode(',', $this->getGroupsByUid($dat['uid']));
 				$sql = 'UPDATE '.$this->tbf.' SET `gids`=\''.$dat['gids'].'\' WHERE `file_id`='.$dat['file_id'].' LIMIT 1';
 				$this->query($sql);
 			}
@@ -756,7 +756,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				}
 				$q[] = '`mime` LIKE \''.$val.'\'';
 			}
-			$query = join(' OR ', $q);
+			$query = implode(' OR ', $q);
 			
 			$sql = 'SELECT f.file_id, f.parent_id, f.name, f.size, f.mtime AS ts, f.mime,
 			f.perm, f.umask, f.uid, f.gid, f.home_of, f.width, f.height, f.gids, f.mime_filter as filter, f.local_path
@@ -823,7 +823,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		if ($path != $this->root) {
 			$dirs = $inpath = [$path];
 			while($inpath) {
-				$in = '('.join(',', $inpath).')';
+				$in = '(' . implode(',', $inpath) . ')';
 				$inpath = [];
 				$sql = 'SELECT `file_id`, `mime_filter` FROM '.$this->tbf.' WHERE `parent_id` IN '.$in.' AND `mime` = \'directory\'';
 				if ($res = $this->query($sql)) {
@@ -853,7 +853,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 					$whrs[] = sprintf('`mime` = %s', $this->db->quoteString($mime));
 				}
 			}
-			$whr = join(' OR ', $whrs);
+			$whr = implode(' OR ', $whrs);
 		} else {
 			$q = $this->db->quoteString($q);
 			$q = '%'.substr($q, 1, strlen($q)-2).'%';
@@ -862,7 +862,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		
 		$filter = '';
 		if ($filters) {
-			$filter = $this->db->quoteString(join(' ', $filters));
+			$filter = $this->db->quoteString(implode(' ', $filters));
 			$filter = substr($filter, 1, strlen($filter)-2);
 			$filter = str_replace('*', '%', $filter);
 			$_f = [];
@@ -872,10 +872,10 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				}
 				$_f[] = '`mime` LIKE \'' . $val . '\'';
 			}
-			$filter = ' OR ' . join(' OR ', $_f);
+			$filter = ' OR ' . implode(' OR ', $_f);
 		}
 		if ($dirs) {
-			$whr = '(' . $whr . ') AND (`parent_id` IN (' . join(',', $dirs) . ')' . $filter . ')';
+			$whr = '(' . $whr . ') AND (`parent_id` IN (' . implode(',', $dirs) . ')' . $filter . ')';
 		}
 		
 		$sql = 'SELECT `file_id`, `mime`, `uid`, `gid`, `gids`, `perm`, `home_of` FROM '.$this->tbf.' WHERE '.$whr;
@@ -1365,7 +1365,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$uid = (int)$this->x_uid;
 		$umask = $this->getUmask($dir, $gid);
 		$perm = $this->getDefaultPerm($umask);
-		$gids = join(',', $this->getGroupsByUid($uid));
+		$gids = implode(',', $this->getGroupsByUid($uid));
 		$cut = ('POST' == $_SERVER['REQUEST_METHOD'])? !empty($_POST['cut']) : !empty($_GET['cut']);
 		$local_path = (! $cut && is_array($stat) && !empty($stat['_localpath']))? $stat['_localpath'] : '';
 		
@@ -1645,7 +1645,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	protected function _archive($dir, $files, $name, $arc) {
 		if (! chdir($this->options['tempPath'])) return false;
 
-		$mkdir = md5(microtime() . join('_', $files));
+		$mkdir = md5(microtime() . implode('_', $files));
 		$_tmpfiles = $_files = $this->copyToLocalTemp($mkdir, $files, $dir);
 		
 		$_dir = rtrim($this->options['tempPath'].DIRECTORY_SEPARATOR.$mkdir, DIRECTORY_SEPARATOR);

@@ -122,7 +122,7 @@ function pico_makecattree_recursive($mydirname, $cat_id, $order = 'cat_weight', 
 	/*	if( $db->getRowsNum( $result ) == 0 ) {
 		return array( $parray , $parray[ $myindex ]['contents_total'] , $parray[ $myindex ]['subcategories_total'] ) ;
 	} */
-	$myindex = sizeof($parray);
+	$myindex = count($parray);
 	$myarray = ['cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title, 'contents_count' => intval($contents_count), 'contents_total' => 0, 'subcategories_count' => $db->getRowsNum($result), 'subcategories_ids_cs' => '', 'subcategories_total' => 0, 'subcattree_raw' => []];
 	$parray[$myindex] = $myarray;
 	//	$parray[ $myindex ]['subcattree_raw'][] = $parray ;
@@ -194,7 +194,7 @@ function pico_sync_tags($mydirname)
 	foreach ($all_tags_array as $tag => $content_ids) {
 		$label4sql = $db->quoteString($tag);
 		$content_ids4sql = implode(',', $content_ids);
-		$count = sizeof($content_ids);
+		$count = count($content_ids);
 		// !Fix SQL Error insert tags - Duplicate entry 'module' for key 'PRIMARY'
 		// reversed INSERT INTO with UPDATE
 		$result = $db->queryF(' UPDATE ' . $db->prefix($mydirname . '_tags') . " SET count = $count, content_ids ='$content_ids4sql', modified_time = UNIX_TIMESTAMP() WHERE label = $label4sql");
@@ -547,7 +547,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	//'htmlpurify_except' ,
 	if (4 != substr(PHP_VERSION, 0, 1) && file_exists(XOOPS_LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php')) {
 		if (is_object($xoopsUser)) {
-			$purifier_enable = 0 == sizeof(array_intersect($xoopsUser->getGroups(), @$mod_config['htmlpurify_except']));
+			$purifier_enable = 0 == count(array_intersect($xoopsUser->getGroups(), @$mod_config['htmlpurify_except']));
 		} else {
 			$purifier_enable = true;
 		}

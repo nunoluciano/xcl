@@ -53,8 +53,8 @@ class xelFinderAccess {
 					$_exts[] = preg_quote($ext, '/');
 				}
 			}
-			$extReg = $_exts? '/(?:'.join('|', $_exts).')$/i' : '/(?!)/';
-			$dirReg = $_dirs? '/(?:'.join('|', $_dirs).')$/i' : '/(?!)/';
+			$extReg = $_exts? '/(?:' . implode('|', $_exts) . ')$/i' : '/(?!)/';
+			$dirReg = $_dirs? '/(?:' . implode('|', $_dirs) . ')$/i' : '/(?!)/';
 		} else {
 			$extReg = $dirReg = '/(?!)/';
 		}

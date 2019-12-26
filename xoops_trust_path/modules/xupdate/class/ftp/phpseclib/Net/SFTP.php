@@ -2117,7 +2117,7 @@ class Net_SFTP extends Net_SSH2
                     if (false === $local_file) {
                         $content .= $temp;
                     } else {
-                        fputs($fp, $temp);
+                        fwrite($fp, $temp);
                     }
                     break;
                 case NET_SFTP_STATUS:

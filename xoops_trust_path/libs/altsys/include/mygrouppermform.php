@@ -338,7 +338,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
     {
         $ret = '' ;
 
-        if (sizeof($this->_appendix) > 0) {
+        if (count($this->_appendix) > 0) {
             $ret .= '<table class="outer"><tr>';
             $cols = 1;
             foreach ($this->_appendix as $append) {
