@@ -358,7 +358,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				$gid = ($home_of < 0)? abs($home_of) : 0;
 			}
 		}
-		return $umask? $umask : $this->options['default_umask'];
+		return $umask?: $this->options['default_umask'];
 	}
 
 	protected function getDefaultPerm($umask) {

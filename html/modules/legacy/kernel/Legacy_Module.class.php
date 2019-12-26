@@ -459,7 +459,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     }
                     if (isset($config['options'])&&count($config['options'])>0) {
                         foreach ($config['options'] as $key=>$val) {
-                            $configInfos[]=(@constant($key) ? @constant($key) : $key);
+                            $configInfos[]=(@constant($key) ?: $key);
                         }
                     }
                 }

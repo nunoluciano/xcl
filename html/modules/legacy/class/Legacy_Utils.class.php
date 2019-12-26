@@ -240,7 +240,7 @@ class Legacy_Utils
         $handler =& xoops_gethandler('module');
         $module =& $handler->getByDirname($dirname);
         if ($module) {
-            return $module->get('trust_dirname') ? $module->get('trust_dirname') : null;
+            return $module->get('trust_dirname') ?: null;
         }
     }
 

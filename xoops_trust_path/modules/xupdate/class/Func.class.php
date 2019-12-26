@@ -468,7 +468,7 @@ if (! class_exists('Xupdate_Func')) {
             }
             file_put_contents($mailfile, $src, LOCK_EX);
             if ($do_chmod) {
-                $this->Ftp->localChmod($mailfile, $mod? $mod : 0404);
+                $this->Ftp->localChmod($mailfile, $mod?: 0404);
             }
         }
         return true;

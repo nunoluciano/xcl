@@ -316,7 +316,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     public function getFieldName($result, $offset)
     {
         if ($finfo = mysqli_fetch_field_direct($result, $offset)) {
-            return $finfo->orgname? $finfo->orgname : $finfo->name;
+            return $finfo->orgname?: $finfo->name;
         } else {
             return false;
         }

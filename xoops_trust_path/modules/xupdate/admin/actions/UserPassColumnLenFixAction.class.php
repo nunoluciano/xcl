@@ -51,7 +51,7 @@ class Xupdate_Admin_UserPassColumnLenFixAction extends Xupdate_AbstractAction
                     $mod = @ fileperms($mainfile);
                     $this->Ftp->localChmod($mainfile, 0606);
                     $this->Ftp->localPut($local, $mainfile);
-                    $this->Ftp->localChmod($mainfile, $mod? $mod : 0404);
+                    $this->Ftp->localChmod($mainfile, $mod?: 0404);
                     @unlink($local);
                 }
             }

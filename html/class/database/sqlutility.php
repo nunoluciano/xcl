@@ -112,8 +112,7 @@ class sqlutility
                 // if no "\n" exits in the remaining string, checks for "\r"
                 // (Mac eol style)
                    $end_of_comment   = (strpos(' ' . $sql, "\012", $i+2))
-                              ? strpos(' ' . $sql, "\012", $i+2)
-                              : strpos(' ' . $sql, "\015", $i+2);
+                              ?: strpos(' ' . $sql, "\015", $i + 2);
                 if (!$end_of_comment) {
                     // no eol found after '#', add the parsed part to the returned
                 // array and exit

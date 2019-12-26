@@ -191,7 +191,7 @@ class PicoAutoRegisterWraps
         return [
             'mtime'       => intval(@filemtime($wrap_full_path)),
             'subject'     => $subject,
-            'subject_alt' => $subject ? $subject : $filename,
+            'subject_alt' => $subject ?: $filename,
             'filename'    => $filename,
             'body'        => $body,
         ];

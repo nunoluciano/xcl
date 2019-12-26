@@ -398,19 +398,19 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     
         $textFilter =& $mRoot->getTextFilter();
         $headerScript = $mContext->getAttribute('headerScript');
-        $vars['xoops_meta_keywords'] = $textFilter->toShow($headerScript->getMeta('keywords') ? $headerScript->getMeta('keywords') : $configs['meta_keywords']);
-        $vars['xoops_meta_description'] = $textFilter->toShow($headerScript->getMeta('description') ? $headerScript->getMeta('description') : $configs['meta_description']);
-        $vars['xoops_meta_robots'] = $textFilter->toShow($headerScript->getMeta('robots') ? $headerScript->getMeta('robots') : $configs['meta_robots']);
-        $vars['xoops_meta_rating'] = $textFilter->toShow($headerScript->getMeta('rating') ? $headerScript->getMeta('rating') : $configs['meta_rating']);
-        $vars['xoops_meta_author'] = $textFilter->toShow($headerScript->getMeta('author') ? $headerScript->getMeta('author') : $configs['meta_author']);
-        $vars['xoops_meta_copyright'] = $textFilter->toShow($headerScript->getMeta('copyright') ? $headerScript->getMeta('copyright') : $configs['meta_copyright']);
+        $vars['xoops_meta_keywords'] = $textFilter->toShow($headerScript->getMeta('keywords') ?: $configs['meta_keywords']);
+        $vars['xoops_meta_description'] = $textFilter->toShow($headerScript->getMeta('description') ?: $configs['meta_description']);
+        $vars['xoops_meta_robots'] = $textFilter->toShow($headerScript->getMeta('robots') ?: $configs['meta_robots']);
+        $vars['xoops_meta_rating'] = $textFilter->toShow($headerScript->getMeta('rating') ?: $configs['meta_rating']);
+        $vars['xoops_meta_author'] = $textFilter->toShow($headerScript->getMeta('author') ?: $configs['meta_author']);
+        $vars['xoops_meta_copyright'] = $textFilter->toShow($headerScript->getMeta('copyright') ?: $configs['meta_copyright']);
         // Extra Meta Webmaster Tools
-        $vars['xoops_meta_bing'] = $textFilter->toShow($headerScript->getMeta('msvalidate.01') ? $headerScript->getMeta('msvalidate.01') : $configs['meta_bing']);
-        $vars['xoops_meta_google'] = $textFilter->toShow($headerScript->getMeta('google-site-verification') ? $headerScript->getMeta('google-site-verification') : $configs['meta_google']);
-        $vars['xoops_meta_yandex'] = $textFilter->toShow($headerScript->getMeta('yandex-verification') ? $headerScript->getMeta('yandex-verification') : $configs['meta_yandex']);
+        $vars['xoops_meta_bing'] = $textFilter->toShow($headerScript->getMeta('msvalidate.01') ?: $configs['meta_bing']);
+        $vars['xoops_meta_google'] = $textFilter->toShow($headerScript->getMeta('google-site-verification') ?: $configs['meta_google']);
+        $vars['xoops_meta_yandex'] = $textFilter->toShow($headerScript->getMeta('yandex-verification') ?: $configs['meta_yandex']);
         // Extra Meta App ID
-        $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ? $headerScript->getMeta('fb:app_id') : $configs['meta_fb_app']);
-        $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ? $headerScript->getMeta('twitter:site') : $configs['meta_twitter_site']);
+        $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
+        $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
         // footer may be raw HTML text.
         $vars['xoops_footer'] = $configs['footer']; 
 

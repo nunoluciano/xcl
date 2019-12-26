@@ -48,7 +48,7 @@ class xelFinder extends elFinder {
 				
 				if ('getgroups' === $args['perm']) {
 					$groups = $volume->getGroups($targets[0]);
-					return $groups? $groups : ['error' => $this->error($volume->error())];
+					return $groups?: ['error' => $this->error($volume->error())];
 				} else {
 					$files = [];
 					$errors = [];

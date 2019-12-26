@@ -404,7 +404,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             } else {
                 $side = 'html';
                 $base = XOOPS_ROOT_PATH ;
-                $arc_dirname = $trust_dirname? $trust_dirname : $dirname;
+                $arc_dirname = $trust_dirname?: $dirname;
             }
             $checkDir[] = $this->exploredDirPath . '/extras/'.$side.'/modules/'.$arc_dirname.'/language/<LANG>';
             $uploadDir[] = $base . '/modules/'.$dirname.'/language/<LANG>/';
@@ -721,7 +721,7 @@ function xupdate_on_shutdown($cache_dir, $download_url)
         }
         $msg[] = '<html><head><title>'._AD_XUPDATE_LANG_TIMEOUT_ERROR.'</title></head><body>';
         $msg[] = '<h1>'._AD_XUPDATE_LANG_TIMEOUT_ERROR.'</h1>';
-        $start = $upload_retry? $upload_retry : 1;
+        $start = $upload_retry?: 1;
         for ($i = $start; $i <= $GLOBALS['xupdate_stage']; $i++) {
             $done_files = '';
             if (5 === $i) {

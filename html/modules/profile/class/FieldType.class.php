@@ -326,8 +326,8 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
                 $def = array_shift($objs);
                 $optArr = $def->mFieldType->getOption($def);
             }
-            $yes = $optArr[0] ? $optArr[0] : _YES;
-            $no = $optArr[1] ? $optArr[1] : _NO;
+            $yes = $optArr[0] ?: _YES;
+            $no = $optArr[1] ?: _NO;
             $value = true == $obj->get($key) ? $yes : $no;
         }
         return $value;

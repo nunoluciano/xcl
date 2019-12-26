@@ -214,7 +214,7 @@ class Legacy_TextFilter extends XCube_TextFilter
     public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
     {
         require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
-        $encoding = $encoding ? $encoding : _CHARSET;
+        $encoding = $encoding ?: _CHARSET;
 
         // !Fix XCL PHP7 
        // Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5

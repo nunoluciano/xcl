@@ -54,7 +54,7 @@ if (!empty($_POST['action'])) {
             $error_msg .= _AM_MSG_GROUP1IPSCANTOPEN;
         }
 
-        $redirect_msg = $error_msg ? $error_msg : _AM_MSG_IPFILESUPDATED;
+        $redirect_msg = $error_msg ?: _AM_MSG_IPFILESUPDATED;
         redirect_header('index.php', 2, $redirect_msg);
         exit;
     } elseif ('delete' == $_POST['action'] && isset($_POST['ids']) && is_array($_POST['ids'])) {

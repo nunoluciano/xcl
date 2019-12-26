@@ -170,7 +170,7 @@ class Legacy_HelpAction extends Legacy_Action
         //
         // TODO We must change the following lines to ActionForm.
         //
-        $helpfile = xoops_getrequest('file') ? xoops_getrequest('file') : $this->mModuleObject->getHelp();
+        $helpfile = xoops_getrequest('file') ?: $this->mModuleObject->getHelp();
 
         //
         // Smarty
