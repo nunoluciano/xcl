@@ -3,13 +3,13 @@
 $topic_id = intval( @$_GET['topic_id'] ) ;
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-include dirname(__FILE__).'/process_this_topic.inc.php' ;
+include __DIR__ . '/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(__FILE__).'/process_this_forum.inc.php' ) redirect_header( XOOPS_URL.'/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include __DIR__ . '/process_this_forum.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) redirect_header( XOOPS_URL.'/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include __DIR__ . '/process_this_category.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 
 // post order
@@ -46,7 +46,7 @@ switch( $postorder ) {
 		//$pos = isset( $_GET['pos'] ) ? intval( $_GET['pos'] ) : (($postorder != 3) ? (int)(($post_hits-1) / $num) * $num : 0) ;
 		$pos = isset( $_GET['pos'] ) ? intval( $_GET['pos'] )
 			: ((0 == $postorder) || (2 == $postorder) ? (int)(($post_hits - 1) / $num) * $num : 0) ;
-		require_once dirname( dirname(__FILE__) ).'/class/D3forumPagenav.class.php' ;
+		require_once dirname(__DIR__) . '/class/D3forumPagenav.class.php' ;
 		$pagenav_obj = new D3forumPagenav( $post_hits , $num , $pos , 'pos', $query4nav ) ;
 		$pagenav = $pagenav_obj->getNav() ;
 	}
@@ -64,7 +64,7 @@ if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 while( $post_row = $db->fetchArray( $prs ) ) {
 
 	// get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
-	include dirname(__FILE__).'/process_eachpost.inc.php' ;
+	include __DIR__ . '/process_eachpost.inc.php' ;
 
 	// get row of last_post
 	if( $post_row['post_time'] > $max_post_time ) $last_post_offset = sizeof( $posts ) ;

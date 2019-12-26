@@ -1,10 +1,10 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/main_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/import_functions.php';
-require_once dirname(dirname(__FILE__)) . '/class/gtickets.php';
+require_once dirname(__DIR__) . '/include/main_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/include/transact_functions.php';
+require_once dirname(__DIR__) . '/include/import_functions.php';
+require_once dirname(__DIR__) . '/class/gtickets.php';
 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -93,7 +93,7 @@ if (!empty($_POST['do_import']) && !empty($_POST['import_mid'])) {
 //
 
 xoops_cp_header();
-include dirname(__FILE__) . '/mymenu.php';
+include __DIR__ . '/mymenu.php';
 $tpl = new XoopsTpl();
 $tpl->assign(
     [

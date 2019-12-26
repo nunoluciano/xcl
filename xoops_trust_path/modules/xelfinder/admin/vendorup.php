@@ -15,7 +15,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 	
 	while ( @ob_end_flush() );
 	flush ();
-	$pluginsDir = dirname ( dirname ( __FILE__ ) ) . '/plugins';
+	$pluginsDir = dirname (__DIR__) . '/plugins';
 	$cwd = getcwd ();
 	chdir ( $pluginsDir );
 	
@@ -70,7 +70,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 	exit ();
 }
 xoops_cp_header ();
-include dirname ( __FILE__ ) . '/mymenu.php';
+include __DIR__ . '/mymenu.php';
 
 echo '<h3>' . xelfinderAdminLang ( 'COMPOSER_UPDATE' ) . '</h3>';
 

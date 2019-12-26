@@ -510,7 +510,7 @@ function d3forum_get_requests4sql_forum( $mydirname )
 
 	$db =& Database::getInstance() ;
 
-	include dirname(dirname(__FILE__)).'/include/constant_can_override.inc.php' ;
+	include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 	$options = [];
 	foreach( $xoopsModuleConfig as $key => $val ) {
 		if( empty( $d3forum_configs_can_be_override[ $key ] ) ) continue ;
@@ -589,7 +589,7 @@ function d3forum_get_requests4sql_category( $mydirname )
 
 	$db =& Database::getInstance() ;
 
-	include dirname(dirname(__FILE__)).'/include/constant_can_override.inc.php' ;
+	include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 	$options = [];
 	foreach( $xoopsModuleConfig as $key => $val ) {
 		if( empty( $d3forum_configs_can_be_override[ $key ] ) ) continue ;

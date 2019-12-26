@@ -232,7 +232,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 			$name = $regs[1];
 			$constpref = '_MD_PICO_FILTERS_' . strtoupper($name);
 
-			require_once dirname(dirname(__FILE__)) . '/filters/pico_' . $name . '.php';
+			require_once dirname(__DIR__) . '/filters/pico_' . $name . '.php';
 
 			// check the filter is secure or not
 			if (!$isadminormod && defined($constpref . 'ISINSECURE')) continue;

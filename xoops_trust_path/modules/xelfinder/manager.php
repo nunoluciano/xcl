@@ -26,7 +26,7 @@ $config_handler = xoops_getHandler('config');
 $config = $config_handler->getConfigsByCat(0, $xelfinderModule->getVar('mid'));
 
 // load xoops_elFinder
-include_once dirname(__FILE__).'/class/xoops_elFinder.class.php';
+include_once __DIR__ . '/class/xoops_elFinder.class.php';
 $xoops_elFinder = new xoops_elFinder($mydirname);
 $xoops_elFinder->setConfig($config);
 
@@ -36,7 +36,7 @@ if (!empty($config['connector_url'])) {
 	!$config['conn_url_is_ext'] || $conn_is_ext = 1;
 }
 $managerJs = '';
-$_plugin_dir = dirname(__FILE__) . '/plugins/';
+$_plugin_dir = __DIR__ . '/plugins/';
 $_js_cache_path = $_js_cache_times = [];
 foreach(explode("\n", $config['volume_setting']) as $_vol) {
 	$_vol = trim($_vol);

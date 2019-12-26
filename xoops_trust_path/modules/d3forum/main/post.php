@@ -1,7 +1,7 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
-require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
+require_once dirname(__DIR__) . '/include/transact_functions.php' ;
 
 // hook $mode=='sametopic' into $_POST['mode'] = 'reply' , $_POST['post_id']
 if('sametopic' == @$_POST['mode']) {
@@ -22,7 +22,7 @@ if('edit' == @$_POST['mode'] && ! empty($_POST['post_id'] ) ) {
 	$topic_id = intval( $post_row['topic_id'] ) ;
 
 	// get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-	include dirname(dirname(__FILE__)).'/include/process_this_topic.inc.php' ;
+	include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
 
 	$pid = 0 ;
 	$mode = 'edit' ;
@@ -40,7 +40,7 @@ if('edit' == @$_POST['mode'] && ! empty($_POST['post_id'] ) ) {
 	$topic_id = intval( $post_row['topic_id'] ) ;
 
 	// get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-	include dirname(dirname(__FILE__)).'/include/process_this_topic.inc.php' ;
+	include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
 
 	$pid = $post_id ;
 	$mode = 'reply' ;
@@ -55,16 +55,16 @@ if('edit' == @$_POST['mode'] && ! empty($_POST['post_id'] ) ) {
 }
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 if('newtopic' != $mode) {
 	// hidden_uid
 	if( $uid == $post_row['uid_hidden'] ) $post_row['uid'] = $post_row['uid_hidden'] ;
 	// get $post4assign
-	include dirname(dirname(__FILE__)).'/include/process_this_post.inc.php' ;
+	include dirname(__DIR__) . '/include/process_this_post.inc.php' ;
 }
 
 // d3comment object
@@ -133,7 +133,7 @@ if( $html ) $message = d3forum_transact_htmlpurify( $message , $mydirname ) ;
 
 // Validate message
 $preview_message4html = $myts->displayTarea( $message , $html , $smiley , $xcode , @$xoopsModuleConfig['allow_textimg'] , $br , 0 , $number_entity , $special_entity ) ;
-require_once dirname(dirname(__FILE__)).'/class/D3forumMessageValidator.class.php' ;
+require_once dirname(__DIR__) . '/class/D3forumMessageValidator.class.php' ;
 $validator = new D3forumMessageValidator() ;
 if( ! $validator->validate_by_rendered( $preview_message4html ) ) {
 	// if message is invalid, force to preview instead of post
@@ -195,7 +195,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	}
 	$ispreview = true ;
 
-	include dirname(dirname(__FILE__)).'/include/display_post_form.inc.php' ;
+	include dirname(__DIR__) . '/include/display_post_form.inc.php' ;
 
 } else {
 

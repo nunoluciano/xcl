@@ -234,7 +234,7 @@ class xoops_elFinder {
 	}
 	
 	public function getRootVolumeConfigs($config, $extras = []) {
-		$pluginPath = dirname(dirname(__FILE__)) . '/plugins/';
+		$pluginPath = dirname(__DIR__) . '/plugins/';
 		$configs = explode("\n", $config);
 		$files = [];
 		

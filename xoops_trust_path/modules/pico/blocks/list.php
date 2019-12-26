@@ -25,7 +25,7 @@ function b_pico_list_allowed_order()
 function b_pico_list_show($options)
 {
 	// options
-	$mytrustdirname = basename(dirname(dirname(__FILE__)));
+	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
 	$categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
 	$selected_order = empty($options[2]) || !in_array($options[2], b_pico_list_allowed_order()) ? 'o.created_time DESC' : $options[2];
@@ -100,7 +100,7 @@ function b_pico_list_show($options)
 function b_pico_list_edit($options)
 {
 	// options
-	$mytrustdirname = basename(dirname(dirname(__FILE__)));
+	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
 	$categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
 	$selected_order = empty($options[2]) || !in_array($options[2], b_pico_list_allowed_order()) ? 'o.created_time DESC' : $options[2];

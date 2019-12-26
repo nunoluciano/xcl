@@ -7,10 +7,10 @@ if (!isset($root)) {
     $root = XCube_Root::getSingleton();
 }
 
-$mydirpath = basename(dirname(dirname(__FILE__))) ;
+$mydirpath = basename(dirname(__DIR__)) ;
 
 $modversion['name'] = _MI_MESSAGE_NAME;
-$modversion['dirname'] = basename(dirname(__FILE__));
+$modversion['dirname'] = basename(__DIR__);
 $modversion['version'] = 2.3;
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';

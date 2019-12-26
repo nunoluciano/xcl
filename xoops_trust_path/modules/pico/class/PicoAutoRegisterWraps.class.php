@@ -29,7 +29,7 @@ class PicoAutoRegisterWraps
 
         if ($modified_time < $file_info['mtime']) {
             // make backup
-            require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
+            require_once dirname(__DIR__) . '/include/transact_functions.php';
             pico_transact_backupcontent($this->mydirname, $content_id);
 
             // update the content
@@ -84,7 +84,7 @@ class PicoAutoRegisterWraps
             $content_id = $db->getInsertId();
 
             // rebuild category tree
-            require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
+            require_once dirname(__DIR__) . '/include/transact_functions.php';
             pico_sync_cattree($this->mydirname);
 
             return $content_id;
@@ -97,7 +97,7 @@ class PicoAutoRegisterWraps
     public function removeContent($content_id)
     {
         // delete transaction
-        require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
+        require_once dirname(__DIR__) . '/include/transact_functions.php';
         pico_delete_content($this->mydirname, $content_id);
     }
 

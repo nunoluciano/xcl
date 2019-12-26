@@ -1,6 +1,6 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
 
 // get cookie path
 $xoops_cookie_path = defined('XOOPS_COOKIE_PATH') ? XOOPS_COOKIE_PATH : preg_replace('?http://[^/]+(/.*)$?' , '$1', XOOPS_URL ) ;

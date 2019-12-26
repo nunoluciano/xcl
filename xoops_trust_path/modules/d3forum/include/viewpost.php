@@ -10,16 +10,16 @@ $post_row = $db->fetchArray( $prs ) ;
 $topic_id = intval( $post_row['topic_id'] ) ;
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-include dirname(__FILE__).'/process_this_topic.inc.php' ;
+include __DIR__ . '/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(__FILE__).'/process_this_forum.inc.php' ) redirect_header( XOOPS_URL.'/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include __DIR__ . '/process_this_forum.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) redirect_header( XOOPS_URL.'/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include __DIR__ . '/process_this_category.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // get $post4assign
-include dirname(__FILE__).'/process_this_post.inc.php' ;
+include __DIR__ . '/process_this_post.inc.php' ;
 
 $d3forum_meta_description = preg_replace('/[\r\n\t]/','',htmlspecialchars(mb_substr(strip_tags($post4assign['post_text']),0,120, _CHARSET),ENT_QUOTES)); // naao
 
@@ -30,7 +30,7 @@ if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 while( $post_row = $db->fetchArray( $prs ) ) {
 
 	// get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
-	include dirname(__FILE__).'/process_eachpost.inc.php' ;
+	include __DIR__ . '/process_eachpost.inc.php' ;
 
 	// posts array
 	$posts[] = [

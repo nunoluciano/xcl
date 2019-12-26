@@ -1,12 +1,12 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/main_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
-require_once dirname(dirname(__FILE__)) . '/class/pico.textsanitizer.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoUriMapper.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoPermission.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelCategory.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelContent.class.php';
+require_once dirname(__DIR__) . '/include/main_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+require_once dirname(__DIR__) . '/class/PicoUriMapper.class.php';
+require_once dirname(__DIR__) . '/class/PicoPermission.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelCategory.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelContent.class.php';
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/AltsysBreadcrumbs.class.php';
 
 // breadcrumbs
@@ -42,7 +42,7 @@ if (!empty($_POST['categoryman_post'])) {
 	$controller_class = 'PicoControllerEditCategory';
 }
 
-require_once dirname(dirname(__FILE__)) . '/class/' . $controller_class . '.class.php';
+require_once dirname(__DIR__) . '/class/' . $controller_class . '.class.php';
 $controller = new $controller_class($currentCategoryObj);
 $controller->execute($picoRequest);
 

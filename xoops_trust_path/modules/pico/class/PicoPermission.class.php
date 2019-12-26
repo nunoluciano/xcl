@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
 
 // singleton
 class PicoPermission

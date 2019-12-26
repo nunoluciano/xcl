@@ -1,6 +1,6 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
 
 $post_id = intval( @$_GET['post_id'] ) ;
 
@@ -12,18 +12,18 @@ $post_row = $db->fetchArray( $prs ) ;
 $topic_id = intval( $post_row['topic_id'] ) ;
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-include dirname(dirname(__FILE__)).'/include/process_this_topic.inc.php' ;
+include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // hidden_uid
 if( $uid == $post_row['uid_hidden'] ) $post_row['uid'] = $post_row['uid_hidden'] ;
 // get $post4assign
-include dirname(dirname(__FILE__)).'/include/process_this_post.inc.php' ;
+include dirname(__DIR__) . '/include/process_this_post.inc.php' ;
 
 // check edit permission
 if( empty( $can_edit ) ) die( _MD_D3FORUM_ERR_EDITPOST ) ;
@@ -77,6 +77,6 @@ $guest_pass4html = '' ;
 $formTitle = _MD_D3FORUM_EDITMODEC ;
 $mode = 'edit' ;
 
-include dirname(dirname(__FILE__)).'/include/display_post_form.inc.php' ;
+include dirname(__DIR__) . '/include/display_post_form.inc.php' ;
 
 ?>

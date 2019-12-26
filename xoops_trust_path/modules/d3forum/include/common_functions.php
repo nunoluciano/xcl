@@ -151,10 +151,10 @@ function d3forum_common_is_necessary_antispam( $user , $mod_config )
 
 function &d3forum_common_get_antispam_object( $mod_config )
 {
-	require_once dirname(dirname(__FILE__)).'/class/D3forumAntispamDefault.class.php' ;
+	require_once dirname(__DIR__) . '/class/D3forumAntispamDefault.class.php' ;
 	$class_name = 'D3forumAntispam'.ucfirst(trim($mod_config['antispam_class'])) ;
-	if( file_exists( dirname(dirname(__FILE__)).'/class/'.$class_name.'.class.php' ) ) {
-		require_once dirname(dirname(__FILE__)).'/class/'.$class_name.'.class.php' ;
+	if( file_exists(dirname(__DIR__) . '/class/' . $class_name . '.class.php' ) ) {
+		require_once dirname(__DIR__) . '/class/' . $class_name . '.class.php' ;
 		if( class_exists( $class_name ) ) {
 			$antispam_obj = new $class_name() ;
 		}

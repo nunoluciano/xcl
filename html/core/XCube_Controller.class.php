@@ -9,7 +9,7 @@
  */
 
 if (!defined('XCUBE_CORE_PATH')) {
-    define('XCUBE_CORE_PATH', dirname(__FILE__));
+    define('XCUBE_CORE_PATH', __DIR__);
 }
 
 require_once XCUBE_CORE_PATH . '/XCube_Root.class.php';

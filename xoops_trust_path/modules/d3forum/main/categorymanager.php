@@ -1,12 +1,12 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
+require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
 $cat_id = intval( @$_GET['cat_id'] ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // count children
 include_once XOOPS_ROOT_PATH . '/class/xoopstree.php';
@@ -17,7 +17,7 @@ $children = $mytree->getAllChildId( $cat_id ) ;
 if( ! $isadmin ) die( _MD_D3FORUM_ERR_CREATECATEGORY ) ;
 
 // TRANSACTION PART
-require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
+require_once dirname(__DIR__) . '/include/transact_functions.php' ;
 if( isset( $_POST['categoryman_post'] ) ) {
 	if ( ! $xoopsGTicket->check( true , 'd3forum' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
@@ -38,7 +38,7 @@ if( isset( $_POST['categoryman_delete'] ) && 0 == count($children )) {
 
 // FORM PART
 
-include dirname(dirname(__FILE__)).'/include/constant_can_override.inc.php' ;
+include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 $options4html = '' ;
 $category_configs = @unserialize( $cat_row['cat_options'] ) ;
 if( is_array( $category_configs ) ) foreach( $category_configs as $key => $val ) {

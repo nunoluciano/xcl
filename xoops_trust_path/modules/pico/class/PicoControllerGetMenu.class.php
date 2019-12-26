@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__FILE__) . '/PicoControllerAbstract.class.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/PicoControllerAbstract.class.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
 
 class PicoControllerGetMenu extends PicoControllerAbstract
 {
@@ -29,7 +29,7 @@ class PicoControllerGetMenu extends PicoControllerAbstract
         foreach ($categories as $categoryObj) {
             $mod_config     = $categoryObj->getOverriddenModConfig();
             $register_class = empty($mod_config['auto_register_class']) ? 'PicoAutoRegisterWraps' : $mod_config['auto_register_class'];
-            require_once dirname(__FILE__) . '/' . $register_class . '.class.php';
+            require_once __DIR__ . '/' . $register_class . '.class.php';
             if (!empty($mod_config['wraps_auto_register'])) {
                 $register_obj = new $register_class($this->mydirname, $mod_config);
                 $register_obj->registerByCatvpath($categoryObj->getData());

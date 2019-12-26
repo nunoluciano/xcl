@@ -1,20 +1,20 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
 
 // branches (TODO viewallforum)
 if( ! empty( $_GET['post_id'] ) ) {
-	include dirname(dirname(__FILE__)).'/include/viewpost.php' ;
+	include dirname(__DIR__) . '/include/viewpost.php' ;
 } else if( ! empty( $_GET['topic_id'] ) ) {
-	include dirname(dirname(__FILE__)).'/include/listposts.php' ;
+	include dirname(__DIR__) . '/include/listposts.php' ;
 } else if( ! empty( $_GET['forum_id'] ) ) {
-	include dirname(dirname(__FILE__)).'/include/listtopics.php' ;
+	include dirname(__DIR__) . '/include/listtopics.php' ;
 } else if( ! empty( $_GET['cat_id'] ) ) {
-	include dirname(dirname(__FILE__)).'/include/listforums.php' ;
+	include dirname(__DIR__) . '/include/listforums.php' ;
 } else if( isset( $_GET['cat_ids'] ) ) {
-	include dirname(dirname(__FILE__)).'/include/listtopics_over_categories.php' ;
+	include dirname(__DIR__) . '/include/listtopics_over_categories.php' ;
 } else {
-	include dirname(dirname(__FILE__)).'/include/listcategories.php' ;
+	include dirname(__DIR__) . '/include/listcategories.php' ;
 }
 
 

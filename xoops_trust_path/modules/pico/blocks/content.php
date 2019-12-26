@@ -3,7 +3,7 @@
 function b_pico_content_show($options)
 {
 	// options
-	$mytrustdirname = basename(dirname(dirname(__FILE__)));
+	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
 	$content_id = intval(@$options[1]);
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_content.html' : trim($options[2]);
@@ -70,7 +70,7 @@ function b_pico_content_show($options)
 function b_pico_content_edit($options)
 {
 	// options
-	$mytrustdirname = basename(dirname(dirname(__FILE__)));
+	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
 	$content_id = intval(@$options[1]);
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_content.html' : trim($options[2]);

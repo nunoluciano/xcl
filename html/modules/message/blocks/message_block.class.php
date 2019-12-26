@@ -37,8 +37,8 @@ class Message_Block extends Legacy_BlockProcedure
             return;
         }
         $root = XCube_Root::getSingleton();
-        $root->mLanguageManager->loadModinfoMessageCatalog(basename(dirname(dirname(__FILE__))));
-        $root->mLanguageManager->loadModuleMessageCatalog(basename(dirname(dirname(__FILE__))));
+        $root->mLanguageManager->loadModinfoMessageCatalog(basename(dirname(__DIR__)));
+        $root->mLanguageManager->loadModuleMessageCatalog(basename(dirname(__DIR__)));
     
         $render = $this->getRenderTarget();
         $render->setTemplateName($this->_mBlock->get('template'));

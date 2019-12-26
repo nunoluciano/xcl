@@ -16,7 +16,7 @@ class FormProcessByHtml
     public function __construct()
     {
         // register validators
-        $this->validator_dir = dirname(__FILE__) . '/validators';
+        $this->validator_dir = __DIR__ . '/validators';
         if ($handler = @opendir($this->validator_dir)) {
             while (false !== ($file = readdir($handler))) {
                 if ('.' == substr($file, 0, 1)) {

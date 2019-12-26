@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/PicoControllerAbstract.class.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
-require_once dirname(__FILE__) . '/PicoModelContent.class.php';
+require_once __DIR__ . '/PicoControllerAbstract.class.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/PicoModelContent.class.php';
 
 define('ALTSYS_DIR', XOOPS_TRUST_PATH . '/libs/altsys');
 if (!file_exists(ALTSYS_DIR . '/include/Text_Diff.php')) die('Install altsys');

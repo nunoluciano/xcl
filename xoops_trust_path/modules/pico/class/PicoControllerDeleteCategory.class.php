@@ -1,9 +1,9 @@
 <?php
 
-require_once dirname(__FILE__) . '/PicoControllerAbstract.class.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
-require_once dirname(__FILE__) . '/gtickets.php';
-require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
+require_once __DIR__ . '/PicoControllerAbstract.class.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/gtickets.php';
+require_once dirname(__DIR__) . '/include/transact_functions.php';
 
 class PicoControllerDeleteCategory extends PicoControllerAbstract
 {

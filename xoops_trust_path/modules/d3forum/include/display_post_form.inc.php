@@ -60,7 +60,7 @@ if( d3forum_common_is_necessary_antispam( $xoopsUser , $xoopsModuleConfig ) ) {
 
 // WYSIWYG (some editor needs global scope ... orz)
 $d3forum_wysiwygs = ['name' => 'message', 'value' => d3forum_common_unhtmlspecialchars($message4html )];
-include dirname(dirname(__FILE__)).'/include/wysiwyg_editors.inc.php' ;
+include dirname(__DIR__) . '/include/wysiwyg_editors.inc.php' ;
 
 	// naao from
 if( is_object( $xoopsUser ) ) {

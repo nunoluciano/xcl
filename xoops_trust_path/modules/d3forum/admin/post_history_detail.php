@@ -22,7 +22,7 @@ $sql = substr( $sql , 0 , -2 ) . ';' ;
 //
 
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php' ;
+include __DIR__ . '/mymenu.php' ;
 echo nl2br( htmlspecialchars( $sql , ENT_QUOTES ) ) ;
 xoops_cp_footer();
 

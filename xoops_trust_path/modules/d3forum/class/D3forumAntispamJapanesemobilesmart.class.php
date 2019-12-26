@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/D3forumAntispamJapanese.class.php' ;
+require_once __DIR__ . '/D3forumAntispamJapanese.class.php' ;
 
 class D3forumAntispamJapanesemobilesmart extends D3forumAntispamJapanese
 {

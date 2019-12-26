@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
 require_once XOOPS_TRUST_PATH . '/modules/d3forum/class/D3commentAbstract.class.php';
 
 // a class for d3forum comment integration

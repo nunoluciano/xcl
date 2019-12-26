@@ -9,7 +9,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-$mydirpath = basename(dirname(__FILE__)) ;
+$mydirpath = basename(__DIR__) ;
 
 //
 // Define a basic manifesto.

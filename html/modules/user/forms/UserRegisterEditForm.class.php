@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__) . '/AbstractUserEditForm.class.php';
+require_once __DIR__ . '/AbstractUserEditForm.class.php';
 
 class User_RegisterEditForm extends User_AbstractUserEditForm
 {

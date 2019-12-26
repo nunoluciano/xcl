@@ -2,12 +2,12 @@
 
 // this file can be included from d3forum's blocks or getSublink().
 
-require_once dirname(dirname(__FILE__)) . '/class/PicoPermission.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelCategory.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelContent.class.php';
+require_once dirname(__DIR__) . '/class/PicoPermission.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelCategory.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelContent.class.php';
 
-@include_once dirname(__FILE__) . '/constants.php';
-if (!defined('_MD_PICO_WRAPBASE')) require_once dirname(__FILE__) . '/constants.dist.php';
+@include_once __DIR__ . '/constants.php';
+if (!defined('_MD_PICO_WRAPBASE')) require_once __DIR__ . '/constants.dist.php';
 
 
 // get $cat_id from $content_id

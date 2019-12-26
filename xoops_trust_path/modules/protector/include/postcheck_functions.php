@@ -14,12 +14,12 @@ function protector_postcommon()
     }
 
     // configs writable check
-    if ('/admin.php' == @$_SERVER['REQUEST_URI'] && !is_writable(dirname(dirname(__FILE__)) . '/configs')) {
-        trigger_error('You should turn the directory '.dirname(dirname(__FILE__)).'/configs writable', E_USER_WARNING);
+    if ('/admin.php' == @$_SERVER['REQUEST_URI'] && !is_writable(dirname(__DIR__) . '/configs')) {
+        trigger_error('You should turn the directory '.dirname(__DIR__) . '/configs writable', E_USER_WARNING);
     }
 
     // Protector object
-    require_once dirname(dirname(__FILE__)).'/class/protector.php';
+    require_once dirname(__DIR__) . '/class/protector.php';
     $db = Database::getInstance();
     $protector = Protector::getInstance();
     $protector->setConn($db->conn);

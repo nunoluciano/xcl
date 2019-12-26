@@ -3,8 +3,8 @@
 define('XELFINDER_CACHE_TTL', 86400);
 define('XELFINDER_UNIX_TIME', (isset($_SERVER['REQUEST_TIME'])? $_SERVER['REQUEST_TIME'] : time()));
 
-$mytrustdirname = basename( dirname( __FILE__ ) ) ;
-$mytrustdirpath = dirname( __FILE__ ) ;
+$mytrustdirname = basename(__DIR__) ;
+$mytrustdirpath = __DIR__;
 
 // fork each pages
 

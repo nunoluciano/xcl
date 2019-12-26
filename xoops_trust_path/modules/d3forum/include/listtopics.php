@@ -3,14 +3,14 @@
 $forum_id = intval( @$_GET['forum_id'] ) ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(__FILE__).'/process_this_forum.inc.php' ) redirect_header( XOOPS_URL.'/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include __DIR__ . '/process_this_forum.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) redirect_header( XOOPS_URL.'/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include __DIR__ . '/process_this_category.inc.php' ) redirect_header(XOOPS_URL . '/user.php' , 3 , _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // get $odr_options, $solved_options, $query4assign
 $query4nav = "forum_id=$forum_id" ;
-include dirname(__FILE__).'/process_query4topics.inc.php' ;
+include __DIR__ . '/process_query4topics.inc.php' ;
 
 // INVISIBLE
 $whr_invisible = $isadminormod ? '1' : '! t.topic_invisible' ;

@@ -1,7 +1,7 @@
 <?php
 
 // get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
-include dirname(__FILE__).'/process_eachpost.inc.php' ;
+include __DIR__ . '/process_eachpost.inc.php' ;
 
 // vote history
 if( $uid ) {

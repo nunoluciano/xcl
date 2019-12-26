@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__FILE__)) . '/myalbum/driver.class.php';
+require_once dirname(__DIR__) . '/myalbum/driver.class.php';
 
 /**
  * Simple elFinder driver for MySQL.

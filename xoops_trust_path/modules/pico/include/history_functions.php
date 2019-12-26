@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/common_functions.php';
+require_once __DIR__ . '/common_functions.php';
 
 function pico_get_content_history_profile($mydirname, $content_history_id, $content_id = null)
 {

@@ -2,7 +2,7 @@
 
 function b_sitemap_pico($mydirname)
 {
-	include_once dirname(__FILE__) . '/common_functions.php';
+	include_once __DIR__ . '/common_functions.php';
 
 	$submenus = pico_common_get_submenu($mydirname, 'sitemap_plugin');
 	$show_subcat = @$GLOBALS['sitemap_configs']['show_subcategoris'] ? true : false;

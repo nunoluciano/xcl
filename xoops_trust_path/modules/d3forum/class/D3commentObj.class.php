@@ -9,7 +9,7 @@ public $d3comObj = null ;
 public function __construct ($params )
 //  $params['forum_dirname'] , $params['external_dirname'] , $params['classname'] , $params['external_trustdirname']
 {
-	$mytrustdirpath = dirname(dirname(__FILE__));
+	$mytrustdirpath = dirname(__DIR__);
 	if( empty( $params['classname'] ) ) {
 		include_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
 		$this->d3comObj = new D3commentAbstract( $params['forum_dirname'] , '' ) ;

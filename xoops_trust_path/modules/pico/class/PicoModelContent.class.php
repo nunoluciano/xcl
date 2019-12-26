@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/pico.textsanitizer.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
-require_once dirname(__FILE__) . '/PicoPermission.class.php';
+require_once __DIR__ . '/pico.textsanitizer.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/PicoPermission.class.php';
 
 class PicoContentHandler
 {
@@ -269,14 +269,14 @@ class PicoContent
                         $filters[$j] = '';
                     }
                 }
-                require_once dirname(dirname(__FILE__)) . '/class/pico.textsanitizer.php';
+                require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
                 $myts = &PicoTextSanitizer::sGetInstance();
                 $text = $myts->displayTarea($text, 1, $smiley, 1, 1, $nl2br);
                 $text = $myts->pageBreak($this->mydirname, $text, $content4assign);
                 continue;
             }
             $func_name = 'pico_' . $filter;
-            $file_path = dirname(dirname(__FILE__)) . '/filters/pico_' . $filter . '.php';
+            $file_path = dirname(__DIR__) . '/filters/pico_' . $filter . '.php';
             if (!function_exists($func_name)) {
                 require_once $file_path;
             }
@@ -448,7 +448,7 @@ class PicoContent
             die(_MD_PICO_ERR_SQL . __LINE__);
         }
 
-        require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
+        require_once dirname(__DIR__) . '/include/transact_functions.php';
         pico_sync_content_votes($this->mydirname, $this->id);
     }
 }

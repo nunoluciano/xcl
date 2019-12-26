@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(dirname(__FILE__)).'/class/D3commentAbstract.class.php' ;
-require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
+require_once dirname(__DIR__) . '/class/D3commentAbstract.class.php' ;
+require_once dirname(__DIR__) . '/include/common_functions.php' ;
 
 
 // old interface
@@ -10,7 +10,7 @@ function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params ,
 	global $xoopsUser , $xoopsConfig ;
 
 	$mydirpath = XOOPS_ROOT_PATH.'/modules/'.$mydirname ;
-	$mytrustdirpath = dirname( dirname( __FILE__ ) ) ;
+	$mytrustdirpath = dirname(__DIR__) ;
 
 	$db =& Database::getInstance() ;
 
@@ -90,7 +90,7 @@ function d3forum_display_comment( $mydirname , $forum_id , $params )
 		}
 
 		// naao from
-		require_once dirname(dirname(__FILE__)).'/class/D3commentObj.class.php' ;
+		require_once dirname(__DIR__) . '/class/D3commentObj.class.php' ;
 
 		// search and include the class file
 		if( $external_trustdirname && file_exists( XOOPS_TRUST_PATH."/modules/$external_trustdirname/class/{$class_name}.class.php" ) ) {
@@ -98,7 +98,7 @@ function d3forum_display_comment( $mydirname , $forum_id , $params )
 		} else if( $external_dirname && file_exists( XOOPS_ROOT_PATH."/modules/$external_dirname/class/{$class_name}.class.php" ) ) {
 			require_once XOOPS_ROOT_PATH."/modules/$external_dirname/class/{$class_name}.class.php" ;
 		} else {
-			include_once dirname(dirname(__FILE__))."/class/{$class_name}.class.php" ;
+			include_once dirname(__DIR__) . "/class/{$class_name}.class.php" ;
 			$external_dirname = '' ;
 			$external_trustdirname = '' ;
 		}
@@ -140,8 +140,8 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 	global $xoopsUser , $xoopsConfig , $xoopsModule ;
 
 	$mydirpath = XOOPS_ROOT_PATH.'/modules/'.$mydirname ;
-	$mytrustdirname = basename( dirname( dirname( __FILE__ ) ) ) ;
-	$mytrustdirpath = dirname( dirname( __FILE__ ) ) ;
+	$mytrustdirname = basename( dirname(__DIR__) ) ;
+	$mytrustdirpath = dirname(__DIR__) ;
 
 	$db =& Database::getInstance() ;
 
@@ -163,12 +163,12 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 	$config_handler =& xoops_gethandler( 'config' ) ;
 	$xoopsModuleConfig =& $config_handler->getConfigsByCat( 0 , $module->getVar( 'mid' ) ) ;
 
-	include dirname(__FILE__).'/common_prepend.php' ;
+	include __DIR__ . '/common_prepend.php' ;
 
 	$forum_id = intval( $forum_id ) ;
-	if( ! include dirname(__FILE__).'/process_this_forum.inc.php' ) return ;
+	if( ! include __DIR__ . '/process_this_forum.inc.php' ) return ;
 
-	if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) return ;
+	if( ! include __DIR__ . '/process_this_category.inc.php' ) return ;
 
 	// get $odr_options, $solved_options, $query4assign
 	//$query4nav = "forum_id=$forum_id" ;
@@ -306,7 +306,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 	            } else {
 	                $query4nav = '';
 	            }
-			require_once dirname( dirname(__FILE__) ).'/class/D3forumPagenav.class.php' ;
+			require_once dirname(__DIR__) . '/class/D3forumPagenav.class.php' ;
 			$pagenav_obj = new D3forumPagenav( $post_hits , $num , $pos , 'd3f_pos', $query4nav ) ;
 			$pagenav = $pagenav_obj->getNav() ;
 		}
@@ -320,7 +320,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		
 			// get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
 			$topic_row = ['topic_locked' => $post_row['topic_locked']];
-			include dirname(__FILE__).'/process_eachpost.inc.php' ;
+			include __DIR__ . '/process_eachpost.inc.php' ;
 		
 			// posts array
 			$posts[] = [

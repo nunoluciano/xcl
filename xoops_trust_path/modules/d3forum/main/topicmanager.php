@@ -1,18 +1,18 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php';
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php';
+require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
 $topic_id = intval( @$_GET['topic_id'] ) ;
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-include dirname(dirname(__FILE__)).'/include/process_this_topic.inc.php' ;
+include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // special permission check for topicmanager
 if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATEFORUM ) ;
@@ -40,7 +40,7 @@ foreach( $modules as $module ) {
 
 
 // TRANSACTION PART
-require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
+require_once dirname(__DIR__) . '/include/transact_functions.php' ;
 if( ! empty( $_POST['topicman_post'] ) ) {
 	if( ! $xoopsGTicket->check( true , 'd3forum' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
@@ -66,7 +66,7 @@ if( ! empty( $_POST['topicman_sync'] ) ) {
 	exit ;
 }
 if( ! empty( $_POST['topicman_export_copy'] ) || ! empty( $_POST['topicman_export_move'] ) ) {
-	require_once dirname(dirname(__FILE__)).'/include/import_functions.php' ;
+	require_once dirname(__DIR__) . '/include/import_functions.php' ;
 	if( ! $xoopsGTicket->check( true , 'd3forum' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}

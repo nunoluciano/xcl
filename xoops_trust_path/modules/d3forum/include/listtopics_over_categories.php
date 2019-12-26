@@ -22,7 +22,7 @@ if( empty( $cat_ids ) ) {
 	$cat_ids4param = $cat_id ;
 	$whr_cat_ids = 'c.cat_id='.$cat_id ;
 	// get&check this category ($category4assign, $category_row), override options
-	if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+	if( ! include __DIR__ . '/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 } else {
 	// topics under categories separated with commma
 	sort( $cat_ids ) ;
@@ -47,7 +47,7 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 
 // get $odr_options, $solved_options, $query4assign
 $query4nav = 'cat_ids='.$cat_ids4param ;
-include dirname(__FILE__).'/process_query4topics.inc.php' ;
+include __DIR__ . '/process_query4topics.inc.php' ;
 
 // INVISIBLE
 $whr_invisible = $isadminorcatmod ? '1' : '! t.topic_invisible' ;

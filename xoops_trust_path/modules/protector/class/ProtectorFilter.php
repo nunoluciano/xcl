@@ -9,9 +9,9 @@ class ProtectorFilterAbstract
     {
         $this->protector =& Protector::getInstance() ;
         $lang = empty($GLOBALS['xoopsConfig']['language']) ? @$this->protector->_conf['default_lang'] : $GLOBALS['xoopsConfig']['language'] ;
-        @include_once dirname(dirname(__FILE__)).'/language/'.$lang.'/main.php' ;
+        @include_once dirname(__DIR__) . '/language/' . $lang . '/main.php' ;
         if (! defined('_MD_PROTECTOR_YOUAREBADIP')) {
-            include_once dirname(dirname(__FILE__)).'/language/english/main.php' ;
+            include_once dirname(__DIR__) . '/language/english/main.php' ;
         }
     }
 
@@ -41,8 +41,8 @@ class ProtectorFilterHandler
     public function __construct()
     {
         $this->protector = Protector::getInstance() ;
-        $this->filters_base = dirname(dirname(__FILE__)).'/filters_enabled' ;
-        $this->filters_byconfig = dirname(dirname(__FILE__)).'/filters_byconfig' ;
+        $this->filters_base = dirname(__DIR__) . '/filters_enabled' ;
+        $this->filters_byconfig = dirname(__DIR__) . '/filters_byconfig' ;
     }
 
     public static function &getInstance()

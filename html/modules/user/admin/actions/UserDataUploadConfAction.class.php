@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__) . '/UserDataUploadAction.class.php';
+require_once __DIR__ . '/UserDataUploadAction.class.php';
 
 class User_UserDataUploadConfAction extends User_UserDataUploadAction
 {

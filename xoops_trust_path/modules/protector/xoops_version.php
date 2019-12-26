@@ -1,10 +1,10 @@
 <?php
 
 // language file (modinfo.php)
-if (file_exists(dirname(__FILE__).'/language/'.@$GLOBALS['xoopsConfig']['language'].'/modinfo.php')) {
-    include dirname(__FILE__).'/language/'.@$GLOBALS['xoopsConfig']['language'].'/modinfo.php';
-} elseif (file_exists(dirname(__FILE__).'/language/english/modinfo.php')) {
-    include dirname(__FILE__).'/language/english/modinfo.php';
+if (file_exists(__DIR__ . '/language/' . @$GLOBALS['xoopsConfig']['language'] . '/modinfo.php')) {
+    include __DIR__ . '/language/' . @$GLOBALS['xoopsConfig']['language'] . '/modinfo.php';
+} elseif (file_exists(__DIR__ . '/language/english/modinfo.php')) {
+    include __DIR__ . '/language/english/modinfo.php';
 }
 $constpref = '_MI_'.strtoupper($mydirname);
 

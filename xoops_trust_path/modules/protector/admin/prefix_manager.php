@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
-require_once dirname(dirname(__FILE__)).'/class/dbIntegrate.php' ;
+require_once dirname(__DIR__) . '/class/gtickets.php' ;
+require_once dirname(__DIR__) . '/class/dbIntegrate.php' ;
 $db =& Database::getInstance() ;
 
 // COPY TABLES
@@ -242,7 +242,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
 
 // beggining of Output
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php' ;
+include __DIR__ . '/mymenu.php' ;
 
 // query
 $srs = $db->queryF('SHOW TABLE STATUS FROM `' . XOOPS_DB_NAME . '`') ;

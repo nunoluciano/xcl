@@ -1,12 +1,12 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/main_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
-require_once dirname(dirname(__FILE__)) . '/class/pico.textsanitizer.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoUriMapper.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoPermission.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelCategory.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelContent.class.php';
+require_once dirname(__DIR__) . '/include/main_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+require_once dirname(__DIR__) . '/class/PicoUriMapper.class.php';
+require_once dirname(__DIR__) . '/class/PicoPermission.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelCategory.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelContent.class.php';
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/AltsysBreadcrumbs.class.php';
 
 // add XOOPS_TRUST_PATH/PEAR/ into include_path
@@ -19,7 +19,7 @@ $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/' . $mydirname . '/index.php',
 
 // URI Mapper
 $mapper_class = empty($xoopsModuleConfig['uri_mapper_class']) ? 'PicoUriMapper' : $xoopsModuleConfig['uri_mapper_class'];
-require_once dirname(dirname(__FILE__)) . '/class/' . $mapper_class . '.class.php';
+require_once dirname(__DIR__) . '/class/' . $mapper_class . '.class.php';
 $uriMapper = new $mapper_class($mydirname, $xoopsModuleConfig);
 $uriMapper->initGet();
 

@@ -63,7 +63,7 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 }
 
 xoops_cp_header();
-include dirname(__FILE__) . '/mymenu.php';
+include __DIR__ . '/mymenu.php';
 
 echo '<h3>' . xelfinderAdminLang('GOOGLEDRIVE_GET_TOKEN') . '</h3>';
 

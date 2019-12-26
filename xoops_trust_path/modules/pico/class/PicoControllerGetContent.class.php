@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/PicoControllerAbstract.class.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
-require_once dirname(__FILE__) . '/PicoModelContent.class.php';
+require_once __DIR__ . '/PicoControllerAbstract.class.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/PicoModelContent.class.php';
 
 class PicoControllerGetContent extends PicoControllerAbstract
 {
@@ -50,7 +50,7 @@ class PicoControllerGetContent extends PicoControllerAbstract
         // auto-register
         if (!empty($this->mod_config['wraps_auto_register']) && '/' == @$cat_data['cat_vpath']{0} && 0 == $content_data['poster_uid'] && '' != $content_data['vpath']) {
             $register_class = empty($this->mod_config['auto_register_class']) ? 'PicoAutoRegisterWraps' : $this->mod_config['auto_register_class'];
-            require_once dirname(__FILE__) . '/' . $register_class . '.class.php';
+            require_once __DIR__ . '/' . $register_class . '.class.php';
             $register_obj = new $register_class($this->mydirname, $this->mod_config);
             $is_updated   = $register_obj->updateContent($content_data['content_id'], $content_data['vpath']);
             if ($is_updated > 0) {

@@ -320,7 +320,7 @@ function d3forum_get_comment_description( $mydirname , $external_link_format , $
 // get object for comment integration  // naao modified
 function d3forum_main_get_comment_object( $forum_dirname, $external_link_format, $forum_id = null )
 {
-	require_once dirname(dirname(__FILE__)).'/class/D3commentObj.class.php' ;
+	require_once dirname(__DIR__) . '/class/D3commentObj.class.php' ;
 
 	$params['forum_dirname'] = $forum_dirname ;
 

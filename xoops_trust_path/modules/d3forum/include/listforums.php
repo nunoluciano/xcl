@@ -19,7 +19,7 @@ if( $uid > 0 ) {
 if( empty( $last_visit ) ) $last_visit = time() ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include __DIR__ . '/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // subcategories loop
 $subcategories = [];

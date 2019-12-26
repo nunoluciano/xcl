@@ -9,6 +9,6 @@ header('Last-Modified: ' . date('r', (int)(time() / $icon_cache_limit) * $icon_c
 header('Content-type: image/png');
 
     $use_custom_icon = false ;
-    $icon_fullpath = dirname(__FILE__).'/module_icon.png' ;
+    $icon_fullpath = __DIR__ . '/module_icon.png' ;
 
     readfile($icon_fullpath) ;

@@ -8,8 +8,8 @@ if (version_compare(PHP_VERSION, '5.6', '<')) {
 if (! defined('XOOPS_MODULE_PATH')) define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
 if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 
-$mytrustdirname = basename( dirname( __FILE__ ) ) ;
-$mytrustdirpath = dirname( __FILE__ ) ;
+$mytrustdirname = basename(__DIR__) ;
+$mytrustdirpath = __DIR__;
 
 // environment
 require_once XOOPS_ROOT_PATH.'/class/template.php' ;

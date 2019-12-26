@@ -9,7 +9,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__) . '/AbstractEditAction.class.php';
+require_once __DIR__ . '/AbstractEditAction.class.php';
 
 class Profile_AbstractDeleteAction extends Profile_AbstractEditAction
 {

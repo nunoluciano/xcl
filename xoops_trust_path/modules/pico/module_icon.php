@@ -13,7 +13,7 @@ if (file_exists($mydirpath . '/module_icon.png')) {
 	$icon_fullpath = $mydirpath . '/module_icon.png';
 } else {
 	$use_custom_icon = false;
-	$icon_fullpath = dirname(__FILE__) . '/module_icon.png';
+	$icon_fullpath = __DIR__ . '/module_icon.png';
 }
 
 if (!$use_custom_icon && function_exists('imagecreatefrompng') && function_exists('imagecolorallocate') && function_exists('imagestring') && function_exists('imagepng')) {

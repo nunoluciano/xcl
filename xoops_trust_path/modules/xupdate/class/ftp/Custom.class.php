@@ -1,6 +1,6 @@
 <?php
 
-include_once dirname(__FILE__). '/Abstract.class.php';
+include_once __DIR__ . '/Abstract.class.php';
 
 class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 {

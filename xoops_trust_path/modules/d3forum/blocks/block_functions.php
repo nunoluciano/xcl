@@ -20,7 +20,7 @@ function b_d3forum_list_forums_show( $options )
 	$configs = $config_handler->getConfigList( $module->mid() ) ;
 
 	// forums can be read by current viewer (check by forum_access)
-	require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
+	require_once dirname(__DIR__) . '/include/common_functions.php' ;
 	$whr_forum = 'f.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 
 	// categories
@@ -193,7 +193,7 @@ function b_d3forum_list_topics_show( $options )
 	}
 
 	// forums can be read by current viewer (check by forum_access)
-	require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
+	require_once dirname(__DIR__) . '/include/common_functions.php' ;
 	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 
 	// check option "auto" by nao-pon
@@ -477,7 +477,7 @@ function b_d3forum_list_posts_show( $options )
 	}
 
 	// forums can be read by current viewer (check by forum_access)
-	require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
+	require_once dirname(__DIR__) . '/include/common_functions.php' ;
 	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 
 	// check option "auto" by nao-pon
@@ -654,7 +654,7 @@ function b_d3forum_check_limits( $var )
 if (! function_exists ('d3forum_b_get_comment_object')) {
    function d3forum_b_get_comment_object( $mydirname , $external_link_format , $forum_id = null )
    {
-	include_once dirname(dirname(__FILE__)).'/class/D3commentAbstract.class.php' ;
+	include_once dirname(__DIR__) . '/class/D3commentAbstract.class.php' ;
 	@list( $external_dirname , $classname , $external_trustdirname ) = explode( '::' , $external_link_format ) ;
 	if( empty( $classname ) ) {
 		$obj = new D3commentAbstract( $mydirname , '' ) ;

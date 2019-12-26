@@ -53,7 +53,7 @@ class db_manager
     {
         $ret = $this->db->connect($selectdb);
         if (false != $ret) {
-            $fname = dirname(dirname(__FILE__)).'/language/'.$GLOBALS['language'].'/charset_mysql.php';
+            $fname = dirname(__DIR__) . '/language/' . $GLOBALS['language'] . '/charset_mysql.php';
             if (file_exists($fname)) {
                 require($fname);
             }

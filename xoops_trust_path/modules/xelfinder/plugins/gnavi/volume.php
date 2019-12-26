@@ -13,16 +13,16 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 	$path = '/' . trim($myConfig['gnavi_photospath'], '/') . '/';
 
 	$volumeOptions = [
-		'driverSrc' => dirname(__FILE__) . '/driver.class.php',
-		'driver'    => 'XoopsGnavi',
-		'mydirname' => $mydirname,
-		'path'      => '_',
-		'filePath'  => XOOPS_ROOT_PATH . $path,
-		'URL'       => _MD_XELFINDER_SITEURL . $path,
-		'alias'     => $title,
-		'readonly'  => true,
-		'icon'      => is_file(XOOPS_MODULE_PATH . '/'.$mydirname.'/images/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL . '/'.$mydirname.'/images/elfinder_volume_icon.png' : '',
-		'smallImg'  => $myConfig['gnavi_thumbspath']
+        'driverSrc' => __DIR__ . '/driver.class.php',
+        'driver'    => 'XoopsGnavi',
+        'mydirname' => $mydirname,
+        'path'      => '_',
+        'filePath'  => XOOPS_ROOT_PATH . $path,
+        'URL'       => _MD_XELFINDER_SITEURL . $path,
+        'alias'     => $title,
+        'readonly'  => true,
+        'icon'      => is_file(XOOPS_MODULE_PATH . '/'.$mydirname.'/images/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL . '/'.$mydirname.'/images/elfinder_volume_icon.png' : '',
+        'smallImg'  => $myConfig['gnavi_thumbspath']
     ];
 
 }

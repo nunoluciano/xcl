@@ -1,12 +1,12 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/main_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/transact_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/import_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/history_functions.php';
-require_once dirname(dirname(__FILE__)) . '/class/pico.textsanitizer.php';
-require_once dirname(dirname(__FILE__)) . '/class/gtickets.php';
+require_once dirname(__DIR__) . '/include/main_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/include/transact_functions.php';
+require_once dirname(__DIR__) . '/include/import_functions.php';
+require_once dirname(__DIR__) . '/include/history_functions.php';
+require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+require_once dirname(__DIR__) . '/class/gtickets.php';
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 $myts = &PicoTextSanitizer::sGetInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -133,7 +133,7 @@ while ($extra_row = $db->fetchArray($ers)) {
 //
 
 xoops_cp_header();
-include dirname(__FILE__) . '/mymenu.php';
+include __DIR__ . '/mymenu.php';
 $tpl = new XoopsTpl();
 $tpl->assign(
     [

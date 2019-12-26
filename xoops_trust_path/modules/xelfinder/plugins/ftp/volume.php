@@ -6,7 +6,7 @@
 if (is_dir(XOOPS_ROOT_PATH . $path)) {
 
 	$volumeOptions = [
-        'driverSrc' => dirname(dirname(dirname(__FILE__))) . '/class/xelFinderVolumeFTP.class.php',
+        'driverSrc' => dirname(dirname(__DIR__)) . '/class/xelFinderVolumeFTP.class.php',
         'driver'  => 'FTPx',
         'alias'   => $title,
         'host'    => $mConfig['ftp_host'],

@@ -71,7 +71,7 @@ function getLanguage()
                         break;
                     }
                 }
-                if (file_exists(dirname(dirname(__FILE__)).'/language/'.$al.'_utf8')) {
+                if (file_exists(dirname(__DIR__) . '/language/' . $al . '_utf8')) {
                     $language = $al.'_utf8';
                 }
             } elseif (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {

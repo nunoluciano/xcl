@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/PicoControllerAbstract.class.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
-require_once dirname(__FILE__) . '/gtickets.php';
+require_once __DIR__ . '/PicoControllerAbstract.class.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/gtickets.php';
 
 class PicoControllerEditCategory extends PicoControllerAbstract
 {
@@ -93,7 +93,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
     // get samples of category options
     public function getCategoryOptions4edit()
     {
-        include dirname(dirname(__FILE__)) . '/include/configs_can_override.inc.php';
+        include dirname(__DIR__) . '/include/configs_can_override.inc.php';
 
         $lines = [];
         foreach ($pico_configs_can_be_override as $key => $type) {

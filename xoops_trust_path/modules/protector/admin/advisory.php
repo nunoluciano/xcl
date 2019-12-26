@@ -4,7 +4,7 @@ $db =& Database::getInstance() ;
 
 // beggining of Output
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php' ;
+include __DIR__ . '/mymenu.php' ;
 
 // open table for ADVISORY
 echo "<div class='ui-card-main'>\n" ;

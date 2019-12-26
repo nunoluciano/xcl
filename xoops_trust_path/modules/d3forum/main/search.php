@@ -1,7 +1,7 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
-require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
+require_once dirname(__DIR__) . '/include/common_functions.php' ;
 
 if( ! isset( $_GET['submit'] ) ) {
 

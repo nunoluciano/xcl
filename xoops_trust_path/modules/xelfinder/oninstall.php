@@ -24,7 +24,7 @@ function xelfinder_oninstall_base( $module , $mydirname )
 	$mid = $module->getVar('mid') ;
 
 	// TABLES (loading mysql.sql)
-	$sql_file_path = dirname(__FILE__).'/sql/mysql.sql' ;
+	$sql_file_path = __DIR__ . '/sql/mysql.sql' ;
 	$prefix_mod = $db->prefix() . '_' . $mydirname ;
 	if( file_exists( $sql_file_path ) ) {
 		$ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path, ENT_COMPAT, _CHARSET) . '</b>.<br /> Creating tables...';
@@ -63,7 +63,7 @@ function xelfinder_oninstall_base( $module , $mydirname )
 
 	// TEMPLATES
 	$tplfile_handler = xoops_getHandler('tplfile' ) ;
-	$tpl_path = dirname(__FILE__).'/templates' ;
+	$tpl_path = __DIR__ . '/templates' ;
 	if( $handler = @opendir( $tpl_path . '/' ) ) {
 		while(false !== ( $file = readdir($handler ) )) {
 			if('.' == substr($file , 0 , 1 )) continue ;

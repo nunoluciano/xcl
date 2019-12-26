@@ -1,6 +1,6 @@
 <?php
 // for XOOPS compatible
-require_once dirname(__FILE__) . '/PHPMailerAutoload.php';
+require_once __DIR__ . '/PHPMailerAutoload.php';
 
 /**
  * PHPMailer - PHP email creation and transport class.
@@ -1798,7 +1798,7 @@ class PHPMailer
         ];
         if (empty($lang_path)) {
             // Calculate an absolute path so it can work if CWD is not here
-            $lang_path = dirname(__FILE__). DIRECTORY_SEPARATOR . 'language'. DIRECTORY_SEPARATOR;
+            $lang_path = __DIR__ . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR;
         }
         //Validate $langcode
         if (!preg_match('/^[a-z]{2}(?:_[a-zA-Z]{2})?$/', $langcode)) {

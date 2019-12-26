@@ -1,7 +1,7 @@
 <?php
 
 require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php';
+require_once dirname(__DIR__) . '/class/gtickets.php';
 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 $db = &Database::getInstance();
 
@@ -13,7 +13,7 @@ $num = empty($_GET[ 'num' ]) ? 20 : intval($_GET[ 'num' ]);
 $log_table = $db->prefix($mydirname.'_log');
 
 // Protector object
-require_once dirname(dirname(__FILE__)).'/class/protector.php';
+require_once dirname(__DIR__) . '/class/protector.php';
 $db = &Database::getInstance();
 $protector = Protector::getInstance($db->conn);
 $conf = $protector->getConf();
@@ -112,15 +112,15 @@ foreach ($num_array as $n) {
 
 // beggining of Output
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php';
+include __DIR__ . '/mymenu.php';
 
 // title
 echo "<div class='ui-card-main'>\n
         <h2>".$xoopsModule->name()."</h3>\n";
 
 // configs writable check
-if (!is_writable(dirname(dirname(__FILE__)).'/configs')) {
-    printf("<p style='color:red;font-weight:bold;'>"._AM_FMT_CONFIGSNOTWRITABLE."</p>\n", dirname(dirname(__FILE__)).'/configs');
+if (!is_writable(dirname(__DIR__) . '/configs')) {
+    printf("<p style='color:red;font-weight:bold;'>"._AM_FMT_CONFIGSNOTWRITABLE."</p>\n", dirname(__DIR__) . '/configs');
 }
 
 // bad_ips

@@ -4,7 +4,7 @@
 
 include_once XOOPS_TRUST_PATH . '/modules/d3forum/include/rss_functions.php';
 
-$mydirname = basename( dirname ( dirname( __FILE__ ) ) );
+$mydirname = basename( dirname (__DIR__) );
 
 eval( '
 

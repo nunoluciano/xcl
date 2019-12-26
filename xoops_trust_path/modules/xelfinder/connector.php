@@ -31,7 +31,7 @@ try {
 	define('ELFINDER_DROPBOX_USE_CURL_PUT', true);
 
 	// load compat functions
-	require_once dirname(__FILE__) . '/include/compat.php';
+	require_once __DIR__ . '/include/compat.php';
 
 	$php54 = version_compare(PHP_VERSION, '5.4', '>=');
 	$php55 = version_compare(PHP_VERSION, '5.5', '>=');
@@ -100,7 +100,7 @@ try {
 	define('_MD_XELFINDER_PROXY_TOKEN_KEY', $mydirname.'_ptoken');
 
 	// load xoops_elFinder
-	require_once dirname(__FILE__).'/class/xoops_elFinder.class.php';
+	require_once __DIR__ . '/class/xoops_elFinder.class.php';
 	$xoops_elFinder = new xoops_elFinder($mydirname);
 	$xoops_elFinder->setConfig($config);
 	$xoops_elFinder->setLogfile($debug? XOOPS_TRUST_PATH . '/cache/elfinder.log.txt' : '');
@@ -166,8 +166,8 @@ try {
 
 	define('ELFINDER_IMG_PARENT_URL', XOOPS_URL . '/common/elfinder/');
 
-	require dirname(__FILE__) . '/class/xelFinder.class.php';
-	require dirname(__FILE__) . '/class/xelFinderVolumeFTP.class.php';
+	require __DIR__ . '/class/xelFinder.class.php';
+	require __DIR__ . '/class/xelFinderVolumeFTP.class.php';
 
 	$extras = [];
 	if ('UTF-8' !== strtoupper(_CHARSET)) {
@@ -222,9 +222,9 @@ try {
 	$xoops_elFinder->setLogfile($debug? XOOPS_TRUST_PATH . '/cache/elfinder.log.txt' : '');*/
 
 	// Access control
-	require_once dirname(__FILE__).'/class/xelFinderAccess.class.php';
+	require_once __DIR__ . '/class/xelFinderAccess.class.php';
 	// custom session handler
-	require_once dirname(__FILE__) . '/class/xelFinderSession.class.php';
+	require_once __DIR__ . '/class/xelFinderSession.class.php';
 	
 	// make sesstion handler
 	$session = new xelFinderSession(
@@ -518,6 +518,6 @@ function debug() {
 		var_dump($arg);
 	}
 	$str = ob_get_clean();
-	file_put_contents(dirname(__FILE__) . '/debug.txt', $str . "\n", FILE_APPEND);
+	file_put_contents(__DIR__ . '/debug.txt', $str . "\n", FILE_APPEND);
 }
 

@@ -16,7 +16,7 @@ if (!defined('XUPDATE_TRUST_PATH')) {
 
 require_once XUPDATE_TRUST_PATH . '/class/XupdateUtils.class.php';
 
-$dirname  = dirname(__FILE__);
+$dirname  = __DIR__;
 $basename = basename($dirname);
 //
 // Define a basic manifesto.

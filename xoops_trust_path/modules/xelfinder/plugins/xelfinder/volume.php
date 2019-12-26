@@ -13,7 +13,7 @@ if (0 === strpos($path, '/[trust]')) {
 if (is_dir($path)) {
 
 	$volumeOptions = [
-        'driverSrc'  => dirname(__FILE__) . '/driver.class.php',
+        'driverSrc'  => __DIR__ . '/driver.class.php',
         'driver'     => 'XoopsXelfinder',
         'mydirname'  => $mydirname,
         'path'       => $path,

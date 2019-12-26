@@ -1,9 +1,9 @@
 <?php
 
-require_once dirname(__FILE__).'/precheck_functions.php' ;
+require_once __DIR__ . '/precheck_functions.php' ;
 
 if (class_exists('Database')) {
-    require dirname(__FILE__).'/postcheck.inc.php' ;
+    require __DIR__ . '/postcheck.inc.php' ;
     return ;
 }
 

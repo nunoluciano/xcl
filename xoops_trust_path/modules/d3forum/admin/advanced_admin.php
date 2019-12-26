@@ -1,11 +1,11 @@
 <?php
 
-require_once dirname(dirname(__FILE__)).'/include/main_functions.php' ;
-require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
-require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
-require_once dirname(dirname(__FILE__)).'/include/import_functions.php' ;
-require_once dirname(dirname(__FILE__)).'/class/d3forum.textsanitizer.php' ;
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
+require_once dirname(__DIR__) . '/include/main_functions.php' ;
+require_once dirname(__DIR__) . '/include/common_functions.php' ;
+require_once dirname(__DIR__) . '/include/transact_functions.php' ;
+require_once dirname(__DIR__) . '/include/import_functions.php' ;
+require_once dirname(__DIR__) . '/class/d3forum.textsanitizer.php' ;
+require_once dirname(__DIR__) . '/class/gtickets.php' ;
 $myts =& D3forumTextSanitizer::sGetInstance() ;
 $db =& Database::getInstance() ;
 
@@ -148,7 +148,7 @@ list( $max_topic_id ) = $db->fetchRow( $db->query('SELECT MAX(topic_id) FROM ' .
 //
 
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php' ;
+include __DIR__ . '/mymenu.php' ;
 $tpl = new XoopsTpl() ;
 $tpl->assign([
 	'mydirname' => $mydirname ,

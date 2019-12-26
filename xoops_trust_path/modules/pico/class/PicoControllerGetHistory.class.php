@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/PicoControllerAbstract.class.php';
-require_once dirname(__FILE__) . '/PicoModelCategory.class.php';
-require_once dirname(__FILE__) . '/PicoModelContent.class.php';
+require_once __DIR__ . '/PicoControllerAbstract.class.php';
+require_once __DIR__ . '/PicoModelCategory.class.php';
+require_once __DIR__ . '/PicoModelContent.class.php';
 
 class PicoControllerGetHistory extends PicoControllerAbstract
 {

@@ -37,7 +37,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
         }
 
         //get dirname list of Xupdate
-        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(dirname(__FILE__)))));
+        $dirnames = Legacy_Utils::getDirnameListByTrustDirname(basename(dirname(dirname(__DIR__))));
 
         foreach ($dirnames as $dir) {
             //setup client module info

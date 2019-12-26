@@ -11,7 +11,7 @@ function pico_xoopstpl($mydirname, $text, $content4assign)
 
 	$tpl = new XoopsTpl();
 	//$tpl->plugins_dir[] = dirname(dirname(__FILE__)).'/smarty_plugins' ;
-	array_unshift($tpl->plugins_dir, dirname(dirname(__FILE__)) . '/smarty_plugins'); // pico plugin has the first priority
+	array_unshift($tpl->plugins_dir, dirname(__DIR__) . '/smarty_plugins'); // pico plugin has the first priority
 
 	if (is_object(@$xoopsTpl)) {
 		$tpl->assign($xoopsTpl->get_template_vars());

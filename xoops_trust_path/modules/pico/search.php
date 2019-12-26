@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . '/include/common_functions.php';
-require_once dirname(__FILE__) . '/class/pico.textsanitizer.php';
-require_once dirname(__FILE__) . '/class/PicoModelContent.class.php';
+require_once __DIR__ . '/include/common_functions.php';
+require_once __DIR__ . '/class/pico.textsanitizer.php';
+require_once __DIR__ . '/class/PicoModelContent.class.php';
 
 eval('
 

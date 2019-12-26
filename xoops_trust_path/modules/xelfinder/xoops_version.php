@@ -750,6 +750,6 @@ $modversion['onUninstall'] = 'onuninstall.php' ;
 
 // keep block's options
 if( ! defined( 'XOOPS_CUBE_LEGACY' ) && substr( XOOPS_VERSION , 6 , 3 ) < 2.1 && ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && 'modulesadmin' == $_POST['fct'] && 'update_ok' == $_POST['op'] && $_POST['dirname'] == $modversion['dirname'] ) {
-	include dirname(__FILE__).'/include/x20_keepblockoptions.inc.php' ;
+	include __DIR__ . '/include/x20_keepblockoptions.inc.php' ;
 }
 

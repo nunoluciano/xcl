@@ -1,7 +1,7 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php';
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php';
+require_once dirname(__DIR__) . '/class/gtickets.php' ;
 
 $post_id = intval( @$_GET['post_id'] ) ;
 
@@ -13,16 +13,16 @@ $post_row = $db->fetchArray( $prs ) ;
 $topic_id = intval( $post_row['topic_id'] ) ;
 
 // get&check this topic ($topic4assign, $topic_row, $forum_id), count topic_view up, get $prev_topic, $next_topic
-include dirname(dirname(__FILE__)).'/include/process_this_topic.inc.php' ;
+include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // get $post4assign
-include dirname(dirname(__FILE__)).'/include/process_this_post.inc.php' ;
+include dirname(__DIR__) . '/include/process_this_post.inc.php' ;
 
 // check delete permission
 if( empty( $can_delete ) ) die( _MD_D3FORUM_ERR_DELETEPOST ) ;
@@ -72,7 +72,7 @@ if( ! empty( $_POST['deletepostsok'] ) ) {
 		}
 	}
 
-	require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
+	require_once dirname(__DIR__) . '/include/transact_functions.php' ;
 	d3forum_delete_post_recursive( $mydirname , $post_id ) ;
 	d3forum_sync_topic( $mydirname , $topic_id ) ;
 

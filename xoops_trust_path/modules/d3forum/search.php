@@ -24,7 +24,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	$userid = intval( $userid ) ;
 
 	// naao from
-	require_once dirname(__FILE__).'/include/main_functions.php' ;
+	require_once __DIR__ . '/include/main_functions.php' ;
 	// get all forums
 	$sql = 'SELECT forum_id, forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') ;
 	$frs = $db->query( $sql ) ;
@@ -47,7 +47,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	$select4con = $showcontext ? 'p.post_text' : "'' AS post_text" ;
 	$subselect4con = $showcontext ? ',post_text' : '' ;
 
-	require_once dirname(__FILE__).'/include/common_functions.php' ;
+	require_once __DIR__ . '/include/common_functions.php' ;
 	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 	
 	$whr_uid = $userid > 0 ? "uid=$userid" : '1';

@@ -47,7 +47,7 @@ if( ! class_exists( 'xelfinderPreloadBase' ) ) {
                     if (!isset($_GET['cb']) && (!isset($_GET['getfile']) || 'ckeditor' !== $_GET['getfile'])) {
                         $_GET['cb'] = 'bbcode';
                     }
-                    require dirname(__FILE__) . '/manager.php';
+                    require __DIR__ . '/manager.php';
                 }
             }
 

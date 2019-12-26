@@ -290,7 +290,7 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	include dirname(dirname(__FILE__)) . '/include/configs_can_override.inc.php';
+	include dirname(__DIR__) . '/include/configs_can_override.inc.php';
 	$cat_options = [];
 	foreach ($GLOBALS['xoopsModuleConfig'] as $key => $val) {
 		if (empty($pico_configs_can_be_override[$key])) continue;
@@ -438,7 +438,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 		if ('filter_enabled_' == substr($key, 0, 15) && $val) {
 			$name = str_replace('..', '', substr($key, 15));
 			$constpref = '_MD_PICO_FILTERS_' . strtoupper($name);
-			$filter_file = dirname(dirname(__FILE__)) . '/filters/pico_' . $name . '.php';
+			$filter_file = dirname(__DIR__) . '/filters/pico_' . $name . '.php';
 			if (!file_exists($filter_file)) continue;
 			require_once $filter_file;
 			if (!$isadminormod && defined($constpref . 'ISINSECURE')) continue;
@@ -480,7 +480,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
     ];
 
 	// tags (finding a custom tag filter for each languages)
-	$custom_tag_filter_file = dirname(dirname(__FILE__)) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/tag_filter.phtml';
+	$custom_tag_filter_file = dirname(__DIR__) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/tag_filter.phtml';
 	if (file_exists($custom_tag_filter_file)) {
 		require_once $custom_tag_filter_file;
 		$tags_array = pico_custom_tag_filter($ret['tags']);
@@ -574,7 +574,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 
 	// extra_fields (read ef class and create the object)
 	$ef_class = empty($mod_config['extra_fields_class']) ? 'PicoExtraFields' : preg_replace('/[^0-9a-zA-Z_]/', '', $mod_config['extra_fields_class']);
-	require_once dirname(dirname(__FILE__)) . '/class/' . $ef_class . '.class.php';
+	require_once dirname(__DIR__) . '/class/' . $ef_class . '.class.php';
 	$ef_obj = new $ef_class($mydirname, $mod_config, $auto_approval, $isadminormod, $content_id);
 	$ret['extra_fields'] = $ef_obj->getSerializedRequestsFromPost();
 

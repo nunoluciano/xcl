@@ -1,8 +1,8 @@
 <?php
 
-include_once dirname(__FILE__) . '/Abstract.class.php';
-include_once dirname(__FILE__) . '/phpseclib/Crypt/RSA.php';
-include_once dirname(__FILE__) . '/phpseclib/Net/SFTP.php';
+include_once __DIR__ . '/Abstract.class.php';
+include_once __DIR__ . '/phpseclib/Crypt/RSA.php';
+include_once __DIR__ . '/phpseclib/Net/SFTP.php';
 
 class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
 {

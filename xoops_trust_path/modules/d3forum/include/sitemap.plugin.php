@@ -6,7 +6,7 @@ function b_sitemap_d3forum( $mydirname )
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 	$ret = [];
 
-	include_once dirname(__FILE__).'/common_functions.php' ;
+	include_once __DIR__ . '/common_functions.php' ;
 
 	$whr_forum = 'forum_id IN ('.implode(',',d3forum_get_forums_can_read( $mydirname )).')' ;
 

@@ -286,7 +286,7 @@ class PicoUriMapper
             header('Last-Modified: ' . date('r', intval(time() / $cache_limit) * $cache_limit));
         }
 
-        require dirname(dirname(__FILE__)) . '/include/mimes.php';
+        require dirname(__DIR__) . '/include/mimes.php';
         if (!empty($mimes[$ext])) {
             header('Content-Type: ' . $mimes[$ext]);
         } else {

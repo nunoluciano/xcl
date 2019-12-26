@@ -2,7 +2,7 @@
 
 define( '_D3FORUM_ANTISPAM_JAPANESE_AMB' , 3 ) ;
 
-require_once dirname(__FILE__).'/D3forumAntispamAbstract.class.php' ;
+require_once __DIR__ . '/D3forumAntispamAbstract.class.php' ;
 
 class D3forumAntispamJapanese extends D3forumAntispamAbstract
 {
@@ -81,7 +81,7 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract
     private function setDictionary($file)
     {
         if ('/' !== $file[0]) {
-            $file = dirname(__FILE__) . '/' . $file;
+            $file = __DIR__ . '/' . $file;
         }
         if (is_readable($file)) {
             $this->dictionary_file = $file;

@@ -16,7 +16,7 @@ function b_pico_tags_show($options)
 	global $pico_blocks_tags_order_options;
 
 	// options
-	$mytrustdirname = basename(dirname(dirname(__FILE__)));
+	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
 	$limit = empty($options[1]) ? 10 : intval($options[1]);
 	$listorder = in_array(@$options[2], $pico_blocks_tags_order_options) ? $options[2] : 'count DESC';
@@ -95,7 +95,7 @@ function b_pico_tags_edit($options)
 	global $pico_blocks_tags_order_options;
 
 	// options
-	$mytrustdirname = basename(dirname(dirname(__FILE__)));
+	$mytrustdirname = basename(dirname(__DIR__));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
 	$limit = empty($options[1]) ? 10 : intval($options[1]);
 	$listorder = in_array(@$options[2], $pico_blocks_tags_order_options) ? $options[2] : 'count DESC';

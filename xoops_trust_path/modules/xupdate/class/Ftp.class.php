@@ -21,10 +21,10 @@ $mod_config = XCube_Root::getSingleton()->mContext->mModuleConfig ;
 // FTP class
 switch ($mod_config['ftp_method']) {
     case _XUPDATE_FTP_CUSTOM :
-        require_once dirname(__FILE__) . '/ftp/Custom.class.php';
+        require_once __DIR__ . '/ftp/Custom.class.php';
         break;
     case _XUPDATE_FTP_PHP_MODULE :
-        require_once dirname(__FILE__) . '/ftp/Phpfunc.class.php';
+        require_once __DIR__ . '/ftp/Phpfunc.class.php';
         break;
     case _XUPDATE_FTP_CUSTOM_SFTP :
         // To Do
@@ -35,8 +35,8 @@ switch ($mod_config['ftp_method']) {
                 define('PATH_SEPARATOR', ';');
             }
         }
-        set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ftp/phpseclib');
-        require_once dirname(__FILE__) . '/ftp/Sftp.class.php';
+        set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/ftp/phpseclib');
+        require_once __DIR__ . '/ftp/Sftp.class.php';
         break;
     case _XUPDATE_FTP_CUSTOM_SSH2 :
         // To Do
@@ -47,11 +47,11 @@ switch ($mod_config['ftp_method']) {
                 define('PATH_SEPARATOR', ';');
             }
         }
-        set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ftp/phpseclib');
-        require_once dirname(__FILE__) . '/ftp/Ssh2.class.php';
+        set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/ftp/phpseclib');
+        require_once __DIR__ . '/ftp/Ssh2.class.php';
         break;
     case _XUPDATE_FTP_DIRECT :
-        require_once dirname(__FILE__) . '/ftp/Direct.class.php';
+        require_once __DIR__ . '/ftp/Direct.class.php';
         define('_XUPDATE_FTP_ROOT', '');
         break;
     default:

@@ -1,18 +1,18 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
 
 $cat_id = intval( @$_GET['cat_id'] ) ;
 if( ! empty( $_POST['cat_id'] ) ) $cat_id = intval( $_POST['cat_id'] ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // special check for makeforum
 if( ! $isadmin && ! @$category_permissions[ $cat_id ]['can_makeforum'] && ! @$category_permissions[ $cat_id ]['is_moderator'] ) die( _MD_D3FORUM_ERR_CREATEFORUM ) ;
 // TRANSACTION PART
 // permissions will be set same as the parent category. (also moderator)
-require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
+require_once dirname(__DIR__) . '/include/transact_functions.php' ;
 if( isset( $_POST['forumman_post'] ) ) {
 
 	// options and weight can be modified only by admin
@@ -44,7 +44,7 @@ if( isset( $_POST['forumman_post'] ) ) {
 
 // FORM PART
 
-include dirname(dirname(__FILE__)).'/include/constant_can_override.inc.php' ;
+include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 $options4html = '' ;
 foreach( $xoopsModuleConfig as $key => $val ) {
 	if( isset( $d3forum_configs_can_be_override[ $key ] ) ) {

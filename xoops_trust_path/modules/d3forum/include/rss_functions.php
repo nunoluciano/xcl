@@ -30,7 +30,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 		$whr_cat_ids = 'f.cat_id IN (' . join(',' , $cat_ids) . ')';
 	}
 	
-	require_once dirname(dirname(__FILE__)).'/class/d3forum.textsanitizer.php' ;
+	require_once dirname(__DIR__) . '/class/d3forum.textsanitizer.php' ;
 	(method_exists('D3forumTextSanitizer', 'sGetInstance') and  $myts =& D3forumTextSanitizer::sGetInstance()) || $myts =& D3forumTextSanitizer::getInstance() ;
 	$db =& Database::getInstance() ;
 	
@@ -38,7 +38,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	$cat_id = ($whr_cat_ids)? ' AND ' . $whr_cat_ids : '';
 	$last_post = ($last_post) ? ' AND t.topic_last_post_id = p.post_id' : '';
 	
-	require_once dirname(__FILE__).'/common_functions.php' ;
+	require_once __DIR__ . '/common_functions.php' ;
 	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 	
 	$sql = 'SELECT c.cat_title, f.forum_id, f.forum_title, p.post_id, p.topic_id, p.post_time, p.uid, p.subject, p.html, p.smiley, p.xcode, p.br, p.guest_name, t.topic_views, t.topic_posts_count, p.post_text, f.forum_external_link_format, t.topic_external_link_id FROM '.$db->prefix($mydirname.'_posts').' p LEFT JOIN '.$db->prefix($mydirname.'_topics').' t ON t.topic_id=p.topic_id LEFT JOIN '.$db->prefix($mydirname.'_forums').' f ON f.forum_id=t.forum_id LEFT JOIN '.$db->prefix($mydirname.'_categories').' c ON c.cat_id=f.cat_id WHERE ('.$whr_forum.') AND ! topic_invisible'.$last_post.$forum_id.$cat_id.' ORDER BY p.post_time DESC' ;
@@ -50,7 +50,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	{
 		$is_readable = true;
 		if (! empty($row['forum_external_link_format'])) {
-			require_once dirname(__FILE__).'/main_functions.php' ;
+			require_once __DIR__ . '/main_functions.php' ;
 			if (!isset($d3coms[$row['forum_id']])) {
 				$d3com = $d3coms[$row['forum_id']] = d3forum_main_get_comment_object( $mydirname , $row['forum_external_link_format'] , $row['forum_id']);
 			}

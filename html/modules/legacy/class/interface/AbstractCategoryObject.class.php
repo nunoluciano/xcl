@@ -8,7 +8,7 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-require_once dirname(__FILE__) . '/AbstractObject.class.php';
+require_once __DIR__ . '/AbstractObject.class.php';
 /**
  * Abstract Category Class
 **/
