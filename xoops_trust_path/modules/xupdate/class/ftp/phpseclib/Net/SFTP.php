@@ -1931,7 +1931,7 @@ class Net_SFTP extends Net_SSH2
         while ($dataCallback || ($sent < $size)) {
             if ($dataCallback) {
                 $temp = call_user_func($dataCallback, $sftp_packet_size);
-                if (is_null($temp)) {
+                if (null === $temp) {
                     break;
                 }
             } else {

@@ -429,7 +429,7 @@ class xoops_elFinder {
 	
 		$ret = false;
 	
-		if (is_null($module_handler)) {
+		if (null === $module_handler) {
 			$module_handler = xoops_getHandler('module');
 		}
 	
@@ -781,7 +781,7 @@ EOD;
 			return $unames[$uid];
 		}
 		
-		if (is_null($db)) {
+		if (null === $db) {
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
 		}
 		
@@ -815,7 +815,7 @@ EOD;
 	 */
 	public static function dbSetCharset($charset = 'utf8') {
 		static $link = null;
-		if (is_null($link)) {
+		if (null === $link) {
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
 			$link = (is_object($db->conn) && 'mysqli' === get_class($db->conn))? $db->conn : false;
 		}

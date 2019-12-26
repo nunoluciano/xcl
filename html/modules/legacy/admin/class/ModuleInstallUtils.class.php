@@ -1097,7 +1097,7 @@ class Legacy_ModuleInstallUtils
             }
             $config->set('conf_formtype', $info->mFormType);
             $config->set('conf_valuetype', $info->mValueType);
-            if (!is_null($updateValue)) {
+            if (null !== $updateValue) {
                 $config->setConfValueForInput($updateValue);
             }
         }

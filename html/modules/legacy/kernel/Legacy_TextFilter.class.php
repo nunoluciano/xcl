@@ -220,7 +220,7 @@ class Legacy_TextFilter extends XCube_TextFilter
        // Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5
         $doctypeArr = ['HTML 4.01 Strict', 'HTML 4.01 Transitional', 'XHTML 1.0 Strict', 'XHTML 1.0 Transitional', 'XHTML 1.1'];
     
-        if (is_null($config) || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
+        if (null === $config || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
             $config = HTMLPurifier_Config::createDefault();
         }
         if (in_array($doctype, $doctypeArr)) {
@@ -399,7 +399,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         $replacementsIdx = (0 == $allowimage) ? 0 : 1;
         if (true === $this->mXCodeHasCallback[$replacementsIdx]) {
             foreach ($this->mXCodePatterns as $i => $patterns) {
-                if (is_null($this->mXCodeCallbacks[$replacementsIdx][$i])) {
+                if (null === $this->mXCodeCallbacks[$replacementsIdx][$i]) {
                     $text =  preg_replace($patterns, $this->mXCodeReplacements[$replacementsIdx][$i], $text);
                 } else {
                     $text =  preg_replace_callback($patterns, $this->mXCodeCallbacks[$replacementsIdx][$i], $text);
@@ -556,7 +556,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             }
             if (true === $this->mPreXCodeHasCallback) {
                 foreach ($this->mPreXCodePatterns as $i => $patterns) {
-                    if (is_null($this->mPreXCodeCallbacks[$i])) {
+                    if (null === $this->mPreXCodeCallbacks[$i]) {
                         $text =  preg_replace($patterns, $this->mPreXCodeReplacements[$i], $text);
                     } else {
                         $text =  preg_replace_callback($patterns, $this->mPreXCodeCallbacks[$i], $text);
@@ -633,7 +633,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             $replacementsIdx = (0 == $image) ? 0 : 1;
             if (true === $this->mPostXCodeHasCallback[$replacementsIdx]) {
                 foreach ($this->mPostXCodePatterns as $i => $patterns) {
-                    if (is_null($this->mPostXCodeCallbacks[$replacementsIdx][$i])) {
+                    if (null === $this->mPostXCodeCallbacks[$replacementsIdx][$i]) {
                         $text =  preg_replace($patterns, $this->mPostXCodeReplacements[$replacementsIdx][$i], $text);
                     } else {
                         $text =  preg_replace_callback($patterns, $this->mPostXCodeCallbacks[$replacementsIdx][$i], $text);

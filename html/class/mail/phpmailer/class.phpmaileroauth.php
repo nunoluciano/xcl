@@ -84,11 +84,11 @@ class PHPMailerOAuth extends PHPMailer
      */
     public function smtpConnect($options = [])
     {
-        if (is_null($this->smtp)) {
+        if (null === $this->smtp) {
             $this->smtp = $this->getSMTPInstance();
         }
 
-        if (is_null($this->oauth)) {
+        if (null === $this->oauth) {
             $this->oauth = $this->getOAUTHInstance();
         }
 
@@ -189,7 +189,7 @@ class PHPMailerOAuth extends PHPMailer
         // If we get here, all connection attempts have failed, so close connection hard
         $this->smtp->close();
         // As we've caught all exceptions, just report whatever the last one was
-        if ($this->exceptions and !is_null($lastexception)) {
+        if ($this->exceptions and null !== $lastexception) {
             throw $lastexception;
         }
         return false;

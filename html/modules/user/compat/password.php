@@ -37,7 +37,7 @@ namespace {
                 trigger_error('Crypt must be loaded for password_hash to function', E_USER_WARNING);
                 return null;
             }
-            if (is_null($password) || is_int($password)) {
+            if (null === $password || is_int($password)) {
                 $password = (string) $password;
             }
             if (!is_string($password)) {
@@ -301,7 +301,7 @@ namespace PasswordCompat\binary {
         function check() {
             static $pass = NULL;
 
-            if (is_null($pass)) {
+            if (null === $pass) {
                 if (function_exists('crypt')) {
                     $hash = '$2y$04$usesomesillystringfore7hnbRJHxXVLeakoG8K30oukPsA.ztMG';
                     $test = crypt('password', $hash);

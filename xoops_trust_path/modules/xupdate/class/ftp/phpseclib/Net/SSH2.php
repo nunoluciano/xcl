@@ -4205,7 +4205,7 @@ class Net_SSH2
      */
     public function getExitStatus()
     {
-        if (is_null($this->exit_status)) {
+        if (null === $this->exit_status) {
             return false;
         }
         return $this->exit_status;

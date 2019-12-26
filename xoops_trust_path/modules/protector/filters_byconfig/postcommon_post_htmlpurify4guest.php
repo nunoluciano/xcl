@@ -38,8 +38,8 @@ class protector_postcommon_post_htmlpurify4guest extends ProtectorFilterAbstract
     public function purify_recursive($data) {
 
         static $encoding = null;
-        
-        is_null($encoding) && ($encoding = (_CHARSET === 'UTF-8'? '' : _CHARSET));
+
+        null === $encoding && ($encoding = (_CHARSET === 'UTF-8'? '' : _CHARSET));
         
         if (is_array($data)) {
             return array_map([$this, 'purify_recursive'], $data) ;

@@ -48,7 +48,7 @@ class PicoUriMapper
                     $cat_id     = 0;
                 } else {
                     list($content_id, $cat_id) = $this->parsePathInfo($path_info);
-                    if (is_null($content_id)) {
+                    if (null === $content_id) {
                         list($content_id, $cat_id) = $this->processWrapPath($path_info);
                     }
                 }

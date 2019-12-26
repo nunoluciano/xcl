@@ -88,7 +88,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		$this->tbc = $this->db->prefix($this->mydirname) . '_cat';
 		$this->tbf = $this->db->prefix($this->mydirname) . '_photos';
 
-		if (is_null($this->options['syncChkAsTs'])) {
+		if (null === $this->options['syncChkAsTs']) {
 			$this->options['syncChkAsTs'] = true;
 		}
 

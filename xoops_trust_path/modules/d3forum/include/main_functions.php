@@ -111,7 +111,7 @@ function d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id = nu
 	$forum_uids = [];
 	$cat_uids = [];
 
-	if( is_null( $cat_id ) ) {
+	if(null === $cat_id) {
 		// get $cat_id from $forum_id
 		list( $cat_id ) = $db->fetchRow( $db->query('SELECT `cat_id` FROM ' . $db->prefix($mydirname . '_forums') . " WHERE `forum_id`=$forum_id" ) ) ;
 	}

@@ -117,7 +117,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
             for ($j = 0 ; $j < $fields_cnt ; $j ++) {
                 $fields_meta = $dbIntegrate->fetchField($result, $j) ;
                 // NULL
-                if (!isset($row[$j]) || is_null($row[$j])) {
+                if (!isset($row[$j]) || null === $row[$j]) {
                     $values[] = 'NULL';
                 // a number
                 // timestamp is numeric on some MySQL 4.1

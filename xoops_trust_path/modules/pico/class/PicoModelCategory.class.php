@@ -283,7 +283,7 @@ class PicoCategory
 
     public function getChildIds()
     {
-        if (is_null($this->child_ids)) {
+        if (null === $this->child_ids) {
             $this->crawlChildIds();
         }
         return $this->child_ids;

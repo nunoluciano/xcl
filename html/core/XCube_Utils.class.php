@@ -113,7 +113,7 @@ class XCube_Utils
             return $plain_text;
         }
         
-        if (is_null($key) || ! is_string($key)) {
+        if (null === $key || ! is_string($key)) {
             if (! defined('XOOPS_SALT')) {
                 return $plain_text;
             }
@@ -155,7 +155,7 @@ class XCube_Utils
             return $crypt_text;
         }
         
-        if (is_null($key) || ! is_string($key)) {
+        if (null === $key || ! is_string($key)) {
             if (! defined('XOOPS_SALT')) {
                 return $crypt_text;
             }

@@ -240,7 +240,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 
 		$this->x_adminGroups = xoops_elFinder::getAdminGroupIds($this->mydirname);
 
-		if (is_null($this->options['syncChkAsTs'])) {
+		if (null === $this->options['syncChkAsTs']) {
 			$this->options['syncChkAsTs'] = true;
 		}
 
@@ -499,7 +499,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$mkdir = '';
 		}
 		foreach($files as $file) {
-			$id = (is_null($dir))? $file : $this->_joinPath($dir, $file);
+			$id = (null === $dir)? $file : $this->_joinPath($dir, $file);
 			$stat = $this->stat($id);
 			if ('directory' === $stat['mime']) {
 				if ($mkdir && $cids = $this->_scandir($id)) {

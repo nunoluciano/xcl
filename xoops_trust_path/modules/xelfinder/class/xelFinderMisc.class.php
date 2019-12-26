@@ -100,7 +100,7 @@ class xelFinderMisc {
 	}
 	
 	public function getUserHome($auth = 'rw', $uid = null) {
-		if (is_null($uid)) {
+		if (null === $uid) {
 			global $xoopsUser;
 			$uid = is_object($xoopsUser)? $xoopsUser->uid() : 0;
 		}
@@ -120,7 +120,7 @@ class xelFinderMisc {
 	}
 	
 	public function getGroupHome($auth = 'rw', $uid = null) {
-		if (is_null($uid)) {
+		if (null === $uid) {
 			global $xoopsUser;
 			$user = $xoopsUser;
 		} else if ($uid) {
@@ -141,7 +141,7 @@ class xelFinderMisc {
 	}
 	
 	public function getHash($id, $prefix = null) {
-		if (is_null($prefix)) {
+		if (null === $prefix) {
 			$prefix = 'xe_'.$this->mydirname.'_';
 		}
 		$hash = strtr(base64_encode($id), '+/=', '-_.');
