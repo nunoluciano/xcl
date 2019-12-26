@@ -13,9 +13,9 @@ class Profile_DataObj extends XCube_Object
     {
         $handler =& xoops_getmodulehandler('definitions', 'profile');
         $defArr =& $handler->getObjects();
-        $ret = array(
+        $ret = [
             S_PUBLIC_VAR("int uid")
-        );
+        ];
         foreach (array_keys($defArr) as $key) {
             $ret[] = S_PUBLIC_VAR($defArr->getServiceField());
         }
@@ -46,9 +46,9 @@ class Profile_OptionsObj extends XCube_Object
      */
     public function getPropertyDefinition()
     {
-        $ret = array(
+        $ret = [
             S_PUBLIC_VAR("string option_name"),
-        );
+        ];
         
         return $ret;
     }
@@ -72,7 +72,7 @@ class Profile_DefinitionsObj extends XCube_Object
      */
     public function getPropertyDefinition()
     {
-        $ret = array(
+        $ret = [
             S_PUBLIC_VAR("int field_id"),
             S_PUBLIC_VAR("string field_name"),
             S_PUBLIC_VAR("string label"),
@@ -81,7 +81,7 @@ class Profile_DefinitionsObj extends XCube_Object
             S_PUBLIC_VAR("text description"),
             S_PUBLIC_VAR("text access"),
             S_PUBLIC_VAR("Profile_OptionsObjArray options"),
-        );
+        ];
         
         return $ret;
     }
@@ -140,7 +140,7 @@ class Profile_Service extends XCube_Service
      */
     public function getDefinitions()
     {
-        $definitionsArr = array();
+        $definitionsArr = [];
     
         $root =& XCube_Root::getSingleton();
         $uid = ($root->mContext->mXoopsUser) ? $root->mContext->mXoopsUser->get('uid') : 0;
@@ -184,7 +184,7 @@ class Profile_Service extends XCube_Service
             } else {
                 $def = $definitions[$key]->gets();
             }
-            $def['options'] = ($def['options']) ? explode('|', $def['options']) : array();
+            $def['options'] = ($def['options']) ? explode('|', $def['options']) : [];
             $definitionsArr[] = $def;
         }
         unset($handler);
@@ -215,7 +215,7 @@ class Profile_Service extends XCube_Service
      */
     public function getProfileArr()
     {
-        $dataList = array();
+        $dataList = [];
     
         $root =& XCube_Root::getSingleton();
         $field_name = $root->mContext->mRequest->getRequest('field_name');

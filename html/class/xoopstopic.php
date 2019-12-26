@@ -255,7 +255,7 @@ class XoopsTopic
 
     public function getFirstChildTopics()
     {
-        $ret = array();
+        $ret = [];
         $xt = new XoopsTree($this->table, "topic_id", "topic_pid");
         $topic_arr = $xt->getFirstChild($this->topic_id, "topic_title");
         if (is_array($topic_arr) && count($topic_arr)) {
@@ -268,7 +268,7 @@ class XoopsTopic
 
     public function getAllChildTopics()
     {
-        $ret = array();
+        $ret = [];
         $xt = new XoopsTree($this->table, "topic_id", "topic_pid");
         $topic_arr = $xt->getAllChild($this->topic_id, "topic_title");
         if (is_array($topic_arr) && count($topic_arr)) {
@@ -281,7 +281,7 @@ class XoopsTopic
 
     public function getChildTopicsTreeArray()
     {
-        $ret = array();
+        $ret = [];
         $xt = new XoopsTree($this->table, "topic_id", "topic_pid");
         $topic_arr = $xt->getChildTreeArray($this->topic_id, "topic_title");
         if (is_array($topic_arr) && count($topic_arr)) {
@@ -322,10 +322,10 @@ class XoopsTopic
     public function &getTopicsList()
     {
         $result = $this->db->query('SELECT topic_id, topic_pid, topic_title FROM '.$this->table);
-        $ret = array();
+        $ret = [];
         $myts =& MyTextSanitizer::sGetInstance();
         while ($myrow = $this->db->fetchArray($result)) {
-            $ret[$myrow['topic_id']] = array('title' => $myts->htmlSpecialChars($myrow['topic_title']), 'pid' => $myrow['topic_pid']);
+            $ret[$myrow['topic_id']] = ['title' => $myts->htmlSpecialChars($myrow['topic_title']), 'pid' => $myrow['topic_pid']];
         }
         return $ret;
     }

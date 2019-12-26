@@ -199,7 +199,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     public function &getObjects($criteria = null, $id_as_key = false, $getbinary = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         if ($getbinary) {
             $sql = 'SELECT i.*, b.image_body FROM '.$this->db->prefix('image').' i LEFT JOIN '.$this->db->prefix('imagebody').' b ON b.image_id=i.image_id';
@@ -208,7 +208,7 @@ class XoopsImageHandler extends XoopsObjectHandler
         }
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
-            $sort = !in_array($criteria->getSort(), array('image_id', 'image_created', 'image_mimetype', 'image_display', 'image_weight')) ? 'image_weight' : $criteria->getSort();
+            $sort = !in_array($criteria->getSort(), ['image_id', 'image_created', 'image_mimetype', 'image_display', 'image_weight']) ? 'image_weight' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -263,7 +263,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             $criteria->add(new Criteria('image_display', (int)$image_display));
         }
         $images =& $this->getObjects($criteria, false, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($images) as $i) {
             $ret[$images[$i]->getVar('image_name')] = $images[$i]->getVar('image_nicename');
         }

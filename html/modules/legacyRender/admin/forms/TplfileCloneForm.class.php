@@ -31,7 +31,7 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
         // Set field properties
         //
         $this->mFieldProperties['tpl_tplset'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['tpl_tplset']->setDependsByArray(array('required'));
+        $this->mFieldProperties['tpl_tplset']->setDependsByArray(['required']);
         $this->mFieldProperties['tpl_tplset']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPL_TPLSET);
     }
     

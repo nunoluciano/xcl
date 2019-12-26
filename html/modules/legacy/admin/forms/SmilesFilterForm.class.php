@@ -25,13 +25,13 @@ define('SMILES_SORT_KEY_MAXVALUE', 5);
 
 class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         SMILES_SORT_KEY_ID => 'id',
         SMILES_SORT_KEY_CODE => 'code',
         SMILES_SORT_KEY_SMILE_URL => 'smile_url',
         SMILES_SORT_KEY_EMOTION => 'emotion',
         SMILES_SORT_KEY_DISPLAY => 'display'
-    );
+    ];
     
     public $mKeyword = "";
     public $mOptionField = "";

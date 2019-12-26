@@ -122,7 +122,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
     private function get_storeItems($contents)
     {
-        $store_mod_arr=array();
+        $store_mod_arr= [];
         $storeHand =  & $this->_getStoreHandler();
         $modHand = & $this->_getModStoreHandler();
 
@@ -142,7 +142,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
             $criteria->setOrder('ASC');
             $siteModuleStoreObjects =& $modHand->getObjects($criteria);
 
-            $itemsobj = array();
+            $itemsobj = [];
             foreach ($siteModuleStoreObjects as $key => $mobj) {
                 $itemsobj[$key]['id'] = $mobj->getShow('id');
                 $itemsobj[$key]['dirname'] = $mobj->getShow('dirname');

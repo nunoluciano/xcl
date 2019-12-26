@@ -209,7 +209,7 @@ class File_ANSI
         $this->max_x = $x - 1;
         $this->max_y = $y - 1;
         $this->x = $this->y = 0;
-        $this->history = $this->history_attrs = array();
+        $this->history = $this->history_attrs = [];
         $this->attr_row = array_fill(0, $this->max_x + 2, $this->base_attr_cell);
         $this->screen = array_fill(0, $this->max_y + 1, '');
         $this->attrs = array_fill(0, $this->max_y + 1, $this->attr_row);
@@ -248,7 +248,7 @@ class File_ANSI
      */
     function appendString($source)
     {
-        $this->tokenization = array('');
+        $this->tokenization = [''];
         for ($i = 0; $i < strlen($source); $i++) {
             if (strlen($this->ansi)) {
                 $this->ansi.= $source[$i];
@@ -454,10 +454,10 @@ class File_ANSI
         //}
 
         while ($this->y >= $this->max_y) {
-            $this->history = array_merge($this->history, array(array_shift($this->screen)));
+            $this->history = array_merge($this->history, [array_shift($this->screen)]);
             $this->screen[] = '';
 
-            $this->history_attrs = array_merge($this->history_attrs, array(array_shift($this->attrs)));
+            $this->history_attrs = array_merge($this->history_attrs, [array_shift($this->attrs)]);
             $this->attrs[] = $this->attr_row;
 
             if (count($this->history) >= $this->max_history) {

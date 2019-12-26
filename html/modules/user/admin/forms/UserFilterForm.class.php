@@ -52,7 +52,7 @@ define('USER_SORT_KEY_DEFAULT', USER_SORT_KEY_UID);
  */
 class User_UserFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         USER_SORT_KEY_UID => 'uid',
         USER_SORT_KEY_NAME => 'name',
         USER_SORT_KEY_UNAME => 'uname',
@@ -84,7 +84,7 @@ class User_UserFilterForm extends User_AbstractFilterForm
         USER_SORT_KEY_BIO => 'bio',
         USER_SORT_KEY_USER_INTREST => 'user_intrest',
         USER_SORT_KEY_USER_MAILOK => 'user_mailok'
-    );
+    ];
 
     public $mKeyword = "";
     public $mOptionField = "";

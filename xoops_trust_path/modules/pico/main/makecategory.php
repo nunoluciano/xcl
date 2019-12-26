@@ -31,7 +31,7 @@ $xoopsModuleConfig = $currentCategoryObj->getOverriddenModConfig();
 $breadcrumbsObj->appendPath($currentCategoryObj->getBreadcrumbs());
 
 // request
-$picoRequest = array();
+$picoRequest = [];
 $picoRequest['makecategory'] = true;
 $picoRequest['cat_id'] = -1;
 

@@ -191,7 +191,7 @@ class Xupdate_Utils
      */
     public static function setupCurlProxy($ch, $url)
     {
-        $errors = array();
+        $errors = [];
         $proxy = '';
         
         if (! empty($_SERVER['HTTP_PROXY']) || ! empty($_SERVER['http_proxy'])) {

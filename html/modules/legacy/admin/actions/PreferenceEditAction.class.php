@@ -23,7 +23,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
     public $mCategory = null;
     public $mModule = null;
 
-    public $mObjects = array();
+    public $mObjects = [];
     public $mActionForm = null;
     
     public $mState = null;
@@ -104,7 +104,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         
         $render->setAttribute('mcrypt_enabled', extension_loaded('mcrypt'));
         
-        $formtypeArr = array();
+        $formtypeArr = [];
         foreach ($this->mObjects as $object) {
             $formtypeArr[] = $object->get('conf_formtype');
         }
@@ -141,7 +141,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the list of installed languages.
         //
         if (in_array('language', $formtypeArr)) {
-            $languageArr = array();
+            $languageArr = [];
             $dirHandler = opendir(XOOPS_ROOT_PATH . "/language/");
             while ($file = readdir($dirHandler)) {
                 if (is_dir(XOOPS_ROOT_PATH . "/language/" . $file) && preg_match("/^[a-z][0-9a-z_\-]+$/", $file)) {

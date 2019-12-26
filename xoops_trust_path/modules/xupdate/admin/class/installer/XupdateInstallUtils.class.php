@@ -28,9 +28,9 @@ class Xupdate_InstallUtils
     **/
     public static function installSQLAutomatically(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        $dbTypeAliases = array(
+        $dbTypeAliases = [
             'mysqli' => 'mysql'
-        );
+        ];
         $sqlFileInfo =& $module->getInfo('sqlfile');
         $dbType = (isset($sqlfileInfo[XOOPS_DB_TYPE]) || !isset($dbTypeAliases[XOOPS_DB_TYPE])) ? XOOPS_DB_TYPE : $dbTypeAliases[XOOPS_DB_TYPE];
         if (!isset($sqlFileInfo[$dbType])) {
@@ -131,10 +131,10 @@ class Xupdate_InstallUtils
     **/
     public static function replaceDirname(/*** string ***/ $from, /*** string ***/ $dirname, /*** string ***/ $trustDirname = null)
     {
-        return array(
+        return [
             'public' => str_replace('{dirname}', $dirname, $from),
             'trust' => ($trustDirname != null) ? str_replace('{dirname}', $trustDirname, $from) : null
-        );
+        ];
     }
 
     /**
@@ -416,7 +416,7 @@ class Xupdate_InstallUtils
                 }
             }
         } else {
-            foreach (array(XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS) as $group) {
+            foreach ([XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS] as $group) {
                 $perm->setVar('gperm_groupid', $group);
                 $perm->setNew();
                 if (!$gpermHandler->insert($perm)) {

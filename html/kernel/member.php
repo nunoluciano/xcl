@@ -68,7 +68,7 @@ class XoopsMemberHandler
     /**
     * holds temporary user objects
     */
-    public $_members = array();
+    public $_members = [];
     /**#@-*/
 
     /**
@@ -248,7 +248,7 @@ class XoopsMemberHandler
     public function &getGroupList($criteria = null)
     {
         $groups =& $this->_gHandler->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($groups) as $i) {
             $ret[$i] = $groups[$i]->getVar('name');
         }
@@ -295,7 +295,7 @@ class XoopsMemberHandler
      */
     public function removeUserFromGroup($group_id, $user_id)
     {
-        $user_ids = array($user_id);
+        $user_ids = [$user_id];
         return $this->removeUsersFromGroup($group_id, $user_ids);
     }
 
@@ -306,7 +306,7 @@ class XoopsMemberHandler
      * @param array $user_ids array of user-IDs
      * @return bool success?
      */
-    public function removeUsersFromGroup($group_id, $user_ids = array())
+    public function removeUsersFromGroup($group_id, $user_ids = [])
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('groupid', $group_id));
@@ -334,7 +334,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $user_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($user_ids as $u_id) {
                 $user =& $this->getUser($u_id);
                 if (is_object($user)) {
@@ -355,7 +355,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $user_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($user_ids as $u_id) {
                 $user =& $this->getUser($u_id);
                 if (is_object($user)) {
@@ -380,7 +380,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $group_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($group_ids as $g_id) {
                 $ret[] =& $this->getGroup($g_id);
             }
@@ -402,10 +402,10 @@ class XoopsMemberHandler
             $user = $this->_uHandler->getObjects($criteria, false);
             if ($user && count($user) === 1) {
                 if (!User_Utils::passwordVerify($pwd, $user[0]->get('pass'))) {
-                    $user = array();
+                    $user = [];
                 }
             } else {
-                $user = array();
+                $user = [];
             }
         } else {
             if (is_callable('User_Utils::encryptPassword')) {

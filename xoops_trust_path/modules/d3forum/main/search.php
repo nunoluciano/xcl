@@ -5,7 +5,7 @@ require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
 
 if( ! isset( $_GET['submit'] ) ) {
 
-	$results4assign = array() ;
+	$results4assign = [];
 
 } else {
 
@@ -13,7 +13,7 @@ if( ! isset( $_GET['submit'] ) ) {
 	// get all forums
 	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 	$frs = $db->query( $sql ) ;
-	$d3com = array() ;
+	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
 		$temp_forum_id = intval($forum_row['forum_id']);
@@ -84,7 +84,7 @@ if( ! isset( $_GET['submit'] ) ) {
 		$uname4disp = '' ;
 	}
 
-	$allowed_sortbys = array(
+	$allowed_sortbys = [
 		"p.uid" ,
 		"p.uid desc" ,
 		"p.post_time" ,
@@ -111,7 +111,7 @@ if( ! isset( $_GET['submit'] ) ) {
 		"c.cat_title desc",
 		"u.uname" ,
 		"u.uname desc" ,
-	) ;
+    ];
 	$sortby = in_array( @$_GET['sortby'] , $allowed_sortbys ) ? $_GET['sortby'] : "p.post_time desc" ;
 
 	//$sql = 'SELECT u.uid,u.uname,p.post_id,p.subject,p.post_time,p.icon,LENGTH(p.post_text) AS body_length,p.votes_count,p.votes_sum,t.topic_id,t.topic_title,t.topic_views,t.topic_posts_count,f.forum_id,f.forum_title,c.cat_id,c.cat_title FROM '.$db->prefix($mydirname.'_posts').' p LEFT JOIN '.$db->prefix('users').' u ON p.uid=u.uid LEFT JOIN '.$db->prefix($mydirname.'_topics').' t ON p.topic_id = t.topic_id LEFT JOIN '.$db->prefix($mydirname.'_forums').' f ON t.forum_id = f.forum_id LEFT JOIN '.$db->prefix($mydirname.'_categories')." c ON f.cat_id = c.cat_id WHERE ($whr_keyword) AND ($whr_forum) AND ($whr_uname) AND ($whr_read4forum) AND ($whr_read4cat) ORDER BY $sortby" ;
@@ -123,7 +123,7 @@ if( ! isset( $_GET['submit'] ) ) {
 	if( ! $result = $db->query( $sql , 100 , 0 ) ) {
 		die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	}
-	$results4assign = array() ;
+	$results4assign = [];
 	$hits_count = $db->getRowsNum( $result ) ;
 	while ( $row = $db->fetchArray( $result ) ) {
 		// naao from
@@ -137,7 +137,7 @@ if( ! isset( $_GET['submit'] ) ) {
 		}	// naao to
 
 		if ($can_display == true) {	// naao
-			$results4assign[] = array(
+			$results4assign[] = [
 				'cat_title' => $myts->makeTboxData4Show($row['cat_title']) ,
 				'cat_id' => intval( $row['cat_id'] ) ,
 				'forum_title' => $myts->makeTboxData4Show($row['forum_title']) ,
@@ -156,7 +156,7 @@ if( ! isset( $_GET['submit'] ) ) {
 				'post_time' => intval( $row['post_time'] ) ,
 				'post_time_formatted' => formatTimestamp( $row['post_time'] , 'm' ) ,
 				'votes_avg' => $row['votes_count'] ? $row['votes_sum'] / (double)$row['votes_count'] : 0 ,
-			) + $row ;
+                                ] + $row ;
 		}	// naao
 	}
 
@@ -166,32 +166,32 @@ $xoopsOption['template_main'] = $mydirname.'_main_search.html' ;
 include XOOPS_ROOT_PATH."/header.php" ;
 
 $xoopsTpl->assign(
-	array(
-		'mydirname' => $mydirname ,
-		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
-		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'] ,
-		'mod_config' => $xoopsModuleConfig ,
-		'hits_count' => intval( @$hits_count ) ,
-		'keyword' => @$keyword4disp ,
-		'andor_options' => array( 'or' => _MD_D3FORUM_LABEL_SEARCHOR , 'and' => _MD_D3FORUM_LABEL_SEARCHAND ) ,
-		'andor_selected' => empty( $andor_selected ) ? 'or' : $andor_selected ,
-		'target_options' => array( 'subject' => _MD_D3FORUM_SUBJECT , 'body' => _MD_D3FORUM_BODY , 'both' => _MD_D3FORUM_LABEL_TARGETBOTH ) ,
-		'target_selected' => empty( $target_selected ) ? 'both' : $target_selected ,
-		'sortby_options' => array(
+    [
+        'mydirname' => $mydirname,
+        'mod_url' => XOOPS_URL.'/modules/'.$mydirname,
+        'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'],
+        'mod_config' => $xoopsModuleConfig,
+        'hits_count' => intval( @$hits_count ),
+        'keyword' => @$keyword4disp,
+        'andor_options' => ['or' => _MD_D3FORUM_LABEL_SEARCHOR, 'and' => _MD_D3FORUM_LABEL_SEARCHAND],
+        'andor_selected' => empty( $andor_selected ) ? 'or' : $andor_selected,
+        'target_options' => ['subject' => _MD_D3FORUM_SUBJECT, 'body' => _MD_D3FORUM_BODY, 'both' => _MD_D3FORUM_LABEL_TARGETBOTH],
+        'target_selected' => empty( $target_selected ) ? 'both' : $target_selected,
+        'sortby_options' => [
 			'p.post_time desc' => _MD_D3FORUM_ON ,
 			't.topic_title' => _MD_D3FORUM_TOPICTITLE ,
 			'f.forum_id' => _MD_D3FORUM_FORUM ,
 			'u.uname' => _MD_D3FORUM_POSTER ,
-		) ,
-		'sortby_selected' => empty( $sortby_selected ) ? 'p.post_time desc' : $sortby_selected ,
-		'uname' => @$uname4disp ,
-		'show_results' => ! empty( $_GET['submit'] ) ? true : false ,
-		'results' => $results4assign ,
-		'forum_jumpbox_options' => d3forum_make_jumpbox_options( $mydirname , $whr_read4cat , $whr_read4forum , @$forum_id ) ,
-		'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
-		'xoops_pagetitle' => _MD_D3FORUM_TITLE_SEARCH ,
-		'xoops_breadcrumbs' => array_merge( $xoops_breadcrumbs , array( array( 'name' => _MD_D3FORUM_TITLE_SEARCH ) ) ) ,
-	)
+        ],
+        'sortby_selected' => empty( $sortby_selected ) ? 'p.post_time desc' : $sortby_selected,
+        'uname' => @$uname4disp,
+        'show_results' => ! empty( $_GET['submit'] ) ? true : false,
+        'results' => $results4assign,
+        'forum_jumpbox_options' => d3forum_make_jumpbox_options( $mydirname , $whr_read4cat , $whr_read4forum , @$forum_id ),
+        'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+        'xoops_pagetitle' => _MD_D3FORUM_TITLE_SEARCH,
+        'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _MD_D3FORUM_TITLE_SEARCH]]),
+    ]
 ) ;
 
 include XOOPS_ROOT_PATH.'/footer.php';

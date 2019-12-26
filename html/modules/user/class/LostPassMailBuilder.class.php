@@ -21,7 +21,7 @@ class User_LostPassMailDirector
     public $mXoopsConfig;
     public $mExtraVars;
 
-    public function __construct(&$builder, &$user, &$xoopsConfig, $extraVars = array())
+    public function __construct(&$builder, &$user, &$xoopsConfig, $extraVars = [])
     {
         $this->mBuilder = &$builder;
         $this->mXoopsUser = &$user;
@@ -89,10 +89,12 @@ class User_LostPass1MailBuilder
         $this->mMailer->assign("ADMINMAIL", (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign("SITEURL", XOOPS_URL . "/");
         $this->mMailer->assign("IP", $_SERVER['REMOTE_ADDR']);
-        $queryString = http_build_query(array(
+        $queryString = http_build_query(
+            [
             'email' => $user->getShow('email'),
             'code'  => substr($user->get("pass"), 0, 5),
-        ));
+            ]
+        );
         $this->mMailer->assign("NEWPWD_LINK", XOOPS_URL . "/lostpass.php?" . $queryString);
     }
 

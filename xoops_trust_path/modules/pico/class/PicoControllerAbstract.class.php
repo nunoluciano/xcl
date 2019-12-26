@@ -5,15 +5,15 @@ class PicoControllerAbstract
 
 	var $mydirname = '';
 	var $mytrustdirname = 'pico';
-	var $assign = array();
-	var $mod_config = array();
+	var $assign = [];
+	var $mod_config = [];
 	var $uid = 0;
 	var $currentCategoryObj = null;
-	var $permissions = array();
+	var $permissions = [];
 	var $is_need_header_footer = true;
 	var $template_name = '';
 	var $html_header = '';
-	var $contentObjs = array();
+	var $contentObjs = [];
 
 	// !Fix deprecated constructor
 	function __construct(&$currentCategoryObj)
@@ -28,7 +28,7 @@ class PicoControllerAbstract
 
 		$picoPermission = &PicoPermission::getInstance();
 		$this->permissions = $picoPermission->getPermissions($this->mydirname);
-		$this->assign = array(
+		$this->assign = [
 			'mymodname' => htmlspecialchars($currentCategoryObj->mod_name, ENT_QUOTES),
 			'mydirname' => $this->mydirname,
 			'mytrustdirname' => $this->mytrustdirname,
@@ -37,7 +37,7 @@ class PicoControllerAbstract
 			'xoops_config' => $GLOBALS['xoopsConfig'],
 			'mod_config' => $this->mod_config,
 			'uid' => $this->uid,
-		);
+        ];
 		$this->template_name = $this->mydirname . '_index.html';
 	}
 

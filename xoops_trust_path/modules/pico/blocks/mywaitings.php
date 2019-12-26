@@ -25,28 +25,28 @@ function b_pico_mywaitings_show($options)
 	}
 
 	if ($db->getRowsNum($result) <= 0) {
-		return array();
+		return [];
 	}
 
-	$contents4assign = array();
+	$contents4assign = [];
 	while ($content_row = $db->fetchArray($result)) {
-		$contents4assign[] = array(
+		$contents4assign[] = [
 			'id' => $content_row['content_id'],
 			'subject_waiting_raw' => $content_row['subject_waiting'],
 			'modified_time' => $content_row['modified_time'],
 			'modified_time_formatted' => formatTimestamp($content_row['modified_time']),
-		);
+        ];
 	}
 
 	$constpref = '_MB_' . strtoupper($mydirname);
 
-	$block = array(
+	$block = [
 		'mydirname' => $mydirname,
 		'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
 		'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
 		'mod_config' => $configs,
 		'contents' => $contents4assign,
-	);
+    ];
 
 	if (empty($options['disable_renderer'])) {
 		require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -68,9 +68,11 @@ function b_pico_mywaitings_edit($options)
 
 	require_once XOOPS_ROOT_PATH . '/class/template.php';
 	$tpl = new XoopsTpl();
-	$tpl->assign(array(
+	$tpl->assign(
+        [
 		'mydirname' => $mydirname,
 		'this_template' => $this_template,
-	));
+        ]
+    );
 	return $tpl->fetch('db:' . $mydirname . '_blockedit_mywaitings.html');
 }

@@ -28,7 +28,7 @@ define('IMAGE_SORT_KEY_DEFAULT', '-'.IMAGE_SORT_KEY_IMAGE_CREATED);
 
 class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         IMAGE_SORT_KEY_IMAGE_ID => 'image_id',
         IMAGE_SORT_KEY_IMAGE_NAME => 'image_name',
         IMAGE_SORT_KEY_IMAGE_NICENAME => 'image_nicename',
@@ -37,7 +37,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         IMAGE_SORT_KEY_IMAGE_DISPLAY => 'image_display',
         IMAGE_SORT_KEY_IMAGE_WEIGHT => 'image_weight',
         IMAGE_SORT_KEY_IMGCAT_ID => 'imgcat_id'
-    );
+    ];
 
     public function getDefaultSortKey()
     {
@@ -52,7 +52,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
     
         if (isset($_REQUEST['imgcat_id'])) {
             $this->mNavi->addExtra('imgcat_id', xoops_getrequest('imgcat_id'));
-            $this->_mCriteria->add(new Criteria('imgcat_id', array(XOBJ_DTYPE_INT, xoops_getrequest('imgcat_id'))));
+            $this->_mCriteria->add(new Criteria('imgcat_id', [XOBJ_DTYPE_INT, xoops_getrequest('imgcat_id')]));
         } else {
             $this->_mCriteria->add(new Criteria('imgcat_id', 0));
         }

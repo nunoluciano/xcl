@@ -16,7 +16,7 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 {
     const PRIMARY = 'cat_id';
     const DATANAME = 'cat';
-    public $mChildren = array();    //Legacy_AbstractCategoryObject[]
+    public $mChildren = [];    //Legacy_AbstractCategoryObject[]
 
     public function Legacy_AbstractCategoryObject()
     {

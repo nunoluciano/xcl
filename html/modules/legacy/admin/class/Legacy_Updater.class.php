@@ -16,10 +16,10 @@ require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleUpdater.class.php';
 
 class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 {
-    public $_mMilestone = array(
+    public $_mMilestone = [
         '106' => 'update106',
         '200' => 'update200'
-    );
+    ];
 
     public function _processScript()
     {
@@ -214,7 +214,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
             return false;
         }
         
-        $gids = array();
+        $gids = [];
         while ($myrow = $db->fetchArray($result)) {
             $gids[] = $myrow['gperm_groupid'];
         }

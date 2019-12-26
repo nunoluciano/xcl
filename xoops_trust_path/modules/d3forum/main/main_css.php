@@ -27,7 +27,7 @@ if (!isset($xoopsTpl)) {
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 	$xoopsTpl = new XoopsTpl() ;
 }
-$xoopsTpl->assign( array(
+$xoopsTpl->assign([
 	'mydirname' => $mydirname ,
 	'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 	'xoops_config' => $xoopsConfig ,
@@ -39,6 +39,7 @@ $xoopsTpl->assign( array(
 	'xoops_userid' => $xoops_userid ,
 	'xoops_uname' => $xoops_uname ,
 	'xoops_isadmin' => $xoops_isadmin ,
-) ) ;
+                  ]
+) ;
 $xoopsTpl->display( 'db:'.$mydirname.'_main.css' ) ;
 exit ;

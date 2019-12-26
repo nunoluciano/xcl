@@ -30,18 +30,18 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         $this->mController =& $controller;
     
         $this->mSmarty = new Legacy_AdminSmarty();    // TODO will be use other class?
-        $this->mSmarty->register_modifier('theme', array($this, 'modifierTheme'));
-        $this->mSmarty->register_function('stylesheet', array($this, 'functionStylesheet'));
+        $this->mSmarty->register_modifier('theme', [$this, 'modifierTheme']);
+        $this->mSmarty->register_function('stylesheet', [$this, 'functionStylesheet']);
     
         $this->mSmarty->assign(
-            array(
+            [
                 'xoops_url'        => XOOPS_URL,
                 'xoops_rootpath'   => XOOPS_ROOT_PATH,
                 'xoops_langcode'   => _LANGCODE,
                 'xoops_charset'    => _CHARSET,
                 'xoops_version'    => XOOPS_VERSION,
                 'xoops_upload_url' => XOOPS_UPLOAD_URL
-            )
+            ]
         );
     
         // TODO event name is this?
@@ -78,16 +78,16 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         $context =& $this->mController->mRoot->getContext();
         $this->mSmarty->assign($target->getAttributes());
         $this->mSmarty->assign(
-            array(
+            [
                 'stdout_buffer'    => $this->_mStdoutBuffer,
                 'currentModule'       => $module,
                 'legacy_sitename'  => $context->getAttribute('legacy_sitename'),
                 'legacy_pagetitle' => $context->getAttribute('legacy_pagetitle'),
                 'legacy_slogan'    => $context->getAttribute('legacy_slogan')
-            )
+            ]
         );
     
-        $blocks = array();
+        $blocks = [];
         foreach ($context->mAttributes['legacy_BlockContents'][0] as $block) {
             $blocks[$block['name']] = $block;
         }
@@ -136,13 +136,13 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     **/
     public static function getOverrideFileInfo(/*** string ***/ $file, /*** string ***/ $prefix = null, /*** bool ***/ $isSpDirName = false)
     {
-        $ret = array(
+        $ret = [
             'url'     => null,
             'path'    => null,
             'theme'   => null,
             'dirname' => null,
             'file'    => null
-        );
+        ];
         if (strpos($file, '..') !== false || ($prefix && strpos($prefix, '..') !== false)) {
             return $ret;
         }

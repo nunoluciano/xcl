@@ -70,7 +70,7 @@ class D3forumPageNav {
      **/
     function getNav($offset = 4)
     {
-        $nav = array(); $i=0;
+        $nav = []; $i =0;
         if ( $this->total <= $this->perpage ) {
             return $nav;
         }

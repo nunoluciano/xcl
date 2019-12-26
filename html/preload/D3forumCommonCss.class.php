@@ -11,7 +11,7 @@ class D3forumCommonCss extends XCube_ActionFilter
 {
 	function preBlockFilter()
 	{
-		$this->mRoot->mDelegateManager->add('XoopsTpl.New', array(&$this, 'D3forumCommonCssfile'));
+		$this->mRoot->mDelegateManager->add('XoopsTpl.New', [&$this, 'D3forumCommonCssfile']);
 
 	}
 	function D3forumCommonCssfile(&$xoopsTpl)

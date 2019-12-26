@@ -50,25 +50,25 @@ class Legacy_ImagecategoryListForm extends XCube_ActionForm
         $this->mFormProperties['confirm'] =new XCube_BoolProperty('confirm');
         // set fields
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['name']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_NAME, '100');
         $this->mFieldProperties['name']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_IMGCAT_NAME, '100');
         $this->mFieldProperties['name']->addVar('maxlength', '100');
     
         $this->mFieldProperties['maxsize'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['maxsize']->setDependsByArray(array('required'));
+        $this->mFieldProperties['maxsize']->setDependsByArray(['required']);
         $this->mFieldProperties['maxsize']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_MAXSIZE);
     
         $this->mFieldProperties['maxwidth'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['maxwidth']->setDependsByArray(array('required'));
+        $this->mFieldProperties['maxwidth']->setDependsByArray(['required']);
         $this->mFieldProperties['maxwidth']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_MAXWIDTH);
     
         $this->mFieldProperties['maxheight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['maxheight']->setDependsByArray(array('required'));
+        $this->mFieldProperties['maxheight']->setDependsByArray(['required']);
         $this->mFieldProperties['maxheight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_MAXHEIGHT);
     
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['weight']->setDependsByArray(array('required'));
+        $this->mFieldProperties['weight']->setDependsByArray(['required']);
         $this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_WEIGHT);
     }
 }

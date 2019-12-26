@@ -47,7 +47,7 @@ class LegacyThemeObject extends XoopsSimpleObject
 
 class LegacyThemeHandler extends XoopsObjectHandler
 {
-    public $_mResults = array();
+    public $_mResults = [];
     
     /**
      * @var XCube_Delegate
@@ -97,21 +97,25 @@ class LegacyThemeHandler extends XoopsObjectHandler
     public function _makeCache()
     {
         if (count($this->_mResults) == 0) {
-            $t_themeArr = array();
+            $t_themeArr = [];
             $this->mGetInstalledThemes->call(new XCube_Ref($t_themeArr));
             
             foreach ($t_themeArr as $theme) {
                 $obj =& $this->create();
-                $obj->assignVars(array('name'            => $theme->mName,
-                                       'dirname'        => $theme->mDirname,
-                                       'screenshot'        => $theme->mScreenShot,
-                                       'description'    => $theme->mDescription,
-                                       'format'            => $theme->mFormat,
-                                       'render_system'    => $theme->mRenderSystemName,
-                                       'version'        => $theme->mVersion,
-                                       'author'            => $theme->mAuthor,
-                                       'url'            => $theme->mUrl,
-                                       'license'        => $theme->mLicence));
+                $obj->assignVars(
+                    [
+                        'name'          => $theme->mName,
+                        'dirname'       => $theme->mDirname,
+                        'screenshot'    => $theme->mScreenShot,
+                        'description'   => $theme->mDescription,
+                        'format'        => $theme->mFormat,
+                        'render_system' => $theme->mRenderSystemName,
+                        'version'       => $theme->mVersion,
+                        'author'        => $theme->mAuthor,
+                        'url'           => $theme->mUrl,
+                        'license'       => $theme->mLicence
+                    ]
+                );
                 $this->_mResults[] =& $obj;
                 unset($obj);
             }

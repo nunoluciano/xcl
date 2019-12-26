@@ -28,7 +28,7 @@ include dirname(dirname(__FILE__)).'/admin_menu.php' ;
 if (file_exists(XOOPS_TRUST_PATH.'/libs/altsys/myblocksadmin.php')) {
     // myblocksadmin
     $title = defined('_MD_A_MYMENU_MYBLOCKSADMIN') ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin' ;
-    array_push($adminmenu, array( 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' )) ;
+    array_push($adminmenu, ['title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin']) ;
 }
 
 // preferences
@@ -37,14 +37,14 @@ if (count($config_handler->getConfigs(new Criteria('conf_modid', $xoopsModule->m
     if (file_exists(XOOPS_TRUST_PATH.'/libs/altsys/mypreferences.php')) {
         // mypreferences
         $title = defined('_MD_A_MYMENU_MYPREFERENCES') ? _MD_A_MYMENU_MYPREFERENCES : _PREFERENCES ;
-        array_push($adminmenu, array( 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences' )) ;
+        array_push($adminmenu, ['title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences']) ;
     } else {
         if ($module_handler->getByDirName('legacy') !== false) {
             // legacy->preferences
-            array_push($adminmenu, array( 'title' => _PREFERENCES, 'link' => XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id='.$xoopsModule->mid() )) ;
+            array_push($adminmenu, ['title' => _PREFERENCES, 'link' => XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $xoopsModule->mid()]) ;
         } else {
             // system->preferences
-            array_push($adminmenu, array( 'title' => _PREFERENCES, 'link' => XOOPS_URL.'/modules/system/admin.php?fct=preferences&op=showmod&mod='.$xoopsModule->mid() )) ;
+            array_push($adminmenu, ['title' => _PREFERENCES, 'link' => XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $xoopsModule->mid()]) ;
         }
     }
 }

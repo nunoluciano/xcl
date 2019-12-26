@@ -9,7 +9,7 @@ $cat_row = $db->fetchArray( $crs ) ;
 $isadminorcatmod = (boolean)$category_permissions[ $cat_id ]['is_moderator'] || $isadmin ;
 $can_makeforum = (boolean)$category_permissions[ $cat_id ]['can_makeforum'] ;
 
-$category4assign = array(
+$category4assign = [
 	'id' => intval( $cat_row['cat_id'] ) ,
 	'pid' => $cat_row['pid'] ,
 	'title' => $myts->makeTboxData4Show( $cat_row['cat_title'] ) ,
@@ -28,7 +28,7 @@ $category4assign = array(
 	'isadminormod' => $isadminorcatmod ,
 	'can_makeforum' => ( $isadmin || @$category_permissions[ $cat_id ]['can_makeforum'] || @$category_permissions[ $cat_id ]['is_moderator'] ) ,
 	'paths_raw' => unserialize( $cat_row['cat_path_in_tree'] ) ,
-) ;
+];
 
 // $xoopsModuleConfig override (module -> cat -> forum)
 $cat_configs = @unserialize( @$cat_row['cat_options'] ) ;
@@ -49,7 +49,7 @@ $d3forum_icon_meanings = explode( '|' , $xoopsModuleConfig['icon_meanings'] ) ;
 
 // assign breadcrumbs of this category
 foreach( array_reverse( $category4assign['paths_raw'] , true ) as $cat_id_tmp => $cat_title_tmp ) {
-	array_splice( $xoops_breadcrumbs , 1 , 0 , array( array( 'url' => XOOPS_URL.'/modules/'.$mydirname.'/index.php?cat_id='.$cat_id_tmp , 'name' => $cat_title_tmp ) ) ) ;
+	array_splice($xoops_breadcrumbs , 1 , 0 , [['url' => XOOPS_URL . '/modules/' . $mydirname . '/index.php?cat_id=' . $cat_id_tmp, 'name' => $cat_title_tmp]]) ;
 }
 
 ?>

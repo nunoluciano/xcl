@@ -27,7 +27,7 @@ class PicoContentHandler
 			exit;
 		}
 
-		$ret = array();
+		$ret = [];
 		//for php5.3+
 		while (list($content_id) = $db->fetchRow($ors)) {
 			$objTemp = new PicoContent($this->mydirname, $content_id, $categoryObj);
@@ -45,7 +45,7 @@ class PicoContentHandler
 
 		$child_categories = $categoryObj->getChildIds();
 		$readable_categories = pico_common_get_categories_can_read($this->mydirname);
-		$target_categories = array_intersect(array_merge($child_categories, array($cat_data['id'])), $readable_categories);
+		$target_categories = array_intersect(array_merge($child_categories, [$cat_data['id']]), $readable_categories);
 
 		$whr_cid = 'cat_id IN (' . implode(',', $target_categories) . ')';
 		$sql = "SELECT content_id FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE ($whr_cid) AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() ORDER BY modified_time DESC, content_id LIMIT $num";
@@ -55,7 +55,7 @@ class PicoContentHandler
 			exit;
 		}
 
-		$ret = array();
+		$ret = [];
 		//for php5.3+
 		while (list($content_id) = $db->fetchRow($result)) {
 			$objTemp = new PicoContent($this->mydirname, $content_id);
@@ -77,7 +77,7 @@ class PicoContentHandler
 			exit;
 		}
 
-		$ret = array();
+		$ret = [];
 		$waiting = $offset;
 		while (list($content_id) = $db->fetchRow($ors)) {
 			if (sizeof($ret) >= $limit) break;
@@ -98,7 +98,7 @@ class PicoContentHandler
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		$result = $db->query("SELECT content_id,vpath FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE cat_id=$cat_id AND vpath IS NOT NULL AND poster_uid=0");
-		$ret = array();
+		$ret = [];
 		while (list($content_id, $vpath) = $db->fetchRow($result)) {
 			$ret[$content_id] = $vpath;
 		}
@@ -110,7 +110,7 @@ class PicoContent
 {
 
 	//var $permission ; // public
-	var $data = array(); // public
+	var $data = []; // public
 	//var $isadminormod ; // public
 	var $mydirname;
 	var $id;
@@ -152,7 +152,7 @@ class PicoContent
 
 		$is_public = $content_row['visible'] && $content_row['created_time'] <= time() && $content_row['expiring_time'] > time();
 
-		$this->data = array(
+		$this->data = [
 			'id' => intval($content_row['content_id']),
 			'created_time_formatted' => formatTimestamp($content_row['created_time']),
 			'modified_time_formatted' => formatTimestamp($content_row['modified_time']),
@@ -166,7 +166,7 @@ class PicoContent
 			'can_edit' => $cat_data['isadminormod'] || $cat_data['can_edit'] && !$content_row['locked'] && $is_public,
 			'can_delete' => $cat_data['isadminormod'] || $cat_data['can_delete'] && !$content_row['locked'] && $is_public,
 			'ef' => pico_common_unserialize($content_row['extra_fields']),
-		) + $content_row;
+                      ] + $content_row;
 	}
 
 
@@ -192,17 +192,17 @@ class PicoContent
 		$modifier = &$user_handler->get($this->data['modifier_uid']);
 		$modifier_uname = is_object($modifier) ? $modifier->getVar('uname') : @_MD_PICO_REGISTERED_AUTOMATICALLY;
 
-		$ret4html = array(
-			'link' => pico_common_make_content_link4html($mod_config, $this->data),
-			'poster_uname' => $poster_uname,
-			'modifier_uname' => $modifier_uname,
-			'votes_avg' => $this->data['votes_count'] ? $this->data['votes_sum'] / doubleval($this->data['votes_count']) : 0,
-			'subject' => $myts->makeTboxData4Show($this->data['subject'], 1, 1),
-			'body' => $this->data['body_cached'],
-			'tags_array' => $this->data['tags'] ? explode(' ', htmlspecialchars($this->data['tags'], ENT_QUOTES)) : array(),
-			'cat_title' => $myts->makeTboxData4Show($cat_data['cat_title'], 1, 1),
-			'can_vote' => (is_object($GLOBALS['xoopsUser']) || $mod_config['guest_vote_interval']) ? true : false,
-		) + $this->data;
+		$ret4html = [
+                        'link' => pico_common_make_content_link4html($mod_config, $this->data),
+                        'poster_uname' => $poster_uname,
+                        'modifier_uname' => $modifier_uname,
+                        'votes_avg' => $this->data['votes_count'] ? $this->data['votes_sum'] / doubleval($this->data['votes_count']) : 0,
+                        'subject' => $myts->makeTboxData4Show($this->data['subject'], 1, 1),
+                        'body' => $this->data['body_cached'],
+                        'tags_array' => $this->data['tags'] ? explode(' ', htmlspecialchars($this->data['tags'], ENT_QUOTES)) : [],
+                        'cat_title' => $myts->makeTboxData4Show($cat_data['cat_title'], 1, 1),
+                        'can_vote' => (is_object($GLOBALS['xoopsUser']) || $mod_config['guest_vote_interval']) ? true : false,
+                    ] + $this->data;
 
 		// process body
 		if ($this->data['last_cached_time'] < $this->data['modified_time'] || $process_body && !$this->data['use_cache']) {
@@ -287,7 +287,7 @@ class PicoContent
 		$mod_config = $this->categoryObj->getOverriddenModConfig();
 		$cat_data = $this->categoryObj->getData();
 
-		$ret4edit = array(
+		$ret4edit = [
 			'vpath' => htmlspecialchars($this->data['vpath'], ENT_QUOTES),
 			'subject' => $this->data['approval'] == 0 && !$this->data['visible'] ? htmlspecialchars($this->data['subject_waiting'], ENT_QUOTES) : htmlspecialchars($this->data['subject'], ENT_QUOTES),
 			'subject_waiting' => htmlspecialchars($this->data['subject_waiting'], ENT_QUOTES),
@@ -299,7 +299,7 @@ class PicoContent
 			'filter_infos' => pico_main_get_filter_infos($this->data['filters'], $cat_data['isadminormod']),
 			'tags' => htmlspecialchars($this->data['tags'], ENT_QUOTES),
 			'modifier_uid' => is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0,
-		) + $this->getData4html();
+                    ] + $this->getData4html();
 
 		return $ret4edit;
 	}
@@ -311,44 +311,44 @@ class PicoContent
 		$cat_data = $categoryObj->getData();
 		$uid = is_object(@$GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 
-		return array(
-			'content_id' => 0,
-			'permission_id' => 0,
-			'vpath' => '',
-			'cat_id' => 0,
-			'weight' => 0,
-			'created_time' => time(),
-			'modified_time' => time(),
-			'expiring_time' => 0x7fffffff,
-			'last_cached_time' => 0,
-			'poster_uid' => $uid,
-			'poster_ip' => '',
-			'modifier_uid' => $uid,
-			'modifier_ip' => '',
-			'subject' => '',
-			'subject_waiting' => '',
-			'locked' => 0,
-			'visible' => 1,
-			'approval' => $cat_data['post_auto_approved'],
-			'use_cache' => 0,
-			'allow_comment' => 1,
-			'show_in_navi' => 1,
-			'show_in_menu' => 1,
-			'viewed' => 0,
-			'votes_sum' => 0,
-			'votes_count' => 0,
-			'comments_count' => 0,
-			'htmlheader' => '',
-			'htmlheader_waiting' => '',
-			'body' => '',
-			'body_waiting' => '',
-			'body_cached' => '',
-			'filters' => $mod_config['filters'],
-			'tags' => '',
-			'extra_fields' => pico_common_serialize(array()),
-			'redundants' => '',
-			'for_search' => '',
-		);
+		return [
+            'content_id' => 0,
+            'permission_id' => 0,
+            'vpath' => '',
+            'cat_id' => 0,
+            'weight' => 0,
+            'created_time' => time(),
+            'modified_time' => time(),
+            'expiring_time' => 0x7fffffff,
+            'last_cached_time' => 0,
+            'poster_uid' => $uid,
+            'poster_ip' => '',
+            'modifier_uid' => $uid,
+            'modifier_ip' => '',
+            'subject' => '',
+            'subject_waiting' => '',
+            'locked' => 0,
+            'visible' => 1,
+            'approval' => $cat_data['post_auto_approved'],
+            'use_cache' => 0,
+            'allow_comment' => 1,
+            'show_in_navi' => 1,
+            'show_in_menu' => 1,
+            'viewed' => 0,
+            'votes_sum' => 0,
+            'votes_count' => 0,
+            'comments_count' => 0,
+            'htmlheader' => '',
+            'htmlheader_waiting' => '',
+            'body' => '',
+            'body_waiting' => '',
+            'body_cached' => '',
+            'filters' => $mod_config['filters'],
+            'tags' => '',
+            'extra_fields' => pico_common_serialize([]),
+            'redundants' => '',
+            'for_search' => '',
+        ];
 	}
 
 

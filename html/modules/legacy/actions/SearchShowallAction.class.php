@@ -30,7 +30,7 @@ class Legacy_SearchShowallAction extends Legacy_SearchResultsAction
     
     public function _getSelectedMids()
     {
-        $ret = array();
+        $ret = [];
         $ret[] = $this->mActionForm->get('mid');
         
         return $ret;

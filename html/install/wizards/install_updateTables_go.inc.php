@@ -30,7 +30,7 @@
         }
     }
     if (false != $error) {
-        $b_back = array();
+        $b_back = [];
         $content = _INSTALL_L162;
         include './install_tpl.php';
         break;
@@ -43,9 +43,9 @@
     $content = $dbm->report();
     if (!$result) {
         $content .= "<p>"._INSTALL_L135."</p>\n";
-        $b_back = array();
+        $b_back = [];
     } else {
         $content .= "<p>"._INSTALL_L136."</p>\n";
-        $b_next = array('updateConfig', _INSTALL_L14);
+        $b_next = ['updateConfig', _INSTALL_L14];
     }
     include './install_tpl.php';

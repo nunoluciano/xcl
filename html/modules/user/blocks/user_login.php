@@ -4,7 +4,7 @@ function b_user_login_show()
     global $xoopsUser;
     
     if (!$xoopsUser) {
-        $block = array();
+        $block = [];
         $config_handler =& xoops_gethandler('config');
         $moduleConfig =& $config_handler->getConfigsByDirname('user');
         

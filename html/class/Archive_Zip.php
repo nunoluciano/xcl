@@ -185,18 +185,21 @@ class Archive_Zip
 
         // ----- Set default values
         if ($p_params === 0) {
-            $p_params = array();
+            $p_params = [];
         }
         if ($this->_check_parameters($p_params,
-                                     array('no_compression' => false,
-                                           'add_path' => "",
-                                           'remove_path' => "",
-                                           'remove_all_path' => false)) != 1) {
+                                     [
+                                         'no_compression'  => false,
+                                         'add_path'        => "",
+                                         'remove_path'     => "",
+                                         'remove_all_path' => false
+                                     ]
+            ) != 1) {
             return 0;
         }
 
         // ----- Look if the $p_filelist is really an array
-        $p_result_list = array();
+        $p_result_list = [];
         if (is_array($p_filelist)) {
             $v_result = $this->_create($p_filelist, $p_result_list, $p_params);
         }
@@ -256,20 +259,23 @@ class Archive_Zip
 
         // ----- Set default values
         if ($p_params === 0) {
-            $p_params = array();
+            $p_params = [];
         }
         if ($this->_check_parameters($p_params,
-                                     array('no_compression' => false,
-                                            'add_path' => '',
-                                            'remove_path' => '',
-                                            'remove_all_path' => false,
-                                             'callback_pre_add' => '',
-                                            'callback_post_add' => '')) != 1) {
+                                     [
+                                         'no_compression'    => false,
+                                         'add_path'          => '',
+                                         'remove_path'       => '',
+                                         'remove_all_path'   => false,
+                                         'callback_pre_add'  => '',
+                                         'callback_post_add' => ''
+                                     ]
+            ) != 1) {
             return 0;
         }
 
         // ----- Look if the $p_filelist is really an array
-        $p_result_list = array();
+        $p_result_list = [];
         if (is_array($p_filelist)) {
             // ----- Call the create fct
             $v_result = $this->_add($p_filelist, $p_result_list, $p_params);
@@ -353,7 +359,7 @@ class Archive_Zip
             return(0);
         }
 
-        $v_list = array();
+        $v_list = [];
         if ($this->_list($v_list) != 1) {
             unset($v_list);
             return(0);
@@ -412,25 +418,28 @@ class Archive_Zip
 
         // ----- Set default values
         if ($p_params === 0) {
-            $p_params = array();
+            $p_params = [];
         }
         if ($this->_check_parameters($p_params,
-                                     array('extract_as_string' => false,
-                                            'add_path' => '',
-                                            'remove_path' => '',
-                                            'remove_all_path' => false,
-                                             'callback_pre_extract' => '',
-                                            'callback_post_extract' => '',
-                                            'set_chmod' => 0,
-                                            'by_name' => '',
-                                            'by_index' => '',
-                                            'by_ereg' => '',
-                                            'by_preg' => '')) != 1) {
+                                     [
+                                         'extract_as_string'     => false,
+                                         'add_path'              => '',
+                                         'remove_path'           => '',
+                                         'remove_all_path'       => false,
+                                         'callback_pre_extract'  => '',
+                                         'callback_post_extract' => '',
+                                         'set_chmod'             => 0,
+                                         'by_name'               => '',
+                                         'by_index'              => '',
+                                         'by_ereg'               => '',
+                                         'by_preg'               => ''
+                                     ]
+            ) != 1) {
             return 0;
         }
 
         // ----- Call the extracting fct
-        $v_list = array();
+        $v_list = [];
         if ($this->_extractByRule($v_list, $p_params) != 1) {
             unset($v_list);
             return(0);
@@ -474,10 +483,13 @@ class Archive_Zip
 
         // ----- Set default values
         if ($this->_check_parameters($p_params,
-                                     array('by_name' => '',
-                                            'by_index' => '',
-                                            'by_ereg' => '',
-                                            'by_preg' => '')) != 1) {
+                                     [
+                                         'by_name'  => '',
+                                         'by_index' => '',
+                                         'by_ereg'  => '',
+                                         'by_preg'  => ''
+                                     ]
+            ) != 1) {
             return 0;
         }
 
@@ -493,7 +505,7 @@ class Archive_Zip
         }
 
         // ----- Call the delete fct
-        $v_list = array();
+        $v_list = [];
         if ($this->_deleteByRule($v_list, $p_params) != 1) {
             unset($v_list);
             return(0);
@@ -525,7 +537,7 @@ class Archive_Zip
         }
 
         // ----- Default properties
-        $v_prop = array();
+        $v_prop = [];
         $v_prop['comment'] = '';
         $v_prop['nb'] = 0;
         $v_prop['status'] = 'not_exist';
@@ -541,7 +553,7 @@ class Archive_Zip
             }
 
             // ----- Read the central directory informations
-            $v_central_dir = array();
+            $v_central_dir = [];
             if (($v_result = $this->_readEndCentralDir($v_central_dir)) != 1) {
                 return 0;
             }
@@ -803,7 +815,7 @@ class Archive_Zip
   public function _create($p_list, &$p_result_list, &$p_params)
   {
       $v_result=1;
-      $v_list_detail = array();
+      $v_list_detail = [];
 
       $p_add_dir = $p_params['add_path'];
       $p_remove_dir = $p_params['remove_path'];
@@ -841,7 +853,7 @@ class Archive_Zip
   public function _add($p_list, &$p_result_list, &$p_params)
   {
       $v_result=1;
-      $v_list_detail = array();
+      $v_list_detail = [];
 
       $p_add_dir = $p_params['add_path'];
       $p_remove_dir = $p_params['remove_path'];
@@ -859,7 +871,7 @@ class Archive_Zip
     }
 
     // ----- Read the central directory informations
-    $v_central_dir = array();
+    $v_central_dir = [];
       if (($v_result = $this->_readEndCentralDir($v_central_dir)) != 1) {
           $this->_closeFd();
           return $v_result;
@@ -901,7 +913,7 @@ class Archive_Zip
       $v_zip_temp_fd = $v_swap;
 
     // ----- Add the files
-    $v_header_list = array();
+    $v_header_list = [];
       if (($v_result = $this->_addFileList($p_list, $v_header_list,
                                          $p_add_dir, $p_remove_dir,
                                          $p_remove_all_dir, $p_params)) != 1) {
@@ -1073,7 +1085,7 @@ class Archive_Zip
       $v_result=1;
 
     // ----- Add the files
-    $v_header_list = array();
+    $v_header_list = [];
       if (($v_result = $this->_addFileList($p_list, $v_header_list,
                                          $p_add_dir, $p_remove_dir,
                                          $p_remove_all_dir, $p_params)) != 1) {
@@ -1142,7 +1154,7 @@ class Archive_Zip
                         &$p_params)
   {
       $v_result=1;
-      $v_header = array();
+      $v_header = [];
 
     // ----- Recuperate the current number of elt in list
     $v_nb = sizeof($p_result_list);
@@ -1340,7 +1352,7 @@ class Archive_Zip
         && ($p_params[ARCHIVE_ZIP_PARAM_PRE_ADD] != '')) {
 
       // ----- Generate a local information
-      $v_local_header = array();
+      $v_local_header = [];
         $this->_convertHeader2FileInfo($p_header, $v_local_header);
 
       // ----- Call the callback
@@ -1436,7 +1448,7 @@ class Archive_Zip
         && ($p_params[ARCHIVE_ZIP_PARAM_POST_ADD] != '')) {
 
       // ----- Generate a local information
-      $v_local_header = array();
+      $v_local_header = [];
         $this->_convertHeader2FileInfo($p_header, $v_local_header);
 
       // ----- Call the callback
@@ -1616,7 +1628,7 @@ class Archive_Zip
     }
 
     // ----- Read the central directory informations
-    $v_central_dir = array();
+    $v_central_dir = [];
       if (($v_result = $this->_readEndCentralDir($v_central_dir)) != 1) {
           return $v_result;
       }
@@ -1753,7 +1765,7 @@ class Archive_Zip
     }
 
     // ----- Read the central directory informations
-    $v_central_dir = array();
+    $v_central_dir = [];
       if (($v_result = $this->_readEndCentralDir($v_central_dir)) != 1) {
           // ----- Close the zip file
       $this->_closeFd();
@@ -1779,7 +1791,7 @@ class Archive_Zip
           }
 
       // ----- Read the file header
-      $v_header = array();
+      $v_header = [];
           if (($v_result = $this->_readCentralFileHeader($v_header)) != 1) {
               $this->_closeFd();
 
@@ -1994,7 +2006,7 @@ class Archive_Zip
         && ($p_params[ARCHIVE_ZIP_PARAM_PRE_EXTRACT] != '')) {
 
       // ----- Generate a local information
-      $v_local_header = array();
+      $v_local_header = [];
         $this->_convertHeader2FileInfo($p_entry, $v_local_header);
 
       // ----- Call the callback
@@ -2153,7 +2165,7 @@ class Archive_Zip
         && ($p_params[ARCHIVE_ZIP_PARAM_POST_EXTRACT] != '')) {
 
       // ----- Generate a local information
-      $v_local_header = array();
+      $v_local_header = [];
         $this->_convertHeader2FileInfo($p_entry, $v_local_header);
 
       // ----- Call the callback
@@ -2184,7 +2196,7 @@ class Archive_Zip
       $v_result=1;
 
     // ----- Read the file header
-    $v_header = array();
+    $v_header = [];
       if (($v_result = $this->_readFileHeader($v_header)) != 1) {
           // ----- Return
       return $v_result;
@@ -2579,7 +2591,7 @@ class Archive_Zip
   public function _deleteByRule(&$p_result_list, &$p_params)
   {
       $v_result=1;
-      $v_list_detail = array();
+      $v_list_detail = [];
 
     // ----- Open the zip file
     if (($v_result=$this->_openFd('rb')) != 1) {
@@ -2588,7 +2600,7 @@ class Archive_Zip
     }
 
     // ----- Read the central directory informations
-    $v_central_dir = array();
+    $v_central_dir = [];
       if (($v_result = $this->_readEndCentralDir($v_central_dir)) != 1) {
           $this->_closeFd();
           return $v_result;
@@ -2611,12 +2623,12 @@ class Archive_Zip
       }
 
     // ----- Read each entry
-    $v_header_list = array();
+    $v_header_list = [];
       $j_start = 0;
       for ($i=0, $v_nb_extracted=0; $i<$v_central_dir['entries']; $i++) {
 
       // ----- Read the file header
-      $v_header_list[$v_nb_extracted] = array();
+      $v_header_list[$v_nb_extracted] = [];
           $v_result
         = $this->_readCentralFileHeader($v_header_list[$v_nb_extracted]);
           if ($v_result != 1) {
@@ -2938,7 +2950,7 @@ class Archive_Zip
     }
 
     // ----- Read the central directory informations
-    $v_central_dir = array();
+    $v_central_dir = [];
       if (($v_result = $this->_readEndCentralDir($v_central_dir)) != 1) {
           $this->_closeFd();
           return $v_result;
@@ -2954,7 +2966,7 @@ class Archive_Zip
     }
 
     // ----- Read the central directory informations
-    $v_central_dir_to_add = array();
+    $v_central_dir_to_add = [];
       $v_result = $p_archive_to_add->_readEndCentralDir($v_central_dir_to_add);
       if ($v_result != 1) {
           $this->_closeFd();
@@ -3179,8 +3191,10 @@ class Archive_Zip
     }
     
     // ----- Check specific parameters
-    $v_callback_list = array('callback_pre_add', 'callback_post_add',
-                              'callback_pre_extract', 'callback_post_extract');
+    $v_callback_list = [
+        'callback_pre_add', 'callback_post_add',
+        'callback_pre_extract', 'callback_post_extract'
+    ];
       for ($i=0; $i<sizeof($v_callback_list); $i++) {
           $v_key=$v_callback_list[$i];
           if ((isset($p_params[$v_key])) && ($p_params[$v_key] != '')) {

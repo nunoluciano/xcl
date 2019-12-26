@@ -17,7 +17,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 {
     //ListView data
     public $sid ;
-    public $mModuleObjects = array();
+    public $mModuleObjects = [];
     public $storeObject = null;
     public $mFilter = null;
 
@@ -207,7 +207,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
         $render->setAttribute('currentMenu', $this->currentMenu);
         $render->setAttribute('action', $this->action);
         
-        $tagCloud = array();
+        $tagCloud = [];
         if (! empty($this->mod_config['tag_dirname'])) {
             XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', $this->contents . 'store');
             if ($tagCloud) {

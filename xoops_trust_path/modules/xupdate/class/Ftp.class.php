@@ -66,7 +66,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     
     private $loginCheckFile;
     private $phpPerm;
-    private $uploaded_files = array();
+    private $uploaded_files = [];
     private $rootChangeFlg = false;
     public $isSafeMode;
     
@@ -92,9 +92,9 @@ class Xupdate_Ftp extends Xupdate_Ftp_
             }
         }
         if (! isset($GLOBALS['xupdate_retry_cache'])) {
-            $GLOBALS['xupdate_retry_cache'] = array();
+            $GLOBALS['xupdate_retry_cache'] = [];
         }
-        $GLOBALS['xupdate_retry_cache']['uploaded_files'] = array();
+        $GLOBALS['xupdate_retry_cache']['uploaded_files'] = [];
     }
 
 // <!-- --------------------------------------------------------------------------------------- -->
@@ -166,7 +166,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     public function set_item_options($options)
     {
         $this->item_options = $options;
-        $this->set_no_overwrite(array($options['no_overwrite'], $options['no_update']));
+        $this->set_no_overwrite([$options['no_overwrite'], $options['no_update']]);
     }
 
     /**
@@ -282,7 +282,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     {
         $checkKey = md5(serialize($this->mod_config));
         if (! ($ret = @ unserialize(@ file_get_contents($this->loginCheckFile))) || !is_array($ret) || !isset($ret[$checkKey])) {
-            $ret = array();
+            $ret = [];
             if ($this->app_login()) {
                 $this->app_logout();
                 $ret[$checkKey] = true;
@@ -402,13 +402,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         }
         $mode = ($trust_dirname && $dirname)? 'repModule' : ($trust_dirname? 'repMisc' : 'normal');
         if (! isset($GLOBALS['xupdate_retry_cache']['file_list'])) {
-            $GLOBALS['xupdate_retry_cache']['file_list'] = array();
-            $GLOBALS['xupdate_retry_cache']['dir_cnt'] = array();
+            $GLOBALS['xupdate_retry_cache']['file_list'] = [];
+            $GLOBALS['xupdate_retry_cache']['dir_cnt'] = [];
         }
         if (! isset($GLOBALS['xupdate_retry_cache']['file_list'][$local_path])) {
             $file_list = $this->_getFileList($local_path);
             $GLOBALS['xupdate_retry_cache']['file_list'][$local_path] = $file_list;
-            $GLOBALS['xupdate_retry_cache']['dir_cnt'][$local_path] = array();
+            $GLOBALS['xupdate_retry_cache']['dir_cnt'][$local_path] = [];
         } else {
             $file_list = $GLOBALS['xupdate_retry_cache']['file_list'][$local_path];
         }
@@ -450,7 +450,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         }
         
         /// put files
-        $res = array('ok' => 0, 'ng' => array(), 'un_overwrite' => 0, 'same_file' => 0);
+        $res = ['ok' => 0, 'ng' => [], 'un_overwrite' => 0, 'same_file' => 0];
         $uploaded_files =& $GLOBALS['xupdate_retry_cache']['uploaded_files'];
         $_cnt = 0;
         foreach ($file_list['file'] as $l_file) {
@@ -502,10 +502,10 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         return $res;
     }
 
-    private function _getFileList($dir, $list=array('dir'=> array(), 'file' => array()))
+    private function _getFileList($dir, $list= ['dir' => [], 'file' => []])
     {
         if (is_dir($dir) == false) {
-            return array();
+            return [];
         }
 
         $dh = opendir($dir);
@@ -546,7 +546,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                 $reg_lang = '#^(?:'.$html.'|'.$trust.')/(?:modules/[^/]+/)?language/([^/]+)(?:/|$)#';
                 $root = XCube_Root::getSingleton();
                 $lang = $root->mContext->getXoopsConfig('language');
-                $lang = ($lang === 'english')? array($lang) : array($lang, 'english');
+                $lang = ($lang === 'english')? [$lang] : [$lang, 'english'];
                 if (isset($this->item_options['force_languages']) && is_array($this->item_options['force_languages'])) {
                     $lang = array_merge($lang, $this->item_options['force_languages']);
                 }

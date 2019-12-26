@@ -63,7 +63,7 @@ class User_GroupPermAction extends User_GroupPropertyAction
         }
         
         $moduleHandler =& xoops_gethandler('module');
-        $modPerms = array();
+        $modPerms = [];
 
         //
         // Store module read permission

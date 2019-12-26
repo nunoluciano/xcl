@@ -66,7 +66,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer
     public function _lines($lines, $prefix = ' ', $encode = true)
     {
         if ($encode) {
-            array_walk($lines, array(&$this, '_encode'));
+            array_walk($lines, [&$this, '_encode']);
         }
 
         if ($this->_split_level == 'words') {
@@ -78,7 +78,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer
 
     public function _added($lines)
     {
-        array_walk($lines, array(&$this, '_encode'));
+        array_walk($lines, [&$this, '_encode']);
         $lines[0] = $this->_ins_prefix . $lines[0];
         $lines[count($lines) - 1] .= $this->_ins_suffix;
         return $this->_lines($lines, ' ', false);
@@ -86,7 +86,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer
 
     public function _deleted($lines, $words = false)
     {
-        array_walk($lines, array(&$this, '_encode'));
+        array_walk($lines, [&$this, '_encode']);
         $lines[0] = $this->_del_prefix . $lines[0];
         $lines[count($lines) - 1] .= $this->_del_suffix;
         return $this->_lines($lines, ' ', false);
@@ -122,7 +122,8 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer
 
         /* Get the diff in inline format. */
         $renderer = new Text_Diff_Renderer_inline(array_merge($this->getParams(),
-                                                               array('split_level' => 'words')));
+                                                              ['split_level' => 'words']
+                                                  ));
 
         /* Run the diff and get the output. */
         return str_replace($nl, "\n", $renderer->render($diff)) . "\n";
@@ -130,7 +131,7 @@ class Text_Diff_Renderer_inline extends Text_Diff_Renderer
 
     public function _splitOnWords($string, $newlineEscape = "\n")
     {
-        $words = array();
+        $words = [];
         $length = strlen($string);
         $pos = 0;
 

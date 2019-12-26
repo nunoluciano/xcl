@@ -247,7 +247,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
      **/
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('xoopscomments');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -323,7 +323,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
     public function &getList($criteria = null)
     {
         $comments =& $this->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($comments) as $i) {
             $ret[$i] = $comments[$i]->getVar('com_title');
         }
@@ -474,7 +474,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
 
     public function getChildObjects(&$comment)
     {
-        $ret=array();
+        $ret= [];
 
         $table=$this->db->prefix("xoopscomments");
         $sql="SELECT * FROM ${table} WHERE com_pid=" . $comment->getVar("com_id") .

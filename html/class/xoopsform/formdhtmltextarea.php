@@ -80,7 +80,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @var array
      * @access  private
      */
-    private static $_editorCheck = array();
+    private static $_editorCheck = [];
     
     /**
      * Constructor

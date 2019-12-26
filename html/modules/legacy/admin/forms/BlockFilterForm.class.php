@@ -40,7 +40,7 @@ define('NEWBLOCKS_SORT_KEY_MAXVALUE', 20);
 
 class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         NEWBLOCKS_SORT_KEY_BID => 'bid',
         NEWBLOCKS_SORT_KEY_MID => 'mid',
         NEWBLOCKS_SORT_KEY_FUNC_NUM => 'func_num',
@@ -54,7 +54,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         NEWBLOCKS_SORT_KEY_TEMPLATE => 'template',
         NEWBLOCKS_SORT_KEY_BCACHETIME => 'bcachetime',
         NEWBLOCKS_SORT_KEY_LAST_MODIFIED => 'last_modified'
-    );
+    ];
     //wanikoo
     public $mKeyword = "";
     public $mModule = null;
@@ -139,7 +139,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
             $criteria = new CriteriaCompo(new Criteria('module_id', $selectedMid));
             $criteria->add(new Criteria('module_id', 0), 'OR');
             $selmodArrObj = $handler -> getObjects($criteria);
-            $selmodArr = array() ;
+            $selmodArr = [];
             if (isset($selmodArrObj)) {
                 foreach ($selmodArrObj as $selmodObj) {
                     $selmodArr[] = $selmodObj->getShow('block_id');
@@ -156,7 +156,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
             $criteria->add(new Criteria('gperm_groupid', $selectedGid));
             $criteria->add(new Criteria('gperm_name', 'block_read'));
             $selgrpArrObj =&  $handler ->getObjects($criteria);
-            $selgrpArr = array() ;
+            $selgrpArr = [];
             if (isset($selgrpArrObj)) {
                 foreach ($selgrpArrObj as $selgrpObj) {
                     $selgrpArr[] = $selgrpObj->getShow('gperm_itemid');

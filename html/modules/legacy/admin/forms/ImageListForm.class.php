@@ -47,11 +47,11 @@ class Legacy_ImageListForm extends XCube_ActionForm
         $this->mFormProperties['confirm'] =new XCube_BoolProperty('confirm');
         // set fields
         $this->mFieldProperties['nicename'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['nicename']->setDependsByArray(array('required'));
+        $this->mFieldProperties['nicename']->setDependsByArray(['required']);
         $this->mFieldProperties['nicename']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMAGE_NICENAME);
 
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['weight']->setDependsByArray(array('required'));
+        $this->mFieldProperties['weight']->setDependsByArray(['required']);
         $this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_WEIGHT);
     }
 }

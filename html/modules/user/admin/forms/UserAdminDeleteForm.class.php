@@ -28,7 +28,7 @@ class User_UserAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['uid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['uid']->setDependsByArray(['required']);
         $this->mFieldProperties['uid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_UID);
     }
 

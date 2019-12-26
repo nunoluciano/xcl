@@ -40,22 +40,22 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['id']->setDependsByArray(['required']);
         $this->mFieldProperties['id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_ID);
     
         $this->mFieldProperties['code'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['code']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['code']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['code']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_CODE, '50');
         $this->mFieldProperties['code']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_CODE, '50');
         $this->mFieldProperties['code']->addVar('maxlength', '50');
     
         $this->mFieldProperties['smile_url'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['smile_url']->setDependsByArray(array('extension'));
+        $this->mFieldProperties['smile_url']->setDependsByArray(['extension']);
         $this->mFieldProperties['smile_url']->addMessage('extension', _AD_LEGACY_ERROR_EXTENSION);
         $this->mFieldProperties['smile_url']->addVar('extension', 'jpg,gif,png');
     
         $this->mFieldProperties['emotion'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['emotion']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['emotion']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['emotion']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_EMOTION, '75');
         $this->mFieldProperties['emotion']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_EMOTION, '75');
         $this->mFieldProperties['emotion']->addVar('maxlength', '75');

@@ -36,7 +36,7 @@ class LegacyColumnsideObject extends XoopsSimpleObject
 
 class LegacyColumnsideHandler extends XoopsObjectHandler
 {
-    public $_mResults = array();
+    public $_mResults = [];
     
     public function LegacyColumnsideHandler(&$db)
     {
@@ -45,13 +45,13 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
 
     public function __construct(&$db)
     {
-        $t_arr = array(
+        $t_arr = [
                 0 => _AD_LEGACY_LANG_SIDE_BLOCK_LEFT,
                 1 => _AD_LEGACY_LANG_SIDE_BLOCK_RIGHT,
                 3 => _AD_LEGACY_LANG_CENTER_BLOCK_LEFT,
                 4 => _AD_LEGACY_LANG_CENTER_BLOCK_RIGHT,
                 5 => _AD_LEGACY_LANG_CENTER_BLOCK_CENTER
-            );
+        ];
             
         foreach ($t_arr as $id => $name) {
             $this->_mResults[$id] =& $this->create();
@@ -81,7 +81,7 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
         if ($id_as_key) {
             return $this->_mResults;
         } else {
-            $ret = array();
+            $ret = [];
         
             foreach (array_keys($this->_mResults) as $key) {
                 $ret[] =& $this->_mResults[$key];

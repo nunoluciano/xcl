@@ -13,7 +13,7 @@ function b_altsys_admin_menu_show($options)
         die('Invalid mydirname') ;
     }
     if (! is_object(@$xoopsUser)) {
-        return array() ;
+        return [];
     }
 
     // coretype
@@ -41,20 +41,20 @@ function b_altsys_admin_menu_show($options)
     $admin_mids = $moduleperm_handler->getItemIds('module_admin', $xoopsUser->getGroups());
     $modules = $module_handler->getObjects(new Criteria('mid', '('.implode(',', $admin_mids) . ')', 'IN'), true) ;
 
-    $block = array(
+    $block = [
         'mydirname' => $mydirname ,
         'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
         'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$current_configs['images_dir'] ,
         'mod_config' => $current_configs ,
-    ) ;
+    ];
 
     foreach ($modules as $mod) {
         $mid = intval($mod->getVar('mid')) ;
         $dirname = $mod->getVar('dirname') ;
         $modinfo = $mod->getInfo() ;
-        $submenus4assign = array() ;
-        $adminmenu = array() ;
-        $adminmenu4altsys = array() ;
+        $submenus4assign = [];
+        $adminmenu = [];
+        $adminmenu4altsys = [];
         unset($adminmenu_use_altsys) ;
         @include XOOPS_ROOT_PATH.'/modules/'.$dirname.'/'.@$modinfo['adminmenu'] ;
         // from admin_menu.php etc.
@@ -64,10 +64,10 @@ function b_altsys_admin_menu_show($options)
             if (isset($sub['show']) && $sub['show'] === false) {
                 continue ;
             }
-            $submenus4assign[] = array(
+            $submenus4assign[] = [
                 'title' => $myts->makeTboxData4Show($sub['title']) ,
                 'url' => XOOPS_URL.'/modules/'.$dirname.'/'.htmlspecialchars($link, ENT_QUOTES) ,
-            ) ;
+            ];
         }
 
         // for modules overriding Module.class.php (eg. Analyzer for XC)
@@ -81,31 +81,31 @@ function b_altsys_admin_menu_show($options)
                 if (@$sub['show'] === false) {
                     continue ;
                 }
-                $submenus4assign[] = array(
+                $submenus4assign[] = [
                     'title' => $myts->makeTboxData4Show($sub['title']) ,
                     'url' => strncmp($sub['link'], 'http', 4) === 0 ? htmlspecialchars($sub['link'], ENT_QUOTES) : XOOPS_URL.'/modules/'.$dirname.'/'.htmlspecialchars($sub['link'], ENT_QUOTES) ,
-                ) ;
+                ];
             }
         } elseif (empty($adminmenu4altsys)) {
 
             // add preferences
-            if ($mod->getVar('hasconfig') && ! in_array($mod->getVar('dirname'), array( 'system', 'legacy' ))) {
-                $submenus4assign[] = array(
+            if ($mod->getVar('hasconfig') && ! in_array($mod->getVar('dirname'), ['system', 'legacy'])) {
+                $submenus4assign[] = [
                     'title' => _PREFERENCES ,
                     'url' => htmlspecialchars(altsys_get_link2modpreferences($mid, $coretype), ENT_QUOTES) ,
-                ) ;
+                ];
             }
 
             // add help
             if (defined('XOOPS_CUBE_LEGACY') && ! empty($modinfo['help'])) {
-                $submenus4assign[] = array(
+                $submenus4assign[] = [
                     'title' => _HELP ,
                     'url' => XOOPS_URL.'/modules/legacy/admin/index.php?action=Help&amp;dirname='.$dirname ,
-                ) ;
+                ];
             }
         }
 
-        $module4assign = array(
+        $module4assign = [
             'mid' => $mid ,
             'dirname' => $dirname ,
             'name' => $mod->getVar('name') ,
@@ -123,7 +123,7 @@ function b_altsys_admin_menu_show($options)
             'submenu' => $submenus4assign ,
             'selected' => $mid == $mid_selected ? true : false ,
             'dot_suffix' => $mid == $mid_selected ? 'selected_opened' : 'closed' ,
-        ) ;
+        ];
         $block['modules'][] = $module4assign ;
     }
 

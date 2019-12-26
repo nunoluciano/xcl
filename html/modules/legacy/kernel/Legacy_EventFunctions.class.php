@@ -27,7 +27,7 @@ class Legacy_EventFunction
         $moduleRunner->setMode(LEGACY_FRAME_MODE_IMAGE);
         $moduleRunner->setActionName($action);
         
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -44,7 +44,7 @@ class Legacy_EventFunction
         $moduleRunner =new Legacy_ActionFrame(false);
         $moduleRunner->setActionName('Backend');
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -62,7 +62,7 @@ class Legacy_EventFunction
         $moduleRunner->setMode(LEGACY_FRAME_MODE_SEARCH);
         $moduleRunner->setActionName(ucfirst(xoops_getrequest('action')));
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -82,7 +82,7 @@ class Legacy_EventFunction
         $moduleRunner->setMode(LEGACY_FRAME_MODE_MISC);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->setDialogMode(true);
 
@@ -115,7 +115,7 @@ class Legacy_EventFunction
         $moduleRunner->setMode(LEGACY_FRAME_MODE_NOTIFY);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -137,7 +137,7 @@ class Legacy_EventFunction
         $moduleConfig =& $root->mContext->mModuleConfig;
         $xoopsUser =& $root->mContext->mXoopsUser;
 
-        $xoops_notification = array();
+        $xoops_notification = [];
         $xoops_notification['show'] = is_object($xoopsModule) && is_object($xoopsUser) && notificationEnabled('inline') ? 1 : 0;
         
         if ($xoops_notification['show']) {
@@ -151,7 +151,7 @@ class Legacy_EventFunction
                     $section['title'] = $category['title'];
                     $section['description'] = $category['description'];
                     $section['itemid'] = $category['item_id'];
-                    $section['events'] = array();
+                    $section['events'] = [];
                     $subscribed_events =& $notification_handler->getSubscribedEvents($category['name'], $category['item_id'], $xoopsModule->get('mid'), $xoopsUser->get('uid'));
                     foreach (notificationEvents($category['name'], true) as $event) {
                         if (!empty($event['admin_only']) && !$xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
@@ -161,7 +161,7 @@ class Legacy_EventFunction
                             continue;
                         }
                         $subscribed = in_array($event['name'], $subscribed_events) ? 1 : 0;
-                        $section['events'][$event['name']] = array('name'=>$event['name'], 'title'=>$event['title'], 'caption'=>$event['caption'], 'description'=>$event['description'], 'subscribed'=>$subscribed);
+                        $section['events'][$event['name']] = ['name' => $event['name'], 'title' => $event['title'], 'caption' => $event['caption'], 'description' => $event['description'], 'subscribed' =>$subscribed];
                         $event_count ++;
                     }
                     $xoops_notification['categories'][$category['name']] = $section;

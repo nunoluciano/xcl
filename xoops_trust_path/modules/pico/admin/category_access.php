@@ -51,7 +51,7 @@ if (!empty($_POST['group_update'])) {
 	$result = $db->query("SELECT groupid FROM " . $db->prefix("groups"));
 	while (list($gid) = $db->fetchRow($result)) {
 		if (!empty($_POST['can_read'][$gid])) {
-			$perms = array();
+			$perms = [];
 			foreach ($pico_category_permissions as $perm_name) {
 				$perms[$perm_name] = empty($_POST[$perm_name][$gid]) ? 0 : 1;
 			}
@@ -72,7 +72,7 @@ if (!empty($_POST['user_update'])) {
 	if (is_array(@$_POST['can_read'])) foreach ($_POST['can_read'] as $uid => $can_read) {
 		$uid = intval($uid);
 		if ($can_read) {
-			$perms = array();
+			$perms = [];
 			foreach ($pico_category_permissions as $perm_name) {
 				$perms[$perm_name] = empty($_POST[$perm_name][$uid]) ? 0 : 1;
 			}
@@ -97,7 +97,7 @@ if (!empty($_POST['user_update'])) {
 		if (!is_object($user)) continue;
 		$uid = $user->getVar('uid');
 
-		$perms = array('can_read' => 1);
+		$perms = ['can_read' => 1];
 		foreach ($pico_category_permissions as $perm_name) {
 			$perms[$perm_name] = empty($_POST['new_' . $perm_name][$i]) ? 0 : 1;
 		}
@@ -116,7 +116,7 @@ if (!empty($_POST['user_update'])) {
 $cat_options = pico_common_get_cat_options($mydirname);
 
 // create permissions4assign
-$permissions4assign = array();
+$permissions4assign = [];
 foreach ($pico_category_permissions as $perm_name) {
 	$permissions4assign[$perm_name] = constant('_MD_PICO_PERMS_' . strtoupper($perm_name));
 }
@@ -124,7 +124,7 @@ foreach ($pico_category_permissions as $perm_name) {
 // create group form
 $group_handler = &xoops_gethandler('group');
 $groups = &$group_handler->getObjects();
-$groups4assign = array();
+$groups4assign = [];
 foreach ($groups as $group) {
 	$gid = $group->getVar('groupid');
 
@@ -133,19 +133,19 @@ foreach ($groups as $group) {
 		list($serialized_gpermissions) = $db->fetchRow($cprs);
 		$gpermissions = pico_common_unserialize($serialized_gpermissions);
 	} else {
-		$gpermissions = array();
+		$gpermissions = [];
 	}
 
-	$groups4assign[] = array(
+	$groups4assign[] = [
 		'gid' => $gid,
 		'name' => $group->getVar('name'),
 		'perms' => $gpermissions,
-	);
+    ];
 }
 
 
 // create user form
-$users4assign = array();
+$users4assign = [];
 $cprs = $db->query("SELECT u.uid,u.uname,cp.permissions FROM " . $db->prefix($mydirname . "_category_permissions") . " cp LEFT JOIN " . $db->prefix("users") . " u ON cp.uid=u.uid WHERE cp.cat_id=$cat_permission_id AND cp.groupid IS NULL ORDER BY u.uid ASC");
 $user_trs = '';
 while (list($uid, $uname, $serialized_upermissions) = $db->fetchRow($cprs)) {
@@ -153,21 +153,21 @@ while (list($uid, $uname, $serialized_upermissions) = $db->fetchRow($cprs)) {
 	$uid = intval($uid);
 	$upermissions = pico_common_unserialize($serialized_upermissions);
 
-	$users4assign[] = array(
+	$users4assign[] = [
 		'uid' => $uid,
 		'name' => htmlspecialchars($uname, ENT_QUOTES),
 		'perms' => $upermissions,
-	);
+    ];
 }
 
 
 // create new user form
-$new_users4assign = array();
+$new_users4assign = [];
 for ($i = 0; $i < 5; $i++) {
-	$new_users4assign[] = array(
-		'nid' => $i,
-		'perms' => array('can_read' => 1),
-	);
+	$new_users4assign[] = [
+        'nid' => $i,
+        'perms' => ['can_read' => 1],
+    ];
 }
 
 
@@ -178,7 +178,8 @@ for ($i = 0; $i < 5; $i++) {
 xoops_cp_header();
 include dirname(__FILE__) . '/mymenu.php';
 $tpl = new XoopsTpl();
-$tpl->assign(array(
+$tpl->assign(
+    [
 	'mydirname' => $mydirname,
 	'mod_name' => $xoopsModule->getVar('name'),
 	'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
@@ -194,6 +195,7 @@ $tpl->assign(array(
 	'users' => $users4assign,
 	'new_users' => $new_users4assign,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
-));
+    ]
+);
 $tpl->display('db:' . $mydirname . '_admin_category_access.html');
 xoops_cp_footer();

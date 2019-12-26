@@ -43,7 +43,7 @@ class Legacy_AdminSystemInfo extends Legacy_AbstractBlockProcedure
 
 		$render->setAttribute('siteconfig', $root->mContext->mXoopsConfig);
 		
-		$systemconfig = array();
+		$systemconfig = [];
 		$systemconfig['phpversion'] = phpversion(); 
 		$db = &$root->mController->getDB();
 		$result = $db->query("SELECT VERSION()");

@@ -26,7 +26,7 @@
 //  ------------------------------------------------------------------------ //
 function getLanguage()
 {
-    $language_array = array(
+    $language_array = [
             'en' => 'english',
 //			'cn' => 'schinese',
             'cs' => 'czech',
@@ -41,11 +41,11 @@ function getLanguage()
             'ru' => 'russian',
             'zh' => 'schinese',
 
-    );
+    ];
 
-    $charset_array = array(
+    $charset_array = [
             'Shift_JIS' => 'ja_utf8',
-    );
+    ];
 
     $language = 'english';
     if (!empty($_POST['lang'])) {
@@ -93,7 +93,7 @@ function getLanguage()
  */
 function getDirList($dirname)
 {
-    $dirlist = array();
+    $dirlist = [];
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file)) {
@@ -114,7 +114,7 @@ function getDirList($dirname)
  */
 function getImageFileList($dirname)
 {
-    $filelist = array();
+    $filelist = [];
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file) && preg_match('/[.gif|.jpg|.png]$/i', $file)) {

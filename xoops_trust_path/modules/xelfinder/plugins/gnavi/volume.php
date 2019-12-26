@@ -12,7 +12,7 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 	
 	$path = '/' . trim($myConfig['gnavi_photospath'], '/') . '/';
 
-	$volumeOptions = array(
+	$volumeOptions = [
 		'driverSrc' => dirname(__FILE__) . '/driver.class.php',
 		'driver'    => 'XoopsGnavi',
 		'mydirname' => $mydirname,
@@ -23,6 +23,6 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 		'readonly'  => true,
 		'icon'      => is_file(XOOPS_MODULE_PATH . '/'.$mydirname.'/images/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL . '/'.$mydirname.'/images/elfinder_volume_icon.png' : '',
 		'smallImg'  => $myConfig['gnavi_thumbspath']
-	);
+    ];
 
 }

@@ -163,7 +163,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry Levashov
 	 **/
 	protected function cacheDir($path) {
-		$this->dirsCache[$path] = array();
+		$this->dirsCache[$path] = [];
 
 		if ($path === '_') {
 			$cid = 0;
@@ -171,7 +171,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			list($cid) = explode('_', substr($path, 1), 2);
 		}
 
-		$row_def = array(
+		$row_def = [
 			'size' => 0,
 			'ts' => 0,
 			'mime' => '',
@@ -181,10 +181,10 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			'locked' => true,
 			'hidden' => false,
 			'url'    => null
-		);
+        ];
 
-		$_mtime = array();
-		$_size = array();
+		$_mtime = [];
+		$_size = [];
 
 		// cat (dirctory)
 		$sql = 'SELECT c.pid, c.cid, c.title as name, max(f.`date`) as ts, s.pid as dirs ' .
@@ -256,7 +256,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function getParents($path) {
-		$parents = array();
+		$parents = [];
 
 		while ($path) {
 			if ($file = $this->stat($path)) {
@@ -423,7 +423,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			list($cid, $lid) = explode('_', substr($path, 1), 2);
 			list($lid) = explode('.', $lid);
 		}
-		$stat_def = array(
+		$stat_def = [
 			'size' => 0,
 			'ts' => 0,
 			'mime' => '',
@@ -433,7 +433,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			'locked' => true,
 			'hidden' => false,
 			'url'    => null
-		);
+        ];
 
 		if (! $cid) {
 			$stat['name'] = (! empty($this->options['alias'])? $this->options['alias'] : 'untitle');
@@ -483,7 +483,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			}
 		}
 
-		return array();
+		return [];
 	}
 
 	/**
@@ -710,7 +710,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 **/
 	protected function _checkArchivers() {
 		// die('Not yet implemented. (_checkArchivers)');
-		return array();
+		return [];
 	}
 
 	/**

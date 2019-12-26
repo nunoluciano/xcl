@@ -28,7 +28,7 @@ class User_RanksAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['rank_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['rank_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['rank_id']->setDependsByArray(['required']);
         $this->mFieldProperties['rank_id']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_RANK_ID);
     }
 

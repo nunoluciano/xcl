@@ -17,7 +17,7 @@ require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListForm.class.php";
 
 class Legacy_ModuleListAction extends Legacy_Action
 {
-    public $mModuleObjects = array();
+    public $mModuleObjects = [];
     public $mFilter = null;
 
     public $mActionForm = null;

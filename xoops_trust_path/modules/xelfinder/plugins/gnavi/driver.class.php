@@ -27,7 +27,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @author Naoki Sawada
 	 **/
 	protected function cacheDir($path) {
-		$this->dirsCache[$path] = array();
+		$this->dirsCache[$path] = [];
 
 		if ($path === '_') {
 			$cid = 0;
@@ -35,7 +35,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 			list($cid) = explode('_', substr($path, 1), 2);
 		}
 
-		$row_def = array(
+		$row_def = [
 			'size' => 0,
 			'ts' => 0,
 			'mime' => '',
@@ -45,10 +45,10 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 			'locked' => true,
 			'hidden' => false,
 			'url'    => null
-		);
+        ];
 
-		$_mtime = array();
-		$_size = array();
+		$_mtime = [];
+		$_size = [];
 
 		// cat (dirctory)
 		$sql = 'SELECT c.pid, c.cid, c.title as name, max(f.`date`) as ts, s.pid as dirs ' .
@@ -96,7 +96,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 					} else {
 						$row['phash'] = $this->encode('_'.$cid.'_');
 					}
-					$ids = $width = $height = $name = array();
+					$ids = $width = $height = $name = [];
 					$ids[0] = $row['id'];
 					$ids[1] = $row['id1'];
 					$ids[2] = $row['id2'];
@@ -214,7 +214,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 				$cnt = (int)$cnt;
 			}
 		}
-		$stat_def = array(
+		$stat_def = [
 			'size' => 0,
 			'ts' => 0,
 			'mime' => '',
@@ -224,7 +224,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 			'locked' => true,
 			'hidden' => false,
 			'url'    => null
-		);
+        ];
 
 		if (! $cid) {
 			$stat['name'] = (! empty($this->options['alias'])? $this->options['alias'] : 'untitle');
@@ -274,7 +274,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 			}
 		}
 
-		return array();
+		return [];
 	}
 	
 	/**

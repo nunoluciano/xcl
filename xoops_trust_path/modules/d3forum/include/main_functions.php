@@ -7,7 +7,7 @@
 function d3forum_make_treeinformations( $data )
 {
 	$previous_depth = -1 ;
-	$path_to_i = array() ;
+	$path_to_i = [];
 
 	for( $i = 0 ; $i < sizeof( $data ) ; $i ++ ) {
 		$unique_path = $data[$i]['unique_path'] ;
@@ -71,7 +71,7 @@ function d3forum_get_forum_permissions_of_current_user( $mydirname )
 		$ret[ $row['forum_id'] ] = $row ;
 	}
 
-	if( empty( $ret ) ) return array( 0 => array() ) ;
+	if( empty( $ret ) ) return [0 => []];
 	else return $ret ;
 }
 
@@ -98,7 +98,7 @@ function d3forum_get_category_permissions_of_current_user( $mydirname )
 		$ret[ $row['cat_id'] ] = $row ;
 	}
 
-	if( empty( $ret ) ) return array( 0 => array() ) ;
+	if( empty( $ret ) ) return [0 => []];
 	else return $ret ;
 }
 
@@ -108,8 +108,8 @@ function d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id = nu
 {
 	$db =& Database::getInstance() ;
 	$forum_id = intval( $forum_id ) ;
-	$forum_uids = array() ;
-	$cat_uids = array() ;
+	$forum_uids = [];
+	$cat_uids = [];
 
 	if( is_null( $cat_id ) ) {
 		// get $cat_id from $forum_id
@@ -151,14 +151,14 @@ function d3forum_get_forum_moderate_groups4show( $mydirname , $forum_id )
 
 	$forum_id = intval( $forum_id ) ;
 
-	$ret = array() ;
+	$ret = [];
 	$sql = 'SELECT g.groupid, g.name FROM '.$db->prefix($mydirname.'_forum_access').' fa LEFT JOIN '.$db->prefix('groups').' g ON fa.groupid=g.groupid WHERE fa.groupid IS NOT NULL AND fa.is_moderator AND forum_id='.$forum_id ;
 	$mrs = $db->query( $sql ) ;
 	while( list( $mod_gid , $mod_gname ) = $db->fetchRow( $mrs ) ) {
-		$ret[] = array(
+		$ret[] = [
 			'gid' => $mod_gid ,
 			'gname' => htmlspecialchars( $mod_gname , ENT_QUOTES ) ,
-		) ;
+        ];
 	}
 
 	return $ret ;
@@ -174,7 +174,7 @@ function d3forum_get_forum_moderate_users4show( $mydirname , $forum_id )
 
 	$forum_id = intval( $forum_id ) ;
 
-	$ret = array() ;
+	$ret = [];
 	$sql = 'SELECT u.uid, u.uname, u.name FROM '.$db->prefix($mydirname.'_forum_access').' fa LEFT JOIN '.$db->prefix('users').' u ON fa.uid=u.uid WHERE fa.uid IS NOT NULL AND fa.is_moderator AND forum_id='.$forum_id ;
 	$mrs = $db->query( $sql ) ;
 		// naao from
@@ -183,10 +183,10 @@ function d3forum_get_forum_moderate_users4show( $mydirname , $forum_id )
 			$mod_uname = $mod_name ;
 		}
 		// naao to
-		$ret[] = array(
+		$ret[] = [
 			'uid' => $mod_uid ,
 			'uname' => htmlspecialchars( $mod_uname , ENT_QUOTES ) ,
-		) ;
+        ];
 	}
 
 	return $ret ;
@@ -200,14 +200,14 @@ function d3forum_get_category_moderate_groups4show( $mydirname , $cat_id )
 
 	$cat_id = intval( $cat_id ) ;
 
-	$ret = array() ;
+	$ret = [];
 	$sql = 'SELECT g.groupid, g.name FROM '.$db->prefix($mydirname.'_category_access').' ca LEFT JOIN '.$db->prefix('groups').' g ON ca.groupid=g.groupid WHERE ca.groupid IS NOT NULL AND ca.is_moderator AND cat_id='.$cat_id ;
 	$mrs = $db->query( $sql ) ;
 	while( list( $mod_gid , $mod_gname ) = $db->fetchRow( $mrs ) ) {
-		$ret[] = array(
+		$ret[] = [
 			'gid' => $mod_gid ,
 			'gname' => htmlspecialchars( $mod_gname , ENT_QUOTES ) ,
-		) ;
+        ];
 	}
 
 	return $ret ;
@@ -223,7 +223,7 @@ function d3forum_get_category_moderate_users4show( $mydirname , $cat_id )
 
 	$cat_id = intval( $cat_id ) ;
 
-	$ret = array() ;
+	$ret = [];
 	$sql = 'SELECT u.uid, u.uname, u.name FROM '.$db->prefix($mydirname.'_category_access').' ca LEFT JOIN '.$db->prefix('users').' u ON ca.uid=u.uid WHERE ca.uid IS NOT NULL AND ca.is_moderator AND cat_id='.$cat_id ;
 	$mrs = $db->query( $sql ) ;
 		// naao from
@@ -232,10 +232,10 @@ function d3forum_get_category_moderate_users4show( $mydirname , $cat_id )
 			$mod_uname = $mod_name ;
 		}
 		// naao to
-		$ret[] = array(
+		$ret[] = [
 			'uid' => $mod_uid ,
 			'uname' => htmlspecialchars( $mod_uname , ENT_QUOTES ) ,
-		) ;
+        ];
 	}
 
 	return $ret ;
@@ -286,7 +286,7 @@ function d3forum_make_cat_jumpbox_options( $mydirname , $whr4cat , $cat_selected
 }
 
 
-function d3forum_trigger_event( $mydirname ,  $category , $item_id , $event , $extra_tags=array() , $user_list=array() , $omit_user_id=null )
+function d3forum_trigger_event( $mydirname ,  $category , $item_id , $event , $extra_tags= [], $user_list= [], $omit_user_id=null )
 {
 	require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3NotificationHandler.class.php' ;
 
@@ -339,7 +339,7 @@ function d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override
 {
 	global $xoopsModuleConfig ;
 
-	$lines = array() ;
+	$lines = [];
 	foreach( $d3forum_configs_can_be_override as $key => $type ) {
 		if( isset( $xoopsModuleConfig[ $key ] ) ) {
 			$val = $xoopsModuleConfig[ $key ] ;

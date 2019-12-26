@@ -59,7 +59,7 @@ class XoopsFormRadio extends XoopsFormElement
      * @var	array	
      * @access	private
      */
-    public $_options = array();
+    public $_options = [];
 
     /**
      * Pre-selected value

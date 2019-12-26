@@ -45,7 +45,7 @@ class XoopsUser extends XoopsObject
      * @var array
      * @access private
      */
-    public $_groups = array();
+    public $_groups = [];
     /**
      * @var bool is the user admin? 
      * @access private
@@ -649,7 +649,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     public function getUnames($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('users');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -683,7 +683,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('users');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -718,7 +718,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     public function &getObjectsByLevel($level=0)
     {
-        $ret=array();
+        $ret= [];
         $level=(int)$level;
         $result = $this->db->query("SELECT * FROM ".$this->db->prefix("users")." WHERE level > $level ORDER BY uname");
         if (!$result) {

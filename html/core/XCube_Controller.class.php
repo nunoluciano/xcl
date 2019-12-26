@@ -65,7 +65,7 @@ class XCube_Controller
      *
      * @var Array
      */
-    public $_mBlockChain = array();
+    public $_mBlockChain = [];
     
     
     /**
@@ -76,7 +76,7 @@ class XCube_Controller
      *	   typedef std:vector<XCube_ActionFilter*> FilterList; \n
      *	   FilterList _mFilterChain; \n
      */
-    public $_mFilterChain = array();
+    public $_mFilterChain = [];
     
     /**
      * This is Map-Array to keep names of action filter classes which are
@@ -84,7 +84,7 @@ class XCube_Controller
      * 
      * @protected
      */
-    public $_mLoadedFilterNames = array();
+    public $_mLoadedFilterNames = [];
     
     /**
      * The database object which is abstract layer for the database.
@@ -136,9 +136,9 @@ class XCube_Controller
     public function __construct()
     //public function XCube_Controller()
     {
-        $this->_mBlockChain = array();
-        $this->_mFilterChain = array();
-        $this->_mLoadedFilterNames = array();
+        $this->_mBlockChain = [];
+        $this->_mFilterChain = [];
+        $this->_mLoadedFilterNames = [];
         
         $this->mSetupUser = new XCube_Delegate();
         $this->mExecute = new XCube_Delegate();

@@ -17,13 +17,13 @@ if ($current_dirname == '_custom') {
     $custom_selected = false ;
 }
 
-$adminmenu = array(
-    array(
+$adminmenu = [
+    [
         'selected' => $custom_selected ,
         'title' => _MYTPLSADMIN_CUSTOMTEMPLATE . " ($count)" ,
         'link' => '?mode=admin&lib=altsys&page=mytplsadmin&dirname=_custom' ,
-    ) ,
-) ;
+    ],
+];
 
 // get modules/templates
 $mrs = $db->query("SELECT m.name,m.dirname,COUNT(t.tpl_module) AS tpl_count FROM ".$db->prefix("modules")." m LEFT JOIN ".$db->prefix("tplfile")." t ON m.dirname=t.tpl_module WHERE m.isactive GROUP BY m.mid HAVING tpl_count>0 ORDER BY m.weight,m.mid") ;
@@ -31,26 +31,28 @@ $mrs = $db->query("SELECT m.name,m.dirname,COUNT(t.tpl_module) AS tpl_count FROM
 // module loop
 while (list($name, $dirname, $count) = $db->fetchRow($mrs)) {
     if ($dirname == $current_dirname) {
-        $adminmenu[] = array(
+        $adminmenu[] = [
             'selected' => true ,
             'title' => $name . " ($count)" ,
             'link' => '?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$dirname ,
-        ) ;
+        ];
         //$GLOBALS['altsysXoopsBreadcrumbs'][] = array( 'name' => htmlspecialchars( $name , ENT_QUOTES ) ) ;
     } else {
-        $adminmenu[] = array(
+        $adminmenu[] = [
             'selected' => false ,
             'title' => $name . " ($count)" ,
             'link' => '?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$dirname ,
-        ) ;
+        ];
     }
 }
 
 // display
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
-$tpl->assign(array(
+$tpl->assign(
+    [
     'adminmenu' => $adminmenu,
     'mypage' => 'mytplsadmin',
-)) ;
+    ]
+) ;
 $tpl->display('db:altsys_inc_mymenusub.html') ;

@@ -35,7 +35,7 @@ class LegacyRender_ThemeSelectForm extends XCube_ActionForm
      */
     public function getChooseTheme()
     {
-        $ret = array();
+        $ret = [];
 
         $themes = $this->get('choose');
         foreach ($themes as $theme => $dmy) {

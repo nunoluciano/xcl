@@ -27,7 +27,7 @@ function b_legacy_themes_show($options)
         return null;
     }
     
-    $block = array();
+    $block = [];
     if (xoops_getenv('REQUEST_METHOD') == 'POST') {
         $block['isEnableChanger'] = 0;
         return $block;
@@ -35,7 +35,7 @@ function b_legacy_themes_show($options)
     
     $block['isEnableChanger'] = 1;
     
-    $theme_options = array();
+    $theme_options = [];
     $handler =& xoops_getmodulehandler('theme', 'legacy');
     foreach ($xoopsConfig['theme_set_allowed'] as $name) {
         $theme =& $handler->get($name);

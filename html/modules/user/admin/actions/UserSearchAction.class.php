@@ -37,13 +37,13 @@ class User_UserSearchAction extends User_Action
         $groupHandler =& xoops_gethandler('group');
         $groups =& $groupHandler->getObjects(null, true);
         
-        $groupOptions = array();
+        $groupOptions = [];
         foreach ($groups as $gid => $group) {
             $groupOptions[$gid] = $group->getVar('name');
         }
 
-        $matchOptions = array();
-        $matchArray = array(XOOPS_MATCH_START => _STARTSWITH, XOOPS_MATCH_END => _ENDSWITH, XOOPS_MATCH_EQUAL => _MATCHES, XOOPS_MATCH_CONTAIN => _CONTAINS);
+        $matchOptions = [];
+        $matchArray = [XOOPS_MATCH_START => _STARTSWITH, XOOPS_MATCH_END => _ENDSWITH, XOOPS_MATCH_EQUAL => _MATCHES, XOOPS_MATCH_CONTAIN => _CONTAINS];
         foreach ($matchArray as $key => $value) {
             $matchOptions[$key] = $value;
         }

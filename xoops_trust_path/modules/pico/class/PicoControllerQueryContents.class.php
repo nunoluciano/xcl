@@ -25,11 +25,11 @@ class PicoControllerQueryContents extends PicoControllerAbstract
 		parent::execute($request);
 
 		$whr = '1';
-		$queries = array();
+		$queries = [];
 
 		// query type "tag"
 		if (!empty($request['tag'])) {
-			$queries[] = array('type' => 'tag', 'value' => $request['tag']);
+			$queries[] = ['type' => 'tag', 'value' => $request['tag']];
 			// get content_ids
 			$tag_handler = new PicoTagHandler($this->mydirname);
 			$content_ids_sc = $tag_handler->getContentIdsCS($request['tag']);
@@ -41,7 +41,7 @@ class PicoControllerQueryContents extends PicoControllerAbstract
 		$content_handler = new PicoContentHandler($this->mydirname);
 
 		// contents (order by modified_time DESC)
-		$this->assign['contents'] = array();
+		$this->assign['contents'] = [];
 		$contents4assign = $content_handler->getContents4assign($whr);
 		foreach ($contents4assign as $content4assign) {
 			$this->assign['contents'][] = $content4assign;
@@ -78,6 +78,6 @@ class PicoControllerQueryContents extends PicoControllerAbstract
 			}
 		}
 
-		return array('title' => $title, 'desc' => $desc);
+		return ['title' => $title, 'desc' => $desc];
 	}
 }

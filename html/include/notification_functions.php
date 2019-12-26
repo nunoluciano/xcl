@@ -181,7 +181,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
     $category =& notificationCategoryInfo($category_name, $module_id);
 
     global $xoopsConfig;
-    $event_array = array();
+    $event_array = [];
 
     $override_comment = false;
     $override_commentsubmit = false;
@@ -247,13 +247,13 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
                 }
             }
             if ($insert_comment) {
-                $event = array('name'=>'comment', 'category'=>$category['name'], 'title'=>_NOT_COMMENT_NOTIFY, 'caption'=>_NOT_COMMENT_NOTIFYCAP, 'description'=>_NOT_COMMENT_NOTIFYDSC, 'mail_template_dir'=>$mail_template_dir, 'mail_template'=>'comment_notify', 'mail_subject'=>_NOT_COMMENT_NOTIFYSBJ);
+                $event = ['name' =>'comment', 'category' => $category['name'], 'title' =>_NOT_COMMENT_NOTIFY, 'caption' =>_NOT_COMMENT_NOTIFYCAP, 'description' =>_NOT_COMMENT_NOTIFYDSC, 'mail_template_dir' =>$mail_template_dir, 'mail_template' =>'comment_notify', 'mail_subject' =>_NOT_COMMENT_NOTIFYSBJ];
                 if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                     $event_array[] = $event;
                 }
             }
             if ($insert_submit) {
-                $event = array('name'=>'comment_submit', 'category'=>$category['name'], 'title'=>_NOT_COMMENTSUBMIT_NOTIFY, 'caption'=>_NOT_COMMENTSUBMIT_NOTIFYCAP, 'description'=>_NOT_COMMENTSUBMIT_NOTIFYDSC, 'mail_template_dir'=>$mail_template_dir, 'mail_template'=>'commentsubmit_notify', 'mail_subject'=>_NOT_COMMENTSUBMIT_NOTIFYSBJ, 'admin_only'=>1);
+                $event = ['name' =>'comment_submit', 'category' => $category['name'], 'title' =>_NOT_COMMENTSUBMIT_NOTIFY, 'caption' =>_NOT_COMMENTSUBMIT_NOTIFYCAP, 'description' =>_NOT_COMMENTSUBMIT_NOTIFYDSC, 'mail_template_dir' =>$mail_template_dir, 'mail_template' =>'commentsubmit_notify', 'mail_subject' =>_NOT_COMMENTSUBMIT_NOTIFYSBJ, 'admin_only' =>1];
                 if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                     $event_array[] = $event;
                 }
@@ -265,7 +265,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
 
     if (!empty($category['allow_bookmark'])) {
         if (!$override_bookmark) {
-            $event = array('name'=>'bookmark', 'category'=>$category['name'], 'title'=>_NOT_BOOKMARK_NOTIFY, 'caption'=>_NOT_BOOKMARK_NOTIFYCAP, 'description'=>_NOT_BOOKMARK_NOTIFYDSC);
+            $event = ['name' =>'bookmark', 'category' => $category['name'], 'title' =>_NOT_BOOKMARK_NOTIFY, 'caption' =>_NOT_BOOKMARK_NOTIFYCAP, 'description' =>_NOT_BOOKMARK_NOTIFYDSC];
             if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                 $event_array[] = $event;
             }
@@ -343,7 +343,7 @@ function &notificationSubscribableCategoryInfo($module_id=null)
     $script_url = explode('/', xoops_getenv('PHP_SELF'));
     $script_name = $script_url[count($script_url)-1];
 
-    $sub_categories = array();
+    $sub_categories = [];
 
     foreach ($all_categories as $category) {
         // Check the script name
@@ -351,10 +351,10 @@ function &notificationSubscribableCategoryInfo($module_id=null)
         $subscribe_from = $category['subscribe_from'];
         if (!is_array($subscribe_from)) {
             if ($subscribe_from == '*') {
-                $subscribe_from = array($script_name);
+                $subscribe_from = [$script_name];
                 // FIXME: this is just a hack: force a match
             } else {
-                $subscribe_from = array($subscribe_from);
+                $subscribe_from = [$subscribe_from];
             }
         }
         if (!in_array($script_name, $subscribe_from)) {

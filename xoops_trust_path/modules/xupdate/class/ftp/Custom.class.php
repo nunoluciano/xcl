@@ -73,7 +73,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     {
         //	Parses 1 line like:		"drwxrwx---  2 owner group 4096 Apr 23 14:57 text"
         if (preg_match("/^([-ld])([rwxst-]+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+(\d+)\s+(\w{3})\s+(\d+)\s+([\:\d]+)\s+(.+)$/i", $list, $ret)) {
-            $v=array(
+            $v= [
                 "type"    => ($ret[1]=="-"?"f":$ret[1]),
                 "perms"    => 0,
                 "inode"    => $ret[3],
@@ -82,8 +82,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
                 "size"    => $ret[6],
                 "date"    => $ret[7]." ".$ret[8]." ".$ret[9],
                 "name"    => $ret[10]
-            );
-            $bad=array("(?)");
+            ];
+            $bad= ["(?)"];
             if (in_array($v["owner"], $bad)) {
                 $v["owner"]=null;
             }
@@ -92,16 +92,16 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             }
             $v["perms"]+=00400*(int)($ret[2]{0} === "r");
             $v["perms"]+=00200*(int)($ret[2]{1} === "w");
-            $v["perms"]+=00100*(int)in_array($ret[2]{2}, array("x", "s"));
+            $v["perms"]+=00100*(int)in_array($ret[2]{2}, ["x", "s"]);
             $v["perms"]+=00040*(int)($ret[2]{3} === "r");
             $v["perms"]+=00020*(int)($ret[2]{4} === "w");
-            $v["perms"]+=00010*(int)in_array($ret[2]{5}, array("x", "s"));
+            $v["perms"]+=00010*(int)in_array($ret[2]{5}, ["x", "s"]);
             $v["perms"]+=00004*(int)($ret[2]{6} === "r");
             $v["perms"]+=00002*(int)($ret[2]{7} === "w");
-            $v["perms"]+=00001*(int)in_array($ret[2]{8}, array("x", "t"));
-            $v["perms"]+=04000*(int)in_array($ret[2]{2}, array("S", "s"));
-            $v["perms"]+=02000*(int)in_array($ret[2]{5}, array("S", "s"));
-            $v["perms"]+=01000*(int)in_array($ret[2]{8}, array("T", "t"));
+            $v["perms"]+=00001*(int)in_array($ret[2]{8}, ["x", "t"]);
+            $v["perms"]+=04000*(int)in_array($ret[2]{2}, ["S", "s"]);
+            $v["perms"]+=02000*(int)in_array($ret[2]{5}, ["S", "s"]);
+            $v["perms"]+=01000*(int)in_array($ret[2]{8}, ["T", "t"]);
         }
         return $v;
     }
@@ -456,7 +456,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             return false;
         }
         $DATA = explode(" ", $this->_message);
-        return array($DATA[1], $DATA[3]);
+        return [$DATA[1], $DATA[3]];
     }
 
     protected function delete($pathname)
@@ -518,7 +518,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         $f=array_slice(preg_split("/[".CRLF."]+/", $this->_message, -1, PREG_SPLIT_NO_EMPTY), 1, -1);
         array_walk($f, create_function('&$a', '$a=preg_replace("/[0-9]{3}[\s-]+/", "", trim($a));'));
-        $this->_features=array();
+        $this->_features= [];
         foreach ($f as $k=>$v) {
             $v=explode(" ", trim($v));
             $this->_features[array_shift($v)]=$v;
@@ -683,7 +683,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             return false;
         }
         if ($handle = opendir($local)) {
-            $list=array();
+            $list= [];
             while (false !== ($file = readdir($handle))) {
                 if ($file !== "." && $file !== "..") {
                     $list[]=$file;
@@ -866,7 +866,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         $out=null;
         $chunks=explode(';', $pattern);
         foreach ($chunks as $pattern) {
-            $escape=array('$','^','.','{','}','(',')','[',']','|');
+            $escape= ['$', '^', '.', '{', '}', '(', ')', '[', ']', '|'];
             while (strpos($pattern, '**')!==false) {
                 $pattern=str_replace('**', '*', $pattern);
             }
@@ -946,7 +946,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 // G�n�re une erreur pour traitement externe � la classe
     protected function PushError($fctname, $msg, $desc=false)
     {
-        $error=array();
+        $error= [];
         $error['time']=time();
         $error['fctname']=$fctname;
         $error['msg']=$msg;

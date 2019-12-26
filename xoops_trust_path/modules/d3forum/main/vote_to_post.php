@@ -69,7 +69,7 @@ if( ! $db->queryF( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
 d3forum_sync_post_votes( $mydirname , $post_id ) ;
 
-$allowed_identifiers = array( 'post_id' , 'topic_id' ) ;
+$allowed_identifiers = ['post_id', 'topic_id'];
 
 if( in_array( @$_GET['ret_name'] , $allowed_identifiers ) ) {
 	$ret_request = $_GET['ret_name'] . '=' . intval( @$_GET['ret_val'] ) ;

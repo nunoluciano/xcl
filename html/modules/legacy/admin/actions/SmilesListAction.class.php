@@ -18,9 +18,9 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesListForm.class.php";
 
 class Legacy_SmilesListAction extends Legacy_AbstractListAction
 {
-    public $mSmilesObjects = array();
+    public $mSmilesObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {

@@ -18,7 +18,7 @@ define('SPECIAL_CAT_ID_DELETED', -2);
 // get exportable modules
 $module_handler = &xoops_gethandler('module');
 $modules = &$module_handler->getObjects();
-$exportable_modules = array('0' => '----');
+$exportable_modules = ['0' => '----'];
 foreach ($modules as $module) {
 	$mid = $module->getVar('mid');
 	$dirname = $module->getVar('dirname');
@@ -58,7 +58,7 @@ if (!empty($_POST['contents_update']) && !empty($_POST['weights'])) {
 		redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
 	}
 
-	$errors = array();
+	$errors = [];
 	foreach ($_POST['weights'] as $content_id => $weight) {
 		$content_id = intval($content_id);
 		$weight = intval($weight);
@@ -151,25 +151,25 @@ if ($cat_id == SPECIAL_CAT_ID_DELETED) {
 	$whr_cat_id = $cat_id == SPECIAL_CAT_ID_ALL ? "1" : "o.cat_id=$cat_id";
 	$ors = $db->query("SELECT o.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,0 AS is_deleted  FROM " . $db->prefix($mydirname . "_contents") . " o LEFT JOIN " . $db->prefix("users") . " up ON o.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " um ON o.modifier_uid=um.uid LEFT JOIN " . $db->prefix($mydirname . "_categories") . " c ON o.cat_id=c.cat_id WHERE ($whr_cat_id) ORDER BY c.cat_depth_in_tree,o.weight,o.content_id");
 }
-$contents4assign = array();
+$contents4assign = [];
 while ($content_row = $db->fetchArray($ors)) {
 	$wrap_full_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . str_replace('..', '', $content_row['vpath']);
 
-	$content4assign = array(
-		'id' => intval($content_row['content_id']),
-		'link' => pico_common_make_content_link4html($xoopsModuleConfig, $content_row),
-		'cat_title' => $myts->makeTboxData4Show($content_row['cat_title'], 1, 1),
-		'created_time_formatted' => formatTimestamp($content_row['created_time'], 'm'),
-		'modified_time_formatted' => formatTimestamp($content_row['modified_time'], 'm'),
-		'expiring_time_formatted' => formatTimestamp(@$content_row['expiring_time'], 'm'),
-		'poster_uname' => $content_row['poster_uid'] ? $myts->makeTboxData4Show($content_row['poster_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
-		'modifier_uname' => $content_row['modifier_uid'] ? $myts->makeTboxData4Show($content_row['modifier_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
-		'subject' => $myts->makeTboxData4Edit($content_row['subject']),
-		'vpath' => htmlspecialchars($content_row['vpath']),
-		'wrap_file' => is_file($wrap_full_path) ? array('mtime_formatted' => formatTimestamp(filemtime($wrap_full_path), 'm'), 'size' => filesize($wrap_full_path)) : false,
-		'histories' => $content_row['is_deleted'] ? pico_get_content_histories4assign($mydirname, intval($content_row['content_id'])) : array(),
-		'ef' => pico_common_unserialize($content_row['extra_fields']),
-	);
+	$content4assign = [
+        'id' => intval($content_row['content_id']),
+        'link' => pico_common_make_content_link4html($xoopsModuleConfig, $content_row),
+        'cat_title' => $myts->makeTboxData4Show($content_row['cat_title'], 1, 1),
+        'created_time_formatted' => formatTimestamp($content_row['created_time'], 'm'),
+        'modified_time_formatted' => formatTimestamp($content_row['modified_time'], 'm'),
+        'expiring_time_formatted' => formatTimestamp(@$content_row['expiring_time'], 'm'),
+        'poster_uname' => $content_row['poster_uid'] ? $myts->makeTboxData4Show($content_row['poster_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
+        'modifier_uname' => $content_row['modifier_uid'] ? $myts->makeTboxData4Show($content_row['modifier_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
+        'subject' => $myts->makeTboxData4Edit($content_row['subject']),
+        'vpath' => htmlspecialchars($content_row['vpath']),
+        'wrap_file' => is_file($wrap_full_path) ? ['mtime_formatted' => formatTimestamp(filemtime($wrap_full_path), 'm'), 'size' => filesize($wrap_full_path)] : false,
+        'histories' => $content_row['is_deleted'] ? pico_get_content_histories4assign($mydirname, intval($content_row['content_id'])) : [],
+        'ef' => pico_common_unserialize($content_row['extra_fields']),
+    ];
 	$contents4assign[] = $content4assign + $content_row;
 }
 
@@ -180,20 +180,22 @@ while ($content_row = $db->fetchArray($ors)) {
 xoops_cp_header();
 include dirname(__FILE__) . '/mymenu.php';
 $tpl = new XoopsTpl();
-$tpl->assign(array(
-	'mydirname' => $mydirname,
-	'mod_name' => $xoopsModule->getVar('name'),
-	'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
-	'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $xoopsModuleConfig['images_dir'],
-	'mod_config' => $xoopsModuleConfig,
-	'cat_id' => $cat_id,
-	'cat_link' => pico_common_make_category_link4html($xoopsModuleConfig, $cat_id, $mydirname),
-	'cat_title' => htmlspecialchars($cat_title, ENT_QUOTES),
-	'cat_options' => $cat_options + array(SPECIAL_CAT_ID_ALL => _MD_PICO_ALLCONTENTS, SPECIAL_CAT_ID_DELETED => _MD_PICO_DELETEDCONTENTS),
-	'cat_options4move' => $cat_options,
-	'module_options' => $exportable_modules,
-	'contents' => $contents4assign,
-	'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
-));
+$tpl->assign(
+    [
+        'mydirname' => $mydirname,
+        'mod_name' => $xoopsModule->getVar('name'),
+        'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
+        'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $xoopsModuleConfig['images_dir'],
+        'mod_config' => $xoopsModuleConfig,
+        'cat_id' => $cat_id,
+        'cat_link' => pico_common_make_category_link4html($xoopsModuleConfig, $cat_id, $mydirname),
+        'cat_title' => htmlspecialchars($cat_title, ENT_QUOTES),
+        'cat_options' => $cat_options + [SPECIAL_CAT_ID_ALL => _MD_PICO_ALLCONTENTS, SPECIAL_CAT_ID_DELETED => _MD_PICO_DELETEDCONTENTS],
+        'cat_options4move' => $cat_options,
+        'module_options' => $exportable_modules,
+        'contents' => $contents4assign,
+        'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
+    ]
+);
 $tpl->display('db:' . $mydirname . '_admin_contents.html');
 xoops_cp_footer();

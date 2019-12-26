@@ -31,7 +31,7 @@ $xoopsModuleConfig = $currentCategoryObj->getOverriddenModConfig();
 $breadcrumbsObj->appendPath($currentCategoryObj->getBreadcrumbs());
 
 // request
-$picoRequest = array();
+$picoRequest = [];
 $picoRequest['cat_id'] = intval(@$_REQUEST['cat_id']);
 
 if (!empty($_POST['categoryman_post'])) {

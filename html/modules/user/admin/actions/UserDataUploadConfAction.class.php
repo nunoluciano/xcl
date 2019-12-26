@@ -32,7 +32,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         $render->setTemplateName("user_data_upload_conf.html");
 
         // fields
-        $fields = array();
+        $fields = [];
         $user_handler =& $this->_getHandler();
         $user_tmp = $user_handler->create();
         $user_key = array_keys($user_tmp->gets());
@@ -43,7 +43,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         $render->setAttribute('user_fields', $fields);
 
         /// csv data
-        $csv_data = array();
+        $csv_data = [];
         $csv_file = $_FILES['user_csv_file']['tmp_name'];
         $csv_encoding = '';
         $user_h =& $this->_getHandler();
@@ -70,12 +70,12 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                 if (!$n++ || !implode('', $_data)) {
                     continue;
                 }
-                $user_data = array(
+                $user_data = [
                     'error'  => false,
                     'update' => 0,
                     'is_new' => true,
-                    'value'  => array(),
-                    );
+                    'value'  => [],
+                ];
                 if (count($_data) != count($user_key)) {
                     $user_data['error'] = true;
                 }
@@ -101,10 +101,10 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                               default:
                             }
                             $user_data['update'] = $user_data['update'] | $update;
-                            $user_data['value'][] = array(
+                            $user_data['value'][] = [
                                 'var'    => $csv_value,
                                 'update' => $update,
-                                );
+                            ];
                         }
                         $user_data['is_new'] = false;
                     }
@@ -118,9 +118,10 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                             $var = formatTimestamp($var, 'Y/n/j H:i');
                             break;
                         }
-                        $user_data['value'][] = array(
+                        $user_data['value'][] = [
                             'var'    => $var,
-                            'update' => 0);
+                            'update' => 0
+                        ];
                     }
                 }
                 $csv_data[] = $user_data;
@@ -149,7 +150,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     public function explodeCSV($csv, $delimiter = ",")
     {
         $space_list = '';
-        foreach (array(" ", "\t", "\r", "\n") as $c) {
+        foreach ([" ", "\t", "\r", "\n"] as $c) {
             if ($c != $delimiter) {
                 $space_list .= $c;
             }
@@ -163,7 +164,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         $csv .= ' ';
 
         $field = '';
-        $retval = array();
+        $retval = [];
 
         $index = 0;
         $csv_len = strlen($csv);

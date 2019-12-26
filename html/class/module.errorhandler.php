@@ -54,7 +54,7 @@ if (!defined("XOOPS_C_ERRORHANDLER_INCLUDED")) {
             global $xoopsConfig, $xoopsUser, $xoopsRequestUri, $xoopsModule, $xoopsLogger;
             $root = XCube_Root::getSingleton();
             $db = $root->mController->mDB;
-            $errmsg = array(
+            $errmsg = [
             "0001" =>"Could not connect to the forums database.",
             "0002" => "The forum you selected does not exist. Please go back and try again.",
             "0003" => "Password Incorrect.",
@@ -104,7 +104,7 @@ if (!defined("XOOPS_C_ERRORHANDLER_INCLUDED")) {
             "1016" => "Please enter value for URL.",
             "1017" => "Please enter value for Home Page.",
             "9999" => "OOPS! God Knows"
-            );
+            ];
 
             $errorno = array_keys($errmsg);
             if (!in_array($e_code, $errorno)) {

@@ -35,8 +35,8 @@ class ShadePlus_ServiceServer
         //
         foreach ($this->_mService->_mTypes as $className) {
             if (XC_CLASS_EXISTS($className)) {
-                if (call_user_func(array($className, 'isArray')) == true) {
-                    $targetClassName = call_user_func(array($className, 'getClassName'));
+                if (call_user_func([$className, 'isArray']) == true) {
+                    $targetClassName = call_user_func([$className, 'getClassName']);
                     
                     if (XCube_ServiceUtils::isXSD($targetClassName)) {
                         $targetClassName = 'xsd:' . $targetClassName;
@@ -50,15 +50,15 @@ class ShadePlus_ServiceServer
                         'array',
                         '',
                         'SOAP-ENC:Array',
-                        array(),
-                        array(
-                            array('ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => $targetClassName . '[]')
-                        ),
+                        [],
+                        [
+                            ['ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => $targetClassName . '[]']
+                        ],
                         $targetClassName
                     );
                 } else {
-                    $t_fieldArr = call_user_func(array($className, 'getPropertyDefinition'));
-                    $t_arr = array();
+                    $t_fieldArr = call_user_func([$className, 'getPropertyDefinition']);
+                    $t_arr = [];
                     foreach ($t_fieldArr as $t_field) {
                         $name = $t_field['name'];
                         $type = $t_field['type'];
@@ -69,7 +69,7 @@ class ShadePlus_ServiceServer
                             $type = 'tns:' . $type;
                         }
                     
-                        $t_arr[$name] = array('name' => $name, 'type' => $type);
+                        $t_arr[$name] = ['name' => $name, 'type' => $type];
                     }
                 
                     $this->_mServer->wsdl->addComplexType(
@@ -102,7 +102,7 @@ class ShadePlus_ServiceServer
             //
             // Parse IN
             //
-            $in = array();
+            $in = [];
             foreach ($func['in'] as $name => $type) {
                 if (XCube_ServiceUtils::isXSD($type)) {
                     $t_type = 'xsd:' . $type;

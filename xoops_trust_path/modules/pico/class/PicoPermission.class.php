@@ -8,7 +8,7 @@ class PicoPermission
 
 	var $db = null;  // Database instance
 	var $uid = 0; // intval
-	var $permissions = array(); // [dirname][permission_id] or [dirname]['is_module_admin']
+	var $permissions = []; // [dirname][permission_id] or [dirname]['is_module_admin']
 
 	// !Fix deprecated constructor
 	function __construct()
@@ -39,7 +39,7 @@ class PicoPermission
 
 	function queryPermissions($mydirname)
 	{
-		$ret = array();
+		$ret = [];
 
 		if ($this->uid > 0) {
 			$user_handler = &xoops_gethandler('user');
@@ -77,8 +77,8 @@ class PicoPermission
 			}
 		}
 
-		if (empty($ret)) return array(0 => array(), 'is_module_admin' => $is_module_admin);
-		else return $ret + array('is_module_admin' => $is_module_admin);
+		if (empty($ret)) return [0 => [], 'is_module_admin' => $is_module_admin];
+		else return $ret + ['is_module_admin' => $is_module_admin];
 	}
 
 
@@ -93,7 +93,7 @@ class PicoPermission
 		list($permission_id) = $this->db->fetchRow($this->db->query($sql));
 
 		// uid
-		$uids = array();
+		$uids = [];
 		$sql = "SELECT uid FROM " . $this->db->prefix($mydirname . "_category_permissions") . " WHERE cat_id=$permission_id AND uid IS NOT NULL AND ($whr_type)";
 		$result = $this->db->query($sql);
 		while (list($uid) = $this->db->fetchRow($result)) {

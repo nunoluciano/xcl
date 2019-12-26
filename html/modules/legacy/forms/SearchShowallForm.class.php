@@ -33,7 +33,7 @@ class Legacy_SearchShowallForm extends Legacy_SearchResultsForm
         // Set field properties
         //
         $this->mFieldProperties['andor'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['andor']->setDependsByArray(array('mask'));
+        $this->mFieldProperties['andor']->setDependsByArray(['mask']);
         $this->mFieldProperties['andor']->addMessage('mask', _MD_LEGACY_ERROR_MASK, _MD_LEGACY_LANG_ANDOR);
         $this->mFieldProperties['andor']->addVar('mask', '/^(AND|OR|exact)$/i');
 

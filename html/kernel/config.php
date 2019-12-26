@@ -82,7 +82,7 @@ class XoopsConfigHandler
      * @var     array
      * @access  private
      */
-    public $_cachedConfigs = array();
+    public $_cachedConfigs = [];
 
     /**
      * Constructor
@@ -211,18 +211,18 @@ class XoopsConfigHandler
      */
     public function &getConfigsByCat($category, $module = 0)
     {
-        static $_cachedConfigs=array();
+        static $_cachedConfigs= [];
         if (!empty($_cachedConfigs[$module][$category])) {
             return $_cachedConfigs[$module][$category];
         } else {
-            $ret = array();
+            $ret = [];
             $criteria = new CriteriaCompo(new Criteria('conf_modid', (int)$module));
             if (!empty($category)) {
                 $criteria->add(new Criteria('conf_catid', (int)$category));
             }
 
             // get config values
-            $configs = array();
+            $configs = [];
             $db = $this->_cHandler->db;
             $result = $db->query('SELECT conf_name,conf_value,conf_valuetype FROM '.$db->prefix('config').' '.$criteria->renderWhere().' ORDER BY conf_order ASC');
             if ($result) {
@@ -335,7 +335,7 @@ class XoopsConfigHandler
             }
             $configs =& $this->_cHandler->getObjects($criteria);
             $confcount = count($configs);
-            $ret = array();
+            $ret = [];
             for ($i = 0; $i < $confcount; $i++) {
                 $ret[$configs[$i]->getVar('conf_name')] = $configs[$i]->getConfValueForOutput();
             }

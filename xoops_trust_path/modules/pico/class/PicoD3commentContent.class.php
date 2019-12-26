@@ -34,13 +34,13 @@ class PicoD3commentContent extends D3commentAbstract
 		// dare to convert it irregularly
 		$summary = str_replace('&amp;', '&', htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 255), ENT_QUOTES));
 
-		return array(
+		return [
 			'dirname' => $mydirname,
 			'module_name' => $module->getVar('name'),
 			'subject' => $myts->makeTboxData4Show($content_data['subject_raw'], 1, 1),
 			'uri' => XOOPS_URL . '/modules/' . $mydirname . '/' . pico_common_make_content_link4html($configs, $content_data),
 			'summary' => $summary,
-		);
+        ];
 	}
 
 	function validate_id($link_id)

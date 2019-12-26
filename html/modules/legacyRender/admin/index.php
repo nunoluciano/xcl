@@ -15,7 +15,7 @@ $actionName = isset($_GET['action']) ? trim($_GET['action']) : "TplsetList";
 $moduleRunner =new LegacyRender_ActionFrame(true);
 $moduleRunner->setActionName($actionName);
 
-$root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+$root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
 $root->mController->execute();
 

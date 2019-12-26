@@ -46,7 +46,7 @@ class XCube_ServiceManager
      * 
      * @var Array
      */
-    public $mServices = array();
+    public $mServices = [];
     
     /**
      * @var XCube_Delegate

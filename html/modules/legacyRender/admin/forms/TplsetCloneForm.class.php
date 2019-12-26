@@ -36,7 +36,7 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
         // Set field properties
         //
         $this->mFieldProperties['tplset_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['tplset_name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['tplset_name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['tplset_name']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_TPLSET_NAME, '50');
         $this->mFieldProperties['tplset_name']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_TPLSET_NAME, '50');
         $this->mFieldProperties['tplset_name']->addVar('maxlength', 50);

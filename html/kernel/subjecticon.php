@@ -43,7 +43,7 @@ class XoopsSubjecticonHandler extends XoopsObjectHandler
 
     public function &getObjects($criteria = null, $key_as_id = false)
     {
-        $ret = array();
+        $ret = [];
         
         foreach ($this->_mResult as $filename => $value) {
             $obj =new XoopsSubjecticon();

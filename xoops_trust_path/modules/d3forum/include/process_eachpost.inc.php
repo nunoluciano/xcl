@@ -38,15 +38,15 @@
 		// avatar
 		if( is_file( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ) {
 			list( $avatar_width , $avatar_height , $avatar_type , $avatar_attr ) = getimagesize( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ;
-			$poster_avatar = array(
+			$poster_avatar = [
 				'path' => htmlspecialchars( $poster_obj->getVar( 'user_avatar' ) , ENT_QUOTES ) ,
 				'width' => $avatar_width ,
 				'height' => $avatar_height ,
 				'type' => $avatar_type ,
 				'attr' => $avatar_attr ,
-			) ;
+            ];
 		} else {
-			$poster_avatar = array() ;
+			$poster_avatar = [];
 		}
 
 		// signature
@@ -76,7 +76,7 @@
 		$poster_rank_title4disp = '' ;
 		$poster_rank_image4disp = '' ;
 		$poster_is_online = false ;
-		$poster_avatar = array() ;
+		$poster_avatar = [];
 		$poster_posts_count = 0 ;
 
 		// signature

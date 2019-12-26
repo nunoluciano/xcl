@@ -98,7 +98,7 @@ class User_UserRegisterAction extends User_Action
             $renderSystem->setAttribute("disclaimer", $this->mConfig['reg_disclaimer']);
         }
         
-        $validators = array();
+        $validators = [];
         //
         // set `$validators[] = array('caption' => 'Any Caption HTML', 'element' => 'Form element HTML');` in the preload function.
         //

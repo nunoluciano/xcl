@@ -2,7 +2,7 @@
 
 // created from /etc/mime.types in redhat
 
-$mimes = array(
+$mimes = [
     'ai' => 'application/postscript',
     'aif' => 'audio/x-aiff',
     'aifc' => 'audio/x-aiff',
@@ -143,4 +143,4 @@ $mimes = array(
     'xwd' => 'image/x-xwindowdump',
     'xyz' => 'chemical/x-xyz',
     'zip' => 'application/zip',
-);
+];

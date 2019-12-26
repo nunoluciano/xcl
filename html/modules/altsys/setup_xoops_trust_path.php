@@ -15,7 +15,7 @@ $hint = '' ;
 if (@$_POST['dbpassword'] == XOOPS_DB_PASS) {
     // find XOOPS_TRUST_PATH
     $xoops_trust_path = '' ;
-    $base_dirs = array( XOOPS_ROOT_PATH , dirname(XOOPS_ROOT_PATH) , dirname(dirname(XOOPS_ROOT_PATH)) ) ;
+    $base_dirs = [XOOPS_ROOT_PATH, dirname(XOOPS_ROOT_PATH), dirname(dirname(XOOPS_ROOT_PATH))];
     foreach ($base_dirs as $base_dir) {
         $dh = @opendir($base_dir) ;
         if (! empty($dh)) {

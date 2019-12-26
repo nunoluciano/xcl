@@ -17,11 +17,11 @@ public function __construct ($params )
 	}
 
 	// search the class file
-	$class_bases = array(
+	$class_bases = [
 		XOOPS_ROOT_PATH.'/modules/'.$params['external_dirname'].'/class' ,
 		XOOPS_TRUST_PATH.'/modules/'.$params['external_trustdirname'].'/class' ,
 		XOOPS_TRUST_PATH.'/modules/d3forum/class' ,
-	) ;
+    ];
 
 	foreach( $class_bases as $class_base ) {
 		if( file_exists( $class_base.'/'.$params['classname'].'.class.php' ) ) {

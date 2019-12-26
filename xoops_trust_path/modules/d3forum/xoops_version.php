@@ -25,7 +25,7 @@ $modversion['trust_dirname'] = $mytrustdirname;
 
 // Any tables can't be touched by modulesadmin.
 $modversion['sqlfile'] = false;
-$modversion['tables'] = array();
+$modversion['tables'] = [];
 
 // Admin things
 $modversion['hasAdmin'] = 1;
@@ -42,7 +42,7 @@ $modversion['hasMain'] = 1;
 $modversion['read_any'] = true;
 
 // Submenu (just for mainmenu)
-$modversion['sub'] = array();
+$modversion['sub'] = [];
 if (is_object(@$GLOBALS['xoopsModule']) && $GLOBALS['xoopsModule']->getVar('dirname') == $mydirname) {
 	require_once dirname(__FILE__) . '/include/common_functions.php';
 	$modversion['sub'] = d3forum_get_submenu($mydirname);
@@ -58,10 +58,10 @@ if (is_object(@$GLOBALS['xoopsModule']) && $GLOBALS['xoopsModule']->getVar('dirn
 }
 
 // All Templates can't be touched by modulesadmin.
-$modversion['templates'] = array();
+$modversion['templates'] = [];
 
 // Blocks
-$modversion['blocks'][1] = array(
+$modversion['blocks'][1] = [
 	'file'			=> 'blocks.php',
 	'name'			=> constant($constpref . '_BNAME_LIST_TOPICS'),
 	'description'	=> constant($constpref . '_BDESC_LIST_TOPICS'),
@@ -70,9 +70,9 @@ $modversion['blocks'][1] = array(
 	'options'		=> "$mydirname|10|1|time|1|0||",
 	'template'		=> '', // use "module" template instead
 	'can_clone'		=> true,
-);
+];
 
-$modversion['blocks'][2] = array(
+$modversion['blocks'][2] = [
 	'file'			=> 'blocks.php',
 	'name'			=> constant($constpref . '_BNAME_LIST_POSTS'),
 	'description'	=> '',
@@ -81,9 +81,9 @@ $modversion['blocks'][2] = array(
 	'options'		=> "$mydirname|10|time|0||",
 	'template'		=> '', // use "module" template instead
 	'can_clone'		=> true,
-);
+];
 
-$modversion['blocks'][3] = array(
+$modversion['blocks'][3] = [
 	'file'			=> 'blocks.php',
 	'name'			=> constant($constpref . '_BNAME_LIST_FORUMS'),
 	'description'	=> '',
@@ -92,331 +92,331 @@ $modversion['blocks'][3] = array(
 	'options'		=> "$mydirname|0|",
 	'template'		=> '', // use "module" template instead
 	'can_clone'		=> true,
-);
+];
 
 // Comments
 $modversion['hasComments'] = 0;
 
 // Configs
-$modversion['config'][1] = array(
+$modversion['config'][1] = [
 	'name'			=> 'top_message',
 	'title'			=> $constpref . '_TOP_MESSAGE',
 	'description'	=> '',
 	'formtype'		=> 'textarea',
 	'valuetype'		=> 'text',
 	'default'		=> constant($constpref . '_TOP_MESSAGEDEFAULT'),
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'show_breadcrumbs',
 	'title'			=> $constpref . '_SHOW_BREADCRUMBS',
 	'description'	=> '',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 1,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'default_options',
 	'title'			=> $constpref . '_DEFAULT_OPTIONS',
 	'description'	=> $constpref . '_DEFAULT_OPTIONSDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> 'smiley,xcode,br,number_entity',
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'use_name',
 	'title'			=> $constpref . '_USENAME',
 	'description'		=> $constpref . '_USENAMEDESC',
 	'formtype'		=> 'select',
 	'valuetype'		=> 'int',
 	'default'		=> '0',
-	'options'		=> array($constpref . '_USENAME_UNAME' => 0, $constpref . '_USENAME_NAME' => 1)
-);
+	'options'		=> [$constpref . '_USENAME_UNAME' => 0, $constpref . '_USENAME_NAME' => 1]
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'allow_html',
 	'title'			=> $constpref . '_ALLOW_HTML',
 	'description'	=> $constpref . '_ALLOW_HTMLDSC',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 0,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'allow_textimg',
 	'title'			=> $constpref . '_ALLOW_TEXTIMG',
 	'description'	=> $constpref . '_ALLOW_TEXTIMGDSC',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 0,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'allow_sig',
 	'title'			=> $constpref . '_ALLOW_SIG',
 	'description'	=> $constpref . '_ALLOW_SIGDSC',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 1,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'allow_sigimg',
 	'title'			=> $constpref . '_ALLOW_SIGIMG',
 	'description'	=> $constpref . '_ALLOW_SIGIMGDSC',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 0,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'posts_per_topic',
 	'title'			=> $constpref . '_POSTS_PER_TOPIC',
 	'description'	=> $constpref . '_POSTS_PER_TOPICDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 50,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'hot_threshold',
 	'title'			=> $constpref . '_HOT_THRESHOLD',
 	'description'	=> $constpref . '_HOT_THRESHOLDDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 10,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'topics_per_page',
 	'title'			=> $constpref . '_TOPICS_PER_PAGE',
 	'description'	=> $constpref . '_TOPICS_PER_PAGEDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 10,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'use_vote',
 	'title'			=> $constpref . '_USE_VOTE',
 	'description'	=> '',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 1,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'use_solved',
 	'title'			=> $constpref . '_USE_SOLVED',
 	'description'	=> '',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 1,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'allow_mark',
 	'title'			=> $constpref . '_ALLOW_MARK',
 	'description'	=> '',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 1,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'allow_hideuid',
 	'title'			=> $constpref . '_ALLOW_HIDEUID',
 	'description'	=> '',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 0,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'viewallbreak',
 	'title'			=> $constpref . '_VIEWALLBREAK',
 	'description'	=> $constpref . '_VIEWALLBREAKDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 10,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'selfeditlimit',
 	'title'			=> $constpref . '_SELFEDITLIMIT',
 	'description'	=> $constpref . '_SELFEDITLIMITDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 31536000,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'selfdellimit',
 	'title'			=> $constpref . '_SELFDELLIMIT',
 	'description'	=> $constpref . '_SELFDELLIMITDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 0,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'css_uri',
 	'title'			=> $constpref . '_CSS_URI',
 	'description'	=> $constpref . '_CSS_URIDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> '{mod_url}/index.php?page=main_css',
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'images_dir',
 	'title'			=> $constpref . '_IMAGES_DIR',
 	'description'	=> $constpref . '_IMAGES_DIRDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> 'images',
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'body_editor',
 	'title'			=> $constpref . '_BODY_EDITOR',
 	'description'	=> $constpref . '_BODY_EDITORDSC',
 	'formtype'		=> 'select',
 	'valuetype'		=> 'text',
 	'default'		=> 'xoopsdhtml',
-	'options'		=> array('xoopsdhtml' => 'xoopsdhtml' /*, 'common/spaw' => 'common_spaw' */, 'common/fckeditor' => 'common_fckeditor')
-);
+	'options'		=> ['xoopsdhtml' => 'xoopsdhtml' /*, 'common/spaw' => 'common_spaw' */, 'common/fckeditor' => 'common_fckeditor']
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'anonymous_name',
 	'title'			=> $constpref . '_ANONYMOUS_NAME',
 	'description'	=> $constpref . '_ANONYMOUS_NAMEDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> _GUESTS,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'icon_meanings',
 	'title'			=> $constpref . '_ICON_MEANINGS',
 	'description'	=> $constpref . '_ICON_MEANINGSDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> constant($constpref . '_ICON_MEANINGSDEF'),
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'guest_vote_interval',
 	'title'			=> $constpref . '_GUESTVOTE_IVL',
 	'description'	=> $constpref . '_GUESTVOTE_IVLDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'int',
 	'default'		=> 86400,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
-	'name'			=> 'antispam_groups',
-	'title'			=> $constpref . '_ANTISPAM_GROUPS',
-	'description'	=> $constpref . '_ANTISPAM_GROUPSDSC',
-	'formtype'		=> 'group_multi',
-	'valuetype'		=> 'array',
-	'default'		=> array(3),
-	'options'		=> array()
-);
+$modversion['config'][] = [
+    'name'			=> 'antispam_groups',
+    'title'			=> $constpref . '_ANTISPAM_GROUPS',
+    'description'	=> $constpref . '_ANTISPAM_GROUPSDSC',
+    'formtype'		=> 'group_multi',
+    'valuetype'		=> 'array',
+    'default'		=> [3],
+    'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'antispam_class',
 	'title'			=> $constpref . '_ANTISPAM_CLASS',
 	'description'	=> $constpref . '_ANTISPAM_CLASSDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> 'defaultmobilesmart',
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'rss_show_hidden',
 	'title'			=> $constpref . '_RSS_SHOW_HIDDEN',
 	'description'	=> $constpref . '_RSS_SHOW_HIDDENDSC',
 	'formtype'		=> 'yesno',
 	'valuetype'		=> 'int',
 	'default'		=> 0,
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
 	'name'			=> 'rss_hidden_title',
 	'title'			=> $constpref . '_RSS_HIDDEN_TITLE',
 	'description'	=> $constpref . '_RSS_HIDDEN_TITLEDSC',
 	'formtype'		=> 'textbox',
 	'valuetype'		=> 'text',
 	'default'		=> '',
-	'options'		=> array()
-);
+	'options'		=> []
+];
 
 // Notification
 $modversion['hasNotification'] = 1;
-$modversion['notification'] = array(
-	'lookup_file' => 'notification.php',
-	'lookup_func' => "{$mydirname}_notify_iteminfo",
-	'category' => array(
-		array(
+$modversion['notification'] = [
+    'lookup_file' => 'notification.php',
+    'lookup_func' => "{$mydirname}_notify_iteminfo",
+    'category' => [
+        [
 			'name' => 'topic',
 			'title' => constant($constpref . '_NOTCAT_TOPIC'),
 			'description' => constant($constpref . '_NOTCAT_TOPICDSC'),
 			'subscribe_from' => 'index.php',
 			'item_name' => 'topic_id',
 			'allow_bookmark' => 1,
-		),
-		array(
+        ],
+        [
 			'name' => 'forum',
 			'title' => constant($constpref . '_NOTCAT_FORUM'),
 			'description' => constant($constpref . '_NOTCAT_FORUMDSC'),
 			'subscribe_from' => 'index.php',
 			'item_name' => 'forum_id',
 			'allow_bookmark' => 1,
-		),
-		array(
+        ],
+        [
 			'name' => 'category',
 			'title' => constant($constpref . '_NOTCAT_CAT'),
 			'description' => constant($constpref . '_NOTCAT_CATDSC'),
 			'subscribe_from' => 'index.php',
 			'item_name' => 'cat_id',
 			'allow_bookmark' => 1,
-		),
-		array(
+        ],
+        [
 			'name' => 'global',
 			'title' => constant($constpref . '_NOTCAT_GLOBAL'),
 			'description' => constant($constpref . '_NOTCAT_GLOBALDSC'),
 			'subscribe_from' => 'index.php',
-		),
-	),
-	'event' => array(
-		array(
+        ],
+    ],
+    'event' => [
+        [
 			'name' => 'newpost',
 			'category' => 'topic',
 			'title' => constant($constpref . '_NOTIFY_TOPIC_NEWPOST'),
@@ -424,8 +424,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_TOPIC_NEWPOSTCAP'),
 			'mail_template' => 'topic_newpost',
 			'mail_subject' => constant($constpref . '_NOTIFY_TOPIC_NEWPOSTSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newpost',
 			'category' => 'forum',
 			'title' => constant($constpref . '_NOTIFY_FORUM_NEWPOST'),
@@ -433,8 +433,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_FORUM_NEWPOSTCAP'),
 			'mail_template' => 'forum_newpost',
 			'mail_subject' => constant($constpref . '_NOTIFY_FORUM_NEWPOSTSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newtopic',
 			'category' => 'forum',
 			'title' => constant($constpref . '_NOTIFY_FORUM_NEWTOPIC'),
@@ -442,8 +442,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_FORUM_NEWTOPICCAP'),
 			'mail_template' => 'forum_newtopic',
 			'mail_subject' => constant($constpref . '_NOTIFY_FORUM_NEWTOPICSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newpost',
 			'category' => 'category',
 			'title' => constant($constpref . '_NOTIFY_CAT_NEWPOST'),
@@ -451,8 +451,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_CAT_NEWPOSTCAP'),
 			'mail_template' => 'category_newpost',
 			'mail_subject' => constant($constpref . '_NOTIFY_CAT_NEWPOSTSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newtopic',
 			'category' => 'category',
 			'title' => constant($constpref . '_NOTIFY_CAT_NEWTOPIC'),
@@ -460,8 +460,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_CAT_NEWTOPICCAP'),
 			'mail_template' => 'category_newtopic',
 			'mail_subject' => constant($constpref . '_NOTIFY_CAT_NEWTOPICSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newforum',
 			'category' => 'category',
 			'title' => constant($constpref . '_NOTIFY_CAT_NEWFORUM'),
@@ -469,8 +469,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_CAT_NEWFORUMCAP'),
 			'mail_template' => 'category_newforum',
 			'mail_subject' => constant($constpref . '_NOTIFY_CAT_NEWFORUMSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newpost',
 			'category' => 'global',
 			'title' => constant($constpref . '_NOTIFY_GLOBAL_NEWPOST'),
@@ -478,8 +478,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_GLOBAL_NEWPOSTCAP'),
 			'mail_template' => 'global_newpost',
 			'mail_subject' => constant($constpref . '_NOTIFY_GLOBAL_NEWPOSTSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newtopic',
 			'category' => 'global',
 			'title' => constant($constpref . '_NOTIFY_GLOBAL_NEWTOPIC'),
@@ -487,8 +487,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_GLOBAL_NEWTOPICCAP'),
 			'mail_template' => 'global_newtopic',
 			'mail_subject' => constant($constpref . '_NOTIFY_GLOBAL_NEWTOPICSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newforum',
 			'category' => 'global',
 			'title' => constant($constpref . '_NOTIFY_GLOBAL_NEWFORUM'),
@@ -496,8 +496,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_GLOBAL_NEWFORUMCAP'),
 			'mail_template' => 'global_newforum',
 			'mail_subject' => constant($constpref . '_NOTIFY_GLOBAL_NEWFORUMSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'newpostfull',
 			'category' => 'global',
 			'title' => constant($constpref . '_NOTIFY_GLOBAL_NEWPOSTFULL'),
@@ -505,8 +505,8 @@ $modversion['notification'] = array(
 			'description' => constant($constpref . '_NOTIFY_GLOBAL_NEWPOSTFULLCAP'),
 			'mail_template' => 'global_newpostfull',
 			'mail_subject' => constant($constpref . '_NOTIFY_GLOBAL_NEWPOSTFULLSBJ'),
-		),
-		array(
+        ],
+        [
 			'name' => 'waiting',
 			'category' => 'global',
 			'title' => constant($constpref . '_NOTIFY_GLOBAL_WAITING'),
@@ -515,9 +515,9 @@ $modversion['notification'] = array(
 			'mail_template' => 'global_waiting',
 			'mail_subject' => constant($constpref . '_NOTIFY_GLOBAL_WAITINGSBJ'),
 			'admin_only' => 1,
-		),
-	),
-);
+        ],
+    ],
+];
 
 $modversion['onInstall'] = 'oninstall.php';
 $modversion['onUpdate'] = 'onupdate.php';

@@ -15,9 +15,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Xupdate_ModulesIniDadaSet
 {
     // language file mapping array [from => to]
-    private $lang_mapping = array(
+    private $lang_mapping = [
             'japanese' => 'ja_utf8'
-            );
+    ];
     
     public $Xupdate  ;    // Xupdate instance
     public $Func ;    // Functions instance
@@ -25,13 +25,13 @@ class Xupdate_ModulesIniDadaSet
     public $storeHand;
     public $modHand;
 
-    public $stores = array();
-    private $approved = array();
-    private $master = array();
-    private $_mCategory = array();
-    private $allCallers = array('module', 'theme', 'package', 'preload');
+    public $stores = [];
+    private $approved = [];
+    private $master = [];
+    private $_mCategory = [];
+    private $allCallers = ['module', 'theme', 'package', 'preload'];
     private $cacheTTL = 300; // 5min
-    private $itemArrayKeys = array(
+    private $itemArrayKeys = [
         'id',
         'dirname',
         'trust_dirname',
@@ -49,15 +49,16 @@ class Xupdate_ModulesIniDadaSet
         'isactive',
         'hasupdate',
         'contents',
-        'category_id');
+        'category_id'
+    ];
     
     
     private $mTagModule;
 
-    private $disabled_items = array();
+    private $disabled_items = [];
     
-    protected $mSiteObjects = array();
-    protected $mSiteItemArray = array();
+    protected $mSiteObjects = [];
+    protected $mSiteItemArray = [];
 
     public function __construct()
     {
@@ -69,10 +70,11 @@ class Xupdate_ModulesIniDadaSet
         $mAsset =& $root->mContext->mModule->mAssetManager;
         $this->mTagModule = $root->mContext->mModuleConfig['tag_dirname'];
         $this->storeHand =& $mAsset->getObject('handler', 'Store', false);
-        $this->modHand = array(
+        $this->modHand = [
             'module' => $mAsset->getObject('handler', 'ModuleStore', false),
             'theme' => $mAsset->getObject('handler', 'ThemeStore', false),
-            'preload' => $mAsset->getObject('handler', 'PreloadStore', false));
+            'preload' => $mAsset->getObject('handler', 'PreloadStore', false)
+        ];
         $this->modHand['package'] = $this->modHand['module'];
 
         if ($root->mContext->mModuleConfig['disabled_items']) {
@@ -169,7 +171,7 @@ class Xupdate_ModulesIniDadaSet
             $stores_json = @ file_get_contents(XOOPS_TRUST_PATH . '/modules/xupdate/include/settings/stores.txt');
         }
         if (!$stores = @ json_decode($stores_json, true)) {
-            $stores = array();
+            $stores = [];
         } else {
             if (isset($stores['stores'])) {
                 // stores_json_V1
@@ -179,7 +181,7 @@ class Xupdate_ModulesIniDadaSet
         }
 
         // load my stores ini
-        $mystores = array();
+        $mystores = [];
         if (is_file(XOOPS_TRUST_PATH.'/settings/xupdate_mystores.ini')) {
             $mystores = @ parse_ini_file(XOOPS_TRUST_PATH.'/settings/xupdate_mystores.ini', true);
         }
@@ -199,12 +201,12 @@ class Xupdate_ModulesIniDadaSet
 
     private function _getMultiData($callers, $language)
     {
-        $multiData = array();
+        $multiData = [];
         if (! is_array($callers)) {
             if ($callers === 'package' || $callers === 'all') {
                 $callers = $this->allCallers;
             } else {
-                $callers = array($callers);
+                $callers = [$callers];
             }
         }
 
@@ -240,7 +242,7 @@ class Xupdate_ModulesIniDadaSet
                         $contents = 'modules';
                 }
 
-                $multiData[] = array(
+                $multiData[] = [
                     'sid'                => $store['sid'],
                     'target_key'         => $target_key,
                     'downloadUrl'        => $downloadUrl,
@@ -248,7 +250,8 @@ class Xupdate_ModulesIniDadaSet
                     'downloadedFilePath' => '',
                     'noRedirect'         => true,
                     'caller'             => $caller,
-                    'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
+                    'cacheMtime'         => $_SERVER['REQUEST_TIME']
+                ];
 
                 $_dirname = dirname($downloadUrl);
                 $_filename = basename($downloadUrl);
@@ -256,7 +259,7 @@ class Xupdate_ModulesIniDadaSet
                 $downloadLangUrl = $_dirname.'/'.$_basename.'/language/'.$language.'/'.$_filename;
                 $tempLangFilename = 'lang_'.$language.'_'.$contents.(int)$store['sid'].'.ini.php';
 
-                $multiData[] = array(
+                $multiData[] = [
                     'sid'                => $store['sid'],
                     'target_key'         => $target_key,
                     'downloadUrl'        => $downloadLangUrl,
@@ -264,7 +267,8 @@ class Xupdate_ModulesIniDadaSet
                     'downloadedFilePath' => '',
                     'noRedirect'         => true,
                     'isLang'             => true,
-                    'cacheMtime'         => $_SERVER['REQUEST_TIME'] );
+                    'cacheMtime'         => $_SERVER['REQUEST_TIME']
+                ];
             }
         }
         return $multiData;
@@ -296,7 +300,7 @@ class Xupdate_ModulesIniDadaSet
                         $items_lang = @ parse_ini_file($multiData[$lngKey]['downloadedFilePath'], true);
                     }
                     if (! $items_lang) {
-                        $items_lang = array();
+                        $items_lang = [];
                     }
                     $sid = (int)$res['sid'];
 
@@ -304,7 +308,7 @@ class Xupdate_ModulesIniDadaSet
                     $this->_setApprovedArray($items, $sid, $isPackage);
                     $this->_setSiteModuleObjects($sid, $caller);
 
-                    $rObjs = array();
+                    $rObjs = [];
                     foreach ($items as $key => $item) {
                         if ($isPackage) {
                             $_sid = (int)substr($item['dirname'], 1);
@@ -367,8 +371,8 @@ class Xupdate_ModulesIniDadaSet
     private function _setMasterArray($sid, $isPackage)
     {
         // make $this->approved
-        $this->master[$sid] = array();
-        $this->_mCategory[$sid] = array();
+        $this->master[$sid] = [];
+        $this->_mCategory[$sid] = [];
         // $sid >= 10000: My store
         if (!$isPackage && $sid < 10000) {
             foreach ($this->stores[$sid]['items'] as $arr) {
@@ -383,7 +387,7 @@ class Xupdate_ModulesIniDadaSet
     private function _setApprovedArray(&$items, $sid, $isPackage)
     {
         // make $this->approved
-        $this->approved[$sid] = array();
+        $this->approved[$sid] = [];
         // $sid >= 10000: My store
         foreach ($items as $key => $check) {
             $_sid = $isPackage? (int)substr($check['dirname'], 1) : $sid;
@@ -398,11 +402,11 @@ class Xupdate_ModulesIniDadaSet
 
     private function _encodeItem(&$item, $items_lang, $key)
     {
-        $enc = str_replace(array('-', '_'), '', strtolower(_CHARSET));
+        $enc = str_replace(['-', '_'], '', strtolower(_CHARSET));
         if (! empty($item['addon_url_'.$enc])) {
             $item['addon_url'] = $item['addon_url_'.$enc];
         }
-        foreach (array('description', 'tag') as $_key) {
+        foreach (['description', 'tag'] as $_key) {
             if (! @ json_encode($item[$_key])) {
                 // if not UTF-8
                 $item[$_key] = '';
@@ -428,10 +432,10 @@ class Xupdate_ModulesIniDadaSet
         // for back compat
         if (isset($item['install_only'])) {
             if (!isset($item['no_overwrite']) || !is_array($item['no_overwrite'])) {
-                $item['no_overwrite'] = array();
+                $item['no_overwrite'] = [];
             }
             if (!isset($item['no_update']) || !is_array($item['no_update'])) {
-                $item['no_update'] = array();
+                $item['no_update'] = [];
             }
             foreach ($item['install_only'] as $_item) {
                 $_key = 'no_overwrite';
@@ -448,7 +452,7 @@ class Xupdate_ModulesIniDadaSet
     
         // options の構築
         // ini設定 に option キーを追加する場合は _getItemArrFromObj（） にも処理を追加する
-        $item_arr=array();
+        $item_arr= [];
         if (isset($item['writable_file'])
         || isset($item['writable_dir'])
         || isset($item['no_overwrite'])
@@ -503,7 +507,7 @@ class Xupdate_ModulesIniDadaSet
                 $item_arr['force_languages'] = array_map('trim', explode(',', trim($item['force_languages'])));
             }
         } else {
-            $item_arr['force_languages'] = array();
+            $item_arr['force_languages'] = [];
         }
     
         // check tag is UTF-8 with json_encode
@@ -542,7 +546,7 @@ class Xupdate_ModulesIniDadaSet
 
     private function _getItemArrFromObj($obj, $readini = false)
     {
-        $item = array();
+        $item = [];
         $options = $obj->unserialize_options($readini);
         $item['dirname'] = ($obj->get('target_type') === 'TrustModule')? $obj->get('trust_dirname') : $obj->get('dirname');
         $item['target_key'] = $obj->get('target_key');
@@ -823,7 +827,7 @@ class Xupdate_ModulesIniDadaSet
     
     private function getItemArray($obj)
     {
-        $data = array();
+        $data = [];
         foreach ($this->itemArrayKeys as $key) {
             $data[$key] = $obj->getVar($key);
         }
@@ -835,7 +839,7 @@ class Xupdate_ModulesIniDadaSet
         return $data;
     }
 
-    public function encode_numericentity(& $arg, $toencode, $fromencode, $keys = array())
+    public function encode_numericentity(& $arg, $toencode, $fromencode, $keys = [])
     {
         $fromencode = strtoupper($fromencode);
         $toencode = strtoupper($toencode);
@@ -870,7 +874,7 @@ class Xupdate_ModulesIniDadaSet
             } else {
                 $str = '';
                 $max = mb_strlen($arg, $fromencode);
-                $convmap = array(0x0080, 0x10FFFF, 0, 0xFFFFFF);
+                $convmap = [0x0080, 0x10FFFF, 0, 0xFFFFFF];
                 for ($i = 0; $i < $max; $i++) {
                     $org = mb_substr($arg, $i, 1, $fromencode);
                     if ($org === mb_convert_encoding(mb_convert_encoding($org, $toencode, $fromencode), $fromencode, $toencode)) {
@@ -894,7 +898,7 @@ class Xupdate_ModulesIniDadaSet
      **/
     private function getDirnameListByTrustDirname(/*** string ***/ $trustDirname)
     {
-        $list = array();
+        $list = [];
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('trust_dirname', $trustDirname));
         $cri->addSort('dirname', 'ASC');

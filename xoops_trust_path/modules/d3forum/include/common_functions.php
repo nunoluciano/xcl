@@ -29,7 +29,7 @@ function d3forum_get_forums_can_read( $mydirname )
 	if( $result ) while( list( $cat_id ) = $db->fetchRow( $result ) ) {
 		$cat_ids[] = intval( $cat_id ) ;
 	}
-	if( empty( $cat_ids ) ) return array(0) ;
+	if( empty( $cat_ids ) ) return [0];
 
 	// get forums
 	$sql = "SELECT distinct f.forum_id FROM ".$db->prefix($mydirname."_forums")." f LEFT JOIN ".$db->prefix($mydirname."_forum_access")." fa ON fa.forum_id=f.forum_id WHERE ($whr4forum) AND f.cat_id IN (".implode(',',$cat_ids).')' ;
@@ -38,7 +38,7 @@ function d3forum_get_forums_can_read( $mydirname )
 		$forums[] = intval( $forum_id ) ;
 	}
 
-	if( empty( $forums ) ) return array(0) ;
+	if( empty( $forums ) ) return [0];
 	else return $forums ;
 }
 
@@ -68,7 +68,7 @@ function d3forum_get_categories_can_read( $mydirname )
 		$cat_ids[] = intval( $cat_id ) ;
 	}
 
-	if( empty( $cat_ids ) ) return array(0) ;
+	if( empty( $cat_ids ) ) return [0];
 	else return $cat_ids ;
 }
 
@@ -81,7 +81,7 @@ function d3forum_get_submenu( $mydirname )
 
 	$module_handler =& xoops_gethandler('module') ;
 	$module =& $module_handler->getByDirname( $mydirname ) ;
-	if( ! is_object( $module ) ) return array() ;
+	if( ! is_object( $module ) ) return [];
 	$config_handler =& xoops_gethandler('config') ;
 	$mod_config =& $config_handler->getConfigsByCat( 0 , $module->getVar('mid') ) ;
 
@@ -90,28 +90,28 @@ function d3forum_get_submenu( $mydirname )
 
 	$whr_read4cat = '`cat_id` IN (' . implode( "," , d3forum_get_categories_can_read( $mydirname ) ) . ')' ;
 	$whr_read4forum = '`forum_id` IN (' . implode( "," , d3forum_get_forums_can_read( $mydirname ) ) . ')' ;
-	$categories = array( 0 => array( 'pid' => -1 , 'name' => '' , 'url' => '' ) ) ;
+	$categories = [0 => ['pid' => -1, 'name' => '', 'url' => '']];
 
 	// categories query
 	$sql = "SELECT cat_id,pid,cat_title FROM ".$db->prefix($mydirname."_categories")." WHERE ($whr_read4cat) ORDER BY cat_order_in_tree" ;
 	$crs = $db->query( $sql ) ;
 	if( $crs ) while( $cat_row = $db->fetchArray( $crs ) ) {
 		$cat_id = intval( $cat_row['cat_id'] ) ;
-		$categories[ $cat_id ] = array(
+		$categories[ $cat_id ] = [
 			'name' => $myts->makeTboxData4Show( $cat_row['cat_title'] ) ,
 			'url' => 'index.php?cat_id='.$cat_id ,
 			'pid' => $cat_row['pid'] ,
-		) ;
+        ];
 	}
 
 	// forums query
 	$frs = $db->query( "SELECT cat_id,forum_id,forum_title FROM ".$db->prefix($mydirname."_forums" )." WHERE ($whr_read4forum) ORDER BY forum_weight" ) ;
 	if( $frs ) while( $forum_row = $db->fetchArray( $frs ) ) {
 		$cat_id = intval( $forum_row['cat_id'] ) ;
-		$categories[ $cat_id ]['sub'][] = array(
+		$categories[ $cat_id ]['sub'][] = [
 			'name' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
 			'url' => '?forum_id='.intval( $forum_row['forum_id'] ) ,
-		) ;
+        ];
 	}
 
 	// restruct categories
@@ -122,15 +122,15 @@ function d3forum_get_submenu( $mydirname )
 
 function d3forum_restruct_categories( $categories , $parent )
 {
-	$ret = array() ;
+	$ret = [];
 	foreach( $categories as $cat_id => $category ) {
 		if( $category['pid'] == $parent ) {
-			if( empty( $category['sub'] ) ) $category['sub'] = array() ;
-			$ret[] = array(
+			if( empty( $category['sub'] ) ) $category['sub'] = [];
+			$ret[] = [
 				'name' => $category['name'] ,
 				'url' => $category['url'] ,
 				'sub' => array_merge( $category['sub'] , d3forum_restruct_categories( $categories , $cat_id ) ) ,
-			) ;
+            ];
 		}
 	}
 
@@ -140,7 +140,7 @@ function d3forum_restruct_categories( $categories , $parent )
 
 function d3forum_common_is_necessary_antispam( $user , $mod_config )
 {
-	$belong_groups = is_object( $user ) ? $user->getGroups() : array( XOOPS_GROUP_ANONYMOUS ) ;
+	$belong_groups = is_object( $user ) ? $user->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 
 	if( trim( $mod_config['antispam_class'] ) == '' ) return false ;
 	if( ! is_object( $user ) ) return true ;
@@ -169,16 +169,16 @@ function &d3forum_common_get_antispam_object( $mod_config )
 
 function d3forum_common_unhtmlspecialchars( $text )
 {
-	return strtr( $text , array_flip( get_html_translation_table( HTML_SPECIALCHARS , ENT_QUOTES ) ) + array( '&#039;' => "'" ) ) ;
+	return strtr( $text , array_flip( get_html_translation_table( HTML_SPECIALCHARS , ENT_QUOTES ) ) + ['&#039;' => "'"]) ;
 }
 
 
 function d3forum_common_simple_request( $params )
 {
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
-	$requests = array() ;
-	$whrs = array() ;
-	$queries = array() ;
+	$requests = [];
+	$whrs = [];
+	$queries = [];
 	foreach( $params as $key => $type ) {
 		$key_by_dot = explode( '.' , $key , 2 ) ;
 		if( sizeof( $key_by_dot ) == 1 ) {
@@ -206,11 +206,11 @@ function d3forum_common_simple_request( $params )
 		}
 	}
 
-	return array(
+	return [
 		'requests' => $requests ,
 		'whr' => implode( ' AND ' , $whrs ) ,
 		'query' => implode( '&' , $queries ) ,
-	) ;
+    ];
 }
 
 

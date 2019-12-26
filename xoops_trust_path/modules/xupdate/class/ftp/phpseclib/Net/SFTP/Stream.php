@@ -172,7 +172,7 @@ class Net_SFTP_Stream
     function _parse_path($path)
     {
         $orig = $path;
-        extract(parse_url($path) + array('port' => 22));
+        extract(parse_url($path) + ['port' => 22]);
         if (isset($query)) {
             $path.= '?' . $query;
         } elseif (preg_match('/(\?|\?#)$/', $orig)) {
@@ -808,7 +808,7 @@ class Net_SFTP_Stream
         if (!method_exists($this, $name)) {
             return false;
         }
-        return call_user_func_array(array($this, $name), $arguments);
+        return call_user_func_array([$this, $name], $arguments);
     }
 }
 

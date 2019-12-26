@@ -15,9 +15,9 @@ if (!function_exists('pico_onupdate_base')) {
 		if (defined('XOOPS_CUBE_LEGACY')) {
 			$root = &XCube_Root::getSingleton();
 			$root->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'pico_message_append_onupdate');
-			$msgs = array();
+			$msgs = [];
 		} else {
-			if (!is_array($msgs)) $msgs = array();
+			if (!is_array($msgs)) $msgs = [];
 		}
 
 		$db = XoopsDatabaseFactory::getDatabaseConnection();

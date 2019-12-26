@@ -5,7 +5,7 @@
 //$xoopsErrorHandler->activate(true);
 
 $cache_min = 5;
-$cat_ids = array();
+$cat_ids = [];
 
 require_once $mytrustdirpath.'/include/rss_functions.php';
 
@@ -22,7 +22,7 @@ if ($forum) {
 	if ($cat) {
 		$cat = preg_replace('/[^0-9,]+/', '', $cat);
 
-		$cat_ids = array() ;
+		$cat_ids = [];
 		foreach( explode( ',' , $cat ) as $_id ) {
 			if( $_id > 0 ) {
 				$cat_ids[] = intval( $_id ) ;
@@ -50,7 +50,7 @@ if (defined('XOOPS_CACHE_PATH')) {
 	$c_file = XOOPS_ROOT_PATH . '/cache/' . $mydirname . '_' . $cat . '_' . $forum . $ssl . '.rss';
 }
 
-$outputs = array();
+$outputs = [];
 if (file_exists($c_file) && (filemtime($c_file) + $cache_min * 60) > time()) {
 	$outputs = unserialize(file_get_contents($c_file));
 	$outputs['b_time'] = filemtime($c_file);
@@ -63,7 +63,7 @@ if (!isset($outputs['data'])) {
 
 	if ($data) {
 		if (sizeof($cat_ids) > 1) {
-			$_titles = array();
+			$_titles = [];
 			foreach($data as $item) {
 				$_titles[] = $item['cat_title'];
 			}
@@ -84,7 +84,7 @@ if (!isset($outputs['data'])) {
 	$top_link = XOOPS_URL.'/modules/'.$mydirname.'/'.$top_link;
 
 	foreach($data as $key => $item) {
-		$subtitles = array();
+		$subtitles = [];
 		if ((!$cat || sizeof($cat_ids) > 1) && !$forum) $subtitles[] = $item['cat_title'];
 		if (!$forum) $subtitles[] = $item['forum_title'];
 		$data[$key]['subject'] = htmlspecialchars(($subtitles? '[' . join(':',$subtitles) . '] ' : '') . $item['subject'], ENT_COMPAT, _CHARSET);
@@ -93,13 +93,13 @@ if (!isset($outputs['data'])) {
 		$data[$key]['forum_title'] = htmlspecialchars($item['forum_title'], ENT_COMPAT, _CHARSET);
 	}
 
-	$outputs = array(
+	$outputs = [
 		'encoding' => $encoding,
 		'title' => $title,
 		'top_link' => $top_link,
 		'b_time' => $b_time,
 		'data' => $data
-	);
+    ];
 	
 	if (is_writable($c_file)) {
 		file_put_contents($c_file, serialize($outputs));

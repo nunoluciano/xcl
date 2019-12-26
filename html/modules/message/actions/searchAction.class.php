@@ -44,12 +44,12 @@ class searchAction extends AbstractAction
                     $this->setErr($this->mActionform->getErrorMessages());
                     return;
                 }
-                $request = array(
+                $request = [
           'uname' => $this->mActionform->get('uname'),
           'stype' => $this->mActionform->get('searchtype'),
           'page'  => 10,
           'url'   => 'index.php?action=search'
-        );
+                ];
                 $this->getData($request);
             } else {
                 $this->mActionform->set('searchtype', 0);

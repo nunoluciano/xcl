@@ -144,7 +144,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
 
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT DISTINCT c.* FROM '.$this->db->prefix('imagecategory').' c LEFT JOIN '.$this->db->prefix('group_permission')." l ON l.gperm_itemid=c.imgcat_id WHERE (l.gperm_name = 'imgcat_read' OR l.gperm_name = 'imgcat_write')";
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -186,7 +186,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         return $count;
     }
 
-    public function &getList($groups = array(), $perm = 'imgcat_read', $display = null, $storetype = null)
+    public function &getList($groups = [], $perm = 'imgcat_read', $display = null, $storetype = null)
     {
         $criteria = new CriteriaCompo();
         if (is_array($groups) && !empty($groups)) {
@@ -207,7 +207,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             $criteria->add(new Criteria('imgcat_storetype', $storetype));
         }
         $categories =& $this->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($categories) as $i) {
             $ret[$i] = $categories[$i]->getVar('imgcat_name');
         }

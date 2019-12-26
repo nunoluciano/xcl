@@ -30,7 +30,7 @@ function pico_xoopstpl($mydirname, $text, $content4assign)
 
 	// assign special session
 	$session_prefix = $mydirname . '_' . @$content4assign['id'] . '_';
-	$session4assign = array();
+	$session4assign = [];
 	foreach (array_keys(@$_SESSION) as $index) {
 		if (strncmp($index, $session_prefix, strlen($session_prefix)) === 0) {
 			$session4assign[substr($index, strlen($session_prefix))] = $_SESSION[$index];

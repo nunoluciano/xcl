@@ -45,7 +45,7 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
 //
 		//$root->mLanguageManager->loadBlockMessageCatalog('legacy');
 		
-		$modules = array();
+		$modules = [];
 		XCube_DelegateUtils::call('Legacyblock.Wating.Show', new XCube_Ref($modules));
 		//$root =& XCube_Root::getSingleton();
 		$render->setAttribute('modules', $modules);

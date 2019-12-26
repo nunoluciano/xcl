@@ -20,10 +20,10 @@ define('LEGACY_SEARCH_SHOWALL_MAXHIT', 20);
 class Legacy_SearchResultsAction extends Legacy_Action
 {
     public $mActionForm = null;
-    public $mSearchResults = array();
-    public $mModules = array();
+    public $mSearchResults = [];
+    public $mModules = [];
     
-    public $mConfig = array();
+    public $mConfig = [];
     
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -64,7 +64,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
         
         if (is_object($service)) {
             $client =& $root->mServiceManager->createClient($service);
-            $this->mModules = $client->call('getActiveModules', array());
+            $this->mModules = $client->call('getActiveModules', []);
         }
         
         $this->mActionForm->fetch();
@@ -84,7 +84,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
             foreach ($this->_getSelectedMids() as $mid) {
                 $t_module =& $handler->get($mid);
                 if (is_object($t_module)) {
-                    $module = array();
+                    $module = [];
                     
                     $module['mid'] = $mid;
                     $module['name'] = $t_module->get('name');

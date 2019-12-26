@@ -24,9 +24,9 @@ $whr_read4forum = 'f.`forum_id` IN (' . implode( "," , array_keys( $forum_permis
 
 // init xoops_breadcrumbs
 if( is_object( $xoopsModule ) ) {
-	$xoops_breadcrumbs[0] = array( 'url' => XOOPS_URL.'/modules/'.$mydirname.'/index.php' , 'name' => $xoopsModule->getVar( 'name' ) ) ;
+	$xoops_breadcrumbs[0] = ['url' => XOOPS_URL . '/modules/' . $mydirname . '/index.php', 'name' => $xoopsModule->getVar('name' )];
 } else {
-	$xoops_breadcrumbs = array() ;
+	$xoops_breadcrumbs = [];
 }
 
 // init meta description //nao-pon

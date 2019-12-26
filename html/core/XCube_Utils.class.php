@@ -80,7 +80,7 @@ class XCube_Utils
         
         $message = $arr[0];
         
-        $variables = array();
+        $variables = [];
         if (is_array($arr[1])) {
             $variables = $arr[1];
         } else {
@@ -217,8 +217,8 @@ class XCube_Utils
      */
     public function formatMessageByMap($subject, $arr)
     {
-        $searches=array();
-        $replaces=array();
+        $searches= [];
+        $replaces= [];
         foreach ($arr as $key=>$value) {
             $searches[]="{".$key."}";
             $replaces[]=$value;

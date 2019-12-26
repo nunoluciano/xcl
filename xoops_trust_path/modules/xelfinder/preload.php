@@ -11,16 +11,16 @@ class xelfinderPreloadBase extends XCube_ActionFilter {
 	function preBlockFilter() {
 		$this->mRoot->mDelegateManager->delete('Legacypage.Imagemanager.Access','Legacy_EventFunction::imageManager');
 		$this->mRoot->mDelegateManager->add('Legacypage.Imagemanager.Access',
-									array($this, 'overRideDefaultImageManager'),
-									XCUBE_DELEGATE_PRIORITY_FIRST);
+                                            [$this, 'overRideDefaultImageManager'],
+                                            XCUBE_DELEGATE_PRIORITY_FIRST);
 		
 		$this->mRoot->mDelegateManager->add('Legacy_TextFilter.MakeXCodeConvertTable',
-									array($this, 'addXCodeConvertTable'),
+                                            [$this, 'addXCodeConvertTable'],
 									XCUBE_DELEGATE_PRIORITY_NORMAL - 1);
 		
 		$this->mRoot->mDelegateManager->add('Legacy_ActionFrame.CreateAction',
-									array($this, 'overRideImagecategoryList'),
-									XCUBE_DELEGATE_PRIORITY_FIRST);
+                                            [$this, 'overRideImagecategoryList'],
+                                            XCUBE_DELEGATE_PRIORITY_FIRST);
 	}
 
 	function overRideDefaultImageManager() {

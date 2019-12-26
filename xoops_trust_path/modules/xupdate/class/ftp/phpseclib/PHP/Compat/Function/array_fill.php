@@ -22,7 +22,7 @@ function php_compat_array_fill($start_index, $num, $value)
         return false;
     }
 
-    $temp = array();
+    $temp = [];
 
     $end_index = $start_index + $num;
     for ($i = (int) $start_index; $i < $end_index; $i++) {

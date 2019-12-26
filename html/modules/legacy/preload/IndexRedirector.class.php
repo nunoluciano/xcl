@@ -16,7 +16,7 @@ class Legacy_IndexRedirector extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Legacypage.Top.Access", array(&$this, "redirect"));
+        $this->mController->mRoot->mDelegateManager->add("Legacypage.Top.Access", [&$this, "redirect"]);
     }
 
     public function redirect()

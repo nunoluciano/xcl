@@ -15,9 +15,9 @@ function xelfinder_onupdate_base( $module , $mydirname )
 	if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 		$root = XCube_Root::getSingleton();
 		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'xelfinder_message_append_onupdate' ) ;
-		$msgs = array() ;
+		$msgs = [];
 	} else {
-		if( ! is_array( $msgs ) ) $msgs = array() ;
+		if( ! is_array( $msgs ) ) $msgs = [];
 	}
 
 	$db = Database::getInstance() ;

@@ -59,11 +59,11 @@ class User_MailjobSendAction extends User_Action
 
         $root =& XCube_Root::getSingleton();
         if ($this->mMailjob->get('is_pm')) {
-            $this->mMailjob->mSend->add(array(&$this, "sendPM"));
+            $this->mMailjob->mSend->add([&$this, "sendPM"]);
         }
 
         if ($this->mMailjob->get('is_mail')) {
-            $this->mMailjob->mSend->add(array(&$this, "sendMail"));
+            $this->mMailjob->mSend->add([&$this, "sendMail"]);
         }
 
         $this->mMailjob->send($xoopsUser);

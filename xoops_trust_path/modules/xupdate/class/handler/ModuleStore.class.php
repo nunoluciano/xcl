@@ -14,9 +14,9 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
     const DATANAME = 'modulestore';
     
     public $mModule ;
-    public $modinfo = array();
+    public $modinfo = [];
     public $detailed_version = '' ;
-    public $options = array();
+    public $options = [];
 
     public function __construct()
     {
@@ -64,7 +64,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         if ($item['contents'] !== 'package') {
             $this->mTag = explode(' ', $tag);
         } else {
-            $this->mTag = array();
+            $this->mTag = [];
         }
         return $res;
     }
@@ -186,10 +186,11 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                 $this->mModule->setVar('version', $this->modinfo['version'] * 100);
             } else {
                 $this->mModule->setVar('version', $this->getVar('version'));
-                $this->modinfo = array(
+                $this->modinfo = [
                     'version' => $this->mModule->getRenderedVersion(),
                     'detailed_version' => $this->options['detailed_version'],
-                    'lastupdate' => 0);
+                    'lastupdate' => 0
+                ];
             }
             if ($readini) {
                 $this->setVar('isactive', -1);
@@ -210,19 +211,21 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                                             $this->setVar('version', $mVersion);
                                         }
                                         $this->mModule->setVar('version', $mVersion);
-                                        $this->modinfo = array(
+                                        $this->modinfo = [
                                             'version' => $this->mModule->getRenderedVersion(),
                                             'detailed_version' => $this->options['detailed_version'],
-                                            'lastupdate' => $lastupdate);
+                                            'lastupdate' => $lastupdate
+                                        ];
                                     }
                                 }
                             } else {
                                 if ($lastupdate > $this->modinfo['lastupdate']) {
                                     $this->mModule->setVar('version', $this->getVar('version'));
-                                    $this->modinfo = array(
+                                    $this->modinfo = [
                                         'version' => $this->mModule->getRenderedVersion(),
                                         'detailed_version' => $this->options['detailed_version'],
-                                        'lastupdate' => $lastupdate);
+                                        'lastupdate' => $lastupdate
+                                    ];
                                 }
                             }
                         }
@@ -236,10 +239,11 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                             $this->setVar('last_update', $lastupdate);
                             if ($lastupdate > $this->modinfo['lastupdate']) {
                                 $this->mModule->setVar('version', $this->getVar('version'));
-                                $this->modinfo = array(
+                                $this->modinfo = [
                                     'version' => $this->mModule->getRenderedVersion(),
                                     'detailed_version' => $this->options['detailed_version'],
-                                    'lastupdate' => $lastupdate);
+                                    'lastupdate' => $lastupdate
+                                ];
                             }
                         }
                     }
@@ -376,60 +380,60 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         $dirname = $this->getVar('dirname');
          
         //unserialize xin option fileld and replace dirname
-        $options = array();
+        $options = [];
         if ($option = $this->get('options')) {
             if (! $options = @unserialize($this->get('options'))) {
-                $options = array();
+                $options = [];
             }
         }
         if (isset($options['writable_dir'])) {
             if (! $readini) {
-                array_walk($options['writable_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['writable_dir'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['writable_dir'] = array();
+            $options['writable_dir'] = [];
         }
         if (isset($options['writable_file'])) {
             if (! $readini) {
-                array_walk($options['writable_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['writable_file'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['writable_file'] = array();
+            $options['writable_file'] = [];
         }
         if (isset($options['no_overwrite'])) {
             if (! $readini) {
-                array_walk($options['no_overwrite'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['no_overwrite'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['no_overwrite'] = array();
+            $options['no_overwrite'] = [];
         }
         if (isset($options['no_update'])) {
             if (! $readini) {
-                array_walk($options['no_update'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['no_update'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['no_update'] = array();
+            $options['no_update'] = [];
         }
         if (isset($options['rename_item'])) {
             if (! $readini) {
-                array_walk($options['rename_item'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['rename_item'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['rename_item'] = array();
+            $options['rename_item'] = [];
         }
         if (isset($options['delete_dir'])) {
             if (! $readini) {
-                array_walk($options['delete_dir'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['delete_dir'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['delete_dir'] = array();
+            $options['delete_dir'] = [];
         }
         if (isset($options['delete_file'])) {
             if (! $readini) {
-                array_walk($options['delete_file'], array($this, '_printf'), array($dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH));
+                array_walk($options['delete_file'], [$this, '_printf'], [$dirname, XOOPS_ROOT_PATH, XOOPS_TRUST_PATH]);
             }
         } else {
-            $options['delete_file'] = array();
+            $options['delete_file'] = [];
         }
         if (! isset($options['detailed_version'])) {
             $options['detailed_version'] = '';
@@ -442,7 +446,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
             $options['screen_shot'] = Xupdate_Utils::toShow($options['screen_shot']);
         }
         if (! isset($options['force_languages'])) {
-            $options['force_languages'] = array();
+            $options['force_languages'] = [];
         }
         return $options;
     }
@@ -466,7 +470,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
      */
     private function _getStoreNameBySid($sid)
     {
-        static $names = array();
+        static $names = [];
         static $sHandler = null;
         if (null === $sHandler) {
             $sHandler = Legacy_Utils::getModuleHandler('Store', 'xupdate');
@@ -511,14 +515,14 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 
     public function __construct(/*** XoopsDatabase ***/ &$db, /*** string ***/ $dirname)
     {
-        $this->mTable = strtr($this->mTable, array('{dirname}' => $dirname));
+        $this->mTable = strtr($this->mTable, ['{dirname}' => $dirname]);
         $this->mDirname = $dirname;
         parent::__construct($db);
     }
 
     public function &getObjects($criteria = null, $limit = null, $start = null,  $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
         $mObjects =& parent::getObjects($criteria, $limit, $start, $id_as_key);
         //return $mObjects;
@@ -597,7 +601,7 @@ EOD;
 			<div>'.$msg.'</div>
 			</div>' . $ondemandBtn;
             $result = str_replace("'", '&#039;', $result);
-            $result = str_replace(array("\r", "\n", "\t"), '', $result);
+            $result = str_replace(["\r", "\n", "\t"], '', $result);
             
             $headerScript= $root->mContext->getAttribute('headerScript');
             $headerScript->addStylesheet('/common/js/notify/style/default.css');

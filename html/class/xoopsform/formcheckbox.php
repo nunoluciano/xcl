@@ -57,14 +57,14 @@ class XoopsFormCheckBox extends XoopsFormElement
      * @var array   
      * @access	private
      */
-    public $_options = array();
+    public $_options = [];
 
     /**
      * pre-selected values in array
      * @var	array   
      * @access	private
      */
-    public $_value = array();
+    public $_value = [];
 
     /**
      * Constructor
@@ -103,7 +103,7 @@ class XoopsFormCheckBox extends XoopsFormElement
      */
     public function setValue($value)
     {
-        $this->_value = array();
+        $this->_value = [];
         if (is_array($value)) {
             foreach ($value as $v) {
                 $this->_value[] = $v;

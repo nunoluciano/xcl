@@ -22,18 +22,18 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 	   if ( isset($params[4]) && intval( $params[4] )>0 ) {
 	   	//posts
 		$this->func_name = 'b_d3forum_list_posts_show' ;
-		$this->block_options = array(
+		$this->block_options = [
 			'disable_renderer' => true ,
 			0 => $this->target_dirname , // mydirname of pico
 			1 => empty( $params[2] ) ? 10 : intval( $params[2] ) , // max_entries
 			2 => 'time' , // order by
 			3 => preg_replace( '/[^0-9,]/' , '' , @$params[1] ) , // category limitation
 			5 => preg_replace( '/[^0-9,]/' , '' , @$params[3] ) , // forum limitation
-		) ;
+        ];
 	   } else {
 	   	//topics
 		$this->func_name = 'b_d3forum_list_topics_show' ;
-		$this->block_options = array(
+		$this->block_options = [
 			'disable_renderer' => true ,
 			0 => $this->target_dirname , // mydirname of pico
 			1 => empty( $params[2] ) ? 10 : intval( $params[2] ) , // max_entries
@@ -42,7 +42,7 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 			4 => false , // is_markup
 			5 => preg_replace( '/[^0-9,]/' , '' , @$params[1] ) , // category limitation
 			7 => preg_replace( '/[^0-9,]/' , '' , @$params[3] ) , // forum limitation
-		) ;
+        ];
 	   }
 		return true ;
 	}
@@ -51,28 +51,28 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract {
 	{
 		$data = $this->unhtmlspecialchars( $data ) ; // d3 modules has a rule assigning escaped variables
 
-		$entries = array() ;
+		$entries = [];
 		if(!empty($data['topics'])){
 		   foreach( $data['topics'] as $topic ) {
-			$entry = array(
+			$entry = [
 				'pubtime' => $topic['last_post_time'] , // timestamp
 				'link' => $data['mod_url'].'/index.php?topic_id='.$topic['id'].'#post_id'.$topic['last_post_id'] ,
 				//'headline' => $topic['title'] ,
 				'headline' => '['.$topic['forum_title'].'] '.$topic['title'] ,
 				'description' => $topic['post_text'] ,
-			) ;
+            ];
 			$entry['fingerprint'] = $entry['link'] ;
 			$entries[] = $entry ;
 		   }
 		} elseif(!empty($data['posts'])) {
 		     foreach( $data['posts'] as $post ) {
-			$entry = array(
+			$entry = [
 				'pubtime' => $post['post_time'] , // timestamp
 				'link' => $data['mod_url'].'/index.php?post_id='.$post['id'] ,
 				//'headline' => $post['subject'] ,
 				'headline' => '['.$post['forum_title'].'] '.$post['subject'] ,
 				'description' => $post['post_text'] ,
-			) ;
+            ];
 			$entry['fingerprint'] = $entry['link'] ;
 			$entries[] = $entry ;
 		    }

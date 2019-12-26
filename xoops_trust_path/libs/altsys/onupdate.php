@@ -14,10 +14,10 @@ if (! function_exists('altsys_onupdate_base')) {
     if (defined('XOOPS_CUBE_LEGACY')) {
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'altsys_message_append_onupdate') ;
-        $msgs = array() ;
+        $msgs = [];
     } else {
         if (! is_array($msgs)) {
-            $msgs = array() ;
+            $msgs = [];
         }
     }
 

@@ -31,8 +31,8 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
     
     public function &getOperations()
     {
-        $t_lines = array();
-        $t_tokens = array();
+        $t_lines = [];
+        $t_tokens = [];
         $depth = 0;
         
         foreach (array_keys($this->mTokens) as $key) {
@@ -48,12 +48,12 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
                 if ($this->mTokens[$key]->mType == EASYLEX_SQL_SEMICOLON) {
                     $t_lines[] =& $t_tokens;
                     unset($t_tokens);
-                    $t_tokens = array();
+                    $t_tokens = [];
                 } elseif ($this->mTokens[$key]->mType == EASYLEX_SQL_LETTER && (strtoupper($this->mTokens[$key]->mValue) =='CREATE' || strtoupper($this->mTokens[$key]->mValue) =='ALTER' || strtoupper($this->mTokens[$key]->mValue) =='INSERT')) {
                     array_pop($t_tokens);
                     $t_lines[] =& $t_tokens;
                     unset($t_tokens);
-                    $t_tokens = array();
+                    $t_tokens = [];
                     $t_tokens[] =& $this->mTokens[$key];
                 }
             }
@@ -67,8 +67,8 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
         //
         // Prepare array for str_replace()
         //
-        $t_search = array('{prefix}', '{dirname}', '{Dirname}', '{_dirname_}');
-        $t_replace = array($this->mDB_PREFIX, strtolower($this->mDirname), ucfirst(strtolower($this->mDirname)), $this->mDirname);
+        $t_search = ['{prefix}', '{dirname}', '{Dirname}', '{_dirname_}'];
+        $t_replace = [$this->mDB_PREFIX, strtolower($this->mDirname), ucfirst(strtolower($this->mDirname)), $this->mDirname];
         
         foreach (array_keys($t_lines) as $idx) {
             foreach (array_keys($t_lines[$idx]) as $op_idx) {

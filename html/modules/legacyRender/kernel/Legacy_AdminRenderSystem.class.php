@@ -49,7 +49,7 @@ class Legacy_AdminSmarty extends Smarty
         $this->compile_dir = XOOPS_COMPILE_PATH;
         $this->left_delimiter = '<{';
         $this->right_delimiter = '}>';
-        $this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
+        $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
 
         //
         // [TODO]
@@ -123,13 +123,15 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $this->mSmarty->register_modifier('theme', 'Legacy_modifier_theme');
         $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
-        $this->mSmarty->assign(array(
+        $this->mSmarty->assign(
+            [
             'xoops_url'       => XOOPS_URL,
             'xoops_rootpath'   => XOOPS_ROOT_PATH,
             'xoops_langcode'   => _LANGCODE,
             'xoops_charset'    => _CHARSET,
             'xoops_version'    => XOOPS_VERSION,
-            'xoops_upload_url' => XOOPS_UPLOAD_URL)
+            'xoops_upload_url' => XOOPS_UPLOAD_URL
+            ]
         );
 
         if ($controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode'] == true) {
@@ -163,7 +165,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         // Assign from attributes of the render-target.
         //
         $smarty = $this->mSmarty;
-        $vars = array('stdout_buffer'=>$this->_mStdoutBuffer);
+        $vars = ['stdout_buffer' =>$this->_mStdoutBuffer];
         foreach ($target->getAttributes() as $key=>$value) {
             $vars[$key] = $value;
         }
@@ -191,7 +193,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         //
         // Theme rendering
         //
-        $blocks = array();
+        $blocks = [];
         foreach ($context->mAttributes['legacy_BlockContents'][0] as $key => $result) {
             // $smarty->append('xoops_lblocks', $result);
             $blocks[$result['name']] = $result;
@@ -313,7 +315,7 @@ function Legacy_function_stylesheet($params, &$smarty)
             }
         } else {
             if ($infoArr['file'] != null) {
-                $request = array();
+                $request = [];
                 foreach ($infoArr as $key => $value) {
                     if ($value != null) {
                         $request[] = "${key}=${value}";
@@ -342,13 +344,13 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 
     $theme = $root->mSiteConfig['Legacy']['Theme'];
 
-    $ret = array();
+    $ret = [];
     $ret['theme'] = $theme;
     $ret['file'] = $file;
     
     $file = $prefix . $file;
 
-    static $checkCache = array();
+    static $checkCache = [];
     if (isset($checkCache[$file])) {
         return $checkCache[$file];
     }

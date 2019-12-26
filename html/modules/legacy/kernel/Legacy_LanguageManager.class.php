@@ -159,7 +159,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      */
     public function _loadLanguage($dirname, $fileBodyName)
     {
-        static $trust_dirnames = array();
+        static $trust_dirnames = [];
         if (!isset($trust_dirnames[$dirname])) {
             $trust_dirnames[$dirname] = Legacy_Utils::getTrustDirnameByDirname($dirname);
         }

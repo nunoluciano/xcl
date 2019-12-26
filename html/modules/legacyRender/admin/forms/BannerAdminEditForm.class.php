@@ -39,27 +39,27 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['bid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['bid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['bid']->setDependsByArray(['required']);
         $this->mFieldProperties['bid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_BID);
     
         $this->mFieldProperties['cid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['cid']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['cid']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['cid']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CID);
         $this->mFieldProperties['cid']->addMessage('objectExist', _AD_LEGACYRENDER_ERROR_OBJECT_EXIST, _AD_LEGACYRENDER_LANG_CID);
         $this->mFieldProperties['cid']->addVar('handler', 'bannerclient');
         $this->mFieldProperties['cid']->addVar('module', 'legacyRender');
     
         $this->mFieldProperties['imptotal'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imptotal']->setDependsByArray(array('required'));
+        $this->mFieldProperties['imptotal']->setDependsByArray(['required']);
         $this->mFieldProperties['imptotal']->addMessage('required', _AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_IMPTOTAL);
     
         $this->mFieldProperties['imageurl'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imageurl']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['imageurl']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['imageurl']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_IMAGEURL, '255');
         $this->mFieldProperties['imageurl']->addVar('maxlength', '255');
     
         $this->mFieldProperties['clickurl'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['clickurl']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['clickurl']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['clickurl']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_CLICKURL, '255');
         $this->mFieldProperties['clickurl']->addVar('maxlength', '255');
     }

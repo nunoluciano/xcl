@@ -32,7 +32,7 @@ $db->queryF( "UPDATE ".$db->prefix($mydirname."_posts")." SET approval=1 WHERE p
 // turn topic_invisible off also
 $db->queryF( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_invisible=0 WHERE topic_id=$topic_id" ) ;
 
-$allowed_identifiers = array( 'post_id' , 'topic_id' , 'forum_id' , 'cat_ids' ) ;
+$allowed_identifiers = ['post_id', 'topic_id', 'forum_id', 'cat_ids'];
 
 if( in_array( $_GET['ret_name'] , $allowed_identifiers ) ) {
 	$ret_request = $_GET['ret_name'] . '=' . preg_replace( '/[^0-9,]/' , '' , $_GET['ret_val'] ) ;

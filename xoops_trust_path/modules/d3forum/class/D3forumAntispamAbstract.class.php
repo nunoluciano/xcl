@@ -2,7 +2,7 @@
 
 class D3forumAntispamAbstract {
 
-var $errors = array() ;
+var $errors = [];
 
 function getErrors4Html()
 {
@@ -16,11 +16,11 @@ function getErrors4Html()
 
 function getHtml4Assign()
 {
-	return array(
+	return [
 		'html_in_form' => '' ,
 		'js_global' => '' ,
 		'js_in_validate_function' => '' ,
-	) ;
+    ];
 }
 
 function checkValidate()

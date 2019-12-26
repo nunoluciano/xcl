@@ -14,8 +14,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 **/
 abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHandler
 {
-    protected $_mClientField = array('title'=>'title', 'category'=>'category_id', 'posttime'=>'posttime');
-    protected $_mClientConfig = array('tag'=>'tag_dirname', 'image'=>'use_image', 'workflow'=>'use_workflow', 'activity'=>'use_activity', 'map'=>'use_map');
+    protected $_mClientField = ['title' =>'title', 'category' =>'category_id', 'posttime' =>'posttime'];
+    protected $_mClientConfig = ['tag' =>'tag_dirname', 'image' =>'use_image', 'workflow' =>'use_workflow', 'activity' =>'use_activity', 'map' =>'use_map'];
 
     /**
      * _getTagList
@@ -221,7 +221,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
      */
     protected function _saveMap($obj)
     {
-        $result = array();
+        $result = [];
         XCube_DelegateUtils::call(
             'Legacy_Map.SetPlace',
             new XCube_Ref($result),
@@ -268,7 +268,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
             $this->getDataname(),
             $obj->get($this->mPrimary),
             $obj->get($this->_mClientField['posttime']),
-            array()
+            []
         );
         return $ret;
     }

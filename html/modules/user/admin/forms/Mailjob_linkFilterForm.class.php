@@ -16,14 +16,14 @@ define('MAILJOB_LINK_SORT_KEY_MAXVALUE', 4);
 
 class User_Mailjob_linkFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         MAILJOB_LINK_SORT_KEY_DEFAULT => 'mailjob_id',
         MAILJOB_LINK_SORT_KEY_DEFAULT => 'uid',
         MAILJOB_LINK_SORT_KEY_MAILJOB_ID => 'mailjob_id',
         MAILJOB_LINK_SORT_KEY_UID => 'uid',
         MAILJOB_LINK_SORT_KEY_RETRY => 'retry',
         MAILJOB_LINK_SORT_KEY_MESSAGE => 'message'
-    );
+    ];
     
     public function getDefaultSortKey()
     {

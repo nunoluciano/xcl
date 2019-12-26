@@ -35,7 +35,7 @@ class LegacyThemeHandler
 
     public function __construct()
     {
-        $this->_mThemeList=array();
+        $this->_mThemeList= [];
 
         if ($handler=opendir(XOOPS_THEME_PATH)) {
             while (($dir=readdir($handler))!==false) {
@@ -45,7 +45,7 @@ class LegacyThemeHandler
 
                 $themeDir=XOOPS_THEME_PATH."/".$dir;
                 if (is_dir($themeDir)) {
-                    $manifesto = array();
+                    $manifesto = [];
                     if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
                         $iniHandler = new XCube_IniHandler($mnfFile, true);
                         $manifesto = $iniHandler->getAllConfig();

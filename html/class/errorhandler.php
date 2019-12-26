@@ -38,7 +38,7 @@ class XoopsErrorHandler
      * @var array
      * @access private
      */
-    public $_errors = array();
+    public $_errors = [];
 
     /**
      * Show error messages?
@@ -149,7 +149,7 @@ class XoopsErrorHandler
             return $output;
         }
 
-        $output = array();
+        $output = [];
         foreach ($this->_errors as $error) {
             switch ($error['errno']) {
                 case E_USER_NOTICE:
@@ -215,12 +215,12 @@ class XoopsErrorHandler
 function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
 {
     // NOTE: we only store relative pathnames
-    $new_error = array(
+    $new_error = [
         'errno' => $errNo,
         'errstr' => $errStr,
-        'errfile' => str_replace(array(XOOPS_ROOT_PATH, XOOPS_TRUST_PATH), array('(html)', '(trust)'), $errFile),
+        'errfile' => str_replace([XOOPS_ROOT_PATH, XOOPS_TRUST_PATH], ['(html)', '(trust)'], $errFile),
         'errline' => $errLine
-        );
+    ];
     $error_handler =& XoopsErrorHandler::getInstance();
     $error_handler->handleError($new_error);
 }

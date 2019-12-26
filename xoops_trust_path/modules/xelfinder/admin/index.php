@@ -2,13 +2,13 @@
 if (! defined('XOOPS_MODULE_PATH')) define('XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules');
 if (! defined('XOOPS_MODULE_URL')) define('XOOPS_MODULE_URL', XOOPS_URL . '/modules');
 
-$check_dir = array(
+$check_dir = [
 	XOOPS_MODULE_PATH .'/'.$mydirname.'/cache',
 	XOOPS_MODULE_PATH .'/'.$mydirname.'/cache/tmb',
 	XOOPS_TRUST_PATH.'/uploads/xelfinder'
-);
+];
 
-$dir_res = array();
+$dir_res = [];
 
 foreach($check_dir as $dir){
 	$dir = rtrim($dir, '/');

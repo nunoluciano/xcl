@@ -14,19 +14,19 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyImagecategoryObject extends XoopsSimpleObject
 {
-    public $mImage = array();
+    public $mImage = [];
     public $_mImageLoadedFlag = false;
 
     /**
      * Array of group objects which are allowed to read files of this category.
      */
-    public $mReadGroups = array();
+    public $mReadGroups = [];
     public $_mReadGroupsLoadedFlag = false;
 
     /**
      * Array of group objects which are allowed to upload a file to this category.
      */
-    public $mUploadGroups = array();
+    public $mUploadGroups = [];
     public $_mUploadGroupsLoadedFlag = false;
     
     // !Fix deprecated constructor for php 7.x
@@ -218,7 +218,7 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
         return $returnFlag;
     }
     
-    public function &getObjectsWithReadPerm($groups = array(), $display = null)
+    public function &getObjectsWithReadPerm($groups = [], $display = null)
     {
         $criteria = new CriteriaCompo();
         if ($display != null) {
@@ -228,7 +228,7 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
         $objs =& $this->getObjects($criteria);
         unset($criteria);
 
-        $ret = array();
+        $ret = [];
         foreach (array_keys($objs) as $key) {
             if ($objs[$key]->hasReadPerm($groups)) {
                 $ret[] =& $objs[$key];

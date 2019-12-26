@@ -63,7 +63,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     /***
      * Preset avatar object collection.
      */
-    public $mSystemAvatars = array();
+    public $mSystemAvatars = [];
     
     /***
      * Other action form for AvatarSelect.
@@ -343,7 +343,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             die();
         }
         $scale = min($maxWidth / $width, $maxHeight / $height, 1);
-        return array('width' => intval($width * $scale),'height' => intval($height * $scale));
+        return ['width' => intval($width * $scale), 'height' => intval($height * $scale)];
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)

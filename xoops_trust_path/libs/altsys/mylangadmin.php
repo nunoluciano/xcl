@@ -88,8 +88,8 @@ if (empty($target_trustdirname)) {
 }
 
 // make list of language and check $target_lang
-$languages = array() ;
-$languages4disp = array() ;
+$languages = [];
+$languages4disp = [];
 if (! is_dir($base_dir)) {
     altsys_mylangadmin_errordie($target_mname, _MYLANGADMIN_ERR_MODNOLANGUAGE) ;
 }
@@ -118,7 +118,7 @@ if (! is_dir($lang_base_dir)) {
 }
 
 // make list of files and check $target_file
-$lang_files = array() ;
+$lang_files = [];
 $dh = opendir($lang_base_dir) ;
 if ($dh) {
     while ($file = readdir($dh)) {
@@ -150,7 +150,7 @@ $langfile_unique_path = "$lang_base_dir/$target_file" ;
 list($langfile_names, $constpref, $already_read) = altsys_mylangadmin_get_constant_names($langfile_unique_path, $target_dirname) ;
 
 // get user_values should be overridden
-$langfile_constants = array() ;
+$langfile_constants = [];
 foreach ($langfile_names as $name) {
     list($value) = $db->fetchRow($db->query("SELECT value FROM ".$db->prefix("altsys_language_constants")." WHERE mid=$target_mid AND language='$target_lang4sql' AND name='".addslashes($name)."'")) ;
     $langfile_constants[ $name ] = $value ;
@@ -168,7 +168,7 @@ if ($langman->my_language) {
     }
 } else {
     $mylang_unique_path = '' ;
-    $mylang_constants = array() ;
+    $mylang_constants = [];
 }
 
 
@@ -289,7 +289,8 @@ if ($breadcrumbsObj->hasPaths()) {
 
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
-$tpl->assign(array(
+$tpl->assign(
+    [
     'target_dirname' => $target_dirname,
     'target_mname' => $target_mname,
     'target_lang' => $target_lang,
@@ -307,7 +308,8 @@ $tpl->assign(array(
     'notice' => $notice4disp,
     'already_read' => $already_read,
     'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys'),
-)) ;
+    ]
+) ;
 $tpl->display('db:altsys_main_mylangadmin.html') ;
 
 xoops_cp_footer() ;

@@ -32,7 +32,7 @@ class XCube_Theme
      * 
      * @var string
      */
-    public $mDepends = array();
+    public $mDepends = [];
     
     public $mVersion = null;
     
@@ -71,7 +71,7 @@ class XCube_Theme
        
     public $mLicense = null;
     
-    public $_mManifesto = array();
+    public $_mManifesto = [];
 
     /**
      * Load manifesto file, and set infomations from the file to member

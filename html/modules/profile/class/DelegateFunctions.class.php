@@ -94,7 +94,7 @@ class Profile_Delegate
             //
             //validation checks for custom fields
             //
-            $validationArr = array();
+            $validationArr = [];
             $actionForm->mFieldProperties[$def->get('field_name')] = new XCube_FieldProperty($actionForm);
             //required check
             if ($def->get('required')==true) {

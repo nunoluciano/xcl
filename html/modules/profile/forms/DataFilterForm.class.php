@@ -16,11 +16,11 @@ define('PROFILE_DATA_SORT_KEY_DEFAULT', PROFILE_DATA_SORT_KEY_UID);
 
 class Profile_DataFilterForm extends Profile_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         PROFILE_DATA_SORT_KEY_UID => 'uid'
-    );
+    ];
 
-    /*** Profile_DefinitionsObject[] ***/ public $mFields = array();
+    /*** Profile_DefinitionsObject[] ***/ public $mFields = [];
 
     /**
      * @public

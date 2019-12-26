@@ -135,7 +135,7 @@ $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemNa
     $renderTarget->setAttribute("xoopsModuleConfig", $xoopsModuleConfig);
     $renderTarget->setAttribute("com_order", $com_order);
 
-    $extraParams = array();
+    $extraParams = [];
     if ('system' != $xoopsModule->get('dirname')) {
         $comment_config = $xoopsModule->getInfo('comments');
         if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {

@@ -47,7 +47,7 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['sid'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['sid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['sid']->setDependsByArray(['required']);
         $this->mFieldProperties['sid']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_SID);
     }
 

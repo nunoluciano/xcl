@@ -64,7 +64,7 @@ class XoopsCommentRenderer
         $this->_useIcons = $use_icons;
         $this->_doIconCheck = $do_iconcheck;
         $this->_memberHandler =& xoops_gethandler('member');
-        $this->_statusText = array(XOOPS_COMMENT_PENDING => '<span style="text-decoration: none; font-weight: bold; color: #00ff00;">'._CM_PENDING.'</span>', XOOPS_COMMENT_ACTIVE => '<span style="text-decoration: none; font-weight: bold; color: #ff0000;">'._CM_ACTIVE.'</span>', XOOPS_COMMENT_HIDDEN => '<span style="text-decoration: none; font-weight: bold; color: #0000ff;">'._CM_HIDDEN.'</span>');
+        $this->_statusText = [XOOPS_COMMENT_PENDING => '<span style="text-decoration: none; font-weight: bold; color: #00ff00;">' . _CM_PENDING . '</span>', XOOPS_COMMENT_ACTIVE => '<span style="text-decoration: none; font-weight: bold; color: #ff0000;">' . _CM_ACTIVE . '</span>', XOOPS_COMMENT_HIDDEN => '<span style="text-decoration: none; font-weight: bold; color: #0000ff;">' . _CM_HIDDEN . '</span>'];
     }
 
     /**
@@ -122,7 +122,8 @@ class XoopsCommentRenderer
                     $text = $this->_comments[$i]->getVar('com_text');
                 }
             }
-            $this->_tpl->append('comments', array('id' => $this->_comments[$i]->getVar('com_id'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($this->_comments[$i]->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($this->_comments[$i]->getVar('com_modified'), 'm'), 'poster' => $poster));
+            $this->_tpl->append('comments', ['id' => $this->_comments[$i]->getVar('com_id'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($this->_comments[$i]->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($this->_comments[$i]->getVar('com_modified'), 'm'), 'poster' => $poster]
+            );
         }
     }
 
@@ -171,10 +172,11 @@ class XoopsCommentRenderer
                 $text = $tree[$comment_id]['obj']->getVar('com_text');
             }
         }
-        $replies = array();
+        $replies = [];
         $this->_renderThreadReplies($tree, $comment_id, $replies, '&nbsp;&nbsp;', $admin_view);
         $show_replies = (count($replies) > 0) ? true : false;
-        $this->_tpl->append('comments', array('pid' => $tree[$comment_id]['obj']->getVar('com_pid'), 'id' => $tree[$comment_id]['obj']->getVar('com_id'), 'itemid' => $tree[$comment_id]['obj']->getVar('com_itemid'), 'rootid' => $tree[$comment_id]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($tree[$comment_id]['obj']->getVar('com_uid')), 'replies' => $replies, 'show_replies' => $show_replies));
+        $this->_tpl->append('comments', ['pid' => $tree[$comment_id]['obj']->getVar('com_pid'), 'id' => $tree[$comment_id]['obj']->getVar('com_id'), 'itemid' => $tree[$comment_id]['obj']->getVar('com_itemid'), 'rootid' => $tree[$comment_id]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($tree[$comment_id]['obj']->getVar('com_uid')), 'replies' => $replies, 'show_replies' => $show_replies]
+        );
     }
 
     /**
@@ -199,7 +201,7 @@ class XoopsCommentRenderer
                 $title = $thread[$key]['obj']->getVar('com_title');
             }
             $title = (false != $admin_view) ? $title.' '.$this->_statusText[$thread[$key]['obj']->getVar('com_status')] : $title;
-            $replies[] = array('id' => $key, 'prefix' => $current_prefix, 'date_posted' => formatTimestamp($thread[$key]['obj']->getVar('com_created'), 'm'), 'title' => $title, 'root_id' => $thread[$key]['obj']->getVar('com_rootid'), 'status' => $this->_statusText[$thread[$key]['obj']->getVar('com_status')], 'poster' => $this->_getPosterName($thread[$key]['obj']->getVar('com_uid')));
+            $replies[] = ['id' => $key, 'prefix' => $current_prefix, 'date_posted' => formatTimestamp($thread[$key]['obj']->getVar('com_created'), 'm'), 'title' => $title, 'root_id' => $thread[$key]['obj']->getVar('com_rootid'), 'status' => $this->_statusText[$thread[$key]['obj']->getVar('com_status')], 'poster' => $this->_getPosterName($thread[$key]['obj']->getVar('com_uid'))];
             $current_prefix .= $prefix;
         }
         if (isset($thread[$key]['child']) && !empty($thread[$key]['child'])) {
@@ -253,9 +255,10 @@ class XoopsCommentRenderer
                 $text = $tree[$comment_id]['obj']->getVar('com_text');
             }
         }
-        $replies = array();
+        $replies = [];
         $this->_renderNestReplies($tree, $comment_id, $replies, 25, $admin_view);
-        $this->_tpl->append('comments', array('pid' => $tree[$comment_id]['obj']->getVar('com_pid'), 'id' => $tree[$comment_id]['obj']->getVar('com_id'), 'itemid' => $tree[$comment_id]['obj']->getVar('com_itemid'), 'rootid' => $tree[$comment_id]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($tree[$comment_id]['obj']->getVar('com_uid')), 'replies' => $replies));
+        $this->_tpl->append('comments', ['pid' => $tree[$comment_id]['obj']->getVar('com_pid'), 'id' => $tree[$comment_id]['obj']->getVar('com_id'), 'itemid' => $tree[$comment_id]['obj']->getVar('com_itemid'), 'rootid' => $tree[$comment_id]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($tree[$comment_id]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($tree[$comment_id]['obj']->getVar('com_uid')), 'replies' => $replies]
+        );
     }
 
     /**
@@ -279,7 +282,7 @@ class XoopsCommentRenderer
                 $title = $thread[$key]['obj']->getVar('com_title');
             }
             $text = (false != $admin_view) ? $thread[$key]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$thread[$key]['obj']->getVar('com_status')].'<br />IP: <span style="font-weight: bold;">'.$thread[$key]['obj']->getVar('com_ip').'</span></div>' : $thread[$key]['obj']->getVar('com_text');
-            $replies[] = array('id' => $key, 'prefix' => $prefix, 'pid' => $thread[$key]['obj']->getVar('com_pid'), 'itemid' => $thread[$key]['obj']->getVar('com_itemid'), 'rootid' => $thread[$key]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($thread[$key]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($thread[$key]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($thread[$key]['obj']->getVar('com_uid')));
+            $replies[] = ['id' => $key, 'prefix' => $prefix, 'pid' => $thread[$key]['obj']->getVar('com_pid'), 'itemid' => $thread[$key]['obj']->getVar('com_itemid'), 'rootid' => $thread[$key]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($thread[$key]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($thread[$key]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($thread[$key]['obj']->getVar('com_uid'))];
 
             $prefix = $prefix + 25;
         }

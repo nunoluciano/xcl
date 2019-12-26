@@ -32,7 +32,7 @@ class PicoCategoryHandler
 			exit;
 		}
 
-		$ret = array();
+		$ret = [];
 		//for php5.3+
 		while (list($cat_id) = $db->fetchRow($crs)) {
 			$objTemp = new PicoCategory($this->mydirname, $cat_id, $this->permissions);
@@ -53,7 +53,7 @@ class PicoCategoryHandler
 			exit;
 		}
 
-		$ret = array();
+		$ret = [];
 		//for php5.3+
 		while (list($cat_id) = $db->fetchRow($crs)) {
 			$objTemp = new PicoCategory($this->mydirname, $cat_id, $this->permissions);
@@ -82,7 +82,7 @@ class PicoCategory
 {
 
 	var $permission;
-	var $data = array();
+	var $data = [];
 	var $isadminormod;
 	var $mydirname;
 	var $mod_config;
@@ -115,7 +115,7 @@ class PicoCategory
 		$this->permission = @$permissions[@$cat_row['cat_permission_id']];
 		$this->isadmin = $permissions['is_module_admin'];
 		$this->isadminormod = !empty($this->permission['is_moderator']) || $this->isadmin;
-		$this->data = array(
+		$this->data = [
 			'id' => intval($cat_row['cat_id']),
 			'isadmin' => $this->isadmin,
 			'isadminormod' => $this->isadminormod,
@@ -130,11 +130,11 @@ class PicoCategory
 			'cat_options' => pico_common_unserialize($cat_row['cat_options']),
 			'paths_raw' => pico_common_unserialize($cat_row['cat_path_in_tree']),
 			'redundants' => pico_common_unserialize($cat_row['cat_redundants']),
-		) + $cat_row;
+                      ] + $cat_row;
 
 		// array guarantee
-		foreach (array('cat_options', 'paths_raw', 'redundants') as $key) {
-			if (!is_array($this->data[$key])) $this->data[$key] = array();
+		foreach (['cat_options', 'paths_raw', 'redundants'] as $key) {
+			if (!is_array($this->data[$key])) $this->data[$key] = [];
 		}
 
 		// set mod_config
@@ -150,12 +150,12 @@ class PicoCategory
 	{
 		$myts = &PicoTextSanitizer::sGetInstance();
 
-		return array(
+		return [
 			'link' => pico_common_make_category_link4html($this->mod_config, $this->data),
 			'title' => $myts->makeTboxData4Show($this->data['cat_title'], 1, 1),
 			'desc' => $myts->displayTarea($this->data['cat_desc'], 1),
 			'weight' => intval($this->data['cat_weight']),
-		) + $this->data;
+               ] + $this->data;
 	}
 
 	function getData4edit()
@@ -165,7 +165,7 @@ class PicoCategory
 			$options4edit .= htmlspecialchars($key . ':' . $val . "\n", ENT_QUOTES);
 		}
 
-		$ret4edit = array(
+		$ret4edit = [
 			'title' => htmlspecialchars($this->data['cat_title'], ENT_QUOTES),
 			'vpath' => htmlspecialchars($this->data['cat_vpath'], ENT_QUOTES),
 			'desc' => htmlspecialchars($this->data['cat_desc'], ENT_QUOTES),
@@ -173,7 +173,7 @@ class PicoCategory
 			// !Fix WARNING: count(): Parameter must be an array or an object that implements Countable
 			'children_count' => count( @$this->data['redundants'] ) ,
 			//'children_count' => count(@$this->data['redundants']['subcattree_raw']),
-		) + $this->getData4html();
+                    ] + $this->getData4html();
 
 		return $ret4edit;
 	}
@@ -184,7 +184,7 @@ class PicoCategory
 		$pcat_data = $parentObj->getData();
 		$uid = is_object(@$GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
 
-		return array(
+		return [
 			'cat_id' => -1,
 			'cat_permission_id' => 0,
 			'cat_vpath' => '',
@@ -201,7 +201,7 @@ class PicoCategory
 			'cat_modified_time' => time(),
 			'cat_vpath_mtime' => 0,
 			'cat_redundants' => '',
-		);
+        ];
 	}
 
 	function setOverriddenModConfig()
@@ -227,14 +227,14 @@ class PicoCategory
 
 	function getBreadcrumbs()
 	{
-		if (!is_array($this->data['paths_raw'])) return array();
-		$ret = array();
+		if (!is_array($this->data['paths_raw'])) return [];
+		$ret = [];
 		foreach ($this->data['paths_raw'] as $cat_id => $name_raw) {
-			$ret[] = array(
+			$ret[] = [
 				// TODO (returns raw data as possible)
 				'url' => XOOPS_URL . '/modules/' . $this->mydirname . '/' . pico_common_make_category_link4html($this->mod_config, $cat_id, $this->mydirname),
 				'name' => htmlspecialchars($name_raw, ENT_QUOTES),
-			);
+            ];
 		}
 		return $ret;
 	}
@@ -255,7 +255,7 @@ class PicoCategory
 	{
 		if (empty($node)) {
 			$node = $this->data['redundants']['subcattree_raw'];
-			$this->child_ids = array();
+			$this->child_ids = [];
 		}
 		foreach ($node as $subnode) {
 			$this->child_ids[] = $subnode['cat_id'];

@@ -9,7 +9,7 @@ class UserUsersObject extends XoopsSimpleObject
     //
     // TODO naming rule
     //
-    public $Groups = array();
+    public $Groups = [];
     public $_mGroupsLoadedFlag = false;
 
     public $_mRankLoadedFlag = false;
@@ -150,7 +150,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
      */
     public function &getUids($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
         $sql = "SELECT uid FROM " . $this->mTable;
 
@@ -164,7 +164,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
                 $sql .= " WHERE " . $where;
             }
 
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
@@ -206,7 +206,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
             //
             // Delete
             //
-            $oldGroupidArr = array();
+            $oldGroupidArr = [];
             foreach (array_keys($oldLinkArr) as $key) {
                 $oldGroupidArr[] = $oldLinkArr[$key]->get('groupid');
                 if (!in_array($oldLinkArr[$key]->get('groupid'), $user->Groups)) {

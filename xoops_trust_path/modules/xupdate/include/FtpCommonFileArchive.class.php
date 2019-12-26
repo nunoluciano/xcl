@@ -152,7 +152,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                 throw new Exception('ZipArchive open fail '.$downloadFilePath, 2);
             }
         } catch (Exception $e) {
-            $zip_open_error_arr = array(
+            $zip_open_error_arr = [
                     ZIPARCHIVE::ER_EXISTS => 'ER_EXISTS',
                     ZIPARCHIVE::ER_INCONS => 'ER_INCONS',
                     ZIPARCHIVE::ER_INVAL => 'ER_INVAL',
@@ -162,7 +162,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                     ZIPARCHIVE::ER_OPEN => 'ER_OPEN',
                     ZIPARCHIVE::ER_READ => 'ER_READ',
                     ZIPARCHIVE::ER_SEEK => 'ER_SEEK'
-            );
+            ];
             $this->_set_error_log($e->getMessage().(in_array($result, $zip_open_error_arr) ? f : 'undefine'));
             return false;
         }
@@ -228,7 +228,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                 return false;
             }
                 
-            $dirs = array();
+            $dirs = [];
             while ($source->next() === true) {
                 Xupdate_Utils::check_http_timeout();
                 
@@ -292,11 +292,11 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
      **/
     private function procExec($command, array &$output = null, &$return_var = -1, array &$error_output = null)
     {
-        $descriptorspec = array(
-                0 => array("pipe", "r"),  // stdin
-                1 => array("pipe", "w"),  // stdout
-                2 => array("pipe", "w")   // stderr
-        );
+        $descriptorspec = [
+            0 => ["pipe", "r"],  // stdin
+            1 => ["pipe", "w"],  // stdout
+            2 => ["pipe", "w"]   // stderr
+        ];
     
         $command = escapeshellcmd($command);
         $process = proc_open($command, $descriptorspec, $pipes, null, null);

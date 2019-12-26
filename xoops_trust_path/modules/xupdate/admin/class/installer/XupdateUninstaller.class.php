@@ -93,8 +93,8 @@ class Xupdate_Uninstaller
         if (is_array($tables)) {
             foreach ($tables as $table) {
                 $tableName = str_replace(
-                    array('{prefix}', '{dirname}'),
-                    array(XOOPS_DB_PREFIX, $dirname),
+                    ['{prefix}', '{dirname}'],
+                    [XOOPS_DB_PREFIX, $dirname],
                     $table
                 );
                 if (XOOPS_DB_TYPE === "pdo_pgsql") {

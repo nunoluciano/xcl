@@ -61,13 +61,13 @@ class EasyLex_SQLToken
  */
 class EasyLex_SQLScanner
 {
-    public $mTokens = array();
+    public $mTokens = [];
     public $mStatus = EASYLEX_SQL_UNKNOWN;
 
     /**
      * @var Array of char
      */
-    public $mBuffer = array();
+    public $mBuffer = [];
 
     public $mIndex = 0;
 
@@ -77,7 +77,7 @@ class EasyLex_SQLScanner
 
     public function setBuffer($buffer)
     {
-        $this->mBuffer = array();
+        $this->mBuffer = [];
         for ($i = 0; $i < strlen($buffer); $i++) {
             $this->mBuffer[$i] = $buffer{
                 $i};
@@ -332,8 +332,8 @@ class EasyLex_SQLScanner
      */
     public function &getOperations()
     {
-        $ret = array();
-        $t_tokens = array();
+        $ret = [];
+        $t_tokens = [];
         $depth = 0;
 
         foreach (array_keys($this->mTokens) as $key) {
@@ -348,7 +348,7 @@ class EasyLex_SQLScanner
             if ($this->mTokens[$key]->mType == EASYLEX_SQL_SEMICOLON && $depth == 0) {
                 $ret[] = &$t_tokens;
                 unset($t_tokens);
-                $t_tokens = array();
+                $t_tokens = [];
             }
         }
 
@@ -362,11 +362,11 @@ class EasyLex_SQLScanner
 
     public function getSQL()
     {
-        $sqls = array();
+        $sqls = [];
         $lines = &$this->getOperations();
 
         foreach ($lines as $line) {
-            $t_arr = array();
+            $t_arr = [];
             foreach ($line as $token) {
                 $t_arr[] = $token->getOutputValue();
             }

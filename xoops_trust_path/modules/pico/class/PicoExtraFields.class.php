@@ -31,7 +31,7 @@ class PicoExtraFields
 		$this->isadminormod = $isadminormod;
 		$this->content_id = $content_id;
 		$this->images_path = XOOPS_ROOT_PATH . '/' . $mod_config['extra_images_dir'];
-		$this->image_sizes = array();
+		$this->image_sizes = [];
 		$size_combos = preg_split('/\s+/', $this->mod_config['extra_images_size']);
 		foreach ($size_combos as $size_combo) {
 			$this->image_sizes[] = array_map('intval', preg_split('/\D+/', $size_combo));
@@ -40,7 +40,7 @@ class PicoExtraFields
 
 	function getSerializedRequestsFromPost()
 	{
-		$ret = array();
+		$ret = [];
 		(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
 		// text fields

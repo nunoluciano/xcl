@@ -26,7 +26,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('comment');
-        $handler->mDeleteSuccess->add(array(&$this, "doDelete"));
+        $handler->mDeleteSuccess->add([&$this, "doDelete"]);
         return $handler;
     }
 

@@ -41,7 +41,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
         //
         // This handler not connects to database.
         //
-        $this->_mResult = array(
+        $this->_mResult = [
             "-12"  => _TZ_GMTM12,
             "-11"  => _TZ_GMTM11,
             "-10"  => _TZ_GMTM10,
@@ -76,7 +76,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
             "11"   => _TZ_GMTP11,
             "12"   => _TZ_GMTP12,
             "13"   => _TZ_GMTP13
-        );
+        ];
     }
     public function XoopsTimezoneHandler(&$db)
     {
@@ -108,7 +108,7 @@ class XoopsTimezoneHandler extends XoopsObjectHandler
 
     public function &getObjects($criteria = null, $key_as_id = false)
     {
-        $ret = array();
+        $ret = [];
         
         foreach ($this->_mResult as $offset => $zone_name) {
             $obj =new XoopsTimezone();

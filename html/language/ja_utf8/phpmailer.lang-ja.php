@@ -6,7 +6,7 @@
  * This file is written in EUC-JP.
  */
 
-$PHPMAILER_LANG = array();
+$PHPMAILER_LANG = [];
 
 $PHPMAILER_LANG["provide_address"]      = '少なくとも1つメールアドレスを' .
                                           '指定する必要があります。';

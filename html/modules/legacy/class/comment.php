@@ -143,7 +143,7 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
      */
     public function getModuleIds()
     {
-        $ret = array();
+        $ret = [];
 
         $sql = "SELECT DISTINCT com_modid FROM " . $this->mTable;
         $res = $this->db->query($sql);

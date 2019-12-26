@@ -28,8 +28,8 @@ class Legacy_Utils
         $systemModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'SystemModules')));
         $recommendedModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'RecommendedModules')));
         $moduleHandler =& xoops_gethandler('module');
-        $uninstalledModules = array();
-        $disabledModules = array();
+        $uninstalledModules = [];
+        $disabledModules = [];
         foreach ($systemModules as $systemModule) {
             if (!empty($systemModule)) {
                 if (!($moduleObject =& $moduleHandler->getByDirname($systemModule))) {
@@ -42,7 +42,7 @@ class Legacy_Utils
         if (count($uninstalledModules) == 0 && count($disabledModules) == 0) {
             return true;
         } else {
-            return array('uninstalled' =>$uninstalledModules, 'disabled'=>$disabledModules, 'recommended'=>$recommendedModules);
+            return ['uninstalled' =>$uninstalledModules, 'disabled' =>$disabledModules, 'recommended' =>$recommendedModules];
         }
     }
     
@@ -214,7 +214,7 @@ class Legacy_Utils
     **/
     public static function getDirnameListByTrustDirname(/*** string ***/ $trustDirname)
     {
-        $list = array();
+        $list = [];
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('isactive', 0, '>'));
         $cri->add(new Criteria('trust_dirname', $trustDirname));
@@ -256,8 +256,8 @@ class Legacy_Utils
         $handler = xoops_gethandler('config');
         $configArr = $handler->getConfigsByDirname('legacyRender');
     
-        $replace = array($modulename, $pagetitle, $action);
-        $search = array('{modulename}', '{pagetitle}', '{action}');
+        $replace = [$modulename, $pagetitle, $action];
+        $search = ['{modulename}', '{pagetitle}', '{action}'];
         $ret = str_replace($search, $replace, $configArr['pagetitle']);
     
         $ret = (! $modulename) ? preg_replace("/\[modulename\](.*)\[\/modulename\]/U", "", $ret) : preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '$1', $ret);
@@ -354,7 +354,7 @@ class Legacy_Utils
     **/
     public static function getCommonModuleList(/*** string ***/ $role)
     {
-        $list = array();
+        $list = [];
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('isactive', 0, '>'));
         $cri->add(new Criteria('role', $role));

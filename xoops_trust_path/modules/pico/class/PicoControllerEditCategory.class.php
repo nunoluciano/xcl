@@ -57,7 +57,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 		// category list can be read for category jumpbox etc.
 		$categoryHandler = new PicoCategoryHandler($this->mydirname, $this->permissions);
 		$categories = $categoryHandler->getAllCategories();
-		$this->assign['categories_can_post'] = array();
+		$this->assign['categories_can_post'] = [];
 		foreach ($categories as $tmpObj) {
 			$tmp_data = $tmpObj->getData();
 			if (empty($tmp_data['can_makesubcategory'])) continue;
@@ -81,7 +81,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 		$this->assign['formtitle'] = $page == 'makecategory' ? _MD_PICO_LINK_MAKECATEGORY : _MD_PICO_CATEGORYMANAGER;
 		$this->assign['gticket_hidden'] = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
 		$this->assign['category']['option_desc'] = $this->getCategoryOptions4edit();
-		$this->assign['category']['wraps_directories'] = array('' => '---') + pico_main_get_wraps_directories_recursively($this->mydirname, '/');
+		$this->assign['category']['wraps_directories'] = ['' => '---'] + pico_main_get_wraps_directories_recursively($this->mydirname, '/');
 
 		// views
 		$this->template_name = $this->mydirname . '_main_category_form.html';
@@ -93,7 +93,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 	{
 		include dirname(dirname(__FILE__)) . '/include/configs_can_override.inc.php';
 
-		$lines = array();
+		$lines = [];
 		foreach ($pico_configs_can_be_override as $key => $type) {
 			if (isset($this->mod_config[$key])) {
 				$val = $this->mod_config[$key];

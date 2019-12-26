@@ -18,9 +18,9 @@ class Xupdate_AssetManager
 
     /*** string ***/ public $mTrustDirname = 'xupdate';
 
-    /*** string[][][] ***/ public $mAssetList = array();
+    /*** string[][][] ***/ public $mAssetList = [];
 
-    /*** object[][] ***/ private $_mCache = array();
+    /*** object[][] ***/ private $_mCache = [];
 
     /**
      * __construct
@@ -46,7 +46,7 @@ class Xupdate_AssetManager
         /**
          *  @var    Xupdate_AssetManager[]
         **/
-        static $instance = array();
+        static $instance = [];
 
         if (!isset($instance[$dirname])) {
             $instance[$dirname] = new self($dirname);

@@ -68,10 +68,10 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
             $com_order = (int)$_GET['com_order'];
         }
         if ($com_order != XOOPS_COMMENT_OLD1ST) {
-            $xoopsTpl->assign(array('comment_order' => XOOPS_COMMENT_NEW1ST, 'order_other' => XOOPS_COMMENT_OLD1ST));
+            $xoopsTpl->assign(['comment_order' => XOOPS_COMMENT_NEW1ST, 'order_other' => XOOPS_COMMENT_OLD1ST]);
             $com_dborder = 'DESC';
         } else {
-            $xoopsTpl->assign(array('comment_order' => XOOPS_COMMENT_OLD1ST, 'order_other' => XOOPS_COMMENT_NEW1ST));
+            $xoopsTpl->assign(['comment_order' => XOOPS_COMMENT_OLD1ST, 'order_other' => XOOPS_COMMENT_NEW1ST]);
             $com_dborder = 'ASC';
         }
         // admins can view all comments and IPs, others can only view approved(active) comments
@@ -158,11 +158,11 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $renderTarget->setTemplateName("legacy_comment_navi.html");
         $renderTarget->setAttribute("pageName", $comment_config['pageName']);
         
-        $modeOptions = array("nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED);
+        $modeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
         $renderTarget->setAttribute('modeOptions', $modeOptions);
         $renderTarget->setAttribute('com_mode', $com_mode);
         
-        $orderOptions = array(0 => _OLDESTFIRST, 1 => _NEWESTFIRST);
+        $orderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
         $renderTarget->setAttribute('orderOptions', $orderOptions);
         $renderTarget->setAttribute('com_order', $com_order);
         
@@ -181,7 +181,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         // $link_extra is raw data and not sanitized.
         // 
         $link_extra = '';
-        $fetchParams = array();
+        $fetchParams = [];
         if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
             foreach ($comment_config['extraParams'] as $extra_key) {
                 //
@@ -211,9 +211,13 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         //
         // TODO We change raw string data, we must change template for guarding XSS.
         //		
-        $xoopsTpl->assign(array('commentsnav' => $renderTarget->getResult(), 'editcomment_link' => 'comment_edit.php?com_itemid='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.''.htmlspecialchars($link_extra, ENT_QUOTES), 'deletecomment_link' => 'comment_delete.php?com_itemid='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.''.$link_extra, 'replycomment_link' => 'comment_reply.php?com_itemid='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.''.$link_extra));
+        $xoopsTpl->assign(
+            ['commentsnav' => $renderTarget->getResult(), 'editcomment_link' => 'comment_edit.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . htmlspecialchars($link_extra, ENT_QUOTES), 'deletecomment_link' => 'comment_delete.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . $link_extra, 'replycomment_link' => 'comment_reply.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . $link_extra]
+        );
 
         // assign some lang variables
-        $xoopsTpl->assign(array('lang_from' => _CM_FROM, 'lang_joined' => _CM_JOINED, 'lang_posts' => _CM_POSTS, 'lang_poster' => _CM_POSTER, 'lang_thread' => _CM_THREAD, 'lang_edit' => _EDIT, 'lang_delete' => _DELETE, 'lang_reply' => _REPLY, 'lang_subject' => _CM_REPLIES, 'lang_posted' => _CM_POSTED, 'lang_updated' => _CM_UPDATED, 'lang_notice' => _CM_NOTICE));
+        $xoopsTpl->assign(
+            ['lang_from' => _CM_FROM, 'lang_joined' => _CM_JOINED, 'lang_posts' => _CM_POSTS, 'lang_poster' => _CM_POSTER, 'lang_thread' => _CM_THREAD, 'lang_edit' => _EDIT, 'lang_delete' => _DELETE, 'lang_reply' => _REPLY, 'lang_subject' => _CM_REPLIES, 'lang_posted' => _CM_POSTED, 'lang_updated' => _CM_UPDATED, 'lang_notice' => _CM_NOTICE]
+        );
     }
 }

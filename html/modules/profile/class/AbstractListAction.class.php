@@ -13,7 +13,7 @@ require_once XOOPS_ROOT_PATH . "/core/XCube_PageNavigator.class.php";
 
 class Profile_AbstractListAction extends Profile_AbstractAction
 {
-    public $mObjects = array();
+    public $mObjects = [];
     public $mFilter = null;
 
     /**

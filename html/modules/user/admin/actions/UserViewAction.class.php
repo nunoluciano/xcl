@@ -103,10 +103,10 @@ class User_UserViewAction extends User_AbstractViewAction
         //
         // TODO dirty code... :(
         //
-        $umodeOptions = array("nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED);
+        $umodeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
         $render->setAttribute('umode', $umodeOptions[$this->mObject->get('umode')]);
 
-        $uorderOptions = array(0 => _OLDESTFIRST, 1 => _NEWESTFIRST);
+        $uorderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
         $render->setAttribute('uorder', $uorderOptions[$this->mObject->get('uorder')]);
         
         //
@@ -115,19 +115,21 @@ class User_UserViewAction extends User_AbstractViewAction
         $controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
         require_once XOOPS_ROOT_PATH . "/include/notification_constants.php";
 
-        $methodOptions = array(XOOPS_NOTIFICATION_METHOD_DISABLE => _NOT_METHOD_DISABLE,
-                                 XOOPS_NOTIFICATION_METHOD_PM => _NOT_METHOD_PM,
-                                 XOOPS_NOTIFICATION_METHOD_EMAIL => _NOT_METHOD_EMAIL
-                           );
+        $methodOptions = [
+            XOOPS_NOTIFICATION_METHOD_DISABLE => _NOT_METHOD_DISABLE,
+            XOOPS_NOTIFICATION_METHOD_PM      => _NOT_METHOD_PM,
+            XOOPS_NOTIFICATION_METHOD_EMAIL   => _NOT_METHOD_EMAIL
+        ];
         $render->setAttribute('notify_method', $methodOptions[$this->mObject->get('notify_method')]);
         
-        $modeOptions = array(XOOPS_NOTIFICATION_MODE_SENDALWAYS => _NOT_MODE_SENDALWAYS,
-                               XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE => _NOT_MODE_SENDONCE,
-                               XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT => _NOT_MODE_SENDONCEPERLOGIN
-                         );
+        $modeOptions = [
+            XOOPS_NOTIFICATION_MODE_SENDALWAYS         => _NOT_MODE_SENDALWAYS,
+            XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE => _NOT_MODE_SENDONCE,
+            XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT   => _NOT_MODE_SENDONCEPERLOGIN
+        ];
         $render->setAttribute('notify_mode', $modeOptions[$this->mObject->get('notify_mode')]);
     
-        $definitions = array();
+        $definitions = [];
         $profile = null;
         XCube_DelegateUtils::call('Legacy_Profile.GetDefinition', new XCube_Ref($definitions), 'view');
         XCube_DelegateUtils::call('Legacy_Profile.GetProfile', new XCube_Ref($profile), $this->mObject->get('uid'));

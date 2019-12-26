@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class UserMailjobObject extends XoopsSimpleObject
 {
-    public $mUsers = array();
+    public $mUsers = [];
     public $_mUsersLoadedFlag = false;
     public $mUserCount = 0;
     public $_mUserCountLoadedFlag = false;

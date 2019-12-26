@@ -17,7 +17,7 @@ function smarty_function_d3pipes($params, &$smarty)
 	$mydirpath = XOOPS_ROOT_PATH . '/modules/' . $dirname;
 	require XOOPS_TRUST_PATH . '/modules/d3pipes/blocks.php';
 
-	$block = b_d3pipes_async_show(array($dirname, '', $pipe_id, $max));
+	$block = b_d3pipes_async_show([$dirname, '', $pipe_id, $max]);
 
 	echo @$block['content'];
 }

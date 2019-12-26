@@ -14,7 +14,7 @@ require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetUploadForm.cla
 class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 {
     public $mActionForm = null;
-    public $mErrorMessages = array();
+    public $mErrorMessages = [];
     
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -95,7 +95,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
         
-        $themeimages = array();
+        $themeimages = [];
         if (!$this->_fetchTemplateFiles($tar, $tplset, $themeimages)) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
@@ -119,7 +119,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             } elseif (isset($infoArr[3]) && trim($infoArr[3]) == 'images') {
                 $infoArr[2] = trim($infoArr[2]);
                 if (preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $infoArr[2], $match)) {
-                    $themeimages[] = array('name' => $infoArr[2], 'content' => $info['file']);
+                    $themeimages[] = ['name' => $infoArr[2], 'content' => $info['file']];
                 }
             }
             if (count($default) > 0) {

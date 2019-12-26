@@ -15,7 +15,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
 </object>';
 
-    protected $mDirArray = array();
+    protected $mDirArray = [];
     protected $_mTemporaryPath = null;
     protected $_mFilename = null;
     protected $_mIsDeleted = false;

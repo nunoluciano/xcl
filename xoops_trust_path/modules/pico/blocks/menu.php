@@ -5,7 +5,7 @@ function b_pico_menu_show($options)
 	// options
 	$mytrustdirname = basename(dirname(dirname(__FILE__)));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
-	$cat_ids = trim(@$options[1]) === '' ? array() : array_map('intval', explode(',', $options[1]));
+	$cat_ids = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_menu.html' : trim($options[2]);
 
 	// mydirname check
@@ -15,17 +15,17 @@ function b_pico_menu_show($options)
 	$categoryHandler = new PicoCategoryHandler($mydirname);
 
 	// category objects
-	if ($cat_ids === array()) {
+	if ($cat_ids === []) {
 		$categoryObjs = $categoryHandler->getAllCategories();
 	} else {
-		$categoryObjs = array();
+		$categoryObjs = [];
 		foreach ($cat_ids as $cat_id) {
 			$categoryObjs[] = $categoryHandler->get($cat_id);
 		}
 	}
 
 	// categories loop
-	$categories4assign = array();
+	$categories4assign = [];
 	foreach ($categoryObjs as $cat_id => $categoryObj) {
 		// assign categories
 		$categories4assign[$cat_id] = $categoryObj->getData4html();
@@ -48,7 +48,7 @@ function b_pico_menu_show($options)
 	$constpref = '_MB_' . strtoupper($mydirname);
 
 	// make an array named 'block'
-	$block = array(
+	$block = [
 		'mytrustdirname' => $mytrustdirname,
 		'mydirname' => $mydirname,
 		'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
@@ -57,7 +57,7 @@ function b_pico_menu_show($options)
 		'categories' => $categories4assign,
 		'lang_category' => constant($constpref . '_CATEGORY'),
 		'lang_topcategory' => constant($constpref . '_TOPCATEGORY'),
-	);
+    ];
 
 	if (empty($options['disable_renderer'])) {
 		// render it
@@ -77,19 +77,21 @@ function b_pico_menu_edit($options)
 	// options
 	$mytrustdirname = basename(dirname(dirname(__FILE__)));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
-	$cat_ids = trim(@$options[1]) === '' ? array() : array_map('intval', explode(',', $options[1]));
+	$cat_ids = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_menu.html' : trim($options[2]);
 
 	if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) die('Invalid mydirname');
 
 	require_once XOOPS_ROOT_PATH . '/class/template.php';
 	$tpl = new XoopsTpl();
-	$tpl->assign(array(
+	$tpl->assign(
+        [
 		'mydirname' => $mydirname,
 		'categories' => $cat_ids,
 		'categories_imploded' => implode(',', $cat_ids),
 		'order_options' => b_pico_list_allowed_order(),
 		'this_template' => $this_template,
-	));
+        ]
+    );
 	return $tpl->fetch('db:' . $mydirname . '_blockedit_menu.html');
 }

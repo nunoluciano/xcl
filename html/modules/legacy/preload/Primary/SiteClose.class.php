@@ -22,7 +22,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
         if ($this->mRoot->mContext->getXoopsConfig('closesite') == 1) {
             
             $this->mController->mSetupUser->add("Legacy_SiteClose::callbackSetupUser", XCUBE_DELEGATE_PRIORITY_FINAL);
-            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
+            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [&$this, "callbackCheckLoginSuccess"]);
         }
     }
 
@@ -55,15 +55,18 @@ class Legacy_SiteClose extends XCube_ActionFilter
         if (!$accessAllowFlag) {
             require_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl =new XoopsTpl();
-            $xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
-                                       'xoops_isuser' => is_object($context->mXoopsUser), //GIJ
-                                       'xoops_themecss' => xoops_getcss(),
-                                       'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                                       'lang_login' => _LOGIN,
-                                       'lang_username' => _USERNAME,
-                                       'lang_password' => _PASSWORD,
-                                       'lang_siteclosemsg' => $xoopsConfig['closesite_text']
-                                       ));
+            $xoopsTpl->assign(
+                [
+                    'xoops_sitename'    => htmlspecialchars($xoopsConfig['sitename']),
+                    'xoops_isuser'      => is_object($context->mXoopsUser), //GIJ
+                    'xoops_themecss'    => xoops_getcss(),
+                    'xoops_imageurl'    => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
+                    'lang_login'        => _LOGIN,
+                    'lang_username'     => _USERNAME,
+                    'lang_password'     => _PASSWORD,
+                    'lang_siteclosemsg' => $xoopsConfig['closesite_text']
+                ]
+            );
                                        
             $xoopsTpl->compile_check = true;
             

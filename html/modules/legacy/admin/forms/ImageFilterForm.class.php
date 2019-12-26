@@ -28,7 +28,7 @@ define('IMAGE_SORT_KEY_DEFAULT', '-'.IMAGE_SORT_KEY_IMAGE_CREATED);
 
 class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         IMAGE_SORT_KEY_IMAGE_ID => 'image_id',
         IMAGE_SORT_KEY_IMAGE_NAME => 'image_name',
         IMAGE_SORT_KEY_IMAGE_NICENAME => 'image_nicename',
@@ -37,7 +37,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         IMAGE_SORT_KEY_IMAGE_DISPLAY => 'image_display',
         IMAGE_SORT_KEY_IMAGE_WEIGHT => 'image_weight',
         IMAGE_SORT_KEY_IMGCAT_ID => 'imgcat_id'
-    );
+    ];
     
     public $mKeyword = "";
     public $mOptionField = "";

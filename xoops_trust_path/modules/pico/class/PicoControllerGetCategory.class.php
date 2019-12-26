@@ -47,7 +47,7 @@ class PicoControllerGetCategory extends PicoControllerAbstract
 		}
 
 		// contents
-		$this->assign['contents'] = array();
+		$this->assign['contents'] = [];
 		$contentObjs = $this->currentCategoryObj->getContents();
 		foreach ($contentObjs as $contentObj) {
 			$this->assign['contents'][] = $contentObj->getData4html();

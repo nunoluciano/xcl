@@ -22,7 +22,7 @@
                 echo '<p>Could not update '.$modules[$mid]->getVar('name').'</p>';
             } else {
                 $newmid = $modules[$mid]->getVar('mid');
-                $msgs = array();
+                $msgs = [];
                 $msgs[] = 'Module data updated.';
                 $tplfile_handler =& xoops_gethandler('tplfile');
                 $templates = $modules[$mid]->getInfo('templates');
@@ -59,8 +59,8 @@
                 }
                 $blocks = $modules[$mid]->getInfo('blocks');
                 $msgs[] = 'Rebuilding blocks...';
-                $showfuncs = array();
-                $funcfiles = array();
+                $showfuncs = [];
+                $funcfiles = [];
                 if ($blocks != false) {
                     $count = count($blocks);
                     include_once(XOOPS_ROOT_PATH.'/class/xoopsblock.php');
@@ -168,24 +168,25 @@
                 if ($configs != false) {
                     if ($modules[$mid]->getVar('hascomments') != 0) {
                         include_once(XOOPS_ROOT_PATH.'/include/comment_constants.php');
-                        array_push($configs, array('name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => array('_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN)));
-                        array_push($configs, array('name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0));
+                        array_push($configs, ['name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => ['_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN]]
+                        );
+                        array_push($configs, ['name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0]);
                     }
                 } else {
                     if ($modules[$mid]->getVar('hascomments') != 0) {
-                        $configs = array();
+                        $configs = [];
                         include_once(XOOPS_ROOT_PATH.'/include/comment_constants.php');
-                        $configs[] = array('name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => array('_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN));
-                        array_push($configs, array('name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0));
+                        $configs[] = ['name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => ['_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN]];
+                        array_push($configs, ['name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0]);
                     }
                 }
                 // RMV-NOTIFY
                 if ($modules[$mid]->getVar('hasnotification') != 0) {
                     if (empty($configs)) {
-                        $configs = array();
+                        $configs = [];
                     }
                     include_once(XOOPS_ROOT_PATH.'/include/notification_constants.php');
-                    $configs[] = array('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options);
+                    $configs[] = ['name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options];
                 }
 
                 if ($configs != false) {
@@ -251,5 +252,5 @@
     $content .= ob_get_contents();
     $content .= "</td></tr></table>\n";
     ob_end_clean();
-    $b_next = array('updateComments', _INSTALL_L14);
+    $b_next = ['updateComments', _INSTALL_L14];
     include './install_tpl.php';

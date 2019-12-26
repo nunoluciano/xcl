@@ -103,28 +103,29 @@ if( ! empty( $_POST['deletepostsok'] ) ) {
 	include XOOPS_ROOT_PATH."/header.php";
 	$xoopsOption['template_main'] = $mydirname.'_main_delete.html' ;
 
-	$xoopsTpl->assign( array(
-		'mydirname' => $mydirname ,
-		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
-		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'] ,
-		'mod_config' => $xoopsModuleConfig ,
-		'mode' => 'delete' ,
-		'post_id' => $post_id ,
-		'reference_subject' => @$reference_subject4html ,
-		'reference_message' => @$reference_message4html ,
-		'reference_name' => @$reference_name4html ,
-		'reference_time' => @$reference_time ,
-		'reference_time_formatted' => formatTimestamp( @$reference_time , 'm' ) ,
-		'children_count' => count( $children ) ,
-		'category' => $category4assign ,
-		'forum' => $forum4assign ,
-		'topic' => $topic4assign ,
-		'post' => $post4assign ,
-		'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum') ,
-		'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
-		'xoops_pagetitle' => _DELETE ,
-		'xoops_breadcrumbs' => array_merge( $xoops_breadcrumbs , array( array( 'name' => _DELETE ) ) ) ,
-	) ) ;
+	$xoopsTpl->assign([
+                          'mydirname' => $mydirname,
+                          'mod_url' => XOOPS_URL.'/modules/'.$mydirname,
+                          'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'],
+                          'mod_config' => $xoopsModuleConfig,
+                          'mode' => 'delete',
+                          'post_id' => $post_id,
+                          'reference_subject' => @$reference_subject4html,
+                          'reference_message' => @$reference_message4html,
+                          'reference_name' => @$reference_name4html,
+                          'reference_time' => @$reference_time,
+                          'reference_time_formatted' => formatTimestamp( @$reference_time , 'm' ),
+                          'children_count' => count( $children ),
+                          'category' => $category4assign,
+                          'forum' => $forum4assign,
+                          'topic' => $topic4assign,
+                          'post' => $post4assign,
+                          'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum'),
+                          'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+                          'xoops_pagetitle' => _DELETE,
+                          'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _DELETE]]),
+                      ]
+    ) ;
 
 	include XOOPS_ROOT_PATH.'/footer.php';
 }

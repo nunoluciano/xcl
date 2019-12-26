@@ -25,7 +25,7 @@ class User_GroupMemberEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['uid']->setDependsByArray(array('intRange'));
+        $this->mFieldProperties['uid']->setDependsByArray(['intRange']);
         $this->mFieldProperties['uid']->addMessage('intRange', _AD_USER_ERROR_REQUEST_IS_WRONG);
         $this->mFieldProperties['uid']->addVar('min', '1');
         $this->mFieldProperties['uid']->addVar('max', '2');

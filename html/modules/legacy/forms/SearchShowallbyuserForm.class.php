@@ -34,11 +34,11 @@ class Legacy_SearchShowallbyuserForm extends Legacy_SearchShowallForm
         // Set field properties
         //
         $this->mFieldProperties['uid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['uid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['uid']->setDependsByArray(['required']);
         $this->mFieldProperties['uid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_UID);
         
         $this->mFieldProperties['mid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['mid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['mid']->setDependsByArray(['required']);
         $this->mFieldProperties['mid']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_MID);
     }
     

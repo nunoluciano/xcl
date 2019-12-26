@@ -2,10 +2,10 @@
 
 class FormProcessByHtml
 {
-	var $fields = array();
+	var $fields = [];
 	var $form_html = '';
 	var $column_separator = ',';
-	var $types = array('int', 'double', 'singlebytes', 'email', 'telephone');
+	var $types = ['int', 'double', 'singlebytes', 'email', 'telephone'];
 	var $validator_dir;
 
 	function FormProcessByHtml()
@@ -25,17 +25,17 @@ class FormProcessByHtml
 		}
 	}
 
-	function setFieldsByForm($form_html, $ignore_names = array())
+	function setFieldsByForm($form_html, $ignore_names = [])
 	{
 		// initialize
-		$this->fields = array();
+		$this->fields = [];
 		$this->form_html = $form_html;
 
 		// get name="..." from the form
 		preg_match_all('#<[^>]+name=([\'"]?)([^\'" ]+)\\1[^>]*>#iU', $this->form_html, $matches, PREG_SET_ORDER);
-		$tags = array();
+		$tags = [];
 		foreach ($matches as $match) {
-			$tags[] = array($match[0], $match[2]);
+			$tags[] = [$match[0], $match[2]];
 		}
 
 		// parse HTML and file label
@@ -57,7 +57,7 @@ class FormProcessByHtml
 			if (in_array($field_name, $ignore_names)) continue;
 
 			// options for radio/checkbox or multiple text with the same "name"
-			$options = array();
+			$options = [];
 			if (isset($this->fields[$field_name])) {
 				$this->fields[$field_name]['count']++;
 				$this->fields[$field_name]['tags'][] = $tag;
@@ -102,7 +102,7 @@ class FormProcessByHtml
 			}
 
 			// get classes of the tag
-			$classes = array();
+			$classes = [];
 			if (preg_match('/class\s*\=\s*"([^"]+)"/', $tag, $regs)) {
 				$classes = array_map('trim', explode(' ', trim($regs[1])));
 			}
@@ -121,7 +121,7 @@ class FormProcessByHtml
 
 			// get label as title of the field
 			$label = empty($title) ? $field_name : $title;
-			if (!in_array($tag_kind, array('radio', 'checkbox'))) {
+			if (!in_array($tag_kind, ['radio', 'checkbox'])) {
 				// search <label> for other than radio/checkbox
 				if (preg_match('#for\s*\=\s*([\'"]?)' . preg_quote($id) . '\\1\>(.*)\<\/label\>#iU', $this->form_html, $regs)) {
 					$label = strip_tags(@$regs[2]);
@@ -136,20 +136,20 @@ class FormProcessByHtml
 				}
 			}
 
-			$this->fields[$field_name] = array(
-				'field_name_raw' => $field_name_raw,
-				'tags' => array($tag),
-				'tag_kind' => $tag_kind,
-				'id' => $id,
-				'classes' => $classes,
-				'label' => $label,
-				'required' => $required,
-				'array_type' => $array_type,
-				'type' => $type,
-				'options' => $options,
-				'count' => $count,
-				'errors' => array(),
-			);
+			$this->fields[$field_name] = [
+                'field_name_raw' => $field_name_raw,
+                'tags' => [$tag],
+                'tag_kind' => $tag_kind,
+                'id' => $id,
+                'classes' => $classes,
+                'label' => $label,
+                'required' => $required,
+                'array_type' => $array_type,
+                'type' => $type,
+                'options' => $options,
+                'count' => $count,
+                'errors' => [],
+            ];
 		}
 	}
 
@@ -189,7 +189,7 @@ class FormProcessByHtml
 
 			// missing required
 			if ($attribs['required'] == true && ($value4reqcheck === '' || $value4reqcheck === null)) {
-				$this->fields[$field_name]['errors'][] = in_array($attribs['tag_kind'], array('text', 'textarea')) ? 'missing required' : 'missing selected';
+				$this->fields[$field_name]['errors'][] = in_array($attribs['tag_kind'], ['text', 'textarea']) ? 'missing required' : 'missing selected';
 			}
 
 			$value = $this->_validateValueRecursive($value, $field_name, $attribs);
@@ -207,7 +207,7 @@ class FormProcessByHtml
 		if (!empty($at)) $attribs = $at;
 
 		if (is_array($value)) {
-			return array_map(array($this, '_validateValueRecursive'), $value);
+			return array_map([$this, '_validateValueRecursive'], $value);
 		} else {
 
 			// tag_kind validation (range check)
@@ -216,7 +216,7 @@ class FormProcessByHtml
 				$this->fields[$field_name]['errors'][] = 'invalid option';
 			}
 			// radio/checkbox
-			if (in_array($attribs['tag_kind'], array('radio', 'checkbox')) && !empty($value)) {
+			if (in_array($attribs['tag_kind'], ['radio', 'checkbox']) && !empty($value)) {
 				if (!in_array($value, $attribs['options'])) {
 					$this->fields[$field_name]['errors'][] = 'invalid option';
 				}
@@ -301,7 +301,7 @@ class FormProcessByHtml
 	// fetch post data from RAW DATA
 	function _getPostAsArray($input_encoding = null)
 	{
-		$ret = array();
+		$ret = [];
 
 		$query = file_get_contents('php://input');
 		$key_vals = explode('&', $query);
@@ -322,7 +322,7 @@ class FormProcessByHtml
 					$ret[$key][] = $val;
 				} else {
 					// convert string into array
-					$ret[$key] = array($ret[$key], $val);
+					$ret[$key] = [$ret[$key], $val];
 				}
 			} else {
 				// string
@@ -335,15 +335,15 @@ class FormProcessByHtml
 
 	function getErrors()
 	{
-		$ret = array();
+		$ret = [];
 		foreach ($this->fields as $field_name => $attribs) {
 			if (!empty($attribs['errors']) && is_array($attribs['errors'])) {
 				foreach ($attribs['errors'] as $error_msg) {
-					$ret[] = array(
+					$ret[] = [
 						'name' => $field_name,
 						'label4disp' => htmlspecialchars($attribs['label'], ENT_QUOTES),
 						'message' => $error_msg,
-					);
+                    ];
 				}
 			}
 		}
@@ -382,7 +382,7 @@ class FormProcessByHtml
 	function replaceValueTextbox($form_html, $attribs)
 	{
 		$values = $attribs['value'];
-		if (!is_array($values)) $values = array($values);
+		if (!is_array($values)) $values = [$values];
 
 		foreach (array_keys($values) as $i) {
 			$value = $values[$i];
@@ -413,7 +413,7 @@ class FormProcessByHtml
 	function replaceSelectedOptions($form_html, $attribs)
 	{
 		$values = $attribs['value'];
-		if (!is_array($values)) $values = array($values);
+		if (!is_array($values)) $values = [$values];
 
 		list($before, $options_html_tmp) = explode($attribs['tags'][0], $form_html, 2);
 		list($options_html, $after) = explode('</select>', $options_html_tmp, 2);
@@ -447,7 +447,7 @@ class FormProcessByHtml
 	function replaceCheckedCheckboxes($form_html, $attribs, $field_name)
 	{
 		$values = $attribs['value'];
-		if (!is_array($values)) $values = array($values);
+		if (!is_array($values)) $values = [$values];
 
 		preg_match_all('/<input\s+type\="checkbox"[^>]*name\="' . preg_quote($attribs['field_name_raw']) . '"[^>]*>/', $form_html, $matches, PREG_PATTERN_ORDER);
 
@@ -495,7 +495,7 @@ class FormProcessByHtml
 
 	function renderForDB()
 	{
-		$ret = array();
+		$ret = [];
 		foreach ($this->fields as $field_name => $attribs) {
 			$ret[$attribs['label']] = $attribs['value'];
 		}

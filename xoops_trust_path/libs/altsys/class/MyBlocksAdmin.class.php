@@ -6,14 +6,14 @@ class MyBlocksAdmin
 
     public $db;
     public $lang;
-    public $cachetime_options = array();
-    public $ctype_options = array();
-    public $type_options = array();
+    public $cachetime_options = [];
+    public $ctype_options = [];
+    public $type_options = [];
     public $target_mid = 0;
     public $target_dirname = '';
     public $target_mname = '';
-    public $block_configs = array();
-    public $preview_request = array();
+    public $block_configs = [];
+    public $preview_request = [];
 
     public function MyBlocksAadmin()
     { }
@@ -24,7 +24,7 @@ class MyBlocksAdmin
         $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
         $this->lang = @$GLOBALS['xoopsConfig']['language'];
 
-        $this->cachetime_options = array(
+        $this->cachetime_options = [
             0 => _NOCACHE,
             30 => sprintf(_SECONDS, 30),
             60 => _MINUTE,
@@ -36,22 +36,22 @@ class MyBlocksAdmin
             259200 => sprintf(_DAYS, 3),
             604800 => _WEEK,
             2592000 => _MONTH,
-        );
+        ];
 
-        $this->ctype_options = array(
+        $this->ctype_options = [
             'H' => _MD_A_MYBLOCKSADMIN_CTYPE_HTML,
             'T' => _MD_A_MYBLOCKSADMIN_CTYPE_NOSMILE,
             'S' => _MD_A_MYBLOCKSADMIN_CTYPE_SMILE,
             'P' => _MD_A_MYBLOCKSADMIN_CTYPE_PHP,
-        );
+        ];
 
-        $this->type_options = array(
+        $this->type_options = [
             'C' => 'custom block',
             'E' => 'cloned custom block',
             'M' => 'module\'s block',
             'D' => 'cloned module\'s block',
             'S' => 'system block',
-        );
+        ];
     }
 
     //HACK by domifara for php5.3+
@@ -206,12 +206,12 @@ class MyBlocksAdmin
         } else {
             // origined from the table of `block_module_link`
             $result = $this->db->query("SELECT module_id FROM " . $this->db->prefix('block_module_link') . " WHERE block_id='$bid'");
-            $selected_mids = array();
+            $selected_mids = [];
             while (list($selected_mid) = $this->db->fetchRow($result)) {
                 $selected_mids[] = intval($selected_mid);
             }
             if (empty($selected_mids)) {
-                $selected_mids = array(0);
+                $selected_mids = [0];
             } // all pages
         }
 
@@ -220,7 +220,7 @@ class MyBlocksAdmin
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $module_list = $module_handler->getList($criteria);
-        $module_list = array(-1 => _MD_A_MYBLOCKSADMIN_TOPPAGE, 0 => _MD_A_MYBLOCKSADMIN_ALLPAGES) + $module_list;
+        $module_list = [-1 => _MD_A_MYBLOCKSADMIN_TOPPAGE, 0 => _MD_A_MYBLOCKSADMIN_ALLPAGES] + $module_list;
 
         // build options
         $module_options = '';
@@ -255,7 +255,7 @@ class MyBlocksAdmin
         } else {
             // origined from the table of `group_perm`
             $result = $this->db->query("SELECT gperm_groupid FROM " . $this->db->prefix('group_permission') . " WHERE gperm_itemid='$bid' AND gperm_name='block_read'");
-            $selected_gids = array();
+            $selected_gids = [];
             while (list($selected_gid) = $this->db->fetchRow($result)) {
                 $selected_gids[] = intval($selected_gid);
             }
@@ -371,7 +371,7 @@ class MyBlocksAdmin
         // main query
         $sql = "SELECT * FROM " . $this->db->prefix("newblocks") . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
         $result = $this->db->query($sql);
-        $block_arr = array();
+        $block_arr = [];
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
             $handler = &xoops_gethandler('block'); //add
@@ -392,9 +392,9 @@ class MyBlocksAdmin
         }
 
         // blocks rendering loop
-        $blocks4assign = array();
+        $blocks4assign = [];
         foreach ($block_arr as $i => $block) {
-            $block_data = array(
+            $block_data = [
                 'bid' => intval($block->getVar('bid')),
                 'name' => $block->getVar('name', 'n'),
                 'title' => $block->getVar('title', 'n'),
@@ -405,20 +405,21 @@ class MyBlocksAdmin
                 'can_edit' => $this->canEdit($block),
                 'can_delete' => $this->canDelete($block),
                 'can_clone' => $this->canClone($block),
-            );
-            $blocks4assign[] = array(
+            ];
+            $blocks4assign[] = [
                 'name_raw' => $block_data['name'],
                 'title_raw' => $block_data['title'],
                 'cell_position' => $this->renderCell4BlockPosition($block_data),
                 'cell_module_link' =>  $this->renderCell4BlockModuleLink($block_data),
                 'cell_group_perm' =>  $this->renderCell4BlockReadGroupPerm($block_data),
-            ) + $block_data;
+                               ] + $block_data;
         }
 
         // display
         require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
         $tpl = new D3Tpl();
-        $tpl->assign(array(
+        $tpl->assign(
+            [
             'target_mid' => $this->target_mid,
             'target_dirname' => $this->target_dirname,
             'target_mname' => $this->target_mname,
@@ -426,7 +427,8 @@ class MyBlocksAdmin
             'cachetime_options' => $this->cachetime_options,
             'blocks' => $blocks4assign,
             'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'myblocksadmin'),
-        ));
+            ]
+        );
         $tpl->display('db:altsys_main_myblocksadmin_list.html');
     }
 
@@ -434,12 +436,12 @@ class MyBlocksAdmin
     public function get_block_configs()
     {
         if ($this->target_mid <= 0) {
-            return array();
+            return [];
         }
         include XOOPS_ROOT_PATH . '/modules/' . $this->target_dirname . '/xoops_version.php';
 
         if (empty($modversion['blocks'])) {
-            return array();
+            return [];
         } else {
             return $modversion['blocks'];
         }
@@ -451,7 +453,7 @@ class MyBlocksAdmin
         // query for getting blocks
         $sql = "SELECT * FROM " . $this->db->prefix("newblocks") . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
         $result = $this->db->query($sql);
-        $block_arr = array();
+        $block_arr = [];
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
             $handler = &xoops_gethandler('block'); //add
@@ -467,7 +469,7 @@ class MyBlocksAdmin
             }
         }
 
-        $item_list = array();
+        $item_list = [];
         foreach (array_keys($block_arr) as $i) {
             $item_list[$block_arr[$i]->getVar("bid")] = $block_arr[$i]->getVar("title");
         }
@@ -485,7 +487,7 @@ class MyBlocksAdmin
     }
 
 
-    public function update_block($bid, $bside, $bweight, $bvisible, $btitle, $bcontent, $bctype, $bcachetime, $options = array())
+    public function update_block($bid, $bside, $bweight, $bvisible, $btitle, $bcontent, $bctype, $bcachetime, $options = [])
     {
         global $xoopsConfig;
 
@@ -570,7 +572,7 @@ class MyBlocksAdmin
         // compare group ids from request and the records.
         $sql = "SELECT `gperm_groupid` FROM `$table` WHERE gperm_name='block_read' AND `gperm_itemid`=$bid";
         $result = $this->db->query($sql);
-        $db_gids = array();
+        $db_gids = [];
         while (list($gid) = $this->db->fetchRow($result)) {
             $db_gids[] = $gid;
         }
@@ -594,12 +596,12 @@ class MyBlocksAdmin
 
     public function do_order()
     {
-        $sides = is_array(@$_POST['sides']) ? $_POST['sides'] : array();
+        $sides = is_array(@$_POST['sides']) ? $_POST['sides'] : [];
         foreach (array_keys($sides) as $bid) {
             $request = $this->fetchRequest4Block($bid);
 
             // update the block
-            $this->update_block($request['bid'], $request['side'], $request['weight'], $request['visible'], $request['title'], null, null, $request['bcachetime'], array());
+            $this->update_block($request['bid'], $request['side'], $request['weight'], $request['visible'], $request['title'], null, null, $request['bcachetime'], []);
 
             // block_module_link update
             $this->updateBlockModuleLink($bid, $request['bmodule']);
@@ -627,7 +629,7 @@ class MyBlocksAdmin
             $visible = 1;
         }
 
-        return array(
+        return [
             'bid' => $bid,
             'side' => intval(@$_POST['sides'][$bid]),
             'weight' => intval(@$_POST['weights'][$bid]),
@@ -636,10 +638,10 @@ class MyBlocksAdmin
             'content' => $myts->stripSlashesGPC(@$_POST['contents'][$bid]),
             'ctype' => preg_replace('/[^A-Z]/', '', @$_POST['ctypes'][$bid]),
             'bcachetime' => intval(@$_POST['bcachetimes'][$bid]),
-            'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : array(0),
-            'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : array(),
-            'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : array(),
-        );
+            'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : [0],
+            'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : [],
+            'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : [],
+        ];
     }
 
 
@@ -701,7 +703,7 @@ class MyBlocksAdmin
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', _DELETE);
 
-        xoops_confirm(array('op' => 'delete_ok') + $GLOBALS['xoopsGTicket']->getTicketArray(__LINE__, 1800, 'myblocksadmin'), "?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=$this->target_dirname&amp;bid=$bid", sprintf(_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK, $block->getVar('title')));
+        xoops_confirm(['op' => 'delete_ok'] + $GLOBALS['xoopsGTicket']->getTicketArray(__LINE__, 1800, 'myblocksadmin'), "?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=$this->target_dirname&amp;bid=$bid", sprintf(_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK, $block->getVar('title')));
     }
 
 
@@ -728,7 +730,7 @@ class MyBlocksAdmin
         }
 
         if (empty($_POST['options'])) {
-            $options = array();
+            $options = [];
         } elseif (is_array($_POST['options'])) {
             $options = $_POST['options'];
         } else {
@@ -759,7 +761,7 @@ class MyBlocksAdmin
         }
 
         // update the block by the request
-        $this->update_block($newbid, $request['side'], $request['weight'], $request['visible'], $request['title'], $request['content'], $request['ctype'], $request['bcachetime'], is_array(@$_POST['options']) ? $_POST['options'] : array());
+        $this->update_block($newbid, $request['side'], $request['weight'], $request['visible'], $request['title'], $request['content'], $request['ctype'], $request['bcachetime'], is_array(@$_POST['options']) ? $_POST['options'] : []);
 
         // block_module_link update
         $this->updateBlockModuleLink($newbid, $request['bmodule']);
@@ -814,7 +816,7 @@ class MyBlocksAdmin
         }
 
         // update the block by the request
-        $msg = $this->update_block($bid, $request['side'], $request['weight'], $request['visible'], $request['title'], $request['content'], $request['ctype'], $request['bcachetime'], is_array(@$_POST['options']) ? $_POST['options'] : array());
+        $msg = $this->update_block($bid, $request['side'], $request['weight'], $request['visible'], $request['title'], $request['content'], $request['ctype'], $request['bcachetime'], is_array(@$_POST['options']) ? $_POST['options'] : []);
 
         // block_module_link update
         $this->updateBlockModuleLink($bid, $request['bmodule']);
@@ -875,7 +877,7 @@ class MyBlocksAdmin
                 break;
         }
 
-        $is_custom = in_array($block->getVar('block_type'), array('C', 'E')) ? true : false;
+        $is_custom = in_array($block->getVar('block_type'), ['C', 'E']) ? true : false;
         $block_template = $block->getVar('template', 'n');
         $block_template_tplset = '';
 
@@ -891,7 +893,7 @@ class MyBlocksAdmin
         $block->setVar('c_type','S');
     }
 */
-        $block_data = $this->preview_request + array(
+        $block_data = $this->preview_request + [
             'bid' => $bid,
             'name' => $block->getVar('name', 'n'),
             'title' => $block->getVar('title', 'n'),
@@ -906,9 +908,9 @@ class MyBlocksAdmin
             'is_custom' => $is_custom,
             'type' => $block->getVar('block_type'),
             'ctype' => $block->getVar('c_type'),
-        );
+            ];
 
-        $block4assign = array(
+        $block4assign = [
             'name_raw' => $block_data['name'],
             'title_raw' => $block_data['title'],
             'content_raw' => $block_data['content'],
@@ -917,7 +919,7 @@ class MyBlocksAdmin
             'cell_group_perm' =>  $this->renderCell4BlockReadGroupPerm($block_data),
             'cell_options' => $this->renderCell4BlockOptions($block_data),
             'content_preview' => $this->previewContent($block_data),
-        ) + $block_data;
+                        ] + $block_data;
 
         // display
         require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
@@ -931,7 +933,8 @@ class MyBlocksAdmin
             $tpl->assign('xoops_cube_legacy', false);
         }
 
-        $tpl->assign(array(
+        $tpl->assign(
+            [
             'target_dirname' => $this->target_dirname,
             'target_mname' => $this->target_mname,
             'language' => $this->lang,
@@ -943,7 +946,8 @@ class MyBlocksAdmin
             'submit_button' => $button_value,
             'common_fck_installed' => $this->checkFck(),
             'gticket_hidden' => $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'myblocksadmin'),
-        ));
+            ]
+        );
 
         if (defined('XOOPS_CUBE_LEGACY')) {
             $tpl->display('db:altsys_main_myblocksadmin_edit_4legacy.html');
@@ -996,12 +1000,12 @@ class MyBlocksAdmin
 
     public function get_blockname_from_ctype($bctype)
     {
-        $ctypes = array(
+        $ctypes = [
             'H' => _MD_A_MYBLOCKSADMIN_CTYPE_HTML,
             'S' => _MD_A_MYBLOCKSADMIN_CTYPE_SMILE,
             'N' => _MD_A_MYBLOCKSADMIN_CTYPE_NOSMILE,
             'P' => _MD_A_MYBLOCKSADMIN_CTYPE_PHP,
-        );
+        ];
 
         return isset($ctypes[$bctype]) ? $ctypes[$bctype] : _MD_A_MYBLOCKSADMIN_CTYPE_SMILE;
     }

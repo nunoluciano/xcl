@@ -13,7 +13,7 @@ require_once XOOPS_MODULE_PATH . "/profile/class/AbstractViewAction.class.php";
 
 class Profile_DataViewAction extends Profile_AbstractViewAction
 {
-    public $mFieldArr = array();
+    public $mFieldArr = [];
 
     /**
      * @public

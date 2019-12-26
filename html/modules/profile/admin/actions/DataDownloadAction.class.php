@@ -62,8 +62,8 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 
         $defHandler =& xoops_getmodulehandler('definitions');
         $defArr =& $defHandler->getDefinitions(false);
-        $label = array('uid');
-        $columns = array('uid');
+        $label = ['uid'];
+        $columns = ['uid'];
         foreach ($defArr as $column => $obj) {
             $label[] = $this->_encoding($obj->get('label'));
             $columns[] = $obj->get('field_name');
@@ -77,7 +77,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
             $criteria->setStart($offset);
             $dataArr = $handler->getObjects($criteria);
             foreach ($dataArr as $profile) {
-                $data = array();
+                $data = [];
                 foreach ($columns as $column) {
                     if (isset($defArr[$column]) && $defArr[$column]->get('type') == 'date') {
                         $value = $value ? formatTimestamp($profile->get($column), 'Y/n/j H:i') : '';

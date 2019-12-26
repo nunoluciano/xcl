@@ -5,7 +5,7 @@ require_once dirname(__FILE__).'/MyBlocksAdmin.class.php' ;
 class MyBlocksAdminForX20S extends MyBlocksAdmin
 {
 
-    public $block_positions = array() ;
+    public $block_positions = [];
 
     public function MyBlocksAadminForX20S()
     {
@@ -17,7 +17,7 @@ class MyBlocksAdminForX20S extends MyBlocksAdmin
         parent::construct() ;
 
         @include_once XOOPS_ROOT_PATH.'/modules/system/language/'.$this->lang.'/admin/blocksadmin.php' ;
-        $this->block_positions = array(
+        $this->block_positions = [
         -1 => _NONE ,
         0 => _AM_SBLEFT ,
         1 => _AM_SBRIGHT ,
@@ -27,7 +27,7 @@ class MyBlocksAdminForX20S extends MyBlocksAdmin
         7 => _AM_CBBOTTOMLEFT ,
         8 => _AM_CBBOTTOMRIGHT ,
         9 => _AM_CBBOTTOM ,
-    ) ;
+        ];
     }
 
 //HACK by domifara for php5.3+

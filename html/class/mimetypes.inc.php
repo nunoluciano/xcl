@@ -15,7 +15,7 @@
 * @since        2.0.9.3
 */
 
-return array(
+return [
      "hqx"      => "application/mac-binhex40",
      "doc"      => "application/msword",
      "dot"      => "application/msword",
@@ -116,4 +116,4 @@ return array(
      "avi"      => "video/x-msvideo",
      "m4v"        => "video/x-m4v",
      "mp4"        => "video/mp4",
-);
+];

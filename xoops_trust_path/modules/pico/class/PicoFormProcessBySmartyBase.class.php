@@ -18,7 +18,7 @@ class PicoFormProcessBySmartyBase
 	var $mail_body_pre = ''; // public
 	var $mail_body_post = ''; // public
 	var $mail_subject = null; // public
-	var $toEmails = array(); // public
+	var $toEmails = []; // public
 	var $fromEmail = null; // public
 	var $fromName = null; // public
 	var $canPostAgain = true; // public
@@ -32,7 +32,7 @@ class PicoFormProcessBySmartyBase
 	var $cc_mail_body_post = ''; // public
 	var $cc_mail_subject = null; // public
 
-	var $ignore_field_names = array('cancel'); // public
+	var $ignore_field_names = ['cancel']; // public
 	var $cancel_field_name = 'cancel'; // public
 
 	// !Fix deprecated constructor
@@ -144,7 +144,7 @@ class PicoFormProcessBySmartyBase
 		global $xoopsModule;
 
 		// session clear in contentmanager or makecontent
-		if (in_array($_GET['page'], array('contentmanager', 'makecontent'))) {
+		if (in_array($_GET['page'], ['contentmanager', 'makecontent'])) {
 			unset($_SESSION[$this->session_index]);
 			return false;
 		}
@@ -400,7 +400,7 @@ class PicoFormProcessBySmartyBase
 				$toMailer->setFromEmail($this->form_processor->fields[$this->from_field_name]['value']);
 				if (!empty($this->fromname_field_name) && !empty($this->form_processor->fields[$this->fromname_field_name]['value'])) {
 					// remove cr, lf, null
-					$toMailer->setFromName(str_replace(array("\n", "\r", "\0"), '', $this->form_processor->fields[$this->fromname_field_name]['value']));
+					$toMailer->setFromName(str_replace(["\n", "\r", "\0"], '', $this->form_processor->fields[$this->fromname_field_name]['value']));
 				}
 			}
 

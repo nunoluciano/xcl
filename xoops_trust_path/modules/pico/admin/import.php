@@ -11,7 +11,7 @@ $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 $module_handler = &xoops_gethandler('module');
 $modules = &$module_handler->getObjects();
-$importable_modules = array();
+$importable_modules = [];
 foreach ($modules as $module) {
 	$mid = $module->getVar('mid');
 	$dirname = $module->getVar('dirname');
@@ -95,7 +95,8 @@ if (!empty($_POST['do_import']) && !empty($_POST['import_mid'])) {
 xoops_cp_header();
 include dirname(__FILE__) . '/mymenu.php';
 $tpl = new XoopsTpl();
-$tpl->assign(array(
+$tpl->assign(
+    [
 	'mydirname' => $mydirname,
 	'mod_name' => $xoopsModule->getVar('name'),
 	'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
@@ -103,6 +104,7 @@ $tpl->assign(array(
 	'mod_config' => $xoopsModuleConfig,
 	'import_from_options' => $importable_modules,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
-));
+    ]
+);
 $tpl->display('db:' . $mydirname . '_admin_import.html');
 xoops_cp_footer();

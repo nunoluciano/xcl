@@ -158,7 +158,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('tplset');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -199,7 +199,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 
     public function &getList($criteria = null)
     {
-        $ret = array();
+        $ret = [];
         $tplsets =& $this->getObjects($criteria, true);
         foreach ($tplsets as $tpl) {
             $name = $tpl->getVar('tplset_name');

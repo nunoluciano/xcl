@@ -28,7 +28,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var Array of uid
      */
-    public $mIdentityArr = array();
+    public $mIdentityArr = [];
     
     /**
      * Array of groupid. This is an information for cache store program to
@@ -37,7 +37,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var Array of groupid
      */
-    public $mGroupArr = array();
+    public $mGroupArr = [];
 
     /**
      * Boolean flag indicating whether this object asks caching to the
@@ -54,7 +54,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var array
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function Legacy_AbstractCacheInformation()
@@ -94,8 +94,8 @@ class Legacy_AbstractCacheInformation
      */
     public function reset()
     {
-        $this->mIdentityArr = array();
-        $this->mGroupArr = array();
+        $this->mIdentityArr = [];
+        $this->mGroupArr = [];
         $this->_mEnableCache = null;
     }
     

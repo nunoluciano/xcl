@@ -39,15 +39,15 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['image_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_name']->setDependsByArray(array('extension'));
+        $this->mFieldProperties['image_name']->setDependsByArray(['extension']);
         $this->mFieldProperties['image_name']->addVar('extension', 'jpg,gif,png');
     
         $this->mFieldProperties['image_nicename'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_nicename']->setDependsByArray(array('required'));
+        $this->mFieldProperties['image_nicename']->setDependsByArray(['required']);
         $this->mFieldProperties['image_nicename']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMAGE_NICENAME);
         
         $this->mFieldProperties['imgcat_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imgcat_id']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['imgcat_id']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['imgcat_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMGCAT_ID);
         $this->mFieldProperties['imgcat_id']->addMessage('objectExist', _MD_LEGACY_ERROR_OBJECTEXIST, _MD_LEGACY_LANG_IMGCAT_ID);
         $this->mFieldProperties['imgcat_id']->addVar('handler', 'imagecategory');
@@ -73,11 +73,11 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
             $root =& XCube_Root::getSingleton();
             $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
             
-            $groups = array();
+            $groups = [];
             if (is_object($xoopsUser)) {
                 $groups =& $xoopsUser->getGroups();
             } else {
-                $groups = array(XOOPS_GROUP_ANONYMOUS);
+                $groups = [XOOPS_GROUP_ANONYMOUS];
             }
             
             $handler =& xoops_getmodulehandler('imagecategory', 'legacy');

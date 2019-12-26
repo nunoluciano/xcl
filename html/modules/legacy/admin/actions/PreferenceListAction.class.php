@@ -16,7 +16,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/PreferenceEditForm.class.p
 
 class Legacy_PreferenceListAction extends Legacy_Action
 {
-    public $mObjects = array();
+    public $mObjects = [];
     
     public function prepare(&$controller, &$xoopsUser)
     {

@@ -65,7 +65,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
 
         elseif ($type == 1) {
             $welcome = '<b>Welcome to XOOPS Cube Legacy!!</b><br />Have a nice and happy time!!';
-            $attributes = array();
+            $attributes = [];
             $attributes['dummy_content'] = $welcome;
             $template = self::getTemplate('legacy_dummy.html');
             Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
@@ -78,10 +78,10 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
             if (file_exists($template)) {
                 //it's just a example! please customize it!
         $welcome_title = 'Welcome Message!';
-                $welcome_msg = array();
+                $welcome_msg = [];
                 $welcome_msg[] = 'Welcome to XOOPS Cube Legacy!!';
                 $welcome_msg[] = 'Have a nice and happy time!!';
-                $attributes = array();
+                $attributes = [];
                 $attributes['title'] = $welcome_title;
                 $attributes['messages'] = $welcome_msg;
                 Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
@@ -90,7 +90,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
         }
         ////////////////////////////////////////////////
         if (XC_ADMINSYSTEMCHECK_SYSTEMINFO) {
-            $systeminfo_message = array();
+            $systeminfo_message = [];
 
             if (defined('XOOPS_DISTRIBUTION_VERSION')) {
                 $systeminfo_message[] = "Distribution : ".XOOPS_DISTRIBUTION_VERSION;
@@ -111,7 +111,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
                 $systeminfo_message[] = _MD_AM_DEBUGMODE." : "._MD_AM_DEBUGMODE3;
             }
 
-            $systemconfig = array();
+            $systemconfig = [];
             $systemconfig['phpversion'] = phpversion();
             $db = &$root->mController->getDB();
             $result = $db->query("SELECT VERSION()");
@@ -133,7 +133,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
         
         /////////////////////////////////////////
         if (XC_ADMINSYSTEMCHECK_PHPSETTING) {
-            $phpsetting_message = array();
+            $phpsetting_message = [];
 
             $phpsetting_message[] = _AD_LEGACY_PHPSETTING_SM." : ".(ini_get('safe_mode')? "<span style=color:red>" ._AD_LEGACY_PHPSETTING_ON."</span>" : "<span style=color:green>" ._AD_LEGACY_PHPSETTING_OFF. "</span>");
             $phpsetting_message[] = _AD_LEGACY_PHPSETTING_MET." : ".(ini_get('max_execution_time')? ini_get('max_execution_time')." sec." : _AD_LEGACY_PHPSETTING_OFF);
@@ -175,9 +175,9 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
         
         /////////////////////////////////////////
         if (XC_ADMINSYSTEMCHECK_WAITING) {
-            $modules = array();
+            $modules = [];
             XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
-            $attributes = array();
+            $attributes = [];
             $attributes['block']['modules'] = $modules;
             $template = self::getTemplate('legacy_block_waiting.html', 'blocks/');
             $result = Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = true);
@@ -203,7 +203,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
             $output = preg_replace('#class="p"#', 'class="odd"', $output);
             $output = str_replace('<div class="center">', '', $output);
             $output = str_replace('</div>', '', $output);
-            $attributes = array();
+            $attributes = [];
             $attributes['dummy_content'] = $output;
             $template = self::getTemplate('legacy_dummy.html');
             Legacy_AdminSystemCheckPlusPreload::display_message($attributes, $template, $return = false);
@@ -211,7 +211,7 @@ class Legacy_AdminSystemCheckPlusPreload extends XCube_ActionFilter
         /////////////////////////////////
     }
 
-    public static function display_message($attributes = array(), $template="", $return = false)
+    public static function display_message($attributes = [], $template="", $return = false)
     {
         $root =& XCube_Root::getSingleton();
         $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);

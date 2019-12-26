@@ -10,12 +10,12 @@ class Legacy_HeaderScript
     protected $_mCore = "1";
     protected $_mUi = "1";
 
-    protected $_mLibrary = array();
-    protected $_mScript = array();
-    protected $_mMeta = array('keywords'=>'','description'=>'','robots'=>'','rating'=>'','author'=>'','copyright'=>'','msvalidate.01'=>'','google-site-verification'=>'','yandex-verification'=>'','fb:app_id'=>'','twitter:site'=>'' );
-    protected $_mOnloadScript = array();
-    protected $_mStylesheet = array();
-    protected $_mLink = array();
+    protected $_mLibrary = [];
+    protected $_mScript = [];
+    protected $_mMeta = ['keywords' =>'', 'description' =>'', 'robots' =>'', 'rating' =>'', 'author' =>'', 'copyright' =>'', 'msvalidate.01' =>'', 'google-site-verification' =>'', 'yandex-verification' =>'', 'fb:app_id' =>'', 'twitter:site' =>''];
+    protected $_mOnloadScript = [];
+    protected $_mStylesheet = [];
+    protected $_mLink = [];
 
     public $mUsePrototype = false;    //use prototype.js ?
     public $mFuncNamePrefix = "";    //jQuery $() function's name prefix for compatibility with prototype.js
@@ -150,7 +150,7 @@ class Legacy_HeaderScript
     **/
     public function addLink(/*** string ***/ $rel, /*** string ***/ $href, /*** string ***/ $type, /*** string ***/ $title=null)
     {
-        $this->_mLink[] = array('rel'=>$rel, 'type'=>$type, 'title'=>$title, 'href'=>$href);
+        $this->_mLink[] = ['rel' =>$rel, 'type' =>$type, 'title' =>$title, 'href' =>$href];
     }
 
     /**

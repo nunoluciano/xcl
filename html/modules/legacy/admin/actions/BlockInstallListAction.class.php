@@ -18,7 +18,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockInstallFilterForm.cla
 class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 {
 
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function &_getHandler()
     {
@@ -62,11 +62,11 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
         }
         // !TODO NOTICE: Undefined variable: mods.
         // ! WARNING: Invalid argument supplied for foreach()
-        $mods = array();
+        $mods = [];
 
         foreach ($mods as $mod) {
             
-            $rtn    = array();
+            $rtn    = [];
             $sadmin = $moduleperm_handler->checkRight('module_admin', $mod->getVar('mid'), $xoopsUser->getGroups());
             if ($sadmin && ($mod->getVar('hasnotification') || is_array($mod->getInfo('config')) || is_array($mod->getInfo('comments')))) {
                 $rtn['link']     = XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=' . $mod->getVar('mid');

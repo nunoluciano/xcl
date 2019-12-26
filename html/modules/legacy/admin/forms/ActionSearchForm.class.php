@@ -24,7 +24,7 @@ class Legacy_ActionSearchForm extends XCube_ActionForm
 
         // set fields
         $this->mFieldProperties['keywords']=new XCube_FieldProperty($this);
-        $this->mFieldProperties['keywords']->setDependsByArray(array('required'));
+        $this->mFieldProperties['keywords']->setDependsByArray(['required']);
         $this->mFieldProperties['keywords']->addMessage("required", _AD_LEGACY_ERROR_SEARCH_REQUIRED);
     }
 

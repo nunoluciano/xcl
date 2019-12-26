@@ -49,7 +49,7 @@ class Message_Block extends Legacy_BlockProcedure
         $uid = $root->mContext->mXoopsUser->get('uid');
         if ($service != null) {
             $client = $root->mServiceManager->createClient($service);
-            $render->setAttribute('block', $client->call('getCountUnreadPM', array('uid' => $uid)));
+            $render->setAttribute('block', $client->call('getCountUnreadPM', ['uid' => $uid]));
         }
     
         if ($root->mServiceManager->getService('UserSearch') != null) {

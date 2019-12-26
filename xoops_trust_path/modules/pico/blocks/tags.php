@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['pico_blocks_tags_order_options'] = array(
+$GLOBALS['pico_blocks_tags_order_options'] = [
 	'count ASC' => 'count ASC',
 	'count DESC' => 'count DESC',
 	'weight ASC' => 'weight ASC',
@@ -9,7 +9,7 @@ $GLOBALS['pico_blocks_tags_order_options'] = array(
 	'label DESC' => 'label DESC',
 	'created_time ASC' => 'created_time ASC',
 	'created_time DESC' => 'created_time DESC',
-);
+];
 
 function b_pico_tags_show($options)
 {
@@ -33,7 +33,7 @@ function b_pico_tags_show($options)
 	$sql = "SELECT label,count FROM " . $db->prefix($mydirname . "_tags") . " ORDER BY $sqlorder LIMIT $limit";
 	$result = $db->query($sql);
 	if ($sqlorder != $listorder) {
-		$labels4sql = array();
+		$labels4sql = [];
 		while (list($label,) = $db->fetchRow($result)) {
 			$labels4sql[] = "'" . addslashes($label) . "'";
 		}
@@ -42,14 +42,14 @@ function b_pico_tags_show($options)
 	}
 
 	// tags4assign
-	$tags = array();
+	$tags = [];
 	$rank = 0;
 	while (list($label, $count) = $db->fetchRow($result)) {
-		$tags[$label] = array(
+		$tags[$label] = [
 			'label' => $label,
 			'count' => $count,
 			'rank' => $rank++,
-		);
+        ];
 	}
 	//ksort( $tags , SORT_STRING ) ;
 	$tags4assign = array_values($tags);
@@ -64,7 +64,7 @@ function b_pico_tags_show($options)
 	$constpref = '_MB_' . strtoupper($mydirname);
 
 	// make an array named 'block'
-	$block = array(
+	$block = [
 		'mytrustdirname' => $mytrustdirname,
 		'mydirname' => $mydirname,
 		'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
@@ -75,7 +75,7 @@ function b_pico_tags_show($options)
 		'sqlorder' => $sqlorder,
 		'tagsnum' => sizeof($tags4assign),
 		'tags' => $tags4assign,
-	);
+    ];
 
 	if (empty($options['disable_renderer'])) {
 		// render it
@@ -106,13 +106,15 @@ function b_pico_tags_edit($options)
 
 	require_once XOOPS_ROOT_PATH . '/class/template.php';
 	$tpl = new XoopsTpl();
-	$tpl->assign(array(
+	$tpl->assign(
+        [
 		'mydirname' => $mydirname,
 		'limit' => $limit,
 		'listorder' => $listorder,
 		'sqlorder' => $sqlorder,
 		'order_options' => $pico_blocks_tags_order_options,
 		'this_template' => $this_template,
-	));
+        ]
+    );
 	return $tpl->fetch('db:' . $mydirname . '_blockedit_tags.html');
 }

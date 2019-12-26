@@ -19,14 +19,14 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
 
     protected $_mMainTable = null;  //module's main table name
 
-    /*** string[] ***/ public $mChildList = array();    //Child table's name array
-    /*** string[] ***/ public $mParentList = array();   //Parent table's name array
-    /*** XoopsSimpleObject[] ***/ public $mTable = array();
-    /*** bool[] ***/ protected $_mIsLoaded = array();
+    /*** string[] ***/ public $mChildList = [];    //Child table's name array
+    /*** string[] ***/ public $mParentList = [];   //Parent table's name array
+    /*** XoopsSimpleObject[] ***/ public $mTable = [];
+    /*** bool[] ***/ protected $_mIsLoaded = [];
 
     /*** bool ***/ protected $_mIsTagLoaded = false;
-    /*** string[] ***/ public $mTag = array();
-    /*** Legacy_ImageObject[] ***/ public $mImage = array();
+    /*** string[] ***/ public $mTag = [];
+    /*** Legacy_ImageObject[] ***/ public $mImage = [];
 
     /**
      * __construct
@@ -52,7 +52,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
     {
         foreach ($this->mChildList as $table) {
             $this->_mIsLoaded[$table] = false;
-            $this->mTable[$table] = array();
+            $this->mTable[$table] = [];
         }
         foreach ($this->mParentList as $table) {
             $this->_mIsLoaded[$table] = false;
@@ -134,7 +134,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
      */
     public function getImages()
     {
-        $imageObjs = array();
+        $imageObjs = [];
         if ($this->get($this->getPrimary())>0) {
             XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $this->getDirname(), $this->getDataname(), $this->get($this->getPrimary()));
         }
@@ -174,7 +174,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
     
         $this->mImage = $this->getImages();
     
-        $originalImage = array();
+        $originalImage = [];
         XCube_DelegateUtils::call('Legacy_Image.CreateImageObject', new XCube_Ref($originalImage));
         $originalImage->set('title', $this->get($handler->getClientField('title')));
         $originalImage->set('uid', Legacy_Utils::getUid());
@@ -206,7 +206,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
         $configArr = $chandler->getConfigsByDirname($this->getDirname());
     
         if ($this->_mIsTagLoaded==false && $tagDirname = $configArr['tag_dirname']) {
-            $tagArr = array();
+            $tagArr = [];
             if (! $this->isNew()) {
                 XCube_DelegateUtils::call('Legacy_Tag.'.$configArr['tag_dirname'].'.GetTags',
                     new XCube_Ref($tagArr),

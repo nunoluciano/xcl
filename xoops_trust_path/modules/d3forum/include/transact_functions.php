@@ -184,7 +184,7 @@ function d3forum_sync_cattree( $mydirname )
 	// rebuild tree informations
 	$tree_array = d3forum_makecattree_recursive( $db->prefix($mydirname."_categories") , 0 ) ;
 	array_shift( $tree_array ) ;
-	$paths = array() ;
+	$paths = [];
 	$previous_depth = 0 ;
 	if( ! empty( $tree_array ) ) foreach( $tree_array as $key => $val ) {
 		$depth_diff = $val['depth'] - $previous_depth ;
@@ -205,11 +205,11 @@ function d3forum_sync_cattree( $mydirname )
 }
 
 
-function d3forum_makecattree_recursive( $tablename , $cat_id , $order = 'cat_weight' , $parray = array() , $depth = 0 , $cat_title = '' )
+function d3forum_makecattree_recursive( $tablename , $cat_id , $order = 'cat_weight' , $parray = [], $depth = 0 , $cat_title = '' )
 {
 	$db =& Database::getInstance() ;
 
-	$parray[] = array( 'cat_id' => $cat_id , 'depth' => $depth , 'cat_title' => $cat_title ) ;
+	$parray[] = ['cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title];
 
 	$sql = "SELECT cat_id,cat_title FROM $tablename WHERE pid=$cat_id ORDER BY $order" ;
 	$result = $db->query( $sql ) ;
@@ -283,7 +283,7 @@ function d3forum_sync_topic( $mydirname , $topic_id , $sync_also_forum = true , 
 		if( ! $db->queryF( "UPDATE ".$db->prefix($mydirname."_topics")." SET {$topictitle4set} topic_posts_count=$total_posts, topic_first_uid=$first_uid, topic_first_post_id=$first_post_id, topic_first_post_time=$first_post_time, topic_last_uid=$last_uid, topic_last_post_id=$last_post_id, topic_last_post_time=$last_post_time WHERE topic_id=$topic_id" ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 
 		// rebuild tree informations
-		$tree_array = d3forum_maketree_recursive( $db->prefix($mydirname."_posts") , intval( $first_post_id ) , 'post_id' , array() , 0 , empty( $unique_path ) ? '.1' : $unique_path ) ;
+		$tree_array = d3forum_maketree_recursive($db->prefix($mydirname."_posts") , intval( $first_post_id ) , 'post_id' , [], 0 , empty( $unique_path ) ? '.1' : $unique_path ) ;
 		if( ! empty( $tree_array ) ) foreach( $tree_array as $key => $val ) {
 			$db->queryF( "UPDATE ".$db->prefix($mydirname."_posts")." SET depth_in_tree=".$val['depth'].", order_in_tree=".($key+1).", unique_path='".addslashes($val['unique_path'])."' WHERE post_id=".$val['post_id'] ) ;
 		}
@@ -338,18 +338,18 @@ function d3forum_sync_post_votes( $mydirname , $post_id , $sync_also_topic_votes
 }
 
 
-function d3forum_maketree_recursive( $tablename , $post_id , $order = 'post_id' , $parray = array() , $depth = 0 , $unique_path = '.1' )
+function d3forum_maketree_recursive( $tablename , $post_id , $order = 'post_id' , $parray = [], $depth = 0 , $unique_path = '.1' )
 {
 	$db =& Database::getInstance() ;
 
-	$parray[] = array( 'post_id' => $post_id , 'depth' => $depth , 'unique_path' => $unique_path ) ;
+	$parray[] = ['post_id' => $post_id, 'depth' => $depth, 'unique_path' => $unique_path];
 
 	$sql = "SELECT post_id,unique_path FROM $tablename WHERE pid=$post_id ORDER BY $order" ;
 	$result = $db->query( $sql ) ;
 	if( $db->getRowsNum( $result ) == 0 ) {
 		return $parray ;
 	}
-	$new_post_ids = array() ;
+	$new_post_ids = [];
 	$max_count_of_last_level = 0 ;
 	while( list( $new_post_id , $new_unique_path ) = $db->fetchRow( $result ) ) {
 		$new_post_ids[ intval( $new_post_id ) ] = $new_unique_path ;
@@ -433,7 +433,7 @@ function d3forum_cutpasteposts( $mydirname , $post_id , $pid , $new_forum_id , $
 		$db->query( $sql ) ;
 	}
 
-	return array( $new_topic_id , $new_forum_id ) ;
+	return [$new_topic_id, $new_forum_id];
 }
 
 
@@ -491,7 +491,7 @@ function d3forum_get_requests4sql_forum( $mydirname )
 	$db =& Database::getInstance() ;
 
 	include dirname(dirname(__FILE__)).'/include/constant_can_override.inc.php' ;
-	$options = array() ;
+	$options = [];
 	foreach( $xoopsModuleConfig as $key => $val ) {
 		if( empty( $d3forum_configs_can_be_override[ $key ] ) ) continue ;
 		foreach( explode( "\n" , @$_POST['options'] ) as $line ) {
@@ -517,14 +517,14 @@ function d3forum_get_requests4sql_forum( $mydirname )
 	if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	if( $db->getRowsNum( $crs ) <= 0 ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
-	return array( 
+	return [
 		'title' => addslashes( $myts->stripSlashesGPC( @$_POST['title'] ) ) ,
 		'desc' => addslashes( $myts->stripSlashesGPC( @$_POST['desc'] ) ) ,
 		'weight' => intval( @$_POST['weight'] ) ,
 		'external_link_format' => addslashes( $myts->stripSlashesGPC( @$_POST['external_link_format'] ) ) ,
 		'cat_id' => $cat_id ,
 		'options' => addslashes( serialize( $options ) ) ,
-	) ;
+    ];
 }
 
 
@@ -543,7 +543,7 @@ function d3forum_makeforum( $mydirname , $cat_id , $isadmin )
 	$sql = "INSERT INTO ".$db->prefix($mydirname."_forum_access")." (forum_id,uid,groupid,can_post,can_edit,can_delete,post_auto_approved,is_moderator) SELECT $new_forum_id,uid,groupid,can_post,can_edit,can_delete,post_auto_approved,is_moderator FROM ".$db->prefix($mydirname."_category_access")." WHERE cat_id=$cat_id" ;
 	if( ! $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 
-	return array( $new_forum_id , stripslashes( $requests['title'] ) ) ;
+	return [$new_forum_id, stripslashes($requests['title'] )];
 }
 
 
@@ -569,7 +569,7 @@ function d3forum_get_requests4sql_category( $mydirname )
 	$db =& Database::getInstance() ;
 
 	include dirname(dirname(__FILE__)).'/include/constant_can_override.inc.php' ;
-	$options = array() ;
+	$options = [];
 	foreach( $xoopsModuleConfig as $key => $val ) {
 		if( empty( $d3forum_configs_can_be_override[ $key ] ) ) continue ;
 		foreach( explode( "\n" , @$_POST['options'] ) as $line ) {
@@ -597,13 +597,13 @@ function d3forum_get_requests4sql_category( $mydirname )
 		if( $db->getRowsNum( $crs ) <= 0 ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 	}
 
-	return array( 
+	return [
 		'title' => addslashes( $myts->stripSlashesGPC( @$_POST['title'] ) ) ,
 		'desc' => addslashes( $myts->stripSlashesGPC( @$_POST['desc'] ) ) ,
 		'weight' => intval( @$_POST['weight'] ) ,
 		'pid' => $pid ,
 		'options' => addslashes( serialize( $options ) ) ,
-	) ;
+    ];
 }
 
 
@@ -680,8 +680,8 @@ function d3forum_transact_make_post_history( $mydirname , $post_id , $full_backu
 	$result = $db->query( "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ) ;
 	if( ! $result || $db->getRowsNum( $result ) == 0 ) return ;
 	$post_row = $db->fetchArray( $result ) ;
-	$data = array() ;
-	$indexes = $full_backup ? array_keys( $post_row ) : array( 'subject' , 'post_text' ) ;
+	$data = [];
+	$indexes = $full_backup ? array_keys( $post_row ) : ['subject', 'post_text'];
 	foreach( $indexes as $index ) {
 		$data[ $index ] = $post_row[ $index ] ;
 	}

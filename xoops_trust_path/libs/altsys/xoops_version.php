@@ -22,10 +22,10 @@ $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/admin_menu.php";
 
 // All Templates can't be touched by modulesadmin.
-$modversion['templates'] = array();
+$modversion['templates'] = [];
 
 // Blocks
-$modversion['blocks'][1] = array(
+$modversion['blocks'][1] = [
     'file'            => 'blocks.php',
     'name'            => _MI_ALTSYS_BNAME_ADMIN_MENU,
     'description'    => '',
@@ -33,7 +33,7 @@ $modversion['blocks'][1] = array(
     'edit_func'        => 'b_altsys_admin_menu_edit',
     'options'        => "$mydirname",
     'template'        => '', // use "module" template instead
-);
+];
 
 // Menu
 $modversion['hasMain'] = 1;
@@ -65,35 +65,35 @@ $modversion['hasComments'] = 0;
     'options'        => array()
 ); */
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'            => 'admin_in_theme',
     'title'            => '_MI_ALTSYS_ADMIN_IN_THEME',
     'description'    => '_MI_ALTSYS_ADMIN_IN_THEMEDSC',
     'formtype'        => 'textbox',
     'valuetype'        => 'text',
     'default'        => 'default',
-    'options'        => array()
-);
+    'options'        => []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'            => 'enable_force_clone',
     'title'            => '_MI_ALTSYS_ENABLEFORCECLONE',
     'description'    => '_MI_ALTSYS_ENABLEFORCECLONEDSC',
     'formtype'        => 'yesno',
     'valuetype'        => 'int',
     'default'        => 1,
-    'options'        => array()
-);
+    'options'        => []
+];
 
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'            => 'images_dir',
     'title'            => '_MI_ALTSYS_IMAGES_DIR',
     'description'    => '_MI_ALTSYS_IMAGES_DIRDSC',
     'formtype'        => 'textbox',
     'valuetype'        => 'text',
     'default'        => 'images',
-    'options'        => array()
-);
+    'options'        => []
+];
 
 // Notification
 

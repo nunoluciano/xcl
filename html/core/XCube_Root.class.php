@@ -66,13 +66,13 @@ class XCube_Root
      * @attention
      *      Only the kernel system should access this member property.
      */
-    public $_mRenderSystems = array();
+    public $_mRenderSystems = [];
     
     /**
      * @public
      * @brief [READ ONLY] Hash-Map Array - std::map<string, string>
      */
-    public $mSiteConfig = array();
+    public $mSiteConfig = [];
     
     /**
      * @internal

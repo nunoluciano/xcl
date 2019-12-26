@@ -34,7 +34,7 @@ function b_legacy_notification_show()
     $notification_handler =& xoops_gethandler('notification');
     // Now build the a nested associative array of info to pass
     // to the block template.
-    $block = array();
+    $block = [];
     $categories =& notificationSubscribableCategoryInfo();
     if (empty($categories)) {
         return false;
@@ -44,14 +44,14 @@ function b_legacy_notification_show()
         $section['title'] = $category['title'];
         $section['description'] = $category['description'];
         $section['itemid'] = $category['item_id'];
-        $section['events'] = array();
+        $section['events'] = [];
         $subscribed_events =& $notification_handler->getSubscribedEvents($category['name'], $category['item_id'], $xoopsModule->getVar('mid'), $xoopsUser->getVar('uid'));
         foreach (notificationEvents($category['name'], true) as $event) {
             if (!empty($event['admin_only']) && !$xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
                 continue;
             }
             $subscribed = in_array($event['name'], $subscribed_events) ? 1 : 0;
-            $section['events'][$event['name']] = array('name'=>$event['name'], 'title'=>$event['title'], 'caption'=>$event['caption'], 'description'=>$event['description'], 'subscribed'=>$subscribed);
+            $section['events'][$event['name']] = ['name' => $event['name'], 'title' => $event['title'], 'caption' => $event['caption'], 'description' => $event['description'], 'subscribed' =>$subscribed];
         }
         $block['categories'][$category['name']] = $section;
     }

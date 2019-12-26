@@ -33,7 +33,7 @@ class Legacy_InstallWizardForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['agree'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['agree']->setDependsByArray(array('min'));
+        $this->mFieldProperties['agree']->setDependsByArray(['min']);
         $this->mFieldProperties['agree']->addMessage('min', _AD_LEGACY_ERROR_PLEASE_AGREE);
         $this->mFieldProperties['agree']->addVar('min', '1');
     }

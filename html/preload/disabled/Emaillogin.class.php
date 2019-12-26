@@ -49,7 +49,7 @@ class Emaillogin extends XCube_ActionFilter
   
         require_once XOOPS_ROOT_PATH . '/include/session.php';
         xoops_session_regenerate();
-        $_SESSION = array();
+        $_SESSION = [];
         $_SESSION['xoopsUserId'] = $xoopsUser->get('uid');
         $_SESSION['xoopsUserGroups'] = $xoopsUser->getGroups();
     }

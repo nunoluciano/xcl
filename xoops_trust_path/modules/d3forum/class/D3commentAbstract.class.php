@@ -11,7 +11,7 @@ var $d3forum_dirname = '' ;
 var $mydirname = '' ;
 var $module = null ;
 var $mytrustdirname = '' ;
-var $mod_config = array() ;
+var $mod_config = [];
 var $smarty = null ;
 protected $forum_id = null; // for block function etc
 
@@ -128,7 +128,7 @@ function fetchDescription( $link_id )
 // get reference information as array
 function fetchSummary( $link_id )
 {
-	return array( 'module_name' => '' , 'subject' => '' , 'uri' => '' , 'summary' => '' ) ;
+	return ['module_name' => '', 'subject' => '', 'uri' => '', 'summary' => ''];
 	// all values should be HTML escaped.
 }
 
@@ -176,7 +176,7 @@ function displayCommentsCount( $params )
 // protected
 function restructParams( $params )
 {
-	return array(
+	return [
 		'class' => $params['class'] ,
 		'view' => $this->getView( $params ) ,
 		'order' => $this->getOrder( $params ) ,
@@ -187,7 +187,7 @@ function restructParams( $params )
 		'external_link_id' => $this->external_link_id( $params ) ,
 		'external_dirname' => $this->mydirname ,
 		'external_trustdirname' => $this->mytrustdirname ,
-	) ;
+    ];
 }
 
 
@@ -203,7 +203,7 @@ function validate_id( $link_id )
 // naao added Nov.2012
 // array of users id to be notified
 // if you want to check authrity validation for parent entry, override it
-function validate_users2notify( $link_id, $users2notify=array() )
+function validate_users2notify( $link_id, $users2notify= [])
 {
 	return $users2notify ;
 }
@@ -283,10 +283,10 @@ function processCommentNotifications( $mode , $link_id , $forum_id , $topic_id ,
 	$not_itemid = $link_id ;
 	$not_event = 'comment' ; // 'comment_submit'?
 
-	$comment_tags = array( 'X_COMMENT_URL' => XOOPS_URL.'/modules/'.$this->d3forum_dirname.'/index.php?post_id='.intval($post_id) ) ;
+	$comment_tags = ['X_COMMENT_URL' => XOOPS_URL . '/modules/' . $this->d3forum_dirname . '/index.php?post_id=' . intval($post_id)];
 
 	$users2notify = d3forum_get_users_can_read_forum( $this->d3forum_dirname , $forum_id ) ;
-	if( empty( $users2notify ) ) $users2notify = array( 0 ) ;
+	if( empty( $users2notify ) ) $users2notify = [0];
 
 	$not_handler =& D3NotificationHandler::getInstance() ;
 	$not_handler->triggerEvent( $this->mydirname , $this->mytrustdirname , $not_category , $not_itemid , $not_event , $comment_tags , $users2notify ) ;
@@ -346,7 +346,7 @@ function getTopicsCount( $forum_id , $link_id )
 // unhtmlspecialchars (utility)
 function unhtmlspecialchars( $text , $quotes = ENT_QUOTES )
 {
-	return strtr( $text , array_flip( get_html_translation_table( HTML_SPECIALCHARS , $quotes ) ) + array( '&#039;' => "'" ) ) ;
+	return strtr( $text , array_flip( get_html_translation_table( HTML_SPECIALCHARS , $quotes ) ) + ['&#039;' => "'"]) ;
 }
 
 }

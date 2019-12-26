@@ -3,7 +3,7 @@ class altsysUtils
 {
     public static function getDelegateCallbackClassNames($name, $doRegist = true)
     {
-        $names = array();
+        $names = [];
         
         if (! class_exists('XCube_Delegate')) {
             return $names;

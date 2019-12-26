@@ -51,7 +51,7 @@ $tpl_tplset4sql = addslashes($tpl_tplset) ;
 if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
     $edit_mode = 'create' ;
     $tpl_file = '_custom' ;
-    $tpl = array(
+    $tpl = [
         'tpl_id' => 0 ,
         'tpl_refid' => 0 ,
         'tpl_module' => '_custom' ,
@@ -62,7 +62,7 @@ if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
         'tpl_lastimported' => 0 ,
         'tpl_type' => 'custom' ,
         'tpl_source' => '' ,
-    ) ;
+    ];
 
     // breadcrumbs
     $breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;

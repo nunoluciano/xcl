@@ -15,9 +15,9 @@ function d3forum_oninstall_base( $module , $mydirname )
 	if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 		$root =& XCube_Root::getSingleton();
 		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success' , 'd3forum_message_append_oninstall' ) ;
-		$ret = array() ;
+		$ret = [];
 	} else {
-		if( ! is_array( $ret ) ) $ret = array() ;
+		if( ! is_array( $ret ) ) $ret = [];
 	}
 
 	$db =& Database::getInstance() ;
@@ -39,7 +39,7 @@ function d3forum_oninstall_base( $module , $mydirname )
 
 		$sql_query = trim( file_get_contents( $sql_file_path ) ) ;
 		$sqlutil->splitMySqlFile( $pieces , $sql_query ) ;
-		$created_tables = array() ;
+		$created_tables = [];
 		if( is_array( $pieces ) ) foreach( $pieces as $piece ) {
 			$prefixed_query = $sqlutil->prefixQuery( $piece , $prefix_mod ) ;
 			if( ! $prefixed_query ) {

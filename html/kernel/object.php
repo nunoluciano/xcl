@@ -126,7 +126,7 @@ class XoopsObject extends AbstractXoopsObject
      * @var array
      * @access protected
      **/
-    public $vars = array();
+    public $vars = [];
 
     /**
     * variables cleaned for store in DB
@@ -134,7 +134,7 @@ class XoopsObject extends AbstractXoopsObject
     * @var array
     * @access protected
     */
-    public $cleanVars = array();
+    public $cleanVars = [];
 
     /**
     * is it a newly created object?
@@ -158,14 +158,14 @@ class XoopsObject extends AbstractXoopsObject
     * @var array
     * @access private
     */
-    public $_errors = array();
+    public $_errors = [];
 
     /**
     * additional filters registered dynamically by a child class object
     *
     * @access private
     */
-    public $_filters = array();
+    public $_filters = [];
 
     /**
     * constructor
@@ -229,7 +229,7 @@ class XoopsObject extends AbstractXoopsObject
     */
     public function initVar($key, $data_type, $value = null, $required = false, $maxlength = null, $options = '')
     {
-        $this->vars[$key] = array('value' => $value, 'required' => $required, 'data_type' => $data_type, 'maxlength' => $maxlength, 'changed' => false, 'options' => $options);
+        $this->vars[$key] = ['value' => $value, 'required' => $required, 'data_type' => $data_type, 'maxlength' => $maxlength, 'changed' => false, 'options' => $options];
     }
 
     /**
@@ -421,7 +421,7 @@ class XoopsObject extends AbstractXoopsObject
                     $selected = explode('|', $ret);
                     $options = explode('|', $var['options']);
                     $i = 1;
-                    $ret = array();
+                    $ret = [];
                     foreach ($options as $op) {
                         if (in_array($i, $selected)) {
                             $ret[] = $op;
@@ -476,7 +476,7 @@ class XoopsObject extends AbstractXoopsObject
      */
     public function getProperties()
     {
-        $ret=array();
+        $ret= [];
         foreach (array_keys($this->vars) as $key) {
             $ret[$key]=$this->vars[$key]['value'];
         }

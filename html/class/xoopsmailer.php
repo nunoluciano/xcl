@@ -134,26 +134,26 @@ class xoopsmailer
     // protected
     public $encoding = '8bit';
 
-    private $properties = array(
+    private $properties = [
         'fromEmail'    => "",
         'fromName'     => "",
         'fromUser'     => null, // RMV-NOTIFY
         'priority'     => '',
-        'toUsers'      => array(),
-        'toEmails'     => array(),
-        'headers'      => array(),
+        'toUsers'      => [],
+        'toEmails'     => [],
+        'headers'      => [],
         'subject'      => "",
         'body'         => "",
-        'errors'       => array(),
-        'success'      => array(),
+        'errors'       => [],
+        'success'      => [],
         'isMail'       => false,
         'isPM'         => false,
-        'assignedTags' => array(),
+        'assignedTags' => [],
         'template'     => "",
         'templatedir'  => "",
         // Change below to \r\n if you have problem sending mail
         'LE'           => "\n"
-    );
+    ];
 // !Fix PHP7 deprecated contructor
     //public function XoopsMailer()
     public function __construct()
@@ -494,7 +494,7 @@ class xoopsmailer
     {
         if (!is_array($user)) {
             //@ToDo $user should be either XoopsUser or UserUsersObject now
-            if (in_array(strtolower(get_class($user)), array("xoopsuser", "userusersobject"))) {
+            if (in_array(strtolower(get_class($user)), ["xoopsuser", "userusersobject"])) {
                 array_push($this->toUsers, $user);
             }
         } else {

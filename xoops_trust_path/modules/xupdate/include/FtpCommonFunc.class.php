@@ -25,7 +25,7 @@ class Xupdate_FtpCommonFunc
     public $target_key;
     public $target_type;
 
-    public $options = array();
+    public $options = [];
 
     protected $download_file;
     protected $exploredPreloadPath;
@@ -148,7 +148,7 @@ class Xupdate_FtpCommonFunc
     protected function _check_file_upload_result($result, $where, $allow_empty = false)
     {
         if (is_bool($result)) {
-            $result = array('ok' => $result, 'ng' => array());
+            $result = ['ok' => $result, 'ng' => []];
         }
         if ($result['ok'] === false || !$allow_empty && !$result['ok']) {
             $this->Ftp->appendMes('fail upload '.$where.'<br />');

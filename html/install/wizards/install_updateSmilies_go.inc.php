@@ -58,5 +58,5 @@
             $content .= _OKIMG.sprintf(_INSTALL_L152, $rank['rank_image']).'<br />';
         }
     }
-    $b_next = array('updateAvatars', _INSTALL_L14);
+    $b_next = ['updateAvatars', _INSTALL_L14];
     include './install_tpl.php';

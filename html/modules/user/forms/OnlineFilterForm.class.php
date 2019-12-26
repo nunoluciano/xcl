@@ -17,13 +17,13 @@ define('ONLINE_SORT_KEY_DEFAULT', ONLINE_SORT_KEY_ONLINE_UID);
 
 class User_OnlineFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         ONLINE_SORT_KEY_ONLINE_UID => 'online_uid',
         ONLINE_SORT_KEY_ONLINE_UNAME => 'online_uname',
         ONLINE_SORT_KEY_ONLINE_UPDATED => 'online_updated',
         ONLINE_SORT_KEY_ONLINE_MODULE => 'online_module',
         ONLINE_SORT_KEY_ONLINE_IP => 'online_ip'
-    );
+    ];
     
     public function getDefaultSortKey()
     {

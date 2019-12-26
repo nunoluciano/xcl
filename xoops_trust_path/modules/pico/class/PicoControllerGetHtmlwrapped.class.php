@@ -116,7 +116,7 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
 
 		$link = empty($this->mod_config['use_rewrite']) ? 'index.php' . $request['path_info'] : substr($request['path_info'], 1);
 
-		return array(
+		return [
 			'id' => 0,
 			'link' => $link,
 			'created_time' => $mtime,
@@ -128,6 +128,6 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
 			'can_readfull' => $cat_data['isadminormod'] || $cat_data['can_readfull'],
 			'can_edit' => false,
 			'can_vote' => false,
-		);
+        ];
 	}
 }

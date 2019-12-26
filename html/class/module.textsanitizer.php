@@ -263,7 +263,7 @@ class MyTextSanitizer
      **/
     public function &undoHtmlSpecialChars($text)
     {
-        $ret = preg_replace(array("/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"), array(">", "<", "\"", "'"), $text);
+        $ret = preg_replace(["/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"], [">", "<", "\"", "'"], $text);
         return $ret;
     }
 

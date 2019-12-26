@@ -81,7 +81,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
             @unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFileName);
             
             // Get a body name of the old file.
-            $match = array();
+            $match = [];
             if (preg_match("/(.+)\.\w+$/", $this->mActionForm->mOldFileName, $match)) {
                 $this->mActionForm->mFormFile->setBodyName($match[1]);
             }

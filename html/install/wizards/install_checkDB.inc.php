@@ -14,7 +14,7 @@
     if (! $dbm->isConnectable()) {
         $wizard->addArray('checks', _NGIMG._INSTALL_L106);
         $wizard->addArray('msgs', _INSTALL_L107);
-        $wizard->setBack(array('start', _INSTALL_L103));
+        $wizard->setBack(['start', _INSTALL_L103]);
         $wizard->setReload(true);
     } else {
         $wizard->addArray('checks', _OKIMG._INSTALL_L108);
@@ -26,10 +26,10 @@
             $wizard->addArray('checks', _OKIMG.sprintf(_INSTALL_L110, XOOPS_DB_NAME));
             if (!$dbm->tableExists('users')) {
                 $wizard->addArray('msgs', _INSTALL_L111);
-                $wizard->setNext(array('createTables', _INSTALL_L40));
+                $wizard->setNext(['createTables', _INSTALL_L40]);
             } elseif (!$dbm->tableExists('config')) {
                 $wizard->addArray('msgs', _INSTALL_L130);
-                $wizard->setNext(array('updateTables', _INSTALL_L14));
+                $wizard->setNext(['updateTables', _INSTALL_L14]);
             } else {
                 $wizard->addArray('checks', _NGIMG._INSTALL_L131);
                 $wizard->setNext('');

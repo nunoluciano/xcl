@@ -25,7 +25,7 @@ function b_legacy_mainmenu_show($options)
     $xoopsModule =& $root->mContext->mXoopsModule;
     $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
     
-    $block = array();
+    $block = [];
     $block['_display_'] = true;
 
     $module_handler =& xoops_gethandler('module');
@@ -49,10 +49,10 @@ function b_legacy_mainmenu_show($options)
             $sublinks =& $module->subLink();
             if (count($sublinks)>0 && ($all_links || $i==$mid)) {
                 foreach ($sublinks as $sublink) {
-                    $blockm['sublinks'][] = array('name' => $sublink['name'], 'url' => $moddir.'/'.$sublink['url']);
+                    $blockm['sublinks'][] = ['name' => $sublink['name'], 'url' => $moddir . '/' . $sublink['url']];
                 }
             } else {
-                $blockm['sublinks'] = array();
+                $blockm['sublinks'] = [];
             }
         }
     }

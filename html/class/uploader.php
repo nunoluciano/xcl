@@ -78,19 +78,19 @@ class XoopsMediaUploader
     public $mediaError;
     public $mediaRealType = '';
     public $uploadDir = '';
-    public $allowedMimeTypes = array();
-    public $allowedExtensions = array();
+    public $allowedMimeTypes = [];
+    public $allowedExtensions = [];
     public $maxFileSize = 0;
     public $maxWidth;
     public $maxHeight;
     public $targetFileName;
     public $prefix;
-    public $errors = array();
+    public $errors = [];
     public $savedDestination;
     public $savedFileName;
-    public $extensionToMime = array();
+    public $extensionToMime = [];
 
-    public $_strictCheckExtensions = array();
+    public $_strictCheckExtensions = [];
 
     /**
      * Constructor
@@ -106,7 +106,7 @@ class XoopsMediaUploader
     {
         @$this->extensionToMime = include(XOOPS_ROOT_PATH . '/class/mimetypes.inc.php');
         if (!is_array($this->extensionToMime)) {
-            $this->extensionToMime = array();
+            $this->extensionToMime = [];
             return false;
         }
         if (is_array($allowedMimeTypes)) {
@@ -121,16 +121,18 @@ class XoopsMediaUploader
             $this->maxHeight = intval($maxHeight);
         }
 
-        $this->_strictCheckExtensions = array("gif"=>XCUBE_IMAGETYPE_ENUM_GIF,
-                                               "jpg"=>XCUBE_IMAGETYPE_ENUM_JPG,
-                                               "jpeg"=>XCUBE_IMAGETYPE_ENUM_JPG,
-                                               "png"=>XCUBE_IMAGETYPE_ENUM_PNG,
-                                               "bmp"=>XCUBE_IMAGETYPE_ENUM_BMP);
+        $this->_strictCheckExtensions = [
+            "gif"  =>XCUBE_IMAGETYPE_ENUM_GIF,
+            "jpg"  =>XCUBE_IMAGETYPE_ENUM_JPG,
+            "jpeg" =>XCUBE_IMAGETYPE_ENUM_JPG,
+            "png"  =>XCUBE_IMAGETYPE_ENUM_PNG,
+            "bmp"  =>XCUBE_IMAGETYPE_ENUM_BMP
+        ];
     }
 
     public function setAllowedExtensions($extensions)
     {
-        $this->allowedExtensions = is_array($extensions) ? $extensions : array();
+        $this->allowedExtensions = is_array($extensions) ? $extensions : [];
     }
 
     public function setStrictCheckExtensions($extensions)
@@ -180,7 +182,7 @@ class XoopsMediaUploader
             $this->setErrors('Invalid Extension');
             return false;
         }
-        $this->errors = array();
+        $this->errors = [];
         if (intval($this->mediaSize) < 0) {
             $this->setErrors('Invalid File Size');
             return false;

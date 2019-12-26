@@ -59,7 +59,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
     public function _update(&$obj)
     {
-        $set_lists = array();
+        $set_lists = [];
         $where = "";
 
         $arr = $this->_makeVars4sql($obj);

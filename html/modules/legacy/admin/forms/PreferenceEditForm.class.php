@@ -52,7 +52,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
         //
         // Set form properties
         //
-        $configArr = array();
+        $configArr = [];
         if (func_num_args()) {
             $configArr = func_get_arg(0);
         }
@@ -73,7 +73,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
                     $this->set($config->get('conf_name'), $config->get('conf_value'));
                     
                     $this->mFieldProperties[$config->get('conf_name')] =new XCube_FieldProperty($this);
-                    $this->mFieldProperties[$config->get('conf_name')]->setDependsByArray(array('required'));
+                    $this->mFieldProperties[$config->get('conf_name')]->setDependsByArray(['required']);
                     $this->mFieldProperties[$config->get('conf_name')]->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, $config->get('conf_title'));
                     break;
 
@@ -82,7 +82,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
                     $this->set($config->get('conf_name'), $config->get('conf_value'));
                     
                     $this->mFieldProperties[$config->get('conf_name')] =new XCube_FieldProperty($this);
-                    $this->mFieldProperties[$config->get('conf_name')]->setDependsByArray(array('required'));
+                    $this->mFieldProperties[$config->get('conf_name')]->setDependsByArray(['required']);
                     $this->mFieldProperties[$config->get('conf_name')]->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, $config->get('conf_title'));
                     break;
                     

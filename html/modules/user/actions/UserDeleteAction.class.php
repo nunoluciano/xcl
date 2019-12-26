@@ -62,7 +62,7 @@ class User_UserDeleteAction extends User_Action
         $this->_mDoDelete =new XCube_Delegate('bool &', 'Legacy_Controller', 'XoopsUser');
         $this->_mDoDelete->register('User_UserDeleteAction._doDelete');
         
-        $this->_mDoDelete->add(array(&$this, "_doDelete"));
+        $this->_mDoDelete->add([&$this, "_doDelete"]);
         
         //
         // pre condition check

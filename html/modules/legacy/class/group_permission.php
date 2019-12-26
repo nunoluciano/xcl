@@ -49,10 +49,10 @@ class LegacyGroup_permissionHandler extends XoopsObjectGenericHandler
      */
     public function getRolesByModule($mid, $groups)
     {
-        $retRoles = array();
+        $retRoles = [];
         
         $sql = "SELECT gperm_name FROM " . $this->mTable . " WHERE gperm_modid=" . intval($mid) . " AND gperm_itemid=0 AND ";
-        $groupSql = array();
+        $groupSql = [];
         
         foreach ($groups as $gid) {
             $groupSql[] = "gperm_groupid=" . intval($gid);

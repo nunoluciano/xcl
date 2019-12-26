@@ -82,7 +82,7 @@ class XoopsForm
      * array of {@link XoopsFormElement} objects
      * @var  array
      */
-    public $_elements = array();
+    public $_elements = [];
 
     /**
      * extra information for the <form> tag
@@ -94,7 +94,7 @@ class XoopsForm
      * required elements
      * @var array
      */
-    public $_required = array();
+    public $_required = [];
 
     /**#@-*/
 
@@ -199,7 +199,7 @@ class XoopsForm
         if (!$recurse) {
             return $this->_elements;
         } else {
-            $ret = array();
+            $ret = [];
             $count = count($this->_elements);
             for ($i = 0; $i < $count; $i++) {
                 if (!is_object($this->_elements[$i])) {
@@ -227,7 +227,7 @@ class XoopsForm
      */
     public function getElementNames()
     {
-        $ret = array();
+        $ret = [];
         $elements =& $this->getElements(true);
         $count = count($elements);
         for ($i = 0; $i < $count; $i++) {
@@ -316,7 +316,7 @@ class XoopsForm
         // will not use getElementByName() for performance..
         $elements =& $this->getElements(true);
         $count = count($elements);
-        $values = array();
+        $values = [];
         for ($i = 0; $i < $count; $i++) {
             $name = $elements[$i]->getName();
             if ($name && method_exists($elements[$i], 'getValue')) {
@@ -463,7 +463,7 @@ class XoopsForm
     public function assign(&$tpl)
     {
         $i = 0;
-        $elements = array();
+        $elements = [];
         foreach ($this->getElements() as $ele) {
             $n = ($ele->getName() != "") ? $ele->getName() : $i;
             $elements[$n]['name']     = $ele->getName();
@@ -476,6 +476,7 @@ class XoopsForm
             $i++;
         }
         $js = $this->renderValidationJS();
-        $tpl->assign($this->getName(), array('title' => $this->getTitle(), 'name' => $this->getName(), 'action' => $this->getAction(),  'method' => $this->getMethod(), 'extra' => 'onsubmit="return xoopsFormValidate_'.$this->getName().'();"'.$this->getExtra(), 'javascript' => $js, 'elements' => $elements));
+        $tpl->assign($this->getName(), ['title' => $this->getTitle(), 'name' => $this->getName(), 'action' => $this->getAction(), 'method' => $this->getMethod(), 'extra' => 'onsubmit="return xoopsFormValidate_' . $this->getName() . '();"' . $this->getExtra(), 'javascript' => $js, 'elements' => $elements]
+        );
     }
 }

@@ -29,7 +29,7 @@ define('IMAGECATEGORY_SORT_KEY_MAXVALUE', 9);
 
 class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         IMAGECATEGORY_SORT_KEY_IMGCAT_ID => 'imgcat_id',
         IMAGECATEGORY_SORT_KEY_IMGCAT_NAME => 'imgcat_name',
         IMAGECATEGORY_SORT_KEY_IMGCAT_MAXSIZE => 'imgcat_maxsize',
@@ -39,7 +39,7 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT => 'imgcat_weight',
         IMAGECATEGORY_SORT_KEY_IMGCAT_TYPE => 'imgcat_type',
         IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE => 'imgcat_storetype'
-    );
+    ];
 
     public $mKeyword = "";
     public $mOptionField = "";

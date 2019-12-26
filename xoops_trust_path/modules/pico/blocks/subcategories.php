@@ -5,7 +5,7 @@ function b_pico_subcategories_show($options)
 	global $xoopsUser;
 
 	$mydirname = empty($options[0]) ? 'pico' : $options[0];
-	$categories = trim(@$options[1]) === '' ? array() : array_map('intval', explode(',', $options[1]));
+	$categories = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_subcategories.html' : trim($options[2]);
 
 	if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) die('Invalid mydirname');
@@ -23,7 +23,7 @@ function b_pico_subcategories_show($options)
 	$whr_read4cat = 'c.`cat_id` IN (' . implode(",", pico_common_get_categories_can_read($mydirname)) . ')';
 
 	// categories
-	if ($categories === array()) {
+	if ($categories === []) {
 		$whr_categories = 'WHERE pid=0';
 		$categories4assign = '';
 	} else {
@@ -39,7 +39,7 @@ function b_pico_subcategories_show($options)
 
 	$constpref = '_MB_' . strtoupper($mydirname);
 
-	$block = array(
+	$block = [
 		'mydirname' => $mydirname,
 		'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
 		'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
@@ -47,15 +47,15 @@ function b_pico_subcategories_show($options)
 		'categories' => $categories4assign,
 		'lang_category' => constant($constpref . '_CATEGORY'),
 		'lang_topcategory' => constant($constpref . '_TOPCATEGORY'),
-	);
+    ];
 
-	$cat4assign = array();
+	$cat4assign = [];
 	while ($cat_row = $db->fetchArray($result)) {
-		$cat4assign[] = array(
+		$cat4assign[] = [
 			'id' => intval($cat_row['cat_id']),
 			'link' => pico_common_make_category_link4html($configs, $cat_row),
 			'title' => $myts->makeTboxData4Show($cat_row['cat_title'], 1, 1),
-		);
+        ];
 	}
 	$block['categories'] = $cat4assign;
 
@@ -73,19 +73,21 @@ function b_pico_subcategories_show($options)
 function b_pico_subcategories_edit($options)
 {
 	$mydirname = empty($options[0]) ? 'pico' : $options[0];
-	$categories = trim(@$options[1]) === '' ? array() : array_map('intval', explode(',', $options[1]));
+	$categories = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_subcategories.html' : trim($options[2]);
 
 	if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) die('Invalid mydirname');
 
 	require_once XOOPS_ROOT_PATH . '/class/template.php';
 	$tpl = new XoopsTpl();
-	$tpl->assign(array(
+	$tpl->assign(
+        [
 		'mydirname' => $mydirname,
 		'categories' => $categories,
 		'categories_imploded' => implode(',', $categories),
 		'order_options' => b_pico_list_allowed_order(),
 		'this_template' => $this_template,
-	));
+        ]
+    );
 	return $tpl->fetch('db:' . $mydirname . '_blockedit_subcategories.html');
 }

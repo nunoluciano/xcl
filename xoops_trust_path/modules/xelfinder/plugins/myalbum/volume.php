@@ -5,7 +5,7 @@
 
 if (is_dir(XOOPS_ROOT_PATH . $path)) {
 
-	$volumeOptions = array(
+	$volumeOptions = [
 		'driverSrc' => dirname(__FILE__) . '/driver.class.php',
 		'driver'    => 'XoopsMyalbum',
 		'mydirname' => $mydirname,
@@ -16,6 +16,6 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 		'readonly'  => true,
 		'icon'      => is_file(XOOPS_MODULE_PATH . '/'.$mydirname.'/images/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL . '/'.$mydirname.'/images/elfinder_volume_icon.png' : '',
 		'smallImg'  => '/uploads/thumbs'
-	);
+    ];
 
 }

@@ -90,11 +90,11 @@ class Xupdate_Ftp_Abstract
         $this->LocalEcho=$le;
         $this->Verbose=$verb;
         $this->_lastaction=null;
-        $this->_error_array=array();
-        $this->_eol_code=array(FTP_OS_Unix=>"\n", FTP_OS_Mac=>"\r", FTP_OS_Windows=>"\r\n");
-        $this->AuthorizedTransferMode=array(FTP_AUTOASCII, FTP_ASCII, FTP_BINARY);
-        $this->OS_FullName=array(FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS');
-        $this->AutoAsciiExt=array("ASP","BAT","C","CPP","CSS","CSV","JS","H","HTM","HTML","SHTML","INI","LOG","PHP3","PHTML","PL","PERL","SH","SQL","TXT");
+        $this->_error_array= [];
+        $this->_eol_code= [FTP_OS_Unix =>"\n", FTP_OS_Mac =>"\r", FTP_OS_Windows =>"\r\n"];
+        $this->AuthorizedTransferMode= [FTP_AUTOASCII, FTP_ASCII, FTP_BINARY];
+        $this->OS_FullName= [FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS'];
+        $this->AutoAsciiExt= ["ASP", "BAT", "C", "CPP", "CSS", "CSV", "JS", "H", "HTM", "HTML", "SHTML", "INI", "LOG", "PHP3", "PHTML", "PL", "PERL", "SH", "SQL", "TXT"];
         $this->_port_available=($port_mode==true);
         $this->SendMSG("Staring FTP client class".($this->_port_available?"":" without PORT mode support"));
         $this->_connected=false;
@@ -110,10 +110,10 @@ class Xupdate_Ftp_Abstract
         //$this->Passive(!$this->_port_available);
         $this->_login="anonymous";
         $this->_password="anon@ftp.com";
-        $this->_features=array();
+        $this->_features= [];
         $this->OS_local=FTP_OS_Unix;
         $this->OS_remote=FTP_OS_Unix;
-        $this->features=array();
+        $this->features= [];
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $this->OS_local=FTP_OS_Windows;
         } elseif (strtoupper(substr(PHP_OS, 0, 3)) === 'MAC') {

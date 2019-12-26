@@ -33,11 +33,11 @@ class Message_Module extends Legacy_ModuleAdapter
             return $this->mAdminMenu;
         }
         $root = XCube_Root::getSingleton();
-        $this->mAdminMenu[] = array(
+        $this->mAdminMenu[] = [
       'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
       'title' => _PREFERENCES,
       'show' => true
-    );
+        ];
         $this->_mAdminMenuLoadedFlag = true;
         return $this->mAdminMenu;
     }

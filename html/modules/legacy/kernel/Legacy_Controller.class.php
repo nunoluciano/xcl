@@ -273,7 +273,7 @@ class Legacy_Controller extends XCube_Controller
         $iTztime = gmmktime($arr[2], $arr[1], $arr[0], $arr[4], $arr[3], $arr[5]);
         $offset = doubleval(($iTztime-$iTime)/(60*60));
         $zonelist =
-        array(
+        [
             'Kwajalein' => -12.00,
             'Pacific/Midway' => -11.00,
             'Pacific/Honolulu' => -10.00,
@@ -308,7 +308,7 @@ class Legacy_Controller extends XCube_Controller
             'Asia/Magadan' => 11.00,
             'Pacific/Fiji' => 12.00,
             'Pacific/Tongatapu' => 13.00
-        );
+        ];
         $index = array_keys($zonelist, $offset);
         if (sizeof($index)!=1) {
             return false;
@@ -409,13 +409,13 @@ class Legacy_Controller extends XCube_Controller
                     $content = $this->loadCache($filepath);
                     if ($blockProcedure->isDisplay() && !empty($content)) {
                         $context->mAttributes['legacy_BlockShowFlags'][$blockProcedure->getEntryIndex()] = true;
-                        $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = array(
+                        $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = [
                             'id' => $blockProcedure->getId(),
                             'name' => $blockProcedure->getName(),
                             'title'   => $blockProcedure->getTitle(),
                             'content' => $content,
                             'weight'  => $blockProcedure->getWeight()
-                        );
+                        ];
                     }
 
                     $usedCacheFlag = true;
@@ -430,13 +430,13 @@ class Legacy_Controller extends XCube_Controller
                     $renderBuffer =& $blockProcedure->getRenderTarget();
 
                     $context->mAttributes['legacy_BlockShowFlags'][$blockProcedure->getEntryIndex()] = true;
-                    $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = array(
+                    $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = [
                             'name' => $blockProcedure->getName(),
                             'title'=>$blockProcedure->getTitle(),
                             'content'=>$renderBuffer->getResult(),
                             'weight'=>$blockProcedure->getWeight(),
                             'id' => $blockProcedure->getId(),
-                    );
+                    ];
                 } else {
                     //
                     // Dummy save
@@ -456,7 +456,7 @@ class Legacy_Controller extends XCube_Controller
 
     public function _parseUrl()
     {
-        $ret = array();
+        $ret = [];
         $rootPathInfo = @parse_url(XOOPS_URL);
         $rootPath = (isset($rootPathInfo['path']) ? $rootPathInfo['path'] : '') . '/';
         $php_info = xoops_getenv('PATH_INFO');
@@ -1084,7 +1084,7 @@ class Legacy_Controller extends XCube_Controller
             $this->mLogout->call(new XCube_Ref($successFlag), $xoopsUser);
             if ($successFlag) {
                 XCube_DelegateUtils::call('Site.Logout.Success', $xoopsUser);
-                $this->executeRedirect(XOOPS_URL . '/', 1, array(_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT));
+                $this->executeRedirect(XOOPS_URL . '/', 1, [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT]);
             } else {
                 XCube_DelegateUtils::call('Site.Logout.Fail', $xoopsUser);
             }
@@ -1222,12 +1222,16 @@ class Legacy_Controller extends XCube_Controller
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
-            $xoopsTpl->assign(array('xoops_sitename'=>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
-                                    'sitename'=>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
-                                    'langcode'=>_LANGCODE, 'charset'=>_CHARSET,
-                                    'time'=>$time, 'url'=>$url,
-                                    'message'=>$displayMessage,
-                                    'lang_ifnotreload'=>sprintf(_IFNOTRELOAD, $url)));
+            $xoopsTpl->assign(
+                [
+                    'xoops_sitename'   =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+                    'sitename'         =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+                    'langcode'         =>_LANGCODE, 'charset' =>_CHARSET,
+                    'time'             =>$time, 'url' =>$url,
+                    'message'          =>$displayMessage,
+                    'lang_ifnotreload' =>sprintf(_IFNOTRELOAD, $url)
+                ]
+            );
             $GLOBALS['xoopsModuleUpdate'] = 1;
 
             $xoopsTpl->display('db:system_redirect.html');

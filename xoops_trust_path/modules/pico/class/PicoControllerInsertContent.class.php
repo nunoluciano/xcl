@@ -63,12 +63,12 @@ class PicoControllerInsertContent extends PicoControllerAbstract
 		}
 
 		// create extra_tags for notifications
-		$extra_tags = array(
+		$extra_tags = [
 			'CONTENT_URL' => pico_common_unhtmlspecialchars($content_uri4html),
 			'APPROVAL_URL' => XOOPS_URL . "/modules/$this->mydirname/index.php?page=contentmanager&content_id=$content_id",
 			'CAT_TITLE' => $cat_data['cat_title'],
 			'CONTENT_SUBJECT' => $content_data['subject_raw'],
-		);
+        ];
 
 		// users2notify (can_readfull only)
 		$users2notify = $picoPermission->getUidsFromCatid($this->mydirname, $cat_data['id'], 'can_readfull');
@@ -85,7 +85,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract
 		} else {
 			// Notify for new waiting content (only for admin or mod)
 			$users2notify = pico_main_get_moderators($this->mydirname, $cat_data['id']);
-			if (empty($users2notify)) $users2notify = array(0);
+			if (empty($users2notify)) $users2notify = [0];
 			pico_main_trigger_event($this->mydirname, 'global', 0, 'waitingcontent', $extra_tags, $users2notify);
 			// message "waiting approval"
 			redirect_header($ret_uri4html, 2, _MD_PICO_MSG_CONTENTWAITINGREGISTER);

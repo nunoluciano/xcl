@@ -10,8 +10,8 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesUploadForm.class.php
 class Legacy_SmilesUploadAction extends Legacy_Action
 {
     public $mActionForm = null;
-    public $mErrorMessages = array();
-    public $mAllowedExts = array('gif'=>'image/gif', 'jpg'=>'image/jpeg', 'jpeg'=>'image/jpeg', 'png' =>'image/png') ;
+    public $mErrorMessages = [];
+    public $mAllowedExts = ['gif' =>'image/gif', 'jpg' =>'image/jpeg', 'jpeg' =>'image/jpeg', 'png' =>'image/png'];
     
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -45,8 +45,8 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
         $formFile = $this->mActionForm->get('upload');
         $formFileExt = $formFile->getExtension();
-        $files = array();
-        $smilesimages = array();
+        $files = [];
+        $smilesimages = [];
 
         if (strtolower($formFileExt) == "zip") {
             if (!file_exists(XOOPS_ROOT_PATH . "/class/Archive_Zip.php")) {
@@ -54,7 +54,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
             }
             require_once XOOPS_ROOT_PATH . "/class/Archive_Zip.php" ;
             $zip = new Archive_Zip($formFile->_mTmpFileName) ;
-            $files = $zip->extract(array( 'extract_as_string' => true )) ;
+            $files = $zip->extract(['extract_as_string' => true]) ;
             if (! is_array(@$files)) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -88,7 +88,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
                 $file['filename'] = substr($file['filename'], $file_pos+1);
             }
             if (!empty($file['filename']) && preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $file['filename'], $match) && !preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $file['filename'])) {
-                $smilesimages[] = array('name' => $file['filename'], 'content' => $file['content']);
+                $smilesimages[] = ['name' => $file['filename'], 'content' => $file['content']];
             }
             unset($file);
         }
@@ -103,7 +103,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
                 $info['name'] = substr($info['name'], $file_pos+1);
             }
             if (!empty($info['name']) && preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $info['name'], $match) && !preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $info['name'])) {
-                $smilesimages[] = array('name' => $info['name'], 'content' => $info['file']);
+                $smilesimages[] = ['name' => $info['name'], 'content' => $info['file']];
             }
             unset($info);
         }

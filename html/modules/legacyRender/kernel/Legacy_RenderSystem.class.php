@@ -28,7 +28,7 @@ class Legacy_XoopsTpl extends XoopsTpl
      * If variables having the following key are assigned, converts value with
      * htmlspecialchars_decode, and set it to the context for compatibility.
      */
-    public $_mContextReserve = array();
+    public $_mContextReserve = [];
     
     public function Legacy_XoopsTpl()
     {
@@ -37,7 +37,7 @@ class Legacy_XoopsTpl extends XoopsTpl
 
     public function __construct()
     {
-        $this->_mContextReserve = array('xoops_pagetitle' => 'legacy_pagetitle');
+        $this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
         parent::__construct();
     }
     
@@ -176,11 +176,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $mTpl->xoops_setDebugging(true);
         }
         
-        $mTpl->assign(array(
+        $mTpl->assign(
+            [
             'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
             // set JavaScript/Weird, but need extra <script> tags for 2.0.x themes
             'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
-        ));
+            ]
+        );
 
         if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && $xoopsRedirect[0] === '/') {
             $mTpl->assign('xoops_redirect', htmlspecialchars($xoopsRedirect, ENT_QUOTES));
@@ -221,15 +223,15 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // --------------------------------------
         $arr = null;
         if (is_object($context->mXoopsUser)) {
-            $arr = array(
+            $arr = [
                 'xoops_isuser' => true,
                 'xoops_userid' => $context->mXoopsUser->getVar('uid', 'n'),
                 'xoops_uname' => $context->mXoopsUser->getVar('uname')
-            );
+            ];
         } else {
-            $arr = array(
+            $arr = [
                 'xoops_isuser' => false
-            );
+            ];
         }
         
         $mTpl->assign($arr);
@@ -256,12 +258,14 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $textFilter =& $root->getTextFilter();
 
         $themeName = $context->getThemeName();
-        $vars = array('xoops_theme'=>$themeName,
-                      'xoops_imageurl'=>XOOPS_THEME_URL . "/${themeName}/",
-                      'xoops_themecss'=>xoops_getcss($themeName),
-                      'xoops_sitename'=>$textFilter->toShow($context->getAttribute('legacy_sitename')),
-                      'xoops_pagetitle'=>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
-                      'xoops_slogan'=>$textFilter->toShow($context->getAttribute('legacy_slogan')));
+        $vars = [
+            'xoops_theme'     =>$themeName,
+            'xoops_imageurl'  =>XOOPS_THEME_URL . "/${themeName}/",
+            'xoops_themecss'  =>xoops_getcss($themeName),
+            'xoops_sitename'  =>$textFilter->toShow($context->getAttribute('legacy_sitename')),
+            'xoops_pagetitle' =>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
+            'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan'))
+        ];
 
         //
         // Assign module informations.
@@ -428,13 +432,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
         // assign
         /// @todo I must move these to somewhere.
-        $assignNameMap = array(
-                XOOPS_SIDEBLOCK_LEFT=>array('showflag'=>'xoops_showlblock','block'=>'xoops_lblocks'),
-                XOOPS_CENTERBLOCK_LEFT=>array('showflag'=>'xoops_showcblock','block'=>'xoops_clblocks'),
-                XOOPS_CENTERBLOCK_RIGHT=>array('showflag'=>'xoops_showcblock','block'=>'xoops_crblocks'),
-                XOOPS_CENTERBLOCK_CENTER=>array('showflag'=>'xoops_showcblock','block'=>'xoops_ccblocks'),
-                XOOPS_SIDEBLOCK_RIGHT=>array('showflag'=>'xoops_showrblock','block'=>'xoops_rblocks')
-            );
+        $assignNameMap = [
+            XOOPS_SIDEBLOCK_LEFT=> ['showflag' =>'xoops_showlblock', 'block' =>'xoops_lblocks'],
+            XOOPS_CENTERBLOCK_LEFT=> ['showflag' =>'xoops_showcblock', 'block' =>'xoops_clblocks'],
+            XOOPS_CENTERBLOCK_RIGHT=> ['showflag' =>'xoops_showcblock', 'block' =>'xoops_crblocks'],
+            XOOPS_CENTERBLOCK_CENTER=> ['showflag' =>'xoops_showcblock', 'block' =>'xoops_ccblocks'],
+            XOOPS_SIDEBLOCK_RIGHT=> ['showflag' =>'xoops_showrblock', 'block' =>'xoops_rblocks']
+        ];
 
         foreach ($assignNameMap as $key=>$val) {
             $mTpl->assign($val['showflag'], $this->_getBlockShowFlag($val['showflag']));

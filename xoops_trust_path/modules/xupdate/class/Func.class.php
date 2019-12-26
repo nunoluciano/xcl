@@ -43,11 +43,14 @@ if (! class_exists('Xupdate_Func')) {
      **/
     public function _downloadFile($target_key, $downloadUrl, $tempFilename, &$downloadedFilePath, $cacheTTL = 0)
     {
-        $multiData = array(array(
+        $multiData = [
+            [
             'target_key' => $target_key,
             'downloadUrl' => $downloadUrl,
             'tempFilename' => $tempFilename,
-            'downloadedFilePath' => ''));
+            'downloadedFilePath' => ''
+            ]
+        ];
         
         if ($this->_multiDownloadFile($multiData, $cacheTTL)) {
             $downloadedFilePath = $multiData[0]['downloadedFilePath'];
@@ -82,7 +85,7 @@ if (! class_exists('Xupdate_Func')) {
         $this->recent_error = '';
         while ($fetchs = array_slice($multiData, $start, $max, true)) {
             $this->appendMes('multi download start: '.($start + 1).' to '.(min($start + $max, $count)));
-            $fps = $chs = array();
+            $fps = $chs = [];
             $start += $max;
             foreach ($fetchs as $key => $data) {
                 $target_key = $data['target_key'];
@@ -336,7 +339,7 @@ if (! class_exists('Xupdate_Func')) {
     {
         // TODO ファイルNotFound対策
         //$url = sprintf( $downloadUrlFormat, $target_key );
-        $url = str_replace(array('%s', '%u'), $target_key, $downloadUrlFormat);
+        $url = str_replace(['%s', '%u'], $target_key, $downloadUrlFormat);
         return $url;
     }
 

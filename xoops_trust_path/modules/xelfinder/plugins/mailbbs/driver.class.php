@@ -10,7 +10,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 
 	protected $mydirname = '';
 
-	protected $enabledFiles = array();
+	protected $enabledFiles = [];
 
 	protected function set_mailbbs_enabledFiles() {
 
@@ -20,7 +20,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 		$logfile = XOOPS_MODULE_PATH.'/'.$this->mydirname.'/'.$log;
 		$logs = file($logfile);
 
-		$ret = array();
+		$ret = [];
 		foreach ($logs as $log) {
 			$data = array_pad(explode('<>', $log), 8, '');
 			if (intval($data[7]) || ! $data[5]) continue; // 未承認 or ファイルなし
@@ -91,7 +91,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _scandir($path) {
-		$files = array();
+		$files = [];
 		if ($path === $this->root) {
 			foreach ($this->enabledFiles as $file => $name) {
 				$files[] = $path.'/'.$file;
@@ -157,7 +157,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 * @author Dmitry (dio) Levashov, Naoki Sawada
 	 **/
 	protected function doSearch($path, $q, $mimes) {
-		$result = array();
+		$result = [];
 		$encode = defined('_CHARSET')? _CHARSET : 'auto';
 	
 		foreach($this->_scandir($path) as $p) {

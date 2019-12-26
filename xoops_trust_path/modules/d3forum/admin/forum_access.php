@@ -55,7 +55,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 	$db->query( "DELETE FROM ".$db->prefix($mydirname."_forum_access")." WHERE forum_id=$forum_id AND uid>0" ) ;
-	$can_posts = is_array( @$_POST['can_posts'] ) ? $_POST['can_posts'] : array() ;
+	$can_posts = is_array( @$_POST['can_posts'] ) ? $_POST['can_posts'] : [];
 	$can_reads = is_array( @$_POST['can_reads'] ) ? $_POST['can_reads'] + $can_posts : $can_posts ;
 
 	foreach( $can_reads as $uid => $can_read ) {
@@ -185,7 +185,7 @@ for( $i = 0 ; $i < 5 ; $i ++ ) {
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 $tpl = new XoopsTpl() ;
-$tpl->assign( array(
+$tpl->assign([
 	'mydirname' => $mydirname ,
 	'mod_name' => $xoopsModule->getVar('name') ,
 	'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
@@ -198,7 +198,8 @@ $tpl->assign( array(
 	'user_trs' => $user_trs ,
 	'newuser_trs' => $newuser_trs ,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum_admin') ,
-) ) ;
+             ]
+) ;
 $tpl->display( 'db:'.$mydirname.'_admin_forum_access.html' ) ;
 xoops_cp_footer();
 

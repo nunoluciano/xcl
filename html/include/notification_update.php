@@ -95,7 +95,7 @@ foreach ($update_list as $update_item) {
 
 include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-$redirect_args = array();
+$redirect_args = [];
 foreach ($update_list as $update_item) {
     list($category, $item_id, $event) = explode(',', $update_item['params']);
     $category_info =& notificationCategoryInfo($category);

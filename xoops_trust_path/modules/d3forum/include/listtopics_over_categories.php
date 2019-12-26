@@ -1,6 +1,6 @@
 <?php
 
-$cat_ids = array() ;
+$cat_ids = [];
 foreach( explode( ',' , $_GET['cat_ids'] ) as $cat_id ) {
 	if( $cat_id > 0 ) {
 		$cat_ids[] = intval( $cat_id ) ;
@@ -10,7 +10,7 @@ foreach( explode( ',' , $_GET['cat_ids'] ) as $cat_id ) {
 if( empty( $cat_ids ) ) {
 	// all topics in the module
 	$pagetitle = _MD_D3FORUM_LISTALLTOPICS ;
-	$category4assign = array() ;
+	$category4assign = [];
 	$cat_ids4param = '0' ;
 	$whr_cat_ids = '1' ;
 	$isadminorcatmod = $isadmin ;
@@ -27,7 +27,7 @@ if( empty( $cat_ids ) ) {
 	// topics under categories separated with commma
 	sort( $cat_ids ) ;
 	$pagetitle = _MD_D3FORUM_LISTTOPICSINCATEGORIES ;
-	$category4assign = array() ;
+	$category4assign = [];
 	$cat_ids4param = implode( ',' , $cat_ids ) ;
 	$whr_cat_ids = 'c.cat_id IN ('.$cat_ids4param.')' ;
 	$isadminorcatmod = $isadmin ;
@@ -37,7 +37,7 @@ if( empty( $cat_ids ) ) {
 // get all "forum"s
 $sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 $frs = $db->query( $sql ) ;
-$d3com = array() ;
+$d3com = [];
 while( $forum_row = $db->fetchArray( $frs ) ) {
 	// d3comment object
 	$temp_forum_id = intval($forum_row['forum_id']);
@@ -83,7 +83,7 @@ $sql = "SELECT t.*, lp.post_text AS lp_post_text, lp.subject AS lp_subject, lp.i
 if( ! $trs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 
 // topics loop
-$topics = array() ;
+$topics = [];
 while( $topic_row = $db->fetchArray( $trs ) ) {
 
 	$topic_id = intval( $topic_row['topic_id'] ) ;
@@ -129,7 +129,7 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 
 	// topics array
 	if($can_display == true) {	// naao
-	    $topics[] = array(
+	    $topics[] = [
 		'id' => $topic_row['topic_id'] ,
 		'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] , $topic_row['fp_number_entity'] , $topic_row['fp_special_entity'] ) ,
 		'forum_id' => $topic_row['forum_id'] ,
@@ -168,7 +168,7 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 		'external_link_id' => intval( $topic_row['topic_external_link_id'] ) , //naao
 		'last_post_gname' => $myts->makeTboxData4Show( $topic_row['lp_guest_name'] , $topic_row['lp_number_entity'] , $topic_row['lp_special_entity'] ) , //naao
 		'first_post_gname' => $myts->makeTboxData4Show( $topic_row['fp_guest_name'] , $topic_row['lp_number_entity'] , $topic_row['lp_special_entity'] ) , //naao
-	    ) ;
+        ];
 	}	//naao
 }
 
@@ -176,19 +176,19 @@ $xoopsOption['template_main'] = $mydirname.'_main_listtopics_over_categories.htm
 include XOOPS_ROOT_PATH.'/header.php' ;
 
 $xoopsTpl->assign(
-	array(
-		'category' => $category4assign ,
-		'topics' => $topics ,
-		'topic_hits' => intval( $topic_hits ) ,
-		'odr_options' => $odr_options ,
-		'solved_options' => $solved_options ,
-		'query' => $query4assign ,
-		'cat_ids' => $cat_ids4param ,
-		'pagenav' => @$pagenav ,
-		'page' => 'listtopics_over_categories' ,
-		'pagetitle' => $pagetitle ,
-		'xoops_pagetitle' => join(' - ', array_filter(array($pagetitle, isset($category4assign['title'])? $category4assign['title'] : '', $xoopsModule->getVar('name')))) ,
-	)
+    [
+        'category' => $category4assign,
+        'topics' => $topics,
+        'topic_hits' => intval( $topic_hits ),
+        'odr_options' => $odr_options,
+        'solved_options' => $solved_options,
+        'query' => $query4assign,
+        'cat_ids' => $cat_ids4param,
+        'pagenav' => @$pagenav,
+        'page' => 'listtopics_over_categories',
+        'pagetitle' => $pagetitle,
+        'xoops_pagetitle' => join(' - ', array_filter([$pagetitle, isset($category4assign['title'])? $category4assign['title'] : '', $xoopsModule->getVar('name')])),
+    ]
 ) ;
 
 

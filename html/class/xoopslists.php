@@ -40,7 +40,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
             if ($root->mLanguageManager !== null && !defined('_TZ_GMT0')) {
                 $root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
             }
-            $time_zone_list = array(
+            $time_zone_list = [
                 "-12" => _TZ_GMTM12,
                 "-11" => _TZ_GMTM11,
                 "-10" => _TZ_GMTM10,
@@ -74,7 +74,8 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
                 "10" => _TZ_GMTP10,
                 "11" => _TZ_GMTP11,
                 "12" => _TZ_GMTP12,
-                "13" => _TZ_GMTP13);
+                "13" => _TZ_GMTP13
+            ];
             return $time_zone_list;
         }
 
@@ -101,7 +102,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          */
         public static function &getDirListAsArray($dirname)
         {
-            $dirlist = array();
+            $dirlist = [];
             if (is_dir($dirname) && $handle = opendir($dirname)) {
                 while (false !== ($file = readdir($handle))) {
                     if (!preg_match("/^\..*$/", $file)) {
@@ -122,7 +123,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          */
         public static function &getFileListAsArray($dirname, $prefix="")
         {
-            $filelist = array();
+            $filelist = [];
             if (substr($dirname, -1) == '/') {
                 $dirname = substr($dirname, 0, -1);
             }
@@ -145,7 +146,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          */
         public static function &getImgListAsArray($dirname, $prefix="")
         {
-            $filelist = array();
+            $filelist = [];
             if ($handle = opendir($dirname)) {
                 while (false !== ($file = readdir($handle))) {
                     if (!preg_match("/^[\.]{1,2}$/", $file) && preg_match("/(\.gif|\.jpg|\.png)$/i", $file)) {
@@ -165,7 +166,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         */
         public static function &getHtmlListAsArray($dirname, $prefix="")
         {
-            $filelist = array();
+            $filelist = [];
             if ($handle = opendir($dirname)) {
                 while (false !== ($file = readdir($handle))) {
                     if ((!preg_match("/^[\.]{1,2}$/", $file) && preg_match("/(\.htm|\.html|\.xhtml)$/i", $file) && !is_dir($file))) {
@@ -188,7 +189,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          */
         public static function &getAvatarsList($avatar_dir="")
         {
-            $avatars = array();
+            $avatars = [];
             if ($avatar_dir != "") {
                 $avatars =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/images/avatar/".$avatar_dir."/", $avatar_dir."/");
             } else {
@@ -202,8 +203,8 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          */
         public static function &getAllAvatarsList()
         {
-            $avatars = array();
-            $dirlist = array();
+            $avatars = [];
+            $dirlist = [];
             $dirlist =& XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH."/images/avatar/");
             if (count($dirlist) > 0) {
                 foreach ($dirlist as $dir) {
@@ -221,7 +222,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
         */
         public static function &getSubjectsList($sub_dir="")
         {
-            $subjects = array();
+            $subjects = [];
             if ($sub_dir != "") {
                 $subjects =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH."/images/subject/".$sub_dir, $sub_dir."/");
             } else {
@@ -235,14 +236,14 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
          */
         public static function &getLangList()
         {
-            $lang_list = array();
+            $lang_list = [];
             $lang_list =& XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH."/language/");
             return $lang_list;
         }
 
         public static function &getCountryList()
         {
-            $country_list = array(
+            $country_list = [
                 ""   => "-",
                 "AD" => "Andorra",
                 "AE" => "United Arab Emirates",
@@ -487,7 +488,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
                 "ZM" => "Zambia",
                 "ZR" => "Zaire",
                 "ZW" => "Zimbabwe"
-            );
+            ];
             asort($country_list);
             reset($country_list);
             return $country_list;
@@ -495,7 +496,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
 
         public static function &getHtmlList()
         {
-            $html_list = array(
+            $html_list = [
                 "a" => "&lt;a&gt;",
                 "abbr" => "&lt;abbr&gt;",
                 "acronym" => "&lt;acronym&gt;",
@@ -547,7 +548,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
                 "tt" => "&lt;tt&gt;",
                 "ul" => "&lt;ul&gt;",
                 "var" => "&lt;var&gt;"
-            );
+            ];
             asort($html_list);
             reset($html_list);
             return $html_list;
@@ -558,7 +559,7 @@ if (!defined("XOOPS_LISTS_INCLUDED")) {
             $db =& Database::getInstance();
             $myts =& MyTextSanitizer::sGetInstance();
             $sql = "SELECT rank_id, rank_title FROM ".$db->prefix("ranks")." WHERE rank_special = 1";
-            $ret = array();
+            $ret = [];
             $result = $db->query($sql);
             while ($myrow = $db->fetchArray($result)) {
                 $ret[$myrow['rank_id']] = $myts->makeTboxData4Show($myrow['rank_title']);

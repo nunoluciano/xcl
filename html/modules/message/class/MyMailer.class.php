@@ -79,8 +79,8 @@ class My_Mailer extends PHPMailer
   
     public function setBody($text)
     {
-        $search = array("\r\n", "\r", "\n");
-        $replace = array("\n", "\n", $this->LE);
+        $search = ["\r\n", "\r", "\n"];
+        $replace = ["\n", "\n", $this->LE];
         $text = str_replace($search, $replace, $text);
         $this->Body = $this->convertLocal($text);
     }

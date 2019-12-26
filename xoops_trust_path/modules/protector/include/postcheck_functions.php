@@ -31,7 +31,7 @@ function protector_postcommon()
 
     // phpmailer vulnerability
     // https://larholm.com/2007/06/11/phpmailer-0day-remote-execution/
-    if (in_array(substr(XOOPS_VERSION, 0, 12), array('XOOPS 2.0.16', 'XOOPS 2.0.13', 'XOOPS 2.2.4'))) {
+    if (in_array(substr(XOOPS_VERSION, 0, 12), ['XOOPS 2.0.16', 'XOOPS 2.0.13', 'XOOPS 2.2.4'])) {
         $config_handler = &xoops_gethandler('config');
         $xoopsMailerConfig = &$config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
         if ($xoopsMailerConfig['mailmethod'] == 'sendmail' && md5_file(XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php') == 'ee1c09a8e579631f0511972f929fe36a') {
@@ -92,7 +92,7 @@ function protector_postcommon()
     $dos_skipping = false;
     $skip_dirnames = explode('|', @$conf['dos_skipmodules']);
     if (!is_array($skip_dirnames)) {
-        $skip_dirnames = array();
+        $skip_dirnames = [];
     }
     if (is_object(@$xoopsModule)) {
         if (in_array($xoopsModule->getVar('dirname'), $skip_dirnames)) {

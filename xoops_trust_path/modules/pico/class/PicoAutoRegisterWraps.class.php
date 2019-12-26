@@ -4,7 +4,7 @@ class PicoAutoRegisterWraps
 {
 
 	var $mydirname = '';
-	var $config = array();
+	var $config = [];
 	var $wrap_base = '';
 
 	// !Fix deprecated constructor
@@ -105,7 +105,7 @@ class PicoAutoRegisterWraps
 		$affected_rows = 0;
 
 		$dh = opendir($wrap_dir);
-		$additional_vpaths = array();
+		$additional_vpaths = [];
 		while (($file = readdir($dh)) !== false) {
 			if (preg_match(_MD_PICO_AUTOREGIST4PREGEX, $file)) {
 				$vpath = $cat_vpath . '/' . $file;
@@ -182,12 +182,12 @@ class PicoAutoRegisterWraps
 			$body = $full_content;
 		}
 
-		return array(
+		return [
 			'mtime' => intval(@filemtime($wrap_full_path)),
 			'subject' => $subject,
 			'subject_alt' => $subject ? $subject : $filename,
 			'filename' => $filename,
 			'body' => $body,
-		);
+        ];
 	}
 }

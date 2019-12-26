@@ -48,7 +48,7 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
     
     public function getSelectableTheme()
     {
-        $ret = array();
+        $ret = [];
         
         foreach ($this->get('select') as $themeName => $isSelect) {
             if ($isSelect == 1) {

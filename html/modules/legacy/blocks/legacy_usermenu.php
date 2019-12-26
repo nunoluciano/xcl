@@ -35,7 +35,7 @@ function b_legacy_usermenu_show()
     $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
 
     if (is_object($xoopsUser)) {
-        $block = array();
+        $block = [];
         
         $block['uid'] = $xoopsUser->get('uid');
         $block['flagShowInbox'] = false;
@@ -47,11 +47,11 @@ function b_legacy_usermenu_show()
         $service =& $root->mServiceManager->getService('privateMessage');
         if ($service != null) {
             $client =& $root->mServiceManager->createClient($service);
-            $url = $client->call('getPmInboxUrl', array('uid' => $xoopsUser->get('uid')));
+            $url = $client->call('getPmInboxUrl', ['uid' => $xoopsUser->get('uid')]);
             
             if ($url != null) {
                 $block['inbox_url'] = $url;
-                $block['new_messages'] = $client->call('getCountUnreadPM', array('uid' => $xoopsUser->get('uid')));
+                $block['new_messages'] = $client->call('getCountUnreadPM', ['uid' => $xoopsUser->get('uid')]);
                 $block['flagShowInbox']=true;
             }
         }

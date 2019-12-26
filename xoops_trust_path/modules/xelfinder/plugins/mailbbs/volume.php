@@ -5,7 +5,7 @@
 
 if (is_dir(XOOPS_ROOT_PATH . $path)) {
 
-	$volumeOptions = array(
+	$volumeOptions = [
 		'driverSrc'  => dirname(__FILE__) . '/driver.class.php',
 		'driver'     => 'XoopsMailbbs',
 		'mydirname'  => $mydirname,
@@ -15,7 +15,7 @@ if (is_dir(XOOPS_ROOT_PATH . $path)) {
 	    'quarantine' => '',
 		'readonly'   => true,
 		'icon'       => is_file(XOOPS_MODULE_PATH . '/'.$mydirname.'/imgs/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL . '/'.$mydirname.'/imgs/elfinder_volume_icon.png' : '',
-		'defaults' => array('read' => true, 'write' => false, 'locked' => true)
-	);
+		'defaults' => ['read' => true, 'write' => false, 'locked' => true]
+    ];
 
 }

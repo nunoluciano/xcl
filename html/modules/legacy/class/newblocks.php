@@ -20,9 +20,9 @@ class LegacyNewblocksObject extends XoopsSimpleObject
      * Array of group objects who can access this object.
      * It need lazy loading to access.
      */
-    public $mGroup = array();
+    public $mGroup = [];
     
-    public $mBmodule = array();
+    public $mBmodule = [];
     
     public $mColumn = null;
     

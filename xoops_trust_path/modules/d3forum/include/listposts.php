@@ -56,7 +56,7 @@ switch( $postorder ) {
 // posts loop
 $max_post_time = 0 ;
 $last_post_offset = 0 ;
-$posts = array() ;
+$posts = [];
 //$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id ORDER BY order_in_tree,post_id LIMIT $pos,$num" ; //naao
 $sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id ORDER BY $postorder4sql LIMIT $pos,$num" ; //naao
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
@@ -70,7 +70,7 @@ while( $post_row = $db->fetchArray( $prs ) ) {
 	if( $post_row['post_time'] > $max_post_time ) $last_post_offset = sizeof( $posts ) ;
 
 	// posts array
-	$posts[] = array(
+	$posts[] = [
 		'id' => intval( $post_row['post_id'] ) ,
 		'subject' => $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] , $post_row['special_entity'] ) ,
 		'subject_raw' => $post_row['subject'] ,
@@ -119,7 +119,7 @@ while( $post_row = $db->fetchArray( $prs ) ) {
 		'can_delete' => $can_delete ,
 		'can_reply' => $can_reply ,
 		'can_vote' => $can_vote ,
-	) ;
+    ];
 
 }
 
@@ -171,7 +171,7 @@ if( is_object( $xoopsUser ) ) {
 
 } else { $poster_uname4disp = '' ;}
 
-$tree = array();
+$tree = [];
 $topics_count = 0;
 if( $topic4assign['external_link_id'] >0 ) {
 
@@ -190,7 +190,7 @@ if( $topic4assign['external_link_id'] >0 ) {
 		$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid , $xoopsModuleConfig['use_name']) ; //naao usereal=1
 		$topic_last_uname = $topic_last_uid > 0 ? $topic_last_uname : $myts->makeTboxData4Show( $post_row['guest_name'] ) ;
 
-		$tree[] = array(
+		$tree[] = [
 			'id' => intval( $post_row['post_id'] ) ,
 			'subject' => $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] ,
 					 $post_row['special_entity'] ) ,
@@ -203,51 +203,51 @@ if( $topic4assign['external_link_id'] >0 ) {
 			'topic_id' => intval( $post_row['topic_id'] ) ,
 			'ul_in' => '<ul><li>' ,
 			'ul_out' => '</li></ul>' ,
-		);
+        ];
 	}
 		$topics_count = count($tree) ;
 }
 	// naao to
 
 // assign for block function
-$GLOBALS['D3forum_'.$mydirname] = array(
+$GLOBALS['D3forum_'.$mydirname] = [
 	'category' => $category4assign,
 	'forum' => $forum4assign,
 	'topic' => $topic4assign
-);
+];
 
 $xoopsOption['template_main'] = $mydirname.'_main_listposts.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
 unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
-	array(
-		'category' => $category4assign ,
-		'forum' => $forum4assign ,
-		'topic' => $topic4assign ,
-		'next_topic' => $next_topic4assign ,
-		'prev_topic' => $prev_topic4assign ,
-		'first_post' => $first_post ,
-		'posts' => $posts ,
-		'post_hits' => intval( @$post_hits ) ,	// naao
-		'tree' => $tree ,			// naao
-		'tree_tp_count' => $topics_count ,	// naao
-		'page' => 'listposts' ,
-		'ret_name' => 'topic_id' ,
-		'ret_val' => $topic_id ,
-		'uname' => $poster_uname4disp ,
-		'pagenav' => $pagenav ,	//naao
-		'pos' => $pos ,		//naao
-		'xoops_pagetitle' => join(' - ', array($topic4assign['title'], $forum4assign['title'], $xoopsModule->getVar('name'))) ,
-		'xoops_meta_description' => $d3forum_meta_description ,	// naao
-		'xoops_breadcrumbs' => $xoops_breadcrumbs ,
-	)
+    [
+        'category' => $category4assign,
+        'forum' => $forum4assign,
+        'topic' => $topic4assign,
+        'next_topic' => $next_topic4assign,
+        'prev_topic' => $prev_topic4assign,
+        'first_post' => $first_post,
+        'posts' => $posts,
+        'post_hits' => intval( @$post_hits ),    // naao
+        'tree' => $tree,            // naao
+        'tree_tp_count' => $topics_count,    // naao
+        'page' => 'listposts',
+        'ret_name' => 'topic_id',
+        'ret_val' => $topic_id,
+        'uname' => $poster_uname4disp,
+        'pagenav' => $pagenav,    //naao
+        'pos' => $pos,        //naao
+        'xoops_pagetitle' => join(' - ', [$topic4assign['title'], $forum4assign['title'], $xoopsModule->getVar('name')]),
+        'xoops_meta_description' => $d3forum_meta_description,    // naao
+        'xoops_breadcrumbs' => $xoops_breadcrumbs,
+    ]
 ) ;
 
 
 /*
 
-// ½çÈÖ¤È¥Ó¥å¡¼¥â¡¼¥É¤Î¼ÂÁõ
+// ï¿½ï¿½ï¿½Ö¤È¥Ó¥å¡¼ï¿½â¡¼ï¿½É¤Î¼ï¿½ï¿½ï¿½
 
 if( is_object( $xoopsUser ) ) {
 	$uid = $xoopsUser->getVar('uid') ;
@@ -258,11 +258,11 @@ if( is_object( $xoopsUser ) ) {
 	$uid = 0 ;
 }
 
-// topic mark on/off ½èÍý
+// topic mark on/off ï¿½ï¿½ï¿½ï¿½
 
-// ¥Ú¡¼¥¸Ê¬³ä½èÍý¤ÏÉÔÍ×¡¦¤à¤·¤í³Æ¥Õ¥©¡¼¥é¥àËè¤ËÅê¹Æ¿ô¾å¸Â¤òÀßÄê²Ä¤È¤¹¤ë
-¡¡¢ª¡¡²¾¤Ë¼ÂÁõ¡¡naao
-¡¡¡¡¡¡TODo :¡Ö¿ÆÅê¹Æ¡×¥ê¥ó¥¯¤Î½¤Àµ
+// ï¿½Ú¡ï¿½ï¿½ï¿½Ê¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¡ï¿½ï¿½à¤·ï¿½ï¿½Æ¥Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½Â¤ï¿½ï¿½ï¿½ï¿½ï¿½Ä¤È¤ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½naao
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TODo :ï¿½Ö¿ï¿½ï¿½ï¿½Æ¡×¥ï¿½ó¥¯¤Î½ï¿½ï¿½ï¿½
 
 */
 ?>

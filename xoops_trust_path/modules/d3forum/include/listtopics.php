@@ -49,7 +49,7 @@ if( ! $trs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	else $d3com = false ;
 
 // topics loop
-$topics = array() ;
+$topics = [];
 while( $topic_row = $db->fetchArray( $trs ) ) {
 
 	$topic_id = intval( $topic_row['topic_id'] ) ;
@@ -94,7 +94,7 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 
 	// topics array
 	if($can_display == true) {	// naao
-	    $topics[] = array(
+	    $topics[] = [
 		'id' => $topic_row['topic_id'] ,
 		'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] , $topic_row['fp_number_entity'] , $topic_row['fp_special_entity'] ) ,
 		'replies' => intval( $topic_row['topic_posts_count'] ) - 1 ,
@@ -128,35 +128,35 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 		'votes_avg' => round( $topic_row['topic_votes_sum'] / ( $topic_row['topic_votes_count'] - 0.0000001 ) , 2 ) ,
 		'last_post_gname' => $myts->makeTboxData4Show( $topic_row['lp_guest_name'] , $topic_row['lp_number_entity'] , $topic_row['lp_special_entity'] ) , //naao
 		'first_post_gname' => $myts->makeTboxData4Show( $topic_row['fp_guest_name'] , $topic_row['lp_number_entity'] , $topic_row['lp_special_entity'] ) , //naao
-	    ) ;
+        ];
 	}	// naao
 }
 
 // assign for block function
-$GLOBALS['D3forum_'.$mydirname] = array(
+$GLOBALS['D3forum_'.$mydirname] = [
 	'category' => $category4assign,
 	'forum' => $forum4assign
-);
+];
 
 $xoopsOption['template_main'] = $mydirname.'_main_listtopics.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
 unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
-	array(
-		'category' => $category4assign ,
-		'forum' => $forum4assign ,
-		'topics' => $topics ,
-		'topic_hits' => intval( $topic_hits ) ,
-		'odr_options' => $odr_options ,
-		'solved_options' => $solved_options ,
-		'query' => $query4assign ,
-		'd3comment_info' => $d3comment_info ,
-		'pagenav' => $pagenav ,
-		'page' => 'listtopics' ,
-		'xoops_pagetitle' =>join(' - ', array($forum4assign['title'], $xoopsModule->getVar('name'))) ,
-		'xoops_breadcrumbs' => $xoops_breadcrumbs ,
-	)
+    [
+        'category' => $category4assign,
+        'forum' => $forum4assign,
+        'topics' => $topics,
+        'topic_hits' => intval( $topic_hits ),
+        'odr_options' => $odr_options,
+        'solved_options' => $solved_options,
+        'query' => $query4assign,
+        'd3comment_info' => $d3comment_info,
+        'pagenav' => $pagenav,
+        'page' => 'listtopics',
+        'xoops_pagetitle' =>join(' - ', [$forum4assign['title'], $xoopsModule->getVar('name')]),
+        'xoops_breadcrumbs' => $xoops_breadcrumbs,
+    ]
 ) ;
 
 // TODO

@@ -102,8 +102,8 @@ class Legacy_ModuleUninstaller
         $db =& $root->mController->getDB();
 
         $dirname = $this->_mXoopsModule->get('dirname');
-        $t_search = array('{prefix}', '{dirname}', '{Dirname}', '{_dirname_}');
-        $t_replace = array(XOOPS_DB_PREFIX, strtolower($dirname), ucfirst(strtolower($dirname)), $dirname);
+        $t_search = ['{prefix}', '{dirname}', '{Dirname}', '{_dirname_}'];
+        $t_replace = [XOOPS_DB_PREFIX, strtolower($dirname), ucfirst(strtolower($dirname)), $dirname];
         
         $tables = $this->_mXoopsModule->getInfo('tables');
         if ($tables != false && is_array($tables)) {

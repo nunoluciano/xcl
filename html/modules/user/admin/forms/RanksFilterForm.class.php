@@ -21,13 +21,13 @@ define('RANKS_SORT_KEY_DEFAULT', RANKS_SORT_KEY_RANK_ID);
 
 class User_RanksFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         RANKS_SORT_KEY_RANK_ID => 'rank_id',
         RANKS_SORT_KEY_RANK_TITLE => 'rank_title',
         RANKS_SORT_KEY_RANK_MIN => 'rank_min',
         RANKS_SORT_KEY_RANK_MAX => 'rank_max',
         RANKS_SORT_KEY_RANK_SPECIAL => 'rank_special'
-    );
+    ];
 
     public $mKeyword = "";
     public $mOptionField = "";

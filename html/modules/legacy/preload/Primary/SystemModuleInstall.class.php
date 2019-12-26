@@ -20,8 +20,8 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
     public function preBlockFilter()
     {
         if (is_array(Legacy_Utils::checkSystemModules())) {
-            $this->mController->mSetupUser->add(array($this, "callbackSetupUser"), XCUBE_DELEGATE_PRIORITY_FINAL-1);
-            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array($this, "callbackCheckLoginSuccess"));
+            $this->mController->mSetupUser->add([$this, "callbackSetupUser"], XCUBE_DELEGATE_PRIORITY_FINAL - 1);
+            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [$this, "callbackCheckLoginSuccess"]);
         }
     }
 
@@ -89,7 +89,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 if (isset($_POST['option_modules']) && is_array($_POST['option_modules'])) {
                     $handler =& xoops_getmodulehandler('non_installation_module', 'legacy');
                     $objects = $handler->getObjects();
-                    $optionModules = array();
+                    $optionModules = [];
                     foreach ($objects as $module) {
                         if (!in_array($module->get('dirname'), $retArray['uninstalled'])) {
                             $optionModules[] = $module->get('dirname');
@@ -117,11 +117,13 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 require_once XOOPS_ROOT_PATH . '/class/template.php';
                 $xoopsTpl =new XoopsTpl();
                 $xoopsTpl->assign('cube_module_uninstall', htmlspecialchars($_GET['cube_module_uninstall'], ENT_QUOTES));
-                $xoopsTpl->assign(array(
+                $xoopsTpl->assign(
+                    [
                                'xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
                                'xoops_themecss' => xoops_getcss(),
                                'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                               ));
+                    ]
+                );
                 ///< @todo filebase template with absolute file path
                 $xoopsTpl->compile_check = true;
                 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_uninstall_modules.html');
@@ -145,7 +147,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
             } else {
                 $handler =& xoops_getmodulehandler('non_installation_module', 'legacy');
                 $objects = $handler->getObjectsFor2ndInstaller();
-                $optionModules = array();
+                $optionModules = [];
                 foreach ($objects as $module) {
                     $dirname = $module->getVar('dirname');
                     if (!in_array($dirname, $retArray['uninstalled'])) {
@@ -168,11 +170,13 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 $xoopsTpl->assign('uninstalled', $retArray['uninstalled']);
                 $xoopsTpl->assign('disabled', $retArray['disabled']);
                 $xoopsTpl->assign('option', $optionModules);
-                $xoopsTpl->assign(array(
+                $xoopsTpl->assign(
+                    [
                                'xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
                                'xoops_themecss' => xoops_getcss(),
                                'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/'
-                               ));
+                    ]
+                );
                 ///< @todo filebase template with absolute file path
                 $xoopsTpl->compile_check = true;
                 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_install_modules.html');
@@ -183,14 +187,17 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
         if (!$accessAllowFlag) {
             require_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl =new XoopsTpl();
-            $xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
-                                       'xoops_themecss' => xoops_getcss(),
-                                       'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                                       'lang_login' => _LOGIN,
-                                       'lang_username' => _USERNAME,
-                                       'lang_password' => _PASSWORD,
-                                       'lang_siteclosemsg' => $xoopsConfig['closesite_text']
-                                       ));
+            $xoopsTpl->assign(
+                [
+                    'xoops_sitename'    => htmlspecialchars($xoopsConfig['sitename']),
+                    'xoops_themecss'    => xoops_getcss(),
+                    'xoops_imageurl'    => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
+                    'lang_login'        => _LOGIN,
+                    'lang_username'     => _USERNAME,
+                    'lang_password'     => _PASSWORD,
+                    'lang_siteclosemsg' => $xoopsConfig['closesite_text']
+                ]
+            );
                                        
             $xoopsTpl->compile_check = true;
             

@@ -40,7 +40,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
 
     /*** string ***/ protected $_mHelpViewUrl = null;
 
-    /*** Enum[] ***/ protected $_mAllowViewNames = array(
+    /*** Enum[] ***/ protected $_mAllowViewNames = [
         XUPDATE_FRAME_VIEW_NONE,
         XUPDATE_FRAME_VIEW_SUCCESS,
         XUPDATE_FRAME_VIEW_ERROR,
@@ -48,7 +48,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
         XUPDATE_FRAME_VIEW_INPUT,
         XUPDATE_FRAME_VIEW_PREVIEW,
         XUPDATE_FRAME_VIEW_CANCEL
-    );
+];
 
     /**
      * startup
@@ -64,7 +64,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
         XCube_DelegateUtils::call('Module.xupdate.Global.Event.GetAssetManager', new XCube_Ref($this->mAssetManager), $this->mXoopsModule->get('dirname'));
 
         $root =& XCube_Root::getSingleton();
-        $root->mController->mExecute->add(array(&$this, 'execute'));
+        $root->mController->mExecute->add([&$this, 'execute']);
 
         //
         // TODO/Insert your initialization code.
@@ -127,16 +127,16 @@ class Xupdate_Module extends Legacy_ModuleAdapter
             define('XUPDATE_ADMIN_RENDER_REGISTED', true);
             $root =& XCube_Root::getSingleton();
             $root->overrideSiteConfig(
-                array(
-                    'RenderSystems' => array(
+                [
+                    'RenderSystems' => [
                         'Xupdate_AdminRenderSystem' => 'Xupdate_AdminRenderSystem'
-                    ),
-                    'Xupdate_AdminRenderSystem' => array(
+                    ],
+                    'Xupdate_AdminRenderSystem' => [
                         'root' => XUPDATE_TRUST_PATH,
                         'path' => '/admin/class/XupdateAdminRenderSystem.class.php',
                         'class' => 'Xupdate_AdminRenderSystem'
-                    )
-                )
+                    ]
+                ]
             );
         }
 
@@ -161,28 +161,28 @@ class Xupdate_Module extends Legacy_ModuleAdapter
         // load admin menu
         $adminMenu = $this->mXoopsModule->getInfo('adminmenu');
         if (!is_array($adminMenu)) {
-            $adminMenu = array();
+            $adminMenu = [];
         }
 
         // add preference menu
         if ($url = $this->getPreferenceEditUrl()) {
-            $adminMenu[] = array(
+            $adminMenu[] = [
                 'title'    => _PREFERENCES,
                 'link'     => $url,
                 'absolute' => true
-            );
+            ];
         }
 
         // add help menu
         if ($url = $this->getHelpViewUrl()) {
-            $adminMenu[] = array(
+            $adminMenu[] = [
                 'title'    => _HELP,
                 'link'     => $url,
                 'absolute' => true
-            );
+            ];
         }
 
-        $this->mAdminMenu = array();
+        $this->mAdminMenu = [];
         foreach ($adminMenu as $menu) {
             if (!(isset($menu['absolute']) && $menu['absolute'])) {
                 $menu['link'] = XOOPS_MODULE_URL . '/' . $this->mXoopsModule->get('dirname') . '/' . $menu['link'];
@@ -265,7 +265,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
 
         if (in_array($viewStatus, $this->_mAllowViewNames)) {
             $methodName = 'executeView' . ucfirst($viewStatus);
-            if (is_callable(array($this->mAction, $methodName))) {
+            if (is_callable([$this->mAction, $methodName])) {
                 $render = $this->getRenderTarget();
                 $this->mAction->$methodName($render);
                 $render->setAttribute('xoops_pagetitle', $this->mAction->getPagetitle());

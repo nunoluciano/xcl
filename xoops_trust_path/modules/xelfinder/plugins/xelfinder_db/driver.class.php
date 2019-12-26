@@ -22,9 +22,9 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	protected $x_mid;
 	protected $x_uid = 0;
 	protected $x_uname = '';
-	protected $x_groups = array();
+	protected $x_groups = [];
 	protected $x_isAdmin = false;
-	protected $x_adminGroups = array();
+	protected $x_adminGroups = [];
 
 	protected $groupHomeId = -999999999;
 	protected $makeUmask = '';
@@ -132,7 +132,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 	
 	public function getGroups($target) {
-		$groups = array();
+		$groups = [];
 		
 		$path = $this->decode($target);
 		$stat = $this->stat($path);
@@ -150,7 +150,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		} else {
 			$xoopsGroup = xoops_getHandler('group');
 			$_groups = $xoopsGroup->getObjects(null, true);
-			$list = array();
+			$list = [];
 			foreach (array_keys($_groups) as $i) {
 				$list[$i] = htmlspecialchars($_groups[$i]->getVar('name', 'n'), ENT_QUOTES, 'UTF-8');
 			}
@@ -159,7 +159,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		foreach($gids as $id) {
 			$id = (int)$id;
 			if (isset($list[$id])) {
-				$groups[$id] = array('name' => $list[$id], 'on' => (in_array($id, $targetGroups))? 1 : 0);
+				$groups[$id] = ['name' => $list[$id], 'on' => (in_array($id, $targetGroups))? 1 : 0];
 			}
 		}
 		
@@ -182,7 +182,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$uname = $this->strToUTF8($xoopsConfig['anonymous']);
 		}
 		
-		return array('groups' => $groups, 'uname' => $uname);
+		return ['groups' => $groups, 'uname' => $uname];
 	}
 	
 	private function updateDirTimestamp($dir, $mtime, $recursive = true) {
@@ -235,7 +235,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$this->x_isAdmin = (!empty($_REQUEST['admin']) && $xoopsUser->isAdmin($this->x_mid));
 		} else {
 			$this->x_uid = 0;
-			$this->x_groups = array(XOOPS_GROUP_ANONYMOUS);
+			$this->x_groups = [XOOPS_GROUP_ANONYMOUS];
 		}
 
 		$this->x_adminGroups = xoops_elFinder::getAdminGroupIds($this->mydirname);
@@ -366,7 +366,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 
 	protected function getGroupsByUid($uid) {
-		static $groups = array();
+		static $groups = [];
 
 		if (isset($groups[$uid])) return $groups[$uid];
 
@@ -377,7 +377,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$user = null;
 			unset($user);
 		} else {
-			$groups[$uid] = array( XOOPS_GROUP_ANONYMOUS );
+			$groups[$uid] = [XOOPS_GROUP_ANONYMOUS];
 		}
 
 		return $groups[$uid];
@@ -411,7 +411,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		
 		if ($dat['mime'] !== 'directory' && $dat['gids'] && array_intersect(explode(',', $dat['gids']), $this->x_adminGroups)) {
 			if (! isset($dat['options'])) {
-				$dat['options'] = array();
+				$dat['options'] = [];
 			}
 			$dat['options']['dispInlineRegex'] = '.*';
 		}
@@ -491,7 +491,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	* @author Naoki Sawada
 	**/
 	protected function copyToLocalTemp(& $mkdir, $files, $dir = null) {
-		$res = array();
+		$res = [];
 		$tempDir = $this->options['tempPath'].DIRECTORY_SEPARATOR.$mkdir;
 		if (! @ mkdir($tempDir)) {
 			$tempDir = $this->options['tempPath'];
@@ -581,10 +581,11 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 						}
 					}
 					if ($fp = fopen($localpath, 'rb')) {
-						$stat = array(
+						$stat = [
 							'mime' => $mime,
 							'width' => $width,
-							'height' => $height );
+							'height' => $height
+                        ];
 						if ($id = $this->_save($fp, $dir, $name, $stat)) {
 							$path = $id;
 						}
@@ -658,7 +659,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected function setError() {
 		if (! is_array($this->error)) {
-			$this->error = array();
+			$this->error = [];
 		}
 	
 		foreach (func_get_args() as $err) {
@@ -715,7 +716,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @author Dmitry Levashov
 	 **/
 	protected function cacheDir($path) {
-		$this->dirsCache[$path] = array();
+		$this->dirsCache[$path] = [];
 
 		if ($path == $this->root) {
 			$this->checkHomeDir();
@@ -746,7 +747,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$filter = $this->db->quoteString($current_stat['filter']);
 			$filter = substr($filter, 1, strlen($filter)-2);
 			$filter = str_replace('*', '%', $filter);
-			$q = array();
+			$q = [];
 			foreach(explode(' ', $filter) as $val) {
 				if (strpos($val, '/') === false && strpos($val, '%') === false ) {
 					$val .= '%';
@@ -788,7 +789,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function getParents($path) {
-		$parents = array();
+		$parents = [];
 
 		while ($path) {
 			if ($file = $this->stat($path)) {
@@ -816,15 +817,15 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected function doSearch($path, $q, $mimes) {
 		
-		$filters = $dirs = array();
+		$filters = $dirs = [];
 		if ($path != $this->root) {
-			$dirs = $inpath = array($path);
+			$dirs = $inpath = [$path];
 			while($inpath) {
 				$in = '('.join(',', $inpath).')';
-				$inpath = array();
+				$inpath = [];
 				$sql = 'SELECT `file_id`, `mime_filter` FROM '.$this->tbf.' WHERE `parent_id` IN '.$in.' AND `mime` = \'directory\'';
 				if ($res = $this->query($sql)) {
-					$_dir = array();
+					$_dir = [];
 					while ($dat = $this->db->fetchArray($res)) {
 						if ($dat['mime_filter']) {
 							$filters[] = $dat['mime_filter'];
@@ -837,10 +838,10 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			}
 		}
 		
-		$result = array();
+		$result = [];
 		
 		if ($mimes) {
-			$whrs = array();
+			$whrs = [];
 			foreach($mimes as $mime) {
 				if (strpos($mime, '/') === false) {
 					$mime = $this->db->quoteString($mime);
@@ -862,7 +863,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$filter = $this->db->quoteString(join(' ', $filters));
 			$filter = substr($filter, 1, strlen($filter)-2);
 			$filter = str_replace('*', '%', $filter);
-			$_f = array();
+			$_f = [];
 			foreach(explode(' ', $filter) as $val) {
 				if (strpos($val, '/') === false && strpos($val, '%') === false ) {
 					$val .= '%';
@@ -1055,7 +1056,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$this->_mkdir(0, 'VolumeRoot');
 			return $this->_stat($path, false);
 		}
-		return array();
+		return [];
 	}
 
 	/**
@@ -1521,7 +1522,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		}
 		
 		// insurance unexpected shutdown
-		register_shutdown_function(array($this, 'rmdirRecursive'), realpath($localdir));
+		register_shutdown_function([$this, 'rmdirRecursive'], realpath($localdir));
 		
 		chmod($localdir, 0777);
 		
@@ -1535,7 +1536,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$this->unpackArchive($archive, $arc);
 		
 		// get files list
-		$ls = array();
+		$ls = [];
 		foreach (scandir($localdir) as $i => $name) {
 			if ($name != '.' && $name != '..') {
 				$ls[] = $name;
@@ -1552,7 +1553,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		if ($this->_findSymlinks($localdir)) {
 			// remove arc copy
 			$this->rmdirRecursive($localdir);
-			return $this->setError(array_merge($this->error, array(elFinder::ERROR_ARC_SYMLINKS)));
+			return $this->setError(array_merge($this->error, [elFinder::ERROR_ARC_SYMLINKS]));
 		}
 		
 		// check max files size
@@ -1594,7 +1595,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				}
 			}
 		} else {
-			$result = array();
+			$result = [];
 			foreach($ls as $name) {
 				$src = $localdir.DIRECTORY_SEPARATOR.$name;
 				$add = $this->localFileSave($src, $dir, true);

@@ -55,7 +55,7 @@ class User_Utils
             if (is_object($context->mXoopsUser)) {
                 $context->mXoopsUser->setGroups($_SESSION['xoopsUserGroups']);
 
-                $roles = array();
+                $roles = [];
                 $roles[] = "Site.RegisteredUser";
                 if ($context->mXoopsUser->isAdmin(-1)) {
                     $roles[] = "Site.Administrator";
@@ -69,11 +69,11 @@ class User_Utils
                 return;
             } else {
                 $context->mXoopsUser = null;
-                $_SESSION = array();
+                $_SESSION = [];
             }
         }
         $identity = new Legacy_AnonymousIdentity();
-        $principal = new Legacy_GenericPrincipal($identity, array("Site.GuestUser"));
+        $principal = new Legacy_GenericPrincipal($identity, ["Site.GuestUser"]);
     }
 
     public static function convertUrlToUser(&$url)

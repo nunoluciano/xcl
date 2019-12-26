@@ -34,7 +34,7 @@ function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params ,
 
 	// check permission of "module_read"
 	$moduleperm_handler =& xoops_gethandler( 'groupperm' ) ;
-	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : array( XOOPS_GROUP_ANONYMOUS ) ;
+	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 	if( ! $moduleperm_handler->checkRight( 'module_read' , $module->getVar( 'mid' ) , $groups ) ) {
 		return ;
 	}
@@ -69,7 +69,7 @@ function d3forum_display_comment( $mydirname , $forum_id , $params )
 
 	// check permission of "module_read"
 	$moduleperm_handler =& xoops_gethandler( 'groupperm' ) ;
-	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : array( XOOPS_GROUP_ANONYMOUS ) ;
+	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 	if( ! $moduleperm_handler->checkRight( 'module_read' , $module->getVar( 'mid' ) , $groups ) ) {
 		return ;
 	}
@@ -212,7 +212,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		if( ! $trs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	
 		// topics loop
-		$topics = array() ;
+		$topics = [];
 		while( $topic_row = $db->fetchArray( $trs ) ) {
 		
 			$topic_id = intval( $topic_row['topic_id'] ) ;
@@ -225,7 +225,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 			$first_post_uname4html = is_object( $first_poster_obj ) ? $first_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
 		
 			// topics array
-			$topics[] = array(
+			$topics[] = [
 				'id' => $topic_row['topic_id'] ,
 				'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] , $topic_row['fp_number_entity'] , $topic_row['fp_special_entity'] ) ,
 				'replies' => intval( $topic_row['topic_posts_count'] ) - 1 ,
@@ -255,14 +255,14 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 				'votes_count' => intval( $topic_row['topic_votes_count'] ) ,
 				'votes_sum' => intval( $topic_row['topic_votes_sum'] ) ,
 				'votes_avg' => round( $topic_row['topic_votes_sum'] / ( $topic_row['topic_votes_count'] - 0.0000001 ) , 2 ) ,
-			) ;
+            ];
 		}
-		$post = array() ;
+		$post = [];
 
 	/************ DEFAULT VIEW (listposts_flat) ************/
 	} else {
 		$this_template = 'db:'.$mydirname.'_comment_listposts_flat.html' ;
-		$posts = array() ;
+		$posts = [];
 		$sql_whr = "t.forum_id=$forum_id AND ($whr_invisible) AND t.topic_external_link_id='".addslashes($external_link_id)."'" ;
 
 		// post order
@@ -313,11 +313,11 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		while( $post_row = $db->fetchArray( $prs ) ) {
 		
 			// get poster's information ($poster_*), $can_reply, $can_edit, $can_delete
-			$topic_row = array( 'topic_locked' => $post_row['topic_locked'] ) ;
+			$topic_row = ['topic_locked' => $post_row['topic_locked']];
 			include dirname(__FILE__).'/process_eachpost.inc.php' ;
 		
 			// posts array
-			$posts[] = array(
+			$posts[] = [
 				'id' => intval( $post_row['post_id'] ) ,
 				'subject' => $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] , $post_row['special_entity'] ) ,
 				'pid' => intval( $post_row['pid'] ),
@@ -365,21 +365,21 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 				'can_delete' => $can_delete ,
 				'can_reply' => $can_reply ,
 				'can_vote' => $can_vote ,
-			) ;
+            ];
 		}
 
 		//if( @$params['order'] == 'asc' && !empty($posts)) {
 		//	$posts = array_reverse( $posts ) ; // thx naao
 		//}
 
-		$topics = array() ;
+		$topics = [];
 
 	// form elements or javascripts for anti-SPAM
 	if( d3forum_common_is_necessary_antispam( $xoopsUser , $xoopsModuleConfig ) ) {
 		$antispam_obj =& d3forum_common_get_antispam_object( $xoopsModuleConfig ) ;
 		$antispam4assign = $antispam_obj->getHtml4Assign() ;
 	} else {
-		$antispam4assign = array() ;
+		$antispam4assign = [];
 	}
 
 	// naao from
@@ -394,7 +394,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 
 	}
 
-$tree = array();
+$tree = [];
 if( $external_link_id >0 ) {
 
 	$sql = "SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time 
@@ -410,7 +410,7 @@ if( $external_link_id >0 ) {
 		$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid , $xoopsModuleConfigs['use_name']) ; //naao usereal=1
 		$topic_last_uname = $topic_last_uid > 0 ? $topic_last_uname : $myts->makeTboxData4Show( $post_row['guest_name'] ) ;
 
-		$tree[] = array(
+		$tree[] = [
 			'id' => intval( $post_row['post_id'] ) ,
 			'subject' => $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] ,
 					 $post_row['special_entity'] ) ,
@@ -423,7 +423,7 @@ if( $external_link_id >0 ) {
 			'topic_id' => intval( $post_row['topic_id'] ) ,
 			'ul_in' => '<ul><li>' ,
 			'ul_out' => '</li></ul>' ,
-		);
+        ];
 	}
 		$topics_count = count($tree) ;
 }
@@ -432,7 +432,7 @@ if( $external_link_id >0 ) {
 	require_once XOOPS_ROOT_PATH.'/class/template.php' ;
 	$tpl = new XoopsTpl() ;
 	$tpl->assign(
-		array(
+        [
 			'mydirname' => $mydirname ,
 			'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 			'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'] ,
@@ -458,15 +458,15 @@ if( $external_link_id >0 ) {
 			'plugin_params' => $params ,
 			'xoops_pagetitle' => $forum4assign['title'] ,
 			'antispam' => $antispam4assign ,
-		)
+        ]
 	) ;
 	// naao from
 	if( @$params['view'] != 'listtopics' && $external_link_id >0) {
 		$tpl->assign(
-			array(
+            [
 				'tree' => $tree ,	// naao
 				'tree_tp_count' => $topics_count ,	// naao
-			)
+            ]
 		) ;
 	}
 	// naao to

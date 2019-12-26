@@ -35,7 +35,7 @@ class Legacy_AbstractModule
      * @remarks
      *    If references are must, access directly to this member.
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     
     /**
      * @public
@@ -47,7 +47,7 @@ class Legacy_AbstractModule
      * @public
      * @brief [READ ONLY] Map Array - std::map<string, string>
      */
-    public $mModuleConfig = array();
+    public $mModuleConfig = [];
     
     /**
      * @private
@@ -443,7 +443,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
             }
             
             if (!$findFlag) {
-                $configInfos=array();
+                $configInfos= [];
                 foreach ($this->mXoopsModule->modinfo['config'] as $config) {
                     if (isset($config['title'])) {
                         $configInfos[]=@constant($config['title']);
@@ -552,12 +552,12 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
     public function doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid)
     {
-        $ret = array();
+        $ret = [];
         $results = $this->mXoopsModule->search($queries, $andor, $max_hit, $start, $uid);
         
         if (is_array($results) && count($results) > 0) {
             foreach ($results as $result) {
-                $item = array();
+                $item = [];
                 if (isset($result['image']) && strlen($result['image']) > 0) {
                     if (file_exists(XOOPS_ROOT_PATH . '/uploads/' . $result['image'])) {
                         $item['image'] = XOOPS_URL . '/uploads/' . $result['image'];
@@ -625,16 +625,19 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         if ($this->mXoopsModule->get('hasnotification')
             || (isset($info['config']) && is_array($info['config']))
             || (isset($info['comments']) && is_array($info['comments']))) {
-            $this->mXoopsModule->adminmenu[] = array(
+            $this->mXoopsModule->adminmenu[] = [
                     'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
                     'title' => _PREFERENCES,
-                    'absolute' => true);
+                    'absolute' => true
+            ];
         }
             
         if ($this->mXoopsModule->hasHelp()) {
-            $this->mXoopsModule->adminmenu[] = array('link' =>  $root->mController->getHelpViewUrl($this->mXoopsModule),
-                                          'title' => _HELP,
-                                          'absolute' => true);
+            $this->mXoopsModule->adminmenu[] = [
+                'link'     =>  $root->mController->getHelpViewUrl($this->mXoopsModule),
+                'title'    => _HELP,
+                'absolute' => true
+            ];
         }
         
         $this->_mAdminMenuLoadedFlag = true;

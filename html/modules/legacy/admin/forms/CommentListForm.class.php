@@ -47,7 +47,7 @@ class Legacy_CommentListForm extends XCube_ActionForm
 
         // set fields
         $this->mFieldProperties['status'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['status']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['status']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['status']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_COM_STATUS);
         $this->mFieldProperties['status']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_COM_STATUS);
         $this->mFieldProperties['status']->addVar('handler', 'commentstatus');

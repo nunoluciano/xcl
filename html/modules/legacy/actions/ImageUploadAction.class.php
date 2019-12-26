@@ -52,11 +52,11 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
     
     public function hasPermission(&$controller, &$xoopsUser)
     {
-        $groups = array();
+        $groups = [];
         if (is_object($xoopsUser)) {
             $groups = $xoopsUser->getGroups();
         } else {
-            $groups = array(XOOPS_GROUP_ANONYMOUS);
+            $groups = [XOOPS_GROUP_ANONYMOUS];
         }
             
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');

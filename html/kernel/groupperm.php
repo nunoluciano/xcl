@@ -249,7 +249,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('group_permission');
@@ -456,7 +456,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function getItemIds($gperm_name, $gperm_groupid, $gperm_modid = 1)
     {
-        $ret = array();
+        $ret = [];
 
         $criteria =& $this->getCriteria($gperm_name, 0, $gperm_groupid, $gperm_modid);
 
@@ -478,9 +478,9 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function getGroupIds($gperm_name, $gperm_itemid, $gperm_modid = 1)
     {
-        $ret = array();
+        $ret = [];
 
-        $criteria =& $this->getCriteria($gperm_name, $gperm_itemid, array(), $gperm_modid);
+        $criteria =& $this->getCriteria($gperm_name, $gperm_itemid, [], $gperm_modid);
 
         $perms =& $this->getObjects($criteria, true);
         foreach (array_keys($perms) as $i) {

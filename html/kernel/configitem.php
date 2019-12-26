@@ -66,7 +66,7 @@ class XoopsConfigItem extends XoopsObject
      * @var	array
      * @access	private
      */
-    public $_confOptions = array();
+    public $_confOptions = [];
 
     /**
      * Constructor
@@ -125,7 +125,7 @@ class XoopsConfigItem extends XoopsObject
     {
         $handler = xoops_gethandler('config');
         $optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
-        $list = array();
+        $list = [];
         foreach ($optionArr as $opt) {
             if ($opt->get('confop_value')=='none') {
                 $list[] = '';
@@ -418,7 +418,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = $this->db;
         $sql = 'SELECT * FROM '.$db->prefix('config');

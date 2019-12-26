@@ -100,7 +100,7 @@ class XoopsNotification extends XoopsObject
         if (! $onshutdown) {
             // regist as shutdown function
             ignore_user_abort(true);
-            register_shutdown_function(array($this, 'notifyUser'), $template_dir, $template, $subject, $tags, true);
+            register_shutdown_function([$this, 'notifyUser'], $template_dir, $template, $subject, $tags, true);
             return true;
         }
 
@@ -353,7 +353,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      **/
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('xoopsnotifications');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -525,7 +525,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         }
 
         if (!is_array($events)) {
-            $events = array($events);
+            $events = [$events];
         }
         foreach ($events as $event) {
             if ($notification =& $this->getNotification($module_id, $category, $item_id, $event, $user_id)) {
@@ -578,7 +578,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         }
         $criteria->add(new Criteria('not_uid', $user_id));
         $results = $this->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($results) as $i) {
             $ret[] = $results[$i]->getVar('not_event');
         }
@@ -629,17 +629,17 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     // tailor the mail so it makes sense for any of the possible
     // (or combination of) events.
 
-    public function triggerEvents($category, $item_id, $events, $extra_tags=array(), $user_list=array(), $module_id=null, $omit_user_id=null)
+    public function triggerEvents($category, $item_id, $events, $extra_tags= [], $user_list= [], $module_id=null, $omit_user_id=null)
     {
         if (!is_array($events)) {
-            $events = array($events);
+            $events = [$events];
         }
         foreach ($events as $event) {
             $this->triggerEvent($category, $item_id, $event, $extra_tags, $user_list, $module_id, $omit_user_id);
         }
     }
 
-    public function triggerEvent($category, $item_id, $event, $extra_tags=array(), $user_list=array(), $module_id=null, $omit_user_id=null)
+    public function triggerEvent($category, $item_id, $event, $extra_tags= [], $user_list= [], $module_id=null, $omit_user_id=null)
     {
         if (!isset($module_id)) {
             global $xoopsModule;
@@ -742,7 +742,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 
         // Add some tag substitutions here
 
-        $tags = array();
+        $tags = [];
         if (!empty($not_config)) {
             if (!empty($not_config['tags_file'])) {
                 $tags_file = XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/' . $not_config['tags_file'];
@@ -845,7 +845,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         $criteria->add(new Criteria('not_itemid', (int)$item_id));
         $criteria->add(new Criteria('not_uid', (int)$user_id));
         if (!is_array($events)) {
-            $events = array($events);
+            $events = [$events];
         }
         $event_criteria = new CriteriaCompo();
         foreach ($events as $event) {

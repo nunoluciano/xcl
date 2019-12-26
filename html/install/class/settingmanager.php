@@ -177,7 +177,7 @@ class setting_manager
     public function checkData()
     {
         $ret = '';
-        $error = array();
+        $error = [];
 
         if (empty($this->dbhost)) {
             $error[] = sprintf(_INSTALL_L57, _INSTALL_L27);
@@ -342,7 +342,7 @@ class setting_manager
 
     public function getDBList()
     {
-        return array(extension_loaded('mysql')? 'mysql' : 'mysqli');
+        return [extension_loaded('mysql')? 'mysql' : 'mysqli'];
         //$dirname = '../class/database/';
         //$dirlist = array();
         //if (is_dir($dirname) && $handle = opendir($dirname)) {

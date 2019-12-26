@@ -8,7 +8,7 @@ require_once XOOPS_ROOT_PATH . "/core/XCube_PageNavigator.class.php";
 
 class User_AbstractListAction extends User_Action
 {
-    public $mObjects = array();
+    public $mObjects = [];
     public $mFilter = null;
 
     public function &_getHandler()

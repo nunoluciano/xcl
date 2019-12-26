@@ -134,7 +134,8 @@ function altsys_admin_in_theme_in_last($contents = null)
     }
 
     // assignment
-    $xoopsTpl->assign(array(
+    $xoopsTpl->assign(
+        [
         'xoops_theme' => $xoopsConfig['theme_set'],
         'xoops_imageurl' => XOOPS_THEME_URL.'/'.$xoopsConfig['theme_set'].'/',
         'xoops_themecss'=> xoops_getcss($xoopsConfig['theme_set']),
@@ -148,7 +149,8 @@ function altsys_admin_in_theme_in_last($contents = null)
         'xoops_slogan' => htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES),
         'xoops_contents' => $xoops_admin_contents, //. '<div id="adminmenu_layers">' . $xoops_admin_menu_dv . '</div>' ,
         'xoops_module_header' => $xoops_module_header,
-    )) ;
+        ]
+    ) ;
 
     // rendering
     $xoopsTpl->display($xoopsConfig['theme_set'].'/theme.html') ;

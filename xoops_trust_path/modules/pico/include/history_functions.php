@@ -22,7 +22,7 @@ function pico_get_content_history_profile($mydirname, $content_history_id, $cont
 	// unserialize and visualize extra_fields
 	$ef4display = print_r(pico_common_unserialize($history_row['extra_fields']), true);
 
-	return array(
+	return [
 		$cat_id, $content_id,
 		"content_id: {$history_row['content_id']}
 subject:    {$history_row['subject']}
@@ -42,7 +42,7 @@ body:
 extra_fields:
 $ef4display
 "
-	);
+    ];
 }
 
 // get content_histories for form
@@ -51,17 +51,17 @@ function pico_get_content_histories4assign($mydirname, $content_id)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
-	$ret = array();
+	$ret = [];
 	$sql = "SELECT oh.content_history_id,oh.created_time,oh.modified_time,LENGTH(body) AS body_size,oh.poster_uid,up.uname AS poster_uname,oh.modifier_uid,um.uname AS modifier_uname FROM " . $db->prefix($mydirname . "_content_histories") . " oh LEFT JOIN " . $db->prefix("users") . " up ON oh.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " um ON oh.modifier_uid=um.uid WHERE oh.content_id=$content_id ORDER BY oh.content_history_id DESC";
 	$result = $db->query($sql);
 	if ($result) while ($row = $db->fetchArray($result)) {
-		$row4assign = array(
+		$row4assign = [
 			'id' => intval($row['content_history_id']),
 			'created_time_formatted' => formatTimestamp($row['created_time'], 'm'),
 			'modified_time_formatted' => formatTimestamp($row['modified_time'], 'm'),
 			'poster_uname' => $row['poster_uid'] ? $myts->makeTboxData4Show($row['poster_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
 			'modifier_uname' => $row['modifier_uid'] ? $myts->makeTboxData4Show($row['modifier_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
-		);
+        ];
 		$ret[] = $row4assign + $row;
 	}
 

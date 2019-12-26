@@ -31,7 +31,7 @@ function smarty_function_pico_category_search($params, &$smarty)
 	$module_handler = &xoops_gethandler('module');
 	$config_handler = &xoops_gethandler('config');
 
-	$categories4assign = array();
+	$categories4assign = [];
 	foreach ($mydirnames as $mydirname) {
 
 		$module = &$module_handler->getByDirname($mydirname);
@@ -40,7 +40,7 @@ function smarty_function_pico_category_search($params, &$smarty)
 		$sql = "SELECT * FROM " . $db->prefix($mydirname . "_categories") . " c WHERE c.cat_title=" . $db->quoteString($cat_title);
 		$result = $db->query($sql);
 		while ($cat_row = $db->fetchArray($result)) {
-			$category4assign = array(
+			$category4assign = [
 				'mod_mid' => $module->getVar('mid'),
 				'mod_dirname' => $mydirname,
 				'mod_name' => $module->getVar('name'),
@@ -51,7 +51,7 @@ function smarty_function_pico_category_search($params, &$smarty)
 				'paths_raw' => pico_common_unserialize($cat_row['cat_path_in_tree']),
 				'paths_value' => array_values(pico_common_unserialize($cat_row['cat_path_in_tree'])),
 				'redundants' => pico_common_unserialize($cat_row['cat_redundants']),
-			) + $cat_row;
+                               ] + $cat_row;
 
 			$categories4assign[] = $category4assign;
 		}

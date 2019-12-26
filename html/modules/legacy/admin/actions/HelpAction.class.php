@@ -143,7 +143,7 @@ class Legacy_HelpAction extends Legacy_Action
         parent::__construct($flag);
         
         $this->mCreateHelpSmarty =new XCube_Delegate();
-        $this->mCreateHelpSmarty->add(array(&$this, '_createHelpSmarty'));
+        $this->mCreateHelpSmarty->add([&$this, '_createHelpSmarty']);
         $this->mCreateHelpSmarty->register('Legacy_HelpAction.CreateHelpSmarty');
     }
     

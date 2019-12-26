@@ -12,7 +12,7 @@ class User_AvatarUploadForm extends XCube_ActionForm
     public $mOldFileName = null;
     public $_mIsNew = null;
     public $mFormFile = null;
-    public $_allowExtensions = array('tar', 'tar.gz', 'tgz', 'gz', 'zip');
+    public $_allowExtensions = ['tar', 'tar.gz', 'tgz', 'gz', 'zip'];
 
     public function getTokenName()
     {
@@ -30,7 +30,7 @@ class User_AvatarUploadForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['upload'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['upload']->setDependsByArray(array('required'));
+        $this->mFieldProperties['upload']->setDependsByArray(['required']);
         $this->mFieldProperties['upload']->addMessage('required', _AD_USER_ERROR_REQUIRED, _AD_USER_LANG_AVATAR_UPLOAD_FILE);
     }
     

@@ -26,7 +26,7 @@ define('XUPDATE_STORE_SORT_KEY_DEFAULT', XUPDATE_STORE_SORT_KEY_SID);
 **/
 class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
 {
-    /*** string[] ***/ public $mSortKeys = array(
+    /*** string[] ***/ public $mSortKeys = [
        XUPDATE_STORE_SORT_KEY_SID => 'sid',
        XUPDATE_STORE_SORT_KEY_UID => 'uid',
        XUPDATE_STORE_SORT_KEY_VALID => 'valid',
@@ -35,7 +35,7 @@ class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
        XUPDATE_STORE_SORT_KEY_THEME_URL => 'theme_url',
        XUPDATE_STORE_SORT_KEY_REG_UNIXTIME => 'reg_unixtime',
 
-    );
+];
 
     /**
      * getDefaultSortKey

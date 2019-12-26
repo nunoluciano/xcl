@@ -78,8 +78,8 @@ class PicoControllerUpdateContent extends PicoControllerAbstract
 		} else {
 			// Notify for new waiting content (only for admin or mod)
 			$users2notify = pico_main_get_moderators($this->mydirname, $cat_data['id']);
-			if (empty($users2notify)) $users2notify = array(0);
-			pico_main_trigger_event($this->mydirname, 'global', 0, 'waitingcontent', array('CONTENT_URL' => XOOPS_URL . "/modules/$this->mydirname/index.php?page=contentmanager&content_id=" . $request['content_id']), $users2notify);
+			if (empty($users2notify)) $users2notify = [0];
+			pico_main_trigger_event($this->mydirname, 'global', 0, 'waitingcontent', ['CONTENT_URL' => XOOPS_URL . "/modules/$this->mydirname/index.php?page=contentmanager&content_id=" . $request['content_id']], $users2notify);
 			// message "waiting approval"
 			redirect_header($ret_uri4html, 2, _MD_PICO_MSG_CONTENTWAITINGUPDATE);
 		}

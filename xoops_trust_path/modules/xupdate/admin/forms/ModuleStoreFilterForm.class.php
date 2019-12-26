@@ -33,7 +33,7 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
 {
     public $mSpecial = null;
 
-    public $mSortKeys = array(
+    public $mSortKeys = [
         MODULE_SORT_KEY_ID          => "id",
         MODULE_SORT_KEY_SID         => "sid",
         MODULE_SORT_KEY_DIRNAME     => "dirname",
@@ -44,7 +44,7 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
         MODULE_SORT_KEY_TARGET_KEY  => "target_key",
         MODULE_SORT_KEY_TARGET_TYPE => "target_type",
         MODULE_SORT_KEY_CATEGORY_ID => "category_id"
-    );
+    ];
 
     public function __construct()
     {

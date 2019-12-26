@@ -378,8 +378,8 @@ class XoopsMySQLDatabase extends XoopsDatabase
             return;
         }
 
-        $searches=array();
-        $replaces=array();
+        $searches= [];
+        $replaces= [];
         for ($i=0;$i<$count;$i++) {
             $searches[$i]='{'.$i.'}';
             switch (substr($types, $i, 1)) {

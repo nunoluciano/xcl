@@ -153,7 +153,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
             $criteria->add(new Criteria('show_form', 1));
         }
         $definitions = $this->getObjects($criteria);
-        $defArr = array();
+        $defArr = [];
         foreach ($definitions as $def) {
             $defArr[$def->get('field_name')] = $def;
         }
@@ -165,7 +165,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
      */
     public function getTypeList()
     {
-        return array(
+        return [
             Profile_FormType::STRING,
             Profile_FormType::TEXT,
             Profile_FormType::INT,
@@ -174,12 +174,12 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
             Profile_FormType::CHECKBOX,
             Profile_FormType::SELECTBOX,
             Profile_FormType::URI
-        );
+        ];
     }
 
     public static function getReservedNameList()
     {
-        return array('uid','name','uname','email','url','user_avatar','user_regdate','user_icq','user_from','user_sig','user_viewemail','actkey','user_aim','user_yim','user_msnm','pass','posts','attachsig','rank','level','theme','timezone_offset','last_login','umode','uorder','notify_method','notify_mode','user_occ','bio','user_intrest','user_mailok', 'user_name');
+        return ['uid', 'name', 'uname', 'email', 'url', 'user_avatar', 'user_regdate', 'user_icq', 'user_from', 'user_sig', 'user_viewemail', 'actkey', 'user_aim', 'user_yim', 'user_msnm', 'pass', 'posts', 'attachsig', 'rank', 'level', 'theme', 'timezone_offset', 'last_login', 'umode', 'uorder', 'notify_method', 'notify_mode', 'user_occ', 'bio', 'user_intrest', 'user_mailok', 'user_name'];
     }
 
     /**
@@ -187,7 +187,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
      */
     public function getValidationList()
     {
-        return array("email");
+        return ["email"];
     }
 
     public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)

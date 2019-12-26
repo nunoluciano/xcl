@@ -50,11 +50,11 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
     {
         if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
             $this->mActionForm =new Legacy_PendingCommentAdminEditForm();
-            $this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doApprove"));
-            $this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, "doApprove"]);
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, "doUpdate"]);
         } else {
             $this->mActionForm =new Legacy_ApprovalCommentAdminEditForm();
-            $this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, "doUpdate"]);
         }
         $this->mActionForm->prepare();
     }
@@ -78,7 +78,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
             $statusArr =& $statusHandler->getObjects();
         } else {
-            $statusArr = array();
+            $statusArr = [];
             $statusArr[0] =& $statusHandler->get(XOOPS_COMMENT_ACTIVE);
             $statusArr[1] =& $statusHandler->get(XOOPS_COMMENT_HIDDEN);
         }
@@ -180,7 +180,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
             $handler =& xoops_gethandler('comment');
             $commentCount = $handler->getCount($criteria);
             
-            call_user_func_array($function, array($comment->get('com_itemid'), $commentCount, $comment->get('com_id')));
+            call_user_func_array($function, [$comment->get('com_itemid'), $commentCount, $comment->get('com_id')]);
         }
     }
 }

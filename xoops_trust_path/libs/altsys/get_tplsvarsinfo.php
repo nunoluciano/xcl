@@ -108,8 +108,8 @@ https://www.peak.ne.jp/xoops/
 // TOTAL STAGE
 //
 
-$tplsvarsinfo_mod_tpl = array();
-$tplsvarsinfo_total = array();
+$tplsvarsinfo_mod_tpl = [];
+$tplsvarsinfo_total = [];
 
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
     while (($file = readdir($handler)) !== false) {
@@ -128,9 +128,9 @@ if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
         $file_body = implode('', file($file_path));
         $tplsvars = @unserialize($file_body);
         if (!is_array($tplsvars)) {
-            $tplsvars = array();
+            $tplsvars = [];
         }
-        $GLOBALS['tplsvarsinfo'] = array();
+        $GLOBALS['tplsvarsinfo'] = [];
         convert_array2info_recursive('', $tplsvars, 'tplsvarsinfo');
         if (strstr($tpl_name, '%')) {
             $mod_name = 'theme_etc';

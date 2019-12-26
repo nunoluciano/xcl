@@ -83,10 +83,10 @@ class XCube_Session
             // Refresh lifetime of Session Cookie
             $session_params = session_get_cookie_params();
             !$session_params['domain'] and $session_params['domain'] = null;
-            $session_cookie_params = array(
+            $session_cookie_params = [
                 $this->mSessionName, session_id(), time() + $this->mSessionLifetime, $this->_cookiePath(),
                 $session_params['domain'], $session_params['secure']
-                );
+            ];
             if (isset($session_params['httponly'])) {
                 $session_cookie_params[] = $session_params['httponly'];
             }
@@ -125,7 +125,7 @@ class XCube_Session
         $oldSession = $_SESSION;
         session_id($newSessionID);
         $this->start();
-        $_SESSION = array();
+        $_SESSION = [];
         foreach (array_keys($oldSession) as $key) {
             $_SESSION[$key] = $oldSession[$key];
         }
@@ -142,7 +142,7 @@ class XCube_Session
             $this->destroy();
             session_id($oldSessionID);
             $this->start();
-            $_SESSION = array();
+            $_SESSION = [];
             foreach (array_keys($oldSession) as $key) {
                 $_SESSION[$key] = $oldSession[$key];
             }

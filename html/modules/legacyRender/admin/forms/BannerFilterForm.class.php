@@ -26,7 +26,7 @@ define('BANNER_SORT_KEY_DEFAULT', BANNER_SORT_KEY_BID);
 
 class LegacyRender_BannerFilterForm extends LegacyRender_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         BANNER_SORT_KEY_BID => 'bid',
         BANNER_SORT_KEY_CID => 'cid',
         BANNER_SORT_KEY_IMPTOTAL => 'imptotal',
@@ -37,7 +37,7 @@ class LegacyRender_BannerFilterForm extends LegacyRender_AbstractFilterForm
         BANNER_SORT_KEY_DATE => 'date',
         BANNER_SORT_KEY_HTMLBANNER => 'htmlbanner',
         BANNER_SORT_KEY_HTMLCODE => 'htmlcode'
-    );
+    ];
 
     public function getDefaultSortKey()
     {

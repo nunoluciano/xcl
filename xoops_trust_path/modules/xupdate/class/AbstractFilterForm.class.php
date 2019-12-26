@@ -16,7 +16,7 @@ abstract class Xupdate_AbstractFilterForm
 {
     /*** Enum ***/ public $mSort = 0;
 
-    /*** string[] ***/ public $mSortKeys = array();
+    /*** string[] ***/ public $mSortKeys = [];
 
     /*** XCube_PageNavigator ***/ public $mNavi = null;
 
@@ -71,7 +71,7 @@ abstract class Xupdate_AbstractFilterForm
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
 
-        $this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
+        $this->mNavi->mGetTotalItems->add([&$this, 'getTotalItems']);
     }
 
     /**

@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyRenderThemeObject extends XoopsSimpleObject
 {
-    public $mPackage = array();
+    public $mPackage = [];
     public $mActiveResource = true;
     
     public function __construct()
@@ -74,7 +74,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
      */
     public function searchThemes()
     {
-        $themeList = array();
+        $themeList = [];
         
         if ($handler=opendir(XOOPS_THEME_PATH)) {
             while (($dir=readdir($handler))!==false) {
@@ -84,7 +84,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
 
                 $themeDir=XOOPS_THEME_PATH."/".$dir;
                 if (is_dir($themeDir)) {
-                    $manifesto = array();
+                    $manifesto = [];
                     if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
                         $iniHandler = new XCube_IniHandler($mnfFile, true);
                         $manifesto = $iniHandler->getAllConfig();

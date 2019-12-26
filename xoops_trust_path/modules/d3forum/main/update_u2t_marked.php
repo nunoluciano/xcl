@@ -19,7 +19,7 @@ if( $uid && @$xoopsModuleConfig['allow_mark'] ) {
 	if( ! $db->getAffectedRows() ) $db->queryF( 'INSERT INTO '.$db->prefix($mydirname.'_users2topics')." SET uid=$uid,topic_id=$topic_id,u2t_marked=1" ) ;
 }
 
-$allowed_identifiers = array( 'post_id' , 'topic_id' , 'forum_id' , 'cat_ids' ) ;
+$allowed_identifiers = ['post_id', 'topic_id', 'forum_id', 'cat_ids'];
 
 if( in_array( $_GET['ret_name'] , $allowed_identifiers ) ) {
 	$ret_request = $_GET['ret_name'] . '=' . preg_replace( '/[^0-9,]/' , '' , $_GET['ret_val'] ) ;

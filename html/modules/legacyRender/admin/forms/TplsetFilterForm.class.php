@@ -17,14 +17,14 @@ define('TPLSET_SORT_KEY_MAXVALUE', 5);
 
 class LegacyRender_TplsetFilterForm extends LegacyRender_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         TPLSET_SORT_KEY_DEFAULT => 'tplset_id',
         TPLSET_SORT_KEY_TPLSET_ID => 'tplset_id',
         TPLSET_SORT_KEY_TPLSET_NAME => 'tplset_name',
         TPLSET_SORT_KEY_TPLSET_DESC => 'tplset_desc',
         TPLSET_SORT_KEY_TPLSET_CREDITS => 'tplset_credits',
         TPLSET_SORT_KEY_TPLSET_CREATED => 'tplset_created'
-    );
+    ];
     
     public function getDefaultSortKey()
     {

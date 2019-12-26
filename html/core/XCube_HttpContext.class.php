@@ -24,7 +24,7 @@ class XCube_HttpContext
      * @var Array
      * @access protected
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     
     /**
      * The object which enables to read the request values.
@@ -219,7 +219,7 @@ class XCube_GenericRequest extends XCube_AbstractRequest
      * Hash map which stores registered values.
      * @var Array
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($arr = null)  
     //public function XCube_GenericRequest($arr = null)

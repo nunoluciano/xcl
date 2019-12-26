@@ -66,7 +66,7 @@ class User_UserEditAction extends User_AbstractEditAction
         $groupHandler =& xoops_gethandler('group');
         $groups =& $groupHandler->getObjects(null, true);
         
-        $groupOptions = array();
+        $groupOptions = [];
         foreach ($groups as $gid => $group) {
             $groupOptions[$gid] = $group->getVar('name');
         }
@@ -76,13 +76,13 @@ class User_UserEditAction extends User_AbstractEditAction
         //
         // umode option
         //
-        $umodeOptions = array("nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED);
+        $umodeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
         $render->setAttribute('umodeOptions', $umodeOptions);
 
         //		
         // uorder option
         //
-        $uorderOptions = array(0 => _OLDESTFIRST, 1 => _NEWESTFIRST);
+        $uorderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
         $render->setAttribute('uorderOptions', $uorderOptions);
 
         //
@@ -99,7 +99,7 @@ class User_UserEditAction extends User_AbstractEditAction
         // Check the PM service has been installed.
         $service =& $root->mServiceManager->getService('privateMessage');
 
-        $methodOptions = array();
+        $methodOptions = [];
         $methodOptions[XOOPS_NOTIFICATION_METHOD_DISABLE] = _NOT_METHOD_DISABLE;
         if ($service != null) {
             $methodOptions[XOOPS_NOTIFICATION_METHOD_PM] = _NOT_METHOD_PM;
@@ -108,10 +108,11 @@ class User_UserEditAction extends User_AbstractEditAction
 
         $render->setAttribute('notify_methodOptions', $methodOptions);
         
-        $modeOptions = array(XOOPS_NOTIFICATION_MODE_SENDALWAYS => _NOT_MODE_SENDALWAYS,
-                               XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE => _NOT_MODE_SENDONCE,
-                               XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT => _NOT_MODE_SENDONCEPERLOGIN
-                         );
+        $modeOptions = [
+            XOOPS_NOTIFICATION_MODE_SENDALWAYS         => _NOT_MODE_SENDALWAYS,
+            XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE => _NOT_MODE_SENDONCE,
+            XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT   => _NOT_MODE_SENDONCEPERLOGIN
+        ];
         $render->setAttribute('notify_modeOptions', $modeOptions);
     }
 

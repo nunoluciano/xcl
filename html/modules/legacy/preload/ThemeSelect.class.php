@@ -39,12 +39,12 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
         $this->mIsSelectableTheme =new XCube_Delegate();
         $this->mIsSelectableTheme->register('Legacy_ThemeSelect.IsSelectableTheme');
         
-        $controller->mSetupUser->add(array(&$this, 'doChangeTheme'));
+        $controller->mSetupUser->add([&$this, 'doChangeTheme']);
     }
     
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
+        $this->mController->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [&$this, "callbackCheckLoginSuccess"]);
     }
     
     /**

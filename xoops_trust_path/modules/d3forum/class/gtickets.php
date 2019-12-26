@@ -6,9 +6,9 @@ if( ! class_exists( 'XoopsGTicket' ) ) {
 
 class XoopsGTicket {
 
-	var $_errors = array() ;
+	var $_errors = [];
 	var $_latest_token = '' ;
-	var $messages = array() ;
+	var $messages = [];
 
 	public function __construct()
 	{
@@ -22,7 +22,7 @@ class XoopsGTicket {
 		}
 
 		// default messages
-		if( empty( $this->messages ) ) $this->messages = array(
+		if( empty( $this->messages ) ) $this->messages = [
 			'err_general' => 'GTicket Error' ,
 			'err_nostubs' => 'No stubs found' ,
 			'err_noticket' => 'No ticket found' ,
@@ -31,7 +31,7 @@ class XoopsGTicket {
 			'err_areaorref' => 'Invalid area or referer' ,
 			'fmt_prompt4repost' => 'error(s) found:<br><span style="background-color:red;font-weight:bold;color:white;">%s</span><br>Confirm it.<br>And do you want to post again?' ,
 			'btn_repost' => 'repost' ,
-		) ;
+        ];
 	}
 
 	// render form as plain html
@@ -55,7 +55,7 @@ class XoopsGTicket {
 	// returns an array for xoops_confirm() ;
 	function getTicketArray( $salt = '' , $timeout = 1800 , $area = '' )
 	{
-		return array( 'XOOPS_G_TICKET' => $this->issue( $salt , $timeout , $area ) ) ;
+		return ['XOOPS_G_TICKET' => $this->issue($salt , $timeout , $area )];
 	}
 
 	// return GET parameter string.
@@ -75,7 +75,7 @@ class XoopsGTicket {
 		$token = crypt( $salt . $usec . $appendix_salt . $sec ,  XOOPS_DB_PREFIX ) ;
 		$this->_latest_token = $token ;
 
-		if( empty( $_SESSION['XOOPS_G_STUBS'] ) ) $_SESSION['XOOPS_G_STUBS'] = array() ;
+		if( empty( $_SESSION['XOOPS_G_STUBS'] ) ) $_SESSION['XOOPS_G_STUBS'] = [];
 
 		// limit max stubs 10
 		if( sizeof( $_SESSION['XOOPS_G_STUBS'] ) > 10 ) {
@@ -91,12 +91,12 @@ class XoopsGTicket {
 		}
 
 		// store stub
-		$_SESSION['XOOPS_G_STUBS'][] = array(
+		$_SESSION['XOOPS_G_STUBS'][] = [
 			'expire' => time() + $timeout ,
 			'referer' => $referer ,
 			'area' => $area ,
 			'token' => $token
-		) ;
+        ];
 
 		// paid md5ed token as a ticket
 		return md5( $token . XOOPS_DB_PREFIX ) ;
@@ -107,12 +107,12 @@ class XoopsGTicket {
 	{
 		global $xoopsModule ;
 
-		$this->_errors = array() ;
+		$this->_errors = [];
 
 		// CHECK: stubs are not stored in session
 		if( ! is_array(@$_SESSION['XOOPS_G_STUBS'])) {
 			$this->_errors[] = $this->messages['err_nostubs'] ;
-			$_SESSION['XOOPS_G_STUBS'] = array() ;
+			$_SESSION['XOOPS_G_STUBS'] = [];
 		}
 
 		// get key&val of the ticket from a user's query
@@ -125,7 +125,7 @@ class XoopsGTicket {
 
 		// gargage collection & find a right stub
 		$stubs_tmp = $_SESSION['XOOPS_G_STUBS'] ;
-		$_SESSION['XOOPS_G_STUBS'] = array() ;
+		$_SESSION['XOOPS_G_STUBS'] = [];
 		foreach( $stubs_tmp as $stub ) {
 			// default lifetime 30min
 			if( $stub['expire'] >= time() ) {
@@ -186,7 +186,7 @@ class XoopsGTicket {
 		// Notify which file is broken
 		if( headers_sent() ) {
 			restore_error_handler() ;
-			set_error_handler( array( &$this , 'errorHandler4FindOutput' ) ) ;
+			set_error_handler([&$this, 'errorHandler4FindOutput']) ;
 			header( 'Dummy: for warning' ) ;
 			restore_error_handler() ;
 			exit ;
@@ -227,14 +227,14 @@ class XoopsGTicket {
 				$form .= '<input type="hidden" name="'.$key_name.'['.htmlspecialchars($key,ENT_QUOTES).']" value="'.htmlspecialchars($val,ENT_QUOTES).'">'."\n" ;
 			}
 		}
-		return array( $table , $form ) ;
+		return [$table, $form];
 	}
 
 
 	// clear all stubs
 	function clear()
 	{
-		$_SESSION['XOOPS_G_STUBS'] = array() ;
+		$_SESSION['XOOPS_G_STUBS'] = [];
 	}
 
 

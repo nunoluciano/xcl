@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class blacklistAction extends AbstractAction
 {
     private $mActionForm;
-    private $blackuser = array();
+    private $blackuser = [];
 
     public function __construct()
     {

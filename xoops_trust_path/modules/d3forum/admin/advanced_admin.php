@@ -15,7 +15,7 @@ $importable_modules = d3forum_import_getimportablemodules( $mydirname ) ;
 $module_handler =& xoops_gethandler( 'module' ) ;
 $modules = $module_handler->getObjects( new Criteria('hascomments',1) ) ;
 $comment_handler =& xoops_gethandler( 'comment' ) ;
-$comimportable_modules = array() ;
+$comimportable_modules = [];
 foreach( $modules as $module ) {
 	$mid = $module->getVar('mid') ;
 	$comment_sum = $comment_handler->getCount( new Criteria('com_modid',$mid) ) ;
@@ -150,7 +150,7 @@ list( $max_topic_id ) = $db->fetchRow( $db->query( "SELECT MAX(topic_id) FROM ".
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 $tpl = new XoopsTpl() ;
-$tpl->assign( array(
+$tpl->assign([
 	'mydirname' => $mydirname ,
 	'mod_name' => $xoopsModule->getVar('name') ,
 	'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
@@ -163,7 +163,8 @@ $tpl->assign( array(
 	'comimport_from_options' => $comimportable_modules ,
 	'comimport_to_options' => d3forum_make_jumpbox_options( $mydirname , '1' , '1' , -1 ) ,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum_admin') ,
-) ) ;
+             ]
+) ;
 $tpl->display( 'db:'.$mydirname.'_admin_advanced_admin.html' ) ;
 xoops_cp_footer();
 

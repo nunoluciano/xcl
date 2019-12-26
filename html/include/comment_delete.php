@@ -62,7 +62,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_config = $xoopsModule->getInfo('comments');
     $com_modid = $xoopsModule->getVar('mid');
     $redirect_page = $comment_config['pageName'].'?';
-    $comment_confirm_extra = array();
+    $comment_confirm_extra = [];
     if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
         foreach ($comment_config['extraParams'] as $extra_param) {
             if (isset(${$extra_param})) {
@@ -164,7 +164,7 @@ case 'delete_one':
 
     // now set new parent ID for direct child comments
     $new_pid = $comment->getVar('com_pid');
-    $errs = array();
+    $errs = [];
     foreach (array_keys($child_comments) as $i) {
         $child_comments[$i]->setVar('com_pid', $new_pid);
         // if the deleted comment is a root comment, need to change root id to own id
@@ -213,8 +213,8 @@ case 'delete_all':
     $child_comments =& $xot->getAllChild($com_id);
     // add itself here
     $child_comments[$com_id] =& $comment;
-    $msgs = array();
-    $deleted_num = array();
+    $msgs = [];
+    $deleted_num = [];
     $member_handler =& xoops_gethandler('member');
     foreach (array_keys($child_comments) as $i) {
         if (!$comment_handler->delete($child_comments[$i])) {
@@ -272,7 +272,7 @@ case 'delete_all':
 case 'delete':
 default:
     include XOOPS_ROOT_PATH.'/header.php';
-    $comment_confirm = array('com_id' => $com_id, 'com_mode' => $com_mode, 'com_order' => $com_order, 'op' => array(_CM_DELETEONE => 'delete_one', _CM_DELETEALL => 'delete_all'));
+    $comment_confirm = ['com_id' => $com_id, 'com_mode' => $com_mode, 'com_order' => $com_order, 'op' => [_CM_DELETEONE => 'delete_one', _CM_DELETEALL => 'delete_all']];
     if (!empty($comment_confirm_extra) && is_array($comment_confirm_extra)) {
         $comment_confirm = $comment_confirm + $comment_confirm_extra;
     }

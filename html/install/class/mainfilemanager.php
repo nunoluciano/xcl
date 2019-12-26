@@ -36,9 +36,9 @@ class mainfile_manager
 
     public $path = '../mainfile.php';
     public $distfile = '../mainfile.dist.php';
-    public $rewrite = array();
+    public $rewrite = [];
 
-    public $report =  array();
+    public $report =  [];
     public $error = false;
 
     public function setRewrite($def, $val)

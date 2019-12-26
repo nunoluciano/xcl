@@ -5,7 +5,7 @@ function b_d3forum_list_forums_show( $options )
 	global $xoopsUser ;
 
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
-	$categories = empty( $options[1] ) ? array() : explode(',',$options[1]) ;
+	$categories = empty( $options[1] ) ? [] : explode(',', $options[1]) ;
 	$this_template = empty( $options[2] ) ? 'db:'.$mydirname.'_block_list_forums.html' : trim( $options[2] ) ;
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -36,11 +36,11 @@ function b_d3forum_list_forums_show( $options )
 	$sql = "SELECT f.forum_id, f.forum_title, f.forum_last_post_time, f.forum_topics_count, f.forum_posts_count, c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ".$db->prefix($mydirname."_forums")." f LEFT JOIN ".$db->prefix($mydirname."_categories")." c ON f.cat_id=c.cat_id WHERE ($whr_forum) AND ($whr_categories) ORDER BY c.cat_order_in_tree,f.forum_weight" ;
 //	var_dump( $sql ) ;
 
-	if( ! $result = $db->query( $sql ) ) return array() ;
+	if( ! $result = $db->query( $sql ) ) return [];
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array(
+	$block = [
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -53,9 +53,9 @@ function b_d3forum_list_forums_show( $options )
 		'lang_linktolistcategories' => constant($constpref.'_LINKTOLISTCATEGORIES') ,
 		'lang_linktolistforums' => constant($constpref.'_LINKTOLISTFORUMS') ,
 		'lang_linktolisttopics' => constant($constpref.'_LINKTOLISTTOPICS') ,
-	) ;
+    ];
 
-	$cat4assign = array() ;
+	$cat4assign = [];
 //	$prev_cat_id = 0 ;
 	while( $forum_row = $db->fetchArray( $result ) ) {
 		$cat_id = intval( $forum_row['cat_id'] ) ;
@@ -63,14 +63,14 @@ function b_d3forum_list_forums_show( $options )
 		$cat4assign[$cat_id]['title'] = $myts->makeTboxData4Show( $forum_row['cat_title'] ) ;
 		$cat4assign[$cat_id]['depth_in_tree'] = intval( $forum_row['cat_depth_in_tree'] ) ;
 
-		$cat4assign[$cat_id]['forums'][] = array(
+		$cat4assign[$cat_id]['forums'][] = [
 			'id' => intval( $forum_row['forum_id'] ) ,
 			'title' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
 			'topics_count' => intval( $forum_row['forum_topics_count'] ) ,
 			'posts_count' => intval( $forum_row['forum_posts_count'] ) ,
 			'last_post_time' => intval( $forum_row['forum_last_post_time'] ) ,
 			'last_post_time_formatted' => $forum_row['forum_last_post_time'] ? formatTimestamp( $forum_row['forum_last_post_time'] ) : '' ,
-		) ;
+        ];
 	}
 	$block['categories'] = $cat4assign ;
 
@@ -90,7 +90,7 @@ function b_d3forum_list_forums_show( $options )
 function b_d3forum_list_forums_edit( $options )
 {
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
-	$categories = empty( $options[1] ) ? array() : explode(',',$options[1]) ;
+	$categories = empty( $options[1] ) ? [] : explode(',', $options[1]) ;
 	$this_template = empty( $options[2] ) ? 'db:'.$mydirname.'_block_list_forums.html' : trim( $options[2] ) ;
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -122,8 +122,8 @@ function b_d3forum_list_topics_show( $options )
 	$show_fullsize = empty( $options[2] ) ? false : true ;
 	$now_order = empty( $options[3] ) ? 'time' : trim( $options[3] ) ;
 	$is_markup = empty( $options[4] ) ? false : true ;
-	$categories = empty( $options[5] ) ? array() : explode(',',$options[5]) ;
-	$forums = empty( $options[7] ) ? array() : explode(',',$options[7]) ;
+	$categories = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
+	$forums = empty( $options[7] ) ? [] : explode(',', $options[7]) ;
 	$this_template = empty( $options[6] ) ? 'db:'.$mydirname.'_block_list_topics.html' : trim( $options[6] ) ;
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -141,7 +141,7 @@ function b_d3forum_list_topics_show( $options )
 	// get all forums
 	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 	$frs = $db->query( $sql ) ;
-	$d3com = array() ;
+	$d3com = [];
 
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
@@ -263,11 +263,11 @@ function b_d3forum_list_topics_show( $options )
 	// naao to
 //	var_dump( $sql ) ;
 
-	if( ! $result = $db->query( $sql , $max_topics , 0 ) ) return array() ;
+	if( ! $result = $db->query( $sql , $max_topics , 0 ) ) return [];
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array(
+	$block = [
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -289,7 +289,7 @@ function b_d3forum_list_topics_show( $options )
 		'lang_linktolisttopics' => constant($constpref.'_LINKTOLISTTOPICS') ,
 		'lang_alt_unsolved' => constant($constpref.'_ALT_UNSOLVED') ,
 		'lang_alt_marked' => constant($constpref.'_ALT_MARKED') ,
-	) ;
+    ];
 	while( $topic_row = $db->fetchArray( $result ) ) {
 		// naao from
 		// d3comment overridings
@@ -304,7 +304,7 @@ function b_d3forum_list_topics_show( $options )
 
 		if ($can_display == true) {	// naao
 
-		    $topic4assign = array(
+		    $topic4assign = [
 			'id' => intval( $topic_row['topic_id'] ) ,
 			'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] ) ,
 			'forum_id' => intval( $topic_row['forum_id'] ) ,
@@ -323,7 +323,7 @@ function b_d3forum_list_topics_show( $options )
 			'external_link_id' => intval( $topic_row['topic_external_link_id'] ) ,	//naao
 			'post_text' => strip_tags( $myts->displayTarea(strip_tags($topic_row['post_text']), $topic_row['html'], $topic_row['smiley'], $topic_row['xcode'], 1, $topic_row['br'] ) ) ,	//naao
 			'guest_name' => htmlspecialchars( $topic_row['guest_name'] ) , //naao
-		    ) ;
+            ];
 		    $block['topics'][] = $topic4assign ;
 		}	// naao
 	}
@@ -347,8 +347,8 @@ function b_d3forum_list_topics_edit( $options )
 	$show_fullsize = empty( $options[2] ) ? false : true ;
 	$now_order = empty( $options[3] ) ? 'time' : trim( $options[3] ) ;
 	$is_markup = empty( $options[4] ) ? false : true ;
-	$categories = empty( $options[5] ) ? array() : explode(',',$options[5]) ;
-	$forums = empty( $options[7] ) ? array() : explode(',',$options[7]) ;
+	$categories = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
+	$forums = empty( $options[7] ) ? [] : explode(',', $options[7]) ;
 	$this_template = empty( $options[6] ) ? 'db:'.$mydirname.'_block_list_topics.html' : trim( $options[6] ) ;
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -372,14 +372,14 @@ function b_d3forum_list_topics_edit( $options )
 	$categories = array_map( 'b_d3forum_check_limits' , $categories ) ;
 	$forums = array_map( 'b_d3forum_check_limits' , $forums ) ;
 
-	$orders = array(
+	$orders = [
 		'time' => _MB_D3FORUM_ORDERTIMED ,
 		'views' => _MB_D3FORUM_ORDERVIEWSD ,
 		'replies' => _MB_D3FORUM_ORDERREPLIESD ,
 		'votes' => _MB_D3FORUM_ORDERVOTESD ,
 		'points' => _MB_D3FORUM_ORDERPOINTSD ,
 		'average' => _MB_D3FORUM_ORDERAVERAGED ,
-	) ;
+    ];
 	$order_options = '' ;
 	foreach( $orders as $order_value => $order_name ) {
 		$selected = $order_value == $now_order ? "selected='selected'" : "" ;
@@ -425,8 +425,8 @@ function b_d3forum_list_posts_show( $options )
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
 	$max_posts = empty( $options[1] ) ? 10 : intval( $options[1] ) ;
 	$now_order = empty( $options[2] ) ? 'time' : trim( $options[2] ) ;
-	$categories = empty( $options[3] ) ? array() : explode(',',$options[3]) ;
-	$forums = empty( $options[5] ) ? array() : explode(',',$options[5]) ;
+	$categories = empty( $options[3] ) ? [] : explode(',', $options[3]) ;
+	$forums = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
 	$this_template = empty( $options[4] ) ? 'db:'.$mydirname.'_block_list_posts.html' : trim( $options[4] ) ;
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -444,7 +444,7 @@ function b_d3forum_list_posts_show( $options )
 	// get all forums
 	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 	$frs = $db->query( $sql ) ;
-	$d3com = array() ;
+	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
 		$temp_forum_id = intval($forum_row['forum_id']);
@@ -524,11 +524,11 @@ function b_d3forum_list_posts_show( $options )
 
 //	var_dump( $sql ) ;
 
-	if( ! $result = $db->query( $sql , $max_posts , 0 ) ) return array() ;
+	if( ! $result = $db->query( $sql , $max_posts , 0 ) ) return [];
 
 	$constpref = '_MB_' . strtoupper( $mydirname ) ;
 
-	$block = array(
+	$block = [
 		'mydirname' => $mydirname ,
 		'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
 		'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$configs['images_dir'] ,
@@ -546,7 +546,7 @@ function b_d3forum_list_posts_show( $options )
 		'lang_linktolistcategories' => constant($constpref.'_LINKTOLISTCATEGORIES') ,
 		'lang_linktolistforums' => constant($constpref.'_LINKTOLISTFORUMS') ,
 		'lang_linktolisttopics' => constant($constpref.'_LINKTOLISTTOPICS') ,
-	) ;
+    ];
 	while( $post_row = $db->fetchArray( $result ) ) {
 		// naao from
 		// d3comment overridings
@@ -560,7 +560,7 @@ function b_d3forum_list_posts_show( $options )
 		}	// naao to
 
 		if ($can_display == true) {	// naao
-		    $post4assign = array(
+		    $post4assign = [
 			'id' => intval( $post_row['post_id'] ) ,
 			'subject' => $myts->makeTboxData4Show( $post_row['subject'] ) ,
 			'forum_id' => intval( $post_row['forum_id'] ) ,
@@ -574,7 +574,7 @@ function b_d3forum_list_posts_show( $options )
 			'external_link_id' => intval( $post_row['topic_external_link_id'] ) ,	//naao
 			'post_text' => strip_tags( $myts->displayTarea(strip_tags($post_row['post_text']), $post_row['html'], $post_row['smiley'], $post_row['xcode'], 1, $post_row['br'] ) ) , //naao
 			'guest_name' => htmlspecialchars( $post_row['guest_name'] ) , //naao
-		    ) ;
+            ];
 
 		    $block['posts'][] = $post4assign ;
 		}	//naao
@@ -598,8 +598,8 @@ function b_d3forum_list_posts_edit( $options )
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0] ;
 	$max_posts = empty( $options[1] ) ? 10 : intval( $options[1] ) ;
 	$now_order = empty( $options[2] ) ? 'time' : trim( $options[2] ) ;
-	$categories = empty( $options[3] ) ? array() : explode(',',$options[3]) ;
-	$forums = empty( $options[5] ) ? array() : explode(',',$options[5]) ;
+	$categories = empty( $options[3] ) ? [] : explode(',', $options[3]) ;
+	$forums = empty( $options[5] ) ? [] : explode(',', $options[5]) ;
 	$this_template = empty( $options[4] ) ? 'db:'.$mydirname.'_block_list_posts.html' : trim( $options[4] ) ;
 
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -607,12 +607,12 @@ function b_d3forum_list_posts_edit( $options )
 	$categories = array_map( 'b_d3forum_check_limits' , $categories ) ;
 	$forums = array_map( 'b_d3forum_check_limits' , $forums ) ;
 
-	$orders = array(
+	$orders = [
 		'time' => _MB_D3FORUM_ORDERTIMED ,
 		'votes' => _MB_D3FORUM_ORDERVOTESD ,
 		'points' => _MB_D3FORUM_ORDERPOINTSD ,
 		'average' => _MB_D3FORUM_ORDERAVERAGED ,
-	) ;
+    ];
 	$order_options = '' ;
 	foreach( $orders as $order_value => $order_name ) {
 		$selected = $order_value == $now_order ? "selected='selected'" : "" ;
@@ -663,11 +663,11 @@ if (! function_exists ("d3forum_b_get_comment_object")) {
 	}
 
 	// search the class file
-	$class_bases = array(
+	$class_bases = [
 		XOOPS_ROOT_PATH.'/modules/'.$external_dirname.'/class' ,
 		XOOPS_TRUST_PATH.'/modules/'.$external_trustdirname.'/class' ,
 		XOOPS_TRUST_PATH.'/modules/d3forum/class' ,
-	) ;
+    ];
 
 	foreach( $class_bases as $class_base ) {
 		if( file_exists( $class_base.'/'.$classname.'.class.php' ) ) {

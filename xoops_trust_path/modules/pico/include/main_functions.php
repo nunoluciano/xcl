@@ -6,7 +6,7 @@
 function pico_main_make_treeinformations($data)
 {
 	$previous_depth = -1;
-	$path_to_i = array();
+	$path_to_i = [];
 
 	for ($i = 0; $i < sizeof($data); $i++) {
 		$unique_path = $data[$i]['unique_path'];
@@ -81,7 +81,7 @@ function pico_main_get_category_permissions_of_current_user($mydirname, $uid = n
 		}
 	}
 
-	if (empty($ret)) return array(0 => array());
+	if (empty($ret)) return [0 => []];
 	else return $ret;
 }
 
@@ -92,15 +92,15 @@ function pico_main_get_category_moderate_groups4show($mydirname, $cat_id)
 
 	$cat_id = intval($cat_id);
 
-	$ret = array();
+	$ret = [];
 	$sql = "SELECT g.groupid, g.name FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id LEFT JOIN " . $db->prefix("groups") . " g ON cp.groupid=g.groupid WHERE cp.groupid IS NOT NULL AND c.cat_id=" . $cat_id . " AND cp.permissions LIKE '%s:12:\"is\\_moderator\";i:1;%'";
 
 	$mrs = $db->query($sql);
 	while (list($mod_gid, $mod_gname) = $db->fetchRow($mrs)) {
-		$ret[] = array(
+		$ret[] = [
 			'gid' => $mod_gid,
 			'gname' => htmlspecialchars($mod_gname, ENT_QUOTES),
-		);
+        ];
 	}
 
 	return $ret;
@@ -113,15 +113,15 @@ function pico_main_get_category_moderate_users4show($mydirname, $cat_id)
 
 	$cat_id = intval($cat_id);
 
-	$ret = array();
+	$ret = [];
 	$sql = "SELECT u.uid, u.uname FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id LEFT JOIN " . $db->prefix("users") . " u ON cp.uid=u.uid WHERE cp.uid IS NOT NULL AND c.cat_id=" . $cat_id . " AND cp.permissions LIKE '%s:12:\"is\\_moderator\";i:1;%'";
 
 	$mrs = $db->query($sql);
 	while (list($mod_uid, $mod_uname) = $db->fetchRow($mrs)) {
-		$ret[] = array(
+		$ret[] = [
 			'uid' => $mod_uid,
 			'uname' => htmlspecialchars($mod_uname, ENT_QUOTES),
-		);
+        ];
 	}
 
 	return $ret;
@@ -149,7 +149,7 @@ function pico_main_make_cat_jumpbox_options($mydirname, $whr4cat, $cat_selected 
 }
 
 // trigger event for D3
-function pico_main_trigger_event($mydirname, $category, $item_id, $event, $extra_tags = array(), $user_list = array(), $omit_user_id = null)
+function pico_main_trigger_event($mydirname, $category, $item_id, $event, $extra_tags = [], $user_list = [], $omit_user_id = null)
 {
 	require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3NotificationHandler.class.php';
 
@@ -162,7 +162,7 @@ function pico_main_get_moderators($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$cat_id = intval($cat_id);
-	$cat_uids = array();
+	$cat_uids = [];
 
 	// get uid directly
 	$sql = "SELECT `uid` FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id WHERE c.`cat_id`=$cat_id AND `uid` IS NOT NULL AND permissions LIKE '%is\\_moderator\";i:1%'";
@@ -174,7 +174,7 @@ function pico_main_get_moderators($mydirname, $cat_id)
 	// get uid via groupid
 	$sql = "SELECT distinct cp.groupid FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id WHERE c.`cat_id`=$cat_id AND cp.`groupid` IS NOT NULL AND permissions LIKE '%is\\_moderator\";i:1%'";
 	$result = $db->query($sql);
-	$groupids = array();
+	$groupids = [];
 	while (list($groupid) = $db->fetchRow($result)) {
 		$groupids[] = $groupid;
 	}
@@ -217,7 +217,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 	$filters_forced = array_map('trim', explode(',', str_replace(':LAST', '', @$xoopsModuleConfig['filters_forced'])));
 	$filters_prohibited = array_map('trim', explode(',', @$xoopsModuleConfig['filters_prohibited']));
 
-	$filters = array();
+	$filters = [];
 	$dh = opendir(XOOPS_TRUST_PATH . '/modules/pico/filters');
 	while (($file = readdir($dh)) !== false) {
 		if (preg_match('/^pico\_(.*)\.php$/', $file, $regs)) {
@@ -231,7 +231,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 			// prohibited
 			if (in_array($name, $filters_prohibited)) continue;
 
-			$filters[$name] = array(
+			$filters[$name] = [
 				'title' => defined($constpref . 'TITLE') ? constant($constpref . 'TITLE') : $name,
 				'desc' => defined($constpref . 'DESC') ? constant($constpref . 'DESC') : '',
 				'weight' => defined($constpref . 'INITWEIGHT') ? constant($constpref . 'INITWEIGHT') : 0,
@@ -240,7 +240,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 				'useHtmlAtNew' => defined($constpref . 'USEHTMLATNEW') ? (bool) constant($constpref . 'USEHTMLATNEW') : false,
 				'disableOnHtml' => defined($constpref . 'DISABLEONHTML') ? (bool) constant($constpref . 'DISABLEONHTML') : false,
 				'enabled' => false,
-			);
+            ];
 
 			// forced
 			if (in_array($name, $filters_forced)) {
@@ -263,7 +263,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 	uasort($filters, 'pico_main_filter_cmp');
 
 	// set edito
-	$editor_info = array('editor' => '', 'cssClass' => '', 'disableOnHtml' => false);
+	$editor_info = ['editor' => '', 'cssClass' => '', 'disableOnHtml' => false];
 	foreach ($filters as $filter) {
 		if ($filter['enabled'] && $filter['editor']) {
 			$editor_info['editor'] = $filter['editor'];
@@ -319,8 +319,8 @@ function pico_main_render_moduleheader($mydirname, $mod_config, $appendix_header
 
 	$header4disp = '<link rel="stylesheet" type="text/css" media="all" href="' . $css_uri4disp . '" />' . "\n" . @$mod_config['htmlheader'] . "\n" . $appendix_header4disp . "\n";
 
-	$searches = array('{mod_url}', '<{$mod_url}>', '<{$mydirname}>', '{X_SITEURL}', '<{$xoops_url}>');
-	$replacements = array(XOOPS_URL . '/modules/' . $mydirname, XOOPS_URL . '/modules/' . $mydirname, $mydirname, XOOPS_URL . '/', XOOPS_URL);
+	$searches = ['{mod_url}', '<{$mod_url}>', '<{$mydirname}>', '{X_SITEURL}', '<{$xoops_url}>'];
+	$replacements = [XOOPS_URL . '/modules/' . $mydirname, XOOPS_URL . '/modules/' . $mydirname, $mydirname, XOOPS_URL . '/', XOOPS_URL];
 
 	return str_replace($searches, $replacements, $header4disp);
 }
@@ -329,7 +329,7 @@ function pico_main_render_moduleheader($mydirname, $mod_config, $appendix_header
 function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/')
 {
 	$full_dir_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path;
-	if (!is_dir($full_dir_path)) return array();
+	if (!is_dir($full_dir_path)) return [];
 
 	$dir_path4key = substr($dir_path, 0, -1);
 	$full_dir_path4disp = htmlspecialchars('XOOPS_TRUST_PATH' . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path4key, ENT_QUOTES);
@@ -340,7 +340,7 @@ function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/'
 	$ret[$dir_path4key] = empty($myrow) ? $full_dir_path4disp : $full_dir_path4disp . ' (' . str_repeat('--', $myrow['cat_depth_in_tree']) . htmlspecialchars($myrow['cat_title'], ENT_QUOTES) . ')';
 
 	// sub directries loop (1)
-	$dir_tmps = array();
+	$dir_tmps = [];
 	$dh = opendir($full_dir_path);
 	while (($file = readdir($dh)) !== false) {
 		if (substr($file, 0, 1) == '.') continue;
@@ -362,14 +362,14 @@ function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/'
 function pico_main_get_wraps_files_recursively($mydirname, $dir_path = '/')
 {
 	$full_dir_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path;
-	if (!is_dir($full_dir_path)) return array();
+	if (!is_dir($full_dir_path)) return [];
 
-	$ret = array();
+	$ret = [];
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// parse currenct directry
-	$dir_tmps = array();
-	$file_tmps = array();
+	$dir_tmps = [];
+	$file_tmps = [];
 	$dh = opendir($full_dir_path);
 	while (($file = readdir($dh)) !== false) {
 		if (substr($file, 0, 1) == '.') continue;

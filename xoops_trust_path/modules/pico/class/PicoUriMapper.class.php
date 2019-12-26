@@ -5,7 +5,7 @@ class PicoUriMapper
 
 	var $mydirname;
 	var $config;
-	var $request = array(); // public
+	var $request = []; // public
 	var $path_info = null; // public
 
 	// !Fix deprecated constructor
@@ -14,7 +14,7 @@ class PicoUriMapper
 	{
 		$this->mydirname = $mydirname;
 		$this->config = $config;
-		$this->request = array();
+		$this->request = [];
 	}
 
 	function initGet()
@@ -176,7 +176,7 @@ class PicoUriMapper
 			$result = $db->query("SELECT content_id,cat_id FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE vpath=" . $db->quoteString($path_info));
 			list($content_id, $cat_id) = $db->fetchRow($result);
 			if ($content_id > 0) {
-				return array(intval($content_id), intval($cat_id));
+				return [intval($content_id), intval($cat_id)];
 			}
 		}
 
@@ -186,22 +186,22 @@ class PicoUriMapper
 			$result = $db->query("SELECT cat_id FROM " . $db->prefix($this->mydirname . "_categories") . " WHERE cat_vpath=" . $db->quoteString($path_info) . " OR cat_vpath=" . $db->quoteString(substr($path_info, 0, -1)));
 			list($cat_id) = $db->fetchRow($result);
 			if ($cat_id > 0) {
-				return array(0, intval($cat_id));
+				return [0, intval($cat_id)];
 			}
 		}
 
 		// check path_info obeys the ruled for autonaming for contents (3rd)
 		if (preg_match(_MD_PICO_AUTONAME4PREGEX, $path_info, $regs)) {
 			$content_id = intval(@$regs[1]);
-			return array($content_id, pico_common_get_cat_id_from_content_id($this->mydirname, $content_id));
+			return [$content_id, pico_common_get_cat_id_from_content_id($this->mydirname, $content_id)];
 		}
 
 		// check path_info obeys the ruled for autonaming for category (4th)
 		if (preg_match(_MD_PICO_AUTOCATNAME4PREGEX, $path_info, $regs)) {
-			return array(0, intval(@$regs[1]));
+			return [0, intval(@$regs[1])];
 		}
 
-		return array(null, null);
+		return [null, null];
 	}
 
 	function processWrapPath($path_info)
@@ -247,12 +247,12 @@ class PicoUriMapper
 			list($cat_id) = $db->fetchRow($result);
 			if ($path_info_is_dir) {
 				// just return $cat_id
-				return array(0, intval($cat_id));
+				return [0, intval($cat_id)];
 			} else {
 				// just HTML wrapping (without content_id)
 				$this->request['path_info'] = $path_info;
 				$this->request['controller'] = 'htmlwrapped';
-				return array(0, intval($cat_id));
+				return [0, intval($cat_id)];
 			}
 		} else {
 			// just transfer (image files etc.)

@@ -42,9 +42,9 @@ class snoopy
 
     public $agent = "Snoopy v2.0.0"; // agent we masquerade as
     public $referer = ""; // referer info to pass
-    public $cookies = array(); // array of cookies to pass
+    public $cookies = []; // array of cookies to pass
     // $cookies["username"]="joe";
-    public $rawheaders = array(); // array of raw headers to send
+    public $rawheaders = []; // array of raw headers to send
     // $rawheaders["Content-type"]="text/html";
 
     public $maxredirs = 5; // http redirection depth maximum. 0 = disallow
@@ -68,7 +68,7 @@ class snoopy
 
     public $error = ""; // error messages sent here
     public $response_code = ""; // response code returned from server
-    public $headers = array(); // headers returned from server sent here
+    public $headers = []; // headers returned from server sent here
     public $maxlength = 500000; // max return data length (body)
     public $read_timeout = 0; // timeout on read operations, in seconds
     // supported only since PHP 4 Beta 4
@@ -102,7 +102,7 @@ class snoopy
     public $_mime_boundary = ""; // MIME boundary for multipart/form-data submit type
     public $_redirectaddr = false; // will be set if page fetched is a redirect
     public $_redirectdepth = 0; // increments on an http redirect
-    public $_frameurls = array(); // frame src urls
+    public $_frameurls = []; // frame src urls
     public $_framedepth = 0; // increments on frame depth
 
     public $_isproxy = false; // set if using a proxy server
@@ -175,7 +175,7 @@ class snoopy
 
                     if ($this->_framedepth < $this->maxframes && count($this->_frameurls) > 0) {
                         $frameurls = $this->_frameurls;
-                        $this->_frameurls = array();
+                        $this->_frameurls = [];
 
                         while (list(, $frameurl) = each($frameurls)) {
                             if ($this->_framedepth < $this->maxframes) {
@@ -280,7 +280,7 @@ class snoopy
 
                     if ($this->_framedepth < $this->maxframes && count($this->_frameurls) > 0) {
                         $frameurls = $this->_frameurls;
-                        $this->_frameurls = array();
+                        $this->_frameurls = [];
 
                         while (list(, $frameurl) = each($frameurls)) {
                             if ($this->_framedepth < $this->maxframes) {
@@ -546,7 +546,8 @@ class snoopy
         // so, list your entities one by one here. I included some of the
         // more common ones.
 
-        $search = array("'<script[^>]*?>.*?</script>'si", // strip out javascript
+        $search = [
+            "'<script[^>]*?>.*?</script>'si", // strip out javascript
             "'<[\/\!]*?[^<>]*?>'si", // strip out html tags
             "'([\r\n])[\s]+'", // strip out white space
             "'&(quot|#34|#034|#x22);'i", // replace html entities
@@ -569,8 +570,9 @@ class snoopy
             "'&O(uml|UML);'",
             "'&U(uml|UML);'",
             "'&szlig;'i",
-        );
-        $replace = array("",
+        ];
+        $replace = [
+            "",
             "",
             "\\1",
             "\"",
@@ -597,7 +599,7 @@ class snoopy
             chr(214),
             chr(220),
             chr(223),
-        );
+        ];
 
         $text = preg_replace($search, $replace, $document);
 
@@ -622,19 +624,21 @@ class snoopy
         $match_root =
             $match_part["scheme"] . "://" . $match_part["host"];
 
-        $search = array("|^https://" . preg_quote($this->host) . "|i",
+        $search = [
+            "|^https://" . preg_quote($this->host) . "|i",
             "|^(\/)|i",
             "|^(?!https://)(?!mailto:)|i",
             "|/\./|",
             "|/[^\/]+/\.\./|"
-        );
+        ];
 
-        $replace = array("",
+        $replace = [
+            "",
             $match_root . "/",
             $match . "/",
             "/",
             "/"
-        );
+        ];
 
         $expandedLinks = preg_replace($search, $replace, $links);
 
@@ -896,17 +900,17 @@ class snoopy
 
         $this->status = 0;
 
-        $context_opts = array();
+        $context_opts = [];
 
         if ($this->scheme == 'https') {
             // if cafile or capath is specified, enable certificate
             // verification (including name checks)
             if (isset($this->cafile) || isset($this->capath)) {
-                $context_opts['ssl'] = array(
+                $context_opts['ssl'] = [
                     'verify_peer' => true,
                     'CN_match' => $this->host,
                     'disable_compression' => true,
-                );
+                ];
 
                 if (isset($this->cafile)) {
                     $context_opts['ssl']['cafile'] = $this->cafile;

@@ -193,7 +193,7 @@ public function renderCell4BlockPosition($block_data)
             break ;
     }
 
-        $is_custom = in_array($block->getVar('block_type'), array( 'C', 'E' )) ? true : false ;
+        $is_custom = in_array($block->getVar('block_type'), ['C', 'E']) ? true : false ;
         $block_template = $block->getVar('template', 'n') ;
         $block_template_tplset = '' ;
 
@@ -209,7 +209,7 @@ public function renderCell4BlockPosition($block_data)
         $block->setVar('c_type','S');
     }
 */
-    $block_data = $this->preview_request + array(
+    $block_data = $this->preview_request + [
         'bid' => $bid ,
         'name' => $block->getVar('name', 'n') ,
         'title' => $block->getVar('title', 'n') ,
@@ -224,9 +224,9 @@ public function renderCell4BlockPosition($block_data)
         'is_custom' => $is_custom ,
         'type' => $block->getVar('block_type') ,
         'ctype' => $block->getVar('c_type') ,
-    ) ;
+        ];
 
-        $block4assign = array(
+        $block4assign = [
         'name_raw' => $block_data['name'] ,
         'title_raw' => $block_data['title'] ,
         'content_raw' => $block_data['content'] ,
@@ -235,7 +235,7 @@ public function renderCell4BlockPosition($block_data)
         'cell_group_perm' =>  $this->renderCell4BlockReadGroupPerm($block_data) ,
         'cell_options' => $this->renderCell4BlockOptions($block_data) ,
         'content_preview' => $this->previewContent($block_data) ,
-    ) + $block_data ;
+                        ] + $block_data ;
 
     // display
     require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
@@ -244,7 +244,7 @@ public function renderCell4BlockPosition($block_data)
     include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 
         if ($block_data['ctype']=='H' || empty($block_data['ctype'])) {
-            $editor_configs=array();
+            $editor_configs= [];
             $editor_configs["name"] ="content_block";
             $editor_configs["value"] = $block_data['content'];
             $editor_configs["rows"] = 20;
@@ -258,11 +258,12 @@ public function renderCell4BlockPosition($block_data)
         } else {
             $form = new XoopsFormDhtmlTextArea('', 'textarea_content', $block_data['content'], 80, 20);
             $rendered = $form->render();
-            $rendered = '<div id="textarea_content_bbcode_buttons_pre" style="display:block;">'.str_replace(array( '<textarea', '</textarea><br />' ), array( '</div><textarea', '</textarea><div id="textarea_content_bbcode_buttons_post" style="display:block;">' ), $rendered) . '</div>' ;
+            $rendered = '<div id="textarea_content_bbcode_buttons_pre" style="display:block;">'.str_replace(['<textarea', '</textarea><br />'], ['</div><textarea', '</textarea><div id="textarea_content_bbcode_buttons_post" style="display:block;">'], $rendered) . '</div>' ;
             $tpl->assign('altsys_x25_dhtmltextarea', $rendered) ;
         }
 
-        $tpl->assign(array(
+        $tpl->assign(
+            [
         'target_dirname' => $this->target_dirname,
         'target_mname' => $this->target_mname,
         'language' => $this->lang,
@@ -274,7 +275,8 @@ public function renderCell4BlockPosition($block_data)
         'submit_button' => $button_value,
         'common_fck_installed' => file_exists(XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js'),
         'gticket_hidden' => $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'myblocksadmin'),
-    )) ;
+            ]
+        ) ;
 //HACK by domifara
     $tpl->display('db:altsys_main_myblocksadmin_edit_4x25.html') ;
 
@@ -296,19 +298,19 @@ public function renderCell4BlockPosition($block_data)
             $visible = 1 ;
         }
 
-        return array(
-        'bid' => $bid ,
-        'side' => intval(@$_POST['sides'][$bid]) ,
-        'weight' => intval(@$_POST['weights'][$bid]) ,
-        'visible' => $visible ,
-        'title' => $myts->stripSlashesGPC(@$_POST['titles'][$bid]) ,
-        'content' => $myts->stripSlashesGPC(@$_POST['textarea_content']) ,
-        'ctype' => preg_replace('/[^A-Z]/', '', @$_POST['ctypes'][$bid]) ,
-        'bcachetime' => intval(@$_POST['bcachetimes'][$bid]) ,
-        'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : array( 0 ) ,
-        'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : array() ,
-        'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : array() ,
-    ) ;
+        return [
+            'bid' => $bid,
+            'side' => intval(@$_POST['sides'][$bid]),
+            'weight' => intval(@$_POST['weights'][$bid]),
+            'visible' => $visible,
+            'title' => $myts->stripSlashesGPC(@$_POST['titles'][$bid]),
+            'content' => $myts->stripSlashesGPC(@$_POST['textarea_content']),
+            'ctype' => preg_replace('/[^A-Z]/', '', @$_POST['ctypes'][$bid]),
+            'bcachetime' => intval(@$_POST['bcachetimes'][$bid]),
+            'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : [0],
+            'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : [],
+            'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : [],
+        ];
     }
 
     public function previewContent($block_data)

@@ -35,10 +35,10 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     protected $unzipdirlevel;
 
     // for permission control
-    protected $options = array();
-    protected $writable_dir = array();
-    protected $writable_file = array();
-    protected $install_only = array();
+    protected $options = [];
+    protected $writable_dir = [];
+    protected $writable_file = [];
+    protected $install_only = [];
 
     protected $contents;
     protected $action;
@@ -295,7 +295,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
                     }
                 }
                 if ($is_install) {
-                    $this->options['no_update'] = array();
+                    $this->options['no_update'] = [];
                 }
             }
             $_arr = $this->Xupdate->get('delete_dir');

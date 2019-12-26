@@ -69,12 +69,12 @@ class CriteriaElement
      * Sort order
      * @var string
      */
-    public $order = array();
+    public $order = [];
 
     /**
      * @var string
      */
-    public $sort = array();
+    public $sort = [];
 
     /**
      * Number of records to retrieve
@@ -208,7 +208,7 @@ class CriteriaElement
      */
     public function getSorts()
     {
-        $ret = array();
+        $ret = [];
         $max = count($this->sort);
         
         for ($i = 0; $i < $max; $i++) {
@@ -316,13 +316,13 @@ class CriteriaCompo extends CriteriaElement
      * The elements of the collection
      * @var array   Array of {@link CriteriaElement} objects
      */
-    public $criteriaElements = array();
+    public $criteriaElements = [];
 
     /**
      * Conditions
      * @var array
      */
-    public $conditions = array();
+    public $conditions = [];
 
     /**
      * Constructor
@@ -507,7 +507,7 @@ class Criteria extends CriteriaElement
     public function render()
     {
         $value = $this->value;
-        if (in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
+        if (in_array(strtoupper($this->operator), ['IN', 'NOT IN'])) {
             $value = is_array($value) ? implode(',', $value) : trim($value, " ()\t"); // [Compat] allow value '("a", "b", "c")'
             if (isset($value)) {
                 $value = '('.$value.')';

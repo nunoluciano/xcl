@@ -49,7 +49,7 @@ class MessageOutboxHandler extends XoopsObjectGenericHandler
 
     public function getReceiveUserList($uid = 0, $fuid = 0)
     {
-        $ret = array();
+        $ret = [];
         $sql = "SELECT u.`uname`,u.`uid` FROM `".$this->db->prefix('users')."` u, ";
         $sql.= '`'.$this->mTable."` i ";
         $sql.= "WHERE i.`to_uid` = u.`uid` ";

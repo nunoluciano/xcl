@@ -6,7 +6,7 @@ require_once dirname(__FILE__).'/D3forumAntispamAbstract.class.php' ;
 
 class D3forumAntispamJapanese extends D3forumAntispamAbstract {
 
-private $dictionary_cache = array() ;
+private $dictionary_cache = [];
 
 private $dictionary_file;
 
@@ -25,16 +25,16 @@ function getKanaKanji( $time = null )
 		foreach( $lines as $line ) {
 			$line = mb_convert_encoding( $line , mb_internal_encoding() , 'EUC-JP' ) ;
 			if( preg_match( '#(.+) /(.+)/#' , $line , $regs ) ) {
-				$this->dictionary_cache[$this->dictionary_file][] = array(
+				$this->dictionary_cache[$this->dictionary_file][] = [
 					'yomigana' => $regs[1] ,
 					'kanji' => $regs[2] ,
-				) ;
+                ];
 			}
 		}
 	}
 
 	$size = sizeof( $this->dictionary_cache[$this->dictionary_file] ) ;
-	$ret = array() ;
+	$ret = [];
 	for( $i = 0 ; $i < 3 ; $i ++ ) {
 		$ret[] = $this->dictionary_cache[$this->dictionary_file][ abs( crc32( md5( gmdate( 'YmdH' , $time ) . XOOPS_DB_PREFIX . XOOPS_DB_NAME . $i ) ) ) % $size ] ;
 	}
@@ -51,12 +51,12 @@ function getHtml4Assign()
 
 	$html = '<label for="antispam_yomigana">'._MD_D3FORUM_LABEL_JAPANESEINPUTYOMI.': <strong class="antispam_kanji">'.htmlspecialchars($kanji).'</strong></label><input type="text" name="antispam_yomigana" id="antispam_yomigana" value="">' ;
 
-	return array(
+	return [
 		'html_in_form' => $html ,
 		'js_global' => '' ,
 		'js_in_validate_function' => 'if ( ! myform.antispam_yomigana.value ) { window.alert("'._MD_D3FORUM_ERR_JAPANESENOTINPUT.'"); myform.antispam_yomigana.focus(); return false; }
 ' ,
-	) ;
+    ];
 }
 
 function checkValidate()

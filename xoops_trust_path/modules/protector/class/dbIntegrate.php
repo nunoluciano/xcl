@@ -33,7 +33,7 @@ class protectorDbIntegrate
     
     public function FetchField($result, $field_offset)
     {
-        $type_hash = array(
+        $type_hash = [
             1=>'tinyint',
             2=>'smallint',
             3=>'int',
@@ -51,7 +51,7 @@ class protectorDbIntegrate
             253=>'varchar',
             254=>'char',
             246=>'decimal'
-        );
+        ];
         switch ($this->api) {
             case 'mysqli':
                 $res = mysqli_fetch_field_direct($result, $field_offset);

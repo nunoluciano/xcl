@@ -59,7 +59,7 @@ class ProtectorFilterHandler
     {
         $ret = 0 ;
 
-        $filters = array() ;
+        $filters = [];
 
         // parse $protector->_conf['filters']
         foreach (preg_split('/[\s\n,]+/', $this->protector->_conf['filters']) as $file) {
@@ -67,7 +67,7 @@ class ProtectorFilterHandler
                 $file .= '.php' ;
             }
             if (strncmp($file, $type.'_', strlen($type) + 1) === 0) {
-                $filters[] = array( 'file' => $file , 'base' => $this->filters_byconfig ) ;
+                $filters[] = ['file' => $file, 'base' => $this->filters_byconfig];
             }
         }
 
@@ -75,7 +75,7 @@ class ProtectorFilterHandler
         $dh = opendir($this->filters_base) ;
         while (($file = readdir($dh)) !== false) {
             if (strncmp($file, $type.'_', strlen($type) + 1) === 0) {
-                $filters[] = array( 'file' => $file , 'base' => $this->filters_base ) ;
+                $filters[] = ['file' => $file, 'base' => $this->filters_base];
             }
         }
         closedir($dh) ;

@@ -11,18 +11,18 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     public $dirname;
     public $html_only;
     
-    private $systemModules = array();
-    private $systemDirs = array();
+    private $systemModules = [];
+    private $systemDirs = [];
     
     public function __construct()
     {
         parent::__construct();
         
         // @todo
-        $this->systemModules = array('legacy');
+        $this->systemModules = ['legacy'];
         
         // @todo
-        $this->systemDirs = array(
+        $this->systemDirs = [
             'html',
             'html/class',
             'html/class/database/*',
@@ -42,7 +42,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             'xoops_trust_path/settings/definition.inc.php',
             'xoops_trust_path/settings/site_default.dist.ini',
             'xoops_trust_path/settings/site_default.ini'
-        );
+        ];
     }
 
     /**
@@ -121,10 +121,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
                             $this->_set_stage(4);
                             // overwrite control
                             if (! isset($this->options['no_overwrite'])) {
-                                $this->options['no_overwrite'] = array();
+                                $this->options['no_overwrite'] = [];
                             }
                             if (! isset($this->options['no_update'])) {
-                                $this->options['no_update'] = array();
+                                $this->options['no_update'] = [];
                             }
                             $this->Ftp->set_item_options($this->options);
                             
@@ -376,7 +376,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         static $langs = null;
         
         if (null === $langs) {
-            $langs = array();
+            $langs = [];
             if ($handle = opendir(XOOPS_ROOT_PATH . '/language')) {
                 while (false !== ($name = readdir($handle))) {
                     if ($name[0] !== '.' && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
@@ -387,7 +387,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             }
         }
         
-        $uploadDir = $checkDir = array();
+        $uploadDir = $checkDir = [];
         $isLegacy = ($dirname === 'legacy');
         if ($isLegacy) {
             $checkDir[] = $this->exploredDirPath . '/extras/extra_languages/<LANG>/html';
@@ -470,7 +470,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         $dir = $this->exploredDirPath;
         $this->Ftp->appendMes('check exploredDirPath: '.$this->exploredDirPath.'<br />');
         $items = scandir($dir);
-        $checker = array();
+        $checker = [];
         foreach ($items as $item) {
             if ($item === '.' || $item === '..' || $item === '__MACOSX') {
                 continue;
@@ -625,23 +625,23 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         // rename items
         Xupdate_Utils::debug($this->options['rename_item']);
         if (isset($this->options['rename_item'])) {
-            array_map(array($this, '_rename'), $this->options['rename_item']);
+            array_map([$this, '_rename'], $this->options['rename_item']);
         }
         // change directories to writable
         if (isset($this->options['writable_dir'])) {
-            array_map(array($this, '_chmod_dir'), $this->options['writable_dir']);
+            array_map([$this, '_chmod_dir'], $this->options['writable_dir']);
         }
         // change files to writable
         if (isset($this->options['writable_file'])) {
-            array_map(array($this, '_chmod_file'), $this->options['writable_file']);
+            array_map([$this, '_chmod_file'], $this->options['writable_file']);
         }
         // delete dirs recursive
         if (isset($this->options['delete_dir'])) {
-            array_map(array($this, '_rmdir_recursive'), $this->options['delete_dir']);
+            array_map([$this, '_rmdir_recursive'], $this->options['delete_dir']);
         }
         // delete files
         if (isset($this->options['delete_file'])) {
-            array_map(array($this, '_delete'), $this->options['delete_file']);
+            array_map([$this, '_delete'], $this->options['delete_file']);
         }
     }
     
@@ -709,7 +709,7 @@ function xupdate_on_shutdown($cache_dir, $download_url)
                 break;
             }
         }
-        $msg = array();
+        $msg = [];
         $upload_retry = isset($_POST['upload_retry'])? (int)$_POST['upload_retry'] : 0;
         $uploaded_count = count($GLOBALS['xupdate_retry_cache']['uploaded_files']);
         $uploaded_count_before = isset($_POST['uploaded_count'])? $_POST['uploaded_count'] : 0;

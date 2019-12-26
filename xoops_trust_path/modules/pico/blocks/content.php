@@ -18,12 +18,12 @@ function b_pico_content_show($options)
 
 	// permission check
 	if (empty($content_data['can_read']) || empty($content_data['can_readfull'])) {
-		return array();
+		return [];
 	}
 
 	// check existence
 	if ($contentObj->isError()) {
-		return array('content' => 'invalid block id');
+		return ['content' => 'invalid block id'];
 	}
 
 	// module config (overridden)
@@ -45,14 +45,14 @@ function b_pico_content_show($options)
 	}
 
 	// make an array named 'block'
-	$block = array(
+	$block = [
 		'mytrustdirname' => $mytrustdirname,
 		'mydirname' => $mydirname,
 		'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
 		'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
 		'mod_config' => $configs,
 		'content' => $content4assign,
-	);
+    ];
 
 	if (empty($options['disable_renderer'])) {
 		// render it
@@ -82,7 +82,7 @@ function b_pico_content_edit($options)
 	// get content_title
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
-	$contents = array(0 => '--');
+	$contents = [0 => '--'];
 	$result = $db->query("SELECT content_id,subject,c.cat_depth_in_tree FROM " . $db->prefix($mydirname . "_contents") . " o LEFT JOIN " . $db->prefix($mydirname . "_categories") . " c ON o.cat_id=c.cat_id ORDER BY c.cat_order_in_tree,o.weight");
 	while (list($id, $sbj, $depth) = $db->fetchRow($result)) {
 		$contents[$id] = sprintf('%06d', $id) . ': ' . str_repeat('--', $depth) . $myts->makeTboxData4Show($sbj, 1, 1);
@@ -90,12 +90,14 @@ function b_pico_content_edit($options)
 
 	require_once XOOPS_ROOT_PATH . '/class/template.php';
 	$tpl = new XoopsTpl();
-	$tpl->assign(array(
+	$tpl->assign(
+        [
 		'mydirname' => $mydirname,
 		'contents' => $contents,
 		'content_id' => $content_id,
 		'this_template' => $this_template,
 		'process_body' => $process_body,
-	));
+        ]
+    );
 	return $tpl->fetch('db:' . $mydirname . '_blockedit_content.html');
 }

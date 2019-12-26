@@ -10,9 +10,9 @@ require_once XOOPS_MODULE_PATH . "/user/admin/forms/RanksListForm.class.php";
 
 class User_RanksListAction extends User_AbstractListAction
 {
-    public $mRanksObjects = array();
+    public $mRanksObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     // !Fix compatibility with  User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)

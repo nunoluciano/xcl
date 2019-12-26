@@ -4,7 +4,7 @@
 class AltsysBreadcrumbs
 {
 
-public $paths = array() ;
+public $paths = [];
 
 	// !Fix PHP7 NOTICE: deprecated constructor
 	public function __construct()
@@ -24,14 +24,14 @@ public $paths = array() ;
 
     public function getXoopsBreadcrumbs()
     {
-        $ret = array() ;
+        $ret = [];
         foreach ($this->paths as $val) {
             // delayed language constant
         if (substr($val['name'], 0, 1) == '_' && defined($val['name'])) {
-            $ret[] = array(
+            $ret[] = [
                 'url' => $val['url'] ,
                 'name' => constant($val['name']) ,
-            ) ;
+            ];
         } else {
             $ret[] = $val ;
         }
@@ -53,7 +53,7 @@ public $paths = array() ;
             }
         } else {
             // separate format
-            $this->paths[] = array( 'url' => $url_or_path , 'name' => $name ) ;
+            $this->paths[] = ['url' => $url_or_path, 'name' => $name];
         }
     }
 

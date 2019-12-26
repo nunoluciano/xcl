@@ -76,17 +76,20 @@ class XoopsTpl extends Smarty
         $this->cache_dir = XOOPS_CACHE_PATH;
         $this->compile_dir = XOOPS_COMPILE_PATH;
         //loading under root_path for compatibility with XCL2.1
-        $this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
+        $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
 //		$this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
 
-        $this->assign(array('xoops_url' => XOOPS_URL,
-                            'xoops_rootpath' => XOOPS_ROOT_PATH,
-                            'xoops_langcode' => _LANGCODE,
-                            'xoops_charset' => _CHARSET,
-                            'xoops_version' => XOOPS_VERSION,
-                            'xoops_upload_url' => XOOPS_UPLOAD_URL
-                            ));
+        $this->assign(
+            [
+                'xoops_url'        => XOOPS_URL,
+                'xoops_rootpath'   => XOOPS_ROOT_PATH,
+                'xoops_langcode'   => _LANGCODE,
+                'xoops_charset'    => _CHARSET,
+                'xoops_version'    => XOOPS_VERSION,
+                'xoops_upload_url' => XOOPS_UPLOAD_URL
+            ]
+        );
 
         if (empty($this->debug_tpl)) {
             // set path to debug template from SMARTY_DIR
@@ -255,7 +258,7 @@ class XoopsTpl extends Smarty
     {
         if ($this->debugging) {
             // capture time for debugging info
-            $_params = array();
+            $_params = [];
             require_once(SMARTY_CORE_DIR . 'core.get_microtime.php');
             $this->_smarty_debug_info[$_included_tpls_idx]['exec_time'] = (smarty_core_get_microtime($_params, $this) - $_debug_start_time);
             require_once(SMARTY_CORE_DIR . 'core.display_debug_console.php');

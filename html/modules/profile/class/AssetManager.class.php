@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Profile_AssetManager
 {
     public $mDirname = "profile";
-    public $mAssetList = array();
-    public $_mCache = array();
+    public $mAssetList = [];
+    public $_mCache = [];
 
     /**
      * @private

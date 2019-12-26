@@ -24,7 +24,7 @@ define('AVATAR_SORT_KEY_DEFAULT', AVATAR_SORT_KEY_AVATAR_ID);
 
 class User_AvatarFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         AVATAR_SORT_KEY_AVATAR_ID => 'avatar_id',
         AVATAR_SORT_KEY_AVATAR_FILE => 'avatar_file',
         AVATAR_SORT_KEY_AVATAR_NAME => 'avatar_name',
@@ -33,7 +33,7 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         AVATAR_SORT_KEY_AVATAR_DISPLAY => 'avatar_display',
         AVATAR_SORT_KEY_AVATAR_WEIGHT => 'avatar_weight',
         AVATAR_SORT_KEY_AVATAR_TYPE => 'avatar_type'
-    );
+    ];
 
     public $mKeyword = "";
     public $mOptionField = "";
@@ -59,12 +59,12 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
 
         if (isset($_REQUEST['avatar_display'])) {
             $this->mNavi->addExtra('avatar_display', xoops_getrequest('avatar_display'));
-            $this->_mCriteria->add(new Criteria('avatar_display', array(XOBJ_DTYPE_BOOL, xoops_getrequest('avatar_display'))));
+            $this->_mCriteria->add(new Criteria('avatar_display', [XOBJ_DTYPE_BOOL, xoops_getrequest('avatar_display')]));
         }
     
         if (isset($_REQUEST['avatar_type'])) {
             $this->mNavi->addExtra('avatar_type', xoops_getrequest('avatar_type'));
-            $this->_mCriteria->add(new Criteria('avatar_type', array(XOBJ_DTYPE_STRING, xoops_getrequest('avatar_type'))));
+            $this->_mCriteria->add(new Criteria('avatar_type', [XOBJ_DTYPE_STRING, xoops_getrequest('avatar_type')]));
         }
 
         if (isset($_REQUEST['option_field'])) {

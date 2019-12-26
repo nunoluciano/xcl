@@ -38,10 +38,10 @@ require_once(XOOPS_ROOT_PATH.'/class/xml/xmltaghandler.php');
 
 class XoopsXmlRss2Parser extends SaxParser
 {
-    public $_tempArr = array();
-    public $_channelData = array();
-    public $_imageData = array();
-    public $_items = array();
+    public $_tempArr = [];
+    public $_channelData = [];
+    public $_imageData = [];
+    public $_items = [];
 
     public function __construct(&$input)
     {
@@ -137,7 +137,7 @@ class XoopsXmlRss2Parser extends SaxParser
     public function resetTempArr()
     {
         unset($this->_tempArr);
-        $this->_tempArr = array();
+        $this->_tempArr = [];
     }
 }
 

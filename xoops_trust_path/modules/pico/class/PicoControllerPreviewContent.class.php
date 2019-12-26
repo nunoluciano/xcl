@@ -39,7 +39,7 @@ class PicoControllerPreviewContent extends PicoControllerEditContent
 		// permission check (can_edit) done
 
 		// request
-		$errors = array();
+		$errors = [];
 		$request = pico_get_requests4content($this->mydirname, $errors, $cat_data['post_auto_approved'], $cat_data['isadminormod'], $this->assign['content']['id']);
 		$request['body_raw'] = $request['body'];
 		$request['subject_raw'] = $request['subject'];
@@ -57,11 +57,11 @@ class PicoControllerPreviewContent extends PicoControllerEditContent
 		$tmpContentObj = new PicoContent($this->mydirname, 0, $this->currentCategoryObj, true);
 
 		// preview
-		$this->assign['preview'] = array(
+		$this->assign['preview'] = [
 			'errors' => $errors,
 			'htmlheader' => $request['htmlheader'], // remove it?
 			'subject' => $myts->makeTboxData4Show($request['subject'], 1, 1),
 			'body' => $tmpContentObj->filterBody($this->assign['content']),
-		);
+        ];
 	}
 }

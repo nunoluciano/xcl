@@ -75,28 +75,32 @@ class User_UserInfoAction extends User_Action
         $service =& $root->mServiceManager->getService('privateMessage');
         if ($service != null) {
             $client =& $root->mServiceManager->createClient($service);
-            $this->mPmliteURL = $client->call('getPmliteUrl', array('fromUid' => is_object($xoopsUser) ? $xoopsUser->get('uid') : 0, 'toUid' => $uid));
+            $this->mPmliteURL = $client->call('getPmliteUrl', ['fromUid' => is_object($xoopsUser) ? $xoopsUser->get('uid') : 0, 'toUid' => $uid]);
         }
         unset($service);
         
         $service =& $root->mServiceManager->getService("LegacySearch");
         if ($service != null) {
-            $this->mSearchResults = array();
+            $this->mSearchResults = [];
             
             $client =& $root->mServiceManager->createClient($service);
             
-            $moduleArr = $client->call('getActiveModules', array());
+            $moduleArr = $client->call('getActiveModules', []);
             $uid = $this->mObject->get('uid');
             
             foreach ($moduleArr as $t_module) {
-                $params = array('mid' => $t_module['mid'],
-                                'uid' => $uid,
-                                'maxhit' => USER_USERINFO_MAXHIT,
-                                'start' => 0);
+                $params = [
+                    'mid'    => $t_module['mid'],
+                    'uid'    => $uid,
+                    'maxhit' => USER_USERINFO_MAXHIT,
+                    'start'  => 0
+                ];
 
-                $module = array('name' => $t_module['name'],
-                                'mid' => $t_module['mid'],
-                                'results' => $client->call('searchItemsOfUser', $params));
+                $module = [
+                    'name'    => $t_module['name'],
+                    'mid'     => $t_module['mid'],
+                    'results' => $client->call('searchItemsOfUser', $params)
+                ];
 
                 $nresult = count($module['results']);
                 if ($nresult) {

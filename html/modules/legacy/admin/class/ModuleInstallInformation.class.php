@@ -96,9 +96,9 @@ class Legacy_BlockInformation
 
 class Legacy_BlockInfoCollection
 {
-    public $mBlocks = array();
-    public $mShowFuncs = array();
-    public $mFuncFiles = array();
+    public $mBlocks = [];
+    public $mShowFuncs = [];
+    public $mFuncFiles = [];
 
     public function add(&$info)
     {
@@ -160,7 +160,7 @@ class Legacy_BlockInfoCollection
     public function reset()
     {
         unset($this->mBlocks);
-        $this->mBlocks = array();
+        $this->mBlocks = [];
     }
 }
 
@@ -261,11 +261,11 @@ class Legacy_PreferenceInformation
 
 class Legacy_PreferenceInfoCollection
 {
-    public $mPreferences = array();
+    public $mPreferences = [];
 
-    public $mComments = array();
+    public $mComments = [];
 
-    public $mNotifications = array();
+    public $mNotifications = [];
 
     public function Legacy_PreferenceInfoCollection()
     {
@@ -428,7 +428,7 @@ class Legacy_PreferenceInfoCollection
     public function reset()
     {
         unset($this->mPreferences);
-        $this->mPreferences = array();
+        $this->mPreferences = [];
     }
 }
 
@@ -456,7 +456,7 @@ class Legacy_PreferenceOptionInformation
 
 class Legacy_PreferenceOptionInfoCollection
 {
-    public $mOptions = array();
+    public $mOptions = [];
 
     public function __construct()
     {
@@ -486,7 +486,7 @@ class Legacy_PreferenceOptionInfoCollection
     public function reset()
     {
         unset($this->mOptions);
-        $this->mOptions = array();
+        $this->mOptions = [];
     }
 }
 
@@ -652,25 +652,27 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
         if (isset($modversion['hasComments']) && $modversion['hasComments'] == true) {
             require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
 
-            $comRule = array('name' => 'com_rule',
-                             'title' => '_CM_COMRULES',
-                             'description' => '',
-                             'formtype' => 'select',
-                             'valuetype' => 'int',
-                             'default' => 1,
-                             'options' => array('_CM_COMNOCOM' => XOOPS_COMMENT_APPROVENONE, '_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN)
-                       );
+            $comRule = [
+                'name'        => 'com_rule',
+                'title'       => '_CM_COMRULES',
+                'description' => '',
+                'formtype'    => 'select',
+                'valuetype'   => 'int',
+                'default'     => 1,
+                'options'     => ['_CM_COMNOCOM' => XOOPS_COMMENT_APPROVENONE, '_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN]
+            ];
             $info =& $this->_createPreferenceInformation($comRule);
             $collection->add($info);
             unset($info);
 
-            $comAnonpost = array('name' => 'com_anonpost',
-                                 'title' => '_CM_COMANONPOST',
-                                 'description' => '',
-                                 'formtype' => 'yesno',
-                                 'valuetype' => 'int',
-                                 'default' => 0
-                           );
+            $comAnonpost = [
+                'name'        => 'com_anonpost',
+                'title'       => '_CM_COMANONPOST',
+                'description' => '',
+                'formtype'    => 'yesno',
+                'valuetype'   => 'int',
+                'default'     => 0
+            ];
             $info =& $this->_createPreferenceInformation($comAnonpost);
             $collection->add($info);
             unset($info);
@@ -683,13 +685,13 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
             require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-            $t_options = array();
+            $t_options = [];
             $t_options['_NOT_CONFIG_DISABLE'] = XOOPS_NOTIFICATION_DISABLE;
             $t_options['_NOT_CONFIG_ENABLEBLOCK'] = XOOPS_NOTIFICATION_ENABLEBLOCK;
             $t_options['_NOT_CONFIG_ENABLEINLINE'] = XOOPS_NOTIFICATION_ENABLEINLINE;
             $t_options['_NOT_CONFIG_ENABLEBOTH'] = XOOPS_NOTIFICATION_ENABLEBOTH;
 
-            $notifyEnable = array(
+            $notifyEnable = [
                 'name' => 'notification_enabled',
                 'title' => '_NOT_CONFIG_ENABLE',
                 'description' => '_NOT_CONFIG_ENABLEDSC',
@@ -697,7 +699,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
                 'valuetype' => 'int',
                 'default' => XOOPS_NOTIFICATION_ENABLEBOTH,
                 'options' => $t_options
-            );
+            ];
             $info =& $this->_createPreferenceInformation($notifyEnable);
             $collection->add($info);
             unset($info);
@@ -715,7 +717,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
             $handler =& xoops_gethandler('module');
             $module =& $handler->getByDirname($this->_mDirname);
 
-            $t_options = array();
+            $t_options = [];
             $t_categoryArr =& notificationCategoryInfo('', $module->get('mid'));
             foreach ($t_categoryArr as $t_category) {
                 $t_eventArr =& notificationEvents($t_category['name'], false, $module->get('mid'));
@@ -728,7 +730,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
                 }
             }
 
-            $notifyEvents = array(
+            $notifyEvents = [
                 'name' => 'notification_events',
                 'title' => '_NOT_CONFIG_EVENTS',
                 'description' => '_NOT_CONFIG_EVENTSDSC',
@@ -736,7 +738,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
                 'valuetype' => 'array',
                 'default' => array_values($t_options),
                 'options' => $t_options
-            );
+            ];
             $info =& $this->_createPreferenceInformation($notifyEvents);
             $collection->add($info);
             unset($info);

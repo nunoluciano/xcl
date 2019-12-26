@@ -71,7 +71,7 @@ class SimpleWizard
     public function addArray($name, $value)
     {
         if (!isset($this->_v[$name]) || !is_array($this->_v[$name])) {
-            $this->_v[$name] = array();
+            $this->_v[$name] = [];
         }
         $this->_v[$name][] = $value;
     }
@@ -220,7 +220,7 @@ class SimpleWizardSequence
     public function getNext($name)
     {
         if (!empty($this->_list[$name]['next'])||!empty($this->_list[$name]['next_btn'])) {
-            return(array($this->_list[$name]['next'], $this->_list[$name]['next_btn']));
+            return([$this->_list[$name]['next'], $this->_list[$name]['next_btn']]);
         } else {
             return '';
         }
@@ -229,7 +229,7 @@ class SimpleWizardSequence
     public function getBack($name)
     {
         if (!empty($this->_list[$name]['back'])||!empty($this->_list[$name]['back_btn'])) {
-            return(array($this->_list[$name]['back'], $this->_list[$name]['back_btn']));
+            return([$this->_list[$name]['back'], $this->_list[$name]['back_btn']]);
         } else {
             return '';
         }

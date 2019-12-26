@@ -22,12 +22,12 @@ if( empty( $last_visit ) ) $last_visit = time() ;
 if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // subcategories loop
-$subcategories = array() ;
+$subcategories = [];
 $sql = "SELECT * FROM ".$db->prefix($mydirname."_categories")." c WHERE ($whr_read4cat) AND pid=$cat_id ORDER BY cat_order_in_tree" ;
 if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 while( $cat_row = $db->fetchArray( $crs ) ) {
 	// categories array
-	$subcategories[] = array(
+	$subcategories[] = [
 		'id' => $cat_row['cat_id'] ,
 		'pid' => $cat_row['pid'] ,
 		'title' => $myts->makeTboxData4Show( $cat_row['cat_title'] ) ,
@@ -43,12 +43,12 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 		'bit_new' => 0 , // TODO
 		'last_post_id' => intval( $cat_row['cat_last_post_id'] ) ,
 		'last_post_id_in_tree' => intval( $cat_row['cat_last_post_id_in_tree'] ) ,
-	) ;
+    ];
 }
 
 
 // forums loop
-$forums = array() ;
+$forums = [];
 	// naao
 $sql = "SELECT f.*, p.topic_id, p.post_time, p.subject, p.icon, p.uid, p.guest_name FROM ".$db->prefix($mydirname."_forums")." f LEFT JOIN ".$db->prefix($mydirname."_posts")." p ON p.post_id=f.forum_last_post_id WHERE ($whr_read4forum) AND cat_id=$cat_id ORDER BY f.forum_weight, f.forum_id" ;
 if( ! $frs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
@@ -81,7 +81,7 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 
 
 	// forums array
-	$forums[] = array(
+	$forums[] = [
 		'id' => $forum_row['forum_id'] ,
 		'title' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
 		'desc' => $myts->displayTarea( $forum_row['forum_desc'] ) ,
@@ -101,34 +101,34 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 		'moderate_users' => d3forum_get_forum_moderate_users4show( $mydirname , $forum_row['forum_id'] ) ,
 		'can_post' => (boolean)$forum_permissions[ $forum_row['forum_id'] ]['can_post'] ,
 		'isadminormod' => (boolean)$forum_permissions[ $forum_id ]['is_moderator'] || $isadmin ,
-	) ;
+    ];
 }
 
 // assign for block function
-$GLOBALS['D3forum_'.$mydirname] = array(
+$GLOBALS['D3forum_'.$mydirname] = [
 	'category' => $category4assign
-);
+];
 
 $xoopsOption['template_main'] = $mydirname.'_main_listforums.html' ;
 include XOOPS_ROOT_PATH.'/header.php' ;
 
 unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
-	array(
-		'total_topics_count' => $total_topics_count ,
-		'total_posts_count' => $total_posts_count ,
-		'lastvisit' => $last_visit ,
-		'lastvisit_formatted' => formatTimestamp( $last_visit , 'm' ) ,
-		'currenttime' => time() ,
-		'currenttime_formatted' => formatTimestamp( time() , 'm' ) ,
-		'forums' => $forums ,
-		'cat_jumpbox_options' => d3forum_make_cat_jumpbox_options( $mydirname , $whr_read4cat , $cat_id ) ,
-		'subcategories' => $subcategories ,
-		'category' => $category4assign ,
-		'page' => 'listforums' ,
-		'xoops_pagetitle' => join(' - ', array($category4assign['title'], $xoopsModule->getVar('name'))) ,
-		'xoops_breadcrumbs' => $xoops_breadcrumbs ,
-	)
+    [
+        'total_topics_count' => $total_topics_count,
+        'total_posts_count' => $total_posts_count,
+        'lastvisit' => $last_visit,
+        'lastvisit_formatted' => formatTimestamp( $last_visit , 'm' ),
+        'currenttime' => time(),
+        'currenttime_formatted' => formatTimestamp( time() , 'm' ),
+        'forums' => $forums,
+        'cat_jumpbox_options' => d3forum_make_cat_jumpbox_options( $mydirname , $whr_read4cat , $cat_id ),
+        'subcategories' => $subcategories,
+        'category' => $category4assign,
+        'page' => 'listforums',
+        'xoops_pagetitle' => join(' - ', [$category4assign['title'], $xoopsModule->getVar('name')]),
+        'xoops_breadcrumbs' => $xoops_breadcrumbs,
+    ]
 ) ;
 
 ?>

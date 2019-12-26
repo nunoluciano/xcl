@@ -73,7 +73,7 @@ if (is_object($xoopsUser)) {
         if (!empty($com_id)) {
             include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
             $status_select = new XoopsFormSelect(_CM_STATUS, 'com_status', $com_status);
-            $status_select->addOptionArray(array(XOOPS_COMMENT_PENDING => _CM_PENDING, XOOPS_COMMENT_ACTIVE => _CM_ACTIVE, XOOPS_COMMENT_HIDDEN => _CM_HIDDEN));
+            $status_select->addOptionArray([XOOPS_COMMENT_PENDING => _CM_PENDING, XOOPS_COMMENT_ACTIVE => _CM_ACTIVE, XOOPS_COMMENT_HIDDEN => _CM_HIDDEN]);
             $cform->addElement($status_select);
             $button_tray->addElement(new XoopsFormButton('', 'com_dodelete', _DELETE, 'submit'));
         }

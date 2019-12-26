@@ -38,7 +38,7 @@ if (!function_exists('pico_global_search_base')) {
 		// where by uid
 		if (!empty($uid)) {
 			if (empty($configs['search_by_uid'])) {
-				return array();
+				return [];
 			}
 			$whr_uid = 'o.poster_uid=' . intval($uid);
 		} else {
@@ -73,7 +73,7 @@ if (!function_exists('pico_global_search_base')) {
 		$content_handler = new PicoContentHandler($mydirname);
 		$contents4assign = $content_handler->getContents4assign("($whr_kw) AND ($whr_uid)", 'created_time DESC', $offset, $limit, false);
 
-		$ret = array();
+		$ret = [];
 		foreach ($contents4assign as $content) {
 			// get context for module "search"
 			if (function_exists('search_make_context') && $showcontext && $content['can_readfull']) {
@@ -84,14 +84,14 @@ if (!function_exists('pico_global_search_base')) {
 				$context = '';
 			}
 
-			$ret[] = array(
+			$ret[] = [
 				'image' => '',
 				'link' => $is_xmobile ? 'index.php?cat_id=' . $content['cat_id'] . '&content_id=' . $content['content_id'] : pico_common_make_content_link4html($configs, $content),
 				'title' => $content['subject'],
 				'time' => $content['created_time'],
 				'uid' => empty($configs['search_by_uid']) ? 0 : $content['poster_uid'],
 				'context' => $context,
-			);
+            ];
 		}
 
 		return $ret;

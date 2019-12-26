@@ -33,7 +33,7 @@ class Legacy_ImageAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['image_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['image_id']->setDependsByArray(['required']);
         $this->mFieldProperties['image_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_ID);
     }
 

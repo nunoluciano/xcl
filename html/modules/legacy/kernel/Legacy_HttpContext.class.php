@@ -54,7 +54,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     The array for Xoops, which is configured in the preference of the base. This
      *     property and $xoopsConfig (X2) is the same.
      */
-    public $mXoopsConfig = array();
+    public $mXoopsConfig = [];
     
     /**
      * @public
@@ -62,7 +62,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @remarks
      *     This is a short cut to mModule->mConfig.
      */
-    public $mModuleConfig = array();
+    public $mModuleConfig = [];
     
     /**
      * @public

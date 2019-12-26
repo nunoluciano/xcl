@@ -23,7 +23,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
  */
 class Legacy_NotifyDeleteAction extends Legacy_Action
 {
-    public $mModules = array();
+    public $mModules = [];
     public $mActionForm = null;
     
     public $mErrorMessage = null;

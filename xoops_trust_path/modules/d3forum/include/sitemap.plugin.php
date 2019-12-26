@@ -4,7 +4,7 @@ function b_sitemap_d3forum( $mydirname )
 {
 	$db =& Database::getInstance();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
-	$ret = array();
+	$ret = [];
 
 	include_once dirname(__FILE__).'/common_functions.php' ;
 
@@ -14,11 +14,11 @@ function b_sitemap_d3forum( $mydirname )
 	$result = $db->query($sql);
 
 	while( list( $forum_id , $forum_title ) = $db->fetchRow( $result ) ) {
-		$ret["parent"][] = array(
+		$ret["parent"][] = [
 			"id" => intval( $forum_id ) ,
 			"title" => $myts->makeTboxData4Show( $forum_title ) ,
 			"url" => "index.php?forum_id=".intval( $forum_id ) ,
-		) ;
+        ];
 	}
 
 	return $ret;

@@ -186,7 +186,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('groups');
@@ -351,7 +351,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('groups_users_link');
@@ -426,7 +426,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function &getGroupsByUser($uid)
     {
-        $ret = array();
+        $ret = [];
         $db = &$this->db;
         $sql = 'SELECT groupid FROM '.$db->prefix('groups_users_link').' WHERE uid='.(int)$uid;
         $result = $db->query($sql);
@@ -451,7 +451,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function &getUsersByGroup($groupid, $limit=0, $start=0)
     {
-        $ret = array();
+        $ret = [];
         $db = &$this->db;
         $sql = 'SELECT uid FROM ' . $db->prefix('groups_users_link') . ' WHERE groupid='.(int)$groupid;
 
@@ -470,7 +470,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function &getUsersByNoGroup($groupid, $limit=0, $start=0)
     {
-        $ret = array();
+        $ret = [];
 
         $groupid = (int)$groupid;
         $db = &$this->db;

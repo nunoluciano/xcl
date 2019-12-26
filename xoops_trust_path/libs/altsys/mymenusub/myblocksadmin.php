@@ -22,7 +22,7 @@ if ($current_dirname == '__CustomBlocks__') {
         array_unshift($modules4menu, $system_module) ;
     }
 
-$adminmenu = array() ;
+$adminmenu = [];
 foreach ($modules4menu as $m4menu) {
     // get block info
     if ($core_type != ALTSYS_CORE_TYPE_X22) {
@@ -35,18 +35,18 @@ foreach ($modules4menu as $m4menu) {
     }
 
     if ($m4menu->getVar('dirname') == $current_dirname) {
-        $adminmenu[] = array(
+        $adminmenu[] = [
             'selected' => true ,
             'title' => $m4menu->getVar('name', 'n') . $block_desc ,
             'link' => '?mode=admin&lib=altsys&page=myblocksadmin&dirname='.$m4menu->getVar('dirname', 'n') ,
-        ) ;
+        ];
         //$GLOBALS['altsysXoopsBreadcrumbs'][] = array( 'name' => $m4menu->getVar('name') ) ;
     } else {
-        $adminmenu[] = array(
+        $adminmenu[] = [
             'selected' => false ,
             'title' => $m4menu->getVar('name', 'n') . $block_desc ,
             'link' => '?mode=admin&lib=altsys&page=myblocksadmin&dirname='.$m4menu->getVar('dirname', 'n') ,
-        ) ;
+        ];
     }
 }
 
@@ -54,8 +54,10 @@ foreach ($modules4menu as $m4menu) {
 // display
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
-$tpl->assign(array(
+$tpl->assign(
+    [
     'adminmenu' => $adminmenu,
     'mypage' => 'myblocksadmin',
-)) ;
+    ]
+) ;
 $tpl->display('db:altsys_inc_mymenusub.html') ;

@@ -31,11 +31,11 @@ class User_GroupAdminEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['groupid'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['groupid']->setDependsByArray(array('required'));
+        $this->mFieldProperties['groupid']->setDependsByArray(['required']);
         $this->mFieldProperties['groupid']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_GROUPID);
     
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['name']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['name']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_GROUP_NAME, '50');
         $this->mFieldProperties['name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_GROUP_NAME, '50');
         $this->mFieldProperties['name']->addVar('maxlength', '50');

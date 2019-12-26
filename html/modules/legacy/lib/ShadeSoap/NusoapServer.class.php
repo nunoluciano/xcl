@@ -104,11 +104,11 @@ class ShadeSoap_NusoapServer extends soap_server
             $call_arg = "$this->methodname";    // straight assignment changes $this->methodname to lower case after call_user_func_array()
         } elseif ($delim == '..') {
             $this->debug('in invoke_method, calling class method using call_user_func_array()');
-            $call_arg = array($class, $method);
+            $call_arg = [$class, $method];
         } else {
             $this->debug('in invoke_method, calling instance method using call_user_func_array()');
             $instance = new $class ();
-            $call_arg = array(&$instance, $method);
+            $call_arg = [&$instance, $method];
         }
         
         //
@@ -116,7 +116,7 @@ class ShadeSoap_NusoapServer extends soap_server
         //
         $root =& XCube_Root::getSingleton();
         // $root->mContext->mUser->setService(true);
-        $retValue = call_user_func_array($call_arg, array($root->mContext->mUser, $this->methodparams));
+        $retValue = call_user_func_array($call_arg, [$root->mContext->mUser, $this->methodparams]);
         
         if (is_array($retValue)) {
             $retValue = $this->_encodeUTF8($retValue, $root->mLanguageManager);

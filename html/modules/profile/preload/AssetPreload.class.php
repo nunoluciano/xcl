@@ -21,7 +21,7 @@ class Profile_AssetPreload extends XCube_ActionFilter
         if (!$this->mRoot->mContext->hasAttribute('module.profile.HasSetAssetManager')) {
             $delegate =new XCube_Delegate();
             $delegate->register('Module.profile.Event.GetAssetManager');
-            $delegate->add(array(&$this, 'getManager'));
+            $delegate->add([&$this, 'getManager']);
             $this->mRoot->mContext->setAttribute('module.profile.HasSetAssetManager', true);
         }
         $file = XOOPS_MODULE_PATH.'/profile/class/DelegateFunctions.class.php';

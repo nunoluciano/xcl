@@ -59,7 +59,7 @@ class Legacy_ModulePhasedUpgrader
      * 
      * @access protected
      */
-    public $_mMilestone = array();
+    public $_mMilestone = [];
     
     /**
      * This instance is prepared automatically in the constructor.
@@ -214,7 +214,7 @@ class Legacy_ModulePhasedUpgrader
         
         foreach ($this->_mMilestone as $t_version => $t_value) {
             if ($t_version > $this->getCurrentVersion()) {
-                if (is_callable(array($this, $t_value))) {
+                if (is_callable([$this, $t_value])) {
                     return true;
                 }
             }
@@ -236,7 +236,7 @@ class Legacy_ModulePhasedUpgrader
         
         foreach ($this->_mMilestone as $t_version => $t_value) {
             if ($t_version > $this->getCurrentVersion()) {
-                if (is_callable(array($this, $t_value))) {
+                if (is_callable([$this, $t_value])) {
                     return $this->$t_value();
                 }
             }

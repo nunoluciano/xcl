@@ -10,7 +10,7 @@ if( $uid ) {
 $past_vote = isset( $past_vote ) ? intval( $past_vote ) : -1 ;
 
 // posts array
-$post4assign = array(
+$post4assign = [
 	'id' => intval( $post_row['post_id'] ) ,
 	'subject' => $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] , $post_row['special_entity'] ) ,
 	'subject_raw' => $post_row['subject'] ,
@@ -58,9 +58,9 @@ $post4assign = array(
 	'can_delete' => $can_delete ,
 	'can_reply' => $can_reply ,
 	'can_vote' => $can_vote ,
-) ;
+];
 
 // assign breadcrumbs of this forum
-$xoops_breadcrumbs[] = array( 'url' => XOOPS_URL.'/modules/'.$mydirname.'/index.php?post_id='.$post_id , 'name' => $post4assign['subject'] ) ;
+$xoops_breadcrumbs[] = ['url' => XOOPS_URL . '/modules/' . $mydirname . '/index.php?post_id=' . $post_id, 'name' => $post4assign['subject']];
 
 ?>

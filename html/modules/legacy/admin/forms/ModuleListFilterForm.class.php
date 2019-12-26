@@ -40,7 +40,7 @@ class Legacy_ModuleListFilterForm extends Legacy_AbstractFilterForm
 {
     public $mSpecial = null;
 
-    public $mSortKeys = array(
+    public $mSortKeys = [
         MODULE_SORT_KEY_MID         => "mid",
         MODULE_SORT_KEY_NAME        => "name",
         MODULE_SORT_KEY_VERSION     => "version",
@@ -53,7 +53,7 @@ class Legacy_ModuleListFilterForm extends Legacy_AbstractFilterForm
         MODULE_SORT_KEY_HASSEARCH   => "hassearch",
         MODULE_SORT_KEY_HASCONFIG   => "hasconfig",
         MODULE_SORT_KEY_HASCOMMENTS => "hascomments"
-    );
+    ];
 
     public function Legacy_ModuleListFilterForm() {
         self::__construct();

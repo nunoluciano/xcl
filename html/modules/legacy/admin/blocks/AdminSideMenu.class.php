@@ -26,7 +26,7 @@ define('LEGACY_ADMINMENU_CACHEPREFIX', XOOPS_CACHE_PATH.'/'.urlencode(XOOPS_URL)
  */
 class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 {
-    public $mModules = array();
+    public $mModules = [];
     
     /**
      * protected, but read OK.
@@ -119,7 +119,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         }
         //
         $tpl = $db->prefix("tplfile");
-        $tpl_modules = array();
+        $tpl_modules = [];
         $sql = "SELECT DISTINCT tpl_module FROM ${tpl}";
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)) {

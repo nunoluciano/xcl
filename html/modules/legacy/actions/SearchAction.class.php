@@ -24,7 +24,7 @@ class Legacy_SearchAction extends Legacy_SearchResultsAction
         if (is_object($service)) {
             $client =& $root->mServiceManager->createClient($service);
 
-            $this->mModules = $client->call('getActiveModules', array());
+            $this->mModules = $client->call('getActiveModules', []);
         }
         
         return LEGACY_FRAME_VIEW_INDEX;
@@ -32,7 +32,7 @@ class Legacy_SearchAction extends Legacy_SearchResultsAction
     
     public function _getSelectedMids()
     {
-        $ret = array();
+        $ret = [];
         foreach (array_keys($this->mModules) as $key) {
             $ret[] = $this->mModules[$key]['mid'];
         }

@@ -31,7 +31,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
      * 
      * @access private
      */
-    public $_mSpecialActions = array("Help", "CommentList");
+    public $_mSpecialActions = ["Help", "CommentList"];
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$controller)
     //public function Legacy_AdminControllerStrategy(&$controller)

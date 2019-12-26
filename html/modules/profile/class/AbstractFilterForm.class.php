@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Profile_AbstractFilterForm
 {
     public $mSort = 0;
-    public $mSortKeys = array();
+    public $mSortKeys = [];
     public $mNavi = null;
     public $_mHandler = null;
     public $_mCriteria = null;
@@ -50,7 +50,7 @@ class Profile_AbstractFilterForm
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
     
-        $this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
+        $this->mNavi->mGetTotalItems->add([&$this, 'getTotalItems']);
     }
 
     /**

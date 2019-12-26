@@ -17,7 +17,7 @@ class favoritesAction extends AbstractAction
   
     private function addFavorites()
     {
-        $ret = array();
+        $ret = [];
         $adduid = $this->root->mContext->mRequest->getRequest('adduid');
         if (!is_array($adduid) || count($adduid) == 0) {
             $this->setErr(_MD_MESSAGE_FAVORITES0);
@@ -26,7 +26,7 @@ class favoritesAction extends AbstractAction
         $mid = $this->root->mContext->mXoopsModule->get('mid');
         $client = $this->root->mServiceManager->createClient($this->mService);
         foreach ($adduid as $fuid) {
-            $ret[] = $client->call('addFavorites', array('mid' => $mid, 'fuid' => $fuid, 'weight' => 0));
+            $ret[] = $client->call('addFavorites', ['mid' => $mid, 'fuid' => $fuid, 'weight' => 0]);
         }
         if (in_array(false, $ret)) {
             $this->setErr(_MD_MESSAGE_FAVORITES1);
@@ -43,7 +43,7 @@ class favoritesAction extends AbstractAction
         }
         $client = $this->root->mServiceManager->createClient($this->mService);
         foreach ($weight as $id => $w) {
-            $ret[] = $client->call('edtFavorites', array('id' => $id, 'weight' => $w));
+            $ret[] = $client->call('edtFavorites', ['id' => $id, 'weight' => $w]);
         }
         if (in_array(false, $ret)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
@@ -62,7 +62,7 @@ class favoritesAction extends AbstractAction
         }
         $client = $this->root->mServiceManager->createClient($this->mService);
         foreach ($delid as $id) {
-            $ret[] = $client->call('delFavorites', array('id' => $id));
+            $ret[] = $client->call('delFavorites', ['id' => $id]);
         }
         if (in_array(false, $ret)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
@@ -75,7 +75,7 @@ class favoritesAction extends AbstractAction
     {
         $mid = $this->root->mContext->mXoopsModule->get('mid');
         $client = $this->root->mServiceManager->createClient($this->mService);
-        $this->favorites = $client->call('getFavoritesUsers', array('mid' => $mid));
+        $this->favorites = $client->call('getFavoritesUsers', ['mid' => $mid]);
     }
   
     public function execute()

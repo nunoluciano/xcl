@@ -47,7 +47,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
 		// category list can be read for category jumpbox etc.
 		$categoryHandler = new PicoCategoryHandler($this->mydirname, $this->permissions);
 		$categories = $categoryHandler->getAllCategories();
-		$this->assign['categories_can_post'] = array();
+		$this->assign['categories_can_post'] = [];
 		foreach ($categories as $tmpObj) {
 			$tmp_data = $tmpObj->getData();
 			if (empty($tmp_data['can_post']) && empty($tmp_data['can_edit'])) continue;
@@ -55,7 +55,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
 		}
 
 		// vpath options
-		$this->assign['content']['wraps_files'] = array('' => '---') + pico_main_get_wraps_files_recursively($this->mydirname, '/');
+		$this->assign['content']['wraps_files'] = ['' => '---'] + pico_main_get_wraps_files_recursively($this->mydirname, '/');
 
 		// breadcrumbs
 		$breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
@@ -122,6 +122,6 @@ class PicoControllerEditContent extends PicoControllerAbstract
 			$body = '';
 		}
 
-		return array('header' => $header, 'body' => $body);
+		return ['header' => $header, 'body' => $body];
 	}
 }

@@ -15,9 +15,9 @@ require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchListForm.class.php
 //!Fix WARNING: Declaration of User_UserSearchListAction::prepare(&$controller, &$xoopsUser) should be compatible with User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
 class User_UserSearchListAction extends User_AbstractListAction
 {
-    public $mUserObjects = array();
+    public $mUserObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
     public $mExtraURL = "";
 
     // !Fix public function prepare(&$controller, &$xoopsUser)
@@ -193,7 +193,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     {
         $extraurl = "";
         if (count($this->mFilter->mNavi->mExtra) > 0) {
-            $t_arr = array();
+            $t_arr = [];
             foreach ($this->mFilter->mNavi->mExtra as $key => $value) {
                 $t_arr[] = $key . "=" . urlencode($value);
             }
@@ -208,7 +208,7 @@ class User_UserSearchListAction extends User_AbstractListAction
             $navi =& $params['pagenavi'];
             $url = $params['url'];
             if (count($navi->mExtra) > 0) {
-                $t_arr = array();
+                $t_arr = [];
             
                 foreach ($navi->mExtra as $key => $value) {
                     $t_arr[] = $key . "=" . urlencode($value);
@@ -232,7 +232,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
-            $mask = isset($params['mask']) ? explode('+', $params['mask']) : array();
+            $mask = isset($params['mask']) ? explode('+', $params['mask']) : [];
             foreach ($navi->mExtra as $key => $value) {
                 if (!in_array($key, $mask)) {
                     $value = htmlspecialchars($value, ENT_QUOTES);

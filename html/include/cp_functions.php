@@ -100,9 +100,9 @@ function xoops_module_get_admin_menu()
     // the following is to support browsers not detecting the mouse position
     $ordinata_step = 15;        // estimated value of the number of pixels between links on a layer
     $ordinata[1] = 150-$ordinata_step;// to choose the vertical coordinate start offset for the layers
-    $moveLayers = array();
-    $shutdown = array();
-    $firstleveltable = array();
+    $moveLayers = [];
+    $shutdown = [];
+    $firstleveltable = [];
 
     /*********************************************/
     /* read file to $tree array                  */
@@ -144,7 +144,7 @@ function xoops_module_get_admin_menu()
         $cnt++;
         $adminmenu = $mod->getAdminMenu();
         if ($mod->getVar('hasnotification') || ($mod->getInfo('config') && is_array($mod->getInfo('config'))) || ($mod->getInfo('comments') && is_array($mod->getInfo('comments')))) {
-            $adminmenu[] = array('link' => '".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod='.$mod->getVar('mid'), 'title' => _PREFERENCES, 'absolute' => true);
+            $adminmenu[] = ['link' => '".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=' . $mod->getVar('mid'), 'title' => _PREFERENCES, 'absolute' => true];
         }
         if (!empty($adminmenu)) {
             foreach ($adminmenu as $menuitem) {

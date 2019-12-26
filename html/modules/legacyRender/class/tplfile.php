@@ -136,8 +136,8 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
     {
         $objs =& $this->getObjects($criteria);
         
-        $ret = array();
-        $dobjs = array();
+        $ret = [];
+        $dobjs = [];
         foreach ($objs as $obj) {
             $set = $obj->get('tpl_tplset');
             if ($set == 'default') {

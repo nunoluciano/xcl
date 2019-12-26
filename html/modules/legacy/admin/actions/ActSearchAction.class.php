@@ -96,7 +96,7 @@ class Legacy_ActionSearchRecord
  */
 class Legacy_ActSearchAction extends Legacy_Action
 {
-    public $mModules = array();
+    public $mModules = [];
     public $mModuleRecords = null;
     public $mRecords = null;
     public $mActionForm = null;
@@ -113,7 +113,7 @@ class Legacy_ActSearchAction extends Legacy_Action
         parent::__construct($flag);
         
         $this->mSearchAction =new XCube_Delegate();
-        $this->mSearchAction->add(array(&$this, 'defaultSearch'));
+        $this->mSearchAction->add([&$this, 'defaultSearch']);
         $this->mSearchAction->register('Legacy_ActSearchAction.SearchAction');
     }
 

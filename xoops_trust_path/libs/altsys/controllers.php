@@ -11,7 +11,7 @@ if (file_exists(dirname(__FILE__) . '/language/' . $GLOBALS['xoopsConfig']['lang
     include_once dirname(__FILE__) . '/language/english/modinfo.php';
 }
 
-$controllers = array(
+$controllers = [
     'myblocksadmin',
     'compilehookadmin',
     'get_templates',
@@ -21,4 +21,4 @@ $controllers = array(
     'mytplsform',
     'put_templates',
     'mylangadmin',
-);
+];

@@ -12,8 +12,8 @@ eval('class ProtectorMySQLDatabase_base extends Xoops'.ucfirst(XOOPS_DB_TYPE).'D
 
 class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
 {
-    public $doubtful_requests = array() ;
-    public $doubtful_needles = array(
+    public $doubtful_requests = [];
+    public $doubtful_needles = [
     // 'order by' ,
     'concat' ,
     'information_schema' ,
@@ -22,7 +22,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
     '/*' , /**/
     '--' ,
     '#' ,
-) ;
+    ];
 
     public function __construct()
     {
@@ -51,7 +51,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
         $string_start = '' ;
         $in_string = false;
         $sql_wo_string = '' ;
-        $strings = array() ;
+        $strings = [];
         $current_string = '' ;
 
         for ($i = 0 ; $i < $sql_len ; $i ++) {
@@ -96,7 +96,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
         // because unescaped ' or " have been already checked in stage1
         }
 
-        return array( $sql_wo_string , $strings ) ;
+        return [$sql_wo_string, $strings];
     }
 
 

@@ -248,7 +248,7 @@ function userTimeToServerTime($timestamp, $userTZ=null)
 function xoops_makepass()
 {
     $makepass = '';
-    $syllables = array('er','in','tia','wol','fe','pre','vet','jo','nes','al','len','son','cha','ir','ler','bo','ok','tio','nar','sim','ple','bla','ten','toe','cho','co','lat','spe','ak','er','po','co','lor','pen','cil','li','ght','wh','at','the','he','ck','is','mam','bo','no','fi','ve','any','way','pol','iti','cs','ra','dio','sou','rce','sea','rch','pa','per','com','bo','sp','eak','st','fi','rst','gr','oup','boy','ea','gle','tr','ail','bi','ble','brb','pri','dee','kay','en','be','se');
+    $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
     srand((double)microtime()*1000000);
     for ($count = 1; $count <= 4; $count++) {
         if (rand()%10 == 1) {
@@ -567,7 +567,7 @@ function &getMailer()
  */
 function &xoops_gethandler($name, $optional = false)
 {
-    static $handlers=array();
+    static $handlers= [];
     $name = strtolower(trim($name));
     if (isset($handlers[$name])) {
         return $handlers[$name];
@@ -746,7 +746,7 @@ function xoops_comment_delete($module_id, $item_id)
         $comments =& $comment_handler->getByItemId($module_id, $item_id);
         if (is_array($comments)) {
             $count = count($comments);
-            $deleted_num = array();
+            $deleted_num = [];
             for ($i = 0; $i < $count; $i++) {
                 if (false != $comment_handler->delete($comments[$i])) {
                     // store poster ID and deleted post number into array for later use

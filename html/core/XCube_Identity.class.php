@@ -90,9 +90,9 @@ class XCube_Principal
      * Roles in this object.
      * @var string[]
      */
-    public $_mRoles = array();
+    public $_mRoles = [];
     // !Fix PHP7 NOTICE: deprecated constructor
-    public function __construct($identity, $roles = array())
+    public function __construct($identity, $roles = [])
     //public function XCube_Principal($identity, $roles = array())
     {
         $this->mIdentity =& $identity;

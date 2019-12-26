@@ -40,7 +40,7 @@ class XCube_RenderTarget
     
     public $mTemplateName = null;
 
-    public $mAttributes = array();
+    public $mAttributes = [];
     
     /**
      * @deprecated
@@ -133,7 +133,7 @@ class XCube_RenderTarget
     {
         $this->setTemplateName(null);
         unset($this->mAttributes);
-        $this->mAttributes = array();
+        $this->mAttributes = [];
         $this->mRenderBuffer = null;
     }
 }

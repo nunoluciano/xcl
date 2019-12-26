@@ -37,20 +37,20 @@ class Legacy_MiscFriendForm extends XCube_ActionForm
         //
 
         $this->mFieldProperties['yname'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['yname']->setDependsByArray(array('required'));
+        $this->mFieldProperties['yname']->setDependsByArray(['required']);
         $this->mFieldProperties['yname']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_YNAME);
     
         $this->mFieldProperties['ymail'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['ymail']->setDependsByArray(array('required', 'email'));
+        $this->mFieldProperties['ymail']->setDependsByArray(['required', 'email']);
         $this->mFieldProperties['ymail']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_YMAIL);
         $this->mFieldProperties['ymail']->addMessage('required', _MD_LEGACY_ERROR_EMAIL, _MD_LEGACY_LANG_YMAIL);
     
         $this->mFieldProperties['fname'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['fname']->setDependsByArray(array('required'));
+        $this->mFieldProperties['fname']->setDependsByArray(['required']);
         $this->mFieldProperties['fname']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_FNAME);
     
         $this->mFieldProperties['fmail'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['fmail']->setDependsByArray(array('required', 'email'));
+        $this->mFieldProperties['fmail']->setDependsByArray(['required', 'email']);
         $this->mFieldProperties['fmail']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_FMAIL);
         $this->mFieldProperties['fmail']->addMessage('email', _MD_LEGACY_ERROR_EMAIL, _MD_LEGACY_LANG_FMAIL);
     }

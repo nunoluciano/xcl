@@ -10,7 +10,7 @@ abstract class AbstractAction
     protected $errMsg = "";
     protected $root;
     protected $url = 'index.php';
-    protected $unamelink = array();
+    protected $unamelink = [];
   
     public function __construct()
     {

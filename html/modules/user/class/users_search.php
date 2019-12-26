@@ -10,7 +10,7 @@ class UserUsers_searchHandler extends UserUsersHandler
 {
     public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
         $uTable = $this->db->prefix('users') . " as u";
         $gTable = $this->db->prefix('groups_users_link') . " as g";
@@ -24,7 +24,7 @@ class UserUsers_searchHandler extends UserUsersHandler
                 $sql .= ' WHERE ' . $where;
             }
 
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
@@ -86,7 +86,7 @@ class UserUsers_searchHandler extends UserUsersHandler
      */
     public function &getUids($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
         $uTable = $this->db->prefix('users') . " as u";
         $gTable = $this->db->prefix('groups_users_link') . " as g";
@@ -100,7 +100,7 @@ class UserUsers_searchHandler extends UserUsersHandler
                 $sql .= ' WHERE ' . $where;
             }
 
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
@@ -140,7 +140,7 @@ class UserUsers_searchHandler extends UserUsersHandler
 
     public function getCount($criteria = null)
     {
-        $ret = array();
+        $ret = [];
 
         $uTable = $this->db->prefix('users') . " as u";
         $gTable = $this->db->prefix('groups_users_link') . " as g";
@@ -170,7 +170,7 @@ class UserUsers_searchHandler extends UserUsersHandler
             //
             // Delete
             //
-            $oldGroupidArr = array();
+            $oldGroupidArr = [];
             foreach (array_keys($oldLinkArr) as $key) {
                 $oldGroupidArr[] = $oldLinkArr[$key]->get('groupid');
                 if (!in_array($oldLinkArr[$key]->get('groupid'), $user->Groups)) {

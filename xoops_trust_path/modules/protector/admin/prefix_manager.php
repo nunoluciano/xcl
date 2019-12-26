@@ -105,12 +105,12 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
         $db->freeRecordSet($drs) ;
         $result = $db->query("SELECT * FROM `$table`") ;
         $fields_cnt = $db->getFieldsNum($result) ;
-        $field_flags = array();
+        $field_flags = [];
         for ($j = 0; $j < $fields_cnt; $j++) {
             $field_flags[$j] = $dbIntegrate->fieldFlags($result, $j) ;
         }
-        $search = array("\x00", "\x0a", "\x0d", "\x1a");
-        $replace = array('\0', '\n', '\r', '\Z');
+        $search = ["\x00", "\x0a", "\x0d", "\x1a"];
+        $replace = ['\0', '\n', '\r', '\Z'];
         $current_row = 0;
         while ($row = $db->fetchRow($result)) {
             $current_row ++ ;
@@ -253,14 +253,14 @@ if (! $db->getRowsNum($srs)) {
 }
 
 // search prefixes
-$tables = array() ;
-$prefixes = array() ;
+$tables = [];
+$prefixes = [];
 while ($row_table = $db->fetchArray($srs)) {
     if (substr($row_table["Name"], -6) === '_users') {
-        $prefixes[] = array(
+        $prefixes[] = [
                 'name' => substr($row_table["Name"], 0, -6) ,
                 'updated' => $row_table["Update_time"]
-            ) ;
+        ];
     }
     $tables[] = $row_table["Name"] ;
 }

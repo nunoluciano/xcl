@@ -32,13 +32,13 @@ class User_GroupMemberAction extends User_Action
     /**
      * group member list.
      */
-    public $mUsers = array();
+    public $mUsers = [];
     public $mPageNavi = null;
 
     /**
      * No group member list.
      */
-    public $mNoUsers = array();
+    public $mNoUsers = [];
     public $mNoPageNavi = null;
     
     public $mActionForm = null;

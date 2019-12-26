@@ -17,9 +17,9 @@ class LegacyRender_Cacheclear extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mRoot->mDelegateManager->add('Legacy_ModuleInstallAction.InstallSuccess', array($this, 'cacheClear'));
-        $this->mRoot->mDelegateManager->add('Legacy_ModuleUpdateAction.UpdateSuccess', array($this, 'cacheClear'));
-        $this->mRoot->mDelegateManager->add('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun', array($this, 'cacheClear'));
+        $this->mRoot->mDelegateManager->add('Legacy_ModuleInstallAction.InstallSuccess', [$this, 'cacheClear']);
+        $this->mRoot->mDelegateManager->add('Legacy_ModuleUpdateAction.UpdateSuccess', [$this, 'cacheClear']);
+        $this->mRoot->mDelegateManager->add('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun', [$this, 'cacheClear']);
     }
     
     public function cacheClear(&$module)

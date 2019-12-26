@@ -13,12 +13,12 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
 
     protected function _settimeout($sock)
     {
-        if (!@socket_set_option($sock, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>$this->_timeout, "usec"=>0))) {
+        if (!@socket_set_option($sock, SOL_SOCKET, SO_RCVTIMEO, ["sec" =>$this->_timeout, "usec" =>0])) {
             $this->PushError('_connect', 'socket set receive timeout', socket_strerror(socket_last_error($sock)));
             @socket_close($sock);
             return false;
         }
-        if (!@socket_set_option($sock, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>$this->_timeout, "usec"=>0))) {
+        if (!@socket_set_option($sock, SOL_SOCKET, SO_SNDTIMEO, ["sec" =>$this->_timeout, "usec" =>0])) {
             $this->PushError('_connect', 'socket set send timeout', socket_strerror(socket_last_error($sock)));
             @socket_close($sock);
             return false;

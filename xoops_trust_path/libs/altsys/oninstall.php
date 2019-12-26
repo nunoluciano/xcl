@@ -14,10 +14,10 @@ if (! function_exists('altsys_oninstall_base')) {
     if (defined('XOOPS_CUBE_LEGACY')) {
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success', 'altsys_message_append_oninstall') ;
-        $ret = array() ;
+        $ret = [];
     } else {
         if (! is_array($ret)) {
-            $ret = array() ;
+            $ret = [];
         }
     }
 
@@ -45,7 +45,7 @@ if (! function_exists('altsys_oninstall_base')) {
 
             $sql_query = trim(file_get_contents($sql_file_path)) ;
             $sqlutil->splitMySqlFile($pieces, $sql_query) ;
-            $created_tables = array() ;
+            $created_tables = [];
             foreach ($pieces as $piece) {
                 $prefixed_query = $sqlutil->prefixQuery($piece, $prefix_mod) ;
                 if (! $prefixed_query) {

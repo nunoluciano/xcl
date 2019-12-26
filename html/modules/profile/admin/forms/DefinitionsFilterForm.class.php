@@ -26,7 +26,7 @@ define('PROFILE_DEFINITIONS_SORT_KEY_DEFAULT', PROFILE_DEFINITIONS_SORT_KEY_FIEL
 
 class Profile_Admin_DefinitionsFilterForm extends Profile_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         PROFILE_DEFINITIONS_SORT_KEY_FIELD_ID => 'field_id',
         PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME => 'field_name',
         PROFILE_DEFINITIONS_SORT_KEY_LABEL => 'label',
@@ -38,7 +38,7 @@ class Profile_Admin_DefinitionsFilterForm extends Profile_AbstractFilterForm
         PROFILE_DEFINITIONS_SORT_KEY_DESCRIPTION => 'description',
         PROFILE_DEFINITIONS_SORT_KEY_ACCESS => 'access',
         PROFILE_DEFINITIONS_SORT_KEY_OPTIONS => 'options'
-    );
+    ];
 
     /**
      * @public

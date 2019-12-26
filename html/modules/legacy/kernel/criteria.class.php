@@ -61,12 +61,12 @@ define("LEGACY_EXPRESSION_OR", "or");
   */
 class Legacy_Criteria
 {
-    public $mTypeInfoArr = array();
+    public $mTypeInfoArr = [];
     
     /**
      * Childlen of this criteria.
      */
-    public $mChildlen = array();
+    public $mChildlen = [];
     
     public function __construct($typeInfoArr)
     {
@@ -86,7 +86,7 @@ class Legacy_Criteria
      */
     public function addAnd($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
-        $t_arr = array();
+        $t_arr = [];
         $t_arr['condition'] = LEGACY_EXPRESSION_AND;
         if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
             $t_arr['value'] = $column;
@@ -105,7 +105,7 @@ class Legacy_Criteria
      */
     public function addOr($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
-        $t_arr = array();
+        $t_arr = [];
         $t_arr['condition'] = LEGACY_EXPRESSION_OR;
         if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
             $t_arr['value'] = $column;

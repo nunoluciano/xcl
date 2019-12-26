@@ -77,7 +77,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
         $sql = 'SELECT * FROM `' . $this->mTable . '`';
         
@@ -88,7 +88,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
                 $sql .= ' WHERE ' . $where;
             }
             
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = '`' . $sort['sort'] . '` ' . $sort['order'];
             }
@@ -149,7 +149,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      */
     public function getIdList($criteria = null, $limit = null, $start = null)
     {
-        $ret = array();
+        $ret = [];
     
         $sql = "SELECT `".$this->mPrimary."` FROM `" . $this->mTable . '`';
     
@@ -160,7 +160,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
                 $sql .= " WHERE " . $where;
             }
             
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = '`' . $sort['sort'] . '` ' . $sort['order'];
             }
@@ -265,8 +265,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      */
     public function _insert(&$obj)
     {
-        $fileds=array();
-        $values=array();
+        $fileds= [];
+        $values= [];
 
         $arr = $this->_makeVars4sql($obj);
 
@@ -285,7 +285,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      */
     public function _update(&$obj)
     {
-        $set_lists=array();
+        $set_lists= [];
         $where = "";
 
         $arr = $this->_makeVars4sql($obj);
@@ -310,7 +310,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     */
     public function _makeVars4sql(&$obj)
     {
-        $ret = array();
+        $ret = [];
         foreach ($obj->gets() as $key => $value) {
             if ($value === null) {
                 $ret[$key] = 'NULL';
@@ -363,7 +363,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
                     if ($value === null) {
                         $criteria->operator = $criteria->getOperator() == '=' ? 'IS' : 'IS NOT';
                         $value = 'NULL';
-                    } elseif (in_array(strtoupper($criteria->operator), array('IN', 'NOT IN'))) {
+                    } elseif (in_array(strtoupper($criteria->operator), ['IN', 'NOT IN'])) {
                         $value = is_array($value) ? $value : explode(',', $value);
                         $typ = $obj->mVars[$name]['data_type'];
                         foreach ($value as $val) {

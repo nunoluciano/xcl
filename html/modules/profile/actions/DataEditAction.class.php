@@ -13,8 +13,8 @@ require_once XOOPS_MODULE_PATH . "/profile/class/AbstractEditAction.class.php";
 
 class Profile_DataEditAction extends Profile_AbstractEditAction
 {
-    public $mFields = array();
-    public $mOptions = array();
+    public $mFields = [];
+    public $mOptions = [];
 
     /**
      * @protected

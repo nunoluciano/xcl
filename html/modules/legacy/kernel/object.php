@@ -28,7 +28,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 class XoopsSimpleObject extends AbstractXoopsObject
 {
-    public $mVars = array();
+    public $mVars = [];
     public $mIsNew = true;
     public $mDirname = null;
     
@@ -53,18 +53,18 @@ class XoopsSimpleObject extends AbstractXoopsObject
     
     public function initVar($key, $dataType, $value = null, $required = false, $size = null)
     {
-        static $_mAllowType = array(XOBJ_DTYPE_BOOL=>XOBJ_DTYPE_BOOL, XOBJ_DTYPE_INT=>XOBJ_DTYPE_INT, XOBJ_DTYPE_FLOAT=>XOBJ_DTYPE_FLOAT, XOBJ_DTYPE_STRING=>XOBJ_DTYPE_STRING, XOBJ_DTYPE_TEXT=>XOBJ_DTYPE_TEXT);
+        static $_mAllowType = [XOBJ_DTYPE_BOOL =>XOBJ_DTYPE_BOOL, XOBJ_DTYPE_INT =>XOBJ_DTYPE_INT, XOBJ_DTYPE_FLOAT =>XOBJ_DTYPE_FLOAT, XOBJ_DTYPE_STRING =>XOBJ_DTYPE_STRING, XOBJ_DTYPE_TEXT =>XOBJ_DTYPE_TEXT];
     
         if (!$_mAllowType[$dataType]) {
             die();    // TODO
         }
         
-        $this->mVars[$key] = array(
+        $this->mVars[$key] = [
             'data_type' => $dataType,
             'value' => null,
             'required' => $required ? true : false,
             'maxlength' => $size ? (int)$size : null
-        );
+        ];
         
         $this->assignVar($key, $value);
     }
@@ -119,7 +119,7 @@ class XoopsSimpleObject extends AbstractXoopsObject
     
     public function gets()
     {
-        $ret = array();
+        $ret = [];
         
         foreach ($this->mVars as $key => $value) {
             $ret[$key] = $value['value'];
@@ -177,7 +177,7 @@ class XoopsSimpleObject extends AbstractXoopsObject
 
     public function getTypeInformations()
     {
-        $ret = array();
+        $ret = [];
         foreach (array_keys($this->mVars) as $key) {
             $ret[$key] = $this->mVars[$key]['data_type'];
         }

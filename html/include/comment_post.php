@@ -330,7 +330,7 @@ case "post":
                 $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
                 $comment_count = $comment_handler->getCount($criteria);
                 $func = $comment_config['callback']['update'];
-                call_user_func_array($func, array($com_itemid, $comment_count, $comment->getVar('com_id')));
+                call_user_func_array($func, [$com_itemid, $comment_count, $comment->getVar('com_id')]);
             }
         }
 
@@ -356,7 +356,7 @@ case "post":
             // Build an ABSOLUTE URL to view the comment.  Make sure we
             // point to a viewable page (i.e. not the system administration
             // module).
-            $comment_tags = array();
+            $comment_tags = [];
             if ('system' == $xoopsModule->getVar('dirname')) {
                 $module_handler =& xoops_gethandler('module');
                 $not_module =& $module_handler->get($not_modid);

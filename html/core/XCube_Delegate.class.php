@@ -103,13 +103,13 @@ class XCube_Delegate
      * @private
      * @brief Vector Array - The list of type of parameters.
      */
-    public $_mSignatures = array();
+    public $_mSignatures = [];
     
     /**
      * @private
      * @brief Complex Array - This is Array for callback type data.
      */
-    public $_mCallbacks = array();
+    public $_mCallbacks = [];
     
     /**
      * @private
@@ -240,7 +240,7 @@ class XCube_Delegate
             }
         }
         
-        $this->_mCallbacks[$priority][] = array($callback, $filepath);
+        $this->_mCallbacks[$priority][] = [$callback, $filepath];
         ksort($this->_mCallbacks);
     }
     
@@ -274,7 +274,7 @@ class XCube_Delegate
     public function reset()
     {
         unset($this->_mCallbacks);
-        $this->_mCallbacks = array();
+        $this->_mCallbacks = [];
     }
 
     /**
@@ -398,19 +398,19 @@ class XCube_DelegateManager
      * @protected
      * @brief Complex Array
      */
-    public $_mCallbacks = array();
+    public $_mCallbacks = [];
 
     /**
      * @protected
      * @brief Complex Array
      */
-    public $_mCallbackParameters = array();
+    public $_mCallbackParameters = [];
     
     /**
      * @protected
      * @brief Map Array - std::map<string, XCube_Delegate*>
      */
-    public $_mDelegates = array();
+    public $_mDelegates = [];
 
     /**
      * @public
@@ -476,7 +476,7 @@ class XCube_DelegateManager
             }
         }
         $this->_mCallbacks[$name][] = $callback;
-        $this->_mCallbackParameters[$name][] = array('0' => $param3, '1' => $param4);
+        $this->_mCallbackParameters[$name][] = ['0' => $param3, '1' => $param4];
     }
     
     /**
@@ -592,7 +592,7 @@ class XCube_DelegateUtils
                 $m->register($delegateName, $delegate);
             }
         }
-        return call_user_func_array(array(&$delegate, 'call'), $args);
+        return call_user_func_array([&$delegate, 'call'], $args);
     }
 
     /**
@@ -652,7 +652,7 @@ class XCube_DelegateUtils
     {
         if (func_num_args()) {
             $args = func_get_args();
-            return call_user_func_array(array('XCube_DelegateUtils', 'call'), $args);
+            return call_user_func_array(['XCube_DelegateUtils', 'call'], $args);
         }
     }
 
@@ -679,7 +679,7 @@ class XCube_DelegateUtils
                 return "";
             }
             $args[1] = new XCube_Ref($string);
-            call_user_func_array(array('XCube_DelegateUtils', 'call'), $args);
+            call_user_func_array(['XCube_DelegateUtils', 'call'], $args);
             return $string;
         } else {
             return "";

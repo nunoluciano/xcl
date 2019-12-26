@@ -11,7 +11,7 @@ require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 $myts = &PicoTextSanitizer::sGetInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-$allowed_orders = array('count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'label ASC', 'label DESC');
+$allowed_orders = ['count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'label ASC', 'label DESC'];
 
 //
 // transaction stage
@@ -102,24 +102,24 @@ $pagenav = $pagenav_obj->renderNav();
 // main query
 $trs = $db->query("SELECT * FROM " . $db->prefix($mydirname . "_tags") . " ORDER BY $order LIMIT $pos,$num");
 
-$tags4assign = array();
+$tags4assign = [];
 while ($tag_row = $db->fetchArray($trs)) {
 	// get contents
-	$contents4assign = array();
+	$contents4assign = [];
 	$ors = $db->query("SELECT content_id,vpath,subject FROM " . $db->prefix($mydirname . "_contents") . " WHERE content_id IN (" . $tag_row['content_ids'] . ") LIMIT 10");
 	while ($content_row = $db->fetchArray($ors)) {
-		$contents4assign[] = array(
+		$contents4assign[] = [
 			'id' => intval($content_row['content_id']),
 			'link' => pico_common_make_content_link4html($xoopsModuleConfig, $content_row),
 			'subject' => $myts->makeTboxData4Show($content_row['subject'], 1, 1),
-		) + $content_row;
+                             ] + $content_row;
 	}
 
-	$tag4assign = array(
+	$tag4assign = [
 		'label_raw' => $tag_row['label'],
 		'label' => htmlspecialchars($tag_row['label'], ENT_QUOTES),
 		'contents' => $contents4assign,
-	);
+    ];
 	$tags4assign[] = $tag4assign + $tag_row;
 }
 
@@ -130,7 +130,8 @@ while ($tag_row = $db->fetchArray($trs)) {
 xoops_cp_header();
 include dirname(__FILE__) . '/mymenu.php';
 $tpl = new XoopsTpl();
-$tpl->assign(array(
+$tpl->assign(
+    [
 	'mydirname' => $mydirname,
 	'mod_name' => $xoopsModule->getVar('name'),
 	'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
@@ -142,6 +143,7 @@ $tpl->assign(array(
 	'allowed_orders' => $allowed_orders,
 	'pagenav' => $pagenav,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
-));
+    ]
+);
 $tpl->display('db:' . $mydirname . '_admin_tags.html');
 xoops_cp_footer();

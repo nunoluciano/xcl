@@ -10,7 +10,7 @@ $root = XCube_Root::getSingleton();
 $root->mController->executeHeader();
 
 $modrun = new ModController();
-$root->mController->mExecute->add(array($modrun, 'execute'));
+$root->mController->mExecute->add([$modrun, 'execute']);
 $root->mController->execute();
 
 $root->mController->executeView();

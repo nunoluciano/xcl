@@ -8,10 +8,10 @@ class d3utilities
     public $mid = 0 ; // id of each module instance
     public $table = '' ; // table with prefix and dirname
     public $primary_key = '' ; // column for primary_key
-    public $cols = array() ; // settings of each columns
+    public $cols = []; // settings of each columns
     public $form_mode = 'new' ; // 'new','edit' are available
     public $page_name = '' ; // controller's name  eg) page=(controller) in URI
-    public $action_base_hiddens = array() ;
+    public $action_base_hiddens = [];
 
 //HACK by domifara
 //	public function D3Utilities( $mydirname , $table_body , $primary_key , $cols , $page_name , $action_base_hiddens )
@@ -87,11 +87,11 @@ class d3utilities
             if ($id > 0) {
                 // UPDATE
                 $db->queryF("UPDATE $this->table SET ".substr($set4sql, 0, -1)." WHERE $this->primary_key='".addslashes($id)."'") ;
-                return array( $id , 'update' ) ;
+                return [$id, 'update'];
             } else {
                 // INSERT
                 $db->queryF("INSERT INTO $this->table SET ".substr($set4sql, 0, -1)) ;
-                return array( $db->getInsertId() , 'insert' ) ;
+                return [$db->getInsertId(), 'insert'];
             }
         }
     }
@@ -104,7 +104,7 @@ class d3utilities
 
         // search appropriate column for getting primary_key
         foreach ($this->cols as $col) {
-            if (in_array(@$col['list_edit'], array( 'text', 'textarea', 'hidden' ))) {
+            if (in_array(@$col['list_edit'], ['text', 'textarea', 'hidden'])) {
                 $column4key = $col['name'] ;
                 break ;
             }
@@ -113,7 +113,7 @@ class d3utilities
             $column4key = $this->cols[0]['name'] ;
         }
 
-        $ret = array() ;
+        $ret = [];
         foreach (array_keys($_POST[$column4key]) as $id) {
             $id = intval($id) ;    // primary_key should be 'integer'
             $set4sql = '' ;
@@ -145,7 +145,7 @@ class d3utilities
     {
         $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
-        $ret = array() ;
+        $ret = [];
         foreach (array_keys($_POST['admin_main_checkboxes']) as $id) {
             $id = intval($id) ;    // primary_key should be 'integer'
             $result = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
@@ -198,7 +198,7 @@ class d3utilities
     {
         $id = $this->init_default_values() ;
 
-        $lines = array() ;
+        $lines = [];
         foreach ($this->cols as $col) {
             if (empty($col['edit_show'])) {
                 continue ;
@@ -233,7 +233,7 @@ class d3utilities
             }
         }
 
-        return array( $id , $lines ) ;
+        return [$id, $lines];
     }
 
 

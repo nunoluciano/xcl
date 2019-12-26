@@ -17,7 +17,7 @@ if( $uid > 0 ) {
 if( empty( $last_visit ) ) $last_visit = time() ;
 
 // categories loop
-$categories4assign = array() ;
+$categories4assign = [];
 $previous_depth = -1 ;
 $sql = "SELECT * FROM ".$db->prefix($mydirname."_categories")." c WHERE ($whr_read4cat) ORDER BY cat_order_in_tree" ;
 if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
@@ -26,7 +26,7 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 	$cat_id = intval( $cat_row['cat_id'] ) ;
 
 	// forums loop
-	$forums = array() ;
+	$forums = [];
 	$sql = "SELECT * FROM ".$db->prefix($mydirname."_forums")." f WHERE f.cat_id=".$cat_id." AND ($whr_read4forum) ORDER BY f.forum_weight, f.forum_id" ;
 	if( ! $frs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	while( $forum_row = $db->fetchArray( $frs ) ) {
@@ -41,7 +41,7 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 		if( empty( $u2t_time ) ) $u2t_time = 0 ;
 
 		// forums array
-		$forums[] = array(
+		$forums[] = [
 			'id' => $forum_row['forum_id'] ,
 			'title' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
 			'desc' => $myts->displayTarea( $forum_row['forum_desc'] ) ,
@@ -51,7 +51,7 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 			'last_post_time_formatted' => formatTimestamp( $forum_row['forum_last_post_time'] , 'm' ) ,
 			'last_post_id' => intval( $forum_row['forum_last_post_id'] ) ,
 			'bit_new' => $forum_row['forum_last_post_time'] > $u2t_time && ! empty( $forum_row['forum_topics_count'] ) ? 1 : 0 ,
-		) ;
+        ];
 	}
 
 	// tree structure of this category (ul)
@@ -72,7 +72,7 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 	}
 
 	// categories array
-	$categories4assign[] = array(
+	$categories4assign[] = [
 		'id' => $cat_id ,
 		'pid' => $cat_row['pid'] ,
 		'title' => $myts->makeTboxData4Show( $cat_row['cat_title'] ) ,
@@ -98,14 +98,14 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 		'moderate_users' => d3forum_get_category_moderate_users4show( $mydirname , $cat_row['cat_id'] ) ,
 		'can_makeforum' => ( $isadmin || @$category_permissions[ $cat_id ]['can_makeforum'] || @$category_permissions[ $cat_id ]['is_moderator'] ) ,
 		'paths_raw' => unserialize( $cat_row['cat_path_in_tree'] ) ,
-	) ;
+    ];
 }
 
 // extract $top_categories and thier subcategories (F1) from $categories
-$top_categories4assign = array() ;
+$top_categories4assign = [];
 foreach( $categories4assign as $category ) {
 	if( $category['pid'] == 0 ) {
-		$category['subcategories'] = array() ;
+		$category['subcategories'] = [];
 		foreach( $categories4assign as $subcategory ) {
 			if( $subcategory['pid'] == $category['id'] ) {
 				$category['subcategories'][] = $subcategory ;
@@ -120,7 +120,7 @@ include XOOPS_ROOT_PATH.'/header.php' ;
 
 unset( $xoops_breadcrumbs[ sizeof( $xoops_breadcrumbs ) - 1 ]['url'] ) ;
 $xoopsTpl->assign(
-	array(
+    [
 		'total_topics_count' => $total_topics_count ,
 		'total_posts_count' => $total_posts_count ,
 		'lastvisit' => $last_visit ,
@@ -133,7 +133,7 @@ $xoopsTpl->assign(
 		'categories_ul_out_last' => str_repeat( '</li></ul>' , $previous_depth + 1 ) ,
 		'page' => 'listcategories' ,
 		'xoops_breadcrumbs' => $xoops_breadcrumbs ,
-	)
+    ]
 ) ;
 
 ?>

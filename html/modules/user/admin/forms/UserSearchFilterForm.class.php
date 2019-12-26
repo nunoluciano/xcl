@@ -48,7 +48,7 @@ define('USER_SORT_KEY_DEFAULT', USER_SORT_KEY_UID);
 
 class User_UserSearchFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         USER_SORT_KEY_UID => 'u.uid',
         USER_SORT_KEY_NAME => 'u.name',
         USER_SORT_KEY_UNAME => 'u.uname',
@@ -80,10 +80,12 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
         USER_SORT_KEY_BIO => 'u.bio',
         USER_SORT_KEY_USER_INTREST => 'u.user_intrest',
         USER_SORT_KEY_USER_MAILOK => 'u.user_mailok'
-    );
+    ];
 
-    public $_mMatchFields = array("uname", "name", "email", "user_icq", "user_aim", "user_yim", "user_msnm",
-                                "url", "user_from", "user_occ", "user_intrest");
+    public $_mMatchFields = [
+        "uname", "name", "email", "user_icq", "user_aim", "user_yim", "user_msnm",
+        "url", "user_from", "user_occ", "user_intrest"
+    ];
     
     public function getDefaultSortKey()
     {

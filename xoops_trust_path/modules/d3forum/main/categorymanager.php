@@ -47,35 +47,36 @@ if( is_array( $category_configs ) ) foreach( $category_configs as $key => $val )
 	}
 }
 
-$category4assign = array(
+$category4assign = [
 	'id' => $cat_id ,
 	'title' => htmlspecialchars( $cat_row['cat_title'] , ENT_QUOTES ) ,
 	'weight' => intval( $cat_row['cat_weight'] ) ,
 	'desc' => htmlspecialchars( $cat_row['cat_desc'] , ENT_QUOTES ) ,
 	'options' => $options4html ,
 	'option_desc' => d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override ) ,
-) ;
+];
 
 
 // dare to set 'template_main' after header.php (for disabling cache)
 include XOOPS_ROOT_PATH."/header.php";
 $xoopsOption['template_main'] = $mydirname.'_main_category_form.html' ;
 
-$xoopsTpl->assign( array(
-	'mydirname' => $mydirname ,
-	'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
-	'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'] ,
-	'mod_config' => $xoopsModuleConfig ,
-	'category' => $category4assign ,
-	'page' => 'categorymanager' ,
-	'formtitle' => _MD_D3FORUM_LINK_CATEGORYMANAGER ,
-	'children_count' => count( $children ) ,
-	'cat_jumpbox_options' => d3forum_make_cat_jumpbox_options( $mydirname , $whr_read4cat , $cat_row['pid'] ) ,
-	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum') ,
-	'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ) ,
-	'xoops_pagetitle' => _MD_D3FORUM_CATEGORYMANAGER ,
-	'xoops_breadcrumbs' => array_merge( $xoops_breadcrumbs , array( array( 'name' => _MD_D3FORUM_CATEGORYMANAGER ) ) ) ,
-) ) ;
+$xoopsTpl->assign([
+                      'mydirname' => $mydirname,
+                      'mod_url' => XOOPS_URL.'/modules/'.$mydirname,
+                      'mod_imageurl' => XOOPS_URL.'/modules/'.$mydirname.'/'.$xoopsModuleConfig['images_dir'],
+                      'mod_config' => $xoopsModuleConfig,
+                      'category' => $category4assign,
+                      'page' => 'categorymanager',
+                      'formtitle' => _MD_D3FORUM_LINK_CATEGORYMANAGER,
+                      'children_count' => count( $children ),
+                      'cat_jumpbox_options' => d3forum_make_cat_jumpbox_options( $mydirname , $whr_read4cat , $cat_row['pid'] ),
+                      'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum'),
+                      'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+                      'xoops_pagetitle' => _MD_D3FORUM_CATEGORYMANAGER,
+                      'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _MD_D3FORUM_CATEGORYMANAGER]]),
+                  ]
+) ;
 
 include XOOPS_ROOT_PATH.'/footer.php';
 

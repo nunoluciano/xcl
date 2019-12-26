@@ -12,8 +12,8 @@ if (!class_exists('PicoPreloadBase')) {
 
 		public function postFilter()
 		{
-			$this->mRoot->mDelegateManager->add("Legacy_BackendAction.GetRSSItems", array(&$this, "getRSSItems"));
-			$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', array($this, 'ckeditor4PreBuild'));
+			$this->mRoot->mDelegateManager->add("Legacy_BackendAction.GetRSSItems", [&$this, "getRSSItems"]);
+			$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', [$this, 'ckeditor4PreBuild']);
 		}
 
 		public function getRSSItems(&$items)

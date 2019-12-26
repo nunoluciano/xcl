@@ -8,7 +8,7 @@ function pico_delete_content($mydirname, $content_id, $skip_sync = false)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// update the content by blank data
-	$_POST = array();
+	$_POST = [];
 	pico_updatecontent($mydirname, $content_id, true, true);
 
 	// backup the content, first
@@ -68,7 +68,7 @@ function pico_sync_cattree($mydirname)
 	// rebuild tree informations
 	list($tree_array, $subcattree, $contents_total, $subcategories_total, $subcategories_ids_cs) = pico_makecattree_recursive($mydirname, 0);
 	//array_shift( $tree_array ) ;
-	$paths = array();
+	$paths = [];
 	$previous_depth = 0;
 
 	if (!empty($tree_array)) foreach ($tree_array as $key => $val) {
@@ -87,7 +87,7 @@ function pico_sync_cattree($mydirname)
 		}
 
 		// redundant array
-		$redundants = array(
+		$redundants = [
 			'cat_id' => $val['cat_id'],
 			'depth' => $val['depth'],
 			'cat_title' => $val['cat_title'],
@@ -97,13 +97,13 @@ function pico_sync_cattree($mydirname)
 			'subcategories_total' => $val['subcategories_total'],
 			'subcategories_ids_cs' => $val['subcategories_ids_cs'],
 			'subcattree_raw' => $val['subcattree_raw'],
-		);
+        ];
 
 		$db->queryF("UPDATE " . $db->prefix($mydirname . "_categories") . " SET cat_depth_in_tree=" . intval($val['depth']) . ", cat_order_in_tree=" . ($key) . ", cat_path_in_tree=" . $db->quoteString(pico_common_serialize($paths)) . ", cat_redundants=" . $db->quoteString(pico_common_serialize($redundants)) . " WHERE cat_id=" . $val['cat_id']);
 	}
 }
 
-function pico_makecattree_recursive($mydirname, $cat_id, $order = 'cat_weight', $parray = array(), $depth = 0, $cat_title = '')
+function pico_makecattree_recursive($mydirname, $cat_id, $order = 'cat_weight', $parray = [], $depth = 0, $cat_title = '')
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -116,7 +116,7 @@ function pico_makecattree_recursive($mydirname, $cat_id, $order = 'cat_weight', 
 		return array( $parray , $parray[ $myindex ]['contents_total'] , $parray[ $myindex ]['subcategories_total'] ) ;
 	} */
 	$myindex = sizeof($parray);
-	$myarray = array('cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title, 'contents_count' => intval($contents_count), 'contents_total' => 0, 'subcategories_count' => $db->getRowsNum($result), 'subcategories_ids_cs' => '', 'subcategories_total' => 0, 'subcattree_raw' => array());
+	$myarray = ['cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title, 'contents_count' => intval($contents_count), 'contents_total' => 0, 'subcategories_count' => $db->getRowsNum($result), 'subcategories_ids_cs' => '', 'subcategories_total' => 0, 'subcattree_raw' => []];
 	$parray[$myindex] = $myarray;
 	//	$parray[ $myindex ]['subcattree_raw'][] = $parray ;
 
@@ -139,7 +139,7 @@ function pico_makecattree_recursive($mydirname, $cat_id, $order = 'cat_weight', 
 
 	$parray[$myindex]['subcattree_raw'] = $myarray['subcattree_raw'];
 
-	return array($parray, $myarray, $parray[$myindex]['contents_total'], $parray[$myindex]['subcategories_total'], $myarray['subcategories_ids_cs']);
+	return [$parray, $myarray, $parray[$myindex]['contents_total'], $parray[$myindex]['subcategories_total'], $myarray['subcategories_ids_cs']];
 }
 
 // store redundant informations to a content from its content_votes
@@ -168,10 +168,10 @@ function pico_sync_tags($mydirname)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// get all tags in tags table
-	$all_tags_array = array();
+	$all_tags_array = [];
 	$result = $db->query("SELECT label FROM " . $db->prefix($mydirname . "_tags"));
 	while (list($label) = $db->fetchRow($result)) {
-		$all_tags_array[$label] = array();
+		$all_tags_array[$label] = [];
 	}
 
 	// count tags from contents table
@@ -284,7 +284,7 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	include dirname(dirname(__FILE__)) . '/include/configs_can_override.inc.php';
-	$cat_options = array();
+	$cat_options = [];
 	foreach ($GLOBALS['xoopsModuleConfig'] as $key => $val) {
 		if (empty($pico_configs_can_be_override[$key])) continue;
 		foreach (explode("\n", @$_POST['cat_options']) as $line) {
@@ -320,14 +320,14 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 		}
 	}
 
-	return array(
+	return [
 		'cat_title' => $myts->stripSlashesGPC(@$_POST['cat_title']),
 		'cat_desc' => $myts->stripSlashesGPC(@$_POST['cat_desc']),
 		'cat_weight' => intval(@$_POST['cat_weight']),
 		'cat_vpath' => $cat_vpath,
 		'pid' => $pid,
 		'cat_options' => pico_common_serialize($cat_options),
-	);
+    ];
 }
 
 // create a category
@@ -413,7 +413,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	// get config
 	$module_handler = &xoops_gethandler('module');
 	$module = &$module_handler->getByDirname($mydirname);
-	if (!is_object($module)) return array();
+	if (!is_object($module)) return [];
 	$config_handler = &xoops_gethandler('config');
 	$mod_config = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
@@ -426,7 +426,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	}
 
 	// build filters
-	$filters = array();
+	$filters = [];
 	foreach ($_POST as $key => $val) {
 		if (substr($key, 0, 15) == 'filter_enabled_' && $val) {
 			$name = str_replace('..', '', substr($key, 15));
@@ -447,7 +447,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 		if (stristr($filter_forced, ':LAST')) {
 			$filters[$regs[0]] = 0;
 		} else {
-			$filters = array($regs[0] => 0) + $filters;
+			$filters = [$regs[0] => 0] + $filters;
 		}
 	}
 
@@ -457,7 +457,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 		unset($filters[$filter_prohibited]);
 	}
 
-	$ret = array(
+	$ret = [
 		'cat_id' => $cat_id,
 		'vpath' => trim($myts->stripSlashesGPC(@$_POST['vpath'])),
 		'subject' => $myts->stripSlashesGPC(@$_POST['subject']),
@@ -470,7 +470,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 		'show_in_navi' => empty($_POST['show_in_navi']) ? 0 : 1,
 		'show_in_menu' => empty($_POST['show_in_menu']) ? 0 : 1,
 		'allow_comment' => empty($_POST['allow_comment']) ? 0 : 1,
-	);
+    ];
 
 	// tags (finding a custom tag filter for each languages)
 	$custom_tag_filter_file = dirname(dirname(__FILE__)) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/tag_filter.phtml';
@@ -494,21 +494,21 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 
 	// approval
 	if ($auto_approval) {
-		$ret += array(
+		$ret += [
 			'subject_waiting' => '',
 			'htmlheader_waiting' => '',
 			'body_waiting' => '',
 			'visible' => empty($_POST['visible']) ? 0 : 1,
 			'approval' => 1,
-		);
+        ];
 	} else {
-		$ret += array(
+		$ret += [
 			'subject_waiting' => $myts->stripSlashesGPC(@$_POST['subject']),
 			'htmlheader_waiting' => $myts->stripSlashesGPC(@$_POST['htmlheader']),
 			'body_waiting' => $myts->stripSlashesGPC(@$_POST['body']),
 			'visible' => 0,
 			'approval' => 0,
-		);
+        ];
 	}
 
 	// created_time,modified_time,poster_uid,modifier_uid,locked
@@ -602,12 +602,12 @@ function pico_makecontent($mydirname, $auto_approval = true, $isadminormod = fal
 
 	// !Fix TODO - NOTICE: Only variables should be passed by reference
 	//$requests = pico_get_requests4content( $mydirname , $errors = array() , $auto_approval , $isadminormod ) ;
-	$errors = array();
+	$errors = [];
 	$requests = pico_get_requests4content($mydirname, $errors, $auto_approval, $isadminormod);
 
-	$requests += array('poster_uid' => $uid, 'modifier_uid' => $uid);
+	$requests += ['poster_uid' => $uid, 'modifier_uid' => $uid];
 	unset($requests['specify_created_time'], $requests['specify_modified_time'], $requests['specify_expiring_time'], $requests['created_time_formatted'], $requests['modified_time_formatted'], $requests['expiring_time_formatted']);
-	$ignore_requests = $auto_approval ? array() : array('subject', 'htmlheader', 'body', 'visible');
+	$ignore_requests = $auto_approval ? [] : ['subject', 'htmlheader', 'body', 'visible'];
 	// only adminormod can set htmlheader
 	if (!$isadminormod) {
 		$requests['htmlheader_waiting'] = $requests['htmlheader'];
@@ -654,7 +654,7 @@ function pico_updatecontent($mydirname, $content_id, $auto_approval = true, $isa
 	// !Fix NOTICE: Only variables should be passed by reference
 
 	//$requests = pico_get_requests4content( $mydirname , $errors = array() , $auto_approval , $isadminormod , $content_id ) ;
-	$errors = array();
+	$errors = [];
 	$requests = pico_get_requests4content($mydirname, $errors, $auto_approval, $isadminormod, $content_id);
 
 	unset($requests['specify_created_time'],
@@ -664,7 +664,7 @@ function pico_updatecontent($mydirname, $content_id, $auto_approval = true, $isa
 	$requests['modified_time_formatted'],
 	$requests['expiring_time_formatted']);
 
-	$ignore_requests = $auto_approval ? array() : array(
+	$ignore_requests = $auto_approval ? [] : [
 		'subject',
 		'htmlheader',
 		'body',
@@ -677,7 +677,7 @@ function pico_updatecontent($mydirname, $content_id, $auto_approval = true, $isa
 		'weight',
 		'tags',
 		'cat_id'
-	);
+    ];
 	if (!$isadminormod) {
 		// only adminormod can set htmlheader
 		$requests['htmlheader_waiting'] = $requests['htmlheader'];

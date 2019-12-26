@@ -29,11 +29,11 @@ define("MODINSTALL_LOGTYPE_ERROR", "error");
 class Legacy_ModuleInstallLog
 {
     public $mFetalErrorFlag = false;
-    public $mMessages = array();
+    public $mMessages = [];
 
     public function add($msg)
     {
-        $this->mMessages[] = array('type' => MODINSTALL_LOGTYPE_REPORT, 'message' => $msg);
+        $this->mMessages[] = ['type' => MODINSTALL_LOGTYPE_REPORT, 'message' => $msg];
     }
 
     public function addReport($msg)
@@ -43,12 +43,12 @@ class Legacy_ModuleInstallLog
     
     public function addWarning($msg)
     {
-        $this->mMessages[] = array('type' => MODINSTALL_LOGTYPE_WARNING, 'message' => $msg);
+        $this->mMessages[] = ['type' => MODINSTALL_LOGTYPE_WARNING, 'message' => $msg];
     }
 
     public function addError($msg)
     {
-        $this->mMessages[] = array('type' => MODINSTALL_LOGTYPE_ERROR, 'message' => $msg);
+        $this->mMessages[] = ['type' => MODINSTALL_LOGTYPE_ERROR, 'message' => $msg];
         $this->mFetalErrorFlag = true;
     }
     
@@ -109,7 +109,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function &_createInstaller($dirname, $mode, $defaultClassName)
     {
-        $info = array();
+        $info = [];
         
         $filepath = XOOPS_MODULE_PATH . "/${dirname}/xoops_version.php";
         if (file_exists($filepath)) {
@@ -155,9 +155,9 @@ class Legacy_ModuleInstallUtils
      */
     public static function installSQLAutomatically(&$module, &$log)
     {
-        $dbTypeAliases = array(
+        $dbTypeAliases = [
             'mysqli' => 'mysql'
-        );
+        ];
         $sqlfileInfo =& $module->getInfo('sqlfile');
         $dirname = $module->getVar('dirname');
         $dbType = (isset($sqlfileInfo[XOOPS_DB_TYPE]) || !isset($dbTypeAliases[XOOPS_DB_TYPE]))? XOOPS_DB_TYPE : $dbTypeAliases[XOOPS_DB_TYPE];
@@ -200,7 +200,7 @@ class Legacy_ModuleInstallUtils
         } else {
             require_once XOOPS_ROOT_PATH.'/class/database/sqlutility.php';
             
-            $reservedTables = array('avatar', 'avatar_users_link', 'block_module_link', 'xoopscomments', 'config', 'configcategory', 'configoption', 'image', 'imagebody', 'imagecategory', 'imgset', 'imgset_tplset_link', 'imgsetimg', 'groups','groups_users_link','group_permission', 'online', 'bannerclient', 'banner', 'bannerfinish', 'priv_msgs', 'ranks', 'session', 'smiles', 'users', 'newblocks', 'modules', 'tplfile', 'tplset', 'tplsource', 'xoopsnotifications');
+            $reservedTables = ['avatar', 'avatar_users_link', 'block_module_link', 'xoopscomments', 'config', 'configcategory', 'configoption', 'image', 'imagebody', 'imagecategory', 'imgset', 'imgset_tplset_link', 'imgsetimg', 'groups', 'groups_users_link', 'group_permission', 'online', 'bannerclient', 'banner', 'bannerfinish', 'priv_msgs', 'ranks', 'session', 'smiles', 'users', 'newblocks', 'modules', 'tplfile', 'tplset', 'tplsource', 'xoopsnotifications'];
 
             $root =& XCube_Root::getSingleton();
             $db =& $root->mController->mDB;
@@ -208,7 +208,7 @@ class Legacy_ModuleInstallUtils
             $sql_query = fread(fopen($sqlfilepath, 'r'), filesize($sqlfilepath));
             $sql_query = trim($sql_query);
             SqlUtility::splitMySqlFile($pieces, $sql_query);
-            $created_tables = array();
+            $created_tables = [];
             foreach ($pieces as $piece) {
                 // [0] contains the prefixed query
                 // [4] contains unprefixed table name
@@ -403,7 +403,7 @@ class Legacy_ModuleInstallUtils
         $func_num = 0;
         foreach ($definedBlocks as $block) {
             $successFlag = true;
-            $updateblocks = array();
+            $updateblocks = [];
             
             // Try (1) --- func_num
             foreach ($definedBlocks as $idx => $block) {
@@ -418,7 +418,7 @@ class Legacy_ModuleInstallUtils
             // Try (2) --- index pattern
             if ($successFlag == false) {
                 $successFlag = true;
-                $updateblocks = array();
+                $updateblocks = [];
                 foreach ($definedBlocks as $idx => $block) {
                     if (is_int($idx)) {
                         $block['func_num'] = $idx;
@@ -433,7 +433,7 @@ class Legacy_ModuleInstallUtils
             // Try (3) --- automatic
             if ($successFlag == false) {
                 $successFlag = true;
-                $updateblocks = array();
+                $updateblocks = [];
 
                 $func_num = 0;
                 foreach ($definedBlocks as $block) {
@@ -779,22 +779,24 @@ class Legacy_ModuleInstallUtils
         if ($module->getVar('hascomments') !=0) {
             require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
 
-            $configInfos[] = array('name' => 'com_rule',
-                                     'title' => '_CM_COMRULES',
-                                     'description' => '',
-                                     'formtype' => 'select',
-                                     'valuetype' => 'int',
-                                     'default' => 1,
-                                     'options' => array('_CM_COMNOCOM' => XOOPS_COMMENT_APPROVENONE, '_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN)
-                               );
+            $configInfos[] = [
+                'name'        => 'com_rule',
+                'title'       => '_CM_COMRULES',
+                'description' => '',
+                'formtype'    => 'select',
+                'valuetype'   => 'int',
+                'default'     => 1,
+                'options'     => ['_CM_COMNOCOM' => XOOPS_COMMENT_APPROVENONE, '_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN]
+            ];
 
-            $configInfos[] = array('name' => 'com_anonpost',
-                                     'title' => '_CM_COMANONPOST',
-                                     'description' => '',
-                                     'formtype' => 'yesno',
-                                     'valuetype' => 'int',
-                                     'default' => 0
-                               );
+            $configInfos[] = [
+                'name'        => 'com_anonpost',
+                'title'       => '_CM_COMANONPOST',
+                'description' => '',
+                'formtype'    => 'yesno',
+                'valuetype'   => 'int',
+                'default'     => 0
+            ];
         }
 
         //
@@ -804,13 +806,13 @@ class Legacy_ModuleInstallUtils
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
             require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
             
-            $t_options = array();
+            $t_options = [];
             $t_options['_NOT_CONFIG_DISABLE'] = XOOPS_NOTIFICATION_DISABLE;
             $t_options['_NOT_CONFIG_ENABLEBLOCK'] = XOOPS_NOTIFICATION_ENABLEBLOCK;
             $t_options['_NOT_CONFIG_ENABLEINLINE'] = XOOPS_NOTIFICATION_ENABLEINLINE;
             $t_options['_NOT_CONFIG_ENABLEBOTH'] = XOOPS_NOTIFICATION_ENABLEBOTH;
             
-            $configInfos[] = array(
+            $configInfos[] = [
                 'name' => 'notification_enabled',
                 'title' => '_NOT_CONFIG_ENABLE',
                 'description' => '_NOT_CONFIG_ENABLEDSC',
@@ -818,7 +820,7 @@ class Legacy_ModuleInstallUtils
                 'valuetype' => 'int',
                 'default' => XOOPS_NOTIFICATION_ENABLEBOTH,
                 'options' => $t_options
-            );
+            ];
             
             //
             // FIXME: doesn't work when update module... can't read back the
@@ -827,7 +829,7 @@ class Legacy_ModuleInstallUtils
 
             unset($t_options);
             
-            $t_options = array();
+            $t_options = [];
             $t_categoryArr =& notificationCategoryInfo('', $module->get('mid'));
             foreach ($t_categoryArr as $t_category) {
                 $t_eventArr =& notificationEvents($t_category['name'], false, $module->get('mid'));
@@ -840,7 +842,7 @@ class Legacy_ModuleInstallUtils
                 }
             }
                 
-            $configInfos[] = array(
+            $configInfos[] = [
                 'name' => 'notification_events',
                 'title' => '_NOT_CONFIG_EVENTS',
                 'description' => '_NOT_CONFIG_EVENTSDSC',
@@ -848,7 +850,7 @@ class Legacy_ModuleInstallUtils
                 'valuetype' => 'array',
                 'default' => array_values($t_options),
                 'options' => $t_options
-            );
+            ];
         }
         
         return $configInfos;

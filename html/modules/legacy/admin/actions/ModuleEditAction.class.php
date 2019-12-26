@@ -10,8 +10,8 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ModuleEditForm.class.php";
 class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 {
 
-    public $mReadGroups = array();
-    public $mAdminGroups = array();
+    public $mReadGroups = [];
+    public $mAdminGroups = [];
     
     public function _getId()
     {
@@ -79,11 +79,11 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             //
             // Insert group permissions.
             //
-            $currentReadGroupid = array();
+            $currentReadGroupid = [];
             foreach ($this->mReadGroups as $readgroup) {
                 $currentReadGroupid[] = $readgroup->get('groupid');
             }
-            $currentAdminGroupid = array();
+            $currentAdminGroupid = [];
             foreach ($this->mAdminGroups as $admingroup) {
                 $currentAdminGroupid[] = $admingroup->get('groupid');
             }
@@ -164,7 +164,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             $configObjects =& $confighandler->getConfigs($criteria);
             if (is_object($configObjects[0])) {
                 $oldvalue = $configObjects[0]->get('conf_value');
-                $t_arr = !empty($oldvalue) ? unserialize($oldvalue) : array();
+                $t_arr = !empty($oldvalue) ? unserialize($oldvalue) : [];
                 if (is_array($t_arr)) {
                     $t_arr[$this->mObject->get('mid')] = $this->mActionForm->get('module_cache');
                     $configObjects[0]->set('conf_value', serialize($t_arr));
@@ -201,7 +201,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
         $criteria->add(new Criteria('gperm_name', 'module_read'));
         $gpermReadArr =&  $handler->getObjects($criteria);
-        $readgroupid = array();
+        $readgroupid = [];
         foreach ($gpermReadArr as $gpermRead) {
             $readgroupid[] = $gpermRead->get('gperm_groupid');
         }
@@ -212,7 +212,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
         $criteria->add(new Criteria('gperm_name', 'module_admin'));
         $gpermAdminArr =&  $handler->getObjects($criteria);
-        $admingroupid = array();
+        $admingroupid = [];
         foreach ($gpermAdminArr as $gpermAdmin) {
             $admingroupid[] = $gpermAdmin->get('gperm_groupid');
         }

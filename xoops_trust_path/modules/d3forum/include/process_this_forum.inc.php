@@ -12,7 +12,7 @@ $can_post = (boolean)$forum_permissions[ $forum_id ]['can_post'] || $isadminormo
 $can_edit = (boolean)$forum_permissions[ $forum_id ]['can_edit'] || $isadminormod ;
 $can_delete = (boolean)$forum_permissions[ $forum_id ]['can_delete'] || $isadminormod ;
 $need_approve = ! (boolean)$forum_permissions[ $forum_id ]['post_auto_approved'] && ! $isadminormod ;
-$forum4assign = array(
+$forum4assign = [
 	'id' => $forum_row['forum_id'] ,
 	'title' => $myts->makeTboxData4Show( $forum_row['forum_title'] ) ,
 	'desc' => $myts->displayTarea( $forum_row['forum_desc'] ) ,
@@ -27,7 +27,7 @@ $forum4assign = array(
 	'need_approve' => $need_approve ,
 	'can_post' => $can_post ,
 	'isadminormod' => $isadminormod ,
-) ;
+];
 
 // assign link or free description (by class) as comment
 if( ! empty( $external_link_id ) ) {
@@ -36,6 +36,6 @@ if( ! empty( $external_link_id ) ) {
 }
 
 // assign breadcrumbs of this forum
-array_splice( $xoops_breadcrumbs , 1 , 0 , array( array( 'url' => XOOPS_URL.'/modules/'.$mydirname.'/index.php?forum_id='.$forum_id , 'name' => $forum4assign['title'] ) ) ) ;
+array_splice($xoops_breadcrumbs , 1 , 0 , [['url' => XOOPS_URL . '/modules/' . $mydirname . '/index.php?forum_id=' . $forum_id, 'name' => $forum4assign['title']]]) ;
 
 ?>

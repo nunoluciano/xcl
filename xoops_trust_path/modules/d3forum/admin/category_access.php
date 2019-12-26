@@ -56,7 +56,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 	$db->query( "DELETE FROM ".$db->prefix($mydirname."_category_access")." WHERE cat_id=$cat_id AND uid>0" ) ;
-	$can_posts = is_array( @$_POST['can_posts'] ) ? $_POST['can_posts'] : array() ;
+	$can_posts = is_array( @$_POST['can_posts'] ) ? $_POST['can_posts'] : [];
 	$can_reads = is_array( @$_POST['can_reads'] ) ? $_POST['can_reads'] + $can_posts : $can_posts ;
 
 	foreach( $can_reads as $uid => $can_read ) {
@@ -104,7 +104,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 
 // create jump box options as array
 $crs = $db->query( "SELECT cat_id,cat_title,cat_depth_in_tree FROM ".$db->prefix($mydirname."_categories")." ORDER BY cat_order_in_tree" ) ;
-$cat_options = array() ;
+$cat_options = [];
 while( list( $id , $title , $depth ) = $db->fetchRow( $crs ) ) {
 	$cat_options[ $id ] = str_repeat( '--' , $depth ) . htmlspecialchars( $title , ENT_QUOTES ) ;
 }
@@ -201,7 +201,7 @@ for( $i = 0 ; $i < 5 ; $i ++ ) {
 xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 $tpl = new XoopsTpl() ;
-$tpl->assign( array(
+$tpl->assign([
 	'mydirname' => $mydirname ,
 	'mod_name' => $xoopsModule->getVar('name') ,
 	'mod_url' => XOOPS_URL.'/modules/'.$mydirname ,
@@ -214,7 +214,8 @@ $tpl->assign( array(
 	'user_trs' => $user_trs ,
 	'newuser_trs' => $newuser_trs ,
 	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum_admin') ,
-) ) ;
+             ]
+) ;
 $tpl->display( 'db:'.$mydirname.'_admin_category_access.html' ) ;
 xoops_cp_footer();
 

@@ -303,12 +303,12 @@ echo "
         </tr></thead>\n" ;
 
 // STYLE for distinguishing fingerprints
-$fingerprint_classes = array( '' , ' fingerprint1' , ' fingerprint2' , ' fingerprint3' , ' fingerprint4' , ' fingerprint5' , ' fingerprint6' , ' fingerprint7' ) ;
+$fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', ' fingerprint4', ' fingerprint5', ' fingerprint6', ' fingerprint7'];
 
 // template ROWS
 while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
     $evenodd = @$evenodd == 'even' ? 'odd' : 'even' ;
-    $fingerprints = array();
+    $fingerprints = [];
 
     // information about the template
     echo "<tbody>\n

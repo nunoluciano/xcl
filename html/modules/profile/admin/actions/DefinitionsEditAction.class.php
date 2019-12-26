@@ -13,8 +13,8 @@ require_once XOOPS_MODULE_PATH . "/profile/class/AbstractEditAction.class.php";
 
 class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 {
-    public $mTypeArr = array();
-    public $mValidationArr = array();
+    public $mTypeArr = [];
+    public $mValidationArr = [];
 
     /**
      * @protected

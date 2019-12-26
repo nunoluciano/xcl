@@ -27,7 +27,7 @@ class XCube_PageNavigator
      * Array for extra informations.
      * @var Array
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     
     /**
      * Offset.
@@ -58,7 +58,7 @@ class XCube_PageNavigator
      * Array for sort.
      * @var Array
      */
-    public $mSort = array();
+    public $mSort = [];
     
     /**
      * The base url for this navigator.
@@ -75,7 +75,7 @@ class XCube_PageNavigator
     /**
      * Array of string for re-building the query strings.
      */
-    public $mExtra = array();
+    public $mExtra = [];
     
     /**
      * Options indicating what this navigator fetches automatically.
@@ -116,7 +116,7 @@ class XCube_PageNavigator
         $this->mFlags = $flags;
         
         $this->mFetch =new XCube_Delegate();
-        $this->mFetch->add(array(&$this, 'fetchNaviControl'));
+        $this->mFetch->add([&$this, 'fetchNaviControl']);
         
         $this->mGetTotalItems =new XCube_Delegate();
     }
@@ -183,14 +183,14 @@ class XCube_PageNavigator
     public function getRenderBaseUrl($mask = null)
     {
         if ($mask == null) {
-            $mask = array();
+            $mask = [];
         }
         if (!is_array($mask)) {
-            $mask = array($mask);
+            $mask = [$mask];
         }
         
         if (count($this->mExtra) > 0) {
-            $tarr=array();
+            $tarr= [];
             
             foreach ($this->mExtra as $key=>$value) {
                 if (is_array($mask) && !in_array($key, $mask)) {
@@ -222,7 +222,7 @@ class XCube_PageNavigator
     public function getRenderUrl($mask = null)
     {
         if ($mask != null && !is_array($mask)) {
-            $mask = array($mask);
+            $mask = [$mask];
         }
         
         $demiliter = "?";
@@ -238,7 +238,7 @@ class XCube_PageNavigator
     public function renderUrlForSort()
     {
         if (count($this->mExtra) > 0) {
-            $tarr=array();
+            $tarr= [];
             
             foreach ($this->mExtra as $key=>$value) {
                 //$tarr[]=$key."=".urlencode($value);
@@ -259,7 +259,7 @@ class XCube_PageNavigator
     
     public function renderUrlForPage($page = null)
     {
-        $tarr=array();
+        $tarr= [];
     
         foreach ($this->mExtra as $key=>$value) {
             //$tarr[]=$key."=".urlencode($value);

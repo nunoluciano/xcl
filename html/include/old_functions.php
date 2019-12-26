@@ -98,7 +98,7 @@ function make_cblock()
     global $xoopsUser, $xoopsOption;
     $xoopsblock = new XoopsBlock();
     $cc_block = $cl_block = $cr_block = "";
-    $arr = array();
+    $arr = [];
     if ($xoopsOption['theme_use_smarty'] == 0) {
         if (!isset($GLOBALS['xoopsTpl']) || !is_object($GLOBALS['xoopsTpl'])) {
             include_once XOOPS_ROOT_PATH.'/class/template.php';

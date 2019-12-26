@@ -1,7 +1,7 @@
 <?php
 function b_user_newusers_show($options)
 {
-    $block = array();
+    $block = [];
     $criteria = new CriteriaCompo(new Criteria('level', 0, '>'));
     $limit = (!empty($options[0])) ? $options[0] : 10;
     $criteria->setOrder('DESC');

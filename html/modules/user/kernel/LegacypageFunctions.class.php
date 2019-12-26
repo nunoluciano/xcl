@@ -36,7 +36,7 @@ class User_LegacypageFunctions
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName("UserInfo");
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
         
@@ -76,7 +76,7 @@ class User_LegacypageFunctions
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
         
@@ -118,7 +118,7 @@ class User_LegacypageFunctions
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
         
@@ -155,7 +155,7 @@ class User_LegacypageFunctions
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName("LostPass");
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
         
@@ -213,7 +213,7 @@ class User_LegacypageFunctions
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
         
@@ -252,7 +252,7 @@ class User_LegacypageFunctions
         $handler =& xoops_gethandler('user');
         $user =& $handler->get($userArr[0]->get('uid'));
         
-        if (is_callable(array($user, "getNumGroups"))) { // Compatible for replaced handler.
+        if (is_callable([$user, "getNumGroups"])) { // Compatible for replaced handler.
             if ($user->getNumGroups() == 0) {
                 return;
             }
@@ -280,7 +280,7 @@ class User_LegacypageFunctions
         if (!isset($_SESSION)) {
             $root->mSession->regenerate();
         }
-        $_SESSION = array();
+        $_SESSION = [];
         $_SESSION['xoopsUserId'] = $xoopsUser->get('uid');
         $_SESSION['xoopsUserGroups'] = $xoopsUser->getGroups();
     }
@@ -312,7 +312,7 @@ class User_LegacypageFunctions
         $root->mLanguageManager->loadModuleMessageCatalog('user');
 
         // Reset session
-        $_SESSION = array();
+        $_SESSION = [];
         $root->mSession->destroy(true);
 
         // clear entry from online users table
@@ -340,7 +340,7 @@ class User_LegacypageFunctions
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->setDialogMode(true);
 

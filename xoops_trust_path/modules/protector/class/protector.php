@@ -5,24 +5,24 @@ class protector
     public $mydirname;
 
     public $_conn = null;
-    public $_conf = array();
+    public $_conf = [];
     public $_conf_serialized = '';
 
-    public $_bad_globals = array();
+    public $_bad_globals = [];
 
     public $message = '';
     public $warning = false;
     public $error = false;
-    public $_doubtful_requests = array();
-    public $_bigumbrella_doubtfuls = array();
+    public $_doubtful_requests = [];
+    public $_bigumbrella_doubtfuls = [];
 
-    public $_dblayertrap_doubtfuls = array();
-    public $_dblayertrap_doubtful_needles = array(
+    public $_dblayertrap_doubtfuls = [];
+    public $_dblayertrap_doubtful_needles = [
         'information_schema',
         'select',
         "'",
         '"',
-    );
+    ];
 
     public $_logged = false;
 
@@ -67,7 +67,7 @@ class protector
         $this->_conf_serialized = @file_get_contents($this->get_filepath4confighcache());
         $this->_conf = @unserialize($this->_conf_serialized);
         if (empty($this->_conf)) {
-            $this->_conf = array();
+            $this->_conf = [];
         }
 
         if (!empty($this->_conf['global_disabled'])) {
@@ -85,7 +85,7 @@ class protector
         //	$_SERVER['PHP_SELF'] = strtr( @$_SERVER['PHP_SELF'] , array( '<' => '%3C' , '>' => '%3E' , "'" => '%27' , '"' => '%22' ) ) ;
         //	if( ! empty( $_SERVER['PATH_INFO'] ) ) $_SERVER['PATH_INFO'] = strtr( @$_SERVER['PATH_INFO'] , array( '<' => '%3C' , '>' => '%3E' , "'" => '%27' , '"' => '%22' ) ) ;
 
-        $this->_bad_globals = array('GLOBALS', '_SESSION', 'HTTP_SESSION_VARS', '_GET', 'HTTP_GET_VARS', '_POST', 'HTTP_POST_VARS', '_COOKIE', 'HTTP_COOKIE_VARS', '_SERVER', 'HTTP_SERVER_VARS', '_REQUEST', '_ENV', '_FILES', 'xoopsDB', 'xoopsUser', 'xoopsUserId', 'xoopsUserGroups', 'xoopsUserIsAdmin', 'xoopsConfig', 'xoopsOption', 'xoopsModule', 'xoopsModuleConfig');
+        $this->_bad_globals = ['GLOBALS', '_SESSION', 'HTTP_SESSION_VARS', '_GET', 'HTTP_GET_VARS', '_POST', 'HTTP_POST_VARS', '_COOKIE', 'HTTP_COOKIE_VARS', '_SERVER', 'HTTP_SERVER_VARS', '_REQUEST', '_ENV', '_FILES', 'xoopsDB', 'xoopsUser', 'xoopsUserId', 'xoopsUserGroups', 'xoopsUserIsAdmin', 'xoopsConfig', 'xoopsOption', 'xoopsModule', 'xoopsModuleConfig'];
 
         $this->remote_ip = $this->get_remote_ip();
         if (strpos($this->remote_ip, ':') !== false) {
@@ -154,7 +154,7 @@ class protector
         }
 
         $query = 'SELECT `conf_name`,`conf_value` FROM `'.XOOPS_DB_PREFIX."_config` WHERE `conf_title` like '".$constpref."%'";
-        $db_conf = array();
+        $db_conf = [];
         if (is_object($this->_conn) && get_class($this->_conn) === 'mysqli') {
             $result = @mysqli_query($this->_conn, $query);
             if (!$result || mysqli_num_rows($result) < 5) {
@@ -339,9 +339,9 @@ class protector
     public function get_bad_ips($with_jailed_time = false)
     {
         list($bad_ips_serialized) = @file(self::get_filepath4badips());
-        $bad_ips = empty($bad_ips_serialized) ? array() : @unserialize($bad_ips_serialized);
+        $bad_ips = empty($bad_ips_serialized) ? [] : @unserialize($bad_ips_serialized);
         if (!is_array($bad_ips) || isset($bad_ips[0])) {
-            $bad_ips = array();
+            $bad_ips = [];
         }
 
     // expire jailed_time
@@ -374,9 +374,9 @@ class protector
     public function get_group1_ips($with_info = false)
     {
         list($group1_ips_serialized) = @file(self::get_filepath4group1ips());
-        $group1_ips = empty($group1_ips_serialized) ? array() : @unserialize($group1_ips_serialized);
+        $group1_ips = empty($group1_ips_serialized) ? [] : @unserialize($group1_ips_serialized);
         if (!is_array($group1_ips)) {
-            $group1_ips = array();
+            $group1_ips = [];
         }
 
         if ($with_info) {
@@ -548,7 +548,7 @@ class protector
             return;
         } // skip
 
-    $this->_dblayertrap_doubtfuls = array();
+    $this->_dblayertrap_doubtfuls = [];
         $this->_dblayertrap_check_recursive($_GET);
         $this->_dblayertrap_check_recursive($_POST);
         $this->_dblayertrap_check_recursive($_COOKIE);
@@ -580,12 +580,12 @@ class protector
 
     public function bigumbrella_init()
     {
-        $this->_bigumbrella_doubtfuls = array();
+        $this->_bigumbrella_doubtfuls = [];
         $this->_bigumbrella_check_recursive($_GET);
         $this->_bigumbrella_check_recursive(@$_SERVER['PHP_SELF']);
 
         if (!empty($this->_bigumbrella_doubtfuls)) {
-            ob_start(array($this, 'bigumbrella_outputcheck'));
+            ob_start([$this, 'bigumbrella_outputcheck']);
         }
     }
 
@@ -798,9 +798,9 @@ class protector
         }
 
     // extensions never uploaded
-    $bad_extensions = array('php', 'phtml', 'phtm', 'php3', 'php4', 'cgi', 'pl', 'asp');
+    $bad_extensions = ['php', 'phtml', 'phtm', 'php3', 'php4', 'cgi', 'pl', 'asp'];
     // extensions needed image check (anti-IE Content-Type XSS)
-    $image_extensions = array(1 => 'gif', 2 => 'jpg', 3 => 'png', 4 => 'swf', 5 => 'psd', 6 => 'bmp', 7 => 'tif', 8 => 'tif', 9 => 'jpc', 10 => 'jp2', 11 => 'jpx', 12 => 'jb2', 13 => 'swc', 14 => 'iff', 15 => 'wbmp', 16 => 'xbm');
+    $image_extensions = [1 => 'gif', 2 => 'jpg', 3 => 'png', 4 => 'swf', 5 => 'psd', 6 => 'bmp', 7 => 'tif', 8 => 'tif', 9 => 'jpc', 10 => 'jp2', 11 => 'jpx', 12 => 'jb2', 13 => 'swc', 14 => 'iff', 15 => 'wbmp', 16 => 'xbm'];
 
         foreach ($_FILES as $_file) {
             if (!empty($_file['error'])) {
@@ -916,7 +916,7 @@ class protector
         }
 
         foreach ($this->_doubtful_requests as $key => $val) {
-            $str = str_replace(array('/*', '*/'), '', preg_replace('?/\*.+\*/?sU', '', $val));
+            $str = str_replace(['/*', '*/'], '', preg_replace('?/\*.+\*/?sU', '', $val));
             if (preg_match('/\sUNION\s+(ALL|SELECT)/i', $str)) {
                 $this->message .= "Pattern like SQL injection found. ($val)\n";
                 if ($sanitize) {
@@ -1285,7 +1285,7 @@ class protector
             return $ipv4 ? $ip : '';
         }
         $ip = strtolower($ip);
-        $fulls = array();
+        $fulls = [];
         $fileds = explode(':', $ip);
         if (strpos($ip, '::') !== false) {
             $inscnt = 9 - count($fileds);
@@ -1294,7 +1294,7 @@ class protector
                     if ($i === 0) {
                         $fulls[] = '0000';
                     } else {
-                        $fulls = array_merge($fulls, array_pad(array(), $inscnt, '0000'));
+                        $fulls = array_merge($fulls, array_pad([], $inscnt, '0000'));
                     }
                 } else {
                     $fulls[] = str_pad($filed, 4, '0', STR_PAD_LEFT);

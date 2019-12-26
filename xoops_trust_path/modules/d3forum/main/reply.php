@@ -58,7 +58,7 @@ $solved = $isadminormod ? 1 : intval( $topic_row['topic_solved'] ) ;
 $invisible = 0 ;
 $approval = 1 ;
 $post_default_options = array_map( 'trim' , explode( ',' , strtolower( @$xoopsModuleConfig['default_options'] ) ) ) ;
-foreach( array( 'smiley' , 'xcode' , 'br' , 'number_entity' , 'special_entity' , 'html' , 'attachsig' , 'hide_uid' /*, 'notify' , 'u2t_marked'*/ ) as $key ) {
+foreach(['smiley', 'xcode', 'br', 'number_entity', 'special_entity', 'html', 'attachsig', 'hide_uid' /*, 'notify' , 'u2t_marked'*/] as $key ) {
 	$$key = in_array( $key , $post_default_options ) ? 1 : 0 ;
 }
 if( is_object( @$GLOBALS['xoopsUser'] ) ) $attachsig |= $GLOBALS['xoopsUser']->getVar('attachsig') ;

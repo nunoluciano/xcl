@@ -17,7 +17,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
 
 class Legacy_NotifyDeleteForm extends XCube_ActionForm
 {
-    public $mNotifiyIds = array();
+    public $mNotifiyIds = [];
     public $mFatalError = false;
     
     public function getTokenName()
@@ -45,7 +45,7 @@ class Legacy_NotifyDeleteForm extends XCube_ActionForm
                 return;
             }
             foreach ($t_idArr as $t_id) {
-                $this->mNotifiyIds[] = array('modid' => intval($t_modid), 'id' => intval($t_id));
+                $this->mNotifiyIds[] = ['modid' => intval($t_modid), 'id' => intval($t_id)];
             }
         }
     }

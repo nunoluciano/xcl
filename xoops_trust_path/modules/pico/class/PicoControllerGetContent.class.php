@@ -63,10 +63,10 @@ class PicoControllerGetContent extends PicoControllerAbstract
 
 		// prev/next content
 		$prevContentObj = &$contentObj->getPrevContent();
-		$this->assign['prev_content'] = is_object($prevContentObj) ? $prevContentObj->getData4html() : array();
+		$this->assign['prev_content'] = is_object($prevContentObj) ? $prevContentObj->getData4html() : [];
 		$this->contentObjs['prev_content'] = &$prevContentObj;
 		$nextContentObj = &$contentObj->getNextContent();
-		$this->assign['next_content'] = is_object($nextContentObj) ? $nextContentObj->getData4html() : array();
+		$this->assign['next_content'] = is_object($nextContentObj) ? $nextContentObj->getData4html() : [];
 		$this->contentObjs['next_content'] = &$nextContentObj;
 
 		// link for "tell to friends"
@@ -79,7 +79,7 @@ class PicoControllerGetContent extends PicoControllerAbstract
 		// category list can be read for category jumpbox etc.
 		$categoryHandler = new PicoCategoryHandler($this->mydirname, $this->permissions);
 		$categories = $categoryHandler->getAllCategories();
-		$this->assign['categories_can_read'] = array();
+		$this->assign['categories_can_read'] = [];
 		foreach ($categories as $tmpObj) {
 			$tmp_data = $tmpObj->getData();
 			$this->assign['categories_can_read'][$tmp_data['id']] = str_repeat('--', $tmp_data['cat_depth_in_tree']) . $tmp_data['cat_title'];

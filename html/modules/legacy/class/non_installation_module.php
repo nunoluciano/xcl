@@ -23,12 +23,12 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
      * object cache.
      * @var Array
      */
-    public $_mXoopsModules = array();
+    public $_mXoopsModules = [];
 
     /***
      * readonly property
      */
-    public $_mExclusions = array(".", "..", "CVS");
+    public $_mExclusions = [".", "..", "CVS"];
     
     // !Fix deprecated constructor for PHP 7.x
     public function __construct(&$db)
@@ -92,7 +92,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     
     public function &getObjectsFor2ndInstaller()
     {
-        $ret = array();
+        $ret = [];
         
         foreach (array_keys($this->_mXoopsModules) as $key) {
             if (empty($this->_mXoopsModules[$key]->modinfo['disable_legacy_2nd_installer'])) {

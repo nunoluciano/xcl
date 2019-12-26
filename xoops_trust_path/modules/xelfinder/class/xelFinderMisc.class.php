@@ -27,7 +27,7 @@ class xelFinderMisc {
 			$isAdmin = $xoopsUser->isAdmin($xModule->getVar('mid'));
 		} else {
 			$uid = 0;
-			$groups = array(XOOPS_GROUP_ANONYMOUS);
+			$groups = [XOOPS_GROUP_ANONYMOUS];
 			$isAdmin = false;
 		}
 	
@@ -39,7 +39,7 @@ class xelFinderMisc {
 		$grp = intval($perm[1], 16);
 		$gus = intval($perm[2], 16);
 	
-		return array($isOwner, $inGroup, $own, $grp, $gus, $perm);
+		return [$isOwner, $inGroup, $own, $grp, $gus, $perm];
 	}
 	
 	private function checkAuth($auth, $perm, $f_uid) {
@@ -94,7 +94,7 @@ class xelFinderMisc {
 			$user = $user_handler->get( $uid );
 			$groups = $user->getGroups();
 		} else {
-			$groups = array( XOOPS_GROUP_ANONYMOUS );
+			$groups = [XOOPS_GROUP_ANONYMOUS];
 		}
 		return $groups;
 	}

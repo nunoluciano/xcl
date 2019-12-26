@@ -6,13 +6,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyRenderBannerclientObject extends XoopsSimpleObject
 {
-    public $mBanners = array();
+    public $mBanners = [];
     public $_mBannersLoadedFlag = false;
     
     /**
      * @todo A name of this property is a strange. banner finish?
      */
-    public $mFinishBanners = array();
+    public $mFinishBanners = [];
     public $_mFinishBannersLoadedFlag = false;
     
     public $mBannerCount = null;

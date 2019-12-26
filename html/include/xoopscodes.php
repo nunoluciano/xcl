@@ -44,7 +44,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     &nbsp;<img src='".XOOPS_URL."/images/code.gif' alt='code' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeCode(\"$textarea_id\", \"".htmlspecialchars(_ENTERCODE, ENT_QUOTES)."\");' />
     &nbsp;<img src='".XOOPS_URL."/images/quote.gif' alt='quote' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeQuote(\"$textarea_id\");'/><br />\n";
 
-    $sizearray = array("xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large");
+    $sizearray = ["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"];
     echo "<select id='".$textarea_id."Size' onchange='setVisible(\"xoopsHiddenText\");setElementSize(\"".$hiddentext."\",this.options[this.selectedIndex].value);'>\n";
     echo "<option value='SIZE'>"._SIZE."</option>\n";
     foreach ($sizearray as $size) {
@@ -52,7 +52,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     }
     echo "</select>\n";
 
-    $fontarray = array("Arial", "Courier", "Georgia", "Helvetica", "Impact", "Verdana");
+    $fontarray = ["Arial", "Courier", "Georgia", "Helvetica", "Impact", "Verdana"];
     echo "<select id='".$textarea_id."Font' onchange='setVisible(\"xoopsHiddenText\");setElementFont(\"".$hiddentext."\",this.options[this.selectedIndex].value);'>\n";
     echo "<option value='FONT'>"._FONT."</option>\n";
     foreach ($fontarray as $font) {
@@ -60,7 +60,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     }
     echo "</select>\n";
 
-    $colorarray = array("00", "33", "66", "99", "CC", "FF");
+    $colorarray = ["00", "33", "66", "99", "CC", "FF"];
     echo "<select id='".$textarea_id."Color' onchange='setVisible(\"xoopsHiddenText\");setElementColor(\"".$hiddentext."\",this.options[this.selectedIndex].value);'>\n";
     echo "<option value='COLOR'>"._COLOR."</option>\n";
     foreach ($colorarray as $color1) {

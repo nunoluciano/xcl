@@ -36,7 +36,7 @@ class Profile_Admin_DefinitionsDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['field_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['field_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['field_id']->setDependsByArray(['required']);
         $this->mFieldProperties['field_id']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_FIELD_ID);
     }
 

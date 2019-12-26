@@ -14,7 +14,7 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
     **/
     public function preBlockFilter()
     {
-        $this->mRoot->mDelegateManager->add('Legacy_ActionFrame.CreateAction', array(&$this, '_createAction'), XCUBE_DELEGATE_PRIORITY_FIRST);
+        $this->mRoot->mDelegateManager->add('Legacy_ActionFrame.CreateAction', [&$this, '_createAction'], XCUBE_DELEGATE_PRIORITY_FIRST);
     }
 
     // override Legacy_ActionFrame::_createAction()
@@ -25,7 +25,7 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
             return;
         }
     
-        $overrideActionNames = array('ModuleList', 'ModuleInstall', 'ModuleUpdate', 'ModuleUninstall');
+        $overrideActionNames = ['ModuleList', 'ModuleInstall', 'ModuleUpdate', 'ModuleUninstall'];
         $actionName = ucfirst($actionFrame->mActionName);
 
         if (in_array($actionName, $overrideActionNames) === false) {

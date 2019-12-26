@@ -98,29 +98,29 @@ class D3forumTextSanitizer extends MyTextSanitizer
 	// additional pre filters
 	function prepareXcode( $text )
 	{
-		$patterns = array(
+		$patterns = [
 			'#\n?\[code\]\r?\n?#' ,
 			'#\n?\[\/code\]\r?\n?#' ,
 			'#\n?\[quote\]\r?\n?#' ,
 			'#\n?\[\/quote\]\r?\n?#' ,
-		) ;
-		$replacements = array(
+        ];
+		$replacements = [
 			'[code]' ,
 			'[/code]' ,
 			'[quote]' ,
 			"\n".'[/quote]' ,
-		) ;
+        ];
 		return preg_replace( $patterns , $replacements , $text ) ;
 	}
 
 	// additional post filters
 	function postCodeDecode( $text , $image )
 	{
-		$removal_tags = array( '[summary]' , '[/summary]' , '[pagebreak]' ) ;
+		$removal_tags = ['[summary]', '[/summary]', '[pagebreak]'];
 		$text = str_replace( $removal_tags , '' , $text ) ;
 
-		$patterns = array();
-		$replacements = array();
+		$patterns = [];
+		$replacements = [];
 
 		// [siteimg]
 		$patterns[] = "/\[siteimg align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
@@ -146,8 +146,8 @@ class D3forumTextSanitizer extends MyTextSanitizer
 	{
 		$text = parent::nl2Br( $text ) ;
 		if( $this->nbsp ) {
-			$patterns = array( '  ' , '\"' ) ;
-			$replaces = array( ' &nbsp;' , '"' ) ;
+			$patterns = ['  ', '\"'];
+			$replaces = [' &nbsp;', '"'];
 			$text = substr(preg_replace('/\>.*\</sU',"str_replace(\$patterns,\$replaces,'\\0')",">$text<"),1,-1);
 		}
 		return $text ;
@@ -165,7 +165,7 @@ class D3forumTextSanitizer extends MyTextSanitizer
 	function codeConv($text, $xcode = 1, $image = 1){
 		if( $xcode != 0 && ! defined( 'XOOPS_CUBE_LEGACY' ) ) {
 			// bug fix
-			$text = preg_replace_callback( "/\[code](.*)\[\/code\]/sU" , array( $this , 'myCodeSanitizer' ) , $text ) ;
+			$text = preg_replace_callback("/\[code](.*)\[\/code\]/sU" , [$this, 'myCodeSanitizer'], $text ) ;
 		} else {
 			$text = parent::codeConv( $text , $xcode , $image ) ;
 		}

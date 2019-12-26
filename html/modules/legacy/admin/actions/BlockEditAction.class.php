@@ -109,7 +109,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
             //
             // Insert group permissions.
             //
-            $currentGroupid = array();
+            $currentGroupid = [];
             foreach ($this->mObject->mGroup as $group) {
                 $currentGroupid[] = $group->get('groupid');
             }

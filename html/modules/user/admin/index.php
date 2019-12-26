@@ -11,7 +11,7 @@ $actionName = isset($_GET['action']) ? trim($_GET['action']) : "UserList";
 $moduleRunner = new User_ActionFrame(true);
 $moduleRunner->setActionName($actionName);
 
-$root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+$root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
 $root->mController->execute();
 

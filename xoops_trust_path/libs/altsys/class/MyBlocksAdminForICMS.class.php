@@ -5,7 +5,7 @@ require_once dirname(__FILE__).'/MyBlocksAdmin.class.php' ;
 class MyBlocksAdminForICMS extends MyBlocksAdmin
 {
 
-    public $block_positions = array() ;
+    public $block_positions = [];
 
     public function MyBlocksAadminForICMS()
     {
@@ -50,7 +50,7 @@ public function renderCell4BlockModuleLink($block_data)
     } else {
         // origined from the table of `block_module_link`
         $result = $this->db->query("SELECT module_id,page_id FROM ".$this->db->prefix('block_module_link')." WHERE block_id='$bid'") ;
-        $selected_pages = array();
+        $selected_pages = [];
         while (list($mid, $pid) = $this->db->fetchRow($result)) {
             $selected_pages[] = intval($mid) . '-' . intval($pid) ;
         }
@@ -85,7 +85,7 @@ public function renderCell4BlockPosition($block_data)
 			<td>".$this->renderRadio4BlockPosition(8, $block_data)."</td>
 		</tr>
 		<tr>
-			<td colspan='5'>".$this->renderRadio4BlockPositions($block_data, array(1, 2, 3, 4, 5, 6, 7, 8))."</td>
+			<td colspan='5'>".$this->renderRadio4BlockPositions($block_data, [1, 2, 3, 4, 5, 6, 7, 8]) . "</td>
 		</tr>
 	</table>" ;
 }
@@ -113,7 +113,7 @@ public function renderRadio4BlockPosition($target_side, $block_data)
 
 
 // private
-public function renderRadio4BlockPositions($block_data, $skip_sides = array())
+public function renderRadio4BlockPositions($block_data, $skip_sides = [])
 {
     $bid = intval($block_data['bid']) ;
     $visible = intval($block_data['visible']) ;

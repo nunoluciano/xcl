@@ -74,13 +74,13 @@ class XCube_ActionForm
      * @protected
      * @brief XCube_FormProperty[]
      */
-    public $mFormProperties = array();
+    public $mFormProperties = [];
     
     /**
      * @protected
      * @brief XCube_FieldProperty[]
      */
-    public $mFieldProperties = array();
+    public $mFieldProperties = [];
     
     /**
      * @protected
@@ -94,7 +94,7 @@ class XCube_ActionForm
      * @private
      * @brief string[]
      */
-    public $mErrorMessages = array();
+    public $mErrorMessages = [];
     
     /**
      * @protected
@@ -646,7 +646,7 @@ class XCube_DependClassFactory
         static $_cache;
         
         if (!is_array($_cache)) {
-            $_cache = array();
+            $_cache = [];
         }
         
         if (!isset($_cache[$dependName])) {

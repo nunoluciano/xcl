@@ -28,10 +28,10 @@ function b_user_online_show()
     $onlines =& $online_handler->getAll();
     if (false != $onlines) {
         $total = count($onlines);
-        $block = array();
+        $block = [];
         $guests = 0;
         $members = '';
-        $member_list = array();
+        $member_list = [];
         for ($i = 0; $i < $total; $i++) {
             if ($onlines[$i]['online_uid'] > 0) {
                 $member['uid'] = $onlines[$i]['online_uid'];

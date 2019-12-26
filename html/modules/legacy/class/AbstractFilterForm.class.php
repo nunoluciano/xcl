@@ -15,7 +15,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_AbstractFilterForm
 {
     public $mSort = 0;
-    public $mSortKeys = array();
+    public $mSortKeys = [];
     public $_mCriteria = null;
     public $mNavi = null;
     
@@ -33,7 +33,7 @@ class Legacy_AbstractFilterForm
         
         $this->_mCriteria =new CriteriaCompo();
         
-        $this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
+        $this->mNavi->mGetTotalItems->add([&$this, 'getTotalItems']);
     }
     
     public function getDefaultSortKey()

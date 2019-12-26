@@ -18,9 +18,9 @@ require_once XOOPS_MODULE_PATH."/user/admin/class/Permission.class.php";
  */
 class User_GroupPropertyAction extends User_Action
 {
-    public $_mActiveModules = array();
+    public $_mActiveModules = [];
     public $_mActiveModulesLoadedFlag = false;
-    public $_mActiveBlocks = array();
+    public $_mActiveBlocks = [];
     public $_mActiveBlocksLoadedFlag = false;
     
     public $mGroup;
@@ -85,7 +85,7 @@ class User_GroupPropertyAction extends User_Action
         //
         $this->_loadActiveModules();
     
-        $t_activeModuleIDs = array();
+        $t_activeModuleIDs = [];
     
         foreach ($this->_mActiveModules as $module) {
             $item =new User_PermissionModuleItem($module);
@@ -103,8 +103,8 @@ class User_GroupPropertyAction extends User_Action
         $blockHandler = xoops_gethandler('block');
         $this->_loadActiveBlocks();
         $idx = 0;
-        foreach (array(0, 1, 3, 4, 5) as $side) {
-            $this->mBlockPermissions[$idx] = array();
+        foreach ([0, 1, 3, 4, 5] as $side) {
+            $this->mBlockPermissions[$idx] = [];
 
             foreach ($this->_mActiveBlocks[$side] as $block) {
                 $item =new User_PermissionBlockItem($block);
@@ -139,15 +139,15 @@ class User_GroupPropertyAction extends User_Action
 
         $this->_loadActiveModules();
         
-        $t_activeModuleIDs = array();
+        $t_activeModuleIDs = [];
         foreach ($this->_mActiveModules as $module) {
             $t_activeModuleIDs[] = $module->get('mid');
         }
         $t_activeModuleIDs[] = 0;
 
         $blockHandler = xoops_gethandler('block');
-        foreach (array(0, 1, 3, 4, 5) as $side) {
-            $this->_mActiveBlocks[$side] = array();
+        foreach ([0, 1, 3, 4, 5] as $side) {
+            $this->_mActiveBlocks[$side] = [];
             $blockArr =& $blockHandler->getAllBlocks("object", $side, null);
 
             foreach ($blockArr as $block) {

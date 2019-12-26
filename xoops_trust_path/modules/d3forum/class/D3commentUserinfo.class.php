@@ -31,7 +31,7 @@ function fetchSummary( $link_id )
 	$user_handler =& xoops_gethandler( 'user' ) ;
 	$user =& $user_handler->get( $link_id ) ;
 	if( is_object( $user ) ) {
-		return array( 'module_name' => '' , 'subject' => $user->getVar('uname') , 'uri' => XOOPS_URL.'/userinfo.php?uid='.$link_id , 'summary' => '' ) ;
+		return ['module_name' => '', 'subject' => $user->getVar('uname'), 'uri' => XOOPS_URL . '/userinfo.php?uid=' . $link_id, 'summary' => ''];
 	} else {
 		return 'invalid uid' ;
 	}

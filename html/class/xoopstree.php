@@ -56,7 +56,7 @@ class XoopsTree
     // returns an array of first child objects for a given id($sel_id)
     public function getFirstChild($sel_id, $order="")
     {
-        $arr =array();
+        $arr = [];
         $sql = "SELECT * FROM ".$this->table." WHERE ".$this->pid."=".$sel_id."";
         if ($order != "") {
             $sql .= " ORDER BY $order";
@@ -75,7 +75,7 @@ class XoopsTree
     // returns an array of all FIRST child ids of a given id($sel_id)
     public function getFirstChildId($sel_id)
     {
-        $idarray =array();
+        $idarray = [];
         $result = $this->db->query("SELECT ".$this->id." FROM ".$this->table." WHERE ".$this->pid."=".$sel_id."");
         $count = $this->db->getRowsNum($result);
         if ($count == 0) {
@@ -88,7 +88,7 @@ class XoopsTree
     }
 
     //returns an array of ALL child ids for a given id($sel_id)
-    public function getAllChildId($sel_id, $order="", $idarray = array())
+    public function getAllChildId($sel_id, $order="", $idarray = [])
     {
         $sql = "SELECT ".$this->id." FROM ".$this->table." WHERE ".$this->pid."=".$sel_id."";
         if ($order != "") {
@@ -107,7 +107,7 @@ class XoopsTree
     }
 
     //returns an array of ALL parent ids for a given id($sel_id)
-    public function getAllParentId($sel_id, $order="", $idarray = array())
+    public function getAllParentId($sel_id, $order="", $idarray = [])
     {
         $sql = "SELECT ".$this->pid." FROM ".$this->table." WHERE ".$this->id."=".$sel_id."";
         if ($order != "") {
@@ -221,7 +221,7 @@ class XoopsTree
         return $path;
     }
 
-    public function getAllChild($sel_id=0, $order="", $parray = array())
+    public function getAllChild($sel_id=0, $order="", $parray = [])
     {
         $sql = "SELECT * FROM ".$this->table." WHERE ".$this->pid."=".$sel_id."";
         if ($order != "") {
@@ -239,7 +239,7 @@ class XoopsTree
         return $parray;
     }
 
-    public function getChildTreeArray($sel_id=0, $order="", $parray = array(), $r_prefix="")
+    public function getChildTreeArray($sel_id=0, $order="", $parray = [], $r_prefix="")
     {
         $sql = "SELECT * FROM ".$this->table." WHERE ".$this->pid."=".$sel_id."";
         if ($order != "") {

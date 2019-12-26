@@ -265,7 +265,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      * @protected
      * @brief XCube_AbstractProperty[] - std::map<mixed_key, mixed_value>
      */
-    public $mProperties = array();
+    public $mProperties = [];
     
     /**
      * @protected
@@ -354,7 +354,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     public function get($index = null)
     {
         if ($index === null) {
-            $ret = array();
+            $ret = [];
             
             foreach ($this->mProperties as $t_key => $t_value) {
                 $ret[$t_key] = $t_value->get();
@@ -373,7 +373,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     public function reset()
     {
         unset($this->mProperties);
-        $this->mProperties = array();
+        $this->mProperties = [];
     }
     
     /**
@@ -597,7 +597,7 @@ class XCube_TextProperty extends XCube_AbstractProperty
 {
     public function set($value)
     {
-        $matches = array();
+        $matches = [];
         
         // if (preg_match_all("/[\\x00-\\x08]|[\\x0b-\\x0c]|[\\x0e-\\x1f]/", $value, $matches,PREG_PATTERN_ORDER)) {
         // 	die("Get control code :" . ord($matches[0][0]));
@@ -720,7 +720,7 @@ class XCube_FileArrayProperty extends XCube_GenericArrayProperty
     public function fetch(&$form)
     {
         unset($this->mProperties);
-        $this->mProperties = array();
+        $this->mProperties = [];
         if (isset($_FILES[$this->mName]) && is_array($_FILES[$this->mName]['name'])) {
             foreach ($_FILES[$this->mName]['name'] as $_key => $_val) {
                 $this->mProperties[$_key] = new $this->mPropertyClassName($this->mName);

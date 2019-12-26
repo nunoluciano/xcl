@@ -16,7 +16,7 @@ If the first character in a line is #, ; or //, the line is treated as comment.
 
 class XCube_IniHandler
 {
-	protected /*** string[] ***/	$_mConfig = array();
+	protected /*** string[] ***/	$_mConfig = [];
 	protected /*** string ***/	$_mFilePath = null;
 	protected /*** bool ***/	$_mSectionFlag = false;
 
@@ -54,7 +54,7 @@ class XCube_IniHandler
 				elseif(preg_match('/\[(.*)\]/', $line, $str)){
 					if($this->_mSectionFlag===true){
 						$key = $str[1];
-						$this->_mConfig[$key] = array();
+						$this->_mConfig[$key] = [];
 					}
 				}
 				elseif(preg_match('/(.*)=(.*)/', $line, $str)){

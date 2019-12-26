@@ -39,19 +39,19 @@ class MessageForm extends XCube_ActionForm
         $this->set_Property('note', 'XCube_TextProperty');
     
         $this->mFieldProperties['uname'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['uname']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['uname']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['uname']->addMessage('required', _MD_MESSAGE_FORMERROR1);
         $this->mFieldProperties['uname']->addMessage('maxlength', _MD_MESSAGE_FORMERROR2);
         $this->mFieldProperties['uname']->addVar('maxlength', '30');
     
         $this->mFieldProperties['title'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['title']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['title']->addMessage('required', _MD_MESSAGE_FORMERROR3);
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_MESSAGE_FORMERROR4);
         $this->mFieldProperties['title']->addVar('maxlength', '100');
     
         $this->mFieldProperties['note'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['note']->setDependsByArray(array('required'));
+        $this->mFieldProperties['note']->setDependsByArray(['required']);
         $this->mFieldProperties['note']->addMessage('required', _MD_MESSAGE_FORMERROR5);
     }
   

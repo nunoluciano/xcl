@@ -25,7 +25,7 @@ class LegacyRenderModuletplObject extends XoopsSimpleObject
 
 class LegacyRenderTplsetObject extends XoopsSimpleObject
 {
-    public $mModuleTemplates = array();
+    public $mModuleTemplates = [];
     // !Fix deprecated constructor for php 7.x
     public function __construct()   
     // public function LegacyRenderTplsetObject()

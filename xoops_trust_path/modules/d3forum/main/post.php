@@ -104,10 +104,10 @@ if( $mode == 'edit' ) {
 
 
 // FETCH request (POST)
-$requests_01 = array( 'html' , 'smiley' , 'xcode' , 'br' , 'number_entity' , 'special_entity' , 'attachsig' ) ;
+$requests_01 = ['html', 'smiley', 'xcode', 'br', 'number_entity', 'special_entity', 'attachsig'];
 if( $isadminormod ) $requests_01[] = 'invisible' ;
-$requests_int = array( 'icon' ) ;
-$requests_text = array( 'subject' , 'message' , 'guest_name' , 'guest_email' , 'guest_url' , 'guest_pass' ) ;
+$requests_int = ['icon'];
+$requests_text = ['subject', 'message', 'guest_name', 'guest_email', 'guest_url', 'guest_pass'];
 
 // 0/1 flags
 foreach( $requests_01 as $key ) {
@@ -232,7 +232,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 			$guest_trip = '' ;
 		}
 		$guest_url = preg_match( '#^https?\://#' , $guest_url ) ? $guest_url : '' ;
-		foreach( array('guest_name','guest_email','guest_url','guest_trip') as $key ) {
+		foreach(['guest_name', 'guest_email', 'guest_url', 'guest_trip'] as $key ) {
 			$set4sql .= ",$key='".addslashes($$key)."'" ;
 		}
 		if( ! empty( $guest_pass ) ) {
@@ -344,7 +344,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		}
 
 	// Define tags for notification message
-	$tags = array(
+	$tags = [
 		//'POSTER_UNAME' => $uid > 0 && ! $hide_uid ? $xoopsUser->getVar('uname') :  $guest_name ,
 		'POSTER_UNAME' => $poster_uname4disp ,
 		// naao to
@@ -358,11 +358,11 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		'FORUM_URL' => XOOPS_URL."/modules/$mydirname/index.php?forum_id=$forum_id" ,
 		'CAT_TITLE' => $cat_row['cat_title'] ,
 		'CAT_URL' => XOOPS_URL."/modules/$mydirname/index.php?cat_id=$cat_id" ,
-	) ;
+    ];
 
 	$notification_handler =& xoops_gethandler('notification') ;
 	$users2notify = d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id ) ;
-	if( empty( $users2notify ) ) $users2notify = array( 0 ) ;
+	if( empty( $users2notify ) ) $users2notify = [0];
 
 	if( ! empty( $need_notify ) ) {
 		// naao added Nov.2012 for check auth for parent entry
@@ -370,7 +370,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 			if( $external_link_id === $d3com->validate_id( $external_link_id ) ) {
 				$users2notify = $d3com->validate_users2notify( $external_link_id, $users2notify ) ;
 			} else {
-				$users2notify = array( );
+				$users2notify = [];
 			}
 		}
 		if( $mode == 'newtopic' ) {

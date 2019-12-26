@@ -32,7 +32,7 @@ class Legacy_SmilesAdminDeleteForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['id']->setDependsByArray(['required']);
         $this->mFieldProperties['id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_ID);
     }
 

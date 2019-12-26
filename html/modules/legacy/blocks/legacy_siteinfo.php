@@ -24,7 +24,7 @@ function b_legacy_siteinfo_show($options)
     global $xoopsConfig, $xoopsUser;
     $xoopsDB =& Database::getInstance();
     $myts =& MyTextSanitizer::sGetInstance();
-    $block = array();
+    $block = [];
     if (!empty($options[3])) {
         $block['showgroups'] = true;
         $result = $xoopsDB->query("SELECT u.uid, u.uname, u.email, u.user_viewemail, u.user_avatar, g.name AS groupname FROM ".$xoopsDB->prefix("groups_users_link")." l LEFT JOIN ".$xoopsDB->prefix("users")." u ON l.uid=u.uid LEFT JOIN ".$xoopsDB->prefix("groups")." g ON l.groupid=g.groupid WHERE g.group_type='Admin' ORDER BY l.groupid, u.uid");
@@ -37,12 +37,12 @@ function b_legacy_siteinfo_show($options)
                     $block['groups'][$i]['name'] = $myts->htmlSpecialChars($userinfo['groupname']);
                 }
                 if (is_object($xoopsUser)) {
-                    $block['groups'][$i]['users'][] = array('id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => "<a href=\"".XOOPS_URL."/modules/message/index.php?action=new&to_userid=".$userinfo['uid']."\"><img src=\"".XOOPS_URL."/images/icons/pm_small.gif\" border=\"0\" alt=\"\" /></a>", 'avatar' => XOOPS_UPLOAD_URL.'/'.$userinfo['user_avatar']);
+                    $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => "<a href=\"" . XOOPS_URL . "/modules/message/index.php?action=new&to_userid=" . $userinfo['uid'] . "\"><img src=\"" . XOOPS_URL . "/images/icons/pm_small.gif\" border=\"0\" alt=\"\" /></a>", 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
                 } else {
                     if ($userinfo['user_viewemail']) {
-                        $block['groups'][$i]['users'][] = array('id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '<a href="mailto:'.$userinfo['email'].'"><img src="'.XOOPS_URL.'/images/icons/em_small.gif" border="0" width="16" height="14" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL.'/'.$userinfo['user_avatar']);
+                        $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '<a href="mailto:' . $userinfo['email'] . '"><img src="' . XOOPS_URL . '/images/icons/em_small.gif" border="0" width="16" height="14" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
                     } else {
-                        $block['groups'][$i]['users'][] = array('id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '&nbsp;', 'avatar' => XOOPS_UPLOAD_URL.'/'.$userinfo['user_avatar']);
+                        $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '&nbsp;', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
                     }
                 }
                 $i++;

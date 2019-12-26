@@ -9,7 +9,7 @@ if( $xoops_cookie_path == XOOPS_URL ) $xoops_cookie_path = '/' ;
 // update cookie
 setcookie( $mydirname.'_postorder' , intval( $_GET['postorder'] ) , time() + 86400 * 30 , $xoops_cookie_path ) ;
 
-$allowed_identifiers = array( 'post_id' , 'topic_id' , 'forum_id' ) ;
+$allowed_identifiers = ['post_id', 'topic_id', 'forum_id'];
 
 if( in_array( $_GET['ret_name'] , $allowed_identifiers ) ) {
 	$ret_request = $_GET['ret_name'] . '=' . intval( $_GET['ret_val'] ) ;

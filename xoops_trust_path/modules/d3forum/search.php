@@ -27,7 +27,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	// get all forums
 	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
 	$frs = $db->query( $sql ) ;
-	$d3com = array() ;
+	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
 		// d3comment object
 		$temp_forum_id = intval($forum_row['forum_id']);
@@ -57,9 +57,9 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 		$keywords = array_map('stripslashes', $keywords);
 		foreach( $keywords as $word ) {
 			$word4sql = addslashes($word);
-			$word_or = array('subject LIKE \'%'.$word4sql.'%\' OR post_text LIKE \'%'.$word4sql.'%\'');
+			$word_or = ['subject LIKE \'%' . $word4sql . '%\' OR post_text LIKE \'%' . $word4sql . '%\''];
 			if (($charset === 'UTF-8' || $charset === 'EUC-JP') && function_exists('mb_convert_kana')) {
-				foreach(array('a', 'A', 'k', 'KV', 'h', 'HV', 'c', 'C') as $_op) {
+				foreach(['a', 'A', 'k', 'KV', 'h', 'HV', 'c', 'C'] as $_op) {
 					$_word = mb_convert_kana($word, $_op, $charset);
 					if ($_word !== $word) {
 						$word4sql = addslashes($_word);
@@ -76,7 +76,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	$sql = "SELECT p.post_id,p.topic_id,p.post_time,p.uid,p.subject,p.html,p.smiley,p.xcode,p.br,$select4con,t.topic_external_link_id,f.forum_id FROM (SELECT post_id,topic_id,post_time,uid,subject,html,smiley,xcode,br{$subselect4con} FROM ".$db->prefix($mydirname."_posts")." WHERE ($whr_uid) AND ($whr_query) ORDER BY post_time DESC) p LEFT JOIN ".$db->prefix($mydirname."_topics")." t ON t.topic_id=p.topic_id  LEFT JOIN ".$db->prefix($mydirname."_forums")." f ON t.forum_id = f.forum_id WHERE ($whr_forum) AND ! t.topic_invisible" ;
 	
 	$result = $db->query( $sql , $limit , $offset ) ;
-	$ret = array() ;
+	$ret = [];
 	$context = '' ;
 
 	// nao-pon
@@ -105,13 +105,13 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 				$context = $make_context_func( $full_context , $keywords ) ;
 			}
 
-			$ret[] = array(
+			$ret[] = [
 				'link' => "index.php?post_id=$post_id" ,
 				'title' => htmlspecialchars( $subject, ENT_QUOTES ) ,
 				'time' => $post_time ,
 				'uid' => $uid ,
 				'context' => $context ,
-			) ;
+            ];
 		}	// naao
 	}
 	// for xoops search module

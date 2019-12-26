@@ -14,7 +14,7 @@
 
 function b_legacy_waiting_show()
 {
-    $modules = array();
+    $modules = [];
     XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
     $block['modules'] = $modules;
     return $block;

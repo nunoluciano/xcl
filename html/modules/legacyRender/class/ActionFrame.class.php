@@ -33,7 +33,7 @@ class LegacyRender_ActionFrame
         $this->mAdminFlag = $admin;
         $this->mCreateAction =new XCube_Delegate();
         $this->mCreateAction->register('LegacyRender_ActionFrame.CreateAction');
-        $this->mCreateAction->add(array(&$this, '_createAction'));
+        $this->mCreateAction->add([&$this, '_createAction']);
     }
 
     public function setActionName($name)

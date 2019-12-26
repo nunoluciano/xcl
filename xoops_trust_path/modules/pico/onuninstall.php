@@ -15,9 +15,9 @@ if (!function_exists('pico_onuninstall_base')) {
 		if (defined('XOOPS_CUBE_LEGACY')) {
 			$root = &XCube_Root::getSingleton();
 			$root->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.' . ucfirst($mydirname) . '.Success', 'pico_message_append_onuninstall');
-			$ret = array();
+			$ret = [];
 		} else {
-			if (!is_array($ret)) $ret = array();
+			if (!is_array($ret)) $ret = [];
 		}
 
 		$db = XoopsDatabaseFactory::getDatabaseConnection();

@@ -40,7 +40,7 @@ define('COMMENT_SORT_KEY_MAXVALUE', 20);
 
 class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         COMMENT_SORT_KEY_COM_ID => 'com_id',
         COMMENT_SORT_KEY_COM_PID => 'com_pid',
         COMMENT_SORT_KEY_COM_ROOTID => 'com_rootid',
@@ -61,7 +61,7 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         COMMENT_SORT_KEY_DOXCODE => 'doxcode',
         COMMENT_SORT_KEY_DOIMAGE => 'doimage',
         COMMENT_SORT_KEY_DOBR => 'dobr'
-    );
+    ];
     //wanikoo
     public $mKeyword = "";
     public $mSearchField = "";

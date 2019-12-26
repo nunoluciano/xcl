@@ -17,7 +17,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 class Legacy_BackendAction extends Legacy_Action
 {
-    public $mItems = array();
+    public $mItems = [];
     
     /**
      * The spec of getRSS():
@@ -50,10 +50,10 @@ class Legacy_BackendAction extends Legacy_Action
     
     public function getDefaultView(&$controll, &$xoopsUser)
     {
-        $items = array();
+        $items = [];
         $this->mGetRSSItems->call(new XCube_Ref($items));
 
-        $sortArr = array();
+        $sortArr = [];
         foreach ($items as $item) {
             $i = intval($item['pubdate']);
             for (; isset($sortArr[$i]) ; $i++);

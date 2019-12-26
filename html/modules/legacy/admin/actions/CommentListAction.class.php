@@ -19,9 +19,9 @@ require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/CommentEditAction.class.
 
 class Legacy_CommentListAction extends Legacy_AbstractListAction
 {
-    public $mCommentObjects = array();
+    public $mCommentObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -66,7 +66,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             $this->mObjects[$key]->loadStatus();
         }
         
-        $moduleArr = array();
+        $moduleArr = [];
         $handler =& xoops_getmodulehandler('comment');
         $modIds = $handler->getModuleIds();
         
@@ -79,7 +79,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             unset($module);
         }
         
-        $statusArr = array();
+        $statusArr = [];
         $statusHandler =& xoops_getmodulehandler('commentstatus');
         $statusArr =& $statusHandler->getObjects();
         
@@ -189,7 +189,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $criteria->add(new Criteria('com_itemid', $comment->getVar('com_itemid')));
                             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
                             $comment_count = $comment_handler->getCount($criteria);
-                            call_user_func_array($function, array($comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')));
+                            call_user_func_array($function, [$comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')]);
                         }
                     }
 
@@ -212,7 +212,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $not_category = $not_catinfo['name'];
                             $not_itemid = $comment->getVar('com_itemid');
                             $not_event = $notify_event;
-                            $comment_tags = array();
+                            $comment_tags = [];
                             $module_handler =& xoops_gethandler('module');
                             $not_module =& $module_handler->get($not_modid);
                             $com_config =& $not_module->getInfo('comments');
@@ -254,7 +254,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $child_comments =& $xot->getFirstChild($cid);
                  // now set new parent ID for direct child comments
                 $new_pid = $comment->getVar('com_pid');
-                            $errs = array();
+                            $errs = [];
                             foreach (array_keys($child_comments) as $i) {
                                 $child_comments[$i]->setVar('com_pid', $new_pid);
                  // if the deleted comment is a root comment, need to change root id to own id
@@ -296,7 +296,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                                     $criteria->add(new Criteria('com_itemid', $comment->getVar('com_itemid')));
                                     $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
                                     $comment_count = $comment_handler->getCount($criteria);
-                                    call_user_func_array($function, array($comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')));
+                                    call_user_func_array($function, [$comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')]);
                                 }
                             }
                         }//if object

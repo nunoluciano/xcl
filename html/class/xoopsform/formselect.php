@@ -58,7 +58,7 @@ class XoopsFormSelect extends XoopsFormElement
      * @var array   
      * @access	private
      */
-    public $_options = array();
+    public $_options = [];
 
     /**
      * Allow multiple selections?
@@ -79,7 +79,7 @@ class XoopsFormSelect extends XoopsFormElement
      * @var	array   
      * @access	private
      */
-    public $_value = array();
+    public $_value = [];
 
     /**
      * Constructor

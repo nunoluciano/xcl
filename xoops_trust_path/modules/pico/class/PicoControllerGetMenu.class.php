@@ -36,7 +36,7 @@ class PicoControllerGetMenu extends PicoControllerAbstract
 			}
 		}
 
-		$categories4assign = array();
+		$categories4assign = [];
 		foreach ($categories as $cat_id => $categoryObj) {
 			// assign categories
 			$categories4assign[$cat_id] = $categoryObj->getData4html();

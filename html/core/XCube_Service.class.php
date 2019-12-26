@@ -16,14 +16,14 @@ function S_PUBLIC_FUNC($definition)
 {
     $pos = strpos($definition, '(');
     if ($pos > 0) {
-        $params = array();
+        $params = [];
         foreach (explode(',', substr($definition, $pos + 1, -1)) as $t_param) {
             if ($t_param) {
                 list($k, $v) = explode(' ', trim($t_param));
                 $params[$k] = $v;
             }
         }
-        $ret = array('in' => $params);
+        $ret = ['in' => $params];
         list($ret['out'], $ret['name']) = explode(' ', substr($definition, 0, $pos));
         return $ret;
     }
@@ -63,9 +63,9 @@ class XCube_Service
      */
     public $_mActionStrategy = null;
     
-    public $_mTypes = array();
+    public $_mTypes = [];
     
-    public $_mFunctions = array();
+    public $_mFunctions = [];
     
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
@@ -97,11 +97,11 @@ class XCube_Service
     
     public function _addFunctionStandard($name, $in, $out)
     {
-        $this->_mFunctions[$name] = array(
+        $this->_mFunctions[$name] = [
             'out' => $out,
             'name' => $name,
             'in' => $in
-        );
+        ];
     }
 
     /**
@@ -189,7 +189,7 @@ class XCube_ServiceClient extends XCube_AbstractServiceClient
         $root->mContext->mRequest = new XCube_GenericRequest($params);
         
         if (isset($this->mService->_mFunctions[$operation])) {
-            $ret = call_user_func(array($this->mService, $operation));
+            $ret = call_user_func([$this->mService, $operation]);
             
             unset($root->mContext->mRequest);
             $root->mContext->mRequest =& $request_bak;

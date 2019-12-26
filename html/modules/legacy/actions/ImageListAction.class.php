@@ -77,7 +77,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         if (is_object($xoopsUser)) {
             $groups = $xoopsUser->getGroups();
         } else {
-            $groups = array(XOOPS_GROUP_ANONYMOUS);
+            $groups = [XOOPS_GROUP_ANONYMOUS];
         }
         $categoryArr =& $handler->getObjectsWithReadPerm($groups, 1);
         

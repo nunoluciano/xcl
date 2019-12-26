@@ -16,7 +16,7 @@ require_once XOOPS_ROOT_PATH . "/core/XCube_PageNavigator.class.php";
 
 class Legacy_AbstractListAction extends Legacy_Action
 {
-    public $mObjects = array();
+    public $mObjects = [];
     
     public $mFilter = null;
 

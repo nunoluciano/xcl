@@ -159,10 +159,10 @@ class XoopsModule extends XoopsObject
      */
     public function &subLink()
     {
-        $ret = array();
+        $ret = [];
         if ($this->getInfo('sub') && is_array($this->getInfo('sub'))) {
             foreach ($this->getInfo('sub') as $submenu) {
-                $ret[] = array('name' => $submenu['name'], 'url' => $submenu['url']);
+                $ret[] = ['name' => $submenu['name'], 'url' => $submenu['url']];
             }
         }
         return $ret;
@@ -180,7 +180,7 @@ class XoopsModule extends XoopsObject
         } else {
             if ($menu && file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$menu)) {
                 include $path;
-                $this->adminmenu = (isset($adminmenu) && is_array($adminmenu))? $adminmenu : array();
+                $this->adminmenu = (isset($adminmenu) && is_array($adminmenu))? $adminmenu : [];
             }
         }
     }
@@ -362,7 +362,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @var    array
      * @access private
      */
-    public $_cachedModule_mid = array();
+    public $_cachedModule_mid = [];
 
     /**
      * holds an array of cached module references, indexed by module dirname
@@ -370,7 +370,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @var    array
      * @access private
      */
-    public $_cachedModule_dirname = array();
+    public $_cachedModule_dirname = [];
 
     /**
      * Create a new {@link XoopsModule} object
@@ -540,7 +540,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
 
         $sql = sprintf("SELECT block_id FROM %s WHERE module_id = %u", $this->db->prefix('block_module_link'), $module->getVar('mid'));
         if ($result = $this->db->query($sql)) {
-            $block_id_arr = array();
+            $block_id_arr = [];
             while ($myrow = $this->db->fetchArray($result)) {
                 array_push($block_id_arr, $myrow['block_id']);
             }
@@ -583,7 +583,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('modules');
@@ -653,7 +653,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function &getList($criteria = null, $dirname_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $modules =& $this->getObjects($criteria, true);
         foreach ($modules as $i=>$module) {
             if (!$dirname_as_key) {

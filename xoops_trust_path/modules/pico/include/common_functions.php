@@ -29,7 +29,7 @@ function pico_common_get_objects_from_content_id($mydirname, $content_id)
 	$categoryObj = new PicoCategory($mydirname, intval($cat_id), $permissions);
 	$contentObj = new PicoContent($mydirname, $content_id, $categoryObj);
 
-	return array($categoryObj, $contentObj);
+	return [$categoryObj, $contentObj];
 }
 
 // deprecated
@@ -70,7 +70,7 @@ function pico_common_get_categories_can_read($mydirname, $uid = null)
 		$cat_ids[] = intval($cat_id);
 	}
 
-	if (empty($cat_ids)) return array(0);
+	if (empty($cat_ids)) return [0];
 	else return $cat_ids;
 }
 
@@ -136,7 +136,7 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 
 	$module_handler = &xoops_gethandler('module');
 	$module = &$module_handler->getByDirname($mydirname);
-	if (!is_object($module)) return array();
+	if (!is_object($module)) return [];
 	$config_handler = &xoops_gethandler('config');
 	$mod_config = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
@@ -144,19 +144,19 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
 	$whr_read = '`cat_id` IN (' . implode(",", pico_common_get_categories_can_read($mydirname)) . ')';
-	$categories = array(0 => array('pid' => -1, 'name' => '', 'url' => '', 'sub' => array()));
+	$categories = [0 => ['pid' => -1, 'name' => '', 'url' => '', 'sub' => []]];
 
 	// categories query
 	$sql = "SELECT cat_id,pid,cat_title,cat_vpath FROM " . $db->prefix($mydirname . "_categories") . " WHERE ($whr_read) ORDER BY cat_order_in_tree";
 	$crs = $db->query($sql);
 	if ($crs) while ($cat_row = $db->fetchArray($crs)) {
 		$cat_id = intval($cat_row['cat_id']);
-		$categories[$cat_id] = array(
+		$categories[$cat_id] = [
 			'name' => $myts->makeTboxData4Show($cat_row['cat_title'], 1, 1),
 			'url' => pico_common_make_category_link4html($mod_config, $cat_row),
 			'is_category' => true,
 			'pid' => $cat_row['pid'],
-		);
+        ];
 	}
 
 	if (!($caller == 'sitemap_plugin' && !@$mod_config['sitemap_showcontents']) && !($caller == 'xoops_version' && !@$mod_config['submenu_showcontents'])) {
@@ -164,32 +164,32 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 		$ors = $db->query("SELECT cat_id,content_id,vpath,subject FROM " . $db->prefix($mydirname . "_contents") . " WHERE show_in_menu AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND $whr_read ORDER BY weight,content_id");
 		if ($ors) while ($content_row = $db->fetchArray($ors)) {
 			$cat_id = intval($content_row['cat_id']);
-			$categories[$cat_id]['sub'][] = array(
+			$categories[$cat_id]['sub'][] = [
 				'name' => $myts->makeTboxData4Show($content_row['subject'], 1, 1),
 				'url' => pico_common_make_content_link4html($mod_config, $content_row),
 				'is_category' => false,
-			);
+            ];
 		}
 	}
 
 	// restruct categories
-	$top_sub = !empty($categories[0]['sub']) ? $categories[0]['sub'] : array();
+	$top_sub = !empty($categories[0]['sub']) ? $categories[0]['sub'] : [];
 	$submenus_cache[$caller][$mydirname] = array_merge($top_sub, pico_common_restruct_categories($categories, 0));
 	return $submenus_cache[$caller][$mydirname];
 }
 
 function pico_common_restruct_categories($categories, $parent)
 {
-	$ret = array();
+	$ret = [];
 	foreach ($categories as $cat_id => $category) {
 		if ($category['pid'] == $parent) {
-			if (empty($category['sub'])) $category['sub'] = array();
-			$ret[] = array(
+			if (empty($category['sub'])) $category['sub'] = [];
+			$ret[] = [
 				'name' => $category['name'],
 				'url' => $category['url'],
 				'is_category' => $category['is_category'],
 				'sub' => array_merge($category['sub'], pico_common_restruct_categories($categories, $cat_id)),
-			);
+            ];
 		}
 	}
 
@@ -219,7 +219,7 @@ function pico_common_get_cat_options($mydirname)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$crs = $db->query("SELECT c.cat_id,c.cat_title,c.cat_depth_in_tree,COUNT(o.content_id) FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_contents") . " o ON c.cat_id=o.cat_id GROUP BY c.cat_id ORDER BY c.cat_order_in_tree");
-	$cat_options = array(0 => _MD_PICO_TOP);
+	$cat_options = [0 => _MD_PICO_TOP];
 	while (list($id, $title, $depth, $contents_num) = $db->fetchRow($crs)) {
 		$cat_options[$id] = str_repeat('--', $depth) . htmlspecialchars($title, ENT_QUOTES) . " ($contents_num)";
 	}
@@ -244,9 +244,9 @@ function pico_common_unhtmlspecialchars($data)
 		return array_map('pico_common_unhtmlspecialchars', $data);
 	} else {
 		return str_replace(
-			array('&lt;', '&gt;', '&amp;', '&quot;', '&#039;'),
-			array('<', '>', '&', '"', "'"),
-			$data
+            ['&lt;', '&gt;', '&amp;', '&quot;', '&#039;'],
+            ['<', '>', '&', '"', "'"],
+            $data
 		);
 	}
 }
@@ -258,9 +258,9 @@ function pico_common_serialize($data)
 
 function pico_common_unserialize($serialized_data)
 {
-	if (empty($serialized_data)) return array();
+	if (empty($serialized_data)) return [];
 
-	$ret = array();
+	$ret = [];
 	if (substr(trim($serialized_data), 0, 5) == 'array') {
 		// assume this is a string made from var_export( $var , true ) ;
 		@eval('$ret=' . $serialized_data . ';');
@@ -269,7 +269,7 @@ function pico_common_unserialize($serialized_data)
 		$ret = @unserialize($serialized_data);
 	}
 
-	if (!is_array($ret)) $ret = array();
+	if (!is_array($ret)) $ret = [];
 
 	return $ret;
 }

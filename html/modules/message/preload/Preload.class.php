@@ -45,10 +45,10 @@ class Message_Preload extends XCube_ActionFilter
             $num = $modHand->getCountUnreadByFromUid($uid);
             if ($num > 0) {
                 $root->mLanguageManager->loadModuleMessageCatalog('message');
-                $arrays[] = array(
+                $arrays[] = [
           'url' => XOOPS_MODULE_URL.'/message/index.php',
           'title' => XCube_Utils::formatString(_MD_MESSAGE_NEWMESSAGE, $num)
-        );
+                ];
             }
         }
     }

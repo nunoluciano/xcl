@@ -25,9 +25,9 @@ class User_EncryptPassword extends XCube_ActionFilter
 
     public function preFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("User.EncryptPassword", array($this, 'encryptPassword'));
-        $this->mController->mRoot->mDelegateManager->add("User.PasswordVerify", array($this, 'passwordVerify'));
-        $this->mController->mRoot->mDelegateManager->add("User.PasswordNeedsRehash", array($this, 'needsRehash'));
+        $this->mController->mRoot->mDelegateManager->add("User.EncryptPassword", [$this, 'encryptPassword']);
+        $this->mController->mRoot->mDelegateManager->add("User.PasswordVerify", [$this, 'passwordVerify']);
+        $this->mController->mRoot->mDelegateManager->add("User.PasswordNeedsRehash", [$this, 'needsRehash']);
     }
 
     public function encryptPassword(&$password)

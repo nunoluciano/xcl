@@ -20,9 +20,9 @@ altsys_include_language_file('compilehookadmin') ;
 // DEFINITIONS
 //
 
-$compile_hooks = array(
+$compile_hooks = [
 
-    'enclosebycomment' => array(
+    'enclosebycomment' => [
         'pre' => '<!-- begin altsys_tplsadmin %s -->' ,
         'post' => '<!-- end altsys_tplsadmin %s -->' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT ,
@@ -30,9 +30,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_ENCLOSEBYCOMMENT ,
         'conf_msg' => _TPLSADMIN_CNF_ENCLOSEBYCOMMENT ,
         'skip_theme' => true ,
-    ) ,
+    ],
 
-    'enclosebybordereddiv' => array(
+    'enclosebybordereddiv' => [
         'pre' => '<div class="altsys_tplsadmin_frame" style="border:1px solid black;word-wrap:break-word;">' ,
         'post' => '<br /><a href="'.XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=%1$s" style="color:red;">Edit:<br />%1$s</a></div>' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYBORDEREDDIV ,
@@ -40,9 +40,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV ,
         'conf_msg' => _TPLSADMIN_CNF_ENCLOSEBYBORDEREDDIV ,
         'skip_theme' => true ,
-    ) ,
+    ],
 
-    'hooksavevars' => array(
+    'hooksavevars' => [
         'pre' => '<?php include_once "'.XOOPS_TRUST_PATH.'/libs/altsys/include/compilehook.inc.php" ; tplsadmin_save_tplsvars(\'%s\',$this) ; ?>' ,
         'post' => '' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_HOOKSAVEVARS ,
@@ -50,9 +50,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_HOOKSAVEVARS ,
         'conf_msg' => _TPLSADMIN_CNF_HOOKSAVEVARS ,
         'skip_theme' => false ,
-    ) ,
+    ],
 
-    'removehooks' => array(
+    'removehooks' => [
         'pre' => '' ,
         'post' => '' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_REMOVEHOOKS ,
@@ -60,9 +60,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_REMOVEHOOKS ,
         'conf_msg' => _TPLSADMIN_CNF_REMOVEHOOKS ,
         'skip_theme' => false ,
-    ) ,
+    ],
 
-) ;
+];
 
 
 //
