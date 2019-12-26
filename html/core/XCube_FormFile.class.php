@@ -132,8 +132,8 @@ class XCube_FormFile
 
     /**
      * Set content type
-     * @param $contenttype string
-    */
+     * @param string $contenttype
+     */
     public function setContentType($contenttype)
     {
         $this->mContentType=$contenttype;
@@ -141,7 +141,7 @@ class XCube_FormFile
 
     /**
      * Set file name
-     * @param $filename string
+     * @param string $filename
      */
     public function setFileName($filename)
     {
@@ -150,7 +150,7 @@ class XCube_FormFile
 
     /**
      * Set file size
-     * @param $filesize int
+     * @param int $filesize
      */
     public function setFileSize($filesize)
     {
@@ -159,7 +159,7 @@ class XCube_FormFile
 
     /**
      * Set file body name. The extension is never changed.
-     * @param $bodyname string
+     * @param string $bodyname
      */
     public function setBodyName($bodyname)
     {
@@ -181,8 +181,8 @@ class XCube_FormFile
 
     /**
      * Set random string to file body name. The extension is never changed.
-     * @param $prefix string Prefix for random string.
-     * @param $salt string Salt for generating token.
+     * @param string $prefix Prefix for random string.
+     * @param string $salt   Salt for generating token.
      */
     public function setRandomToBodyName($prefix, $salt='')
     {
@@ -192,8 +192,8 @@ class XCube_FormFile
 
     /**
      * Set random string to file body name. The extension is changed.
-     * @param $prefix string Prefix for random string.
-     * @param $salt string Salt for generating token.
+     * @param string $prefix Prefix for random string.
+     * @param string $salt   Salt for generating token.
      */
     public function setRandomToFilename($prefix, $salt='')
     {
@@ -203,7 +203,7 @@ class XCube_FormFile
 
     /**
      * @brief Generate random string.
-     * @param $salt string Salt for generating token.
+     * @param string $salt Salt for generating token.
      * @return string
      */
     public function _getRandomString($salt='')
@@ -220,7 +220,7 @@ class XCube_FormFile
      * Name this, and store it. If the name is specified as complete file name, store it as the same name.
      * If the name is specified as directory name, store it as the own name to the directory specified.
      *
-     * @param $file Directory path or file path.
+     * @param Directory $file path or file path.
      * @return bool
      */
     public function saveAs($file)
@@ -245,12 +245,12 @@ class XCube_FormFile
 
     /**
      * Set random string to file body name, and store it. The extension is never changed.
-     * @see saveAs()
-     * @see setRandomToBodyName()
-     * @param $dir Directory for store.
-     * @param $prefix string Prefix for random string.
-     * @param $salt string Salt for generating token.
+     * @param Directory $dir    for store.
+     * @param string    $prefix Prefix for random string.
+     * @param string    $salt   Salt for generating token.
      * @return bool
+     *@see saveAs()
+     * @see setRandomToBodyName()
      */
     public function saveAsRandBody($dir, $prefix='', $salt='')
     {
@@ -260,12 +260,12 @@ class XCube_FormFile
 
     /**
      * Set random string to file name, and store it. The extension is never changed.
-     * @see saveAs()
-     * @see setRandomToFileName()
-     * @param $dir Directory for store.
-     * @param $prefix string Prefix for random string.
-     * @param $salt string Salt for generating token.
+     * @param Directory $dir    for store.
+     * @param string    $prefix Prefix for random string.
+     * @param string    $salt   Salt for generating token.
      * @return bool
+     *@see saveAs()
+     * @see setRandomToFileName()
      */
     public function saveAsRand($dir, $prefix='', $salt='')
     {

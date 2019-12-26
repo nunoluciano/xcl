@@ -222,7 +222,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
     
     /**
      * Return the collect of private message objects which appointed user received.
-     * @param $uid int user id
+     * @param int $uid user id
      * @return array of XoopsPrivmessage.
      */
     public function &getObjectsByFromUid($uid, $start=0, $limit=20, $order = 'DESC')

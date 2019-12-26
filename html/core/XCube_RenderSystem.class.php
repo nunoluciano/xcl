@@ -96,7 +96,7 @@ class XCube_RenderTarget
     
     /**
      * Set render-target type.
-     * @param $type int Use constants that are defined by us.
+     * @param int $type Use constants that are defined by us.
      * @deprecated
      */
     public function setType($type)

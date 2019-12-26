@@ -305,7 +305,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
     /**
      * SQL generation helper
-     * @param $obj xoopsObject
+     * @param xoopsObject $obj
      * @return Array
     */
     public function _makeVars4sql(&$obj)
@@ -340,8 +340,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     }
 
     /**
-     * @param $criteria CriteriaElement
-     * @param $obj      XoopsSimpleObject
+     * @param CriteriaElement   $criteria
+     * @param XoopsSimpleObject $obj
      * @return string|null
      */
     public function _makeCriteriaElement4sql($criteria, &$obj)

@@ -483,8 +483,8 @@ class Legacy_ModuleInstallUtils
     
     /**
      * Create XoopsBlock object by array that is defined in xoops_version, return it.
-     * @param $module XoopsModule
-     * @param $block array
+     * @param XoopsModule $module
+     * @param array       $block
      * @return XoopsBlock
      */
     public static function &createBlockByInfo(&$module, $block, $func_num)
@@ -530,9 +530,9 @@ class Legacy_ModuleInstallUtils
     
     /**
      * This function can receive both new and update.
-     * @param $module XoopsModule
-     * @param $blockObj XoopsBlock
-     * @param $block array
+     * @param XoopsModule $module
+     * @param XoopsBlock  $blockObj
+     * @param array       $block
      * @return bool
      */
     public static function installBlock(&$module, &$blockObj, &$block, &$log)
@@ -861,7 +861,7 @@ class Legacy_ModuleInstallUtils
     /**
      * Delete all configs of $module.
      *
-     * @param $module XoopsModule
+     * @param XoopsModule $module
      */
     public static function uninstallAllOfConfigs(&$module, &$log)
     {

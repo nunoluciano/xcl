@@ -25,9 +25,9 @@ class XCube_Utils
     /**
      * @public
      * @brief [Static] The alias for the current controller::redirectHeader(). This function will be deprecated.
-     * @param $url string
-     * @param $time int
-     * @param $message mixed - string or string[] - If you want to multiline message, you must set message as array.
+     * @param string $url
+     * @param int    $time
+     * @param mixed  $message - string or string[] - If you want to multiline message, you must set message as array.
      * @return void
      * 
      * @deprecated XCube 1.0 will remove this method. Don't use static function of XCube
@@ -103,8 +103,8 @@ class XCube_Utils
     /**
      * @public
      * @brief [Static] To encrypt strings by "DES-ECB".
-     * @param $plain_text string
-     * @param $key        string
+     * @param string $plain_text
+     * @param string $key
      * @return string - Encrypted string.
      */
     public static function encrypt($plain_text, $key = null)
@@ -145,8 +145,8 @@ class XCube_Utils
     /**
      * @public
      * @brief [Static] To decrypt strings by "DES-ECB".
-     * @param $crypt_text string
-     * @param $key        string
+     * @param string $crypt_text
+     * @param string $key
      * @return string - Decrypted string.
      */
     public static function decrypt($crypt_text, $key = null)

@@ -64,8 +64,8 @@ class XoopsToken
     public $_number_=0;
 
     /**
-     * @param   $name   this token's name string.
-     * @param   $timeout    effective time(if $timeout equal 0, this token will become unlimited)
+     * @param this      $name    token's name string.
+     * @param effective $timeout time(if $timeout equal 0, this token will become unlimited)
      */
     public function __construct($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
@@ -123,7 +123,7 @@ class XoopsToken
      * Set this token's serial number.
      *
      * @access public
-     * @param   $serial_number  serial number
+     * @param serial $serial_number number
      */
     public function setSerialNumber($serial_number)
     {
@@ -193,8 +193,8 @@ class XoopsTokenHandler
      * Create XoopsToken instance, regist(keep to server), and returns it.
      *
      * @access public
-     * @param   $name       this token's name string.
-     * @param   $timeout    effective time(if $timeout equal 0, this token will become unlimited)
+     * @param this      $name    token's name string.
+     * @param effective $timeout time(if $timeout equal 0, this token will become unlimited)
      * @return \XoopsToken
      */
     public function &create($name, $timeout = XOOPS_TOKEN_TIMEOUT)
@@ -254,8 +254,8 @@ class XoopsTokenHandler
      * token with it. if it passed validation, this method will return true.
      *
      * @access  public
-     * @param   $token  XoopsToken
-     * @param   $clearIfValid   If token passed validation, $token will be unregistered.
+     * @param XoopsToken $token
+     * @param If         $clearIfValid token passed validation, $token will be unregistered.
      * @return  bool
      */
     public function validate(&$token, $clearIfValid)
@@ -395,7 +395,7 @@ class XoopsMultiTokenHandler
     }
 
     /**
-     * @param   $name   string
+     * @param string $name
      * @return  int
      */
     public function getRequestNumber($name)

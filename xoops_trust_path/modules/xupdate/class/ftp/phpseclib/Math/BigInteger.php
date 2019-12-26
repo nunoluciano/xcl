@@ -238,8 +238,8 @@ class Math_BigInteger
      * ?>
      * </code>
      *
-     * @param     $x base-10 number or base-$base number if $base set.
-     * @param int $base
+     * @param base $x -10 number or base-$base number if $base set.
+     * @param int  $base
      * @return Math_BigInteger
      * @access public
      */
@@ -3804,8 +3804,8 @@ class Math_BigInteger
     /**
      * Array Repeat
      *
-     * @param $input      Array
-     * @param $multiplier mixed
+     * @param Array $input
+     * @param mixed $multiplier
      * @return array
      * @access private
      */
@@ -3819,8 +3819,8 @@ class Math_BigInteger
      *
      * Shifts binary strings $shift bits, essentially multiplying by 2**$shift.
      *
-     * @param $x     String
-     * @param $shift Integer
+     * @param String  $x
+     * @param Integer $shift
      * @return string
      * @access private
      */
@@ -3848,8 +3848,8 @@ class Math_BigInteger
      *
      * Shifts binary strings $shift bits, essentially dividing by 2**$shift and returning the remainder.
      *
-     * @param $x     String
-     * @param $shift Integer
+     * @param String  $x
+     * @param Integer $shift
      * @return string
      * @access private
      */

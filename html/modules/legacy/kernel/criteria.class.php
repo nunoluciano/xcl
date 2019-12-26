@@ -146,8 +146,8 @@ class Legacy_Criteria
      * Do casting conversion. If type information is wrong, return false.
      * 
      * @access protected
-     * @param $column string A name of column
-     * @param $value reference of value.
+     * @param string    $column A name of column
+     * @param reference $value  of value.
      * @return bool
      */
     public function _castingConversion($column, &$value)

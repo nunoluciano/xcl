@@ -186,11 +186,11 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
  * 
  * Install module by module's name, language and specified mid.
  * 
- * @param $dbm object Database manager instance
- * @param $mid int module's ID
- * @param $module string module's name
- * @param $language string language
- * @param $grops array hash map
+ * @param object $dbm      Database manager instance
+ * @param int    $mid      module's ID
+ * @param string $module   module's name
+ * @param string $language language
+ * @param array  $grops    hash map
  */
 function installModule(&$dbm, $mid, $module, $module_name, $language = 'english', &$groups)
 {

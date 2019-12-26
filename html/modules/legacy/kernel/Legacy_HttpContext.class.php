@@ -76,7 +76,7 @@ class Legacy_HttpContext extends XCube_HttpContext
     /**
      * @public
      * @brief Gets a value of XoopsConfig by $id.
-     * @param $id string
+     * @param string $id
      * @return mixed
      */
     public function getXoopsConfig($id = null)
@@ -91,7 +91,7 @@ class Legacy_HttpContext extends XCube_HttpContext
     /**
      * @public
      * @brief Sets the name of the current theme.
-     * @param $name string
+     * @param string $name
      * @return void
      * @attention
      *     This method is for the theme changer feature. However, this API will be

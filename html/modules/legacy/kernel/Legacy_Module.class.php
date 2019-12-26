@@ -66,7 +66,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief constructor
-     * @param $module XoopsModule
+     * @param XoopsModule $module
      * @attention
      *     Basically, only Legacy_Controller and its utility functions should call the
      *     constructor.
@@ -86,8 +86,8 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Sets $value with $key to attributes.
-     * @param $key string
-     * @param $value mixed
+     * @param string $key
+     * @param mixed  $value
      * @return void
      * @remarks
      *    If references are must, access directly to $mAttributes. Because PHP4 can't
@@ -101,7 +101,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Gets a value indicating whether the value specified by $key exists.
-     * @param $key string
+     * @param string $key
      * @return bool
      */
     public function hasAttribute($key)
@@ -123,7 +123,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Binds an instance of XoopsModule to the property.
-     * @param $xoopsModule XoopsModule
+     * @param XoopsModule $xoopsModule
      * @return void
      */
     public function setXoopsModule(&$xoopsModule)
@@ -144,7 +144,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Binds array of xoops module config to the property.
-     * @param $config Map Array - std::map<string, mixed>
+     * @param Map $config Array - std::map<string, mixed>
      * @return void 
      */
     public function setModuleConfig($config)
@@ -155,7 +155,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Gets a value form xoops module config with $key. 
-     * @param $key string
+     * @param string $key
      * @return mixed If $key is specified null, returns map array (std::map<string, mixed>)
      */
     public function getModuleConfig($key = null)

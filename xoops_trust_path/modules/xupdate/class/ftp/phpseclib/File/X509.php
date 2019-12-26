@@ -3747,8 +3747,8 @@ class File_X509
     /**
      * Set Serial Number
      *
-     * @param string $serial
-     * @param        $base optional
+     * @param string   $serial
+     * @param optional $base
      * @access public
      */
     public function setSerialNumber($serial, $base = -256)

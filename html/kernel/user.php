@@ -188,7 +188,7 @@ class XoopsUser extends XoopsObject
     /**
      * get the groups that the user belongs to
      * 
-     * @param $bReget When this is true, this object gets group informations from DB again.
+     * @param When $bReget this is true, this object gets group informations from DB again.
      *                This is a special method for the BASE(CMS core) functions, you should
      *                not use this proactivity.
      * @return array array of groups 

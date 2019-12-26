@@ -56,7 +56,7 @@ class Legacy_GenericPrincipal extends XCube_Principal
 {
     /**
      * Adds a role to this object.
-     * @param $roleName string
+     * @param string $roleName
      */
     public function addRole($roleName)
     {

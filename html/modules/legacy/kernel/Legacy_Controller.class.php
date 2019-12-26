@@ -1128,7 +1128,7 @@ class Legacy_Controller extends XCube_Controller
      * Set bool flag to dialog mode flag.
      * If you set true, executeView() will use Legacy_DialogRenderTarget class as
      * render target.
-     * @param $flag bool
+     * @param bool $flag
      */
     public function setDialogMode($flag)
     {

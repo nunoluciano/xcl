@@ -181,12 +181,12 @@ class SaxParser
     ---------------------------------------------------------------------------*/
 
     /****************************************************************************
-        Adds a callback function to be called when a tag is encountered.<br>
-        Functions that are added must be of the form:<br>
-        <b>functionName( $attributes )</b>
-        * @param $tagName string.  The name of the tag currently being parsed.
-        * @param $functionName string.  The name of the function in XmlDocument's
-        subclass.
+        * Adds a callback function to be called when a tag is encountered.<br>
+        * Functions that are added must be of the form:<br>
+        * <b>functionName( $attributes )</b>
+        * @param string $tagName      .  The name of the tag currently being parsed.
+        * @param string $functionName .  The name of the function in XmlDocument's
+        * subclass.
         * @returns void
     ****************************************************************************/
     public function addTagHandler(&$tagHandler)
@@ -207,12 +207,12 @@ class SaxParser
     ---------------------------------------------------------------------------*/
 
     /****************************************************************************
-        Callback function that executes whenever a the start of a tag
-        occurs when being parsed.
-        * @param $parser int.  The handle to the parser.
-        * @param $tagName string.  The name of the tag currently being parsed.
-        * @param $attributesArray attay.  The list of attributes associated with
-        the tag.
+        * Callback function that executes whenever a the start of a tag
+        * occurs when being parsed.
+     * @param int    $parser          .  The handle to the parser.
+   * @param string $tagName         .  The name of the tag currently being parsed.
+     * @param attay  $attributesArray .  The list of attributes associated with
+        * the tag.
         * @private
         * @returns void
     ****************************************************************************/
@@ -228,10 +228,10 @@ class SaxParser
     }
 
     /****************************************************************************
-        Callback function that executes whenever the end of a tag
-        occurs when being parsed.
-        * @param $parser int.  The handle to the parser.
-        * @param $tagName string.  The name of the tag currently being parsed.
+        * Callback function that executes whenever the end of a tag
+        * occurs when being parsed.
+     * @param int    $parser  .  The handle to the parser.
+     * @param string $tagName .  The name of the tag currently being parsed.
         * @private
         * @returns void
     ****************************************************************************/
@@ -247,10 +247,10 @@ class SaxParser
     }
 
     /****************************************************************************
-        Callback function that executes whenever character data is encountered
-        while being parsed.
-        * @param $parser int.  The handle to the parser.
-        * @param $data string.  Character data inside the tag
+        * Callback function that executes whenever character data is encountered
+        * while being parsed.
+     * @param int    $parser .  The handle to the parser.
+     * @param string $data   .  Character data inside the tag
         * @returns void
     ****************************************************************************/
     public function handleCharacterData($parser, $data)
@@ -264,7 +264,7 @@ class SaxParser
     }
 
     /****************************************************************************
-        * @param $parser int.  The handle to the parser.
+     * @param int $parser .  The handle to the parser.
         * @returns void
     ****************************************************************************/
     public function handleProcessingInstruction($parser, &$target, &$data)
@@ -275,7 +275,7 @@ class SaxParser
     }
 
     /****************************************************************************
-        * @param $parser int.  The handle to the parser.
+     * @param int $parser .  The handle to the parser.
         * @returns void
     ****************************************************************************/
     public function handleDefault($parser, $data)
@@ -283,7 +283,7 @@ class SaxParser
     }
 
     /****************************************************************************
-        * @param $parser int.  The handle to the parser.
+     * @param int $parser .  The handle to the parser.
         * @returns void
     ****************************************************************************/
     public function handleUnparsedEntityDecl($parser, $entityName, $base, $systemId, $publicId, $notationName)
@@ -291,7 +291,7 @@ class SaxParser
     }
 
     /****************************************************************************
-        * @param $parser int.  The handle to the parser.
+     * @param int $parser .  The handle to the parser.
         * @returns void
     ****************************************************************************/
     public function handleNotationDecl($parser, $notationName, $base, $systemId, $publicId)
@@ -299,7 +299,7 @@ class SaxParser
     }
 
     /****************************************************************************
-        * @param $parser int.  The handle to the parser.
+     * @param int $parser .  The handle to the parser.
         * @returns void
     ****************************************************************************/
     public function handleExternalEntityRef($parser, $openEntityNames, $base, $systemId, $publicId)
@@ -336,7 +336,7 @@ class SaxParser
     /**
      * Sets error messages
      *
-     * @param   $error  string  an error message
+     * @param   string $error an error message
      */
     public function setErrors($error)
     {
@@ -346,7 +346,7 @@ class SaxParser
     /**
      * Gets all the error messages
      *
-     * @param   $ashtml bool    return as html?
+     * @param   bool $ashtml return as html?
      * @return  mixed
      */
     public function &getErrors($ashtml = true)

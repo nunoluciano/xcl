@@ -112,7 +112,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadModuleMessageCatalog($moduleName)
     {
@@ -123,7 +123,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module for admin.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadModuleAdminMessageCatalog($dirname)
     {
@@ -134,7 +134,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module for block.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadBlockMessageCatalog($dirname)
     {
@@ -145,7 +145,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module for modinfo.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadModinfoMessageCatalog($dirname)
     {
@@ -154,8 +154,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     /**
      * @access protected
-     * @param $dirname      module directory name
-     * @param $fileBodyName language file body name
+     * @param module   $dirname      directory name
+     * @param language $fileBodyName file body name
      */
     public function _loadLanguage($dirname, $fileBodyName)
     {
@@ -181,8 +181,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     /**
      * @access protected
-     * @param $filename A filename.
-     * @param $dirname  A dirname of module. (for D3 module)
+     * @param A $filename filename.
+     * @param A $dirname  dirname of module. (for D3 module)
      * @return bool
      */
     public function _loadFile($filename, $mydirname = null)

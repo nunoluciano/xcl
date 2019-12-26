@@ -74,8 +74,8 @@ class XCube_ServiceManager
      * Add service object. $name must be unique in the list of service. If the 
      * service which has the same name, is a member of the list, return false.
      * 
-     * @param $name string
-     * @param $service XCube_Service
+     * @param string        $name
+     * @param XCube_Service $service
      * @return bool
      */
     public function addService($name, &$service)

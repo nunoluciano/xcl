@@ -220,8 +220,8 @@ class XCube_ActionForm
     /**
      * @public
      * @brief Gets raw value.
-     * @param $key   string Name of form property.
-     * @param $index string Subscript for array.
+     * @param string $key   Name of form property.
+     * @param string $index Subscript for array.
      * @return mixed
      * 
      * @attention
@@ -393,7 +393,7 @@ class XCube_ActionForm
     /**
      * @protected
      * @brief Adds an message to error message buffer of the form.
-     * @param $message string
+     * @param string $message
      */
     public function addErrorMessage($message)
     {
@@ -413,7 +413,7 @@ class XCube_ActionForm
     /**
      * @public
      * @brief [Abstract] Initializes properties' values from an object.
-     * @param $obj mixed
+     * @param mixed $obj
      * @return void
      * 
      *   Set initial values to this action form from a object. This member
@@ -430,7 +430,7 @@ class XCube_ActionForm
     /**
      * @public
      * @brief [Abstract] Updates an object with properties's values.
-     * @param $obj mixed
+     * @param mixed $obj
      * @return void
      * 
      *   Set input values to a object from this action form. This member function
@@ -494,7 +494,7 @@ class XCube_FieldProperty
     /**
      * @public
      * @brief Constructor.
-     * @param $form XCube_ActionForm - Parent form.
+     * @param XCube_ActionForm $form - Parent form.
      * @remarks
      *     Only sub-classes of XCube_ActionForm calles this constructor. 
      */
@@ -508,7 +508,7 @@ class XCube_FieldProperty
     /**
      * @public
      * @brief Initializes the validator list of this field property with the depend rule name list.
-     * @param $dependsArr string[]
+     * @param string[] $dependsArr
      * @return void
      */
     public function setDependsByArray($dependsArr)
@@ -526,8 +526,8 @@ class XCube_FieldProperty
     /**
      * @public
      * @brief Adds an error message which will be used in the case which '$name rule' validation is failed.
-     * @param $name string - Depend rule name.
-     * @param $message string - Error message.
+     * @param string $name    - Depend rule name.
+     * @param string $message - Error message.
      * @return void
      * 
      *   It's possible to add 3 or greater parameters.
@@ -551,7 +551,7 @@ class XCube_FieldProperty
     /**
      * @public
      * @brief Gets the error message rendered by XCube_Utils::formaString().
-     * @param $name string - Depend rule name
+     * @param string $name - Depend rule name
      * @return string
      * 
      *   Gets the error message registered at addMessage(). If the message setting has some
@@ -583,8 +583,8 @@ class XCube_FieldProperty
     /**
      * @public
      * @brief Adds a virtual variable used by validators.
-     * @param $name string - A name of the variable.
-     * @param $value mixed - A value of the variable.
+     * @param string $name  - A name of the variable.
+     * @param mixed  $value - A value of the variable.
      * 
      *   Virtual varialbes are used for validating by validators. For example,
      *   XCube_MinlengthValidator needs a value indicationg a minimum length.
@@ -634,12 +634,12 @@ class XCube_DependClassFactory
 {
     /**
      * @public
-     * @internal
-     * @brief [static] Gets a XCube_Validator object by the rule name (depend name).
-     * @param $dependName string
+     * @param string$dependName
      * @return XCube_Validator
      * @attention
      *     Only 'XCube_ActionForm' class should use this class.
+     *@internal
+     * @brief [static] Gets a XCube_Validator object by the rule name (depend name).
      */
     public static function &factoryClass($dependName)
     {

@@ -101,7 +101,7 @@ class XoopsFormRadio extends XoopsFormElement
     /**
      * Set the pre-selected value
      * 
-     * @param	$value	string
+     * @param string $value
      */
     public function setValue($value)
     {

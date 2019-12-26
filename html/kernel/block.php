@@ -385,7 +385,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * be careful that the value that it is returned doesn't have $mid, $func_num
      * and $dirname.
      *
-     * @param $info array
+     * @param array $info
      * @return object XoopsBlock
      */
     public function &createByInfo($info)
@@ -442,7 +442,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * write a new block into the database
      *
      * @param object XoopsBlock $block reference to the block to insert
-     * @param $autolink temp
+     * @param temp $autolink
      * @return bool TRUE if succesful
      **/
     public function insert(&$block, $autolink=false)
@@ -592,16 +592,16 @@ class XoopsBlockHandler extends XoopsObjectHandler
 
     /**
      * get all the blocks that match the supplied parameters
-     * @param $side      0: sideblock - left
+     * @param $side            0: sideblock - left
      *                   1: sideblock - right
      *                   2: sideblock - left and right
      *                   3: centerblock - left
      *                   4: centerblock - right
      *                   5: centerblock - center
      *                   6: centerblock - left, right, center
-     * @param $groupid   groupid (can be an array)
-     * @param $visible   0: not visible 1: visible
-     * @param $orderby   order of the blocks
+     * @param groupid $groupid (can be an array)
+     * @param $visible         0: not visible 1: visible
+     * @param order $orderby   of the blocks
      * @returns array of block objects
      * @return array
      */

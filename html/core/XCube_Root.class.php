@@ -185,11 +185,11 @@ class XCube_Root
     }
     
     /**
-     * @internal
+     * @param Array$config
+     * @return void
+     *@internal
      * @public
      * @brief Sets site configs.
-     * @param $config Array
-     * @return void
      */
     public function setSiteConfig($config)
     {
@@ -308,7 +308,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets the XCube_LanguageManager object.
-     * @param $languageManager XCube_LanguageManager
+     * @param XCube_LanguageManager $languageManager
      * @return void
      */
     public function setLanguageManager(&$languageManager)
@@ -329,7 +329,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets the XCube_DelegateManager object.
-     * @param $delegateManager XCube_DelegateManager
+     * @param XCube_DelegateManager $delegateManager
      * @return void
      */
     public function setDelegateManager(&$delegateManager)
@@ -350,7 +350,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets the XCube_ServiceManager object.
-     * @param $serviceManager XCube_ServiceManager
+     * @param XCube_ServiceManager $serviceManager
      * @return void
      */
     public function setServiceManager(&$serviceManager)
@@ -371,7 +371,7 @@ class XCube_Root
     /**
      * @public
      * @brief Gets a RenderSystem object having specified name.
-     * @param $name string - the registed name of the render system.
+     * @param string $name - the registed name of the render system.
      * @return XCube_RenderSystem
      * 
      * Return the instance of the render system by the name. If the render
@@ -426,7 +426,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets a XCube_TextFilter object.
-     * @param $textFilter XCube_TextFilter
+     * @param XCube_TextFilter $textFilter
      * @return void
      */
     public function setTextFilter(&$textFilter)
@@ -461,7 +461,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets the role manager object.
-     * @param $manager XCube_RoleManager
+     * @param XCube_RoleManager $manager
      * @return void
      */
     public function setRoleManager(&$manager)
@@ -472,7 +472,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets the HTTP-context object.
-     * @param $context XCube_Context
+     * @param XCube_Context $context
      * @return void
      */
     public function setContext(&$context)
@@ -493,7 +493,7 @@ class XCube_Root
     /**
      * @public
      * @brief Sets a Session object.
-     * @param $session XCube_Session
+     * @param XCube_Session $session
      * @return void
      */
     public function setSession(&$session)
@@ -521,9 +521,9 @@ class XCube_Root
      * class if the class is defined rightly. This member function is called by
      * other member functions of XCube_Root.
      * 
-     * @param $className string - the name of class.
-     * @param $classPath string - the path that $className is defined in.
-     * @param $root      string - the root path instead of Cube.Root.
+     * @param string $className - the name of class.
+     * @param string $classPath - the path that $className is defined in.
+     * @param string $root      - the root path instead of Cube.Root.
      * @return Object
      * 
      * @todo If the file doesn't exist, require_once() raises fatal errors.

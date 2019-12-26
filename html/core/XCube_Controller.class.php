@@ -256,7 +256,7 @@ class XCube_Controller
     
     /**
      * Adds the ActionFilter instance.
-     * @param $filter XCube_ActionFilter
+     * @param XCube_ActionFilter $filter
      */
     public function addActionFilter(&$filter)
     {
@@ -428,7 +428,7 @@ class XCube_Controller
      * chain.
      *
      * @access protected
-     * @param $path string Absolute path.
+     * @param string $path Absolute path.
      */
     public function _processPreload($path)
     {

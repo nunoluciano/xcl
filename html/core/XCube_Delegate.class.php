@@ -34,7 +34,7 @@ class XCube_Ref
 
     /**
      * @public Constructor.
-     * @param $obj mixed
+     * @param mixed $obj
      */
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$obj)
@@ -166,7 +166,7 @@ class XCube_Delegate
     /**
      * @private
      * @brief Set signatures for this delegate.
-     * @param $args Vector Array - std::vector<string>
+     * @param Vector $args Array - std::vector<string>
      * @return void
      * 
      * By this method, this function will come to check arguments with following
@@ -188,7 +188,7 @@ class XCube_Delegate
     /**
      * @public
      * @brief Registers this object to delegate manager of root.
-     * @param $delegateName string
+     * @param string $delegateName
      * @return bool
      */
     public function register($delegateName)
@@ -425,8 +425,8 @@ class XCube_DelegateManager
     /**
      * @public
      * @brief Adds $delegate as Delegate to the list of this manager.
-     * @param $name string - Registration name.
-     * @param $delegate XCube_Delegate - Delegate object which will be registered. 
+     * @param string         $name     - Registration name.
+     * @param XCube_Delegate $delegate - Delegate object which will be registered.
      * @return bool
      * 
      * If some functions that want to connect to $delegate, have been entrusted yet,
@@ -458,7 +458,7 @@ class XCube_DelegateManager
     /**
      * @public
      * @brief Connects functions to the delegate that have the specified name.
-     * @param $name string - Registration name.
+     * @param string $name - Registration name.
      * @return void
      * 
      * If there aren't any delegates that have the specified name, this manager
@@ -481,7 +481,7 @@ class XCube_DelegateManager
     
     /**
      * @public
-     * @param $name string - Registration name
+     * @param string $name - Registration name
      * @brief Disconnects a function from the delegate that have the specified name.
      * @see XCube_Delegate::delete()
      */
@@ -506,7 +506,7 @@ class XCube_DelegateManager
     /**
      * @public
      * @brief Resets all functions off the delegate that have the specified name.
-     * @param $name string - Registration name which will be resetted.
+     * @param string $name - Registration name which will be resetted.
      * 
      * @see XCube_Delegate::reset()
      */

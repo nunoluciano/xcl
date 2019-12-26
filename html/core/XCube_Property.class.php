@@ -20,7 +20,7 @@ class XCube_PropertyInterface
     /**
      * @public
      * @brief Constructor.
-     * @param $name string - A name of this property.
+     * @param string $name - A name of this property.
      */
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
@@ -31,7 +31,7 @@ class XCube_PropertyInterface
     /**
      * @public
      * @brief [Abstract] Sets $value as raw value to this property. And the value is casted by the property's type'.
-     * @param $value mixed
+     * @param mixed $value
      */
     public function set($value)
     {
@@ -119,7 +119,7 @@ class XCube_PropertyInterface
 
     /**
      * @public [Abstract] Fetches values.
-     * @param $form XCube_ActionForm
+     * @param XCube_ActionForm $form
      * @return void
      */
     public function fetch(&$form)
@@ -148,7 +148,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     /**
      * @public
      * @brief Constructor.
-     * @param $name string - A name of this property.
+     * @param string $name - A name of this property.
      */
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
@@ -163,7 +163,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     /**
      * @public
      * @brief Sets $value as raw value to this property. And the value is casted by the property's type'.
-     * @param $value mixed
+     * @param mixed $value
      */
     public function set($value)
     {
@@ -278,8 +278,8 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     /**
      * @public
      * @brief Constructor.
-     * @param $classname string - <T>
-     * @param $name string - A name of the property.
+     * @param string $classname - <T>
+     * @param string $name      - A name of the property.
      */
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($classname, $name)
@@ -348,7 +348,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     /**
      * @public
      * @brief Gets values of this property.
-     * @param $index mixed - If $indes is null, gets array (std::map<mixed_key, mixed_value>).
+     * @param mixed $index - If $indes is null, gets array (std::map<mixed_key, mixed_value>).
      * @return mixed
      */
     public function get($index = null)

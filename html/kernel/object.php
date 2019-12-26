@@ -82,7 +82,7 @@ class AbstractXoopsObject
     /**
      * You should use this method to initilize object's properties.
      * This method may not trigger setDirty().
-     * @param $values array
+     * @param array $values
      */
     public function assignVars($values)
     {

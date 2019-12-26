@@ -152,7 +152,7 @@ class XoopsMemberHandler
 
     /**
      * Delete function. This function is virtual overload function.
-     * @param $object XoopsUser or XoopsGroup
+     * @param XoopsUser $object or XoopsGroup
      * @return bool
      */
     public function delete(&$object)

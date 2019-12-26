@@ -49,7 +49,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
     /**
      * Create the clone with source for the template set that is specified by $tplsetName.
      * 
-     * @param $tplsetName string
+     * @param string $tplsetName
      * @return object LegacyRenderTplfileObject
      */
     public function &createClone($tplsetName)
@@ -172,7 +172,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
     /**
      * This is a kind of getObjects(). Return objects that were modified recently.
      * 
-     * @param $limit int
+     * @param int $limit
      * @return array array of the object
      */
     public function &getRecentModifyFile($limit = 10)
@@ -194,11 +194,11 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
      * the result. Parameters are guaranteed Type Safe because these are used by
      * getObjects() for XoopsSimpleObject.
      * 
-     * @param $tplsetName string
-     * @param $type       string
-     * @param $refId      int
-     * @param $module     string
-     * @param $file       string
+     * @param string $tplsetName
+     * @param string $type
+     * @param int    $refId
+     * @param string $module
+     * @param string $file
      * @return array      array of the object.
      */
     public function &find($tplsetName, $type = null, $refId = null, $module = null, $file = null)
