@@ -258,12 +258,12 @@ function xoops_makepass()
 {
     $makepass = '';
     $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
-    srand((double)microtime()*1000000);
+    mt_srand((double)microtime() * 1000000);
     for ($count = 1; $count <= 4; $count++) {
-        if (1 == rand() % 10) {
-            $makepass .= sprintf('%0.0f', (rand()%50)+1);
+        if (1 == mt_rand() % 10) {
+            $makepass .= sprintf('%0.0f', (mt_rand() % 50) + 1);
         } else {
-            $makepass .= sprintf('%s', $syllables[rand()%62]);
+            $makepass .= sprintf('%s', $syllables[mt_rand() % 62]);
         }
     }
     return $makepass;
@@ -845,8 +845,8 @@ if (!function_exists('session_regenerate_id')) { // @ToDo this compatible functi
     // session_regenerate_id compatible function for PHP Version< PHP4.3.2
     function session_regenerate_id()
     {
-        srand(microtime() * 100000);
-        $random = md5(XOOPS_SALT . uniqid(rand(), true));
+        mt_srand(microtime() * 100000);
+        $random = md5(XOOPS_SALT . uniqid(mt_rand(), true));
         if (session_id($random)) {
             return true;
         } else {

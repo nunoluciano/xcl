@@ -93,8 +93,8 @@ class XoopsToken
     {
         // !Fix Warning: A non-numeric value encountered
         //srand(microtime()*100000);
-        srand ( (int) microtime() * 10000 );
-        return md5(XOOPS_SALT.$this->_name_.uniqid(rand(), true ));
+        mt_srand ((int) microtime() * 10000 );
+        return md5(XOOPS_SALT.$this->_name_.uniqid(mt_rand(), true ));
     }
 
     /**

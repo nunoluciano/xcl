@@ -160,7 +160,7 @@ class XCube_Delegate
         if (func_num_args()) {
             $this->_setSignatures(func_get_args());
         }
-        $this->_mUniqueID = uniqid(rand(), true);
+        $this->_mUniqueID = uniqid(mt_rand(), true);
     }
     
     /**

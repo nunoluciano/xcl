@@ -150,10 +150,10 @@ class XCube_ActionForm
     public function getToken()
     {
         if (null == $this->_mToken) {
-            srand(microtime() * 100000);
+            mt_srand(microtime() * 100000);
             $root=&XCube_Root::getSingleton();
             $salt = $root->getSiteConfig('Cube', 'Salt');
-            $this->_mToken = md5($salt . uniqid(rand(), true));
+            $this->_mToken = md5($salt . uniqid(mt_rand(), true));
             
             $_SESSION['XCUBE_TOKEN'][$this->getTokenName()] = $this->_mToken;
         }

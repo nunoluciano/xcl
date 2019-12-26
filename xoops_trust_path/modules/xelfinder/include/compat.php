@@ -44,7 +44,7 @@ if (!function_exists('sys_get_temp_dir')) {
 			return realpath( $_ENV['TEMP']);
 		}
 	
-		$tempfile = tempnam(uniqid(rand(),TRUE),'');
+		$tempfile = tempnam(uniqid(mt_rand(), TRUE), '');
 		if (file_exists($tempfile)) {
 			unlink($tempfile);
 			return realpath(dirname($tempfile));

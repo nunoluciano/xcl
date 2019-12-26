@@ -213,8 +213,8 @@ class XCube_FormFile
             $root=&XCube_Root::getSingleton();
             $salt = $root->getSiteConfig('Cube', 'Salt');
         }
-        srand(microtime() *1000000);
-        return md5($salt . rand());
+        mt_srand(microtime() * 1000000);
+        return md5($salt . mt_rand());
     }
 
     /**

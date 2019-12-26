@@ -62,12 +62,12 @@ class setting_manager
             //
             // Generate prefix
             // !Fix A non well formed numeric value
-            srand ( (int) microtime() * 10000 );
+            mt_srand ((int) microtime() * 10000 );
             do {
-                $this->prefix = substr ( md5 ( rand(1,6) ), 0, 6);
+                $this->prefix = substr (md5 (mt_rand(1, 6) ), 0, 6);
             } while ( !preg_match ('/^[a-z]/', $this->prefix) );
             
-            $this->salt = substr ( md5 ( rand () ), 5, 8);
+            $this->salt = substr (md5 (mt_rand () ), 5, 8);
             
             $this->db_pconnect = 0;
 
