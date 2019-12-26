@@ -63,9 +63,9 @@ if (! class_exists('Xupdate_Func')) {
     /**
      * @byref array $multiData
      * @param int   $cacheTTL
-     * @throws Exception
-     * 
-     * @return boolean
+     * @return bool
+     *@throws Exception
+     *
      */
     public function _multiDownloadFile(&$multiData, $cacheTTL)
     {
@@ -451,8 +451,8 @@ if (! class_exists('Xupdate_Func')) {
     /**
      * enable protector of mainfile.php
      * 
-     * @param boolean $do_chmod
-     * @return boolean
+     * @param bool $do_chmod
+     * @return bool
      */
     public function write_mainfile_protector($do_chmod = false)
     {

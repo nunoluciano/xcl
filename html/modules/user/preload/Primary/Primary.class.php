@@ -108,7 +108,7 @@ class User_Utils
      * @param      string   $password  The password
      * @param      string   $hash      The hash
      *
-     * @return     boolean  password match to hash
+     * @return     bool  password match to hash
      */
     public static function passwordVerify($password, $hash)
     {
@@ -122,7 +122,7 @@ class User_Utils
      *
      * @param      string   $value  The hash value
      *
-     * @return     boolean  needs rehash
+     * @return     bool  needs rehash
      */
     public static function passwordNeedsRehash($value)
     {
@@ -134,7 +134,7 @@ class User_Utils
     /**
      * check pass colmun length of users table
      *
-     * @return     boolean Users pass column length is fixed (VARCHAR(255))
+     * @return     bool Users pass column length is fixed (VARCHAR(255))
      */
     public static function checkUsersPassColumnLength()
     {

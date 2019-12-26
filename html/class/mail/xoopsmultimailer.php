@@ -122,7 +122,7 @@ class xoopsmultimailer extends PHPMailer
 
   /**
    * Does your SMTP host require SMTPAuth authentication?
-   * @var   boolean
+   * @var   bool
    * @access  private
    */
   public $SMTPAuth = false;

@@ -582,7 +582,7 @@ class Archive_Zip
     * @access public
     * @param  mixed  $p_archive  It can be a valid Archive_Zip object or
     *                            the filename of a valid zip archive.
-    * @return integer 1 on success, 0 on failure.
+    * @return int 1 on success, 0 on failure.
     */
     public function duplicate($p_archive)
     {
@@ -628,7 +628,7 @@ class Archive_Zip
     * @access public
     * @param mixed $p_archive_to_add  It can be a valid Archive_Zip object or
     *                                 the filename of a valid zip archive.
-    * @return integer 1 on success, 0 on failure.
+    * @return int 1 on success, 0 on failure.
     */
     public function merge($p_archive_to_add)
     {
@@ -671,7 +671,7 @@ class Archive_Zip
     * Method that gives the lastest error code.
     *
     * @access public
-    * @return integer The error code value.
+    * @return int The error code value.
     */
     public function errorCode()
     {
@@ -684,7 +684,7 @@ class Archive_Zip
     * This method gives the latest error code name.
     *
     * @access public
-    * @param  boolean $p_with_code  If true, gives the name and the int value.
+    * @param bool $p_with_code If true, gives the name and the int value.
     * @return string The error name.
     */
     public function errorName($p_with_code=false)
@@ -721,7 +721,7 @@ class Archive_Zip
     * This method returns the description associated with the latest error.
     *
     * @access public
-    * @param  boolean $p_full If set to true gives the description with the
+    * @param bool $p_full     If set to true gives the description with the
     *                         error code, the name and the description.
     *                         If set to false gives only the description
     *                         and the error code.
@@ -763,7 +763,7 @@ class Archive_Zip
   *
   * { Description }
   *
-  * @param integer $p_level
+  * @param int $p_level
   */
   public function _checkFormat($p_level=0)
   {
@@ -3160,7 +3160,7 @@ class Archive_Zip
   *
   * { Description }
   *
-  * @param integer $p_error_code
+  * @param int    $p_error_code
   * @param string $p_error_string
   */
   public function _check_parameters(&$p_params, $p_default)
@@ -3222,7 +3222,7 @@ class Archive_Zip
   *
   * { Description }
   *
-  * @param integer $p_error_code
+  * @param int    $p_error_code
   * @param string $p_error_string
   */
   public function _errorLog($p_error_code=0, $p_error_string='')
@@ -3392,7 +3392,7 @@ class Archive_Zip
   *
   * { Description }
   *
-  * @param integer $p_mode
+  * @param int $p_mode
   */
   public function _tool_CopyBlock($p_src, $p_dest, $p_size, $p_mode=0)
   {

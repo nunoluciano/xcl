@@ -164,7 +164,7 @@ class Xupdate_Utils
      * Setup cURL SSL options
      * 
      * @param int $ch
-     * @return boolean
+     * @return bool
      */
     public static function setupCurlSsl($ch, $curl_ssl_no_verify = false)
     {
@@ -244,7 +244,7 @@ class Xupdate_Utils
      * Check, Is directory writable
      * 
      * @param string $dir
-     * @return boolean
+     * @return bool
      */
     public static function checkDirWritable($dir)
     {
@@ -266,7 +266,7 @@ class Xupdate_Utils
      * Check, Can make directory
      * 
      * @param unknown $targetDir
-     * @return boolean
+     * @return bool
      */
     public static function checkMakeDirectory($targetDir)
     {

@@ -23,7 +23,7 @@ class D3forumPageNav
     /**
      * Create text navigation
      *
-     * @param integer $offset
+     * @param int $offset
      * @return  string
      **/
     public function renderNav($offset = 4)
@@ -65,7 +65,7 @@ class D3forumPageNav
     /**
      * Create text navigation
      *
-     * @param integer $offset
+     * @param int $offset
      * @return  array [] (['txt'] , ['class'] , ['url'])
      **/
     public function getNav($offset = 4)

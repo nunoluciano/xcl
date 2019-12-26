@@ -92,8 +92,8 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
      * Delete object and image file.
      *
      * @param $obj    LegacyImageObject
-     * @param $force  boolean
-     * @return boolean
+     * @param $force  bool
+     * @return bool
      */
     public function delete(&$obj, $force = false)
     {

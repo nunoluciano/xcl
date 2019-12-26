@@ -311,7 +311,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
 
     /**
      * Check need update of detailed_version
-     * @return boolean
+     * @return bool
      */
     public function hasNeedUpdateDetail()
     {
@@ -487,7 +487,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
      * 
      * @param $version1
      * @param $version2
-     * @return boolean
+     * @return bool
      */
     private function _check_hasupdate($version1, $version2)
     {

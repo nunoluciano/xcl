@@ -405,7 +405,7 @@ class XoopsForm
     /**
      * Renders the Javascript function needed for client-side for validation
      *
-     * @param       boolean  $withtags  Include the < javascript > tags in the returned string
+     * @param bool $withtags Include the < javascript > tags in the returned string
      */
     public function renderValidationJS($withtags = true)
     {

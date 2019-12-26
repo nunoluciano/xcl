@@ -106,9 +106,9 @@ class XoopsDownloader
     /**
      * XoopsDownloader::addFileData()
      * 
-     * @param   mixed     $data
-     * @param   string    $filename
-     * @param   integer   $time
+     * @param   mixed  $data
+     * @param   string $filename
+     * @param int      $time
      **/
     public function addFileData(&$data, $filename, $time=0)
     {
@@ -118,9 +118,9 @@ class XoopsDownloader
     /**
      * XoopsDownloader::addBinaryFileData()
      * 
-     * @param   mixed   $data
-     * @param   string  $filename
-     * @param   integer $time
+     * @param   mixed  $data
+     * @param   string $filename
+     * @param int      $time
      **/
     public function addBinaryFileData(&$data, $filename, $time=0)
     {
@@ -130,8 +130,8 @@ class XoopsDownloader
     /**
      * XoopsDownloader::download()
      * 
-     * @param   string  $name
-     * @param   boolean $gzip
+     * @param   string $name
+     * @param bool     $gzip
      **/
     public function download($name, $gzip = true)
     {

@@ -195,7 +195,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      * Remove directory by server path
      * 
      * @param string $dir server path
-     * @return boolean
+     * @return bool
      */
     public function localRmdir($dir)
     {
@@ -207,7 +207,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      * 
      * @param string $src
      * @param string $file server path
-     * @return boolean
+     * @return bool
      */
     public function localPut($src, $file)
     {
@@ -219,7 +219,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      *
      * @param string $from server path
      * @param string $to server path
-     * @return boolean
+     * @return bool
      */
     public function localRename($from, $to)
     {
@@ -230,7 +230,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      * chmod by server path
      * 
      * @param string $item server path
-     * @param integer $mode
+     * @param int    $mode
      * @return Ambigous <boolean, number, Mixed, unknown, string>
      */
     public function localChmod($item, $mode)
@@ -242,7 +242,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      * delete file by server path
      * 
      * @param string $file server path
-     * @return boolean
+     * @return bool
      */
     public function localDelete($file)
     {
@@ -253,7 +253,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      * remove directory recursive by server path
      * 
      * @param string $dir server path
-     * @return boolean
+     * @return bool
      */
     public function localRmdirRecursive($dir)
     {
@@ -276,7 +276,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     }
     
     /**
-     * @return boolean
+     * @return bool
      */
     public function checkLogin()
     {
@@ -295,7 +295,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     }
     
     /**
-     * @return boolean
+     * @return bool
      */
     public function isConnected()
     {
@@ -305,7 +305,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     /**
      * isRootDirChange
      * 
-     * @return boolean
+     * @return bool
      */
     public function isRootDirChange()
     {
@@ -583,7 +583,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      * 
      * @param string $source
      * @param string $target
-     * @return boolean
+     * @return bool
      */
     private function _same_file($source, $target)
     {

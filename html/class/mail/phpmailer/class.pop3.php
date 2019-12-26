@@ -38,14 +38,14 @@ class POP3
 
     /**
      * Default POP3 port number.
-     * @var integer
+     * @var int
      * @access public
      */
     public $POP3_PORT = 110;
 
     /**
      * Default timeout in seconds.
-     * @var integer
+     * @var int
      * @access public
      */
     public $POP3_TIMEOUT = 30;
@@ -61,7 +61,7 @@ class POP3
     /**
      * Debug display level.
      * Options: 0 = no, 1+ = yes
-     * @var integer
+     * @var int
      * @access public
      */
     public $do_debug = 0;
@@ -75,14 +75,14 @@ class POP3
 
     /**
      * POP3 port number.
-     * @var integer
+     * @var int
      * @access public
      */
     public $port;
 
     /**
      * POP3 Timeout Value in seconds.
-     * @var integer
+     * @var int
      * @access public
      */
     public $tval;
@@ -110,7 +110,7 @@ class POP3
 
     /**
      * Are we connected?
-     * @var boolean
+     * @var bool
      * @access protected
      */
     protected $connected = false;
@@ -130,12 +130,12 @@ class POP3
     /**
      * Simple static wrapper for all-in-one POP before SMTP
      * @param $host
-     * @param integer|boolean $port The port number to connect to
-     * @param integer|boolean $timeout The timeout value
+     * @param int|bool $port    The port number to connect to
+     * @param int|bool $timeout The timeout value
      * @param string $username
      * @param string $password
-     * @param integer $debug_level
-     * @return boolean
+     * @param int $debug_level
+     * @return bool
      */
     public static function popBeforeSmtp(
         $host,
@@ -154,13 +154,13 @@ class POP3
      * A connect, login, disconnect sequence
      * appropriate for POP-before SMTP authorisation.
      * @access public
-     * @param string $host The hostname to connect to
-     * @param integer|boolean $port The port number to connect to
-     * @param integer|boolean $timeout The timeout value
-     * @param string $username
-     * @param string $password
-     * @param integer $debug_level
-     * @return boolean
+     * @param string   $host    The hostname to connect to
+     * @param int|bool $port    The port number to connect to
+     * @param int|bool $timeout The timeout value
+     * @param string   $username
+     * @param string   $password
+     * @param int      $debug_level
+     * @return bool
      */
     public function authorise($host, $port = false, $timeout = false, $username = '', $password = '', $debug_level = 0)
     {
@@ -199,10 +199,10 @@ class POP3
     /**
      * Connect to a POP3 server.
      * @access public
-     * @param string $host
-     * @param integer|boolean $port
-     * @param integer $tval
-     * @return boolean
+     * @param string   $host
+     * @param int|bool $port
+     * @param int      $tval
+     * @return bool
      */
     public function connect($host, $port = false, $tval = 30)
     {
@@ -263,7 +263,7 @@ class POP3
      * @access public
      * @param string $username
      * @param string $password
-     * @return boolean
+     * @return bool
      */
     public function login($username = '', $password = '')
     {
@@ -310,7 +310,7 @@ class POP3
     /**
      * Get a response from the POP3 server.
      * $size is the maximum number of bytes to retrieve
-     * @param integer $size
+     * @param int $size
      * @return string
      * @access protected
      */
@@ -326,7 +326,7 @@ class POP3
     /**
      * Send raw data to the POP3 server.
      * @param string $string
-     * @return integer
+     * @return int
      * @access protected
      */
     protected function sendString($string)
@@ -344,7 +344,7 @@ class POP3
      * Checks the POP3 server response.
      * Looks for for +OK or -ERR.
      * @param string $string
-     * @return boolean
+     * @return bool
      * @access protected
      */
     protected function checkResponse($string)
@@ -392,10 +392,10 @@ class POP3
 
     /**
      * POP3 connection error handler.
-     * @param integer $errno
+     * @param int    $errno
      * @param string $errstr
      * @param string $errfile
-     * @param integer $errline
+     * @param int    $errline
      * @access protected
      */
     protected function catchWarning($errno, $errstr, $errfile, $errline)

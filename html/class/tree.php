@@ -204,13 +204,13 @@ class XoopsObjectTree
     /**
      * Make a select box with options from the tree
      * 
-     * @param   string  $name            Name of the select box
-     * @param   string  $fieldName       Name of the member variable from the
+     * @param   string $name           Name of the select box
+     * @param   string $fieldName      Name of the member variable from the
      *  node objects that should be used as the title for the options.  
-     * @param   string  $prefix          String to indent deeper levels
-     * @param   string  $selected        Value to display as selected
-     * @param   bool    $addEmptyOption  Set TRUE to add an empty option with value "0" at the top of the hierarchy
-     * @param   integer $key             ID of the object to display as the root of select options
+     * @param   string $prefix         String to indent deeper levels
+     * @param   string $selected       Value to display as selected
+     * @param   bool   $addEmptyOption Set TRUE to add an empty option with value "0" at the top of the hierarchy
+     * @param int      $key            ID of the object to display as the root of select options
      * @return  string  HTML select box
      **/
     public function &makeSelBox($name, $fieldName, $prefix='-', $selected='', $addEmptyOption = false, $key=0)

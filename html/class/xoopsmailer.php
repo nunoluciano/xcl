@@ -386,7 +386,7 @@ class xoopsmailer
      * @param	string
      * @param	string
      * @param	string
-     * @return	boolean	FALSE on error.
+     * @return    bool    FALSE on error.
      */
 
     public function sendMail($email, $subject, $body, $headers)

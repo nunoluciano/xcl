@@ -732,7 +732,7 @@ EOD;
 	 * @param string $src
 	 * @param object $elfinder
 	 * @param object $volume
-	 * @return boolean
+	 * @return bool
 	 */
 	public function autoRotateOnUpLoadPreSave(&$path, &$name, $src, $elfinder, $volume) {
 		if (! class_exists('HypCommonFunc') || version_compare(HypCommonFunc::get_version(), '20150515', '<')) {

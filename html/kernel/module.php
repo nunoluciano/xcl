@@ -85,8 +85,8 @@ class XoopsModule extends XoopsObject
     /**
      * Load module info
      *
-     * @param	string	$dirname	Directory Name
-     * @param	boolean $verbose
+     * @param	string $dirname	Directory Name
+     * @param bool      $verbose
      **/
     public function loadInfoAsVar($dirname, $verbose = true)
     {
@@ -244,11 +244,11 @@ class XoopsModule extends XoopsObject
     /**
      * Search contents within a module
      *
-     * @param	string	$term
-     * @param	string	$andor	'AND' or 'OR'
-     * @param	integer $limit
-     * @param	integer $offset
-     * @param	integer $userid
+     * @param	string $term
+     * @param	string $andor	'AND' or 'OR'
+     * @param int       $limit
+     * @param int       $offset
+     * @param int       $userid
      * @return	mixed	Search result.
      **/
     public function &search($term = '', $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
@@ -375,7 +375,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
     /**
      * Create a new {@link XoopsModule} object
      *
-     * @param	boolean 	$isNew	 Flag the new object as "new"
+     * @param bool $isNew Flag the new object as "new"
      * @return	object
      **/
     public function &create($isNew = true)
@@ -577,8 +577,8 @@ class XoopsModuleHandler extends XoopsObjectHandler
     /**
      * Load some modules
      *
-     * @param	object	$criteria	{@link CriteriaElement}
-     * @param	boolean $id_as_key	Use the ID as key into the array
+     * @param	object $criteria  {@link CriteriaElement}
+     * @param bool      $id_as_key Use the ID as key into the array
      * @return	array
      **/
     public function &getObjects($criteria = null, $id_as_key = false)
@@ -645,8 +645,8 @@ class XoopsModuleHandler extends XoopsObjectHandler
     /**
      * returns an array of module names
      *
-     * @param	bool	$criteria
-     * @param	boolean $dirname_as_key
+     * @param	bool $criteria
+     * @param bool    $dirname_as_key
      *		if true, array keys will be module directory names
      *		if false, array keys will be module id
      * @return	array

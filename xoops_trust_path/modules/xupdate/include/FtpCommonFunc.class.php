@@ -98,7 +98,7 @@ class Xupdate_FtpCommonFunc
     /**
      * Check exists & writable ExploredDirPath
      * @param  string  $target_key
-     * @return string | boolean
+     * @return string | bool
      */
     public function checkExploredDirPath($target_key)
     {
@@ -115,7 +115,7 @@ class Xupdate_FtpCommonFunc
     /**
      * is_xupdate_excutable
      *
-     * @return boolean
+     * @return bool
      */
     protected function is_xupdate_excutable()
     {
@@ -143,7 +143,7 @@ class Xupdate_FtpCommonFunc
      *
      * @param array  $result
      * @param string $where
-     * @return boolean
+     * @return bool
      */
     protected function _check_file_upload_result($result, $where, $allow_empty = false)
     {

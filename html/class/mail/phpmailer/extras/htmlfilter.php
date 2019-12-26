@@ -34,8 +34,8 @@
  * tln_sanitize internally.
  *
  * @param string $tagname the name of the tag.
- * @param array $attary the array of attributes and their values
- * @param integer $tagtype The type of the tag (see in comments).
+ * @param array  $attary  the array of attributes and their values
+ * @param int    $tagtype The type of the tag (see in comments).
  * @return string A string with the final tag representation.
  */
 function tln_tagprint($tagname, $attary, $tagtype)
@@ -75,10 +75,10 @@ function tln_casenormalize(&$val)
  * This function skips any whitespace from the current position within
  * a string and to the next non-whitespace value.
  *
- * @param string $body the string
- * @param integer $offset the offset within the string where we should start
+ * @param string $body   the string
+ * @param int    $offset the offset within the string where we should start
  *				   looking for the next non-whitespace character.
- * @return integer          the location within the $body where the next
+ * @return int          the location within the $body where the next
  *				   non-whitespace char is located.
  */
 function tln_skipspace($body, $offset)
@@ -97,9 +97,9 @@ function tln_skipspace($body, $offset)
  * nicely.
  *
  * @param string $body   The string to look for needle in.
- * @param integer $offset Start looking from this position.
+ * @param int    $offset Start looking from this position.
  * @param string $needle The character/string to look for.
- * @return integer           location of the next occurrence of the needle, or
+ * @return int           location of the next occurrence of the needle, or
  *				   strlen($body) if needle wasn't found.
  */
 function tln_findnxstr($body, $offset, $needle)
@@ -116,9 +116,9 @@ function tln_findnxstr($body, $offset, $needle)
  * within the string.
  *
  * @param string $body   The string to look for needle in.
- * @param integer $offset Start looking from here.
- * @param string $reg       A PCRE-style regex to match.
- * @return array|boolean  Returns a false if no matches found, or an array
+ * @param int    $offset Start looking from here.
+ * @param string $reg    A PCRE-style regex to match.
+ * @return array|bool  Returns a false if no matches found, or an array
  *				   with the following members:
  *				   - integer with the location of the match within $body
  *				   - string with whatever content between offset and the match
@@ -144,8 +144,8 @@ function tln_findnxreg($body, $offset, $reg)
  * This function looks for the next tag.
  *
  * @param string $body   String where to look for the next tag.
- * @param integer $offset Start looking from here.
- * @return array|boolean false if no more tags exist in the body, or
+ * @param int    $offset Start looking from here.
+ * @return array|bool false if no more tags exist in the body, or
  *				   an array with the following members:
  *				   - string with the name of the tag
  *				   - array with attributes and their values
@@ -433,8 +433,8 @@ function tln_getnxtag($body, $offset)
  *
  * @param string $attvalue the by-ref value to check.
  * @param string $regex    the regular expression to check against.
- * @param boolean $hex        whether the entities are hexadecimal.
- * @return boolean            True or False depending on whether there were matches.
+ * @param bool   $hex      whether the entities are hexadecimal.
+ * @return bool            True or False depending on whether there were matches.
  */
 function tln_deent(&$attvalue, $regex, $hex = false)
 {
@@ -503,12 +503,12 @@ function tln_unspace(&$attvalue)
  * This function runs various checks against the attributes.
  *
  * @param string $tagname            String with the name of the tag.
- * @param array $attary            Array with all tag attributes.
- * @param array $rm_attnames        See description for tln_sanitize
- * @param array $bad_attvals        See description for tln_sanitize
- * @param array $add_attr_to_tag See description for tln_sanitize
+ * @param array  $attary            Array with all tag attributes.
+ * @param array  $rm_attnames        See description for tln_sanitize
+ * @param array  $bad_attvals        See description for tln_sanitize
+ * @param array  $add_attr_to_tag See description for tln_sanitize
  * @param string $trans_image_path
- * @param boolean $block_external_images
+ * @param bool   $block_external_images
  * @return array with modified attributes.
  */
 function tln_fixatts(
@@ -828,17 +828,16 @@ function tln_body2div($attary, $trans_image_path)
 
 /**
  *
- * @param string $body                    The HTML you wish to filter
- * @param array $tag_list                see description above
- * @param array $rm_tags_with_content see description above
- * @param array $self_closing_tags    see description above
- * @param boolean $force_tag_closing    see description above
- * @param array $rm_attnames            see description above
- * @param array $bad_attvals            see description above
- * @param array $add_attr_to_tag        see description above
+ * @param string $body                 The HTML you wish to filter
+ * @param array  $tag_list             see description above
+ * @param array  $rm_tags_with_content see description above
+ * @param array  $self_closing_tags    see description above
+ * @param bool   $force_tag_closing    see description above
+ * @param array  $rm_attnames          see description above
+ * @param array  $bad_attvals          see description above
+ * @param array  $add_attr_to_tag      see description above
  * @param string $trans_image_path
- * @param boolean $block_external_images
-
+ * @param bool   $block_external_images
  * @return string                       Sanitized html safe to show on your pages.
  */
 function tln_sanitize(

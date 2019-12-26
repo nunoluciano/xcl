@@ -551,8 +551,8 @@ class tar
     /**
      * Add a file to the tar archive
      *
-     * @param   string  $filename
-     * @param   boolean $binary     Binary file?
+     * @param   string $filename
+     * @param bool     $binary Binary file?
      * @return  bool
      **/
     public function addFile($filename, $binary = false)

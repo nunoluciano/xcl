@@ -288,7 +288,7 @@ EOD;
     /**
      * Remove html/install & chmod mainfile.php 0404
      * 
-     * @return boolean
+     * @return bool
      */
     protected function _removeInstallDir()
     {

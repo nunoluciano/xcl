@@ -44,8 +44,8 @@ if (!defined("XOOPS_C_ERRORHANDLER_INCLUDED")) {
         /**
          * Show an error message
          *
-         * @param   string  $e_code Errorcode
-         * @param   integer $pages  How many pages should the link take you back?
+         * @param   string $e_code Errorcode
+         * @param int      $pages  How many pages should the link take you back?
          *
          * @global  $xoopsConfig
          **/

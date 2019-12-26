@@ -372,7 +372,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      * Is need update checking, compare version with xoops_version.php
      * 
      * @param object $mobj
-     * @return boolean
+     * @return bool
      */
     private function isNeedUpdateCheckByVersionFile($mobj)
     {

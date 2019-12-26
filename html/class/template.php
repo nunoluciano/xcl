@@ -135,7 +135,7 @@ class XoopsTpl extends Smarty
     /**
      * Set debugging mode
      * 
-     * @param   boolean     $flag
+     * @param bool $flag
      **/
     public function xoops_setDebugging($flag=false)
     {
@@ -145,7 +145,7 @@ class XoopsTpl extends Smarty
     /**
      * Set caching
      * 
-     * @param   integer     $num
+     * @param int $num
      **/
     public function xoops_setCaching($num=0)
     {
@@ -155,7 +155,7 @@ class XoopsTpl extends Smarty
     /**
      * Set cache lifetime
      * 
-     * @param   integer     $num    Cache lifetime
+     * @param int $num Cache lifetime
      **/
     public function xoops_setCacheTime($num=0)
     {
@@ -271,9 +271,9 @@ class XoopsTpl extends Smarty
 /**
  * function to update compiled template file in templates_c folder
  * 
- * @param   string  $tpl_id
- * @param   boolean $clear_old
- * @return  boolean
+ * @param   string $tpl_id
+ * @param bool     $clear_old
+ * @return  bool
  **/
 function xoops_template_touch($tpl_id, $clear_old = true)
 {

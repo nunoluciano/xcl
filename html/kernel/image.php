@@ -77,7 +77,7 @@ class XoopsImageHandler extends XoopsObjectHandler
     /**
      * Create a new {@link XoopsImage} 
      * 
-     * @param   boolean $isNew  Flag the object as "new"
+     * @param bool $isNew Flag the object as "new"
      * @return  object
      **/
     public function &create($isNew = true)
@@ -92,8 +92,8 @@ class XoopsImageHandler extends XoopsObjectHandler
     /**
      * Load a {@link XoopsImage} object from the database
      * 
-     * @param   int     $id     ID
-     * @param   boolean $getbinary  
+     * @param   int $id     ID
+     * @param bool  $getbinary
      * @return  object  {@link XoopsImage}, FALSE on fail
      **/
     public function &get($id, $getbinary=true)
@@ -192,9 +192,9 @@ class XoopsImageHandler extends XoopsObjectHandler
     /**
      * Load {@link XoopsImage}s from the database
      * 
-     * @param   object  $criteria   {@link CriteriaElement} 
-     * @param   boolean $id_as_key  Use the ID as key into the array
-     * @param   boolean $getbinary  
+     * @param   object $criteria  {@link CriteriaElement}
+     * @param bool     $id_as_key Use the ID as key into the array
+     * @param bool     $getbinary
      * @return  array   Array of {@link XoopsImage} objects
      **/
     public function &getObjects($criteria = null, $id_as_key = false, $getbinary = false)

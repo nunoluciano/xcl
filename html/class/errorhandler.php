@@ -43,7 +43,7 @@ class XoopsErrorHandler
     /**
      * Show error messages?
      *
-     * @var boolean
+     * @var bool
      * @access private
      */
     public $_showErrors = false;
@@ -51,7 +51,7 @@ class XoopsErrorHandler
     /**
      * Was there a fatal error (E_USER_ERROR)
      *
-     * @var boolean
+     * @var bool
      * @access private
      */
     public $_isFatal = false;
@@ -89,7 +89,7 @@ class XoopsErrorHandler
      * Activate the error handler
      *
      * @access public
-     * @param boolean $showErrors True if debug mode is on
+     * @param bool $showErrors True if debug mode is on
      * @return void
      */
     public function activate($showErrors=false)

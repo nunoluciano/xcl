@@ -29,7 +29,7 @@ class sqlutility
     *
     * @param   array    the splitted sql commands
     * @param   string   the sql commands
-    * @return  boolean  always true
+    * @return  bool  always true
     * @access  public
     */
     public static function splitMySqlFile(&$ret, $sql)

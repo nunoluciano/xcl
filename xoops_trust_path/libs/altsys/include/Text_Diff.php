@@ -85,7 +85,7 @@ class Text_Diff
     /**
      * Checks for an empty diff.
      *
-     * @return boolean  True if two sequences were identical.
+     * @return bool  True if two sequences were identical.
      */
     public function isEmpty()
     {
@@ -102,7 +102,7 @@ class Text_Diff
      *
      * This is mostly for diagnostic purposes.
      *
-     * @return integer  The length of the LCS.
+     * @return int  The length of the LCS.
      */
     public function lcs()
     {
@@ -155,8 +155,8 @@ class Text_Diff
      * Removes trailing newlines from a line of text. This is meant to be used
      * with array_walk().
      *
-     * @param string $line  The line to trim.
-     * @param integer $key  The index of the line in the array. Not used.
+     * @param string $line The line to trim.
+     * @param int    $key  The index of the line in the array. Not used.
      */
     public function _trimNewlines(&$line, $key)
     {
