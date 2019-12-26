@@ -11,7 +11,7 @@ class D3forumTextSanitizer extends MyTextSanitizer
         parent::__construct();
     }
 
-    static public function &sGetInstance()
+    public static function &sGetInstance()
     {
         static $instance;
         if (!isset($instance)) {

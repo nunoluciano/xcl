@@ -49,7 +49,7 @@ class Net_SFTP_Stream
      *
      * @var array
      */
-    static public $instances;
+    public static $instances;
 
     /**
      * SFTP instance
