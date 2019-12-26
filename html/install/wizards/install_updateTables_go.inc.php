@@ -36,7 +36,7 @@
         break;
     }
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
     if (!$dbm->query("ALTER TABLE ".$dbm->prefix("newblocks")." ADD dirname VARCHAR(50) NOT NULL, ADD func_file VARCHAR(50) NOT NULL, ADD show_func VARCHAR(50) NOT NULL, ADD edit_func VARCHAR(50) NOT NULL")) {
     }
     $result = $dbm->queryFromFile('./sql/upgrade/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.structure.sql');

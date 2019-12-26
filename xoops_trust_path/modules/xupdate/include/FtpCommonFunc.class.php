@@ -37,7 +37,7 @@ class Xupdate_FtpCommonFunc
         $this->mModule =& $this->mRoot->mContext->mModule;
         $this->mAsset =& $this->mModule->mAssetManager;
 
-        $this->Xupdate = new Xupdate_Root ;// Xupdate instance
+        $this->Xupdate = new Xupdate_Root();// Xupdate instance
         $this->Ftp =& $this->Xupdate->Ftp ;        // FTP instance
         $this->Func =& $this->Xupdate->func ;        // Functions instance
         $this->content =& $this->Func->content;

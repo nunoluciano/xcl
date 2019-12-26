@@ -131,7 +131,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
     {
         $render->setTemplateName('admin_themefinder_install.html');
 
-        $xupdateFtp = new Xupdate_FtpThemeFinderInstall ;// Xupdate instance
+        $xupdateFtp = new Xupdate_FtpThemeFinderInstall();// Xupdate instance
         //setup
         $xupdateFtp->downloadDirPath = $this->Xupdate->params['temp_path'];
 

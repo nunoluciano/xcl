@@ -62,7 +62,7 @@ class Xupdate_ModulesIniDadaSet
 
     public function __construct()
     {
-        $this->Xupdate = new Xupdate_Root ;// Xupdate instance
+        $this->Xupdate = new Xupdate_Root();// Xupdate instance
         //$this->Ftp =& $this->Xupdate->Ftp ;		// FTP instance
         $this->Func =& $this->Xupdate->func ;        // Functions instance
 

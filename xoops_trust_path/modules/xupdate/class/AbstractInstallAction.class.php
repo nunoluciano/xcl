@@ -244,7 +244,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      **/
     public function executeViewSuccess(&$render)
     {
-        $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall ;// Xupdate instance
+        $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall();// Xupdate instance
         //setup
         $xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
         $xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get('addon_url');

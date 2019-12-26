@@ -57,11 +57,11 @@ define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
 define('_NGIMG', '<img src="img/no.png" border="0" alt="NG" /> ');
 
 include_once './class/simplewizard.php';
-$wizard = new SimpleWizard;
+$wizard = new SimpleWizard();
 $wizard->setBaseTemplate('./install_tpl.php');
 $wizard->setTemplatePath('./templates');
 
-$wizardSeq = new SimpleWizardSequence;
+$wizardSeq = new SimpleWizardSequence();
 
 $wizardSeq->add('langselect',  _INSTALL_L0,   'start',      _INSTALL_L80);
 $wizardSeq->add('start',       _INSTALL_L0,   'modcheck',   _INSTALL_L81);

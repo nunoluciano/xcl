@@ -4656,7 +4656,7 @@ class nusoap_server extends nusoap_base
             $schemaTargetNamespace = $namespace;
         }
         
-        $this->wsdl = new wsdl;
+        $this->wsdl = new wsdl();
         $this->wsdl->serviceName = $serviceName;
         $this->wsdl->endpoint = $endpoint;
         $this->wsdl->namespaces['tns'] = $namespace;
@@ -8030,7 +8030,7 @@ class nusoap_client extends nusoap_base
         // eval the class
         eval($evalStr);
         // instantiate proxy object
-        eval("\$proxy = new nusoap_proxy_$r('');");
+        eval("\$proxy = new nusoap_proxy_()$r('');");
         // transfer current wsdl data to the proxy thereby avoiding parsing the wsdl twice
         $proxy->endpointType = 'wsdl';
         $proxy->wsdlFile = $this->wsdlFile;

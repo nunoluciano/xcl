@@ -20,7 +20,7 @@
         exit();
     }
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
 
     // default settings
     $xoopsConfig['sitename'] = 'XCL Web Application Platform';

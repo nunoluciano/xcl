@@ -9,7 +9,7 @@
  */
     include_once '../mainfile.php';
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
     $title = _INSTALL_L104;
     if (! $dbm->isConnectable()) {
         $wizard->addArray('checks', _NGIMG._INSTALL_L106);

@@ -84,23 +84,23 @@ class Legacy_TextFilter extends XCube_TextFilter
     public function __construct()
     //public function Legacy_TextFilter()
     {
-        $obj = $this->mMakeClickableConvertTable = new XCube_Delegate;
+        $obj = $this->mMakeClickableConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeClickableConvertTable');
         $obj->add('Legacy_TextFilter::sMakeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakeXCodeConvertTable = new XCube_Delegate;
+        $obj = $this->mMakeXCodeConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeXCodeConvertTable');
         $obj->add('Legacy_TextFilter::sMakeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate;
+        $obj = $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeXCodeCheckImgPatterns');
         $obj->add('Legacy_TextFilter::sMakeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakePreXCodeConvertTable = new XCube_Delegate;
+        $obj = $this->mMakePreXCodeConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakePreXCodeConvertTable');
         $obj->add('Legacy_TextFilter::sMakePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakePostXCodeConvertTable = new XCube_Delegate;
+        $obj = $this->mMakePostXCodeConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakePostXCodeConvertTable');
         $obj->add('Legacy_TextFilter::sMakePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 

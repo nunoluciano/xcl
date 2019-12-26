@@ -588,7 +588,7 @@ class XCube_DelegateUtils
                 list($key) = array_keys($delegates);
                 $delegate =& $delegates[$key];
             } else {
-                $delegate = new XCube_Delegate;
+                $delegate = new XCube_Delegate();
                 $m->register($delegateName, $delegate);
             }
         }

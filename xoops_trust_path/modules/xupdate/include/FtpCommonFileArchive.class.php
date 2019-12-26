@@ -144,7 +144,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             $this->_set_error_log($e->getMessage());
             return false;
         }
-        $zip = new ZipArchive;
+        $zip = new ZipArchive();
     
         try {
             $result = $zip->open($downloadFilePath);

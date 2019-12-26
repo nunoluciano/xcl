@@ -9,7 +9,7 @@
  */
     include_once "../mainfile.php";
     include_once './class/dbmanager.php';
-    $db = new db_manager;
+    $db = new db_manager();
     $sql = 'SELECT * FROM '.$db->prefix('groups');
     $result = $db->query($sql);
     $content = '<h5>'._INSTALL_L157.'</h5>';

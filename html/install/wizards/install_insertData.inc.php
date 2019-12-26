@@ -28,9 +28,9 @@
     include_once '../mainfile.php';
     include_once './include/makedata.php';
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
     include_once './class/cachemanager.php';
-    $cm = new cache_manager;
+    $cm = new cache_manager();
 
     $language = check_language($language);
     if (file_exists('./language/'.$language.'/install2.php')) {

@@ -37,7 +37,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
     public function prepare()
     {
         //データの自動作成と削除
-        $inidataset = new Xupdate_ModulesIniDadaSet;
+        $inidataset = new Xupdate_ModulesIniDadaSet();
         $inidataset->execute('all', ($this->mRoot->mContext->mRequest->getRequest('checkonly')));
         $this->fetchLog = $inidataset->Func->Ftp->getMes();
         //-----------------------------------------------

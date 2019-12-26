@@ -49,7 +49,7 @@ abstract class Xupdate_AbstractAction
         // Xupdate_ftp class object
         require_once XUPDATE_TRUST_PATH .'/class/Root.class.php';
 
-        $this->Xupdate = new Xupdate_Root ;// Xupdate instance
+        $this->Xupdate = new Xupdate_Root();// Xupdate instance
         $this->Ftp = $this->Xupdate->Ftp ;        // FTP instance
         $this->Func = $this->Xupdate->func ;        // Functions instance
         $this->mod_config = $this->mRoot->mContext->mModuleConfig ;    // mod_config

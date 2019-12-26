@@ -9,7 +9,7 @@
  */
     include_once '../mainfile.php';
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
 
     $tables = [];
     $result = $dbm->queryFromFile('./sql/'.((XOOPS_DB_TYPE === 'mysqli')? 'mysql' : XOOPS_DB_TYPE).'.structure.sql');

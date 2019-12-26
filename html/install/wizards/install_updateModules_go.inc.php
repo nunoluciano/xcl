@@ -231,7 +231,7 @@
             }
             // data for table 'block_module_link'
             include_once './class/dbmanager.php';
-            $dbm = new db_manager;
+            $dbm = new db_manager();
             $sql = 'SELECT bid, side FROM '.$dbm->prefix('newblocks');
             $result = $dbm->query($sql);
 

@@ -9,7 +9,7 @@
  */
     include_once '../mainfile.php';
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
     if (! $dbm->createDB()) {
         $wizard->setContent('<p>'._INSTALL_L31.'</p>');
         $wizard->setNext(['checkDB', _INSTALL_L104]);

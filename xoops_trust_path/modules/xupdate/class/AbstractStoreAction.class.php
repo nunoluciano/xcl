@@ -116,7 +116,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 
 //データの自動作成と削除
 
-        $inidataset = new Xupdate_ModulesIniDadaSet;
+        $inidataset = new Xupdate_ModulesIniDadaSet();
         $inidataset->execute('all');
 
 //-----------------------------------------------

@@ -80,7 +80,7 @@ class XoopsErrorHandler
     {
         static $instance = null;
         if (empty($instance)) {
-            $instance = new XoopsErrorHandler;
+            $instance = new XoopsErrorHandler();
         }
         return $instance;
     }
