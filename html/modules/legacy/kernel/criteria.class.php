@@ -94,7 +94,7 @@ class Legacy_Criteria
     {
         $t_arr = [];
         $t_arr['condition'] = LEGACY_EXPRESSION_AND;
-        if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
+        if (is_object($column) && $column instanceof \Legacy_Criteria) {
             $t_arr['value'] = $column;
             $this->mChildlen[] = $t_arr;
         } elseif (!is_object($column)) {
@@ -116,7 +116,7 @@ class Legacy_Criteria
     {
         $t_arr = [];
         $t_arr['condition'] = LEGACY_EXPRESSION_OR;
-        if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
+        if (is_object($column) && $column instanceof \Legacy_Criteria) {
             $t_arr['value'] = $column;
             $this->mChildlen[] = $t_arr;
         } elseif (!is_object($column)) {

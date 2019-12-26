@@ -138,7 +138,7 @@ class Legacy_ActionFrame
         //
         $this->mCreateAction->call(new XCube_Ref($this));
     
-        if (!(is_object($this->mAction) && is_a($this->mAction, 'Legacy_Action'))) {
+        if (!(is_object($this->mAction) && $this->mAction instanceof \Legacy_Action)) {
             die();    //< TODO
         }
         

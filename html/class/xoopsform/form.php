@@ -172,7 +172,7 @@ class XoopsForm
     {
         if (is_string($formElement)) {
             $this->_elements[] = $formElement;
-        } elseif (is_subclass_of($formElement, 'xoopsformelement')) {
+        } elseif ($formElement instanceof \xoopsformelement) {
             $this->_elements[] =& $formElement;
             if ($required) {
                 if (!$formElement->isContainer()) {

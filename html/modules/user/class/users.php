@@ -161,7 +161,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
         $limit = 0;
         $start = 0;
 
-        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {

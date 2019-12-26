@@ -81,7 +81,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
         $sql = 'SELECT * FROM `' . $this->mTable . '`';
         
-        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if (trim($where)) {
@@ -153,7 +153,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     
         $sql = 'SELECT `' . $this->mPrimary . '` FROM `' . $this->mTable . '`';
     
-        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if (trim($where)) {
@@ -202,7 +202,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     {
         $sql= 'SELECT COUNT(*) c FROM `' . $this->mTable . '`';
 
-        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if ($where) {
@@ -352,7 +352,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      */
     public function _makeCriteriaElement4sql($criteria, &$obj)
     {
-        if (is_a($criteria, 'CriteriaElement')) {
+        if ($criteria instanceof \CriteriaElement) {
             if ($criteria->hasChildElements()) {
                 $maxCount = $criteria->getCountChildElements();
                 $queryString = $this->_makeCriteria4sql($criteria->getChildElement(0));

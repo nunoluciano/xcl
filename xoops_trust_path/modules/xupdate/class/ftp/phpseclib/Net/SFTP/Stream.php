@@ -198,7 +198,7 @@ class Net_SFTP_Stream
         if ('$' == $host[0]) {
             $host = substr($host, 1);
             global $$host;
-            if (!is_object($$host) || 'Net_SFTP' != get_class($$host)) {
+            if (!is_object($$host) || !$$host instanceof \Net_SFTP) {
                 return false;
             }
             $this->sftp = $$host;

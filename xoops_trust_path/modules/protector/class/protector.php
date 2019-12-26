@@ -155,7 +155,7 @@ class protector
 
         $query = 'SELECT `conf_name`,`conf_value` FROM `'.XOOPS_DB_PREFIX."_config` WHERE `conf_title` like '".$constpref."%'";
         $db_conf = [];
-        if (is_object($this->_conn) && 'mysqli' === get_class($this->_conn)) {
+        if (is_object($this->_conn) && $this->_conn instanceof \mysqli) {
             $result = @mysqli_query($this->_conn, $query);
             if (!$result || mysqli_num_rows($result) < 5) {
                 return false;
@@ -245,7 +245,7 @@ class protector
             return true;
         }
 
-        if (!is_object($this->_conn) || 'mysqli' !== get_class($this->_conn)) {
+        if (!is_object($this->_conn) || !$this->_conn instanceof \mysqli) {
             $this->_conn = @mysqli_connect(XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS);
             if (!$this->_conn) {
                 die('db connection failed.');

@@ -143,7 +143,7 @@ class XoopsOnlineHandler
         $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('online');
-        if (is_object($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (is_object($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -169,7 +169,7 @@ class XoopsOnlineHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('online');
-        if (is_object($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (is_object($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {

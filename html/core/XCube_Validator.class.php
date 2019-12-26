@@ -130,7 +130,7 @@ class XCube_ExtensionValidator extends XCube_Validator
         if ($form->isNull()) {
             return true;
         } else {
-            if (!is_a($form, 'XCube_FileProperty')) {
+            if (!$form instanceof \XCube_FileProperty) {
                 return true;
             }
             
@@ -153,7 +153,7 @@ class XCube_MaxfilesizeValidator extends XCube_Validator
         if ($form->isNull()) {
             return true;
         } else {
-            if (!is_a($form, 'XCube_FileProperty')) {
+            if (!$form instanceof \XCube_FileProperty) {
                 return true;
             }
             

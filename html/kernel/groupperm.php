@@ -254,7 +254,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('group_permission');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -287,7 +287,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     {
         $db = &$this->db;
         $sql = 'SELECT COUNT(*) FROM '.$db->prefix('group_permission');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);
@@ -308,7 +308,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = sprintf('DELETE FROM %s', $this->db->prefix('group_permission'));
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {

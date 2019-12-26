@@ -422,7 +422,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = $this->db;
         $sql = 'SELECT * FROM '.$db->prefix('config');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $sql .= ' ORDER BY conf_order ASC';
             $limit = $criteria->getLimit();
@@ -456,7 +456,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('config');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);

@@ -62,7 +62,7 @@ class Legacy_Utils
         //
         XCube_DelegateUtils::call('Legacy_Utils.CreateModule', new XCube_Ref($instance), $module, $loadConfig);
         
-        if (is_object($instance) && is_a($instance, 'Legacy_AbstractModule')) {
+        if (is_object($instance) && $instance instanceof \Legacy_AbstractModule) {
             return $instance;
         }
         
@@ -107,7 +107,7 @@ class Legacy_Utils
         //
         XCube_DelegateUtils::call('Legacy_Utils.CreateBlockProcedure', new XCube_Ref($retBlock), $block);
         
-        if (is_object($retBlock) && is_a($retBlock, 'Legacy_AbstractBlockProcedure')) {
+        if (is_object($retBlock) && $retBlock instanceof \Legacy_AbstractBlockProcedure) {
             return $retBlock;
         }
         
