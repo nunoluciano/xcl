@@ -151,13 +151,13 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     {
         $ret = [];
     
-        $sql = "SELECT `".$this->mPrimary."` FROM `" . $this->mTable . '`';
+        $sql = 'SELECT `' . $this->mPrimary . '` FROM `' . $this->mTable . '`';
     
         if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if (trim($where)) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
             
             $sorts = [];
@@ -165,7 +165,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
                 $sorts[] = '`' . $sort['sort'] . '` ' . $sort['order'];
             }
             if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
             
             if ($limit === null) {
@@ -200,13 +200,13 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
     public function getCount($criteria = null)
     {
-        $sql="SELECT COUNT(*) c FROM `" . $this->mTable . '`';
+        $sql= 'SELECT COUNT(*) c FROM `' . $this->mTable . '`';
 
         if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if ($where) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
         }
             
@@ -279,7 +279,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
             $values[] = $_value;
         }
 
-        $sql = @sprintf("INSERT INTO `" . $this->mTable . "` ( %s ) VALUES ( %s )", implode(",", $fields), implode(",", $values));
+        $sql = @sprintf('INSERT INTO `' . $this->mTable . '` ( %s ) VALUES ( %s )', implode(',', $fields), implode(',', $values));
 
         return $sql;
     }
@@ -292,7 +292,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     public function _update(&$obj)
     {
         $set_lists= [];
-        $where = "";
+        $where = '';
 
         $arr = $this->_makeVars4sql($obj);
 
@@ -304,7 +304,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
             }
         }
 
-        $sql = @sprintf("UPDATE `" . $this->mTable . "` SET %s WHERE %s", implode(",", $set_lists), $where);
+        $sql = @sprintf('UPDATE `' . $this->mTable . '` SET %s WHERE %s', implode(',', $set_lists), $where);
 
         return $sql;
     }
@@ -422,7 +422,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
         // criteria even if this approach is few slow.
         //
         $criteria =new Criteria($this->mPrimary, $obj->get($this->mPrimary));
-        $sql = "DELETE FROM `" . $this->mTable . "` WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj);
+        $sql = 'DELETE FROM `' . $this->mTable . '` WHERE ' . $this->_makeCriteriaElement4sql($criteria, $obj);
     
         $result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
         if ($result==true) {

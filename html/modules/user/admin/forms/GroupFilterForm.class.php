@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('GROUP_SORT_KEY_GROUPID', 1);
 define('GROUP_SORT_KEY_NAME', 2);

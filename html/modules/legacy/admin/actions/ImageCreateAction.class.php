@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageAdminEditForm.class.php';
 
 class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 {
@@ -78,7 +78,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         // If there is a old file, delete it
         //
         if ($this->mActionForm->mOldFileName != null) {
-            @unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFileName);
+            @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
             
             // Get a body name of the old file.
             $match = [];
@@ -100,7 +100,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     {
         $this->mObject->loadImagecategory();
 
-        $render->setTemplateName("image_edit.html");
+        $render->setTemplateName('image_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -111,16 +111,16 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImageList&imgcat_id=" . $this->mActionForm->get('imgcat_id'));
+        $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ImagecategoryList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImagecategoryList");
+        $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 }

@@ -7,8 +7,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_HeaderScript
 {
     protected $_mType = 'google';
-    protected $_mCore = "1";
-    protected $_mUi = "1";
+    protected $_mCore = '1';
+    protected $_mUi = '1';
 
     protected $_mLibrary = [];
     protected $_mScript = [];
@@ -18,7 +18,7 @@ class Legacy_HeaderScript
     protected $_mLink = [];
 
     public $mUsePrototype = false;    //use prototype.js ?
-    public $mFuncNamePrefix = "";    //jQuery $() function's name prefix for compatibility with prototype.js
+    public $mFuncNamePrefix = '';    //jQuery $() function's name prefix for compatibility with prototype.js
 
     /**
      * __construct
@@ -187,7 +187,7 @@ class Legacy_HeaderScript
     **/
     public function createLibraryTag()
     {
-        $html = "";
+        $html = '';
 
         //prototype.js compatibility
         if ($this->mUsePrototype) {
@@ -203,12 +203,12 @@ class Legacy_HeaderScript
 
         //load plugin libraries
         foreach ($this->_mLibrary as $lib) {
-            $html .= "<script type=\"text/javascript\" src=\"". $lib ."\"></script>\n";
+            $html .= '<script type="text/javascript" src="' . $lib . "\"></script>\n";
         }
 
         //load css
         foreach ($this->_mStylesheet as $css) {
-            $html .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". $css ."\">\n";
+            $html .= '<link type="text/css" rel="stylesheet" href="' . $css . "\">\n";
         }
 
         //load link
@@ -254,7 +254,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     **/
     protected function _loadLocalJQueryLibrary()
     {
-        $html = "";
+        $html = '';
         if ($this->_mCore) {
             $html .= '<script type="text/javascript" src="'. $this->_mCore .'"></script>';
         }
@@ -277,7 +277,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
         $html = null;
         if (count($this->_mOnloadScript)>0||count($this->_mScript)>0) {
             $html = "<script type=\"text/javascript\" crossorigin=\"anonymous\"><!--\n";
-            if ($this->_mType == "google") {
+            if ($this->_mType == 'google') {
                 $html .= "google.setOnLoadCallback(function() {\n";
             }
             if ($this->mUsePrototype == true) {
@@ -285,12 +285,12 @@ google.load("jqueryui", "'. $this->_mUi .'");
             }
             $html .= "jQuery(function($){\n";
             $html .= $this->_makeScript(true);
-            if ($this->_mType == "google") {
+            if ($this->_mType == 'google') {
                 $html .= "\n});\n";
             }
             $html .= "\n});\n";
             $html .= $this->_makeScript(false);
-            $html .= "//--></script>"."\n";
+            $html .= '//--></script>' . "\n";
         }
         return $html;
     }
@@ -322,7 +322,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     protected function _convertFuncName($script)
     {
         if ($this->mFuncNamePrefix) {
-            $script = str_replace("$(", $this->mFuncNamePrefix."$(", $script);
+            $script = str_replace('$(', $this->mFuncNamePrefix . '$(', $script);
         }
         return $script;
     }

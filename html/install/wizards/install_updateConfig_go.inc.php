@@ -7,13 +7,13 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    include_once "../mainfile.php";
+    include_once '../mainfile.php';
 
     $language = check_language($language);
-    if (file_exists("./language/".$language."/install2.php")) {
-        include_once "./language/".$language."/install2.php";
-    } elseif (file_exists("./language/english/install2.php")) {
-        include_once "./language/english/install2.php";
+    if (file_exists('./language/' . $language . '/install2.php')) {
+        include_once './language/' . $language . '/install2.php';
+    } elseif (file_exists('./language/english/install2.php')) {
+        include_once './language/english/install2.php';
         $language = 'english';
     } else {
         echo 'no language file (install2.php).';
@@ -35,15 +35,15 @@
     $xoopsConfig['self_delete'] = 0;
     $xoopsConfig['gzip_compression'] = 0;
     $xoopsConfig['uname_test_level'] = 0;
-    $xoopsConfig['usercookie'] = "xcl_wap_user";
-    $xoopsConfig['sessioncookie'] = "xcl_wap_session";
+    $xoopsConfig['usercookie'] = 'xcl_wap_user';
+    $xoopsConfig['sessioncookie'] = 'xcl_wap_session';
     $xoopsConfig['sessionexpire'] = 4500;
     $xoopsConfig['server_TZ'] = 0;
     $xoopsConfig['default_TZ'] = 0;
     $xoopsConfig['banners'] = 1;
-    $xoopsConfig['com_mode'] = "nest";
+    $xoopsConfig['com_mode'] = 'nest';
     $xoopsConfig['com_order'] = 1;
-    $xoopsConfig['my_ip'] = "127.0.0.1";
+    $xoopsConfig['my_ip'] = '127.0.0.1';
     $xoopsConfig['avatar_allow_upload'] = 0;
     $xoopsConfig['avatar_width'] = 120;
     $xoopsConfig['avatar_height'] = 120;
@@ -100,7 +100,7 @@
     // default the default theme
 
     $time = time();
-    $dbm->insert('tplset', " VALUES (1, 'legacy_default', 'Legacy 2.2 Default Theme', '', ".$time.")");
+    $dbm->insert('tplset', " VALUES (1, 'legacy_default', 'Legacy 2.2 Default Theme', '', ".$time . ')');
 
 //  include_once './class/cachemanager.php';
 //    $cm = new cache_manager;
@@ -126,13 +126,13 @@
 //        }
 //    }
 
-        $dbm->query("INSERT INTO ".$dbm->prefix('group_permission')." (gperm_groupid, gperm_itemid) SELECT groupid, block_id FROM ".$dbm->prefix('groups_blocks_link'));
-        $dbm->query("UPDATE ".$dbm->prefix('group_permission')." SET gperm_name = 'block_read'");
-        $dbm->query("INSERT INTO ".$dbm->prefix('group_permission')." (gperm_groupid, gperm_itemid) SELECT groupid, mid FROM ".$dbm->prefix('groups_modules_link') ." WHERE type='A'");
-        $dbm->query("UPDATE ".$dbm->prefix('group_permission')." SET gperm_name = 'module_admin' WHERE gperm_name = ''");
-        $dbm->query("INSERT INTO ".$dbm->prefix('group_permission')." (gperm_groupid, gperm_itemid) SELECT groupid, mid FROM ".$dbm->prefix('groups_modules_link')." WHERE type='R'");
-        $dbm->query("UPDATE ".$dbm->prefix('group_permission')." SET gperm_name = 'module_read' WHERE gperm_name = ''");
-        $dbm->query("UPDATE ".$dbm->prefix('group_permission')." SET gperm_modid = 1");
+        $dbm->query('INSERT INTO ' . $dbm->prefix('group_permission') . ' (gperm_groupid, gperm_itemid) SELECT groupid, block_id FROM ' . $dbm->prefix('groups_blocks_link'));
+        $dbm->query('UPDATE ' . $dbm->prefix('group_permission') . " SET gperm_name = 'block_read'");
+        $dbm->query('INSERT INTO ' . $dbm->prefix('group_permission') . ' (gperm_groupid, gperm_itemid) SELECT groupid, mid FROM ' . $dbm->prefix('groups_modules_link') . " WHERE type='A'");
+        $dbm->query('UPDATE ' . $dbm->prefix('group_permission') . " SET gperm_name = 'module_admin' WHERE gperm_name = ''");
+        $dbm->query('INSERT INTO ' . $dbm->prefix('group_permission') . ' (gperm_groupid, gperm_itemid) SELECT groupid, mid FROM ' . $dbm->prefix('groups_modules_link') . " WHERE type='R'");
+        $dbm->query('UPDATE ' . $dbm->prefix('group_permission') . " SET gperm_name = 'module_read' WHERE gperm_name = ''");
+        $dbm->query('UPDATE ' . $dbm->prefix('group_permission') . ' SET gperm_modid = 1');
         $dbm->query('DROP TABLE '.$dbm->prefix('groups_blocks_link'));
         $dbm->query('DROP TABLE '.$dbm->prefix('groups_modules_link'));
 

@@ -112,13 +112,13 @@ class ShadePlus_ServiceServer
                 $in[$name] = $t_type;
             }
             
-            $this->_mServer->register($this->_mService->mClassName . "." . $func['name'], $in, $out, $this->_mService->mNameSpace);
+            $this->_mServer->register($this->_mService->mClassName . '.' . $func['name'], $in, $out, $this->_mService->mNameSpace);
         }
     }
     
     public function executeService()
     {
-        $postdata = file_get_contents("php://input"); 
+        $postdata = file_get_contents('php://input');
         //$HTTP_RAW_POST_DATA = isset($GLOBALS['HTTP_RAW_POST_DATA'])? $GLOBALS['HTTP_RAW_POST_DATA'] : null;
         $this->_mServer->service($postdata);
         //Instead php://input should be used.

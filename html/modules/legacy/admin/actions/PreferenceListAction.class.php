@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/PreferenceEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/PreferenceEditForm.class.php';
 
 class Legacy_PreferenceListAction extends Legacy_Action
 {
@@ -37,7 +37,7 @@ class Legacy_PreferenceListAction extends Legacy_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("preference_list.html");
+        $render->setTemplateName('preference_list.html');
         $render->setAttribute('objects', $this->mObjects);
     }
 }

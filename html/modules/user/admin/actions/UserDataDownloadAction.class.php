@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
 
 class User_UserDataDownloadAction extends User_Action
 {
@@ -20,12 +20,12 @@ class User_UserDataDownloadAction extends User_Action
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserDataDownload";
+        return './index.php?action=UserDataDownload';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_data_download.html");
+        $render->setTemplateName('user_data_download.html');
         $member_handler =& xoops_gethandler('member');
         $user_count = $member_handler->getUserCount();
         $render->setAttribute('user_count', $user_count);
@@ -53,7 +53,7 @@ class User_UserDataDownloadAction extends User_Action
         }
         foreach ($users[0]->gets() as $key=>$var) {
             $_f = '_MD_USER_LANG_'.strtoupper($key);
-            $field_line .= (defined($_f) ? constant($_f) : $key).",";
+            $field_line .= (defined($_f) ? constant($_f) : $key) . ',';
         }
         $field_line .= "\n";
         
@@ -68,7 +68,7 @@ class User_UserDataDownloadAction extends User_Action
                   default:
                 }
                 if (preg_match('/[,"\r\n]/', $value)) {
-                    $value = preg_replace('/"/', "\"\"", $value);
+                    $value = preg_replace('/"/', '""', $value);
                     $value = "\"$value\"";
                 }
                 $user_data .= $value . ',';
@@ -86,9 +86,9 @@ class User_UserDataDownloadAction extends User_Action
         }
         
         if (preg_match('/firefox/i', xoops_getenv('HTTP_USER_AGENT'))) {
-            header("Content-Type: application/x-csv");
+            header('Content-Type: application/x-csv');
         } else {
-            header("Content-Type: application/vnd.ms-excel");
+            header('Content-Type: application/vnd.ms-excel');
         }
         
         

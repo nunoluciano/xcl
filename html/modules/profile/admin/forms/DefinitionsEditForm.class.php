@@ -9,8 +9,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 {
@@ -19,7 +19,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
      */
     public function getTokenName()
     {
-        return "module.profile.Admin_DefinitionsEditForm.TOKEN";
+        return 'module.profile.Admin_DefinitionsEditForm.TOKEN';
     }
 
     /**
@@ -92,7 +92,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
         $this->set('show_form', $obj->get('show_form'));
         $this->set('weight', $obj->get('weight'));
         $this->set('description', $obj->get('description'));
-        $this->set('access', explode(",", $obj->get('access')));
+        $this->set('access', explode(',', $obj->get('access')));
         $this->set('options', $obj->get('options'));
     }
 
@@ -112,7 +112,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
         $obj->set('weight', $this->get('weight'));
         $obj->set('description', $this->get('description'));
         if ($this->get('access')) {
-            $obj->set('access', implode(",", $this->get('access')));
+            $obj->set('access', implode(',', $this->get('access')));
         }
         $obj->set('options', $this->get('options'));
     }

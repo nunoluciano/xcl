@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('IMAGE_SORT_KEY_IMAGE_ID', 1);
 define('IMAGE_SORT_KEY_IMAGE_NAME', 2);
@@ -39,9 +39,9 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         IMAGE_SORT_KEY_IMGCAT_ID => 'imgcat_id'
     ];
     
-    public $mKeyword = "";
-    public $mOptionField = "";
-    public $mOptionField2 = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
+    public $mOptionField2 = '';
 
     public function getDefaultSortKey()
     {
@@ -73,9 +73,9 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', $option_field);
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "visible") {
+            if ($this->mOptionField == 'visible') {
                 $this->_mCriteria->add(new Criteria('image_display', '1'));
-            } elseif ($this->mOptionField == "invisible") {
+            } elseif ($this->mOptionField == 'invisible') {
                 $this->_mCriteria->add(new Criteria('image_display', '0'));
             } else {
                 //all
@@ -85,11 +85,11 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', $option_field2);
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == "gif") {
+            if ($this->mOptionField2 == 'gif') {
                 $this->_mCriteria->add(new Criteria('image_mimetype', 'image/gif'));
-            } elseif ($this->mOptionField2 == "png") {
+            } elseif ($this->mOptionField2 == 'png') {
                 $this->_mCriteria->add(new Criteria('image_mimetype', 'image/png'));
-            } elseif ($this->mOptionField2 == "jpeg") {
+            } elseif ($this->mOptionField2 == 'jpeg') {
                 $cri = new CriteriaCompo();
                 $cri->add(new Criteria('image_mimetype', 'image/jpeg'));
                 $cri->add(new Criteria('image_mimetype', 'image/pjpeg'), 'OR');

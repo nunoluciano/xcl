@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/SmilesAdminEditForm.class.php';
 
 class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 {
@@ -46,8 +46,8 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         //
         // Delete old file, if the file exists.
         //
-        if ($this->mActionForm->mOldFilename != null && $this->mActionForm->mOldFilename != "blank.gif") {
-            @unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFilename);
+        if ($this->mActionForm->mOldFilename != null && $this->mActionForm->mOldFilename != 'blank.gif') {
+            @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFilename);
         }
 
         return parent::_doExecute();
@@ -55,23 +55,23 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("smiles_edit.html");
+        $render->setTemplateName('smiles_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=SmilesList");
+        $controller->executeForward('./index.php?action=SmilesList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=SmilesList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=SmilesList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=SmilesList");
+        $controller->executeForward('./index.php?action=SmilesList');
     }
 }

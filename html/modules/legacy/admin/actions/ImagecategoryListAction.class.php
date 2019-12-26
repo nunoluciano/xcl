@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryListForm.class.php';
 
 class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 {
@@ -54,14 +54,14 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=ImagecategoryList";
+        return './index.php?action=ImagecategoryList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("imagecategory_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('imagecategory_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -172,7 +172,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("imagecategory_list_confirm.html");
+        $render->setTemplateName('imagecategory_list_confirm.html');
         $render->setAttribute('imagecategoryObjects', $this->mImagecategoryObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         //

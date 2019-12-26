@@ -38,16 +38,16 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 
 require_once XOOPS_ROOT_PATH.'/header.php';
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/CommentEditForm.class.php";
-require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/CommentEditForm.class.php';
+require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
 //
 // Load message resource
 //
 $t_root =& XCube_Root::getSingleton();
 
-$t_root->mLanguageManager->loadModuleMessageCatalog("legacy");
-$t_root->mLanguageManager->loadPageTypeMessageCatalog("comment");    ///< @todo Is this must?
+$t_root->mLanguageManager->loadModuleMessageCatalog('legacy');
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< @todo Is this must?
 
 
 $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
@@ -73,8 +73,8 @@ $comment =& $comment_handler->get($com_id);
 
 $r_name = XoopsUser::getUnameFromId($comment->getVar('com_uid'));
 $r_text = _CM_POSTER.': <b>'.$r_name.'</b>&nbsp;&nbsp;'._CM_POSTED.': <b>'.formatTimestamp($comment->getVar('com_created')).'</b><br /><br />'.$comment->getVar('com_text');$com_title = $comment->getVar('com_title', 'E');
-if (!preg_match("/^re:/i", $com_title)) {
-    $com_title = "Re: ".xoops_substr($com_title, 0, 56);
+if (!preg_match('/^re:/i', $com_title)) {
+    $com_title = 'Re: ' . xoops_substr($com_title, 0, 56);
 }
 $com_pid = $com_id;
 $com_text = '';
@@ -127,12 +127,12 @@ themecenterposts($comment->getVar('com_title'), $r_text);
 $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
 $renderTarget =& $renderSystem->createRenderTarget('main');
 
-$renderTarget->setTemplateName("legacy_comment_edit.html");
+$renderTarget->setTemplateName('legacy_comment_edit.html');
 
-$renderTarget->setAttribute("actionForm", $actionForm);
-$renderTarget->setAttribute("subjectIcons", $subjectIcons);
-$renderTarget->setAttribute("xoopsModuleConfig", $xoopsModuleConfig);
-$renderTarget->setAttribute("com_order", $com_order);
+$renderTarget->setAttribute('actionForm', $actionForm);
+$renderTarget->setAttribute('subjectIcons', $subjectIcons);
+$renderTarget->setAttribute('xoopsModuleConfig', $xoopsModuleConfig);
+$renderTarget->setAttribute('com_order', $com_order);
 
 //
 // Rendering
@@ -144,4 +144,4 @@ $renderSystem->render($renderTarget);
 //
 print $renderTarget->getResult();
 
-require_once XOOPS_ROOT_PATH . "/footer.php";
+require_once XOOPS_ROOT_PATH . '/footer.php';

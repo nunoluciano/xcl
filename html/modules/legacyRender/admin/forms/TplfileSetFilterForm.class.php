@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileFilterForm.class.php';
 
 /***
  * @internal

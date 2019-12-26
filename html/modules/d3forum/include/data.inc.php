@@ -8,11 +8,12 @@ $mydirname = basename( dirname ( dirname( __FILE__ ) ) );
 
 eval( '
 
-function '.$mydirname.'_new( $limit=0, $offset=0 )
+function '.$mydirname . '_new( $limit=0, $offset=0 )
 {
-	return d3forum_whatsnew_base( "'.$mydirname.'" , $limit, $offset ) ;
+	return d3forum_whatsnew_base( \'' . $mydirname . '\' , $limit, $offset ) ;
 }
 
-' ) ;
+'
+) ;
 
 ?>

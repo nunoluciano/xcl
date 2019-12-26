@@ -4,13 +4,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__) . "/AbstractUserEditForm.class.php";
+require_once dirname(__FILE__) . '/AbstractUserEditForm.class.php';
 
 class User_RegisterEditForm extends User_AbstractUserEditForm
 {
     public function getTokenName()
     {
-        return "module.user.UserRegisterEditForm.TOKEN";
+        return 'module.user.UserRegisterEditForm.TOKEN';
     }
 
     public function prepare()
@@ -105,9 +105,9 @@ class User_RegisterAgreeEditForm extends User_RegisterEditForm
         // set fields
         $this->mFieldProperties['agree']=new XCube_FieldProperty($this);
         $this->mFieldProperties['agree']->setDependsByArray(['required', 'intRange']);
-        $this->mFieldProperties['agree']->addMessage("required", _MD_USER_ERROR_UNEEDAGREE);
-        $this->mFieldProperties['agree']->addMessage("intRange", _MD_USER_ERROR_UNEEDAGREE);
-        $this->mFieldProperties['agree']->addVar("min", 1);
-        $this->mFieldProperties['agree']->addVar("max", 1);
+        $this->mFieldProperties['agree']->addMessage('required', _MD_USER_ERROR_UNEEDAGREE);
+        $this->mFieldProperties['agree']->addMessage('intRange', _MD_USER_ERROR_UNEEDAGREE);
+        $this->mFieldProperties['agree']->addVar('min', 1);
+        $this->mFieldProperties['agree']->addVar('max', 1);
     }
 }

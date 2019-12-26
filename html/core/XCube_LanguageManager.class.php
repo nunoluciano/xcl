@@ -176,7 +176,7 @@ class XCube_LanguageManager
      */
     public function getFallbackLanguage()
     {
-        return "eng";
+        return 'eng';
     }
 
     /**
@@ -187,7 +187,7 @@ class XCube_LanguageManager
      */
     public function getFallbackLocale()
     {
-        return "EG";
+        return 'EG';
     }
     
     public function encodeUTF8($str)

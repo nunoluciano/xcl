@@ -22,7 +22,7 @@ function xclCallback($session_id, $session_write_close)
 return false;
 }
 
-ob_start("xclCallback");
+ob_start('xclCallback');
 // !Fix end
 
 class Legacy_SessionCallback extends XCube_ActionFilter

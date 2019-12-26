@@ -511,7 +511,7 @@ class XoopsObject extends AbstractXoopsObject
                         break;
                     }
                     if (isset($v['maxlength']) && strlen($cleanv) > (int)$v['maxlength']) {
-                        $this->setErrors("$k must be shorter than ".(int)$v['maxlength']." characters.");
+                        $this->setErrors("$k must be shorter than ".(int)$v['maxlength'] . ' characters.');
                         break;
                     }
                     if (!$v['not_gpc']) {
@@ -557,7 +557,7 @@ class XoopsObject extends AbstractXoopsObject
                         break;
                     }
                     if ($cleanv != '' && !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $cleanv)) {
-                        $this->setErrors("Invalid Email");
+                        $this->setErrors('Invalid Email');
                         break;
                     }
                     if (!$v['not_gpc']) {

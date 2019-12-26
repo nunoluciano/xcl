@@ -86,9 +86,9 @@ class LegacyCommentObject extends XoopsSimpleObject
 
 class LegacyCommentHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "xoopscomments";
-    public $mPrimary = "com_id";
-    public $mClass = "LegacyCommentObject";
+    public $mTable = 'xoopscomments';
+    public $mPrimary = 'com_id';
+    public $mClass = 'LegacyCommentObject';
 
     /**
      * @var XCube_Delegate
@@ -148,7 +148,7 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
     {
         $ret = [];
 
-        $sql = "SELECT DISTINCT com_modid FROM " . $this->mTable;
+        $sql = 'SELECT DISTINCT com_modid FROM ' . $this->mTable;
         $res = $this->db->query($sql);
         if ($res) {
             while ($row = $this->db->fetchArray($res)) {

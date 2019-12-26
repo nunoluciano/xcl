@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/EditUserForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/EditUserForm.class.php';
 
 define('USER_COOKIE_KEEP_TIME', 31536000);
 
@@ -21,7 +21,7 @@ class User_EditUserAction extends User_AbstractEditAction
     /**
      * @var string
      */
-    public $mUserCookie = "";
+    public $mUserCookie = '';
     
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -118,11 +118,11 @@ class User_EditUserAction extends User_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_edituser.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
-        $render->setAttribute("thisUser", $this->mObject);
-        $render->setAttribute("currentUser", $xoopsUser);
-        $render->setAttribute("allow_chgmail", $this->mConfig['allow_chgmail']);
+        $render->setTemplateName('user_edituser.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
+        $render->setAttribute('thisUser', $this->mObject);
+        $render->setAttribute('currentUser', $xoopsUser);
+        $render->setAttribute('allow_chgmail', $this->mConfig['allow_chgmail']);
         
         $handler =& xoops_gethandler('timezone');
         $timezoneArr =& $handler->getObjects();
@@ -131,7 +131,7 @@ class User_EditUserAction extends User_AbstractEditAction
         //
         // umode option
         //
-        $umodeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
+        $umodeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $render->setAttribute('umodeOptions', $umodeOptions);
 
         //		
@@ -149,7 +149,7 @@ class User_EditUserAction extends User_AbstractEditAction
         //
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
-        require_once XOOPS_ROOT_PATH . "/include/notification_constants.php";
+        require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
 
         // Check the PM service has been installed.
         $root =& XCube_Root::getSingleton();

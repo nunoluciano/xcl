@@ -8,8 +8,8 @@
  *
  */
 
-define("XCUBE_RENDER_MODE_NORMAL", 1);
-define("XCUBE_RENDER_MODE_DIALOG", 2);
+define('XCUBE_RENDER_MODE_NORMAL', 1);
+define('XCUBE_RENDER_MODE_DIALOG', 2);
 
 /**
  * We had to define classes that are XCube_RenderTargetBuffer, XCube_RenderTargetTheme,
@@ -20,10 +20,10 @@ define("XCUBE_RENDER_MODE_DIALOG", 2);
  * We prepare the following constants for the flag of a render-target instead of
  * the group of many classes. 
  */
-define("XCUBE_RENDER_TARGET_TYPE_BUFFER", null);
-define("XCUBE_RENDER_TARGET_TYPE_THEME", 'theme');
-define("XCUBE_RENDER_TARGET_TYPE_BLOCK", 'block');
-define("XCUBE_RENDER_TARGET_TYPE_MAIN", 'main');
+define('XCUBE_RENDER_TARGET_TYPE_BUFFER', null);
+define('XCUBE_RENDER_TARGET_TYPE_THEME', 'theme');
+define('XCUBE_RENDER_TARGET_TYPE_BLOCK', 'block');
+define('XCUBE_RENDER_TARGET_TYPE_MAIN', 'main');
 
 /**
  * This is a target whom a render-system renders. This has a buffer and receives

@@ -9,15 +9,15 @@ $db =& Database::getInstance() ;
 
 // get right $cat_id
 $cat_id = intval( @$_GET['cat_id'] ) ;
-list( $cat_id , $cat_title ) = $db->fetchRow( $db->query( "SELECT cat_id,cat_title FROM ".$db->prefix($mydirname."_categories")." WHERE cat_id=$cat_id" ) ) ;
+list( $cat_id , $cat_title ) = $db->fetchRow( $db->query('SELECT cat_id,cat_title FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id" ) ) ;
 if( empty( $cat_id ) ) {
 	$invalid_cat_id = true ;
-	list( $cat_id ) = $db->fetchRow( $db->query( "SELECT MIN(cat_id) FROM ".$db->prefix($mydirname."_categories") ) ) ;
+	list( $cat_id ) = $db->fetchRow( $db->query('SELECT MIN(cat_id) FROM ' . $db->prefix($mydirname . '_categories') ) ) ;
 	if( empty( $cat_id ) ) {
 		redirect_header( XOOPS_URL."/modules/$mydirname/index.php?page=makecategory" , 5 , _MD_A_D3FORUM_ERR_CREATECATEGORYFIRST ) ;
 		exit ;
 	} else {
-		header( "Location: ".XOOPS_URL."/modules/$mydirname/admin/index.php?page=category_access&cat_id=$cat_id" ) ;
+		header('Location: ' . XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&cat_id=$cat_id" ) ;
 		exit ;
 	}
 }
@@ -32,8 +32,8 @@ if( ! empty( $_POST['group_update'] ) && empty( $invaild_cat_id ) ) {
 	if ( ! $xoopsGTicket->check( true , 'd3forum_admin' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
-	$db->query( "DELETE FROM ".$db->prefix($mydirname."_category_access")." WHERE cat_id=$cat_id AND groupid>0" ) ;
-	$result = $db->query( "SELECT groupid FROM ".$db->prefix("groups") ) ;
+	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE cat_id=$cat_id AND groupid>0" ) ;
+	$result = $db->query('SELECT groupid FROM ' . $db->prefix('groups') ) ;
 	while( list( $gid ) = $db->fetchRow( $result ) ) {
 		if( ! empty( $_POST['can_reads'][$gid] ) ) {
 			$can_post = empty( $_POST['can_posts'][$gid] ) ? 0 : 1 ;
@@ -43,7 +43,7 @@ if( ! empty( $_POST['group_update'] ) && empty( $invaild_cat_id ) ) {
 			$is_moderator = empty( $_POST['is_moderators'][$gid] ) ? 0 : 1 ;
 			$can_makeforum = empty( $_POST['can_makeforums'][$gid] ) ? 0 : 1 ;
 
-			$db->query( "INSERT INTO ".$db->prefix($mydirname."_category_access")." SET cat_id=$cat_id, groupid=$gid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
+			$db->query('INSERT INTO ' . $db->prefix($mydirname . '_category_access') . " SET cat_id=$cat_id, groupid=$gid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
 		}
 	}
 	redirect_header( XOOPS_URL."/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id" , 3 , _MD_D3FORUM_MSG_UPDATED ) ;
@@ -55,7 +55,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 	if ( ! $xoopsGTicket->check( true , 'd3forum_admin' ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
-	$db->query( "DELETE FROM ".$db->prefix($mydirname."_category_access")." WHERE cat_id=$cat_id AND uid>0" ) ;
+	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE cat_id=$cat_id AND uid>0" ) ;
 	$can_posts = is_array( @$_POST['can_posts'] ) ? $_POST['can_posts'] : [];
 	$can_reads = is_array( @$_POST['can_reads'] ) ? $_POST['can_reads'] + $can_posts : $can_posts ;
 
@@ -69,7 +69,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 			$is_moderator = empty( $_POST['is_moderators'][$uid] ) ? 0 : 1 ;
 			$can_makeforum = empty( $_POST['can_makeforums'][$uid] ) ? 0 : 1 ;
 
-			$db->query( "INSERT INTO ".$db->prefix($mydirname."_category_access")." SET cat_id=$cat_id, uid=$uid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
+			$db->query('INSERT INTO ' . $db->prefix($mydirname . '_category_access') . " SET cat_id=$cat_id, uid=$uid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
 		}
 	}
 
@@ -88,7 +88,8 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 			$user =& $member_handler->getUser( intval( $uid ) ) ;
 		}
 		if( is_object( $user ) ) {
-			$db->query( "INSERT INTO ".$db->prefix($mydirname."_category_access")." SET cat_id=$cat_id, uid=".$user->getVar('uid').", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
+			$db->query('INSERT INTO '
+                       . $db->prefix($mydirname . '_category_access') . " SET cat_id=$cat_id, uid=" . $user->getVar('uid') . ", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator, can_makeforum=$can_makeforum" ) ;
 		}
 	}
 
@@ -103,7 +104,7 @@ if( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 //
 
 // create jump box options as array
-$crs = $db->query( "SELECT cat_id,cat_title,cat_depth_in_tree FROM ".$db->prefix($mydirname."_categories")." ORDER BY cat_order_in_tree" ) ;
+$crs = $db->query('SELECT cat_id,cat_title,cat_depth_in_tree FROM ' . $db->prefix($mydirname . '_categories') . ' ORDER BY cat_order_in_tree') ;
 $cat_options = [];
 while( list( $id , $title , $depth ) = $db->fetchRow( $crs ) ) {
 	$cat_options[ $id ] = str_repeat( '--' , $depth ) . htmlspecialchars( $title , ENT_QUOTES ) ;
@@ -117,7 +118,7 @@ $group_trs = '' ;
 foreach( $groups as $group ) {
 	$gid = $group->getVar('groupid') ;
 
-	$fars = $db->query( "SELECT can_post,can_edit,can_delete,post_auto_approved,is_moderator,can_makeforum FROM ".$db->prefix($mydirname."_category_access")." WHERE groupid=".$group->getVar('groupid')." AND cat_id=$cat_id" ) ;
+	$fars = $db->query('SELECT can_post,can_edit,can_delete,post_auto_approved,is_moderator,can_makeforum FROM ' . $db->prefix($mydirname . '_category_access') . ' WHERE groupid=' . $group->getVar('groupid') . " AND cat_id=$cat_id" ) ;
 	if( $db->getRowsNum( $fars ) > 0 ) {
 		$can_read = true ;
 		list( $can_post , $can_edit , $can_delete , $post_auto_approved , $is_moderator , $can_makeforum ) = $db->fetchRow( $fars ) ;
@@ -125,16 +126,16 @@ foreach( $groups as $group ) {
 		$can_post = $can_read = $can_edit = $can_delete = $post_auto_approved = $is_moderator = $can_makeforum = false ;
 	}
 
-	$can_read_checked = $can_read ? "checked='checked'" : "" ;
-	$can_post_checked = $can_post ? "checked='checked'" : "" ;
-	$can_edit_checked = $can_edit ? "checked='checked'" : "" ;
-	$can_delete_checked = $can_delete ? "checked='checked'" : "" ;
-	$post_auto_approved_checked = $post_auto_approved ? "checked='checked'" : "" ;
-	$is_moderator_checked = $is_moderator ? "checked='checked'" : "" ;
-	$can_makeforum_checked = $can_makeforum ? "checked='checked'" : "" ;
-	$group_trs .= "
+	$can_read_checked = $can_read ? "checked='checked'" : '';
+	$can_post_checked = $can_post ? "checked='checked'" : '';
+	$can_edit_checked = $can_edit ? "checked='checked'" : '';
+	$can_delete_checked = $can_delete ? "checked='checked'" : '';
+	$post_auto_approved_checked = $post_auto_approved ? "checked='checked'" : '';
+	$is_moderator_checked = $is_moderator ? "checked='checked'" : '';
+	$can_makeforum_checked = $can_makeforum ? "checked='checked'" : '';
+	$group_trs .= '
 		<tr>
-			<td>".$group->getVar('name')."</td>
+			<td>' . $group->getVar('name') . "</td>
 			<td><input type='checkbox' name='can_reads[$gid]' id='gcol_1_{$gid}' value='1' $can_read_checked></td>
 			<td><input type='checkbox' name='can_posts[$gid]' id='gcol_2_{$gid}' value='1' $can_post_checked></td>
 			<td><input type='checkbox' name='can_edits[$gid]' id='gcol_3_{$gid}' value='1' $can_edit_checked></td>
@@ -147,19 +148,21 @@ foreach( $groups as $group ) {
 
 
 // create user form
-$fars = $db->query( "SELECT u.uid,u.uname,fa.can_post,fa.can_edit,fa.can_delete,fa.post_auto_approved,fa.is_moderator,fa.can_makeforum FROM ".$db->prefix($mydirname."_category_access")." fa LEFT JOIN ".$db->prefix("users")." u ON fa.uid=u.uid WHERE fa.cat_id=$cat_id AND fa.groupid IS NULL ORDER BY u.uid ASC" ) ;
+$fars = $db->query('SELECT u.uid,u.uname,fa.can_post,fa.can_edit,fa.can_delete,fa.post_auto_approved,fa.is_moderator,fa.can_makeforum FROM '
+                   . $db->prefix($mydirname . '_category_access') . ' fa LEFT JOIN '
+                   . $db->prefix('users') . " u ON fa.uid=u.uid WHERE fa.cat_id=$cat_id AND fa.groupid IS NULL ORDER BY u.uid ASC" ) ;
 $user_trs = '' ;
 while( list( $uid , $uname , $can_post , $can_edit , $can_delete , $post_auto_approved , $is_moderator , $can_makeforum ) = $db->fetchRow( $fars ) ) {
 
 	$uid = intval( $uid ) ;
 	$uname4disp = htmlspecialchars( $uname , ENT_QUOTES ) ;
 
-	$can_post_checked = $can_post ? "checked='checked'" : "" ;
-	$can_edit_checked = $can_edit ? "checked='checked'" : "" ;
-	$can_delete_checked = $can_delete ? "checked='checked'" : "" ;
-	$post_auto_approved_checked = $post_auto_approved ? "checked='checked'" : "" ;
-	$is_moderator_checked = $is_moderator ? "checked='checked'" : "" ;
-	$can_makeforum_checked = $can_makeforum ? "checked='checked'" : "" ;
+	$can_post_checked = $can_post ? "checked='checked'" : '';
+	$can_edit_checked = $can_edit ? "checked='checked'" : '';
+	$can_delete_checked = $can_delete ? "checked='checked'" : '';
+	$post_auto_approved_checked = $post_auto_approved ? "checked='checked'" : '';
+	$is_moderator_checked = $is_moderator ? "checked='checked'" : '';
+	$can_makeforum_checked = $can_makeforum ? "checked='checked'" : '';
 	$user_trs .= "
 		<tr>
 			<td>$uid</td>

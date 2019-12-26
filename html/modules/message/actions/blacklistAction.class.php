@@ -35,7 +35,7 @@ class blacklistAction extends AbstractAction
           $this->delblklist($modobj);
           break;
         default:
-          if ($modobj->get('blacklist') != "") {
+          if ($modobj->get('blacklist') != '') {
               $blusers = explode(',', $modobj->get('blacklist'));
               foreach ($blusers as $bluid) {
                   $this->blackuser[$bluid] = $this->getLinkUnameFromId($bluid);
@@ -67,7 +67,7 @@ class blacklistAction extends AbstractAction
             if (is_array($adduid)) {
                 $modobj->set('blacklist', implode(',', $adduid));
             } else {
-                $modobj->set('blacklist', "");
+                $modobj->set('blacklist', '');
             }
             if ($modHand->insert($modobj)) {
                 $this->setErr(_MD_MESSAGE_SETTINGS_MSG16);
@@ -86,7 +86,7 @@ class blacklistAction extends AbstractAction
             $this->setErr(XCube_Utils::formatString(_MD_MESSAGE_SETTINGS_MSG14, $blackuser));
             return;
         }
-        if ($lists[0] == "") {
+        if ($lists[0] == '') {
             $modobj->set('blacklist', $uid);
         } else {
             $lists[] = $uid;

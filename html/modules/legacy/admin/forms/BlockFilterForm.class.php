@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('NEWBLOCKS_SORT_KEY_BID', 1);
 define('NEWBLOCKS_SORT_KEY_MID', 2);
@@ -56,9 +56,9 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         NEWBLOCKS_SORT_KEY_LAST_MODIFIED => 'last_modified'
     ];
     //wanikoo
-    public $mKeyword = "";
+    public $mKeyword = '';
     public $mModule = null;
-    public $mOptionField = "all";
+    public $mOptionField = 'all';
 
     public function getDefaultSortKey()
     {
@@ -107,7 +107,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['dirname']) and !$_REQUEST['dirname'] == 0) {
             if (intval($dirname) == -1) {
                 $this->_mCriteria->add(new Criteria('block_type', 'C'));
-                $this->mModule = "cblock";
+                $this->mModule = 'cblock';
             } else {
                 $this->_mCriteria->add(new Criteria('dirname', xoops_getrequest('dirname')));
             //wanikoo
@@ -126,7 +126,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
         if (isset($_REQUEST['option_field'])) {
             $this->mOptionField = $option_field;
-            if ($this->mOptionField != "all") {
+            if ($this->mOptionField != 'all') {
                 $this->_mCriteria->add(new Criteria('side', intval($this->mOptionField)));
             }
             $this->mNavi->addExtra('option_field', $this->mOptionField);

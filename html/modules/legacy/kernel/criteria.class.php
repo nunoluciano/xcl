@@ -8,17 +8,17 @@
  *
  */
 
-define("LEGACY_EXPRESSION_EQ", "=");
-define("LEGACY_EXPRESSION_NE", "<>");
-define("LEGACY_EXPRESSION_LT", "<");
-define("LEGACY_EXPRESSION_LE", "<=");
-define("LEGACY_EXPRESSION_GT", ">");
-define("LEGACY_EXPRESSION_GE", ">=");
-define("LEGACY_EXPRESSION_LIKE", "like");
-define("LEGACY_EXPRESSION_IN", "in");
+define('LEGACY_EXPRESSION_EQ', '=');
+define('LEGACY_EXPRESSION_NE', '<>');
+define('LEGACY_EXPRESSION_LT', '<');
+define('LEGACY_EXPRESSION_LE', '<=');
+define('LEGACY_EXPRESSION_GT', '>');
+define('LEGACY_EXPRESSION_GE', '>=');
+define('LEGACY_EXPRESSION_LIKE', 'like');
+define('LEGACY_EXPRESSION_IN', 'in');
  
-define("LEGACY_EXPRESSION_AND", "and");
-define("LEGACY_EXPRESSION_OR", "or");
+define('LEGACY_EXPRESSION_AND', 'and');
+define('LEGACY_EXPRESSION_OR', 'or');
 
  /**
   * @internal

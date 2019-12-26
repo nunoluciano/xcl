@@ -220,7 +220,7 @@ class XoopsObjectTree
             $ret .= '<option value="0"></option>';
         }
         $this->_makeSelBoxOptions($fieldName, $selected, $key, $ret, $prefix);
-        $ret .= "</select>";
+        $ret .= '</select>';
         return $ret;
     }
 }

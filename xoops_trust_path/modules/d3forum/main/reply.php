@@ -5,7 +5,7 @@ include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
 $post_id = intval( @$_GET['post_id'] ) ;
 
 // get this "post" from given $post_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
@@ -63,7 +63,7 @@ foreach(['smiley', 'xcode', 'br', 'number_entity', 'special_entity', 'html', 'at
 }
 if( is_object( @$GLOBALS['xoopsUser'] ) ) $attachsig |= $GLOBALS['xoopsUser']->getVar('attachsig') ;
 
-$quote4html = "[quote sitecite=modules/".$mydirname."/index.php?post_id=".$pid."]\n".sprintf(_MD_D3FORUM_USERWROTE,$reference_name4html)."\n".$myts->makeTareaData4Edit( $post_row['post_text'] , $post_row['number_entity'] )."\n[/quote]";
+$quote4html = '[quote sitecite=modules/' . $mydirname . '/index.php?post_id=' . $pid . "]\n" . sprintf(_MD_D3FORUM_USERWROTE, $reference_name4html) . "\n" . $myts->makeTareaData4Edit($post_row['post_text'] , $post_row['number_entity'] ) . "\n[/quote]";
 $formTitle = _MD_D3FORUM_POSTREPLY ;
 $mode = 'reply' ;
 

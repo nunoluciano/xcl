@@ -9,11 +9,11 @@
  * @brief This file declare some structure-class and stored-system readers for the installer.
  */
 
-define('LEGACY_INSTALLINFO_STATUS_LOADED', "loaded");
-define('LEGACY_INSTALLINFO_STATUS_UPDATED', "updated");
-define('LEGACY_INSTALLINFO_STATUS_ORDER_UPDATED', "order_updated");
-define('LEGACY_INSTALLINFO_STATUS_NEW', "new");
-define('LEGACY_INSTALLINFO_STATUS_DELETED', "deleted");
+define('LEGACY_INSTALLINFO_STATUS_LOADED', 'loaded');
+define('LEGACY_INSTALLINFO_STATUS_UPDATED', 'updated');
+define('LEGACY_INSTALLINFO_STATUS_ORDER_UPDATED', 'order_updated');
+define('LEGACY_INSTALLINFO_STATUS_NEW', 'new');
+define('LEGACY_INSTALLINFO_STATUS_DELETED', 'deleted');
 
 /**
  * The structure which is able to keep block's informations without DB. This
@@ -25,14 +25,14 @@ class Legacy_BlockInformation
 
     public $mFuncNum = 0;
 
-    public $mName = "";
+    public $mName = '';
 
-    public $mOptions = "";
+    public $mOptions = '';
 
-    public $mFuncFile = "";
-    public $mShowFunc = "";
-    public $mEditFunc = "";
-    public $mTemplate = "";
+    public $mFuncFile = '';
+    public $mShowFunc = '';
+    public $mEditFunc = '';
+    public $mTemplate = '';
 
     public function Legacy_BlockInformation($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
     {
@@ -176,15 +176,15 @@ class Legacy_PreferenceInformation
 
     public $mOrder = 0;
 
-    public $mName = "";
+    public $mName = '';
 
-    public $mTitle = "";
+    public $mTitle = '';
 
-    public $mDescription = "";
+    public $mDescription = '';
 
-    public $mFormType = "";
+    public $mFormType = '';
 
-    public $mValueType = "";
+    public $mValueType = '';
 
     public $mDefault = null;
 
@@ -438,8 +438,8 @@ class Legacy_PreferenceInfoCollection
 
 class Legacy_PreferenceOptionInformation
 {
-    public $mName = "";
-    public $mValue = "";
+    public $mName = '';
+    public $mValue = '';
 
     public function Legacy_PreferenceOptionInformation($name, $value)
     {
@@ -548,7 +548,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
      */
     public function &_createBlockInformation($funcNum, $arr)
     {
-        $showFunc = "";
+        $showFunc = '';
         if (isset($arr['class'])) {
             $showFunc = 'cl::' . $arr['class'];
         } else {
@@ -657,7 +657,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
     public function _loadCommentPreferenceInfomations(&$modversion, &$collection)
     {
         if (isset($modversion['hasComments']) && $modversion['hasComments'] == true) {
-            require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+            require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
             $comRule = [
                 'name'        => 'com_rule',

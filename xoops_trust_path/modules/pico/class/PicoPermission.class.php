@@ -59,15 +59,15 @@ class PicoPermission
         if (is_object(@$user)) {
             $groups = $user->getGroups();
             if (!empty($groups)) {
-                $whr = "`uid`=$this->uid || `groupid` IN (" . implode(",", $groups) . ")";
+                $whr = "`uid`=$this->uid || `groupid` IN (" . implode(',', $groups) . ')';
             } else {
                 $whr = "`uid`=$this->uid";
             }
         } else {
-            $whr = "`groupid`=" . intval(XOOPS_GROUP_ANONYMOUS);
+            $whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS);
         }
 
-        $sql    = "SELECT cat_id,permissions FROM " . $this->db->prefix($mydirname . "_category_permissions") . " WHERE ($whr)";
+        $sql    = 'SELECT cat_id,permissions FROM ' . $this->db->prefix($mydirname . '_category_permissions') . " WHERE ($whr)";
         $result = $this->db->query($sql);
         if ($result) {
             while (list($cat_id, $serialized_permissions) = $this->db->fetchRow($result)) {
@@ -96,19 +96,19 @@ class PicoPermission
 
         // get permission_id
         $cat_id = intval($cat_id);
-        $sql    = "SELECT cat_permission_id FROM " . $this->db->prefix($mydirname . "_categories") . " WHERE cat_id=$cat_id";
+        $sql    = 'SELECT cat_permission_id FROM ' . $this->db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id";
         list($permission_id) = $this->db->fetchRow($this->db->query($sql));
 
         // uid
         $uids   = [];
-        $sql    = "SELECT uid FROM " . $this->db->prefix($mydirname . "_category_permissions") . " WHERE cat_id=$permission_id AND uid IS NOT NULL AND ($whr_type)";
+        $sql    = 'SELECT uid FROM ' . $this->db->prefix($mydirname . '_category_permissions') . " WHERE cat_id=$permission_id AND uid IS NOT NULL AND ($whr_type)";
         $result = $this->db->query($sql);
         while (list($uid) = $this->db->fetchRow($result)) {
             $uids[] = $uid;
         }
 
         // groupid * groups_users_link
-        $sql    = "SELECT distinct g.uid FROM " . $this->db->prefix($mydirname . "_category_permissions") . " x , " . $this->db->prefix("groups_users_link") . " g WHERE x.groupid=g.groupid AND x.cat_id=$permission_id AND x.groupid IS NOT NULL AND ($whr_type)";
+        $sql    = 'SELECT distinct g.uid FROM ' . $this->db->prefix($mydirname . '_category_permissions') . ' x , ' . $this->db->prefix('groups_users_link') . " g WHERE x.groupid=g.groupid AND x.cat_id=$permission_id AND x.groupid IS NOT NULL AND ($whr_type)";
         $result = $this->db->query($sql);
         while (list($uid) = $this->db->fetchRow($result)) {
             $uids[] = $uid;

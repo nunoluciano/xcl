@@ -4,9 +4,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/Mailjob_linkFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/Mailjob_linkAdminDeletesForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/Mailjob_linkFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/Mailjob_linkAdminDeletesForm.class.php';
 
 class User_Mailjob_linkListAction extends User_AbstractListAction
 {
@@ -35,7 +35,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=Mailjob_linkList";
+        return './index.php?action=Mailjob_linkList';
     }
     
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -73,11 +73,11 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("mailjob_link_list.html");
+        $render->setTemplateName('mailjob_link_list.html');
         #cubson::lazy_load_array('mailjob_link', $this->mObjects);
-        $render->setAttribute("mailJob", $this->mMailjob);
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('mailJob', $this->mMailjob);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 

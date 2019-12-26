@@ -26,7 +26,7 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
     **/
     public function getTokenName()
     {
-        return "module.xupdate.StoreEditForm.TOKEN";
+        return 'module.xupdate.StoreEditForm.TOKEN';
     }
 
     /**

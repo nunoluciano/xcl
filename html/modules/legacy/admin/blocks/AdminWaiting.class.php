@@ -14,12 +14,12 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return "waiting";
+        return 'waiting';
     }
 
     public function getTitle()
     {
-        return "TEST: AdminWaiting";
+        return 'TEST: AdminWaiting';
     }
 
     public function getEntryIndex()
@@ -59,7 +59,7 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
 
     public function &getResult()
     {
-        $dmy = "dummy";
+        $dmy = 'dummy';
         return $dmy;
     }
 

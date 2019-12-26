@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/ImageFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/ImageFilterForm.class.php';
 
 /***
  * @internal
@@ -44,7 +44,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return XOOPS_URL . "/imagemanager.php?op=list";
+        return XOOPS_URL . '/imagemanager.php?op=list';
     }
     
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -61,14 +61,14 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_image_list.html");
+        $render->setTemplateName('legacy_image_list.html');
         
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadImagecategory();
         }
         
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         
         $render->setAttribute('imgcatId', $this->mImgcatId);
         
@@ -91,13 +91,13 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
             $hasUploadPerm = $this->mCategory->hasUploadPerm($groups);
         }
         $render->setAttribute('hasUploadPerm', $hasUploadPerm);
-        $render->setAttribute("category", $this->mCategory);
+        $render->setAttribute('category', $this->mCategory);
         //echo xoops_getrequest('target');die();
         $render->setAttribute('target', htmlspecialchars(xoops_getrequest('target'), ENT_QUOTES));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward(XOOPS_URL . "/imagemanager.php?op=list");
+        $controller->executeForward(XOOPS_URL . '/imagemanager.php?op=list');
     }
 }

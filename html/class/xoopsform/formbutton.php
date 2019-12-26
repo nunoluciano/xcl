@@ -77,14 +77,14 @@ class XoopsFormButton extends XoopsFormElement
      * @param	string  $type       Type of the button.
      * This could be either "button", "submit", or "reset"
      */
-    public function __construct($caption, $name, $value="", $type="button")
+    public function __construct($caption, $name, $value= '', $type= 'button')
     {
         $this->setCaption($caption);
         $this->setName($name);
         $this->_type = $type;
         $this->setValue($value);
     }
-    public function XoopsFormButton($caption, $name, $value="", $type="button")
+    public function XoopsFormButton($caption, $name, $value= '', $type= 'button')
     {
         return self::__construct($caption, $name, $value, $type);
     }
@@ -133,8 +133,8 @@ class XoopsFormButton extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_button.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_button.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

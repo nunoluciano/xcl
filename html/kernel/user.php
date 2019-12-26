@@ -303,9 +303,9 @@ class XoopsUser extends XoopsObject
      * @param string $format format for the output, see {@link XoopsObject::getVar()}
      * @return string 
      */
-    public function name($format="S")
+    public function name($format= 'S')
     {
-        return $this->getVar("name", $format);
+        return $this->getVar('name', $format);
     }
     
     /**
@@ -313,9 +313,9 @@ class XoopsUser extends XoopsObject
      * @param string $format format for the output, see {@link XoopsObject::getVar()}
      * @return string
      */
-    public function uname($format="S")
+    public function uname($format= 'S')
     {
-        return $this->getVar("uname", $format);
+        return $this->getVar('uname', $format);
     }
     
     /**
@@ -324,134 +324,134 @@ class XoopsUser extends XoopsObject
      * @param string $format format for the output, see {@link XoopsObject::getVar()}
      * @return string
      */
-    public function email($format="S")
+    public function email($format= 'S')
     {
-        return $this->getVar("email", $format);
+        return $this->getVar('email', $format);
     }
     
-    public function url($format="S")
+    public function url($format= 'S')
     {
-        return $this->getVar("url", $format);
+        return $this->getVar('url', $format);
     }
     
-    public function user_avatar($format="S")
+    public function user_avatar($format= 'S')
     {
-        return $this->getVar("user_avatar");
+        return $this->getVar('user_avatar');
     }
     
     public function user_regdate()
     {
-        return $this->getVar("user_regdate");
+        return $this->getVar('user_regdate');
     }
     
-    public function user_icq($format="S")
+    public function user_icq($format= 'S')
     {
-        return $this->getVar("user_icq", $format);
+        return $this->getVar('user_icq', $format);
     }
     
-    public function user_from($format="S")
+    public function user_from($format= 'S')
     {
-        return $this->getVar("user_from", $format);
+        return $this->getVar('user_from', $format);
     }
-    public function user_sig($format="S")
+    public function user_sig($format= 'S')
     {
-        return $this->getVar("user_sig", $format);
+        return $this->getVar('user_sig', $format);
     }
     
     public function user_viewemail()
     {
-        return $this->getVar("user_viewemail");
+        return $this->getVar('user_viewemail');
     }
     
     public function actkey()
     {
-        return $this->getVar("actkey");
+        return $this->getVar('actkey');
     }
     
-    public function user_aim($format="S")
+    public function user_aim($format= 'S')
     {
-        return $this->getVar("user_aim", $format);
+        return $this->getVar('user_aim', $format);
     }
     
-    public function user_yim($format="S")
+    public function user_yim($format= 'S')
     {
-        return $this->getVar("user_yim", $format);
+        return $this->getVar('user_yim', $format);
     }
     
-    public function user_msnm($format="S")
+    public function user_msnm($format= 'S')
     {
-        return $this->getVar("user_msnm", $format);
+        return $this->getVar('user_msnm', $format);
     }
     
     public function pass()
     {
-        return $this->getVar("pass");
+        return $this->getVar('pass');
     }
     
     public function posts()
     {
-        return $this->getVar("posts");
+        return $this->getVar('posts');
     }
     
     public function attachsig()
     {
-        return $this->getVar("attachsig");
+        return $this->getVar('attachsig');
     }
     
     public function level()
     {
-        return $this->getVar("level");
+        return $this->getVar('level');
     }
     
     public function theme()
     {
-        return $this->getVar("theme");
+        return $this->getVar('theme');
     }
     
     public function timezone()
     {
-        return $this->getVar("timezone_offset");
+        return $this->getVar('timezone_offset');
     }
     
     public function umode()
     {
-        return $this->getVar("umode");
+        return $this->getVar('umode');
     }
     
     public function uorder()
     {
-        return $this->getVar("uorder");
+        return $this->getVar('uorder');
     }
    
     // RMV-NOTIFY
     public function notify_method()
     {
-        return $this->getVar("notify_method");
+        return $this->getVar('notify_method');
     }
 
     public function notify_mode()
     {
-        return $this->getVar("notify_mode");
+        return $this->getVar('notify_mode');
     }
  
-    public function user_occ($format="S")
+    public function user_occ($format= 'S')
     {
-        return $this->getVar("user_occ", $format);
+        return $this->getVar('user_occ', $format);
     }
     
-    public function bio($format="S")
+    public function bio($format= 'S')
     {
-        return $this->getVar("bio", $format);
+        return $this->getVar('bio', $format);
     }
     
-    public function user_intrest($format="S")
+    public function user_intrest($format= 'S')
     {
-        return $this->getVar("user_intrest", $format);
+        return $this->getVar('user_intrest', $format);
     }
     
     public function last_login()
     {
-        return $this->getVar("last_login");
+        return $this->getVar('last_login');
     }
 
     /**
@@ -461,11 +461,11 @@ class XoopsUser extends XoopsObject
     public function hasAvatar()
     {
         $avatar=$this->getVar('user_avatar');
-        if (!$avatar || $avatar=="blank.gif") {
+        if (!$avatar || $avatar == 'blank.gif') {
             return false;
         }
 
-        $file=XOOPS_UPLOAD_PATH."/".$avatar;
+        $file= XOOPS_UPLOAD_PATH . '/' . $avatar;
         return file_exists($file);
     }
     
@@ -478,7 +478,7 @@ class XoopsUser extends XoopsObject
     public function getAvatarUrl()
     {
         if ($this->hasAvatar()) {
-            return XOOPS_UPLOAD_URL."/".$this->getVar('user_avatar');
+            return XOOPS_UPLOAD_URL . '/' . $this->getVar('user_avatar');
         }
 
         return null;
@@ -597,9 +597,11 @@ class XoopsUserHandler extends XoopsObjectHandler
                 $notify_method = $options[0]->getvar('conf_value');
             }
             $uid = $this->db->genId('users_uid_seq');
-            $sql = sprintf("INSERT INTO %s (uid, uname, name, email, url, user_avatar, user_regdate, user_icq, user_from, user_sig, user_viewemail, actkey, user_aim, user_yim, user_msnm, pass, posts, attachsig, rank, level, theme, timezone_offset, last_login, umode, uorder, notify_method, notify_mode, user_occ, bio, user_intrest, user_mailok) VALUES (%u, %s, %s, %s, %s, %s, %u, %s, %s, %s, %u, %s, %s, %s, %s, %s, %u, %u, %u, %u, %s, %.2f, %u, %s, %u, %u, %u, %s, %s, %s, %u)", $this->db->prefix('users'), $uid, $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), time(), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($actkey), $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $this->db->quoteString($pass), $posts, $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, 0, $this->db->quoteString($umode), $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok);
+            $sql = sprintf(
+                'INSERT INTO %s (uid, uname, name, email, url, user_avatar, user_regdate, user_icq, user_from, user_sig, user_viewemail, actkey, user_aim, user_yim, user_msnm, pass, posts, attachsig, rank, level, theme, timezone_offset, last_login, umode, uorder, notify_method, notify_mode, user_occ, bio, user_intrest, user_mailok) VALUES (%u, %s, %s, %s, %s, %s, %u, %s, %s, %s, %u, %s, %s, %s, %s, %s, %u, %u, %u, %u, %s, %.2f, %u, %s, %u, %u, %u, %s, %s, %s, %u)', $this->db->prefix('users'), $uid, $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), time(), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($actkey), $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $this->db->quoteString($pass), $posts, $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, 0, $this->db->quoteString($umode), $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok);
         } else {
-            $sql = sprintf("UPDATE %s SET uname = %s, name = %s, email = %s, url = %s, user_avatar = %s, user_icq = %s, user_from = %s, user_sig = %s, user_viewemail = %u, user_aim = %s, user_yim = %s, user_msnm = %s, posts = %d,  pass = %s, attachsig = %u, rank = %u, level= %u, theme = %s, timezone_offset = %.2f, umode = %s, last_login = %u, uorder = %u, notify_method = %u, notify_mode = %u, user_occ = %s, bio = %s, user_intrest = %s, user_mailok = %u WHERE uid = %u", $this->db->prefix('users'), $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $posts, $this->db->quoteString($pass), $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, $this->db->quoteString($umode), $last_login, $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok, $uid);
+            $sql = sprintf(
+                'UPDATE %s SET uname = %s, name = %s, email = %s, url = %s, user_avatar = %s, user_icq = %s, user_from = %s, user_sig = %s, user_viewemail = %u, user_aim = %s, user_yim = %s, user_msnm = %s, posts = %d,  pass = %s, attachsig = %u, rank = %u, level= %u, theme = %s, timezone_offset = %.2f, umode = %s, last_login = %u, uorder = %u, notify_method = %u, notify_mode = %u, user_occ = %s, bio = %s, user_intrest = %s, user_mailok = %u WHERE uid = %u', $this->db->prefix('users'), $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $posts, $this->db->quoteString($pass), $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, $this->db->quoteString($umode), $last_login, $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok, $uid);
         }
         if (false != $force) {
             $result = $this->db->queryF($sql);
@@ -628,7 +630,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         if (strtolower(get_class($user)) != 'xoopsuser') {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE uid = %u", $this->db->prefix("users"), $user->getVar('uid'));
+        $sql = sprintf('DELETE FROM %s WHERE uid = %u', $this->db->prefix('users'), $user->getVar('uid'));
         if (false != $force) {
             $result = $this->db->queryF($sql);
         } else {
@@ -722,7 +724,7 @@ class XoopsUserHandler extends XoopsObjectHandler
     {
         $ret= [];
         $level=(int)$level;
-        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("users")." WHERE level > $level ORDER BY uname");
+        $result = $this->db->query('SELECT * FROM ' . $this->db->prefix('users') . " WHERE level > $level ORDER BY uname");
         if (!$result) {
             return $ret;
         }

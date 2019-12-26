@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 /***
  * @internal
@@ -18,7 +18,7 @@ class LegacyRender_TplfileEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TplfileEditForm.TOKEN." . $this->get('tpl_id');
+        return 'module.legacyRender.TplfileEditForm.TOKEN.' . $this->get('tpl_id');
     }
 
     public function prepare()

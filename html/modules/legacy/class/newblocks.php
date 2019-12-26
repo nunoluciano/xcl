@@ -113,9 +113,9 @@ class LegacyNewblocksObject extends XoopsSimpleObject
 
 class LegacyNewblocksHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "newblocks";
-    public $mPrimary = "bid";
-    public $mClass = "LegacyNewblocksObject";
+    public $mTable = 'newblocks';
+    public $mPrimary = 'bid';
+    public $mClass = 'LegacyNewblocksObject';
     
     public function delete(&$obj, $force = false)
     {

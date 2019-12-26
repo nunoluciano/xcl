@@ -18,7 +18,7 @@ class XoopsSubjecticonHandler extends XoopsObjectHandler
     
     public function __construct(&$db)
     {
-        require_once XOOPS_ROOT_PATH . "/class/xoopslists.php";
+        require_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
         $this->_mResult =& XoopsLists::getSubjectsList();
     }
     

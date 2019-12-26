@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractListAction.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractListAction.class.php';
 
 class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 {
@@ -22,12 +22,12 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
     public function &_getBaseUrl()
     // public function _getBaseUrl()
     {
-        return "./index.php?action=DataDownload";
+        return './index.php?action=DataDownload';
     }
     
     public function executeViewIndex(&$render)
     {
-        $render->setTemplateName("data_download.html");
+        $render->setTemplateName('data_download.html');
         $handler =& $this->_getHandler();
         $count = $handler->getCount();
         $render->setAttribute('profileCount', $count);
@@ -50,15 +50,15 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         $filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
         
         if (preg_match('/firefox/i', xoops_getenv('HTTP_USER_AGENT'))) {
-            header("Content-Type: application/x-csv");
+            header('Content-Type: application/x-csv');
         } else {
-            header("Content-Type: application/vnd.ms-excel");
+            header('Content-Type: application/vnd.ms-excel');
         }
         header("Content-Disposition: attachment ; filename=\"{$filename}\"");
 
         $offset = 0;
         $limit = 20;
-        $fp = fopen("php://output", "w");
+        $fp = fopen('php://output', 'w');
 
         $defHandler =& xoops_getmodulehandler('definitions');
         $defArr =& $defHandler->getDefinitions(false);

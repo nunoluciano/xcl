@@ -466,7 +466,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
     
                 $findFlag=true;
                 foreach ($searchArgs->getKeywords() as $word) {
-                    $findFlag&=(stristr(implode(" ", $configInfos), $word)!==false);
+                    $findFlag&=(stristr(implode(' ', $configInfos), $word) !== false);
                 }
                     
                 if ($findFlag) {
@@ -489,7 +489,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
                     // Search keyword
                     if (isset($menu['keywords'])) {
-                        $keyword=is_array($menu['keywords']) ? implode(" ", $menu['keywords']) : $menu['keywords'];
+                        $keyword=is_array($menu['keywords']) ? implode(' ', $menu['keywords']) : $menu['keywords'];
                         $tmpFlag|=(stristr($keyword, $word)!==false);
                     }
 
@@ -500,11 +500,11 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     //
                     // Create url string with absolute information.
                     //
-                    $url="";
+                    $url= '';
                     if (isset($menu['absolute'])&&$menu['absolute']) {
                         $url=$menu['link'];
                     } else {
-                        $url=XOOPS_URL."/modules/".$this->mXoopsModule->getVar('dirname')."/".$menu['link'];
+                        $url= XOOPS_URL . '/modules/' . $this->mXoopsModule->getVar('dirname') . '/' . $menu['link'];
                     }
 
                     //
@@ -534,19 +534,19 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 $root =& XCube_Root::getSingleton();
                 $language = $root->mContext->getXoopsConfig('language');
                 $helpfile = $this->mXoopsModule->getHelp();
-                $dir = XOOPS_MODULE_PATH . "/" . $this->mXoopsModule->getVar('dirname') . "/language/" . $language. "/help";
+                $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/' . $language . '/help';
     
-                if (!file_exists($dir . "/" . $helpfile)) {
-                    $dir = XOOPS_MODULE_PATH . "/" . $this->mXoopsModule->getVar('dirname') . "/language/english/help";
-                    if (!file_exists($dir . "/" . $helpfile)) {
+                if (!file_exists($dir . '/' . $helpfile)) {
+                    $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
+                    if (!file_exists($dir . '/' . $helpfile)) {
                         return;
                     }
                 }
-                $lines = file($dir . "/" . $helpfile);
+                $lines = file($dir . '/' . $helpfile);
                 foreach ($lines as $line) {
                     foreach ($searchArgs->getKeywords() as $word) {
                         if (stristr($line, $word) !== false) {
-                            $url = XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname=" . $this->mXoopsModule->getVar('dirname');
+                            $url = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=' . $this->mXoopsModule->getVar('dirname');
                             $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, _HELP);
                             return;
                         }

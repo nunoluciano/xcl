@@ -23,9 +23,9 @@ class UserMailjob_linkObject extends XoopsSimpleObject
 
 class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "user_mailjob_link";
-    public $mPrimary = "mailjob_id";
-    public $mClass = "UserMailjob_linkObject";
+    public $mTable = 'user_mailjob_link';
+    public $mPrimary = 'mailjob_id';
+    public $mClass = 'UserMailjob_linkObject';
 
     public function &get($mailjob_id, $uid)
     {
@@ -60,7 +60,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
     public function _update(&$obj)
     {
         $set_lists = [];
-        $where = "";
+        $where = '';
 
         $arr = $this->_makeVars4sql($obj);
 
@@ -72,7 +72,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
             }
         }
 
-        $sql = @sprintf("UPDATE " . $this->mTable . " SET %s WHERE %s", implode(",", $set_lists), $where);
+        $sql = @sprintf('UPDATE ' . $this->mTable . ' SET %s WHERE %s', implode(',', $set_lists), $where);
 
         return $sql;
     }
@@ -86,7 +86,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('mailjob_id', $obj->get('mailjob_id')));
         $criteria->add(new Criteria('uid', $obj->get('uid')));
-        $sql = "DELETE FROM " . $this->mTable . " WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj);
+        $sql = 'DELETE FROM ' . $this->mTable . ' WHERE ' . $this->_makeCriteriaElement4sql($criteria, $obj);
 
         return $force ? $this->db->queryF($sql) : $this->db->query($sql);
     }

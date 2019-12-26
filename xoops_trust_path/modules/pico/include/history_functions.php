@@ -8,10 +8,15 @@ function pico_get_content_history_profile($mydirname, $content_history_id, $cont
 
 	if (empty($content_history_id) && !empty($content_id)) {
 		// fetch from contents table as the latest content_history
-		$history_row = $db->fetchArray($db->query("SELECT o.*,up.uname AS poster_uname,mp.uname AS modifier_uname FROM " . $db->prefix($mydirname . "_contents") . " o LEFT JOIN " . $db->prefix("users") . " up ON o.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " mp ON o.modifier_uid=mp.uid WHERE o.content_id=$content_id"));
+		$history_row = $db->fetchArray($db->query(
+            'SELECT o.*,up.uname AS poster_uname,mp.uname AS modifier_uname FROM ' . $db->prefix($mydirname . '_contents') . ' o LEFT JOIN ' . $db->prefix('users') . ' up ON o.poster_uid=up.uid LEFT JOIN ' . $db->prefix('users') . " mp ON o.modifier_uid=mp.uid WHERE o.content_id=$content_id"));
 	} else {
 		// get $history_row and $content_id
-		$history_row = $db->fetchArray($db->query("SELECT oh.*,up.uname AS poster_uname,mp.uname AS modifier_uname FROM " . $db->prefix($mydirname . "_content_histories") . " oh LEFT JOIN " . $db->prefix("users") . " up ON oh.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " mp ON oh.modifier_uid=mp.uid WHERE oh.content_history_id=$content_history_id"));
+		$history_row = $db->fetchArray($db->query(
+            'SELECT oh.*,up.uname AS poster_uname,mp.uname AS modifier_uname FROM '
+            . $db->prefix($mydirname . '_content_histories') . ' oh LEFT JOIN '
+            . $db->prefix('users') . ' up ON oh.poster_uid=up.uid LEFT JOIN '
+            . $db->prefix('users') . " mp ON oh.modifier_uid=mp.uid WHERE oh.content_history_id=$content_history_id"));
 		if (empty($history_row['content_id'])) die('Invalid content_history_id');
 		$content_id = intval($history_row['content_id']);
 	}
@@ -52,7 +57,10 @@ function pico_get_content_histories4assign($mydirname, $content_id)
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
 	$ret = [];
-	$sql = "SELECT oh.content_history_id,oh.created_time,oh.modified_time,LENGTH(body) AS body_size,oh.poster_uid,up.uname AS poster_uname,oh.modifier_uid,um.uname AS modifier_uname FROM " . $db->prefix($mydirname . "_content_histories") . " oh LEFT JOIN " . $db->prefix("users") . " up ON oh.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " um ON oh.modifier_uid=um.uid WHERE oh.content_id=$content_id ORDER BY oh.content_history_id DESC";
+	$sql = 'SELECT oh.content_history_id,oh.created_time,oh.modified_time,LENGTH(body) AS body_size,oh.poster_uid,up.uname AS poster_uname,oh.modifier_uid,um.uname AS modifier_uname FROM '
+           . $db->prefix($mydirname . '_content_histories') . ' oh LEFT JOIN '
+           . $db->prefix('users') . ' up ON oh.poster_uid=up.uid LEFT JOIN '
+           . $db->prefix('users') . " um ON oh.modifier_uid=um.uid WHERE oh.content_id=$content_id ORDER BY oh.content_history_id DESC";
 	$result = $db->query($sql);
 	if ($result) while ($row = $db->fetchArray($result)) {
 		$row4assign = [

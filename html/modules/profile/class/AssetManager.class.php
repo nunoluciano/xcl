@@ -11,7 +11,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class Profile_AssetManager
 {
-    public $mDirname = "profile";
+    public $mDirname = 'profile';
     public $mAssetList = [];
     public $_mCache = [];
 
@@ -75,19 +75,19 @@ class Profile_AssetManager
             if (isset($this->mAssetList[$type][$name]['absPath'])) {
                 $filePath = $this->mAssetList[$type][$name]['absPath'];
             } else {
-                $filePath = XOOPS_MODULE_PATH . "/" . $this->mDirname . "/" . $this->mAssetList[$type][$name]['path'];
+                $filePath = XOOPS_MODULE_PATH . '/' . $this->mDirname . '/' . $this->mAssetList[$type][$name]['path'];
             }
             
             $instance =& $this->_createInstance($className, $filePath);
         } else {
             switch ($type) {
-                case "filter":
+                case 'filter':
                     $instance =& $this->_createFilter($name);
                     break;
-                case "form":
+                case 'form':
                     $instance =& $this->_createActionForm($name);
                     break;
-                case "handler":
+                case 'handler':
                     $instance =& $this->_createHandler($name);
                     break;
             }
@@ -130,16 +130,16 @@ class Profile_AssetManager
     {
         $entity = $name;
         $isAdmin = false;
-        $adminToken = "";
+        $adminToken = '';
     
         if (preg_match("/^admin\.([a-z\_]+)$/i", $name, $matches)) {
             $entity = $matches[1];
             $isAdmin = true;
-            $adminToken = "Admin_";
+            $adminToken = 'Admin_';
         }
     
-        $filePath = $this->_getBasePath($isAdmin) . "/forms/" . ucfirst($entity) . "FilterForm.class.php";
-        $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . "FilterForm";
+        $filePath = $this->_getBasePath($isAdmin) . '/forms/' . ucfirst($entity) . 'FilterForm.class.php';
+        $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . 'FilterForm';
     
         $instance =& $this->_createInstance($className, $filePath);
     
@@ -153,15 +153,15 @@ class Profile_AssetManager
      */
     public function &_createActionForm($name)
     {
-        $mode = "";
+        $mode = '';
         $entity = $name;
         $isAdmin = false;
-        $adminToken = "";
+        $adminToken = '';
     
         if (preg_match("/^admin\.([a-z\_]+)$/i", $name, $matches)) {
             $entity = $matches[1];
             $isAdmin = true;
-            $adminToken = "Admin_";
+            $adminToken = 'Admin_';
         }
     
         if (preg_match("/^([^\_]+)\_(.+)$/", $entity, $matches)) {
@@ -169,8 +169,8 @@ class Profile_AssetManager
             $entity = $matches[2];
         }
     
-        $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . ucfirst($mode) . "Form";
-        $filePath = $this->_getBasePath($isAdmin) . "/forms/" . ucfirst($entity) . ucfirst($mode) . "Form.class.php";
+        $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . ucfirst($mode) . 'Form';
+        $filePath = $this->_getBasePath($isAdmin) . '/forms/' . ucfirst($entity) . ucfirst($mode) . 'Form.class.php';
     
         $instance =& $this->_createInstance($className, $filePath);
     
@@ -212,9 +212,9 @@ class Profile_AssetManager
      */
     public function _getBasePath($isAdmin = false)
     {
-        $filePath = XOOPS_MODULE_PATH . "/" . $this->mDirname;
+        $filePath = XOOPS_MODULE_PATH . '/' . $this->mDirname;
         if ($isAdmin) {
-            $filePath .= "/admin";
+            $filePath .= '/admin';
         }
     
         return $filePath;

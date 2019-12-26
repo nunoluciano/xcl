@@ -158,7 +158,7 @@ function d3forum_import_getimportablemodules( $mydirname )
 			// xhnewbb
 			$ret[$mid] = 'xhnewbb:'.$module->getVar('name')."($dirname)" ;
 		} else if( $dirname == 'newbb' ) {
-			$judge_sql = "SELECT COUNT(*) FROM ".$db->prefix("bb_votedata") ;
+			$judge_sql = 'SELECT COUNT(*) FROM ' . $db->prefix('bb_votedata') ;
 			$judge_result = $db->query( $judge_sql ) ;
 			if( $judge_result ) {
 				// CBB3?
@@ -489,7 +489,7 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	$db =& Database::getInstance() ;
 
 	// check forum_id
-	$frs = $db->query( "SELECT * FROM ".$db->prefix($mydirname."_forums")." WHERE forum_id=$forum_id" ) ;
+	$frs = $db->query('SELECT * FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$forum_id" ) ;
 	if( ! $frs ) d3forum_import_errordie() ;
 	if( $db->getRowsNum( $frs ) != 1 ) die( 'Invalid forum_id' ) ;
 
@@ -500,7 +500,7 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	$com_configs = $module_obj->getInfo('comments') ;
 
 	// get exparams (consider it as "static" like "page=article&")
-	$ers = $db->query( "SELECT distinct com_exparams FROM ".$db->prefix("xoopscomments")." WHERE com_modid=$mid AND LENGTH(`com_exparams`) > 5 LIMIT 1" ) ;
+	$ers = $db->query('SELECT distinct com_exparams FROM ' . $db->prefix('xoopscomments') . " WHERE com_modid=$mid AND LENGTH(`com_exparams`) > 5 LIMIT 1" ) ;
 	list( $exparam ) = $db->fetchRow( $ers ) ;
 	if( empty( $exparam ) ) $exparam = '' ;
 	else $exparam = str_replace( '&amp;' , '&' , $exparam ) ;
@@ -509,7 +509,7 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 
 	// import it into the forum record as format
 	$format = '{XOOPS_URL}/modules/'.$module_obj->getVar('dirname').'/'.$com_configs['pageName'].'?'.$exparam.$com_configs['itemName'].'=%s' ;
-	$frs = $db->query( "UPDATE ".$db->prefix($mydirname."_forums")." SET forum_external_link_format='".addslashes($format)."' WHERE forum_id=$forum_id" ) ;
+	$frs = $db->query('UPDATE ' . $db->prefix($mydirname . '_forums') . " SET forum_external_link_format='" . addslashes($format) . "' WHERE forum_id=$forum_id" ) ;
 	if( ! $frs ) d3forum_import_errordie() ;
 
 	// import topics

@@ -40,7 +40,7 @@ class Profile_AssetPreload extends XCube_ActionFilter
      */
     public function getManager(&$obj)
     {
-        require_once XOOPS_MODULE_PATH . "/profile/class/AssetManager.class.php";
+        require_once XOOPS_MODULE_PATH . '/profile/class/AssetManager.class.php';
         $obj = Profile_AssetManager::getSingleton();
     }
 

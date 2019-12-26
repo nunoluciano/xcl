@@ -148,7 +148,7 @@ function pico_import_from_smartsection($mydirname, $import_mid)
 	$db->query("INSERT INTO `$to_table` (cat_id,uid,groupid,permissions) SELECT categoryid,NULL,1,'$permissions4sql' FROM " . $db->prefix($from_tables[0]));
 
 	// content_votes (delete all)
-	$db->query("DELETE FROM " . $db->prefix($mydirname . "_content_votes"));
+	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_content_votes'));
 
 	// contents (temporary body_waiting,body_cached for reconstruct filters)
 	$to_table = $db->prefix($mydirname . '_contents');
@@ -183,7 +183,7 @@ function pico_import_from_tinyd($mydirname, $import_mid)
 	// skip all
 
 	// content_votes (delete all)
-	$db->query("DELETE FROM " . $db->prefix($mydirname . "_content_votes"));
+	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_content_votes'));
 
 	// contents (temporary body_waiting,body_cached for reconstruct filters)
 	$to_table = $db->prefix($mydirname . '_contents');

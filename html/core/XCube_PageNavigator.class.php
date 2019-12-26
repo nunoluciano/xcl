@@ -64,7 +64,7 @@ class XCube_PageNavigator
      * The base url for this navigator.
      * @var string
      */
-    public $mUrl = "";
+    public $mUrl = '';
 
     /**
      * A prefix for variable names fetched by this navigator. If two independent
@@ -173,7 +173,7 @@ class XCube_PageNavigator
             $query[] = $key.'='.urlencode($extra);
         } else {    //array
             foreach ($extra as $k=>$value) {
-                $this->_renderExtra($key."[".$k."]", $value, $query);
+                $this->_renderExtra($key . '[' . $k . ']', $value, $query);
             }
         }
     }
@@ -201,10 +201,10 @@ class XCube_PageNavigator
                 return $this->mUrl;
             }
             
-            if (strpos($this->mUrl, "?")!==false) {
-                return $this->mUrl."&amp;".implode("&amp;", $tarr);
+            if (strpos($this->mUrl, '?') !== false) {
+                return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
             } else {
-                return $this->mUrl."?".implode("&amp;", $tarr);
+                return $this->mUrl . '?' . implode('&amp;', $tarr);
             }
         }
         
@@ -224,14 +224,14 @@ class XCube_PageNavigator
             $mask = [$mask];
         }
         
-        $demiliter = "?";
+        $demiliter = '?';
         $url = $this->getRenderBaseUrl($mask);
         
-        if (strpos($url, "?")!==false) {
-            $demiliter = "&amp;";
+        if (strpos($url, '?') !== false) {
+            $demiliter = '&amp;';
         }
         
-        return $url . $demiliter . $this->getStartKey() . "=";
+        return $url . $demiliter . $this->getStartKey() . '=';
     }
     
     public function renderUrlForSort()
@@ -244,12 +244,12 @@ class XCube_PageNavigator
                 $this->_renderExtra($key, $value, $tarr);
             }
             
-            $tarr[] = $this->getPerpageKey() . "=" . $this->mPerpage;
+            $tarr[] = $this->getPerpageKey() . '=' . $this->mPerpage;
             
-            if (strpos($this->mUrl, "?")!==false) {
-                return $this->mUrl."&amp;".implode("&amp;", $tarr);
+            if (strpos($this->mUrl, '?') !== false) {
+                return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
             } else {
-                return $this->mUrl."?".implode("&amp;", $tarr);
+                return $this->mUrl . '?' . implode('&amp;', $tarr);
             }
         }
         
@@ -266,20 +266,20 @@ class XCube_PageNavigator
         }
     
         foreach ($this->mSort as $key=>$value) {
-            $tarr[]=$key."=".urlencode($value);
+            $tarr[]= $key . '=' . urlencode($value);
         }
     
-        $tarr[] = $this->getPerpageKey() . "=" . $this->getPerpage();
+        $tarr[] = $this->getPerpageKey() . '=' . $this->getPerpage();
     
         if ($page !== null) {
             $tarr[] = $this->getStartKey() . '=' . intval($page);
         }
     
-        if (strpos($this->mUrl, "?") !== false) {
-            return $this->mUrl."&amp;".implode("&amp;", $tarr);
+        if (strpos($this->mUrl, '?') !== false) {
+            return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
         }
     
-        return $this->mUrl."?".implode("&amp;", $tarr);
+        return $this->mUrl . '?' . implode('&amp;', $tarr);
     }
 
     /**
@@ -355,12 +355,12 @@ class XCube_PageNavigator
 
     public function getStartKey()
     {
-        return $this->mPrefix . "start";
+        return $this->mPrefix . 'start';
     }
 
     public function getPerpageKey()
     {
-        return $this->mPrefix . "perpage";
+        return $this->mPrefix . 'perpage';
     }
     
     public function getCurrentPage()

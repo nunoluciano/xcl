@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/SmilesListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/SmilesFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/SmilesListForm.class.php';
 
 class Legacy_SmilesListAction extends Legacy_AbstractListAction
 {
@@ -55,14 +55,14 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=SmilesList";
+        return './index.php?action=SmilesList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("smiles_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('smiles_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -156,7 +156,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("smiles_list_confirm.html");
+        $render->setTemplateName('smiles_list_confirm.html');
         $render->setAttribute('smilesObjects', $this->mSmilesObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         

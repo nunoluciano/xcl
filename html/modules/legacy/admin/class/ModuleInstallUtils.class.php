@@ -12,16 +12,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallInformation.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstaller.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleUpdater.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleUninstaller.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallInformation.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstaller.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleUpdater.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleUninstaller.class.php';
 
-require_once XOOPS_ROOT_PATH."/class/template.php";
+require_once XOOPS_ROOT_PATH . '/class/template.php';
 
-define("MODINSTALL_LOGTYPE_REPORT", "report");
-define("MODINSTALL_LOGTYPE_WARNING", "warning");
-define("MODINSTALL_LOGTYPE_ERROR", "error");
+define('MODINSTALL_LOGTYPE_REPORT', 'report');
+define('MODINSTALL_LOGTYPE_WARNING', 'warning');
+define('MODINSTALL_LOGTYPE_ERROR', 'error');
 
 /**
  * A temporary log class.
@@ -177,7 +177,7 @@ class Legacy_ModuleInstallUtils
         $sqlfilepath = XOOPS_MODULE_PATH . "/${dirname}/${sqlfile}";
         
         if (isset($module->modinfo['cube_style']) && $module->modinfo['cube_style'] == true) {
-            require_once XOOPS_MODULE_PATH . "/legacy/admin/class/Legacy_SQLScanner.class.php";
+            require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';
             $scanner =new Legacy_SQLScanner();
             $scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
             $scanner->setDirname($module->get('dirname'));
@@ -241,7 +241,7 @@ class Legacy_ModuleInstallUtils
                     }
                 } else {
                     // the table name is reserved, so halt the installation
-                    $log->addError($prefixed_query[4] . " is a reserved table!");
+                    $log->addError($prefixed_query[4] . ' is a reserved table!');
                     return;
                 }
             }
@@ -369,7 +369,7 @@ class Legacy_ModuleInstallUtils
             // clear cache
             //
             $xoopsTpl =new XoopsTpl();
-            $xoopsTpl->clear_cache(null, "mod_" . $module->get('dirname'));
+            $xoopsTpl->clear_cache(null, 'mod_' . $module->get('dirname'));
             
             foreach ($delTemplates as $tpl) {
                 if (!$tplHandler->delete($tpl)) {
@@ -516,9 +516,9 @@ class Legacy_ModuleInstallUtils
         //
         // IMPORTANT CONVENTION
         //
-        $show_func = "";
+        $show_func = '';
         if (isset($block['class'])) {
-            $show_func = "cl::" . $block['class'];
+            $show_func = 'cl::' . $block['class'];
         } else {
             $show_func = $block['show_func'];
         }
@@ -569,7 +569,7 @@ class Legacy_ModuleInstallUtils
             //
             if ($isNew) {
                 if (!empty($block['show_all_module'])) {
-                    $link_sql = "INSERT INTO " . $blockHandler->db->prefix('block_module_link') . " (block_id, module_id) VALUES (".$blockObj->getVar('bid').", 0)";
+                    $link_sql = 'INSERT INTO ' . $blockHandler->db->prefix('block_module_link') . ' (block_id, module_id) VALUES (' . $blockObj->getVar('bid') . ', 0)';
                     if (!$blockHandler->db->query($link_sql)) {
                         $log->addWarning(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SET_LINK, $blockObj->getVar('name')));
                     }
@@ -698,9 +698,9 @@ class Legacy_ModuleInstallUtils
         // Load template data
         //
         if ($isblock) {
-            $filePath = XOOPS_MODULE_PATH . "/" . $dirname . "/templates/blocks/" . $fileName;
+            $filePath = XOOPS_MODULE_PATH . '/' . $dirname . '/templates/blocks/' . $fileName;
         } else {
-            $filePath = XOOPS_MODULE_PATH . "/" . $dirname . "/templates/" . $fileName;
+            $filePath = XOOPS_MODULE_PATH . '/' . $dirname . '/templates/' . $fileName;
         }
 
         if (!file_exists($filePath)) {
@@ -712,7 +712,7 @@ class Legacy_ModuleInstallUtils
             return false;
         }
 
-        $tpldata = "";
+        $tpldata = '';
         foreach ($lines as $line) {
             //
             // Unify linefeed to "\r\n" 
@@ -796,7 +796,7 @@ class Legacy_ModuleInstallUtils
         // Insert comment config by old style.
         //
         if ($module->getVar('hascomments') !=0) {
-            require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+            require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
             $configInfos[] = [
                 'name'        => 'com_rule',
@@ -1285,7 +1285,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function DBquery($query, &$module, $log)
     {
-        require_once XOOPS_MODULE_PATH . "/legacy/admin/class/Legacy_SQLScanner.class.php";
+        require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';
         
         $successFlag = true;
         

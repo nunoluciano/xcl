@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('IMAGE_SORT_KEY_IMAGE_ID', 1);
 define('IMAGE_SORT_KEY_IMAGE_NAME', 2);

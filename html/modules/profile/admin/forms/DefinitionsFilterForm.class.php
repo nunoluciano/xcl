@@ -9,7 +9,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractFilterForm.class.php';
 
 define('PROFILE_DEFINITIONS_SORT_KEY_FIELD_ID', 1);
 define('PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME', 2);

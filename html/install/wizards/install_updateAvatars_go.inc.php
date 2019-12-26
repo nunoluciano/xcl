@@ -12,7 +12,7 @@
     $content = '';
     $title = _INSTALL_L156;
     $avatars = getImageFileList(XOOPS_ROOT_PATH.'/images/avatar/users/');
-    $xoopsDB->query("UPDATE ".$xoopsDB->prefix('users')." SET user_avatar='blank.gif'");
+    $xoopsDB->query('UPDATE ' . $xoopsDB->prefix('users') . " SET user_avatar='blank.gif'");
     $avt_handler =& xoops_gethandler('avatar');
     if (!defined('XOOPS_UPLOAD_PATH')) {
         define('XOOPS_UPLOAD_PATH', '../uploads');
@@ -27,7 +27,7 @@
                 if (false != $fp = fopen(XOOPS_UPLOAD_PATH.'/'.$newavatar, 'wb')) {
                     if (-1 != fwrite($fp, $binary)) {
                         $error = false;
-                        if (!$xoopsDB->query("UPDATE ".$xoopsDB->prefix('users')." SET user_avatar='".$newavatar."' WHERE uid=".$user_id)) {
+                        if (!$xoopsDB->query('UPDATE ' . $xoopsDB->prefix('users') . " SET user_avatar='" . $newavatar . "' WHERE uid=" . $user_id)) {
                             $error = true;
                         } else {
                             $avatar =& $avt_handler->create();
@@ -50,7 +50,7 @@
                         }
                     } else {
                         $content .= _NGIMG.sprintf(_INSTALL_L153, $avatar_file).'<br />';
-                        $xoopsDB->query("UPDATE ".$xoopsDB->prefix('users')." SET user_avatar='blank.gif' WHERE uid=".$user_id);
+                        $xoopsDB->query('UPDATE ' . $xoopsDB->prefix('users') . " SET user_avatar='blank.gif' WHERE uid=" . $user_id);
                     }
                     fclose($fp);
                 }

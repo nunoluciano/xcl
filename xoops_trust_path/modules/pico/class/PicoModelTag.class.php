@@ -17,7 +17,7 @@ class PicoTagHandler
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $sql = "SELECT content_ids FROM " . $db->prefix($this->mydirname . "_tags") . " WHERE label=" . $db->quoteString($label);
+        $sql = 'SELECT content_ids FROM ' . $db->prefix($this->mydirname . '_tags') . ' WHERE label=' . $db->quoteString($label);
         if (!$trs = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
                 echo $db->logger->dumpQueries();

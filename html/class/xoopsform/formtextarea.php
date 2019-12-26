@@ -83,7 +83,7 @@ class XoopsFormTextArea extends XoopsFormElement
      * @param	int     $rows       number of rows
      * @param	int     $cols       number of columns   
      */
-    public function __construct($caption, $name, $value="", $rows=5, $cols=50)
+    public function __construct($caption, $name, $value= '', $rows=5, $cols=50)
     {
         $this->setCaption($caption);
         $this->setName($name);
@@ -91,7 +91,7 @@ class XoopsFormTextArea extends XoopsFormElement
         $this->_cols = intval($cols);
         $this->setValue($value);
     }
-    public function XoopsFormTextArea($caption, $name, $value="", $rows=5, $cols=50)
+    public function XoopsFormTextArea($caption, $name, $value= '', $rows=5, $cols=50)
     {
         return self::__construct($caption, $name, $value, $rows, $cols);
     }
@@ -149,9 +149,9 @@ class XoopsFormTextArea extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget();
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_textarea.html");
-        $renderTarget->setAttribute("element", $this);
-        $renderTarget->setAttribute("class", $this->getClass());
+        $renderTarget->setTemplateName('legacy_xoopsform_textarea.html');
+        $renderTarget->setAttribute('element', $this);
+        $renderTarget->setAttribute('class', $this->getClass());
 
         $renderSystem->render($renderTarget);
     

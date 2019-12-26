@@ -15,6 +15,6 @@ if (function_exists($set_charset)) {
         $set_charset('utf8');
     }
 } else {
-    $this->db->queryF("/*!40101 SET NAMES utf8 */");
-    $this->db->queryF("/*!40101 SET SESSION collation_connection=utf8_general_ci */");
+    $this->db->queryF('/*!40101 SET NAMES utf8 */');
+    $this->db->queryF('/*!40101 SET SESSION collation_connection=utf8_general_ci */');
 }

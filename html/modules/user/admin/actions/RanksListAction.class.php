@@ -4,9 +4,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/RanksFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/RanksListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/RanksFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/RanksListForm.class.php';
 
 class User_RanksListAction extends User_AbstractListAction
 {
@@ -49,14 +49,14 @@ class User_RanksListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=RanksList";
+        return './index.php?action=RanksList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("ranks_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('ranks_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -148,7 +148,7 @@ class User_RanksListAction extends User_AbstractListAction
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("ranks_list_confirm.html");
+        $render->setTemplateName('ranks_list_confirm.html');
         $render->setAttribute('ranksObjects', $this->mRanksObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         

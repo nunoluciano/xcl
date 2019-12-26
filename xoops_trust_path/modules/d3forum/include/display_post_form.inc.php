@@ -147,7 +147,7 @@ $xoopsTpl->assign([
                       'post' => $mode == 'edit' ? @$post4assign : [],
                       'body_wysiwyg' => $d3forum_wysiwyg_body,
                       'antispam' => $antispam4assign,
-                      'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ) . "\n" . $d3forum_wysiwyg_header,
+                      'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header') . "\n" . $d3forum_wysiwyg_header,
                       'xoops_pagetitle' => $formTitle,
                       'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => $formTitle]]),
                   ]

@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchForm.class.php';
 
 define('USER_SORT_KEY_UID', 1);
 define('USER_SORT_KEY_NAME', 2);
@@ -83,8 +83,17 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
     ];
 
     public $_mMatchFields = [
-        "uname", "name", "email", "user_icq", "user_aim", "user_yim", "user_msnm",
-        "url", "user_from", "user_occ", "user_intrest"
+        'uname',
+        'name',
+        'email',
+        'user_icq',
+        'user_aim',
+        'user_yim',
+        'user_msnm',
+        'url',
+        'user_from',
+        'user_occ',
+        'user_intrest'
     ];
     
     public function getDefaultSortKey()

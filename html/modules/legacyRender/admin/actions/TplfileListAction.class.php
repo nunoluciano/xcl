@@ -8,10 +8,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileSetFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileUploadForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileSetFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileUploadForm.class.php';
 
 class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 {
@@ -43,7 +43,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     
     public function _getBaseUrl()
     {
-        return "./index.php?action=TplfileList";
+        return './index.php?action=TplfileList';
     }
 
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -72,7 +72,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
      */
     public function execute(&$controller, &$xoopsUser)
     {
-        require_once XOOPS_ROOT_PATH . "/class/template.php";
+        require_once XOOPS_ROOT_PATH . '/class/template.php';
         
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
@@ -146,7 +146,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     {
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.LegacyRenderPagenaviHidden', 'LegacyRender_TplfileListAction::renderHiddenControl');
         
-        $render->setTemplateName("tplfile_list.html");
+        $render->setTemplateName('tplfile_list.html');
         
         //
         // Load override file.

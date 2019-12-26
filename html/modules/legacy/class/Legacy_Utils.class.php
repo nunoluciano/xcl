@@ -71,7 +71,7 @@ class Legacy_Utils
         //
         // IMPORTANT CONVENTION
         //
-        $className = ucfirst($dirname) . "_Module";
+        $className = ucfirst($dirname) . '_Module';
         if (!XC_CLASS_EXISTS($className)) {
             $filePath = XOOPS_ROOT_PATH . "/modules/${dirname}/class/Module.class.php";
             if (file_exists($filePath)) {
@@ -262,9 +262,9 @@ class Legacy_Utils
         $search = ['{modulename}', '{pagetitle}', '{action}'];
         $ret = str_replace($search, $replace, $configArr['pagetitle']);
     
-        $ret = (! $modulename) ? preg_replace("/\[modulename\](.*)\[\/modulename\]/U", "", $ret) : preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '$1', $ret);
-        $ret = (! $pagetitle) ? preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", "", $ret) : preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '$1', $ret);
-        $ret = (! $action) ? preg_replace("/\[action\](.*)\[\/action\]/U", "", $ret) : preg_replace("/\[action\](.*)\[\/action\]/U", '$1', $ret);
+        $ret = (! $modulename) ? preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '', $ret) : preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '$1', $ret);
+        $ret = (! $pagetitle) ? preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '', $ret) : preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '$1', $ret);
+        $ret = (! $action) ? preg_replace("/\[action\](.*)\[\/action\]/U", '', $ret) : preg_replace("/\[action\](.*)\[\/action\]/U", '$1', $ret);
     
         return $ret;
     }

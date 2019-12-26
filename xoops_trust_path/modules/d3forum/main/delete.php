@@ -6,7 +6,7 @@ require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
 $post_id = intval( @$_GET['post_id'] ) ;
 
 // get this "post" from given $post_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
@@ -28,8 +28,8 @@ include dirname(dirname(__FILE__)).'/include/process_this_post.inc.php' ;
 if( empty( $can_delete ) ) die( _MD_D3FORUM_ERR_DELETEPOST ) ;
 
 // count children
-include_once XOOPS_ROOT_PATH."/class/xoopstree.php" ;
-$mytree = new XoopsTree( $db->prefix($mydirname."_posts") , "post_id" , "pid" ) ;
+include_once XOOPS_ROOT_PATH . '/class/xoopstree.php';
+$mytree = new XoopsTree($db->prefix($mydirname . '_posts') , 'post_id', 'pid') ;
 $children = $mytree->getAllChildId( $post_id ) ;
 
 // special permission check for delete
@@ -100,7 +100,7 @@ if( ! empty( $_POST['deletepostsok'] ) ) {
 	$reference_subject4html = $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] , $post_row['special_entity'] ) ;
 
 	// dare to set 'template_main' after header.php (for disabling cache)
-	include XOOPS_ROOT_PATH."/header.php";
+	include XOOPS_ROOT_PATH . '/header.php';
 	$xoopsOption['template_main'] = $mydirname.'_main_delete.html' ;
 
 	$xoopsTpl->assign([
@@ -121,7 +121,7 @@ if( ! empty( $_POST['deletepostsok'] ) ) {
                           'topic' => $topic4assign,
                           'post' => $post4assign,
                           'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum'),
-                          'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+                          'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header'),
                           'xoops_pagetitle' => _DELETE,
                           'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _DELETE]]),
                       ]

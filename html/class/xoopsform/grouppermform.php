@@ -77,14 +77,14 @@ class XoopsGroupPermForm extends XoopsForm
      * @param        $permdesc
      * @param string $url
      */
-    public function __construct($title, $modid, $permname, $permdesc, $url = "")
+    public function __construct($title, $modid, $permname, $permdesc, $url = '')
     {
         $this->XoopsForm($title, 'groupperm_form', XOOPS_URL . '/modules/legacy/include/groupperm.php', 'post');
         $this->_modid = intval($modid);
         $this->_permName = $permname;
         $this->_permDesc = $permdesc;
         $this->addElement(new XoopsFormHidden('modid', $this->_modid));
-        if ($url != "") {
+        if ($url != '') {
             $this->addElement(new XoopsFormHidden('redirect_url', $url));
         }
     }
@@ -163,9 +163,9 @@ class XoopsGroupPermForm extends XoopsForm
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_grouppermform.html");
+        $renderTarget->setTemplateName('legacy_xoopsform_grouppermform.html');
         
-        $renderTarget->setAttribute("form", $this);
+        $renderTarget->setAttribute('form', $this);
 
         $renderSystem->render($renderTarget);
     
@@ -285,7 +285,7 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
         $option_ids_str = str_replace(['[', ']'], ['_', ''], $option_ids_str); // Remove injury characters for ID
 
         
-        $ret .= _ALL." <input id=\"".$checkallbtn_id."\" type=\"checkbox\" value=\"\" onclick=\"var optionids = new Array(".$option_ids_str."); xoopsCheckAllElements(optionids, '".$checkallbtn_id."');\" />";
+        $ret .= _ALL . ' <input id="' . $checkallbtn_id . '" type="checkbox" value="" onclick="var optionids = new Array(' . $option_ids_str . "); xoopsCheckAllElements(optionids, '" . $checkallbtn_id . "');\" />";
         $ret .= '</td></tr></table>';
         return $ret;
     }
@@ -302,10 +302,8 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
     public function _renderOptionTree(&$tree, $option, $prefix, $parentIds = [])
     {
         // Remove injury characters for ID
-        $tree .= $prefix . "<input type=\"checkbox\" name=\"" . $this->getName() .
-                 "[groups][" . $this->_groupId . "][" . $option['id'] . "]\" id=\"" .
-                 str_replace(['[', ']'], ['_', ''], $this->getName() . "[groups][" . $this->_groupId . "][" . $option['id'] . "]") .
-                 "\" onclick=\"";
+        $tree .= $prefix . '<input type="checkbox" name="' . $this->getName() . '[groups][' . $this->_groupId . '][' . $option['id'] . ']" id="' .
+                 str_replace(['[', ']'], ['_', ''], $this->getName() . '[groups][' . $this->_groupId . '][' . $option['id'] . ']') . '" onclick="';
   
         // If there are parent elements, add javascript that will
         // make them selecteded when this element is checked to make
@@ -328,7 +326,14 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
         if (in_array($option['id'], $this->_value)) {
             $tree .= ' checked="checked"';
         }
-        $tree .= " />" . $option['name'] . "<input type=\"hidden\" name=\"" . $this->getName() . "[parents][" . $option['id'] . "]\" value=\"" . implode(':', $parentIds). "\" /><input type=\"hidden\" name=\"" . $this->getName() . "[itemname][" . $option['id'] . "]\" value=\"" . htmlspecialchars($option['name']). "\" /><br />\n";
+        $tree .= ' />'
+                 . $option['name'] . '<input type="hidden" name="'
+                 . $this->getName() . '[parents]['
+                 . $option['id'] . ']" value="'
+                 . implode(':', $parentIds) . '" /><input type="hidden" name="'
+                 . $this->getName() . '[itemname]['
+                 . $option['id'] . ']" value="'
+                 . htmlspecialchars($option['name']) . "\" /><br />\n";
         if (isset($option['children'])) {
             foreach ($option['children'] as $child) {
                 array_push($parentIds, $option['id']);

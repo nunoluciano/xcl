@@ -4,8 +4,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ModuleEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ModuleEditForm.class.php';
 
 class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 {
@@ -187,7 +187,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadInfo($this->mObject->getShow('dirname'));
-        $render->setTemplateName("module_edit.html");
+        $render->setTemplateName('module_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -226,16 +226,16 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ModuleList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ModuleList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 }

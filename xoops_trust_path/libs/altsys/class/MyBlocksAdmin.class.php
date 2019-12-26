@@ -94,7 +94,7 @@ class MyBlocksAdmin
             if (is_object(@$target_module)) {
                 // module's blocks
                 $this->target_mid = $target_module->getVar('mid');
-                $this->target_mname = $target_module->getVar('name') . "&nbsp;" . sprintf("(%2.2f)", $target_module->getVar('version') / 100.0);
+                $this->target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0);
                 $this->target_dirname = $target_module->getVar('dirname');
                 $modinfo = $target_module->getInfo();
                 // breadcrumbs
@@ -114,7 +114,7 @@ class MyBlocksAdmin
         } else {
             // myblocksadmin as a library
             $this->target_mid = $xoopsModule->getVar('mid');
-            $this->target_mname = $xoopsModule->getVar('name') . "&nbsp;" . sprintf("(%2.2f)", $xoopsModule->getVar('version') / 100.0);
+            $this->target_mname = $xoopsModule->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $xoopsModule->getVar('version') / 100.0);
             $this->target_dirname = $xoopsModule->getVar('dirname');
             $mod_url = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname');
             $modinfo = $xoopsModule->getInfo();
@@ -139,7 +139,7 @@ class MyBlocksAdmin
     public function canDelete($block)
     {
         // can delete if it is a cloned block
-        if ($block->getVar("block_type") == 'D' || $block->getVar("block_type") == 'C') {
+        if ($block->getVar('block_type') == 'D' || $block->getVar('block_type') == 'C') {
             return true;
         } else {
             return false;
@@ -154,12 +154,12 @@ class MyBlocksAdmin
     public function canClone($block)
     {
         // can clone link if it is marked as cloneable block
-        if ($block->getVar("block_type") == 'D' || $block->getVar("block_type") == 'C') {
+        if ($block->getVar('block_type') == 'D' || $block->getVar('block_type') == 'C') {
             return 2;
         } else {
             // $modversion['blocks'][n]['can_clone']
             foreach ($this->block_configs as $bconf) {
-                if ($block->getVar("show_func") == @$bconf['show_func'] && $block->getVar("func_file") == @$bconf['file'] && (empty($bconf['template']) || $block->getVar("template") == @$bconf['template'])) {
+                if ($block->getVar('show_func') == @$bconf['show_func'] && $block->getVar('func_file') == @$bconf['file'] && (empty($bconf['template']) || $block->getVar('template') == @$bconf['template'])) {
                     if (!empty($bconf['can_clone'])) {
                         return 2;
                     }
@@ -205,7 +205,7 @@ class MyBlocksAdmin
             $selected_mids = $block_data['bmodule'];
         } else {
             // origined from the table of `block_module_link`
-            $result = $this->db->query("SELECT module_id FROM " . $this->db->prefix('block_module_link') . " WHERE block_id='$bid'");
+            $result = $this->db->query('SELECT module_id FROM ' . $this->db->prefix('block_module_link') . " WHERE block_id='$bid'");
             $selected_mids = [];
             while (list($selected_mid) = $this->db->fetchRow($result)) {
                 $selected_mids[] = intval($selected_mid);
@@ -254,7 +254,7 @@ class MyBlocksAdmin
             $selected_gids = $block_data['bgroup'];
         } else {
             // origined from the table of `group_perm`
-            $result = $this->db->query("SELECT gperm_groupid FROM " . $this->db->prefix('group_permission') . " WHERE gperm_itemid='$bid' AND gperm_name='block_read'");
+            $result = $this->db->query('SELECT gperm_groupid FROM ' . $this->db->prefix('group_permission') . " WHERE gperm_itemid='$bid' AND gperm_name='block_read'");
             $selected_gids = [];
             while (list($selected_gid) = $this->db->fetchRow($result)) {
                 $selected_gids[] = intval($selected_gid);
@@ -297,39 +297,39 @@ class MyBlocksAdmin
         $side = intval($block_data['side']);
         $visible = intval($block_data['visible']);
 
-        $sseln = $ssel0 = $ssel1 = $ssel2 = $ssel3 = $ssel4 = "";
-        $scoln = $scol0 = $scol1 = $scol2 = $scol3 = $scol4 = "unselected";
-        $stextbox = "unselected";
+        $sseln = $ssel0 = $ssel1 = $ssel2 = $ssel3 = $ssel4 = '';
+        $scoln = $scol0 = $scol1 = $scol2 = $scol3 = $scol4 = 'unselected';
+        $stextbox = 'unselected';
         $value4extra_side = '';
 
         if ($visible != 1) {
             $sseln = " checked='checked'";
-            $scoln = "disabled";
+            $scoln = 'disabled';
         } else {
             switch ($side) {
                 case XOOPS_SIDEBLOCK_LEFT:
                     $ssel0 = " checked='checked'";
-                    $scol0 = "selected";
+                    $scol0 = 'selected';
                     break;
                 case XOOPS_SIDEBLOCK_RIGHT:
                     $ssel1 = " checked='checked'";
-                    $scol1 = "selected";
+                    $scol1 = 'selected';
                     break;
                 case XOOPS_CENTERBLOCK_LEFT:
                     $ssel2 = " checked='checked'";
-                    $scol2 = "selected";
+                    $scol2 = 'selected';
                     break;
                 case XOOPS_CENTERBLOCK_RIGHT:
                     $ssel4 = " checked='checked'";
-                    $scol4 = "selected";
+                    $scol4 = 'selected';
                     break;
                 case XOOPS_CENTERBLOCK_CENTER:
                     $ssel3 = " checked='checked'";
-                    $scol3 = "selected";
+                    $scol3 = 'selected';
                     break;
                 default:
                     $value4extra_side = $side;
-                    $stextbox = "selected";
+                    $stextbox = 'selected';
                     break;
             }
         }
@@ -369,7 +369,7 @@ class MyBlocksAdmin
         global $xoopsGTicket;
 
         // main query
-        $sql = "SELECT * FROM " . $this->db->prefix("newblocks") . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
+        $sql = 'SELECT * FROM ' . $this->db->prefix('newblocks') . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
         $result = $this->db->query($sql);
         $block_arr = [];
         //HACK by domifara
@@ -451,7 +451,7 @@ class MyBlocksAdmin
     public function list_groups()
     {
         // query for getting blocks
-        $sql = "SELECT * FROM " . $this->db->prefix("newblocks") . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
+        $sql = 'SELECT * FROM ' . $this->db->prefix('newblocks') . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
         $result = $this->db->query($sql);
         $block_arr = [];
         //HACK by domifara
@@ -471,7 +471,7 @@ class MyBlocksAdmin
 
         $item_list = [];
         foreach (array_keys($block_arr) as $i) {
-            $item_list[$block_arr[$i]->getVar("bid")] = $block_arr[$i]->getVar("title");
+            $item_list[$block_arr[$i]->getVar('bid')] = $block_arr[$i]->getVar('title');
         }
 
         $form = new MyXoopsGroupPermForm(_MD_A_MYBLOCKSADMIN_PERMFORM, 1, 'block_read', '');
@@ -549,7 +549,7 @@ class MyBlocksAdmin
     public function updateBlockModuleLink($bid, $bmodules)
     {
         $bid = intval($bid);
-        $table = $this->db->prefix("block_module_link");
+        $table = $this->db->prefix('block_module_link');
 
         $sql = "DELETE FROM `$table` WHERE `block_id`=$bid";
         $this->db->query($sql);
@@ -565,7 +565,7 @@ class MyBlocksAdmin
     public function updateBlockReadGroupPerm($bid, $req_gids)
     {
         $bid = intval($bid);
-        $table = $this->db->prefix("group_permission");
+        $table = $this->db->prefix('group_permission');
         $req_gids = array_map('intval', $req_gids);
         sort($req_gids);
 
@@ -673,7 +673,7 @@ class MyBlocksAdmin
     public function do_deleteBlockReadGroupPerm($bid)
     {
         $bid = intval($bid);
-        $table = $this->db->prefix("group_permission");
+        $table = $this->db->prefix('group_permission');
         $sql = "DELETE FROM `$table` WHERE gperm_name='block_read' AND `gperm_itemid`=$bid";
         $this->db->query($sql);
     }
@@ -778,7 +778,7 @@ class MyBlocksAdmin
         $func_num = 256;
         do {
             $func_num--;
-            list($count) = $this->db->fetchRow($this->db->query("SELECT COUNT(*) FROM " . $this->db->prefix("newblocks") . " WHERE mid=" . intval($mid) . " AND func_num=" . $func_num));
+            list($count) = $this->db->fetchRow($this->db->query('SELECT COUNT(*) FROM ' . $this->db->prefix('newblocks') . ' WHERE mid=' . intval($mid) . ' AND func_num=' . $func_num));
         } while ($count > 0);
 
         return $func_num > 128 ? $func_num : 255;
@@ -808,7 +808,7 @@ class MyBlocksAdmin
             $request = $this->fetchRequest4Block(0);
             // permission copy
             foreach ($GLOBALS['xoopsUser']->getGroups() as $gid) {
-                $sql = "INSERT INTO " . $this->db->prefix('group_permission') . " (gperm_groupid, gperm_itemid, gperm_modid, gperm_name) VALUES ($gid, $bid, 1, 'block_read')";
+                $sql = 'INSERT INTO ' . $this->db->prefix('group_permission') . " (gperm_groupid, gperm_itemid, gperm_modid, gperm_name) VALUES ($gid, $bid, 1, 'block_read')";
                 $this->db->query($sql);
             }
         } else {

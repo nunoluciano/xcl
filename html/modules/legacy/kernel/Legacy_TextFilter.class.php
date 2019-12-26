@@ -134,9 +134,9 @@ class Legacy_TextFilter extends XCube_TextFilter
             //ToDo: &nbsp; patern is defined for XOOPS2.0 compatiblity. But what is it?
             //		This comatiblity option is used from method from MyTextSanitizer.
             //
-            return preg_replace(["/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", "/&nbsp;/i"], ['&\\1;', '&amp;nbsp;'], htmlspecialchars($text, ENT_QUOTES, _CHARSET));
+            return preg_replace(['/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i', '/&nbsp;/i'], ['&\\1;', '&amp;nbsp;'], htmlspecialchars($text, ENT_QUOTES, _CHARSET));
         } else {
-            return preg_replace("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", '&\\1;', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
+            return preg_replace('/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i', '&\\1;', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
         }
     }
 
@@ -149,7 +149,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      **/
     public function toEdit($text)
     {
-        return preg_replace("/&amp;(#0?[0-9]{4,6};)/i", '&$1', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
+        return preg_replace('/&amp;(#0?[0-9]{4,6};)/i', '&$1', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
     }
 
     /**
@@ -218,7 +218,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 
         // !Fix XCL PHP7 
        // Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5
-        $doctypeArr = ["HTML 4.01 Strict", "HTML 4.01 Transitional", "XHTML 1.0 Strict", "XHTML 1.0 Transitional", "XHTML 1.1"];
+        $doctypeArr = ['HTML 4.01 Strict', 'HTML 4.01 Transitional', 'XHTML 1.0 Strict', 'XHTML 1.0 Transitional', 'XHTML 1.1'];
     
         if (is_null($config) || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
             $config = HTMLPurifier_Config::createDefault();
@@ -258,7 +258,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         if (count($this->mSmileys) == 0) {
             $this->mSmileysConvTable[0] = $this->mSmileysConvTable[1] = [];
             $db =& Database::getInstance();
-            if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles"))) {
+            if ($getsmiles = $db->query('SELECT * FROM ' . $db->prefix('smiles'))) {
                 while ($smile = $db->fetchArray($getsmiles)) {
                     $this->mSmileys[] = $smile;
                     $this->mSmileysConvTable[0][] = $smile['code'];
@@ -466,10 +466,10 @@ class Legacy_TextFilter extends XCube_TextFilter
         $replacements[0][] = $replacements[1][] = _QUOTEC.'<div class="xoopsQuote"><blockquote>';
         $patterns[] = "/\[\/quote\]/sU";
         $replacements[0][] = $replacements[1][] = '</blockquote></div>';
-        $patterns[] = "/javascript:/si";
-        $replacements[0][] = $replacements[1][] = "java script:";
-        $patterns[] = "/about:/si";
-        $replacements[0][] = $replacements[1][] = "about :";
+        $patterns[] = '/javascript:/si';
+        $replacements[0][] = $replacements[1][] = 'java script:';
+        $patterns[] = '/about:/si';
+        $replacements[0][] = $replacements[1][] = 'about :';
     }
     /**
      * @deprecated
@@ -492,7 +492,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         if ($this->_checkUrlString($matches[2])) {
             return $matches[0];
         } else {
-            return "";
+            return '';
         }
     }
 
@@ -509,7 +509,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             return false;
         }
         // check black pattern(deprecated)
-        return !preg_match("/^(javascript|vbscript|about):/i", $text);
+        return !preg_match('/^(javascript|vbscript|about):/i', $text);
     }
 
     /**
@@ -521,7 +521,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function nl2Br($text)
     {
-        return preg_replace("/(\015\012)|(\015)|(\012)/", "<br />", $text);
+        return preg_replace("/(\015\012)|(\015)|(\012)/", '<br />', $text);
     }
 
     /**

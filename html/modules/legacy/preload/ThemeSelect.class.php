@@ -44,7 +44,7 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
     
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [&$this, "callbackCheckLoginSuccess"]);
+        $this->mController->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
     }
 
     /**

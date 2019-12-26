@@ -28,7 +28,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     /***
      * readonly property
      */
-    public $_mExclusions = [".", "..", "CVS"];
+    public $_mExclusions = ['.', '..', 'CVS'];
     
     // !Fix deprecated constructor for PHP 7.x
     public function __construct(&$db)
@@ -46,7 +46,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
         if (count($this->_mXoopsModules) == 0) {
             if ($handler = opendir(XOOPS_MODULE_PATH)) {
                 while (($dir = readdir($handler)) !== false) {
-                    if (!in_array($dir, $this->_mExclusions) && is_dir(XOOPS_MODULE_PATH . "/" . $dir)) {
+                    if (!in_array($dir, $this->_mExclusions) && is_dir(XOOPS_MODULE_PATH . '/' . $dir)) {
                         $module =& $this->get($dir);
                         if ($module !== false) {
                             $this->_mXoopsModules[] =& $module;
@@ -69,7 +69,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     {
         $ret = false;
         
-        if (!file_exists(XOOPS_MODULE_PATH . "/" . $dirname . "/xoops_version.php")) {
+        if (!file_exists(XOOPS_MODULE_PATH . '/' . $dirname . '/xoops_version.php')) {
             return $ret;
         }
 

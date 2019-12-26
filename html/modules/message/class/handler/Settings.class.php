@@ -17,7 +17,7 @@ class MessageSettingsObject extends XoopsSimpleObject
         $this->initVar('tomail', XOBJ_DTYPE_INT, $mModuleConfig['tomail'], true);
         $this->initVar('viewmsm', XOBJ_DTYPE_INT, $mModuleConfig['viewmsm'], true);
         $this->initVar('pagenum', XOBJ_DTYPE_INT, 0, true);
-        $this->initVar('blacklist', XOBJ_DTYPE_STRING, "");
+        $this->initVar('blacklist', XOBJ_DTYPE_STRING, '');
     }
 }
 
@@ -34,8 +34,8 @@ class MessageSettingsHandler extends XoopsObjectGenericHandler
   
     public function chkUser($uid)
     {
-        $sql = "SELECT `uname` FROM `".$this->db->prefix('users')."` ";
-        $sql.= "WHERE `uid` = ".$uid;
+        $sql = 'SELECT `uname` FROM `' . $this->db->prefix('users') . '` ';
+        $sql.= 'WHERE `uid` = ' . $uid;
         $result = $this->db->query($sql);
         if ($this->db->getRowsNum($result) != 1) {
             return false;
@@ -47,8 +47,8 @@ class MessageSettingsHandler extends XoopsObjectGenericHandler
     public function getuidTouname($uname)
     {
         $uid = -1;
-        $sql = "SELECT `uid` FROM `".$this->db->prefix('users')."` ";
-        $sql.= "WHERE `uname` = ".$this->db->quoteString($uname);
+        $sql = 'SELECT `uid` FROM `' . $this->db->prefix('users') . '` ';
+        $sql.= 'WHERE `uname` = ' . $this->db->quoteString($uname);
         $result = $this->db->query($sql);
         list($uid) = $this->db->fetchRow($result);
         return $uid;

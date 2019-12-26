@@ -3224,7 +3224,7 @@ class File_X509
      */
     public function _timeField($date)
     {
-        $year = @gmdate("Y", @strtotime($date)); // the same way ASN1.php parses this
+        $year = @gmdate('Y', @strtotime($date)); // the same way ASN1.php parses this
         if ($year < 2050) {
             return ['utcTime' => $date];
         } else {

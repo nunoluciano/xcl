@@ -30,13 +30,13 @@ class UserRanksObject extends XoopsSimpleObject
 
 class UserRanksHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "ranks";
-    public $mPrimary = "rank_id";
-    public $mClass = "UserRanksObject";
+    public $mTable = 'ranks';
+    public $mPrimary = 'rank_id';
+    public $mClass = 'UserRanksObject';
 
     public function delete(&$obj, $force = false)
     {
-        @unlink(XOOPS_UPLOAD_PATH . "/" . $obj->get('rank_image'));
+        @unlink(XOOPS_UPLOAD_PATH . '/' . $obj->get('rank_image'));
         return parent::delete($obj, $force);
     }
 }

@@ -17,9 +17,9 @@ class UserAvatar_user_linkObject extends XoopsSimpleObject
 
 class UserAvatar_user_linkHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "avatar_user_link";
-    public $mPrimary = "";
-    public $mClass = "UserAvatar_user_linkObject";
+    public $mTable = 'avatar_user_link';
+    public $mPrimary = '';
+    public $mClass = 'UserAvatar_user_linkObject';
 
     public function &get($id)
     {
@@ -35,7 +35,7 @@ class UserAvatar_user_linkHandler extends XoopsObjectGenericHandler
     public function delete(&$obj, $force = false)
     {
         $id = $this->db->quoteString($obj->get('avatar_id'));
-        $sql = "DELETE FROM " . $this->mTable . " WHERE avatar_id=" . $obj->get('avatar_id') . " AND user_id=" . $obj->get('user_id');
+        $sql = 'DELETE FROM ' . $this->mTable . ' WHERE avatar_id=' . $obj->get('avatar_id') . ' AND user_id=' . $obj->get('user_id');
 
         return $force ? $this->db->queryF($sql) : $this->db->query($sql);
     }

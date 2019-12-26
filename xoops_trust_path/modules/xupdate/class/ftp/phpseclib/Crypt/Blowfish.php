@@ -1376,14 +1376,14 @@ class Crypt_Blowfish extends Crypt_Base
      */
     public function _encryptBlock($in)
     {
-        $p = $this->bctx["p"];
+        $p = $this->bctx['p'];
         // extract($this->bctx["sb"], EXTR_PREFIX_ALL, "sb"); // slower
-        $sb_0 = $this->bctx["sb"][0];
-        $sb_1 = $this->bctx["sb"][1];
-        $sb_2 = $this->bctx["sb"][2];
-        $sb_3 = $this->bctx["sb"][3];
+        $sb_0 = $this->bctx['sb'][0];
+        $sb_1 = $this->bctx['sb'][1];
+        $sb_2 = $this->bctx['sb'][2];
+        $sb_3 = $this->bctx['sb'][3];
 
-        $in = unpack("N*", $in);
+        $in = unpack('N*', $in);
         $l  = $in[1];
         $r  = $in[2];
 
@@ -1394,7 +1394,7 @@ class Crypt_Blowfish extends Crypt_Base
             $r ^= $p[$i + 1];
             $l ^= ($sb_0[$r >> 24 & 0xff] + $sb_1[$r >> 16 & 0xff] ^ $sb_2[$r >> 8 & 0xff]) + $sb_3[$r & 0xff];
         }
-        return pack("N*", $r ^ $p[17], $l ^ $p[16]);
+        return pack('N*', $r ^ $p[17], $l ^ $p[16]);
     }
 
     /**
@@ -1406,13 +1406,13 @@ class Crypt_Blowfish extends Crypt_Base
      */
     public function _decryptBlock($in)
     {
-        $p    = $this->bctx["p"];
-        $sb_0 = $this->bctx["sb"][0];
-        $sb_1 = $this->bctx["sb"][1];
-        $sb_2 = $this->bctx["sb"][2];
-        $sb_3 = $this->bctx["sb"][3];
+        $p    = $this->bctx['p'];
+        $sb_0 = $this->bctx['sb'][0];
+        $sb_1 = $this->bctx['sb'][1];
+        $sb_2 = $this->bctx['sb'][2];
+        $sb_3 = $this->bctx['sb'][3];
 
-        $in = unpack("N*", $in);
+        $in = unpack('N*', $in);
         $l  = $in[1];
         $r  = $in[2];
 
@@ -1423,7 +1423,7 @@ class Crypt_Blowfish extends Crypt_Base
             $r ^= $p[$i - 1];
             $l ^= ($sb_0[$r >> 24 & 0xff] + $sb_1[$r >> 16 & 0xff] ^ $sb_2[$r >> 8 & 0xff]) + $sb_3[$r & 0xff];
         }
-        return pack("N*", $r ^ $p[0], $l ^ $p[1]);
+        return pack('N*', $r ^ $p[0], $l ^ $p[1]);
     }
 
     /**

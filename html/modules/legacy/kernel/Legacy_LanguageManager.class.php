@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_LanguageManager.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_LanguageManager.class.php';
 
 class Legacy_LanguageManager extends XCube_LanguageManager
 {
@@ -40,12 +40,12 @@ class Legacy_LanguageManager extends XCube_LanguageManager
     public function _setupMbstring()
     {
         #ifdef _MBSTRING_LANGUAGE
-        if (defined('_MBSTRING_LANGUAGE') && function_exists("mb_language")) {
+        if (defined('_MBSTRING_LANGUAGE') && function_exists('mb_language')) {
             if (@mb_language(_MBSTRING_LANGUAGE) != false && @mb_internal_encoding(_CHARSET) != false) {
                 define('MBSTRING', true);
             } else {
-                mb_language("neutral");
-                mb_internal_encoding("ISO-8859-1");
+                mb_language('neutral');
+                mb_internal_encoding('ISO-8859-1');
                 if (!defined('MBSTRING')) {
                     define('MBSTRING', false);
                 }
@@ -69,8 +69,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         }
         #endif
 
-        if (!defined("MBSTRING")) {
-            define("MBSTRING", false);
+        if (!defined('MBSTRING')) {
+            define('MBSTRING', false);
         }
     }
 
@@ -87,8 +87,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         //
         // Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.
         //
-        if (!defined("XOOPS_USE_MULTIBYTES")) {
-            define("XOOPS_USE_MULTIBYTES", 0);
+        if (!defined('XOOPS_USE_MULTIBYTES')) {
+            define('XOOPS_USE_MULTIBYTES', 0);
         }
     }
 

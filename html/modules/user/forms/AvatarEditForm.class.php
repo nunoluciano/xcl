@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_AvatarEditForm extends XCube_ActionForm
 {
@@ -20,7 +20,7 @@ class User_AvatarEditForm extends XCube_ActionForm
     
     public function getTokenName()
     {
-        return "module.user.AvatarEditForm.TOKEN" . $this->get('uid');
+        return 'module.user.AvatarEditForm.TOKEN' . $this->get('uid');
     }
 
     public function prepare($width, $height, $maxfilesize)
@@ -40,7 +40,7 @@ class User_AvatarEditForm extends XCube_ActionForm
         $this->mFieldProperties['uploadavatar'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['uploadavatar']->setDependsByArray(['extension', 'maxfilesize']);
         $this->mFieldProperties['uploadavatar']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION);
-        $this->mFieldProperties['uploadavatar']->addVar('extension', "jpg,gif,png");
+        $this->mFieldProperties['uploadavatar']->addVar('extension', 'jpg,gif,png');
         $this->mFieldProperties['uploadavatar']->addMessage('maxfilesize', _MD_USER_ERROR_AVATAR_MAXFILESIZE);
         $this->mFieldProperties['uploadavatar']->addVar('maxfilesize', $maxfilesize);
     }

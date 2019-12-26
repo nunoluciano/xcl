@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/modules/legacy/kernel/Legacy_Module.class.php";
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_Module.class.php';
 
 /**
  * @public
@@ -71,7 +71,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @attention
      *     This member is used for only Legacy_Controller.
      */
-    public $mBaseRenderSystemName = "";
+    public $mBaseRenderSystemName = '';
     
     /**
      * @public

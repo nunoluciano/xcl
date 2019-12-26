@@ -75,9 +75,9 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
 
 class LegacyRenderTplsetHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "tplset";
-    public $mPrimary = "tplset_id";
-    public $mClass = "LegacyRenderTplsetObject";
+    public $mTable = 'tplset';
+    public $mPrimary = 'tplset_id';
+    public $mClass = 'LegacyRenderTplsetObject';
     
     public function insertClone($original, $clone)
     {

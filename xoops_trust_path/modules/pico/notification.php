@@ -8,9 +8,10 @@ require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoModelContent.class.php'
 eval('
 function ' . $mydirname . '_notify_iteminfo( $category, $item_id )
 {
-	return pico_notify_base( "' . $mydirname . '" , $category , $item_id ) ;
+	return pico_notify_base( \'' . $mydirname . '\' , $category , $item_id ) ;
 }
-');
+'
+);
 
 if (!function_exists('pico_notify_base')) {
 

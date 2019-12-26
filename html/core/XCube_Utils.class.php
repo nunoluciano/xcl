@@ -89,12 +89,12 @@ class XCube_Utils
         }
         
         for ($i = 0; $i < count($variables); $i++) {
-            $message = str_replace("{" . ($i) . "}", $variables[$i], $message);
+            $message = str_replace('{' . ($i) . '}', $variables[$i], $message);
             
             // Temporary....
-            $message = str_replace("{" . ($i) . ":ucFirst}", ucfirst($variables[$i]), $message);
-            $message = str_replace("{" . ($i) . ":toLower}", strtolower($variables[$i]), $message);
-            $message = str_replace("{" . ($i) . ":toUpper}", strtoupper($variables[$i]), $message);
+            $message = str_replace('{' . ($i) . ':ucFirst}', ucfirst($variables[$i]), $message);
+            $message = str_replace('{' . ($i) . ':toLower}', strtolower($variables[$i]), $message);
+            $message = str_replace('{' . ($i) . ':toUpper}', strtoupper($variables[$i]), $message);
         }
         
         return $message;
@@ -223,7 +223,7 @@ class XCube_Utils
         $searches= [];
         $replaces= [];
         foreach ($arr as $key=>$value) {
-            $searches[]="{".$key."}";
+            $searches[]= '{' . $key . '}';
             $replaces[]=$value;
         }
 

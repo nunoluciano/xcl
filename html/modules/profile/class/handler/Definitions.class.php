@@ -195,7 +195,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
      */
     public function getValidationList()
     {
-        return ["email"];
+        return ['email'];
     }
 
     public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)

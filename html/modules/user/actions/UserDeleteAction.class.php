@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/forms/UserDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/forms/UserDeleteForm.class.php';
 
 /***
  * @internal
@@ -23,7 +23,7 @@ class User_UserDeleteAction extends User_Action
     public $mObject = null;
     
     public $mSelfDelete = false;
-    public $mSelfDeleteConfirmMessage = "";
+    public $mSelfDeleteConfirmMessage = '';
     
     public $_mDoDelete;
 
@@ -62,7 +62,7 @@ class User_UserDeleteAction extends User_Action
         $this->_mDoDelete =new XCube_Delegate('bool &', 'Legacy_Controller', 'XoopsUser');
         $this->_mDoDelete->register('User_UserDeleteAction._doDelete');
         
-        $this->_mDoDelete->add([&$this, "_doDelete"]);
+        $this->_mDoDelete->add([&$this, '_doDelete']);
         
         //
         // pre condition check
@@ -147,7 +147,7 @@ class User_UserDeleteAction extends User_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_delete.html");
+        $render->setTemplateName('user_delete.html');
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('self_delete_message', $this->mSelfDeleteConfirmMessage);
@@ -155,8 +155,8 @@ class User_UserDeleteAction extends User_Action
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_delete_success.html");
-        $render->setAttribute("object", $this->mObject);
+        $render->setTemplateName('user_delete_success.html');
+        $render->setAttribute('object', $this->mObject);
     }
     
     public function executeViewError(&$controller, &$xoopsUser, &$render)

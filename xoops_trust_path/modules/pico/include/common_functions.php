@@ -15,7 +15,7 @@ function pico_common_get_cat_id_from_content_id($mydirname, $content_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	list($cat_id) = $db->fetchRow($db->query("SELECT cat_id FROM " . $db->prefix($mydirname . "_contents") . " WHERE content_id=" . intval($content_id)));
+	list($cat_id) = $db->fetchRow($db->query('SELECT cat_id FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id=' . intval($content_id)));
 
 	return intval($cat_id);
 }
@@ -54,16 +54,16 @@ function pico_common_get_categories_can_read($mydirname, $uid = null)
 		$uid = intval($user->getVar('uid'));
 		$groups = $user->getGroups();
 		if (!empty($groups)) {
-			$whr4cat = "`uid`=$uid || `groupid` IN (" . implode(",", $groups) . ")";
+			$whr4cat = "`uid`=$uid || `groupid` IN (" . implode(',', $groups) . ')';
 		} else {
 			$whr4cat = "`uid`=$uid";
 		}
 	} else {
-		$whr4cat = "`groupid`=" . intval(XOOPS_GROUP_ANONYMOUS);
+		$whr4cat = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS);
 	}
 
 	// get categories
-	$sql = "SELECT distinct c.cat_id FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id WHERE ($whr4cat)";
+	$sql = 'SELECT distinct c.cat_id FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_category_permissions') . " cp ON c.cat_permission_id=cp.cat_id WHERE ($whr4cat)";
 
 	$result = $db->query($sql);
 	if ($result) while (list($cat_id) = $db->fetchRow($result)) {
@@ -88,7 +88,7 @@ function pico_common_make_content_link4html($mod_config, $content_row, $mydirnam
 		if (!is_array($content_row) && !empty($mydirname)) {
 			// specify content by content_id instead of content_row
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
-			$content_row = $db->fetchArray($db->query("SELECT content_id,vpath FROM " . $db->prefix($mydirname . "_contents") . " WHERE content_id=" . intval($content_row)));
+			$content_row = $db->fetchArray($db->query('SELECT content_id,vpath FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id=' . intval($content_row)));
 		}
 
 		if (!empty($content_row['vpath'])) {
@@ -111,7 +111,7 @@ function pico_common_make_category_link4html($mod_config, $cat_row, $mydirname =
 		if (!is_array($cat_row) && !empty($mydirname)) {
 			// specify category by cat_id instead of cat_row
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
-			$cat_row = $db->fetchArray($db->query("SELECT cat_id,cat_vpath FROM " . $db->prefix($mydirname . "_categories") . " WHERE cat_id=" . intval($cat_row)));
+			$cat_row = $db->fetchArray($db->query('SELECT cat_id,cat_vpath FROM ' . $db->prefix($mydirname . '_categories') . ' WHERE cat_id=' . intval($cat_row)));
 		}
 		if (!empty($cat_row['cat_vpath'])) {
 			$ret = 'index.php' . htmlspecialchars($cat_row['cat_vpath'], ENT_QUOTES);
@@ -143,11 +143,11 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
-	$whr_read = '`cat_id` IN (' . implode(",", pico_common_get_categories_can_read($mydirname)) . ')';
+	$whr_read = '`cat_id` IN (' . implode(',', pico_common_get_categories_can_read($mydirname)) . ')';
 	$categories = [0 => ['pid' => -1, 'name' => '', 'url' => '', 'sub' => []]];
 
 	// categories query
-	$sql = "SELECT cat_id,pid,cat_title,cat_vpath FROM " . $db->prefix($mydirname . "_categories") . " WHERE ($whr_read) ORDER BY cat_order_in_tree";
+	$sql = 'SELECT cat_id,pid,cat_title,cat_vpath FROM ' . $db->prefix($mydirname . '_categories') . " WHERE ($whr_read) ORDER BY cat_order_in_tree";
 	$crs = $db->query($sql);
 	if ($crs) while ($cat_row = $db->fetchArray($crs)) {
 		$cat_id = intval($cat_row['cat_id']);
@@ -161,7 +161,7 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 
 	if (!($caller == 'sitemap_plugin' && !@$mod_config['sitemap_showcontents']) && !($caller == 'xoops_version' && !@$mod_config['submenu_showcontents'])) {
 		// contents query
-		$ors = $db->query("SELECT cat_id,content_id,vpath,subject FROM " . $db->prefix($mydirname . "_contents") . " WHERE show_in_menu AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND $whr_read ORDER BY weight,content_id");
+		$ors = $db->query('SELECT cat_id,content_id,vpath,subject FROM ' . $db->prefix($mydirname . '_contents') . " WHERE show_in_menu AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND $whr_read ORDER BY weight,content_id");
 		if ($ors) while ($content_row = $db->fetchArray($ors)) {
 			$cat_id = intval($content_row['cat_id']);
 			$categories[$cat_id]['sub'][] = [
@@ -218,7 +218,7 @@ function pico_common_get_cat_options($mydirname)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$crs = $db->query("SELECT c.cat_id,c.cat_title,c.cat_depth_in_tree,COUNT(o.content_id) FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_contents") . " o ON c.cat_id=o.cat_id GROUP BY c.cat_id ORDER BY c.cat_order_in_tree");
+	$crs = $db->query('SELECT c.cat_id,c.cat_title,c.cat_depth_in_tree,COUNT(o.content_id) FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_contents') . ' o ON c.cat_id=o.cat_id GROUP BY c.cat_id ORDER BY c.cat_order_in_tree');
 	$cat_options = [0 => _MD_PICO_TOP];
 	while (list($id, $title, $depth, $contents_num) = $db->fetchRow($crs)) {
 		$cat_options[$id] = str_repeat('--', $depth) . htmlspecialchars($title, ENT_QUOTES) . " ($contents_num)";

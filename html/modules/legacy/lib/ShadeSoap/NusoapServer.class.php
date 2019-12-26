@@ -10,12 +10,12 @@
 
 // if (!XC_CLASS_EXISTS('soap_server')) exit();
 
-if (version_compare(PHP_VERSION, "5.0", ">=")) {
-    if (!class_exists("soap_server", false)) {
+if (version_compare(PHP_VERSION, '5.0', '>=')) {
+    if (!class_exists('soap_server', false)) {
         exit();
     }
 } else {
-    if (!class_exists("soap_server")) {
+    if (!class_exists('soap_server')) {
         exit();
     }
 }

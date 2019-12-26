@@ -17,13 +17,13 @@ class XCube_Identity
      * A name of the identity.
      * @var string
      */
-    public $mName = "";
+    public $mName = '';
     
     /**
      * The authentication type
      * @var string
      */
-    public $_mAuthenticationType = "";
+    public $_mAuthenticationType = '';
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Identity()

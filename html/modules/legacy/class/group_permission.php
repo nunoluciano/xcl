@@ -37,9 +37,9 @@ class LegacyGroup_permissionObject extends XoopsSimpleObject
 
 class LegacyGroup_permissionHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "group_permission";
-    public $mPrimary = "gperm_id";
-    public $mClass = "LegacyGroup_permissionObject";
+    public $mTable = 'group_permission';
+    public $mPrimary = 'gperm_id';
+    public $mClass = 'LegacyGroup_permissionObject';
     
     /**
      * Gets array of roles by array of group ID.
@@ -51,14 +51,14 @@ class LegacyGroup_permissionHandler extends XoopsObjectGenericHandler
     {
         $retRoles = [];
         
-        $sql = "SELECT gperm_name FROM " . $this->mTable . " WHERE gperm_modid=" . intval($mid) . " AND gperm_itemid=0 AND ";
+        $sql = 'SELECT gperm_name FROM ' . $this->mTable . ' WHERE gperm_modid=' . intval($mid) . ' AND gperm_itemid=0 AND ';
         $groupSql = [];
         
         foreach ($groups as $gid) {
-            $groupSql[] = "gperm_groupid=" . intval($gid);
+            $groupSql[] = 'gperm_groupid=' . intval($gid);
         }
         
-        $sql .= "(" . implode(' OR ', $groupSql) . ")";
+        $sql .= '(' . implode(' OR ', $groupSql) . ')';
         
         $result = $this->db->query($sql);
         

@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_AvatarAdminEditForm extends XCube_ActionForm
 {
@@ -14,7 +14,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
     
     public function getTokenName()
     {
-        return "module.user.AvatarAdminEditForm.TOKEN" . $this->get('avatar_id');
+        return 'module.user.AvatarAdminEditForm.TOKEN' . $this->get('avatar_id');
     }
 
     public function prepare()
@@ -38,7 +38,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
         $this->mFieldProperties['avatar_file'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['avatar_file']->setDependsByArray(['extension']);
         $this->mFieldProperties['avatar_file']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION, _AD_USER_LANG_AVATAR_FILE);
-        $this->mFieldProperties['avatar_file']->addVar('extension', "gif,png,jpg");
+        $this->mFieldProperties['avatar_file']->addVar('extension', 'gif,png,jpg');
 
         $this->mFieldProperties['avatar_name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['avatar_name']->setDependsByArray(['required', 'maxlength']);

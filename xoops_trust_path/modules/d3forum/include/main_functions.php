@@ -59,13 +59,13 @@ function d3forum_get_forum_permissions_of_current_user( $mydirname )
 	if( is_object( $xoopsUser ) ) {
 		$uid = intval( $xoopsUser->getVar('uid') ) ;
 		$groups = $xoopsUser->getGroups() ;
-		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(",",$groups).")" ;
+		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(',', $groups) . ')';
 		else $whr = "`uid`=$uid" ;
 	} else {
-		$whr = "`groupid`=".intval(XOOPS_GROUP_ANONYMOUS) ;
+		$whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
 	}
 
-	$sql = "SELECT forum_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved,SUM(is_moderator) AS is_moderator FROM ".$db->prefix($mydirname."_forum_access")." WHERE ($whr) GROUP BY forum_id" ;
+	$sql = 'SELECT forum_id,SUM(can_post) AS can_post,SUM(can_edit) AS can_edit,SUM(can_delete) AS can_delete,SUM(post_auto_approved) AS post_auto_approved,SUM(is_moderator) AS is_moderator FROM ' . $db->prefix($mydirname . '_forum_access') . " WHERE ($whr) GROUP BY forum_id" ;
 	$result = $db->query( $sql ) ;
 	if( $result ) while( $row = $db->fetchArray( $result ) ) {
 		$ret[ $row['forum_id'] ] = $row ;
@@ -86,13 +86,13 @@ function d3forum_get_category_permissions_of_current_user( $mydirname )
 	if( is_object( $xoopsUser ) ) {
 		$uid = intval( $xoopsUser->getVar('uid') ) ;
 		$groups = $xoopsUser->getGroups() ;
-		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(",",$groups).")" ;
+		if( ! empty( $groups ) ) $whr = "`uid`=$uid || `groupid` IN (".implode(',', $groups) . ')';
 		else $whr = "`uid`=$uid" ;
 	} else {
-		$whr = "`groupid`=".intval(XOOPS_GROUP_ANONYMOUS) ;
+		$whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS) ;
 	}
 
-	$sql = "SELECT cat_id,SUM(can_makeforum) AS can_makeforum,SUM(is_moderator) AS is_moderator FROM ".$db->prefix($mydirname."_category_access")." WHERE ($whr) GROUP BY cat_id" ;
+	$sql = 'SELECT cat_id,SUM(can_makeforum) AS can_makeforum,SUM(is_moderator) AS is_moderator FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE ($whr) GROUP BY cat_id" ;
 	$result = $db->query( $sql ) ;
 	if( $result ) while( $row = $db->fetchArray( $result ) ) {
 		$ret[ $row['cat_id'] ] = $row ;
@@ -113,27 +113,27 @@ function d3forum_get_users_can_read_forum( $mydirname , $forum_id , $cat_id = nu
 
 	if( is_null( $cat_id ) ) {
 		// get $cat_id from $forum_id
-		list( $cat_id ) = $db->fetchRow( $db->query( "SELECT `cat_id` FROM ".$db->prefix($mydirname."_forums")." WHERE `forum_id`=$forum_id" ) ) ;
+		list( $cat_id ) = $db->fetchRow( $db->query('SELECT `cat_id` FROM ' . $db->prefix($mydirname . '_forums') . " WHERE `forum_id`=$forum_id" ) ) ;
 	}
 
-	$sql = "SELECT `uid` FROM ".$db->prefix($mydirname."_category_access")." WHERE `cat_id`=$cat_id AND `uid` IS NOT NULL" ;
+	$sql = 'SELECT `uid` FROM ' . $db->prefix($mydirname . '_category_access') . " WHERE `cat_id`=$cat_id AND `uid` IS NOT NULL" ;
 	$result = $db->query( $sql ) ;
 	while( list( $uid ) = $db->fetchRow( $result ) ) {
 		$cat_uids[] = $uid ;
 	}
-	$sql = "SELECT distinct g.uid FROM ".$db->prefix($mydirname."_category_access")." x , ".$db->prefix("groups_users_link")." g WHERE x.groupid=g.groupid AND x.`cat_id`=$cat_id AND x.`groupid` IS NOT NULL" ;
+	$sql = 'SELECT distinct g.uid FROM ' . $db->prefix($mydirname . '_category_access') . ' x , ' . $db->prefix('groups_users_link') . " g WHERE x.groupid=g.groupid AND x.`cat_id`=$cat_id AND x.`groupid` IS NOT NULL" ;
 	$result = $db->query( $sql ) ;
 	while( list( $uid ) = $db->fetchRow( $result ) ) {
 		$cat_uids[] = $uid ;
 	}
 	$cat_uids = array_unique( $cat_uids ) ;
 
-	$sql = "SELECT `uid` FROM ".$db->prefix($mydirname."_forum_access")." WHERE `forum_id`=$forum_id AND `uid` IS NOT NULL" ;
+	$sql = 'SELECT `uid` FROM ' . $db->prefix($mydirname . '_forum_access') . " WHERE `forum_id`=$forum_id AND `uid` IS NOT NULL" ;
 	$result = $db->query( $sql ) ;
 	while( list( $uid ) = $db->fetchRow( $result ) ) {
 		$forum_uids[] = $uid ;
 	}
-	$sql = "SELECT distinct g.uid FROM ".$db->prefix($mydirname."_forum_access")." x , ".$db->prefix("groups_users_link")." g WHERE x.groupid=g.groupid AND x.`forum_id`=$forum_id AND x.`groupid` IS NOT NULL" ;
+	$sql = 'SELECT distinct g.uid FROM ' . $db->prefix($mydirname . '_forum_access') . ' x , ' . $db->prefix('groups_users_link') . " g WHERE x.groupid=g.groupid AND x.`forum_id`=$forum_id AND x.`groupid` IS NOT NULL" ;
 	$result = $db->query( $sql ) ;
 	while( list( $uid ) = $db->fetchRow( $result ) ) {
 		$forum_uids[] = $uid ;
@@ -249,12 +249,12 @@ function d3forum_make_jumpbox_options( $mydirname , $whr4cat , $whr4forum , $for
 
 	$db =& Database::getInstance() ;
 
-	$ret = "" ;
-	$sql = "SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree, f.forum_id, f.forum_title FROM ".$db->prefix($mydirname."_categories")." c LEFT JOIN ".$db->prefix($mydirname."_forums")." f ON f.cat_id=c.cat_id WHERE ($whr4cat) AND ($whr4forum) ORDER BY c.cat_order_in_tree, f.forum_weight" ;
+	$ret = '';
+	$sql = 'SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree, f.forum_id, f.forum_title FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_forums') . " f ON f.cat_id=c.cat_id WHERE ($whr4cat) AND ($whr4forum) ORDER BY c.cat_order_in_tree, f.forum_weight" ;
 	if( $result = $db->query( $sql ) ) {
 		while( list( $cat_id , $cat_title , $cat_depth , $forum_id , $forum_title ) = $db->fetchRow( $result ) ) {
 			$selected = $forum_id == $forum_selected ? 'selected="selected"' : '' ;
-			$ret .= "<option value='$forum_id' $selected>".str_repeat('--',$cat_depth).$myts->makeTboxData4Show($cat_title)." - ".$myts->makeTboxData4Show($forum_title)."</option>\n" ;
+			$ret .= "<option value='$forum_id' $selected>".str_repeat('--',$cat_depth).$myts->makeTboxData4Show($cat_title) . ' - ' . $myts->makeTboxData4Show($forum_title) . "</option>\n" ;
 		}
 	} else {
 		$ret = "<option value=\"-1\">ERROR</option>\n";
@@ -271,8 +271,8 @@ function d3forum_make_cat_jumpbox_options( $mydirname , $whr4cat , $cat_selected
 
 	$db =& Database::getInstance() ;
 
-	$ret = "" ;
-	$sql = "SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ".$db->prefix($mydirname."_categories")." c WHERE ($whr4cat) ORDER BY c.cat_order_in_tree" ;
+	$ret = '';
+	$sql = 'SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE ($whr4cat) ORDER BY c.cat_order_in_tree" ;
 	if( $result = $db->query( $sql ) ) {
 		while( list( $cat_id , $cat_title , $cat_depth ) = $db->fetchRow( $result ) ) {
 			$selected = $cat_id == $cat_selected ? 'selected="selected"' : '' ;
@@ -362,11 +362,11 @@ function d3forum_main_posthook_sametopic( $mydirname )
 		// search the first post of the latest topic with the external_link_id
 		$external_link_id4sql = addslashes( @$_POST['external_link_id'] ) ;
 		$forum_id = intval( @$_POST['forum_id'] ) ;
-		$result = $db->query( "SELECT topic_first_post_id,topic_locked FROM ".$db->prefix($mydirname."_topics")." WHERE topic_external_link_id='$external_link_id4sql' AND forum_id=$forum_id AND ! topic_invisible ORDER BY topic_last_post_time DESC LIMIT 1" ) ;
+		$result = $db->query('SELECT topic_first_post_id,topic_locked FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_external_link_id='$external_link_id4sql' AND forum_id=$forum_id AND ! topic_invisible ORDER BY topic_last_post_time DESC LIMIT 1" ) ;
 	} else if( ! empty( $_POST['topic_id'] ) ) {
 		// search the first post of the topic with the topic_id
 		$topic_id = intval( @$_POST['topic_id'] ) ;
-		$result = $db->query( "SELECT topic_first_post_id,topic_locked FROM ".$db->prefix($mydirname."_topics")." WHERE topic_id=$topic_id AND ! topic_invisible" ) ;
+		$result = $db->query('SELECT topic_first_post_id,topic_locked FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_id=$topic_id AND ! topic_invisible" ) ;
 	}
 
 	if( empty( $result ) ) return ;

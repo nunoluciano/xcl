@@ -102,7 +102,7 @@ class Profile_AbstractFilterForm
      */
     public function getOrder()
     {
-        return ($this->mSort < 0) ? "DESC" : "ASC";
+        return ($this->mSort < 0) ? 'DESC' : 'ASC';
     }
 
     /**

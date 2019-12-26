@@ -164,8 +164,8 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
         $this->mGetCacheFilePath->call(new XCube_Ref($filepath), $this);
         
         if (!$filepath) {
-            $id = md5(XOOPS_SALT . $this->mURL . "(" . implode("_", $this->mIdentityArr) . ")" . implode("_", $this->mGroupArr));
-            $filepath = XOOPS_CACHE_PATH . "/" . $id . ".cache.html";
+            $id = md5(XOOPS_SALT . $this->mURL . '(' . implode('_', $this->mIdentityArr) . ')' . implode('_', $this->mGroupArr));
+            $filepath = XOOPS_CACHE_PATH . '/' . $id . '.cache.html';
         }
         
         return $filepath;

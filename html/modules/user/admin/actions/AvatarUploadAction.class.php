@@ -4,8 +4,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarUploadForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarUploadForm.class.php';
 
 class User_AvatarUploadAction extends User_Action
 {
@@ -48,11 +48,11 @@ class User_AvatarUploadAction extends User_Action
         $files = [];
         $avatarimages = [];
 
-        if (strtolower($formFileExt) == "zip") {
-            if (!file_exists(XOOPS_ROOT_PATH . "/class/Archive_Zip.php")) {
+        if (strtolower($formFileExt) == 'zip') {
+            if (!file_exists(XOOPS_ROOT_PATH . '/class/Archive_Zip.php')) {
                 return USER_FRAME_VIEW_ERROR;
             }
-            require_once XOOPS_ROOT_PATH . "/class/Archive_Zip.php" ;
+            require_once XOOPS_ROOT_PATH . '/class/Archive_Zip.php';
             $zip = new Archive_Zip($formFile->_mTmpFileName) ;
             $files = $zip->extract(['extract_as_string' => true]) ;
             if (! is_array(@$files)) {
@@ -63,7 +63,7 @@ class User_AvatarUploadAction extends User_Action
             }
         }//if zip end
         else {
-            require_once XOOPS_ROOT_PATH . "/class/class.tar.php";
+            require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
             $tar =new tar();
             $tar->openTar($formFile->_mTmpFileName);
             if (!is_array(@$tar->files)) {
@@ -129,7 +129,7 @@ class User_AvatarUploadAction extends User_Action
             }
             $file_name = substr($avatarimages[$i]['name'], 0, $ext_pos) ;
             $save_file_name = uniqid('savt') . '.' . $ext ;
-            $filehandle = fopen(XOOPS_UPLOAD_PATH.'/'.$save_file_name, "w") ;
+            $filehandle = fopen(XOOPS_UPLOAD_PATH.'/'.$save_file_name, 'w') ;
             if (! $filehandle) {
                 $this->_addErrorMessage(XCube_Utils::formatString(_AD_USER_ERROR_COULD_NOT_SAVE_AVATAR_FILE, $file_name));
                 continue ;
@@ -160,27 +160,27 @@ class User_AvatarUploadAction extends User_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_upload.html");
+        $render->setTemplateName('avatar_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=AvatarList");
+        $controller->executeForward('./index.php?action=AvatarList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         if (count($this->mErrorMessages) == 0) {
-            $controller->executeRedirect("./index.php?action=AvatarList", 1, _AD_USER_ERROR_DBUPDATE_FAILED);
+            $controller->executeRedirect('./index.php?action=AvatarList', 1, _AD_USER_ERROR_DBUPDATE_FAILED);
         } else {
-            $render->setTemplateName("avatar_upload_error.html");
+            $render->setTemplateName('avatar_upload_error.html');
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=AvatarList");
+        $controller->executeForward('./index.php?action=AvatarList');
     }
 }

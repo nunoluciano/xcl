@@ -70,9 +70,9 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
     if (is_object($xoopsUser)) {
         $xoopsTpl->assign(['xoops_isuser' => true, 'xoops_userid' => $xoopsUser->getVar('uid'), 'xoops_uname' => $xoopsUser->getVar('uname'), 'xoops_isadmin' => $xoopsUserIsAdmin]);
         if (is_object(@$xoopsModule)) {
-            if ($xoopsModule->getVar('mid') == 1 && @$_GET["fct"] == "preferences" && @$_GET["op"] == "showmod" && ! empty($_GET["mod"])) {
+            if ($xoopsModule->getVar('mid') == 1 && @$_GET['fct'] == 'preferences' && @$_GET['op'] == 'showmod' && ! empty($_GET['mod'])) {
                 $module_handler =& xoops_gethandler('module') ;
-                $target_module = $module_handler->get(intval($_GET["mod"])) ;
+                $target_module = $module_handler->get(intval($_GET['mod'])) ;
             } else {
                 $target_module =& $xoopsModule ;
             }
@@ -132,7 +132,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 
     // get block_arr
     $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
-    $sql = "SELECT DISTINCT gperm_itemid FROM ".$db->prefix('group_permission')." WHERE gperm_name = 'block_read' AND gperm_modid = 1 AND gperm_groupid IN (".implode(',', $xoopsUser->getGroups()).")" ;
+    $sql = 'SELECT DISTINCT gperm_itemid FROM ' . $db->prefix('group_permission') . " WHERE gperm_name = 'block_read' AND gperm_modid = 1 AND gperm_groupid IN (" . implode(',', $xoopsUser->getGroups()) . ')';
     $result = $db->query($sql);
 
     $blockids = [];

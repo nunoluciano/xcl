@@ -56,8 +56,8 @@ class Profile_ActionFrame
         //
         // Create action object by mActionName
         //
-        $className = "Profile_" . ucfirst($actionFrame->mActionName) . "Action";
-        $fileName = ucfirst($actionFrame->mActionName) . "Action";
+        $className = 'Profile_' . ucfirst($actionFrame->mActionName) . 'Action';
+        $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
             $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/${fileName}.class.php";
         } else {
@@ -65,7 +65,7 @@ class Profile_ActionFrame
         }
     
         if (!file_exists($fileName)) {
-            die("file_exists on _createAction");
+            die('file_exists on _createAction');
         }
         
         require_once $fileName;
@@ -108,7 +108,7 @@ class Profile_ActionFrame
             $controller->executeForward(XOOPS_URL . '/');
         }
     
-        if (xoops_getenv("REQUEST_METHOD") == "POST") {
+        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);

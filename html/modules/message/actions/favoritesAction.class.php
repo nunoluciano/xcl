@@ -91,7 +91,7 @@ class favoritesAction extends AbstractAction
       
             $this->root->mLanguageManager->loadModuleMessageCatalog('usersearch');
             $cmd = $this->root->mContext->mRequest->getRequest('cmd');
-            if ($cmd == "") {
+            if ($cmd == '') {
                 $this->getFavorites();
             } else {
                 switch ($cmd) {

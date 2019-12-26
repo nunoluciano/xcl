@@ -87,10 +87,10 @@ class My_Mailer extends PHPMailer
   
     public function setToEmails($email)
     {
-        $this->AddAddress($email, "");
+        $this->AddAddress($email, '');
     }
   
-    public function setTo($add, $name = "")
+    public function setTo($add, $name = '')
     {
         $this->AddAddress($add, $name);
     }
@@ -98,8 +98,8 @@ class My_Mailer extends PHPMailer
     public function reset()
     {
         $this->ClearAllRecipients();
-        $this->Body = "";
-        $this->Subject = "";
+        $this->Body = '';
+        $this->Subject = '';
     }
 
     public function send()

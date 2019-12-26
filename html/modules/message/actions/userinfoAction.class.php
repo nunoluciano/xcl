@@ -7,7 +7,7 @@ require_once XOOPS_MODULE_PATH.'/user/actions/UserInfoAction.class.php';
 class UserinfoAction extends User_UserInfoAction
 {
     protected $isError = false;
-    protected $errMsg = "";
+    protected $errMsg = '';
     protected $url = 'index.php';
     protected $mController = null;
     protected $mXoopsUser = null;

@@ -43,7 +43,7 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
 
 class LegacyRenderBannerHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "banner";
-    public $mPrimary = "bid";
-    public $mClass = "LegacyRenderBannerObject";
+    public $mTable = 'banner';
+    public $mPrimary = 'bid';
+    public $mClass = 'LegacyRenderBannerObject';
 }

@@ -12,7 +12,7 @@ class ModController
     {
         $root = XCube_Root::getSingleton();
         $this->act = $root->mContext->mRequest->getRequest('action');
-        if ($this->act == "") {
+        if ($this->act == '') {
             $this->act = 'index';
         }
         if (!preg_match("/^\w+$/", $this->act)) {

@@ -34,7 +34,7 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog("comment");    ///< @todo Is this must?
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< @todo Is this must?
 
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
@@ -107,10 +107,10 @@ if (!empty($_POST)) {
 
 switch ($op) {
 
-case "delete":
+case 'delete':
     include XOOPS_ROOT_PATH.'/include/comment_delete.php';
     break;
-case "preview":
+case 'preview':
     $myts =& MyTextSanitizer::sGetInstance();
     $doimage = 1;
     $com_title = $myts->htmlSpecialChars($myts->stripSlashesGPC($_POST['com_title']));
@@ -140,7 +140,7 @@ case "preview":
         xoops_cp_footer();
     }
     break;
-case "post":
+case 'post':
     $doimage = 1;
     $comment_handler =& xoops_gethandler('comment');
     $add_userpost = false;

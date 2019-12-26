@@ -12,12 +12,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/modules/legacy/lib/EasyLex/EasyLex_SQLScanner.class.php";
+require_once XOOPS_ROOT_PATH . '/modules/legacy/lib/EasyLex/EasyLex_SQLScanner.class.php';
 
 class Legacy_SQLScanner extends EasyLex_SQLScanner
 {
-    public $mDB_PREFIX = "";
-    public $mDirname = "";
+    public $mDB_PREFIX = '';
+    public $mDirname = '';
     
     public function setDB_PREFIX($prefix)
     {

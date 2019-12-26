@@ -499,7 +499,7 @@ class PicoFormProcessBySmartyBase
         $content_id     = intval($this->content4disp['id']);
         $extra_type4sql = addslashes('smarty_plugin::' . $this->mypluginname);
         $data4sql       = addslashes(pico_common_serialize($this->form_processor->renderForDB()));
-        $sql            = "INSERT INTO " . $db->prefix($this->mydirname . "_content_extras") . " SET `content_id`=$content_id, `extra_type`='$extra_type4sql', `data`='$data4sql', created_time=UNIX_TIMESTAMP(), modified_time=UNIX_TIMESTAMP()";
+        $sql            = 'INSERT INTO ' . $db->prefix($this->mydirname . '_content_extras') . " SET `content_id`=$content_id, `extra_type`='$extra_type4sql', `data`='$data4sql', created_time=UNIX_TIMESTAMP(), modified_time=UNIX_TIMESTAMP()";
 
         $db->queryF($sql);
     }

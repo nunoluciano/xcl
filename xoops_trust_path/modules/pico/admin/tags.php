@@ -27,20 +27,20 @@ if (!empty($_POST['tags_update'])) {
 		if (empty($_POST['labels'][$old_label])) continue;
 		$new_label = $myts->stripSlashesGPC($_POST['labels'][$old_label]);
 		$weight = intval($_POST['weights'][$old_label]);
-		$db->query("UPDATE " . $db->prefix($mydirname . "_tags") . " SET label=" . $db->quoteString($new_label) . ",weight='$weight' WHERE label=" . $db->quoteString($old_label));
+		$db->query('UPDATE ' . $db->prefix($mydirname . '_tags') . ' SET label=' . $db->quoteString($new_label) . ",weight='$weight' WHERE label=" . $db->quoteString($old_label));
 
 		if ($new_label != $old_label) {
 			// update tags field in contents table
 			$old_label4sql = $db->quoteString($old_label);
 			$old_label4sql = substr($old_label4sql, 1, strlen($old_label4sql) - 2);
-			$result = $db->query("SELECT content_id,tags FROM " . $db->prefix($mydirname . "_contents WHERE tags LIKE '%" . $old_label4sql . "%'"));
+			$result = $db->query('SELECT content_id,tags FROM ' . $db->prefix($mydirname . "_contents WHERE tags LIKE '%" . $old_label4sql . "%'"));
 			while (list($content_id, $tags) = $db->fetchRow($result)) {
 				$tags_array = array_flip(explode(' ', $tags));
 				if (isset($tags_array[$old_label])) {
 					$tags_array[$new_label] = $tags_array[$old_label];
 					unset($tags_array[$old_label]);
 					$new_tags = implode(' ', array_flip($tags_array));
-					$db->query("UPDATE " . $db->prefix($mydirname . "_contents") . " SET tags=" . $db->quoteString($new_tags) . " WHERE content_id=$content_id");
+					$db->query('UPDATE ' . $db->prefix($mydirname . '_contents') . ' SET tags=' . $db->quoteString($new_tags) . " WHERE content_id=$content_id");
 				}
 			}
 		}
@@ -63,16 +63,16 @@ if (!empty($_POST['tags_delete']) && !empty($_POST['action_selects'])) {
 		$label = $myts->stripSlashesGPC($label);
 		$label4sql = $db->quoteString($label);
 		$label4sql = substr($label4sql, 1, strlen($label4sql) - 2);
-		$db->query("DELETE FROM " . $db->prefix($mydirname . "_tags") . " WHERE label='" . $label4sql . "'");
+		$db->query('DELETE FROM ' . $db->prefix($mydirname . '_tags') . " WHERE label='" . $label4sql . "'");
 
 		// update tags field in contents table
-		$result = $db->query("SELECT content_id,tags FROM " . $db->prefix($mydirname . "_contents WHERE tags LIKE '%" . $label4sql . "%'"));
+		$result = $db->query('SELECT content_id,tags FROM ' . $db->prefix($mydirname . "_contents WHERE tags LIKE '%" . $label4sql . "%'"));
 		while (list($content_id, $tags) = $db->fetchRow($result)) {
 			$tags_array = array_flip(explode(' ', $tags));
 			if (isset($tags_array[$label])) {
 				unset($tags_array[$label]);
 				$new_tags = implode(' ', array_flip($tags_array));
-				$db->query("UPDATE " . $db->prefix($mydirname . "_contents") . " SET tags=" . $db->quoteString($new_tags) . " WHERE content_id=$content_id");
+				$db->query('UPDATE ' . $db->prefix($mydirname . '_contents') . ' SET tags=' . $db->quoteString($new_tags) . " WHERE content_id=$content_id");
 			}
 		}
 	}
@@ -92,7 +92,7 @@ $num = empty($_GET['num']) ? 30 : intval($_GET['num']);
 $order = in_array(@$_GET['order'], $allowed_orders) ? $_GET['order'] : $allowed_orders[0];
 
 // pre query
-list($hit) = $db->fetchRow($db->query("SELECT COUNT(*) FROM " . $db->prefix($mydirname . "_tags")));
+list($hit) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_tags')));
 
 // pagenav
 $pagenav = '';
@@ -100,13 +100,13 @@ $pagenav_obj = new XoopsPageNav($hit, $num, $pos, 'pos', "page=tags&amp;num=$num
 $pagenav = $pagenav_obj->renderNav();
 
 // main query
-$trs = $db->query("SELECT * FROM " . $db->prefix($mydirname . "_tags") . " ORDER BY $order LIMIT $pos,$num");
+$trs = $db->query('SELECT * FROM ' . $db->prefix($mydirname . '_tags') . " ORDER BY $order LIMIT $pos,$num");
 
 $tags4assign = [];
 while ($tag_row = $db->fetchArray($trs)) {
 	// get contents
 	$contents4assign = [];
-	$ors = $db->query("SELECT content_id,vpath,subject FROM " . $db->prefix($mydirname . "_contents") . " WHERE content_id IN (" . $tag_row['content_ids'] . ") LIMIT 10");
+	$ors = $db->query('SELECT content_id,vpath,subject FROM ' . $db->prefix($mydirname . '_contents') . ' WHERE content_id IN (' . $tag_row['content_ids'] . ') LIMIT 10');
 	while ($content_row = $db->fetchArray($ors)) {
 		$contents4assign[] = [
 			'id' => intval($content_row['content_id']),

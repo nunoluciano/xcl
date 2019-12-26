@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockListForm.class.php';
 
 class Legacy_BlockListAction extends Legacy_AbstractListAction
 {
@@ -65,20 +65,20 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=BlockList";
+        return './index.php?action=BlockList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("block_list.html");
+        $render->setTemplateName('block_list.html');
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadModule();
             $this->mObjects[$key]->loadColumn();
             $this->mObjects[$key]->loadCachetime();
         }
 
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
         $render->setAttribute('modules', $controller->mActiveModules);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -219,7 +219,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("block_list_confirm.html");
+        $render->setTemplateName('block_list_confirm.html');
         $render->setAttribute('blockObjects', $this->mBlockObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
 
@@ -241,7 +241,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BlockInstallList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BlockInstallList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)

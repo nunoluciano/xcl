@@ -56,7 +56,7 @@ class XCube_RenderCache
     {
         if ($this->enableCache()) {
             $filename = $this->_getFileName();
-            $fp = fopen($filename, "wb");
+            $fp = fopen($filename, 'wb');
             fwrite($fp, $renderTarget->getResult());
             fclose($fp);
         }

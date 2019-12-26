@@ -75,14 +75,14 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $From     = "";
+  public $From     = '';
   
   /**
    * "from" name
    * @var   string
    * @access  private
    */
-  public $FromName   = "";
+  public $FromName   = '';
 
   // can be "smtp", "sendmail", or "mail"
   /**
@@ -99,7 +99,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Mailer   = "mail";
+  public $Mailer   = 'mail';
 
   /**
    * set if $Mailer is "sendmail"
@@ -109,7 +109,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Sendmail = "/usr/sbin/sendmail";
+  public $Sendmail = '/usr/sbin/sendmail';
 
   /**
    * SMTP Host.
@@ -118,7 +118,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Host   = "";
+  public $Host   = '';
 
   /**
    * Does your SMTP host require SMTPAuth authentication?
@@ -134,7 +134,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Username = "";
+  public $Username = '';
 
   /**
    * Password for SMTPAuth.
@@ -143,7 +143,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Password = "";
+  public $Password = '';
   
   /**
    * Constuctor
@@ -164,8 +164,8 @@ class xoopsmultimailer extends PHPMailer
           $this->From = defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail'];
       }
       $this->Sender = defined('XOOPS_NOTIFY_SENDER_EMAIL')? XOOPS_NOTIFY_SENDER_EMAIL : $xoopsConfig['adminmail'];
-      if ($xoopsMailerConfig["mailmethod"] == "smtpauth") {
-          $this->Mailer = "smtp";
+      if ($xoopsMailerConfig['mailmethod'] == 'smtpauth') {
+          $this->Mailer = 'smtp';
           $this->SMTPAuth = true;
           $this->Host = implode(';', $xoopsMailerConfig['smtphost']);
           $this->Username = $xoopsMailerConfig['smtpuser'];

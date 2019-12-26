@@ -20,7 +20,7 @@ function b_pico_subcategories_show($options)
 	$configs = $config_handler->getConfigList($module->mid());
 
 	// categories can be read by current viewer (check by category_permissions)
-	$whr_read4cat = 'c.`cat_id` IN (' . implode(",", pico_common_get_categories_can_read($mydirname)) . ')';
+	$whr_read4cat = 'c.`cat_id` IN (' . implode(',', pico_common_get_categories_can_read($mydirname)) . ')';
 
 	// categories
 	if ($categories === []) {
@@ -31,7 +31,7 @@ function b_pico_subcategories_show($options)
 		$categories4assign = implode(',', $categories);
 	}
 
-	$sql = "SELECT c.cat_id,c.cat_title,c.cat_vpath FROM " . $db->prefix($mydirname . "_categories") . " c WHERE ($whr_read4cat) AND ($whr_categories) ORDER BY c.cat_weight";
+	$sql = 'SELECT c.cat_id,c.cat_title,c.cat_vpath FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE ($whr_read4cat) AND ($whr_categories) ORDER BY c.cat_weight";
 	if (!$result = $db->query($sql)) {
 		echo $db->logger->dumpQueries();
 		exit;

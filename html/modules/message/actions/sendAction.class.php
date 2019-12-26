@@ -9,7 +9,7 @@ class sendAction extends AbstractAction
     private $listdata;
     private $mPagenavi = null;
     private $select;
-    private $subject = "";
+    private $subject = '';
   
     public function __construct()
     {
@@ -37,7 +37,7 @@ class sendAction extends AbstractAction
                 $this->mPagenavi->addCriteria(new Criteria('to_uid', $fromuid));
             }
             $this->subject = $this->root->mContext->mRequest->getRequest('subject');
-            if ($this->subject != "") {
+            if ($this->subject != '') {
                 $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
             }
         }

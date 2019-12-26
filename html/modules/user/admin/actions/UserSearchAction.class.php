@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchForm.class.php';
 
 class User_UserSearchAction extends User_Action
 {
@@ -31,8 +31,8 @@ class User_UserSearchAction extends User_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_search.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setTemplateName('user_search.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
         
         $groupHandler =& xoops_gethandler('group');
         $groups =& $groupHandler->getObjects(null, true);

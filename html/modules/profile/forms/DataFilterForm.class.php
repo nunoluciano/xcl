@@ -9,7 +9,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractFilterForm.class.php';
 
 define('PROFILE_DATA_SORT_KEY_UID', 1);
 define('PROFILE_DATA_SORT_KEY_DEFAULT', PROFILE_DATA_SORT_KEY_UID);
@@ -74,7 +74,7 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
     
         foreach ($this->mFields as $field) {
             $value = $root->mContext->mRequest->getRequest($field->get('field_name'));
-            if (isset($value) && $value!=="") {
+            if (isset($value) && $value !== '') {
                 $this->mNavi->addExtra($field->get('field_name'), $value);
                 if ($field->get('type')==Profile_FormType::STRING || $field->get('type')==Profile_FormType::TEXT) {
                     $value = '%'.$value.'%';

@@ -12,15 +12,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockEditForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockEditForm.class.php';
 
 class Legacy_CustomBlockEditForm extends Legacy_BlockEditForm
 {
     public function getTokenName()
     {
-        return "module.legacy.CustomBlockEditForm.TOKEN" . $this->get('bid');
+        return 'module.legacy.CustomBlockEditForm.TOKEN' . $this->get('bid');
     }
 
     public function prepare()

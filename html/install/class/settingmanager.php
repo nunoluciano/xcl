@@ -65,7 +65,7 @@ class setting_manager
             srand ( (int) microtime() * 10000 );
             do {
                 $this->prefix = substr ( md5 ( rand(1,6) ), 0, 6);
-            } while ( !preg_match ("/^[a-z]/", $this->prefix) );
+            } while ( !preg_match ('/^[a-z]/', $this->prefix) );
             
             $this->salt = substr ( md5 ( rand () ), 5, 8);
             
@@ -256,7 +256,7 @@ class setting_manager
         $ret .= $this->editform_sub(_INSTALL_L75, _INSTALL_L76, 'trust_path', $this->sanitizer->htmlSpecialChars($this->trust_path));
         $ret .= $this->editform_sub(_INSTALL_L56, _INSTALL_L58, 'xoops_url', $this->sanitizer->htmlSpecialChars($this->xoops_url));
 
-        $ret .= "</table>";
+        $ret .= '</table>';
         return $ret;
     }
 

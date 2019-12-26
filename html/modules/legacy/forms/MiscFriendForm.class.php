@@ -12,14 +12,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Legacy_MiscFriendForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacy.MiscFriendForm.TOKEN";
+        return 'module.legacy.MiscFriendForm.TOKEN';
     }
 
     public function prepare()
@@ -63,8 +63,8 @@ class Legacy_MiscFriendForm extends XCube_ActionForm
     
     public function update(&$mailer)
     {
-        $mailer->assign("YOUR_NAME", $this->get('yname'));
-        $mailer->assign("FRIEND_NAME", $this->get('fname'));
+        $mailer->assign('YOUR_NAME', $this->get('yname'));
+        $mailer->assign('FRIEND_NAME', $this->get('fname'));
         $mailer->setToEmails($this->get('fmail'));
         $mailer->setFromEmail($this->get('ymail'));
         $mailer->setFromName($this->get('yname'));

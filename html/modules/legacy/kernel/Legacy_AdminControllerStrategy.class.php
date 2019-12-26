@@ -31,7 +31,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
      * 
      * @access private
      */
-    public $_mSpecialActions = ["Help", "CommentList"];
+    public $_mSpecialActions = ['Help', 'CommentList'];
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$controller)
     //public function Legacy_AdminControllerStrategy(&$controller)
@@ -44,17 +44,17 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         //
         // TODO We have to develop completed-switching-controller-mechanism.
         //
-        if (!defined("LEGACY_DEPENDENCE_RENDERER")) {
-            define("LEGACY_DEPENDENCE_RENDERER", "Legacy_AdminRenderSystem");
+        if (!defined('LEGACY_DEPENDENCE_RENDERER')) {
+            define('LEGACY_DEPENDENCE_RENDERER', 'Legacy_AdminRenderSystem');
         }
         
-        $controller->mRoot->mContext->mBaseRenderSystemName = "Legacy_AdminRenderSystem";
+        $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_AdminRenderSystem';
 
         //
         // Cover the spec of admin.php of the system module, for the compatibility.
         //
-        if (isset($_REQUEST['fct']) && $_REQUEST['fct'] == "users") {
-            $GLOBALS['xoopsOption']['pagetype'] = "user";
+        if (isset($_REQUEST['fct']) && $_REQUEST['fct'] == 'users') {
+            $GLOBALS['xoopsOption']['pagetype'] = 'user';
         }
         
         $this->mSetupBlock =new XCube_Delegate();
@@ -69,7 +69,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         // Auto pre-loading.
         //
         if ($this->mController->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
-            $this->mController->_processPreload(XOOPS_ROOT_PATH . "/preload/admin");
+            $this->mController->_processPreload(XOOPS_ROOT_PATH . '/preload/admin');
         }
     }
     
@@ -84,8 +84,8 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
     
     public function setupBlock()
     {
-        require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminActionSearch.class.php";
-        require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminSideMenu.class.php";
+        require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminActionSearch.class.php';
+        require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminSideMenu.class.php';
         $this->mController->_mBlockChain[] =new Legacy_AdminActionSearch();
         $this->mController->_mBlockChain[] =new Legacy_AdminSideMenu();
         
@@ -108,13 +108,13 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         if ($this->mController->mRoot->mContext->mModule != null) {
             $module =& $this->mController->mRoot->mContext->mXoopsModule;
             
-            if ($module->get('dirname') == "legacy" && isset($_REQUEST['dirname'])) {
+            if ($module->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
                 if (in_array(xoops_getrequest('action'), $this->_mSpecialActions)) {
                     $handler =& xoops_gethandler('module');
                     $t_xoopsModule =& $handler->getByDirname(xoops_getrequest('dirname'));
                     $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
                 }
-            } elseif ($module->get('dirname') == "legacy" && xoops_getrequest('action') == 'PreferenceEdit' && isset($_REQUEST['confmod_id'])) {
+            } elseif ($module->get('dirname') == 'legacy' && xoops_getrequest('action') == 'PreferenceEdit' && isset($_REQUEST['confmod_id'])) {
                 $handler =& xoops_gethandler('module');
                 $t_xoopsModule =& $handler->get(intval(xoops_getrequest('confmod_id')));
                 $ret_module =& Legacy_Utils::createModule($t_xoopsModule);

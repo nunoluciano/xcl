@@ -115,7 +115,7 @@ class XoopsLogger
         }
         $this->queries[] = ['sql' => $sql, 'error' => $error, 'errno' => $errno];
         if ($error && defined('XOOPS_MYSQL_ERROR_LOG') && XOOPS_MYSQL_ERROR_LOG) {
-            error_log("XOOPS_MYSQL_ERROR_LOG: " . print_r(end($this->queries), true));
+            error_log('XOOPS_MYSQL_ERROR_LOG: ' . print_r(end($this->queries), true));
         }
     }
 

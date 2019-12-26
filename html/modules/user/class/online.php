@@ -35,7 +35,7 @@ class UserOnlineObject extends XoopsSimpleObject
 
 class UserOnlineHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "online";
-    public $mPrimary = "";
-    public $mClass = "UserOnlineObject";
+    public $mTable = 'online';
+    public $mPrimary = '';
+    public $mClass = 'UserOnlineObject';
 }

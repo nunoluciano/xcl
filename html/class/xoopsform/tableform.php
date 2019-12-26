@@ -45,7 +45,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * the base class
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/form.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/form.php';
 
 /**
  * Form that will output formatted as a HTML table
@@ -74,8 +74,8 @@ class XoopsTableForm extends XoopsForm
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_tableform.html");
-        $renderTarget->setAttribute("form", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_tableform.html');
+        $renderTarget->setAttribute('form', $this);
 
         $renderSystem->render($renderTarget);
     

@@ -8,13 +8,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_UserAdminDeleteForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.user.UserAdminDeleteForm.TOKEN" . $this->get('uid');
+        return 'module.user.UserAdminDeleteForm.TOKEN' . $this->get('uid');
     }
 
     public function prepare()

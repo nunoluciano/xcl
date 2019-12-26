@@ -36,14 +36,14 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/CommentEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/CommentEditForm.class.php';
 
 //
 // Load message resource
 //
 $t_root =& XCube_Root::getSingleton();
 
-$t_root->mLanguageManager->loadModuleMessageCatalog("legacy");
+$t_root->mLanguageManager->loadModuleMessageCatalog('legacy');
 
 
 require_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
@@ -63,8 +63,8 @@ if ($com_itemid > 0) {
         }
         $myts =& MyTextSanitizer::sGetInstance();
         $com_title = $myts->htmlSpecialChars($com_replytitle);
-        if (!preg_match("/^re:/i", $com_title)) {
-            $com_title = "Re: ".xoops_substr($com_title, 0, 56);
+        if (!preg_match('/^re:/i', $com_title)) {
+            $com_title = 'Re: ' . xoops_substr($com_title, 0, 56);
         }
     } else {
         $com_title = '';
@@ -95,9 +95,9 @@ if ($com_itemid > 0) {
 //
 // Initialize manually.
 //
-$comment->set("com_itemid", $com_itemid);
-    $comment->set("com_modid", $xoopsModule->get('mid'));
-    $comment->set("com_title", $com_title);
+$comment->set('com_itemid', $com_itemid);
+    $comment->set('com_modid', $xoopsModule->get('mid'));
+    $comment->set('com_title', $com_title);
 
     if (is_object($xoopsUser)) {
         $comment->set('uid', $xoopsUser->get('uid'));
@@ -128,12 +128,12 @@ $handler =& xoops_gethandler('subjecticon');
 $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
     $renderTarget =& $renderSystem->createRenderTarget('main');
 
-    $renderTarget->setTemplateName("legacy_comment_edit.html");
+    $renderTarget->setTemplateName('legacy_comment_edit.html');
 
-    $renderTarget->setAttribute("actionForm", $actionForm);
-    $renderTarget->setAttribute("subjectIcons", $subjectIcons);
-    $renderTarget->setAttribute("xoopsModuleConfig", $xoopsModuleConfig);
-    $renderTarget->setAttribute("com_order", $com_order);
+    $renderTarget->setAttribute('actionForm', $actionForm);
+    $renderTarget->setAttribute('subjectIcons', $subjectIcons);
+    $renderTarget->setAttribute('xoopsModuleConfig', $xoopsModuleConfig);
+    $renderTarget->setAttribute('com_order', $com_order);
 
     $extraParams = [];
     if ('system' != $xoopsModule->get('dirname')) {
@@ -157,5 +157,5 @@ $renderSystem->render($renderTarget);
 //
 print $renderTarget->getResult();
 
-    require_once XOOPS_ROOT_PATH . "/footer.php";
+    require_once XOOPS_ROOT_PATH . '/footer.php';
 }

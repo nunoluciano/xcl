@@ -18,7 +18,7 @@
         $wizard->error();
         exit();
     }
-    if (!isset($adminname) || !isset($adminpass) || !isset($adminmail) || $adminmail == "" || $adminname =="" || $adminpass =="" || $adminpass != $adminpass2) {
+    if (!isset($adminname) || !isset($adminpass) || !isset($adminmail) || $adminmail == '' || $adminname == '' || $adminpass == '' || $adminpass != $adminpass2) {
         $wizard->setContent('<p>'._INSTALL_L41.'</p>');
         $wizard->setBack(['', _INSTALL_L112]);
         $wizard->error();

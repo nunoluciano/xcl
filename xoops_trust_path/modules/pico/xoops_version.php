@@ -11,12 +11,12 @@ $constpref = '_MI_' . strtoupper($mydirname);
 
 $modversion['name'] = $mydirname;
 $modversion['description'] = constant($constpref . '_DESC');
-$modversion['version'] = "2.3.0";
-$modversion['detailed_version'] = "2.3.0";
-$modversion['credits'] = "PEAK Corp.";
-$modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)<br />Update by XOOPS-X (10) and XOOPS Cube Project";
-$modversion['help'] = "help.html";
-$modversion['license'] = "GPL";
+$modversion['version'] = '2.3.0';
+$modversion['detailed_version'] = '2.3.0';
+$modversion['credits'] = 'PEAK Corp.';
+$modversion['author'] = 'GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)<br />Update by XOOPS-X (10) and XOOPS Cube Project';
+$modversion['help'] = 'help.html';
+$modversion['license'] = 'GPL';
 $modversion['official'] = 0;
 // $modversion['image'] = file_exists($mydirpath . '/module_icon.png') ? 'module_icon.png' : 'module_icon.php';
 $modversion['image'] = '/images/module_pico.svg' ;

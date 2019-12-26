@@ -8,8 +8,8 @@
  *
  */
 
-define("XCUBE_CONTEXT_TYPE_DEFAULT", "web_browser");
-define("XCUBE_CONTEXT_TYPE_WEB_SERVICE", "web_service");
+define('XCUBE_CONTEXT_TYPE_DEFAULT', 'web_browser');
+define('XCUBE_CONTEXT_TYPE_WEB_SERVICE', 'web_service');
 
 /**
  * Encapsulates major HTTP specific information about a HTTP request.

@@ -179,7 +179,7 @@ class MyTextSanitizer
         if ($this->checkUrlString($matches[2])) {
             return $matches[0];
         } else {
-            return "";
+            return '';
         }
     }
 
@@ -196,7 +196,7 @@ class MyTextSanitizer
             return false;
         }
         // check black pattern(deprecated)
-        return !preg_match("/^(javascript|vbscript|about):/i", $text);
+        return !preg_match('/^(javascript|vbscript|about):/i', $text);
     }
 
     /**
@@ -262,7 +262,7 @@ class MyTextSanitizer
      **/
     public function &undoHtmlSpecialChars($text)
     {
-        $ret = preg_replace(["/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"], [">", "<", "\"", "'"], $text);
+        $ret = preg_replace(['/&gt;/i', '/&lt;/i', '/&quot;/i', '/&#039;/i'], ['>', '<', '"', "'"], $text);
         return $ret;
     }
 
@@ -353,14 +353,14 @@ class MyTextSanitizer
             foreach ($this->censorConf['censor_words'] as $bad) {
                 if (!empty($bad)) {
                     $bad = quotemeta($bad);
-                    $patterns[] = "/(\s)".$bad."/siU";
+                    $patterns[] = "/(\s)".$bad . '/siU';
                     $replacements[] = "\\1".$replacement;
-                    $patterns[] = "/^".$bad."/siU";
+                    $patterns[] = '/^' . $bad . '/siU';
                     $replacements[] = $replacement;
-                    $patterns[] = "/(\n)".$bad."/siU";
+                    $patterns[] = "/(\n)".$bad . '/siU';
                     $replacements[] = "\\1".$replacement;
-                    $patterns[] = "/]".$bad."/siU";
-                    $replacements[] = "]".$replacement;
+                    $patterns[] = '/]' . $bad . '/siU';
+                    $replacements[] = ']' . $replacement;
                     $text = preg_replace($patterns, $replacements, $text);
                 }
             }

@@ -28,11 +28,11 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
-include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-$cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", "postcomment.php");
-if (!preg_match("/^re:/i", $subject)) {
-    $subject = "Re: ".xoops_substr($subject, 0, 56);
+include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+include XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+$cform = new XoopsThemeForm(_CM_POSTCOMMENT, 'commentform', 'postcomment.php');
+if (!preg_match('/^re:/i', $subject)) {
+    $subject = 'Re: ' . xoops_substr($subject, 0, 56);
 }
 $cform->addElement(new XoopsFormText(_CM_TITLE, 'subject', 50, 255, $subject), true);
 $icons_radio = new XoopsFormRadio(_MESSAGEICON, 'icon', $icon);

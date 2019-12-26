@@ -59,7 +59,7 @@ class mainfile_manager
 
     public function doRewrite()
     {
-        if (! $file = fopen($this->path, "r")) {
+        if (! $file = fopen($this->path, 'r')) {
             $this->error = true;
             return false;
         }
@@ -70,7 +70,7 @@ class mainfile_manager
         foreach ($this->rewrite as $key => $val) {
             if (is_int($val) &&
              preg_match("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", $content)) {
-                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", "define('".$key."', ".$val.")", $content);
+                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", "define('".$key."', ".$val . ')', $content);
                 $this->report[] = _OKIMG.sprintf(_INSTALL_L121, "<b>$key</b>", $val);
             } elseif (preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", $content)) {
                 if ($key === 'XOOPS_DB_TYPE' && $val === 'mysql') {
@@ -86,7 +86,7 @@ class mainfile_manager
             }
         }
 
-        if (!$file = fopen($this->path, "w")) {
+        if (!$file = fopen($this->path, 'w')) {
             $this->error = true;
             return false;
         }

@@ -12,15 +12,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryAdminEditForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryAdminEditForm.class.php';
 
 class Legacy_ImagecategoryAdminNewForm extends Legacy_ImagecategoryAdminEditForm
 {
     public function getTokenName()
     {
-        return "module.legacy.ImagecategoryAdminNewForm.TOKEN";
+        return 'module.legacy.ImagecategoryAdminNewForm.TOKEN';
     }
 
     public function prepare()

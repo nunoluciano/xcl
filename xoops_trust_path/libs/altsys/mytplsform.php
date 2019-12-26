@@ -6,9 +6,9 @@
 // ------------------------------------------------------------------------- //
 
 require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;
-include_once dirname(__FILE__)."/include/gtickets.php" ;
+include_once dirname(__FILE__) . '/include/gtickets.php';
 include_once dirname(__FILE__).'/include/altsys_functions.php' ;
-include_once dirname(__FILE__)."/include/tpls_functions.php" ;
+include_once dirname(__FILE__) . '/include/tpls_functions.php';
 include_once dirname(__FILE__).'/include/Text_Diff.php' ;
 include_once dirname(__FILE__).'/include/Text_Diff_Renderer.php' ;
 include_once dirname(__FILE__).'/include/Text_Diff_Renderer_unified.php' ;
@@ -78,7 +78,7 @@ if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
     $tpl_file4sql = addslashes($tpl_file) ;
 
     // get information from tplfile table
-    $sql = "SELECT * FROM ".$db->prefix("tplfile")." f NATURAL LEFT JOIN ".$db->prefix("tplsource")." s WHERE f.tpl_file='$tpl_file4sql' ORDER BY f.tpl_tplset='$tpl_tplset4sql' DESC,f.tpl_tplset='default' DESC" ;
+    $sql = 'SELECT * FROM ' . $db->prefix('tplfile') . ' f NATURAL LEFT JOIN ' . $db->prefix('tplsource') . " s WHERE f.tpl_file='$tpl_file4sql' ORDER BY f.tpl_tplset='$tpl_tplset4sql' DESC,f.tpl_tplset='default' DESC" ;
     $tpl = $db->fetchArray($db->query($sql)) ;
 
     // get module info
@@ -125,13 +125,13 @@ if (! empty($_POST['do_modifycont']) || ! empty($_POST['do_modify'])) {
         redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
     }
 
-    $result = $db->query("SELECT tpl_id FROM ".$db->prefix("tplfile")." WHERE tpl_file='$tpl_file4sql' AND tpl_tplset='".addslashes($tpl['tpl_tplset'])."'") ;
+    $result = $db->query('SELECT tpl_id FROM ' . $db->prefix('tplfile') . " WHERE tpl_file='$tpl_file4sql' AND tpl_tplset='" . addslashes($tpl['tpl_tplset']) . "'") ;
     while (list($tpl_id) = $db->fetchRow($result)) {
-        $sql = "UPDATE ".$db->prefix("tplsource")." SET tpl_source='".addslashes($myts->stripSlashesGPC($_POST['tpl_source']))."' WHERE tpl_id=$tpl_id" ;
+        $sql = 'UPDATE ' . $db->prefix('tplsource') . " SET tpl_source='" . addslashes($myts->stripSlashesGPC($_POST['tpl_source'])) . "' WHERE tpl_id=$tpl_id" ;
         if (! $db->query($sql)) {
             die('SQL Error') ;
         }
-        $db->query("UPDATE ".$db->prefix("tplfile")." SET tpl_lastmodified=UNIX_TIMESTAMP() WHERE tpl_id=$tpl_id") ;
+        $db->query('UPDATE ' . $db->prefix('tplfile') . " SET tpl_lastmodified=UNIX_TIMESTAMP() WHERE tpl_id=$tpl_id") ;
         altsys_template_touch($tpl_id) ;
     }
 
@@ -150,12 +150,13 @@ if (! empty($_POST['do_create'])) {
         redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
     }
 
-    $sql = "INSERT INTO ".$db->prefix("tplfile")." SET tpl_file='".addslashes($myts->stripSlashesGPC($_POST['tpl_file']))."',tpl_refid=0,tpl_module='".addslashes($tpl['tpl_module'])."',tpl_tplset='".addslashes($tpl['tpl_tplset'])."',tpl_lastmodified=UNIX_TIMESTAMP(),tpl_type='".addslashes($tpl['tpl_type'])."'" ;
+    $sql = 'INSERT INTO '
+           . $db->prefix('tplfile') . " SET tpl_file='" . addslashes($myts->stripSlashesGPC($_POST['tpl_file'])) . "',tpl_refid=0,tpl_module='" . addslashes($tpl['tpl_module']) . "',tpl_tplset='" . addslashes($tpl['tpl_tplset']) . "',tpl_lastmodified=UNIX_TIMESTAMP(),tpl_type='" . addslashes($tpl['tpl_type']) . "'" ;
     if (! $db->query($sql)) {
         die('SQL Error'.__LINE__) ;
     }
     $tpl_id = intval($db->getInsertId()) ;
-    $sql = "INSERT INTO ".$db->prefix("tplsource")." SET tpl_id=$tpl_id,tpl_source='".addslashes($myts->stripSlashesGPC($_POST['tpl_source']))."'" ;
+    $sql = 'INSERT INTO ' . $db->prefix('tplsource') . " SET tpl_id=$tpl_id,tpl_source='" . addslashes($myts->stripSlashesGPC($_POST['tpl_source'])) . "'" ;
     if (! $db->query($sql)) {
         die('SQL Error'.__LINE__) ;
     }
@@ -178,7 +179,7 @@ $mymenu_fake_uri = 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$
 altsys_include_mymenu() ;
 
 echo "<div class='ui-card-main'>\n\n
-<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</h3>\n" ;
+<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT . ' : ' . htmlspecialchars($tpl['tpl_type'], ENT_QUOTES) . ' : ' . htmlspecialchars($tpl['tpl_file'], ENT_QUOTES) . ' (' . htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES) . ")</h3>\n" ;
 
 
 // diff from file to selected DB template
@@ -207,7 +208,7 @@ $diff_from_default4disp = '' ;
 if ($tpl['tpl_tplset'] != 'default') {
     $original_error_level = error_reporting() ;
     error_reporting($original_error_level & ~ E_NOTICE & ~ E_WARNING) ;
-    list($default_source) = $db->fetchRow($db->query("SELECT tpl_source FROM ".$db->prefix("tplfile")." NATURAL LEFT JOIN ".$db->prefix("tplsource")." WHERE tpl_tplset='default' AND tpl_file='".addslashes($tpl['tpl_file'])."' AND tpl_module='".addslashes($tpl['tpl_module'])."'")) ;
+    list($default_source) = $db->fetchRow($db->query('SELECT tpl_source FROM ' . $db->prefix('tplfile') . ' NATURAL LEFT JOIN ' . $db->prefix('tplsource') . " WHERE tpl_tplset='default' AND tpl_file='" . addslashes($tpl['tpl_file']) . "' AND tpl_module='" . addslashes($tpl['tpl_module']) . "'")) ;
     $diff = new Text_Diff(explode("\n", $default_source), explode("\n", $tpl['tpl_source'])) ;
     $renderer = new Text_Diff_Renderer_unified();
     $diff_str = htmlspecialchars($renderer->render($diff), ENT_QUOTES) ;
@@ -240,11 +241,11 @@ echo "
 
 echo "
 <a name='altsys_tplsform_top' id='altsys_tplsform_top'></a>
-<form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file, ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".$target_mname."' method='post'>
+<form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file, ENT_QUOTES) . '&amp;tpl_tplset=' . htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES) . '&amp;dirname=' . $target_mname . "' method='post'>
 	".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys_tplsform')."
-	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:100%; height:20vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES)."</textarea>
+	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:100%; height:20vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES) . '</textarea>
 	<br />
-" ;
+';
 if ($edit_mode == 'create') {
     // create form
     echo "

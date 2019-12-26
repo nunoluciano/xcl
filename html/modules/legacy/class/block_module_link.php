@@ -31,7 +31,7 @@ class LegacyBlock_module_linkObject extends XoopsSimpleObject
 
 class LegacyBlock_module_linkHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "block_module_link";
-    public $mPrimary = "block_id";
-    public $mClass = "LegacyBlock_module_linkObject";
+    public $mTable = 'block_module_link';
+    public $mPrimary = 'block_id';
+    public $mClass = 'LegacyBlock_module_linkObject';
 }

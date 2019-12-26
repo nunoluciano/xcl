@@ -176,10 +176,10 @@ class xelFinderMisc {
 		header('Content-Length: '.$size);
 		header('Content-Type: '.$mime);
 		header('Content-Disposition: '.$disp.'; '.$filename);
-		header('Last-Modified: '  . gmdate( "D, d M Y H:i:s", $mtime ) . " GMT" );
+		header('Last-Modified: '  . gmdate('D, d M Y H:i:s', $mtime ) . ' GMT');
 		header('Etag: '. $mtime);
 		header('Cache-Control: private, max-age=' . XELFINDER_CACHE_TTL );
-		header('Expires: ' . gmdate( "D, d M Y H:i:s", XELFINDER_UNIX_TIME + XELFINDER_CACHE_TTL ) . ' GMT');
+		header('Expires: ' . gmdate('D, d M Y H:i:s', XELFINDER_UNIX_TIME + XELFINDER_CACHE_TTL ) . ' GMT');
 		header('Pragma:');
 		
 		if (function_exists('XC_CLASS_EXISTS') && XC_CLASS_EXISTS('HypCommonFunc')) {
@@ -195,7 +195,7 @@ class xelFinderMisc {
 			header('HTTP/1.1 304 Not Modified');
 			header('Etag: '. $time);
 			header('Cache-Control: public, max-age=' . XELFINDER_CACHE_TTL );
-			header('Expires: ' . gmdate( "D, d M Y H:i:s", XELFINDER_UNIX_TIME + XELFINDER_CACHE_TTL) . ' GMT');
+			header('Expires: ' . gmdate('D, d M Y H:i:s', XELFINDER_UNIX_TIME + XELFINDER_CACHE_TTL) . ' GMT');
 			header('Pragma:');
 			exit;
 		}

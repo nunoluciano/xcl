@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/actions/SearchShowallAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/SearchShowallbyuserForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/actions/SearchShowallAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/SearchShowallbyuserForm.class.php';
 
 class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
 {
@@ -25,7 +25,7 @@ class Legacy_SearchShowallbyuserAction extends Legacy_SearchShowallAction
     
     public function _getTemplateName()
     {
-        return "legacy_search_showallbyuser.html";
+        return 'legacy_search_showallbyuser.html';
     }
     
     public function _getSelectedMids()

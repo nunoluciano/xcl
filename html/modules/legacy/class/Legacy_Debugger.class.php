@@ -12,12 +12,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/class/errorhandler.php";
+require_once XOOPS_ROOT_PATH . '/class/errorhandler.php';
 
-define("XOOPS_DEBUG_OFF", 0);
-define("XOOPS_DEBUG_PHP", 1);
-define("XOOPS_DEBUG_MYSQL", 2);
-define("XOOPS_DEBUG_SMARTY", 3);
+define('XOOPS_DEBUG_OFF', 0);
+define('XOOPS_DEBUG_PHP', 1);
+define('XOOPS_DEBUG_MYSQL', 2);
+define('XOOPS_DEBUG_SMARTY', 3);
 
 class Legacy_DebuggerManager
 {

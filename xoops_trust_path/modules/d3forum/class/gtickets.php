@@ -72,7 +72,7 @@ if( ! class_exists( 'XoopsGTicket' ) ) {
             global $xoopsModule;
 
             // create a token
-            list($usec, $sec) = explode(" ", microtime());
+            list($usec, $sec) = explode(' ', microtime());
             $appendix_salt       = empty($_SERVER['PATH']) ? XOOPS_DB_NAME : $_SERVER['PATH'];
             $token               = crypt($salt . $usec . $appendix_salt . $sec, XOOPS_DB_PREFIX);
             $this->_latest_token = $token;
@@ -278,9 +278,9 @@ if( ! class_exists( 'XoopsGTicket' ) ) {
         public function errorHandler4FindOutput($errNo, $errStr, $errFile, $errLine)
         {
             if (preg_match('?' . preg_quote(XOOPS_ROOT_PATH) . '([^:]+)\:(\d+)?', $errStr, $regs)) {
-                echo "Irregular output! check the file " . htmlspecialchars($regs[1]) . " line " . htmlspecialchars($regs[2]);
+                echo 'Irregular output! check the file ' . htmlspecialchars($regs[1]) . ' line ' . htmlspecialchars($regs[2]);
             } else {
-                echo "Irregular output! check language files etc.";
+                echo 'Irregular output! check language files etc.';
             }
             return;
         }
@@ -295,14 +295,14 @@ $GLOBALS['xoopsGTicket'] = new XoopsGTicket() ;
 if( ! function_exists( 'admin_refcheck' ) ) {
 
 //Admin Referer Check By Marijuana(Rev.011)
-function admin_refcheck($chkref = "") {
+function admin_refcheck($chkref = '') {
 	if( empty( $_SERVER['HTTP_REFERER'] ) ) {
 		return true ;
 	} else {
 		$ref = $_SERVER['HTTP_REFERER'];
 	}
 	$cr = XOOPS_URL;
-	if ( $chkref != "" ) { $cr .= $chkref; }
+	if ($chkref != '') { $cr .= $chkref; }
 	if ( strpos($ref, $cr) !== 0 ) { return false; }
 	return true;
 }

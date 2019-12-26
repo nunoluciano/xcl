@@ -211,11 +211,11 @@ class Xupdate_Utils
                 $proxyURL .= $proxy['host'];
                 
                 if (isset($proxy['port'])) {
-                    $proxyURL .= ":" . $proxy['port'];
+                    $proxyURL .= ':' . $proxy['port'];
                 } elseif ('https://' === substr($proxyURL, 0, 7)) {
-                    $proxyURL .= ":80";
+                    $proxyURL .= ':80';
                 } elseif ('https://' === substr($proxyURL, 0, 8)) {
-                    $proxyURL .= ":443";
+                    $proxyURL .= ':443';
                 }
                 try {
                     if (! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {

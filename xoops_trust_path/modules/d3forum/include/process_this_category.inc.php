@@ -1,7 +1,7 @@
 <?php
 
 // get this "category" from given $cat_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_categories")." c WHERE $whr_read4cat AND c.cat_id=$cat_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE $whr_read4cat AND c.cat_id=$cat_id" ;
 if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 //if( $db->getRowsNum( $crs ) <= 0 ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 if( $db->getRowsNum( $crs ) <= 0 ) return false ;

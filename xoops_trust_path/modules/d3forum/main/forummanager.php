@@ -31,7 +31,7 @@ foreach( $modules as $module ) {
 		// d3forum
 		$exportable_modules[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		$dist_category_permissions = d3forum_get_category_permissions_of_current_user( $dirname ) ;
-		$exportable_module_categories[$mid] = d3forum_make_cat_jumpbox_options( $dirname , '1' , 'c.`cat_id` IN (' . implode( "," , array_keys( $dist_category_permissions ) ) . ')' , 0 ) ;
+		$exportable_module_categories[$mid] = d3forum_make_cat_jumpbox_options($dirname , '1' , 'c.`cat_id` IN (' . implode(',', array_keys($dist_category_permissions ) ) . ')' , 0 ) ;
 	}
 }
 
@@ -100,7 +100,7 @@ $forum4assign = [
 
 
 // dare to set 'template_main' after header.php (for disabling cache)
-include XOOPS_ROOT_PATH."/header.php";
+include XOOPS_ROOT_PATH . '/header.php';
 $xoopsOption['template_main'] = $mydirname.'_main_forum_form.html' ;
 
 $xoopsTpl->assign([
@@ -116,7 +116,7 @@ $xoopsTpl->assign([
                       'export_to_module_options' => $exportable_modules,
                       'export_to_cat_options' => $exportable_module_categories,
                       'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum'),
-                      'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+                      'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header'),
                       'xoops_pagetitle' => _MD_D3FORUM_FORUMMANAGER,
                       'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _MD_D3FORUM_FORUMMANAGER]]),
                   ]

@@ -16,9 +16,9 @@ function smarty_function_message_userlist($params, &$smarty)
   
     $option = '<option value=""></option>';
   
-    $sql = "SELECT `uname`, `uid` FROM `".$db->prefix('users')."` ";
-    $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
-    $sql.= "ORDER BY `uname`";
+    $sql = 'SELECT `uname`, `uid` FROM `' . $db->prefix('users') . '` ';
+    $sql.= 'WHERE `uid` <> ' . $root->mContext->mXoopsUser->get('uid') . ' ';
+    $sql.= 'ORDER BY `uname`';
     $result = $db->query($sql);
     while (list($uname, $uid) = $db->fetchRow($result)) {
         $uname = htmlspecialchars($uname, ENT_QUOTES);

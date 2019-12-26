@@ -472,7 +472,7 @@ class Net_SFTP extends Net_SSH2
         $response = $this->_get_channel_packet(NET_SFTP_CHANNEL);
         if ($response === false) {
             // from PuTTY's psftp.exe
-            $command = "test -x /usr/lib/sftp-server && exec /usr/lib/sftp-server\n" . "test -x /usr/local/lib/sftp-server && exec /usr/local/lib/sftp-server\n" . "exec sftp-server";
+            $command = "test -x /usr/lib/sftp-server && exec /usr/lib/sftp-server\n" . "test -x /usr/local/lib/sftp-server && exec /usr/local/lib/sftp-server\n" . 'exec sftp-server';
             // we don't do $this->exec($command, false) because exec() operates on a different channel and plus the SSH_MSG_CHANNEL_OPEN that exec() does
             // is redundant
             $packet = pack(
@@ -1887,7 +1887,7 @@ class Net_SFTP extends Net_SSH2
         switch (true) {
             case $mode & NET_SFTP_CALLBACK:
                 if (!is_callable($data)) {
-                    user_error("\$data should be is_callable if you set NET_SFTP_CALLBACK flag");
+                    user_error('$data should be is_callable if you set NET_SFTP_CALLBACK flag');
                 }
                 $dataCallback = $data;
                 // do nothing

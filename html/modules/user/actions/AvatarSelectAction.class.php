@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/AvatarSelectForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/AvatarSelectForm.class.php';
 
 /***
  * @internal
@@ -135,16 +135,16 @@ class User_AvatarSelectAction extends User_AbstractEditAction
      */
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $controller->executeForward(XOOPS_URL . "/edituser.php?op=avatarform&uid=" . $this->mObject->get('uid'));
+        $controller->executeForward(XOOPS_URL . '/edituser.php?op=avatarform&uid=' . $this->mObject->get('uid'));
     }
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderSystem)
     {
-        $controller->executeForward(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'));
+        $controller->executeForward(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$renderSystem)
     {
-        $controller->executeRedirect(XOOPS_URL . "/userinfo.php?op=avatarform&uid=" . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect(XOOPS_URL . '/userinfo.php?op=avatarform&uid=' . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 }

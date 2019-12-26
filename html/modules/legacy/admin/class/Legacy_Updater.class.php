@@ -206,9 +206,9 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         
         $permTable = $db->prefix('group_permission');
         $groupTable = $db->prefix('groups');
-        $sql = sprintf("SELECT DISTINCT `gperm_groupid` FROM `%s` LEFT JOIN `%s` ON `%s`.`gperm_groupid`=`%s`.`groupid`" .
-                       " WHERE `gperm_modid`=1 AND `groupid` IS NULL",
-                       $permTable, $groupTable, $permTable, $groupTable);
+        $sql = sprintf(
+            'SELECT DISTINCT `gperm_groupid` FROM `%s` LEFT JOIN `%s` ON `%s`.`gperm_groupid`=`%s`.`groupid`' . ' WHERE `gperm_modid`=1 AND `groupid` IS NULL',
+            $permTable, $groupTable, $permTable, $groupTable);
         $result = $db->query($sql);
         if (!$result) {
             return false;

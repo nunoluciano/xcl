@@ -12,13 +12,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacy.CommentAdminEditForm.TOKEN" . $this->get('com_id');
+        return 'module.legacy.CommentAdminEditForm.TOKEN' . $this->get('com_id');
     }
 
     public function prepare()

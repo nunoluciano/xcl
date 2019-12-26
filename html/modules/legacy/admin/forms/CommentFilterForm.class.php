@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('COMMENT_SORT_KEY_COM_ID', 1);
 define('COMMENT_SORT_KEY_COM_PID', 2);
@@ -63,8 +63,8 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
         COMMENT_SORT_KEY_DOBR => 'dobr'
     ];
     //wanikoo
-    public $mKeyword = "";
-    public $mSearchField = "";
+    public $mKeyword = '';
+    public $mSearchField = '';
 
     public function getDefaultSortKey()
     {
@@ -125,20 +125,20 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
             $this->mNavi->addExtra('keyword', $this->mKeyword);
             $this->mNavi->addExtra('search_field', $this->mSearchField);
 
-            if ($this->mSearchField == "com_both") {
+            if ($this->mSearchField == 'com_both') {
                 //title or text ( OR condition )
             $search_criteria = new CriteriaCompo(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
                 $search_criteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'), $condition='OR');
                 $this->_mCriteria->add($search_criteria);
-            } elseif ($this->mSearchField == "com_title") {
+            } elseif ($this->mSearchField == 'com_title') {
                 //only search about title
             $this->_mCriteria->add(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
-            } elseif ($this->mSearchField == "com_text") {
+            } elseif ($this->mSearchField == 'com_text') {
                 //only search about text
             $this->_mCriteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'));
-            } elseif ($this->mSearchField == "com_uid") {
+            } elseif ($this->mSearchField == 'com_uid') {
                 //search about uname
-            if ($this->mKeyword != "guest") {
+            if ($this->mKeyword != 'guest') {
                 //in case of member
             $cm_handler =& xoops_gethandler('member');
                 $cm_user =& $cm_handler->getUsers(new Criteria('uname', $this->mKeyword));

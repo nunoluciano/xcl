@@ -166,7 +166,7 @@ class UserMailjobObject extends XoopsSimpleObject
 
 class UserMailjobHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "user_mailjob";
-    public $mPrimary = "mailjob_id";
-    public $mClass = "UserMailjobObject";
+    public $mTable = 'user_mailjob';
+    public $mPrimary = 'mailjob_id';
+    public $mClass = 'UserMailjobObject';
 }

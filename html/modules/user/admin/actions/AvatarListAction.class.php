@@ -8,9 +8,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarListForm.class.php';
 
 class User_AvatarListAction extends User_AbstractListAction
 {
@@ -55,14 +55,14 @@ class User_AvatarListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=AvatarList";
+        return './index.php?action=AvatarList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('avatar_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -173,7 +173,7 @@ class User_AvatarListAction extends User_AbstractListAction
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_list_confirm.html");
+        $render->setTemplateName('avatar_list_confirm.html');
         $render->setAttribute('avatarObjects', $this->mAvatarObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         

@@ -4,8 +4,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageUploadForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageUploadForm.class.php';
 
 class Legacy_ImageUploadAction extends Legacy_Action
 {
@@ -51,11 +51,11 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $files = [];
         $targetimages = [];
 
-        if (strtolower($formFileExt) == "zip") {
-            if (!file_exists(XOOPS_ROOT_PATH . "/class/Archive_Zip.php")) {
+        if (strtolower($formFileExt) == 'zip') {
+            if (!file_exists(XOOPS_ROOT_PATH . '/class/Archive_Zip.php')) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
-            require_once XOOPS_ROOT_PATH . "/class/Archive_Zip.php" ;
+            require_once XOOPS_ROOT_PATH . '/class/Archive_Zip.php';
             $zip = new Archive_Zip($formFile->_mTmpFileName) ;
             $files = $zip->extract(['extract_as_string' => true]) ;
             if (! is_array(@$files)) {
@@ -66,7 +66,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
             }
         }//if zip end
         else {
-            require_once XOOPS_ROOT_PATH . "/class/class.tar.php";
+            require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
             $tar =new tar();
             $tar->openTar($formFile->_mTmpFileName);
             if (!is_array(@$tar->files)) {
@@ -124,7 +124,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $t_category_type = $t_category->get('imgcat_storetype');
         $imagehandler =& xoops_getmodulehandler('image');
         
-        if (strtolower($t_category_type) == "file") {
+        if (strtolower($t_category_type) == 'file') {
             for ($i = 0; $i < count($targetimages); $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if ($ext_pos === false) {
@@ -136,7 +136,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
                 }
                 $file_name = substr($targetimages[$i]['name'], 0, $ext_pos) ;
                 $save_file_name = uniqid('img') . '.' . $ext ;
-                $filehandle = fopen(XOOPS_UPLOAD_PATH.'/'.$save_file_name, "w") ;
+                $filehandle = fopen(XOOPS_UPLOAD_PATH.'/'.$save_file_name, 'w') ;
                 if (! $filehandle) {
                     $this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_SAVE_IMAGE_FILE, $file_name));
                     continue ;
@@ -161,7 +161,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
                 unset($image);
             } //end of for
         } //end of if
-        elseif (strtolower($t_category_type) == "db") {
+        elseif (strtolower($t_category_type) == 'db') {
             for ($i = 0; $i < count($targetimages); $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if ($ext_pos === false) {
@@ -197,14 +197,14 @@ class Legacy_ImageUploadAction extends Legacy_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("image_upload.html");
+        $render->setTemplateName('image_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         //image category
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
         $cat_id = $controller->mRoot->mContext->mRequest->getRequest('imgcat_id');
         if (isset($cat_id)) {
             $this->mCategory =& $handler->get($cat_id);
-            $render->setAttribute("category", $this->mCategory);
+            $render->setAttribute('category', $this->mCategory);
         }
         $categoryArr =& $handler->getObjects();
         $render->setAttribute('categoryArr', $categoryArr);
@@ -212,15 +212,15 @@ class Legacy_ImageUploadAction extends Legacy_Action
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImageList&imgcat_id=".$this->mActionForm->get('imgcat_id'));
+        $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         if (count($this->mErrorMessages) == 0) {
-            $controller->executeRedirect("./index.php?action=ImageList&imgcat_id=".$this->mActionForm->get('imgcat_id'), 1, _AD_LEGACY_ERROR_DBUPDATE_FAILED);
+            $controller->executeRedirect('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'), 1, _AD_LEGACY_ERROR_DBUPDATE_FAILED);
         } else {
-            $render->setTemplateName("image_upload_error.html");
+            $render->setTemplateName('image_upload_error.html');
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
@@ -228,7 +228,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         if ($this->mCategory) {
-            $controller->executeForward("./index.php?action=ImageList&imgcat_id=".$this->mCategory->get('imgcat_id'));
+            $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mCategory->get('imgcat_id'));
         } else {
             $controller->executeForward('./index.php?action=ImagecategoryList');
         }

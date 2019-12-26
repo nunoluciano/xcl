@@ -64,10 +64,10 @@ class XCube_ServiceManager
     //public function XCube_ServiceManager()
     {
         $this->mCreateClient = new XCube_Delegate();
-        $this->mCreateClient->register("XCube_ServiceManager.CreateClient");
+        $this->mCreateClient->register('XCube_ServiceManager.CreateClient');
         
         $this->mCreateServer = new XCube_Delegate();
-        $this->mCreateServer->register("XCube_ServiceManager.CreateServer");
+        $this->mCreateServer->register('XCube_ServiceManager.CreateServer');
     }
     
     /**

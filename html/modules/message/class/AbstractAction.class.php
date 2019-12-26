@@ -7,7 +7,7 @@ define('_USE_XOOPSMAILER', false);
 abstract class AbstractAction
 {
     protected $isError = false;
-    protected $errMsg = "";
+    protected $errMsg = '';
     protected $root;
     protected $url = 'index.php';
     protected $unamelink = [];
@@ -68,7 +68,7 @@ abstract class AbstractAction
         return $modObj;
     }
   
-    public function getLinkUnameFromId($uid, $uname = "")
+    public function getLinkUnameFromId($uid, $uname = '')
     {
         $uid = intval($uid);
     

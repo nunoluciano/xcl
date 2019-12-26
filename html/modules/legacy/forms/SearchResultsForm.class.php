@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Legacy_SearchResultsForm extends XCube_ActionForm
 {
@@ -76,12 +76,12 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
             }
         }
         
-        $this->set('query', implode(" ", $this->mQueries));
+        $this->set('query', implode(' ', $this->mQueries));
     }
     
     public function fetchAndor()
     {
-        if ($this->get('andor') == "") {
+        if ($this->get('andor') == '') {
             $this->set('andor', 'AND');
         }
     }

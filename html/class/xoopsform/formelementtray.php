@@ -82,13 +82,13 @@ class XoopsFormElementTray extends XoopsFormElement
      * @param string $delimeter
      * @param string $name
      */
-    public function __construct($caption, $delimeter="&nbsp;", $name="")
+    public function __construct($caption, $delimeter= '&nbsp;', $name= '')
     {
         $this->setName($name);
         $this->setCaption($caption);
         $this->_delimeter = $delimeter;
     }
-    public function XoopsFormElementTray($caption, $delimeter="&nbsp;", $name="")
+    public function XoopsFormElementTray($caption, $delimeter= '&nbsp;', $name= '')
     {
         return self::__construct($caption, $delimeter, $name);
     }
@@ -187,8 +187,8 @@ class XoopsFormElementTray extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_elementtray.html");
-        $renderTarget->setAttribute("tray", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_elementtray.html');
+        $renderTarget->setAttribute('tray', $this);
 
         $renderSystem->render($renderTarget);
     

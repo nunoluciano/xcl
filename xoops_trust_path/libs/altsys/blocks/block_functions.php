@@ -20,11 +20,11 @@ function b_altsys_admin_menu_show($options)
     $coretype = altsys_get_core_type() ;
 
     // mid_selected
-    if (is_object(@$GLOBALS["xoopsModule"])) {
-        $mid_selected = $GLOBALS["xoopsModule"]->getVar("mid") ;
+    if (is_object(@$GLOBALS['xoopsModule'])) {
+        $mid_selected = $GLOBALS['xoopsModule']->getVar('mid') ;
         // for system->preferences
-        if ($mid_selected == 1 && @$_GET["fct"] == "preferences" && @$_GET["op"] == "showmod" && ! empty($_GET["mod"])) {
-            $mid_selected = intval($_GET["mod"]) ;
+        if ($mid_selected == 1 && @$_GET['fct'] == 'preferences' && @$_GET['op'] == 'showmod' && ! empty($_GET['mod'])) {
+            $mid_selected = intval($_GET['mod']) ;
         }
     } else {
         $mid_selected = 0 ;

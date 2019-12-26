@@ -14,7 +14,7 @@ if (!defined('XCUBE_CORE_PATH')) {
 
 require_once XCUBE_CORE_PATH . '/XCube_HttpContext.class.php';
 
-if (version_compare(PHP_VERSION, "5.0", ">=")) {
+if (version_compare(PHP_VERSION, '5.0', '>=')) {
     function XC_CLASS_EXISTS($className)
     {
         return class_exists($className, false);
@@ -160,14 +160,14 @@ class XCube_Root
     {
         $n = func_num_args();
         if ($n == 0) {
-            die("FETAL: open error: site setting config.");
+            die('FETAL: open error: site setting config.');
         }
 
         $files = func_get_args();
         $file = array_shift($files);
 
         if (!file_exists($file)) {
-            die("FETAL: open error: site setting config.");
+            die('FETAL: open error: site setting config.');
         }
         
         $this->setSiteConfig(parse_ini_file($file, true));
@@ -399,7 +399,7 @@ class XCube_Root
         }
         
         if (!is_object($mRS[$name])) {
-            die("NO");
+            die('NO');
         }
         
         $mRS[$name]->prepare($this->mController);

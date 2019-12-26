@@ -303,9 +303,9 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     private function procExec($command, array &$output = null, &$return_var = -1, array &$error_output = null)
     {
         $descriptorspec = [
-            0 => ["pipe", "r"],  // stdin
-            1 => ["pipe", "w"],  // stdout
-            2 => ["pipe", "w"]   // stderr
+            0 => ['pipe', 'r'],  // stdin
+            1 => ['pipe', 'w'],  // stdout
+            2 => ['pipe', 'w']   // stderr
         ];
     
         $command = escapeshellcmd($command);

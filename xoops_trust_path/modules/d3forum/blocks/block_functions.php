@@ -21,7 +21,7 @@ function b_d3forum_list_forums_show( $options )
 
 	// forums can be read by current viewer (check by forum_access)
 	require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
-	$whr_forum = "f.forum_id IN (".implode(",",d3forum_get_forums_can_read( $mydirname )).")" ;
+	$whr_forum = 'f.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 
 	// categories
 	if( empty( $categories ) ) {
@@ -33,7 +33,9 @@ function b_d3forum_list_forums_show( $options )
 		$categories4assign = implode(',',$categories) ;
 	}
 
-	$sql = "SELECT f.forum_id, f.forum_title, f.forum_last_post_time, f.forum_topics_count, f.forum_posts_count, c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ".$db->prefix($mydirname."_forums")." f LEFT JOIN ".$db->prefix($mydirname."_categories")." c ON f.cat_id=c.cat_id WHERE ($whr_forum) AND ($whr_categories) ORDER BY c.cat_order_in_tree,f.forum_weight" ;
+	$sql = 'SELECT f.forum_id, f.forum_title, f.forum_last_post_time, f.forum_topics_count, f.forum_posts_count, c.cat_id, c.cat_title, c.cat_depth_in_tree FROM '
+           . $db->prefix($mydirname . '_forums') . ' f LEFT JOIN '
+           . $db->prefix($mydirname . '_categories') . " c ON f.cat_id=c.cat_id WHERE ($whr_forum) AND ($whr_categories) ORDER BY c.cat_order_in_tree,f.forum_weight" ;
 //	var_dump( $sql ) ;
 
 	if( ! $result = $db->query( $sql ) ) return [];
@@ -139,7 +141,7 @@ function b_d3forum_list_topics_show( $options )
 
 	// naao from
 	// get all forums
-	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
+	$sql = 'SELECT forum_id, forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') ;
 	$frs = $db->query( $sql ) ;
 	$d3com = [];
 
@@ -192,7 +194,7 @@ function b_d3forum_list_topics_show( $options )
 
 	// forums can be read by current viewer (check by forum_access)
 	require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
-	$whr_forum = "t.forum_id IN (".implode(",",d3forum_get_forums_can_read( $mydirname )).")" ;
+	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 
 	// check option "auto" by nao-pon
 	$_hasAuto = false;
@@ -242,10 +244,10 @@ function b_d3forum_list_topics_show( $options )
 			$sel_solved, t.forum_id,
 			p.post_id, p.subject, p.post_text, p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path,
 			f.forum_title, u2t.u2t_marked FROM "
-			.$db->prefix($mydirname."_topics")." t LEFT JOIN "
-			.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id LEFT JOIN "
-			.$db->prefix($mydirname."_posts")." p ON t.topic_last_post_id=p.post_id LEFT JOIN "
-			.$db->prefix($mydirname."_users2topics")." u2t ON u2t.topic_id=t.topic_id AND u2t.uid=$uid
+			.$db->prefix($mydirname . '_topics') . ' t LEFT JOIN '
+			.$db->prefix($mydirname . '_forums') . ' f ON f.forum_id=t.forum_id LEFT JOIN '
+			.$db->prefix($mydirname . '_posts') . ' p ON t.topic_last_post_id=p.post_id LEFT JOIN '
+			.$db->prefix($mydirname . '_users2topics') . " u2t ON u2t.topic_id=t.topic_id AND u2t.uid=$uid
 			WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums)
 			AND ($whr_topic) AND ($whr_order) ORDER BY u2t.u2t_marked<=>1 DESC , $odr" ;
 	} else {
@@ -254,9 +256,9 @@ function b_d3forum_list_topics_show( $options )
 			$sel_solved, t.forum_id,
 			p.post_id, p.subject, p.post_text, p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path,
 			f.forum_title, 0 AS u2t_marked FROM "
-			.$db->prefix($mydirname."_topics")." t LEFT JOIN "
-			.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id LEFT JOIN "
-			.$db->prefix($mydirname."_posts")." p ON t.topic_last_post_id=p.post_id
+			.$db->prefix($mydirname . '_topics') . ' t LEFT JOIN '
+			.$db->prefix($mydirname . '_forums') . ' f ON f.forum_id=t.forum_id LEFT JOIN '
+			.$db->prefix($mydirname . '_posts') . " p ON t.topic_last_post_id=p.post_id
 			 WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums)
 			 AND ($whr_topic) AND ($whr_order) ORDER BY $odr" ;
 	}
@@ -355,18 +357,18 @@ function b_d3forum_list_topics_edit( $options )
 
 	if( $show_fullsize ) {
 		$fullyes_checked = "checked='checked'" ;
-		$fullno_checked = "" ;
+		$fullno_checked = '';
 	} else {
 		$fullno_checked = "checked='checked'" ;
-		$fullyes_checked = "" ;
+		$fullyes_checked = '';
 	}
 
 	if( $is_markup ) {
 		$markupyes_checked = "checked='checked'" ;
-		$markupno_checked = "" ;
+		$markupno_checked = '';
 	} else {
 		$markupno_checked = "checked='checked'" ;
-		$markupyes_checked = "" ;
+		$markupyes_checked = '';
 	}
 
 	$categories = array_map( 'b_d3forum_check_limits' , $categories ) ;
@@ -382,15 +384,15 @@ function b_d3forum_list_topics_edit( $options )
     ];
 	$order_options = '' ;
 	foreach( $orders as $order_value => $order_name ) {
-		$selected = $order_value == $now_order ? "selected='selected'" : "" ;
+		$selected = $order_value == $now_order ? "selected='selected'" : '';
 		$order_options .= "<option value='$order_value' $selected>$order_name</option>\n" ;
 	}
 
 	$form = "
 		<input type='hidden' name='options[0]' value='$mydirname'>
-		<label for='o1'>" . sprintf( _MB_D3FORUM_DISPLAY , "</label><input type='text' size='4' name='options[1]' id='o1' value='$max_topics' style='text-align:right;'>" ) . "
+		<label for='o1'>" . sprintf( _MB_D3FORUM_DISPLAY , "</label><input type='text' size='4' name='options[1]' id='o1' value='$max_topics' style='text-align:right;'>" ) . '
 		<br>
-		"._MB_D3FORUM_DISPLAYF."&nbsp;:
+		' . _MB_D3FORUM_DISPLAYF . "&nbsp;:
 		<input type='radio' name='options[2]' id='o21' value='1' $fullyes_checked><label for='o21'>"._YES."</label>
 		<input type='radio' name='options[2]' id='o20' value='0' $fullno_checked><label for='o20'>"._NO."</label>
 		<br>
@@ -442,7 +444,7 @@ function b_d3forum_list_posts_show( $options )
 
 	// naao from
 	// get all forums
-	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
+	$sql = 'SELECT forum_id, forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') ;
 	$frs = $db->query( $sql ) ;
 	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
@@ -476,7 +478,7 @@ function b_d3forum_list_posts_show( $options )
 
 	// forums can be read by current viewer (check by forum_access)
 	require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
-	$whr_forum = "t.forum_id IN (".implode(",",d3forum_get_forums_can_read( $mydirname )).")" ;
+	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 
 	// check option "auto" by nao-pon
 	$_hasAuto = false;
@@ -513,12 +515,12 @@ function b_d3forum_list_posts_show( $options )
 	$whr_forums = empty( $forums ) ? '1' : 'f.forum_id IN ('.implode(',',$forums).')' ;
 
 	// naao
-	$sql = "SELECT p.post_id, p.subject, p.votes_sum, p.votes_count, p.post_time, p.post_text, p.uid,
+	$sql = 'SELECT p.post_id, p.subject, p.votes_sum, p.votes_count, p.post_time, p.post_text, p.uid,
 		p.guest_name, p.html, p.smiley, p.xcode, p.br, p.unique_path,
-		f.forum_id, f.forum_title, t.topic_external_link_id FROM "
-		.$db->prefix($mydirname."_posts")." p LEFT JOIN "
-		.$db->prefix($mydirname."_topics")." t ON p.topic_id=t.topic_id LEFT JOIN "
-		.$db->prefix($mydirname."_forums")." f ON f.forum_id=t.forum_id
+		f.forum_id, f.forum_title, t.topic_external_link_id FROM '
+           . $db->prefix($mydirname . '_posts') . ' p LEFT JOIN '
+           . $db->prefix($mydirname . '_topics') . ' t ON p.topic_id=t.topic_id LEFT JOIN '
+           . $db->prefix($mydirname . '_forums') . " f ON f.forum_id=t.forum_id
 		WHERE ! t.topic_invisible AND ($whr_forum) AND ($whr_categories) AND ($whr_forums)
 		AND ($whr_order) ORDER BY $odr" ;
 
@@ -615,7 +617,7 @@ function b_d3forum_list_posts_edit( $options )
     ];
 	$order_options = '' ;
 	foreach( $orders as $order_value => $order_name ) {
-		$selected = $order_value == $now_order ? "selected='selected'" : "" ;
+		$selected = $order_value == $now_order ? "selected='selected'" : '';
 		$order_options .= "<option value='$order_value' $selected>$order_name</option>\n" ;
 	}
 
@@ -649,7 +651,7 @@ function b_d3forum_check_limits( $var )
 }
 
 // get object for comment integration
-if (! function_exists ("d3forum_b_get_comment_object")) {
+if (! function_exists ('d3forum_b_get_comment_object')) {
    function d3forum_b_get_comment_object( $mydirname , $external_link_format , $forum_id = null )
    {
 	include_once dirname(dirname(__FILE__)).'/class/D3commentAbstract.class.php' ;

@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 /***
  * @internal
@@ -22,7 +22,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
     
     public function getTokenName()
     {
-        return "module.user.UserAdminEditForm.Token" . $this->get('uid');
+        return 'module.user.UserAdminEditForm.Token' . $this->get('uid');
     }
     
     public function prepare()

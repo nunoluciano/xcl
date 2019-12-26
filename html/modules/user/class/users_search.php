@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/modules/user/class/users.php";
+require_once XOOPS_ROOT_PATH . '/modules/user/class/users.php';
 
 class UserUsers_searchHandler extends UserUsersHandler
 {
@@ -12,8 +12,8 @@ class UserUsers_searchHandler extends UserUsersHandler
     {
         $ret = [];
 
-        $uTable = $this->db->prefix('users') . " as u";
-        $gTable = $this->db->prefix('groups_users_link') . " as g";
+        $uTable = $this->db->prefix('users') . ' as u';
+        $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT DISTINCT u.* FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
 
@@ -29,7 +29,7 @@ class UserUsers_searchHandler extends UserUsersHandler
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
             if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
             if ($limit === null) {
@@ -92,8 +92,8 @@ class UserUsers_searchHandler extends UserUsersHandler
     {
         $ret = [];
 
-        $uTable = $this->db->prefix('users') . " as u";
-        $gTable = $this->db->prefix('groups_users_link') . " as g";
+        $uTable = $this->db->prefix('users') . ' as u';
+        $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT DISTINCT u.uid FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
 
@@ -109,7 +109,7 @@ class UserUsers_searchHandler extends UserUsersHandler
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
             if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
             if ($limit === null) {
@@ -146,15 +146,15 @@ class UserUsers_searchHandler extends UserUsersHandler
     {
         $ret = [];
 
-        $uTable = $this->db->prefix('users') . " as u";
-        $gTable = $this->db->prefix('groups_users_link') . " as g";
+        $uTable = $this->db->prefix('users') . ' as u';
+        $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT COUNT(DISTINCT u.uid) c FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
         if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if ($where) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
         }
 

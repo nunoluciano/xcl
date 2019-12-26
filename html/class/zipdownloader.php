@@ -46,7 +46,7 @@ class XoopsZipDownloader extends XoopsDownloader
     public function addFile($filepath, $newfilename=null)
     {
         // Read in the file's contents
-        $fp = fopen($filepath, "r");
+        $fp = fopen($filepath, 'r');
         $data = fread($fp, filesize($filepath));
         fclose($fp);
         $filename = (isset($newfilename) && trim($newfilename) != '') ? trim($newfilename) : $filepath;
@@ -57,7 +57,7 @@ class XoopsZipDownloader extends XoopsDownloader
     public function addBinaryFile($filepath, $newfilename=null)
     {
         // Read in the file's contents
-        $fp = fopen($filepath, "rb");
+        $fp = fopen($filepath, 'rb');
         $data = fread($fp, filesize($filepath));
         fclose($fp);
         $filename = (isset($newfilename) && trim($newfilename) != '') ? trim($newfilename) : $filepath;

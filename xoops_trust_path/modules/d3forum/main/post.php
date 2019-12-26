@@ -15,7 +15,7 @@ if( @$_POST['mode'] == 'edit' && ! empty( $_POST['post_id'] ) ) {
 	$post_id = intval( $_POST['post_id'] ) ;
 
 	// get this "post" from given $post_id
-	$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+	$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 	if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 	$post_row = $db->fetchArray( $prs ) ;
@@ -33,7 +33,7 @@ if( @$_POST['mode'] == 'edit' && ! empty( $_POST['post_id'] ) ) {
 	$post_id = intval( $_POST['pid'] ) ;
 
 	// get this "post" from given $post_id
-	$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+	$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 	if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 	$post_row = $db->fetchArray( $prs ) ;
@@ -169,7 +169,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 			$reference_name4html = $xoopsModuleConfig['anonymous_name'] ;
 		}
 		$reference_subject4html = $myts->makeTboxData4Show( $post_row['subject'] , $post_row['number_entity'] , $post_row['special_entity'] ) ;
-		$quote4html = "[quote sitecite=modules/".$mydirname."/index.php?post_id=".$pid."]\n".sprintf(_MD_D3FORUM_USERWROTE,$reference_name4html)."\n".$myts->makeTareaData4Edit( $post_row['post_text'] , $post_row['number_entity'] )."[/quote]";
+		$quote4html = '[quote sitecite=modules/' . $mydirname . '/index.php?post_id=' . $pid . "]\n" . sprintf(_MD_D3FORUM_USERWROTE, $reference_name4html) . "\n" . $myts->makeTareaData4Edit($post_row['post_text'] , $post_row['number_entity'] ) . '[/quote]';
 	}
 
 	// user's post data
@@ -257,14 +257,14 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 
 		// hide_uid
 		if( $hide_uid && ! empty( $post_row['uid'] ) ) {
-			$set4sql .= ",uid=0,uid_hidden=".intval($post_row['uid']) ;
+			$set4sql .= ',uid=0,uid_hidden=' . intval($post_row['uid']) ;
 		} else if( empty( $hide_uid ) && ! empty( $post_row['uid_hidden'] ) ) {
-			$set4sql .= ",uid_hidden=0,uid=".intval($post_row['uid_hidden']) ;
+			$set4sql .= ',uid_hidden=0,uid=' . intval($post_row['uid_hidden']) ;
 		}
 
 		// update post specified post_id
 		d3forum_transact_make_post_history( $mydirname , $post_id ) ;
-		if( ! $db->query( "UPDATE ".$db->prefix($mydirname."_posts")." SET $set4sql WHERE post_id=$post_id" ) ) die( "DB ERROR IN UPDATE post" ) ;
+		if( ! $db->query('UPDATE ' . $db->prefix($mydirname . '_posts') . " SET $set4sql WHERE post_id=$post_id" ) ) die('DB ERROR IN UPDATE post') ;
 		d3forum_sync_topic( $mydirname , $topic_id , true , ! (boolean)$post_row['pid'] ) ;
 	} else if( $mode == 'reply' ) {
 		// reply
@@ -286,7 +286,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		}
 
 		// create post under specified post_id
-		if( ! $db->query( "INSERT INTO ".$db->prefix($mydirname."_posts")." SET $set4sql,pid=$pid,topic_id=$topic_id,post_time=UNIX_TIMESTAMP(),poster_ip='".addslashes(@$_SERVER['REMOTE_ADDR'])."'" ) ) die( "DB ERROR IN INSERT post" ) ;
+		if( ! $db->query('INSERT INTO ' . $db->prefix($mydirname . '_posts') . " SET $set4sql,pid=$pid,topic_id=$topic_id,post_time=UNIX_TIMESTAMP(),poster_ip='" . addslashes(@$_SERVER['REMOTE_ADDR']) . "'" ) ) die('DB ERROR IN INSERT post') ;
 		$post_id = $db->getInsertId() ;
 		d3forum_sync_topic( $mydirname , $topic_id ) ;
 	} else {
@@ -311,10 +311,10 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		}
 
 		// create topic and get a new topic_id
-		if( ! $db->query( "INSERT INTO ".$db->prefix($mydirname."_topics")." SET forum_id=$forum_id,topic_invisible=$topic_invisible,topic_external_link_id='".addslashes(@$external_link_id)."'" ) ) die( "DB ERROR IN INSERT topic" ) ;
+		if( ! $db->query('INSERT INTO ' . $db->prefix($mydirname . '_topics') . " SET forum_id=$forum_id,topic_invisible=$topic_invisible,topic_external_link_id='" . addslashes(@$external_link_id) . "'" ) ) die('DB ERROR IN INSERT topic') ;
 		$topic_id = $db->getInsertId() ;
 		// create post in the topic
-		if( ! $db->query( "INSERT INTO ".$db->prefix($mydirname."_posts")." SET $set4sql,topic_id=$topic_id,post_time=UNIX_TIMESTAMP(),poster_ip='".addslashes(@$_SERVER['REMOTE_ADDR'])."'" ) ) die( "DB ERROR IN INSERT post" ) ;
+		if( ! $db->query('INSERT INTO ' . $db->prefix($mydirname . '_posts') . " SET $set4sql,topic_id=$topic_id,post_time=UNIX_TIMESTAMP(),poster_ip='" . addslashes(@$_SERVER['REMOTE_ADDR']) . "'" ) ) die('DB ERROR IN INSERT post') ;
 		$post_id = $db->getInsertId() ;
 		d3forum_sync_topic( $mydirname , $topic_id , true , true ) ;
 	}
@@ -328,8 +328,8 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	// set u2t_marked
 	if( $uid && @$xoopsModuleConfig['allow_mark'] ) {
 		$u2t_marked = empty( $_POST['u2t_marked'] ) ? 0 : 1 ;
-		$db->query( "UPDATE ".$db->prefix($mydirname."_users2topics")." SET u2t_marked=$u2t_marked,u2t_time=UNIX_TIMESTAMP() WHERE uid=$uid AND topic_id=$topic_id" ) ;
-		if( ! $db->getAffectedRows() ) $db->query( "INSERT INTO ".$db->prefix($mydirname."_users2topics")." SET uid=$uid,topic_id=$topic_id,u2t_marked=$u2t_marked,u2t_time=UNIX_TIMESTAMP()" ) ;
+		$db->query('UPDATE ' . $db->prefix($mydirname . '_users2topics') . " SET u2t_marked=$u2t_marked,u2t_time=UNIX_TIMESTAMP() WHERE uid=$uid AND topic_id=$topic_id" ) ;
+		if( ! $db->getAffectedRows() ) $db->query('INSERT INTO ' . $db->prefix($mydirname . '_users2topics') . " SET uid=$uid,topic_id=$topic_id,u2t_marked=$u2t_marked,u2t_time=UNIX_TIMESTAMP()" ) ;
 	}
 
 		// naao from
@@ -407,15 +407,15 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 
 	// topic_solved of the topic
 	if( empty( $xoopsModuleConfig['use_solved'] ) ) {
-		$db->query( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_solved=1 WHERE topic_id=$topic_id" ) ;
+		$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=1 WHERE topic_id=$topic_id" ) ;
 	} else {
 		if( $isadminormod ) {
 			// adminormod can turn "solved" both on and off
 			$solved = empty( $_POST['solved'] ) ? 0 : 1 ;
-			$db->query( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_solved=$solved WHERE topic_id=$topic_id" ) ;
+			$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=$solved WHERE topic_id=$topic_id" ) ;
 		} else if( $mode != 'edit' ) {
 			// normal's post will be forced to turn solved off
-			$db->query( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_solved=0 WHERE topic_id=$topic_id" ) ;
+			$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=0 WHERE topic_id=$topic_id" ) ;
 		}
 	}
 
@@ -423,7 +423,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	if( ! empty( $xoopsModuleConfig['posts_per_topic'] ) ) {
 		if( $mode != 'edit' ) {
 			// normal's post will be forced to turn solved off
-			$db->query( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_locked=1 WHERE topic_id=$topic_id AND topic_posts_count>=".intval( $xoopsModuleConfig['posts_per_topic'] ) ) ;
+			$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_locked=1 WHERE topic_id=$topic_id AND topic_posts_count>=" . intval($xoopsModuleConfig['posts_per_topic'] ) ) ;
 		}
 	}
 

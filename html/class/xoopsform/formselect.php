@@ -157,9 +157,9 @@ class XoopsFormSelect extends XoopsFormElement
      * @param	string  $value  "value" attribute
      * @param	string  $name   "name" attribute
      */
-    public function addOption($value, $name="")
+    public function addOption($value, $name= '')
     {
-        if ($name != "") {
+        if ($name != '') {
             $this->_options[$value] = $name;
         } else {
             $this->_options[$value] = $value;
@@ -203,8 +203,8 @@ class XoopsFormSelect extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_select.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_select.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

@@ -550,8 +550,8 @@ class FormProcessByHtml
         }
         // 2) Tokenize the e-mail address by '@:'
         // Split it into sections to make life easier
-        $email_array = explode("@", $email);
-        $local_array = explode(".", $email_array[0]);
+        $email_array = explode('@', $email);
+        $local_array = explode('.', $email_array[0]);
 
         //3) loop through each and re-concatenate all to get two strings: the local part (before the mandatory '@') and the domain part
 
@@ -574,7 +574,7 @@ class FormProcessByHtml
 
         if (!preg_match("^\[?[0-9\.]+\]?$", $email_array[1])) {
             //8) If the local part was valid: check if domain is IP. If not, it should be valid domain name
-            $domain_array = explode(".", $email_array[1]);
+            $domain_array = explode('.', $email_array[1]);
 
             if (sizeof($domain_array) < 2) {
                 return false; // Not enough parts to domain

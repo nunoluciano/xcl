@@ -18,10 +18,10 @@ if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATETOPIC ) ;
 
 if( empty( $xoopsModuleConfig['use_solved'] ) ) {
 	// force topic_solved=1 if "solved" is disable
-	$db->queryF( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_solved=1 WHERE topic_id=$topic_id" ) ;
+	$db->queryF('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=1 WHERE topic_id=$topic_id" ) ;
 } else {
 	// flip topic_solved
-	$db->queryF( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_solved = ! topic_solved WHERE topic_id=$topic_id" ) ;
+	$db->queryF('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved = ! topic_solved WHERE topic_id=$topic_id" ) ;
 }
 
 $allowed_identifiers = ['post_id', 'topic_id', 'forum_id', 'cat_ids'];

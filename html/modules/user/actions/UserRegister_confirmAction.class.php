@@ -8,9 +8,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/forms/UserConfirmForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/UserRegisterEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/class/RegistMailBuilder.class.php";
+require_once XOOPS_MODULE_PATH . '/user/forms/UserConfirmForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/UserRegisterEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/class/RegistMailBuilder.class.php';
 
 /***
  * @internal
@@ -165,9 +165,9 @@ class User_UserRegister_confirmAction extends User_Action
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_register_confirm.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
-        $render->setAttribute("registForm", $this->mRegistForm);
+        $render->setTemplateName('user_register_confirm.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
+        $render->setAttribute('registForm', $this->mRegistForm);
     }
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
@@ -175,19 +175,19 @@ class User_UserRegister_confirmAction extends User_Action
         $activationType = $this->mConfig['activation_type'];
 
         if ($activationType == 0) {
-            $render->setTemplateName("user_register_finish.html");
-            $render->setAttribute("complete_message", _MD_USER_MESSAGE_YOURREGISTERED);
+            $render->setTemplateName('user_register_finish.html');
+            $render->setAttribute('complete_message', _MD_USER_MESSAGE_YOURREGISTERED);
         } elseif ($activationType == 1) {
             $controller->executeRedirect(XOOPS_URL . '/', 4, _MD_USER_MESSAGE_ACTLOGIN);
         } elseif ($activationType == 2) {
-            $render->setTemplateName("user_register_finish.html");
-            $render->setAttribute("complete_message", _MD_USER_MESSAGE_YOURREGISTERED2);
+            $render->setTemplateName('user_register_finish.html');
+            $render->setAttribute('complete_message', _MD_USER_MESSAGE_YOURREGISTERED2);
         } else {
             //
             // This case is never.
             //
-            $render->setTemplateName("user_register_finish.html");
-            $render->setAttribute("complete_message", _MD_USER_MESSAGE_YOURREGISTERED2);
+            $render->setTemplateName('user_register_finish.html');
+            $render->setAttribute('complete_message', _MD_USER_MESSAGE_YOURREGISTERED2);
         }
     }
 }

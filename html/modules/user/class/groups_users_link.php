@@ -27,9 +27,9 @@ class UserGroups_users_linkObject extends XoopsSimpleObject
 
 class UserGroups_users_linkHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "groups_users_link";
-    public $mPrimary = "linkid";
-    public $mClass = "UserGroups_users_linkObject";
+    public $mTable = 'groups_users_link';
+    public $mPrimary = 'linkid';
+    public $mClass = 'UserGroups_users_linkObject';
 
     public function isUserOfGroup($uid, $groupid)
     {

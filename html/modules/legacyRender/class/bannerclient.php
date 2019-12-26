@@ -95,9 +95,9 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 
 class LegacyRenderBannerclientHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "bannerclient";
-    public $mPrimary = "cid";
-    public $mClass = "LegacyRenderBannerclientObject";
+    public $mTable = 'bannerclient';
+    public $mPrimary = 'cid';
+    public $mClass = 'LegacyRenderBannerclientObject';
 
     // !Fix compatibility with XoopsObjectGenericHandler::delete(&$obj, $force = false)
     public function delete(&$obj, $force = false)

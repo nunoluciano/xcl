@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractFilterForm.class.php';
 
 define('BANNERCLIENT_SORT_KEY_CID', 1);
 define('BANNERCLIENT_SORT_KEY_NAME', 2);

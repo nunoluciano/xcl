@@ -238,7 +238,7 @@ class XCube_Controller
     public function executeForward($url, $time = 0, $message = null)
     {
         // check header output
-        header("location: " . $url);
+        header('location: ' . $url);
         exit();
     }
     
@@ -432,7 +432,7 @@ class XCube_Controller
      */
     public function _processPreload($path)
     {
-        $path = $path . "/";
+        $path = $path . '/';
         
         if (is_dir($path) && ($files = glob($path.'/*.class.php'))) {
             foreach ($files as $file) {

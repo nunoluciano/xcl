@@ -9,14 +9,14 @@
  */
 
 define('XOOPS_TOKEN_TIMEOUT', 0);
-define('XOOPS_TOKEN_PREFIX', "XOOPS_TOKEN_");
+define('XOOPS_TOKEN_PREFIX', 'XOOPS_TOKEN_');
 
 if (!defined('XOOPS_SALT')) {
     define('XOOPS_SALT', substr(md5(XOOPS_DB_PREFIX.XOOPS_DB_USER.XOOPS_ROOT_PATH), 5, 8));
 }
 
-define('XOOPS_TOKEN_SESSION_STRING', "X2_TOKEN");
-define('XOOPS_TOKEN_MULTI_SESSION_STRING', "X2_MULTI_TOKEN");
+define('XOOPS_TOKEN_SESSION_STRING', 'X2_TOKEN');
+define('XOOPS_TOKEN_MULTI_SESSION_STRING', 'X2_MULTI_TOKEN');
 
 define('XOOPS_TOKEN_DEFAULT', 'XOOPS_TOKEN_DEFAULT');
 
@@ -105,7 +105,7 @@ class XoopsToken
      */
     public function getTokenName()
     {
-        return XOOPS_TOKEN_PREFIX.$this->_name_."_".$this->_number_;
+        return XOOPS_TOKEN_PREFIX.$this->_name_ . '_' . $this->_number_;
     }
 
     /**
@@ -161,7 +161,7 @@ class XoopsToken
      */
     public function getUrl()
     {
-        return $this->getTokenName()."=".$this->getTokenValue();
+        return $this->getTokenName() . '=' . $this->getTokenValue();
     }
 
     /**
@@ -188,7 +188,7 @@ class XoopsTokenHandler
     /**
      * @access private
      */
-    public $_prefix ="";
+    public $_prefix = '';
 
     /**
      * Create XoopsToken instance, regist(keep to server), and returns it.
@@ -329,7 +329,7 @@ class XoopsMultiTokenHandler
     /**
      * @access private
      */
-    public $_prefix ="";
+    public $_prefix = '';
 
     public function &create($name, $timeout=XOOPS_TOKEN_TIMEOUT)
     {
@@ -411,9 +411,9 @@ class XoopsMultiTokenHandler
      */
     public function getRequestNumber($name)
     {
-        $str = XOOPS_TOKEN_PREFIX.$name."_";
+        $str = XOOPS_TOKEN_PREFIX.$name . '_';
         foreach ($_REQUEST as $key=>$val) {
-            if (preg_match("/".$str."(\d+)/", $key, $match)) {
+            if (preg_match('/' . $str . "(\d+)/", $key, $match)) {
                 return intval($match[1]);
             }
         }

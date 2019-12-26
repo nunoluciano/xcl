@@ -97,7 +97,7 @@ class XoopsXmlRpcTag
 
     public function &encode(&$text)
     {
-        $text = preg_replace(["/\&([a-z\d\#]+)\;/i", "/\&/", "/\#\|\|([a-z\d\#]+)\|\|\#/i"], ["#||\\1||#", "&amp;", "&\\1;"], str_replace(["<", ">"], ["&lt;", "&gt;"], $text));
+        $text = preg_replace(["/\&([a-z\d\#]+)\;/i", "/\&/", "/\#\|\|([a-z\d\#]+)\|\|\#/i"], ["#||\\1||#", '&amp;', "&\\1;"], str_replace(['<', '>'], ['&lt;', '&gt;'], $text));
         return $text;
     }
 
@@ -254,7 +254,7 @@ class XoopsXmlRpcDatetime extends XoopsXmlRpcTag
 
     public function render()
     {
-        return '<value><dateTime.iso8601>'.gmstrftime("%Y%m%dT%H:%M:%S", $this->_value).'</dateTime.iso8601></value>';
+        return '<value><dateTime.iso8601>'.gmstrftime('%Y%m%dT%H:%M:%S', $this->_value) . '</dateTime.iso8601></value>';
     }
 }
 

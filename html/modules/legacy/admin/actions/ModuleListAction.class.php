@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListFilterForm.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleListFilterForm.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleListForm.class.php';
 
 class Legacy_ModuleListAction extends Legacy_Action
 {
@@ -122,7 +122,7 @@ class Legacy_ModuleListAction extends Legacy_Action
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_list_confirm.html");
+        $render->setTemplateName('module_list_confirm.html');
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         
@@ -136,7 +136,7 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_list.html");
+        $render->setTemplateName('module_list.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         
         //

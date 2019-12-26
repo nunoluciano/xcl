@@ -14,9 +14,9 @@ $modversion['dirname'] = basename(dirname(__FILE__));
 $modversion['version'] = 2.3;
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';
-$modversion['credits'] = "XOOPS Cube Project";
-$modversion['help'] = "help.html";
-$modversion['license'] = "MIT LICENSE";
+$modversion['credits'] = 'XOOPS Cube Project';
+$modversion['help'] = 'help.html';
+$modversion['license'] = 'MIT LICENSE';
 $modversion['image']       = 'images/module_message.svg';
 $modversion['mcl_update'] = 'message';
 

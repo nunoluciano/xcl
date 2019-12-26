@@ -491,7 +491,7 @@ class XCube_BoolArrayProperty extends XCube_GenericArrayProperty
     //public function XCube_BoolArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_BoolProperty", $name);
+        parent::__construct('XCube_BoolProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_BoolProperty", $name);
     }
 }
@@ -520,7 +520,7 @@ class XCube_IntArrayProperty extends XCube_GenericArrayProperty
     //public function XCube_IntArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_IntProperty", $name);
+        parent::__construct('XCube_IntProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_IntProperty", $name);
     }
 }
@@ -549,7 +549,7 @@ class XCube_FloatArrayProperty extends XCube_GenericArrayProperty
     //public function XCube_FloatArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_FloatProperty", $name);
+        parent::__construct('XCube_FloatProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_FloatProperty", $name);
     }
 }
@@ -590,7 +590,7 @@ class XCube_StringArrayProperty extends XCube_GenericArrayProperty
     //public function XCube_StringArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_StringProperty", $name);
+        parent::__construct('XCube_StringProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_StringProperty", $name);
     }
 }
@@ -634,7 +634,7 @@ class XCube_TextArrayProperty extends XCube_GenericArrayProperty
     //public function XCube_TextArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_TextProperty", $name);
+        parent::__construct('XCube_TextProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_TextProperty", $name);
     }
 }
@@ -717,7 +717,7 @@ class XCube_FileArrayProperty extends XCube_GenericArrayProperty
     //public function XCube_FileArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_FileProperty", $name);
+        parent::__construct('XCube_FileProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_FileProperty", $name);
     }
     
@@ -770,7 +770,7 @@ class XCube_ImageFileArrayProperty extends XCube_FileArrayProperty
     //public function XCube_ImageFileArrayProperty($name)
     {
         // ! call parent::__construct() instead of parent::Controller()
-        parent::__construct("XCube_ImageFileProperty", $name);
+        parent::__construct('XCube_ImageFileProperty', $name);
         //parent::XCube_GenericArrayProperty("XCube_ImageFileProperty", $name);
     }
 }

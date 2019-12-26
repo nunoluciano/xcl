@@ -7,7 +7,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH."/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Xupdate_Admin_ThemeFinderInstallForm extends XCube_ActionForm
@@ -21,7 +21,7 @@ class Xupdate_Admin_ThemeFinderInstallForm extends XCube_ActionForm
     **/
         public function getTokenName()
         {
-            return "module.xupdate.Admin_ThemeFinderInstallForm.TOKEN";
+            return 'module.xupdate.Admin_ThemeFinderInstallForm.TOKEN';
         }
     /***
      * For displaying the confirm-page, don't show CSRF error.

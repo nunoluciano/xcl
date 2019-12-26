@@ -12,9 +12,9 @@
      exit();
  }
 
-require_once XOOPS_LEGACY_PATH."/admin/actions/AbstractModuleInstallAction.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
-require_once XOOPS_LEGACY_PATH."/admin/forms/ModuleInstallForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/actions/AbstractModuleInstallAction.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleInstallForm.class.php';
 
 /**
  * 
@@ -206,7 +206,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
             XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleInstall.Fail', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
         }
 
-        $renderer->setTemplateName("module_install_success.html");
+        $renderer->setTemplateName('module_install_success.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
         $renderer->setAttribute('log', $this->mInstaller->mLog->mMessages);
     }
@@ -219,7 +219,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("module_install.html");
+        $renderer->setTemplateName('module_install.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
         $renderer->setAttribute('actionForm', $this->mActionForm);
         $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2));
@@ -227,6 +227,6 @@ class Legacy_ModuleInstallAction extends Legacy_Action
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=InstallList");
+        $controller->executeForward('./index.php?action=InstallList');
     }
 }

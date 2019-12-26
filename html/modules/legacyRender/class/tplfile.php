@@ -103,9 +103,9 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
 
 class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "tplfile";
-    public $mPrimary = "tpl_id";
-    public $mClass = "LegacyRenderTplfileObject";
+    public $mTable = 'tplfile';
+    public $mPrimary = 'tpl_id';
+    public $mClass = 'LegacyRenderTplfileObject';
     
     public function insert(&$obj, $force = false)
     {

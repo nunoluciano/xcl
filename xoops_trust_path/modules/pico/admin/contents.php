@@ -41,7 +41,7 @@ if ($cat_id == SPECIAL_CAT_ID_ALL) {
 } else if ($cat_id == SPECIAL_CAT_ID_DELETED) {
 	$cat_title = _MD_PICO_DELETEDCONTENTS;
 } else {
-	list($cat_id, $cat_title) = $db->fetchRow($db->query("SELECT cat_id,cat_title FROM " . $db->prefix($mydirname . "_categories") . " WHERE cat_id=$cat_id"));
+	list($cat_id, $cat_title) = $db->fetchRow($db->query('SELECT cat_id,cat_title FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id"));
 	if (empty($cat_id)) {
 		$cat_id = 0;
 		$cat_title = _MD_PICO_TOP;
@@ -68,7 +68,7 @@ if (!empty($_POST['contents_update']) && !empty($_POST['weights'])) {
 		$show_in_navi = empty($_POST['show_in_navis'][$content_id]) ? 0 : 1;
 		$show_in_menu = empty($_POST['show_in_menus'][$content_id]) ? 0 : 1;
 		$allow_comment = empty($_POST['allow_comments'][$content_id]) ? 0 : 1;
-		$result = $db->query("UPDATE " . $db->prefix($mydirname . "_contents") . " SET weight=$weight,subject=$subject4sql,vpath=$vpath4sql,visible=$visible,show_in_navi=$show_in_navi,show_in_menu=$show_in_menu,allow_comment=$allow_comment WHERE content_id=$content_id");
+		$result = $db->query('UPDATE ' . $db->prefix($mydirname . '_contents') . " SET weight=$weight,subject=$subject4sql,vpath=$vpath4sql,visible=$visible,show_in_navi=$show_in_navi,show_in_menu=$show_in_menu,allow_comment=$allow_comment WHERE content_id=$content_id");
 		if (!$result) $errors[] = $content_id;
 	}
 	pico_sync_all($mydirname);
@@ -86,14 +86,14 @@ if (!empty($_POST['contents_move']) && !empty($_POST['action_selects']) && isset
 	// cat_id check
 	$dest_cat_id = intval($_POST['dest_cat_id']);
 	if ($dest_cat_id !== 0) {
-		list($count) = $db->fetchRow($db->query("SELECT COUNT(*) FROM " . $db->prefix($mydirname . "_categories") . " WHERE cat_id=$dest_cat_id"));
+		list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$dest_cat_id"));
 		if (empty($count)) die(_MD_PICO_ERR_READCATEGORY);
 	}
 
 	foreach ($_POST['action_selects'] as $content_id => $value) {
 		if (empty($value)) continue;
 		$content_id = intval($content_id);
-		$db->query("UPDATE " . $db->prefix($mydirname . "_contents") . " SET cat_id=$dest_cat_id WHERE content_id=$content_id");
+		$db->query('UPDATE ' . $db->prefix($mydirname . '_contents') . " SET cat_id=$dest_cat_id WHERE content_id=$content_id");
 	}
 	pico_sync_all($mydirname);
 
@@ -146,10 +146,22 @@ $cat_options = pico_common_get_cat_options($mydirname);
 
 // fetch contents
 if ($cat_id == SPECIAL_CAT_ID_DELETED) {
-	$ors = $db->query("SELECT oh.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,1 AS is_deleted  FROM " . $db->prefix($mydirname . "_content_histories") . " oh LEFT JOIN " . $db->prefix("users") . " up ON oh.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " um ON oh.modifier_uid=um.uid LEFT JOIN " . $db->prefix($mydirname . "_categories") . " c ON oh.cat_id=c.cat_id LEFT JOIN " . $db->prefix($mydirname . "_contents") . " o ON o.content_id=oh.content_id WHERE o.content_id IS NULL GROUP BY oh.content_id ORDER BY oh.modified_time DESC");
+	$ors = $db->query(
+        'SELECT oh.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,1 AS is_deleted  FROM '
+        . $db->prefix($mydirname . '_content_histories') . ' oh LEFT JOIN '
+        . $db->prefix('users') . ' up ON oh.poster_uid=up.uid LEFT JOIN '
+        . $db->prefix('users') . ' um ON oh.modifier_uid=um.uid LEFT JOIN '
+        . $db->prefix($mydirname . '_categories') . ' c ON oh.cat_id=c.cat_id LEFT JOIN '
+        . $db->prefix($mydirname . '_contents') . ' o ON o.content_id=oh.content_id WHERE o.content_id IS NULL GROUP BY oh.content_id ORDER BY oh.modified_time DESC'
+    );
 } else {
-	$whr_cat_id = $cat_id == SPECIAL_CAT_ID_ALL ? "1" : "o.cat_id=$cat_id";
-	$ors = $db->query("SELECT o.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,0 AS is_deleted  FROM " . $db->prefix($mydirname . "_contents") . " o LEFT JOIN " . $db->prefix("users") . " up ON o.poster_uid=up.uid LEFT JOIN " . $db->prefix("users") . " um ON o.modifier_uid=um.uid LEFT JOIN " . $db->prefix($mydirname . "_categories") . " c ON o.cat_id=c.cat_id WHERE ($whr_cat_id) ORDER BY c.cat_depth_in_tree,o.weight,o.content_id");
+	$whr_cat_id = $cat_id == SPECIAL_CAT_ID_ALL ? '1' : "o.cat_id=$cat_id";
+	$ors = $db->query(
+        'SELECT o.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,0 AS is_deleted  FROM '
+        . $db->prefix($mydirname . '_contents') . ' o LEFT JOIN '
+        . $db->prefix('users') . ' up ON o.poster_uid=up.uid LEFT JOIN '
+        . $db->prefix('users') . ' um ON o.modifier_uid=um.uid LEFT JOIN '
+        . $db->prefix($mydirname . '_categories') . " c ON o.cat_id=c.cat_id WHERE ($whr_cat_id) ORDER BY c.cat_depth_in_tree,o.weight,o.content_id");
 }
 $contents4assign = [];
 while ($content_row = $db->fetchArray($ors)) {

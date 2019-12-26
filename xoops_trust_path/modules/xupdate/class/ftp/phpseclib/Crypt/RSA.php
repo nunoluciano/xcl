@@ -843,7 +843,7 @@ class Crypt_RSA
                     $public
                 );
                 $public     = base64_encode($public);
-                $key        .= "Public-Lines: " . ((strlen($public) + 63) >> 6) . "\r\n";
+                $key        .= 'Public-Lines: ' . ((strlen($public) + 63) >> 6) . "\r\n";
                 $key        .= chunk_split($public, 64);
                 $private    = pack(
                     'Na*Na*Na*Na*',

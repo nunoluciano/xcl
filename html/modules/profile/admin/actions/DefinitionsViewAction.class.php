@@ -9,7 +9,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractViewAction.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractViewAction.class.php';
 
 class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
 {
@@ -26,7 +26,7 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
      */
     public function &_getHandler()
     {
-        $handler =& $this->mAsset->load('handler', "definitions");
+        $handler =& $this->mAsset->load('handler', 'definitions');
         return $handler;
     }
 
@@ -39,7 +39,7 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
     // public function executeViewSuccess(&$render)
     public function executeViewSuccess(&$controller, &$render)
     {
-        $render->setTemplateName("definitions_view.html");
+        $render->setTemplateName('definitions_view.html');
         #cubson::lazy_load('definitions', $this->mObject);
         $render->setAttribute('object', $this->mObject);
     }
@@ -50,6 +50,6 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
      */
     public function executeViewError(&$render)
     {
-        $this->mRoot->mController->executeRedirect("./index.php?action=DefinitionsList", 1, _MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND);
+        $this->mRoot->mController->executeRedirect('./index.php?action=DefinitionsList', 1, _MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND);
     }
 }

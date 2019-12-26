@@ -77,7 +77,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         
         $tempDir = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/');
         
-        $this->isSafeMode = (ini_get('safe_mode') == "1" || ! Xupdate_Utils::checkMakeDirectory($tempDir));
+        $this->isSafeMode = (ini_get('safe_mode') == '1' || ! Xupdate_Utils::checkMakeDirectory($tempDir));
         
         $this->loginCheckFile = $tempDir.'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
         if (! empty($this->mod_config['php_perm'])) {
@@ -127,21 +127,21 @@ class Xupdate_Ftp extends Xupdate_Ftp_
 
     public function uploadNakami($sourcePath, $targetPath)
     {
-        $this->mes .= " start FTP put (normal mode) form `".htmlspecialchars(substr($sourcePath, strlen($this->exploredDirPath) + 1), ENT_QUOTES, _CHARSET)."` to `".htmlspecialchars($targetPath, ENT_QUOTES, _CHARSET)."` ..<br>\n";
+        $this->mes .= ' start FTP put (normal mode) form `' . htmlspecialchars(substr($sourcePath, strlen($this->exploredDirPath) + 1), ENT_QUOTES, _CHARSET) . '` to `' . htmlspecialchars($targetPath, ENT_QUOTES, _CHARSET) . "` ..<br>\n";
         $result = $this->_ftpPutNakami($sourcePath, $targetPath);
         return $result;
     }
     //for module rename uploading
     public function uploadNakami_To_module($sourcePath, $targetPath, $trust_dirname, $dirname)
     {
-        $this->mes .= " start FTP put (replicate module mode) ".htmlspecialchars($targetPath."->".$dirname, ENT_QUOTES, _CHARSET)." ..<br>\n";
+        $this->mes .= ' start FTP put (replicate module mode) ' . htmlspecialchars($targetPath . '->' . $dirname, ENT_QUOTES, _CHARSET) . " ..<br>\n";
         $result = $this->_ftpPutNakami($sourcePath, $targetPath, $trust_dirname, $dirname);
         return $result;
     }
     //for other than module uploading
     public function uploadNakami_OtherThan_module($sourcePath, $targetPath, $trust_dirname)
     {
-        $this->mes .= " start FTP put (replicate misc mode) ".htmlspecialchars($targetPath, ENT_QUOTES, _CHARSET)." ..<br>\n";
+        $this->mes .= ' start FTP put (replicate misc mode) ' . htmlspecialchars($targetPath, ENT_QUOTES, _CHARSET) . " ..<br>\n";
         $result = $this->_ftpPutNakami($sourcePath, $targetPath, $trust_dirname);
         return $result;
     }
@@ -336,7 +336,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
             return $ftp_root ;
         }
 
-        $xoops_root_path = str_replace("\\", "/", $xoops_root_path);
+        $xoops_root_path = str_replace("\\", '/', $xoops_root_path);
         $path = explode('/', $xoops_root_path);
 
         $current_path = '';
@@ -368,7 +368,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     {
         if ($handle = opendir((string)$dir)) {
             while (false !== ($item = readdir($handle))) {
-                if ($item !== "." && $item !== "..") {
+                if ($item !== '.' && $item !== '..') {
                     if (is_dir("$dir/$item")) {
                         $this->removeDirectory("$dir/$item");
                     } else {

@@ -39,14 +39,14 @@ class LegacyThemeHandler
 
         if ($handler=opendir(XOOPS_THEME_PATH)) {
             while (($dir=readdir($handler))!==false) {
-                if ($dir=="." || $dir=="..") {
+                if ($dir == '.' || $dir == '..') {
                     continue;
                 }
 
-                $themeDir=XOOPS_THEME_PATH."/".$dir;
+                $themeDir= XOOPS_THEME_PATH . '/' . $dir;
                 if (is_dir($themeDir)) {
                     $manifesto = [];
-                    if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
+                    if (file_exists($mnfFile = $themeDir . '/manifesto.ini.php')) {
                         $iniHandler = new XCube_IniHandler($mnfFile, true);
                         $manifesto = $iniHandler->getAllConfig();
                     }
@@ -55,11 +55,11 @@ class LegacyThemeHandler
                         //
                         // If this system can use this theme, add this to list.
                         //
-                        if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && $manifesto['Manifesto']['Depends'] == "Legacy_RenderSystem") {
+                        if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && $manifesto['Manifesto']['Depends'] == 'Legacy_RenderSystem') {
                             $this->_mThemeList[]=new LegacyTheme($dir, $manifesto);
                         }
                     } else {
-                        $file=$themeDir."/theme.html";
+                        $file= $themeDir . '/theme.html';
                         if (file_exists($file)) {
                             $this->_mThemeList[]=new LegacyTheme($dir);
                         }

@@ -76,7 +76,7 @@ class Legacy_BackendAction extends Legacy_Action
         
         $renderTarget =& $renderSystem->createRenderTarget('main');
 
-        $renderTarget->setTemplateName("legacy_rss.html");
+        $renderTarget->setTemplateName('legacy_rss.html');
         
         $renderTarget->setAttribute('channel_title', $xoopsConfig['sitename']);
         $renderTarget->setAttribute('channel_link', XOOPS_URL . '/');

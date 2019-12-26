@@ -8,10 +8,11 @@ eval('
 
 function ' . $mydirname . '_global_search( $keywords , $andor , $limit , $offset , $uid )
 {
-	return pico_global_search_base( "' . $mydirname . '" , $keywords , $andor , $limit , $offset , $uid ) ;
+	return pico_global_search_base( \'' . $mydirname . '\' , $keywords , $andor , $limit , $offset , $uid ) ;
 }
 
-');
+'
+);
 
 
 if (!function_exists('pico_global_search_base')) {
@@ -48,19 +49,19 @@ if (!function_exists('pico_global_search_base')) {
 		// where by keywords
 		if (is_array($keywords) && count($keywords) > 0) {
 			switch (strtolower($andor)) {
-				case "and":
-					$whr_kw = "";
+				case 'and':
+					$whr_kw = '';
 					foreach ($keywords as $keyword) {
 						$whr_kw .= "(`for_search` LIKE '%$keyword%') AND ";
 					}
-					$whr_kw .= "1";
+					$whr_kw .= '1';
 					break;
-				case "or":
-					$whr_kw = "";
+				case 'or':
+					$whr_kw = '';
 					foreach ($keywords as $keyword) {
 						$whr_kw .= "(`for_search` LIKE '%$keyword%') OR ";
 					}
-					$whr_kw .= "0";
+					$whr_kw .= '0';
 					break;
 				default:
 					$whr_kw = "(`for_search` LIKE '%$keywords[0]%')";

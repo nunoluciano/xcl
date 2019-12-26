@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
 
 class Legacy_ModuleUninstaller
 {
@@ -52,7 +52,7 @@ class Legacy_ModuleUninstaller
     {
         $this->mLog =new Legacy_ModuleInstallLog();
         $this->m_fireNotifyUninstallTemplateBegun =new XCube_Delegate();
-        $this->m_fireNotifyUninstallTemplateBegun->register("Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun");
+        $this->m_fireNotifyUninstallTemplateBegun->register('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun');
     }
     
     /**
@@ -118,7 +118,7 @@ class Legacy_ModuleUninstaller
                     $t_tableName = $db->prefix($table);
                 }
                 
-                $sql = "DROP TABLE " . $t_tableName;
+                $sql = 'DROP TABLE ' . $t_tableName;
                 
                 if ($db->query($sql)) {
                     $this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_DROP_TABLE, $t_tableName));
@@ -169,10 +169,10 @@ class Legacy_ModuleUninstaller
     {
         $installScript = trim($this->_mXoopsModule->getInfo('onUninstall'));
         if ($installScript != false) {
-            require_once XOOPS_MODULE_PATH . "/" . $this->_mXoopsModule->get('dirname') . "/" . $installScript;
+            require_once XOOPS_MODULE_PATH . '/' . $this->_mXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_uninstall_' . $this->_mXoopsModule->get('dirname');
             
-            if (!preg_match("/^[a-zA-Z_][a-zA-Z0-9_]*$/", $funcName)) {
+            if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $funcName)) {
                 $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
                 return;
             }

@@ -36,9 +36,9 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
 require_once XOOPS_ROOT_PATH . '/header.php';
-require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/CommentEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/CommentEditForm.class.php';
 
 //
 // Load message resource
@@ -46,7 +46,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/forms/CommentEditForm.class.php";
 $t_root =& XCube_Root::getSingleton();
 
 $langManager =& $t_root->getLanguageManager();
-$langManager->loadModuleMessageCatalog("legacy");
+$langManager->loadModuleMessageCatalog('legacy');
 
 if ('system' != $xoopsModule->getVar('dirname') && XOOPS_COMMENT_APPROVENONE == $xoopsModuleConfig['com_rule']) {
     exit();
@@ -107,12 +107,12 @@ if ($xoopsModule->getVar('dirname') != 'system') {
     $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
     $renderTarget =& $renderSystem->createRenderTarget('main');
     
-    $renderTarget->setTemplateName("legacy_comment_edit.html");
+    $renderTarget->setTemplateName('legacy_comment_edit.html');
 
-    $renderTarget->setAttribute("actionForm", $actionForm);
-    $renderTarget->setAttribute("subjectIcons", $subjectIcons);
-    $renderTarget->setAttribute("xoopsModuleConfig", $xoopsModuleConfig);
-    $renderTarget->setAttribute("com_order", $com_order);
+    $renderTarget->setAttribute('actionForm', $actionForm);
+    $renderTarget->setAttribute('subjectIcons', $subjectIcons);
+    $renderTarget->setAttribute('xoopsModuleConfig', $xoopsModuleConfig);
+    $renderTarget->setAttribute('com_order', $com_order);
     
     //
     // Rendering

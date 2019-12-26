@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/ImageUploadForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/ImageUploadForm.class.php';
 
 class Legacy_ImageAdminCreateForm extends Legacy_ImageUploadForm
 {
@@ -22,7 +22,7 @@ class Legacy_ImageAdminCreateForm extends Legacy_ImageUploadForm
     
     public function getTokenName()
     {
-        return "module.legacy.ImageAdminEditForm.TOKEN" . $this->get('image_id');
+        return 'module.legacy.ImageAdminEditForm.TOKEN' . $this->get('image_id');
     }
 
     public function prepare()

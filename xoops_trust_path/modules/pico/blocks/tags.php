@@ -30,14 +30,14 @@ function b_pico_tags_show($options)
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 
 	// sql
-	$sql = "SELECT label,count FROM " . $db->prefix($mydirname . "_tags") . " ORDER BY $sqlorder LIMIT $limit";
+	$sql = 'SELECT label,count FROM ' . $db->prefix($mydirname . '_tags') . " ORDER BY $sqlorder LIMIT $limit";
 	$result = $db->query($sql);
 	if ($sqlorder != $listorder) {
 		$labels4sql = [];
 		while (list($label,) = $db->fetchRow($result)) {
 			$labels4sql[] = "'" . addslashes($label) . "'";
 		}
-		$sql = "SELECT label,count FROM " . $db->prefix($mydirname . "_tags") . " WHERE label IN (" . implode(",", $labels4sql) . ") ORDER BY $listorder";
+		$sql = 'SELECT label,count FROM ' . $db->prefix($mydirname . '_tags') . ' WHERE label IN (' . implode(',', $labels4sql) . ") ORDER BY $listorder";
 		$result = $db->query($sql);
 	}
 

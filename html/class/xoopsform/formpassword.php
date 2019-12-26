@@ -85,7 +85,7 @@ class XoopsFormPassword extends XoopsFormElement
      * @param string $value           Initial value of the field.
      *                                <b>Warning:</b> this is readable in cleartext in the page's source!
      */
-    public function __construct($caption, $name, $size, $maxlength, $value="")
+    public function __construct($caption, $name, $size, $maxlength, $value= '')
     {
         $this->setCaption($caption);
         $this->setName($name);
@@ -93,7 +93,7 @@ class XoopsFormPassword extends XoopsFormElement
         $this->_maxlength = intval($maxlength);
         $this->setValue($value);
     }
-    public function XoopsFormPassword($caption, $name, $size, $maxlength, $value="")
+    public function XoopsFormPassword($caption, $name, $size, $maxlength, $value= '')
     {
         return self::__construct($caption, $name, $size, $maxlength, $value);
     }
@@ -152,8 +152,8 @@ class XoopsFormPassword extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_password.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_password.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

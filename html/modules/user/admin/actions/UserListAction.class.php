@@ -8,9 +8,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserListForm.class.php';
 
 class User_UserListAction extends User_AbstractListAction
 {
@@ -51,14 +51,14 @@ class User_UserListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserList";
+        return './index.php?action=UserList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('user_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
@@ -157,7 +157,7 @@ class User_UserListAction extends User_AbstractListAction
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_list_confirm.html");
+        $render->setTemplateName('user_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         

@@ -50,12 +50,12 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 
     // data for table 'banner'
 
-    $dbm->insert("banner", " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '".XOOPS_URL."/images/banners/banner.png', 'http://xoopscube.org/', 1008813250, '')");
+    $dbm->insert('banner', " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '" . XOOPS_URL . "/images/banners/banner.png', 'http://xoopscube.org/', 1008813250, '')");
 
     // default theme
 
     $time = time();
-    $dbm->insert('tplset', " VALUES (1, 'default', 'XOOPS Cube Default Template Set', '', ".$time.")");
+    $dbm->insert('tplset', " VALUES (1, 'default', 'XOOPS Cube Default Template Set', '', ".$time . ')');
 
     // data for table 'config'
 
@@ -118,8 +118,8 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 
     // data for table 'groups_users_link'
 
-    $dbm->insert('groups_users_link', " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 1)");
-    $dbm->insert('groups_users_link', " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 1)");
+    $dbm->insert('groups_users_link', ' VALUES (0, ' . $gruops['XOOPS_GROUP_ADMIN'] . ', 1)');
+    $dbm->insert('groups_users_link', ' VALUES (0, ' . $gruops['XOOPS_GROUP_USERS'] . ', 1)');
 
 /*
     // install modules
@@ -215,7 +215,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
     if (isset($modversion['hasMain']) && $modversion['hasMain'] == 1) {
         $hasmain = 1;
     }
-    $dbm->insert("modules", " VALUES (${mid}, '" . constant($module_name) . "', 100, ".$time.", 0, 1, '${module}', ${hasmain}, 1, 0, ${hasconfig}, 0, 0)");
+    $dbm->insert('modules', " VALUES (${mid}, '" . constant($module_name) . "', 100, " . $time . ", 0, 1, '${module}', ${hasmain}, 1, 0, ${hasconfig}, 0, 0)");
 
     //
     // Database
@@ -228,15 +228,15 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
     if (is_array($modversion['templates']) && count($modversion['templates']) > 0) {
         foreach ($modversion['templates'] as $tplfile) {
             if ($fp = fopen("../modules/${module}/templates/".$tplfile['file'], 'r')) {
-                $newtplid = $dbm->insert('tplfile', " VALUES (0, ${mid}, '${module}', 'default', '".addslashes($tplfile['file'])."', '".addslashes($tplfile['description'])."', ".$time.", ".$time.", 'module')");
+                $newtplid = $dbm->insert('tplfile', " VALUES (0, ${mid}, '${module}', 'default', '".addslashes($tplfile['file'])."', '".addslashes($tplfile['description'])."', ".$time . ', ' . $time . ", 'module')");
                 //$newtplid = $xoopsDB->getInsertId();
                 if (filesize("../modules/${module}/templates/".$tplfile['file']) > 0) {
                     $tplsource = fread($fp, filesize("../modules/${module}/templates/".$tplfile['file']));
                 } else {
-                    $tplsource = "";
+                    $tplsource = '';
                 }
                 fclose($fp);
-                $dbm->insert('tplsource', " (tpl_id, tpl_source) VALUES (".$newtplid.", '".addslashes($tplsource)."')");
+                $dbm->insert('tplsource', ' (tpl_id, tpl_source) VALUES (' . $newtplid . ", '" . addslashes($tplsource) . "')");
             }
         }
     }
@@ -254,22 +254,23 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
                 }
                 $options = !isset($newblock['options']) ? '' : trim($newblock['options']);
                 $edit_func = !isset($newblock['edit_func']) ? '' : trim($newblock['edit_func']);
-                $newbid = $dbm->insert('newblocks', " VALUES (0, ${mid}, ".$func_num.", '".addslashes($options)."', '".addslashes($newblock['name'])."', '".addslashes($newblock['name'])."', '', 0, 0, ".$visible.", 'S', 'H', 1, '${module}', '".addslashes($newblock['file'])."', '".addslashes($newblock['show_func'])."', '".addslashes($edit_func)."', '".addslashes($newblock['template'])."', 0, ".$time.")");
+                $newbid = $dbm->insert('newblocks', " VALUES (0, ${mid}, ".$func_num.", '".addslashes($options)."', '".addslashes($newblock['name'])."', '".addslashes($newblock['name'])."', '', 0, 0, ".$visible.", 'S', 'H', 1, '${module}', '".addslashes($newblock['file'])."', '".addslashes($newblock['show_func'])."', '".addslashes($edit_func)."', '".addslashes($newblock['template'])."', 0, ".$time . ')'
+                );
                 //$newbid = $xoopsDB->getInsertId();
-                $newtplid = $dbm->insert('tplfile', " VALUES (0, ".$newbid.", '${module}', 'default', '".addslashes($newblock['template'])."', '".addslashes($newblock['description'])."', ".$time.", ".$time.", 'block')");
+                $newtplid = $dbm->insert('tplfile', ' VALUES (0, ' . $newbid . ", '${module}', 'default', '" . addslashes($newblock['template']) . "', '" . addslashes($newblock['description']) . "', " . $time . ', ' . $time . ", 'block')");
                 //$newtplid = $xoopsDB->getInsertId();
                 if (filesize("../modules/${module}/templates/blocks/".$newblock['template']) > 0) {
                     $tplsource = fread($fp, filesize("../modules/${module}/templates/blocks/".$newblock['template']));
                 } else {
-                    $tplsource = "";
+                    $tplsource = '';
                 }
                 fclose($fp);
-                $dbm->insert('tplsource', " (tpl_id, tpl_source) VALUES (".$newtplid.", '".addslashes($tplsource)."')");
+                $dbm->insert('tplsource', ' (tpl_id, tpl_source) VALUES (' . $newtplid . ", '" . addslashes($tplsource) . "')");
             
-                $dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_ADMIN'].", ".$newbid.", 1, 'block_read')");
+                $dbm->insert('group_permission', ' VALUES (0, ' . $groups['XOOPS_GROUP_ADMIN'] . ', ' . $newbid . ", 1, 'block_read')");
                 //$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", ".$newbid.", 'xoops_blockadmiin')");
-                $dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_USERS'].", ".$newbid.", 1, 'block_read')");
-                $dbm->insert("group_permission", " VALUES (0, ".$groups['XOOPS_GROUP_ANONYMOUS'].", ".$newbid.", 1, 'block_read')");
+                $dbm->insert('group_permission', ' VALUES (0, ' . $groups['XOOPS_GROUP_USERS'] . ', ' . $newbid . ", 1, 'block_read')");
+                $dbm->insert('group_permission', ' VALUES (0, ' . $groups['XOOPS_GROUP_ANONYMOUS'] . ', ' . $newbid . ", 1, 'block_read')");
             }
         }
     }
@@ -290,15 +291,15 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
             $valuetype = $configInfo['valuetype'];
             $default = $configInfo['default'];
             
-            if ($valuetype == "array") {
+            if ($valuetype == 'array') {
                 $default = serialize(explode('|', trim($default)));
             }
                 
-            $conf_id = $dbm->insert("config", " VALUES (0, ${mid}, 0, '${name}', '${title}', '${default}', '${desc}', '${formtype}', '${valuetype}', ${count})");
+            $conf_id = $dbm->insert('config', " VALUES (0, ${mid}, 0, '${name}', '${title}', '${default}', '${desc}', '${formtype}', '${valuetype}', ${count})");
     
             if (isset($configInfo['options']) && is_array($configInfo['options'])) {
                 foreach ($configInfo['options'] as $key => $value) {
-                    $dbm->insert("configoption", " VALUES (0, '${key}', '${value}', ${conf_id})");
+                    $dbm->insert('configoption', " VALUES (0, '${key}', '${value}', ${conf_id})");
                 }
             }
             

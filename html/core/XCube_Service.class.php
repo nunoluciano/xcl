@@ -45,18 +45,18 @@ class XCube_Service
      * @protected
      * @brief string
      */
-    public $mServiceName = "";
+    public $mServiceName = '';
     
     /**
      * @protected
      * @brief string
      */
-    public $mNameSpace = "";
+    public $mNameSpace = '';
     
     /**
      * @protected
      */
-    public $mClassName = "XCube_Service";
+    public $mClassName = 'XCube_Service';
     
     /**
      * @protected
@@ -180,7 +180,7 @@ class XCube_ServiceClient extends XCube_AbstractServiceClient
         $this->mClientErrorStr = null;
         
         if (!is_object($this->mService)) {
-            $this->mClientErrorStr = "This instance is not connected to service";
+            $this->mClientErrorStr = 'This instance is not connected to service';
             return null;
         }
         

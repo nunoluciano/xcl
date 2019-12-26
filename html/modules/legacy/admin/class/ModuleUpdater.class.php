@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
 
 /**
  * @brief The framework for the phased update.
@@ -266,9 +266,9 @@ class Legacy_ModulePhasedUpgrader
     {
         $handler =& xoops_gethandler('module');
         if ($handler->insert($module)) {
-            $this->mLog->addReport("XoopsModule is updated.");
+            $this->mLog->addReport('XoopsModule is updated.');
         } else {
-            $this->mLog->addError("Could not update module information.");
+            $this->mLog->addError('Could not update module information.');
         }
     }
     
@@ -276,7 +276,7 @@ class Legacy_ModulePhasedUpgrader
     {
         $installScript = trim($this->_mTargetXoopsModule->getInfo('onUpdate'));
         if ($installScript != false) {
-            require_once XOOPS_MODULE_PATH . "/" . $this->_mTargetXoopsModule->get('dirname') . "/" . $installScript;
+            require_once XOOPS_MODULE_PATH . '/' . $this->_mTargetXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_update_' . $this->_mTargetXoopsModule->get('dirname');
             if (function_exists($funcName)) {
                 // Because X2 can use reference parameter, Legacy doesn't use the following code;'
@@ -284,7 +284,7 @@ class Legacy_ModulePhasedUpgrader
 
                 $result = $funcName($this->_mTargetXoopsModule, $this->getCurrentVersion(), new XCube_Ref($this->mLog));
                 if (!$result) {
-                    $this->mLog->addError("Failed to execute " . $funcName);
+                    $this->mLog->addError('Failed to execute ' . $funcName);
                 }
             }
         }

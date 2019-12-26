@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('MAILJOB_SORT_KEY_MAILJOB_ID', 1);
 define('MAILJOB_SORT_KEY_TITLE', 2);

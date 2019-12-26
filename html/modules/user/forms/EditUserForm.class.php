@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/forms/AbstractUserEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/forms/AbstractUserEditForm.class.php';
 
 /***
  * @internal
@@ -13,7 +13,7 @@ class User_EditUserForm extends User_AbstractUserEditForm
 {
     public function getTokenName()
     {
-        return "Module.User.EditUserForm.Token." . $this->get('uid');
+        return 'Module.User.EditUserForm.Token.' . $this->get('uid');
     }
     
     /**
@@ -60,42 +60,42 @@ class User_EditUserForm extends User_AbstractUserEditForm
         //
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['name']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['name']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_NAME, "60");
-        $this->mFieldProperties['name']->addVar("maxlength", 60);
+        $this->mFieldProperties['name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_NAME, '60');
+        $this->mFieldProperties['name']->addVar('maxlength', 60);
 
         if ($this->mConfig['allow_chgmail']) {
             $this->mFieldProperties['email'] =new XCube_FieldProperty($this);
             $this->mFieldProperties['email']->setDependsByArray(['required', 'maxlength', 'email']);
-            $this->mFieldProperties['email']->addMessage("required", _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_EMAIL, "60");
-            $this->mFieldProperties['email']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_EMAIL, "60");
-            $this->mFieldProperties['email']->addVar("maxlength", 60);
+            $this->mFieldProperties['email']->addMessage('required', _MD_USER_ERROR_REQUIRED, _MD_USER_LANG_EMAIL, '60');
+            $this->mFieldProperties['email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_EMAIL, '60');
+            $this->mFieldProperties['email']->addVar('maxlength', 60);
             $this->mFieldProperties['email']->addMessage('email', _MD_USER_ERROR_EMAIL, _MD_USER_LANG_EMAIL);
         }
 
         $this->mFieldProperties['url'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['url']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['url']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_WEBSITE, "100");
-        $this->mFieldProperties['url']->addVar("maxlength", 100);
+        $this->mFieldProperties['url']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_WEBSITE, '100');
+        $this->mFieldProperties['url']->addVar('maxlength', 100);
 
         $this->mFieldProperties['user_icq'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['user_icq']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['user_icq']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_ICQ, "15");
-        $this->mFieldProperties['user_icq']->addVar("maxlength", 15);
+        $this->mFieldProperties['user_icq']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_ICQ, '15');
+        $this->mFieldProperties['user_icq']->addVar('maxlength', 15);
 
         $this->mFieldProperties['user_from'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['user_from']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['user_from']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_FROM, "100");
-        $this->mFieldProperties['user_from']->addVar("maxlength", 100);
+        $this->mFieldProperties['user_from']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_FROM, '100');
+        $this->mFieldProperties['user_from']->addVar('maxlength', 100);
 
         $this->mFieldProperties['user_aim'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['user_aim']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['user_aim']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_AIM, "18");
-        $this->mFieldProperties['user_aim']->addVar("maxlength", 18);
+        $this->mFieldProperties['user_aim']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_AIM, '18');
+        $this->mFieldProperties['user_aim']->addVar('maxlength', 18);
 
         $this->mFieldProperties['user_msnm'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['user_msnm']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['user_msnm']->addMessage("maxlength", _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_MSNM, "100");
-        $this->mFieldProperties['user_msnm']->addVar("maxlength", 100);
+        $this->mFieldProperties['user_msnm']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _MD_USER_LANG_USER_MSNM, '100');
+        $this->mFieldProperties['user_msnm']->addVar('maxlength', 100);
         
         $this->mFieldProperties['pass'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['pass']->setDependsByArray(['minlength', 'maxlength']);

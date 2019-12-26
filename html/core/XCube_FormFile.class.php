@@ -9,7 +9,7 @@
  */
 
 //define("XCUBE_FORMFILE_PREVMASK", "0022");
-define("XCUBE_FORMFILE_CHMOD", 0644);
+define('XCUBE_FORMFILE_CHMOD', 0644);
 
 /**
  * WARNING:
@@ -164,7 +164,7 @@ class XCube_FormFile
      */
     public function setBodyName($bodyname)
     {
-        $this->setFileName($bodyname.".".$this->getExtension());
+        $this->setFileName($bodyname . '.' . $this->getExtension());
     }
 
     /**
@@ -187,7 +187,7 @@ class XCube_FormFile
      */
     public function setRandomToBodyName($prefix, $salt='')
     {
-        $filename = $prefix . $this->_getRandomString($salt) . "." . $this->getExtension();
+        $filename = $prefix . $this->_getRandomString($salt) . '.' . $this->getExtension();
         $this->setFileName($filename);
     }
 
@@ -226,11 +226,11 @@ class XCube_FormFile
      */
     public function saveAs($file)
     {
-        $destFile = "";
+        $destFile = '';
         if (preg_match("#\/$#", $file)) {
             $destFile = $file . $this->getFileName();
         } elseif (is_dir($file)) {
-            $destFile = $file . "/" . $this->getFileName();
+            $destFile = $file . '/' . $this->getFileName();
         } else {
             $destFile = $file;
         }
@@ -326,15 +326,15 @@ class XCube_FormImageFile extends XCube_FormFile
 
         switch ($type) {
             case IMAGETYPE_GIF:
-                $this->setExtension("gif");
+                $this->setExtension('gif');
                 break;
 
             case IMAGETYPE_JPEG:
-                $this->setExtension("jpg");
+                $this->setExtension('jpg');
                 break;
 
             case IMAGETYPE_PNG:
-                $this->setExtension("png");
+                $this->setExtension('png');
                 break;
 
             default:

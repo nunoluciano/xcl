@@ -64,7 +64,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->mes.= "Binary mode FAILS!<br />\n";
         }//bugfix 'FTP_BINARY'->FTP_BINARY
 
-        $this->mes.= "PWD:";
+        $this->mes.= 'PWD:';
         $this->pwd();
         return true;
     }
@@ -74,34 +74,34 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         //	Parses 1 line like:		"drwxrwx---  2 owner group 4096 Apr 23 14:57 text"
         if (preg_match("/^([-ld])([rwxst-]+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+(\d+)\s+(\w{3})\s+(\d+)\s+([\:\d]+)\s+(.+)$/i", $list, $ret)) {
             $v= [
-                "type"    => ($ret[1]=="-"?"f":$ret[1]),
-                "perms"    => 0,
-                "inode"    => $ret[3],
-                "owner"    => $ret[4],
-                "group"    => $ret[5],
-                "size"    => $ret[6],
-                "date"    => $ret[7]." ".$ret[8]." ".$ret[9],
-                "name"    => $ret[10]
+                'type'  => ($ret[1] == '-' ? 'f' : $ret[1]),
+                'perms' => 0,
+                'inode' => $ret[3],
+                'owner' => $ret[4],
+                'group' => $ret[5],
+                'size'  => $ret[6],
+                'date'  => $ret[7] . ' ' . $ret[8] . ' ' . $ret[9],
+                'name'  => $ret[10]
             ];
-            $bad= ["(?)"];
-            if (in_array($v["owner"], $bad)) {
-                $v["owner"]=null;
+            $bad= ['(?)'];
+            if (in_array($v['owner'], $bad)) {
+                $v['owner'] =null;
             }
-            if (in_array($v["group"], $bad)) {
-                $v["group"]=null;
+            if (in_array($v['group'], $bad)) {
+                $v['group'] =null;
             }
-            $v["perms"]+=00400*(int)($ret[2]{0} === "r");
-            $v["perms"]+=00200*(int)($ret[2]{1} === "w");
-            $v["perms"]+=00100*(int)in_array($ret[2]{2}, ["x", "s"]);
-            $v["perms"]+=00040*(int)($ret[2]{3} === "r");
-            $v["perms"]+=00020*(int)($ret[2]{4} === "w");
-            $v["perms"]+=00010*(int)in_array($ret[2]{5}, ["x", "s"]);
-            $v["perms"]+=00004*(int)($ret[2]{6} === "r");
-            $v["perms"]+=00002*(int)($ret[2]{7} === "w");
-            $v["perms"]+=00001*(int)in_array($ret[2]{8}, ["x", "t"]);
-            $v["perms"]+=04000*(int)in_array($ret[2]{2}, ["S", "s"]);
-            $v["perms"]+=02000*(int)in_array($ret[2]{5}, ["S", "s"]);
-            $v["perms"]+=01000*(int)in_array($ret[2]{8}, ["T", "t"]);
+            $v['perms'] += 00400 * (int)($ret[2]{0} === 'r');
+            $v['perms'] += 00200 * (int)($ret[2]{1} === 'w');
+            $v['perms'] += 00100 * (int)in_array($ret[2]{2}, ['x', 's']);
+            $v['perms'] += 00040 * (int)($ret[2]{3} === 'r');
+            $v['perms'] += 00020 * (int)($ret[2]{4} === 'w');
+            $v['perms'] += 00010 * (int)in_array($ret[2]{5}, ['x', 's']);
+            $v['perms'] += 00004 * (int)($ret[2]{6} === 'r');
+            $v['perms'] += 00002 * (int)($ret[2]{7} === 'w');
+            $v['perms'] += 00001 * (int)in_array($ret[2]{8}, ['x', 't']);
+            $v['perms'] += 04000 * (int)in_array($ret[2]{2}, ['S', 's']);
+            $v['perms'] += 02000 * (int)in_array($ret[2]{5}, ['S', 's']);
+            $v['perms'] += 01000 * (int)in_array($ret[2]{8}, ['T', 't']);
         }
         return $v;
     }
@@ -117,11 +117,11 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     protected function SetType($mode=FTP_AUTOASCII)
     {
         if (!in_array($mode, $this->AuthorizedTransferMode)) {
-            $this->SendMSG("Wrong type");
+            $this->SendMSG('Wrong type');
             return false;
         }
         $this->_type=$mode;
-        $this->SendMSG("Transfer type: ".($this->_type==FTP_BINARY?"binary":($this->_type==FTP_ASCII?"ASCII":"auto ASCII")));
+        $this->SendMSG('Transfer type: ' . ($this->_type == FTP_BINARY? 'binary' :($this->_type == FTP_ASCII? 'ASCII' : 'auto ASCII')));
         return true;
     }
 
@@ -130,13 +130,13 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if ($this->_ready) {
             if ($mode==FTP_BINARY) {
                 if ($this->_curtype!=FTP_BINARY) {
-                    if (!$this->_exec("TYPE I", "SetType")) {
+                    if (!$this->_exec('TYPE I', 'SetType')) {
                         return false;
                     }
                     $this->_curtype=FTP_BINARY;
                 }
             } elseif ($this->_curtype!=FTP_ASCII) {
-                if (!$this->_exec("TYPE A", "SetType")) {
+                if (!$this->_exec('TYPE A', 'SetType')) {
                     return false;
                 }
                 $this->_curtype=FTP_ASCII;
@@ -155,11 +155,11 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->_passive=$pasv;
         }
         if (!$this->_port_available and !$this->_passive) {
-            $this->SendMSG("Only passive connections available!");
+            $this->SendMSG('Only passive connections available!');
             $this->_passive=true;
             return false;
         }
-        $this->SendMSG("Passive mode ".($this->_passive?"on":"off"));
+        $this->SendMSG('Passive mode ' . ($this->_passive? 'on' : 'off'));
         return true;
     }
 
@@ -198,14 +198,14 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     {
         $this->_umask=$umask;
         umask($this->_umask);
-        $this->SendMSG("UMASK 0".decoct($this->_umask));
+        $this->SendMSG('UMASK 0' . decoct($this->_umask));
         return true;
     }
 
     protected function SetTimeout($timeout=30)
     {
         $this->_timeout=$timeout;
-        $this->SendMSG("Timeout ".$this->_timeout);
+        $this->SendMSG('Timeout ' . $this->_timeout);
         if ($this->_connected) {
             if (!$this->_settimeout($this->_ftp_control_sock)) {
                 return false;
@@ -226,10 +226,10 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         $this->SendMsg('Local OS : '.$this->OS_FullName[$this->OS_local]);
         if (!($this->_ftp_control_sock = $this->_connect($this->_host, $this->_port))) {
-            $this->SendMSG("Error : Cannot connect to remote host \"".$this->_fullhost." :".$this->_port."\"");
+            $this->SendMSG('Error : Cannot connect to remote host "' . $this->_fullhost . ' :' . $this->_port . '"');
             return false;
         }
-        $this->SendMSG("Connected to remote host \"".$this->_fullhost.":".$this->_port."\". Waiting for greeting.");
+        $this->SendMSG('Connected to remote host "' . $this->_fullhost . ':' . $this->_port . '". Waiting for greeting.');
         do {
             if (!$this->_readmsg()) {
                 return false;
@@ -244,21 +244,21 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if (!$syst) {
             $this->SendMSG("Can't detect remote OS");
         } else {
-            if (preg_match("/win|dos|novell/i", $syst[0])) {
+            if (preg_match('/win|dos|novell/i', $syst[0])) {
                 $this->OS_remote=FTP_OS_Windows;
-            } elseif (preg_match("/os/i", $syst[0])) {
+            } elseif (preg_match('/os/i', $syst[0])) {
                 $this->OS_remote=FTP_OS_Mac;
-            } elseif (preg_match("/(li|u)nix/i", $syst[0])) {
+            } elseif (preg_match('/(li|u)nix/i', $syst[0])) {
                 $this->OS_remote=FTP_OS_Unix;
             } else {
                 $this->OS_remote=FTP_OS_Mac;
             }
-            $this->SendMSG("Remote OS: ".$this->OS_FullName[$this->OS_remote]);
+            $this->SendMSG('Remote OS: ' . $this->OS_FullName[$this->OS_remote]);
         }
         if (!$this->features()) {
             $this->SendMSG("Can't get features list. All supported - disabled");
         } else {
-            $this->SendMSG("Supported features: ".implode(", ", array_keys($this->_features)));
+            $this->SendMSG('Supported features: ' . implode(', ', array_keys($this->_features)));
         }
         return true;
     }
@@ -266,14 +266,14 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     protected function quit($force=false)
     {
         if ($this->_ready) {
-            if (!$this->_exec("QUIT") and !$force) {
+            if (!$this->_exec('QUIT') and !$force) {
                 return false;
             }
             if (!$this->_checkCode() and !$force) {
                 return false;
             }
             $this->_ready=false;
-            $this->SendMSG("Session finished");
+            $this->SendMSG('Session finished');
         }
         $this->_quit();
         return true;
@@ -284,33 +284,33 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if (null !== $user) {
             $this->_login=$user;
         } else {
-            $this->_login="anonymous";
+            $this->_login= 'anonymous';
         }
         if (null !== $pass) {
             $this->_password=$pass;
         } else {
-            $this->_password="anon@anon.com";
+            $this->_password= 'anon@anon.com';
         }
-        if (!$this->_exec("USER ".$this->_login, "login")) {
+        if (!$this->_exec('USER ' . $this->_login, 'login')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
         if ($this->_code!=230) {
-            if (!$this->_exec((($this->_code==331)?"PASS ":"ACCT ").$this->_password, "login")) {
+            if (!$this->_exec((($this->_code==331)? 'PASS ' : 'ACCT ') . $this->_password, 'login')) {
                 return false;
             }
             if (!$this->_checkCode()) {
                 return false;
             }
         }
-        $this->SendMSG("Authentication succeeded");
+        $this->SendMSG('Authentication succeeded');
         if (empty($this->_features)) {
             if (!$this->features()) {
                 $this->SendMSG("Can't get features list. All supported - disabled");
             } else {
-                $this->SendMSG("Supported features: ".implode(", ", array_keys($this->_features)));
+                $this->SendMSG('Supported features: ' . implode(', ', array_keys($this->_features)));
             }
         }
         return true;
@@ -318,19 +318,19 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function pwd()
     {
-        if (!$this->_exec("PWD", "pwd")) {
+        if (!$this->_exec('PWD', 'pwd')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
 //fix ereg_replace -> preg_replace for php5.3+
-        return preg_replace("/^[0-9]{3} \"(.+)\" .+".CRLF."/", "\\1", $this->_message);
+        return preg_replace('/^[0-9]{3} "(.+)" .+' . CRLF . '/', "\\1", $this->_message);
     }
 
     protected function cdup()
     {
-        if (!$this->_exec("CDUP", "cdup")) {
+        if (!$this->_exec('CDUP', 'cdup')) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -341,7 +341,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function chdir($pathname)
     {
-        if (!$this->_exec("CWD ".$pathname, "chdir")) {
+        if (!$this->_exec('CWD ' . $pathname, 'chdir')) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -352,7 +352,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function rmdir($pathname)
     {
-        if (!$this->_exec("RMD ".$pathname, "rmdir")) {
+        if (!$this->_exec('RMD ' . $pathname, 'rmdir')) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -363,7 +363,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function mkdir($pathname)
     {
-        if (!$this->_exec("MKD ".$pathname, "mkdir")) {
+        if (!$this->_exec('MKD ' . $pathname, 'mkdir')) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -374,14 +374,14 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function rename($from, $to)
     {
-        if (!$this->_exec("RNFR ".$from, "rename")) {
+        if (!$this->_exec('RNFR ' . $from, 'rename')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
         if ($this->_code==350) {
-            if (!$this->_exec("RNTO ".$to, "rename")) {
+            if (!$this->_exec('RNTO ' . $to, 'rename')) {
                 return false;
             }
             if (!$this->_checkCode()) {
@@ -395,30 +395,30 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function filesize($pathname)
     {
-        if (!isset($this->_features["SIZE"])) {
-            $this->PushError("filesize", "not supported by server");
+        if (!isset($this->_features['SIZE'])) {
+            $this->PushError('filesize', 'not supported by server');
             return false;
         }
-        if (!$this->_exec("SIZE ".$pathname, "filesize")) {
+        if (!$this->_exec('SIZE ' . $pathname, 'filesize')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
 //fix ereg_replace -> preg_replace for php5.3+
-        return preg_replace("/^[0-9]{3} ([0-9]+)".CRLF."/", "\\1", $this->_message);
+        return preg_replace('/^[0-9]{3} ([0-9]+)' . CRLF . '/', "\\1", $this->_message);
     }
 
     protected function abort()
     {
-        if (!$this->_exec("ABOR", "abort")) {
+        if (!$this->_exec('ABOR', 'abort')) {
             return false;
         }
         if (!$this->_checkCode()) {
             if ($this->_code!=426) {
                 return false;
             }
-            if (!$this->_readmsg("abort")) {
+            if (!$this->_readmsg('abort')) {
                 return false;
             }
             if (!$this->_checkCode()) {
@@ -430,38 +430,38 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function mdtm($pathname)
     {
-        if (!isset($this->_features["MDTM"])) {
-            $this->PushError("mdtm", "not supported by server");
+        if (!isset($this->_features['MDTM'])) {
+            $this->PushError('mdtm', 'not supported by server');
             return false;
         }
-        if (!$this->_exec("MDTM ".$pathname, "mdtm")) {
+        if (!$this->_exec('MDTM ' . $pathname, 'mdtm')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
 //fix ereg_replace -> preg_replace for php5.3+
-        $mdtm = preg_replace("/^[0-9]{3} ([0-9]+)".CRLF."/", "\\1", $this->_message);
-        $date = sscanf($mdtm, "%4d%2d%2d%2d%2d%2d");
+        $mdtm = preg_replace('/^[0-9]{3} ([0-9]+)' . CRLF . '/', "\\1", $this->_message);
+        $date = sscanf($mdtm, '%4d%2d%2d%2d%2d%2d');
         $timestamp = mktime($date[3], $date[4], $date[5], $date[1], $date[2], $date[0]);
         return $timestamp;
     }
 
     protected function systype()
     {
-        if (!$this->_exec("SYST", "systype")) {
+        if (!$this->_exec('SYST', 'systype')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
-        $DATA = explode(" ", $this->_message);
+        $DATA = explode(' ', $this->_message);
         return [$DATA[1], $DATA[3]];
     }
 
     protected function delete($pathname)
     {
-        if (!$this->_exec("DELE ".$pathname, "delete")) {
+        if (!$this->_exec('DELE ' . $pathname, 'delete')) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -470,9 +470,9 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         return true;
     }
 
-    protected function site($command, $fnction="site")
+    protected function site($command, $fnction= 'site')
     {
-        if (!$this->_exec("SITE ".$command, $fnction)) {
+        if (!$this->_exec('SITE ' . $command, $fnction)) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -483,7 +483,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function chmod($pathname, $mode)
     {
-        if (!$this->site("CHMOD ".decoct($mode)." ".$pathname, "chmod")) {
+        if (!$this->site('CHMOD ' . decoct($mode) . ' ' . $pathname, 'chmod')) {
             return false;
         }
         return true;
@@ -491,15 +491,15 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function restore($from)
     {
-        if (!isset($this->_features["REST"])) {
-            $this->PushError("restore", "not supported by server");
+        if (!isset($this->_features['REST'])) {
+            $this->PushError('restore', 'not supported by server');
             return false;
         }
         if ($this->_curtype!=FTP_BINARY) {
-            $this->PushError("restore", "can't restore in ASCII mode");
+            $this->PushError('restore', "can't restore in ASCII mode");
             return false;
         }
-        if (!$this->_exec("REST ".$from, "resore")) {
+        if (!$this->_exec('REST ' . $from, 'resore')) {
             return false;
         }
         if (!$this->_checkCode()) {
@@ -510,30 +510,30 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function features()
     {
-        if (!$this->_exec("FEAT", "features")) {
+        if (!$this->_exec('FEAT', 'features')) {
             return false;
         }
         if (!$this->_checkCode()) {
             return false;
         }
-        $f=array_slice(preg_split("/[".CRLF."]+/", $this->_message, -1, PREG_SPLIT_NO_EMPTY), 1, -1);
+        $f=array_slice(preg_split('/[' . CRLF . ']+/', $this->_message, -1, PREG_SPLIT_NO_EMPTY), 1, -1);
         array_walk($f, create_function('&$a', '$a=preg_replace("/[0-9]{3}[\s-]+/", "", trim($a));'));
         $this->_features= [];
         foreach ($f as $k=>$v) {
-            $v=explode(" ", trim($v));
+            $v=explode(' ', trim($v));
             $this->_features[array_shift($v)]=$v;
         }
         return true;
     }
 
-    protected function rawlist($pathname="", $arg="")
+    protected function rawlist($pathname= '', $arg= '')
     {
-        return $this->_list(($arg?" ".$arg:"").($pathname?" ".$pathname:""), "LIST", "rawlist");
+        return $this->_list(($arg? ' ' . $arg: '') . ($pathname? ' ' . $pathname: ''), 'LIST', 'rawlist');
     }
 
-    protected function nlist($pathname="", $arg="")
+    protected function nlist($pathname= '', $arg= '')
     {
-        return $this->_list(($arg?" ".$arg:"").($pathname?" ".$pathname:""), "NLST", "nlist");
+        return $this->_list(($arg? ' ' . $arg: '') . ($pathname? ' ' . $pathname: ''), 'NLST', 'nlist');
     }
 
     protected function is_exists($pathname)
@@ -544,7 +544,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     protected function file_exists($pathname)
     {
         $exists=true;
-        if (!$this->_exec("RNFR ".$pathname, "rename")) {
+        if (!$this->_exec('RNFR ' . $pathname, 'rename')) {
             $exists=false;
         } else {
             if (!$this->_checkCode()) {
@@ -553,9 +553,9 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->abort();
         }
         if ($exists) {
-            $this->SendMSG("Remote file ".$pathname." exists");
+            $this->SendMSG('Remote file ' . $pathname . ' exists');
         } else {
-            $this->SendMSG("Remote file ".$pathname." does not exist");
+            $this->SendMSG('Remote file ' . $pathname . ' does not exist');
         }
         return $exists;
     }
@@ -566,11 +566,11 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $localfile=$remotefile;
         }
         if (@file_exists($localfile)) {
-            $this->SendMSG("Warning : local file will be overwritten");
+            $this->SendMSG('Warning : local file will be overwritten');
         }
-        $fp = @fopen($localfile, "w");
+        $fp = @fopen($localfile, 'w');
         if (!$fp) {
-            $this->PushError("get", "can't open local file", "Cannot create \"".$localfile."\"");
+            $this->PushError('get', "can't open local file", 'Cannot create "' . $localfile . '"');
             return false;
         }
         if ($this->_can_restore and $rest!=0) {
@@ -578,8 +578,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         $pi=pathinfo($remotefile);
 //fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
-        $pi["extension"] = !isset($pi["extension"]) ? '' : $pi["extension"];
-        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi["extension"]), $this->AutoAsciiExt))) {
+        $pi['extension'] = !isset($pi['extension']) ? '' : $pi['extension'];
+        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
             $mode=FTP_ASCII;
         } else {
             $mode=FTP_BINARY;
@@ -591,7 +591,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if ($this->_can_restore and $rest!=0) {
             $this->restore($rest);
         }
-        if (!$this->_exec("RETR ".$remotefile, "get")) {
+        if (!$this->_exec('RETR ' . $remotefile, 'get')) {
             $this->_data_close();
             fclose($fp);
             return false;
@@ -619,12 +619,12 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $remotefile=$localfile;
         }
         if (!@file_exists($localfile)) {
-            $this->PushError("put", "can't open local file", "No such file or directory \"".$localfile."\"");
+            $this->PushError('put', "can't open local file", 'No such file or directory "' . $localfile . '"');
             return false;
         }
-        $fp = @fopen($localfile, "r");
+        $fp = @fopen($localfile, 'r');
         if (!$fp) {
-            $this->PushError("put", "can't open local file", "Cannot read file \"".$localfile."\"");
+            $this->PushError('put', "can't open local file", 'Cannot read file "' . $localfile . '"');
             return false;
         }
         if ($this->_can_restore and $rest!=0) {
@@ -632,8 +632,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         $pi=pathinfo($localfile);
 //fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
-        $pi["extension"] = !isset($pi["extension"]) ? '' : $pi["extension"];
-        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi["extension"]), $this->AutoAsciiExt))) {
+        $pi['extension'] = !isset($pi['extension']) ? '' : $pi['extension'];
+        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
             $mode=FTP_ASCII;
         } else {
             $mode=FTP_BINARY;
@@ -645,7 +645,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if ($this->_can_restore and $rest!=0) {
             $this->restore($rest);
         }
-        if (!$this->_exec("STOR ".$remotefile, "put")) {
+        if (!$this->_exec('STOR ' . $remotefile, 'put')) {
             $this->_data_close();
             fclose($fp);
             return false;
@@ -667,31 +667,31 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         return $ret;
     }
 
-    protected function mput($local=".", $remote=null, $continious=false)
+    protected function mput($local= '.', $remote=null, $continious=false)
     {
         $local=realpath($local);
         if (!@file_exists($local)) {
-            $this->PushError("mput", "can't open local folder", "Cannot stat folder \"".$local."\"");
+            $this->PushError('mput', "can't open local folder", 'Cannot stat folder "' . $local . '"');
             return false;
         }
         if (!is_dir($local)) {
             return $this->put($local, $remote);
         }
         if (empty($remote)) {
-            $remote=".";
+            $remote= '.';
         } elseif (!$this->file_exists($remote) and !$this->mkdir($remote)) {
             return false;
         }
         if ($handle = opendir($local)) {
             $list= [];
             while (false !== ($file = readdir($handle))) {
-                if ($file !== "." && $file !== "..") {
+                if ($file !== '.' && $file !== '..') {
                     $list[]=$file;
                 }
             }
             closedir($handle);
         } else {
-            $this->PushError("mput", "can't open local folder", "Cannot read folder \"".$local."\"");
+            $this->PushError('mput', "can't open local folder", 'Cannot read folder "' . $local . '"');
             return false;
         }
         if (empty($list)) {
@@ -699,10 +699,10 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         $ret=true;
         foreach ($list as $el) {
-            if (is_dir($local."/".$el)) {
-                $t=$this->mput($local."/".$el, $remote."/".$el);
+            if (is_dir($local . '/' . $el)) {
+                $t=$this->mput($local . '/' . $el, $remote . '/' . $el);
             } else {
-                $t=$this->put($local."/".$el, $remote."/".$el);
+                $t=$this->put($local . '/' . $el, $remote . '/' . $el);
             }
             if (!$t) {
                 $ret=false;
@@ -714,11 +714,11 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         return $ret;
     }
 
-    protected function mget($remote, $local=".", $continious=false)
+    protected function mget($remote, $local= '.', $continious=false)
     {
-        $list=$this->rawlist($remote, "-lA");
+        $list=$this->rawlist($remote, '-lA');
         if ($list===false) {
-            $this->PushError("mget", "can't read remote folder list", "Can't read remote folder \"".$remote."\" contents");
+            $this->PushError('mget', "can't read remote folder list", "Can't read remote folder \"" . $remote . '" contents');
             return false;
         }
         if (empty($list)) {
@@ -726,39 +726,39 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         if (!@file_exists($local)) {
             if (!@mkdir($local)) {
-                $this->PushError("mget", "can't create local folder", "Cannot create folder \"".$local."\"");
+                $this->PushError('mget', "can't create local folder", 'Cannot create folder "' . $local . '"');
                 return false;
             }
         }
         foreach ($list as $k=>$v) {
             $list[$k]=$this->parselisting($v);
-            if ($list[$k]["name"] === "." or $list[$k]["name"] === "..") {
+            if ($list[$k]['name'] === '.' or $list[$k]['name'] === '..') {
                 unset($list[$k]);
             }
         }
         $ret=true;
         foreach ($list as $el) {
-            if ($el["type"] === "d") {
-                if (!$this->mget($remote."/".$el["name"], $local."/".$el["name"], $continious)) {
-                    $this->PushError("mget", "can't copy folder", "Can't copy remote folder \"".$remote."/".$el["name"]."\" to local \"".$local."/".$el["name"]."\"");
+            if ($el['type'] === 'd') {
+                if (!$this->mget($remote . '/' . $el['name'], $local . '/' . $el['name'], $continious)) {
+                    $this->PushError('mget', "can't copy folder", "Can't copy remote folder \"" . $remote . '/' . $el['name'] . '" to local "' . $local . '/' . $el['name'] . '"');
                     $ret=false;
                     if (!$continious) {
                         break;
                     }
                 }
             } else {
-                if (!$this->get($remote."/".$el["name"], $local."/".$el["name"])) {
-                    $this->PushError("mget", "can't copy file", "Can't copy remote file \"".$remote."/".$el["name"]."\" to local \"".$local."/".$el["name"]."\"");
+                if (!$this->get($remote . '/' . $el['name'], $local . '/' . $el['name'])) {
+                    $this->PushError('mget', "can't copy file", "Can't copy remote file \"" . $remote . '/' . $el['name'] . '" to local "' . $local . '/' . $el['name'] . '"');
                     $ret=false;
                     if (!$continious) {
                         break;
                     }
                 }
             }
-            @chmod($local."/".$el["name"], $el["perms"]);
-            $t=strtotime($el["date"]);
+            @chmod($local . '/' . $el['name'], $el['perms']);
+            $t=strtotime($el['date']);
             if ($t!==-1 and $t!==false) {
-                @touch($local."/".$el["name"], $t);
+                @touch($local . '/' . $el['name'], $t);
             }
         }
         return $ret;
@@ -766,31 +766,31 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
 
     protected function mdel($remote, $continious=false)
     {
-        $list=$this->rawlist($remote, "-la");
+        $list=$this->rawlist($remote, '-la');
         if ($list===false) {
-            $this->PushError("mdel", "can't read remote folder list", "Can't read remote folder \"".$remote."\" contents");
+            $this->PushError('mdel', "can't read remote folder list", "Can't read remote folder \"" . $remote . '" contents');
             return false;
         }
 
         foreach ($list as $k=>$v) {
             $list[$k]=$this->parselisting($v);
-            if ($list[$k]["name"] === "." or $list[$k]["name"] === "..") {
+            if ($list[$k]['name'] === '.' or $list[$k]['name'] === '..') {
                 unset($list[$k]);
             }
         }
         $ret=true;
 
         foreach ($list as $el) {
-            if ($el["type"] === "d") {
-                if (!$this->mdel($remote."/".$el["name"], $continious)) {
+            if ($el['type'] === 'd') {
+                if (!$this->mdel($remote . '/' . $el['name'], $continious)) {
                     $ret=false;
                     if (!$continious) {
                         break;
                     }
                 }
             } else {
-                if (!$this->delete($remote."/".$el["name"])) {
-                    $this->PushError("mdel", "can't delete file", "Can't delete remote file \"".$remote."/".$el["name"]."\"");
+                if (!$this->delete($remote . '/' . $el['name'])) {
+                    $this->PushError('mdel', "can't delete file", "Can't delete remote file \"" . $remote . '/' . $el['name'] . '"');
                     $ret=false;
                     if (!$continious) {
                         break;
@@ -800,7 +800,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
 
         if (!$this->rmdir($remote)) {
-            $this->PushError("mdel", "can't delete folder", "Can't delete remote folder \"".$remote."/".$el["name"]."\"");
+            $this->PushError('mdel', "can't delete folder", "Can't delete remote folder \"" . $remote . '/' . $el['name'] . '"');
             $ret=false;
         }
         return $ret;
@@ -811,7 +811,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if (empty($dir)) {
             return false;
         }
-        if ($this->is_exists($dir) or $dir === "/") {
+        if ($this->is_exists($dir) or $dir === '/') {
             return true;
         }
         if (!$this->mmkdir(dirname($dir), $mode)) {
@@ -875,8 +875,9 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             }
             $pattern=str_replace('?*', '*',
                 str_replace('*?', '*',
-                    str_replace('*', ".*",
-                        str_replace('?', '.{1,1}', $pattern))));
+                    str_replace('*',
+                                '.*',
+                                str_replace('?', '.{1,1}', $pattern))));
             $out[]=$pattern;
         }
         if (count($out)==1) {
@@ -908,7 +909,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         return ($this->_code<400 and $this->_code>0);
     }
 
-    protected function _list($arg="", $cmd="LIST", $fnction="_list")
+    protected function _list($arg= '', $cmd= 'LIST', $fnction= '_list')
     {
         if (!$this->_data_prepare()) {
             return false;
@@ -921,7 +922,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->_data_close();
             return false;
         }
-        $out="";
+        $out= '';
         if ($this->_code<200) {
             $out=$this->_data_read();
             $this->_data_close();
@@ -934,7 +935,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             if ($out === false) {
                 return false;
             }
-            $out=preg_split("/[".CRLF."]+/", $out, -1, PREG_SPLIT_NO_EMPTY);
+            $out=preg_split('/[' . CRLF . ']+/', $out, -1, PREG_SPLIT_NO_EMPTY);
 //			$this->SendMSG(implode($this->_eol_code[$this->OS_local], $out));
         }
         return $out;
@@ -980,4 +981,4 @@ if (!extension_loaded('sockets')) {
         }
     }
 }
-require_once "Custom_".($mod_sockets?"sockets":"pure").".class.php";
+require_once 'Custom_' . ($mod_sockets? 'sockets' : 'pure') . '.class.php';

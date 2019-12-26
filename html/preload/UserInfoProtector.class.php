@@ -15,7 +15,7 @@ class UserInfoProtector extends XCube_ActionFilter
         $delegateMgr =& $root->getDelegateManager();
         
         $delegateMgr->add('Legacypage.Userinfo.Access',
-            "UserInfoProtector::rightCheck",
+                          'UserInfoProtector::rightCheck',
             XCUBE_DELEGATE_PRIORITY_2);
     }
     

@@ -57,7 +57,7 @@ class MessageForm extends XCube_ActionForm
   
     public function validateUname()
     {
-        if ($this->get('uname') != "") {
+        if ($this->get('uname') != '') {
             $uname = mb_strcut($this->get('uname'), 0, 30);
             $userhand = xoops_gethandler('user');
             $criteria = new CriteriaCompo(new Criteria('uname', $uname));
@@ -79,7 +79,7 @@ class MessageForm extends XCube_ActionForm
             $textFilter = $root->getTextFilter();
             return $textFilter->$type($this->mFormProperties[$name]->getValue(null));
         }
-        return "";
+        return '';
     }
   
     public function update(&$obj)
@@ -95,7 +95,7 @@ class MessageForm extends XCube_ActionForm
     public function setRes(&$obj)
     {
         $title = $obj->get('title', 'n');
-        if (!preg_match("/^Re:/i", $title)) {
+        if (!preg_match('/^Re:/i', $title)) {
             $title = 'Re: '.$title;
         }
     

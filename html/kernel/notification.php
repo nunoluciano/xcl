@@ -141,7 +141,7 @@ class XoopsNotification extends XoopsObject
         case XOOPS_NOTIFICATION_METHOD_EMAIL:
             $xoopsMailer->useMail();
             foreach ($tags as $k=>$v) {
-                $xoopsMailer->assign($k, preg_replace("/&amp;/i", '&', $v));
+                $xoopsMailer->assign($k, preg_replace('/&amp;/i', '&', $v));
             }
             break;
         default:
@@ -217,7 +217,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         $this->mTrigger->register('XoopsNotificationHandler.Trigger');
 
         $this->mTriggerPreAction =new XCube_Delegate();
-        $this->mTriggerPreAction->register("XoopsNotificationHandler.TriggerPreAction");
+        $this->mTriggerPreAction->register('XoopsNotificationHandler.TriggerPreAction');
     }
     public function XoopsNotificationHandler(&$db)
     {
@@ -228,7 +228,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     {
         switch ($type) {
             case XOBJ_DTYPE_BOOL:
-                $value = $value ? "1" : "0";
+                $value = $value ? '1' : '0';
                 break;
             case XOBJ_DTYPE_INT:
                 $value = intval($value);
@@ -310,9 +310,9 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         }
         if ($notification->isNew()) {
             $not_id = $this->db->genId('xoopsnotifications_not_id_seq');
-            $sql = sprintf("INSERT INTO %s (not_id, not_modid, not_itemid, not_category, not_uid, not_event, not_mode) VALUES (%u, %u, %u, %s, %u, %s, %u)", $this->db->prefix('xoopsnotifications'), $not_id, $not_modid, $not_itemid, $this->db->quoteString($not_category), $not_uid, $this->db->quoteString($not_event), $not_mode);
+            $sql = sprintf('INSERT INTO %s (not_id, not_modid, not_itemid, not_category, not_uid, not_event, not_mode) VALUES (%u, %u, %u, %s, %u, %s, %u)', $this->db->prefix('xoopsnotifications'), $not_id, $not_modid, $not_itemid, $this->db->quoteString($not_category), $not_uid, $this->db->quoteString($not_event), $not_mode);
         } else {
-            $sql = sprintf("UPDATE %s SET not_modid = %u, not_itemid = %u, not_category = %s, not_uid = %u, not_event = %s, not_mode = %u WHERE not_id = %u", $this->db->prefix('xoopsnotifications'), $not_modid, $not_itemid, $this->db->quoteString($not_category), $not_uid, $this->db->quoteString($not_event), $not_mode, $not_id);
+            $sql = sprintf('UPDATE %s SET not_modid = %u, not_itemid = %u, not_category = %s, not_uid = %u, not_event = %s, not_mode = %u WHERE not_id = %u', $this->db->prefix('xoopsnotifications'), $not_modid, $not_itemid, $this->db->quoteString($not_category), $not_uid, $this->db->quoteString($not_event), $not_mode, $not_id);
         }
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -336,7 +336,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         if (strtolower(get_class($notification)) != 'xoopsnotification') {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE not_id = %u", $this->db->prefix('xoopsnotifications'), $notification->getVar('not_id'));
+        $sql = sprintf('DELETE FROM %s WHERE not_id = %u', $this->db->prefix('xoopsnotifications'), $notification->getVar('not_id'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }

@@ -1,6 +1,6 @@
 <?php
 
-eval( ' function xoops_module_uninstall_'.$mydirname.'( $module ) { return xelfinder_onuninstall_base( $module , "'.$mydirname.'" ) ; } ' ) ;
+eval( ' function xoops_module_uninstall_'.$mydirname . '( $module ) { return xelfinder_onuninstall_base( $module , \'' . $mydirname . '\' ) ; } ') ;
 
 
 if( ! function_exists( 'xelfinder_onuninstall_base' ) ) {
@@ -27,7 +27,7 @@ function xelfinder_onuninstall_base( $module , $mydirname )
 	$sql_file_path = dirname(__FILE__).'/sql/mysql.sql' ;
 	$prefix_mod = $db->prefix() . '_' . $mydirname ;
 	if( file_exists( $sql_file_path ) ) {
-		$ret[] = "SQL file found at <b>".htmlspecialchars($sql_file_path, ENT_COMPAT, _CHARSET)."</b>.<br  /> Deleting tables...<br />";
+		$ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path, ENT_COMPAT, _CHARSET) . '</b>.<br  /> Deleting tables...<br />';
 		$sql_lines = file( $sql_file_path ) ;
 		foreach( $sql_lines as $sql_line ) {
 			if( preg_match( '/^CREATE TABLE \`?([a-zA-Z0-9_-]+)\`? /i' , $sql_line , $regs ) ) {

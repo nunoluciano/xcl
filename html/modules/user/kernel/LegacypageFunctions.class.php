@@ -31,10 +31,10 @@ class User_LegacypageFunctions
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
         
-        require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $moduleRunner = new User_ActionFrame(false);
-        $moduleRunner->setActionName("UserInfo");
+        $moduleRunner->setActionName('UserInfo');
 
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
@@ -50,15 +50,15 @@ class User_LegacypageFunctions
      */
     public static function edituser()
     {
-        $actionName = "EditUser";
+        $actionName = 'EditUser';
         switch (xoops_getrequest('op')) {
             case 'avatarform':
             case 'avatarupload':
-                $actionName = "AvatarEdit";
+                $actionName = 'AvatarEdit';
                 break;
                 
             case 'avatarchoose':
-                $actionName = "AvatarSelect";
+                $actionName = 'AvatarSelect';
                 break;
         }
         
@@ -71,7 +71,7 @@ class User_LegacypageFunctions
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
         
-        require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);
@@ -105,14 +105,14 @@ class User_LegacypageFunctions
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
                 
-        require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
-        $actionName = "";
+        $actionName = '';
         $action = $root->mContext->mRequest->getRequest('action');
-        if ($action != null && $action =="UserRegister") {
-            $actionName = "UserRegister";
+        if ($action != null && $action == 'UserRegister') {
+            $actionName = 'UserRegister';
         } else {
-            $actionName = $action != null ? "UserRegister_confirm" : "UserRegister";
+            $actionName = $action != null ? 'UserRegister_confirm' : 'UserRegister';
         }
 
         $moduleRunner = new User_ActionFrame(false);
@@ -148,12 +148,12 @@ class User_LegacypageFunctions
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
                 
-        require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $root =& XCube_Root::getSingleton();
 
         $moduleRunner = new User_ActionFrame(false);
-        $moduleRunner->setActionName("LostPass");
+        $moduleRunner->setActionName('LostPass');
 
         $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
@@ -170,32 +170,32 @@ class User_LegacypageFunctions
     public static function user()
     {
         $root =& XCube_Root::getSingleton();
-        $op = isset($_REQUEST['op']) ? trim(xoops_getrequest('op')) : "main";
+        $op = isset($_REQUEST['op']) ? trim(xoops_getrequest('op')) : 'main';
         $xoopsUser =& $root->mContext->mXoopsUser;
         
-        $actionName = "default";
+        $actionName = 'default';
         
         switch ($op) {
-            case "login":
+            case 'login':
                 $root->mController->checkLogin();
                 return;
             
-            case "logout":
+            case 'logout':
                 $root->mController->logout();
                 return;
                 
-            case "main":
+            case 'main':
                 if (is_object($xoopsUser)) {
-                    $root->mController->executeForward(XOOPS_URL . "/userinfo.php?uid=" . $xoopsUser->get('uid'));
+                    $root->mController->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $xoopsUser->get('uid'));
                 }
                 break;
                 
-            case "actv":
-                $actionName = "UserActivate";
+            case 'actv':
+                $actionName = 'UserActivate';
                 break;
                 
-            case "delete":
-                $actionName = "UserDelete";
+            case 'delete':
+                $actionName = 'UserDelete';
                 break;
         }
         
@@ -208,7 +208,7 @@ class User_LegacypageFunctions
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
         
-        require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);
@@ -252,7 +252,7 @@ class User_LegacypageFunctions
         $handler =& xoops_gethandler('user');
         $user =& $handler->get($userArr[0]->get('uid'));
         
-        if (is_callable([$user, "getNumGroups"])) { // Compatible for replaced handler.
+        if (is_callable([$user, 'getNumGroups'])) { // Compatible for replaced handler.
             if ($user->getNumGroups() == 0) {
                 return;
             }
@@ -330,12 +330,12 @@ class User_LegacypageFunctions
             return;
         }
         
-        require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('user');
         
-        $actionName = "MiscOnline";
+        $actionName = 'MiscOnline';
 
         $moduleRunner = new User_ActionFrame(false);
         $moduleRunner->setActionName($actionName);

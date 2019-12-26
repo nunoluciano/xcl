@@ -402,11 +402,11 @@ class POP3
     {
         $this->setError(
             [
-            'error' => "Connecting to the POP3 server raised a PHP warning: ",
-            'errno' => $errno,
-            'errstr' => $errstr,
-            'errfile' => $errfile,
-            'errline' => $errline
+                'error' => 'Connecting to the POP3 server raised a PHP warning: ',
+                'errno' => $errno,
+                'errstr' => $errstr,
+                'errfile' => $errfile,
+                'errline' => $errline
             ]
         );
     }

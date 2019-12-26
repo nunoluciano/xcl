@@ -10,7 +10,7 @@ class Stdcache_CacheclearBlock extends Legacy_BlockProcedure
     
     public function prepare()
     {
-        $this->_mFilePath = XOOPS_CACHE_PATH . "/" . md5(XOOPS_SALT) . ".cache.html";
+        $this->_mFilePath = XOOPS_CACHE_PATH . '/' . md5(XOOPS_SALT) . '.cache.html';
         return parent::prepare();
     }
     
@@ -34,7 +34,7 @@ class Stdcache_CacheclearBlock extends Legacy_BlockProcedure
             if ($handler = opendir(XOOPS_CACHE_PATH)) {
                 while (($file = readdir($handler)) !== false) {
                     if (preg_match("/\w+\.cache\.html$/", $file, $matches)) {
-                        @unlink(XOOPS_CACHE_PATH . "/" . $matches[0]);
+                        @unlink(XOOPS_CACHE_PATH . '/' . $matches[0]);
                     }
                 }
                 closedir($handler);
@@ -46,7 +46,7 @@ class Stdcache_CacheclearBlock extends Legacy_BlockProcedure
     
     public function updateTimer()
     {
-        $fp = fopen($this->_mFilePath, "wb");
+        $fp = fopen($this->_mFilePath, 'wb');
         fclose($fp);
     }
     

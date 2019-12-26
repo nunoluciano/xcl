@@ -5,7 +5,7 @@ include dirname(dirname(__FILE__)).'/include/common_prepend.php';
 $post_id = intval( @$_GET['post_id'] ) ;
 
 // get this "post" from given $post_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
@@ -24,8 +24,8 @@ if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php
 include dirname(dirname(__FILE__)).'/include/process_this_post.inc.php' ;
 
 // count children
-include_once XOOPS_ROOT_PATH."/class/xoopstree.php" ;
-$mytree = new XoopsTree( $db->prefix($mydirname."_posts") , "post_id" , "pid" ) ;
+include_once XOOPS_ROOT_PATH . '/class/xoopstree.php';
+$mytree = new XoopsTree($db->prefix($mydirname . '_posts') , 'post_id', 'pid') ;
 $children = $mytree->getAllChildId( $post_id ) ;
 
 // special permission check for cutpasteposts
@@ -69,7 +69,7 @@ if( ! empty( $_POST['cutpastepostsok'] ) ) {
 	$whr4forum_jump_box = empty( $jump_box_forums ) ? '0' : 'f.forum_id IN ('.implode(',',$jump_box_forums).')' ;
 
 	// dare to set 'template_main' after header.php (for disabling cache)
-	include XOOPS_ROOT_PATH."/header.php";
+	include XOOPS_ROOT_PATH . '/header.php';
 	$xoopsOption['template_main'] = $mydirname.'_main_cutpasteposts.html' ;
 
 	$xoopsTpl->assign([
@@ -91,7 +91,7 @@ if( ! empty( $_POST['cutpastepostsok'] ) ) {
                           'topic' => $topic4assign,
                           'post' => $post4assign,
                           'forum_jumpbox_options' => d3forum_make_jumpbox_options( $mydirname , '1' , $isadmin ? '1' : $whr4forum_jump_box , $forum_row['forum_id'] ),
-                          'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+                          'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header'),
                           'xoops_pagetitle' => _MD_D3FORUM_CUTPASTEPOSTS,
                           'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _MD_D3FORUM_CUTPASTEPOSTS]]),
                       ]

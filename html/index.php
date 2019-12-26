@@ -7,10 +7,10 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-require_once "./mainfile.php";
-require_once "./header.php";
+require_once './mainfile.php';
+require_once './header.php';
 
 $xoopsOption['show_cblock'] = 1;
-XCube_DelegateUtils::call("Legacypage.Top.Access");
+XCube_DelegateUtils::call('Legacypage.Top.Access');
 
-require_once "./footer.php";
+require_once './footer.php';

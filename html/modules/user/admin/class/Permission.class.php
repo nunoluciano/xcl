@@ -171,11 +171,11 @@ class User_PermissionModuleItem extends User_PermissionItem
         $ret = USER_PERMISSION_NONE;
 
         $gpermHandler =& xoops_gethandler('groupperm');
-        if ($gpermHandler->checkRight("module_admin", $this->mModule->getVar('mid'), $groupId)) {
+        if ($gpermHandler->checkRight('module_admin', $this->mModule->getVar('mid'), $groupId)) {
             $ret |= USER_PERMISSION_ADMIN;
         }
         
-        if ($gpermHandler->checkRight("module_read", $this->mModule->getVar('mid'), $groupId)) {
+        if ($gpermHandler->checkRight('module_read', $this->mModule->getVar('mid'), $groupId)) {
             $ret |= USER_PERMISSION_READ;
         }
 
@@ -184,12 +184,12 @@ class User_PermissionModuleItem extends User_PermissionItem
 
     public function getReadPermName()
     {
-        return "module_read";
+        return 'module_read';
     }
 
     public function getAdminPermName()
     {
-        return "module_admin";
+        return 'module_admin';
     }
 }
 
@@ -226,7 +226,7 @@ class User_PermissionBlockItem extends User_PermissionItem
         $ret = USER_PERMISSION_NONE;
 
         $gpermHandler =& xoops_gethandler('groupperm');
-        if ($gpermHandler->checkRight("block_read", $this->mBlock->getVar('bid'), $groupId, 1, true)) {
+        if ($gpermHandler->checkRight('block_read', $this->mBlock->getVar('bid'), $groupId, 1, true)) {
             $ret |= USER_PERMISSION_READ;
         }
 
@@ -236,7 +236,7 @@ class User_PermissionBlockItem extends User_PermissionItem
     
     public function getReadPermName()
     {
-        return "block_read";
+        return 'block_read';
     }
 }
 
@@ -279,7 +279,7 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
         $ret = USER_PERMISSION_NONE;
         
         $gpermHandler =& xoops_gethandler('groupperm');
-        if ($gpermHandler->checkRight("system_admin", $this->mId, $groupId)) {
+        if ($gpermHandler->checkRight('system_admin', $this->mId, $groupId)) {
             $ret |= USER_PERMISSION_ADMIN;
         }
         
@@ -288,6 +288,6 @@ class User_PermissionSystemAdminItem extends User_PermissionItem
 
     public function getAdminPermName()
     {
-        return "system_admin";
+        return 'system_admin';
     }
 }

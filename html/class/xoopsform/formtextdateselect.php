@@ -72,9 +72,9 @@ class XoopsFormTextDateSelect extends XoopsFormText
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_textdateselect.html");
-        $renderTarget->setAttribute("element", $this);
-        $renderTarget->setAttribute("date", date("Y-m-d", $this->getValue()));
+        $renderTarget->setTemplateName('legacy_xoopsform_textdateselect.html');
+        $renderTarget->setAttribute('element', $this);
+        $renderTarget->setAttribute('date', date('Y-m-d', $this->getValue()));
         
         $jstime = formatTimestamp($this->getValue(), '"F j, Y H:i:s"');
         include_once XOOPS_ROOT_PATH.'/include/calendarjs.php';    //< FIXME

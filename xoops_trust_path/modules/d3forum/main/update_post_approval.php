@@ -5,7 +5,7 @@ include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
 $post_id = intval( @$_GET['post_id'] ) ;
 
 // get this "post" from given $post_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
@@ -27,10 +27,10 @@ include dirname(dirname(__FILE__)).'/include/process_this_post.inc.php' ;
 if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATETOPIC ) ;
 
 // approve the post
-$db->queryF( "UPDATE ".$db->prefix($mydirname."_posts")." SET approval=1 WHERE post_id=$post_id" ) ;
+$db->queryF('UPDATE ' . $db->prefix($mydirname . '_posts') . " SET approval=1 WHERE post_id=$post_id" ) ;
 
 // turn topic_invisible off also
-$db->queryF( "UPDATE ".$db->prefix($mydirname."_topics")." SET topic_invisible=0 WHERE topic_id=$topic_id" ) ;
+$db->queryF('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_invisible=0 WHERE topic_id=$topic_id" ) ;
 
 $allowed_identifiers = ['post_id', 'topic_id', 'forum_id', 'cat_ids'];
 

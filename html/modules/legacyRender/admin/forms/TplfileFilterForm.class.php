@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractFilterForm.class.php';
 
 define('TPLFILE_SORT_KEY_TPL_ID', 1);
 define('TPLFILE_SORT_KEY_TPL_REFID', 2);

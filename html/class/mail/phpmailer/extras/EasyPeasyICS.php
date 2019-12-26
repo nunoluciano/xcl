@@ -34,7 +34,7 @@ class EasyPeasyICS
      * Constructor
      * @param string $calendarName
      */
-    public function __construct($calendarName = "")
+    public function __construct($calendarName = '')
     {
         $this->calendarName = $calendarName;
     }

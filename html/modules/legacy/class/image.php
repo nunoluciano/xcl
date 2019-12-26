@@ -68,9 +68,9 @@ class LegacyImageObject extends XoopsSimpleObject
 
 class LegacyImageHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "image";
-    public $mPrimary = "image_id";
-    public $mClass = "LegacyImageObject";
+    public $mTable = 'image';
+    public $mPrimary = 'image_id';
+    public $mClass = 'LegacyImageObject';
 
     public function insert(&$obj, $force = false)
     {
@@ -100,7 +100,7 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
         $obj->loadImagebody();
             
         if (parent::delete($obj, $force)) {
-            $filepath = XOOPS_UPLOAD_PATH . "/" . $obj->get('image_name');
+            $filepath = XOOPS_UPLOAD_PATH . '/' . $obj->get('image_name');
             if (file_exists($filepath)) {
                 @unlink($filepath);
             }

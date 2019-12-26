@@ -5,7 +5,7 @@ include dirname(__FILE__).'/process_eachpost.inc.php' ;
 
 // vote history
 if( $uid ) {
-	list( $past_vote ) = $db->fetchRow( $db->query( "SELECT vote_point FROM ".$db->prefix($mydirname."_post_votes")." WHERE post_id=$post_id AND uid=$uid" ) ) ;
+	list( $past_vote ) = $db->fetchRow( $db->query('SELECT vote_point FROM ' . $db->prefix($mydirname . '_post_votes') . " WHERE post_id=$post_id AND uid=$uid" ) ) ;
 }
 $past_vote = isset( $past_vote ) ? intval( $past_vote ) : -1 ;
 

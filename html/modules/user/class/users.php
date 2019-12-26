@@ -114,9 +114,9 @@ class UserUsersObject extends XoopsSimpleObject
 
 class UserUsersHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "users";
-    public $mPrimary = "uid";
-    public $mClass = "UserUsersObject";
+    public $mTable = 'users';
+    public $mPrimary = 'uid';
+    public $mClass = 'UserUsersObject';
 
     public function &get($id)
     {
@@ -156,7 +156,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     {
         $ret = [];
 
-        $sql = "SELECT uid FROM " . $this->mTable;
+        $sql = 'SELECT uid FROM ' . $this->mTable;
 
         $limit = 0;
         $start = 0;
@@ -165,7 +165,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
 
             $sorts = [];
@@ -173,7 +173,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
             if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
             $limit = $criteria->getLimit();

@@ -33,9 +33,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-define("GROUPPERM_VAL_MODREAD",   "module_read");
-define("GROUPPERM_VAL_MODADMIN",  "module_admin");
-define("GROUPPERM_VAL_BLOCKREAD", "block_read");
+define('GROUPPERM_VAL_MODREAD', 'module_read');
+define('GROUPPERM_VAL_MODADMIN', 'module_admin');
+define('GROUPPERM_VAL_BLOCKREAD', 'block_read');
 
 /**
  * 
@@ -233,7 +233,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         if (strtolower(get_class($perm)) != 'xoopsgroupperm') {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE gperm_id = %u", $this->db->prefix('group_permission'), $perm->getVar('gperm_id'));
+        $sql = sprintf('DELETE FROM %s WHERE gperm_id = %u', $this->db->prefix('group_permission'), $perm->getVar('gperm_id'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }
@@ -307,7 +307,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function deleteAll($criteria = null)
     {
-        $sql = sprintf("DELETE FROM %s", $this->db->prefix('group_permission'));
+        $sql = sprintf('DELETE FROM %s', $this->db->prefix('group_permission'));
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
         }

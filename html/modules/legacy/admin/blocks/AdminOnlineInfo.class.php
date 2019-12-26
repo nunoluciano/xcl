@@ -6,12 +6,12 @@ class Legacy_AdminOnlineInfo extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return "onlineinfo";
+        return 'onlineinfo';
     }
 
     public function getTitle()
     {
-        return "TEST: AdminOnlineInfo";
+        return 'TEST: AdminOnlineInfo';
     }
 
     public function getEntryIndex()
@@ -34,7 +34,7 @@ class Legacy_AdminOnlineInfo extends Legacy_AbstractBlockProcedure
 
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadBlockMessageCatalog('user');
-        require_once XOOPS_ROOT_PATH . "/modules/user/blocks/user_online.php";
+        require_once XOOPS_ROOT_PATH . '/modules/user/blocks/user_online.php';
 
         $contents = b_user_online_show();
 
@@ -52,7 +52,7 @@ class Legacy_AdminOnlineInfo extends Legacy_AbstractBlockProcedure
 
     public function &getResult()
     {
-        $dmy = "dummy";
+        $dmy = 'dummy';
         return $dmy;
     }
 

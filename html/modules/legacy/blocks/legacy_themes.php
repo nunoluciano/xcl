@@ -43,7 +43,7 @@ function b_legacy_themes_show($options)
         if ($theme != null) {
             $theme_option['name'] = $name;
             $theme_option['screenshot'] = $theme->getShow('screenshot');
-            $theme_option['screenshotUrl'] = XOOPS_THEME_URL . "/" . $name . "/" . $theme->getShow('screenshot');
+            $theme_option['screenshotUrl'] = XOOPS_THEME_URL . '/' . $name . '/' . $theme->getShow('screenshot');
             if ($name == $xoopsConfig['theme_set']) {
                 $theme_option['selected'] = 'selected="selected"';
                 $block['theme_selected_screenshot'] = $theme->getShow('screenshot');
@@ -63,13 +63,13 @@ function b_legacy_themes_show($options)
 
 function b_legacy_themes_edit($options)
 {
-    $chk = "";
+    $chk = '';
     $form = '<div>'._MB_LEGACY_LANG_THSHOW.'&nbsp;&nbsp;';
     if ($options[0] == 1) {
         $chk = ' checked="checked"';
     }
     $form .= '<label><input type="radio" name="options[0]" value="1"'.$chk.' /><span>'._YES.'</span></label>';
-    $chk = "";
+    $chk = '';
     if ($options[0] == 0) {
         $chk = ' checked="checked"';
     }

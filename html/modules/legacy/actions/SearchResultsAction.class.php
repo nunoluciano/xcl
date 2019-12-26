@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/SearchResultsForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/SearchResultsForm.class.php';
 
 define('LEGACY_SEARCH_RESULT_MAXHIT', 5);
 define('LEGACY_SEARCH_SHOWALL_MAXHIT', 20);
@@ -60,7 +60,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
-        $service =& $root->mServiceManager->getService("LegacySearch");
+        $service =& $root->mServiceManager->getService('LegacySearch');
         
         if (is_object($service)) {
             $client =& $root->mServiceManager->createClient($service);
@@ -139,7 +139,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
     
     public function _getTemplateName()
     {
-        return "legacy_search_results.html";
+        return 'legacy_search_results.html';
     }
     
     public function _getSelectedMids()

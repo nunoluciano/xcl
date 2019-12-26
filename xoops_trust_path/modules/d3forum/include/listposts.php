@@ -31,7 +31,7 @@ switch( $postorder ) {
 
 // post_hits ~ pagenavi //naao from
 
-	$sql = "SELECT COUNT(post_id) FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id='$topic_id'" ;
+	$sql = 'SELECT COUNT(post_id) FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id='$topic_id'" ;
 	if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 	list( $post_hits ) = $db->fetchRow( $prs ) ;
 
@@ -58,7 +58,7 @@ $max_post_time = 0 ;
 $last_post_offset = 0 ;
 $posts = [];
 //$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id ORDER BY order_in_tree,post_id LIMIT $pos,$num" ; //naao
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id ORDER BY $postorder4sql LIMIT $pos,$num" ; //naao
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id ORDER BY $postorder4sql LIMIT $pos,$num" ; //naao
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 
 while( $post_row = $db->fetchArray( $prs ) ) {
@@ -175,11 +175,11 @@ $tree = [];
 $topics_count = 0;
 if( $topic4assign['external_link_id'] >0 ) {
 
-	$sql = "SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time
-		FROM ".$db->prefix($mydirname."_topics")." t
-		LEFT JOIN ".$db->prefix($mydirname."_posts")." p ON p.topic_id=t.topic_id
-		WHERE t.forum_id='".(int)$forum4assign['id']."' AND p.depth_in_tree='0'
-			AND (t.topic_external_link_id='".(int)$topic4assign['external_link_id']."'
+	$sql = 'SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time
+		FROM ' . $db->prefix($mydirname . '_topics') . ' t
+		LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON p.topic_id=t.topic_id
+		WHERE t.forum_id='" . (int)$forum4assign['id'] . "' AND p.depth_in_tree='0'
+			AND (t.topic_external_link_id='" . (int)$topic4assign['external_link_id'] . "'
 			OR t.topic_id=$topic_id ) " ;
 
 	if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;

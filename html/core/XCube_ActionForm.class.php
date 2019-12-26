@@ -284,7 +284,7 @@ class XCube_ActionForm
                 $value = $this->mContext->mRequest->getRequest($name);
                 $this->mFormProperties[$name]->set($value);
             }
-            $methodName = "fetch" . ucfirst($name);
+            $methodName = 'fetch' . ucfirst($name);
             if (method_exists($this, $methodName)) {
                 // call_user_func(array($this,$methodName));
                 $this->$methodName();
@@ -375,7 +375,7 @@ class XCube_ActionForm
         // If this class has original validation methods, call it.
         //
         foreach (array_keys($this->mFormProperties) as $name) {
-            $methodName = "validate" . ucfirst($name);
+            $methodName = 'validate' . ucfirst($name);
             if (method_exists($this, $methodName)) {
                 // call_user_func(array($this,$methodName));
                 $this->$methodName();
@@ -655,7 +655,7 @@ class XCube_DependClassFactory
         
         if (!isset($_cache[$dependName])) {
             // or switch?
-            $class_name = "XCube_" . ucfirst($dependName) . "Validator";
+            $class_name = 'XCube_' . ucfirst($dependName) . 'Validator';
             if (XC_CLASS_EXISTS($class_name)) {
                 $_cache[$dependName] = new $class_name();
             } else {

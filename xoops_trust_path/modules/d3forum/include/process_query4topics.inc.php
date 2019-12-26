@@ -6,7 +6,7 @@
 	if( ! empty( $forum_row['forum_external_link_format'] ) && ! empty( $_GET['external_link_id'] ) ) {
 		$external_link_id = $myts->stripSlashesGPC( $_GET['external_link_id'] ) ;
 		$query4assign['external_link_id'] = htmlspecialchars( $external_link_id , ENT_QUOTES ) ;
-		$query4nav .= "&amp;external_link_id=".rawurlencode( $external_link_id ) ;
+		$query4nav .= '&amp;external_link_id=' . rawurlencode($external_link_id ) ;
 		$external_link_id4sql = addslashes( $external_link_id ) ;
 		$whr_external_link_id = "t.topic_external_link_id='$external_link_id4sql'" ;
 		$d3comment_info = [
@@ -29,7 +29,7 @@
 	if( ! empty( $_GET['txt'] ) ) {
 		$txt = $myts->stripSlashesGPC( $_GET['txt'] ) ;
 		$query4assign['txt'] = htmlspecialchars( $txt , ENT_QUOTES ) ;
-		$query4nav .= "&amp;txt=".rawurlencode( $txt ) ;
+		$query4nav .= '&amp;txt=' . rawurlencode($txt ) ;
 		$txt4sql = addslashes( $txt ) ;
 		$whr_txt = "fp.subject LIKE '%$txt4sql%' OR fp.post_text LIKE '%$txt4sql%'" ;
 	} else {
@@ -55,7 +55,7 @@
 	} else {
 		if( ! empty( $solved_options[ @$_GET['solved'] ] ) ) {
 			$query4assign['solved'] = intval( $_GET['solved'] ) ;
-			$query4nav .= "&amp;solved=".intval( $_GET['solved'] ) ;
+			$query4nav .= '&amp;solved=' . intval($_GET['solved'] ) ;
 			$whr_solved = $solved_sqls[ $query4assign['solved'] ] ;
 		} else {
 			$query4assign['solved'] = 0 ;
@@ -98,7 +98,7 @@
     ];
 	if( ! empty( $odr_options[ @$_GET['odr'] ] ) ) {
 		$query4assign['odr'] = intval( $_GET['odr'] ) ;
-		$query4nav .= "&amp;odr=".intval( $_GET['odr'] ) ;
+		$query4nav .= '&amp;odr=' . intval($_GET['odr'] ) ;
 		$odr_query = $odr_sqls[ $query4assign['odr'] ] ;
 	} else {
 		$query4assign['odr'] = 1 ;

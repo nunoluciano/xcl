@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserAdminEditForm.class.php';
 
 class User_UserEditAction extends User_AbstractEditAction
 {
@@ -47,8 +47,8 @@ class User_UserEditAction extends User_AbstractEditAction
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_edit.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setTemplateName('user_edit.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
 
         //
         // Get some objects for input form.
@@ -76,7 +76,7 @@ class User_UserEditAction extends User_AbstractEditAction
         //
         // umode option
         //
-        $umodeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
+        $umodeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $render->setAttribute('umodeOptions', $umodeOptions);
 
         //		
@@ -94,7 +94,7 @@ class User_UserEditAction extends User_AbstractEditAction
         //
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
-        require_once XOOPS_ROOT_PATH . "/include/notification_constants.php";
+        require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
         
         // Check the PM service has been installed.
         $service =& $root->mServiceManager->getService('privateMessage');
@@ -128,16 +128,16 @@ class User_UserEditAction extends User_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=UserList");
+        $controller->executeForward('./index.php?action=UserList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("index.php", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('index.php', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=UserList");
+        $controller->executeForward('./index.php?action=UserList');
     }
 }

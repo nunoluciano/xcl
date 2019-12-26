@@ -11,7 +11,7 @@
     include_once '../mainfile.php';
 
     $detected = str_replace('\\', '/', getcwd()); // "
-    $detected = str_replace('/install', "", $detected);
+    $detected = str_replace('/install', '', $detected);
     if (substr($detected, -1) == '/') {
         $detected = substr($detected, 0, -1);
     }

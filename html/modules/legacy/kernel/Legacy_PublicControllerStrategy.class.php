@@ -23,10 +23,10 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         //parent::Legacy_AbstractControllerStrategy($controller);
         parent::__construct($controller);
         
-        $controller->mRoot->mContext->mBaseRenderSystemName = "Legacy_RenderSystem";
+        $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_RenderSystem';
         
-        if (!defined("LEGACY_DEPENDENCE_RENDERER")) {
-            define("LEGACY_DEPENDENCE_RENDERER", "Legacy_RenderSystem");
+        if (!defined('LEGACY_DEPENDENCE_RENDERER')) {
+            define('LEGACY_DEPENDENCE_RENDERER', 'Legacy_RenderSystem');
         }
     }
 

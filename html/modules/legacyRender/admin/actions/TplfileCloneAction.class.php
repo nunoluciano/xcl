@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileCloneForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileCloneForm.class.php';
 
 class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
 {
@@ -55,7 +55,7 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("tplfile_clone.html");
+        $render->setTemplateName('tplfile_clone.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('tpl_id', xoops_getrequest('tpl_id'));
@@ -70,6 +70,6 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
     }
 }

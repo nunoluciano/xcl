@@ -1,11 +1,12 @@
 <?php
 
 eval( '
-function '.$mydirname.'_notify_iteminfo( $category, $item_id )
+function '.$mydirname . '_notify_iteminfo( $category, $item_id )
 {
-	return d3forum_notify_base( "'.$mydirname.'" , $category , $item_id ) ;
+	return d3forum_notify_base( \'' . $mydirname . '\' , $category , $item_id ) ;
 }
-' ) ;
+'
+) ;
 
 if( ! function_exists( 'd3forum_notify_base' ) ) {
 

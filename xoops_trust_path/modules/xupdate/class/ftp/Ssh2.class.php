@@ -49,7 +49,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
             return false;
         }
 
-        $this->mes.= "PWD:".$this->sftp->pwd()."<br />\n";
+        $this->mes.= 'PWD:' . $this->sftp->pwd() . "<br />\n";
         $this->mes.= $this->getSSH2Log();
 
         return true;
@@ -167,12 +167,12 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         return $this->sftp->chmod($mode, $pathname);
     }
 
-    public function rawlist($pathname="", $arg="")
+    public function rawlist($pathname= '', $arg= '')
     {
         return $this->sftp->rawlist($pathname);
     }
 
-    public function nlist($pathname="")
+    public function nlist($pathname= '')
     {
         return $this->sftp->nlist($pathname);
     }

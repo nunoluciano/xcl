@@ -37,13 +37,13 @@ class LegacySmilesObject extends XoopsSimpleObject
 
 class LegacySmilesHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "smiles";
-    public $mPrimary = "id";
-    public $mClass = "LegacySmilesObject";
+    public $mTable = 'smiles';
+    public $mPrimary = 'id';
+    public $mClass = 'LegacySmilesObject';
     
     public function delete(&$obj, $force=null)
     {
-        @unlink(XOOPS_UPLOAD_PATH . "/" . $obj->get('smile_url'));
+        @unlink(XOOPS_UPLOAD_PATH . '/' . $obj->get('smile_url'));
         
         return parent::delete($obj, $force);
     }

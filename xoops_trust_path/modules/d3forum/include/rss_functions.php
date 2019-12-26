@@ -39,7 +39,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	$last_post = ($last_post) ? ' AND t.topic_last_post_id = p.post_id' : '';
 	
 	require_once dirname(__FILE__).'/common_functions.php' ;
-	$whr_forum = "t.forum_id IN (".implode(",",d3forum_get_forums_can_read( $mydirname )).")" ;
+	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 	
 	$sql = 'SELECT c.cat_title, f.forum_id, f.forum_title, p.post_id, p.topic_id, p.post_time, p.uid, p.subject, p.html, p.smiley, p.xcode, p.br, p.guest_name, t.topic_views, t.topic_posts_count, p.post_text, f.forum_external_link_format, t.topic_external_link_id FROM '.$db->prefix($mydirname.'_posts').' p LEFT JOIN '.$db->prefix($mydirname.'_topics').' t ON t.topic_id=p.topic_id LEFT JOIN '.$db->prefix($mydirname.'_forums').' f ON f.forum_id=t.forum_id LEFT JOIN '.$db->prefix($mydirname.'_categories').' c ON c.cat_id=f.cat_id WHERE ('.$whr_forum.') AND ! topic_invisible'.$last_post.$forum_id.$cat_id.' ORDER BY p.post_time DESC' ;
 	
@@ -128,7 +128,7 @@ function d3forum_whatsnew_base($mydirname, $limit=0, $offset=0) {
 
 if (!function_exists('d3forum_make_context')) {
 function d3forum_make_context($text,$words= [],$l=255) {
-	static $strcut = "";
+	static $strcut = '';
 	if (!$strcut)
 		$strcut = create_function ( '$a,$b,$c', (function_exists('mb_strcut'))?
 			'return mb_strcut($a,$b,$c);':
@@ -138,19 +138,19 @@ function d3forum_make_context($text,$words= [],$l=255) {
 	
 	if (!is_array($words)) $words = [];
 	
-	$ret = "";
-	$q_word = str_replace(" ","|",preg_quote(join(' ',$words),"/"));
+	$ret = '';
+	$q_word = str_replace(' ', '|', preg_quote(join(' ', $words), '/'));
 	
 	$match = [];
 	if (preg_match("/$q_word/i",$text,$match)) 	{
 		$ret = ltrim(preg_replace('/\s+/', ' ', $text));
-		list($pre, $aft) = array_pad(preg_split("/$q_word/i", $ret, 2), 2, "");
+		list($pre, $aft) = array_pad(preg_split("/$q_word/i", $ret, 2), 2, '');
 		$m = intval($l/2);
-		$ret = (strlen($pre) > $m)? "... " : "";
+		$ret = (strlen($pre) > $m)? '... ' : '';
 		$ret .= $strcut($pre, max(strlen($pre)-$m+1,0),$m).$match[0];
 		$m = $l-strlen($ret);
 		$ret .= $strcut($aft, 0, min(strlen($aft),$m));
-		if (strlen($aft) > $m) $ret .= " ...";
+		if (strlen($aft) > $m) $ret .= ' ...';
 	}
 	
 	if (!$ret) {

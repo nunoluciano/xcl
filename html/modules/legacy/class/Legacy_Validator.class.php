@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_Validator.class.php';
 
 class XCube_ObjectExistValidator extends XCube_Validator
 {

@@ -70,7 +70,7 @@ if (! class_exists('Xupdate_Func')) {
     public function _multiDownloadFile(&$multiData, $cacheTTL)
     {
         $timeout = 300;
-        $this->put_debug_log(str_repeat('-', 10) . date("H:i:s"));
+        $this->put_debug_log(str_repeat('-', 10) . date('H:i:s'));
         $this->put_debug_log('Start _multiDownloadFile().');
 
         $downloadDirPath = $this->Xupdate->params['temp_path'];
@@ -236,7 +236,7 @@ if (! class_exists('Xupdate_Func')) {
                                 do {
                                     $this->put_debug_log('Do curl_multi_exec()');
                                     $mrc = curl_multi_exec($mh, $active);
-                                    $this->put_debug_log(str_repeat('-', 5) . date("H:i:s"));
+                                    $this->put_debug_log(str_repeat('-', 5) . date('H:i:s'));
                                     $this->put_debug_log('2nd+ curl_multi_exec() $mrc: ' . $mrc);
                                     $this->put_debug_log('2nd+ curl_multi_exec() $active: ' . $active);
                                 } while ($mrc === CURLM_CALL_MULTI_PERFORM);

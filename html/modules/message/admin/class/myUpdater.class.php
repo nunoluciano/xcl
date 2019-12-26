@@ -42,7 +42,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
         $root = XCube_Root::getSingleton();
         $db = $root->mController->getDB();
     
-        $sql = "ALTER TABLE `".$db->prefix('message_inbox')."` ";
+        $sql = 'ALTER TABLE `' . $db->prefix('message_inbox') . '` ';
         $sql.= "ADD `uname` varchar(100) NOT NULL default ''";
         if (!$db->query($sql)) {
             $this->mLog->addReport($db->error());
@@ -58,7 +58,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
         $root = XCube_Root::getSingleton();
         $db = $root->mController->getDB();
     
-        $sql = "ALTER TABLE `".$db->prefix('message_users')."` ";
+        $sql = 'ALTER TABLE `' . $db->prefix('message_users') . '` ';
         $sql.= "ADD `viewmsm` int( 1 ) UNSIGNED NOT NULL DEFAULT '0', ";
         $sql.= "ADD `pagenum` int( 2 ) UNSIGNED NOT NULL DEFAULT '0', ";
         $sql.= "ADD `blacklist` VARCHAR( 255 ) NOT NULL DEFAULT ''";

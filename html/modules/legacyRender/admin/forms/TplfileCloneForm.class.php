@@ -8,14 +8,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TplfileCloneForm.TOKEN";
+        return 'module.legacyRender.TplfileCloneForm.TOKEN';
     }
 
     public function prepare()

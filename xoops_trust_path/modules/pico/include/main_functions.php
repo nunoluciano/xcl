@@ -62,13 +62,13 @@ function pico_main_get_category_permissions_of_current_user($mydirname, $uid = n
 	if (is_object($user)) {
 		$uid = intval($user->getVar('uid'));
 		$groups = $user->getGroups();
-		if (!empty($groups)) $whr = "`uid`=$uid || `groupid` IN (" . implode(",", $groups) . ")";
+		if (!empty($groups)) $whr = "`uid`=$uid || `groupid` IN (" . implode(',', $groups) . ')';
 		else $whr = "`uid`=$uid";
 	} else {
-		$whr = "`groupid`=" . intval(XOOPS_GROUP_ANONYMOUS);
+		$whr = '`groupid`=' . intval(XOOPS_GROUP_ANONYMOUS);
 	}
 
-	$sql = "SELECT c.cat_id,cp.permissions FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id  WHERE ($whr)";
+	$sql = 'SELECT c.cat_id,cp.permissions FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_category_permissions') . " cp ON c.cat_permission_id=cp.cat_id  WHERE ($whr)";
 	$result = $db->query($sql);
 	if ($result) while (list($cat_id, $serialized_permissions) = $db->fetchRow($result)) {
 		$permissions = pico_common_unserialize($serialized_permissions);
@@ -93,7 +93,11 @@ function pico_main_get_category_moderate_groups4show($mydirname, $cat_id)
 	$cat_id = intval($cat_id);
 
 	$ret = [];
-	$sql = "SELECT g.groupid, g.name FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id LEFT JOIN " . $db->prefix("groups") . " g ON cp.groupid=g.groupid WHERE cp.groupid IS NOT NULL AND c.cat_id=" . $cat_id . " AND cp.permissions LIKE '%s:12:\"is\\_moderator\";i:1;%'";
+	$sql = 'SELECT g.groupid, g.name FROM '
+           . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN '
+           . $db->prefix($mydirname . '_category_permissions') . ' cp ON c.cat_permission_id=cp.cat_id LEFT JOIN '
+           . $db->prefix('groups') . ' g ON cp.groupid=g.groupid WHERE cp.groupid IS NOT NULL AND c.cat_id='
+           . $cat_id . " AND cp.permissions LIKE '%s:12:\"is\\_moderator\";i:1;%'";
 
 	$mrs = $db->query($sql);
 	while (list($mod_gid, $mod_gname) = $db->fetchRow($mrs)) {
@@ -114,7 +118,11 @@ function pico_main_get_category_moderate_users4show($mydirname, $cat_id)
 	$cat_id = intval($cat_id);
 
 	$ret = [];
-	$sql = "SELECT u.uid, u.uname FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id LEFT JOIN " . $db->prefix("users") . " u ON cp.uid=u.uid WHERE cp.uid IS NOT NULL AND c.cat_id=" . $cat_id . " AND cp.permissions LIKE '%s:12:\"is\\_moderator\";i:1;%'";
+	$sql = 'SELECT u.uid, u.uname FROM '
+           . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN '
+           . $db->prefix($mydirname . '_category_permissions') . ' cp ON c.cat_permission_id=cp.cat_id LEFT JOIN '
+           . $db->prefix('users') . ' u ON cp.uid=u.uid WHERE cp.uid IS NOT NULL AND c.cat_id='
+           . $cat_id . " AND cp.permissions LIKE '%s:12:\"is\\_moderator\";i:1;%'";
 
 	$mrs = $db->query($sql);
 	while (list($mod_uid, $mod_uname) = $db->fetchRow($mrs)) {
@@ -134,8 +142,8 @@ function pico_main_make_cat_jumpbox_options($mydirname, $whr4cat, $cat_selected 
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$ret = "";
-	$sql = "SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree FROM " . $db->prefix($mydirname . "_categories") . " c WHERE ($whr4cat) ORDER BY c.cat_order_in_tree";
+	$ret = '';
+	$sql = 'SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE ($whr4cat) ORDER BY c.cat_order_in_tree";
 	if ($result = $db->query($sql)) {
 		while (list($cat_id, $cat_title, $cat_depth) = $db->fetchRow($result)) {
 			$selected = $cat_id == $cat_selected ? 'selected="selected"' : '';
@@ -165,21 +173,21 @@ function pico_main_get_moderators($mydirname, $cat_id)
 	$cat_uids = [];
 
 	// get uid directly
-	$sql = "SELECT `uid` FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id WHERE c.`cat_id`=$cat_id AND `uid` IS NOT NULL AND permissions LIKE '%is\\_moderator\";i:1%'";
+	$sql = 'SELECT `uid` FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_category_permissions') . " cp ON c.cat_permission_id=cp.cat_id WHERE c.`cat_id`=$cat_id AND `uid` IS NOT NULL AND permissions LIKE '%is\\_moderator\";i:1%'";
 	$result = $db->query($sql);
 	while (list($uid) = $db->fetchRow($result)) {
 		$cat_uids[] = $uid;
 	}
 
 	// get uid via groupid
-	$sql = "SELECT distinct cp.groupid FROM " . $db->prefix($mydirname . "_categories") . " c LEFT JOIN " . $db->prefix($mydirname . "_category_permissions") . " cp ON c.cat_permission_id=cp.cat_id WHERE c.`cat_id`=$cat_id AND cp.`groupid` IS NOT NULL AND permissions LIKE '%is\\_moderator\";i:1%'";
+	$sql = 'SELECT distinct cp.groupid FROM ' . $db->prefix($mydirname . '_categories') . ' c LEFT JOIN ' . $db->prefix($mydirname . '_category_permissions') . " cp ON c.cat_permission_id=cp.cat_id WHERE c.`cat_id`=$cat_id AND cp.`groupid` IS NOT NULL AND permissions LIKE '%is\\_moderator\";i:1%'";
 	$result = $db->query($sql);
 	$groupids = [];
 	while (list($groupid) = $db->fetchRow($result)) {
 		$groupids[] = $groupid;
 	}
 	if (!empty($groupids)) {
-		$sql = "SELECT distinct uid FROM " . $db->prefix("groups_users_link") . " WHERE groupid IN (" . implode(",", $groupids) . ")";
+		$sql = 'SELECT distinct uid FROM ' . $db->prefix('groups_users_link') . ' WHERE groupid IN (' . implode(',', $groupids) . ')';
 		$result = $db->query($sql);
 		while (list($uid) = $db->fetchRow($result)) {
 			$cat_uids[] = $uid;
@@ -194,7 +202,7 @@ function pico_main_get_top_content_id_from_cat_id($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	list($content_id) = $db->fetchRow($db->query("SELECT o.content_id FROM " . $db->prefix($mydirname . "_contents") . " o WHERE o.cat_id=" . intval($cat_id) . " AND o.visible AND o.created_time <= UNIX_TIMESTAMP() AND o.expiring_time > UNIX_TIMESTAMP() ORDER BY o.weight,o.content_id LIMIT 1"));
+	list($content_id) = $db->fetchRow($db->query('SELECT o.content_id FROM ' . $db->prefix($mydirname . '_contents') . ' o WHERE o.cat_id=' . intval($cat_id) . ' AND o.visible AND o.created_time <= UNIX_TIMESTAMP() AND o.expiring_time > UNIX_TIMESTAMP() ORDER BY o.weight,o.content_id LIMIT 1'));
 
 	return intval($content_id);
 }
@@ -336,7 +344,7 @@ function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/'
 
 	// make an option will be displayed
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
-	$myrow = $db->fetchArray($db->query("SELECT cat_title,cat_depth_in_tree FROM " . $db->prefix($mydirname . "_categories") . " WHERE cat_vpath='" . addslashes($dir_path4key) . "'"));
+	$myrow = $db->fetchArray($db->query('SELECT cat_title,cat_depth_in_tree FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_vpath='" . addslashes($dir_path4key) . "'"));
 	$ret[$dir_path4key] = empty($myrow) ? $full_dir_path4disp : $full_dir_path4disp . ' (' . str_repeat('--', $myrow['cat_depth_in_tree']) . htmlspecialchars($myrow['cat_title'], ENT_QUOTES) . ')';
 
 	// sub directries loop (1)
@@ -388,7 +396,7 @@ function pico_main_get_wraps_files_recursively($mydirname, $dir_path = '/')
 	foreach ($file_tmps as $file_tmp) {
 		$file_path4key = $dir_path . $file_tmp;
 		$ret[$file_path4key] = htmlspecialchars('XOOPS_TRUST_PATH' . _MD_PICO_WRAPBASE . '/' . $mydirname . $file_path4key, ENT_QUOTES);
-		$myrow = $db->fetchArray($db->query("SELECT subject FROM " . $db->prefix($mydirname . "_contents") . " WHERE vpath='" . addslashes($file_path4key) . "'"));
+		$myrow = $db->fetchArray($db->query('SELECT subject FROM ' . $db->prefix($mydirname . '_contents') . " WHERE vpath='" . addslashes($file_path4key) . "'"));
 		if (!empty($myrow)) {
 			$ret[$file_path4key] .= ' (' . htmlspecialchars(xoops_substr($myrow['subject'], 0, 20), ENT_QUOTES) . ')';
 		}

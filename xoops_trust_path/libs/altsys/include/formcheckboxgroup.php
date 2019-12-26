@@ -44,7 +44,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * Parent
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/formcheckbox.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/formcheckbox.php';
 
 /**
  * A checkbox field with a choice of available groups

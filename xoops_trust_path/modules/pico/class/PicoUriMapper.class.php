@@ -177,7 +177,7 @@ class PicoUriMapper
         $ext = strtolower(substr(strrchr($path_info, '.'), 1));
         if (in_array($ext, explode('|', _MD_PICO_EXTS4HTMLWRAPPING))) {
             $db     = XoopsDatabaseFactory::getDatabaseConnection();
-            $result = $db->query("SELECT content_id,cat_id FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE vpath=" . $db->quoteString($path_info));
+            $result = $db->query('SELECT content_id,cat_id FROM ' . $db->prefix($this->mydirname . '_contents') . ' WHERE vpath=' . $db->quoteString($path_info));
             list($content_id, $cat_id) = $db->fetchRow($result);
             if ($content_id > 0) {
                 return [intval($content_id), intval($cat_id)];
@@ -187,7 +187,7 @@ class PicoUriMapper
         // check cat_vpath in DB (2nd)
         if (substr($path_info, -1) == '/') {
             $db     = XoopsDatabaseFactory::getDatabaseConnection();
-            $result = $db->query("SELECT cat_id FROM " . $db->prefix($this->mydirname . "_categories") . " WHERE cat_vpath=" . $db->quoteString($path_info) . " OR cat_vpath=" . $db->quoteString(substr($path_info, 0, -1)));
+            $result = $db->query('SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . ' WHERE cat_vpath=' . $db->quoteString($path_info) . ' OR cat_vpath=' . $db->quoteString(substr($path_info, 0, -1)));
             list($cat_id) = $db->fetchRow($result);
             if ($cat_id > 0) {
                 return [0, intval($cat_id)];
@@ -226,7 +226,7 @@ class PicoUriMapper
             }
             header('HTTP/1.0 404 Not Found');
             if (!$err404 || !is_readable($err404)) {
-                die("The requested file " . htmlspecialchars($path_info) . " is not found");
+                die('The requested file ' . htmlspecialchars($path_info) . ' is not found');
             } else {
                 readfile($err404);
                 exit;
@@ -243,11 +243,11 @@ class PicoUriMapper
             $dir_tmp    = strtolower($path_info);
             $vpaths4sql = '';
             do {
-                $vpaths4sql .= "," . $db->quoteString($dir_tmp);
+                $vpaths4sql .= ',' . $db->quoteString($dir_tmp);
                 $dir_tmp    = substr($path_info, 0, strrpos($dir_tmp, '/'));
             } while ($dir_tmp);
             $vpaths4sql = $vpaths4sql ? substr($vpaths4sql, 1) : "''";
-            $result     = $db->query("SELECT cat_id FROM " . $db->prefix($this->mydirname . "_categories") . " WHERE cat_vpath IN ($vpaths4sql) ORDER BY LENGTH(cat_vpath) DESC");
+            $result     = $db->query('SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . " WHERE cat_vpath IN ($vpaths4sql) ORDER BY LENGTH(cat_vpath) DESC");
             list($cat_id) = $db->fetchRow($result);
             if ($path_info_is_dir) {
                 // just return $cat_id
@@ -281,9 +281,9 @@ class PicoUriMapper
         $cache_limit = intval(@$this->config['browser_cache']);
         if ($cache_limit > 0) {
             session_cache_limiter('public');
-            header("Expires: " . date('r', intval(time() / $cache_limit) * $cache_limit + $cache_limit));
+            header('Expires: ' . date('r', intval(time() / $cache_limit) * $cache_limit + $cache_limit));
             header("Cache-Control: public, max-age=$cache_limit");
-            header("Last-Modified: " . date('r', intval(time() / $cache_limit) * $cache_limit));
+            header('Last-Modified: ' . date('r', intval(time() / $cache_limit) * $cache_limit));
         }
 
         require dirname(dirname(__FILE__)) . '/include/mimes.php';
@@ -293,7 +293,7 @@ class PicoUriMapper
             header('Content-Type: application/octet-stream');
         }
         @set_time_limit(0);
-        $fp = fopen($wrap_full_path, "rb");
+        $fp = fopen($wrap_full_path, 'rb');
         while (!feof($fp)) {
             echo fread($fp, 65536);
         }

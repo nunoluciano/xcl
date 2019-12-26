@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class Legacy_SmilesAdminEditForm extends XCube_ActionForm
 {
@@ -22,7 +22,7 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
 
     public function getTokenName()
     {
-        return "module.legacy.SmilesAdminEditForm.TOKEN" . $this->get('id');
+        return 'module.legacy.SmilesAdminEditForm.TOKEN' . $this->get('id');
     }
 
     public function prepare()

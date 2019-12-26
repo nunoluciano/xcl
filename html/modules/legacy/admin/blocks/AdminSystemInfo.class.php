@@ -14,12 +14,12 @@ class Legacy_AdminSystemInfo extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return "systeminfo";
+        return 'systeminfo';
     }
 
     public function getTitle()
     {
-        return "TEST: AdminSystemInfo";
+        return 'TEST: AdminSystemInfo';
     }
 
     public function getEntryIndex()
@@ -46,7 +46,7 @@ class Legacy_AdminSystemInfo extends Legacy_AbstractBlockProcedure
         $systemconfig               = [];
         $systemconfig['phpversion'] = phpversion();
         $db                         = &$root->mController->getDB();
-        $result                     = $db->query("SELECT VERSION()");
+        $result                     = $db->query('SELECT VERSION()');
         list($mysqlversion) = $db->fetchRow($result);
         $systemconfig['mysqlversion'] = $mysqlversion;
         $systemconfig['os']           = substr(php_uname(), 0, 7);
@@ -65,7 +65,7 @@ class Legacy_AdminSystemInfo extends Legacy_AbstractBlockProcedure
 
     public function &getResult()
     {
-        $dmy = "dummy";
+        $dmy = 'dummy';
         return $dmy;
     }
 

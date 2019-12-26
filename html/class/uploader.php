@@ -60,10 +60,10 @@
  * @copyright    (c) 2000-2003 The Xoops Project - www.xoops.org
  */
 
-define("XCUBE_IMAGETYPE_ENUM_GIF", 1);
-define("XCUBE_IMAGETYPE_ENUM_JPG", 2);
-define("XCUBE_IMAGETYPE_ENUM_PNG", 3);
-define("XCUBE_IMAGETYPE_ENUM_BMP", 6);
+define('XCUBE_IMAGETYPE_ENUM_GIF', 1);
+define('XCUBE_IMAGETYPE_ENUM_JPG', 2);
+define('XCUBE_IMAGETYPE_ENUM_PNG', 3);
+define('XCUBE_IMAGETYPE_ENUM_BMP', 6);
 
 class XoopsMediaUploader
 {
@@ -121,11 +121,11 @@ class XoopsMediaUploader
         }
 
         $this->_strictCheckExtensions = [
-            "gif"  =>XCUBE_IMAGETYPE_ENUM_GIF,
-            "jpg"  =>XCUBE_IMAGETYPE_ENUM_JPG,
-            "jpeg" =>XCUBE_IMAGETYPE_ENUM_JPG,
-            "png"  =>XCUBE_IMAGETYPE_ENUM_PNG,
-            "bmp"  =>XCUBE_IMAGETYPE_ENUM_BMP
+            'gif'  =>XCUBE_IMAGETYPE_ENUM_GIF,
+            'jpg'  =>XCUBE_IMAGETYPE_ENUM_JPG,
+            'jpeg' =>XCUBE_IMAGETYPE_ENUM_JPG,
+            'png'  =>XCUBE_IMAGETYPE_ENUM_PNG,
+            'bmp'  =>XCUBE_IMAGETYPE_ENUM_BMP
         ];
     }
 
@@ -309,7 +309,7 @@ class XoopsMediaUploader
             $this->setErrors(sprintf('File height must be smaller than %u', $this->maxHeight));
         }
         if (!$this->checkMimeType()) {
-            $this->setErrors("Invalid file type");
+            $this->setErrors('Invalid file type');
         }
         if (count($this->errors) > 0) {
             return false;

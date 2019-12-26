@@ -1,6 +1,6 @@
 <?php
 
-eval( ' function xoops_module_install_'.$mydirname.'( $module ) { return xelfinder_oninstall_base( $module , "'.$mydirname.'" ) ; } ' ) ;
+eval( ' function xoops_module_install_'.$mydirname . '( $module ) { return xelfinder_oninstall_base( $module , \'' . $mydirname . '\' ) ; } ') ;
 
 
 if( ! function_exists( 'xelfinder_oninstall_base' ) ) {
@@ -27,7 +27,7 @@ function xelfinder_oninstall_base( $module , $mydirname )
 	$sql_file_path = dirname(__FILE__).'/sql/mysql.sql' ;
 	$prefix_mod = $db->prefix() . '_' . $mydirname ;
 	if( file_exists( $sql_file_path ) ) {
-		$ret[] = "SQL file found at <b>".htmlspecialchars($sql_file_path, ENT_COMPAT, _CHARSET)."</b>.<br /> Creating tables...";
+		$ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path, ENT_COMPAT, _CHARSET) . '</b>.<br /> Creating tables...';
 
 		if( file_exists( XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ) ) {
 			include_once XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ;
@@ -43,7 +43,7 @@ function xelfinder_oninstall_base( $module , $mydirname )
 		if( is_array( $pieces ) ) foreach( $pieces as $piece ) {
 			$prefixed_query = $sqlutil->prefixQuery( $piece , $prefix_mod ) ;
 			if( ! $prefixed_query ) {
-				$ret[] = "Invalid SQL <b>".htmlspecialchars($piece, ENT_COMPAT, _CHARSET)."</b><br />";
+				$ret[] = 'Invalid SQL <b>' . htmlspecialchars($piece, ENT_COMPAT, _CHARSET) . '</b><br />';
 				return false ;
 			}
 			if( ! $db->query( $prefixed_query[0] ) ) {

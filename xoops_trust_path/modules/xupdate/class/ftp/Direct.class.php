@@ -84,7 +84,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         return chmod($pathname, $mode);
     }
 
-    public function nlist($pathname="")
+    public function nlist($pathname= '')
     {
         return glob($pathname . '/*');
     }

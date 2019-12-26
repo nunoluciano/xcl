@@ -155,10 +155,10 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
         $renderTarget =& $renderSystem->createRenderTarget('main');
 
-        $renderTarget->setTemplateName("legacy_comment_navi.html");
-        $renderTarget->setAttribute("pageName", $comment_config['pageName']);
+        $renderTarget->setTemplateName('legacy_comment_navi.html');
+        $renderTarget->setAttribute('pageName', $comment_config['pageName']);
         
-        $modeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
+        $modeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $renderTarget->setAttribute('modeOptions', $modeOptions);
         $renderTarget->setAttribute('com_mode', $com_mode);
         
@@ -170,7 +170,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $renderTarget->setAttribute('com_itemid', $com_itemid);
         $renderTarget->setAttribute('com_anonpost', $xoopsModuleConfig['com_anonpost']);
         
-        $postcomment_link = "";
+        $postcomment_link = '';
         if (!empty($xoopsModuleConfig['com_anonpost']) || is_object($xoopsUser)) {
             $postcomment_link = 'comment_new.php?com_itemid=' . $com_itemid . '&com_order=' . $com_order . '&com_mode=' . $com_mode;
         }
@@ -198,13 +198,13 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
             // Composite link_extra
             //
             foreach ($fetchParams as $key => $value) {
-                $link_extra .= "&" . $key . "=" . $value;
+                $link_extra .= '&' . $key . '=' . $value;
             }
         }
 
-        $renderTarget->setAttribute("extraParams", $fetchParams);
-        $renderTarget->setAttribute("link_extra", $link_extra);
-        $renderTarget->setAttribute("postcomment_link", $postcomment_link);
+        $renderTarget->setAttribute('extraParams', $fetchParams);
+        $renderTarget->setAttribute('link_extra', $link_extra);
+        $renderTarget->setAttribute('postcomment_link', $postcomment_link);
         
         $renderSystem->render($renderTarget);
         

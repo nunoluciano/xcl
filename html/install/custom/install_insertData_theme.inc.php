@@ -1,6 +1,6 @@
 <?php
 // to replace main_theme legacy_default => pack2011_default
-require_once dirname(dirname(__FILE__))."/wizards/install_insertData.inc.php";
+require_once dirname(dirname(__FILE__)) . '/wizards/install_insertData.inc.php';
 
 $available_themes = [];
 foreach ($_POST as $key=>$value) {

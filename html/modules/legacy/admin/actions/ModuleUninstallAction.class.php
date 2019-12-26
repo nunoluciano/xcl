@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/actions/AbstractModuleInstallAction.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleUninstallForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/actions/AbstractModuleInstallAction.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleUninstallForm.class.php';
 
 
 /**
@@ -182,14 +182,14 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
             XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUninstall.Fail', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
         }
 
-        $renderer->setTemplateName("module_uninstall_success.html");
+        $renderer->setTemplateName('module_uninstall_success.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
         $renderer->setAttribute('log', $this->mInstaller->mLog->mMessages);
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("module_uninstall.html");
+        $renderer->setTemplateName('module_uninstall.html');
         $renderer->setAttribute('actionForm', $this->mActionForm);
         $renderer->setAttribute('module', $this->mXoopsModule);
         $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2)); // !TODO version revision
@@ -197,6 +197,6 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 }

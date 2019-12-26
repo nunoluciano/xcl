@@ -14,7 +14,7 @@ class Profile_DataObj extends XCube_Object
         $handler =& xoops_getmodulehandler('definitions', 'profile');
         $defArr =& $handler->getObjects();
         $ret = [
-            S_PUBLIC_VAR("int uid")
+            S_PUBLIC_VAR('int uid')
         ];
         foreach (array_keys($defArr) as $key) {
             $ret[] = S_PUBLIC_VAR($defArr->getServiceField());
@@ -31,7 +31,7 @@ class Profile_DataObjArray extends XCube_ObjectArray
      */
     public function getClassName()
     {
-        return "Profile_DataObj";
+        return 'Profile_DataObj';
     }
 }
 
@@ -47,7 +47,7 @@ class Profile_OptionsObj extends XCube_Object
     public function getPropertyDefinition()
     {
         $ret = [
-            S_PUBLIC_VAR("string option_name"),
+            S_PUBLIC_VAR('string option_name'),
         ];
         
         return $ret;
@@ -61,7 +61,7 @@ class Profile_OptionsObjArray extends XCube_ObjectArray
      */
     public function getClassName()
     {
-        return "Profile_OptionsObj";
+        return 'Profile_OptionsObj';
     }
 }
 
@@ -73,14 +73,14 @@ class Profile_DefinitionsObj extends XCube_Object
     public function getPropertyDefinition()
     {
         $ret = [
-            S_PUBLIC_VAR("int field_id"),
-            S_PUBLIC_VAR("string field_name"),
-            S_PUBLIC_VAR("string label"),
-            S_PUBLIC_VAR("string type"),
-            S_PUBLIC_VAR("int weight"),
-            S_PUBLIC_VAR("text description"),
-            S_PUBLIC_VAR("text access"),
-            S_PUBLIC_VAR("Profile_OptionsObjArray options"),
+            S_PUBLIC_VAR('int field_id'),
+            S_PUBLIC_VAR('string field_name'),
+            S_PUBLIC_VAR('string label'),
+            S_PUBLIC_VAR('string type'),
+            S_PUBLIC_VAR('int weight'),
+            S_PUBLIC_VAR('text description'),
+            S_PUBLIC_VAR('text access'),
+            S_PUBLIC_VAR('Profile_OptionsObjArray options'),
         ];
         
         return $ret;
@@ -94,15 +94,15 @@ class Profile_DefinitionsObjArray extends XCube_ObjectArray
      */
     public function getClassName()
     {
-        return "Profile_DefinitionsObj";
+        return 'Profile_DefinitionsObj';
     }
 }
 
 class Profile_Service extends XCube_Service
 {
-    public $mServiceName = "Profile_Service";
-    public $mNameSpace = "Profile";
-    public $mClassName = "Profile_Service";
+    public $mServiceName = 'Profile_Service';
+    public $mNameSpace = 'Profile';
+    public $mClassName = 'Profile_Service';
 
     /**
      * @public
@@ -123,7 +123,7 @@ class Profile_Service extends XCube_Service
     
         $handler =& xoops_getmodulehandler('definitions', 'profile');
         $defArr =& $handler->getObjects();
-        $fieldDef = "";
+        $fieldDef = '';
         foreach (array_keys($defArr) as $key) {
             $fieldDef .= $defArr[$key]->getServiceField() .',';
         }
@@ -276,7 +276,7 @@ class Profile_Service extends XCube_Service
             $dataObj = $dataHandler->create();
         }
 
-        $dataObj->set("uid", $uid);
+        $dataObj->set('uid', $uid);
     
         foreach (array_keys($defArr) as $key) {
             $dataObj->set($defArr[$key]->getShow('field_name'), $root->mContext->mRequest->getRequest($defArr[$key]->getShow('field_name')));

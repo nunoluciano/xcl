@@ -75,7 +75,7 @@ class db_manager
     {
         $this->connectDB(false);
     
-        $result = $this->db->query("CREATE DATABASE ".XOOPS_DB_NAME);
+        $result = $this->db->query('CREATE DATABASE ' . XOOPS_DB_NAME);
     
         return ($result != false) ? true : false;
     }
@@ -244,7 +244,7 @@ class db_manager
         $deleted = [];
         $this->connectDB();
         foreach ($tables as $key => $val) {
-            if (! $this->db->query("DROP TABLE ".$this->db->prefix($key))) {
+            if (! $this->db->query('DROP TABLE ' . $this->db->prefix($key))) {
                 $deleted[] = $ct;
             }
         }

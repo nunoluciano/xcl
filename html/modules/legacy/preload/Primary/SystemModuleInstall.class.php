@@ -20,8 +20,8 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
     public function preBlockFilter()
     {
         if (is_array(Legacy_Utils::checkSystemModules())) {
-            $this->mController->mSetupUser->add([$this, "callbackSetupUser"], XCUBE_DELEGATE_PRIORITY_FINAL - 1);
-            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [$this, "callbackCheckLoginSuccess"]);
+            $this->mController->mSetupUser->add([$this, 'callbackSetupUser'], XCUBE_DELEGATE_PRIORITY_FINAL - 1);
+            $this->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [$this, 'callbackCheckLoginSuccess']);
         }
     }
 
@@ -53,8 +53,8 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
         if ($accessAllowFlag) {
             $GLOBALS['xoopsUser'] = $context->mXoopsUser;
             if (!empty($_POST['cube_module_install'])) { //@todo use Ticket
-                require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstaller.class.php";
-                require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
+                require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstaller.class.php';
+                require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
                 if (isset($_POST['uninstalled_modules']) && is_array($_POST['uninstalled_modules'])) {
                     foreach ($_POST['uninstalled_modules'] as $module) {
                         $module = basename($module);
@@ -131,8 +131,8 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_uninstall_modules.html');
                 exit();
             } elseif (!empty($_POST['cube_module_uninstallok'])) { //@todo use Ticket
-                require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleUninstaller.class.php";
-                require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
+                require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleUninstaller.class.php';
+                require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
                 $module = basename($_POST['cube_module_uninstallok']);
                 if (in_array($module, $retArray['disabled'])) {
                     $controller->mRoot->mLanguageManager->loadModuleAdminMessageCatalog('legacy');

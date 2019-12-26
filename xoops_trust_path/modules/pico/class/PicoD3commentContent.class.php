@@ -78,8 +78,8 @@ class PicoD3commentContent extends D3commentAbstract
 
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        list($count) = $db->fetchRow($db->query("SELECT COUNT(*) FROM " . $db->prefix($this->d3forum_dirname . "_posts") . " p LEFT JOIN " . $db->prefix($this->d3forum_dirname . "_topics") . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$content_id'"));
-        $db->queryF("UPDATE " . $db->prefix($mydirname . "_contents") . " SET comments_count=$count WHERE content_id=$content_id");
+        list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_posts') . ' p LEFT JOIN ' . $db->prefix($this->d3forum_dirname . '_topics') . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$content_id'"));
+        $db->queryF('UPDATE ' . $db->prefix($mydirname . '_contents') . " SET comments_count=$count WHERE content_id=$content_id");
 
         return true;
     }

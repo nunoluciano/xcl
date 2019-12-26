@@ -24,7 +24,7 @@ class PicoAutoRegisterWraps
         $file_info  = $this->getFileInfo($vpath);
 
         // check the file is newer than the contents
-        $sql = "SELECT modified_time FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE content_id=$content_id";
+        $sql = 'SELECT modified_time FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE content_id=$content_id";
         list($modified_time) = $db->fetchRow($db->query($sql));
 
         if ($modified_time < $file_info['mtime']) {
@@ -33,8 +33,8 @@ class PicoAutoRegisterWraps
             pico_transact_backupcontent($this->mydirname, $content_id);
 
             // update the content
-            $set4subject = $file_info['subject'] ? "`subject`=" . $db->quoteString($file_info['subject']) . "," : '';
-            $sql         = "UPDATE " . $db->prefix($this->mydirname . "_contents") . " SET $set4subject `modified_time`={$file_info['mtime']},body_cached='',for_search='',`last_cached_time`=0,modifier_uid=0,modifier_ip='' WHERE content_id=$content_id";
+            $set4subject = $file_info['subject'] ? '`subject`=' . $db->quoteString($file_info['subject']) . ',' : '';
+            $sql         = 'UPDATE ' . $db->prefix($this->mydirname . '_contents') . " SET $set4subject `modified_time`={$file_info['mtime']},body_cached='',for_search='',`last_cached_time`=0,modifier_uid=0,modifier_ip='' WHERE content_id=$content_id";
             $db->queryF($sql);
             return $db->getAffectedRows();
         }
@@ -46,7 +46,7 @@ class PicoAutoRegisterWraps
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        list($weight) = $db->fetchRow($db->query("SELECT MAX(weight) FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE `cat_id`=$cat_id"));
+        list($weight) = $db->fetchRow($db->query('SELECT MAX(weight) FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE `cat_id`=$cat_id"));
 
         return $weight + 1;
     }
@@ -61,9 +61,9 @@ class PicoAutoRegisterWraps
 
         return "SET `cat_id`=$cat_id,`vpath`="
                . $db->quoteString($vpath)
-               . ",`subject`="
+               . ',`subject`='
                . $db->quoteString($file_info['subject_alt'])
-               . ",`body`="
+               . ',`body`='
                . $db->quoteString($file_info['body'])
                . ",`created_time`={$file_info['mtime']},`modified_time`={$file_info['mtime']},expiring_time=0x7fffffff,poster_uid=0,modifier_uid=0,poster_ip='',modifier_ip='',use_cache=0,weight=$weight,filters='wraps',show_in_navi=1,show_in_menu=1,allow_comment=0,visible=1,approval=1,htmlheader='',htmlheader_waiting='',body_waiting='',body_cached='',tags='',extra_fields='',for_search=''";
     }
@@ -76,7 +76,7 @@ class PicoAutoRegisterWraps
         $cat_id = intval($cat_id);
 
         // insert a new record into the category
-        $sql = "INSERT INTO " . $db->prefix($this->mydirname . "_contents") . " " . $this->getInsertSQL($cat_id, $vpath);
+        $sql = 'INSERT INTO ' . $db->prefix($this->mydirname . '_contents') . ' ' . $this->getInsertSQL($cat_id, $vpath);
 
         // dare to ignore duplicate key error
         // if( ! $db->queryF( $sql ) ) die( _MD_PICO_ERR_SQL.__LINE__.__CLASS__ ) ;

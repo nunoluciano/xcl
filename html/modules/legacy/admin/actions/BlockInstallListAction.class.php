@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockInstallFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockInstallFilterForm.class.php';
 
 class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 {
@@ -47,12 +47,12 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=BlockInstallList";
+        return './index.php?action=BlockInstallList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("blockinstall_list.html");
+        $render->setTemplateName('blockinstall_list.html');
 
         //
         // Lazy load
@@ -76,8 +76,8 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
                 $menu[]          = $rtn;
             }
         }
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $moduleHandler =& xoops_gethandler('module');
         $modules =& $moduleHandler->getObjects(new Criteria('isactive', 1));
         $render->setAttribute('modules', $modules);

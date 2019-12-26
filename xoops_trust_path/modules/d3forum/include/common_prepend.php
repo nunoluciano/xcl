@@ -18,9 +18,9 @@ $d3forum_icon_meanings = explode( '|' , $xoopsModuleConfig['icon_meanings'] ) ;
 
 // get this user's permissions as perm array
 $category_permissions = d3forum_get_category_permissions_of_current_user( $mydirname ) ;
-$whr_read4cat = 'c.`cat_id` IN (' . implode( "," , array_keys( $category_permissions ) ) . ')' ;
+$whr_read4cat = 'c.`cat_id` IN (' . implode(',', array_keys($category_permissions ) ) . ')' ;
 $forum_permissions = d3forum_get_forum_permissions_of_current_user( $mydirname ) ;
-$whr_read4forum = 'f.`forum_id` IN (' . implode( "," , array_keys( $forum_permissions ) ) . ')' ;
+$whr_read4forum = 'f.`forum_id` IN (' . implode(',', array_keys($forum_permissions ) ) . ')' ;
 
 // init xoops_breadcrumbs
 if( is_object( $xoopsModule ) ) {

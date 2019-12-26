@@ -26,7 +26,7 @@ class PicoCategoryHandler
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $sql = "SELECT cat_id FROM " . $db->prefix($this->mydirname . "_categories") . " WHERE 1 ORDER BY cat_order_in_tree";
+        $sql = 'SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . ' WHERE 1 ORDER BY cat_order_in_tree';
         if (!$crs = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
                 echo $db->logger->dumpQueries();
@@ -51,7 +51,7 @@ class PicoCategoryHandler
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
         $cat_id = intval($cat_id);
-        $sql    = "SELECT cat_id FROM " . $db->prefix($this->mydirname . "_categories") . " WHERE pid=$cat_id ORDER BY cat_order_in_tree";
+        $sql    = 'SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . " WHERE pid=$cat_id ORDER BY cat_order_in_tree";
         if (!$crs = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
                 echo $db->logger->dumpQueries();
@@ -82,7 +82,7 @@ class PicoCategoryHandler
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
         $mtime = empty($mtime) ? time() : intval($mtime);
-        $db->queryF("UPDATE " . $db->prefix($this->mydirname . "_categories") . " SET `cat_vpath_mtime`=$mtime WHERE cat_id=$cat_id");
+        $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_categories') . " SET `cat_vpath_mtime`=$mtime WHERE cat_id=$cat_id");
     }
 }
 
@@ -108,7 +108,7 @@ class PicoCategory
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
         // get this "category" from given $cat_id
-        $sql = "SELECT * FROM " . $db->prefix($mydirname . "_categories") . " WHERE cat_id=$cat_id";
+        $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id";
         if (!$crs = $db->query($sql)) {
             die(_MD_PICO_ERR_SQL . __LINE__);
         }

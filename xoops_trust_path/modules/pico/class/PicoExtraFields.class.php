@@ -180,7 +180,7 @@ class PicoExtraFields
             }
             if (preg_match('/([0-9a-f]{16}\.[a-z]{3})$/', $filename, $regs)) {
                 $image_id = $regs[1];
-                list($count) = $db->fetchRow($db->query("SELECT COUNT(*) FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE extra_fields LIKE '%" . addslashes($image_id) . "%'"));
+                list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE extra_fields LIKE '%" . addslashes($image_id) . "%'"));
                 if ($count <= 0) {
                     unlink($filename);
                 }

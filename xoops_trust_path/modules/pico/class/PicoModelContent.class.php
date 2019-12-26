@@ -22,7 +22,7 @@ class PicoContentHandler
 
         $cat_data = $categoryObj->getData();
 
-        $sql = "SELECT content_id FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE cat_id=" . $cat_data['cat_id'] . " ORDER BY weight";
+        $sql = 'SELECT content_id FROM ' . $db->prefix($this->mydirname . '_contents') . ' WHERE cat_id=' . $cat_data['cat_id'] . ' ORDER BY weight';
         if (!$ors = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
                 echo $db->logger->dumpQueries();
@@ -53,7 +53,7 @@ class PicoContentHandler
         $target_categories   = array_intersect(array_merge($child_categories, [$cat_data['id']]), $readable_categories);
 
         $whr_cid = 'cat_id IN (' . implode(',', $target_categories) . ')';
-        $sql     = "SELECT content_id FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE ($whr_cid) AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() ORDER BY modified_time DESC, content_id LIMIT $num";
+        $sql     = 'SELECT content_id FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE ($whr_cid) AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() ORDER BY modified_time DESC, content_id LIMIT $num";
 
         if (!$result = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
@@ -78,7 +78,7 @@ class PicoContentHandler
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $sql = "SELECT content_id FROM " . $db->prefix($this->mydirname . "_contents") . " o WHERE ($whr_append) ORDER BY $order";
+        $sql = 'SELECT content_id FROM ' . $db->prefix($this->mydirname . '_contents') . " o WHERE ($whr_append) ORDER BY $order";
         if (!$ors = $db->query($sql)) {
             if ($GLOBALS['xoopsUser']->isAdmin()) {
                 echo $db->logger->dumpQueries();
@@ -108,7 +108,7 @@ class PicoContentHandler
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $result = $db->query("SELECT content_id,vpath FROM " . $db->prefix($this->mydirname . "_contents") . " WHERE cat_id=$cat_id AND vpath IS NOT NULL AND poster_uid=0");
+        $result = $db->query('SELECT content_id,vpath FROM ' . $db->prefix($this->mydirname . '_contents') . " WHERE cat_id=$cat_id AND vpath IS NOT NULL AND poster_uid=0");
         $ret    = [];
         while (list($content_id, $vpath) = $db->fetchRow($result)) {
             $ret[$content_id] = $vpath;
@@ -139,7 +139,7 @@ class PicoContent
         $this->mydirname = $mydirname;
 
         // get this "content" from given $content_id
-        $sql = "SELECT * FROM " . $db->prefix($mydirname . "_contents") . " WHERE content_id=$content_id";
+        $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_contents') . " WHERE content_id=$content_id";
         if (!$ors = $db->query($sql)) {
             die(_MD_PICO_ERR_SQL . __LINE__);
         }
@@ -237,7 +237,7 @@ class PicoContent
             if ($content4assign['body_cached'] == _MD_PICO_ERR_COMPILEERROR) {
                 return $content4assign['body_cached'];
             } else {
-                $db->queryF("UPDATE " . $db->prefix($this->mydirname . "_contents") . " SET body_cached=" . $db->quoteString(_MD_PICO_ERR_COMPILEERROR) . " WHERE content_id=" . intval($content4assign['content_id']));
+                $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString(_MD_PICO_ERR_COMPILEERROR) . ' WHERE content_id=' . intval($content4assign['content_id']));
             }
         }
 
@@ -288,7 +288,7 @@ class PicoContent
         // if( $content4assign['last_cached_time'] < $content4assign['modified_time'] ) {
         if (empty($content4assign['for_search']) || $content4assign['last_cached_time'] < $content4assign['modified_time']) { // edit by nao-pon ref. https://www.xugj.org/modules/QandA/index.php?topic_id=1891
             $for_search = $content4assign['subject_raw'] . ' ' . strip_tags($text) . ' ' . implode(' ', array_values(pico_common_unserialize(@$content4assign['extra_fields'])));
-            $db->queryF("UPDATE " . $db->prefix($this->mydirname . "_contents") . " SET body_cached=" . $db->quoteString($text) . ", for_search=" . $db->quoteString($for_search) . ", last_cached_time=UNIX_TIMESTAMP() WHERE content_id=" . intval($content4assign['content_id']));
+            $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString($text) . ', for_search=' . $db->quoteString($for_search) . ', last_cached_time=UNIX_TIMESTAMP() WHERE content_id=' . intval($content4assign['content_id']));
         }
 
         return $text;
@@ -368,15 +368,15 @@ class PicoContent
 
         list($prev_content_id) = $db->fetchRow(
             $db->query(
-                "SELECT content_id FROM "
-                . $db->prefix($this->mydirname . "_contents")
-                . " WHERE (weight<"
+                'SELECT content_id FROM '
+                . $db->prefix($this->mydirname . '_contents')
+                . ' WHERE (weight<'
                 . $this->data['weight']
                 . " OR content_id<$this->id AND weight="
                 . $this->data['weight']
-                . ") AND cat_id="
+                . ') AND cat_id='
                 . $this->data['cat_id']
-                . " AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND show_in_navi ORDER BY weight DESC,content_id DESC LIMIT 1"
+                . ' AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND show_in_navi ORDER BY weight DESC,content_id DESC LIMIT 1'
             )
         );
 
@@ -393,15 +393,15 @@ class PicoContent
 
         list($next_content_id) = $db->fetchRow(
             $db->query(
-                "SELECT content_id FROM "
-                . $db->prefix($this->mydirname . "_contents")
-                . " WHERE (weight>"
+                'SELECT content_id FROM '
+                . $db->prefix($this->mydirname . '_contents')
+                . ' WHERE (weight>'
                 . $this->data['weight']
                 . " OR content_id>$this->id AND weight="
                 . $this->data['weight']
-                . ") AND cat_id="
+                . ') AND cat_id='
                 . $this->data['cat_id']
-                . " AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND show_in_navi ORDER BY weight,content_id LIMIT 1"
+                . ' AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND show_in_navi ORDER BY weight,content_id LIMIT 1'
             )
         );
 
@@ -421,7 +421,7 @@ class PicoContent
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        $db->queryF("UPDATE " . $db->prefix($this->mydirname . "_contents") . " SET viewed=viewed+1 WHERE content_id='" . $this->id . "'");
+        $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . " SET viewed=viewed+1 WHERE content_id='" . $this->id . "'");
     }
 
     public function vote($uid, $vote_ip, $point)
@@ -433,17 +433,17 @@ class PicoContent
         if ($uid) {
             $useridentity4select = "uid=$uid";
         } else {
-            $useridentity4select = "vote_ip=" . $db->quoteString($vote_ip) . " AND uid=0 AND vote_time>" . (time() - @$mod_config['guest_vote_interval']);
+            $useridentity4select = 'vote_ip=' . $db->quoteString($vote_ip) . ' AND uid=0 AND vote_time>' . (time() - @$mod_config['guest_vote_interval']);
         }
 
         // delete previous vote
-        $sql = "DELETE FROM " . $db->prefix($this->mydirname . "_content_votes") . " WHERE content_id=$this->id AND ($useridentity4select)";
+        $sql = 'DELETE FROM ' . $db->prefix($this->mydirname . '_content_votes') . " WHERE content_id=$this->id AND ($useridentity4select)";
         if (!$result = $db->queryF($sql)) {
             die(_MD_PICO_ERR_SQL . __LINE__);
         }
 
         // insert this vote
-        $sql = "INSERT INTO " . $db->prefix($this->mydirname . "_content_votes") . " (content_id,vote_point,vote_time,vote_ip,uid) VALUES ($this->id,$point,UNIX_TIMESTAMP()," . $db->quoteString($vote_ip) . ",$uid)";
+        $sql = 'INSERT INTO ' . $db->prefix($this->mydirname . '_content_votes') . " (content_id,vote_point,vote_time,vote_ip,uid) VALUES ($this->id,$point,UNIX_TIMESTAMP()," . $db->quoteString($vote_ip) . ",$uid)";
         if (!$db->queryF($sql)) {
             die(_MD_PICO_ERR_SQL . __LINE__);
         }

@@ -147,7 +147,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
             $groupid = $db->genId('group_groupid_seq');
             $sql = sprintf('INSERT INTO %s (groupid, name, description, group_type) VALUES (%u, %s, %s, %s)', $db->prefix('groups'), $groupid, $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type));
         } else {
-            $sql = sprintf("UPDATE %s SET name = %s, description = %s, group_type = %s WHERE groupid = %u", $db->prefix('groups'), $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type), $groupid);
+            $sql = sprintf('UPDATE %s SET name = %s, description = %s, group_type = %s WHERE groupid = %u', $db->prefix('groups'), $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type), $groupid);
         }
         if (!$result = $db->query($sql)) {
             return false;
@@ -310,9 +310,9 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         $db = &$this->db;
         if ($mship->isNew()) {
             $linkid = $db->genId('groups_users_link_linkid_seq');
-            $sql = sprintf("INSERT INTO %s (linkid, groupid, uid) VALUES (%u, %u, %u)", $db->prefix('groups_users_link'), $linkid, $groupid, $uid);
+            $sql = sprintf('INSERT INTO %s (linkid, groupid, uid) VALUES (%u, %u, %u)', $db->prefix('groups_users_link'), $linkid, $groupid, $uid);
         } else {
-            $sql = sprintf("UPDATE %s SET groupid = %u, uid = %u WHERE linkid = %u", $db->prefix('groups_users_link'), $groupid, $uid, $linkid);
+            $sql = sprintf('UPDATE %s SET groupid = %u, uid = %u WHERE linkid = %u', $db->prefix('groups_users_link'), $groupid, $uid, $linkid);
         }
         if (!$result = $db->query($sql)) {
             return false;
@@ -480,8 +480,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         $sql = "SELECT u.uid FROM ${usersTable} u LEFT JOIN ${linkTable} g ON u.uid=g.uid," .
                 "${usersTable} u2 LEFT JOIN ${linkTable} g2 ON u2.uid=g2.uid AND g2.groupid=${groupid} " .
                 "WHERE (g.groupid != ${groupid} OR g.groupid IS NULL) " .
-                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " .
-                "AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid";
+                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
 
         $result = $db->query($sql, $limit, $start);
         if (!$result) {

@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
+require_once dirname(__FILE__) . '/UserDataUploadAction.class.php';
 
 class User_UserDataUploadConfAction extends User_UserDataUploadAction
 {
@@ -29,7 +29,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         /// success
-        $render->setTemplateName("user_data_upload_conf.html");
+        $render->setTemplateName('user_data_upload_conf.html');
 
         // fields
         $fields = [];
@@ -147,16 +147,16 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
      *  @param  string  $delimiter  フィールドの区切り文字
      *  @return mixed   (array):分割結果 Ethna_Error:エラー(行継続)
      */
-    public function explodeCSV($csv, $delimiter = ",")
+    public function explodeCSV($csv, $delimiter = ',')
     {
         $space_list = '';
-        foreach ([" ", "\t", "\r", "\n"] as $c) {
+        foreach ([' ', "\t", "\r", "\n"] as $c) {
             if ($c != $delimiter) {
                 $space_list .= $c;
             }
         }
 
-        $line_end = "";
+        $line_end = '';
         if (preg_match("/([$space_list]+)\$/sS", $csv, $match)) {
             $line_end = $match[1];
         }
@@ -199,7 +199,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                         }
                     } else {
                         // normal character
-                        if (preg_match("/^([^\"]*)/S", substr($csv, $index), $match)) {
+                        if (preg_match('/^([^"]*)/S', substr($csv, $index), $match)) {
                             $field .= $match[1];
                             $index += strlen($match[1]);
                         }

@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetUploadForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetUploadForm.class.php';
 
 class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 {
@@ -45,7 +45,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
             return $this->getDefaultView($controller, $xoopsUser);
         }
         
-        require_once XOOPS_ROOT_PATH . "/class/class.tar.php";
+        require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
         $tar =new tar();
 
         $formFile = $this->mActionForm->get('upload');
@@ -178,27 +178,27 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("tplset_upload.html");
+        $render->setTemplateName('tplset_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=TplsetList");
+        $controller->executeForward('./index.php?action=TplsetList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         if (count($this->mErrorMessages) == 0) {
-            $controller->executeRedirect("./index.php?action=TplsetList", 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
+            $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
         } else {
-            $render->setTemplateName("tplset_upload_error.html");
+            $render->setTemplateName('tplset_upload_error.html');
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=TplsetList");
+        $controller->executeForward('./index.php?action=TplsetList');
     }
 }

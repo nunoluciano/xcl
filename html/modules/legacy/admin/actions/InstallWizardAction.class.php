@@ -12,9 +12,9 @@
      exit();
  }
 
-require_once XOOPS_LEGACY_PATH."/admin/actions/AbstractModuleInstallAction.class.php";
-require_once XOOPS_LEGACY_PATH."/admin/class/ModuleInstaller.class.php";
-require_once XOOPS_LEGACY_PATH."/admin/forms/InstallWizardForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/actions/AbstractModuleInstallAction.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstaller.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/InstallWizardForm.class.php';
 
 /***
  * @internal
@@ -50,9 +50,9 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
         //
         // TODO Replace with language manager.
         //
-        $path = XOOPS_MODULE_PATH . "/" . $this->mModuleObject->get('dirname') ."/language/" . $language . "/" . $file;
+        $path = XOOPS_MODULE_PATH . '/' . $this->mModuleObject->get('dirname') . '/language/' . $language . '/' . $file;
         if (!file_exists($path)) {
-            $path = XOOPS_MODULE_PATH . "/" . $this->mModuleObject->get('dirname') . "/language/english/" . $file;
+            $path = XOOPS_MODULE_PATH . '/' . $this->mModuleObject->get('dirname') . '/language/english/' . $file;
             if (!file_exists($path)) {
                 return;
             }
@@ -63,7 +63,7 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_install_success.html");
+        $render->setTemplateName('module_install_success.html');
         $render->setAttribute('log', $this->mLog->mMessages);
     }
 
@@ -75,15 +75,15 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
         if (isset($this->mModuleObject->modinfo['installer'])) {
             $render->setAttribute('image', $this->mModuleObject->modinfo['installer']['image']);
             $render->setAttribute('description', $this->mModuleObject->modinfo['installer']['description']);
-            $render->setTemplateName("install_wizard.html");
+            $render->setTemplateName('install_wizard.html');
         } else {
-            $controller->executeForward("index.php?action=ModuleInstall&dirname=" . $this->mModuleObject->get('dirname'));
+            $controller->executeForward('index.php?action=ModuleInstall&dirname=' . $this->mModuleObject->get('dirname'));
         }
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("install_wizard_licence.html");
+        $render->setTemplateName('install_wizard_licence.html');
         $render->setAttribute('module', $this->mModuleObject);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('licence', $this->mLicence);

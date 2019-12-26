@@ -14,9 +14,9 @@ function smarty_function_message_suggestlist($params, &$smarty)
     $root = XCube_Root::getSingleton();
     $db = $root->mController->getDB();
   
-    $sql = "SELECT `uname` FROM `".$db->prefix('users')."` ";
-    $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
-    $sql.= "ORDER BY `uname`";
+    $sql = 'SELECT `uname` FROM `' . $db->prefix('users') . '` ';
+    $sql.= 'WHERE `uid` <> ' . $root->mContext->mXoopsUser->get('uid') . ' ';
+    $sql.= 'ORDER BY `uname`';
     $result = $db->query($sql);
     $name = [];
     while (list($uname) = $db->fetchRow($result)) {

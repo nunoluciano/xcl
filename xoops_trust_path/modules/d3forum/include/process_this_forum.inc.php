@@ -1,7 +1,7 @@
 <?php
 
 // get this "forum" from given $forum_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_forums")." f WHERE ($whr_read4forum) AND f.forum_id=$forum_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_forums') . " f WHERE ($whr_read4forum) AND f.forum_id=$forum_id" ;
 if( ! $frs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 //if( $db->getRowsNum( $frs ) <= 0 ) die( _MD_D3FORUM_ERR_READFORUM ) ;
 if( $db->getRowsNum( $frs ) <= 0 ) return false ;

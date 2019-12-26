@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /***
  * @internal
@@ -31,7 +31,7 @@ class Legacy_BlockListForm extends XCube_ActionForm
         //
         //
         if (xoops_getenv('REQUEST_METHOD') == 'POST') {
-            return "module.legacy.BlockListForm.TOKEN";
+            return 'module.legacy.BlockListForm.TOKEN';
         } else {
             return null;
         }

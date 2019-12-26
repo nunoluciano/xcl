@@ -11,7 +11,7 @@ if( ! isset( $_GET['submit'] ) ) {
 
 	// naao from
 	// get all forums
-	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
+	$sql = 'SELECT forum_id, forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') ;
 	$frs = $db->query( $sql ) ;
 	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
@@ -85,34 +85,34 @@ if( ! isset( $_GET['submit'] ) ) {
 	}
 
 	$allowed_sortbys = [
-		"p.uid" ,
-		"p.uid desc" ,
-		"p.post_time" ,
-		"p.post_time desc" ,
-		"t.topic_title" ,
-		"t.topic_title desc" ,
-		"t.topic_views" ,
-		"t.topic_views desc" ,
-		"t.topic_sticky" ,
-		"t.topic_sticky desc" ,
-		"t.topic_locked" ,
-		"t.topic_locked desc" ,
-		"t.topic_solved" ,
-		"t.topic_solved desc" ,
-		"t.topic_posts_count" ,
-		"t.topic_posts_count desc" ,
-		"f.forum_id",
-		"f.forum_id desc",
-		"f.forum_title",
-		"f.forum_title desc",
-		"c.cat_id",
-		"c.cat_id desc",
-		"c.cat_title",
-		"c.cat_title desc",
-		"u.uname" ,
-		"u.uname desc" ,
+        'p.uid',
+        'p.uid desc',
+        'p.post_time',
+        'p.post_time desc',
+        't.topic_title',
+        't.topic_title desc',
+        't.topic_views',
+        't.topic_views desc',
+        't.topic_sticky',
+        't.topic_sticky desc',
+        't.topic_locked',
+        't.topic_locked desc',
+        't.topic_solved',
+        't.topic_solved desc',
+        't.topic_posts_count',
+        't.topic_posts_count desc',
+        'f.forum_id',
+        'f.forum_id desc',
+        'f.forum_title',
+        'f.forum_title desc',
+        'c.cat_id',
+        'c.cat_id desc',
+        'c.cat_title',
+        'c.cat_title desc',
+        'u.uname',
+        'u.uname desc',
     ];
-	$sortby = in_array( @$_GET['sortby'] , $allowed_sortbys ) ? $_GET['sortby'] : "p.post_time desc" ;
+	$sortby = in_array( @$_GET['sortby'] , $allowed_sortbys ) ? $_GET['sortby'] : 'p.post_time desc';
 
 	//$sql = 'SELECT u.uid,u.uname,p.post_id,p.subject,p.post_time,p.icon,LENGTH(p.post_text) AS body_length,p.votes_count,p.votes_sum,t.topic_id,t.topic_title,t.topic_views,t.topic_posts_count,f.forum_id,f.forum_title,c.cat_id,c.cat_title FROM '.$db->prefix($mydirname.'_posts').' p LEFT JOIN '.$db->prefix('users').' u ON p.uid=u.uid LEFT JOIN '.$db->prefix($mydirname.'_topics').' t ON p.topic_id = t.topic_id LEFT JOIN '.$db->prefix($mydirname.'_forums').' f ON t.forum_id = f.forum_id LEFT JOIN '.$db->prefix($mydirname.'_categories')." c ON f.cat_id = c.cat_id WHERE ($whr_keyword) AND ($whr_forum) AND ($whr_uname) AND ($whr_read4forum) AND ($whr_read4cat) ORDER BY $sortby" ;
 
@@ -163,7 +163,7 @@ if( ! isset( $_GET['submit'] ) ) {
 }
 
 $xoopsOption['template_main'] = $mydirname.'_main_search.html' ;
-include XOOPS_ROOT_PATH."/header.php" ;
+include XOOPS_ROOT_PATH . '/header.php';
 
 $xoopsTpl->assign(
     [
@@ -188,7 +188,7 @@ $xoopsTpl->assign(
         'show_results' => ! empty( $_GET['submit'] ) ? true : false,
         'results' => $results4assign,
         'forum_jumpbox_options' => d3forum_make_jumpbox_options( $mydirname , $whr_read4cat , $whr_read4forum , @$forum_id ),
-        'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+        'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header'),
         'xoops_pagetitle' => _MD_D3FORUM_TITLE_SEARCH,
         'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _MD_D3FORUM_TITLE_SEARCH]]),
     ]

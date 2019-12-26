@@ -4,7 +4,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('ONLINE_SORT_KEY_ONLINE_UID', 1);
 define('ONLINE_SORT_KEY_ONLINE_UNAME', 2);

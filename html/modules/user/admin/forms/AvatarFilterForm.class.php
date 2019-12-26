@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('AVATAR_SORT_KEY_AVATAR_ID', 1);
 define('AVATAR_SORT_KEY_AVATAR_FILE', 2);
@@ -35,10 +35,10 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         AVATAR_SORT_KEY_AVATAR_TYPE => 'avatar_type'
     ];
 
-    public $mKeyword = "";
-    public $mOptionField = "";
-    public $mOptionField2 = "";
-    public $mOptionField3 = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
+    public $mOptionField2 = '';
+    public $mOptionField3 = '';
     
     public function getDefaultSortKey()
     {
@@ -70,10 +70,10 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "system") {
+            if ($this->mOptionField == 'system') {
                 //only system avatar
             $this->_mCriteria->add(new Criteria('avatar_type', 'S'));
-            } elseif ($this->mOptionField == "custom") {
+            } elseif ($this->mOptionField == 'custom') {
                 //only custom avatar
             $this->_mCriteria->add(new Criteria('avatar_type', 'C'));
             } else {
@@ -84,9 +84,9 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == "visible") {
+            if ($this->mOptionField2 == 'visible') {
                 $this->_mCriteria->add(new Criteria('avatar_display', '1'));
-            } elseif ($this->mOptionField2 == "invisible") {
+            } elseif ($this->mOptionField2 == 'invisible') {
                 $this->_mCriteria->add(new Criteria('avatar_display', '0'));
             } else {
                 //all
@@ -96,11 +96,11 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field3'])) {
             $this->mNavi->addExtra('option_field3', xoops_getrequest('option_field3'));
             $this->mOptionField3 = $option_field3;
-            if ($this->mOptionField3 == "gif") {
+            if ($this->mOptionField3 == 'gif') {
                 $this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/gif'));
-            } elseif ($this->mOptionField3 == "png") {
+            } elseif ($this->mOptionField3 == 'png') {
                 $this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/png'));
-            } elseif ($this->mOptionField3 == "jpeg") {
+            } elseif ($this->mOptionField3 == 'jpeg') {
                 $this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/jpeg'));
             } else {
                 //all

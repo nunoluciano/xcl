@@ -165,9 +165,9 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
 class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "imagecategory";
-    public $mPrimary = "imgcat_id";
-    public $mClass = "LegacyImagecategoryObject";
+    public $mTable = 'imagecategory';
+    public $mPrimary = 'imgcat_id';
+    public $mClass = 'LegacyImagecategoryObject';
 
     public function insert(&$obj, $force = false)
     {

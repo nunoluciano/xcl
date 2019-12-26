@@ -12,10 +12,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentListForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/CommentEditAction.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentListForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/CommentEditAction.class.php';
 
 class Legacy_CommentListAction extends Legacy_AbstractListAction
 {
@@ -52,7 +52,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=CommentList";
+        return './index.php?action=CommentList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
@@ -83,11 +83,11 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         $statusHandler =& xoops_getmodulehandler('commentstatus');
         $statusArr =& $statusHandler->getObjects();
         
-        $render->setTemplateName("comment_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
-        $render->setAttribute("moduleArr", $moduleArr);
-        $render->setAttribute("statusArr", $statusArr);
+        $render->setTemplateName('comment_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
+        $render->setAttribute('moduleArr', $moduleArr);
+        $render->setAttribute('statusArr', $statusArr);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
 
@@ -319,7 +319,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             $this->mCommentObjects[$key]->loadStatus();
         }
 
-        $render->setTemplateName("comment_list_confirm.html");
+        $render->setTemplateName('comment_list_confirm.html');
         $render->setAttribute('commentObjects', $this->mCommentObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         //

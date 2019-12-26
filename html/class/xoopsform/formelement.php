@@ -88,7 +88,7 @@ class XoopsFormElement
      * extra attributes to go in the tag
      * @var	string
      */
-    public $_extra = "";
+    public $_extra = '';
 
     /**
      * required field?
@@ -100,7 +100,7 @@ class XoopsFormElement
      * description of the field
      * @var	string
      */
-    public $_description = "";
+    public $_description = '';
     
     /**
      * specified id for the form.
@@ -116,7 +116,7 @@ class XoopsFormElement
      */
     public function __construct()
     {
-        exit("This class cannot be instantiated!");
+        exit('This class cannot be instantiated!');
     }
     public function XoopsFormElement()
     {
@@ -152,7 +152,7 @@ class XoopsFormElement
     public function getName($encode=true)
     {
         if (false != $encode) {
-            return str_replace("&amp;", "&", str_replace("'", "&#039;", htmlspecialchars($this->_name)));
+            return str_replace('&amp;', '&', str_replace("'", '&#039;', htmlspecialchars($this->_name)));
         }
         return $this->_name;
     }
@@ -308,9 +308,9 @@ class XoopsFormElement
     public function setExtra($extra, $replace = false)
     {
         if ($replace) {
-            $this->_extra = " " .trim($extra);
+            $this->_extra = ' ' . trim($extra);
         } else {
-            $this->_extra .= " " . trim($extra);
+            $this->_extra .= ' ' . trim($extra);
         }
         return $this->_extra;
     }

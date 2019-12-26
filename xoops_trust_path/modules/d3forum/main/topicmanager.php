@@ -34,7 +34,7 @@ foreach( $modules as $module ) {
 		// d3forum
 		$exportable_modules[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		$dist_forum_permissions = d3forum_get_forum_permissions_of_current_user( $dirname ) ;
-		$exportable_module_forums[$mid] = d3forum_make_jumpbox_options( $dirname , '1' , 'f.`forum_id` IN (' . implode( "," , array_keys( $dist_forum_permissions ) ) . ')' , 0 ) ;
+		$exportable_module_forums[$mid] = d3forum_make_jumpbox_options($dirname , '1' , 'f.`forum_id` IN (' . implode(',', array_keys($dist_forum_permissions ) ) . ')' , 0 ) ;
 	}
 }
 
@@ -54,9 +54,9 @@ if( ! empty( $_POST['topicman_sync'] ) ) {
 		redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
 	}
 	// clear unique_paths for rebuilding them.
-	$prs = $db->query( "UPDATE ".$db->prefix($mydirname."_posts")." SET unique_path='' WHERE topic_id=$topic_id" ) ;
+	$prs = $db->query('UPDATE ' . $db->prefix($mydirname . '_posts') . " SET unique_path='' WHERE topic_id=$topic_id" ) ;
 	// sync posts from post_votes
-	$prs = $db->query( "SELECT post_id FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id" ) ;
+	$prs = $db->query('SELECT post_id FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id" ) ;
 	while( list( $post_id ) = $db->fetchRow( $prs ) ) {
 		d3forum_sync_post_votes( $mydirname , $post_id , false ) ;
 	}
@@ -91,7 +91,7 @@ $whr4forum_jump_box = empty( $jump_box_forums ) ? '0' : 'f.forum_id IN ('.implod
 // FORM PART
 
 $xoopsOption['template_main'] = $mydirname.'_main_topicmanager.html' ;
-include XOOPS_ROOT_PATH."/header.php";
+include XOOPS_ROOT_PATH . '/header.php';
 
 // make edit data (special patch)
 $topic4assign['title4edit'] = htmlspecialchars( $topic_row['topic_title'] , ENT_QUOTES ) ;
@@ -108,7 +108,7 @@ $xoopsTpl->assign([
                       'export_to_module_options' => $exportable_modules,
                       'export_to_forum_options' => $exportable_module_forums,
                       'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__ , 1800 , 'd3forum'),
-                      'xoops_module_header' => "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"".str_replace('{mod_url}',XOOPS_URL.'/modules/'.$mydirname,$xoopsModuleConfig['css_uri'])."\">" . $xoopsTpl->get_template_vars( "xoops_module_header" ),
+                      'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header'),
                       'xoops_pagetitle' => _MD_D3FORUM_TOPICMANAGER,
                       'xoops_breadcrumbs' => array_merge($xoops_breadcrumbs , [['name' => _MD_D3FORUM_TOPICMANAGER]]),
                   ]

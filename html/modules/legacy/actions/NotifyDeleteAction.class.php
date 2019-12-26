@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/include/notification_functions.php";
+require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/NotifyDeleteForm.class.php';
 
 /***
  * @internal
@@ -79,17 +79,17 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
         
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_notification_delete.html");
+        $render->setTemplateName('legacy_notification_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward(XOOPS_URL . "/notifications.php");
+        $controller->executeForward(XOOPS_URL . '/notifications.php');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect(XOOPS_URL . "/notifications.php", 2, _NOT_NOTHINGTODELETE);
+        $controller->executeRedirect(XOOPS_URL . '/notifications.php', 2, _NOT_NOTHINGTODELETE);
     }
 }

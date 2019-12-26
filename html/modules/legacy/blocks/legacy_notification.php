@@ -56,7 +56,7 @@ function b_legacy_notification_show()
         $block['categories'][$category['name']] = $section;
     }
     // Additional form data
-    $block['target_page'] = "notification_update.php";
+    $block['target_page'] = 'notification_update.php';
     // FIXME: better or more standardized way to do this?
     $script_url = explode('/', xoops_getenv('PHP_SELF'));
     $script_name = $script_url[count($script_url)-1];

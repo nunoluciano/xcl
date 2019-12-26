@@ -34,9 +34,9 @@ class PicoControllerQueryContents extends PicoControllerAbstract
             $tag_handler    = new PicoTagHandler($this->mydirname);
             $content_ids_sc = $tag_handler->getContentIdsCS($request['tag']);
             if ($content_ids_sc) {
-                $whr .= " AND (`content_id` IN (" . $content_ids_sc . "))";
+                $whr .= ' AND (`content_id` IN (' . $content_ids_sc . '))';
             } else {
-                $whr .= " AND 0";
+                $whr .= ' AND 0';
             }
         }
 

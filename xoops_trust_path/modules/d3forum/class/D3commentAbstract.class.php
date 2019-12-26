@@ -321,7 +321,7 @@ class D3commentAbstract
 
         // query it
         $select = $params['view'] == 'listtopics' ? 'COUNT(t.topic_id)' : 'SUM(t.topic_posts_count)';
-        $sql    = "SELECT $select FROM " . $db->prefix($mydirname . "_topics") . " t WHERE t.forum_id=$forum_id AND ! t.topic_invisible AND topic_external_link_id='" . addslashes($params['external_link_id']) . "'";
+        $sql    = "SELECT $select FROM " . $db->prefix($mydirname . '_topics') . " t WHERE t.forum_id=$forum_id AND ! t.topic_invisible AND topic_external_link_id='" . addslashes($params['external_link_id']) . "'";
         if (!$trs = $db->query($sql)) {
             die('d3forum_comment_error in ' . __LINE__);
         }
@@ -335,7 +335,7 @@ class D3commentAbstract
     {
         $db =& Database::getInstance();
 
-        list($count) = $db->fetchRow($db->query("SELECT COUNT(*) FROM " . $db->prefix($this->d3forum_dirname . "_posts") . " p LEFT JOIN " . $db->prefix($this->d3forum_dirname . "_topics") . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'"));
+        list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_posts') . ' p LEFT JOIN ' . $db->prefix($this->d3forum_dirname . '_topics') . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'"));
 
         return intval($count);
     }
@@ -345,7 +345,7 @@ class D3commentAbstract
     {
         $db =& Database::getInstance();
 
-        list($count) = $db->fetchRow($db->query("SELECT COUNT(*) FROM " . $db->prefix($this->d3forum_dirname . "_topics") . " t WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'"));
+        list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($this->d3forum_dirname . '_topics') . " t WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'"));
 
         return intval($count);
     }

@@ -13,23 +13,23 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/modules/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_ROOT_PATH . '/modules/legacy/class/AbstractFilterForm.class.php';
 
-define("MODULE_SORT_KEY_MID",         1);
-define("MODULE_SORT_KEY_NAME",        2);
-define("MODULE_SORT_KEY_VERSION",     3);
-define("MODULE_SORT_KEY_LASTUPDATE",  4);
-define("MODULE_SORT_KEY_WEIGHT",      5);
-define("MODULE_SORT_KEY_ISACTIVE",    6);
-define("MODULE_SORT_KEY_DIRNAME",     7);
-define("MODULE_SORT_KEY_HASMAIN",     8);
-define("MODULE_SORT_KEY_HASADMIN",    9);
-define("MODULE_SORT_KEY_HASSEARCH",  10);
-define("MODULE_SORT_KEY_HASCONFIG",  11);
-define("MODULE_SORT_KEY_HASCOMMENTS", 12);
+define('MODULE_SORT_KEY_MID', 1);
+define('MODULE_SORT_KEY_NAME', 2);
+define('MODULE_SORT_KEY_VERSION', 3);
+define('MODULE_SORT_KEY_LASTUPDATE', 4);
+define('MODULE_SORT_KEY_WEIGHT', 5);
+define('MODULE_SORT_KEY_ISACTIVE', 6);
+define('MODULE_SORT_KEY_DIRNAME', 7);
+define('MODULE_SORT_KEY_HASMAIN', 8);
+define('MODULE_SORT_KEY_HASADMIN', 9);
+define('MODULE_SORT_KEY_HASSEARCH', 10);
+define('MODULE_SORT_KEY_HASCONFIG', 11);
+define('MODULE_SORT_KEY_HASCOMMENTS', 12);
 
-define("MODULE_SORT_KEY_DEFAULT",     MODULE_SORT_KEY_WEIGHT);
-define("MODULE_SORT_KEY_MAXVALUE",   12);
+define('MODULE_SORT_KEY_DEFAULT', MODULE_SORT_KEY_WEIGHT);
+define('MODULE_SORT_KEY_MAXVALUE', 12);
 
 /***
  * @internal
@@ -41,18 +41,18 @@ class Legacy_ModuleListFilterForm extends Legacy_AbstractFilterForm
     public $mSpecial = null;
 
     public $mSortKeys = [
-        MODULE_SORT_KEY_MID         => "mid",
-        MODULE_SORT_KEY_NAME        => "name",
-        MODULE_SORT_KEY_VERSION     => "version",
-        MODULE_SORT_KEY_LASTUPDATE  => "last_update",
-        MODULE_SORT_KEY_WEIGHT      => "weight",
-        MODULE_SORT_KEY_ISACTIVE    => "isactive",
-        MODULE_SORT_KEY_DIRNAME     => "dirname",
-        MODULE_SORT_KEY_HASMAIN     => "hasmain",
-        MODULE_SORT_KEY_HASADMIN    => "hasadmin",
-        MODULE_SORT_KEY_HASSEARCH   => "hassearch",
-        MODULE_SORT_KEY_HASCONFIG   => "hasconfig",
-        MODULE_SORT_KEY_HASCOMMENTS => "hascomments"
+        MODULE_SORT_KEY_MID         => 'mid',
+        MODULE_SORT_KEY_NAME        => 'name',
+        MODULE_SORT_KEY_VERSION     => 'version',
+        MODULE_SORT_KEY_LASTUPDATE  => 'last_update',
+        MODULE_SORT_KEY_WEIGHT      => 'weight',
+        MODULE_SORT_KEY_ISACTIVE    => 'isactive',
+        MODULE_SORT_KEY_DIRNAME     => 'dirname',
+        MODULE_SORT_KEY_HASMAIN     => 'hasmain',
+        MODULE_SORT_KEY_HASADMIN    => 'hasadmin',
+        MODULE_SORT_KEY_HASSEARCH   => 'hassearch',
+        MODULE_SORT_KEY_HASCONFIG   => 'hasconfig',
+        MODULE_SORT_KEY_HASCOMMENTS => 'hascomments'
     ];
 
     public function Legacy_ModuleListFilterForm() {

@@ -107,7 +107,7 @@ class XoopsForm
      * @param   string  $method "method" attribute for the <form> tag
      * @param   bool    $addtoken whether to add a security token to the form
      */
-    public function __construct($title, $name, $action, $method="post", $addtoken = false)
+    public function __construct($title, $name, $action, $method= 'post', $addtoken = false)
     {
         $this->_title = $title;
         $this->_name = $name;
@@ -117,7 +117,7 @@ class XoopsForm
             $this->addElement(new XoopsFormHiddenToken());
         }
     }
-    public function XoopsForm($title, $name, $action, $method="post", $addtoken = false)
+    public function XoopsForm($title, $name, $action, $method= 'post', $addtoken = false)
     {
         return self::__construct($title, $name, $action, $method, $addtoken);
     }
@@ -333,7 +333,7 @@ class XoopsForm
      */
     public function setExtra($extra)
     {
-        $this->_extra = " ".$extra;
+        $this->_extra = ' ' . $extra;
     }
 
     /**
@@ -416,7 +416,7 @@ class XoopsForm
         $renderTarget =& $renderSystem->createRenderTarget();
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_opt_validationjs.html");
+        $renderTarget->setTemplateName('legacy_xoopsform_opt_validationjs.html');
         $renderTarget->setAttribute('form', $this);
         $renderTarget->setAttribute('withtags', $withtags);
         
@@ -431,7 +431,7 @@ class XoopsForm
         return $renderTarget->getResult();
         
         
-        $js = "";
+        $js = '';
         if ($withtags) {
             $js .= "\n<!-- Start Form Vaidation JavaScript //-->\n<script type='text/javascript'>\n<!--//\n";
         }
@@ -466,7 +466,7 @@ class XoopsForm
         $i = 0;
         $elements = [];
         foreach ($this->getElements() as $ele) {
-            $n = ($ele->getName() != "") ? $ele->getName() : $i;
+            $n = ($ele->getName() != '') ? $ele->getName() : $i;
             $elements[$n]['name']     = $ele->getName();
             $elements[$n]['caption']  = $ele->getCaption();
             $elements[$n]['body']     = $ele->render();

@@ -492,7 +492,7 @@ function tln_unspace(&$attvalue)
 {
     if (strcspn($attvalue, "\t\r\n\0 ") != strlen($attvalue)) {
         $attvalue = str_replace(
-            ["\t", "\r", "\n", "\0", " "],
+            ["\t", "\r", "\n", "\0", ' '],
             ['', '', '', '', ''],
             $attvalue
         );
@@ -540,7 +540,7 @@ function tln_fixatts(
         $oldattvalue = $attvalue;
         tln_defang($attvalue);
         if ($attname == 'style' && $attvalue !== $oldattvalue) {
-            $attvalue = "idiocy";
+            $attvalue = 'idiocy';
             $attary{$attname} = $attvalue;
         }
         tln_unspace($attvalue);
@@ -799,7 +799,7 @@ function tln_body2div($attary, $trans_image_path)
     if (is_array($attary) && sizeof($attary) > 0){
         foreach ($attary as $attname=>$attvalue){
             $quotchar = substr($attvalue, 0, 1);
-            $attvalue = str_replace($quotchar, "", $attvalue);
+            $attvalue = str_replace($quotchar, '', $attvalue);
             switch ($attname){
                 case 'background':
                     $styledef .= "background-image: url('$trans_image_path'); ";
@@ -820,7 +820,7 @@ function tln_body2div($attary, $trans_image_path)
             $styledef .= "color: $text; ";
         }
         if (strlen($styledef) > 0){
-            $divattary{"style"} = "\"$styledef\"";
+            $divattary{'style'} = "\"$styledef\"";
         }
     }
     return $divattary;
@@ -879,7 +879,7 @@ function tln_sanitize(
         /**
          * Take care of <style>
          */
-        if ($tagname == "style" && $tagtype == 1){
+        if ($tagname == 'style' && $tagtype == 1){
             list($free_content, $curpos) =
                 tln_fixstyle($body, $gt+1, $trans_image_path, $block_external_images);
             if ($free_content != FALSE){
@@ -912,8 +912,8 @@ function tln_sanitize(
                     $skip_content = false;
                 } else {
                     if ($skip_content == false) {
-                        if ($tagname == "body") {
-                            $tagname = "div";
+                        if ($tagname == 'body') {
+                            $tagname = 'div';
                         }
                         if (isset($open_tags{$tagname}) &&
                             $open_tags{$tagname} > 0
@@ -957,8 +957,8 @@ function tln_sanitize(
                             /**
                              * Convert body into div.
                              */
-                            if ($tagname == "body"){
-                                $tagname = "div";
+                            if ($tagname == 'body'){
+                                $tagname = 'div';
                                 $attary = tln_body2div($attary, $trans_image_path);
                             }
                             if ($tagtype == 1) {
@@ -1016,53 +1016,53 @@ function HTMLFilter($body, $trans_image_path, $block_external_images = false)
 
     $tag_list = [
         false,
-        "object",
-        "meta",
-        "html",
-        "head",
-        "base",
-        "link",
-        "frame",
-        "iframe",
-        "plaintext",
-        "marquee"
+        'object',
+        'meta',
+        'html',
+        'head',
+        'base',
+        'link',
+        'frame',
+        'iframe',
+        'plaintext',
+        'marquee'
     ];
 
     $rm_tags_with_content = [
-        "script",
-        "applet",
-        "embed",
-        "title",
-        "frameset",
-        "xmp",
-        "xml"
+        'script',
+        'applet',
+        'embed',
+        'title',
+        'frameset',
+        'xmp',
+        'xml'
     ];
 
     $self_closing_tags =  [
-        "img",
-        "br",
-        "hr",
-        "input",
-        "outbind"
+        'img',
+        'br',
+        'hr',
+        'input',
+        'outbind'
     ];
 
     $force_tag_closing = true;
 
     $rm_attnames = [
-        "/.*/" =>
+        '/.*/' =>
             [
                 // "/target/i",
-                "/^on.*/i",
-                "/^dynsrc/i",
-                "/^data.*/i",
-                "/^lowsrc.*/i"
+                '/^on.*/i',
+                '/^dynsrc/i',
+                '/^data.*/i',
+                '/^lowsrc.*/i'
             ]
     ];
 
     $bad_attvals = [
-        "/.*/" =>
+        '/.*/' =>
         [
-            "/^src|background/i" =>
+            '/^src|background/i' =>
             [
                 [
                     '/^([\'"])\s*\S+script\s*:.*([\'"])/si',
@@ -1075,7 +1075,7 @@ function HTMLFilter($body, $trans_image_path, $block_external_images = false)
                     "\\1$trans_image_path\\2"
                 ]
             ],
-            "/^href|action/i" =>
+            '/^href|action/i'    =>
             [
                 [
                     '/^([\'"])\s*\S+script\s*:.*([\'"])/si',
@@ -1088,14 +1088,14 @@ function HTMLFilter($body, $trans_image_path, $block_external_images = false)
                     "\\1#\\1"
                 ]
             ],
-            "/^style/i" =>
+            '/^style/i'          =>
             [
                 [
                     "/\/\*.*\*\//",
-                    "/expression/i",
-                    "/binding/i",
-                    "/behaviou*r/i",
-                    "/include-source/i",
+                    '/expression/i',
+                    '/binding/i',
+                    '/behaviou*r/i',
+                    '/include-source/i',
                     '/position\s*:/i',
                     '/(\\\\)?u(\\\\)?r(\\\\)?l(\\\\)?/i',
                     '/url\s*\(\s*([\'"])\s*\S+script\s*:.*([\'"])\s*\)/si',
@@ -1104,13 +1104,13 @@ function HTMLFilter($body, $trans_image_path, $block_external_images = false)
                     '/(.*)\s*:\s*url\s*\(\s*([\'"]*)\s*\S+script\s*:.*([\'"]*)\s*\)/si'
                 ],
                 [
-                    "",
-                    "idiocy",
-                    "idiocy",
-                    "idiocy",
-                    "idiocy",
-                    "idiocy",
-                    "url",
+                    '',
+                    'idiocy',
+                    'idiocy',
+                    'idiocy',
+                    'idiocy',
+                    'idiocy',
+                    'url',
                     "url(\\1#\\1)",
                     "url(\\1#\\1)",
                     "url(\\1#\\1)",
@@ -1140,7 +1140,7 @@ function HTMLFilter($body, $trans_image_path, $block_external_images = false)
     }
 
     $add_attr_to_tag = [
-        "/^a$/i" =>
+        '/^a$/i' =>
             ['target' => '"_blank"']
     ];
 

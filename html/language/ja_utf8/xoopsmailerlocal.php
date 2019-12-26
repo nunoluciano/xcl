@@ -76,40 +76,40 @@ class XoopsMailerLocal extends XoopsMailer
     public function STRtoJIS($str, $from_charset)
     {
         if (function_exists('mb_convert_encoding')) { //Use mb_string extension if exists.
-            $str_JIS  = mb_convert_encoding(mb_convert_kana($str, "KV", $from_charset), "JIS", $from_charset);
+            $str_JIS  = mb_convert_encoding(mb_convert_kana($str, 'KV', $from_charset), 'JIS', $from_charset);
         } elseif ($from_charset=='EUC-JP') {
             $str_JIS = '';
             $mode = 0;
-            $b = unpack("C*", $str);
+            $b = unpack('C*', $str);
             $n = count($b);
             for ($i = 1; $i <= $n; $i++) {
                 if ($b[$i] == 0x8E) {
                     if ($mode != 2) {
                         $mode = 2;
-                        $str_JIS .= pack("CCC", 0x1B, 0x28, 0x49);
+                        $str_JIS .= pack('CCC', 0x1B, 0x28, 0x49);
                     }
                     $b[$i+1] -= 0x80;
-                    $str_JIS .= pack("C", $b[$i+1]);
+                    $str_JIS .= pack('C', $b[$i + 1]);
                     $i++;
                 } elseif ($b[$i] > 0x8E) {
                     if ($mode != 1) {
                         $mode = 1;
-                        $str_JIS .= pack("CCC", 0x1B, 0x24, 0x42);
+                        $str_JIS .= pack('CCC', 0x1B, 0x24, 0x42);
                     }
                     $b[$i] -= 0x80;
                     $b[$i+1] -= 0x80;
-                    $str_JIS .= pack("CC", $b[$i], $b[$i+1]);
+                    $str_JIS .= pack('CC', $b[$i], $b[$i + 1]);
                     $i++;
                 } else {
                     if ($mode != 0) {
                         $mode = 0;
-                        $str_JIS .= pack("CCC", 0x1B, 0x28, 0x42);
+                        $str_JIS .= pack('CCC', 0x1B, 0x28, 0x42);
                     }
-                    $str_JIS .= pack("C", $b[$i]);
+                    $str_JIS .= pack('C', $b[$i]);
                 }
             }
             if ($mode != 0) {
-                $str_JIS .= pack("CCC", 0x1B, 0x28, 0x42);
+                $str_JIS .= pack('CCC', 0x1B, 0x28, 0x42);
             }
         }
         return $str_JIS;

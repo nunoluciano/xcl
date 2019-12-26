@@ -7,7 +7,7 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    include_once "../mainfile.php";
+    include_once '../mainfile.php';
     include_once './class/dbmanager.php';
     $db = new db_manager();
     $sql = 'SELECT * FROM '.$db->prefix('groups');

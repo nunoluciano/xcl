@@ -7,7 +7,7 @@ $db =& Database::getInstance() ;
 //
 
 $history_id = intval( @$_GET['history_id'] ) ;
-list( $data_serialized ) = $db->fetchRow( $db->query( "SELECT data FROM ".$db->prefix($mydirname."_post_histories")." WHERE history_id=$history_id") ) ;
+list( $data_serialized ) = $db->fetchRow( $db->query('SELECT data FROM ' . $db->prefix($mydirname . '_post_histories') . " WHERE history_id=$history_id") ) ;
 $data = @unserialize( $data_serialized ) ;
 if( empty( $data ) ) exit ;
 

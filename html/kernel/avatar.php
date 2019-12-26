@@ -117,9 +117,9 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         }
         if ($avatar->isNew()) {
             $avatar_id = $this->db->genId('avatar_avatar_id_seq');
-            $sql = sprintf("INSERT INTO %s (avatar_id, avatar_file, avatar_name, avatar_created, avatar_mimetype, avatar_display, avatar_weight, avatar_type) VALUES (%u, %s, %s, %u, %s, %u, %u, %s)", $this->db->prefix('avatar'), $avatar_id, $this->db->quoteString($avatar_file), $this->db->quoteString($avatar_name), time(), $this->db->quoteString($avatar_mimetype), $avatar_display, $avatar_weight, $this->db->quoteString($avatar_type));
+            $sql = sprintf('INSERT INTO %s (avatar_id, avatar_file, avatar_name, avatar_created, avatar_mimetype, avatar_display, avatar_weight, avatar_type) VALUES (%u, %s, %s, %u, %s, %u, %u, %s)', $this->db->prefix('avatar'), $avatar_id, $this->db->quoteString($avatar_file), $this->db->quoteString($avatar_name), time(), $this->db->quoteString($avatar_mimetype), $avatar_display, $avatar_weight, $this->db->quoteString($avatar_type));
         } else {
-            $sql = sprintf("UPDATE %s SET avatar_file = %s, avatar_name = %s, avatar_created = %u, avatar_mimetype= %s, avatar_display = %u, avatar_weight = %u, avatar_type = %s WHERE avatar_id = %u", $this->db->prefix('avatar'), $this->db->quoteString($avatar_file), $this->db->quoteString($avatar_name), $avatar_created, $this->db->quoteString($avatar_mimetype), $avatar_display, $avatar_weight, $this->db->quoteString($avatar_type), $avatar_id);
+            $sql = sprintf('UPDATE %s SET avatar_file = %s, avatar_name = %s, avatar_created = %u, avatar_mimetype= %s, avatar_display = %u, avatar_weight = %u, avatar_type = %s WHERE avatar_id = %u', $this->db->prefix('avatar'), $this->db->quoteString($avatar_file), $this->db->quoteString($avatar_name), $avatar_created, $this->db->quoteString($avatar_mimetype), $avatar_display, $avatar_weight, $this->db->quoteString($avatar_type), $avatar_id);
         }
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -137,11 +137,11 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             return false;
         }
         $id = $avatar->getVar('avatar_id');
-        $sql = sprintf("DELETE FROM %s WHERE avatar_id = %u", $this->db->prefix('avatar'), $id);
+        $sql = sprintf('DELETE FROM %s WHERE avatar_id = %u', $this->db->prefix('avatar'), $id);
         if (!$result = $this->db->query($sql)) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE avatar_id = %u", $this->db->prefix('avatar_user_link'), $id);
+        $sql = sprintf('DELETE FROM %s WHERE avatar_id = %u', $this->db->prefix('avatar_user_link'), $id);
         $result = $this->db->query($sql);
         return true;
     }
@@ -195,9 +195,9 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         if ($avatar_id < 1 || $user_id < 1) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE user_id = %u", $this->db->prefix('avatar_user_link'), $user_id);
+        $sql = sprintf('DELETE FROM %s WHERE user_id = %u', $this->db->prefix('avatar_user_link'), $user_id);
         $this->db->query($sql);
-        $sql = sprintf("INSERT INTO %s (avatar_id, user_id) VALUES (%u, %u)", $this->db->prefix('avatar_user_link'), $avatar_id, $user_id);
+        $sql = sprintf('INSERT INTO %s (avatar_id, user_id) VALUES (%u, %u)', $this->db->prefix('avatar_user_link'), $avatar_id, $user_id);
         if (!$result =& $this->db->query($sql)) {
             return false;
         }

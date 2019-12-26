@@ -29,7 +29,7 @@ class LegacyImagebodyObject extends XoopsSimpleObject
 
 class LegacyImagebodyHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "imagebody";
-    public $mPrimary = "image_id";
-    public $mClass = "LegacyImagebodyObject";
+    public $mTable = 'imagebody';
+    public $mPrimary = 'image_id';
+    public $mClass = 'LegacyImagebodyObject';
 }

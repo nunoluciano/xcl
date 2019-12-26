@@ -361,7 +361,7 @@ function xoops_getbanner()
 {
     global $xoopsConfig;
     $db =& Database::getInstance();
-    $bresult = $db->query("SELECT COUNT(*) FROM ".$db->prefix("banner"));
+    $bresult = $db->query('SELECT COUNT(*) FROM ' . $db->prefix('banner'));
     list($numrows) = $db->fetchRow($bresult);
     if ($numrows > 1) {
         $numrows = $numrows-1;
@@ -371,19 +371,19 @@ function xoops_getbanner()
         $bannum = 0;
     }
     if ($numrows > 0) {
-        $bresult = $db->query("SELECT * FROM ".$db->prefix("banner"), 1, $bannum);
+        $bresult = $db->query('SELECT * FROM ' . $db->prefix('banner'), 1, $bannum);
         list($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow($bresult);
         if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
             // EMPTY
         } else {
-            $db->queryF(sprintf("UPDATE %s SET impmade = impmade+1 WHERE bid = %u", $db->prefix("banner"), $bid));
+            $db->queryF(sprintf('UPDATE %s SET impmade = impmade+1 WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         /* Check if this impression is the last one and print the banner */
         if ($imptotal != 0 && $imptotal == $impmade) {
-            $newid = $db->genId($db->prefix("bannerfinish")."_bid_seq");
-            $sql = sprintf("INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)", $db->prefix("bannerfinish"), $newid, $cid, $impmade, $clicks, $date, time());
+            $newid = $db->genId($db->prefix('bannerfinish') . '_bid_seq');
+            $sql = sprintf('INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)', $db->prefix('bannerfinish'), $newid, $cid, $impmade, $clicks, $date, time());
             $db->queryF($sql);
-            $db->queryF(sprintf("DELETE FROM %s WHERE bid = %u", $db->prefix("banner"), $bid));
+            $db->queryF(sprintf('DELETE FROM %s WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         if ($htmlbanner) {
             $bannerobject = $htmlcode;
@@ -449,7 +449,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
                 }
             }
         }
-        $url = preg_replace("/&amp;/i", '&', htmlspecialchars($url, ENT_QUOTES));
+        $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         $xoopsTpl->assign('url', $url);
         $message = trim($message) != '' ? $message : _TAKINGBACK;
         $xoopsTpl->assign('message', $message);
@@ -458,7 +458,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
         $xoopsTpl->display('db:system_redirect.html');
         exit();
     } else {
-        $url = preg_replace("/&amp;/i", '&', htmlspecialchars($url, ENT_QUOTES));
+        $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         echo '
         <html>
         <head>

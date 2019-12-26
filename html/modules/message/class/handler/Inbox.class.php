@@ -67,11 +67,11 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
     public function getSendUserList($uid = 0, $fuid = 0)
     {
         $ret = [];
-        $sql = "SELECT u.`uname`,u.`uid` FROM `".$this->db->prefix('users')."` u, ";
-        $sql.= '`'.$this->mTable."` i ";
-        $sql.= "WHERE i.`from_uid` = u.`uid` ";
-        $sql.= "AND i.`uid` = ".$uid." ";
-        $sql.= "GROUP BY u.`uname`, u.`uid`";
+        $sql = 'SELECT u.`uname`,u.`uid` FROM `' . $this->db->prefix('users') . '` u, ';
+        $sql.= '`'.$this->mTable . '` i ';
+        $sql.= 'WHERE i.`from_uid` = u.`uid` ';
+        $sql.= 'AND i.`uid` = ' . $uid . ' ';
+        $sql.= 'GROUP BY u.`uname`, u.`uid`';
     
         $result = $this->db->query($sql);
         while ($row = $this->db->fetchArray($result)) {
@@ -91,12 +91,12 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
             return;
         }
         $time = time() - ($day * 86400);
-        $sql = "DELETE FROM `".$this->mTable."` ";
-        $sql.= "WHERE `utime` < ".$time." ";
+        $sql = 'DELETE FROM `' . $this->mTable . '` ';
+        $sql.= 'WHERE `utime` < ' . $time . ' ';
         if ($type == 0) {
-            $sql.= "AND `is_read` = 1 ";
+            $sql.= 'AND `is_read` = 1 ';
         } else {
-            $sql.= "AND `is_read` < 2 ";
+            $sql.= 'AND `is_read` < 2 ';
         }
         $this->db->queryF($sql);
     }

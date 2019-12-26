@@ -34,13 +34,13 @@ if( ! empty( $_POST['do_synctopics'] ) ) {
 	$synctopics_num = empty( $_POST['synctopics_num'] ) ? 100 : intval( $_POST['synctopics_num'] ) ;
 
 	// sync topics
-	$trs = $db->query( "SELECT topic_id FROM ".$db->prefix($mydirname."_topics")." WHERE topic_id>=$synctopics_start AND topic_id<".($synctopics_start+$synctopics_num) ) ;
+	$trs = $db->query('SELECT topic_id FROM ' . $db->prefix($mydirname . '_topics') . " WHERE topic_id>=$synctopics_start AND topic_id<" . ($synctopics_start + $synctopics_num) ) ;
 	$topic_counter = 0 ;
 	while( list( $topic_id ) = $db->fetchRow( $trs ) ) {
 		$topic_counter ++ ;
 		$topic_id = intval( $topic_id ) ;
 		// sync posts from post_votes
-		$prs = $db->query( "SELECT post_id FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id" ) ;
+		$prs = $db->query('SELECT post_id FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id" ) ;
 		while( list( $post_id ) = $db->fetchRow( $prs ) ) {
 			d3forum_sync_post_votes( $mydirname , $post_id , false ) ;
 		}
@@ -60,7 +60,7 @@ if( ! empty( $_POST['do_syncforums'] ) ) {
 	set_time_limit( 0 ) ;
 
 	// sync all forums
-	$result = $db->query( "SELECT forum_id FROM ".$db->prefix($mydirname."_forums") ) ;
+	$result = $db->query('SELECT forum_id FROM ' . $db->prefix($mydirname . '_forums') ) ;
 	while( list( $forum_id ) = $db->fetchRow( $result ) ) {
 		d3forum_sync_forum( $mydirname , $forum_id , false ) ;
 	}
@@ -77,7 +77,7 @@ if( ! empty( $_POST['do_synccategories'] ) ) {
 	d3forum_sync_cattree( $mydirname ) ;
 
 	// sync all categories
-	$result = $db->query( "SELECT cat_id FROM ".$db->prefix($mydirname."_categories")." ORDER BY cat_order_in_tree DESC" ) ;
+	$result = $db->query('SELECT cat_id FROM ' . $db->prefix($mydirname . '_categories') . ' ORDER BY cat_order_in_tree DESC') ;
 	while( list( $cat_id ) = $db->fetchRow( $result ) ) {
 		d3forum_sync_category( $mydirname , $cat_id ) ;
 	}
@@ -140,7 +140,7 @@ if( ! empty( $_POST['do_comimport'] ) && ! empty( $_POST['comimport_mid'] ) && !
 
 $synctopics_start = intval( @$_SESSION[$mydirname.'_synctopics_start'] ) ;
 $synctopics_num = empty( $_SESSION[$mydirname.'_synctopics_num'] ) ? 100 : intval( $_SESSION[$mydirname.'_synctopics_num'] ) ;
-list( $max_topic_id ) = $db->fetchRow( $db->query( "SELECT MAX(topic_id) FROM ".$db->prefix($mydirname."_topics") ) ) ;
+list( $max_topic_id ) = $db->fetchRow( $db->query('SELECT MAX(topic_id) FROM ' . $db->prefix($mydirname . '_topics') ) ) ;
 
 
 //

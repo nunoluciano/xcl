@@ -157,9 +157,9 @@ class XoopsMemberHandler
      */
     public function delete(&$object)
     {
-        if (is_a($object, "XoopsUser")) {
+        if (is_a($object, 'XoopsUser')) {
             return $this->deleteUser($object);
-        } elseif (is_a($object, "XoopsGroup")) {
+        } elseif (is_a($object, 'XoopsGroup')) {
             return $this->deleteGroup($object);
         }
     }
@@ -484,8 +484,7 @@ class XoopsMemberHandler
         $sql = "SELECT count(*) FROM ${usersTable} u LEFT JOIN ${linkTable} g ON u.uid=g.uid," .
                 "${usersTable} u2 LEFT JOIN ${linkTable} g2 ON u2.uid=g2.uid AND g2.groupid=${groupid} " .
                 "WHERE (g.groupid != ${groupid} OR g.groupid IS NULL) " .
-                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " .
-                "AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid";
+                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
 
         $result = $this->_mHandler->db->query($sql);
         if (!$result) {

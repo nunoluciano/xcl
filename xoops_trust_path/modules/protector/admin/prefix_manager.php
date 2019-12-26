@@ -21,7 +21,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     $srs = $db->queryF('SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`') ;
 
     if (! $db->getRowsNum($srs)) {
-        die("You are not allowed to copy tables") ;
+        die('You are not allowed to copy tables') ;
     }
 
     $count = 0;
@@ -84,7 +84,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     // get table list
     $srs = $db->queryF('SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`') ;
     if (! $db->getRowsNum($srs)) {
-        die("You are not allowed to delete tables") ;
+        die('You are not allowed to delete tables') ;
     }
 
     $export_string = '' ;
@@ -183,13 +183,13 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     if (function_exists('mb_http_output')) {
         mb_http_output('pass');
     }
-    header("Pragma: public"); // required
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: private", false); // required for certain browsers
+    header('Pragma: public'); // required
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Cache-Control: private', false); // required for certain browsers
     header('Content-Type: Application/octet-stream') ;
     header('Content-Disposition: attachment; filename="'.$sqlfile_name.'"') ;
-    header("Content-Transfer-Encoding: binary");
+    header('Content-Transfer-Encoding: binary');
     header('Content-Length: '.strlen($export_string)) ;
     set_time_limit(0) ;
     echo $export_string ;
@@ -216,13 +216,13 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     // check if prefix_xoopscomments exists
     $check_rs = $db->queryF("SELECT * FROM {$prefix}_xoopscomments LIMIT 1") ;
     if (! $check_rs) {
-        die("This is not a prefix for comments") ;
+        die('This is not a prefix for comments') ;
     }
 
     // get table list
     $srs = $db->queryF('SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`') ;
     if (! $db->getRowsNum($srs)) {
-        die("You are not allowed to delete tables") ;
+        die('You are not allowed to delete tables') ;
     }
 
     while ($row_table = $db->fetchArray($srs)) {
@@ -245,9 +245,9 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 
 // query
-$srs = $db->queryF("SHOW TABLE STATUS FROM `".XOOPS_DB_NAME.'`') ;
+$srs = $db->queryF('SHOW TABLE STATUS FROM `' . XOOPS_DB_NAME . '`') ;
 if (! $db->getRowsNum($srs)) {
-    die("You are not allowed to copy tables") ;
+    die('You are not allowed to copy tables') ;
     xoops_cp_footer() ;
     exit ;
 }
@@ -256,13 +256,13 @@ if (! $db->getRowsNum($srs)) {
 $tables = [];
 $prefixes = [];
 while ($row_table = $db->fetchArray($srs)) {
-    if (substr($row_table["Name"], -6) === '_users') {
+    if (substr($row_table['Name'], -6) === '_users') {
         $prefixes[] = [
-                'name' => substr($row_table["Name"], 0, -6) ,
-                'updated' => $row_table["Update_time"]
+            'name' => substr($row_table['Name'], 0, -6),
+            'updated' => $row_table['Update_time']
         ];
     }
-    $tables[] = $row_table["Name"] ;
+    $tables[] = $row_table['Name'] ;
 }
 
 
@@ -328,10 +328,10 @@ foreach ($prefixes as $prefix) {
 				<input type='hidden' name='prefix' value='$prefix4disp'>
 				$del_button
 				<input type='submit' name='backup' value='backup' onclick='this.form.target=\"_blank\"'>";
-    if (function_exists("gzcompress")) {
+    if (function_exists('gzcompress')) {
         echo "<input type='submit' name='download_zip' value='zip' onclick='this.form.target=\"_blank\"'>" ;
     }
-    if (function_exists("gzencode")) {
+    if (function_exists('gzencode')) {
         echo "<input type='submit' name='download_tgz' value='tar.gz' onclick='this.form.target=\"_blank\"'>";
     }
     echo "	</form>
@@ -339,11 +339,11 @@ foreach ($prefixes as $prefix) {
 	</tr>\n" ;
 }
 
-echo "
+echo '
 </table>
-<p>".sprintf(_AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX)."</p>
+<p>' . sprintf(_AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX) . '</p>
 </div>
-" ;
+';
 
 // Display Log if exists
 if (! empty($_SESSION['protector_logger'])) {

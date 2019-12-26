@@ -8,8 +8,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplsetEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplsetEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /***
  * @internal
@@ -19,7 +19,7 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
 {
     public function getTokenName()
     {
-        return "module.legacyRender.TplsetCloneForm.TOKEN" . $this->get('tplset_id');
+        return 'module.legacyRender.TplsetCloneForm.TOKEN' . $this->get('tplset_id');
     }
 
     public function prepare()

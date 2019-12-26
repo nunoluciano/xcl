@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentAdminEditForm.class.php";
-require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentAdminEditForm.class.php';
+require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
 class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 {
@@ -52,11 +52,11 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
     {
         if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
             $this->mActionForm =new Legacy_PendingCommentAdminEditForm();
-            $this->mObjectHandler->mUpdateSuccess->add([&$this, "doApprove"]);
-            $this->mObjectHandler->mUpdateSuccess->add([&$this, "doUpdate"]);
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doApprove']);
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doUpdate']);
         } else {
             $this->mActionForm =new Legacy_ApprovalCommentAdminEditForm();
-            $this->mObjectHandler->mUpdateSuccess->add([&$this, "doUpdate"]);
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doUpdate']);
         }
         $this->mActionForm->prepare();
     }
@@ -67,7 +67,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $this->mObject->loadModule();
         $this->mObject->loadStatus();
         
-        $render->setTemplateName("comment_edit.html");
+        $render->setTemplateName('comment_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -90,17 +90,17 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=CommentList");
+        $controller->executeForward('./index.php?action=CommentList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=CommentList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=CommentList");
+        $controller->executeForward('./index.php?action=CommentList');
     }
 
     /**
@@ -126,7 +126,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         //
         // Load call-back file
         //
-        $file = XOOPS_MODULE_PATH . "/" . $module->get('dirname') . "/" . $comment_config['callbackFile'];
+        $file = XOOPS_MODULE_PATH . '/' . $module->get('dirname') . '/' . $comment_config['callbackFile'];
         if (!is_file($file)) {
             return false;
         }

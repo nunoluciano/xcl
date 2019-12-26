@@ -21,8 +21,8 @@ class Legacy_SiteClose extends XCube_ActionFilter
     {
         if ($this->mRoot->mContext->getXoopsConfig('closesite') == 1) {
             
-            $this->mController->mSetupUser->add("Legacy_SiteClose::callbackSetupUser", XCUBE_DELEGATE_PRIORITY_FINAL);
-            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [&$this, "callbackCheckLoginSuccess"]);
+            $this->mController->mSetupUser->add('Legacy_SiteClose::callbackSetupUser', XCUBE_DELEGATE_PRIORITY_FINAL);
+            $this->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
         }
     }
 

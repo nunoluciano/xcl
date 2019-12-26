@@ -62,22 +62,22 @@ class XCube_Ref
 // But, developers should use {first,normal,firnal} basically.
 //
 
-define("XCUBE_DELEGATE_PRIORITY_1", 10);
-define("XCUBE_DELEGATE_PRIORITY_2", 20);
-define("XCUBE_DELEGATE_PRIORITY_3", 30);
-define("XCUBE_DELEGATE_PRIORITY_4", 40);
-define("XCUBE_DELEGATE_PRIORITY_5", 50);
-define("XCUBE_DELEGATE_PRIORITY_6", 60);
-define("XCUBE_DELEGATE_PRIORITY_7", 70);
-define("XCUBE_DELEGATE_PRIORITY_8", 80);
-define("XCUBE_DELEGATE_PRIORITY_9", 90);
-define("XCUBE_DELEGATE_PRIORITY_10", 100);
+define('XCUBE_DELEGATE_PRIORITY_1', 10);
+define('XCUBE_DELEGATE_PRIORITY_2', 20);
+define('XCUBE_DELEGATE_PRIORITY_3', 30);
+define('XCUBE_DELEGATE_PRIORITY_4', 40);
+define('XCUBE_DELEGATE_PRIORITY_5', 50);
+define('XCUBE_DELEGATE_PRIORITY_6', 60);
+define('XCUBE_DELEGATE_PRIORITY_7', 70);
+define('XCUBE_DELEGATE_PRIORITY_8', 80);
+define('XCUBE_DELEGATE_PRIORITY_9', 90);
+define('XCUBE_DELEGATE_PRIORITY_10', 100);
 
-define("XCUBE_DELEGATE_PRIORITY_FIRST", XCUBE_DELEGATE_PRIORITY_1);
-define("XCUBE_DELEGATE_PRIORITY_NORMAL", XCUBE_DELEGATE_PRIORITY_5);
-define("XCUBE_DELEGATE_PRIORITY_FINAL", XCUBE_DELEGATE_PRIORITY_10);
+define('XCUBE_DELEGATE_PRIORITY_FIRST', XCUBE_DELEGATE_PRIORITY_1);
+define('XCUBE_DELEGATE_PRIORITY_NORMAL', XCUBE_DELEGATE_PRIORITY_5);
+define('XCUBE_DELEGATE_PRIORITY_FINAL', XCUBE_DELEGATE_PRIORITY_10);
 
-define("XCUBE_DELEGATE_CHAIN_BREAK", -1);
+define('XCUBE_DELEGATE_CHAIN_BREAK', -1);
 
 /**
  * @public
@@ -683,13 +683,13 @@ class XCube_DelegateUtils
             $delegateName = $args[0];
             $string = $args[1];
             if (!empty($string) && is_string($string)) {
-                return "";
+                return '';
             }
             $args[1] = new XCube_Ref($string);
             call_user_func_array(['XCube_DelegateUtils', 'call'], $args);
             return $string;
         } else {
-            return "";
+            return '';
         }
     }
     

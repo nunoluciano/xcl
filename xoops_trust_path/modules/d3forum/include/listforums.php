@@ -13,7 +13,7 @@ list( $total_posts_count ) = $db->fetchRow( $db->query( $sql ) ) ;
 // get last visit
 if( $uid > 0 ) {
 	$db =& Database::getInstance() ;
-	$lv_result = $db->query( "SELECT MAX(u2t_time) FROM ".$db->prefix($mydirname.'_users2topics')." WHERE uid='$uid'" ) ;
+	$lv_result = $db->query('SELECT MAX(u2t_time) FROM ' . $db->prefix($mydirname . '_users2topics') . " WHERE uid='$uid'" ) ;
 	list( $last_visit ) = $db->fetchRow( $lv_result ) ;
 }
 if( empty( $last_visit ) ) $last_visit = time() ;
@@ -23,7 +23,7 @@ if( ! include dirname(__FILE__).'/process_this_category.inc.php' ) die( _MD_D3FO
 
 // subcategories loop
 $subcategories = [];
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_categories")." c WHERE ($whr_read4cat) AND pid=$cat_id ORDER BY cat_order_in_tree" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE ($whr_read4cat) AND pid=$cat_id ORDER BY cat_order_in_tree" ;
 if( ! $crs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 while( $cat_row = $db->fetchArray( $crs ) ) {
 	// categories array
@@ -50,7 +50,9 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 // forums loop
 $forums = [];
 	// naao
-$sql = "SELECT f.*, p.topic_id, p.post_time, p.subject, p.icon, p.uid, p.guest_name FROM ".$db->prefix($mydirname."_forums")." f LEFT JOIN ".$db->prefix($mydirname."_posts")." p ON p.post_id=f.forum_last_post_id WHERE ($whr_read4forum) AND cat_id=$cat_id ORDER BY f.forum_weight, f.forum_id" ;
+$sql = 'SELECT f.*, p.topic_id, p.post_time, p.subject, p.icon, p.uid, p.guest_name FROM '
+       . $db->prefix($mydirname . '_forums') . ' f LEFT JOIN '
+       . $db->prefix($mydirname . '_posts') . " p ON p.post_id=f.forum_last_post_id WHERE ($whr_read4forum) AND cat_id=$cat_id ORDER BY f.forum_weight, f.forum_id" ;
 if( ! $frs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 while( $forum_row = $db->fetchArray( $frs ) ) {
 

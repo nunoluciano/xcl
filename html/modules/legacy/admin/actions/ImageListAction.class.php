@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageListForm.class.php';
 
 class Legacy_ImageListAction extends Legacy_AbstractListAction
 {
@@ -55,7 +55,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=ImageList";
+        return './index.php?action=ImageList';
     }
     
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -76,16 +76,16 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("image_list.html");
+        $render->setTemplateName('image_list.html');
         
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadImagecategory();
         }
         
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         
-        $render->setAttribute("category", $this->mCategory);
+        $render->setAttribute('category', $this->mCategory);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -104,6 +104,6 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImagecategoryList");
+        $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 }

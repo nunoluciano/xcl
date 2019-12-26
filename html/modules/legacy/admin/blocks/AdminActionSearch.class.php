@@ -24,12 +24,12 @@ class Legacy_AdminActionSearch extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return "action_search";
+        return 'action_search';
     }
 
     public function getTitle()
     {
-        return "TEST: AdminActionSearch";
+        return 'TEST: AdminActionSearch';
     }
 
     public function getEntryIndex()
@@ -62,7 +62,7 @@ class Legacy_AdminActionSearch extends Legacy_AbstractBlockProcedure
 
     public function &getResult()
     {
-        $dmy = "dummy";
+        $dmy = 'dummy';
         return $dmy;
     }
 

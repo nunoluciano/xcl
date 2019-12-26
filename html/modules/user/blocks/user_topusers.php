@@ -46,7 +46,7 @@ function b_user_topusers_edit($options)
     $ranks =& XoopsLists::getUserRankList();
     $size = count($options);
     foreach ($ranks as $k => $v) {
-        $sel = "";
+        $sel = '';
         for ($i = 2; $i < $size; $i++) {
             if ($k == $options[$i]) {
                 $sel = ' selected="selected"';

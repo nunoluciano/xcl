@@ -2,12 +2,13 @@
 
 eval( '
 
-function '.$mydirname.'_global_search( $keywords , $andor , $limit , $offset , $userid )
+function '.$mydirname . '_global_search( $keywords , $andor , $limit , $offset , $userid )
 {
-	return d3forum_global_search_base( "'.$mydirname.'" , $keywords , $andor , $limit , $offset , $userid ) ;
+	return d3forum_global_search_base( \'' . $mydirname . '\' , $keywords , $andor , $limit , $offset , $userid ) ;
 }
 
-' ) ;
+'
+) ;
 
 
 if( ! function_exists( 'd3forum_global_search_base' ) ) {
@@ -25,7 +26,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	// naao from
 	require_once dirname(__FILE__).'/include/main_functions.php' ;
 	// get all forums
-	$sql = "SELECT forum_id, forum_external_link_format FROM ".$db->prefix($mydirname."_forums") ;
+	$sql = 'SELECT forum_id, forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') ;
 	$frs = $db->query( $sql ) ;
 	$d3com = [];
 	while( $forum_row = $db->fetchArray( $frs ) ) {
@@ -43,13 +44,13 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 
 	// XOOPS Search module
 	$showcontext = empty( $_GET['showcontext'] ) ? 0 : 1 ;
-	$select4con = $showcontext ? "p.post_text" : "'' AS post_text" ;
+	$select4con = $showcontext ? 'p.post_text' : "'' AS post_text" ;
 	$subselect4con = $showcontext ? ',post_text' : '' ;
 
 	require_once dirname(__FILE__).'/include/common_functions.php' ;
-	$whr_forum = "t.forum_id IN (".implode(",",d3forum_get_forums_can_read( $mydirname )).")" ;
+	$whr_forum = 't.forum_id IN (' . implode(',', d3forum_get_forums_can_read($mydirname )) . ')';
 	
-	$whr_uid = $userid > 0 ? "uid=$userid" : "1" ;
+	$whr_uid = $userid > 0 ? "uid=$userid" : '1';
 
 	$whr_query = $andor == 'OR' ? '0' : '1' ;
 	if( is_array( $keywords ) ) {
@@ -73,7 +74,9 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 		}
 	}
 
-	$sql = "SELECT p.post_id,p.topic_id,p.post_time,p.uid,p.subject,p.html,p.smiley,p.xcode,p.br,$select4con,t.topic_external_link_id,f.forum_id FROM (SELECT post_id,topic_id,post_time,uid,subject,html,smiley,xcode,br{$subselect4con} FROM ".$db->prefix($mydirname."_posts")." WHERE ($whr_uid) AND ($whr_query) ORDER BY post_time DESC) p LEFT JOIN ".$db->prefix($mydirname."_topics")." t ON t.topic_id=p.topic_id  LEFT JOIN ".$db->prefix($mydirname."_forums")." f ON t.forum_id = f.forum_id WHERE ($whr_forum) AND ! t.topic_invisible" ;
+	$sql = "SELECT p.post_id,p.topic_id,p.post_time,p.uid,p.subject,p.html,p.smiley,p.xcode,p.br,$select4con,t.topic_external_link_id,f.forum_id FROM (SELECT post_id,topic_id,post_time,uid,subject,html,smiley,xcode,br{$subselect4con} FROM ".$db->prefix($mydirname . '_posts') . " WHERE ($whr_uid) AND ($whr_query) ORDER BY post_time DESC) p LEFT JOIN " . $db->prefix($mydirname . '_topics'
+        ) . ' t ON t.topic_id=p.topic_id  LEFT JOIN '
+           . $db->prefix($mydirname . '_forums') . " f ON t.forum_id = f.forum_id WHERE ($whr_forum) AND ! t.topic_invisible" ;
 	
 	$result = $db->query( $sql , $limit , $offset ) ;
 	$ret = [];

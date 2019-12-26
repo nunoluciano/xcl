@@ -12,15 +12,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/actions/SearchResultsAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/SearchResultsForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/actions/SearchResultsAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/SearchResultsForm.class.php';
 
 class Legacy_SearchAction extends Legacy_SearchResultsAction
 {
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
-        $service =& $root->mServiceManager->getService("LegacySearch");
+        $service =& $root->mServiceManager->getService('LegacySearch');
         if (is_object($service)) {
             $client =& $root->mServiceManager->createClient($service);
 
@@ -42,7 +42,7 @@ class Legacy_SearchAction extends Legacy_SearchResultsAction
     
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_search_form.html");
+        $render->setTemplateName('legacy_search_form.html');
     
         $render->setAttribute('actionForm', $this->mActionForm);
             

@@ -79,7 +79,7 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
      * @param string $module
      * @return bool
      */
-    abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module="");
+    abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module= '');
 
     /**
      * checkPermitByGroupid
@@ -93,7 +93,7 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
      * @param string $module
      * @return bool
      */
-    abstract public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module="");
+    abstract public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module= '');
 
     /**
      * renderUri

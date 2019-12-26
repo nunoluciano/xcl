@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/ActionFrame.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 define('USER_USERINFO_MAXHIT', 5);
 
 /***
@@ -79,7 +79,7 @@ class User_UserInfoAction extends User_Action
         }
         unset($service);
         
-        $service =& $root->mServiceManager->getService("LegacySearch");
+        $service =& $root->mServiceManager->getService('LegacySearch');
         if ($service != null) {
             $this->mSearchResults = [];
             
@@ -124,9 +124,9 @@ class User_UserInfoAction extends User_Action
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_userinfo.html");
-        $render->setAttribute("thisUser", $this->mObject);
-        $render->setAttribute("rank", $this->mRankObject);
+        $render->setTemplateName('user_userinfo.html');
+        $render->setAttribute('thisUser', $this->mObject);
+        $render->setAttribute('rank', $this->mRankObject);
         
         $render->setAttribute('pmliteUrl', $this->mPmliteURL);
 
@@ -134,13 +134,13 @@ class User_UserInfoAction extends User_Action
         
         $render->setAttribute('user_signature', $userSignature);
 
-        $render->setAttribute("searchResults", $this->mSearchResults);
+        $render->setAttribute('searchResults', $this->mSearchResults);
         
         //
         // set flags.
         //
         $user_ownpage = (is_object($xoopsUser) && $xoopsUser->get('uid') == $this->mObject->get('uid'));
-        $render->setAttribute("user_ownpage", $user_ownpage);
+        $render->setAttribute('user_ownpage', $user_ownpage);
         
         //
         // About 'SELF DELETE'

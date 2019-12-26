@@ -59,7 +59,7 @@ class textsanitizer
 
     public function &nl2Br($text)
     {
-        $ret = preg_replace("/(\015\012)|(\015)|(\012)/", "<br />", $text);
+        $ret = preg_replace("/(\015\012)|(\015)|(\012)/", '<br />', $text);
         return $ret;
     }
 
@@ -86,13 +86,13 @@ class textsanitizer
     */
     public function &htmlSpecialChars($text)
     {
-        $text = preg_replace("/&amp;/i", '&', htmlspecialchars($text, ENT_QUOTES));
+        $text = preg_replace('/&amp;/i', '&', htmlspecialchars($text, ENT_QUOTES));
         return $text;
     }
 
     public function &undoHtmlSpecialChars(&$text)
     {
-        $ret = preg_replace(["/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"], [">", "<", "\"", "'"], $text);
+        $ret = preg_replace(['/&gt;/i', '/&lt;/i', '/&quot;/i', '/&#039;/i'], ['>', '<', '"', "'"], $text);
         return $ret;
     }
 

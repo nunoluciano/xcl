@@ -84,18 +84,18 @@ class XoopsOnlineHandler
         $uid = (int)$uid;
         $ip = $this->db->quoteString($ip);
         if ($uid > 0) {
-            $sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid;
+            $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('online') . ' WHERE online_uid=' . $uid;
         } else {
-            $sql = "SELECT COUNT(*) FROM ".$this->db->prefix('online')." WHERE online_uid=".$uid." AND online_ip=".$ip;
+            $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('online') . ' WHERE online_uid=' . $uid . ' AND online_ip=' . $ip;
         }
         list($count) = $this->db->fetchRow($this->db->queryF($sql));
         if ($count > 0) {
-            $sql = "UPDATE ".$this->db->prefix('online')." SET online_updated=".$time.", online_module = ".$module." WHERE online_uid = ".$uid;
+            $sql = 'UPDATE ' . $this->db->prefix('online') . ' SET online_updated=' . $time . ', online_module = ' . $module . ' WHERE online_uid = ' . $uid;
             if ($uid == 0) {
-                $sql .= " AND online_ip=".$ip;
+                $sql .= ' AND online_ip=' . $ip;
             }
         } else {
-            $sql = sprintf("INSERT INTO %s (online_uid, online_uname, online_updated, online_ip, online_module) VALUES (%u, %s, %u, %s, %u)", $this->db->prefix('online'), $uid, $this->db->quoteString($uname), $time, $ip, $module);
+            $sql = sprintf('INSERT INTO %s (online_uid, online_uname, online_updated, online_ip, online_module) VALUES (%u, %s, %u, %s, %u)', $this->db->prefix('online'), $uid, $this->db->quoteString($uname), $time, $ip, $module);
         }
         if (!$this->db->queryF($sql)) {
             return false;
@@ -112,7 +112,7 @@ class XoopsOnlineHandler
      */
     public function destroy($uid)
     {
-        $sql = sprintf("DELETE FROM %s WHERE online_uid = %u", $this->db->prefix('online'), $uid);
+        $sql = sprintf('DELETE FROM %s WHERE online_uid = %u', $this->db->prefix('online'), $uid);
         if (!$result = $this->db->queryF($sql)) {
             return false;
         }
@@ -128,7 +128,7 @@ class XoopsOnlineHandler
      */
     public function gc($expire)
     {
-        $sql = sprintf("DELETE FROM %s WHERE online_updated < %u", $this->db->prefix('online'), time() - (int)$expire);
+        $sql = sprintf('DELETE FROM %s WHERE online_updated < %u', $this->db->prefix('online'), time() - (int)$expire);
         $this->db->queryF($sql);
     }
 

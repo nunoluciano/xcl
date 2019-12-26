@@ -26,7 +26,7 @@ class Xupdate_StoreDeleteForm extends XCube_ActionForm
     **/
     public function getTokenName()
     {
-        return "module.xupdate.StoreDeleteForm.TOKEN";
+        return 'module.xupdate.StoreDeleteForm.TOKEN';
     }
 
     /**

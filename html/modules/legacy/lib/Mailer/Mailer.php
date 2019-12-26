@@ -100,8 +100,8 @@ class Legacy_Mailer extends PHPMailer
     public function reset()
     {
         $this->ClearAllRecipients();
-        $this->Body = "";
-        $this->Subject = "";
+        $this->Body = '';
+        $this->Subject = '';
     }
     
     public function convertLocal($text, $mime = false)

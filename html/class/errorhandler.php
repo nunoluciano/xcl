@@ -153,39 +153,39 @@ class XoopsErrorHandler
         foreach ($this->_errors as $error) {
             switch ($error['errno']) {
                 case E_USER_NOTICE:
-                    $out = "Notice [Xoops]: ";
+                    $out = 'Notice [Xoops]: ';
                     break;
                 case E_USER_WARNING:
-                    $out = "Warning [Xoops]: ";
+                    $out = 'Warning [Xoops]: ';
                     break;
                 case E_USER_ERROR:
-                    $out = "Error [Xoops]: ";
+                    $out = 'Error [Xoops]: ';
                     break;
                 case E_USER_DEPRECATED:
-                    $out = "Deprecated [Xoops]: ";
+                    $out = 'Deprecated [Xoops]: ';
                     break;
                 case E_USER_STRICT:
-                    $out = "Strict [Xoops]: ";
+                    $out = 'Strict [Xoops]: ';
                     break;
                 case E_NOTICE:
-                    $out = "Notice [PHP]: ";
+                    $out = 'Notice [PHP]: ';
                     break;
                 case E_WARNING:
-                    $out = "Warning [PHP]: ";
+                    $out = 'Warning [PHP]: ';
                     break;
                 case E_DEPRECATED:
-                    $out = "Deprecated [PHP]: ";
+                    $out = 'Deprecated [PHP]: ';
                     break;
                 case E_STRICT:
-                    $out = "Strict [PHP]: ";
+                    $out = 'Strict [PHP]: ';
                     break;
                 case E_ERROR:
-                    $out = "Fatal [PHP]: ";
+                    $out = 'Fatal [PHP]: ';
                     break;
                 default:
-                    $out = "Unknown Condition [" . $error['errno'] . "]: ";
+                    $out = 'Unknown Condition [' . $error['errno'] . ']: ';
             }
-            $out .= sprintf("%s in file %s line %s", $error['errstr'], $error['errfile'], $error['errline']);
+            $out .= sprintf('%s in file %s line %s', $error['errstr'], $error['errfile'], $error['errline']);
             $md5 = md5($out);
             if (isset($output[$md5])) {
                 $output[$md5] = preg_replace('/\(\d+\)$/', '(' . ++$count[$md5] . ')', $output[$md5]);

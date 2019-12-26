@@ -12,7 +12,7 @@ if (!class_exists('PicoPreloadBase')) {
 
 		public function postFilter()
 		{
-			$this->mRoot->mDelegateManager->add("Legacy_BackendAction.GetRSSItems", [&$this, "getRSSItems"]);
+			$this->mRoot->mDelegateManager->add('Legacy_BackendAction.GetRSSItems', [&$this, 'getRSSItems']);
 			$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', [$this, 'ckeditor4PreBuild']);
 		}
 
@@ -205,5 +205,5 @@ EOD;
 if (!is_numeric($mydirname{
 	0})) {
 	// If you want to name the directory from 0-9, make a site preload.
-	eval('class ' . ucfirst($mydirname) . '_PicoPreload extends PicoPreloadBase { var $mydirname = "' . $mydirname . '" ; }');
+	eval('class ' . ucfirst($mydirname) . '_PicoPreload extends PicoPreloadBase { var $mydirname = \'' . $mydirname . '\' ; }');
 }

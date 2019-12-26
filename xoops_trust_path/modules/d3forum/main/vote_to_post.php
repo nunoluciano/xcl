@@ -5,7 +5,7 @@ include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
 $post_id = intval( @$_GET['post_id'] ) ;
 
 // get this "post" from given $post_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
@@ -53,17 +53,17 @@ $point4vote = intval( @$_GET['point'] ) ;
 if( $point4vote < 0 || $point4vote > 10 ) die( _MD_D3FORUM_ERR_VOTEINVALID.__LINE__ ) ;
 
 // check double voting
-$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname."_post_votes")." WHERE post_id=$post_id AND ($useridentity4select)" ;
+$sql = 'SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_post_votes') . " WHERE post_id=$post_id AND ($useridentity4select)" ;
 if( ! $result = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 list( $count ) = $db->fetchRow( $result ) ;
 if( $count > 0 ) {
 	// delete previous post
-	$sql = "DELETE FROM ".$db->prefix($mydirname."_post_votes")." WHERE post_id=$post_id AND ($useridentity4select) LIMIT 1" ;
+	$sql = 'DELETE FROM ' . $db->prefix($mydirname . '_post_votes') . " WHERE post_id=$post_id AND ($useridentity4select) LIMIT 1" ;
 	if( ! $db->queryF( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 }
 
 // transaction stage
-$sql = "INSERT INTO ".$db->prefix($mydirname."_post_votes")." SET post_id=$post_id, vote_point=$point4vote, vote_time=UNIX_TIMESTAMP(), $useridentity4insert" ;
+$sql = 'INSERT INTO ' . $db->prefix($mydirname . '_post_votes') . " SET post_id=$post_id, vote_point=$point4vote, vote_time=UNIX_TIMESTAMP(), $useridentity4insert" ;
 if( ! $db->queryF( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 
 require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;

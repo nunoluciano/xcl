@@ -71,7 +71,7 @@ class Legacy_AbstractFilterForm
 
     public function getOrder()
     {
-        return ($this->mSort < 0) ? "DESC" : "ASC";
+        return ($this->mSort < 0) ? 'DESC' : 'ASC';
     }
 
     public function getCriteria($start = null, $limit = null)

@@ -24,9 +24,9 @@ class User_AdminPreload extends XCube_ActionFilter
         $mainTheme = $db->quoteString($mainTheme);
         
         $t_conds = [];
-        $t_conds[] = "theme <> " . $db->quoteString('');
+        $t_conds[] = 'theme <> ' . $db->quoteString('');
         foreach ($selectableThemes as $theme) {
-            $t_conds[] = "theme <> " . $db->quoteString($theme);
+            $t_conds[] = 'theme <> ' . $db->quoteString($theme);
         }
         
         $sql = "UPDATE ${table} SET theme=${mainTheme} WHERE " . join(' AND ', $t_conds);

@@ -68,7 +68,7 @@ function b_legacy_mainmenu_edit($options)
         $on = $off;
         $off = '';
     }
-    return "<div>"._MB_LEGACY_MAINMENU_EXPAND_SUB.
-    "<input type=\"radio\" name=\"options[0]\" value=\"0\" $off>"._NO.
-    " &nbsp; <input type=\"radio\" name=\"options[0]\" value=\"1\" $on>"._YES."</div>";
+    return '<div>' . _MB_LEGACY_MAINMENU_EXPAND_SUB .
+           "<input type=\"radio\" name=\"options[0]\" value=\"0\" $off>" . _NO .
+           " &nbsp; <input type=\"radio\" name=\"options[0]\" value=\"1\" $on>" . _YES . '</div>';
 }

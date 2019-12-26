@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('IMAGECATEGORY_SORT_KEY_IMGCAT_ID', 1);
 define('IMAGECATEGORY_SORT_KEY_IMGCAT_NAME', 2);
@@ -41,9 +41,9 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE => 'imgcat_storetype'
     ];
 
-    public $mKeyword = "";
-    public $mOptionField = "";
-    public $mOptionField2 = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
+    public $mOptionField2 = '';
 
     public function getDefaultSortKey()
     {
@@ -87,9 +87,9 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "visible") {
+            if ($this->mOptionField == 'visible') {
                 $this->_mCriteria->add(new Criteria('imgcat_display', xoops_getrequest('1')));
-            } elseif ($this->mOptionField == "invisible") {
+            } elseif ($this->mOptionField == 'invisible') {
                 $this->_mCriteria->add(new Criteria('imgcat_display', xoops_getrequest('0')));
             } else {
                 //all
@@ -99,9 +99,9 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == "file") {
+            if ($this->mOptionField2 == 'file') {
                 $this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('file')));
-            } elseif ($this->mOptionField2 == "db") {
+            } elseif ($this->mOptionField2 == 'db') {
                 $this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('db')));
             } else {
                 //all

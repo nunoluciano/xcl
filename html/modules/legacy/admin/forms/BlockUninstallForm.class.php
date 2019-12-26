@@ -12,13 +12,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CustomBlockDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CustomBlockDeleteForm.class.php';
 
 class Legacy_BlockUninstallForm extends Legacy_CustomBlockDeleteForm
 {
     public function getTokenName()
     {
-        return "module.legacy.BlockUninstallForm.TOKEN" . $this->get('bid');
+        return 'module.legacy.BlockUninstallForm.TOKEN' . $this->get('bid');
     }
 
     public function update(&$obj)

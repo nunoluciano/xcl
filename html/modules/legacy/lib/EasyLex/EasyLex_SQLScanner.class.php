@@ -23,7 +23,7 @@ define('EASYLEX_SQL_COMMA', 9);
 class EasyLex_SQLToken
 {
     public $mType = EASYLEX_SQL_UNKNOWN;
-    public $mValue = "";
+    public $mValue = '';
 
     public function __construct($type, $value)
     {
@@ -34,7 +34,7 @@ class EasyLex_SQLToken
     public function getOutputValue()
     {
         if ($this->mType == EASYLEX_SQL_SEPARATER) {
-            return "";
+            return '';
         } else {
             return $this->mValue;
         }
@@ -43,7 +43,7 @@ class EasyLex_SQLToken
     public function getValue()
     {
         if ($this->mType == EASYLEX_SQL_SEPARATER) {
-            return "";
+            return '';
         }
 
         if ($this->mType == EASYLEX_SQL_STRING_LITERAL) {
@@ -159,15 +159,15 @@ class EasyLex_SQLScanner
             return false;
         }
 
-        $fp = fopen($path, "rb");
+        $fp = fopen($path, 'rb');
         if (!$fp) {
             return false;
         }
 
-        $t_buff = "";
+        $t_buff = '';
         while ($str = fgets($fp)) {
             if ($preprocess) {
-                $str = preg_replace("/^\s*\#.*/", "", $str);
+                $str = preg_replace("/^\s*\#.*/", '', $str);
             }
             $t_buff .= $str;
         }
@@ -200,7 +200,7 @@ class EasyLex_SQLScanner
             return EASYLEX_SQL_COMMA;
         }
 
-        if (preg_match("/[0-9]/", $ch)) {
+        if (preg_match('/[0-9]/', $ch)) {
             return EASYLEX_SQL_DIGIT;
         }
 
@@ -282,7 +282,7 @@ class EasyLex_SQLScanner
         } else {
             // $this->_createToken();
             $this->mStatus = EASYLEX_SQL_UNKNOWN;
-            $this->mActiveToken = "";
+            $this->mActiveToken = '';
         }
     }
 
@@ -320,7 +320,7 @@ class EasyLex_SQLScanner
         $this->mTokens[] = &$token;
 
         $this->mStatus = EASYLEX_SQL_UNKNOWN;
-        $this->mActiveToken = "";
+        $this->mActiveToken = '';
 
         return $token;
     }
@@ -370,7 +370,7 @@ class EasyLex_SQLScanner
             foreach ($line as $token) {
                 $t_arr[] = $token->getOutputValue();
             }
-            $sqls[] = join(" ", $t_arr);
+            $sqls[] = join(' ', $t_arr);
         }
 
         return $sqls;

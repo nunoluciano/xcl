@@ -8,9 +8,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchListForm.class.php';
 
 //!Fix WARNING: Declaration of User_UserSearchListAction::prepare(&$controller, &$xoopsUser) should be compatible with User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
 class User_UserSearchListAction extends User_AbstractListAction
@@ -18,7 +18,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     public $mUserObjects = [];
     public $mActionForm = null;
     public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
-    public $mExtraURL = "";
+    public $mExtraURL = '';
 
     // !Fix public function prepare(&$controller, &$xoopsUser)
     public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
@@ -50,7 +50,7 @@ class User_UserSearchListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=UserSearchList";
+        return './index.php?action=UserSearchList';
     }
     
     public function execute(&$controller, &$xoopsUser)
@@ -83,9 +83,9 @@ class User_UserSearchListAction extends User_AbstractListAction
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserPagenaviOtherUrl', 'User_UserSearchListAction::renderOtherUrlControl');
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserSearchPagenaviHidden', 'User_UserSearchListAction::renderHiddenControl');
 
-        $render->setTemplateName("user_search_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('user_search_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
@@ -160,7 +160,7 @@ class User_UserSearchListAction extends User_AbstractListAction
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_search_list_confirm.html");
+        $render->setTemplateName('user_search_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         
@@ -172,7 +172,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         $render->setAttribute('uids', array_keys($t_arr));
         //To return user to proper-url with search condition 
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserSearchPagenaviHidden', 'User_UserSearchListAction::renderHiddenControl');
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     }
 
 
@@ -194,13 +194,13 @@ class User_UserSearchListAction extends User_AbstractListAction
 
     public function getExtraURL()
     {
-        $extraurl = "";
+        $extraurl = '';
         if (count($this->mFilter->mNavi->mExtra) > 0) {
             $t_arr = [];
             foreach ($this->mFilter->mNavi->mExtra as $key => $value) {
-                $t_arr[] = $key . "=" . urlencode($value);
+                $t_arr[] = $key . '=' . urlencode($value);
             }
-            $extraurl = "&" . implode("&", $t_arr);
+            $extraurl = '&' . implode('&', $t_arr);
         }
         return $extraurl;
     }
@@ -214,7 +214,7 @@ class User_UserSearchListAction extends User_AbstractListAction
                 $t_arr = [];
             
                 foreach ($navi->mExtra as $key => $value) {
-                    $t_arr[] = $key . "=" . urlencode($value);
+                    $t_arr[] = $key . '=' . urlencode($value);
                 }
             
                 if (count($t_arr) == 0) {
@@ -222,10 +222,10 @@ class User_UserSearchListAction extends User_AbstractListAction
                     return;
                 }
             
-                if (strpos($url, "?")!==false) {
-                    $buf = $url . "&amp;" . implode("&amp;", $t_arr);
+                if (strpos($url, '?') !== false) {
+                    $buf = $url . '&amp;' . implode('&amp;', $t_arr);
                 } else {
-                    $buf = $url . "?" . implode("&amp;", $t_arr);
+                    $buf = $url . '?' . implode('&amp;', $t_arr);
                 }
             }
         }

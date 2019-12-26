@@ -3,7 +3,7 @@
 $post_id = intval( @$_GET['post_id'] ) ;
 
 // get this "post" from given $post_id
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE post_id=$post_id" ;
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ;
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 if( $db->getRowsNum( $prs ) <= 0 ) die( _MD_D3FORUM_ERR_READPOST ) ;
 $post_row = $db->fetchArray( $prs ) ;
@@ -25,7 +25,7 @@ $d3forum_meta_description = preg_replace('/[\r\n\t]/','',htmlspecialchars(mb_sub
 
 // posts loop
 $posts = [];
-$sql = "SELECT * FROM ".$db->prefix($mydirname."_posts")." WHERE topic_id=$topic_id ORDER BY order_in_tree,post_id" ; // TODO
+$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE topic_id=$topic_id ORDER BY order_in_tree,post_id" ; // TODO
 if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 while( $post_row = $db->fetchArray( $prs ) ) {
 
@@ -113,11 +113,11 @@ $tree = [];
 $topics_count=0;
 if( $topic4assign['external_link_id'] >0 ) {
 
-	$sql = "SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time
-		FROM ".$db->prefix($mydirname."_topics")." t
-		LEFT JOIN ".$db->prefix($mydirname."_posts")." p ON p.topic_id=t.topic_id
-		WHERE t.forum_id='".(int)$forum4assign['id']."' AND p.depth_in_tree='0'
-			AND (t.topic_external_link_id='".(int)$topic4assign['external_link_id']."'
+	$sql = 'SELECT p.*, t.topic_locked, t.topic_id, t.forum_id, t.topic_last_uid, t.topic_last_post_time
+		FROM ' . $db->prefix($mydirname . '_topics') . ' t
+		LEFT JOIN ' . $db->prefix($mydirname . '_posts') . " p ON p.topic_id=t.topic_id
+		WHERE t.forum_id='" . (int)$forum4assign['id'] . "' AND p.depth_in_tree='0'
+			AND (t.topic_external_link_id='" . (int)$topic4assign['external_link_id'] . "'
 			OR t.topic_id=$topic_id )" ;
 
 	if( ! $prs = $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;

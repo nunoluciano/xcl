@@ -4,8 +4,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractViewAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserRecountForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractViewAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserRecountForm.class.php';
 
 class User_UserViewAction extends User_AbstractViewAction
 {
@@ -90,7 +90,7 @@ class User_UserViewAction extends User_AbstractViewAction
     
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_view.html");
+        $render->setTemplateName('user_view.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -103,7 +103,7 @@ class User_UserViewAction extends User_AbstractViewAction
         //
         // TODO dirty code... :(
         //
-        $umodeOptions = ["nest" => _NESTED, "flat" => _FLAT, "thread" => _THREADED];
+        $umodeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $render->setAttribute('umode', $umodeOptions[$this->mObject->get('umode')]);
 
         $uorderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
@@ -113,7 +113,7 @@ class User_UserViewAction extends User_AbstractViewAction
         // Notifications. (TODO Also dirty...)
         //
         $controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
-        require_once XOOPS_ROOT_PATH . "/include/notification_constants.php";
+        require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
 
         $methodOptions = [
             XOOPS_NOTIFICATION_METHOD_DISABLE => _NOT_METHOD_DISABLE,
@@ -139,11 +139,11 @@ class User_UserViewAction extends User_AbstractViewAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=UserView&uid=" . $this->mObject->get('uid'), 1, _AD_USER_MESSAGE_RECOUNT_SUCCESS);
+        $controller->executeRedirect('./index.php?action=UserView&uid=' . $this->mObject->get('uid'), 1, _AD_USER_MESSAGE_RECOUNT_SUCCESS);
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=UserList", 1, _AD_USER_ERROR_CONTENT_IS_NOT_FOUND);
+        $controller->executeRedirect('./index.php?action=UserList', 1, _AD_USER_ERROR_CONTENT_IS_NOT_FOUND);
     }
 }

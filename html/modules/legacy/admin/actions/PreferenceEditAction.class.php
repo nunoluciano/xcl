@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/PreferenceEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/PreferenceEditForm.class.php';
 
-define("LEGACY_PREFERENCE_ID_GENERAL", 1);
+define('LEGACY_PREFERENCE_ID_GENERAL', 1);
 
 class Legacy_PreferenceEditAction extends Legacy_Action
 {
@@ -84,7 +84,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         
         foreach (array_keys($this->mObjects) as $key) {
             if (!$handler->insertConfig($this->mObjects[$key])) {
-                die("ERROR" . $this->mObjects[$key]->get('conf_name'));
+                die('ERROR' . $this->mObjects[$key]->get('conf_name'));
             }
         }
         
@@ -95,7 +95,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("preference_edit.html");
+        $render->setTemplateName('preference_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('objectArr', $this->mObjects);
         
@@ -142,9 +142,9 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         //
         if (in_array('language', $formtypeArr)) {
             $languageArr = [];
-            $dirHandler = opendir(XOOPS_ROOT_PATH . "/language/");
+            $dirHandler = opendir(XOOPS_ROOT_PATH . '/language/');
             while ($file = readdir($dirHandler)) {
-                if (is_dir(XOOPS_ROOT_PATH . "/language/" . $file) && preg_match("/^[a-z][0-9a-z_\-]+$/", $file)) {
+                if (is_dir(XOOPS_ROOT_PATH . '/language/' . $file) && preg_match("/^[a-z][0-9a-z_\-]+$/", $file)) {
                     $languageArr[$file] = $file;
                 }
             }
@@ -199,7 +199,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=PreferenceList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=PreferenceList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
@@ -306,12 +306,12 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=PreferenceList");
+        $controller->executeForward('./index.php?action=PreferenceList');
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=PreferenceList");
+        $controller->executeForward('./index.php?action=PreferenceList');
     }
 }
 

@@ -23,7 +23,7 @@ function altsys_admin_in_theme($s)
     }
 
     // outputs before cp_header()
-    @list($former_outputs, $tmp_s) = explode("<!DOCTYPE", $s, 2) ;
+    @list($former_outputs, $tmp_s) = explode('<!DOCTYPE', $s, 2) ;
     if (empty($tmp_s)) {
         $tmp_s = $s ;
     }

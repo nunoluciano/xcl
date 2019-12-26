@@ -83,7 +83,7 @@ function b_pico_content_edit($options)
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 	$contents = [0 => '--'];
-	$result = $db->query("SELECT content_id,subject,c.cat_depth_in_tree FROM " . $db->prefix($mydirname . "_contents") . " o LEFT JOIN " . $db->prefix($mydirname . "_categories") . " c ON o.cat_id=c.cat_id ORDER BY c.cat_order_in_tree,o.weight");
+	$result = $db->query('SELECT content_id,subject,c.cat_depth_in_tree FROM ' . $db->prefix($mydirname . '_contents') . ' o LEFT JOIN ' . $db->prefix($mydirname . '_categories') . ' c ON o.cat_id=c.cat_id ORDER BY c.cat_order_in_tree,o.weight');
 	while (list($id, $sbj, $depth) = $db->fetchRow($result)) {
 		$contents[$id] = sprintf('%06d', $id) . ': ' . str_repeat('--', $depth) . $myts->makeTboxData4Show($sbj, 1, 1);
 	}
