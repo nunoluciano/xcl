@@ -101,7 +101,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var int
      * @access private
      */
-    var $key_length = 24;
+    public $key_length = 24;
 
     /**
      * The default salt used by setPassword()
@@ -111,7 +111,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var string
      * @access private
      */
-    var $password_default_salt = 'phpseclib';
+    public $password_default_salt = 'phpseclib';
 
     /**
      * The namespace used by the cipher for its constants.
@@ -121,7 +121,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var string
      * @access private
      */
-    var $const_namespace = 'DES';
+    public $const_namespace = 'DES';
 
     /**
      * The mcrypt specific name of the cipher
@@ -131,7 +131,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'tripledes';
+    public $cipher_name_mcrypt = 'tripledes';
 
     /**
      * Optimizing value while CFB-encrypting
@@ -140,7 +140,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var int
      * @access private
      */
-    var $cfb_init_len = 750;
+    public $cfb_init_len = 750;
 
     /**
      * max possible size of $key
@@ -150,7 +150,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var string
      * @access private
      */
-    var $key_length_max = 24;
+    public $key_length_max = 24;
 
     /**
      * Internal flag whether using CRYPT_DES_MODE_3CBC or not
@@ -158,7 +158,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var bool
      * @access private
      */
-    var $mode_3cbc;
+    public $mode_3cbc;
 
     /**
      * The Crypt_DES objects
@@ -168,7 +168,7 @@ class Crypt_TripleDES extends Crypt_DES
      * @var array
      * @access private
      */
-    var $des;
+    public $des;
 
     /**
      * Default Constructor.

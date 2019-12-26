@@ -51,7 +51,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $max_x;
+    public $max_x;
 
     /**
      * Max Height
@@ -59,7 +59,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $max_y;
+    public $max_y;
 
     /**
      * Max History
@@ -67,7 +67,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $max_history;
+    public $max_history;
 
     /**
      * History
@@ -75,7 +75,7 @@ class File_ANSI
      * @var array
      * @access private
      */
-    var $history;
+    public $history;
 
     /**
      * History Attributes
@@ -83,7 +83,7 @@ class File_ANSI
      * @var array
      * @access private
      */
-    var $history_attrs;
+    public $history_attrs;
 
     /**
      * Current Column
@@ -91,7 +91,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $x;
+    public $x;
 
     /**
      * Current Row
@@ -99,7 +99,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $y;
+    public $y;
 
     /**
      * Old Column
@@ -107,7 +107,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $old_x;
+    public $old_x;
 
     /**
      * Old Row
@@ -115,7 +115,7 @@ class File_ANSI
      * @var int
      * @access private
      */
-    var $old_y;
+    public $old_y;
 
     /**
      * An empty attribute cell
@@ -123,7 +123,7 @@ class File_ANSI
      * @var object
      * @access private
      */
-    var $base_attr_cell;
+    public $base_attr_cell;
 
     /**
      * The current attribute cell
@@ -131,7 +131,7 @@ class File_ANSI
      * @var object
      * @access private
      */
-    var $attr_cell;
+    public $attr_cell;
 
     /**
      * An empty attribute row
@@ -139,7 +139,7 @@ class File_ANSI
      * @var array
      * @access private
      */
-    var $attr_row;
+    public $attr_row;
 
     /**
      * The current screen text
@@ -147,7 +147,7 @@ class File_ANSI
      * @var array
      * @access private
      */
-    var $screen;
+    public $screen;
 
     /**
      * The current screen attributes
@@ -155,7 +155,7 @@ class File_ANSI
      * @var array
      * @access private
      */
-    var $attrs;
+    public $attrs;
 
     /**
      * Current ANSI code
@@ -163,7 +163,7 @@ class File_ANSI
      * @var string
      * @access private
      */
-    var $ansi;
+    public $ansi;
 
     /**
      * Tokenization
@@ -171,7 +171,7 @@ class File_ANSI
      * @var array
      * @access private
      */
-    var $tokenization;
+    public $tokenization;
 
     /**
      * Default Constructor.

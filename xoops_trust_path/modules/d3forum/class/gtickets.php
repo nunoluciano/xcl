@@ -6,9 +6,9 @@ if( ! class_exists( 'XoopsGTicket' ) ) {
     class XoopsGTicket
     {
 
-        var $_errors       = [];
-        var $_latest_token = '';
-        var $messages      = [];
+        public $_errors       = [];
+        public $_latest_token = '';
+        public $messages      = [];
 
         public function __construct()
         {

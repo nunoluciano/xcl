@@ -88,7 +88,7 @@ class Crypt_Hash
      * @var int
      * @access private
      */
-    var $hashParam;
+    public $hashParam;
 
     /**
      * Byte-length of compression blocks / key (Internal HMAC)
@@ -97,7 +97,7 @@ class Crypt_Hash
      * @var int
      * @access private
      */
-    var $b;
+    public $b;
 
     /**
      * Byte-length of hash output (Internal HMAC)
@@ -106,7 +106,7 @@ class Crypt_Hash
      * @var int
      * @access private
      */
-    var $l = false;
+    public $l = false;
 
     /**
      * Hash Algorithm
@@ -115,7 +115,7 @@ class Crypt_Hash
      * @var string
      * @access private
      */
-    var $hash;
+    public $hash;
 
     /**
      * Key
@@ -124,7 +124,7 @@ class Crypt_Hash
      * @var string
      * @access private
      */
-    var $key = false;
+    public $key = false;
 
     /**
      * Outer XOR (Internal HMAC)
@@ -133,7 +133,7 @@ class Crypt_Hash
      * @var string
      * @access private
      */
-    var $opad;
+    public $opad;
 
     /**
      * Inner XOR (Internal HMAC)
@@ -142,7 +142,7 @@ class Crypt_Hash
      * @var string
      * @access private
      */
-    var $ipad;
+    public $ipad;
 
     /**
      * Default Constructor.

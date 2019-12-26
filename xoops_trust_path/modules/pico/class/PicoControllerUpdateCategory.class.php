@@ -20,7 +20,7 @@ class PicoControllerUpdateCategory extends PicoControllerAbstract
     //var $html_header = '' ;
     //var $contentObjs = array() ;
 
-    var $cat_id = 0;
+    public $cat_id = 0;
 
     public function execute($request)
     {

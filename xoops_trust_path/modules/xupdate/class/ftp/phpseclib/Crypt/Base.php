@@ -131,7 +131,7 @@ class Crypt_Base
      * @var int
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * The Block Length of the block cipher
@@ -139,7 +139,7 @@ class Crypt_Base
      * @var int
      * @access private
      */
-    var $block_size = 16;
+    public $block_size = 16;
 
     /**
      * The Key
@@ -148,7 +148,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $key = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+    public $key = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 
     /**
      * The Initialization Vector
@@ -157,7 +157,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $iv;
+    public $iv;
 
     /**
      * A "sliding" Initialization Vector
@@ -167,7 +167,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $encryptIV;
+    public $encryptIV;
 
     /**
      * A "sliding" Initialization Vector
@@ -177,7 +177,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $decryptIV;
+    public $decryptIV;
 
     /**
      * Continuous Buffer status
@@ -186,7 +186,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $continuousBuffer = false;
+    public $continuousBuffer = false;
 
     /**
      * Encryption buffer for CTR, OFB and CFB modes
@@ -196,7 +196,7 @@ class Crypt_Base
      * @var array
      * @access private
      */
-    var $enbuffer;
+    public $enbuffer;
 
     /**
      * Decryption buffer for CTR, OFB and CFB modes
@@ -206,7 +206,7 @@ class Crypt_Base
      * @var array
      * @access private
      */
-    var $debuffer;
+    public $debuffer;
 
     /**
      * mcrypt resource for encryption
@@ -218,7 +218,7 @@ class Crypt_Base
      * @var resource
      * @access private
      */
-    var $enmcrypt;
+    public $enmcrypt;
 
     /**
      * mcrypt resource for decryption
@@ -230,7 +230,7 @@ class Crypt_Base
      * @var resource
      * @access private
      */
-    var $demcrypt;
+    public $demcrypt;
 
     /**
      * Does the enmcrypt resource need to be (re)initialized?
@@ -240,7 +240,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $enchanged = true;
+    public $enchanged = true;
 
     /**
      * Does the demcrypt resource need to be (re)initialized?
@@ -250,7 +250,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $dechanged = true;
+    public $dechanged = true;
 
     /**
      * mcrypt resource for CFB mode
@@ -269,7 +269,7 @@ class Crypt_Base
      * @var resource
      * @access private
      */
-    var $ecb;
+    public $ecb;
 
     /**
      * Optimizing value while CFB-encrypting
@@ -291,7 +291,7 @@ class Crypt_Base
      * @var int
      * @access private
      */
-    var $cfb_init_len = 600;
+    public $cfb_init_len = 600;
 
     /**
      * Does internal cipher state need to be (re)initialized?
@@ -302,7 +302,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $changed = true;
+    public $changed = true;
 
     /**
      * Padding status
@@ -311,7 +311,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $padding = true;
+    public $padding = true;
 
     /**
      * Is the mode one that is paddable?
@@ -320,7 +320,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $paddable = false;
+    public $paddable = false;
 
     /**
      * Holds which crypt engine internaly should be use,
@@ -337,7 +337,7 @@ class Crypt_Base
      * @var int
      * @access private
      */
-    var $engine;
+    public $engine;
 
     /**
      * Holds the preferred crypt engine
@@ -347,7 +347,7 @@ class Crypt_Base
      * @var int
      * @access private
      */
-    var $preferredEngine;
+    public $preferredEngine;
 
     /**
      * The mcrypt specific name of the cipher
@@ -360,7 +360,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt;
+    public $cipher_name_mcrypt;
 
     /**
      * The openssl specific name of the cipher
@@ -371,7 +371,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_openssl;
+    public $cipher_name_openssl;
 
     /**
      * The openssl specific name of the cipher in ECB mode
@@ -383,7 +383,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_openssl_ecb;
+    public $cipher_name_openssl_ecb;
 
     /**
      * The default salt used by setPassword()
@@ -392,7 +392,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $password_default_salt = 'phpseclib/salt';
+    public $password_default_salt = 'phpseclib/salt';
 
     /**
      * The namespace used by the cipher for its constants.
@@ -415,7 +415,7 @@ class Crypt_Base
      * @var string
      * @access private
      */
-    var $const_namespace;
+    public $const_namespace;
 
     /**
      * The name of the performance-optimized callback function
@@ -430,7 +430,7 @@ class Crypt_Base
      * @var Callback
      * @access private
      */
-    var $inline_crypt;
+    public $inline_crypt;
 
     /**
      * Holds whether performance-optimized $inline_crypt() can/should be used.
@@ -441,7 +441,7 @@ class Crypt_Base
      * @var mixed
      * @access private
      */
-    var $use_inline_crypt;
+    public $use_inline_crypt;
 
     /**
      * If OpenSSL can be used in ECB but not in CTR we can emulate CTR
@@ -450,7 +450,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $openssl_emulate_ctr = false;
+    public $openssl_emulate_ctr = false;
 
     /**
      * Determines what options are passed to openssl_encrypt/decrypt
@@ -459,7 +459,7 @@ class Crypt_Base
      * @var mixed
      * @access private
      */
-    var $openssl_options;
+    public $openssl_options;
 
     /**
      * Has the key length explicitly been set or should it be derived from the key, itself?
@@ -468,7 +468,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $explicit_key_length = false;
+    public $explicit_key_length = false;
 
     /**
      * Don't truncate / null pad key
@@ -477,7 +477,7 @@ class Crypt_Base
      * @var bool
      * @access private
      */
-    var $skip_key_adjustment = false;
+    public $skip_key_adjustment = false;
 
     /**
      * Default Constructor.

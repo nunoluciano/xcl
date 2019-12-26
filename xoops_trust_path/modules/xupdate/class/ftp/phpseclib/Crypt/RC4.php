@@ -96,7 +96,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var int
      * @access private
      */
-    var $block_size = 0;
+    public $block_size = 0;
 
     /**
      * Key Length (in bytes)
@@ -105,7 +105,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var int
      * @access private
      */
-    var $key_length = 128; // = 1024 bits
+    public $key_length = 128; // = 1024 bits
 
     /**
      * The namespace used by the cipher for its constants.
@@ -114,7 +114,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $const_namespace = 'RC4';
+    public $const_namespace = 'RC4';
 
     /**
      * The mcrypt specific name of the cipher
@@ -123,7 +123,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'arcfour';
+    public $cipher_name_mcrypt = 'arcfour';
 
     /**
      * Holds whether performance-optimized $inline_crypt() can/should be used.
@@ -132,7 +132,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var mixed
      * @access private
      */
-    var $use_inline_crypt = false; // currently not available
+    public $use_inline_crypt = false; // currently not available
 
     /**
      * The Key
@@ -141,7 +141,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $key = "\0";
+    public $key = "\0";
 
     /**
      * The Key Stream for decryption and encryption
@@ -150,7 +150,7 @@ class Crypt_RC4 extends Crypt_Base
      * @var array
      * @access private
      */
-    var $stream;
+    public $stream;
 
     /**
      * Default Constructor.

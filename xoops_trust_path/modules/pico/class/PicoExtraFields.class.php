@@ -13,13 +13,13 @@ define('PICO_EXTRA_IMAGES_REMOVAL_COMMAND', 'remove.gif');
 class PicoExtraFields
 {
 
-    var $mydirname;
-    var $mod_config;
-    var $auto_approval;
-    var $isadminormod;
-    var $content_id;
-    var $images_path;
-    var $image_sizes;
+    public $mydirname;
+    public $mod_config;
+    public $auto_approval;
+    public $isadminormod;
+    public $content_id;
+    public $images_path;
+    public $image_sizes;
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $mod_config, $auto_approval, $isadminormod, $content_id)

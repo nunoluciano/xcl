@@ -238,7 +238,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $identifier = 'SSH-1.5-phpseclib';
+    public $identifier = 'SSH-1.5-phpseclib';
 
     /**
      * The Socket Object
@@ -246,7 +246,7 @@ class Net_SSH1
      * @var object
      * @access private
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * The cryptography object
@@ -254,7 +254,7 @@ class Net_SSH1
      * @var object
      * @access private
      */
-    var $crypto = false;
+    public $crypto = false;
 
     /**
      * Execution Bitmap
@@ -265,7 +265,7 @@ class Net_SSH1
      * @var int
      * @access private
      */
-    var $bitmap = 0;
+    public $bitmap = 0;
 
     /**
      * The Server Key Public Exponent
@@ -276,7 +276,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $server_key_public_exponent;
+    public $server_key_public_exponent;
 
     /**
      * The Server Key Public Modulus
@@ -287,7 +287,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $server_key_public_modulus;
+    public $server_key_public_modulus;
 
     /**
      * The Host Key Public Exponent
@@ -298,7 +298,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $host_key_public_exponent;
+    public $host_key_public_exponent;
 
     /**
      * The Host Key Public Modulus
@@ -309,7 +309,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $host_key_public_modulus;
+    public $host_key_public_modulus;
 
     /**
      * Supported Ciphers
@@ -320,7 +320,7 @@ class Net_SSH1
      * @var array
      * @access private
      */
-    var $supported_ciphers = [
+    public $supported_ciphers = [
         NET_SSH1_CIPHER_NONE       => 'No encryption',
         NET_SSH1_CIPHER_IDEA       => 'IDEA in CFB mode',
         NET_SSH1_CIPHER_DES        => 'DES in CBC mode',
@@ -339,7 +339,7 @@ class Net_SSH1
      * @var array
      * @access private
      */
-    var $supported_authentications = [
+    public $supported_authentications = [
         NET_SSH1_AUTH_RHOSTS     => '.rhosts or /etc/hosts.equiv',
         NET_SSH1_AUTH_RSA        => 'pure RSA authentication',
         NET_SSH1_AUTH_PASSWORD   => 'password authentication',
@@ -353,7 +353,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $server_identification = '';
+    public $server_identification = '';
 
     /**
      * Protocol Flags
@@ -362,7 +362,7 @@ class Net_SSH1
      * @var array
      * @access private
      */
-    var $protocol_flags = [];
+    public $protocol_flags = [];
 
     /**
      * Protocol Flag Log
@@ -371,7 +371,7 @@ class Net_SSH1
      * @var array
      * @access private
      */
-    var $protocol_flag_log = [];
+    public $protocol_flag_log = [];
 
     /**
      * Message Log
@@ -380,7 +380,7 @@ class Net_SSH1
      * @var array
      * @access private
      */
-    var $message_log = [];
+    public $message_log = [];
 
     /**
      * Real-time log file pointer
@@ -389,7 +389,7 @@ class Net_SSH1
      * @var resource
      * @access private
      */
-    var $realtime_log_file;
+    public $realtime_log_file;
 
     /**
      * Real-time log file size
@@ -398,7 +398,7 @@ class Net_SSH1
      * @var int
      * @access private
      */
-    var $realtime_log_size;
+    public $realtime_log_size;
 
     /**
      * Real-time log file wrap boolean
@@ -407,7 +407,7 @@ class Net_SSH1
      * @var bool
      * @access private
      */
-    var $realtime_log_wrap;
+    public $realtime_log_wrap;
 
     /**
      * Interactive Buffer
@@ -416,7 +416,7 @@ class Net_SSH1
      * @var array
      * @access private
      */
-    var $interactiveBuffer = '';
+    public $interactiveBuffer = '';
 
     /**
      * Timeout
@@ -424,7 +424,7 @@ class Net_SSH1
      * @see    self::setTimeout()
      * @access private
      */
-    var $timeout;
+    public $timeout;
 
     /**
      * Current Timeout
@@ -432,7 +432,7 @@ class Net_SSH1
      * @see    self::_get_channel_packet()
      * @access private
      */
-    var $curTimeout;
+    public $curTimeout;
 
     /**
      * Log Boundary
@@ -440,7 +440,7 @@ class Net_SSH1
      * @see    self::_format_log()
      * @access private
      */
-    var $log_boundary = ':';
+    public $log_boundary = ':';
 
     /**
      * Log Long Width
@@ -448,7 +448,7 @@ class Net_SSH1
      * @see    self::_format_log()
      * @access private
      */
-    var $log_long_width = 65;
+    public $log_long_width = 65;
 
     /**
      * Log Short Width
@@ -456,7 +456,7 @@ class Net_SSH1
      * @see    self::_format_log()
      * @access private
      */
-    var $log_short_width = 16;
+    public $log_short_width = 16;
 
     /**
      * Hostname
@@ -466,7 +466,7 @@ class Net_SSH1
      * @var string
      * @access private
      */
-    var $host;
+    public $host;
 
     /**
      * Port Number
@@ -476,7 +476,7 @@ class Net_SSH1
      * @var int
      * @access private
      */
-    var $port;
+    public $port;
 
     /**
      * Timeout for initial connection
@@ -491,7 +491,7 @@ class Net_SSH1
      * @var int
      * @access private
      */
-    var $connectionTimeout;
+    public $connectionTimeout;
 
     /**
      * Default cipher
@@ -501,7 +501,7 @@ class Net_SSH1
      * @var int
      * @access private
      */
-    var $cipher;
+    public $cipher;
 
     /**
      * Default Constructor.

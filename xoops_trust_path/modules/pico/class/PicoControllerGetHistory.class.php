@@ -19,8 +19,8 @@ class PicoControllerGetHistory extends PicoControllerAbstract
     //var $html_header = '' ;
     //var $contentObjs = array() ;
 
-    var $contentObj;
-    var $view;
+    public $contentObj;
+    public $view;
 
     public function execute($request)
     {

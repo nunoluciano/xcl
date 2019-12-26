@@ -157,7 +157,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $identifier;
+    public $identifier;
 
     /**
      * The Socket Object
@@ -165,7 +165,7 @@ class Net_SSH2
      * @var object
      * @access private
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * Execution Bitmap
@@ -176,7 +176,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $bitmap = 0;
+    public $bitmap = 0;
 
     /**
      * Error information
@@ -186,7 +186,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $errors = [];
+    public $errors = [];
 
     /**
      * Server Identifier
@@ -195,7 +195,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $server_identifier = false;
+    public $server_identifier = false;
 
     /**
      * Key Exchange Algorithms
@@ -204,7 +204,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $kex_algorithms = false;
+    public $kex_algorithms = false;
 
     /**
      * Minimum Diffie-Hellman Group Bit Size in RFC 4419 Key Exchange Methods
@@ -213,7 +213,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $kex_dh_group_size_min = 1536;
+    public $kex_dh_group_size_min = 1536;
 
     /**
      * Preferred Diffie-Hellman Group Bit Size in RFC 4419 Key Exchange Methods
@@ -222,7 +222,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $kex_dh_group_size_preferred = 2048;
+    public $kex_dh_group_size_preferred = 2048;
 
     /**
      * Maximum Diffie-Hellman Group Bit Size in RFC 4419 Key Exchange Methods
@@ -231,7 +231,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $kex_dh_group_size_max = 4096;
+    public $kex_dh_group_size_max = 4096;
 
     /**
      * Server Host Key Algorithms
@@ -240,7 +240,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $server_host_key_algorithms = false;
+    public $server_host_key_algorithms = false;
 
     /**
      * Encryption Algorithms: Client to Server
@@ -249,7 +249,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $encryption_algorithms_client_to_server = false;
+    public $encryption_algorithms_client_to_server = false;
 
     /**
      * Encryption Algorithms: Server to Client
@@ -258,7 +258,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $encryption_algorithms_server_to_client = false;
+    public $encryption_algorithms_server_to_client = false;
 
     /**
      * MAC Algorithms: Client to Server
@@ -267,7 +267,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $mac_algorithms_client_to_server = false;
+    public $mac_algorithms_client_to_server = false;
 
     /**
      * MAC Algorithms: Server to Client
@@ -276,7 +276,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $mac_algorithms_server_to_client = false;
+    public $mac_algorithms_server_to_client = false;
 
     /**
      * Compression Algorithms: Client to Server
@@ -285,7 +285,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $compression_algorithms_client_to_server = false;
+    public $compression_algorithms_client_to_server = false;
 
     /**
      * Compression Algorithms: Server to Client
@@ -294,7 +294,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $compression_algorithms_server_to_client = false;
+    public $compression_algorithms_server_to_client = false;
 
     /**
      * Languages: Server to Client
@@ -303,7 +303,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $languages_server_to_client = false;
+    public $languages_server_to_client = false;
 
     /**
      * Languages: Client to Server
@@ -312,7 +312,7 @@ class Net_SSH2
      * @var array|false
      * @access private
      */
-    var $languages_client_to_server = false;
+    public $languages_client_to_server = false;
 
     /**
      * Block Size for Server to Client Encryption
@@ -329,7 +329,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $encrypt_block_size = 8;
+    public $encrypt_block_size = 8;
 
     /**
      * Block Size for Client to Server Encryption
@@ -339,7 +339,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $decrypt_block_size = 8;
+    public $decrypt_block_size = 8;
 
     /**
      * Server to Client Encryption Object
@@ -348,7 +348,7 @@ class Net_SSH2
      * @var object
      * @access private
      */
-    var $decrypt = false;
+    public $decrypt = false;
 
     /**
      * Client to Server Encryption Object
@@ -357,7 +357,7 @@ class Net_SSH2
      * @var object
      * @access private
      */
-    var $encrypt = false;
+    public $encrypt = false;
 
     /**
      * Client to Server HMAC Object
@@ -366,7 +366,7 @@ class Net_SSH2
      * @var object
      * @access private
      */
-    var $hmac_create = false;
+    public $hmac_create = false;
 
     /**
      * Server to Client HMAC Object
@@ -375,7 +375,7 @@ class Net_SSH2
      * @var object
      * @access private
      */
-    var $hmac_check = false;
+    public $hmac_check = false;
 
     /**
      * Size of server to client HMAC
@@ -388,7 +388,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $hmac_size = false;
+    public $hmac_size = false;
 
     /**
      * Server Public Host Key
@@ -397,7 +397,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $server_public_host_key;
+    public $server_public_host_key;
 
     /**
      * Session identifer
@@ -412,7 +412,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $session_id = false;
+    public $session_id = false;
 
     /**
      * Exchange hash
@@ -423,7 +423,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $exchange_hash = false;
+    public $exchange_hash = false;
 
     /**
      * Message Numbers
@@ -432,7 +432,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $message_numbers = [];
+    public $message_numbers = [];
 
     /**
      * Disconnection Message 'reason codes' defined in RFC4253
@@ -441,7 +441,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $disconnect_reasons = [];
+    public $disconnect_reasons = [];
 
     /**
      * SSH_MSG_CHANNEL_OPEN_FAILURE 'reason codes', defined in RFC4254
@@ -450,7 +450,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $channel_open_failure_reasons = [];
+    public $channel_open_failure_reasons = [];
 
     /**
      * Terminal Modes
@@ -460,7 +460,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $terminal_modes = [];
+    public $terminal_modes = [];
 
     /**
      * SSH_MSG_CHANNEL_EXTENDED_DATA's data_type_codes
@@ -470,7 +470,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $channel_extended_data_type_codes = [];
+    public $channel_extended_data_type_codes = [];
 
     /**
      * Send Sequence Number
@@ -481,7 +481,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $send_seq_no = 0;
+    public $send_seq_no = 0;
 
     /**
      * Get Sequence Number
@@ -492,7 +492,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $get_seq_no = 0;
+    public $get_seq_no = 0;
 
     /**
      * Server Channels
@@ -504,7 +504,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $server_channels = [];
+    public $server_channels = [];
 
     /**
      * Channel Buffers
@@ -517,7 +517,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $channel_buffers = [];
+    public $channel_buffers = [];
 
     /**
      * Channel Status
@@ -528,7 +528,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $channel_status = [];
+    public $channel_status = [];
 
     /**
      * Packet Size
@@ -539,7 +539,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $packet_size_client_to_server = [];
+    public $packet_size_client_to_server = [];
 
     /**
      * Message Number Log
@@ -548,7 +548,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $message_number_log = [];
+    public $message_number_log = [];
 
     /**
      * Message Log
@@ -557,7 +557,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $message_log = [];
+    public $message_log = [];
 
     /**
      * The Window Size
@@ -569,7 +569,7 @@ class Net_SSH2
      * @see    self::exec()
      * @access private
      */
-    var $window_size = 0x7FFFFFFF;
+    public $window_size = 0x7FFFFFFF;
 
     /**
      * Window size, server to client
@@ -580,7 +580,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $window_size_server_to_client = [];
+    public $window_size_server_to_client = [];
 
     /**
      * Window size, client to server
@@ -591,7 +591,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $window_size_client_to_server = [];
+    public $window_size_client_to_server = [];
 
     /**
      * Server signature
@@ -602,7 +602,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $signature = '';
+    public $signature = '';
 
     /**
      * Server signature format
@@ -613,7 +613,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $signature_format = '';
+    public $signature_format = '';
 
     /**
      * Interactive Buffer
@@ -622,7 +622,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $interactiveBuffer = '';
+    public $interactiveBuffer = '';
 
     /**
      * Current log size
@@ -634,7 +634,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $log_size;
+    public $log_size;
 
     /**
      * Timeout
@@ -642,7 +642,7 @@ class Net_SSH2
      * @see    self::setTimeout()
      * @access private
      */
-    var $timeout;
+    public $timeout;
 
     /**
      * Current Timeout
@@ -650,7 +650,7 @@ class Net_SSH2
      * @see    self::_get_channel_packet()
      * @access private
      */
-    var $curTimeout;
+    public $curTimeout;
 
     /**
      * Real-time log file pointer
@@ -659,7 +659,7 @@ class Net_SSH2
      * @var resource
      * @access private
      */
-    var $realtime_log_file;
+    public $realtime_log_file;
 
     /**
      * Real-time log file size
@@ -668,7 +668,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $realtime_log_size;
+    public $realtime_log_size;
 
     /**
      * Has the signature been validated?
@@ -677,7 +677,7 @@ class Net_SSH2
      * @var bool
      * @access private
      */
-    var $signature_validated = false;
+    public $signature_validated = false;
 
     /**
      * Real-time log file wrap boolean
@@ -685,7 +685,7 @@ class Net_SSH2
      * @see    self::_append_log()
      * @access private
      */
-    var $realtime_log_wrap;
+    public $realtime_log_wrap;
 
     /**
      * Flag to suppress stderr from output
@@ -693,7 +693,7 @@ class Net_SSH2
      * @see    self::enableQuietMode()
      * @access private
      */
-    var $quiet_mode = false;
+    public $quiet_mode = false;
 
     /**
      * Time of first network activity
@@ -701,7 +701,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $last_packet;
+    public $last_packet;
 
     /**
      * Exit status returned from ssh if any
@@ -709,7 +709,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $exit_status;
+    public $exit_status;
 
     /**
      * Flag to request a PTY when using exec()
@@ -718,7 +718,7 @@ class Net_SSH2
      * @see    self::enablePTY()
      * @access private
      */
-    var $request_pty = false;
+    public $request_pty = false;
 
     /**
      * Flag set while exec() is running when using enablePTY()
@@ -726,7 +726,7 @@ class Net_SSH2
      * @var bool
      * @access private
      */
-    var $in_request_pty_exec = false;
+    public $in_request_pty_exec = false;
 
     /**
      * Flag set after startSubsystem() is called
@@ -734,7 +734,7 @@ class Net_SSH2
      * @var bool
      * @access private
      */
-    var $in_subsystem;
+    public $in_subsystem;
 
     /**
      * Contents of stdError
@@ -742,7 +742,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $stdErrorLog;
+    public $stdErrorLog;
 
     /**
      * The Last Interactive Response
@@ -751,7 +751,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $last_interactive_response = '';
+    public $last_interactive_response = '';
 
     /**
      * Keyboard Interactive Request / Responses
@@ -760,7 +760,7 @@ class Net_SSH2
      * @var array
      * @access private
      */
-    var $keyboard_requests_responses = [];
+    public $keyboard_requests_responses = [];
 
     /**
      * Banner Message
@@ -773,7 +773,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $banner_message = '';
+    public $banner_message = '';
 
     /**
      * Did read() timeout or return normally?
@@ -782,7 +782,7 @@ class Net_SSH2
      * @var bool
      * @access private
      */
-    var $is_timeout = false;
+    public $is_timeout = false;
 
     /**
      * Log Boundary
@@ -791,7 +791,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $log_boundary = ':';
+    public $log_boundary = ':';
 
     /**
      * Log Long Width
@@ -800,7 +800,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $log_long_width = 65;
+    public $log_long_width = 65;
 
     /**
      * Log Short Width
@@ -809,7 +809,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $log_short_width = 16;
+    public $log_short_width = 16;
 
     /**
      * Hostname
@@ -819,7 +819,7 @@ class Net_SSH2
      * @var string
      * @access private
      */
-    var $host;
+    public $host;
 
     /**
      * Port Number
@@ -829,7 +829,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $port;
+    public $port;
 
     /**
      * Number of columns for terminal window size
@@ -840,7 +840,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $windowColumns = 80;
+    public $windowColumns = 80;
 
     /**
      * Number of columns for terminal window size
@@ -851,7 +851,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $windowRows = 24;
+    public $windowRows = 24;
 
     /**
      * Crypto Engine
@@ -861,7 +861,7 @@ class Net_SSH2
      * @var int
      * @access private
      */
-    var $crypto_engine = false;
+    public $crypto_engine = false;
 
     /**
      * A System_SSH_Agent for use in the SSH2 Agent Forwarding scenario
@@ -869,7 +869,7 @@ class Net_SSH2
      * @var System_SSH_Agent
      * @access private
      */
-    var $agent;
+    public $agent;
 
     /**
      * Default Constructor.

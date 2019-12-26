@@ -118,7 +118,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var string
      * @access private
      */
-    var $const_namespace = 'TWOFISH';
+    public $const_namespace = 'TWOFISH';
 
     /**
      * The mcrypt specific name of the cipher
@@ -127,7 +127,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'twofish';
+    public $cipher_name_mcrypt = 'twofish';
 
     /**
      * Optimizing value while CFB-encrypting
@@ -136,7 +136,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var int
      * @access private
      */
-    var $cfb_init_len = 800;
+    public $cfb_init_len = 800;
 
     /**
      * Q-Table
@@ -144,7 +144,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $q0 = [
+    public $q0 = [
         0xA9,
         0x67,
         0xB3,
@@ -409,7 +409,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $q1 = [
+    public $q1 = [
         0x75,
         0xF3,
         0xC6,
@@ -674,7 +674,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $m0 = [
+    public $m0 = [
         0xBCBC3275,
         0xECEC21F3,
         0x202043C6,
@@ -939,7 +939,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $m1 = [
+    public $m1 = [
         0xA9D93939,
         0x67901717,
         0xB3719C9C,
@@ -1204,7 +1204,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $m2 = [
+    public $m2 = [
         0xBC75BC32,
         0xECF3EC21,
         0x20C62043,
@@ -1469,7 +1469,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $m3 = [
+    public $m3 = [
         0xD939A9D9,
         0x90176790,
         0x719CB371,
@@ -1734,7 +1734,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $K = [];
+    public $K = [];
 
     /**
      * The Key depended S-Table 0
@@ -1742,7 +1742,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $S0 = [];
+    public $S0 = [];
 
     /**
      * The Key depended S-Table 1
@@ -1750,7 +1750,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $S1 = [];
+    public $S1 = [];
 
     /**
      * The Key depended S-Table 2
@@ -1758,7 +1758,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $S2 = [];
+    public $S2 = [];
 
     /**
      * The Key depended S-Table 3
@@ -1766,7 +1766,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $S3 = [];
+    public $S3 = [];
 
     /**
      * Holds the last used key
@@ -1774,7 +1774,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $kl;
+    public $kl;
 
     /**
      * The Key Length (in bytes)
@@ -1783,7 +1783,7 @@ class Crypt_Twofish extends Crypt_Base
      * @var int
      * @access private
      */
-    var $key_length = 16;
+    public $key_length = 16;
 
     /**
      * Sets the key length.

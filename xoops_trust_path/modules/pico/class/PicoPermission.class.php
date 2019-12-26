@@ -6,9 +6,9 @@ require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
 class PicoPermission
 {
 
-    var $db          = null;  // Database instance
-    var $uid         = 0; // intval
-    var $permissions = []; // [dirname][permission_id] or [dirname]['is_module_admin']
+    public $db          = null;  // Database instance
+    public $uid         = 0; // intval
+    public $permissions = []; // [dirname][permission_id] or [dirname]['is_module_admin']
 
     // !Fix deprecated constructor
     public function __construct()

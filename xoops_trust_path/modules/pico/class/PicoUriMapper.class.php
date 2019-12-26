@@ -3,10 +3,10 @@
 class PicoUriMapper
 {
 
-    var $mydirname;
-    var $config;
-    var $request   = []; // public
-    var $path_info = null; // public
+    public $mydirname;
+    public $config;
+    public $request   = []; // public
+    public $path_info = null; // public
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $config)

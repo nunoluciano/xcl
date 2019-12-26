@@ -285,7 +285,7 @@ class Crypt_RSA
      * @var array
      * @access private
      */
-    var $zero;
+    public $zero;
 
     /**
      * Precomputed One
@@ -293,7 +293,7 @@ class Crypt_RSA
      * @var array
      * @access private
      */
-    var $one;
+    public $one;
 
     /**
      * Private Key Format
@@ -301,7 +301,7 @@ class Crypt_RSA
      * @var int
      * @access private
      */
-    var $privateKeyFormat = CRYPT_RSA_PRIVATE_FORMAT_PKCS1;
+    public $privateKeyFormat = CRYPT_RSA_PRIVATE_FORMAT_PKCS1;
 
     /**
      * Public Key Format
@@ -309,7 +309,7 @@ class Crypt_RSA
      * @var int
      * @access public
      */
-    var $publicKeyFormat = CRYPT_RSA_PUBLIC_FORMAT_PKCS8;
+    public $publicKeyFormat = CRYPT_RSA_PUBLIC_FORMAT_PKCS8;
 
     /**
      * Modulus (ie. n)
@@ -317,7 +317,7 @@ class Crypt_RSA
      * @var Math_BigInteger
      * @access private
      */
-    var $modulus;
+    public $modulus;
 
     /**
      * Modulus length
@@ -325,7 +325,7 @@ class Crypt_RSA
      * @var Math_BigInteger
      * @access private
      */
-    var $k;
+    public $k;
 
     /**
      * Exponent (ie. e or d)
@@ -333,7 +333,7 @@ class Crypt_RSA
      * @var Math_BigInteger
      * @access private
      */
-    var $exponent;
+    public $exponent;
 
     /**
      * Primes for Chinese Remainder Theorem (ie. p and q)
@@ -341,7 +341,7 @@ class Crypt_RSA
      * @var array
      * @access private
      */
-    var $primes;
+    public $primes;
 
     /**
      * Exponents for Chinese Remainder Theorem (ie. dP and dQ)
@@ -349,7 +349,7 @@ class Crypt_RSA
      * @var array
      * @access private
      */
-    var $exponents;
+    public $exponents;
 
     /**
      * Coefficients for Chinese Remainder Theorem (ie. qInv)
@@ -357,7 +357,7 @@ class Crypt_RSA
      * @var array
      * @access private
      */
-    var $coefficients;
+    public $coefficients;
 
     /**
      * Hash name
@@ -365,7 +365,7 @@ class Crypt_RSA
      * @var string
      * @access private
      */
-    var $hashName;
+    public $hashName;
 
     /**
      * Hash function
@@ -373,7 +373,7 @@ class Crypt_RSA
      * @var Crypt_Hash
      * @access private
      */
-    var $hash;
+    public $hash;
 
     /**
      * Length of hash function output
@@ -381,7 +381,7 @@ class Crypt_RSA
      * @var int
      * @access private
      */
-    var $hLen;
+    public $hLen;
 
     /**
      * Length of salt
@@ -389,7 +389,7 @@ class Crypt_RSA
      * @var int
      * @access private
      */
-    var $sLen;
+    public $sLen;
 
     /**
      * Hash function for the Mask Generation Function
@@ -397,7 +397,7 @@ class Crypt_RSA
      * @var Crypt_Hash
      * @access private
      */
-    var $mgfHash;
+    public $mgfHash;
 
     /**
      * Length of MGF hash function output
@@ -405,7 +405,7 @@ class Crypt_RSA
      * @var int
      * @access private
      */
-    var $mgfHLen;
+    public $mgfHLen;
 
     /**
      * Encryption mode
@@ -413,7 +413,7 @@ class Crypt_RSA
      * @var int
      * @access private
      */
-    var $encryptionMode = CRYPT_RSA_ENCRYPTION_OAEP;
+    public $encryptionMode = CRYPT_RSA_ENCRYPTION_OAEP;
 
     /**
      * Signature mode
@@ -421,7 +421,7 @@ class Crypt_RSA
      * @var int
      * @access private
      */
-    var $signatureMode = CRYPT_RSA_SIGNATURE_PSS;
+    public $signatureMode = CRYPT_RSA_SIGNATURE_PSS;
 
     /**
      * Public Exponent
@@ -429,7 +429,7 @@ class Crypt_RSA
      * @var mixed
      * @access private
      */
-    var $publicExponent = false;
+    public $publicExponent = false;
 
     /**
      * Password
@@ -437,7 +437,7 @@ class Crypt_RSA
      * @var string
      * @access private
      */
-    var $password = false;
+    public $password = false;
 
     /**
      * Components
@@ -449,7 +449,7 @@ class Crypt_RSA
      * @var array
      * @access private
      */
-    var $components = [];
+    public $components = [];
 
     /**
      * Current String
@@ -461,7 +461,7 @@ class Crypt_RSA
      * @var mixed
      * @access private
      */
-    var $current;
+    public $current;
 
     /**
      * OpenSSL configuration file name.
@@ -471,7 +471,7 @@ class Crypt_RSA
      * @var mixed
      * @Access public
      */
-    var $configFile;
+    public $configFile;
 
     /**
      * Public key comment field.
@@ -479,7 +479,7 @@ class Crypt_RSA
      * @var string
      * @access private
      */
-    var $comment = 'phpseclib-generated-key';
+    public $comment = 'phpseclib-generated-key';
 
     /**
      * The constructor

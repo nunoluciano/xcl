@@ -57,7 +57,7 @@ class Net_SFTP_Stream
      * @var object
      * @access private
      */
-    var $sftp;
+    public $sftp;
 
     /**
      * Path
@@ -65,7 +65,7 @@ class Net_SFTP_Stream
      * @var string
      * @access private
      */
-    var $path;
+    public $path;
 
     /**
      * Mode
@@ -73,7 +73,7 @@ class Net_SFTP_Stream
      * @var string
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * Position
@@ -81,7 +81,7 @@ class Net_SFTP_Stream
      * @var int
      * @access private
      */
-    var $pos;
+    public $pos;
 
     /**
      * Size
@@ -89,7 +89,7 @@ class Net_SFTP_Stream
      * @var int
      * @access private
      */
-    var $size;
+    public $size;
 
     /**
      * Directory entries
@@ -97,7 +97,7 @@ class Net_SFTP_Stream
      * @var array
      * @access private
      */
-    var $entries;
+    public $entries;
 
     /**
      * EOF flag
@@ -105,7 +105,7 @@ class Net_SFTP_Stream
      * @var bool
      * @access private
      */
-    var $eof;
+    public $eof;
 
     /**
      * Context resource
@@ -115,7 +115,7 @@ class Net_SFTP_Stream
      * @var resource
      * @access public
      */
-    var $context;
+    public $context;
 
     /**
      * Notification callback function
@@ -123,7 +123,7 @@ class Net_SFTP_Stream
      * @var callable
      * @access public
      */
-    var $notification;
+    public $notification;
 
     /**
      * Registers this class as a URL wrapper.

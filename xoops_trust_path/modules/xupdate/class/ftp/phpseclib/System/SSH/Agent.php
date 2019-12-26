@@ -103,7 +103,7 @@ class System_SSH_Agent_Identity
      * @access private
      * @see    self::getPublicKey()
      */
-    var $key;
+    public $key;
 
     /**
      * Key Blob
@@ -112,7 +112,7 @@ class System_SSH_Agent_Identity
      * @access private
      * @see    self::sign()
      */
-    var $key_blob;
+    public $key_blob;
 
     /**
      * Socket Resource
@@ -121,7 +121,7 @@ class System_SSH_Agent_Identity
      * @access private
      * @see    self::sign()
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * Default Constructor.
@@ -238,14 +238,14 @@ class System_SSH_Agent
      * @var resource
      * @access private
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * Agent forwarding status
      *
      * @access private
      */
-    var $forward_status = SYSTEM_SSH_AGENT_FORWARD_NONE;
+    public $forward_status = SYSTEM_SSH_AGENT_FORWARD_NONE;
 
     /**
      * Buffer for accumulating forwarded authentication
@@ -254,14 +254,14 @@ class System_SSH_Agent
      *
      * @access private
      */
-    var $socket_buffer = '';
+    public $socket_buffer = '';
 
     /**
      * Tracking the number of bytes we are expecting
      * to arrive for the agent socket on the SSH data
      * channel
      */
-    var $expected_bytes = 0;
+    public $expected_bytes = 0;
 
     /**
      * Default Constructor

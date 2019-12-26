@@ -8,12 +8,12 @@ require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3NotificationHandler.class.ph
 class D3commentAbstract
 {
 
-    var       $d3forum_dirname = '';
-    var       $mydirname       = '';
-    var       $module          = null;
-    var       $mytrustdirname  = '';
-    var       $mod_config      = [];
-    var       $smarty          = null;
+    public    $d3forum_dirname = '';
+    public    $mydirname       = '';
+    public    $module          = null;
+    public    $mytrustdirname  = '';
+    public    $mod_config      = [];
+    public    $smarty          = null;
     protected $forum_id        = null; // for block function etc
 
     public function __construct($d3forum_dirname, $target_dirname, $target_trustdirname = '')

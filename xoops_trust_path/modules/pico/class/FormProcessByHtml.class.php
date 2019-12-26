@@ -2,11 +2,11 @@
 
 class FormProcessByHtml
 {
-    var $fields           = [];
-    var $form_html        = '';
-    var $column_separator = ',';
-    var $types            = ['int', 'double', 'singlebytes', 'email', 'telephone'];
-    var $validator_dir;
+    public $fields           = [];
+    public $form_html        = '';
+    public $column_separator = ',';
+    public $types            = ['int', 'double', 'singlebytes', 'email', 'telephone'];
+    public $validator_dir;
 
     public function FormProcessByHtml()
     {

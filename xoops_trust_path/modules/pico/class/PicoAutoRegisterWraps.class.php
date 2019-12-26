@@ -3,9 +3,9 @@
 class PicoAutoRegisterWraps
 {
 
-    var $mydirname = '';
-    var $config    = [];
-    var $wrap_base = '';
+    public $mydirname = '';
+    public $config    = [];
+    public $wrap_base = '';
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $config)

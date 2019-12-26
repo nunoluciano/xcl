@@ -5,8 +5,8 @@ require_once XOOPS_TRUST_PATH . '/modules/d3pipes/joints/D3pipesBlockAbstract.cl
 class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
 {
 
-    var $target_dirname = '';
-    var $trustdirname   = 'd3forum';
+    public $target_dirname = '';
+    public $trustdirname   = 'd3forum';
 
     public function init()
     {

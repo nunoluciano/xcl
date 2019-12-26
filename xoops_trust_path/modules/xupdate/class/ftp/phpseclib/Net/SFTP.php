@@ -133,7 +133,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $packet_types = [];
+    public $packet_types = [];
 
     /**
      * Status Codes
@@ -142,7 +142,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $status_codes = [];
+    public $status_codes = [];
 
     /**
      * The Request ID
@@ -154,7 +154,7 @@ class Net_SFTP extends Net_SSH2
      * @see    self::_send_sftp_packet()
      * @access private
      */
-    var $request_id = false;
+    public $request_id = false;
 
     /**
      * The Packet Type
@@ -166,7 +166,7 @@ class Net_SFTP extends Net_SSH2
      * @see    self::_get_sftp_packet()
      * @access private
      */
-    var $packet_type = -1;
+    public $packet_type = -1;
 
     /**
      * Packet Buffer
@@ -175,7 +175,7 @@ class Net_SFTP extends Net_SSH2
      * @see    self::_get_sftp_packet()
      * @access private
      */
-    var $packet_buffer = '';
+    public $packet_buffer = '';
 
     /**
      * Extensions supported by the server
@@ -184,7 +184,7 @@ class Net_SFTP extends Net_SSH2
      * @see    self::_initChannel()
      * @access private
      */
-    var $extensions = [];
+    public $extensions = [];
 
     /**
      * Server SFTP version
@@ -193,7 +193,7 @@ class Net_SFTP extends Net_SSH2
      * @see    self::_initChannel()
      * @access private
      */
-    var $version;
+    public $version;
 
     /**
      * Current working directory
@@ -203,7 +203,7 @@ class Net_SFTP extends Net_SSH2
      * @see    self::chdir()
      * @access private
      */
-    var $pwd = false;
+    public $pwd = false;
 
     /**
      * Packet Type Log
@@ -212,7 +212,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $packet_type_log = [];
+    public $packet_type_log = [];
 
     /**
      * Packet Log
@@ -221,7 +221,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $packet_log = [];
+    public $packet_log = [];
 
     /**
      * Error information
@@ -231,7 +231,7 @@ class Net_SFTP extends Net_SSH2
      * @var string
      * @access private
      */
-    var $sftp_errors = [];
+    public $sftp_errors = [];
 
     /**
      * Stat Cache
@@ -245,7 +245,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $stat_cache = [];
+    public $stat_cache = [];
 
     /**
      * Max SFTP Packet Size
@@ -255,7 +255,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $max_sftp_packet;
+    public $max_sftp_packet;
 
     /**
      * Stat Cache Flag
@@ -265,7 +265,7 @@ class Net_SFTP extends Net_SSH2
      * @var bool
      * @access private
      */
-    var $use_stat_cache = true;
+    public $use_stat_cache = true;
 
     /**
      * Sort Options
@@ -275,7 +275,7 @@ class Net_SFTP extends Net_SSH2
      * @var array
      * @access private
      */
-    var $sortOptions = [];
+    public $sortOptions = [];
 
     /**
      * Default Constructor.

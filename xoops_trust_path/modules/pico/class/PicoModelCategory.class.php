@@ -6,8 +6,8 @@ require_once dirname(__FILE__) . '/PicoPermission.class.php';
 class PicoCategoryHandler
 {
 
-    var $mydirname;
-    var $permissions;
+    public $mydirname;
+    public $permissions;
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $permissions = null)
@@ -89,15 +89,15 @@ class PicoCategoryHandler
 class PicoCategory
 {
 
-    var $permission;
-    var $data      = [];
-    var $isadminormod;
-    var $mydirname;
-    var $mod_config;
-    var $mod_name;
-    var $errorno   = 0;
-    var $isadmin   = false;
-    var $child_ids = null;
+    public $permission;
+    public $data      = [];
+    public $isadminormod;
+    public $mydirname;
+    public $mod_config;
+    public $mod_name;
+    public $errorno   = 0;
+    public $isadmin   = false;
+    public $child_ids = null;
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $cat_id, $permissions, $allow_makenew = false, $parentObj = null)

@@ -3,7 +3,7 @@
 class D3forumAntispamAbstract
 {
 
-    var $errors = [];
+    public $errors = [];
 
     public function getErrors4Html()
     {

@@ -122,7 +122,7 @@ class File_ASN1_Element
      * @var string
      * @access private
      */
-    var $element;
+    public $element;
 
     /**
      * Constructor
@@ -153,7 +153,7 @@ class File_ASN1
      * @access private
      * @link   https://en.wikipedia.org/wiki/Object_identifier
      */
-    var $oids = [];
+    public $oids = [];
 
     /**
      * Default date format
@@ -162,7 +162,7 @@ class File_ASN1
      * @access private
      * @link   https://php.net/class.datetime
      */
-    var $format = 'D, d M Y H:i:s O';
+    public $format = 'D, d M Y H:i:s O';
 
     /**
      * Default date format
@@ -173,7 +173,7 @@ class File_ASN1
      * @see    self::asn1map()
      * @link   https://php.net/class.datetime
      */
-    var $encoded;
+    public $encoded;
 
     /**
      * Filters
@@ -184,7 +184,7 @@ class File_ASN1
      * @access private
      * @see    self::_encode_der()
      */
-    var $filters;
+    public $filters;
 
     /**
      * Type mapping table for the ANY type.
@@ -196,7 +196,7 @@ class File_ASN1
      * @var array
      * @access public
      */
-    var $ANYmap = [
+    public $ANYmap = [
         FILE_ASN1_TYPE_BOOLEAN           => true,
         FILE_ASN1_TYPE_INTEGER           => true,
         FILE_ASN1_TYPE_BIT_STRING        => 'bitString',
@@ -230,7 +230,7 @@ class File_ASN1
      * @var array
      * @access public
      */
-    var $stringTypeSize = [
+    public $stringTypeSize = [
         FILE_ASN1_TYPE_UTF8_STRING      => 0,
         FILE_ASN1_TYPE_BMP_STRING       => 2,
         FILE_ASN1_TYPE_UNIVERSAL_STRING => 4,

@@ -93,7 +93,7 @@ class Net_SCP
      * @var object
      * @access private
      */
-    var $ssh;
+    public $ssh;
 
     /**
      * Packet Size
@@ -101,7 +101,7 @@ class Net_SCP
      * @var int
      * @access private
      */
-    var $packet_size;
+    public $packet_size;
 
     /**
      * Mode
@@ -109,7 +109,7 @@ class Net_SCP
      * @var int
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * Default Constructor.

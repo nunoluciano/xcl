@@ -181,7 +181,7 @@ class Math_BigInteger
      * @var array
      * @access private
      */
-    var $value;
+    public $value;
 
     /**
      * Holds the BigInteger's magnitude.
@@ -189,7 +189,7 @@ class Math_BigInteger
      * @var bool
      * @access private
      */
-    var $is_negative = false;
+    public $is_negative = false;
 
     /**
      * Precision
@@ -197,7 +197,7 @@ class Math_BigInteger
      * @see    self::setPrecision()
      * @access private
      */
-    var $precision = -1;
+    public $precision = -1;
 
     /**
      * Precision Bitmask
@@ -205,7 +205,7 @@ class Math_BigInteger
      * @see    self::setPrecision()
      * @access private
      */
-    var $bitmask = false;
+    public $bitmask = false;
 
     /**
      * Mode independent value used for serialization.
@@ -219,7 +219,7 @@ class Math_BigInteger
      * @var string
      * @access private
      */
-    var $hex;
+    public $hex;
 
     /**
      * Converts base-2, base-10, base-16, and binary strings (base-256) to BigIntegers.

@@ -114,7 +114,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var int
      * @access private
      */
-    var $block_size = 8;
+    public $block_size = 8;
 
     /**
      * The Key
@@ -124,7 +124,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $key;
+    public $key;
 
     /**
      * The Original (unpadded) Key
@@ -136,7 +136,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $orig_key;
+    public $orig_key;
 
     /**
      * Don't truncate / null pad key
@@ -145,7 +145,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var bool
      * @access private
      */
-    var $skip_key_adjustment = true;
+    public $skip_key_adjustment = true;
 
     /**
      * Key Length (in bytes)
@@ -154,7 +154,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var int
      * @access private
      */
-    var $key_length = 16; // = 128 bits
+    public $key_length = 16; // = 128 bits
 
     /**
      * The namespace used by the cipher for its constants.
@@ -163,7 +163,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $const_namespace = 'RC2';
+    public $const_namespace = 'RC2';
 
     /**
      * The mcrypt specific name of the cipher
@@ -172,7 +172,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'rc2';
+    public $cipher_name_mcrypt = 'rc2';
 
     /**
      * Optimizing value while CFB-encrypting
@@ -181,7 +181,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var int
      * @access private
      */
-    var $cfb_init_len = 500;
+    public $cfb_init_len = 500;
 
     /**
      * The key length in bits.
@@ -193,7 +193,7 @@ class Crypt_RC2 extends Crypt_Base
      * @internal Should be in range [1..1024].
      * @internal Changing this value after setting the key has no effect.
      */
-    var $default_key_length = 1024;
+    public $default_key_length = 1024;
 
     /**
      * The key length in bits.
@@ -204,7 +204,7 @@ class Crypt_RC2 extends Crypt_Base
      * @access   private
      * @internal Should be in range [1..1024].
      */
-    var $current_key_length;
+    public $current_key_length;
 
     /**
      * The Key Schedule
@@ -213,7 +213,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var array
      * @access private
      */
-    var $keys;
+    public $keys;
 
     /**
      * Key expansion randomization table.
@@ -223,7 +223,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var array
      * @access private
      */
-    var $pitable = [
+    public $pitable = [
         0xD9,
         0x78,
         0xF9,
@@ -745,7 +745,7 @@ class Crypt_RC2 extends Crypt_Base
      * @var array
      * @access private
      */
-    var $invpitable = [
+    public $invpitable = [
         0xD1,
         0xDA,
         0xB9,

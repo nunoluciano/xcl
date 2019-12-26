@@ -137,7 +137,7 @@ class Crypt_DES extends Crypt_Base
      * @var int
      * @access private
      */
-    var $block_size = 8;
+    public $block_size = 8;
 
     /**
      * Key Length (in bytes)
@@ -146,7 +146,7 @@ class Crypt_DES extends Crypt_Base
      * @var int
      * @access private
      */
-    var $key_length = 8;
+    public $key_length = 8;
 
     /**
      * The namespace used by the cipher for its constants.
@@ -155,7 +155,7 @@ class Crypt_DES extends Crypt_Base
      * @var string
      * @access private
      */
-    var $const_namespace = 'DES';
+    public $const_namespace = 'DES';
 
     /**
      * The mcrypt specific name of the cipher
@@ -164,7 +164,7 @@ class Crypt_DES extends Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'des';
+    public $cipher_name_mcrypt = 'des';
 
     /**
      * The OpenSSL names of the cipher / modes
@@ -173,7 +173,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $openssl_mode_names = [
+    public $openssl_mode_names = [
         CRYPT_MODE_ECB => 'des-ecb',
         CRYPT_MODE_CBC => 'des-cbc',
         CRYPT_MODE_CFB => 'des-cfb',
@@ -188,7 +188,7 @@ class Crypt_DES extends Crypt_Base
      * @var int
      * @access private
      */
-    var $cfb_init_len = 500;
+    public $cfb_init_len = 500;
 
     /**
      * Switch for DES/3DES encryption
@@ -200,7 +200,7 @@ class Crypt_DES extends Crypt_Base
      * @var int
      * @access private
      */
-    var $des_rounds = 1;
+    public $des_rounds = 1;
 
     /**
      * max possible size of $key
@@ -209,7 +209,7 @@ class Crypt_DES extends Crypt_Base
      * @var string
      * @access private
      */
-    var $key_length_max = 8;
+    public $key_length_max = 8;
 
     /**
      * The Key Schedule
@@ -218,7 +218,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $keys;
+    public $keys;
 
     /**
      * Shuffle table.
@@ -232,7 +232,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $shuffle = [
+    public $shuffle = [
         "\x00\x00\x00\x00\x00\x00\x00\x00",
         "\x00\x00\x00\x00\x00\x00\x00\xFF",
         "\x00\x00\x00\x00\x00\x00\xFF\x00",
@@ -499,7 +499,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $ipmap = [
+    public $ipmap = [
         0x00,
         0x10,
         0x01,
@@ -765,7 +765,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $invipmap = [
+    public $invipmap = [
         0x00,
         0x80,
         0x40,
@@ -1033,7 +1033,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox1 = [
+    public $sbox1 = [
         0x00808200,
         0x00000000,
         0x00008000,
@@ -1106,7 +1106,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox2 = [
+    public $sbox2 = [
         0x40084010,
         0x40004000,
         0x00004000,
@@ -1179,7 +1179,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox3 = [
+    public $sbox3 = [
         0x00000104,
         0x04010100,
         0x00000000,
@@ -1252,7 +1252,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox4 = [
+    public $sbox4 = [
         0x80401000,
         0x80001040,
         0x80001040,
@@ -1325,7 +1325,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox5 = [
+    public $sbox5 = [
         0x00000080,
         0x01040080,
         0x01040000,
@@ -1398,7 +1398,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox6 = [
+    public $sbox6 = [
         0x10000008,
         0x10200000,
         0x00002000,
@@ -1471,7 +1471,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox7 = [
+    public $sbox7 = [
         0x00100000,
         0x02100001,
         0x02000401,
@@ -1544,7 +1544,7 @@ class Crypt_DES extends Crypt_Base
      * @var array
      * @access private
      */
-    var $sbox8 = [
+    public $sbox8 = [
         0x08000820,
         0x00000800,
         0x00020000,

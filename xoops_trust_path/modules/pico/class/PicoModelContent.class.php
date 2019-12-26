@@ -7,7 +7,7 @@ require_once dirname(__FILE__) . '/PicoPermission.class.php';
 class PicoContentHandler
 {
 
-    var $mydirname;
+    public $mydirname;
 
     //var $permissions ;
 
@@ -121,13 +121,13 @@ class PicoContent
 {
 
     //var $permission ; // public
-    var $data = []; // public
+    public $data = []; // public
     //var $isadminormod ; // public
-    var $mydirname;
-    var $id;
-    var $categoryObj;
-    var $errorno          = 0;
-    var $need_filter_body = false;
+    public $mydirname;
+    public $id;
+    public $categoryObj;
+    public $errorno          = 0;
+    public $need_filter_body = false;
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $content_id, $categoryObj = null, $allow_makenew = false)

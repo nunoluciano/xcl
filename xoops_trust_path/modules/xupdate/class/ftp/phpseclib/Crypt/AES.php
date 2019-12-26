@@ -127,7 +127,7 @@ class Crypt_AES extends Crypt_Rijndael
      * @var string
      * @access private
      */
-    var $const_namespace = 'AES';
+    public $const_namespace = 'AES';
 
     /**
      * Dummy function

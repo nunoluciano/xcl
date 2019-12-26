@@ -19,7 +19,7 @@ class PicoControllerVoteContent extends PicoControllerAbstract
     //var $html_header = '' ;
     //var $contentObjs = array() ;
 
-    var $contentObj;
+    public $contentObj;
 
     public function execute($request)
     {

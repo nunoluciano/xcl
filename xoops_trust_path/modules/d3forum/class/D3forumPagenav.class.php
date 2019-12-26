@@ -3,10 +3,10 @@
 class D3forumPageNav
 {
 
-    var $total;
-    var $perpage;
-    var $current;
-    var $url;
+    public $total;
+    public $perpage;
+    public $current;
+    public $url;
 
     public function __construct($total_items, $items_perpage, $current_start, $start_name = "start", $extra_arg = "")
     {

@@ -4,7 +4,7 @@ include_once(XOOPS_ROOT_PATH . '/class/module.textsanitizer.php');
 
 class PicoTextSanitizer extends MyTextSanitizer
 {
-    var $nbsp = 0;
+    public $nbsp = 0;
 
     // !Fix deprecated constructor
     public function __construct()

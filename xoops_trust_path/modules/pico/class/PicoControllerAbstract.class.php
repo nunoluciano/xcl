@@ -3,17 +3,17 @@
 class PicoControllerAbstract
 {
 
-    var $mydirname             = '';
-    var $mytrustdirname        = 'pico';
-    var $assign                = [];
-    var $mod_config            = [];
-    var $uid                   = 0;
-    var $currentCategoryObj    = null;
-    var $permissions           = [];
-    var $is_need_header_footer = true;
-    var $template_name         = '';
-    var $html_header           = '';
-    var $contentObjs           = [];
+    public $mydirname             = '';
+    public $mytrustdirname        = 'pico';
+    public $assign                = [];
+    public $mod_config            = [];
+    public $uid                   = 0;
+    public $currentCategoryObj    = null;
+    public $permissions           = [];
+    public $is_need_header_footer = true;
+    public $template_name         = '';
+    public $html_header           = '';
+    public $contentObjs           = [];
 
     // !Fix deprecated constructor
     public function __construct(&$currentCategoryObj)

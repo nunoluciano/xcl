@@ -3,7 +3,7 @@
 class D3forumMessageValidator
 {
 
-    var $errors = [];
+    public $errors = [];
 
     public function get_errors4html()
     {

@@ -4,36 +4,36 @@ require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php
 
 class PicoFormProcessBySmartyBase
 {
-    var $mypluginname;
-    var $mydirname;
-    var $mod_url;
-    var $content4disp;
-    var $content_uri;
-    var $session_index;
-    var $form_processor;
-    var $form_body;
-    var $form_body4disp;
-    var $extra_form          = '';
-    var $error_html          = '';
-    var $mail_body_pre       = ''; // public
-    var $mail_body_post      = ''; // public
-    var $mail_subject        = null; // public
-    var $toEmails            = []; // public
-    var $fromEmail           = null; // public
-    var $fromName            = null; // public
-    var $canPostAgain        = true; // public
-    var $finished_message    = null; // public
-    var $confirm_message     = null; // public
-    var $from_field_name     = ''; // public
-    var $fromname_field_name = ''; // public
-    var $replyto_field_name  = ''; // public
-    var $cc_field_name       = ''; // public
-    var $cc_mail_body_pre    = ''; // public
-    var $cc_mail_body_post   = ''; // public
-    var $cc_mail_subject     = null; // public
+    public $mypluginname;
+    public $mydirname;
+    public $mod_url;
+    public $content4disp;
+    public $content_uri;
+    public $session_index;
+    public $form_processor;
+    public $form_body;
+    public $form_body4disp;
+    public $extra_form          = '';
+    public $error_html          = '';
+    public $mail_body_pre       = ''; // public
+    public $mail_body_post      = ''; // public
+    public $mail_subject        = null; // public
+    public $toEmails            = []; // public
+    public $fromEmail           = null; // public
+    public $fromName            = null; // public
+    public $canPostAgain        = true; // public
+    public $finished_message    = null; // public
+    public $confirm_message     = null; // public
+    public $from_field_name     = ''; // public
+    public $fromname_field_name = ''; // public
+    public $replyto_field_name  = ''; // public
+    public $cc_field_name       = ''; // public
+    public $cc_mail_body_pre    = ''; // public
+    public $cc_mail_body_post   = ''; // public
+    public $cc_mail_subject     = null; // public
 
-    var $ignore_field_names = ['cancel']; // public
-    var $cancel_field_name  = 'cancel'; // public
+    public $ignore_field_names = ['cancel']; // public
+    public $cancel_field_name  = 'cancel'; // public
 
     // !Fix deprecated constructor
     public function __construct()

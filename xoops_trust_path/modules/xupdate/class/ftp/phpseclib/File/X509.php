@@ -141,47 +141,47 @@ class File_X509
      * @var array
      * @access private
      */
-    var $Certificate;
+    public $Certificate;
 
     /**#@+
      * ASN.1 syntax for various extensions
      *
      * @access private
      */
-    var $DirectoryString;
-    var $PKCS9String;
-    var $AttributeValue;
-    var $Extensions;
-    var $KeyUsage;
-    var $ExtKeyUsageSyntax;
-    var $BasicConstraints;
-    var $KeyIdentifier;
-    var $CRLDistributionPoints;
-    var $AuthorityKeyIdentifier;
-    var $CertificatePolicies;
-    var $AuthorityInfoAccessSyntax;
-    var $SubjectAltName;
-    var $PrivateKeyUsagePeriod;
-    var $IssuerAltName;
-    var $PolicyMappings;
-    var $NameConstraints;
+    public $DirectoryString;
+    public $PKCS9String;
+    public $AttributeValue;
+    public $Extensions;
+    public $KeyUsage;
+    public $ExtKeyUsageSyntax;
+    public $BasicConstraints;
+    public $KeyIdentifier;
+    public $CRLDistributionPoints;
+    public $AuthorityKeyIdentifier;
+    public $CertificatePolicies;
+    public $AuthorityInfoAccessSyntax;
+    public $SubjectAltName;
+    public $PrivateKeyUsagePeriod;
+    public $IssuerAltName;
+    public $PolicyMappings;
+    public $NameConstraints;
 
-    var $CPSuri;
-    var $UserNotice;
+    public $CPSuri;
+    public $UserNotice;
 
-    var $netscape_cert_type;
-    var $netscape_comment;
-    var $netscape_ca_policy_url;
+    public $netscape_cert_type;
+    public $netscape_comment;
+    public $netscape_ca_policy_url;
 
-    var $Name;
-    var $RelativeDistinguishedName;
-    var $CRLNumber;
-    var $CRLReason;
-    var $IssuingDistributionPoint;
-    var $InvalidityDate;
-    var $CertificateIssuer;
-    var $HoldInstructionCode;
-    var $SignedPublicKeyAndChallenge;
+    public $Name;
+    public $RelativeDistinguishedName;
+    public $CRLNumber;
+    public $CRLReason;
+    public $IssuingDistributionPoint;
+    public $InvalidityDate;
+    public $CertificateIssuer;
+    public $HoldInstructionCode;
+    public $SignedPublicKeyAndChallenge;
     /**#@-*/
 
     /**
@@ -190,7 +190,7 @@ class File_X509
      * @var array
      * @access private
      */
-    var $CertificationRequest;
+    public $CertificationRequest;
 
     /**
      * ASN.1 syntax for Certificate Revocation Lists (RFC5280)
@@ -198,7 +198,7 @@ class File_X509
      * @var array
      * @access private
      */
-    var $CertificateList;
+    public $CertificateList;
 
     /**
      * Distinguished Name
@@ -206,7 +206,7 @@ class File_X509
      * @var array
      * @access private
      */
-    var $dn;
+    public $dn;
 
     /**
      * Public key
@@ -214,7 +214,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $publicKey;
+    public $publicKey;
 
     /**
      * Private key
@@ -222,7 +222,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $privateKey;
+    public $privateKey;
 
     /**
      * Object identifiers for X.509 certificates
@@ -231,7 +231,7 @@ class File_X509
      * @access private
      * @link   https://en.wikipedia.org/wiki/Object_identifier
      */
-    var $oids;
+    public $oids;
 
     /**
      * The certificate authorities
@@ -239,7 +239,7 @@ class File_X509
      * @var array
      * @access private
      */
-    var $CAs;
+    public $CAs;
 
     /**
      * The currently loaded certificate
@@ -247,7 +247,7 @@ class File_X509
      * @var array
      * @access private
      */
-    var $currentCert;
+    public $currentCert;
 
     /**
      * The signature subject
@@ -258,7 +258,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $signatureSubject;
+    public $signatureSubject;
 
     /**
      * Certificate Start Date
@@ -266,7 +266,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $startDate;
+    public $startDate;
 
     /**
      * Certificate End Date
@@ -274,7 +274,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $endDate;
+    public $endDate;
 
     /**
      * Serial Number
@@ -282,7 +282,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $serialNumber;
+    public $serialNumber;
 
     /**
      * Key Identifier
@@ -293,7 +293,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $currentKeyIdentifier;
+    public $currentKeyIdentifier;
 
     /**
      * CA Flag
@@ -301,7 +301,7 @@ class File_X509
      * @var bool
      * @access private
      */
-    var $caFlag = false;
+    public $caFlag = false;
 
     /**
      * SPKAC Challenge
@@ -309,7 +309,7 @@ class File_X509
      * @var string
      * @access private
      */
-    var $challenge;
+    public $challenge;
 
     /**
      * Default Constructor.

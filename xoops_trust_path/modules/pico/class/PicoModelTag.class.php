@@ -3,7 +3,7 @@
 class PicoTagHandler
 {
 
-    var $mydirname;
+    public $mydirname;
 
     // !Fix deprecated constructor
     public function __construct($mydirname)
@@ -37,7 +37,7 @@ class PicoTagHandler
 class PicoTag
 {
 
-    var $mydirname;
+    public $mydirname;
 
     // !Fix deprecated constructor
     public function __construct($mydirname, $label)

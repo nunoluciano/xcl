@@ -8,7 +8,7 @@ if (!class_exists('PicoPreloadBase')) {
 
 	class PicoPreloadBase extends XCube_ActionFilter
 	{
-		var $mydirname = 'pico';
+		public $mydirname = 'pico';
 
 		public function postFilter()
 		{

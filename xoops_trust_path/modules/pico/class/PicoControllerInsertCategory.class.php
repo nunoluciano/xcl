@@ -20,7 +20,7 @@ class PicoControllerInsertCategory extends PicoControllerAbstract
     //var $html_header = '' ;
     //var $contentObjs = array() ;
 
-    var $new_cat_id = -1;
+    public $new_cat_id = -1;
 
     public function execute($request)
     {

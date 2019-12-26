@@ -10,7 +10,7 @@ require_once dirname(dirname(__FILE__)) . '/include/history_functions.php';
 class PicoControllerDeleteContent extends PicoControllerAbstract
 {
 
-    var $contentObj;
+    public $contentObj;
 
     public function execute($request)
     {

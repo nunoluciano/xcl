@@ -2,10 +2,10 @@
 
 class xelFinderMisc {
 	
-	var $myConfig;
-	var $db;
-	var $mydirname;
-	var $mode;
+	public $myConfig;
+	public $db;
+	public $mydirname;
+	public $mode;
 	
 	public function __construct($mydirname) {
 		$this->db = XoopsDatabaseFactory::getDatabaseConnection();

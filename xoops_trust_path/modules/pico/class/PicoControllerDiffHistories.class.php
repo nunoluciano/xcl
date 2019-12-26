@@ -14,7 +14,7 @@ require_once ALTSYS_DIR . '/include/Text_Diff_Renderer_inline.php';
 class PicoControllerDiffHistories extends PicoControllerAbstract
 {
 
-    var $contentObj;
+    public $contentObj;
 
     public function execute($request)
     {

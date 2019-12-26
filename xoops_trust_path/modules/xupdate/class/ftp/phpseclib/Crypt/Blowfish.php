@@ -118,7 +118,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var int
      * @access private
      */
-    var $block_size = 8;
+    public $block_size = 8;
 
     /**
      * The namespace used by the cipher for its constants.
@@ -127,7 +127,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var string
      * @access private
      */
-    var $const_namespace = 'BLOWFISH';
+    public $const_namespace = 'BLOWFISH';
 
     /**
      * The mcrypt specific name of the cipher
@@ -136,7 +136,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'blowfish';
+    public $cipher_name_mcrypt = 'blowfish';
 
     /**
      * Optimizing value while CFB-encrypting
@@ -145,7 +145,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var int
      * @access private
      */
-    var $cfb_init_len = 500;
+    public $cfb_init_len = 500;
 
     /**
      * The fixed subkeys boxes ($sbox0 - $sbox3) with 256 entries each
@@ -155,7 +155,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @access private
      * @var    array
      */
-    var $sbox0 = [
+    public $sbox0 = [
         0xd1310ba6,
         0x98dfb5ac,
         0x2ffd72db,
@@ -420,7 +420,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @access private
      * @var    array
      */
-    var $sbox1 = [
+    public $sbox1 = [
         0x4b7a70e9,
         0xb5b32944,
         0xdb75092e,
@@ -685,7 +685,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @access private
      * @var    array
      */
-    var $sbox2 = [
+    public $sbox2 = [
         0xe93d5a68,
         0x948140f7,
         0xf64c261c,
@@ -950,7 +950,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @access private
      * @var    array
      */
-    var $sbox3 = [
+    public $sbox3 = [
         0x3a39ce37,
         0xd3faf5cf,
         0xabc27737,
@@ -1215,7 +1215,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $parray = [
+    public $parray = [
         0x243f6a88,
         0x85a308d3,
         0x13198a2e,
@@ -1244,7 +1244,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $bctx;
+    public $bctx;
 
     /**
      * Holds the last used key
@@ -1252,7 +1252,7 @@ class Crypt_Blowfish extends Crypt_Base
      * @var array
      * @access private
      */
-    var $kl;
+    public $kl;
 
     /**
      * The Key Length (in bytes)
@@ -1265,7 +1265,7 @@ class Crypt_Blowfish extends Crypt_Base
      *    derive this from $key_length or vice versa, but that'd mean we'd have to do multiple shift operations, so in lieu
      *    of that, we'll just precompute it once.
      */
-    var $key_length = 16;
+    public $key_length = 16;
 
     /**
      * Sets the key length.

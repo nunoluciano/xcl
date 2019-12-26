@@ -4,7 +4,7 @@
 if( ! class_exists( 'D3commentObj' ) ) {
 class D3commentObj {
 
-var $d3comObj = null ;
+public $d3comObj = null ;
 
 public function __construct ($params )
 //  $params['forum_dirname'] , $params['external_dirname'] , $params['classname'] , $params['external_trustdirname']
