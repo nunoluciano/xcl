@@ -45,7 +45,7 @@ class XoopsThemeSetParser extends SaxParser
 
     public function __construct(&$input)
     {
-        $this->SaxParser($input);
+        parent::__construct($input);
         $this->addTagHandler(new ThemeSetThemeNameHandler());
         $this->addTagHandler(new ThemeSetDateCreatedHandler());
         $this->addTagHandler(new ThemeSetAuthorHandler());

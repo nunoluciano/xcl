@@ -145,7 +145,7 @@ class XoopsXmlRpcParser extends SaxParser
     */
     public function __construct(&$input)
     {
-        $this->SaxParser($input);
+        parent::__construct($input);
         $this->addTagHandler(new RpcMethodNameHandler());
         $this->addTagHandler(new RpcIntHandler());
         $this->addTagHandler(new RpcDoubleHandler());

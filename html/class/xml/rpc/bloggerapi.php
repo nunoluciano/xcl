@@ -35,12 +35,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH.'/class/xml/rpc/xmlrpcapi.php';
 
-class bloggerapi extends XoopsXmlRpcApi
+class BloggerApi extends XoopsXmlRpcApi
 {
 
-    public function BloggerApi(&$params, &$response, &$module)
+    public function __construct(&$params, &$response, &$module)
     {
-        $this->XoopsXmlRpcApi($params, $response, $module);
+        parent::__construct($params, $response, $module);
         $this->_setXoopsTagMap('storyid', 'postid');
         $this->_setXoopsTagMap('published', 'dateCreated');
         $this->_setXoopsTagMap('uid', 'userid');

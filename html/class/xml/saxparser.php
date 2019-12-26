@@ -13,7 +13,7 @@
     @author Ken Egervari<br>
 *******************************************************************************/
 
-class saxparser
+class SaxParser
 {
     public $level;
     public $parser;
@@ -38,7 +38,7 @@ class saxparser
         createStringInput to construct xml input source objects to supply
         to the constructor, or the implementor can construct them individually.
     ****************************************************************************/
-    public function SaxParser(&$input)
+    public function __construct(&$input)
     {
         $this->level = 0;
         $this->parser = xml_parser_create('UTF-8');

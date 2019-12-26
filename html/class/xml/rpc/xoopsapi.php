@@ -35,12 +35,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH.'/class/xml/rpc/xmlrpcapi.php';
 
-class xoopsapi extends XoopsXmlRpcApi
+class XoopsApi extends XoopsXmlRpcApi
 {
 
-    public function XoopsApi(&$params, &$response, &$module)
+    public function __construct(&$params, &$response, &$module)
     {
-        $this->XoopsXmlRpcApi($params, $response, $module);
+        parent::__construct($params, $response, $module);
     }
 
     public function newPost()

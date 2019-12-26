@@ -37,12 +37,12 @@ require_once XOOPS_ROOT_PATH.'/class/xoopsobject.php';
 $root =& XCube_Root::getSingleton();
 $root->mLanguageManager->loadPageTypeMessageCatalog('comment');
 
-class xoopscomments extends XoopsObject
+class XoopsComments extends XoopsObject
 {
     public $ctable;
     public $db;
 
-    public function XoopsComments($ctable, $id=null)
+    public function __construct($ctable, $id=null)
     {
         $this->ctable = $ctable;
         $this->db =& Database::getInstance();

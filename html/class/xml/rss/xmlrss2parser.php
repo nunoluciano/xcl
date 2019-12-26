@@ -45,7 +45,7 @@ class XoopsXmlRss2Parser extends SaxParser
 
     public function __construct(&$input)
     {
-        $this->SaxParser($input);
+        parent::__construct($input);
         $this->useUtfEncoding();
         $this->addTagHandler(new RssChannelHandler());
         $this->addTagHandler(new RssTitleHandler());
