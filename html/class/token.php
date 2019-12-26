@@ -189,13 +189,13 @@ class XoopsTokenHandler
      */
     public $_prefix ="";
 
-
     /**
      * Create XoopsToken instance, regist(keep to server), and returns it.
      *
      * @access public
-     * @param   $name   this token's name string.
+     * @param   $name       this token's name string.
      * @param   $timeout    effective time(if $timeout equal 0, this token will become unlimited)
+     * @return \XoopsToken
      */
     public function &create($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {

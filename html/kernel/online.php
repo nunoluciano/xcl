@@ -162,8 +162,9 @@ class XoopsOnlineHandler
 
     /**
      * Count the number of online users
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     *
+     * @param object $criteria {@link CriteriaElement}
+     * @return bool
      */
     public function getCount($criteria = null)
     {

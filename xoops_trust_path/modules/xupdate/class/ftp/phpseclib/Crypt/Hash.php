@@ -366,6 +366,7 @@ class Crypt_Hash
      *
      * @access private
      * @param string $m
+     * @return false|string
      */
     public function _md5($m)
     {
@@ -377,6 +378,7 @@ class Crypt_Hash
      *
      * @access private
      * @param string $m
+     * @return false|string
      */
     public function _sha1($m)
     {
@@ -390,6 +392,7 @@ class Crypt_Hash
      *
      * @access private
      * @param string $m
+     * @return false|string
      */
     public function _md2($m)
     {
@@ -704,6 +707,7 @@ class Crypt_Hash
      *
      * @access private
      * @param string $m
+     * @return false|string
      */
     public function _sha256($m)
     {
@@ -862,6 +866,7 @@ class Crypt_Hash
      *
      * @access private
      * @param string $m
+     * @return array|\Math_BigInteger
      */
     public function _sha512($m)
     {

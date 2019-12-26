@@ -1165,6 +1165,7 @@ class Net_SSH2
      *
      * @param string $kexinit_payload_server
      * @access private
+     * @return bool
      */
     public function _key_exchange($kexinit_payload_server)
     {

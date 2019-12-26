@@ -37,8 +37,9 @@ class Legacy_AbstractBlockProcedure
     {
         return true;
     }
-    
+
     /**
+     * @return \XCube_RenderTarget
      * @var XCube_RenderTarget
      */
     public function &getRenderTarget()

@@ -468,12 +468,13 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      * Determine if a user is subscribed to a particular event in
      * a particular module.
      *
-     * @param  string  $category  Category of notification event
-     * @param  int     $item_id   Item ID of notification event
-     * @param  string  $event     Event
-     * @param  int     $module_id ID of module (default current module)
-     * @param  int     $user_id   ID of user (default current user)
-     * return int  0 if not subscribe; non-zero if subscribed
+     * @param string $category  Category of notification event
+     * @param int    $item_id   Item ID of notification event
+     * @param string $event     Event
+     * @param int    $module_id ID of module (default current module)
+     * @param int    $user_id   ID of user (default current user)
+     *                          return int  0 if not subscribe; non-zero if subscribed
+     * @return int
      */
 
     public function isSubscribed($category, $item_id, $event, $module_id, $user_id)
@@ -495,14 +496,16 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     /**
      * Subscribe for notification for an event(s)
      *
-     * @param  string $category    category of notification
-     * @param  int    $item_id     ID of the item
-     * @param  mixed  $events      event string or array of events
-     * @param  int    $mode        force a particular notification mode
+     * @param string $category     category of notification
+     * @param int    $item_id      ID of the item
+     * @param mixed  $events       event string or array of events
+     * @param int    $mode         force a particular notification mode
      *                             (e.g. once_only) (default to current user preference)
-     * @param  int    $module_id   ID of the module (default to current module)
-     * @param  int    $user_id     ID of the user (default to current user)
-     **/
+     * @param int    $module_id    ID of the module (default to current module)
+     * @param int    $user_id      ID of the user (default to current user)
+     *
+     * @return bool
+     */
     public function subscribe($category, $item_id, $events, $mode=null, $module_id=null, $user_id=null)
     {
         if (!isset($user_id)) {

@@ -82,6 +82,7 @@ class UserMailjobObject extends XoopsSimpleObject
     /**
      * Gets users who this mailjob will send mail to, with $retry number.
      * @param int $retry
+     * @return
      */
     public function &getUsers($retry)
     {

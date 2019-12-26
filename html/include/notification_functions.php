@@ -387,11 +387,13 @@ function &notificationSubscribableCategoryInfo($module_id=null)
  * and event titles.  These are pieced together in this function in
  * case we wish to alter the syntax.
  *
- * @param  array  $category  Array of category info
- * @param  array  $event     Array of event info
- * @param  string $type      The particular name to generate
- * return string
- **/
+ * @param array  $category Array of category info
+ * @param array  $event    Array of event info
+ * @param string $type     The particular name to generate
+ *                         return string
+ *
+ * @return bool|string
+ */
 function notificationGenerateConfig(&$category, &$event, $type)
 {
     switch ($type) {

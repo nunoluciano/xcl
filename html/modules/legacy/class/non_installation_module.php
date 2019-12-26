@@ -57,12 +57,13 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
             }
         }
     }
-    
+
     /***
      * Return module object by $dirname that is specified module directory.
      * If specified module has been installed or doesn't keep xoops_version, not return it.
      * @param $dirname string
      * @param XoopsModule or false
+     * @return bool
      */
     public function &get($dirname)
     {

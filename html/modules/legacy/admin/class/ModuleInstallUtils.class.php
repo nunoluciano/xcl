@@ -99,13 +99,14 @@ class Legacy_ModuleInstallUtils
         $uninstaller =& Legacy_ModuleInstallUtils::_createInstaller($dirname, 'uninstaller', 'Legacy_ModuleUninstaller');
         return $uninstaller;
     }
-    
+
     /**
      * The generic factory for installers. This function is used by other
      * utility functions.
      * @param string $dirname
      * @param string $mode 'installer' 'updater' or 'uninstaller'
      * @param string $defaultClassName
+     * @return mixed
      */
     public static function &_createInstaller($dirname, $mode, $defaultClassName)
     {
@@ -141,17 +142,17 @@ class Legacy_ModuleInstallUtils
         $installer =new $defaultClassName();
         return $installer;
     }
-    
-    
+
     /**
      * Executes SQL file which xoops_version of $module specifies. This
      * function is usefull for installers, but it's impossible to control
      * for detail.
-     * 
+     *
      * @static
-     * @param XoopsModule $module
+     * @param XoopsModule             $module
      * @param Legacy_ModuleInstallLog $log
      * @note FOR THE CUSTOM-INSTALLER
+     * @return bool|void
      */
     public static function installSQLAutomatically(&$module, &$log)
     {
@@ -381,17 +382,18 @@ class Legacy_ModuleInstallUtils
     {
         Legacy_ModuleInstallUtils::_uninstallAllOfModuleTemplates($module, 'default', $log);
     }
-    
+
     /**
      * Installs all of blocks $module specify.
-     * 
+     *
      * This function gets informations about blocks from xoops_version.
-     * 
+     *
      * @static
-     * @param XoopsModule $module
+     * @param XoopsModule             $module
      * @param Legacy_ModuleInstallLog $log
      * @note FOR THE CUSTOM-INSTALLER
-     * @see Legacy_ModuleInstallUtils::uninstallAllOfBlocks()
+     * @return bool
+     * @see  Legacy_ModuleInstallUtils::uninstallAllOfBlocks()
      */
     public static function installAllOfBlocks(&$module, &$log)
     {

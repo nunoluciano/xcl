@@ -125,8 +125,9 @@ class XoopsConfigHandler
 
     /**
      * insert a new config in the database
-     * 
-     * @param	object  &$config    reference to the {@link XoopsConfigItem} 
+     *
+     * @param object  &$config reference to the {@link XoopsConfigItem}
+     * @return bool
      */
     public function insertConfig(&$config)
     {
@@ -150,8 +151,9 @@ class XoopsConfigHandler
 
     /**
      * Delete a config from the database
-     * 
-     * @param	object  &$config    reference to a {@link XoopsConfigItem} 
+     *
+     * @param object  &$config reference to a {@link XoopsConfigItem}
+     * @return bool
      */
     public function deleteConfig(&$config)
     {
@@ -192,8 +194,9 @@ class XoopsConfigHandler
 
     /**
      * Count some configs
-     * 
-     * @param	object  $criteria   {@link CriteriaElement} 
+     *
+     * @param object $criteria {@link CriteriaElement}
+     * @return int
      */
     public function getConfigCount($criteria = null)
     {
@@ -243,12 +246,13 @@ class XoopsConfigHandler
             return $ret;
         }
     }
-    
+
     /**
      * Get configs by dirname.
-     * 
+     *
      * @param string $dirname
-     * @param int    $category   ID of a category. (Reserved)
+     * @param int    $category ID of a category. (Reserved)
+     * @return array|null
      */
     public function &getConfigsByDirname($dirname, $category = 0)
     {

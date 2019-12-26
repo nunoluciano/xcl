@@ -179,11 +179,11 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         );
     }
 
-
     /**
      * @access protected
      * @param $filename A filename.
-     * @param $dirname A dirname of module. (for D3 module)
+     * @param $dirname  A dirname of module. (for D3 module)
+     * @return bool
      */
     public function _loadFile($filename, $mydirname = null)
     {

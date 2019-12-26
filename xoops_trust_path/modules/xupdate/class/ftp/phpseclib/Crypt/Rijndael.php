@@ -716,6 +716,7 @@ class Crypt_Rijndael extends Crypt_Base
      *
      * @access private
      * @param int $word
+     * @return int
      */
     public function _subWord($word)
     {

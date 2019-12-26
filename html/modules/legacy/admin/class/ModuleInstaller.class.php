@@ -163,6 +163,7 @@ class Legacy_ModuleInstaller
      * For flexibility, creation only and not save it.
      * @access private
      * @param $group
+     * @return
      */
     public function &_createPermission($group)
     {

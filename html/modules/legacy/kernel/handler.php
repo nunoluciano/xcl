@@ -341,7 +341,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
     /**
      * @param $criteria CriteriaElement
-     * @param $obj XoopsSimpleObject
+     * @param $obj      XoopsSimpleObject
+     * @return string|null
      */
     public function _makeCriteriaElement4sql($criteria, &$obj)
     {
@@ -422,15 +423,16 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     
         return $result;
     }
-    
+
     /**
      * Delete plural objects by $criteria. If the sub-class want to override
      * the procedure of delete, delete() is better. This member function
      * fetches objects by $criteria and casts these objects into delete()
      * inside.
-     * 
+     *
      * @param Criteria $criteria
-     * @param bool	   $force
+     * @param bool     $force
+     * @return bool
      */
     public function deleteAll($criteria, $force = false)
     {

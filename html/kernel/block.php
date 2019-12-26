@@ -591,19 +591,20 @@ class XoopsBlockHandler extends XoopsObjectHandler
     }
 
     /**
-    * get all the blocks that match the supplied parameters
-    * @param $side   0: sideblock - left
-    *        1: sideblock - right
-    *        2: sideblock - left and right
-    *        3: centerblock - left
-    *        4: centerblock - right
-    *        5: centerblock - center
-    *        6: centerblock - left, right, center
-    * @param $groupid   groupid (can be an array)
-    * @param $visible   0: not visible 1: visible
-    * @param $orderby   order of the blocks
-    * @returns array of block objects
-    */
+     * get all the blocks that match the supplied parameters
+     * @param $side      0: sideblock - left
+     *                   1: sideblock - right
+     *                   2: sideblock - left and right
+     *                   3: centerblock - left
+     *                   4: centerblock - right
+     *                   5: centerblock - center
+     *                   6: centerblock - left, right, center
+     * @param $groupid   groupid (can be an array)
+     * @param $visible   0: not visible 1: visible
+     * @param $orderby   order of the blocks
+     * @returns array of block objects
+     * @return array
+     */
     public function &getAllBlocksByGroup($groupid, $asobject=true, $side=null, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
         $ret = [];

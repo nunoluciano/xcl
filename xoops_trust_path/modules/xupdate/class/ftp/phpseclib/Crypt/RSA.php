@@ -574,6 +574,7 @@ class Crypt_RSA
      * @param int             $bits
      * @param int             $timeout
      * @param Math_BigInteger $p
+     * @return array
      */
     public function createKey($bits = 1024, $timeout = false, $partial = [])
     {
@@ -1580,6 +1581,7 @@ class Crypt_RSA
      * @access public
      * @param string $key
      * @param int    $type optional
+     * @return bool
      */
     public function loadKey($key, $type = false)
     {
@@ -1810,6 +1812,7 @@ class Crypt_RSA
      *
      * @param string $key
      * @param int    $type optional
+     * @return bool|string
      * @see    self::getPublicKey()
      * @access public
      */
@@ -1893,6 +1896,7 @@ class Crypt_RSA
      *
      * @param string $key
      * @param int    $type optional
+     * @return bool|string
      * @see    self::getPrivateKey()
      * @access private
      */
@@ -2632,6 +2636,7 @@ class Crypt_RSA
      * @access private
      * @param string $m
      * @param int    $emBits
+     * @return bool|string
      */
     public function _emsa_pss_encode($m, $emBits)
     {

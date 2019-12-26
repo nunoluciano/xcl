@@ -269,6 +269,7 @@ if (!function_exists('phpseclib_safe_serialize')) {
      *
      * @param mixed $arr
      * @access public
+     * @return string
      */
     function phpseclib_safe_serialize(&$arr)
     {

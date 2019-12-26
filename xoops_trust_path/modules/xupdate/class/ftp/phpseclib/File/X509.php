@@ -1993,6 +1993,7 @@ class File_X509
      *
      * @param int $date optional
      * @access public
+     * @return bool
      */
     public function validateDate($date = null)
     {

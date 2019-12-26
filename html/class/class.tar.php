@@ -121,9 +121,10 @@ class tar
      * Computes the unsigned Checksum of a file's header
      * to try to ensure valid file
      *
-     * @param	string  $bytestring
+     * @param string $bytestring
      *
-     * @access	private
+     * @access    private
+     * @return float|int|string
      */
     public function __computeUnsignedChecksum($bytestring)
     {
