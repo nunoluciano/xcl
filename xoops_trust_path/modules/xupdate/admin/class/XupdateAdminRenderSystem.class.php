@@ -127,13 +127,13 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
 
     /**
      * getOverrideFileInfo
-     * 
-     * @param   string  $file
-     * @param   string  $prefix
-     * @param   bool  $isSpDirName
-     * 
-     * @return  {string 'theme',string 'file',string 'dirname'}
-    **/
+     *
+     * @param string $file
+     * @param string $prefix
+     * @param bool   $isSpDirName
+     *
+     * @return array {string 'theme',string 'file',string 'dirname'}
+     */
     public static function getOverrideFileInfo(/*** string ***/ $file, /*** string ***/ $prefix = null, /*** bool ***/ $isSpDirName = false)
     {
         $ret = [

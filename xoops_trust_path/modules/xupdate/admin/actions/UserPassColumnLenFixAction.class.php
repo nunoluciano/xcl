@@ -18,11 +18,9 @@ class Xupdate_Admin_UserPassColumnLenFixAction extends Xupdate_AbstractAction
 {
     /**
      * getDefaultView
-     * 
-     * @param   void
-     * 
-     * @return  Enum
-    **/
+     *
+     * @return void
+     */
     public function getDefaultView()
     {
         $redirect = xoops_getrequest('xoops_redirect');

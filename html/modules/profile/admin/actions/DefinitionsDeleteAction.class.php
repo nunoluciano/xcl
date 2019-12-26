@@ -42,6 +42,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
@@ -53,6 +54,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewSuccess(&$render)
     {
@@ -61,6 +63,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
@@ -69,6 +72,7 @@ class Profile_Admin_DefinitionsDeleteAction extends Profile_AbstractDeleteAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewCancel(&$render)
     {

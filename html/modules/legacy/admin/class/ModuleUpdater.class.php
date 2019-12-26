@@ -255,11 +255,12 @@ class Legacy_ModulePhasedUpgrader
     {
         return ($this->_mTargetXoopsModule->get('version') == $this->getTargetPhase());
     }
-    
+
     /**
      * Saves XoopsModule object to DB.
-     * 
+     *
      * @access protected
+     * @param $module
      */
     public function saveXoopsModule(&$module)
     {

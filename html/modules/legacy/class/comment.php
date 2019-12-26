@@ -118,9 +118,12 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
             return false;
         }
     }
-    
+
     /**
      * Delete $comment and childlen of $comment.
+     * @param      $comment
+     * @param bool $force
+     * @return bool
      */
     public function delete(&$comment, $force = false)
     {

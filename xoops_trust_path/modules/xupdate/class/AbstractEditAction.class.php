@@ -22,22 +22,18 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
 
     /**
      * _getId
-     * 
-     * @param   void
-     * 
-     * @return  int
-    **/
+     *
+     * @return void
+     */
     protected function _getId()
     {
     }
 
     /**
      * &_getHandler
-     * 
-     * @param   void
-     * 
-     * @return  XoopsObjectGenericHandler
-    **/
+     *
+     * @return void
+     */
     protected function &_getHandler()
     {
     }

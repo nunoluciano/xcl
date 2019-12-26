@@ -102,13 +102,11 @@ class XCube_PageNavigator
      * @var XCube_Delegate
      */
     public $mGetTotalItems = null;
-    
-    
+
     /**
      * Constructor.
      * @param string $url
-     * @param int $total
-     * @param int flag
+     * @param int    $flags
      */
     public function __construct($url, $flags = XCUBE_PAGENAVI_START)
     {
@@ -212,11 +210,12 @@ class XCube_PageNavigator
         
         return $this->mUrl;
     }
-    
+
     /**
      * Return url string for navigation. The return value is lose start value.
      * The user need to add start value. For example, It is "$navi->getRenderUrl().'20'".
      * This method name is bad. I must rename this.
+     * @param null $mask
      * @return string
      */
     public function getRenderUrl($mask = null)
@@ -282,9 +281,11 @@ class XCube_PageNavigator
     
         return $this->mUrl."?".implode("&amp;", $tarr);
     }
-    
+
     /**
      * Return url string for sort. The return value is complete style.
+     * @param null $mask
+     * @return string
      * @deprecated
      */
     public function renderSortUrl($mask = null)

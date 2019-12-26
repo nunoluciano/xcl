@@ -113,11 +113,14 @@ class User_UserInfoAction extends User_Action
     
         return USER_FRAME_VIEW_SUCCESS;
     }
-    
+
     /***
      * [Notice]
      * Because XCube_Service class group are changed now, this member function
      * can't get the result of user posts.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {

@@ -85,11 +85,12 @@ class XoopsConfigOption extends XoopsObject
     {
         return defined($this->get('confop_name')) ? constant($this->get('confop_name')) : $this->get('confop_name');
     }
+
     /**
      * Compare with contents of $config object. If it's equal, return true.
      * This member function doesn't use 'conf_id' & 'conf_order' to compare.
-     * 
-     * @param XoopsConfigItem $config
+     *
+     * @param $option
      * @return bool
      */
     public function isEqual(&$option)

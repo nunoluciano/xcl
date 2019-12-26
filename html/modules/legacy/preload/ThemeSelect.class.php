@@ -46,12 +46,14 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
     {
         $this->mController->mRoot->mDelegateManager->add("Site.CheckLogin.Success", [&$this, "callbackCheckLoginSuccess"]);
     }
-    
+
     /**
      * Because this process needs sessions, this functions is added to
      * SiteLogin event.
-     * 
-     * @param XoopsUser $xoopsUser Must parameter, because this is added to login event.
+     *
+     * @param $principal
+     * @param $controller
+     * @param $context
      */
     public function doChangeTheme(&$principal, &$controller, &$context)
     {

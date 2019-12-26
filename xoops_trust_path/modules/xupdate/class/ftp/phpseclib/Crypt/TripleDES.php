@@ -487,8 +487,8 @@ class Crypt_TripleDES extends Crypt_DES
      * Sets the internal crypt engine
      *
      * @param int $engine
+     * @return void
      * @access public
-     * @return int
      * @see    Crypt_Base::Crypt_Base()
      * @see    Crypt_Base::setPreferredEngine()
      */

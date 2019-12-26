@@ -27,10 +27,8 @@ abstract class Xupdate_AbstractFilterForm
     /**
      * _getId
      *
-     * @param   void
-     *
-     * @return  int
-    **/
+     * @return void
+     */
     protected function _getId()
     {
     }
@@ -38,10 +36,8 @@ abstract class Xupdate_AbstractFilterForm
     /**
      * &_getHandler
      *
-     * @param   void
-     *
-     * @return  XoopsObjectGenericHandler
-    **/
+     * @return void
+     */
     protected function &_getHandler()
     {
     }
@@ -149,11 +145,11 @@ abstract class Xupdate_AbstractFilterForm
     /**
      * &getCriteria
      *
-     * @param   int  $start
-     * @param   int  $limit
+     * @param int $start
+     * @param int $limit
      *
-     * @return  Criteria
-    **/
+     * @return \CriteriaCompo|null
+     */
     public function &getCriteria(/*** int ***/ $start = null, /*** int ***/ $limit = null)
     {
         $t_start = ($start === null) ? $this->mNavi->getStart() : (int)$start;

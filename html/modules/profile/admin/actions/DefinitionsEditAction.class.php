@@ -81,6 +81,7 @@ $("#legacy_xoopsform_type").change(function(){
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
@@ -98,6 +99,8 @@ $("#legacy_xoopsform_type").change(function(){
 
     /**
      * @public
+     * @param $controller
+     * @param $render
      */
     // !Fix compatibility with Profile_AbstractAction::executeViewSuccess(&$controller, &$render) in file /modules/profile/class/AbstractionAction.class.php line 62
     public function executeViewSuccess(&$controller, &$render) 
@@ -108,6 +111,7 @@ $("#legacy_xoopsform_type").change(function(){
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
@@ -116,6 +120,7 @@ $("#legacy_xoopsform_type").change(function(){
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewCancel(&$render)
     {

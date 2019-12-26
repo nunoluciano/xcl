@@ -17,11 +17,10 @@ class Xupdate_Utils
     /**
      * getModuleConfig
      *
-     * @param   string  $name
-     * @param   bool  $optional
-     *
+     * @param $dirname
+     * @param $key
      * @return  XoopsObjectHandler
-     **/
+     */
     public static function getModuleConfig(/*** string ***/ $dirname, /*** mixed ***/ $key)
     {
         $handler = self::getXoopsHandler('config');
@@ -99,11 +98,12 @@ class Xupdate_Utils
     {
         return htmlspecialchars(htmlspecialchars_decode($str), ENT_COMPAT, _CHARSET);
     }
-    
+
     /**
      * Get redirect URL
      * @param string $url
-     * @param int $limit
+     * @param int    $redirect
+     * @param bool   $curl_ssl_no_verify
      * @return string
      */
     public static function getRedirectUrl($url, $redirect = 10, $curl_ssl_no_verify = false)
@@ -122,14 +122,15 @@ class Xupdate_Utils
         }
         return $url;
     }
-    
+
     /**
      * Get redirect URL with cURL
-     * 
-     * @param $url
-     * @param $ch
-     * @param $max_redirect
-     * @param $redirects
+     *
+     * @param      $url
+     * @param      $ch
+     * @param int  $max_redirect
+     * @param int  $redirects
+     * @param bool $curl_ssl_no_verify
      * @return string
      */
     public static function curlGetRedirectUrl($url, $ch = null, $max_redirect = 10, $redirects = 0, $curl_ssl_no_verify = false)
@@ -159,11 +160,12 @@ class Xupdate_Utils
         curl_close($ch);
         return $url;
     }
-    
+
     /**
      * Setup cURL SSL options
-     * 
-     * @param int $ch
+     *
+     * @param int  $ch
+     * @param bool $curl_ssl_no_verify
      * @return bool
      */
     public static function setupCurlSsl($ch, $curl_ssl_no_verify = false)
@@ -182,11 +184,12 @@ class Xupdate_Utils
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
         }
     }
-    
+
     /**
      * Setup cURL PROXY options
-     * 
+     *
      * @param int $ch
+     * @param     $url
      * @return array errors
      */
     public static function setupCurlProxy($ch, $url)

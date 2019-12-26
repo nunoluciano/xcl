@@ -167,26 +167,26 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         return $count;
     }
 
-/**
- * Function-Documentation
- * @param type $imgset_id documentation
- * @param type $id_as_key = false documentation
- * @return type documentation
- * @author Kazumi Ono <onokazu@xoops.org>
- **/
+    /**
+     * Function-Documentation
+     * @param type $imgset_id documentation
+     * @param bool $id_as_key = false documentation
+     * @return type documentation
+     * @author Kazumi Ono <onokazu@xoops.org>
+     */
     public function &getByImageset($imgset_id, $id_as_key = false)
     {
         $ret =& $this->getObjects(new Criteria('imgsetimg_imgset', (int)$imgset_id), $id_as_key);
         return $ret;
     }
 
-/**
- * Function-Documentation
- * @param type $filename documentation
- * @param type $imgset_id documentation
- * @return type documentation
- * @author Kazumi Ono <onokazu@xoops.org>
- **/
+    /**
+     * Function-Documentation
+     * @param type $filename  documentation
+     * @param type $imgset_id documentation
+     * @return bool documentation
+     * @author Kazumi Ono <onokazu@xoops.org>
+     */
     public function imageExists($filename, $imgset_id)
     {
         $criteria = new CriteriaCompo(new Criteria('imgsetimg_file', $filename));

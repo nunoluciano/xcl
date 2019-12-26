@@ -926,6 +926,7 @@ class Legacy_Controller extends XCube_Controller
 
     /**
      * $resultRenderTarget object The render target of content's result.
+     * @param $resultRenderTarget
      */
     public function _executeViewTheme(&$resultRenderTarget)
     {
@@ -1094,8 +1095,9 @@ class Legacy_Controller extends XCube_Controller
     }
 
     /**
-     * @deprecated
+     * @param $strategy
      * @see setStrategy()
+     * @deprecated
      */
     public function switchStateCompulsory(&$strategy)
     {
@@ -1334,7 +1336,7 @@ class Legacy_Controller extends XCube_Controller
     /**
      * Save the content of $renderTarget to $filepath.
      * @param string $filepath a file path of the cache file.
-     * @param XCube_RenderTarget $renderBuffer
+     * @param        $renderTarget
      * @return bool success or failure.
      */
     public function cacheRenderTarget($filepath, &$renderTarget)
@@ -1351,6 +1353,7 @@ class Legacy_Controller extends XCube_Controller
 
     /**
      * Loads $filepath and gets the content of the file.
+     * @param $filepath
      * @return string the content or null.
      */
     public function loadCache($filepath)
@@ -1503,7 +1506,7 @@ class Legacy_AbstractControllerStrategy
 
     /**
      * Gets a value indicating whether the current user can access to the current module.
-     * @return bool
+     * @return void
      */
     public function enableAccess()
     {

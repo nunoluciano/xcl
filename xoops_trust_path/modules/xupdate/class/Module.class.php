@@ -146,10 +146,8 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     /**
      * getAdminMenu
      *
-     * @param   void
-     *
-     * @return  {string 'title',string 'link',string 'keywords',bool 'show',bool 'absolute'}[]
-    **/
+     * @return array|null {string 'title',string 'link',string 'keywords',bool 'show',bool 'absolute'}[]
+     */
     public function getAdminMenu()
     {
         if (is_array($this->mAdminMenu)) {

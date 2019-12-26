@@ -215,9 +215,9 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
     /**
      * save map data
      *
-     * @param XoopsSimpleObject	$obj
+     * @param XoopsSimpleObject $obj
      *
-     * @return	bool
+     * @return array
      */
     protected function _saveMap($obj)
     {

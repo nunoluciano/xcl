@@ -257,6 +257,8 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 }
 
 /***
+ * @param $string
+ * @return string
  * @internal
  * Return URL string by "overriding" rule.
  * (Now, test implement)

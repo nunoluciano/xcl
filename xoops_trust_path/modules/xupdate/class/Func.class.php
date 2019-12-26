@@ -30,17 +30,18 @@ if (! class_exists('Xupdate_Func')) {
             return $instance[$mydirname] ;
         }
 
-    /**
-     * _downloadFile
-     *
-     * @param string $target_key
-     * @param string $downloadUrl
-     * @param string $tempFilename
-     * @byref string $downloadedFilePath
-     * @param int   $cacheTTL
-     * 
-     * @return	bool
-     **/
+        /**
+         * _downloadFile
+         *
+         * @param string $target_key
+         * @param string $downloadUrl
+         * @param string $tempFilename
+         * @param        $downloadedFilePath
+         * @param int    $cacheTTL
+         *
+         * @return    bool
+         * @byref string $downloadedFilePath
+         */
     public function _downloadFile($target_key, $downloadUrl, $tempFilename, &$downloadedFilePath, $cacheTTL = 0)
     {
         $multiData = [
@@ -59,14 +60,13 @@ if (! class_exists('Xupdate_Func')) {
             return false;
         }
     }
-    
-    /**
-     * @byref array $multiData
-     * @param int   $cacheTTL
-     * @return bool
-     *@throws Exception
-     *
-     */
+
+        /**
+         * @byref array $multiData
+         * @param     $multiData
+         * @param int $cacheTTL
+         * @return bool
+         */
     public function _multiDownloadFile(&$multiData, $cacheTTL)
     {
         $timeout = 300;
@@ -343,15 +343,13 @@ if (! class_exists('Xupdate_Func')) {
         return $url;
     }
 
-    /**
-     * _getDownloadFilePath
-     *
-     * @param string $downloadDirPath
-     * @param string $target_key
-     * @param string $extension
-     *
-     * @return	string
-     **/
+        /**
+         * _getDownloadFilePath
+         *
+         * @param string $downloadDirPath
+         * @param        $tempFilename
+         * @return    string
+         */
     public function _getDownloadFilePath($downloadDirPath, $tempFilename)
     {
         $downloadPath = $downloadDirPath .'/'. $tempFilename;

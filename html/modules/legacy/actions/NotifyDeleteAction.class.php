@@ -45,6 +45,9 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
     /**
      * This member function is a special case. Because the confirm is must, it
      * uses token error for displaying confirm.
+     * @param $contoller
+     * @param $xoopsUser
+     * @return int
      */
     public function execute(&$contoller, &$xoopsUser)
     {

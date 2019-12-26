@@ -178,11 +178,12 @@ class xoopsmultimailer extends PHPMailer
       }
   }
 
-  /**
+    /**
      * Formats an address correctly. This overrides the default AddrFormat method
      * which does not seem to encode $FromName correctly
      * This method name is renamed from "addr_format", because method name in parent class is renamed.
      * @access private
+     * @param $addr
      * @return string
      */
      //TODO: We must verify,whether we should prepare this method even now.(phpmailer is upgraded from 1.65 to 1.73)

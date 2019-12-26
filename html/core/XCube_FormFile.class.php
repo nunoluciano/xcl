@@ -120,6 +120,7 @@ class XCube_FormFile
 
     /**
      * Set extension.
+     * @param $ext
      * @return string
      */
     public function setExtension($ext)

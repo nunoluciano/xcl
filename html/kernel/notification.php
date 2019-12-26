@@ -424,12 +424,13 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     /**
      * Change a value in multiple notifications
      *
-     * @param   string  $fieldname  Name of the field
-     * @param   string  $fieldvalue Value to write
-     * @param   object  $criteria   {@link CriteriaElement}
-     *
+     * @param $module_id
+     * @param $category
+     * @param $item_id
+     * @param $event
+     * @param $user_id
      * @return  bool
-     **/
+     */
 /*
     function updateAll($fieldname, $fieldvalue, $criteria = null)
     {
@@ -567,10 +568,16 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     }
 
     // TODO: rename this??
+
     /**
      * Get a list of notification events for the current item/mod/user
      *
-     **/
+     * @param $category
+     * @param $item_id
+     * @param $module_id
+     * @param $user_id
+     * @return array
+     */
     public function &getSubscribedEvents($category, $item_id, $module_id, $user_id)
     {
         $criteria = new CriteriaCompo();
@@ -589,15 +596,17 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     }
 
 // TODO: is this a useful function?? (Copied from comment_handler)
+
     /**
      * Retrieve items by their ID
      *
-     * @param   int     $module_id  Module ID
-     * @param   int     $item_id    Item ID
-     * @param   string  $order      Sort order
+     * @param int    $module_id Module ID
+     * @param int    $item_id   Item ID
+     * @param string $order     Sort order
      *
+     * @param null   $status
      * @return  array   Array of {@link XoopsNotification} objects
-     **/
+     */
     public function &getByItemId($module_id, $item_id, $order = null, $status = null)
     {
         $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
@@ -616,15 +625,15 @@ class XoopsNotificationHandler extends XoopsObjectHandler
     /**
      * Send notifications to users
      *
-     * @param  string $category   notification category
-     * @param  int $item_id    ID of the item
-     * @param  string  $event  notification event
-     * @param  array  $extra_tags array of substitutions for template to be
+     * @param string $category     notification category
+     * @param int    $item_id      ID of the item
+     * @param        $events
+     * @param array  $extra_tags   array of substitutions for template to be
      *                             merged with the one from function..
-     * @param  array  $user_list  only notify the selected users
-     * @param  int $module_id  ID of the module
-     * @param  int $omit_user_id    ID of the user to omit from notifications. (default to current user).  set to 0 for all users to receive notification.
-     **/
+     * @param array  $user_list    only notify the selected users
+     * @param int    $module_id    ID of the module
+     * @param int    $omit_user_id ID of the user to omit from notifications. (default to current user).  set to 0 for all users to receive notification.
+     */
     // TODO:(?) - pass in an event LIST.  This will help to avoid
     // problem of sending people multiple emails for similar events.
     // BUT, then we need an array of mail templates, etc...  Unless

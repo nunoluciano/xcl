@@ -133,6 +133,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Fetch a result row as an associative array
      *
+     * @param $result
      * @return array
      */
     public function fetchArray($result)
@@ -143,6 +144,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Fetch a result row as an associative array
      *
+     * @param $result
      * @return array
      */
     public function fetchBoth($result)
@@ -192,9 +194,9 @@ class XoopsMysqliDatabase extends XoopsDatabase
 
     /**
      * will free all memory associated with the result identifier result.
-     * 
+     *
      * @param resource query result
-     * @return bool TRUE on success or FALSE on failure. 
+     * @return void TRUE on success or FALSE on failure.
      */
     public function freeRecordSet($result)
     {
@@ -235,12 +237,12 @@ class XoopsMysqliDatabase extends XoopsDatabase
 
     /**
      * perform a query on the database
-     * 
-     * @param string $sql a valid MySQL query
-     * @param int $limit number of records to return
-     * @param int $start offset of first record to return
-     * @return resource query result or FALSE if successful
-     * or TRUE if successful and no result
+     *
+     * @param string $sql   a valid MySQL query
+     * @param int    $limit number of records to return
+     * @param int    $start offset of first record to return
+     * @return bool|\mysqli_result query result or FALSE if successful
+     *                      or TRUE if successful and no result
      */
     public function &queryF($sql, $limit=0, $start=0)
     {
@@ -361,6 +363,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Emulates prepare(), but this is TEST API.
      * @remark This is TEST API. This method should be called by only Legacy.
+     * @param $query
      */
     public function prepare($query)
     {

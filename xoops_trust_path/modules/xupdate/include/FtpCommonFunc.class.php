@@ -59,8 +59,9 @@ class Xupdate_FtpCommonFunc
     /**
      * _cleanup
      *
-     * @return	void
-     **/
+     * @param $dir
+     * @return    void
+     */
     public function _cleanup($dir)
     {
         if ($handle = opendir($dir)) {
@@ -137,12 +138,13 @@ class Xupdate_FtpCommonFunc
     {
         file_put_contents(_MD_XUPDATE_SYS_LOCK_FILE, $stage);
     }
-    
+
     /**
      * _check_file_upload_result
      *
      * @param array  $result
      * @param string $where
+     * @param bool   $allow_empty
      * @return bool
      */
     protected function _check_file_upload_result($result, $where, $allow_empty = false)

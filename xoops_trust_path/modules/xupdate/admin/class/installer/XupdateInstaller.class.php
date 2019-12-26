@@ -126,11 +126,11 @@ class Xupdate_Installer
 
     /**
      * &_createPermission
-     * 
-     * @param   int  $group
-     * 
-     * @return  XoopsGroupPerm
-    **/
+     *
+     * @param int $group
+     *
+     * @return void
+     */
     private function &_createPermission(/*** int ***/ $group)
     {
         $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');

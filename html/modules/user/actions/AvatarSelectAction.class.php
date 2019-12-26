@@ -68,12 +68,16 @@ class User_AvatarSelectAction extends User_AbstractEditAction
     {
         return true;
     }
-    
+
     /***
      *  Check whether a current user can access this action.
      * 1) A specified user has to exist.
      * 2) A current user has to equal the specified user, or a current user has
      *    to be a administrator.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
+     * @return bool
      */
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -126,6 +130,8 @@ class User_AvatarSelectAction extends User_AbstractEditAction
 
     /***
      * This action always kicks out GET request.
+     * @param $controller
+     * @param $xoopsUser
      */
     public function getDefaultView(&$controller, &$xoopsUser)
     {

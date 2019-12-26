@@ -1,7 +1,11 @@
 <?php
+
 /**
  * Replace str_split()
  *
+ * @param     $string
+ * @param int $split_length
+ * @return array|bool|mixed
  * @category    PHP
  * @package     PHP_Compat
  * @license     LGPL - https://www.gnu.org/licenses/lgpl.html

@@ -69,7 +69,7 @@ class AbstractXoopsObject
     }
 
     /**
-     * @return bool
+     * @return void
      */
     public function isNew()
     {
@@ -87,10 +87,12 @@ class AbstractXoopsObject
     public function assignVars($values)
     {
     }
-    
+
     /**
      * You should use this method to change object's properties.
      * This method may trigger setDirty().
+     * @param $key
+     * @param $value
      */
     public function set($key, $value)
     {
@@ -99,10 +101,11 @@ class AbstractXoopsObject
     public function get($key)
     {
     }
-    
+
     /**
      * Return html string for template.
      * You can call get() method to get pure value.
+     * @param $key
      */
     public function getShow($key)
     {
@@ -217,16 +220,16 @@ class XoopsObject extends AbstractXoopsObject
     /**#@-*/
 
     /**
-    * initialize variables for the object
-    *
-    * @access public
-    * @param string $key
-    * @param int $data_type  set to one of XOBJ_DTYPE_XXX constants (set to XOBJ_DTYPE_OTHER if no data type ckecking nor text sanitizing is required)
-    * @param mixed
-    * @param bool $required  require html form input?
-    * @param int $maxlength  for XOBJ_DTYPE_TXTBOX type only
-    * @param string $option  does this data have any select options?
-    */
+     * initialize variables for the object
+     *
+     * @access public
+     * @param string $key
+     * @param int    $data_type set to one of XOBJ_DTYPE_XXX constants (set to XOBJ_DTYPE_OTHER if no data type ckecking nor text sanitizing is required)
+     * @param null   $value
+     * @param bool   $required  require html form input?
+     * @param int    $maxlength for XOBJ_DTYPE_TXTBOX type only
+     * @param string $options
+     */
     public function initVar($key, $data_type, $value = null, $required = false, $maxlength = null, $options = '')
     {
         $this->vars[$key] = ['value' => $value, 'required' => $required, 'data_type' => $data_type, 'maxlength' => $maxlength, 'changed' => false, 'options' => $options];
@@ -248,11 +251,11 @@ class XoopsObject extends AbstractXoopsObject
     }
 
     /**
-    * assign values to multiple variables in a batch
-    *
-    * @access private
-    * @param array $var_array associative array of values to assign
-    */
+     * assign values to multiple variables in a batch
+     *
+     * @access private
+     * @param $var_arr
+     */
     public function assignVars($var_arr)
     {
         $vars = &$this->vars;
@@ -297,16 +300,17 @@ class XoopsObject extends AbstractXoopsObject
     }
 
     /**
-    * Assign values to multiple variables in a batch
-    *
-    * Meant for a CGI contenxt:
-    * - prefixed CGI args are considered save
-    * - avoids polluting of namespace with CGI args
-    *
-    * @access private
-    * @param array $var_arr associative array of values to assign
-    * @param string $pref prefix (only keys starting with the prefix will be set)
-    */
+     * Assign values to multiple variables in a batch
+     *
+     * Meant for a CGI contenxt:
+     * - prefixed CGI args are considered save
+     * - avoids polluting of namespace with CGI args
+     *
+     * @access private
+     * @param array  $var_arr associative array of values to assign
+     * @param string $pref    prefix (only keys starting with the prefix will be set)
+     * @param bool   $not_gpc
+     */
     public function setFormVars($var_arr=null, $pref='xo_', $not_gpc=false)
     {
         $len = strlen($pref);
@@ -464,6 +468,8 @@ class XoopsObject extends AbstractXoopsObject
 
     /**
      * Return value as raw.
+     * @param $key
+     * @return
      * @deprecated
      */
     public function getProperty($key)
@@ -637,7 +643,7 @@ class XoopsObject extends AbstractXoopsObject
     /**
      * add an error
      *
-     * @param string $value error to add
+     * @param $err_str
      * @access public
      */
     public function setErrors($err_str)

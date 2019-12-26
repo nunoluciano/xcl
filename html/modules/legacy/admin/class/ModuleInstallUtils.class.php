@@ -73,26 +73,32 @@ class Legacy_ModuleInstallUtils
     /**
      * This is factory for the installer. The factory reads xoops_version
      * without modulehandler, to prevent cache in modulehandler.
+     * @param $dirname
+     * @return mixed
      */
     public static function &createInstaller($dirname)
     {
         $installer =& Legacy_ModuleInstallUtils::_createInstaller($dirname, 'installer', 'Legacy_ModuleInstaller');
         return $installer;
     }
-    
+
     /**
      * This is factory for the updater. The factory reads xoops_version
      * without modulehandler, to prevent cache in modulehandler.
+     * @param $dirname
+     * @return mixed
      */
     public static function &createUpdater($dirname)
     {
         $updater =& Legacy_ModuleInstallUtils::_createInstaller($dirname, 'updater', 'Legacy_ModulePhasedUpgrader');
         return $updater;
     }
-    
+
     /**
      * This is factory for the uninstaller. The factory reads xoops_version
      * without modulehandler, to prevent cache in modulehandler.
+     * @param $dirname
+     * @return mixed
      */
     public static function &createUninstaller($dirname)
     {
@@ -333,20 +339,20 @@ class Legacy_ModuleInstallUtils
      * usefull for uninstaller and updater. In the case of update, you should
      * call this function before installAllOfModuleTemplates(). In the case of
      * uninstall, you must set 'false' to $defaultOnly.
-     * 
+     *
      * This function gets informations about templates from the database.
-     * 
+     *
      * @warning
-     * 
+     *
      * This function depends the specific spec of Legacy_RenderSystem, but this
      * static function is needed by the 2nd installer of Legacy System.
-     * 
+     *
      * @static
-     * @param XoopsModule $module
+     * @param XoopsModule             $module
+     * @param                         $tplset
      * @param Legacy_ModuleInstallLog $log
-     * @param bool $defaultOnly Indicates whether this function deletes templates from all of tplsets.
      * @note FOR THE CUSTOM-INSTALLER
-     * @see Legacy_ModuleInstallUtils::installAllOfModuleTemplates()
+     * @see  Legacy_ModuleInstallUtils::installAllOfModuleTemplates()
      */
     public static function _uninstallAllOfModuleTemplates(&$module, $tplset, &$log)
     {
@@ -480,11 +486,12 @@ class Legacy_ModuleInstallUtils
         
         return $successFlag;
     }
-    
+
     /**
      * Create XoopsBlock object by array that is defined in xoops_version, return it.
      * @param XoopsModule $module
      * @param array       $block
+     * @param             $func_num
      * @return XoopsBlock
      */
     public static function &createBlockByInfo(&$module, $block, $func_num)
@@ -527,12 +534,13 @@ class Legacy_ModuleInstallUtils
 
         return $blockObj;
     }
-    
+
     /**
      * This function can receive both new and update.
      * @param XoopsModule $module
      * @param XoopsBlock  $blockObj
      * @param array       $block
+     * @param             $log
      * @return bool
      */
     public static function installBlock(&$module, &$blockObj, &$block, &$log)
@@ -625,10 +633,13 @@ class Legacy_ModuleInstallUtils
         $criteria->add(new Criteria('gperm_modid', 1));
         $gpermHandler->deleteAll($criteria);
     }
-    
+
     /**
      * Save the information of block's template specified and the source code of it
      * to database.
+     * @param $block
+     * @param $module
+     * @param $log
      * @return bool
      */
     public static function installBlockTemplate(&$block, &$module, &$log)
@@ -671,11 +682,15 @@ class Legacy_ModuleInstallUtils
             return false;
         }
     }
-    
+
     /**
      * Read template file, return it.
-     * 
+     *
      * @note This is must, but it depends on ...
+     * @param      $dirname
+     * @param      $fileName
+     * @param bool $isblock
+     * @return bool|string
      */
     public static function readTemplateFile($dirname, $fileName, $isblock = false)
     {
@@ -767,9 +782,11 @@ class Legacy_ModuleInstallUtils
             $log->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_COULD_NOT_INSERT_CONFIG, $config->get('conf_name')));
         }
     }
-    
+
     /**
      * Get & build config items from Manifesto by specific module object.
+     * @param $module
+     * @return array
      */
     public static function &getConfigInfosFromManifesto(&$module)
     {
@@ -857,11 +874,12 @@ class Legacy_ModuleInstallUtils
         
         return $configInfos;
     }
-    
+
     /**
      * Delete all configs of $module.
      *
      * @param XoopsModule $module
+     * @param             $log
      */
     public static function uninstallAllOfConfigs(&$module, &$log)
     {
@@ -1165,8 +1183,11 @@ class Legacy_ModuleInstallUtils
             return true;
         }
     }
-    
+
     /**
+     * @param $func_num
+     * @param $module
+     * @param $log
      * @todo Need a message in the fail case.
      */
     public static function uninstallBlockByFuncNum($func_num, &$module, &$log)
@@ -1222,10 +1243,13 @@ class Legacy_ModuleInstallUtils
     {
         Legacy_ModuleInstallUtils::_uninstallBlockTemplate($block, $module, null, $log);
     }
-    
+
     /**
      * @public
      * Removes a template data from only default group of some render-system.
+     * @param $block
+     * @param $module
+     * @param $log
      */
     public static function clearBlockTemplateForUpdate(&$block, &$module, &$log)
     {
@@ -1251,9 +1275,13 @@ class Legacy_ModuleInstallUtils
             }
         }
     }
-    
+
     /**
      * Executes SQL query as cube style.
+     * @param $query
+     * @param $module
+     * @param $log
+     * @return bool
      */
     public static function DBquery($query, &$module, $log)
     {

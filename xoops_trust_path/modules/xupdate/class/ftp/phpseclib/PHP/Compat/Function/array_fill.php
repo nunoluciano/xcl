@@ -1,10 +1,13 @@
 <?php
 // $Id: array_fill.php,v 1.1 2007/07/02 04:19:55 terrafrost Exp $
 
-
 /**
  * Replace array_fill()
  *
+ * @param $start_index
+ * @param $num
+ * @param $value
+ * @return array|bool
  * @category    PHP
  * @package     PHP_Compat
  * @license     https://www.opensource.org/licenses/mit-license.html  MIT License

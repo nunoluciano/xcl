@@ -76,7 +76,8 @@ class XCube_Theme
     /**
      * Load manifesto file, and set infomations from the file to member
      * property.
-     * 
+     *
+     * @param $file
      * @return bool
      */
     public function loadManifesto($file)

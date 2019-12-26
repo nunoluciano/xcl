@@ -88,11 +88,13 @@ class XCube_ServiceManager
         
         return true;
     }
-    
+
     /**
      * Add WSDL URL. $name must be unique in the list of service. If the
      * service which has the same name, is a member of the list, return false.
-     * 
+     * @param $name
+     * @param $url
+     * @return bool
      */
     public function addWSDL($name, $url)
     {
@@ -104,12 +106,15 @@ class XCube_ServiceManager
         
         return true;
     }
-    
+
     /**
      * This member function will be removed at beta version.
-     * 
-     * @deprecated
+     *
+     * @param $name
+     * @param $service
+     * @return bool
      * @see XCube_ServiceManager::addService()
+     * @deprecated
      */
     public function addXCubeService($name, &$service)
     {
@@ -126,10 +131,12 @@ class XCube_ServiceManager
         
         return $ret;
     }
-    
+
     /**
      * This member function will be removed at beta version.
-     * 
+     *
+     * @param $name
+     * @return mixed|null
      * @deprecated
      * @see XCube_ServiceManager::getService()
      */
@@ -137,13 +144,15 @@ class XCube_ServiceManager
     {
         return $this->getService($name);
     }
-    
+
     /**
      * Create client instance which to connect to a service, with following the
      * kind of the service. Then return that instance. For example, if the
      * specified service is really web service, SOAP client has to be created.
      * But, if the service is a virtual service of XCube, virtual client has to
      * be created.
+     * @param $service
+     * @return null
      */
     public function &createClient(&$service)
     {

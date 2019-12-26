@@ -89,8 +89,9 @@ class XoopsFormHidden extends XoopsFormElement
 
     /**
      * Sets the "value" attribute
-     * 
-     * @patam  $value	string
+     *
+     * @patam  $value    string
+     * @param $value
      */
     public function setValue($value)
     {

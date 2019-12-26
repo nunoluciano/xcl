@@ -314,7 +314,6 @@ class File_X509
     /**
      * Default Constructor.
      *
-     * @return File_X509
      * @access public
      */
     public function __construct()
@@ -2769,8 +2768,8 @@ class File_X509
      * Key needs to be a Crypt_RSA object
      *
      * @param object $key
+     * @return void
      * @access public
-     * @return bool
      */
     public function setPublicKey($key)
     {
@@ -2852,8 +2851,9 @@ class File_X509
      * Load a Certificate Signing Request
      *
      * @param string $csr
-     * @access public
+     * @param int    $mode
      * @return mixed
+     * @access public
      */
     public function loadCSR($csr, $mode = FILE_X509_FORMAT_AUTO_DETECT)
     {
@@ -2983,9 +2983,9 @@ class File_X509
      *
      * https://developer.mozilla.org/en-US/docs/HTML/Element/keygen
      *
-     * @param string $csr
-     * @access public
+     * @param $spkac
      * @return mixed
+     * @access public
      */
     public function loadSPKAC($spkac)
     {
@@ -3057,10 +3057,10 @@ class File_X509
     /**
      * Save a SPKAC CSR request
      *
-     * @param array $csr
-     * @param int   $format optional
-     * @access public
+     * @param     $spkac
+     * @param int $format optional
      * @return string
+     * @access public
      */
     public function saveSPKAC($spkac, $format = FILE_X509_FORMAT_PEM)
     {
@@ -3100,8 +3100,9 @@ class File_X509
      * Load a Certificate Revocation List
      *
      * @param string $crl
-     * @access public
+     * @param int    $mode
      * @return mixed
+     * @access public
      */
     public function loadCRL($crl, $mode = FILE_X509_FORMAT_AUTO_DETECT)
     {
@@ -3426,6 +3427,7 @@ class File_X509
      * Sign a CSR
      *
      * @access public
+     * @param string $signatureAlgorithm
      * @return mixed
      */
     public function signCSR($signatureAlgorithm = 'sha1WithRSAEncryption')
@@ -3483,6 +3485,7 @@ class File_X509
      * Sign a SPKAC
      *
      * @access public
+     * @param string $signatureAlgorithm
      * @return mixed
      */
     public function signSPKAC($signatureAlgorithm = 'sha1WithRSAEncryption')
@@ -3679,11 +3682,10 @@ class File_X509
     /**
      * X.509 certificate signing helper function.
      *
-     * @param object    $key
-     * @param File_X509 $subject
-     * @param string    $signatureAlgorithm
-     * @access public
+     * @param object $key
+     * @param string $signatureAlgorithm
      * @return mixed
+     * @access public
      */
     public function _sign($key, $signatureAlgorithm)
     {
@@ -3747,8 +3749,8 @@ class File_X509
     /**
      * Set Serial Number
      *
-     * @param string   $serial
-     * @param optional $base
+     * @param string $serial
+     * @param int    $base
      * @access public
      */
     public function setSerialNumber($serial, $base = -256)
@@ -4147,9 +4149,9 @@ class File_X509
      *
      * @param string $id
      * @param mixed  $value
-     * @param bool   $disposition optional
-     * @access public
+     * @param int    $disposition optional
      * @return bool
+     * @access public
      */
     public function setAttribute($id, $value, $disposition = FILE_X509_ATTR_ALL)
     {
@@ -4337,7 +4339,7 @@ class File_X509
      * Set the domain name's which the cert is to be valid for
      *
      * @access public
-     * @return array
+     * @return void
      */
     public function setDomain()
     {
@@ -4350,7 +4352,6 @@ class File_X509
      * Set the IP Addresses's which the cert is to be valid for
      *
      * @access public
-     * @param string $ipAddress optional
      */
     public function setIPAddress()
     {
@@ -4648,6 +4649,7 @@ class File_X509
      * getOID('zzz') == 'zzz'
      *
      * @access public
+     * @param $name
      * @return string
      */
     public function getOID($name)

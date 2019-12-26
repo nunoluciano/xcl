@@ -90,7 +90,7 @@ class User_Permission
 class User_PermissionItem
 {
     /**
-     * @return int
+     * @return void
      */
     public function getId()
     {
@@ -111,7 +111,7 @@ class User_PermissionItem
     }
 
     /**
-     * @return bool
+     * @return void
      */
     public function isActive()
     {

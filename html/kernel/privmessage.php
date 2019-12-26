@@ -130,11 +130,12 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         return $ret;
     }
 
-/**
- * Insert a message in the database
- * @param 	object 	$pm		{@link XoopsPrivmessage} object
- * @return 	bool
- **/
+    /**
+     * Insert a message in the database
+     * @param object $pm {@link XoopsPrivmessage} object
+     * @param bool   $force
+     * @return    bool
+     */
     public function insert(&$pm, $force=false)
     {
         if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
@@ -219,10 +220,13 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         }
         return $ret;
     }
-    
+
     /**
      * Return the collect of private message objects which appointed user received.
-     * @param int $uid user id
+     * @param int    $uid user id
+     * @param int    $start
+     * @param int    $limit
+     * @param string $order
      * @return array of XoopsPrivmessage.
      */
     public function &getObjectsByFromUid($uid, $start=0, $limit=20, $order = 'DESC')

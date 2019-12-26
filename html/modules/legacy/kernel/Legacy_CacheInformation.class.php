@@ -153,10 +153,9 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
         $this->mModule = null;
         $this->mURL = null;
     }
-    
+
     /**
      * Gets a file path of a cache file for module contents.
-     * @param Legacy_ModuleCacheInformation $cacheInfo
      * @return string
      */
     public function getCacheFilePath()
@@ -214,7 +213,6 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
 
     /**
      * Gets a file path of a cache file for module contents.
-     * @param Legacy_BlockCacheInformation $cacheInfo
      * @return string
      */
     public function getCacheFilePath()

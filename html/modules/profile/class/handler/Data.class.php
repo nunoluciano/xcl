@@ -34,12 +34,12 @@ class Profile_DataObject extends XoopsSimpleObject
 
     /**
      * showField
-     * 
-     * @param	string	$key
-     * @param	Enum  $option
-     * 
-     * @return	mixed
-    **/
+     *
+     * @param string $key
+     * @param int    $option
+     *
+     * @return    mixed
+     */
     public function showField(/*** string ***/ $key, /*** Enum ***/ $option=2)
     {
         return $this->mDef[$key]->mFieldType->showField($this, $key, $option);

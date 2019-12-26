@@ -383,9 +383,10 @@ class xoopsmailer
      *
      * Uses the new XoopsMultiMailer
      *
-     * @param	string
-     * @param	string
-     * @param	string
+     * @param $email
+     * @param $subject
+     * @param $body
+     * @param $headers
      * @return    bool    FALSE on error.
      */
 

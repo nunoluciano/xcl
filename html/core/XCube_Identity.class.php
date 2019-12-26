@@ -47,9 +47,10 @@ class XCube_Identity
     {
         return $this->_mAuthenticationType;
     }
-    
+
     /**
      * Sets a name of this object.
+     * @param $name
      */
     public function setName($name)
     {
@@ -65,11 +66,11 @@ class XCube_Identity
     {
         return $this->mName;
     }
-    
+
     /**
      * Gets a value that indicates whether the user has been authenticated.
      *
-     * @return bool
+     * @return void
      */
     public function isAuthenticated()
     {
@@ -107,12 +108,13 @@ class XCube_Principal
     {
         return $this->mIdentity;
     }
-    
+
     /**
      * Gets a value that indicates whether this principal has a role specified by $rolename.
      *
+     *
+     * @return void
      * @var string $rolename
-     * @return bool
      */
     public function isInRole($rolename)
     {

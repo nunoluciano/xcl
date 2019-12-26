@@ -69,22 +69,28 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 
     /**
      * checkPermitByUid
-     * 
-     * @params	string	$action
-     * @params	int 	$uid
-     * @params	string	$module
      *
+     * @params    string    $action
+     * @params    int    $uid
+     * @params    string    $module
+     *
+     * @param        $action
+     * @param int    $uid
+     * @param string $module
      * @return bool
      */
     abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module="");
 
     /**
      * checkPermitByGroupid
-     * 
-     * @params	string	$action
-     * @params	int 	$groupid
-     * @params	string	$module
      *
+     * @params    string    $action
+     * @params    int    $groupid
+     * @params    string    $module
+     *
+     * @param        $action
+     * @param int    $groupid
+     * @param string $module
      * @return bool
      */
     abstract public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module="");

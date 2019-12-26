@@ -70,14 +70,14 @@ class XoopsOnlineHandler
 
     /**
      * Write online information to the database
-     * 
-     * @param	int     $uid    UID of the active user
-     * @param	string  $uname  Username
-     * @param	string  $timestamp
-     * @param	string  $module Current module
-     * @param	string  $ip     User's IP adress
-     * 
-     * @return	bool    TRUE on success
+     *
+     * @param int    $uid    UID of the active user
+     * @param string $uname  Username
+     * @param        $time
+     * @param string $module Current module
+     * @param string $ip     User's IP adress
+     *
+     * @return    bool    TRUE on success
      */
     public function write($uid, $uname, $time, $module, $ip)
     {

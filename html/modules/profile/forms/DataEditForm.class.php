@@ -69,6 +69,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 
     /**
      * @public
+     * @param $obj
      */
     public function load(&$obj)
     {
@@ -80,6 +81,7 @@ class Profile_DataEditForm extends XCube_ActionForm
 
     /**
      * @public
+     * @param $obj
      */
     public function update(&$obj)
     {

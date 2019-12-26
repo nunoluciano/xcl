@@ -224,6 +224,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
     /**
      * Delete the plural of record by a cetain criteria.
      *
+     * @param null $criteria
      * @return bool
      */
     public function deleteAll($criteria = null)

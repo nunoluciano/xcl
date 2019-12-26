@@ -127,10 +127,8 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
 
     /**
      * getImages
-     * 
-     * @param   void
-     * 
-     * @return  void
+     *
+     * @return array
      */
     public function getImages()
     {

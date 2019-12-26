@@ -32,6 +32,8 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
 
     /**
      * @public
+     * @param $controller
+     * @param $render
      */
     // !Fix compatibility with Profile_AbstractAction::executeViewSuccess(&$controller, &$render)
     // public function executeViewSuccess(&$render)
@@ -44,6 +46,7 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {

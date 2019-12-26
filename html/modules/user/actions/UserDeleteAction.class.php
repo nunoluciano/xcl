@@ -95,9 +95,12 @@ class User_UserDeleteAction extends User_Action
     {
         return USER_FRAME_VIEW_INPUT;
     }
-    
+
     /**
      * FIXME: Need FORCE LOGOUT here?
+     * @param $controller
+     * @param $xoopsUser
+     * @return int
      */
     public function execute(&$controller, &$xoopsUser)
     {
@@ -119,11 +122,14 @@ class User_UserDeleteAction extends User_Action
         
         return USER_FRAME_VIEW_ERROR;
     }
-    
+
     /**
      * Exection deleting.
-     * 
-     * @return bool
+     *
+     * @param $flag
+     * @param $controller
+     * @param $xoopsUser
+     * @return void
      */
     public function _doDelete(&$flag, $controller, $xoopsUser)
     {

@@ -66,6 +66,9 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 
     /**
      * This member function processes the uploaded file.
+     * @param $controller
+     * @param $xoopsUser
+     * @return int
      */
     public function execute(&$controller, &$xoopsUser)
     {

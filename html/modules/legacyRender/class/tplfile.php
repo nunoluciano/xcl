@@ -76,10 +76,11 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         
         return $obj;
     }
-    
+
     /**
      * Load override template file object by $tplset that is the name of template-set specified.
      * And, set it to mOverride.
+     * @param $tplset
      */
     public function loadOverride($tplset)
     {
@@ -126,11 +127,14 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
             return $handler->insert($obj->Source, $force);
         }
     }
-    
+
     /**
-     * This method load objects of two template sets by $criteria. Then, build 
+     * This method load objects of two template sets by $criteria. Then, build
      * the return value from the objects of 'default', and set the objects of
      * $tplset to object->mOverride.
+     * @param $criteria
+     * @param $tplset
+     * @return array
      */
     public function &getObjectsWithOverride($criteria, $tplset)
     {

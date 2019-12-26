@@ -232,8 +232,11 @@ class XCube_ActionForm
     {
         return isset($this->mFormProperties[$key]) ? $this->mFormProperties[$key]->getValue($index) : null;
     }
-    
+
     /**
+     * @param      $key
+     * @param null $index
+     * @return mixed
      * @deprecated
      */
     public function getVar($key, $index=null)
@@ -596,13 +599,14 @@ class XCube_FieldProperty
     {
         $this->mVariables[$name] = $value;
     }
-    
+
     /**
      * @public
      * @brief Validates form-property with validators which this field property holds.
      * @attention
      *      Only XCube_ActionForm and its sub-classes should call this method.
-     * @todo This class already has form property instance.
+     * @param $form
+     * @todo  This class already has form property instance.
      */
     public function validate(&$form)
     {

@@ -183,14 +183,15 @@ function make_data(&$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $
 }
 // ToDo : remove following lines
 /**
- * 
+ *
  * Install module by module's name, language and specified mid.
- * 
+ *
  * @param object $dbm      Database manager instance
  * @param int    $mid      module's ID
  * @param string $module   module's name
+ * @param        $module_name
  * @param string $language language
- * @param array  $grops    hash map
+ * @param        $groups
  */
 function installModule(&$dbm, $mid, $module, $module_name, $language = 'english', &$groups)
 {

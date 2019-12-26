@@ -118,8 +118,7 @@ class MyTextSanitizer
     /**
      * Replace emoticons in the message with smiley images
      *
-     * @param   string  $message
-     *
+     * @param $text
      * @return  string
      */
     public function &smiley($text)
@@ -150,11 +149,11 @@ class MyTextSanitizer
     /**
      * Replace XoopsCodes with their equivalent HTML formatting
      *
-     * @param   string  $text
-     * @param   bool    $allowimage Allow images in the text?
+     * @param string $text
+     * @param int    $allowimage    Allow images in the text?
      *                              On FALSE, uses links to images.
      * @return  string
-     **/
+     */
     public function &xoopsCodeDecode($text, $allowimage = 1)
     {
         $text = $this->mTextFilter->convertXCode($text, $allowimage);
@@ -271,14 +270,14 @@ class MyTextSanitizer
      * Filters textarea data for display
      * (This method makes overhead but needed for compatibility)
      *
-     * @param   string  $text
-     * @param   bool    $html   allow html?
-     * @param   bool    $smiley allow smileys?
-     * @param   bool    $xcode  allow xoopscode?
-     * @param   bool    $image  allow inline images?
-     * @param   bool    $br     convert linebreaks?
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
      * @return  string
-     **/
+     */
 
     public function _ToShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
@@ -303,14 +302,14 @@ class MyTextSanitizer
     /**
      * Filters textarea form data in DB for display
      *
-     * @param   string  $text
-     * @param   bool    $html   allow html?
-     * @param   bool    $smiley allow smileys?
-     * @param   bool    $xcode  allow xoopscode?
-     * @param   bool    $image  allow inline images?
-     * @param   bool    $br     convert linebreaks?
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
      * @return  string
-     **/
+     */
     public function &displayTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text = $this->mTextFilter->toShowTarea($text, $html, $smiley, $xcode, $image, $br, true);
@@ -320,14 +319,14 @@ class MyTextSanitizer
     /**
      * Filters textarea form data submitted for preview
      *
-     * @param   string  $text
-     * @param   bool    $html   allow html?
-     * @param   bool    $smiley allow smileys?
-     * @param   bool    $xcode  allow xoopscode?
-     * @param   bool    $image  allow inline images?
-     * @param   bool    $br     convert linebreaks?
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
      * @return  string
-     **/
+     */
     public function &previewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text =& $this->stripSlashesGPC($text);
@@ -369,9 +368,11 @@ class MyTextSanitizer
         return $text;
     }
 
-
     /**#@+
      * Sanitizing of [code] tag
+     * @param     $text
+     * @param int $xcode
+     * @return
      */
     public function codePreConv($text, $xcode = 1)
     {
@@ -392,6 +393,11 @@ class MyTextSanitizer
 ##################### Deprecated Methods ######################
 
     /**#@+
+     * @param     $text
+     * @param int $allowhtml
+     * @param int $smiley
+     * @param int $bbcode
+     * @return string
      * @deprecated
      */
     public function sanitizeForDisplay($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)

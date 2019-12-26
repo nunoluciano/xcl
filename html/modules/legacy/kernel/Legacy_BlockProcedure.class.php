@@ -76,7 +76,7 @@ class Legacy_AbstractBlockProcedure
 
     /**
      * Gets a number as ID.
-     * @return int
+     * @return void
      */
     public function getId()
     {
@@ -89,18 +89,18 @@ class Legacy_AbstractBlockProcedure
     public function getName()
     {
     }
-    
+
     /**
      * Gets a value indicating whether the block can be cached.
-     * @return bool
+     * @return void
      */
     public function isEnableCache()
     {
     }
-    
+
     /**
      * Return cache time
-     * @return int
+     * @return void
      */
     public function getCacheTime()
     {
@@ -114,18 +114,18 @@ class Legacy_AbstractBlockProcedure
     {
         return $this->_mBlock->get('title');
     }
-    
+
     /**
      * Gets a column index of this block.
-     * @return int
+     * @return void
      */
     public function getEntryIndex()
     {
     }
-    
+
     /**
      * Gets a weight of this block.
-     * @return int
+     * @return void
      */
     public function getWeight()
     {

@@ -81,7 +81,11 @@ class UserUsers_searchHandler extends UserUsersHandler
     /**
      * Return the array which consists of an integer as the uid. This member
      * function is more speedy than getObjects().
-     * 
+     *
+     * @param null $criteria
+     * @param null $limit
+     * @param null $start
+     * @param bool $id_as_key
      * @return Array
      */
     public function &getUids($criteria = null, $limit = null, $start = null, $id_as_key = false)

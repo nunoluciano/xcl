@@ -127,7 +127,6 @@ class System_SSH_Agent_Identity
      * Default Constructor.
      *
      * @param resource $fsock
-     * @return System_SSH_Agent_Identity
      * @access private
      */
     public function __construct($fsock)
@@ -266,7 +265,6 @@ class System_SSH_Agent
     /**
      * Default Constructor
      *
-     * @return System_SSH_Agent
      * @access public
      */
     public function __construct()
@@ -357,7 +355,7 @@ class System_SSH_Agent
      * be requested when a channel is opened
      *
      * @param Net_SSH2 $ssh
-     * @return bool
+     * @return void
      * @access public
      */
     public function startSSHForwarding($ssh)

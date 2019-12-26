@@ -22,8 +22,10 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     }
 
     /**
-     *  @public
-    */
+     * @public
+     * @param $html
+     * @param $params
+     */
     public static function renderBBCode(&$html, $params)
     {
         if (!XC_CLASS_EXISTS('xoopsformelement')) {
@@ -40,16 +42,20 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     }
 
     /**
-     *  @public
-    */
+     * @public
+     * @param $html
+     * @param $params
+     */
     public static function renderHtml(&$html, $params)
     {
         self::renderBBCode($html, $params);
     }
 
     /**
-     *  @public
-    */
+     * @public
+     * @param $html
+     * @param $params
+     */
     public static function renderNone(&$html, $params)
     {
         if (!XC_CLASS_EXISTS('xoopsformelement')) {

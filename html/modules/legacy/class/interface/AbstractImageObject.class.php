@@ -135,6 +135,8 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 
     /**
      * Return file size.
+     * @param     $type
+     * @param int $tsize
      * @return int
      */
     public function getImageInfo($type, $tsize=0)

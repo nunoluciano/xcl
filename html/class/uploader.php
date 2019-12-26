@@ -95,13 +95,12 @@ class XoopsMediaUploader
     /**
      * Constructor
      *
-     * @param   string  $uploadDir
-     * @param   array   $allowedMimeTypes
-     * @param   int     $maxFileSize
-     * @param   int     $maxWidth
-     * @param   int     $maxHeight
-     * @param   int     $cmodvalue
-     **/
+     * @param string $uploadDir
+     * @param array  $allowedMimeTypes
+     * @param int    $maxFileSize
+     * @param int    $maxWidth
+     * @param int    $maxHeight
+     */
     public function __construct($uploadDir, $allowedMimeTypes, $maxFileSize=0, $maxWidth=null, $maxHeight=null)
     {
         @$this->extensionToMime = include(XOOPS_ROOT_PATH . '/class/mimetypes.inc.php');
@@ -285,8 +284,9 @@ class XoopsMediaUploader
     /**
      * Check the file and copy it to the destination
      *
+     * @param int $chmod
      * @return  bool
-     **/
+     */
     public function upload($chmod = 0644)
     {
         if ($this->uploadDir == '') {
@@ -324,8 +324,9 @@ class XoopsMediaUploader
     /**
      * Copy the file to its destination
      *
+     * @param $chmod
      * @return  bool
-     **/
+     */
     public function _copyFile($chmod)
     {
         if (isset($this->targetFileName)) {

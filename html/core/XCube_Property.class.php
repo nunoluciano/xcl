@@ -47,43 +47,47 @@ class XCube_PropertyInterface
     }
 
     /**
+     * @param null $arg0
+     * @param null $arg1
      * @deprecated
      */
     public function setValue($arg0 = null, $arg1 = null)
     {
         $this->set($arg0, $arg1);
     }
-    
+
     /**
+     * @param null $arg0
+     * @return mixed
      * @deprecated
      */
     public function getValue($arg0 = null)
     {
         return $this->get($arg0);
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value indicating whether this object expresses Array.
-     * @return bool
+     * @return void
      */
     public function isArray()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value indicating whether this object is null.
-     * @return bool
+     * @return void
      */
     public function isNull()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value as integer.
-     * @return int
+     * @return void
      */
     public function toNumber()
     {
@@ -107,11 +111,11 @@ class XCube_PropertyInterface
     public function toHTML()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value indicating whether this object has a fetch control.
-     * @return bool
+     * @return void
      */
     public function hasFetchControl()
     {
@@ -169,10 +173,11 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         $this->mValue = $value;
     }
-    
+
     /**
      * @public
      * @brief Gets the value of this property.
+     * @param null $index
      * @return mixed
      */
     public function get($index = null)
@@ -288,18 +293,20 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
         $this->mPropertyClassName = $classname;
         $this->mName = $name;
     }
-    
+
     /**
      * @public
      * @brief Sets a value. And the value is casted by the property's type'.
-     * 
+     *
      *   This member function has two signatures.
-     * 
+     *
      * \par set(something[] values);
      *    Fetches values from the array.
-     * 
+     *
      * \par set(mixed key, mixed value);
      *    Set values with index 'key'.
+     * @param      $arg1
+     * @param null $arg2
      */
     public function set($arg1, $arg2 = null)
     {
@@ -314,8 +321,10 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
             $this->_set($arg1, $arg2);
         }
     }
-    
+
     /**
+     * @param      $arg1
+     * @param null $arg2
      * @internal
      * @todo Research this method.
      */

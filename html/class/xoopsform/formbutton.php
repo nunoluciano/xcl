@@ -102,7 +102,8 @@ class XoopsFormButton extends XoopsFormElement
     /**
      * Set the initial value
      *
-     * @return	string
+     * @param $value
+     * @return    string
      */
     public function setValue($value)
     {

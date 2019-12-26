@@ -56,9 +56,8 @@ class XoopsSessionHandler
 
     /**
      * Constructor
-     * 
-     * @param	object  &$mf    reference to a XoopsManagerFactory
-     * 
+     *
+     * @param $db
      */
     public function __construct(&$db)
     {

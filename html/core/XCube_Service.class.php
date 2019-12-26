@@ -9,6 +9,8 @@
  */
 
 /**
+ * @param $definition
+ * @return array|null
  * @internal
  * @brief This is a kind of MACRO like C for XCube_Service.
  */

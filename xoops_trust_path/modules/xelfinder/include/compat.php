@@ -57,6 +57,11 @@ if (!function_exists('sys_get_temp_dir')) {
  *
  * PHP versions 4 and 5
  *
+ * @param        $input
+ * @param string $delimiter
+ * @param string $enclosure
+ * @param string $escape
+ * @return array|bool
  * @category  PHP
  * @package   PHP_Compat
  * @license   LGPL - https:///www.gnu.org/licenses/lgpl.html
@@ -82,6 +87,12 @@ function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $esca
  * Wraps fgetcsv() for the correct PHP version
  *
  * @link https:///php.net/function.fgetcsv
+ * @param        $fh
+ * @param        $length
+ * @param string $delimiter
+ * @param string $enclosure
+ * @param string $escape
+ * @return array|false|null
  */
 function php_compat_fgetcsv_wrap($fh, $length, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 	// The escape parameter was added
@@ -96,12 +107,17 @@ function php_compat_fgetcsv_wrap($fh, $length, $delimiter = ',', $enclosure = '"
 	}
 }
 if (!function_exists('str_getcsv')) {
-	/**
-	 * Backwards compatbility for str_getcsv()
-	 *
-	 * @link https:///php.net/function.fgetcsv
-	 */
-	function str_getcsv($input, $delimiter = ',', $enclosure = '"', $escape = '\\') {
+    /**
+     * Backwards compatbility for str_getcsv()
+     *
+     * @link https:///php.net/function.fgetcsv
+     * @param        $input
+     * @param string $delimiter
+     * @param string $enclosure
+     * @param string $escape
+     * @return array|bool
+     */
+    function str_getcsv($input, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 		return php_compat_str_getcsv($input, $delimiter, $enclosure, $escape);
 	}
 }

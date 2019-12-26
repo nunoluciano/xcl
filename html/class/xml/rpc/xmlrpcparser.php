@@ -132,17 +132,17 @@ class XoopsXmlRpcParser extends SaxParser
     */
     public $_workingLevel = [];
 
-
     /**
-    * Constructor of the class
-    *
-    *
-    *
-    *
-    * @access
-    * @author
-    * @see
-    */
+     * Constructor of the class
+     *
+     *
+     *
+     *
+     * @access
+     * @param $input
+     * @see
+     * @author
+     */
     public function __construct(&$input)
     {
         parent::__construct($input);
@@ -161,42 +161,41 @@ class XoopsXmlRpcParser extends SaxParser
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function setTempName($name)
     {
         $this->_tempName[$this->getWorkingLevel()] = $name;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return mixed
+     * @author
+     * @see
+     */
     public function getTempName()
     {
         return $this->_tempName[$this->getWorkingLevel()];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function setTempValue($value)
     {
         if (is_array($value)) {
@@ -218,126 +217,120 @@ class XoopsXmlRpcParser extends SaxParser
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return array
+     * @author
+     * @see
+     */
     public function getTempValue()
     {
         return $this->_tempValue;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return void
+     * @author
+     * @see
+     */
     public function resetTempValue()
     {
         unset($this->_tempValue);
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $name
+     * @param $value
+     * @return void
+     * @author
+     * @see
+     */
     public function setTempMember($name, $value)
     {
         $this->_tempMember[$this->getWorkingLevel()][$name] = $value;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return mixed
+     * @author
+     * @see
+     */
     public function getTempMember()
     {
         return $this->_tempMember[$this->getWorkingLevel()];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return void
+     * @author
+     * @see
+     */
     public function resetTempMember()
     {
         $this->_tempMember[$this->getCurrentLevel()] = [];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return void
+     * @author
+     * @see
+     */
     public function setWorkingLevel()
     {
         array_push($this->_workingLevel, $this->getCurrentLevel());
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return mixed
+     * @author
+     * @see
+     */
     public function getWorkingLevel()
     {
         return $this->_workingLevel[count($this->_workingLevel) - 1];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return void
+     * @author
+     * @see
+     */
     public function releaseWorkingLevel()
     {
         array_pop($this->_workingLevel);
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function setTempStruct($member)
     {
         $key = key($member);
@@ -345,126 +338,120 @@ class XoopsXmlRpcParser extends SaxParser
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return mixed
+     * @author
+     * @see
+     */
     public function getTempStruct()
     {
         return $this->_tempStruct[$this->getWorkingLevel()];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return void
+     * @author
+     * @see
+     */
     public function resetTempStruct()
     {
         $this->_tempStruct[$this->getCurrentLevel()] = [];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function setTempArray($value)
     {
         $this->_tempArray[$this->getWorkingLevel()][] = $value;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return mixed
+     * @author
+     * @see
+     */
     public function getTempArray()
     {
         return $this->_tempArray[$this->getWorkingLevel()];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return void
+     * @author
+     * @see
+     */
     public function resetTempArray()
     {
         $this->_tempArray[$this->getCurrentLevel()] = [];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function setMethodName($methodName)
     {
         $this->_methodName = $methodName;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getMethodName()
     {
         return $this->_methodName;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function setParam($value)
     {
         $this->_param[] = $value;
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return array
+     * @author
+     * @see
+     */
     public function &getParam()
     {
         return $this->_param;
@@ -476,28 +463,28 @@ class RpcMethodNameHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'methodName';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $parser->setMethodName($data);
@@ -508,28 +495,28 @@ class RpcIntHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return array
+     * @author
+     * @see
+     */
     public function getName()
     {
         return ['int', 'i4'];
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $parser->setTempValue(intval($data));
@@ -540,28 +527,28 @@ class RpcDoubleHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'double';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $data = (float)$data;
@@ -573,28 +560,28 @@ class RpcBooleanHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'boolean';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $data = (boolean)$data;
@@ -606,28 +593,28 @@ class RpcStringHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'string';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $parser->setTempValue(strval($data));
@@ -638,28 +625,28 @@ class RpcDateTimeHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'dateTime.iso8601';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $matches = [];
@@ -675,28 +662,28 @@ class RpcBase64Handler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'base64';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         $parser->setTempValue(base64_decode($data));
@@ -707,28 +694,28 @@ class RpcNameHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'name';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         switch ($parser->getParentTag()) {
@@ -746,28 +733,28 @@ class RpcValueHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'value';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $data
+     * @return void
+     * @author
+     * @see
+     */
     public function handleCharacterData(&$parser, &$data)
     {
         switch ($parser->getParentTag()) {
@@ -784,28 +771,29 @@ class RpcValueHandler extends XmlTagHandler
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $attributes
+     * @return void
+     * @author
+     * @see
+     */
     public function handleBeginElement(&$parser, &$attributes)
     {
         //$parser->resetTempValue();
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function handleEndElement(&$parser)
     {
         switch ($parser->getCurrentTag()) {
@@ -828,28 +816,28 @@ class RpcMemberHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'member';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $attributes
+     * @return void
+     * @author
+     * @see
+     */
     public function handleBeginElement(&$parser, &$attributes)
     {
         $parser->setWorkingLevel();
@@ -857,14 +845,14 @@ class RpcMemberHandler extends XmlTagHandler
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function handleEndElement(&$parser)
     {
         $member =& $parser->getTempMember();
@@ -877,28 +865,28 @@ class RpcArrayHandler extends XmlTagHandler
 {
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'array';
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param $parser
+     * @param $attributes
+     * @return void
+     * @author
+     * @see
+     */
     public function handleBeginElement(&$parser, &$attributes)
     {
         $parser->setWorkingLevel();
@@ -906,14 +894,14 @@ class RpcArrayHandler extends XmlTagHandler
     }
 
     /**
-    * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     * This Method starts the parsing of the specified RDF File. The File can be a local or a remote File.
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function handleEndElement(&$parser)
     {
         $parser->setTempValue($parser->getTempArray());
@@ -925,28 +913,28 @@ class RpcStructHandler extends XmlTagHandler
 {
 
     /**
-    *
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     *
+     *
+     * @access
+     * @return string
+     * @author
+     * @see
+     */
     public function getName()
     {
         return 'struct';
     }
 
     /**
-    *
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     *
+     *
+     * @access
+     * @param $parser
+     * @param $attributes
+     * @return void
+     * @author
+     * @see
+     */
     public function handleBeginElement(&$parser, &$attributes)
     {
         $parser->setWorkingLevel();
@@ -954,14 +942,14 @@ class RpcStructHandler extends XmlTagHandler
     }
 
     /**
-    *
-    *
-    * @access
-    * @author
-    * @param
-    * @return
-    * @see
-    */
+     *
+     *
+     * @access
+     * @param
+     * @return void
+     * @author
+     * @see
+     */
     public function handleEndElement(&$parser)
     {
         $parser->setTempValue($parser->getTempStruct());

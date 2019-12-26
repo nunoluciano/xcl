@@ -21,15 +21,15 @@ class XCube_Utils
     public function __construct()
     {
     }
-    
+
     /**
      * @public
      * @brief [Static] The alias for the current controller::redirectHeader(). This function will be deprecated.
      * @param string $url
      * @param int    $time
-     * @param mixed  $message - string or string[] - If you want to multiline message, you must set message as array.
+     * @param null   $messages
      * @return void
-     * 
+     *
      * @deprecated XCube 1.0 will remove this method. Don't use static function of XCube
      *             layer for redirect.
      */
@@ -211,8 +211,11 @@ class XCube_Utils
             return XCube_Utils::formatString($arr[0], $vals);
         }
     }
-    
+
     /**
+     * @param $subject
+     * @param $arr
+     * @return string|string[]
      * @deprecated XCube 1.0 will remove this method.
      */
     public function formatMessageByMap($subject, $arr)

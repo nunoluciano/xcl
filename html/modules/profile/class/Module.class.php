@@ -49,6 +49,7 @@ class Profile_Module extends Legacy_ModuleAdapter
 
     /**
      * @public
+     * @param $flag
      */
     public function setAdminMode($flag)
     {
@@ -57,6 +58,7 @@ class Profile_Module extends Legacy_ModuleAdapter
 
     /**
      * @public
+     * @param $name
      */
     public function setActionName($name)
     {
@@ -65,6 +67,7 @@ class Profile_Module extends Legacy_ModuleAdapter
 
     /**
      * @private
+     * @param $controller
      */
     public function execute(&$controller)
     {

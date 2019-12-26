@@ -78,8 +78,8 @@ function notificationEnabled($style, $module_id=null)
  * category in the selected module.  If no category is selected,
  * return an array of info for all categories.
  *
- * @param  string  $name       Category name (default all categories)
- * @param  int     $module_id  ID of the module (default current module)
+ * @param null $category_name
+ * @param int  $module_id ID of the module (default current module)
  * @return mixed
  */
 function &notificationCategoryInfo($category_name = null, $module_id = null)

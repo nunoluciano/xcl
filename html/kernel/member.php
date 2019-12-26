@@ -73,7 +73,7 @@ class XoopsMemberHandler
 
     /**
      * constructor
-     *
+     * @param $db
      */
     public function __construct(&$db)
     {
@@ -206,8 +206,9 @@ class XoopsMemberHandler
      * insert a user into the database
      *
      * @param object $user reference to the user to insert
+     * @param bool   $force
      * @return bool TRUE if already in database and unchanged
-     * FALSE on failure
+     *                     FALSE on failure
      */
     public function insertUser(&$user, $force = false)
     {
@@ -271,8 +272,8 @@ class XoopsMemberHandler
      * add a user to a group
      *
      * @param int $group_id ID of the group
-     * @param int $user_id ID of the user
-     * @return object XoopsMembership
+     * @param int $user_id  ID of the user
+     * @return bool XoopsMembership
      */
     public function addUserToGroup($group_id, $user_id)
     {
@@ -348,6 +349,11 @@ class XoopsMemberHandler
     }
 
     /**
+     * @param      $group_id
+     * @param bool $asobject
+     * @param int  $limit
+     * @param int  $start
+     * @return array
      * @see getUsersByGroup
      */
     public function &getUsersByNoGroup($group_id, $asobject = false, $limit = 0, $start = 0)
@@ -465,8 +471,9 @@ class XoopsMemberHandler
     }
 
     /**
-     * @see getUserCountByGroup
+     * @param $group_id
      * @return int
+     * @see getUserCountByGroup
      */
     public function getUserCountByNoGroup($group_id)
     {

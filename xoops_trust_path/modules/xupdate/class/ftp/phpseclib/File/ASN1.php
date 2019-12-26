@@ -128,7 +128,6 @@ class File_ASN1_Element
      * Constructor
      *
      * @param string $encoded
-     * @return File_ASN1_Element
      * @access public
      */
     public function __construct($encoded)
@@ -834,7 +833,7 @@ class File_ASN1
      *
      * @param string $source
      * @param string $mapping
-     * @param int    $idx
+     * @param array  $special
      * @return string
      * @access public
      */
@@ -850,6 +849,7 @@ class File_ASN1
      * @param string $source
      * @param string $mapping
      * @param int    $idx
+     * @param array  $special
      * @return string
      * @access private
      */

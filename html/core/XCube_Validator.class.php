@@ -21,10 +21,10 @@
 class XCube_Validator
 {
     /**
-     * 
+     *
      * @param XCube_FormProperty $form
-     * @param array              $vars   variables of this field property.
-     * @return bool
+     * @param array              $vars variables of this field property.
+     * @return void
      */
     public function isValid(&$form, $vars)
     {

@@ -70,12 +70,15 @@ class User_AvatarEditAction extends User_AbstractEditAction
      * @var User_AvatarSelectForm
      */
     public $mAvatarSelectForm = null;
-    
+
     /***
      * Fetch conditions from $moduleConfig and set these to member properties.
      * And, by the member property mConfig of the base class, any member
      * functions of this class can access $moduleConfig.
-     * 
+     *
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
      * @todo The limit may be not completed, yet.
      */
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
@@ -149,12 +152,16 @@ class User_AvatarEditAction extends User_AbstractEditAction
     {
         return true;
     }
-    
+
     /***
      * Check whether a current user can access this action.
      * 1) A specified user has to exist.
      * 2) A current user has to equal the specified user, or a current user has
      *    to be a administrator.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
+     * @return bool
      */
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -181,6 +188,9 @@ class User_AvatarEditAction extends User_AbstractEditAction
     /***
      * This override method looks like the same method of ListAction, and tries
      * to get system avatars. After, it will call base class.
+     * @param $controller
+     * @param $xoopsUser
+     * @return int
      */
     public function getDefaultView(&$controller, &$xoopsUser)
     {
@@ -326,16 +336,16 @@ class User_AvatarEditAction extends User_AbstractEditAction
         }
     }
 
-    /** 
+    /**
      * Get _resized size.
-     * 
-     * @param   int $width
-     * @param   int $height
-     * @param   int $maxWidth
-     * @param   int $maxHeight
-     * 
-     * @return  int{}
-    **/
+     *
+     * @param int $width
+     * @param int $height
+     * @param int $maxWidth
+     * @param int $maxHeight
+     *
+     * @return array {}
+     */
     public function _getResizedSize(/*** int ***/ $width, /*** int ***/ $height, /*** int ***/ $maxWidth, /*** int ***/ $maxHeight)
     {
         if (min($width, $height, $maxWidth, $maxHeight) < 1) {

@@ -212,9 +212,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
             
         return $this->_getCount($sql);
     }
-    
+
     /**
      * @access private
+     * @param null $sql
+     * @return bool
      */
     public function _getCount($sql = null)
     {
@@ -262,6 +264,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
     /**
      * @access private
+     * @param $obj
+     * @return string
      */
     public function _insert(&$obj)
     {
@@ -282,6 +286,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
     /**
      * @access private
+     * @param $obj
+     * @return string
      */
     public function _update(&$obj)
     {
@@ -404,7 +410,9 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
     /**
      * Delete $obj.
-     * 
+     *
+     * @param      $obj
+     * @param bool $force
      * @return bool
      */
     public function delete(&$obj, $force = false)

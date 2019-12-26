@@ -21,10 +21,9 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * quit
      *
-     * @param   void
-     *
-     * @return	void
-     **/
+     * @param bool $force
+     * @return bool
+     */
     public function quit($force=false)
     {
         return true;

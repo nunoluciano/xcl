@@ -418,10 +418,8 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * retrieve groups for a user
-     * 
+     *
      * @param int $uid ID of the user
-     * @param bool $asobject should the groups be returned as {@link XoopsGroup}
-     * objects? FALSE returns associative array.
      * @return array array of groups the user belongs to
      */
     public function &getGroupsByUser($uid)
@@ -441,12 +439,10 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * retrieve users belonging to a group
-     * 
+     *
      * @param int $groupid ID of the group
-     * @param bool $asobject return users as {@link XoopsUser} objects?
-     * FALSE will return arrays
-     * @param int $limit number of entries to return
-     * @param int $start offset of first entry to return
+     * @param int $limit   number of entries to return
+     * @param int $start   offset of first entry to return
      * @return array array of users belonging to the group
      */
     public function &getUsersByGroup($groupid, $limit=0, $start=0)
@@ -466,6 +462,10 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     }
 
     /**
+     * @param     $groupid
+     * @param int $limit
+     * @param int $start
+     * @return array
      * @see getUsersByGroup
      */
     public function &getUsersByNoGroup($groupid, $limit=0, $start=0)

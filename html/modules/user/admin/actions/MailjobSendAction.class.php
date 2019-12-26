@@ -99,6 +99,10 @@ class User_MailjobSendAction extends User_Action
      * [Notice]
      * Until private message will come to implement Service, we use pm object
      * directly.
+     * @param $link
+     * @param $mailjob
+     * @param $to_user
+     * @param $from_user
      */
     public function sendPM(&$link, &$mailjob, &$to_user, &$from_user)
     {

@@ -81,6 +81,8 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 
     /**
      * @public
+     * @param int $uid
+     * @return array
      */
     public function getFields4DataShow($uid=0)
     {
@@ -114,6 +116,9 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 
     /**
      * @public
+     * @param      $obj
+     * @param bool $force
+     * @return bool|void
      */
     public function insert(&$obj, $force = false)
     {
@@ -135,6 +140,9 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
 
     /**
      * @public
+     * @param      $obj
+     * @param bool $force
+     * @return bool
      */
     public function delete(&$obj, $force = false)
     {

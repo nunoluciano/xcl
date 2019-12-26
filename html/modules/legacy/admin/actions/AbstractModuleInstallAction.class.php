@@ -98,6 +98,7 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
 
     /**
      * Return a procedure for this process.
+     * @param $dirname
      */
     public function &_getInstaller($dirname)
     {

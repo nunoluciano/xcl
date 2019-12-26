@@ -14,6 +14,7 @@ class LegacyRender_DelegateFunctions
 {
     /**
      * Search themes that Legacy_RenderSystem can render in file system.
+     * @param $results
      */
     public static function getInstalledThemes(&$results)
     {

@@ -53,10 +53,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * getSFTPErrorsHtml
      *
-     * @param   void
-     *
-     * @return	array
-     **/
+     * @return string
+     */
     public function getSFTPErrors()
     {
         return $this->_MessagesToHtml($this->sftp->getSFTPErrors());
@@ -65,10 +63,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * getSFTPErrorsHtml
      *
-     * @param   void
-     *
-     * @return	array
-     **/
+     * @return string
+     */
     public function getSFTPLog()
     {
         return $this->_MessagesToHtml($this->sftp->getSFTPLog());
@@ -99,10 +95,9 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * quit
      *
-     * @param   void
-     *
-     * @return	void
-     **/
+     * @param bool $force
+     * @return    void
+     */
     public function quit($force=false)
     {
         $this->sftp->disconnect();

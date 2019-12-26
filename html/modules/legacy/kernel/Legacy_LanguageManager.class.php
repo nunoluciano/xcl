@@ -110,9 +110,9 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     /**
      * Load the message catalog of the specified module.
-     * 
+     *
      * @access public
-     * @param A $dirname dirname of module.
+     * @param $moduleName
      */
     public function loadModuleMessageCatalog($moduleName)
     {
@@ -181,8 +181,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     /**
      * @access protected
-     * @param A $filename filename.
-     * @param A $dirname  dirname of module. (for D3 module)
+     * @param A    $filename filename.
+     * @param null $mydirname
      * @return bool
      */
     public function _loadFile($filename, $mydirname = null)

@@ -176,7 +176,6 @@ class File_ANSI
     /**
      * Default Constructor.
      *
-     * @return File_ANSI
      * @access public
      */
     public function __construct()
@@ -219,8 +218,7 @@ class File_ANSI
     /**
      * Set the number of lines that should be logged past the terminal height
      *
-     * @param int $x
-     * @param int $y
+     * @param $history
      * @access public
      */
     public function setHistory($history)
@@ -506,6 +504,9 @@ class File_ANSI
      * Returns the current coordinate without preformating
      *
      * @access private
+     * @param $last_attr
+     * @param $cur_attr
+     * @param $char
      * @return string
      */
     public function _processCoordinate($last_attr, $cur_attr, $char)

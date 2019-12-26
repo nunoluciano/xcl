@@ -136,6 +136,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
     /**
      * Fetch a result row as an associative array
      *
+     * @param $result
      * @return array
      */
     public function fetchArray($result)
@@ -146,6 +147,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
     /**
      * Fetch a result row as an associative array
      *
+     * @param $result
      * @return array
      */
     public function fetchBoth($result)
@@ -345,6 +347,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
     /**
      * Emulates prepare(), but this is TEST API.
      * @remark This is TEST API. This method should be called by only Legacy.
+     * @param $query
      */
     public function prepare($query)
     {

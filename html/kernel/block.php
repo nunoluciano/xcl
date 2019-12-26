@@ -442,9 +442,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * write a new block into the database
      *
      * @param object XoopsBlock $block reference to the block to insert
-     * @param temp $autolink
+     * @param bool $autolink
      * @return bool TRUE if succesful
-     **/
+     */
     public function insert(&$block, $autolink=false)
     {
         if (strtolower(get_class($block)) != 'xoopsblock') {
@@ -592,17 +592,18 @@ class XoopsBlockHandler extends XoopsObjectHandler
 
     /**
      * get all the blocks that match the supplied parameters
-     * @param $side            0: sideblock - left
-     *                   1: sideblock - right
-     *                   2: sideblock - left and right
-     *                   3: centerblock - left
-     *                   4: centerblock - right
-     *                   5: centerblock - center
-     *                   6: centerblock - left, right, center
      * @param groupid $groupid (can be an array)
-     * @param $visible         0: not visible 1: visible
-     * @param order $orderby   of the blocks
-     * @returns array of block objects
+     * @param bool    $asobject
+     * @param         $side    0: sideblock - left
+     *                         1: sideblock - right
+     *                         2: sideblock - left and right
+     *                         3: centerblock - left
+     *                         4: centerblock - right
+     *                         5: centerblock - center
+     *                         6: centerblock - left, right, center
+     * @param         $visible 0: not visible 1: visible
+     * @param string  $orderby of the blocks
+     * @param int     $isactive
      * @return array
      */
     public function &getAllBlocksByGroup($groupid, $asobject=true, $side=null, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
@@ -738,6 +739,13 @@ class XoopsBlockHandler extends XoopsObjectHandler
     /**
      * Gets block objects by groups & modules.
      * @remark This is the special API for base modules like Legacy.
+     * @param        $groupid
+     * @param int    $module_id
+     * @param bool   $toponlyblock
+     * @param null   $visible
+     * @param string $orderby
+     * @param int    $isactive
+     * @return array
      */
     public function &getAllByGroupModule($groupid, $module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
@@ -793,7 +801,12 @@ class XoopsBlockHandler extends XoopsObjectHandler
      * Return block instance array by $groupid, $mid and $blockFlag.
      * This function is new function of Cube and used from controller.
      * @remark This is the special API for base modules like Legacy.
-     **/
+     * @param        $groupid
+     * @param bool   $mid
+     * @param int    $blockFlag
+     * @param string $orderby
+     * @return array
+     */
     public function &getBlocks($groupid, $mid=false, $blockFlag=SHOW_BLOCK_ALL, $orderby='b.weight,b.bid')
     {
         $root =& XCube_Root::getSingleton();
@@ -861,6 +874,12 @@ class XoopsBlockHandler extends XoopsObjectHandler
 
     /**
      * @remark This is the special API for base modules like Legacy.
+     * @param int    $module_id
+     * @param bool   $toponlyblock
+     * @param null   $visible
+     * @param string $orderby
+     * @param int    $isactive
+     * @return array
      */
     public function &getNonGroupedBlocks($module_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1)
     {
@@ -931,10 +950,13 @@ class XoopsBlockHandler extends XoopsObjectHandler
         list($count) = $db->fetchRow($result);
         return $count;
     }
-    
+
     /**
      * Changes 'isactive' value of the module specified by $moduleId.
      * @remark This method should be called by only the base modules like Legacy.
+     * @param      $moduleId
+     * @param      $isActive
+     * @param bool $force
      */
     public function syncIsActive($moduleId, $isActive, $force = false)
     {

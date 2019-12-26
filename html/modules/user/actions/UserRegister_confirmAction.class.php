@@ -27,9 +27,12 @@ class User_UserRegister_confirmAction extends User_Action
     public $mNewUser = null;
     
     public $mRedirectMessage = null;
-    
+
     /***
      * TODO this member function uses the old style delegate.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
      */
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -78,10 +81,11 @@ class User_UserRegister_confirmAction extends User_Action
     {
         return USER_FRAME_VIEW_INPUT;
     }
-    
+
     /***
      * Get regist actionform from Session and set it to the member property.
      * @access private
+     * @param $controller
      */
     public function _getRegistForm(&$controller)
     {
@@ -94,6 +98,7 @@ class User_UserRegister_confirmAction extends User_Action
     /***
      * Clear session.
      * @access private
+     * @param $controller
      */
     public function _clearRegistForm(&$controller)
     {
@@ -146,11 +151,13 @@ class User_UserRegister_confirmAction extends User_Action
 
     /**
      * executeViewCancel
-     * 
-     * @param	XCube_RenderTarget	&$render
-     * 
-     * @return	void
-    **/
+     *
+     * @param                        $controller
+     * @param                        $xoopsUser
+     * @param XCube_RenderTarget    &$render
+     *
+     * @return    void
+     */
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL.'/register.php');

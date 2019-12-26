@@ -192,12 +192,14 @@ class Legacy_EventFunction
         
         $render->setAttribute('xoops_notification', $xoops_notification);
     }
-    
+
     /**
      * This member function is added to 'User_UserViewAction.GetUserPosts'.
      * Recount posts of $xoopsUser in the comment system.
-     * 
+     *
      * @static
+     * @param $posts
+     * @param $xoopsUser
      */
     public static function recountPost(&$posts, $xoopsUser)
     {

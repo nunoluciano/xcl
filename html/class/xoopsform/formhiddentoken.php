@@ -49,7 +49,8 @@ class XoopsFormHiddenToken extends XoopsFormHidden
     /**
      * Constructor
      *
-     * @param   string  $name   "name" attribute
+     * @param string $name "name" attribute
+     * @param int    $timeout
      */
     public function __construct($name = null, $timeout = 360)
     {

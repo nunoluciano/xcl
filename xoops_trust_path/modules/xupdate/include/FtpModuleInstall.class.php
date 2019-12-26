@@ -237,8 +237,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     /**
      * uploadFiles
      *
-     * @return	bool
-     **/
+     * @param $caller
+     * @return    bool
+     */
     private function uploadFiles($caller)
     {
         //$this->Ftp->connect();
@@ -424,15 +425,15 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             }
         }
     }
-    
-    
+
     /**
      * _get_nextlink
      *
-     * @param   string  $dirname
+     * @param string $dirname
      *
-     * @return	string
-     **/
+     * @param        $caller
+     * @return    string
+     */
     private function _get_nextlink($dirname, $caller)
     {
         $ret ='';
@@ -461,10 +462,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     /**
      * _exploredDirPath_DownDir
      *
-     * @param   void
-     *
-     * @return	void
-     **/
+     * @param string $member
+     * @param string $checkfile
+     * @return bool
+     */
     private function _exploredDirPath_DownDir($member = '', $checkfile = '')
     {
         $dir = $this->exploredDirPath;
@@ -533,10 +534,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     /**
      * _chmod_file
      *
-     * @param   string $directory
-     *
-     * @return	void
-     **/
+     * @param $file
+     * @return    void
+     */
     private function _chmod_file(&$file)
     {
         if (file_exists($file)) {

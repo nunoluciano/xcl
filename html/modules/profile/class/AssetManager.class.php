@@ -42,6 +42,9 @@ class Profile_AssetManager
 
     /**
      * @public
+     * @param $type
+     * @param $name
+     * @return |null |null
      */
     public function &create($type, $name)
     {
@@ -61,6 +64,9 @@ class Profile_AssetManager
 
     /**
      * @private
+     * @param $type
+     * @param $name
+     * @return |null |null
      */
     public function &_fallbackCreate($type, $name)
     {
@@ -92,6 +98,9 @@ class Profile_AssetManager
 
     /**
      * @public
+     * @param $type
+     * @param $name
+     * @return mixed|null
      */
     public function &load($type, $name)
     {
@@ -104,6 +113,8 @@ class Profile_AssetManager
 
     /**
      * @private
+     * @param $name
+     * @return
      */
     public function &_createHandler($name)
     {
@@ -112,6 +123,8 @@ class Profile_AssetManager
 
     /**
      * @private
+     * @param $name
+     * @return null
      */
     public function &_createFilter($name)
     {
@@ -135,6 +148,8 @@ class Profile_AssetManager
 
     /**
      * @private
+     * @param $name
+     * @return null
      */
     public function &_createActionForm($name)
     {
@@ -164,6 +179,9 @@ class Profile_AssetManager
 
     /**
      * @private
+     * @param $className
+     * @param $filePath
+     * @return null
      */
     public function &_createInstance($className, $filePath)
     {
@@ -189,6 +207,8 @@ class Profile_AssetManager
 
     /**
      * @private
+     * @param bool $isAdmin
+     * @return string
      */
     public function _getBasePath($isAdmin = false)
     {

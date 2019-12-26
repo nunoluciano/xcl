@@ -28,6 +28,8 @@
 // ################## Various functions from here ################
 
 /**
+ * @param $name
+ * @return
  * @deprecated see RequestObject
  */
 function xoops_getrequest($name)
@@ -37,6 +39,7 @@ function xoops_getrequest($name)
 }
 
 /**
+ * @param bool $closehead
  * @deprecated
  */
 function xoops_header($closehead = true)
@@ -81,6 +84,8 @@ function xoops_error($message, $title='', $style='errorMsg')
 
 /**
  * @deprecated Don't use.
+ * @param        $message
+ * @param string $title
  */
 function xoops_result($message, $title='')
 {
@@ -135,6 +140,10 @@ function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = tr
 
 /**
  * @brief xoops_confirm alias [test]
+ * @param        $hiddens
+ * @param        $action
+ * @param        $msg
+ * @param string $submit
  */
 function xoops_token_confirm($hiddens, $action, $msg, $submit='')
 {
@@ -564,6 +573,9 @@ function &getMailer()
 /**
  * This function is Fly-Weight to get an instance of XoopsObject in Legacy
  * Kernel.
+ * @param      $name
+ * @param bool $optional
+ * @return bool|mixed|null
  */
 function &xoops_gethandler($name, $optional = false)
 {

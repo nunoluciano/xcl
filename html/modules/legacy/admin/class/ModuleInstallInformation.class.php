@@ -51,6 +51,7 @@ class Legacy_BlockInformation
     }
 
     /**
+     * @param $block
      * @return bool
      */
     public function isEqual(&$block)
@@ -132,6 +133,7 @@ class Legacy_BlockInfoCollection
 
     /**
      * Updates the list of blocks by comparing with $collection.
+     * @param $collection
      */
     public function update(&$collection)
     {
@@ -207,6 +209,7 @@ class Legacy_PreferenceInformation
     }
 
     /**
+     * @param $preference
      * @return bool
      */
     public function isEqual(&$preference)
@@ -367,6 +370,7 @@ class Legacy_PreferenceInfoCollection
      * Updates the list of blocks by comparing with $collection.
      * @todo need delete comments' data
      * @todo need delete notifications' data
+     * @param $collection
      */
     public function update(&$collection)
     {
@@ -502,14 +506,14 @@ class Legacy_AbstractModinfoReader
     }
 
     /**
-     * @return Legacy_BlockInfoCollection
+     * @return void
      */
     public function &loadBlockInformations()
     {
     }
 
     /**
-     * @return Legacy_PreferenceInfoCollection
+     * @return void
      */
     public function &loadPreferenceInformations()
     {
@@ -538,6 +542,9 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 
     /**
      * @private
+     * @param $funcNum
+     * @param $arr
+     * @return \Legacy_BlockInformation
      */
     public function &_createBlockInformation($funcNum, $arr)
     {

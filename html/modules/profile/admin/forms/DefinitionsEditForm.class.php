@@ -79,6 +79,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 
     /**
      * @public
+     * @param $obj
      */
     public function load(&$obj)
     {
@@ -97,6 +98,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
 
     /**
      * @public
+     * @param $obj
      */
     public function update(&$obj)
     {

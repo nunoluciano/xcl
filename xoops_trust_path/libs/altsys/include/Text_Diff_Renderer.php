@@ -30,6 +30,7 @@ class Text_Diff_Renderer
 
     /**
      * Constructor.
+     * @param array $params
      */
 //HACK by domifara
 //	function Text_Diff_Renderer($params = array())

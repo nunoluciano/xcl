@@ -361,13 +361,13 @@ class XoopsCommentHandler extends XoopsObjectHandler
 
     /**
      * Gets total number of comments for an item
-     * 
-     * @param   int     $module_id  Module ID
-     * @param   int     $item_id    Item ID
-     * @param   int     $status     Status of the comment
-     * 
-     * @return  array   Array of {@link XoopsComment} objects
-     **/
+     *
+     * @param int $module_id Module ID
+     * @param int $item_id   Item ID
+     * @param int $status    Status of the comment
+     *
+     * @return int Array of <a href='psi_element://XoopsComment'>XoopsComment</a> objects
+     */
     public function &getCountByItemId($module_id, $item_id, $status = null)
     {
         $criteria = new CriteriaCompo(new Criteria('com_modid', (int)$module_id));
@@ -450,13 +450,10 @@ class XoopsCommentHandler extends XoopsObjectHandler
 
     /**
      * Change a value in multiple comments
-     * 
-     * @param   string  $fieldname  Name of the field
-     * @param   string  $fieldvalue Value to write
-     * @param   object  $criteria   {@link CriteriaElement} 
-     * 
-     * @return  bool
-     **/
+     *
+     * @param $comment
+     * @return array
+     */
 /*    
     function updateAll($fieldname, $fieldvalue, $criteria = null)
     {

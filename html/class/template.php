@@ -335,12 +335,12 @@ function xoops_template_create($resource_type, $resource_name, &$template_source
 
 /**
  * Clear the module cache
- * 
+ *
+ * @param int $mid Module ID
+ * @return void
  * @deprecated
  *
- * @param   int $mid    Module ID
- * @return 
- **/
+ */
 function xoops_template_clear_module_cache($mid)
 {
     $block_arr =& XoopsBlock::sGetByModule($mid);

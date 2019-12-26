@@ -18,7 +18,8 @@ class XCube_RenderCache
     }
 
     /**
-     * @return bool
+     * @param null $cachetime
+     * @return void
      */
     public function isCache($cachetime = null)
     {

@@ -879,7 +879,6 @@ class Net_SSH2
      * @param mixed $host
      * @param int   $port
      * @param int   $timeout
-     * @return Net_SSH2
      * @access public
      * @see    self::login()
      */
@@ -1944,8 +1943,6 @@ class Net_SSH2
      * The $password parameter can be a plaintext password, a Crypt_RSA object or an array
      *
      * @param string $username
-     * @param mixed  $password
-     * @param mixed $...
      * @return bool
      * @see    self::_login()
      * @access public
@@ -1960,8 +1957,6 @@ class Net_SSH2
      * Login Helper
      *
      * @param string $username
-     * @param mixed  $password
-     * @param mixed $...
      * @return bool
      * @see    self::_login_helper()
      * @access private
@@ -2200,7 +2195,6 @@ class Net_SSH2
     /**
      * Handle the keyboard-interactive requests / responses.
      *
-     * @param string $responses ...
      * @return bool
      * @access private
      */
@@ -2334,8 +2328,8 @@ class Net_SSH2
     /**
      * Login with an RSA private key
      *
-     * @param string    $username
-     * @param Crypt_RSA $password
+     * @param string $username
+     * @param        $privatekey
      * @return bool
      * @access   private
      * @internal It might be worthwhile, at some point, to protect against {@link https://tools.ietf.org/html/rfc4251#section-9.3.9 traffic analysis}
@@ -3076,6 +3070,7 @@ class Net_SSH2
      *
      * Because some binary packets need to be ignored...
      *
+     * @param $payload
      * @return string
      * @access private
      * @see    self::_get_binary_packet()
@@ -3275,7 +3270,8 @@ class Net_SSH2
      *
      * Returns the data as a string if it's available and false if not.
      *
-     * @param $client_channel
+     * @param      $client_channel
+     * @param bool $skip_extended
      * @return mixed
      * @access private
      */
@@ -3549,7 +3545,8 @@ class Net_SSH2
      *
      * Makes sure that only the last 1MB worth of packets will be logged
      *
-     * @param string $data
+     * @param $message_number
+     * @param $message
      * @access private
      */
     public function _append_log($message_number, $message)
@@ -3675,7 +3672,7 @@ class Net_SSH2
      *
      * @param int  $client_channel
      * @param bool $want_reply
-     * @return bool
+     * @return void
      * @access private
      */
     public function _close_channel($client_channel, $want_reply = false)
@@ -3746,7 +3743,6 @@ class Net_SSH2
      * named constants from it, using the value as the name of the constant and the index as the value of the constant.
      * If any of the constants that would be defined already exists, none of the constants will be defined.
      *
-     * @param array $array
      * @access private
      */
     public function _define_array()

@@ -28,7 +28,9 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
     /**
      * Checks whether the site is closed now, and whether all of must modules
      * have been installed. This function is called through delegates.
-     * @var XoopsUser &$xoopsUser
+     * @param $principal
+     * @param $controller
+     * @param $context
      * @see preBlockFilter()
      */
     public function callbackSetupUser(&$principal, &$controller, &$context)

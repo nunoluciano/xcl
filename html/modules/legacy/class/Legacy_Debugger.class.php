@@ -22,9 +22,11 @@ define("XOOPS_DEBUG_SMARTY", 3);
 class Legacy_DebuggerManager
 {
     /***
-    Create XoopsDebugger instance.
-    You must not communicate with this method directly.
-    */
+     * Create XoopsDebugger instance.
+     * You must not communicate with this method directly.
+     * @param $instance
+     * @param $debug_mode
+     */
     public function createInstance(&$instance, $debug_mode)
     {
         if (is_object($instance)) {

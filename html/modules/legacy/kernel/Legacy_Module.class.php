@@ -62,11 +62,12 @@ class Legacy_AbstractModule
      * @see getRenderTarget()
      */
     public $mRender = null;
-    
+
     /**
      * @public
      * @brief constructor
      * @param XoopsModule $module
+     * @param bool        $loadConfig
      * @attention
      *     Basically, only Legacy_Controller and its utility functions should call the
      *     constructor.
@@ -181,15 +182,15 @@ class Legacy_AbstractModule
         
         return $this->mCacheInfo;
     }
-    
+
     /**
      * @protected
      * @brief Creates a cache information instance and returns it.
-     * @return Legacy_ModuleCacheInformation
+     * @return void
      * @remarks
      *     This member function sets the created instance to mCacheInfo because this
      *     instance has to keep the instance for many callbacks.
-     * @see getCacheInfo()
+     * @see   getCacheInfo()
      */
     public function _createCacheInfo()
     {
@@ -216,11 +217,11 @@ class Legacy_AbstractModule
     /**
      * @protected
      * @brief Creates a render target instance and returns it.
-     * @return XCube_RenderTarget
+     * @return void
      * @remarks
      *     This member function sets the created instance to mRender because this
      *     instance has to keep the instance for many callbacks.
-     * @see getRenderTarget()
+     * @see   getRenderTarget()
      */
     public function _createRenderTarget()
     {
@@ -328,10 +329,15 @@ class Legacy_AbstractModule
     public function doActionSearch(&$searchArgs)
     {
     }
-    
+
     /**
      * @public
      * @brief This method is called back by the xoops global search feature.
+     * @param $queries
+     * @param $andor
+     * @param $max_hit
+     * @param $start
+     * @param $uid
      */
     public function doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid)
     {
@@ -367,12 +373,12 @@ class Legacy_AbstractModule
     {
         return null;
     }
-    
+
     /**
      * @public
      * @brief Gets an array having menus for the side menu of the control panel.
-     * @return Complex Array
-     * @see /modules/legacy/admin/templates/blocks/legacy_admin_block_sidemenu.html
+     * @return void Array
+     * @see   /modules/legacy/admin/templates/blocks/legacy_admin_block_sidemenu.html
      */
     public function getAdminMenu()
     {

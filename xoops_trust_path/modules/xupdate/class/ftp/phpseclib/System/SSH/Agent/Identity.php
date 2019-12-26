@@ -84,7 +84,6 @@ class Identity
      * Default Constructor.
      *
      * @param resource $fsock
-     * @return \phpseclib\System\SSH\Agent\Identity
      * @access private
      */
     public function __construct($fsock)

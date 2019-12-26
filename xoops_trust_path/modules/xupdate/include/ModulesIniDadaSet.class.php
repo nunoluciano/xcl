@@ -277,7 +277,6 @@ class Xupdate_ModulesIniDadaSet
 
     /***
      * @param $multiData
-     * @param $org_lang
      * @return int
      */
     protected function _processMultiData($multiData)

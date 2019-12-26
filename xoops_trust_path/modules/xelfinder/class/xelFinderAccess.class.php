@@ -69,14 +69,17 @@ class xelFinderAccess {
 		}
 		return false;
 	}
-	
-	/**
-	 * Simple function to demonstrate how to control file access using "accessControl" callback.
-	 *
-	 * @param  string  $attr  attribute name (read|write|locked|hidden)
-	 * @param  string  $path  file path relative to volume root directory started with directory separator
-	 * @return bool|null
-	 **/
+
+    /**
+     * Simple function to demonstrate how to control file access using "accessControl" callback.
+     *
+     * @param string $attr attribute name (read|write|locked|hidden)
+     * @param string $path file path relative to volume root directory started with directory separator
+     * @param        $data
+     * @param        $volume
+     * @param        $isDir
+     * @return bool|null
+     */
 	public function access($attr, $path, $data, $volume, $isDir) {
 		switch ($attr) {
 			case 'read' :

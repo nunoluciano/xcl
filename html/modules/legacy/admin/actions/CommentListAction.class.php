@@ -307,6 +307,9 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {

@@ -570,14 +570,14 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return $this->dirsCache[$path];
 	}
 
-	/**
-	 * Open file and return file pointer
-	 *
-	 * @param  string  $path  file path
-	 * @param  bool    $write open file for writing
-	 * @return resource|false
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Open file and return file pointer
+     *
+     * @param string $path file path
+     * @param string $mode
+     * @return resource|false
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _fopen($path, $mode='rb') {
 		if ($local = $this->readlink($path)) {
 			return @fopen($local, $mode);
@@ -585,13 +585,14 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return false;
 	}
 
-	/**
-	 * Close opened file
-	 *
-	 * @param  resource  $fp  file pointer
-	 * @return bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Close opened file
+     *
+     * @param resource $fp file pointer
+     * @param string   $path
+     * @return void
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _fclose($fp, $path='') {
 		@fclose($fp);
 	}
@@ -622,14 +623,15 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return false;
 	}
 
-	/**
-	 * Create symlink. FTP driver does not support symlinks.
-	 *
-	 * @param  string  $target  link target
-	 * @param  string  $path    symlink path
-	 * @return bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Create symlink. FTP driver does not support symlinks.
+     *
+     * @param string $target link target
+     * @param string $path   symlink path
+     * @param        $name
+     * @return bool
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _symlink($target, $path, $name) {
 		return false;
 	}
@@ -648,16 +650,16 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return $res;
 	}
 
-	/**
-	 * Move file into another parent dir.
-	 * Return new file path or false.
-	 *
-	 * @param  string  $source  source file path
-	 * @param  string  $target  target dir path
-	 * @param  string  $name    file name
-	 * @return string|bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Move file into another parent dir.
+     * Return new file path or false.
+     *
+     * @param string $source source file path
+     * @param        $targetDir
+     * @param string $name   file name
+     * @return string|bool
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _move($source, $targetDir, $name) {
 		return false;
 	}
@@ -730,21 +732,23 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return false;
 	}
 
-	/**
-	 * Detect available archivers
-	 *
-	 * @return void
-	 **/
+    /**
+     * Detect available archivers
+     *
+     * @return array
+     */
 	protected function _checkArchivers() {
 		// die('Not yet implemented. (_checkArchivers)');
 		return [];
 	}
 
-	/**
-	 * chmod implementation
-	 *
-	 * @return bool
-	 **/
+    /**
+     * chmod implementation
+     *
+     * @param $path
+     * @param $mode
+     * @return bool
+     */
 	protected function _chmod($path, $mode) {
 		return false;
 	}

@@ -19,9 +19,11 @@ class Legacy_NuSoapLoader extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('XCube_ServiceManager.CreateClient', 'Legacy_NuSoapLoader::createClient');
         $this->mRoot->mDelegateManager->add('XCube_ServiceManager.CreateServer', 'Legacy_NuSoapLoader::createServer');
     }
-    
+
     /**
      * @static
+     * @param $client
+     * @param $service
      */
     public static function createClient(&$client, $service)
     {
@@ -43,6 +45,8 @@ class Legacy_NuSoapLoader extends XCube_ActionFilter
 
     /**
      * @static
+     * @param $server
+     * @param $service
      */
     public static function createServer(&$server, $service)
     {

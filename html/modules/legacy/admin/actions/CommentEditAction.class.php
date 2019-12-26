@@ -20,6 +20,8 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 {
     /**
      * Override. At first, call _setupObject().
+     * @param $controller
+     * @param $xoopsUser
      */
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -103,6 +105,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 
     /**
      * @static
+     * @param $comment
      * @return Return array as the informations of comments. If $comment has fatal status, return false.
      */
     public function loadCallbackFile(&$comment)

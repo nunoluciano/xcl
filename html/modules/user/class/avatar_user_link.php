@@ -41,8 +41,9 @@ class UserAvatar_user_linkHandler extends XoopsObjectGenericHandler
     }
 
     /**
-     * Delete all of link informations about a user specified. 
+     * Delete all of link informations about a user specified.
      *
+     * @param $xoopsUser
      * @return bool
      */
     public function deleteAllByUser(&$xoopsUser)

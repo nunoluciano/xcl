@@ -210,10 +210,13 @@ class XCube_Delegate
     /**
      * @public
      * @brief [Overload] Connects functions to this object as callbacked functions
+     * @param      $callback
+     * @param null $param2
+     * @param null $param3
      * @return void
-     * 
+     *
      * This method is virtual overload by sigunatures.
-     * 
+     *
      * \code
      *   add(callback $callback, int priority = XCUBE_DELEGATE_PRIORITY_NORMAL);
      *   add(callback $callback, string filepath = null);
@@ -243,10 +246,11 @@ class XCube_Delegate
         $this->_mCallbacks[$priority][] = [$callback, $filepath];
         ksort($this->_mCallbacks);
     }
-    
+
     /**
      * @public
      * @brief Disconnects a function from this object.
+     * @param $delcallback
      * @return void
      */
     public function delete($delcallback)
@@ -454,19 +458,22 @@ class XCube_DelegateManager
             return true;
         }
     }
-    
+
     /**
      * @public
      * @brief Connects functions to the delegate that have the specified name.
      * @param string $name - Registration name.
+     * @param        $callback
+     * @param null   $param3
+     * @param null   $param4
      * @return void
-     * 
+     *
      * If there aren't any delegates that have the specified name, this manager
      * entrust parameters to member properties. Then, when the delegate that
      * have the specified name will be registered, this manager will set these
      * parameters to the delegate.
-     * 
-     * @see XCube_Delegate::add()
+     *
+     * @see   XCube_Delegate::add()
      */
     public function add($name, $callback, $param3 = null, $param4 = null)
     {
@@ -478,12 +485,13 @@ class XCube_DelegateManager
         $this->_mCallbacks[$name][] = $callback;
         $this->_mCallbackParameters[$name][] = ['0' => $param3, '1' => $param4];
     }
-    
+
     /**
      * @public
      * @param string $name - Registration name
+     * @param        $delcallback
      * @brief Disconnects a function from the delegate that have the specified name.
-     * @see XCube_Delegate::delete()
+     * @see   XCube_Delegate::delete()
      */
     public function delete($name, $delcallback)
     {
@@ -537,12 +545,11 @@ class XCube_DelegateManager
         
         return isset($this->_mCallbacks[$name]) ? (count($this->_mCallbacks[$name]) == 0) : false;
     }
-    
-    
-   /**
-    * @public
-    * @return Map Array - std::map<string, XCube_Delegate*>
-    */
+
+    /**
+     * @public
+     * @return array Array - std::map<string, XCube_Delegate*>
+     */
     public function getDelegates()
     {
         return $this->_mDelegates;

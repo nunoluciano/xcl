@@ -1,11 +1,12 @@
 <?php
 /**
  *
- * @package XOOPS2
- * @version $Id: legacy_comments.php,v 1.3 2008/09/25 15:12:13 kilica Exp $
+ * @param $options
+ * @return array
  * @copyright Copyright (c) 2000 XOOPS.org  <https://www.xoops.org/>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @license   https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @package   XOOPS2
+ * @version   $Id: legacy_comments.php,v 1.3 2008/09/25 15:12:13 kilica Exp $
  */
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //

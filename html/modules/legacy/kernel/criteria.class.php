@@ -72,17 +72,23 @@ class Legacy_Criteria
     {
         $this->mTypeInfoArr = $typeInfoArr;
     }
-    
+
     /**
      * This is alias for addAnd().
+     * @param        $column
+     * @param null   $value
+     * @param string $comparison
      */
     public function add($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
         $this->addAnd($column, $value, $comparison);
     }
-    
+
     /**
      * Add $criteria to childlen with AND condition.
+     * @param        $column
+     * @param null   $value
+     * @param string $comparison
      */
     public function addAnd($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
@@ -102,6 +108,9 @@ class Legacy_Criteria
 
     /**
      * Add $criteria to childlen with OR condition.
+     * @param        $column
+     * @param null   $value
+     * @param string $comparison
      */
     public function addOr($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
@@ -130,11 +139,12 @@ class Legacy_Criteria
         $criteria =new Legacy_Criteria($this->mTypeInfoArr);
         return $criteria;
     }
-    
+
     /**
      * Check whether specified column exists in the list.
-     * 
+     *
      * @access protected
+     * @param $column
      * @return bool
      */
     public function _checkColumn($column)

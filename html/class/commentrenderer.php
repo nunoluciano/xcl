@@ -70,11 +70,11 @@ class XoopsCommentRenderer
     /**
      * Access the only instance of this class
      *
-     * @param   object $tpl        reference to a {@link Smarty} object
-     * @param bool     $use_icons
-     * @param bool     $do_iconcheck
-     * @return
-     **/
+     * @param object $tpl reference to a {@link Smarty} object
+     * @param bool   $use_icons
+     * @param bool   $do_iconcheck
+     * @return \XoopsCommentRenderer
+     */
     public function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
     {
         static $instance;

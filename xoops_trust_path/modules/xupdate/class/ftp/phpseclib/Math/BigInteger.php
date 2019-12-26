@@ -238,9 +238,8 @@ class Math_BigInteger
      * ?>
      * </code>
      *
-     * @param base $x -10 number or base-$base number if $base set.
-     * @param int  $base
-     * @return Math_BigInteger
+     * @param int $x -10 number or base-$base number if $base set.
+     * @param int $base
      * @access public
      */
     public function __construct($x = 0, $base = 10)
@@ -1292,7 +1291,7 @@ class Math_BigInteger
     /**
      * Performs squaring
      *
-     * @param array $x
+     * @param bool $x
      * @return array
      * @access private
      */
@@ -2501,7 +2500,7 @@ class Math_BigInteger
      * </code>
      *
      * @param Math_BigInteger $n
-     * @return Math_BigInteger
+     * @return array
      * @access   public
      * @internal Calculates the GCD using the binary xGCD algorithim described in
      *    {@link https://www.cacr.math.uwaterloo.ca/hac/about/chap14.pdf#page=19 HAC 14.61}.  As the text above 14.61 notes,
@@ -3088,7 +3087,7 @@ class Math_BigInteger
      *
      * Byte length is equal to $length. Uses crypt_random if it's loaded and mt_rand if it's not.
      *
-     * @param int $length
+     * @param $size
      * @return Math_BigInteger
      * @access private
      */
@@ -3123,7 +3122,7 @@ class Math_BigInteger
      * $max->random($min)
      *
      * @param Math_BigInteger $arg1
-     * @param Math_BigInteger $arg2
+     * @param bool            $arg2
      * @return Math_BigInteger
      * @access   public
      * @internal The API for creating random numbers used to be $a->random($min, $max), where $a was a Math_BigInteger object.
@@ -3204,8 +3203,8 @@ class Math_BigInteger
      * If more than $timeout seconds have elapsed, give up and return false.
      *
      * @param Math_BigInteger $arg1
-     * @param Math_BigInteger $arg2
-     * @param int             $timeout
+     * @param bool            $arg2
+     * @param bool            $timeout
      * @return Math_BigInteger|false
      * @access   public
      * @internal See {@link https://www.cacr.math.uwaterloo.ca/hac/about/chap4.pdf#page=15 HAC 4.44}.
@@ -3333,7 +3332,7 @@ class Math_BigInteger
      * $t parameter is distributability.  Math_BigInteger::randomPrime() can be distributed across multiple pageloads
      * on a website instead of just one.
      *
-     * @param Math_BigInteger $t
+     * @param bool $t
      * @return bool
      * @access   public
      * @internal Uses the
@@ -3786,7 +3785,7 @@ class Math_BigInteger
      * Removes leading zeros
      *
      * @param array $value
-     * @return Math_BigInteger
+     * @return array
      * @access private
      */
     public function _trim($value)

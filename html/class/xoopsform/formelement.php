@@ -210,7 +210,7 @@ class XoopsFormElement
     /**
      * set the "class" attribute for the element
      *
-     * @param	string  $key   "class" attribute for the element
+     * @param $class
      */
     public function setClass($class)
     {
@@ -301,9 +301,9 @@ class XoopsFormElement
      * This string will be inserted verbatim and unvalidated in the
      * element's tag. Know what you are doing!
      *
-     * @param	string  $extra
-     * @param   string  $replace If true, passed string will replace current content otherwise it will be appended to it
-     * @return	string New content of the extra string
+     * @param string $extra
+     * @param bool   $replace If true, passed string will replace current content otherwise it will be appended to it
+     * @return    string New content of the extra string
      */
     public function setExtra($extra, $replace = false)
     {

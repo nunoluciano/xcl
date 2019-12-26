@@ -512,6 +512,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     }
 
     /**
+     * @param bool $closeHead
      * @deprecated
      */
     public function showXoopsHeader($closeHead=true)
@@ -529,7 +530,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     }
     
     // TODO never output directly
+
     /**
+     * @param bool $closehead
      * @deprecated
      */
     public function _renderHeader($closehead=true)
@@ -600,9 +603,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
         return $renderTarget;
     }
-    
+
     /**
      * @TODO This function is not cool!
+     * @param bool $isDialog
+     * @return \Legacy_DialogRenderTarget|\Legacy_ThemeRenderTarget
      */
     public function &getThemeRenderTarget($isDialog = false)
     {

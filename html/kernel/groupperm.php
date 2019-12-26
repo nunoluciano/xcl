@@ -143,9 +143,10 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 {
 
     /**
-     * Create a new {@link XoopsGroupPerm} 
-     * 
-     * @return	bool    $isNew  Flag the object as "new"?
+     * Create a new {@link XoopsGroupPerm}
+     *
+     * @param bool $isNew
+     * @return \XoopsGroupPerm $isNew  Flag the object as "new"?
      */
     public function &create($isNew = true)
     {
@@ -357,6 +358,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Delete
+     * @param $gperm_groupid
      */
     public function deleteBasicPermission($gperm_groupid)
     {
@@ -491,13 +493,13 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
 
     /**
      * Generate a criteria from given params
-     * 
-     * @param	string  $gperm_name       Name of permission
-     * @param	int     $gperm_itemid     ID of an item
-     * @param	int     $gperm_groupid    ID of a group
-     * @param	int     $gperm_modid      ID of a module
      *
-     * @return	CriteiaCompo
+     * @param string $gperm_name    Name of permission
+     * @param int    $gperm_itemid  ID of an item
+     * @param int    $gperm_groupid ID of a group
+     * @param int    $gperm_modid   ID of a module
+     *
+     * @return \CriteriaCompo
      */
     public function &getCriteria($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid = 1)
     {

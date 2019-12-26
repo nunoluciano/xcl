@@ -157,7 +157,6 @@ class Crypt_RC4 extends Crypt_Base
      *
      * Determines whether or not the mcrypt extension should be used.
      *
-     * @return Crypt_RC4
      * @access public
      * @see    Crypt_Base::Crypt_Base()
      */

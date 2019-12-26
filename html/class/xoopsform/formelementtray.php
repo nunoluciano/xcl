@@ -77,9 +77,10 @@ class XoopsFormElementTray extends XoopsFormElement
 
     /**
      * constructor
-     * 
-     * @param	string  $caption    Caption for the group.
-     * @param	string  $delimiter  HTML to separate the elements
+     *
+     * @param string $caption Caption for the group.
+     * @param string $delimeter
+     * @param string $name
      */
     public function __construct($caption, $delimeter="&nbsp;", $name="")
     {
@@ -104,8 +105,9 @@ class XoopsFormElementTray extends XoopsFormElement
 
     /**
      * Add an element to the group
-     * 
-     * @param	object  &$element    {@link XoopsFormElement} to add
+     *
+     * @param      $formElement
+     * @param bool $required
      */
     public function addElement(&$formElement, $required=false)
     {

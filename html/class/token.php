@@ -64,8 +64,8 @@ class XoopsToken
     public $_number_=0;
 
     /**
-     * @param this      $name    token's name string.
-     * @param effective $timeout time(if $timeout equal 0, this token will become unlimited)
+     * @param this $name    token's name string.
+     * @param int  $timeout time(if $timeout equal 0, this token will become unlimited)
      */
     public function __construct($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
@@ -167,8 +167,9 @@ class XoopsToken
     /**
      * If $token equals this token's string, true is returened.
      *
+     * @param null $token
      * @return  bool
-    */
+     */
     public function validate($token=null)
     {
         return ($this->_token_==$token && ($this->_unlimited_ || time()<=$this->_lifetime_));
@@ -193,8 +194,8 @@ class XoopsTokenHandler
      * Create XoopsToken instance, regist(keep to server), and returns it.
      *
      * @access public
-     * @param this      $name    token's name string.
-     * @param effective $timeout time(if $timeout equal 0, this token will become unlimited)
+     * @param this $name    token's name string.
+     * @param int  $timeout time(if $timeout equal 0, this token will become unlimited)
      * @return \XoopsToken
      */
     public function &create($name, $timeout = XOOPS_TOKEN_TIMEOUT)
@@ -222,6 +223,7 @@ class XoopsTokenHandler
 
     /**
      * Register token to session.
+     * @param $token
      */
     public function register(&$token)
     {
@@ -230,6 +232,7 @@ class XoopsTokenHandler
 
     /**
      * Unregister token to session.
+     * @param $token
      */
     public function unregister(&$token)
     {
@@ -289,9 +292,11 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
      * static method.
      * This method was created for quick protection of default modules.
      * this method will be deleted in the near future.
+     * @param     $name
+     * @param int $timeout
+     * @return \XoopsToken
      * @deprecated
-     * @return bool
-    */
+     */
     public static function &quickCreate($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $handler =new XoopsSingleTokenHandler();
@@ -303,9 +308,11 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
      * static method.
      * This method was created for quick protection of default modules.
      * this method will be deleted in the near future.
-     * @deprecated
+     * @param      $name
+     * @param bool $clearIfValid
      * @return bool
-    */
+     * @deprecated
+     */
     public static function quickValidate($name, $clearIfValid=true)
     {
         $handler = new XoopsSingleTokenHandler();
@@ -371,9 +378,11 @@ class XoopsMultiTokenHandler
      * static method.
      * This method was created for quick protection of default modules.
      * this method will be deleted in the near future.
+     * @param     $name
+     * @param int $timeout
+     * @return \XoopsToken
      * @deprecated
-     * @return bool
-    */
+     */
     public static function &quickCreate($name, $timeout = XOOPS_TOKEN_TIMEOUT)
     {
         $handler =new XoopsMultiTokenHandler();
@@ -385,9 +394,11 @@ class XoopsMultiTokenHandler
      * static method.
      * This method was created for quick protection of default modules.
      * this method will be deleted in the near future.
-     * @deprecated
+     * @param      $name
+     * @param bool $clearIfValid
      * @return bool
-    */
+     * @deprecated
+     */
     public static function quickValidate($name, $clearIfValid=true)
     {
         $handler = new XoopsMultiTokenHandler();

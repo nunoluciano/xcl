@@ -120,17 +120,21 @@ class CriteriaElement
     {
         return 0;
     }
-    
+
     /**
      * Return child element.
+     * @param $idx
+     * @return null
      */
     public function getChildElement($idx)
     {
         return null;
     }
-    
+
     /**
      * Return condition string.
+     * @param $idx
+     * @return null
      */
     public function getCondition($idx)
     {
@@ -175,9 +179,11 @@ class CriteriaElement
             }
         }
     }
-    
+
     /**
      * Add sort and order condition to this object.
+     * @param        $sort
+     * @param string $order
      */
     public function addSort($sort, $order = 'ASC')
     {
@@ -203,8 +209,8 @@ class CriteriaElement
 
     /**
      * Return sort and order condition as hashmap array.
-     * 
-     * @return hashmap 'sort' ... sort string/key'order' order string.
+     *
+     * @return array 'sort' ... sort string/key'order' order string.
      */
     public function getSorts()
     {
@@ -461,10 +467,12 @@ class Criteria extends CriteriaElement
     /**
      * Constructor
      *
-     * @param   string  $column
-     * @param   string  $value
-     * @param   string  $operator
-     **/
+     * @param string $column
+     * @param string $value
+     * @param string $operator
+     * @param string $prefix
+     * @param string $function
+     */
     public function __construct($column, $value='', $operator='=', $prefix = '', $function = '')
     {
         $this->prefix = $prefix;

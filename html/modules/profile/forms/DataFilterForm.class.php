@@ -32,11 +32,9 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
 
     /**
      * _addSortKeys
-     * 
-     * @param   string $dirname
-     * 
+     *
      * @return  void
-    **/
+     */
     protected function _addSortKeys()
     {
         foreach ($this->mFields as $field) {

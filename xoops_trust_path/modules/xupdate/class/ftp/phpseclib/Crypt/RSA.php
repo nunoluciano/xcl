@@ -488,7 +488,6 @@ class Crypt_RSA
      * Crypt_RSA doesn't do it is because OpenSSL doesn't fail gracefully.  openssl_pkey_new(), in particular, requires
      * openssl.cnf be present somewhere and, unfortunately, the only real way to find out is too late.
      *
-     * @return Crypt_RSA
      * @access public
      */
     public function __construct()
@@ -571,9 +570,9 @@ class Crypt_RSA
      *                  Will need to be passed back to Crypt_RSA::createKey() as the third parameter for further processing.
      *
      * @access public
-     * @param int             $bits
-     * @param int             $timeout
-     * @param Math_BigInteger $p
+     * @param int   $bits
+     * @param bool  $timeout
+     * @param array $partial
      * @return array
      */
     public function createKey($bits = 1024, $timeout = false, $partial = [])
@@ -756,7 +755,12 @@ class Crypt_RSA
      * Convert a private key to the appropriate format.
      *
      * @access private
-     * @param string $RSAPrivateKey
+     * @param $n
+     * @param $e
+     * @param $d
+     * @param $primes
+     * @param $exponents
+     * @param $coefficients
      * @return string
      * @see    self::setPrivateKeyFormat()
      */
@@ -1002,7 +1006,8 @@ class Crypt_RSA
      * Convert a public key to the appropriate format
      *
      * @access private
-     * @param string $RSAPrivateKey
+     * @param $n
+     * @param $e
      * @return string
      * @see    self::setPublicKeyFormat()
      */
@@ -1580,7 +1585,7 @@ class Crypt_RSA
      *
      * @access public
      * @param string $key
-     * @param int    $type optional
+     * @param bool   $type optional
      * @return bool
      */
     public function loadKey($key, $type = false)
@@ -1694,7 +1699,7 @@ class Crypt_RSA
      * Private keys can be encrypted with a password.  To unset the password, pass in the empty string or false.
      * Or rather, pass in $password such that empty($password) && !is_string($password) is true.
      *
-     * @param string $password
+     * @param bool $password
      * @see    self::loadKey()
      * @access public
      * @see    self::createKey()
@@ -1719,8 +1724,8 @@ class Crypt_RSA
      *
      * Returns true on success, false on failure
      *
-     * @param string $key  optional
-     * @param int    $type optional
+     * @param bool $key  optional
+     * @param bool $type optional
      * @return bool
      * @see    self::getPublicKey()
      * @access public
@@ -1779,8 +1784,8 @@ class Crypt_RSA
      *
      * Returns true on success, false on failure
      *
-     * @param string $key  optional
-     * @param int    $type optional
+     * @param bool $key  optional
+     * @param bool $type optional
      * @return bool
      * @see    self::getPublicKey()
      * @access public
@@ -1810,8 +1815,7 @@ class Crypt_RSA
      * or if the public key was set via setPublicKey().  If the currently loaded key is supposed to be the public key this
      * function won't return it since this library, for the most part, doesn't distinguish between public and private keys.
      *
-     * @param string $key
-     * @param int    $type optional
+     * @param int $type optional
      * @return bool|string
      * @see    self::getPublicKey()
      * @access public
@@ -1869,8 +1873,7 @@ class Crypt_RSA
      *
      * The private key is only returned if the currently loaded key contains the constituent prime numbers.
      *
-     * @param string $key
-     * @param int    $type optional
+     * @param int $type optional
      * @return mixed
      * @see    self::getPublicKey()
      * @access public
@@ -1894,8 +1897,7 @@ class Crypt_RSA
      * Returns the private key without the prime number constituants.  Structurally identical to a public key that
      * hasn't been set as the public key
      *
-     * @param string $key
-     * @param int    $type optional
+     * @param int $mode
      * @return bool|string
      * @see    self::getPrivateKey()
      * @access private
@@ -2115,7 +2117,7 @@ class Crypt_RSA
      *    of the hash function Hash) and 0.
      *
      * @access public
-     * @param int $format
+     * @param $sLen
      */
     public function setSaltLength($sLen)
     {
@@ -2364,7 +2366,7 @@ class Crypt_RSA
      *
      * @access private
      * @param string $mgfSeed
-     * @param int    $mgfLen
+     * @param        $maskLen
      * @return string
      */
     public function _mgf1($mgfSeed, $maskLen)
@@ -2867,6 +2869,7 @@ class Crypt_RSA
      *
      * @access private
      * @param string $m
+     * @param        $s
      * @return string
      */
     public function _rsassa_pkcs1_v1_5_verify($m, $s)
@@ -3005,7 +3008,7 @@ class Crypt_RSA
     /**
      * Decryption
      *
-     * @param string $plaintext
+     * @param $ciphertext
      * @return string
      * @see    self::encrypt()
      * @access public

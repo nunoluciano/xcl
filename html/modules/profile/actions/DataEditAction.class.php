@@ -61,6 +61,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
@@ -74,6 +75,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewSuccess(&$render)
     {
@@ -82,6 +84,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
@@ -90,6 +93,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewCancel(&$render)
     {

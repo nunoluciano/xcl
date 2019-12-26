@@ -182,9 +182,16 @@ class Legacy_SearchService extends XCube_Service
         
         return $this->_searchItems((int)$request->getRequest('mid'), null, 'and', (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), (int)$request->getRequest('uid'));
     }
-    
+
     /**
      * @access private
+     * @param $mid
+     * @param $queries
+     * @param $andor
+     * @param $max_hit
+     * @param $start
+     * @param $uid
+     * @return array|void
      */
     private function _searchItems($mid, $queries, $andor, $max_hit, $start, $uid)
     {

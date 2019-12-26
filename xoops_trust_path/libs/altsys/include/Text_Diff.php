@@ -167,6 +167,9 @@ class Text_Diff
      * Checks a diff for validity.
      *
      * This is here only for debugging purposes.
+     * @param $from_lines
+     * @param $to_lines
+     * @return bool
      */
     public function _check($from_lines, $to_lines)
     {
@@ -443,6 +446,12 @@ class Text_Diff_Engine_native
      * the two files do not match, and likewise that the last lines do not
      * match.  The caller must trim matching lines from the beginning and end
      * of the portions it is going to specify.
+     * @param $xoff
+     * @param $xlim
+     * @param $yoff
+     * @param $ylim
+     * @param $nchunks
+     * @return array
      */
     public function _diag($xoff, $xlim, $yoff, $ylim, $nchunks)
     {
@@ -563,6 +572,10 @@ class Text_Diff_Engine_native
      *
      * Note that XLIM, YLIM are exclusive bounds.  All line numbers are
      * origin-0 and discarded lines are not counted.
+     * @param $xoff
+     * @param $xlim
+     * @param $yoff
+     * @param $ylim
      */
     public function _compareseq($xoff, $xlim, $yoff, $ylim)
     {
@@ -622,6 +635,9 @@ class Text_Diff_Engine_native
      * following identical line to be the "change".
      *
      * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
+     * @param $lines
+     * @param $changed
+     * @param $other_changed
      */
     public function _shiftBoundaries($lines, &$changed, $other_changed)
     {

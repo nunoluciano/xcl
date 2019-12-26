@@ -406,8 +406,9 @@ class XCube_Root
         
         return $mRS[$name];
     }
-    
+
     /**
+     * @param $manager
      * @internal
      */
     public function setPermissionManager(&$manager)

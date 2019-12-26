@@ -43,6 +43,7 @@ class Profile_DataListAction extends Profile_AbstractListAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewIndex(&$render)
     {

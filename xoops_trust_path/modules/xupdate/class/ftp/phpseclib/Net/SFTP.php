@@ -285,7 +285,6 @@ class Net_SFTP extends Net_SSH2
      * @param string $host
      * @param int    $port
      * @param int    $timeout
-     * @return Net_SFTP
      * @access public
      */
     public function __construct($host, $port = 22, $timeout = 10)
@@ -421,7 +420,6 @@ class Net_SFTP extends Net_SSH2
      * Login
      *
      * @param string $username
-     * @param string $password
      * @return bool
      * @access public
      */
@@ -1148,7 +1146,7 @@ class Net_SFTP extends Net_SSH2
      *
      * Mainly used by file_exists
      *
-     * @param string $dir
+     * @param $path
      * @return mixed
      * @access private
      */
@@ -1684,6 +1682,8 @@ class Net_SFTP extends Net_SSH2
      * Creates a directory.
      *
      * @param string $dir
+     * @param int    $mode
+     * @param bool   $recursive
      * @return bool
      * @access public
      */
@@ -1719,6 +1719,7 @@ class Net_SFTP extends Net_SSH2
      * Helper function for directory creation
      *
      * @param string $dir
+     * @param        $attr
      * @return bool
      * @access private
      */
@@ -2044,7 +2045,7 @@ class Net_SFTP extends Net_SSH2
      * $offset and $length can be used to download files in chunks.
      *
      * @param string $remote_file
-     * @param string $local_file
+     * @param bool   $local_file
      * @param int    $offset
      * @param int    $length
      * @return mixed
@@ -2555,6 +2556,7 @@ class Net_SFTP extends Net_SSH2
      *
      * @param string $path
      * @param string $prop
+     * @param        $type
      * @return mixed
      * @access private
      */
@@ -2934,7 +2936,7 @@ class Net_SFTP extends Net_SSH2
      * Disconnect
      *
      * @param int $reason
-     * @return bool
+     * @return void
      * @access private
      */
     public function _disconnect($reason)

@@ -45,11 +45,12 @@ class Legacy_Utils
             return ['uninstalled' =>$uninstalledModules, 'disabled' =>$disabledModules, 'recommended' =>$recommendedModules];
         }
     }
-    
+
     /***
      * Creates a instance of the module with the generating convention. And,
      * returns it.
      * @param XoopsModule $module
+     * @param bool        $loadConfig
      * @return Legacy_Module
      */
     public static function &createModule($module, $loadConfig=true)
@@ -86,11 +87,12 @@ class Legacy_Utils
         
         return $instance;
     }
-    
+
     /***
      * Creates a instance of the block procedure with the generating convention.
      * And, returns it.
      * @static
+     * @param $block
      * @return Legacy_BlockProcedure
      */
     public static function &createBlockProcedure(&$block)

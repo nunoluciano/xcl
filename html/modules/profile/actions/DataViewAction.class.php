@@ -41,6 +41,7 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewSuccess(&$render)
     {
@@ -51,6 +52,7 @@ class Profile_DataViewAction extends Profile_AbstractViewAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {

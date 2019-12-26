@@ -63,8 +63,7 @@ class XoopsUser extends XoopsObject
     public $_isOnline = null;
 
     /**
-     * constructor 
-     * @param array $id Array of key-value-pairs to be assigned to the user. (for backward compatibility only)
+     * constructor
      * @param int $id ID of the user to be loaded from the database.
      */
     public function __construct($id = null)
@@ -185,13 +184,14 @@ class XoopsUser extends XoopsObject
             $this->_groups =& $groupsArr;
         }
     }
+
     /**
      * get the groups that the user belongs to
-     * 
-     * @param When $bReget this is true, this object gets group informations from DB again.
-     *                This is a special method for the BASE(CMS core) functions, you should
-     *                not use this proactivity.
-     * @return array array of groups 
+     *
+     * @param bool $bReget this is true, this object gets group informations from DB again.
+     *                     This is a special method for the BASE(CMS core) functions, you should
+     *                     not use this proactivity.
+     * @return array array of groups
      */
     public function getGroups($bReget = false)
     {
@@ -710,11 +710,13 @@ class XoopsUserHandler extends XoopsObjectHandler
         }
         return $ret;
     }
-    
+
     /**
-     This method is called from pmlite.php. Wmm..
-     Type:expand (no using criteria).
-     @author minahito
+     * This method is called from pmlite.php. Wmm..
+     * Type:expand (no using criteria).
+     * @author minahito
+     * @param int $level
+     * @return array
      */
     public function &getObjectsByLevel($level=0)
     {

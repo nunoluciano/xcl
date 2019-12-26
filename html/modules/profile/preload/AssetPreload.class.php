@@ -36,6 +36,7 @@ class Profile_AssetPreload extends XCube_ActionFilter
 
     /**
      * @private
+     * @param $obj
      */
     public function getManager(&$obj)
     {
@@ -45,6 +46,7 @@ class Profile_AssetPreload extends XCube_ActionFilter
 
     /**
      * @private
+     * @param $user
      */
     public function deleteProfile(&$user)
     {

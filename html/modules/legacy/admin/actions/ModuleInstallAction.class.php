@@ -187,8 +187,11 @@ class Legacy_ModuleInstallAction extends Legacy_Action
 
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
-    
+
     /**
+     * @param $controller
+     * @param $xoopsUser
+     * @param $renderer
      * @todo no $renderer. It should be $render.
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
@@ -209,6 +212,9 @@ class Legacy_ModuleInstallAction extends Legacy_Action
     }
 
     /**
+     * @param $controller
+     * @param $xoopsUser
+     * @param $renderer
      * @todo no $renderer. It should be $render.
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$renderer)

@@ -44,6 +44,8 @@ class Profile_AbstractFilterForm
 
     /**
      * @protected
+     * @param $navi
+     * @param $handler
      */
     public function prepare(&$navi, &$handler)
     {
@@ -55,6 +57,7 @@ class Profile_AbstractFilterForm
 
     /**
      * @protected
+     * @param $total
      */
     public function getTotalItems(&$total)
     {
@@ -104,6 +107,9 @@ class Profile_AbstractFilterForm
 
     /**
      * @public
+     * @param null $start
+     * @param null $limit
+     * @return \CriteriaCompo|null
      */
     public function &getCriteria($start = null, $limit = null)
     {

@@ -92,12 +92,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
         }
         return $ret;
     }
-    
+
     /**
      * _unzipFile use unzip cmd
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_Unzip($downloadFilePath, $exploredDirPath)
     {
         $this->_cleanup($exploredDirPath);
@@ -110,12 +112,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             return true;
         }
     }
-    
+
     /**
      * _unzipFile use tar cmd
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_Tar($downloadFilePath, $exploredDirPath)
     {
         $this->_cleanup($exploredDirPath);
@@ -132,8 +136,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     /**
      * _unzipFile use ZipArchive
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_ZipArchive($downloadFilePath, $exploredDirPath)
     {
         try {
@@ -183,12 +189,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     
         return true;
     }
-    
+
     /**
      * _unzipFile use File_Archive
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_FileArchive($downloadFilePath, $exploredDirPath)
     {
         require_once 'File/Archive.php';
@@ -207,12 +215,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             return false;
         }
     }
-    
+
     /**
      * _unzipFile use ZipArchive for recovery
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_FileArchiveCareful($downloadFilePath, $exploredDirPath)
     {
         require_once 'File/Archive.php';
@@ -279,17 +289,17 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
         $source->close();
         return $ret;
     }
-    
+
     /**
      * Execute shell command
      *
-     * @param  string  $command       command line
-     * @param  array   $output        stdout strings
-     * @param  array   $return_var    process exit code
-     * @param  array   $error_output  stderr strings
+     * @param string $command      command line
+     * @param array  $output       stdout strings
+     * @param int    $return_var   process exit code
+     * @param array  $error_output stderr strings
      * @return int     exit code
      * @author Alexey Sukhotin
-     **/
+     */
     private function procExec($command, array &$output = null, &$return_var = -1, array &$error_output = null)
     {
         $descriptorspec = [

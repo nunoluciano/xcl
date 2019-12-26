@@ -39,11 +39,9 @@ class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
 
     /**
      * getDefaultSortKey
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
+     *
+     * @return int
+     */
     public function getDefaultSortKey()
     {
         return XUPDATE_STORE_SORT_KEY_DEFAULT;

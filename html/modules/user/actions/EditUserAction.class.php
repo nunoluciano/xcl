@@ -76,12 +76,16 @@ class User_EditUserAction extends User_AbstractEditAction
     {
         return true;
     }
-    
+
     /**
      * Allow Conditions:
-     * 
+     *
      * 1) The current user is the target user.
      * 2) The current user is administrators.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
+     * @return bool
      */
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {

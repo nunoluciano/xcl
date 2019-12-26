@@ -116,10 +116,7 @@ class Net_SCP
      *
      * Connects to an SSH server
      *
-     * @param string $host
-     * @param int    $port
-     * @param int    $timeout
-     * @return Net_SCP
+     * @param $ssh
      * @access public
      */
     public function __construct($ssh)
@@ -234,7 +231,7 @@ class Net_SCP
      * operation
      *
      * @param string $remote_file
-     * @param string $local_file
+     * @param bool   $local_file
      * @return mixed
      * @access public
      */

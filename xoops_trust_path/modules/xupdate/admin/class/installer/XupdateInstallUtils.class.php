@@ -122,13 +122,13 @@ class Xupdate_InstallUtils
 
     /**
      * replaceDirname
-     * 
-     * @param   string  $from
-     * @param   string  $dirname
-     * @param   string  $trustDirname
-     * 
-     * @return  {string 'public',string 'trust'}
-    **/
+     *
+     * @param string $from
+     * @param string $dirname
+     * @param string $trustDirname
+     *
+     * @return array {string 'public',string 'trust'}
+     */
     public static function replaceDirname(/*** string ***/ $from, /*** string ***/ $dirname, /*** string ***/ $trustDirname = null)
     {
         return [
@@ -305,12 +305,12 @@ class Xupdate_InstallUtils
 
     /**
      * &createBlockByInfo
-     * 
-     * @param   XoopsModule  &$module
-     * @param   string[]  $block
-     * 
-     * @return  XoopsBlock
-    **/
+     *
+     * @param XoopsModule  &$module
+     * @param string[]      $block
+     *
+     * @return void
+     */
     public static function &createBlockByInfo(/*** XoopsModule ***/ &$module, /*** string[] ***/ $block)
     {
         $visible = isset($block['visible']) ?

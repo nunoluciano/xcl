@@ -179,12 +179,12 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     {
         $this->no_overwrite = $no_overwrite;
     }
-    
+
     /**
      * Make dirctory by server path
-     * 
+     *
      * @param string $dir server path
-     * @return Ambigous <void, boolean>
+     * @return void <void, boolean>
      */
     public function localMkdir($dir)
     {
@@ -316,16 +316,12 @@ class Xupdate_Ftp extends Xupdate_Ftp_
 // <!--	   protected functions																  -->
 // <!-- --------------------------------------------------------------------------------------- -->
 
-
     /**
      * ftp rootの絶対パスを返す ex /home/ryuji/public_htmlにxoopsがあり、ftp rootが /home/ryuji/ だったら 戻り値は /home/ryuji
      *　さらに $xoops_root_pathで指定されたディレクトリへ移動する
-     *  // @param string $con  // removed
-     * @param string $xoops_root_path
-     * @return void
-     * @author ryuji
+     *  //
+     * @return void @author ryuji
      * DIRECTORY_SEPARETERを使わないで'/'にしている。WinFileZillaでセパレータに\を使うとftp_chdirできないため
-     *
      */
     protected function seekFTPRoot()
     {

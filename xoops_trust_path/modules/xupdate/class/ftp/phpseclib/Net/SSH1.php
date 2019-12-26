@@ -512,7 +512,6 @@ class Net_SSH1
      * @param int    $port
      * @param int    $timeout
      * @param int    $cipher
-     * @return Net_SSH1
      * @access public
      */
     public function __construct($host, $port = 22, $timeout = 10, $cipher = NET_SSH1_CIPHER_3DES)
@@ -822,6 +821,7 @@ class Net_SSH1
      * Returns false on failure and the output, otherwise.
      *
      * @param string $cmd
+     * @param bool   $block
      * @return mixed
      * @access public
      * @see    self::interactiveRead()
@@ -1581,7 +1581,6 @@ class Net_SSH1
      * named constants from it, using the value as the name of the constant and the index as the value of the constant.
      * If any of the constants that would be defined already exists, none of the constants will be defined.
      *
-     * @param array $array
      * @access private
      */
     public function _define_array()
@@ -1780,7 +1779,8 @@ class Net_SSH1
      *
      * Makes sure that only the last 1MB worth of packets will be logged
      *
-     * @param string $data
+     * @param $protocol_flags
+     * @param $message
      * @access private
      */
     public function _append_log($protocol_flags, $message)

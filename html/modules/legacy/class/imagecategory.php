@@ -103,6 +103,8 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
     /**
      * If $groups has the permission of reading this object, return true.
+     * @param $groups
+     * @return bool
      */
     public function hasReadPerm($groups)
     {

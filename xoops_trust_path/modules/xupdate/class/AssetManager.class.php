@@ -58,13 +58,13 @@ class Xupdate_AssetManager
     /**
      * &getObject
      *
-     * @param   string  $type
-     * @param   string  $name
-     * @param   bool  $isAdmin
-     * @param   string  $mode
+     * @param string $type
+     * @param string $name
+     * @param bool   $isAdmin
+     * @param string $mode
      *
-     * @return  &object<XCube_ActionFilter,XCube_ActionForm,XoopsObjectGenericHandler>
-    **/
+     * @return mixed|object|null &object<XCube_ActionFilter,XCube_ActionForm,XoopsObjectGenericHandler>
+     */
     public function &getObject(/*** string ***/ $type, /*** string ***/ $name, /*** bool ***/ $isAdmin = false, /*** string ***/ $mode = null)
     {
         if (isset($this->_mCache[$type][$name])) {
@@ -101,6 +101,9 @@ class Xupdate_AssetManager
 
     /**
      * @public
+     * @param $type
+     * @param $name
+     * @return mixed|object|null
      */
     public function &load($type, $name)
     {
@@ -110,8 +113,12 @@ class Xupdate_AssetManager
 
         return $this->create($type, $name);
     }
+
     /**
      * @public
+     * @param $type
+     * @param $name
+     * @return object|null
      */
     public function &create($type, $name)
     {
@@ -129,21 +136,16 @@ class Xupdate_AssetManager
         return $instance;
     }
 
-
-
-
-
-
     /**
      * &_fallbackCreate
      *
-     * @param   string  $type
-     * @param   string  $name
-     * @param   bool  $isAdmin
-     * @param   string  $mode
+     * @param string $type
+     * @param string $name
+     * @param bool   $isAdmin
+     * @param string $mode
      *
-     * @return  &object<XCube_ActionFilter,XCube_ActionForm,XoopsObjectGenericHandler>
-    **/
+     * @return null &object<XCube_ActionFilter,XCube_ActionForm,XoopsObjectGenericHandler>
+     */
     private function &_fallbackCreate(/*** string ***/ $type, /*** string ***/ $name, /*** bool ***/ $isAdmin = false, /*** string ***/ $mode = null)
     {
         $className = null;

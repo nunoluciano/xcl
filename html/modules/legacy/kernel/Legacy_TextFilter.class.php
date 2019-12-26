@@ -119,15 +119,15 @@ class Legacy_TextFilter extends XCube_TextFilter
             $instance = new Legacy_TextFilter();
         }
     }
-    
+
     /**
      * Filters for editing text
      *
-     * @param	string	$text
-     * @param	string	$x2comat
-     * @return	string
+     * @param string $text
+     * @param bool   $x2comat
+     * @return    string
      *
-     **/
+     */
     public function toShow($text, $x2comat=false)
     {
         if ($x2comat) {
@@ -155,15 +155,15 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Filters textarea data for display
      *
-     * @param	string	$text
-     * @param	bool	$html	allow html?
-     * @param	bool	$smiley allow smileys?
-     * @param	bool	$xcode	allow xoopscode?
-     * @param	bool	$image	allow inline images?
-     * @param	bool	$br 	convert linebreaks?
-     * @param	string	$x2comat
-     * @return	string
-     **/
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
+     * @param bool   $x2comat
+     * @return    string
+     */
     public function toShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
     {
         $text = $this->preConvertXCode($text, $xcode);
@@ -187,15 +187,15 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Filters textarea data for preview
      *
-     * @param	string	$text
-     * @param	bool	$html	allow html?
-     * @param	bool	$smiley allow smileys?
-     * @param	bool	$xcode	allow xoopscode?
-     * @param	bool	$image	allow inline images?
-     * @param	bool	$br 	convert linebreaks?
-     * @param	string	$x2comat
-     * @return	string
-     **/
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
+     * @param bool   $x2comat
+     * @return    string
+     */
     public function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
     {
         return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat);
@@ -272,9 +272,8 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Replace emoticons in the message with smiley images
      *
-     * @param	string	$message
-     *
-     * @return	string
+     * @param $text
+     * @return    string
      */
     public function smiley($text)
     {
@@ -331,9 +330,12 @@ class Legacy_TextFilter extends XCube_TextFilter
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/:\.])([a-z0-9\-_\.]+?)@([a-z0-9!#\$%&'\*\+\-\/=\?^_\`{\|}~\.]+)/i";
         $replacements[] = "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>";
     }
+
     /**
+     * @param $patterns
+     * @param $replacements
      * @deprecated
-     **/
+     */
     public function makeClickableConvertTable(&$patterns, &$replacements)
     {
         self::sMakeClickableConvertTable($patterns, $replacements);
@@ -342,11 +344,11 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Replace XoopsCodes with their equivalent HTML formatting
      *
-     * @param	string	$text
-     * @param	bool	$allowimage Allow images in the text?
-     *								On FALSE, uses links to images.
-     * @return	string
-     **/
+     * @param string $text
+     * @param int    $allowimage      Allow images in the text?
+     *                                On FALSE, uses links to images.
+     * @return    string
+     */
     public function convertXCode($text, $allowimage = 1)
     {
         if (empty($this->mXCodePatterns)) {
@@ -415,7 +417,8 @@ class Legacy_TextFilter extends XCube_TextFilter
     }
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     */
     public function makeXCodeCheckImgPatterns(&$patterns)
     {
         self::sMakeXCodeCheckImgPatterns($patterns);
@@ -470,7 +473,9 @@ class Legacy_TextFilter extends XCube_TextFilter
     }
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     * @param $replacements
+     */
     public function makeXCodeConvertTable(&$patterns, &$replacements)
     {
         self::sMakeXCodeConvertTable($patterns, $replacements);
@@ -521,12 +526,12 @@ class Legacy_TextFilter extends XCube_TextFilter
 
     /**
      * Pre XCode Converting
-     *	 By default, keep content within [code][/code] tags
+     *     By default, keep content within [code][/code] tags
      *
-     * @param	string	$text
-     * @param	string	$xcode
+     * @param string $text
+     * @param int    $xcode
      *
-     * @return	string
+     * @return    string
      */
     public function preConvertXCode($text, $xcode = 1)
     {
@@ -577,7 +582,9 @@ class Legacy_TextFilter extends XCube_TextFilter
     
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     * @param $replacements
+     */
     public function makePreXCodeConvertTable(&$patterns, &$replacements)
     {
         self::sMakePreXCodeConvertTable($patterns, $replacements);
@@ -585,13 +592,13 @@ class Legacy_TextFilter extends XCube_TextFilter
 
     /**
      * Post XCode Convering
-     *	 By default, convert content about [code][/code] tags
+     *     By default, convert content about [code][/code] tags
      *
-     * @param	string	$text
-     * @param	string	$xcode
-     * @param	string	$image
+     * @param string $text
+     * @param int    $xcode
+     * @param int    $image
      *
-     * @return	string
+     * @return    string
      */
     public function postConvertXCode($text, $xcode=1, $image=1)
     {
@@ -654,7 +661,9 @@ class Legacy_TextFilter extends XCube_TextFilter
     }
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     * @param $replacements
+     */
     public function makePostXCodeConvertTable(&$patterns, &$replacements)
     {
         self::sMakePostXCodeConvertTable($patterns, $replacements);

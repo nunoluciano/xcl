@@ -84,8 +84,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
     {
         return ($this->getVar('version') > 0)? sprintf('%01.2f', $this->getVar('version') / 100) : '';
     }
+
     /**
      * @
+     * @param bool $readini
      */
     public function setmModule($readini = true)
     {
@@ -371,8 +373,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
 
     /**
      * [modules.ini] Options unserializer
-     * @param object $mobj
-     * @param string $dirname
+     * @param bool $readini
      * @return array
      */
     public function unserialize_options($readini = false)

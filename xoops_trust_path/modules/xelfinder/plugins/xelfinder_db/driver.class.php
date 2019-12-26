@@ -298,16 +298,17 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		return $res;
 	}
 
-	/**
-	 * Create empty object with required mimetype
-	 *
-	 * @param  string  $path  parent dir path
-	 * @param  string  $name  object name
-	 * @param  string  $mime  mime type
-	 * @return bool
-	 * @author Dmitry (dio) Levashov
-	 * @author Naoki Sawada
-	 **/
+    /**
+     * Create empty object with required mimetype
+     *
+     * @param string $path parent dir path
+     * @param string $name object name
+     * @param string $mime mime type
+     * @param string $home_of
+     * @return bool
+     * @author Dmitry (dio) Levashov
+     * @author Naoki Sawada
+     */
 	protected function make($path, $name, $mime, $home_of = 'NULL') {
 		if ($name === '') return false;  // It's insurance 
 		
@@ -518,15 +519,15 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		return $res;
 	}
 
-	/**
-	 * Save file or dirctory from loacl file system
-	 *
-	 * @param  string  $localpath          local file (or dirctory) path
-	 * @param  string  $dir                directory name to save
-	 * @param  string  $check_mime_accept  do check mime accept (upload spec.)
-	 * @return string|bool
-	 * @author Naoki Sawada
-	 **/
+    /**
+     * Save file or dirctory from loacl file system
+     *
+     * @param string $localpath         local file (or dirctory) path
+     * @param string $dir               directory name to save
+     * @param bool   $check_mime_accept do check mime accept (upload spec.)
+     * @return string|bool
+     * @author Naoki Sawada
+     */
 	protected function localFileSave($localpath, $dir, $check_mime_accept = false) {
 		$path = -1;
 		$localpath = rtrim($localpath, DIRECTORY_SEPARATOR);
@@ -679,16 +680,17 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	/*********************************************************************/
 
 	/*********************** file stat *********************/
-	
-	/**
-	 * Check file attribute
-	 *
-	 * @param  string  $path  file path (not use)
-	 * @param  string  $name  attribute name (read|write|locked|hidden) (not use)
-	 * @param  bool    $val   attribute value of file stat
-	 * @return bool
-	 * @author Naoki Sawada
-	 **/
+
+    /**
+     * Check file attribute
+     *
+     * @param string $path file path (not use)
+     * @param string $name attribute name (read|write|locked|hidden) (not use)
+     * @param bool   $val  attribute value of file stat
+     * @param null   $isDir
+     * @return bool
+     * @author Naoki Sawada
+     */
 	protected function attr($path, $name, $val=false, $isDir=null) {
 		return $val;
 	}
@@ -1018,25 +1020,26 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 
 	/***************** file stat ********************/
-	/**
-	 * Return stat for given path.
-	 * Stat contains following fields:
-	 * - (int)    size    file size in b. required
-	 * - (int)    ts      file modification time in unix time. required
-	 * - (string) mime    mimetype. required for folders, others - optionally
-	 * - (bool)   read    read permissions. required
-	 * - (bool)   write   write permissions. required
-	 * - (bool)   locked  is object locked. optionally
-	 * - (bool)   hidden  is object hidden. optionally
-	 * - (string) alias   for symlinks - link target path relative to root path. optionally
-	 * - (string) target  for symlinks - link target path. optionally
-	 *
-	 * If file does not exists - returns empty array or false.
-	 *
-	 * @param  string  $path    file path
-	 * @return array|false
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Return stat for given path.
+     * Stat contains following fields:
+     * - (int)    size    file size in b. required
+     * - (int)    ts      file modification time in unix time. required
+     * - (string) mime    mimetype. required for folders, others - optionally
+     * - (bool)   read    read permissions. required
+     * - (bool)   write   write permissions. required
+     * - (bool)   locked  is object locked. optionally
+     * - (bool)   hidden  is object hidden. optionally
+     * - (string) alias   for symlinks - link target path relative to root path. optionally
+     * - (string) target  for symlinks - link target path. optionally
+     *
+     * If file does not exists - returns empty array or false.
+     *
+     * @param string $path file path
+     * @param bool   $rootCheck
+     * @return array|false
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _stat($path, $rootCheck = true) {
 		$sql = 'SELECT f.file_id, f.parent_id, f.name, f.size, f.mtime AS ts, f.mime,
 				f.perm, f.umask, f.uid, f.gid, f.home_of, f.width, f.height, f.gids, f.mime_filter as filter, f.local_path,
@@ -1084,14 +1087,15 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 
 	/******************** file/dir content *********************/
-	
-	/**
-	* Return symlink target file
-	*
-	* @param  string  $path  link path
-	* @return string
-	* @author Dmitry (dio) Levashov
-	**/
+
+    /**
+     * Return symlink target file
+     *
+     * @param string $path link path
+     * @param bool   $make
+     * @return string
+     * @author Dmitry (dio) Levashov
+     */
 	protected function readlink($path, $make = false) {
 		if (! $path) return false;
 		$stat = $this->stat($path);
@@ -1136,14 +1140,14 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			: $this->cacheDir($path);
 	}
 
-	/**
-	 * Open file and return file pointer
-	 *
-	 * @param  string  $path  file path
-	 * @param  bool    $write open file for writing
-	 * @return resource|false
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Open file and return file pointer
+     *
+     * @param string $path file path
+     * @param string $mode
+     * @return resource|false
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _fopen($path, $mode='rb') {
 		if ($local = $this->readlink($path)) {
 			return @fopen($local, $mode);
@@ -1151,13 +1155,14 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		return false;
 	}
 
-	/**
-	 * Close opened file
-	 *
-	 * @param  resource  $fp  file pointer
-	 * @return bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Close opened file
+     *
+     * @param resource $fp file pointer
+     * @param string   $path
+     * @return void
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _fclose($fp, $path='') {
 		@fclose($fp);
 	}
@@ -1197,14 +1202,15 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		return $res;
 	}
 
-	/**
-	 * Create symlink. FTP driver does not support symlinks.
-	 *
-	 * @param  string  $target  link target
-	 * @param  string  $path    symlink path
-	 * @return bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Create symlink. FTP driver does not support symlinks.
+     *
+     * @param string $target link target
+     * @param string $path   symlink path
+     * @param        $name
+     * @return bool
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _symlink($target, $path, $name) {
 		return false;
 	}
@@ -1249,16 +1255,16 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		}
 	}
 
-	/**
-	 * Move file into another parent dir.
-	 * Return new file path or false.
-	 *
-	 * @param  string  $source  source file path
-	 * @param  string  $target  target dir path
-	 * @param  string  $name    file name
-	 * @return string|bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Move file into another parent dir.
+     * Return new file path or false.
+     *
+     * @param string $source source file path
+     * @param        $targetDir
+     * @param string $name   file name
+     * @return string|bool
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _move($source, $targetDir, $name) {
 		$gid = 0;
 		$umask = $this->getUmask($targetDir, $gid);
@@ -1460,22 +1466,24 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		return;
 	}
 
-	/**
-	 * chmod implementation
-	 *
-	 * @return bool
-	 **/
+    /**
+     * chmod implementation
+     *
+     * @param $path
+     * @param $mode
+     * @return bool
+     */
 	protected function _chmod($path, $mode) {
 		return false;
 	}
 
-	/**
-	 * Recursive symlinks search
-	 *
-	 * @param  string  $path  file/dir path
-	 * @return bool
-	 * @author Dmitry (dio) Levashov
-	 **/
+    /**
+     * Recursive symlinks search
+     *
+     * @param $realpath
+     * @return bool
+     * @author Dmitry (dio) Levashov
+     */
 	protected function _findSymlinks($realpath) {
 		if (is_link($realpath)) {
 			return true;
@@ -1501,15 +1509,15 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		return false;
 	}
 
-	/**
-	 * Extract files from archive
-	 *
-	 * @param  string  $path  archive path
-	 * @param  array   $arc   archiver command and arguments (same as in $this->archivers)
-	 * @return true
-	 * @author Dmitry (dio) Levashov, 
-	 * @author Alexey Sukhotin
-	 **/
+    /**
+     * Extract files from archive
+     *
+     * @param       $id
+     * @param array $arc archiver command and arguments (same as in $this->archivers)
+     * @return true
+     * @author Dmitry (dio) Levashov,
+     * @author Alexey Sukhotin
+     */
 	protected function _extract($id, $arc) {
 		
 		$localpath = $this->readlink($id);

@@ -46,9 +46,11 @@ class XCube_Session
         $this->mGetSessionCookiePath = new XCube_Delegate();
         $this->mGetSessionCookiePath->register('XCube_Session.GetSessionCookiePath');
     }
-    
+
     /**
      * @public
+     * @param string $sessionName
+     * @param int    $sessionExpire
      */
     public function setParam($sessionName='', $sessionExpire=0)
     {
@@ -96,6 +98,7 @@ class XCube_Session
 
     /**
      * @public
+     * @param bool $forceCookieClear
      */
     public function destroy($forceCookieClear = false)
     {

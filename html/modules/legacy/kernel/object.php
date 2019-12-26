@@ -139,16 +139,20 @@ class XoopsSimpleObject extends AbstractXoopsObject
     }
 
     /**
+     * @param $key
+     * @return string|null
      * @deprecated
      */
     public function getVar($key)
     {
         return $this->getShow($key);
     }
-    
+
     /**
      * Return HTML string for displaying only by HTML.
      * The second parametor doesn't exist.
+     * @param $key
+     * @return string|null
      */
     public function getShow($key)
     {

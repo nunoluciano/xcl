@@ -124,8 +124,10 @@ class Xupdate_Ftp_Abstract
     }
 
     /**
-    * 以下、FTP ライブラリのオリジナルメソッド
-    */
+     * 以下、FTP ライブラリのオリジナルメソッド
+     * @param $list
+     * @return bool
+     */
 
     protected function parselisting($list)
     {

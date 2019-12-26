@@ -644,7 +644,6 @@ class Net_SFTP_Stream
      * $options. What does 8 correspond to?
      *
      * @param string $path
-     * @param int    $mode
      * @param int    $options
      * @return bool
      * @access public

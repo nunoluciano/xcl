@@ -58,10 +58,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * getSFTPErrorsHtml
      *
-     * @param   void
-     *
-     * @return	array
-     **/
+     * @return void
+     */
     public function getSSH2Errors()
     {
         //return $this->_MessagesToHtml($this->sftp->getErrors());
@@ -70,10 +68,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * getSFTPErrorsHtml
      *
-     * @param   void
-     *
-     * @return	array
-     **/
+     * @return string
+     */
     public function getSSH2Log()
     {
         return $this->_MessagesToHtml($this->sftp->getLog());
@@ -104,10 +100,9 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * quit
      *
-     * @param   void
-     *
-     * @return	void
-     **/
+     * @param bool $force
+     * @return    void
+     */
     public function quit($force=false)
     {
         $this->sftp->disconnect();

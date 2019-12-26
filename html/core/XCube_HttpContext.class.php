@@ -122,11 +122,11 @@ class XCube_HttpContext
     {
         $this->mUser =& $principal;
     }
-    
+
     /**
      * Gets the object which has a interface of XCube_Principal.
      *
-     * @return XCube_AbstractPrincipal
+     * @return \XCube_Principal
      */
     public function &getUser()
     {
