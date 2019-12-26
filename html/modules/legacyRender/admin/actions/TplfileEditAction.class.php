@@ -28,7 +28,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     {
         parent::_setupObject();
         
-        if (is_object($this->mObject) && $this->mObject->get('tpl_tplset') == 'default') {
+        if (is_object($this->mObject) && 'default' == $this->mObject->get('tpl_tplset')) {
             $this->mObject = null;
         }
     }

@@ -581,7 +581,7 @@ class Net_SSH1
             user_error('Can only connect to SSH servers');
             return false;
         }
-        if ($parts[1][0] != 1) {
+        if (1 != $parts[1][0]) {
             user_error("Cannot connect to SSH $parts[1] servers");
             return false;
         }
@@ -589,7 +589,7 @@ class Net_SSH1
         fputs($this->fsock, $this->identifier . "\r\n");
 
         $response = $this->_get_binary_packet();
-        if ($response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_PUBLIC_KEY) {
+        if (NET_SSH1_SMSG_PUBLIC_KEY != $response[NET_SSH1_RESPONSE_TYPE]) {
             user_error('Expected SSH_SMSG_PUBLIC_KEY');
             return false;
         }
@@ -621,7 +621,7 @@ class Net_SSH1
         // get a list of the supported ciphers
         extract(unpack('Nsupported_ciphers_mask', $this->_string_shift($response[NET_SSH1_RESPONSE_DATA], 4)));
         foreach ($this->supported_ciphers as $mask => $name) {
-            if (($supported_ciphers_mask & (1 << $mask)) == 0) {
+            if (0 == ($supported_ciphers_mask & (1 << $mask))) {
                 unset($this->supported_ciphers[$mask]);
             }
         }
@@ -629,7 +629,7 @@ class Net_SSH1
         // get a list of the supported authentications
         extract(unpack('Nsupported_authentications_mask', $this->_string_shift($response[NET_SSH1_RESPONSE_DATA], 4)));
         foreach ($this->supported_authentications as $mask => $name) {
-            if (($supported_authentications_mask & (1 << $mask)) == 0) {
+            if (0 == ($supported_authentications_mask & (1 << $mask))) {
                 unset($this->supported_authentications[$mask]);
             }
         }
@@ -713,7 +713,7 @@ class Net_SSH1
 
         $response = $this->_get_binary_packet();
 
-        if ($response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_SUCCESS) {
+        if (NET_SSH1_SMSG_SUCCESS != $response[NET_SSH1_RESPONSE_TYPE]) {
             user_error('Expected SSH_SMSG_SUCCESS');
             return false;
         }
@@ -753,13 +753,13 @@ class Net_SSH1
 
         $response = $this->_get_binary_packet();
 
-        if ($response === true) {
+        if (true === $response) {
             return false;
         }
-        if ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_SUCCESS) {
+        if (NET_SSH1_SMSG_SUCCESS == $response[NET_SSH1_RESPONSE_TYPE]) {
             $this->bitmap |= NET_SSH1_MASK_LOGIN;
             return true;
-        } elseif ($response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_FAILURE) {
+        } elseif (NET_SSH1_SMSG_FAILURE != $response[NET_SSH1_RESPONSE_TYPE]) {
             user_error('Expected SSH_SMSG_SUCCESS or SSH_SMSG_FAILURE');
             return false;
         }
@@ -779,13 +779,13 @@ class Net_SSH1
 
         $response = $this->_get_binary_packet();
 
-        if ($response === true) {
+        if (true === $response) {
             return false;
         }
-        if ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_SUCCESS) {
+        if (NET_SSH1_SMSG_SUCCESS == $response[NET_SSH1_RESPONSE_TYPE]) {
             $this->bitmap |= NET_SSH1_MASK_LOGIN;
             return true;
-        } elseif ($response[NET_SSH1_RESPONSE_TYPE] == NET_SSH1_SMSG_FAILURE) {
+        } elseif (NET_SSH1_SMSG_FAILURE == $response[NET_SSH1_RESPONSE_TYPE]) {
             return false;
         } else {
             user_error('Expected SSH_SMSG_SUCCESS or SSH_SMSG_FAILURE');
@@ -848,11 +848,11 @@ class Net_SSH1
         $output   = '';
         $response = $this->_get_binary_packet();
 
-        if ($response !== false) {
+        if (false !== $response) {
             do {
                 $output   .= substr($response[NET_SSH1_RESPONSE_DATA], 4);
                 $response = $this->_get_binary_packet();
-            } while (is_array($response) && $response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_EXITSTATUS);
+            } while (is_array($response) && NET_SSH1_SMSG_EXITSTATUS != $response[NET_SSH1_RESPONSE_TYPE]);
         }
 
         $data = pack('C', NET_SSH1_CMSG_EXIT_CONFIRMATION);
@@ -890,10 +890,10 @@ class Net_SSH1
 
         $response = $this->_get_binary_packet();
 
-        if ($response === true) {
+        if (true === $response) {
             return false;
         }
-        if ($response[NET_SSH1_RESPONSE_TYPE] != NET_SSH1_SMSG_SUCCESS) {
+        if (NET_SSH1_SMSG_SUCCESS != $response[NET_SSH1_RESPONSE_TYPE]) {
             user_error('Expected SSH_SMSG_SUCCESS');
             return false;
         }
@@ -951,17 +951,17 @@ class Net_SSH1
 
         $match = $expect;
         while (true) {
-            if ($mode == NET_SSH1_READ_REGEX) {
+            if (NET_SSH1_READ_REGEX == $mode) {
                 preg_match($expect, $this->interactiveBuffer, $matches);
                 $match = isset($matches[0]) ? $matches[0] : '';
             }
             $pos = strlen($match) ? strpos($this->interactiveBuffer, $match) : false;
-            if ($pos !== false) {
+            if (false !== $pos) {
                 return $this->_string_shift($this->interactiveBuffer, $pos + strlen($match));
             }
             $response = $this->_get_binary_packet();
 
-            if ($response === true) {
+            if (true === $response) {
                 return $this->_string_shift($this->interactiveBuffer, strlen($this->interactiveBuffer));
             }
             $this->interactiveBuffer .= substr($response[NET_SSH1_RESPONSE_DATA], 4);
@@ -1137,7 +1137,7 @@ class Net_SSH1
         }
         $stop = strtok(microtime(), ' ') + strtok('');
 
-        if (strlen($raw) && $this->crypto !== false) {
+        if (strlen($raw) && false !== $this->crypto) {
             $raw = $this->crypto->decrypt($raw);
         }
 
@@ -1191,7 +1191,7 @@ class Net_SSH1
         $data = $padding . $data;
         $data .= pack('N', $this->_crc($data));
 
-        if ($this->crypto !== false) {
+        if (false !== $this->crypto) {
             $data = $this->crypto->encrypt($data);
         }
 

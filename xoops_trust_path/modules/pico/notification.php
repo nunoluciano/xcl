@@ -28,13 +28,13 @@ if (!function_exists('pico_notify_base')) {
 		$permissions = $picoPermission->getPermissions($mydirname);
 
 		// global
-		if ($category == 'global') {
+		if ('global' == $category) {
 			$item['name'] = '';
 			$item['url'] = '';
 		}
 
 		// category
-		if ($category == 'category') {
+		if ('category' == $category) {
 			// Assume we have a valid cat_id
 			$cat_id = intval($item_id);
 
@@ -50,7 +50,7 @@ if (!function_exists('pico_notify_base')) {
 		}
 
 		// content
-		if ($category == 'content') {
+		if ('content' == $category) {
 			// Assume we have a valid content_id
 			$content_id = intval($item_id);
 

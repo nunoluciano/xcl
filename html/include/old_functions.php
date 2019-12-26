@@ -14,9 +14,9 @@ function make_sidebar($side)
 {
     global $xoopsUser;
     $xoopsblock = new XoopsBlock();
-    if ($side == 'left') {
+    if ('left' == $side) {
         $side = XOOPS_SIDEBLOCK_LEFT;
-    } elseif ($side == 'right') {
+    } elseif ('right' == $side) {
         $side = XOOPS_SIDEBLOCK_RIGHT;
     } else {
         $side = XOOPS_SIDEBLOCK_BOTH;
@@ -44,7 +44,7 @@ function make_sidebar($side)
             $xoopsTpl->xoops_setCacheTime($bcachetime);
         }
         $btpl = $block_arr[$i]->getVar('template');
-        if ($btpl != '') {
+        if ('' != $btpl) {
             if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
                 $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
                 $bresult =& $block_arr[$i]->buildBlock();
@@ -99,7 +99,7 @@ function make_cblock()
     $xoopsblock = new XoopsBlock();
     $cc_block = $cl_block = $cr_block = '';
     $arr = [];
-    if ($xoopsOption['theme_use_smarty'] == 0) {
+    if (0 == $xoopsOption['theme_use_smarty']) {
         if (!isset($GLOBALS['xoopsTpl']) || !is_object($GLOBALS['xoopsTpl'])) {
             include_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -122,7 +122,7 @@ function make_cblock()
                 $xoopsTpl->xoops_setCacheTime($bcachetime);
             }
             $btpl = $block_arr[$i]->getVar('template');
-            if ($btpl != '') {
+            if ('' != $btpl) {
                 if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
                     $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
                     $bresult =& $block_arr[$i]->buildBlock();
@@ -155,21 +155,21 @@ function make_cblock()
             $title = $block_arr[$i]->getVar('title');
             switch ($block_arr[$i]->getVar('side')) {
             case XOOPS_CENTERBLOCK_CENTER:
-                if ($title != '') {
+                if ('' != $title) {
                     $cc_block .= '<tr valign="top"><td colspan="2"><b>'.$title.'</b><hr />'.$bcontent.'<br /><br /></td></tr>'."\n";
                 } else {
                     $cc_block .= '<tr><td colspan="2">'.$bcontent.'<br /><br /></td></tr>'."\n";
                 }
                 break;
             case XOOPS_CENTERBLOCK_LEFT:
-                if ($title != '') {
+                if ('' != $title) {
                     $cl_block .= '<p><b>'.$title.'</b><hr />'.$bcontent.'</p>'."\n";
                 } else {
                     $cl_block .= '<p>'.$bcontent.'</p>'."\n";
                 }
                 break;
             case XOOPS_CENTERBLOCK_RIGHT:
-                if ($title != '') {
+                if ('' != $title) {
                     $cr_block .= '<p><b>'.$title.'</b><hr />'.$bcontent.'</p>'."\n";
                 } else {
                     $cr_block .= '<p>'.$bcontent.'</p>'."\n";
@@ -192,7 +192,7 @@ function openThread($width= '100%')
 function showThread($color_number, $subject_image, $subject, $text, $post_date, $ip_image, $reply_image, $edit_image, $delete_image, $username= '', $rank_title= '', $rank_image= '', $avatar_image= '', $reg_date= '', $posts= '', $user_from= '', $online_image= '', $profile_image= '', $pm_image= '', $email_image= '', $www_image= '', $icq_image= '', $aim_image= '', $yim_image= '', $msnm_image= ''
 )
 {
-    if ($color_number == 1) {
+    if (1 == $color_number) {
         $bg = 'bg1';
     } else {
         $bg = 'bg3';

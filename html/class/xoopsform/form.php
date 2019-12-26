@@ -113,7 +113,7 @@ class XoopsForm
         $this->_name = $name;
         $this->_action = $action;
         $this->_method = $method;
-        if ($addtoken != false) {
+        if (false != $addtoken) {
             $this->addElement(new XoopsFormHiddenToken());
         }
     }
@@ -466,12 +466,12 @@ class XoopsForm
         $i = 0;
         $elements = [];
         foreach ($this->getElements() as $ele) {
-            $n = ($ele->getName() != '') ? $ele->getName() : $i;
+            $n = ('' != $ele->getName()) ? $ele->getName() : $i;
             $elements[$n]['name']     = $ele->getName();
             $elements[$n]['caption']  = $ele->getCaption();
             $elements[$n]['body']     = $ele->render();
             $elements[$n]['hidden']   = $ele->isHidden();
-            if ($ele->getDescription() != '') {
+            if ('' != $ele->getDescription()) {
                 $elements[$n]['description']  = $ele->getDescription();
             }
             $i++;

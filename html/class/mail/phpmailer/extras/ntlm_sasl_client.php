@@ -136,7 +136,7 @@ class ntlm_sasl_client_class
 
     public function start(&$client, &$message, &$interactions)
     {
-        if ($this->state != SASL_NTLM_STATE_START) {
+        if (SASL_NTLM_STATE_START != $this->state) {
             $client->error = 'NTLM authentication state is not at the start';
             return (SASL_FAIL);
         }
@@ -148,7 +148,7 @@ class ntlm_sasl_client_class
         ];
         $defaults = [];
         $status = $client->GetCredentials($this->credentials, $defaults, $interactions);
-        if ($status == SASL_CONTINUE) {
+        if (SASL_CONTINUE == $status) {
             $this->state = SASL_NTLM_STATE_IDENTIFY_DOMAIN;
         }
         unset($message);

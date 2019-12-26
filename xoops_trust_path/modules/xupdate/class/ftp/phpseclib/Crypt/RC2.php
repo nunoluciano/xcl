@@ -1046,7 +1046,7 @@ class Crypt_RC2 extends Crypt_Base
     {
         switch ($engine) {
             case CRYPT_ENGINE_OPENSSL:
-                if ($this->current_key_length != 128 || strlen($this->orig_key) < 16) {
+                if (128 != $this->current_key_length || strlen($this->orig_key) < 16) {
                     return false;
                 }
                 $this->cipher_name_openssl_ecb = 'rc2-ecb';
@@ -1162,7 +1162,7 @@ class Crypt_RC2 extends Crypt_Base
      */
     public function encrypt($plaintext)
     {
-        if ($this->engine == CRYPT_ENGINE_OPENSSL) {
+        if (CRYPT_ENGINE_OPENSSL == $this->engine) {
             $temp      = $this->key;
             $this->key = $this->orig_key;
             $result    = parent::encrypt($plaintext);
@@ -1185,7 +1185,7 @@ class Crypt_RC2 extends Crypt_Base
      */
     public function decrypt($ciphertext)
     {
-        if ($this->engine == CRYPT_ENGINE_OPENSSL) {
+        if (CRYPT_ENGINE_OPENSSL == $this->engine) {
             $temp      = $this->key;
             $this->key = $this->orig_key;
             $result    = parent::decrypt($ciphertext);
@@ -1225,7 +1225,7 @@ class Crypt_RC2 extends Crypt_Base
             $r3 |= $r3 >> 16;
 
             if ($j === $limit) {
-                if ($limit === 64) {
+                if (64 === $limit) {
                     break;
                 }
 
@@ -1270,7 +1270,7 @@ class Crypt_RC2 extends Crypt_Base
             $r0 = ($r0 - $keys[--$j] - ((($r1 ^ $r2) & $r3) ^ $r1)) & 0xFFFF;
 
             if ($j === $limit) {
-                if ($limit === 0) {
+                if (0 === $limit) {
                     break;
                 }
 
@@ -1391,7 +1391,7 @@ class Crypt_RC2 extends Crypt_Base
                     $r3 |= $r3 >> 16;';
 
                 if ($j === $limit) {
-                    if ($limit === 64) {
+                    if (64 === $limit) {
                         break;
                     }
 
@@ -1429,7 +1429,7 @@ class Crypt_RC2 extends Crypt_Base
                            ((($r1 ^ $r2) & $r3) ^ $r1)) & 0xFFFF;';
 
                 if ($j === $limit) {
-                    if ($limit === 0) {
+                    if (0 === $limit) {
                         break;
                     }
 

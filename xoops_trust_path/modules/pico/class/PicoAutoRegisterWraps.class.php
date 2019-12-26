@@ -112,7 +112,7 @@ class PicoAutoRegisterWraps
 
         $dh                = opendir($wrap_dir);
         $additional_vpaths = [];
-        while (($file = readdir($dh)) !== false) {
+        while (false !== ($file = readdir($dh))) {
             if (preg_match(_MD_PICO_AUTOREGIST4PREGEX, $file)) {
                 $vpath = $cat_vpath . '/' . $file;
                 if (isset($removal_vpaths[$vpath])) {

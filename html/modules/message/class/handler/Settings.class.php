@@ -37,7 +37,7 @@ class MessageSettingsHandler extends XoopsObjectGenericHandler
         $sql = 'SELECT `uname` FROM `' . $this->db->prefix('users') . '` ';
         $sql.= 'WHERE `uid` = ' . $uid;
         $result = $this->db->query($sql);
-        if ($this->db->getRowsNum($result) != 1) {
+        if (1 != $this->db->getRowsNum($result)) {
             return false;
         } else {
             return true;

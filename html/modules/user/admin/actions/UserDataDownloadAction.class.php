@@ -48,7 +48,7 @@ class User_UserDataDownloadAction extends User_Action
         $criteria = new CriteriaElement();
         $criteria->setSort('uid');
         $users = $user_handler->getObjects($criteria);
-        if (!$users || count($users)==0) {
+        if (!$users || 0 == count($users)) {
             return USER_FRAME_VIEW_INDEX;
         }
         foreach ($users[0]->gets() as $key=>$var) {
@@ -78,7 +78,7 @@ class User_UserDataDownloadAction extends User_Action
         $text = $field_line.$text;
         
         /// japanese 
-        if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)===0) {
+        if (0 === strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)) {
             if (_CHARSET !== 'UTF-8') {
                 mb_convert_variables('UTF-8', _CHARSET, $text);
             }

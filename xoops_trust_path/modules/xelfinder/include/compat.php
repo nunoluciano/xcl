@@ -77,7 +77,7 @@ function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $esca
 	fwrite($fh, $input);
 	rewind($fh);
 	$data = [];
-	while (($row = php_compat_fgetcsv_wrap($fh, 1000, $delimiter, $enclosure, $escape)) !== FALSE) {
+	while (FALSE !== ($row = php_compat_fgetcsv_wrap($fh, 1000, $delimiter, $enclosure, $escape))) {
 		$data[] = $row;
 	}
 	fclose($fh);

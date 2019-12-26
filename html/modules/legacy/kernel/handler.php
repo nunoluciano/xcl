@@ -57,7 +57,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
         $criteria =new Criteria($this->mPrimary, $id);
         $objArr =& $this->getObjects($criteria);
         
-        if (count($objArr) == 1) {
+        if (1 == count($objArr)) {
             $ret =& $objArr[0];
         }
 
@@ -81,7 +81,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
         $sql = 'SELECT * FROM `' . $this->mTable . '`';
         
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if (trim($where)) {
@@ -92,23 +92,23 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = '`' . $sort['sort'] . '` ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
             
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = $criteria->getLimit();
             }
             
-            if ($start === null) {
+            if (null === $start) {
                 $start = $criteria->getStart();
             }
         } else {
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = 0;
             }
             
-            if ($start === null) {
+            if (null === $start) {
                 $start = 0;
             }
         }
@@ -153,7 +153,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     
         $sql = 'SELECT `' . $this->mPrimary . '` FROM `' . $this->mTable . '`';
     
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if (trim($where)) {
@@ -164,23 +164,23 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = '`' . $sort['sort'] . '` ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
             
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = $criteria->getLimit();
             }
             
-            if ($start === null) {
+            if (null === $start) {
                 $start = $criteria->getStart();
             }
         } else {
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = 0;
             }
             
-            if ($start === null) {
+            if (null === $start) {
                 $start = 0;
             }
         }
@@ -202,7 +202,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     {
         $sql= 'SELECT COUNT(*) c FROM `' . $this->mTable . '`';
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
             
             if ($where) {
@@ -318,7 +318,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     {
         $ret = [];
         foreach ($obj->gets() as $key => $value) {
-            if ($value === null) {
+            if (null === $value) {
                 $ret[$key] = 'NULL';
             } else {
                 switch ($obj->mVars[$key]['data_type']) {
@@ -338,7 +338,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     
     public function _makeCriteria4sql($criteria)
     {
-        if ($this->_mDummyObj == null) {
+        if (null == $this->_mDummyObj) {
             $this->_mDummyObj =& $this->create();
         }
 
@@ -366,9 +366,9 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
                 //
                 $name = $criteria->getName();
                 $value = $criteria->getValue();
-                if ($name != null && isset($obj->mVars[$name])) {
-                    if ($value === null) {
-                        $criteria->operator = $criteria->getOperator() == '=' ? 'IS' : 'IS NOT';
+                if (null != $name && isset($obj->mVars[$name])) {
+                    if (null === $value) {
+                        $criteria->operator = '=' == $criteria->getOperator() ? 'IS' : 'IS NOT';
                         $value = 'NULL';
                     } elseif (in_array(strtoupper($criteria->operator), ['IN', 'NOT IN'])) {
                         $value = is_array($value) ? $value : explode(',', $value);
@@ -388,7 +388,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
                     $value = $this->db->quoteString($value);
                 }
 
-                return $name != null?$name . ' ' . $criteria->getOperator() . ' ' . $value : null;
+                return null != $name ? $name . ' ' . $criteria->getOperator() . ' ' . $value : null;
             }
         }
     }
@@ -425,7 +425,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
         $sql = 'DELETE FROM `' . $this->mTable . '` WHERE ' . $this->_makeCriteriaElement4sql($criteria, $obj);
     
         $result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
-        if ($result==true) {
+        if (true == $result) {
             $this->_callDelegate('delete', $obj);
         }
     

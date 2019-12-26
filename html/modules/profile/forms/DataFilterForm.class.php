@@ -67,14 +67,14 @@ class Profile_DataFilterForm extends Profile_AbstractFilterForm
     
         $root =& XCube_Root::getSingleton();
     
-        if (($value = $root->mContext->mRequest->getRequest('uid')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('uid'))) {
             $this->mNavi->addExtra('uid', $value);
             $this->_mCriteria->add(new Criteria('uid', $value));
         }
     
         foreach ($this->mFields as $field) {
             $value = $root->mContext->mRequest->getRequest($field->get('field_name'));
-            if (isset($value) && $value !== '') {
+            if (isset($value) && '' !== $value) {
                 $this->mNavi->addExtra($field->get('field_name'), $value);
                 if ($field->get('type')==Profile_FormType::STRING || $field->get('type')==Profile_FormType::TEXT) {
                     $value = '%'.$value.'%';

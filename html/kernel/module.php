@@ -100,13 +100,13 @@ class XoopsModule extends XoopsObject
         $this->setVar('trust_dirname', $trustDirname, true);
         $role = isset($this->modinfo['role']) ? $this->modinfo['role'] : null;
         $this->setVar('role', $role, true);
-        $hasmain = (isset($this->modinfo['hasMain']) && $this->modinfo['hasMain'] == 1) ? 1 : 0;
-        $hasadmin = (isset($this->modinfo['hasAdmin']) && $this->modinfo['hasAdmin'] == 1) ? 1 : 0;
-        $hassearch = (isset($this->modinfo['hasSearch']) && $this->modinfo['hasSearch'] == 1) ? 1 : 0;
+        $hasmain = (isset($this->modinfo['hasMain']) && 1 == $this->modinfo['hasMain']) ? 1 : 0;
+        $hasadmin = (isset($this->modinfo['hasAdmin']) && 1 == $this->modinfo['hasAdmin']) ? 1 : 0;
+        $hassearch = (isset($this->modinfo['hasSearch']) && 1 == $this->modinfo['hasSearch']) ? 1 : 0;
         $hasconfig = ((isset($this->modinfo['config']) && is_array($this->modinfo['config'])) || !empty($this->modinfo['hasComments'])) ? 1 : 0;
-        $hascomments = (isset($this->modinfo['hasComments']) && $this->modinfo['hasComments'] == 1) ? 1 : 0;
+        $hascomments = (isset($this->modinfo['hasComments']) && 1 == $this->modinfo['hasComments']) ? 1 : 0;
         // RMV-NOTIFY
-        $hasnotification = (isset($this->modinfo['hasNotification']) && $this->modinfo['hasNotification'] == 1) ? 1 : 0;
+        $hasnotification = (isset($this->modinfo['hasNotification']) && 1 == $this->modinfo['hasNotification']) ? 1 : 0;
         $this->setVar('hasmain', $hasmain);
         $this->setVar('hasadmin', $hasadmin);
         $this->setVar('hassearch', $hassearch);
@@ -145,7 +145,7 @@ class XoopsModule extends XoopsObject
      */
     public function mainLink()
     {
-        if ($this->getVar('hasmain') == 1) {
+        if (1 == $this->getVar('hasmain')) {
             $ret = '<a href="'.XOOPS_URL.'/modules/'.$this->getVar('dirname').'/">'.$this->getVar('name').'</a>';
             return $ret;
         }
@@ -254,11 +254,11 @@ class XoopsModule extends XoopsObject
     public function &search($term = '', $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
     {
         $ret = false;
-        if ($this->getVar('hassearch') != 1) {
+        if (1 != $this->getVar('hassearch')) {
             return $ret;
         }
         $search =& $this->getInfo('search');
-        if ($this->getVar('hassearch') != 1 || !isset($search['file']) || !isset($search['func']) || $search['func'] == '' || $search['file'] == '') {
+        if (1 != $this->getVar('hassearch') || !isset($search['file']) || !isset($search['func']) || '' == $search['func'] || '' == $search['file']) {
             return $ret;
         }
         if (file_exists(XOOPS_ROOT_PATH . '/modules/' . $this->getVar('dirname') . '/' . $search['file'])) {
@@ -287,7 +287,7 @@ class XoopsModule extends XoopsObject
     public function hasHelp()
     {
         $info =& $this->getInfo();
-        if (isset($info['cube_style']) && $info['cube_style'] != false && isset($info['help']) && strlen($info['help']) > 0) {
+        if (isset($info['cube_style']) && false != $info['cube_style'] && isset($info['help']) && strlen($info['help']) > 0) {
             return true;
         }
         
@@ -405,7 +405,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
                 $sql = 'SELECT * FROM '.$this->db->prefix('modules').' WHERE mid = '.$id;
                 if ($result = $this->db->query($sql)) {
                     $numrows = $this->db->getRowsNum($result);
-                    if ($numrows == 1) {
+                    if (1 == $numrows) {
                         $module =new XoopsModule();
                         $myrow = $this->db->fetchArray($result);
                         $module->assignVars($myrow);
@@ -433,7 +433,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         $cache = &$this->_cachedModule_dirname;
         if (!empty($cache[$dirname])) {
             $ret = $cache[$dirname];
-        } elseif (count($cache)==0) {
+        } elseif (0 == count($cache)) {
             $db = $this->db;
             $sql = 'SELECT * FROM ' . $db->prefix('modules');
             if ($result = $db->query($sql)) {
@@ -463,7 +463,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function insert(&$module)
     {
-        if (strtolower(get_class($module)) != 'xoopsmodule') {
+        if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
         }
         
@@ -517,7 +517,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function delete(&$module)
     {
-        if (strtolower(get_class($module)) != 'xoopsmodule') {
+        if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE mid = %u', $this->db->prefix('modules'), $module->getVar('mid'));
@@ -531,7 +531,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         $sql = sprintf("DELETE FROM %s WHERE gperm_name = 'module_read' AND gperm_itemid = %u", $this->db->prefix('group_permission'), $module->getVar('mid'));
         $this->db->query($sql);
 
-        if ($module->getVar('mid')==1) {
+        if (1 == $module->getVar('mid')) {
             $sql = sprintf("DELETE FROM %s WHERE gperm_name = 'system_admin'", $this->db->prefix('group_permission'));
         } else {
             $sql = sprintf('DELETE FROM %s WHERE gperm_modid = %u', $this->db->prefix('group_permission'), $module->getVar('mid'));
@@ -590,7 +590,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
 
-            if ($criteria->getSort()!=null) {
+            if (null != $criteria->getSort()) {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
             } else {
                 $sql .= ' ORDER BY weight '.$criteria->getOrder().', mid ASC';

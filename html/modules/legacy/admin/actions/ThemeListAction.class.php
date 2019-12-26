@@ -109,7 +109,7 @@ class Legacy_ThemeListAction extends Legacy_Action
         //
         $themeName = $this->mActionForm->getChooseTheme();
         
-        if ($themeName != null) {
+        if (null != $themeName) {
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'theme_set'));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));

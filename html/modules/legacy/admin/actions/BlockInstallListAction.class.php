@@ -33,7 +33,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
         return $navi;

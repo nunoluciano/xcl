@@ -254,10 +254,10 @@ class File_ANSI
                 // https://en.wikipedia.org/wiki/ANSI_escape_code#Sequence_elements
                 // single character CSI's not currently supported
                 switch (true) {
-                    case $this->ansi == "\x1B=":
+                    case "\x1B=" == $this->ansi:
                         $this->ansi = '';
                         continue 2;
-                    case strlen($this->ansi) == 2 && $chr >= 64 && $chr <= 95 && $chr != ord('['):
+                    case 2 == strlen($this->ansi) && $chr >= 64 && $chr <= 95 && $chr != ord('['):
                     case strlen($this->ansi) > 2 && $chr >= 64 && $chr <= 126:
                         break;
                     default:
@@ -516,18 +516,18 @@ class File_ANSI
         if ($last_attr != $cur_attr) {
             $close = $open = '';
             if ($last_attr->foreground != $cur_attr->foreground) {
-                if ($cur_attr->foreground != 'white') {
+                if ('white' != $cur_attr->foreground) {
                     $open .= '<span style="color: ' . $cur_attr->foreground . '">';
                 }
-                if ($last_attr->foreground != 'white') {
+                if ('white' != $last_attr->foreground) {
                     $close = '</span>' . $close;
                 }
             }
             if ($last_attr->background != $cur_attr->background) {
-                if ($cur_attr->background != 'black') {
+                if ('black' != $cur_attr->background) {
                     $open .= '<span style="background: ' . $cur_attr->background . '">';
                 }
-                if ($last_attr->background != 'black') {
+                if ('black' != $last_attr->background) {
                     $close = '</span>' . $close;
                 }
             }

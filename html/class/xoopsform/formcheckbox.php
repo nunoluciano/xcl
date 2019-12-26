@@ -121,7 +121,7 @@ class XoopsFormCheckBox extends XoopsFormElement
      */
     public function addOption($value, $name= '')
     {
-        if ($name != '') {
+        if ('' != $name) {
             $this->_options[$value] = $name;
         } else {
             $this->_options[$value] = $value;
@@ -164,7 +164,7 @@ class XoopsFormCheckBox extends XoopsFormElement
         
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
-        if (count($this->getOptions()) > 1 && substr($this->getName(), -2, 2) != '[]') {
+        if (count($this->getOptions()) > 1 && '[]' != substr($this->getName(), -2, 2)) {
             $newname = $this->getName() . '[]';
             $this->setName($newname);
         }

@@ -27,7 +27,7 @@ if (INSTALL_USER != '' || INSTALL_PASSWD != '') {
         echo 'You can not access this XOOPS installer.';
         exit;
     } else {
-        if (INSTALL_USER != '' && $_SERVER['PHP_AUTH_USER'] != INSTALL_USER) {
+        if (INSTALL_USER != '' && INSTALL_USER != $_SERVER['PHP_AUTH_USER']) {
             header('HTTP/1.0 401 Unauthorized');
             echo 'You can not access this XOOPS installer.';
             exit;

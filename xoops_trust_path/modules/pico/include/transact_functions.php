@@ -79,7 +79,7 @@ function pico_sync_cattree($mydirname)
 			for ($i = 0; $i < $depth_diff; $i++) {
 				$paths[$val['cat_id']] = $val['cat_title'];
 			}
-		} else if ($val['cat_id'] !== 0) {
+		} else if (0 !== $val['cat_id']) {
 			for ($i = 0; $i < -$depth_diff + 1; $i++) {
 				array_pop($paths);
 			}
@@ -185,7 +185,7 @@ function pico_sync_tags($mydirname)
 	$result = $db->query('SELECT content_id,tags FROM ' . $db->prefix($mydirname . '_contents'));
 	while (list($content_id, $tags) = $db->fetchRow($result)) {
 		foreach (explode(' ', $tags) as $tag) {
-			if (trim($tag) == '') continue;
+			if ('' == trim($tag)) continue;
 			$all_tags_array[$tag][] = $content_id;
 		}
 	}
@@ -311,7 +311,7 @@ function pico_get_requests4category($mydirname, $cat_id = null)
 		}
 	}
 
-	if ($cat_id === 0) {
+	if (0 === $cat_id) {
 		// top category
 		$cat_vpath = null;
 		$pid = 0xffff;
@@ -345,7 +345,7 @@ function pico_makecategory($mydirname)
 	$requests = pico_get_requests4category($mydirname);
 	$set = '';
 	foreach ($requests as $key => $val) {
-		if ($key == 'cat_vpath' && empty($val)) {
+		if ('cat_vpath' == $key && empty($val)) {
 			$set .= "`$key`=null,";
 		} else {
 			$set .= "`$key`=" . $db->quoteString($val) . ',';
@@ -385,7 +385,7 @@ function pico_updatecategory($mydirname, $cat_id)
 	$requests = pico_get_requests4category($mydirname, $cat_id);
 	$set = '';
 	foreach ($requests as $key => $val) {
-		if ($key == 'cat_vpath' && empty($val)) {
+		if ('cat_vpath' == $key && empty($val)) {
 			$set .= "`$key`=null,";
 		} else {
 			$set .= "`$key`=" . $db->quoteString($val) . ',';
@@ -435,7 +435,7 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 	// build filters
 	$filters = [];
 	foreach ($_POST as $key => $val) {
-		if (substr($key, 0, 15) == 'filter_enabled_' && $val) {
+		if ('filter_enabled_' == substr($key, 0, 15) && $val) {
 			$name = str_replace('..', '', substr($key, 15));
 			$constpref = '_MD_PICO_FILTERS_' . strtoupper($name);
 			$filter_file = dirname(dirname(__FILE__)) . '/filters/pico_' . $name . '.php';
@@ -523,17 +523,17 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 		$ret['specify_created_time'] = empty($_POST['specify_created_time']) ? 0 : 1;
 		$ret['specify_modified_time'] = empty($_POST['specify_modified_time']) ? 0 : 1;
 		$ret['specify_expiring_time'] = empty($_POST['specify_expiring_time']) ? 0 : 1;
-		if ($ret['specify_created_time'] && strtotime(@$_POST['created_time']) != -1) {
+		if ($ret['specify_created_time'] && -1 != strtotime(@$_POST['created_time'])) {
 			$created_time_safe = preg_replace('#[^\s0-9a-zA-Z:+/-]#', '', $_POST['created_time']);
 			$ret['created_time_formatted'] = $created_time_safe;
 			$ret['created_time'] = pico_common_get_server_timestamp(strtotime($_POST['created_time']));
 		}
-		if ($ret['specify_modified_time'] && strtotime(@$_POST['modified_time']) != -1) {
+		if ($ret['specify_modified_time'] && -1 != strtotime(@$_POST['modified_time'])) {
 			$modified_time_safe = preg_replace('#[^\s0-9a-zA-Z:+/-]#', '', $_POST['modified_time']);
 			$ret['modified_time_formatted'] = $modified_time_safe;
 			$ret['modified_time'] = pico_common_get_server_timestamp(strtotime($_POST['modified_time']));
 		}
-		if ($ret['specify_expiring_time'] && strtotime(@$_POST['expiring_time']) != -1) {
+		if ($ret['specify_expiring_time'] && -1 != strtotime(@$_POST['expiring_time'])) {
 			$expiring_time_safe = preg_replace('#[^\s0-9a-zA-Z:+/-]#', '', $_POST['expiring_time']);
 			$ret['expiring_time_formatted'] = $expiring_time_safe;
 			$ret['expiring_time'] = pico_common_get_server_timestamp(strtotime($_POST['expiring_time']));
@@ -545,9 +545,9 @@ function pico_get_requests4content($mydirname, &$errors, $auto_approval = true, 
 
 	// HTML Purifier in Protector (only for PHP5)
 	//'htmlpurify_except' ,
-	if (substr(PHP_VERSION, 0, 1) != 4 && file_exists(XOOPS_LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php')) {
+	if (4 != substr(PHP_VERSION, 0, 1) && file_exists(XOOPS_LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php')) {
 		if (is_object($xoopsUser)) {
-			$purifier_enable = sizeof(array_intersect($xoopsUser->getGroups(), @$mod_config['htmlpurify_except'])) == 0;
+			$purifier_enable = 0 == sizeof(array_intersect($xoopsUser->getGroups(), @$mod_config['htmlpurify_except']));
 		} else {
 			$purifier_enable = true;
 		}
@@ -623,7 +623,7 @@ function pico_makecontent($mydirname, $auto_approval = true, $isadminormod = fal
 	$set = $auto_approval ? '' : "visible=0,subject='" . _MD_PICO_WAITINGREGISTER . "',htmlheader='',body='',";
 	foreach ($requests as $key => $val) {
 		if (in_array($key, $ignore_requests)) continue;
-		if ($key == 'vpath' && empty($val)) {
+		if ('vpath' == $key && empty($val)) {
 			$set .= "`$key`=null,";
 		} else {
 			$set .= "`$key`=" . $db->quoteString($val) . ',';
@@ -693,7 +693,7 @@ function pico_updatecontent($mydirname, $content_id, $auto_approval = true, $isa
 	$set = '';
 	foreach ($requests as $key => $val) {
 		if (in_array($key, $ignore_requests)) continue;
-		if ($key == 'vpath' && empty($val)) {
+		if ('vpath' == $key && empty($val)) {
 			$set .= "`$key`=null,";
 		} else {
 			$set .= "`$key`=" . $db->quoteString($val) . ',';

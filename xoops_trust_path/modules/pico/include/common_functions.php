@@ -107,7 +107,7 @@ function pico_common_make_content_link4html($mod_config, $content_row, $mydirnam
 function pico_common_make_category_link4html($mod_config, $cat_row, $mydirname = null)
 {
 	if (!empty($mod_config['use_wraps_mode'])) {
-		if (empty($cat_row) || is_array($cat_row) && $cat_row['cat_id'] == 0) return '';
+		if (empty($cat_row) || is_array($cat_row) && 0 == $cat_row['cat_id']) return '';
 		if (!is_array($cat_row) && !empty($mydirname)) {
 			// specify category by cat_id instead of cat_row
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -115,7 +115,7 @@ function pico_common_make_category_link4html($mod_config, $cat_row, $mydirname =
 		}
 		if (!empty($cat_row['cat_vpath'])) {
 			$ret = 'index.php' . htmlspecialchars($cat_row['cat_vpath'], ENT_QUOTES);
-			if (substr($ret, -1) != '/') $ret .= '/';
+			if ('/' != substr($ret, -1)) $ret .= '/';
 		} else {
 			$ret = 'index.php' . sprintf(_MD_PICO_AUTOCATNAME4SPRINTF, intval($cat_row['cat_id']));
 		}
@@ -159,7 +159,7 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
         ];
 	}
 
-	if (!($caller == 'sitemap_plugin' && !@$mod_config['sitemap_showcontents']) && !($caller == 'xoops_version' && !@$mod_config['submenu_showcontents'])) {
+	if (!('sitemap_plugin' == $caller && !@$mod_config['sitemap_showcontents']) && !('xoops_version' == $caller && !@$mod_config['submenu_showcontents'])) {
 		// contents query
 		$ors = $db->query('SELECT cat_id,content_id,vpath,subject FROM ' . $db->prefix($mydirname . '_contents') . " WHERE show_in_menu AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND $whr_read ORDER BY weight,content_id");
 		if ($ors) while ($content_row = $db->fetchArray($ors)) {
@@ -261,7 +261,7 @@ function pico_common_unserialize($serialized_data)
 	if (empty($serialized_data)) return [];
 
 	$ret = [];
-	if (substr(trim($serialized_data), 0, 5) == 'array') {
+	if ('array' == substr(trim($serialized_data), 0, 5)) {
 		// assume this is a string made from var_export( $var , true ) ;
 		@eval('$ret=' . $serialized_data . ';');
 	} else {

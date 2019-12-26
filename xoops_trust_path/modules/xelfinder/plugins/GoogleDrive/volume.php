@@ -16,7 +16,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '>=') && class_exists('\Google_Client'
 	}
 	if (! empty($_token['refresh_token']) || $_service_key_file) {
 		$path = trim($path, ' /');
-		if ($path === '') {
+		if ('' === $path) {
 			$path = 'root';
 		}
 		$volumeOptions = [

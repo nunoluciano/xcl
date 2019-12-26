@@ -104,7 +104,7 @@ class LegacyRender_ActionFrame
             }
         }
     
-        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);

@@ -53,7 +53,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
 
     public function validateAvatar_file()
     {
-        if ($this->_mIsNew && $this->get('avatar_file') == null) {
+        if ($this->_mIsNew && null == $this->get('avatar_file')) {
             $this->addErrorMessage(_AD_USER_ERROR_IMAGE_REQUIRED);
         }
     }
@@ -77,7 +77,7 @@ class User_AvatarAdminEditForm extends XCube_ActionForm
         $obj->set('avatar_weight', $this->get('avatar_weight'));
     
         $this->mFormFile = $this->get('avatar_file');
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('savt');
             $filename = $this->mFormFile->getBodyName();
             $this->mFormFile->setBodyName(substr($filename, 0, 24));

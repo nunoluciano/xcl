@@ -366,7 +366,7 @@ class XoopsMultiTokenHandler
     public function autoValidate($name, $clearIfValid=true)
     {
         $serial_number = $this->getRequestNumber($name);
-        if ($serial_number!==null) {
+        if (null !== $serial_number) {
             if ($token =& $this->fetch($name, $serial_number)) {
                 return $this->validate($token, $clearIfValid);
             }

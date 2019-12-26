@@ -5,7 +5,7 @@ function b_pico_subcategories_show($options)
 	global $xoopsUser;
 
 	$mydirname = empty($options[0]) ? 'pico' : $options[0];
-	$categories = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
+	$categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_subcategories.html' : trim($options[2]);
 
 	if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) die('Invalid mydirname');
@@ -73,7 +73,7 @@ function b_pico_subcategories_show($options)
 function b_pico_subcategories_edit($options)
 {
 	$mydirname = empty($options[0]) ? 'pico' : $options[0];
-	$categories = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
+	$categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
 	$this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_subcategories.html' : trim($options[2]);
 
 	if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) die('Invalid mydirname');

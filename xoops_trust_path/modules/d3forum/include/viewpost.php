@@ -101,7 +101,7 @@ $_GET['topic_id'] = $topic_id ;
 
 	// naao from
 if( is_object( $xoopsUser ) ) {
-	if ($xoopsModuleConfig['use_name'] == 1 && $xoopsUser->getVar( 'name' ) ) {
+	if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 		$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 	} else {
 		$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;

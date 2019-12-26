@@ -65,8 +65,8 @@ function xelfinder_oninstall_base( $module , $mydirname )
 	$tplfile_handler = xoops_getHandler('tplfile' ) ;
 	$tpl_path = dirname(__FILE__).'/templates' ;
 	if( $handler = @opendir( $tpl_path . '/' ) ) {
-		while( ( $file = readdir( $handler ) ) !== false ) {
-			if( substr( $file , 0 , 1 ) == '.' ) continue ;
+		while(false !== ( $file = readdir($handler ) )) {
+			if('.' == substr($file , 0 , 1 )) continue ;
 			$file_path = $tpl_path . '/' . $file ;
 			if( is_file( $file_path ) ) {
 				$mtime = intval( @filemtime( $file_path ) ) ;

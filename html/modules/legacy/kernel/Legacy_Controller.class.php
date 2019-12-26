@@ -154,16 +154,16 @@ class Legacy_Controller extends XCube_Controller
 
         $adminStateFlag = false;
         if (count($urlInfo) >= 3) {
-            if (strtolower($urlInfo[0]) == 'modules') {
-                if (strtolower($urlInfo[2]) == 'admin') {
+            if ('modules' == strtolower($urlInfo[0])) {
+                if ('admin' == strtolower($urlInfo[2])) {
                     $adminStateFlag = true;
-                } elseif ($urlInfo[1] == 'legacy' && $urlInfo[2] == 'include') {
+                } elseif ('legacy' == $urlInfo[1] && 'include' == $urlInfo[2]) {
                     $adminStateFlag = true;
-                } elseif ($urlInfo[1] == 'system' && substr($urlInfo[2], 0, 9) == 'admin.php') {
+                } elseif ('system' == $urlInfo[1] && 'admin.php' == substr($urlInfo[2], 0, 9)) {
                     $adminStateFlag = true;
                 }
             }
-        } elseif (substr($urlInfo[0], 0, 9) == 'admin.php') {
+        } elseif ('admin.php' == substr($urlInfo[0], 0, 9)) {
             $adminStateFlag = true;
         }
 
@@ -310,7 +310,7 @@ class Legacy_Controller extends XCube_Controller
             'Pacific/Tongatapu' => 13.00
         ];
         $index = array_keys($zonelist, $offset);
-        if (sizeof($index)!=1) {
+        if (1 != sizeof($index)) {
             return false;
         }
         return $index[0];
@@ -462,7 +462,7 @@ class Legacy_Controller extends XCube_Controller
         $php_info = xoops_getenv('PATH_INFO');
         $requestPathInfo = @parse_url(!empty($php_info) ? substr(xoops_getenv('PHP_SELF'), 0, - strlen(xoops_getenv('PATH_INFO'))) : xoops_getenv('PHP_SELF'));
 
-        if ($requestPathInfo === false) {
+        if (false === $requestPathInfo) {
             die();
         }
 
@@ -476,23 +476,23 @@ class Legacy_Controller extends XCube_Controller
 
     public function setupModuleContext($dirname = null)
     {
-        if ($dirname == null) {
+        if (null == $dirname) {
             //
             // Sets a module object.
             //
             $urlInfo = $this->_parseUrl();
 
             if (count($urlInfo) >= 2) {
-                if (strtolower($urlInfo[0]) == 'modules') {
+                if ('modules' == strtolower($urlInfo[0])) {
                     $dirname = $urlInfo[1];
                 }
             }
-            if (substr($urlInfo[0], 0, 9) == 'admin.php') {
+            if ('admin.php' == substr($urlInfo[0], 0, 9)) {
                 $dirname = 'legacy';
             }
         }
 
-        if ($dirname == null) {
+        if (null == $dirname) {
             return;
         }
 
@@ -502,14 +502,14 @@ class Legacy_Controller extends XCube_Controller
 
         $this->_mStrategy->setupModuleContext($this->mRoot->mContext, $dirname);
 
-        if ($this->mRoot->mContext->mModule != null) {
+        if (null != $this->mRoot->mContext->mModule) {
             $this->mRoot->mContext->setAttribute('legacy_pagetitle', $this->mRoot->mContext->mModule->mXoopsModule->get('name'));
         }
     }
 
     public function _processModule()
     {
-        if ($this->mRoot->mContext->mModule != null) {
+        if (null != $this->mRoot->mContext->mModule) {
             $module =& $this->mRoot->mContext->mModule;
             if (!$module->isActive()) {
                 /**
@@ -607,11 +607,11 @@ class Legacy_Controller extends XCube_Controller
 
         require_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
-        if ($this->mRoot->getSiteConfig('Legacy', 'AllowDBProxy') == true) {
-            if (xoops_getenv('REQUEST_METHOD') != 'POST' || !xoops_refcheck(XOOPS_DB_CHKREF)) {
+        if (true == $this->mRoot->getSiteConfig('Legacy', 'AllowDBProxy')) {
+            if ('POST' != xoops_getenv('REQUEST_METHOD') || !xoops_refcheck(XOOPS_DB_CHKREF)) {
                 define('XOOPS_DB_PROXY', 1);
             }
-        } elseif (xoops_getenv('REQUEST_METHOD') != 'POST') {
+        } elseif ('POST' != xoops_getenv('REQUEST_METHOD')) {
             define('XOOPS_DB_PROXY', 1);
         }
 
@@ -636,7 +636,7 @@ class Legacy_Controller extends XCube_Controller
 
         $this->mGetLanguageName->call(new XCube_Ref($language));
 
-        if ($language == null) {
+        if (null == $language) {
             $handler = xoops_gethandler('config');
             $criteria = new CriteriaCompo(new Criteria('conf_modid', 0));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
@@ -723,7 +723,7 @@ class Legacy_Controller extends XCube_Controller
         $GLOBALS['config_handler'] =& $configHandler;
         $GLOBALS['module_handler'] = xoops_gethandler('module');
 
-        if (count($this->mRoot->mContext->mXoopsConfig) == 0) {
+        if (0 == count($this->mRoot->mContext->mXoopsConfig)) {
             return;
         }
 
@@ -771,7 +771,7 @@ class Legacy_Controller extends XCube_Controller
         //
         // Auto pre-loading for Module.
         //
-        if ($this->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
+        if (1 == $this->mRoot->getSiteConfig('Legacy', 'AutoPreload')) {
             if ($this->mActiveModules) {
                 $moduleObjects = $this->mActiveModules;
             } else {
@@ -849,7 +849,7 @@ class Legacy_Controller extends XCube_Controller
         //
         // cache check
         //
-        if ($this->mRoot->mContext->mModule != null && $this->isEnableCacheFeature()) {
+        if (null != $this->mRoot->mContext->mModule && $this->isEnableCacheFeature()) {
             $cacheInfo =& $this->mRoot->mContext->mModule->createCacheInfo();
 
             $this->mSetModuleCachePolicy->call($cacheInfo);
@@ -884,7 +884,7 @@ class Legacy_Controller extends XCube_Controller
 
     public function executeView()
     {
-        if ($this->mRoot->mContext->mModule != null) {
+        if (null != $this->mRoot->mContext->mModule) {
             $renderSystem =& $this->mRoot->getRenderSystem($this->mRoot->mContext->mModule->getRenderSystemName());
             $renderTarget =& $this->mRoot->mContext->mModule->getRenderTarget();
 
@@ -897,7 +897,7 @@ class Legacy_Controller extends XCube_Controller
 
             // Wmm...
             if (is_object($renderTarget)) {
-                if ($renderTarget->getTemplateName() == null) {
+                if (null == $renderTarget->getTemplateName()) {
                     if (isset($GLOBALS['xoopsOption']['template_main'])) {
                         $renderTarget->setTemplateName($GLOBALS['xoopsOption']['template_main']);
                     }
@@ -960,7 +960,7 @@ class Legacy_Controller extends XCube_Controller
         //
         $isAdmin=false;
         if (is_object($this->mRoot->mContext->mXoopsUser)) {
-            if ($this->mRoot->mContext->mModule != null && $this->mRoot->mContext->mModule->isActive()) {
+            if (null != $this->mRoot->mContext->mModule && $this->mRoot->mContext->mModule->isActive()) {
                 // @todo I depend on Legacy Module Controller.
                 $mid = $this->mRoot->mContext->mXoopsModule->getVar('mid');
             } else {
@@ -1026,7 +1026,7 @@ class Legacy_Controller extends XCube_Controller
                     // exception
                     $this->logout();
                     return;
-                } elseif (count($t_groups) == 0) {
+                } elseif (0 == count($t_groups)) {
                     // exception, too
                     $this->logout();
                     return;
@@ -1202,8 +1202,8 @@ class Legacy_Controller extends XCube_Controller
             $this->_mNotifyRedirectToUser->call(new XCube_Ref($url));
         }
 
-        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && $xoopsConfig['session_name'] != '' && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if (strpos($url, XOOPS_URL) === 0) {
+        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' != $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
+            if (0 === strpos($url, XOOPS_URL)) {
                 if (!strstr($url, '?')) {
                     $connector = '?';
                 } else {
@@ -1322,7 +1322,7 @@ class Legacy_Controller extends XCube_Controller
      */
     public function existActiveCacheFile($filepath, $cachetime)
     {
-        if ($cachetime == 0) {
+        if (0 == $cachetime) {
             return false;
         }
 
@@ -1443,7 +1443,7 @@ class Legacy_AbstractControllerStrategy
         //
         // Auto pre-loading.
         //
-        if ($this->mController->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
+        if (1 == $this->mController->mRoot->getSiteConfig('Legacy', 'AutoPreload')) {
             $this->mController->_processPreload(XOOPS_ROOT_PATH . '/preload');
         }
     }

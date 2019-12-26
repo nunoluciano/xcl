@@ -36,7 +36,7 @@ if (!class_exists('PicoPreloadBase')) {
 		public function ckeditor4PreBuild(&$params)
 		{
 			$mObj = $this->mRoot->mContext->mXoopsModule;
-			if (is_a($mObj, 'XoopsModule') && $mObj->get('trust_dirname') === 'pico') {
+			if (is_a($mObj, 'XoopsModule') && 'pico' === $mObj->get('trust_dirname')) {
 				$params['allowhtml'] = true;
 				if (!isset($params['switcher'])) {
 					$id = $params['id'];

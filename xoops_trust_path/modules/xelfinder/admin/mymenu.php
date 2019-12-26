@@ -3,7 +3,7 @@
 /********* mymenu for D3 modules always require altsys>=0.5 ********/
 
 // Deny direct access
-if( preg_replace( '/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] ) == 'mymenu' ) exit ;
+if('mymenu' == preg_replace('/[^a-zA-Z0-9_-]/' , '' , @$_GET['page'] )) exit ;
 
 // Skip for ORETEKI XOOPS
 if( defined( 'XOOPS_ORETEKI' ) ) return ;
@@ -39,7 +39,7 @@ foreach( array_keys( $adminmenu ) as $i ) {
 }
 if( empty( $adminmenu_hilighted ) ) {
 	foreach( array_keys( $adminmenu ) as $i ) {
-		if( substr($adminmenu[$i]['link'], 0, 6) === 'admin/' && stristr( $mymenu_uri , $adminmenu[$i]['link'] ) ) {
+		if('admin/' === substr($adminmenu[$i]['link'], 0, 6) && stristr($mymenu_uri , $adminmenu[$i]['link'] ) ) {
 			$adminmenu[$i]['selected'] = true ;
 			$GLOBALS['altsysAdminPageTitle'] = $adminmenu[$i]['title'] ;
 			break ;
@@ -49,7 +49,7 @@ if( empty( $adminmenu_hilighted ) ) {
 
 // link conversion from relative to absolute
 foreach( array_keys( $adminmenu ) as $i ) {
-	if( stristr( $adminmenu[$i]['link'] , XOOPS_URL ) === false ) {
+	if(false === stristr($adminmenu[$i]['link'] , XOOPS_URL )) {
 		$adminmenu[$i]['link'] = XOOPS_MODULE_URL."/$mydirname/" . $adminmenu[$i]['link'] ;
 	}
 }

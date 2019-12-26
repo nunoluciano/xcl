@@ -102,7 +102,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
             //
             // If old avatar is a cutom avatar, delete it.
             //
-            if ($this->mOldAvatar != null && $this->mOldAvatar->get('avatar_type') == 'C') {
+            if (null != $this->mOldAvatar && 'C' == $this->mOldAvatar->get('avatar_type')) {
                 $avatarHandler->delete($this->mOldAvatar);
             }
             

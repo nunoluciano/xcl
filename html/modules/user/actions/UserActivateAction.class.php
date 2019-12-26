@@ -63,7 +63,7 @@ class User_UserActivateAction extends User_AbstractEditAction
         //
         $this->mObjectHandler->insert($this->mObject, true);
 
-        if ($this->mConfig['activation_type'] == 2) {
+        if (2 == $this->mConfig['activation_type']) {
             $builder =new User_RegistAdminCommitMailBuilder();
             $director =new User_UserRegistMailDirector($builder, $this->mObject, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
             $director->contruct();

@@ -95,7 +95,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
         foreach (array_keys($fieldArr) as $keyF) {
             $flag = false;
             $accessArr = explode(',', $fieldArr[$keyF]->get('access'));
-            if ($uid===0) {    //guest
+            if (0 === $uid) {    //guest
                 if (in_array(XOOPS_GROUP_ANONYMOUS, $accessArr)) {
                     $flag = true;
                 }
@@ -157,7 +157,7 @@ class Profile_DefinitionsHandler extends XoopsObjectGenericHandler
     {
         $criteria = new CriteriaCompo();
         $criteria->setSort('weight', 'ASC');
-        if ($show_form==true) {
+        if (true == $show_form) {
             $criteria->add(new Criteria('show_form', 1));
         }
         $definitions = $this->getObjects($criteria);

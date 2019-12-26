@@ -69,7 +69,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     public function validateImgcat_id()
     {
         $imgcat_id = $this->get('imgcat_id');
-        if ($imgcat_id != null) {
+        if (null != $imgcat_id) {
             $root =& XCube_Root::getSingleton();
             $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
             
@@ -92,7 +92,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     {
         $formFile = $this->get('image_name');
         
-        if ($formFile == null && $this->_mIsNew) {
+        if (null == $formFile && $this->_mIsNew) {
             $this->addErrorMessage(_MD_LEGACY_ERROR_YOU_MUST_UPLOAD);
         }
     }
@@ -106,7 +106,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         
         $formFile = $this->get('image_name');
 
-        if ($formFile != null && is_object($category)) {
+        if (null != $formFile && is_object($category)) {
             //
             // Imagefile width & height check.
             //
@@ -143,7 +143,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 
         $this->mFormFile = $this->get('image_name');
         
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('img');
             
             $filename = $this->mFormFile->getBodyName();
@@ -155,7 +155,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
             //
             // To store db
             //
-            if ($category->get('imgcat_storetype') == 'db') {
+            if ('db' == $category->get('imgcat_storetype')) {
                 $obj->loadImageBody();
                 if (!is_object($obj->mImageBody)) {
                     $obj->mImageBody =& $obj->createImageBody();

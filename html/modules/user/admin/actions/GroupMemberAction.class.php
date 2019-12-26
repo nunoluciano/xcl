@@ -115,9 +115,9 @@ class User_GroupMemberAction extends User_Action
             $user =& $userHandler->get($uid);
             
             if (is_object($user)) {
-                if ($value == 1) {
+                if (1 == $value) {
                     $memberHandler->addUserToGroup($this->mGroup->get('groupid'), $uid);
-                } elseif ($value == 2) {
+                } elseif (2 == $value) {
                     $memberHandler->removeUserFromGroup($this->mGroup->get('groupid'), $uid);
                 }
             }

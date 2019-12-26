@@ -62,7 +62,7 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
     
     public function validateFrom_email()
     {
-        if ($this->get('is_mail') && strlen($this->get('from_email')) == 0) {
+        if ($this->get('is_mail') && 0 == strlen($this->get('from_email'))) {
             $this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_REQUIRED, _AD_USER_LANG_FROM_EMAIL));
         }
     }

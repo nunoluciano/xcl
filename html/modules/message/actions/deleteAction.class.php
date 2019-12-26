@@ -15,7 +15,7 @@ class deleteAction extends AbstractAction
   
     public function execute()
     {
-        if ($this->root->mContext->mRequest->getRequest('inout') == 'in') {
+        if ('in' == $this->root->mContext->mRequest->getRequest('inout')) {
             $this->inout = 'inbox';
         } else {
             $this->inout = 'outbox';

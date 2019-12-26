@@ -71,7 +71,7 @@ while( $forum_row = $db->fetchArray( $frs ) ) {
 	if( is_object( $last_poster_obj ) ) {
 		// naao from
 		//$last_post_uname = $last_poster_obj->getVar( 'uname' ) ;
-		if ($xoopsModuleConfig['use_name'] == 1 && $last_poster_obj->getVar( 'name' ) ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $last_poster_obj->getVar('name' ) ) {
 			$last_post_uname = $last_poster_obj->getVar( 'name' ) ;
 		} else {
 			$last_post_uname = $last_poster_obj->getVar( 'uname' ) ;

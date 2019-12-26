@@ -389,7 +389,7 @@ class Crypt_Rijndael extends Crypt_Base
     {
         switch ($engine) {
             case CRYPT_ENGINE_OPENSSL:
-                if ($this->block_size != 16) {
+                if (16 != $this->block_size) {
                     return false;
                 }
                 $this->cipher_name_openssl_ecb = 'aes-' . ($this->key_length << 3) . '-ecb';
@@ -652,14 +652,14 @@ class Crypt_Rijndael extends Crypt_Base
         $length = $this->Nb * ($this->Nr + 1);
         for ($i = $this->Nk; $i < $length; $i++) {
             $temp = $w[$i - 1];
-            if ($i % $this->Nk == 0) {
+            if (0 == $i % $this->Nk) {
                 // according to <https://php.net/language.types.integer>, "the size of an integer is platform-dependent".
                 // on a 32-bit machine, it's 32-bits, and on a 64-bit machine, it's 64-bits. on a 32-bit machine,
                 // 0xFFFFFFFF << 8 == 0xFFFFFF00, but on a 64-bit machine, it equals 0xFFFFFFFF00. as such, doing 'and'
                 // with 0xFFFFFFFF (or 0xFFFFFF00) on a 32-bit machine is unnecessary, but on a 64-bit machine, it is.
                 $temp = (($temp << 8) & 0xFFFFFF00) | (($temp >> 24) & 0x000000FF); // rotWord
                 $temp = $this->_subWord($temp) ^ $rcon[$i / $this->Nk];
-            } elseif ($this->Nk > 6 && $i % $this->Nk == 4) {
+            } elseif ($this->Nk > 6 && 4 == $i % $this->Nk) {
                 $temp = $this->_subWord($temp);
             }
             $w[$i] = $w[$i - $this->Nk] ^ $temp;
@@ -676,7 +676,7 @@ class Crypt_Rijndael extends Crypt_Base
         $temp = $this->w = $this->dw = [];
         for ($i = $row = $col = 0; $i < $length; $i++, $col++) {
             if ($col == $this->Nb) {
-                if ($row == 0) {
+                if (0 == $row) {
                     $this->dw[0] = $this->w[0];
                 } else {
                     // subWord + invMixColumn + invSubWord = invMixColumn

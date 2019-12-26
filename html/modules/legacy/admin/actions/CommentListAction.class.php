@@ -38,7 +38,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
     public function &_getPageNavi()
     {
         $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && intval($_REQUEST[$navi->mPrefix.'perpage']) == 0) {
+        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && 0 == intval($_REQUEST[$navi->mPrefix . 'perpage'])) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -104,7 +104,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -158,7 +158,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                     $call_updatefunc = false;
                     $notify_event = false;
 
-                    if (!empty($newdata['com_status']) && $newdata['com_status'] != XOOPS_COMMENT_PENDING) {
+                    if (!empty($newdata['com_status']) && XOOPS_COMMENT_PENDING != $newdata['com_status']) {
                         if (XOOPS_COMMENT_PENDING == $olddata['com_status']) {
                             $add_userpost = true;
                             if (XOOPS_COMMENT_ACTIVE == $newdata['com_status']) {
@@ -175,14 +175,14 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
                     $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
 
-                    if ($comment_config && $call_approvefunc != false) {
+                    if ($comment_config && false != $call_approvefunc) {
                         $function = $comment_config['callback']['approve'];
                         if (function_exists($function)) {
                             call_user_func($function, $comment);
                         }
                     }
 
-                    if ($comment_config && $call_updatefunc != false) {
+                    if ($comment_config && false != $call_updatefunc) {
                         $function = $comment_config['callback']['update'];
                         if (function_exists($function)) {
                             $criteria = new CriteriaCompo(new Criteria('com_modid', $comment->getVar('com_modid')));
@@ -230,14 +230,14 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         }//foreach
 
                 foreach (array_keys($statusArr) as $cid) {
-                    if ($this->mActionForm->get('delete', $cid) == 1) {
+                    if (1 == $this->mActionForm->get('delete', $cid)) {
                         $comment =& $comment_handler->get($cid);
                         if (is_object($comment)) {
                             if (!$comment_handler->delete($comment)) {
                                 return LEGACY_FRAME_VIEW_ERROR;
                             }
 
-                            if ($comment->get('com_status') != 1 && $comment->get('com_uid') > 0) {
+                            if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
                                 $memberhandler =& xoops_gethandler('member');
                                 $user =& $memberhandler->getUser($comment->get('com_uid'));
                                 if (is_object($user)) {

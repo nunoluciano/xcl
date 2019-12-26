@@ -72,14 +72,14 @@ class LegacyRender_BannerAdminEditForm extends XCube_ActionForm
         // If htmlbanner is clicked, htmlbanner is requreid.
         //
         if ($this->get('htmlbanner')) {
-            if (strlen($this->get('htmlcode')) == 0) {
+            if (0 == strlen($this->get('htmlcode'))) {
                 $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_HTMLCODE));
             }
         } else {
-            if (strlen($this->get('imageurl')) == 0) {
+            if (0 == strlen($this->get('imageurl'))) {
                 $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_IMAGEURL));
             }
-            if (strlen($this->get('clickurl')) == 0) {
+            if (0 == strlen($this->get('clickurl'))) {
                 $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_REQUIRED, _AD_LEGACYRENDER_LANG_CLICKURL));
             }
         }

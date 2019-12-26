@@ -101,21 +101,21 @@ class XoopsGroupPerm extends XoopsObject
 
         $mHandler = xoops_gethandler('module');
         
-        if ($this->get('gperm_modid') != 1) {
+        if (1 != $this->get('gperm_modid')) {
             $module =& $mHandler->get($this->get('gperm_modid'));
             if (!is_object($module)) {
                 return false;
             }
         }
         
-        if ($this->get('gperm_name') == GROUPPERM_VAL_MODREAD
-            || $this->get('gperm_name') == GROUPPERM_VAL_MODADMIN) {
+        if (GROUPPERM_VAL_MODREAD == $this->get('gperm_name')
+            || GROUPPERM_VAL_MODADMIN == $this->get('gperm_name')) {
             $mHandler = xoops_gethandler('module');
             $module =& $mHandler->get($this->get('gperm_itemid'));
             if (!is_object($module)) {
                 return false;
             }
-        } elseif ($this->get('gperm_name') == GROUPPERM_VAL_BLOCKREAD) {
+        } elseif (GROUPPERM_VAL_BLOCKREAD == $this->get('gperm_name')) {
             $bHandler = xoops_gethandler('block');
             $block =& $bHandler->get($this->get('gperm_itemid'));
             if (!is_object($block)) {
@@ -172,7 +172,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
             $sql = sprintf('SELECT * FROM %s WHERE gperm_id = %u', $db->prefix('group_permission'), $id);
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $perm =new XoopsGroupPerm();
                     $perm->assignVars($db->fetchArray($result));
                     $ret =& $perm;
@@ -191,7 +191,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function insert(&$perm)
     {
-        if (strtolower(get_class($perm)) != 'xoopsgroupperm') {
+        if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
         }
         if (!$perm->isDirty()) {
@@ -230,7 +230,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function delete(&$perm)
     {
-        if (strtolower(get_class($perm)) != 'xoopsgroupperm') {
+        if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE gperm_id = %u', $this->db->prefix('group_permission'), $perm->getVar('gperm_id'));
@@ -415,7 +415,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
     {
         $criteria =& $this->getCriteria($gperm_name, $gperm_itemid, $gperm_groupid, $gperm_modid);
         $count = $this->getCount($criteria);
-        if ($count == 1) {
+        if (1 == $count) {
             return true;    // Only one record already exist. do nothing.
         } elseif ($count > 1) {
             // This case occurs when group_permission table exists from older versions of XOOPS.

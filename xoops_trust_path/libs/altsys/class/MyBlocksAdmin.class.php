@@ -83,7 +83,7 @@ class MyBlocksAdmin
     public function init($xoopsModule)
     {
         // altsys "module" MODE
-        if ($xoopsModule->getVar('dirname') == 'altsys') {
+        if ('altsys' == $xoopsModule->getVar('dirname')) {
             // set target_module if specified by $_GET['dirname']
             $module_handler = &xoops_gethandler('module');
             if (!empty($_GET['dirname'])) {
@@ -139,7 +139,7 @@ class MyBlocksAdmin
     public function canDelete($block)
     {
         // can delete if it is a cloned block
-        if ($block->getVar('block_type') == 'D' || $block->getVar('block_type') == 'C') {
+        if ('D' == $block->getVar('block_type') || 'C' == $block->getVar('block_type')) {
             return true;
         } else {
             return false;
@@ -154,7 +154,7 @@ class MyBlocksAdmin
     public function canClone($block)
     {
         // can clone link if it is marked as cloneable block
-        if ($block->getVar('block_type') == 'D' || $block->getVar('block_type') == 'C') {
+        if ('D' == $block->getVar('block_type') || 'C' == $block->getVar('block_type')) {
             return 2;
         } else {
             // $modversion['blocks'][n]['can_clone']
@@ -259,7 +259,7 @@ class MyBlocksAdmin
             while (list($selected_gid) = $this->db->fetchRow($result)) {
                 $selected_gids[] = intval($selected_gid);
             }
-            if ($bid == 0 && empty($selected_gids)) {
+            if (0 == $bid && empty($selected_gids)) {
                 $selected_gids = $GLOBALS['xoopsUser']->getGroups();
             }
         }
@@ -302,7 +302,7 @@ class MyBlocksAdmin
         $stextbox = 'unselected';
         $value4extra_side = '';
 
-        if ($visible != 1) {
+        if (1 != $visible) {
             $sseln = " checked='checked'";
             $scoln = 'disabled';
         } else {
@@ -516,16 +516,16 @@ class MyBlocksAdmin
         if (is_array($options) && count($options) > 0) {
             $block->setVar('options', implode('|', $options));
         }
-        if ($block->getVar('block_type') == 'C') {
+        if ('C' == $block->getVar('block_type')) {
             $name = $this->get_blockname_from_ctype($block->getVar('c_type'));
             $block->setVar('name', $name);
         }
         $msg = _MD_A_MYBLOCKSADMIN_DBUPDATED;
-        if ($block->store() != false) {
+        if (false != $block->store()) {
             include_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl = new XoopsTpl();
             $xoopsTpl->xoops_setCaching(2);
-            if ($block->getVar('template') != '') {
+            if ('' != $block->getVar('template')) {
                 if ($xoopsTpl->is_cached('db:' . $block->getVar('template'))) {
                     if (!$xoopsTpl->clear_cache('db:' . $block->getVar('template'))) {
                         $msg = 'Unable to clear cache for block ID' . $bid;
@@ -752,7 +752,7 @@ class MyBlocksAdmin
         }
         $cblock->setNew();
         $cblock->setVar('bid', 0);
-        $cblock->setVar('block_type', $block->getVar('block_type') == 'C' ? 'C' : 'D');
+        $cblock->setVar('block_type', 'C' == $block->getVar('block_type') ? 'C' : 'D');
         $cblock->setVar('func_num', $this->find_func_num_vacancy($block->getVar('mid')));
         // store the block into DB as a new one
         $newbid = $cblock->store();
@@ -1025,16 +1025,16 @@ class MyBlocksAdmin
             $this->preview_request = $this->fetchRequest4Block($bid);
             $_GET['op'] = str_replace('_ok', '', @$_POST['op']);
             return; // continue ;
-        } elseif (@$_POST['op'] == 'order') {
+        } elseif ('order' == @$_POST['op']) {
             // order ok
             $msg = $this->do_order();
-        } elseif (@$_POST['op'] == 'delete_ok') {
+        } elseif ('delete_ok' == @$_POST['op']) {
             // delete ok
             $msg = $this->do_delete($bid);
-        } elseif (@$_POST['op'] == 'clone_ok') {
+        } elseif ('clone_ok' == @$_POST['op']) {
             // clone ok
             $msg = $this->do_clone($bid);
-        } elseif (@$_POST['op'] == 'edit_ok' || @$_POST['op'] == 'new_ok') {
+        } elseif ('edit_ok' == @$_POST['op'] || 'new_ok' == @$_POST['op']) {
             // edit ok
             $msg = $this->do_edit($bid);
         } elseif (!empty($_POST['submit'])) {

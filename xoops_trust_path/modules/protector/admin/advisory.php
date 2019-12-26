@@ -65,7 +65,7 @@ if ($safe) {
 
 // XOOPS_DB_PREFIX
 echo '<h3>XOOPS_DB_PREFIX</h3>';
-$safe = strtolower(XOOPS_DB_PREFIX) != 'xoops' ;
+$safe = 'xoops' != strtolower(XOOPS_DB_PREFIX);
 if ($safe) {
     echo '<p>[ ' . XOOPS_DB_PREFIX . " ] &nbsp; <span style='color:green;font-weight:bold;'>ok</span></p>\n" ;
 } else {
@@ -91,7 +91,7 @@ if (! defined('PROTECTOR_PRECHECK_INCLUDED')) {
 // patch to databasefactory.php
 echo '<h3>databasefactory.php</h3>';
 $db =& Database::getInstance() ;
-if (strtolower(get_class($db)) != 'protectormysqldatabase') {
+if ('protectormysqldatabase' != strtolower(get_class($db))) {
     echo "<p><span style='color:red;font-weight:bold;'>"._AM_ADV_DBFACTORYUNPATCHED."</span></p>\n" ;
 } else {
     echo _AM_ADV_DBFACTORYPATCHED."<p><span style='color:green;font-weight:bold;'>ok</span></p>\n" ;

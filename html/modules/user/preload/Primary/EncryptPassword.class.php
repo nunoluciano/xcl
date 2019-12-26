@@ -43,7 +43,7 @@ class User_EncryptPassword extends XCube_ActionFilter
     public function passwordVerify(&$result, $password, $hash)
     {
         $result = false;
-        if (strlen($hash) === 32) {
+        if (32 === strlen($hash)) {
             $result = md5($password) === $hash;
         } else if ($this->useNativeHashing) {
             $result = password_verify($password, $hash);
@@ -56,7 +56,7 @@ class User_EncryptPassword extends XCube_ActionFilter
             $needs = password_needs_rehash($val, PASSWORD_DEFAULT);
         } else {
             // md5 length = 32
-            $needs = strlen($val) !== 32;
+            $needs = 32 !== strlen($val);
         }
     }
 }

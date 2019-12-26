@@ -76,7 +76,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	}
 	
 	protected function strToUTF8($str) {
-		if (strtoupper(_CHARSET) !== 'UTF-8') {
+		if ('UTF-8' !== strtoupper(_CHARSET)) {
 			$str = mb_convert_encoding($str, 'UTF-8', _CHARSET);
 		}
 		return $str;
@@ -134,11 +134,11 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
                 'pcid'    => (($_cat['subcat'] && $pcid)? $pcid : 'root')
             ];
 			if ($_cat['subcat']) {
-				if ($pcid !== 'root') {
+				if ('root' !== $pcid) {
 					$this->catTree[$pcid]['subcats'][$_cat['cid']] = $_cat['cname'];
 				}
 			} else {
-				if ($pcid !== 'root' && ! $this->catTree[$pcid]['subcats'] && ! $this->catTree[$pcid]['num']) {
+				if ('root' !== $pcid && !$this->catTree[$pcid]['subcats'] && !$this->catTree[$pcid]['num']) {
 					// no entry
 					unset($this->catTree[$this->catTree[$pcid]['pcid']]['subcats'][$pcid], $this->catTree[$pcid]);
 				}
@@ -146,7 +146,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$this->catTree['root']['subcats'][$pcid] = $_cat['cname'];
 			}
 		}
-		if (! isset($this->options['extAnother']) || strtolower($this->options['extAnother']) !== 'off') {
+		if (! isset($this->options['extAnother']) || 'off' !== strtolower($this->options['extAnother'])) {
 			if (! isset($this->catTree[0])) {
 				$this->catTree[0] = [
                     'subcats' => [],
@@ -193,7 +193,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function updateCache($path, $stat) {
 		$stat = parent::updateCache($path, $stat);
-		if ($stat && $stat['mime'] !== 'directory') $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath'])  . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
+		if ($stat && 'directory' !== $stat['mime']) $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath']) . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
 		return $this->cache[$path] = $stat;
 	}
 
@@ -207,7 +207,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	protected function cacheDir($path) {
 		$this->dirsCache[$path] = [];
 
-		if ($path === '_') {
+		if ('_' === $path) {
 			$cid = 'root';
 		} else {
 			list($cid) = explode('_', substr($path, 1), 2);
@@ -237,7 +237,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$row['ts'] = $this->getDirTs($ccid, $cname, $this->catTree[$ccid]['subcats']);
 				$row['mime'] = 'directory';
 				$row['dirs'] = (! empty($this->catTree[$ccid]['subcats']))? 1 : 0;
-				if ($this->catTree[$ccid]['pcid'] === 'root') {
+				if ('root' === $this->catTree[$ccid]['pcid']) {
 					$row['phash'] = $this->encode('_');
 				} else {
 					$row['phash'] = $this->encode('_'.$this->catTree[$ccid]['pcid'].'_');
@@ -249,12 +249,12 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			}
 		}
 
-		if ($cid !== 'root') {
+		if ('root' !== $cid) {
 			// photos
 			if ($cid >= 10000) {		// all images of common categories
 				$arr_uids = [];
 				$cids = [$cid];
-			} elseif ($cid == -1) {		// all images of other personnel
+			} elseif (-1 == $cid) {		// all images of other personnel
 				$arr_uids = [];
 				$cids = [];
 			} else {			// self personal categories' images
@@ -336,7 +336,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _basename($path) {
-		if ($path === '_') {
+		if ('_' === $path) {
 			return '';
 		} else {
 			list($cid, $name) = explode('_', substr($path, 1), 2);
@@ -353,7 +353,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _joinPath($dir, $name) {
-		if ($dir === '_') {
+		if ('_' === $dir) {
 			return -1;
 		} else {
 			return $dir . $name;
@@ -404,7 +404,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _path($path) {
-		if (($file = $this->stat($path)) == false) {
+		if (false == ($file = $this->stat($path))) {
 			return '';
 		}
 
@@ -453,7 +453,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _stat($path) {
-		if ($path === '_') {
+		if ('_' === $path) {
 			$pid = 0;
 			$cid = 'root';
 			$name = '';
@@ -474,7 +474,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
         ];
 		
 		$uid = $this->d3dConf->uid;
-		if ($cid === 'root') {
+		if ('root' === $cid) {
 			$stat['name'] = (! empty($this->options['alias'])? $this->options['alias'] : 'untitle');
 			$stat['mime'] = 'directory';
 			$stat['dirs'] = true;
@@ -488,14 +488,14 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$stat['ts'] = $this->getDirTs($cid, $stat['name'], $this->catTree[$cid]['subcats']);;
 				$stat['mime'] = 'directory';
 				$stat['dirs'] = (! empty($this->catTree[$cid]['subcats']))? 1 : 0;
-				if ($this->catTree[$cid]['pcid'] === 'root') {
+				if ('root' === $this->catTree[$cid]['pcid']) {
 					$stat['phash'] = $this->encode('_');
 				} else {
 					$stat['phash'] = $this->encode('_'.$this->catTree[$cid]['pcid'].'_');
 				}
 				return $stat;
 			}
-		} elseif ($cid !== 'root') {
+		} elseif ('root' !== $cid) {
 			// photos
 			list($photos) = $this->d3dConf->func->get_photolist([], $uid, 1, 0, ['pid' => $pid, 'enc' => 'UTF-8']);
 			
@@ -532,7 +532,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function _dimensions($path, $mime) {
 		clearstatcache();
-		return strpos($mime, 'image') === 0 && ($s = @getimagesize($this->readlink($path))) !== false 
+		return 0 === strpos($mime, 'image') && false !== ($s = @getimagesize($this->readlink($path)))
 			? $s[0].'x'.$s[1] 
 			: false;
 	}
@@ -547,7 +547,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function readlink($path) {
-		if ($path !== '_') {
+		if ('_' !== $path) {
 			list(, $name) = explode('_', substr($path, 1), 2);
 			if ($name) {
 				return realpath($this->options['filePath'] . $name);

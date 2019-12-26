@@ -73,7 +73,7 @@ class mainfile_manager
                 $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", "define('".$key."', ".$val . ')', $content);
                 $this->report[] = _OKIMG.sprintf(_INSTALL_L121, "<b>$key</b>", $val);
             } elseif (preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", $content)) {
-                if ($key === 'XOOPS_DB_TYPE' && $val === 'mysql') {
+                if ('XOOPS_DB_TYPE' === $key && 'mysql' === $val) {
                     $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", "extension_loaded('mysql')? define('XOOPS_DB_TYPE', 'mysql') : define('XOOPS_DB_TYPE', 'mysqli')", $content);
                     $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
                 } else {
@@ -91,7 +91,7 @@ class mainfile_manager
             return false;
         }
 
-        if (fwrite($file, $content) == -1) {
+        if (-1 == fwrite($file, $content)) {
             fclose($file);
             $this->error = true;
             return false;

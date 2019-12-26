@@ -37,7 +37,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
     require_once XOOPS_ROOT_PATH.'/class/template.php';
     $xoopsTpl = new XoopsTpl();
     $xoopsTpl->xoops_setCaching(2);
-    if ($xoopsConfig['debug_mode'] == 3) {
+    if (3 == $xoopsConfig['debug_mode']) {
         $xoopsTpl->xoops_setDebugging(true);
     }
     $xoopsTpl->assign(
@@ -70,7 +70,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
     if (is_object($xoopsUser)) {
         $xoopsTpl->assign(['xoops_isuser' => true, 'xoops_userid' => $xoopsUser->getVar('uid'), 'xoops_uname' => $xoopsUser->getVar('uname'), 'xoops_isadmin' => $xoopsUserIsAdmin]);
         if (is_object(@$xoopsModule)) {
-            if ($xoopsModule->getVar('mid') == 1 && @$_GET['fct'] == 'preferences' && @$_GET['op'] == 'showmod' && ! empty($_GET['mod'])) {
+            if (1 == $xoopsModule->getVar('mid') && 'preferences' == @$_GET['fct'] && 'showmod' == @$_GET['op'] && ! empty($_GET['mod'])) {
                 $module_handler =& xoops_gethandler('module') ;
                 $target_module = $module_handler->get(intval($_GET['mod'])) ;
             } else {
@@ -161,7 +161,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
 
     $adminmenublock_exists = false ;
     foreach (array_keys($block_arr) as $i) {
-        if ($block_arr[$i]->getVar('show_func') == 'b_altsys_admin_menu_show') {
+        if ('b_altsys_admin_menu_show' == $block_arr[$i]->getVar('show_func')) {
             $adminmenublock_exists = true ;
         }
         $bcachetime = $block_arr[$i]->getVar('bcachetime');
@@ -172,7 +172,7 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php';
             $xoopsTpl->xoops_setCacheTime($bcachetime);
         }
         $btpl = $block_arr[$i]->getVar('template');
-        if ($btpl != '') {
+        if ('' != $btpl) {
             if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl, 'blk_'.$block_arr[$i]->getVar('bid'))) {
                 $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
                 $bresult = $block_arr[$i]->buildBlock();

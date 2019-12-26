@@ -176,13 +176,13 @@ class Net_SCP
             return false;
         }
 
-        if ($this->mode == NET_SCP_SSH2) {
+        if (NET_SCP_SSH2 == $this->mode) {
             $this->packet_size = $this->ssh->packet_size_client_to_server[NET_SSH2_CHANNEL_EXEC] - 4;
         }
 
         $remote_file = basename($remote_file);
 
-        if ($mode == NET_SCP_STRING) {
+        if (NET_SCP_STRING == $mode) {
             $size = strlen($data);
         } else {
             if (!is_file($data)) {
@@ -216,7 +216,7 @@ class Net_SCP
         }
         $this->_close();
 
-        if ($mode != NET_SCP_STRING) {
+        if (NET_SCP_STRING != $mode) {
             fclose($fp);
         }
 
@@ -255,7 +255,7 @@ class Net_SCP
 
         $size = 0;
 
-        if ($local_file !== false) {
+        if (false !== $local_file) {
             $fp = @fopen($local_file, 'wb');
             if (!$fp) {
                 return false;
@@ -268,7 +268,7 @@ class Net_SCP
             // SCP usually seems to split stuff out into 16k chunks
             $size += strlen($data);
 
-            if ($local_file === false) {
+            if (false === $local_file) {
                 $content .= $data;
             } else {
                 fputs($fp, $data);
@@ -277,7 +277,7 @@ class Net_SCP
 
         $this->_close();
 
-        if ($local_file !== false) {
+        if (false !== $local_file) {
             fclose($fp);
             return true;
         }

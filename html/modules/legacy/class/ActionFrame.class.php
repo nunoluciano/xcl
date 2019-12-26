@@ -142,7 +142,7 @@ class Legacy_ActionFrame
             die();    //< TODO
         }
         
-        if ($this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser) === false) {
+        if (false === $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser)) {
             die();    //< TODO
         }
     
@@ -154,7 +154,7 @@ class Legacy_ActionFrame
             }
         }
     
-        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);

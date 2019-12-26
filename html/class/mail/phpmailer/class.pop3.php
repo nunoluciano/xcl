@@ -349,7 +349,7 @@ class POP3
      */
     protected function checkResponse($string)
     {
-        if (substr($string, 0, 3) !== '+OK') {
+        if ('+OK' !== substr($string, 0, 3)) {
             $this->setError(
                 [
                 'error' => "Server reported an error: $string",

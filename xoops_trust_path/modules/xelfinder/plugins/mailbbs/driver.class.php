@@ -25,7 +25,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 			$data = array_pad(explode('<>', $log), 8, '');
 			if (intval($data[7]) || ! $data[5]) continue; // 未承認 or ファイルなし
 			$ext = strtolower(substr($data[5], strrpos($data[5], '.')));
-			if ($ext === '.jpeg') {
+			if ('.jpeg' === $ext) {
 				$ext = '.jpg';
 			}
 			$ret[$data[5]] = mb_convert_encoding($data[2].$ext, 'UTF-8', _CHARSET);
@@ -127,7 +127,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 			$file_enc = rawurlencode($file);
 			$stat['name'] = $this->enabledFiles[$file];
 			$stat['url'] = $this->options['URL'] . $file_enc;
-			if ($stat['mime'] !== 'directory') {
+			if ('directory' !== $stat['mime']) {
 				$stat['_localpath'] = dirname(str_replace(XOOPS_ROOT_PATH, 'R', $path )) . DIRECTORY_SEPARATOR . $file_enc;
 			} else {
 				$stat['url']  = null;
@@ -173,9 +173,9 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 				
 			$name = $stat['name'];
 	
-			if ($this->stripos($name, $q) !== false || $this->stripos(basename($stat['_localpath']), $q) !== false) {
+			if (false !== $this->stripos($name, $q) || false !== $this->stripos(basename($stat['_localpath']), $q)) {
 				$_path = mb_convert_encoding($this->_path($p), 'UTF-8', $encode);
-				if (preg_match('//u', $_path) !== false) { // UTF-8 check for json_encode()
+				if (false !== preg_match('//u', $_path)) { // UTF-8 check for json_encode()
 					$stat['path'] = $_path;
 				}
 	

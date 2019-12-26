@@ -17,7 +17,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
         $page = empty($request['makecontent']) ? 'contentmanager' : 'makecontent';
 
         // $contentObj
-        $contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj, $page == 'makecontent');
+        $contentObj = new PicoContent($this->mydirname, $request['content_id'], $this->currentCategoryObj, 'makecontent' == $page);
 
         // check existence
         if ($contentObj->isError()) {
@@ -34,7 +34,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
         $this->assign['content']           = $contentObj->getData4edit();
 
         // permission check
-        if ($page == 'makecontent') {
+        if ('makecontent' == $page) {
             if (empty($cat_data['can_post'])) {
                 redirect_header(XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECONTENT);
             }
@@ -61,7 +61,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
 
         // breadcrumbs
         $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
-        if ($page == 'makecontent') {
+        if ('makecontent' == $page) {
             $breadcrumbsObj->appendPath('', _MD_PICO_LINK_MAKECONTENT);
             $this->assign['xoops_pagetitle'] = _MD_PICO_LINK_MAKECONTENT;
         } else {
@@ -74,7 +74,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
         // misc assigns
         $this->assign['content_histories'] = pico_get_content_histories4assign($this->mydirname, $content_data['id']);
         $this->assign['page']              = $page;
-        $this->assign['formtitle']         = $page == 'makecontent' ? _MD_PICO_LINK_MAKECONTENT : _MD_PICO_LINK_EDITCONTENT;
+        $this->assign['formtitle']         = 'makecontent' == $page ? _MD_PICO_LINK_MAKECONTENT : _MD_PICO_LINK_EDITCONTENT;
         $this->assign['gticket_hidden']    = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
 
         // views
@@ -103,7 +103,7 @@ class PicoControllerEditContent extends PicoControllerAbstract
             $editor = $_POST['body_editor'];
         }
 
-        if ($editor == 'common_fckeditor') {
+        if ('common_fckeditor' == $editor) {
             // FCKeditor in common/fckeditor/
             $header = '
 				<script type="text/javascript" src="' . XOOPS_URL . '/common/fckeditor/fckeditor.js"></script>

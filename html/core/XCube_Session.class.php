@@ -56,7 +56,7 @@ class XCube_Session
     {
         $allIniArray = ini_get_all();
 
-        if ($sessionName !='') {
+        if ('' != $sessionName) {
             $this->mSessionName = $sessionName;
         } else {
             $this->mSessionName = $allIniArray['session.name']['global_value'];

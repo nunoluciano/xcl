@@ -90,9 +90,9 @@ class XCube_Service
         $n = func_num_args();
         $arg0 = &$args[0];
 
-        if ($n == 3) {
+        if (3 == $n) {
             $this->_addFunctionStandard($arg0, $args[1], $args[2]);
-        } elseif ($n == 1 && is_array($arg0)) {
+        } elseif (1 == $n && is_array($arg0)) {
             $this->_addFunctionStandard($arg0['name'], $arg0['in'], $arg0['out']);
         }
     }

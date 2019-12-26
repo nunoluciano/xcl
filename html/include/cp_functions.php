@@ -73,7 +73,7 @@ function myTextForm($url, $value)
 
 function xoopsfwrite()
 {
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    if ('POST' != $_SERVER['REQUEST_METHOD']) {
         return false;
     } else {
     }
@@ -236,7 +236,7 @@ function xoops_module_get_admin_menu()
                 $currentlink = $tree[$cnt][2];
             }
             */
-            if ($tree[$cnt][3] != '') {
+            if ('' != $tree[$cnt][3]) {
                 $currenttarget = " target='" . $tree[$cnt][3] . "'";
             } else {
                 $currenttarget = '';
@@ -251,7 +251,7 @@ function xoops_module_get_admin_menu()
                     $onmouseover = " onmouseover='popUp" . $layername[$tree[$cnt][0]-1] . '();';
                 }
             $layer[$layername[$tree[$cnt][0]-1]] .= "<img src='\".XOOPS_URL.\"/images/pointer.gif' width='8' height='8' alt='' />&nbsp;<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][1] . '</a>' . $currentarrow . "<br />\n";
-        } elseif ($tree[$cnt][0] == 1) {
+        } elseif (1 == $tree[$cnt][0]) {
             // the hierarchical level is = 1, hence the current node is a child of the root node
                 // handle accordingly the corresponding link, distinguishing if the current node is a leaf or not
                 if ($tree[$cnt+1][0]>$tree[$cnt][0] && $cnt<$tmpcount) {
@@ -306,7 +306,7 @@ function xoops_module_write_admin_menu($content)
         echo 'failed open file';
         return false;
     }
-    if (fwrite($file, $content) == -1) {
+    if (-1 == fwrite($file, $content)) {
         echo 'failed write file';
         return false;
     }

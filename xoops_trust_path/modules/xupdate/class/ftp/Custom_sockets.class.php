@@ -58,7 +58,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
         $go=true;
         do {
             $tmp=@socket_read($this->_ftp_control_sock, 4096, PHP_BINARY_READ);
-            if ($tmp===false) {
+            if (false === $tmp) {
                 $go=$result=false;
                 $this->PushError($fnction, 'Read failed', socket_strerror(socket_last_error($this->_ftp_control_sock)));
             } else {
@@ -83,7 +83,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
             echo 'PUT > ',$cmd,CRLF;
         }
         $status=@socket_write($this->_ftp_control_sock, $cmd.CRLF);
-        if ($status===false) {
+        if (false === $status) {
             $this->PushError($fnction, 'socket write failed', socket_strerror(socket_last_error($this->stream)));
             return false;
         }
@@ -174,18 +174,18 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
         if (!$this->_passive) {
             $this->SendMSG('Connecting to ' . $this->_datahost . ':' . $this->_dataport);
             $this->_ftp_temp_sock=socket_accept($this->_ftp_data_sock);
-            if ($this->_ftp_temp_sock===false) {
+            if (false === $this->_ftp_temp_sock) {
                 $this->PushError('_data_read', 'socket_accept', socket_strerror(socket_last_error($this->_ftp_temp_sock)));
                 $this->_data_close();
                 return false;
             }
         }
 
-        while (($block=@socket_read($this->_ftp_temp_sock, $this->_ftp_buff_size, PHP_BINARY_READ))!==false) {
-            if ($block === '') {
+        while (false !== ($block=@socket_read($this->_ftp_temp_sock, $this->_ftp_buff_size, PHP_BINARY_READ))) {
+            if ('' === $block) {
                 break;
             }
-            if ($mode!=FTP_BINARY) {
+            if (FTP_BINARY != $mode) {
                 $block=preg_replace("/\r\n|\r|\n/", $this->_eol_code[$this->OS_local], $block);
             }
             if (is_resource($fp)) {
@@ -208,7 +208,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
         if (!$this->_passive) {
             $this->SendMSG('Connecting to ' . $this->_datahost . ':' . $this->_dataport);
             $this->_ftp_temp_sock=socket_accept($this->_ftp_data_sock);
-            if ($this->_ftp_temp_sock===false) {
+            if (false === $this->_ftp_temp_sock) {
                 $this->PushError('_data_write', 'socket_accept', socket_strerror(socket_last_error($this->_ftp_temp_sock)));
                 $this->_data_close();
                 return false;
@@ -229,11 +229,11 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
 
     protected function _data_write_block($mode, $block)
     {
-        if ($mode!=FTP_BINARY) {
+        if (FTP_BINARY != $mode) {
             $block=preg_replace("/\r\n|\r|\n/", $this->_eol_code[$this->OS_remote], $block);
         }
         do {
-            if (($t=@socket_write($this->_ftp_temp_sock, $block))===false) {
+            if (false === ($t=@socket_write($this->_ftp_temp_sock, $block))) {
                 $this->PushError('_data_write', 'socket_write', socket_strerror(socket_last_error($this->_ftp_temp_sock)));
                 $this->_data_close();
                 return false;

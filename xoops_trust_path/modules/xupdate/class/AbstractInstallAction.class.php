@@ -96,7 +96,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     public function execute()
     {
         $form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
 
@@ -322,7 +322,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
         $this->mActionForm->getToken();
         
         // need module update
-        if ($this->contents === 'module') {
+        if ('module' === $this->contents) {
             if ($is_install) {
                 $_needModuleUpdate = _MI_XUPDATE_MSG_DO_MODULE_INSTALL;
             } elseif ($mobj->hasNeedUpdate() && $mobj->mModule->getRenderedVersion() != $mobj->getRenderedVersion()) {
@@ -378,7 +378,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     {
         $xoops_version = XOOPS_MODULE_PATH . '/' . $this->dirname . '/xoops_version.php';
         return (
-                $this->contents !== 'module'
+            'module' !== $this->contents
                  ||
                 !(@include($xoops_version))
                  ||

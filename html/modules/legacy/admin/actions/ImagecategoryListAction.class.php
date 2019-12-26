@@ -40,7 +40,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
 
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -84,7 +84,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -152,7 +152,7 @@ class Legacy_ImagecategoryListAction extends Legacy_AbstractListAction
         }//foreach
 
                 foreach (array_keys($nameArr) as $icid) {
-                    if ($this->mActionForm->get('delete', $icid) == 1) {
+                    if (1 == $this->mActionForm->get('delete', $icid)) {
                         $imagecategory =& $imagecategoryHandler->get($icid);
                         if (is_object($imagecategory)) {
                             if (!$imagecategoryHandler->delete($imagecategory)) {

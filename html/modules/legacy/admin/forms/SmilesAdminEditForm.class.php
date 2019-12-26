@@ -63,7 +63,7 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
 
     public function validateSmile_url()
     {
-        if ($this->_mIsNew && $this->get('smile_url') == null) {
+        if ($this->_mIsNew && null == $this->get('smile_url')) {
             $this->addErrorMessage(XCube_Utils::formatString(_MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SMILE_URL));
         }
     }
@@ -87,7 +87,7 @@ class Legacy_SmilesAdminEditForm extends XCube_ActionForm
         $obj->set('display', $this->get('display'));
         
         $this->mFormFile = $this->get('smile_url');
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('smil');    // Fix your prefix
             $obj->set('smile_url', $this->mFormFile->getFileName());
         }

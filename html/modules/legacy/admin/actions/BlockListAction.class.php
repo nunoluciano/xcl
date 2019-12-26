@@ -47,17 +47,17 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
 
         // naao added selectedMid filter
         $selectedMid = (int)$root->mContext->mRequest->getRequest('selmid') ;
-        if ($selectedMid != 0) {
+        if (0 != $selectedMid) {
             $navi->addExtra('selmid', $selectedMid);
         }
         $selectedGid = (int)$root->mContext->mRequest->getRequest('selgid') ;
-        if ($selectedGid != 0) {
+        if (0 != $selectedGid) {
             $navi->addExtra('selgid', $selectedGid);
         }
         return $navi;
@@ -137,7 +137,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -160,7 +160,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         //
         foreach (array_keys($titleArr) as $bid) {
             $block =& $blockHandler->get($bid);
-            if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+            if (is_object($block) && 1 == $block->get('isactive') && 1 == $block->get('visible')) {
                 $this->mBlockObjects[$bid] =& $block;
                 $this->mBlockObjects[$bid]->loadColumn();
                 $this->mBlockObjects[$bid]->loadCachetime();
@@ -178,7 +178,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
         foreach (array_keys($titleArr) as $bid) {
             $block =& $blockHandler->get($bid);
-            if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+            if (is_object($block) && 1 == $block->get('isactive') && 1 == $block->get('visible')) {
                 $olddata['title'] = $block->get('title');
                 $olddata['weight'] = $block->get('weight');
                 $olddata['side'] = $block->get('side');
@@ -202,9 +202,9 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
         //uninstall process
                 foreach (array_keys($titleArr) as $bid) {
-                    if ($this->mActionForm->get('uninstall', $bid) == 1) {
+                    if (1 == $this->mActionForm->get('uninstall', $bid)) {
                         $block =& $blockHandler->get($bid);
-                        if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+                        if (is_object($block) && 1 == $block->get('isactive') && 1 == $block->get('visible')) {
                             $block->set('visible', 0);
                             if (!$blockHandler->insert($block)) {
                                 return LEGACY_FRAME_VIEW_ERROR;

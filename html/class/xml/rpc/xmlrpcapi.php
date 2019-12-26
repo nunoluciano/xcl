@@ -126,7 +126,7 @@ class XoopsXmlRpcApi
 
     public function _setXoopsTagMap($xoopstag, $blogtag)
     {
-        if (trim($blogtag) != '') {
+        if ('' != trim($blogtag)) {
             $this->xoopsTagMap[$xoopstag] = $blogtag;
         }
     }
@@ -156,7 +156,7 @@ class XoopsXmlRpcApi
     // returns itself if the calling object is XOOPS API
     public function &_getXoopsApi(&$params)
     {
-        if (strtolower(get_class($this)) != 'xoopsapi') {
+        if ('xoopsapi' != strtolower(get_class($this))) {
             require_once(XOOPS_ROOT_PATH.'/class/xml/rpc/xoopsapi.php');
             $instance =new XoopsApi($params, $this->response, $this->module);
             return $instance;

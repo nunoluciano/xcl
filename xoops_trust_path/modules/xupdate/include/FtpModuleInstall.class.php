@@ -56,13 +56,13 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     {
         $result = true;
         $siteCloseConf = null;
-        if ($this->Xupdate->params['is_writable']['result'] === true) {
+        if (true === $this->Xupdate->params['is_writable']['result']) {
             $this->retry_phase = isset($_POST['upload_retry'])? (int)$_POST['upload_retry'] : 0;
             
             $downloadDirPath = realpath($this->Xupdate->params['temp_path']);
             // check excutable & retry_phase
             if (! $this->is_xupdate_excutable()) {
-                if ($this->retry_phase === 0 || ! file_exists($downloadDirPath.'/'.$this->target_key)) {
+                if (0 === $this->retry_phase || ! file_exists($downloadDirPath . '/' . $this->target_key)) {
                     $this->content.= '<div class="error">' . _MI_XUPDATE_ANOTHER_PROCESS_RUNNING . '</div>';
                     return false;
                 }
@@ -84,7 +84,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             
             $downloadUrl = $this->Func->_getDownloadUrl($this->target_key, $this->downloadUrlFormat);
             
-            if ($caller === 'preload' && preg_match('/\.php$/i', $downloadUrl)) {
+            if ('preload' === $caller && preg_match('/\.php$/i', $downloadUrl)) {
                 $this->download_file = $this->target_key . '.class.php';
             } else {
                 $this->download_file = $this->target_key . (preg_match('/\btar\b/i', $downloadUrl)? '.tar.gz' : '.zip');
@@ -108,7 +108,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
                     // delete downloaded archive
                     @ unlink($this->downloadedFilePath);
                     
-                    if ($caller === 'preload') {
+                    if ('preload' === $caller) {
                         $set_member = 'exploredPreloadPath';
                         $serach_file = $this->target_key . '.class.php';
                     } else {
@@ -117,7 +117,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
                     // ディレクトリを掘り下げて探索
                     if ($this->exploredPreloadPath || $this->_exploredDirPath_DownDir($set_member, $serach_file)) {
                         // TODO port , timeout
-                        if ($this->Ftp->isConnected() || $this->Ftp->app_login()==true) {
+                        if ($this->Ftp->isConnected() || true == $this->Ftp->app_login()) {
                             $this->_set_stage(4);
                             // overwrite control
                             if (! isset($this->options['no_overwrite'])) {
@@ -247,7 +247,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         $this->Ftp->appendMes('start uploading..<br />');
         $this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br />';
 
-        if ($caller === 'module' && $this->target_type === 'TrustModule') {
+        if ('module' === $caller && 'TrustModule' === $this->target_type) {
             if (!empty($this->trust_dirname) && !empty($this->dirname) && $this->trust_dirname != $this->dirname) {
                 if (! $this->html_only) {
                     // copy xoops_trust_path
@@ -300,7 +300,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             }
             $this->_copy_extra_langs($this->dirname, $this->trust_dirname, 'html');
             
-            if ($this->trust_dirname === 'protector') {
+            if ('protector' === $this->trust_dirname) {
                 // for protector 'manip_value' update
                 if (! XC_CLASS_EXISTS('Protector')) {
                     // check and enable protector in mainfile.php
@@ -339,10 +339,10 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             }
             
             // check extra languages
-            ($caller === 'module') && $this->_copy_extra_langs($this->dirname);
+            ('module' === $caller) && $this->_copy_extra_langs($this->dirname);
             
             // for legacy only
-            if (($caller === 'module' && $this->dirname === 'legacy') || $this->Ftp->isRootDirChange()) {
+            if (('module' === $caller && 'legacy' === $this->dirname) || $this->Ftp->isRootDirChange()) {
                 // for protector 'manip_value' update
                 if (XC_CLASS_EXISTS('Protector')) {
                     $db =& Database::getInstance();
@@ -380,7 +380,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             $langs = [];
             if ($handle = opendir(XOOPS_ROOT_PATH . '/language')) {
                 while (false !== ($name = readdir($handle))) {
-                    if ($name[0] !== '.' && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
+                    if ('.' !== $name[0] && is_dir(XOOPS_ROOT_PATH . '/language/' . $name)) {
                         $langs[] = $name;
                     }
                 }
@@ -389,7 +389,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         }
         
         $uploadDir = $checkDir = [];
-        $isLegacy = ($dirname === 'legacy');
+        $isLegacy = ('legacy' === $dirname);
         if ($isLegacy) {
             $checkDir[] = $this->exploredDirPath . '/extras/extra_languages/<LANG>/html';
             $uploadDir[] = XOOPS_ROOT_PATH . '/';
@@ -397,7 +397,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             $checkDir[] = $this->exploredDirPath . '/extras/extra_languages/<LANG>';
             $uploadDir[] = XOOPS_ROOT_PATH . '/';
         } else {
-            if ($side === 'trust') {
+            if ('trust' === $side) {
                 $side = 'xoops_trust_path';
                 $base = XOOPS_TRUST_PATH ;
                 $arc_dirname = $trust_dirname;
@@ -437,7 +437,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     private function _get_nextlink($dirname, $caller)
     {
         $ret ='';
-        if ($caller === 'module') {
+        if ('module' === $caller) {
             $hModule = Xupdate_Utils::getXoopsHandler('module');
             $module =& $hModule->getByDirname($dirname) ;
             if (is_object($module)) {
@@ -451,9 +451,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             } else {
                 $ret ='<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore">'._AD_XUPDATE_LANG_MESSAGE_GETTING_FILES._AD_XUPDATE_LANG_MESSAGE_SUCCESS.'</a>';
             }
-        } elseif ($caller === 'theme') {
+        } elseif ('theme' === $caller) {
             $ret ='<a href="'.XOOPS_MODULE_URL.'/legacy/admin/index.php?action=ThemeList">'._MI_XUPDATE_ADMENU_THEME._MI_XUPDATE_MANAGE.'</a>';
-        } elseif ($caller === 'preload') {
+        } elseif ('preload' === $caller) {
             $ret ='<a href="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=PreloadStore">'._AD_XUPDATE_LANG_MESSAGE_GETTING_FILES._AD_XUPDATE_LANG_MESSAGE_SUCCESS.'</a>';
         }
         return $ret;
@@ -473,7 +473,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         $items = scandir($dir);
         $checker = [];
         foreach ($items as $item) {
-            if ($item === '.' || $item === '..' || $item === '__MACOSX') {
+            if ('.' === $item || '..' === $item || '__MACOSX' === $item) {
                 continue;
             }
             if (is_dir($dir.'/'.$item)) {
@@ -527,7 +527,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             $this->Ftp->localMkdir($directory);
         }
         if (file_exists($directory) && is_dir($directory)) {
-            $this->Ftp->localChmod($directory, (strpos($directory, XOOPS_TRUST_PATH) === 0)? _MD_XUPDATE_WRITABLE_DIR_PERM_T : _MD_XUPDATE_WRITABLE_DIR_PERM);
+            $this->Ftp->localChmod($directory, (0 === strpos($directory, XOOPS_TRUST_PATH))? _MD_XUPDATE_WRITABLE_DIR_PERM_T : _MD_XUPDATE_WRITABLE_DIR_PERM);
         }
     }
 
@@ -541,14 +541,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     {
         if (file_exists($file)) {
             if (!is_dir($file)) {
-                $this->Ftp->localChmod($file, (strpos($file, XOOPS_TRUST_PATH) === 0)? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM);
+                $this->Ftp->localChmod($file, (0 === strpos($file, XOOPS_TRUST_PATH))? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM);
             }
         } else {
             // make empty file
             $tmp = $this->exploredDirPath . '/_empty.tmp';
             if (@ touch($tmp)) {
                 if ($this->Ftp->localPut($tmp, $file)) {
-                    $this->Ftp->localChmod($file, (strpos($file, XOOPS_TRUST_PATH) === 0)? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM);
+                    $this->Ftp->localChmod($file, (0 === strpos($file, XOOPS_TRUST_PATH))? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM);
                 }
             }
         }
@@ -607,7 +607,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         $path = realpath($this->Xupdate->params['temp_path']);
         if ($handle = opendir($path)) {
             while (false !== ($entry = readdir($handle))) {
-                if ($entry !== '.' && $entry !== '..' && is_dir($path . DIRECTORY_SEPARATOR . $entry)) {
+                if ('.' !== $entry && '..' !== $entry && is_dir($path . DIRECTORY_SEPARATOR . $entry)) {
                     $this->_cleanup($path . DIRECTORY_SEPARATOR . $entry);
                 }
             }
@@ -657,7 +657,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         foreach ($this->systemDirs as $dir) {
             $dir = rtrim($dir, '/');
             $path = $this->exploredDirPath . '/' . $dir;
-            if (substr($path, -1) === '*') {
+            if ('*' === substr($path, -1)) {
                 $path = rtrim($path, '*/');
                 if (is_dir($path)) {
                     $this->_set_error_log('Remove system dir: [archive]'.substr($path, $exploredDirCnt));
@@ -666,7 +666,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             } else {
                 if (is_dir($path) && $handle = opendir($path)) {
                     while (false !== ($entry = readdir($handle))) {
-                        if ($entry !== '.' && $entry !== '..' && ! is_dir($path . DIRECTORY_SEPARATOR . $entry)) {
+                        if ('.' !== $entry && '..' !== $entry && ! is_dir($path . DIRECTORY_SEPARATOR . $entry)) {
                             $this->_set_error_log('Remove system file: [archive]'.substr($path, $exploredDirCnt) . DIRECTORY_SEPARATOR . $entry);
                             unlink($path . DIRECTORY_SEPARATOR . $entry);
                         }
@@ -724,7 +724,7 @@ function xupdate_on_shutdown($cache_dir, $download_url)
         $start = $upload_retry? $upload_retry : 1;
         for ($i = $start; $i <= $GLOBALS['xupdate_stage']; $i++) {
             $done_files = '';
-            if ($i === 5) {
+            if (5 === $i) {
                 $done_files = ' ('._AD_XUPDATE_LANG_MESSAGE_SUCCESS.': '.$uploaded_count.'/'.$total_files.')';
             }
             $msg[] = constant('_AD_XUPDATE_LANG_STAGE_'.$i) . $done_files;
@@ -762,7 +762,7 @@ function xupdate_on_shutdown($cache_dir, $download_url)
                         $form .= '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($val, ENT_COMPAT, _CHARSET).'" />';
                     }
                 }
-                $form .= '<input id="retry" type="submit" value="'.(($GLOBALS['xupdate_stage'] === 5)? _AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY : _AD_XUPDATE_LANG_STAGE_TASK_RETRY).'" />';
+                $form .= '<input id="retry" type="submit" value="'.((5 === $GLOBALS['xupdate_stage'])? _AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY : _AD_XUPDATE_LANG_STAGE_TASK_RETRY) . '" />';
                 $form .= '</form>';
                 $msg[] = $form;
             }

@@ -29,7 +29,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	protected function cacheDir($path) {
 		$this->dirsCache[$path] = [];
 
-		if ($path === '_') {
+		if ('_' === $path) {
 			$cid = 0;
 		} else {
 			list($cid) = explode('_', substr($path, 1), 2);
@@ -114,7 +114,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 						$row['id1'], $row['width1'], $row['height1'], $row['name1'],
 						$row['id2'], $row['width2'], $row['height2'], $row['name2']);
 					for($_cnt = 0; $_cnt < 3; $_cnt++) {
-						if (substr($ids[$_cnt], -1) === '.') continue;
+						if ('.' === substr($ids[$_cnt], -1)) continue;
 						$id = '_'.$cid.'_'.$ids[$_cnt];
 						$realpath = realpath($this->options['filePath'].$ids[$_cnt]);
 						if (is_file($realpath)) {
@@ -148,7 +148,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @author Naoki Sawada
 	 **/
 	protected function _joinPath($dir, $name) {
-		if ($dir === '_') {
+		if ('_' === $dir) {
 			$cid = 0;
 		} else {
 			list($cid) = explode('_', substr($dir, 1), 2);
@@ -204,7 +204,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @author Naoki Sawada
 	 **/
 	protected function _stat($path) {
-		if ($path === '_') {
+		if ('_' === $path) {
 			$cid = $lid = 0;
 		} else {
 			list($cid, $lid) = explode('_', substr($path, 1), 2);

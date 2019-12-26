@@ -68,7 +68,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
             $this->mObjects[$key]->loadModuletpl();
         }
 
-        if ($this->mActiveTemplateSet == null) {
+        if (null == $this->mActiveTemplateSet) {
             $this->mActiveTemplateSet = $controller->mRoot->mContext->getXoopsConfig('template_set');
         }
 

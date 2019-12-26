@@ -18,8 +18,8 @@ function altsys_set_module_config()
     }
 
     // for RTL users
-    @define('_GLOBAL_LEFT', @_ADM_USE_RTL == 1 ? 'right' : 'left');
-    @define('_GLOBAL_RIGHT', @_ADM_USE_RTL == 1 ? 'left' : 'right');
+    @define('_GLOBAL_LEFT', 1 == @_ADM_USE_RTL ? 'right' : 'left');
+    @define('_GLOBAL_RIGHT', 1 == @_ADM_USE_RTL ? 'left' : 'right');
 }
 
 
@@ -146,10 +146,10 @@ function altsys_clear_templates_c()
 {
     $dh = opendir(XOOPS_COMPILE_PATH);
     while ($file = readdir($dh)) {
-        if (substr($file, 0, 1) == '.') {
+        if ('.' == substr($file, 0, 1)) {
             continue;
         }
-        if (substr($file, -4) != '.php') {
+        if ('.php' != substr($file, -4)) {
             continue;
         }
         @unlink(XOOPS_COMPILE_PATH . '/' . $file);

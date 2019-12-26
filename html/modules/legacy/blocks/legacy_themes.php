@@ -24,12 +24,12 @@ function b_legacy_themes_show($options)
 {
     global $xoopsConfig;
     
-    if (count($xoopsConfig['theme_set_allowed']) == 0) {
+    if (0 == count($xoopsConfig['theme_set_allowed'])) {
         return null;
     }
     
     $block = [];
-    if (xoops_getenv('REQUEST_METHOD') == 'POST') {
+    if ('POST' == xoops_getenv('REQUEST_METHOD')) {
         $block['isEnableChanger'] = 0;
         return $block;
     }
@@ -40,7 +40,7 @@ function b_legacy_themes_show($options)
     $handler =& xoops_getmodulehandler('theme', 'legacy');
     foreach ($xoopsConfig['theme_set_allowed'] as $name) {
         $theme =& $handler->get($name);
-        if ($theme != null) {
+        if (null != $theme) {
             $theme_option['name'] = $name;
             $theme_option['screenshot'] = $theme->getShow('screenshot');
             $theme_option['screenshotUrl'] = XOOPS_THEME_URL . '/' . $name . '/' . $theme->getShow('screenshot');
@@ -65,12 +65,12 @@ function b_legacy_themes_edit($options)
 {
     $chk = '';
     $form = '<div>'._MB_LEGACY_LANG_THSHOW.'&nbsp;&nbsp;';
-    if ($options[0] == 1) {
+    if (1 == $options[0]) {
         $chk = ' checked="checked"';
     }
     $form .= '<label><input type="radio" name="options[0]" value="1"'.$chk.' /><span>'._YES.'</span></label>';
     $chk = '';
-    if ($options[0] == 0) {
+    if (0 == $options[0]) {
         $chk = ' checked="checked"';
     }
     $form .= '<label><input type="radio" name="options[0]" value="0"'.$chk.' /><span>'._NO.'</span></label></div>';

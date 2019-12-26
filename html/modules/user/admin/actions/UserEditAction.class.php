@@ -38,7 +38,7 @@ class User_UserEditAction extends User_AbstractEditAction
         
         $this->mObject =& $this->mObjectHandler->get($id);
         
-        if ($this->mObject == null && $this->isEnableCreate()) {
+        if (null == $this->mObject && $this->isEnableCreate()) {
             $root =& XCube_Root::getSingleton();
             $this->mObject =& $this->mObjectHandler->create();
             $this->mObject->set('timezone_offset', $root->mContext->getXoopsConfig('server_TZ'));
@@ -101,7 +101,7 @@ class User_UserEditAction extends User_AbstractEditAction
 
         $methodOptions = [];
         $methodOptions[XOOPS_NOTIFICATION_METHOD_DISABLE] = _NOT_METHOD_DISABLE;
-        if ($service != null) {
+        if (null != $service) {
             $methodOptions[XOOPS_NOTIFICATION_METHOD_PM] = _NOT_METHOD_PM;
         }
         $methodOptions[XOOPS_NOTIFICATION_METHOD_EMAIL] = _NOT_METHOD_EMAIL;
@@ -120,7 +120,7 @@ class User_UserEditAction extends User_AbstractEditAction
     {
         $ret = parent::_doExecute();
         $this->mActionForm->set('uid', $this->mObject->get('uid'));
-        if ($ret===true) {
+        if (true === $ret) {
             XCube_DelegateUtils::call('Legacy_Profile.SaveProfile', new XCube_Ref($ret), $this->mActionForm);
         }
         return $ret;

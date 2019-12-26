@@ -127,7 +127,7 @@ class UserMailjobObject extends XoopsSimpleObject
                 $userArr[$key]->set('message', 'This user does not exist.');
             }
 
-            if ($userArr[$key]->get('message') == '') {
+            if ('' == $userArr[$key]->get('message')) {
                 $handler->delete($userArr[$key]);
             } else {
                 $userArr[$key]->set('retry', $userArr[$key]->get('retry') + 1);

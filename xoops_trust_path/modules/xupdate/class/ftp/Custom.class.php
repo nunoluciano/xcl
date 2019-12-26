@@ -44,11 +44,11 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         } else {
             $ftp_connected = $this->connect();
         }
-        if ($ftp_connected !== true) {
+        if (true !== $ftp_connected) {
             $this->mes.= "Cannot connect<br />\n";
             return false;
         } else {
-            if ($this->login($ftp_id, $ftp_pass) !== true) {
+            if (true !== $this->login($ftp_id, $ftp_pass)) {
                 $this->mes.= "login failed<br />\n";
                 return false;
             } else {
@@ -74,7 +74,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         //	Parses 1 line like:		"drwxrwx---  2 owner group 4096 Apr 23 14:57 text"
         if (preg_match("/^([-ld])([rwxst-]+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+(\d+)\s+(\w{3})\s+(\d+)\s+([\:\d]+)\s+(.+)$/i", $list, $ret)) {
             $v= [
-                'type'  => ($ret[1] == '-' ? 'f' : $ret[1]),
+                'type'  => ('-' == $ret[1] ? 'f' : $ret[1]),
                 'perms' => 0,
                 'inode' => $ret[3],
                 'owner' => $ret[4],
@@ -90,14 +90,14 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             if (in_array($v['group'], $bad)) {
                 $v['group'] =null;
             }
-            $v['perms'] += 00400 * (int)($ret[2]{0} === 'r');
-            $v['perms'] += 00200 * (int)($ret[2]{1} === 'w');
+            $v['perms'] += 00400 * (int)('r' === $ret[2]{0});
+            $v['perms'] += 00200 * (int)('w' === $ret[2]{1});
             $v['perms'] += 00100 * (int)in_array($ret[2]{2}, ['x', 's']);
-            $v['perms'] += 00040 * (int)($ret[2]{3} === 'r');
-            $v['perms'] += 00020 * (int)($ret[2]{4} === 'w');
+            $v['perms'] += 00040 * (int)('r' === $ret[2]{3});
+            $v['perms'] += 00020 * (int)('w' === $ret[2]{4});
             $v['perms'] += 00010 * (int)in_array($ret[2]{5}, ['x', 's']);
-            $v['perms'] += 00004 * (int)($ret[2]{6} === 'r');
-            $v['perms'] += 00002 * (int)($ret[2]{7} === 'w');
+            $v['perms'] += 00004 * (int)('r' === $ret[2]{6});
+            $v['perms'] += 00002 * (int)('w' === $ret[2]{7});
             $v['perms'] += 00001 * (int)in_array($ret[2]{8}, ['x', 't']);
             $v['perms'] += 04000 * (int)in_array($ret[2]{2}, ['S', 's']);
             $v['perms'] += 02000 * (int)in_array($ret[2]{5}, ['S', 's']);
@@ -121,21 +121,21 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             return false;
         }
         $this->_type=$mode;
-        $this->SendMSG('Transfer type: ' . ($this->_type == FTP_BINARY? 'binary' :($this->_type == FTP_ASCII? 'ASCII' : 'auto ASCII')));
+        $this->SendMSG('Transfer type: ' . (FTP_BINARY == $this->_type ? 'binary' :(FTP_ASCII == $this->_type ? 'ASCII' : 'auto ASCII')));
         return true;
     }
 
     protected function _settype($mode=FTP_ASCII)
     {
         if ($this->_ready) {
-            if ($mode==FTP_BINARY) {
-                if ($this->_curtype!=FTP_BINARY) {
+            if (FTP_BINARY == $mode) {
+                if (FTP_BINARY != $this->_curtype) {
                     if (!$this->_exec('TYPE I', 'SetType')) {
                         return false;
                     }
                     $this->_curtype=FTP_BINARY;
                 }
-            } elseif ($this->_curtype!=FTP_ASCII) {
+            } elseif (FTP_ASCII != $this->_curtype) {
                 if (!$this->_exec('TYPE A', 'SetType')) {
                     return false;
                 }
@@ -297,8 +297,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if (!$this->_checkCode()) {
             return false;
         }
-        if ($this->_code!=230) {
-            if (!$this->_exec((($this->_code==331)? 'PASS ' : 'ACCT ') . $this->_password, 'login')) {
+        if (230 != $this->_code) {
+            if (!$this->_exec(((331 == $this->_code)? 'PASS ' : 'ACCT ') . $this->_password, 'login')) {
                 return false;
             }
             if (!$this->_checkCode()) {
@@ -380,7 +380,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if (!$this->_checkCode()) {
             return false;
         }
-        if ($this->_code==350) {
+        if (350 == $this->_code) {
             if (!$this->_exec('RNTO ' . $to, 'rename')) {
                 return false;
             }
@@ -415,7 +415,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             return false;
         }
         if (!$this->_checkCode()) {
-            if ($this->_code!=426) {
+            if (426 != $this->_code) {
                 return false;
             }
             if (!$this->_readmsg('abort')) {
@@ -495,7 +495,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->PushError('restore', 'not supported by server');
             return false;
         }
-        if ($this->_curtype!=FTP_BINARY) {
+        if (FTP_BINARY != $this->_curtype) {
             $this->PushError('restore', "can't restore in ASCII mode");
             return false;
         }
@@ -573,13 +573,13 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->PushError('get', "can't open local file", 'Cannot create "' . $localfile . '"');
             return false;
         }
-        if ($this->_can_restore and $rest!=0) {
+        if ($this->_can_restore and 0 != $rest) {
             fseek($fp, $rest);
         }
         $pi=pathinfo($remotefile);
 //fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
         $pi['extension'] = !isset($pi['extension']) ? '' : $pi['extension'];
-        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
+        if (FTP_ASCII == $this->_type or (FTP_AUTOASCII == $this->_type and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
             $mode=FTP_ASCII;
         } else {
             $mode=FTP_BINARY;
@@ -588,7 +588,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             fclose($fp);
             return false;
         }
-        if ($this->_can_restore and $rest!=0) {
+        if ($this->_can_restore and 0 != $rest) {
             $this->restore($rest);
         }
         if (!$this->_exec('RETR ' . $remotefile, 'get')) {
@@ -627,13 +627,13 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $this->PushError('put', "can't open local file", 'Cannot read file "' . $localfile . '"');
             return false;
         }
-        if ($this->_can_restore and $rest!=0) {
+        if ($this->_can_restore and 0 != $rest) {
             fseek($fp, $rest);
         }
         $pi=pathinfo($localfile);
 //fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
         $pi['extension'] = !isset($pi['extension']) ? '' : $pi['extension'];
-        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
+        if (FTP_ASCII == $this->_type or (FTP_AUTOASCII == $this->_type and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
             $mode=FTP_ASCII;
         } else {
             $mode=FTP_BINARY;
@@ -642,7 +642,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             fclose($fp);
             return false;
         }
-        if ($this->_can_restore and $rest!=0) {
+        if ($this->_can_restore and 0 != $rest) {
             $this->restore($rest);
         }
         if (!$this->_exec('STOR ' . $remotefile, 'put')) {
@@ -685,7 +685,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if ($handle = opendir($local)) {
             $list= [];
             while (false !== ($file = readdir($handle))) {
-                if ($file !== '.' && $file !== '..') {
+                if ('.' !== $file && '..' !== $file) {
                     $list[]=$file;
                 }
             }
@@ -717,7 +717,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     protected function mget($remote, $local= '.', $continious=false)
     {
         $list=$this->rawlist($remote, '-lA');
-        if ($list===false) {
+        if (false === $list) {
             $this->PushError('mget', "can't read remote folder list", "Can't read remote folder \"" . $remote . '" contents');
             return false;
         }
@@ -732,13 +732,13 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         }
         foreach ($list as $k=>$v) {
             $list[$k]=$this->parselisting($v);
-            if ($list[$k]['name'] === '.' or $list[$k]['name'] === '..') {
+            if ('.' === $list[$k]['name'] or '..' === $list[$k]['name']) {
                 unset($list[$k]);
             }
         }
         $ret=true;
         foreach ($list as $el) {
-            if ($el['type'] === 'd') {
+            if ('d' === $el['type']) {
                 if (!$this->mget($remote . '/' . $el['name'], $local . '/' . $el['name'], $continious)) {
                     $this->PushError('mget', "can't copy folder", "Can't copy remote folder \"" . $remote . '/' . $el['name'] . '" to local "' . $local . '/' . $el['name'] . '"');
                     $ret=false;
@@ -757,7 +757,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             }
             @chmod($local . '/' . $el['name'], $el['perms']);
             $t=strtotime($el['date']);
-            if ($t!==-1 and $t!==false) {
+            if (-1 !== $t and false !== $t) {
                 @touch($local . '/' . $el['name'], $t);
             }
         }
@@ -767,21 +767,21 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
     protected function mdel($remote, $continious=false)
     {
         $list=$this->rawlist($remote, '-la');
-        if ($list===false) {
+        if (false === $list) {
             $this->PushError('mdel', "can't read remote folder list", "Can't read remote folder \"" . $remote . '" contents');
             return false;
         }
 
         foreach ($list as $k=>$v) {
             $list[$k]=$this->parselisting($v);
-            if ($list[$k]['name'] === '.' or $list[$k]['name'] === '..') {
+            if ('.' === $list[$k]['name'] or '..' === $list[$k]['name']) {
                 unset($list[$k]);
             }
         }
         $ret=true;
 
         foreach ($list as $el) {
-            if ($el['type'] === 'd') {
+            if ('d' === $el['type']) {
                 if (!$this->mdel($remote . '/' . $el['name'], $continious)) {
                     $ret=false;
                     if (!$continious) {
@@ -811,7 +811,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         if (empty($dir)) {
             return false;
         }
-        if ($this->is_exists($dir) or $dir === '/') {
+        if ($this->is_exists($dir) or '/' === $dir) {
             return true;
         }
         if (!$this->mmkdir(dirname($dir), $mode)) {
@@ -831,7 +831,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             $slash='/';
         }
         $lastpos=strrpos($pattern, $slash);
-        if (!($lastpos===false)) {
+        if (!(false === $lastpos)) {
             $path=substr($pattern, 0, -$lastpos-1);
             $pattern=substr($pattern, $lastpos);
         } else {
@@ -845,7 +845,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             }
         } else {
             $handle=@opendir($path);
-            if ($handle===false) {
+            if (false === $handle) {
                 return false;
             }
             while ($dir=readdir($handle)) {
@@ -867,7 +867,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
         $chunks=explode(';', $pattern);
         foreach ($chunks as $pattern) {
             $escape= ['$', '^', '.', '{', '}', '(', ')', '[', ']', '|'];
-            while (strpos($pattern, '**')!==false) {
+            while (false !== strpos($pattern, '**')) {
                 $pattern=str_replace('**', '*', $pattern);
             }
             foreach ($escape as $probe) {
@@ -880,7 +880,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
                                 str_replace('?', '.{1,1}', $pattern))));
             $out[]=$pattern;
         }
-        if (count($out)==1) {
+        if (1 == count($out)) {
             return($this->glob_regexp("^$out[0]$", $string));
         } else {
             foreach ($out as $tester) {
@@ -932,7 +932,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract
             if (!$this->_checkCode()) {
                 return false;
             }
-            if ($out === false) {
+            if (false === $out) {
                 return false;
             }
             $out=preg_split('/[' . CRLF . ']+/', $out, -1, PREG_SPLIT_NO_EMPTY);

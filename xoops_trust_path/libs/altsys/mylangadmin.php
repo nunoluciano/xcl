@@ -96,7 +96,7 @@ if (! is_dir($base_dir)) {
 $dh = opendir($base_dir) ;
 if ($dh) {
     while ($file = readdir($dh)) {
-        if (substr($file, 0, 1) == '.') {
+        if ('.' == substr($file, 0, 1)) {
             continue ;
         }
         if (is_dir("$base_dir/$file")) {
@@ -122,10 +122,10 @@ $lang_files = [];
 $dh = opendir($lang_base_dir) ;
 if ($dh) {
     while ($file = readdir($dh)) {
-        if (substr($file, 0, 1) == '.') {
+        if ('.' == substr($file, 0, 1)) {
             continue ;
         }
-        if ($file == 'index.html') {
+        if ('index.html' == $file) {
             continue ;
         }
     //if( $file == 'modinfo.php' ) continue ; // TODO(?)
@@ -195,7 +195,7 @@ if (! empty($_POST['do_update'])) {
     foreach (array_reverse($langfile_names) as $name) {
         $user_value = $myts->stripSlashesGPC(@$_POST[$name]) ;
         $db->query('DELETE FROM ' . $db->prefix('altsys_language_constants') . " WHERE mid=$target_mid AND language='$target_lang4sql' AND name='" . addslashes($name) . "'") ;
-        if ($user_value !== '') {
+        if ('' !== $user_value) {
             $overrides_counter ++ ;
             // Update table
             $db->query('INSERT INTO ' . $db->prefix('altsys_language_constants') . " (mid,language,name,value) VALUES ($target_mid,'$target_lang4sql','" . addslashes($name) . "','" . addslashes($user_value) . "')") ;
@@ -240,7 +240,7 @@ $cache_file_name = $langman->getCacheFileName($target_file, $target_dirname, $ta
 $cache_file_mtime = file_exists($cache_file_name) ? filemtime($cache_file_name) : 0 ;
 
 // check core version and generate message to enable D3LanguageManager
-if (altsys_get_core_type() == ALTSYS_CORE_TYPE_XCL21) {
+if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
     // XoopsCube Legacy without preload
     if (class_exists('AltsysLangMgr_LanguageManager')) {
         // the preload enabled

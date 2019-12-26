@@ -68,7 +68,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
 
     public function validateRank_image()
     {
-        if ($this->_mIsNew && $this->get('rank_image') == null) {
+        if ($this->_mIsNew && null == $this->get('rank_image')) {
             $this->addErrorMessage(_AD_USER_ERROR_IMAGE_REQUIRED);
         }
     }
@@ -94,7 +94,7 @@ class User_RanksAdminEditForm extends XCube_ActionForm
         $obj->set('rank_special', $this->get('rank_special'));
 
         $this->mFormFile = $this->get('rank_image');
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('rank');
             $obj->set('rank_image', $this->mFormFile->getFileName());
         }

@@ -123,7 +123,7 @@ class textsanitizer
 
     public function sanitizeForDisplay($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)
     {
-        if ($allowhtml == 0) {
+        if (0 == $allowhtml) {
             $text = $this->htmlSpecialChars($text);
         } else {
             //$config =& $GLOBALS['xoopsConfig'];
@@ -131,10 +131,10 @@ class textsanitizer
             //$text = strip_tags($text, $allowed);
             $text = $this->makeClickable($text);
         }
-        if ($smiley == 1) {
+        if (1 == $smiley) {
             $text = $this->smiley($text);
         }
-        if ($bbcode == 1) {
+        if (1 == $bbcode) {
             $text = $this->xoopsCodeDecode($text);
         }
         $text = $this->nl2Br($text);
@@ -144,7 +144,7 @@ class textsanitizer
     public function sanitizeForPreview($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)
     {
         $text = $this->oopsStripSlashesGPC($text);
-        if ($allowhtml == 0) {
+        if (0 == $allowhtml) {
             $text = $this->htmlSpecialChars($text);
         } else {
             //$config =& $GLOBALS['xoopsConfig'];
@@ -152,10 +152,10 @@ class textsanitizer
             //$text = strip_tags($text, $allowed);
             $text = $this->makeClickable($text);
         }
-        if ($smiley == 1) {
+        if (1 == $smiley) {
             $text = $this->smiley($text);
         }
-        if ($bbcode == 1) {
+        if (1 == $bbcode) {
             $text = $this->xoopsCodeDecode($text);
         }
         $text = $this->nl2Br($text);

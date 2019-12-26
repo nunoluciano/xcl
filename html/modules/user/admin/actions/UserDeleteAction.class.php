@@ -36,7 +36,7 @@ class User_UserDeleteAction extends User_AbstractDeleteAction
         // It is not possible to delete the super administrator.
         //
         parent::_setupObject();
-        if (is_object($this->mObject) && $this->mObject->get('uid') == 1) {
+        if (is_object($this->mObject) && 1 == $this->mObject->get('uid')) {
             $this->mObject = null;
         }
     }

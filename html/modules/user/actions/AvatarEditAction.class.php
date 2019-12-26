@@ -218,7 +218,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
         
@@ -248,7 +248,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
      */
     public function _doExecute()
     {
-        if ($this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mFormFile) {
             if (!$this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH)) {
                 return false;
             }
@@ -256,18 +256,18 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
         $this->_resize();
         
-        if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != 'blank.gif' and $this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mOldAvatarFilename && 'blank.gif' != $this->mActionForm->mOldAvatarFilename and null != $this->mActionForm->mFormFile) {
             $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
             $criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
             $avatarArr =& $avatarHandler->getObjects($criteria);
-            if (count($avatarArr) > 0 && is_object($avatarArr[0]) && $avatarArr[0]->get('avatar_type') == 'C') {
+            if (count($avatarArr) > 0 && is_object($avatarArr[0]) && 'C' == $avatarArr[0]->get('avatar_type')) {
                 $avatarHandler->delete($avatarArr[0]);
             }
         }
         
         if (parent::_doExecute()) {
             $avatar =& $this->mActionForm->createAvatar();
-            if ($avatar != null) {
+            if (null != $avatar) {
                 $avatar->set('avatar_name', $this->mObject->get('uname'));
                 $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
                 $avatarHandler->insert($avatar);

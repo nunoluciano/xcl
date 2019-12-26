@@ -1457,15 +1457,15 @@ class File_X509
 
         $asn1 = new File_ASN1();
 
-        if ($mode != FILE_X509_FORMAT_DER) {
+        if (FILE_X509_FORMAT_DER != $mode) {
             $newcert = $this->_extractBER($cert);
-            if ($mode == FILE_X509_FORMAT_PEM && $cert == $newcert) {
+            if (FILE_X509_FORMAT_PEM == $mode && $cert == $newcert) {
                 return false;
             }
             $cert = $newcert;
         }
 
-        if ($cert === false) {
+        if (false === $cert) {
             $this->currentCert = false;
             return false;
         }
@@ -1476,7 +1476,7 @@ class File_X509
         if (!empty($decoded)) {
             $x509 = $asn1->asn1map($decoded[0], $this->Certificate);
         }
-        if (!isset($x509) || $x509 === false) {
+        if (!isset($x509) || false === $x509) {
             $this->currentCert = false;
             return false;
         }
@@ -1594,9 +1594,9 @@ class File_X509
                 $map = $this->_getMapping($id);
                 if (!is_bool($map)) {
                     $mapped = $asn1->asn1map($decoded[0], $map, ['iPAddress' => [$this, '_decodeIP']]);
-                    $value  = $mapped === false ? $decoded[0] : $mapped;
+                    $value  = false === $mapped ? $decoded[0] : $mapped;
 
-                    if ($id == 'id-ce-certificatePolicies') {
+                    if ('id-ce-certificatePolicies' == $id) {
                         for ($j = 0; $j < count($value); $j++) {
                             if (!isset($value[$j]['policyQualifiers'])) {
                                 continue;
@@ -1605,10 +1605,10 @@ class File_X509
                                 $subid    = $value[$j]['policyQualifiers'][$k]['policyQualifierId'];
                                 $map      = $this->_getMapping($subid);
                                 $subvalue = &$value[$j]['policyQualifiers'][$k]['qualifier'];
-                                if ($map !== false) {
+                                if (false !== $map) {
                                     $decoded  = $asn1->decodeBER($subvalue);
                                     $mapped   = $asn1->asn1map($decoded[0], $map);
-                                    $subvalue = $mapped === false ? $decoded[0] : $mapped;
+                                    $subvalue = false === $mapped ? $decoded[0] : $mapped;
                                 }
                             }
                         }
@@ -1636,7 +1636,7 @@ class File_X509
         if (is_array($extensions)) {
             $size = count($extensions);
             for ($i = 0; $i < $size; $i++) {
-                if (is_object($extensions[$i]) && strtolower(get_class($extensions[$i])) == 'file_asn1_element') {
+                if (is_object($extensions[$i]) && 'file_asn1_element' == strtolower(get_class($extensions[$i]))) {
                     continue;
                 }
 
@@ -1653,7 +1653,7 @@ class File_X509
                                 $subid    = $value[$j]['policyQualifiers'][$k]['policyQualifierId'];
                                 $map      = $this->_getMapping($subid);
                                 $subvalue = &$value[$j]['policyQualifiers'][$k]['qualifier'];
-                                if ($map !== false) {
+                                if (false !== $map) {
                                     // by default File_ASN1 will try to render qualifier as a FILE_ASN1_TYPE_IA5_STRING since it's
                                     // actual type is FILE_ASN1_TYPE_ANY
                                     $subvalue = new File_ASN1_Element($asn1->encodeDER($subvalue, $map));
@@ -1663,7 +1663,7 @@ class File_X509
                         break;
                     case 'id-ce-authorityKeyIdentifier': // use 00 as the serial number instead of an empty string
                         if (isset($value['authorityCertSerialNumber'])) {
-                            if ($value['authorityCertSerialNumber']->toBytes() == '') {
+                            if ('' == $value['authorityCertSerialNumber']->toBytes()) {
                                 $temp                               = chr((FILE_ASN1_CLASS_CONTEXT_SPECIFIC << 6) | 2) . "\1\0";
                                 $value['authorityCertSerialNumber'] = new File_ASN1_Element($temp);
                             }
@@ -1712,10 +1712,10 @@ class File_X509
                         $decoded = $asn1->decodeBER($value);
                         if (!is_bool($map)) {
                             $mapped = $asn1->asn1map($decoded[0], $map);
-                            if ($mapped !== false) {
+                            if (false !== $mapped) {
                                 $values[$j] = $mapped;
                             }
-                            if ($id == 'pkcs-9-at-extensionRequest') {
+                            if ('pkcs-9-at-extensionRequest' == $id) {
                                 $this->_mapInExtensions($values, $j, $asn1);
                             }
                         } elseif ($map) {
@@ -1747,7 +1747,7 @@ class File_X509
                    corresponding to the attribute type identified by type */
                 $id  = $attributes[$i]['type'];
                 $map = $this->_getMapping($id);
-                if ($map === false) {
+                if (false === $map) {
                     user_error($id . ' is not a currently supported attribute', E_USER_NOTICE);
                     unset($attributes[$i]);
                 } elseif (is_array($attributes[$i]['value'])) {
@@ -2340,7 +2340,7 @@ class File_X509
             $this->dn = ['rdnSequence' => []];
         }
 
-        if (($propName = $this->_translateDNProp($propName)) === false) {
+        if (false === ($propName = $this->_translateDNProp($propName))) {
             return false;
         }
 
@@ -2371,7 +2371,7 @@ class File_X509
             return;
         }
 
-        if (($propName = $this->_translateDNProp($propName)) === false) {
+        if (false === ($propName = $this->_translateDNProp($propName))) {
             return;
         }
 
@@ -2405,7 +2405,7 @@ class File_X509
             return false;
         }
 
-        if (($propName = $this->_translateDNProp($propName)) === false) {
+        if (false === ($propName = $this->_translateDNProp($propName))) {
             return false;
         }
 
@@ -2418,9 +2418,9 @@ class File_X509
                 if (!$withType && is_array($v)) {
                     foreach ($v as $type => $s) {
                         $type = array_search($type, $asn1->ANYmap, true);
-                        if ($type !== false && isset($asn1->stringTypeSize[$type])) {
+                        if (false !== $type && isset($asn1->stringTypeSize[$type])) {
                             $s = $asn1->convert($s, $type);
-                            if ($s !== false) {
+                            if (false !== $s) {
                                 $v = $s;
                                 break;
                             }
@@ -2506,7 +2506,7 @@ class File_X509
                 return $asn1->encodeDER($dn, $this->Name);
             case FILE_X509_DN_OPENSSL:
                 $dn = $this->getDN(FILE_X509_DN_STRING, $dn);
-                if ($dn === false) {
+                if (false === $dn) {
                     return false;
                 }
                 $attrs = preg_split('#((?:^|, *|/)[a-z][a-z0-9]*=)#i', $dn, -1, PREG_SPLIT_DELIM_CAPTURE);
@@ -2536,9 +2536,9 @@ class File_X509
                         if (is_array($attr['value'])) {
                             foreach ($attr['value'] as $type => $v) {
                                 $type = array_search($type, $asn1->ANYmap, true);
-                                if ($type !== false && isset($asn1->stringTypeSize[$type])) {
+                                if (false !== $type && isset($asn1->stringTypeSize[$type])) {
                                     $v = $asn1->convert($v, $type);
-                                    if ($v !== false) {
+                                    if (false !== $v) {
                                         $v             = preg_replace('/\s+/', ' ', $v);
                                         $attr['value'] = strtolower(trim($v));
                                         break;
@@ -2607,9 +2607,9 @@ class File_X509
             if (is_array($value)) {
                 foreach ($value as $type => $v) {
                     $type = array_search($type, $asn1->ANYmap, true);
-                    if ($type !== false && isset($asn1->stringTypeSize[$type])) {
+                    if (false !== $type && isset($asn1->stringTypeSize[$type])) {
                         $v = $asn1->convert($v, $type);
-                        if ($v !== false) {
+                        if (false !== $v) {
                             $value = $v;
                             break;
                         }
@@ -2874,16 +2874,16 @@ class File_X509
 
         $asn1 = new File_ASN1();
 
-        if ($mode != FILE_X509_FORMAT_DER) {
+        if (FILE_X509_FORMAT_DER != $mode) {
             $newcsr = $this->_extractBER($csr);
-            if ($mode == FILE_X509_FORMAT_PEM && $csr == $newcsr) {
+            if (FILE_X509_FORMAT_PEM == $mode && $csr == $newcsr) {
                 return false;
             }
             $csr = $newcsr;
         }
         $orig = $csr;
 
-        if ($csr === false) {
+        if (false === $csr) {
             $this->currentCert = false;
             return false;
         }
@@ -2897,7 +2897,7 @@ class File_X509
         }
 
         $csr = $asn1->asn1map($decoded[0], $this->CertificationRequest);
-        if (!isset($csr) || $csr === false) {
+        if (!isset($csr) || false === $csr) {
             $this->currentCert = false;
             return false;
         }
@@ -3004,12 +3004,12 @@ class File_X509
         // OpenSSL produces SPKAC's that are preceeded by the string SPKAC=
         $temp = preg_replace('#(?:SPKAC=)|[ \r\n\\\]#', '', $spkac);
         $temp = preg_match('#^[a-zA-Z\d/+]*={0,2}$#', $temp) ? base64_decode($temp) : false;
-        if ($temp != false) {
+        if (false != $temp) {
             $spkac = $temp;
         }
         $orig = $spkac;
 
-        if ($spkac === false) {
+        if (false === $spkac) {
             $this->currentCert = false;
             return false;
         }
@@ -3024,7 +3024,7 @@ class File_X509
 
         $spkac = $asn1->asn1map($decoded[0], $this->SignedPublicKeyAndChallenge);
 
-        if (!isset($spkac) || $spkac === false) {
+        if (!isset($spkac) || false === $spkac) {
             $this->currentCert = false;
             return false;
         }
@@ -3114,16 +3114,16 @@ class File_X509
 
         $asn1 = new File_ASN1();
 
-        if ($mode != FILE_X509_FORMAT_DER) {
+        if (FILE_X509_FORMAT_DER != $mode) {
             $newcrl = $this->_extractBER($crl);
-            if ($mode == FILE_X509_FORMAT_PEM && $crl == $newcrl) {
+            if (FILE_X509_FORMAT_PEM == $mode && $crl == $newcrl) {
                 return false;
             }
             $crl = $newcrl;
         }
         $orig = $crl;
 
-        if ($crl === false) {
+        if (false === $crl) {
             $this->currentCert = false;
             return false;
         }
@@ -3137,7 +3137,7 @@ class File_X509
         }
 
         $crl = $asn1->asn1map($decoded[0], $this->CertificateList);
-        if (!isset($crl) || $crl === false) {
+        if (!isset($crl) || false === $crl) {
             $this->currentCert = false;
             return false;
         }
@@ -3369,7 +3369,7 @@ class File_X509
             $ipAddresses = [];
             foreach ($subject->ipAddresses as $ipAddress) {
                 $encoded = $subject->_ipAddress($ipAddress);
-                if ($encoded !== false) {
+                if (false !== $encoded) {
                     $ipAddresses[] = $encoded;
                 }
             }
@@ -3603,7 +3603,7 @@ class File_X509
             //  CRL issuer.  This extension allows users to easily determine when a
             //  particular CRL supersedes another CRL."
             // -- https://tools.ietf.org/html/rfc5280#section-5.2.3
-            $crlNumber = $crlNumber !== false ? $crlNumber->add(new Math_BigInteger(1)) : null;
+            $crlNumber = false !== $crlNumber ? $crlNumber->add(new Math_BigInteger(1)) : null;
         }
 
         $this->removeExtension('id-ce-authorityKeyIdentifier');
@@ -3654,7 +3654,7 @@ class File_X509
 
             $issuerAltName = $this->getExtension('id-ce-subjectAltName', $issuer->currentCert);
 
-            if ($issuerAltName !== false) {
+            if (false !== $issuerAltName) {
                 $this->setExtension('id-ce-issuerAltName', $issuerAltName);
             }
         }
@@ -3736,7 +3736,7 @@ class File_X509
 
           -- https://tools.ietf.org/html/rfc5280#section-4.1.2.5
         */
-        if (strtolower($date) == 'lifetime') {
+        if ('lifetime' == strtolower($date)) {
             $temp          = '99991231235959Z';
             $asn1          = new File_ASN1();
             $temp          = chr(FILE_ASN1_TYPE_GENERALIZED_TIME) . $asn1->_encodeLength(strlen($temp)) . $temp;
@@ -3835,7 +3835,7 @@ class File_X509
 
                 if (is_array($attributes)) {
                     foreach ($attributes as $key => $value) {
-                        if ($value['type'] == 'pkcs-9-at-extensionRequest') {
+                        if ('pkcs-9-at-extensionRequest' == $value['type']) {
                             $path = "$pth/$key/value/0";
                             break 2;
                         }
@@ -4048,14 +4048,14 @@ class File_X509
             if ($attribute['type'] == $id) {
                 $n = count($attribute['value']);
                 switch (true) {
-                    case $disposition == FILE_X509_ATTR_APPEND:
-                    case $disposition == FILE_X509_ATTR_REPLACE:
+                    case FILE_X509_ATTR_APPEND == $disposition:
+                    case FILE_X509_ATTR_REPLACE == $disposition:
                         return false;
                     case $disposition >= $n:
                         $disposition -= $n;
                         break;
-                    case $disposition == FILE_X509_ATTR_ALL:
-                    case $n == 1:
+                    case FILE_X509_ATTR_ALL == $disposition:
+                    case 1 == $n:
                         unset($attributes[$key]);
                         $result = true;
                         break;
@@ -4065,7 +4065,7 @@ class File_X509
                         $result                    = true;
                         break;
                 }
-                if ($result && $disposition != FILE_X509_ATTR_ALL) {
+                if ($result && FILE_X509_ATTR_ALL != $disposition) {
                     break;
                 }
             }
@@ -4102,10 +4102,10 @@ class File_X509
             if ($attribute['type'] == $id) {
                 $n = count($attribute['value']);
                 switch (true) {
-                    case $disposition == FILE_X509_ATTR_APPEND:
-                    case $disposition == FILE_X509_ATTR_REPLACE:
+                    case FILE_X509_ATTR_APPEND == $disposition:
+                    case FILE_X509_ATTR_REPLACE == $disposition:
                         return false;
-                    case $disposition == FILE_X509_ATTR_ALL:
+                    case FILE_X509_ATTR_ALL == $disposition:
                         return $attribute['value'];
                     case $disposition >= $n:
                         $disposition -= $n;
@@ -4173,7 +4173,7 @@ class File_X509
             if ($attribute['type'] == $id) {
                 $n = count($attribute['value']);
                 switch (true) {
-                    case $disposition == FILE_X509_ATTR_APPEND:
+                    case FILE_X509_ATTR_APPEND == $disposition:
                         $last = $key;
                         break;
                     case $disposition >= $n:
@@ -4193,7 +4193,7 @@ class File_X509
                 $attributes[$last]['value'][] = $value;
                 break;
             default:
-                $attributes[] = ['type' => $id, 'value' => $disposition == FILE_X509_ATTR_ALL ? $value : [$value]];
+                $attributes[] = ['type' => $id, 'value' => FILE_X509_ATTR_ALL == $disposition ? $value : [$value]];
                 break;
         }
 
@@ -4250,7 +4250,7 @@ class File_X509
                 return $this->computeKeyIdentifier($key['certificationRequestInfo']['subjectPKInfo']['subjectPublicKey'], $method);
             case !is_object($key):
                 return false;
-            case strtolower(get_class($key)) == 'file_asn1_element':
+            case 'file_asn1_element' == strtolower(get_class($key)):
                 // Assume the element is a bitstring-packed key.
                 $asn1    = new File_ASN1();
                 $decoded = $asn1->decodeBER($key->element);
@@ -4270,12 +4270,12 @@ class File_X509
                 if (!$key->loadKey($raw)) {
                     return false;   // Not an unencrypted RSA key.
                 }
-                if ($key->getPrivateKey() !== false) {  // If private.
+                if (false !== $key->getPrivateKey()) {  // If private.
                     return $this->computeKeyIdentifier($key, $method);
                 }
                 $key = $raw;    // Is a public key.
                 break;
-            case strtolower(get_class($key)) == 'file_x509':
+            case 'file_x509' == strtolower(get_class($key)):
                 if (isset($key->publicKey)) {
                     return $this->computeKeyIdentifier($key->publicKey, $method);
                 }
@@ -4301,7 +4301,7 @@ class File_X509
         $hash = new Crypt_Hash('sha1');
         $hash = $hash->hash($key);
 
-        if ($method == 2) {
+        if (2 == $method) {
             $hash    = substr($hash, -8);
             $hash[0] = chr((ord($hash[0]) & 0x0F) | 0x40);
         }
@@ -4433,8 +4433,8 @@ class File_X509
     {
         if (isset($this->currentCert['tbsCertList'])) {
             if (is_array($rclist = &$this->_subArray($this->currentCert, 'tbsCertList/revokedCertificates', true))) {
-                if ($this->_revokedCertificate($rclist, $serial) === false) { // If not yet revoked
-                    if (($i = $this->_revokedCertificate($rclist, $serial, true)) !== false) {
+                if (false === $this->_revokedCertificate($rclist, $serial)) { // If not yet revoked
+                    if (false !== ($i = $this->_revokedCertificate($rclist, $serial, true))) {
                         if (!empty($date)) {
                             $rclist[$i]['revocationDate'] = $this->_timeField($date);
                         }
@@ -4458,7 +4458,7 @@ class File_X509
     public function unrevoke($serial)
     {
         if (is_array($rclist = &$this->_subArray($this->currentCert, 'tbsCertList/revokedCertificates'))) {
-            if (($i = $this->_revokedCertificate($rclist, $serial)) !== false) {
+            if (false !== ($i = $this->_revokedCertificate($rclist, $serial))) {
                 unset($rclist[$i]);
                 $rclist = array_values($rclist);
                 return true;
@@ -4478,7 +4478,7 @@ class File_X509
     public function getRevoked($serial)
     {
         if (is_array($rclist = $this->_subArray($this->currentCert, 'tbsCertList/revokedCertificates'))) {
-            if (($i = $this->_revokedCertificate($rclist, $serial)) !== false) {
+            if (false !== ($i = $this->_revokedCertificate($rclist, $serial))) {
                 return $rclist[$i];
             }
         }
@@ -4525,7 +4525,7 @@ class File_X509
     public function removeRevokedCertificateExtension($serial, $id)
     {
         if (is_array($rclist = &$this->_subArray($this->currentCert, 'tbsCertList/revokedCertificates'))) {
-            if (($i = $this->_revokedCertificate($rclist, $serial)) !== false) {
+            if (false !== ($i = $this->_revokedCertificate($rclist, $serial))) {
                 return $this->_removeExtension($id, "tbsCertList/revokedCertificates/$i/crlEntryExtensions");
             }
         }
@@ -4551,7 +4551,7 @@ class File_X509
         }
 
         if (is_array($rclist = $this->_subArray($crl, 'tbsCertList/revokedCertificates'))) {
-            if (($i = $this->_revokedCertificate($rclist, $serial)) !== false) {
+            if (false !== ($i = $this->_revokedCertificate($rclist, $serial))) {
                 return $this->_getExtension($id, $crl, "tbsCertList/revokedCertificates/$i/crlEntryExtensions");
             }
         }
@@ -4574,7 +4574,7 @@ class File_X509
         }
 
         if (is_array($rclist = $this->_subArray($crl, 'tbsCertList/revokedCertificates'))) {
-            if (($i = $this->_revokedCertificate($rclist, $serial)) !== false) {
+            if (false !== ($i = $this->_revokedCertificate($rclist, $serial))) {
                 return $this->_getExtensions($crl, "tbsCertList/revokedCertificates/$i/crlEntryExtensions");
             }
         }
@@ -4597,7 +4597,7 @@ class File_X509
     {
         if (isset($this->currentCert['tbsCertList'])) {
             if (is_array($rclist = &$this->_subArray($this->currentCert, 'tbsCertList/revokedCertificates', true))) {
-                if (($i = $this->_revokedCertificate($rclist, $serial, true)) !== false) {
+                if (false !== ($i = $this->_revokedCertificate($rclist, $serial, true))) {
                     return $this->_setExtension($id, $value, $critical, $replace, "tbsCertList/revokedCertificates/$i/crlEntryExtensions");
                 }
             }
@@ -4630,7 +4630,7 @@ class File_X509
         // remove new lines
         $temp = str_replace(["\r", "\n", ' '], '', $temp);
         $temp = preg_match('#^[a-zA-Z\d/+]*={0,2}$#', $temp) ? base64_decode($temp) : false;
-        return $temp != false ? $temp : $str;
+        return false != $temp ? $temp : $str;
     }
 
     /**

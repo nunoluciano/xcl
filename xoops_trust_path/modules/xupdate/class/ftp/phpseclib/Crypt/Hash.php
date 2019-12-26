@@ -995,7 +995,7 @@ class Crypt_Hash
             }
         }
 
-        $hash = $this->l == 48 ? $init384 : $init512;
+        $hash = 48 == $this->l ? $init384 : $init512;
 
         // Pre-processing
         $length = strlen($m);
@@ -1108,7 +1108,7 @@ class Crypt_Hash
         // Produce the final hash value (big-endian)
         // (Crypt_Hash::hash() trims the output for hashes but not for HMACs.  as such, we trim the output here)
         $temp = $hash[0]->toBytes() . $hash[1]->toBytes() . $hash[2]->toBytes() . $hash[3]->toBytes() . $hash[4]->toBytes() . $hash[5]->toBytes();
-        if ($this->l != 48) {
+        if (48 != $this->l) {
             $temp .= $hash[6]->toBytes() . $hash[7]->toBytes();
         }
 

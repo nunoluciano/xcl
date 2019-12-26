@@ -157,7 +157,7 @@ class XoopsLogger
             } else {
                 $ret .= '<tr class="'.$class.'"><td>'.htmlentities($q['sql']).'</td></tr>';
             }
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
         $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br />';
         return $ret;
@@ -178,7 +178,7 @@ class XoopsLogger
             } else {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> No Cache</td></tr>';
             }
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
         $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br />';
         return $ret;
@@ -214,7 +214,7 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->extra as $ex) {
             $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($ex['name']).':</b> '.htmlspecialchars($ex['msg']).'</td></tr>';
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
         $ret .= '</table><br />';
         return $ret;
@@ -234,7 +234,7 @@ class XoopsLogger
             $class = 'even';
             foreach ($this->logstart as $k => $v) {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($k).'</b> took <span style="color:#ff0000;">'.$this->dumpTime($k).'</span> seconds to load.</td></tr>';
-                $class = ($class == 'odd') ? 'even' : 'odd';
+                $class = ('odd' == $class) ? 'even' : 'odd';
             }
             $ret .= '</table><br />';
         }

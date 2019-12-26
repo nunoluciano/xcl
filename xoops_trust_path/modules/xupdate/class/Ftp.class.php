@@ -29,7 +29,7 @@ switch ($mod_config['ftp_method']) {
     case _XUPDATE_FTP_CUSTOM_SFTP :
         // To Do
         if (!defined('PATH_SEPARATOR')) {
-            if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+            if ('WIN' !== strtoupper(substr(PHP_OS, 0, 3))) {
                 define('PATH_SEPARATOR', ':');
             } else {
                 define('PATH_SEPARATOR', ';');
@@ -41,7 +41,7 @@ switch ($mod_config['ftp_method']) {
     case _XUPDATE_FTP_CUSTOM_SSH2 :
         // To Do
         if (!defined('PATH_SEPARATOR')) {
-            if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+            if ('WIN' !== strtoupper(substr(PHP_OS, 0, 3))) {
                 define('PATH_SEPARATOR', ':');
             } else {
                 define('PATH_SEPARATOR', ';');
@@ -77,7 +77,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         
         $tempDir = XOOPS_TRUST_PATH.'/'.trim($this->mod_config['temp_path'], '/');
         
-        $this->isSafeMode = (ini_get('safe_mode') == '1' || ! Xupdate_Utils::checkMakeDirectory($tempDir));
+        $this->isSafeMode = ('1' == ini_get('safe_mode') || ! Xupdate_Utils::checkMakeDirectory($tempDir));
         
         $this->loginCheckFile = $tempDir.'/'.rawurlencode(substr(XOOPS_URL, 7)).'_logincheck.ini.php';
         if (! empty($this->mod_config['php_perm'])) {
@@ -262,7 +262,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
             $ftproot = $this->seekFTPRoot();
             foreach ($list as $path) {
                 $name = basename($path);
-                if ($name !== '.' && $name !=='..') {
+                if ('.' !== $name && '..' !== $name) {
                     $serverPath = $ftproot.$path;
                     if (is_dir($serverPath)) {
                         $this->localRmdirRecursive($serverPath);
@@ -352,7 +352,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                 }
             }
         }
-        if ($this->chdir('/') && strpos(XOOPS_TRUST_PATH, XOOPS_ROOT_PATH) === 0) {
+        if ($this->chdir('/') && 0 === strpos(XOOPS_TRUST_PATH, XOOPS_ROOT_PATH)) {
             // May be XOOPS_ROOT_PATH is FTP root
             $ftp_root = $xoops_root_path;
             return $ftp_root;
@@ -368,7 +368,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     {
         if ($handle = opendir((string)$dir)) {
             while (false !== ($item = readdir($handle))) {
-                if ($item !== '.' && $item !== '..') {
+                if ('.' !== $item && '..' !== $item) {
                     if (is_dir("$dir/$item")) {
                         $this->removeDirectory("$dir/$item");
                     } else {
@@ -393,7 +393,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
     private function _ftpPutSub($local_path, $remote_path, $remote_pos, $trust_dirname = null, $dirname = null)
     {
         $ftp_root = $this->seekFTPRoot();
-        if ($ftp_root === false) {
+        if (false === $ftp_root) {
             return false;
         }
         $mode = ($trust_dirname && $dirname)? 'repModule' : ($trust_dirname? 'repMisc' : 'normal');
@@ -415,11 +415,11 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                 krsort($dir);
                 $rootReg = '#^'.preg_quote(XOOPS_ROOT_PATH, '#').'/[^/]+$#';
                 foreach ($dir as $directory) {
-                    if ($mode === 'repMisc') {
+                    if ('repMisc' === $mode) {
                         if (strstr($directory, '/modules/'.$trust_dirname)) {
                             continue;
                         }
-                    } elseif ($mode === 'repModule') {
+                    } elseif ('repModule' === $mode) {
                         $directory = str_replace('/modules/'.$trust_dirname, '/modules/'.$dirname, $directory);
                     }
                     $remote_directory = $remote_path.substr($directory, $remote_pos);
@@ -454,7 +454,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
             // check done file on upload retry mode
             if (isset($this->uploaded_files[$l_file])) {
                 $uploaded_files[$l_file] = $this->uploaded_files[$l_file];
-                if ($this->uploaded_files[$l_file] === true) {
+                if (true === $this->uploaded_files[$l_file]) {
                     $res['ok']++;
                 } elseif ($this->uploaded_files[$l_file]) {
                     $res['ng'][] = $this->uploaded_files[$l_file];
@@ -462,13 +462,13 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                 continue;
             }
             
-            if ($mode === 'repMisc') {
+            if ('repMisc' === $mode) {
                 if (strstr($l_file, '/modules/'.$trust_dirname.'/')) {
                     $uploaded_files[$l_file] = false; // for update retry mode
                     continue;
                 }
                 $r_file = $remote_path.substr($l_file, $remote_pos); // +1 is remove first flash
-            } elseif ($mode === 'repModule') {
+            } elseif ('repModule' === $mode) {
                 //rename dirname
                 $r_file = $remote_path.substr(str_replace('/modules/'.$trust_dirname.'/', '/modules/'.$dirname.'/', $l_file), $remote_pos); // +1 is remove first flash
             } else {
@@ -477,7 +477,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
             $ftp_remote_file = substr($r_file, strlen($ftp_root));
             $dont_overwrite = $this->_dont_overwrite($r_file);
             $same = false;
-            if ($dont_overwrite === false && ! $same = $this->_same_file($l_file, $r_file) and !$this->put($l_file, $ftp_remote_file)) {
+            if (false === $dont_overwrite && ! $same = $this->_same_file($l_file, $r_file) and !$this->put($l_file, $ftp_remote_file)) {
                 $res['ng'][] = $ftp_remote_file;
                 $uploaded_files[$l_file] = $ftp_remote_file;
             } else {
@@ -491,7 +491,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                 $this->setPhpPerm($ftp_remote_file);
                 $uploaded_files[$l_file] = true; // for update retry mode
             }
-            if (++$_cnt % 100 === 0) {
+            if (0 === ++$_cnt % 100) {
                 file_put_contents(_MD_XUPDATE_SYS_RETRYSER_FILE, serialize($GLOBALS['xupdate_retry_cache']));
             }
         }
@@ -500,14 +500,14 @@ class Xupdate_Ftp extends Xupdate_Ftp_
 
     private function _getFileList($dir, $list= ['dir' => [], 'file' => []])
     {
-        if (is_dir($dir) == false) {
+        if (false == is_dir($dir)) {
             return [];
         }
 
         $dh = opendir($dir);
         if ($dh) {
-            while (($file = readdir($dh)) !== false) {
-                if ($file === '.' || $file === '..') {
+            while (false !== ($file = readdir($dh))) {
+                if ('.' === $file || '..' === $file) {
                     continue;
                 } elseif (is_dir("$dir/$file")) {
                     $list = $this->_getFileList("$dir/$file", $list);
@@ -542,7 +542,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                 $reg_lang = '#^(?:'.$html.'|'.$trust.')/(?:modules/[^/]+/)?language/([^/]+)(?:/|$)#';
                 $root = XCube_Root::getSingleton();
                 $lang = $root->mContext->getXoopsConfig('language');
-                $lang = ($lang === 'english')? [$lang] : [$lang, 'english'];
+                $lang = ('english' === $lang)? [$lang] : [$lang, 'english'];
                 if (isset($this->item_options['force_languages']) && is_array($this->item_options['force_languages'])) {
                     $lang = array_merge($lang, $this->item_options['force_languages']);
                 }
@@ -559,14 +559,14 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         }
         if ($no_update) {
             foreach ($no_update as $item) {
-                if (strpos($file, $item) === 0) {
+                if (0 === strpos($file, $item)) {
                     return true;
                 }
             }
         }
         if (!$dir_chk && $no_overwrite) {
             foreach ($no_overwrite as $item) {
-                if (strpos($file, $item) === 0 && file_exists($file)) {
+                if (0 === strpos($file, $item) && file_exists($file)) {
                     return true;
                 }
             }
@@ -613,8 +613,8 @@ class Xupdate_Ftp extends Xupdate_Ftp_
         }
 
         $ftpRoot = $this->seekFTPRoot();
-        if (is_dir($ftpRoot.$parent) === false) {
-            if ($this->ftpMkdirByFtpPath($parent) === false) {
+        if (false === is_dir($ftpRoot . $parent)) {
+            if (false === $this->ftpMkdirByFtpPath($parent)) {
                 return false;
             }
         }
@@ -628,7 +628,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
      */
     private function setPhpPerm($file)
     {
-        if ($this->phpPerm && strtolower(substr($file, -4)) === '.php' && is_file($file)) {
+        if ($this->phpPerm && '.php' === strtolower(substr($file, -4)) && is_file($file)) {
             $this->chmod($file, $this->phpPerm);
         }
     }

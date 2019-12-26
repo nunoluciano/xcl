@@ -131,7 +131,7 @@ class Legacy_ModuleInstallUtils
             $filePath = isset($updateInfo['filepath']) ? $updateInfo['filepath'] : XOOPS_MODULE_PATH . "/${dirname}/admin/class/${className}.class.php";
             $namespace = isset($updateInfo['namespace']) ? $updateInfo['namespace'] : ucfirst($dirname);
                 
-            if ($namespace != null) {
+            if (null != $namespace) {
                 $className = "${namespace}_${className}";
             }
                 
@@ -176,7 +176,7 @@ class Legacy_ModuleInstallUtils
         $sqlfile = $sqlfileInfo[$dbType];
         $sqlfilepath = XOOPS_MODULE_PATH . "/${dirname}/${sqlfile}";
         
-        if (isset($module->modinfo['cube_style']) && $module->modinfo['cube_style'] == true) {
+        if (isset($module->modinfo['cube_style']) && true == $module->modinfo['cube_style']) {
             require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';
             $scanner =new Legacy_SQLScanner();
             $scanner->setDB_PREFIX(XOOPS_DB_PREFIX);
@@ -269,7 +269,7 @@ class Legacy_ModuleInstallUtils
     public static function installAllOfModuleTemplates(&$module, &$log)
     {
         $templates = $module->getInfo('templates');
-        if ($templates != false) {
+        if (false != $templates) {
             foreach ($templates as $template) {
                 Legacy_ModuleInstallUtils::installModuleTemplate($module, $template, $log);
             }
@@ -300,7 +300,7 @@ class Legacy_ModuleInstallUtils
         $fileName = trim($template['file']);
 
         $tpldata = Legacy_ModuleInstallUtils::readTemplateFile($module->get('dirname'), $fileName);
-        if ($tpldata == false) {
+        if (false == $tpldata) {
             return false;
         }
 
@@ -404,7 +404,7 @@ class Legacy_ModuleInstallUtils
     public static function installAllOfBlocks(&$module, &$log)
     {
         $definedBlocks = $module->getInfo('blocks');
-        if ($definedBlocks == false) {
+        if (false == $definedBlocks) {
             return true;
         }
         
@@ -424,7 +424,7 @@ class Legacy_ModuleInstallUtils
             }
             
             // Try (2) --- index pattern
-            if ($successFlag == false) {
+            if (false == $successFlag) {
                 $successFlag = true;
                 $updateblocks = [];
                 foreach ($definedBlocks as $idx => $block) {
@@ -439,7 +439,7 @@ class Legacy_ModuleInstallUtils
             }
             
             // Try (3) --- automatic
-            if ($successFlag == false) {
+            if (false == $successFlag) {
                 $successFlag = true;
                 $updateblocks = [];
 
@@ -644,7 +644,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function installBlockTemplate(&$block, &$module, &$log)
     {
-        if ($block->get('template') == null) {
+        if (null == $block->get('template')) {
             return true;
         }
         
@@ -708,7 +708,7 @@ class Legacy_ModuleInstallUtils
         }
 
         $lines = file($filePath);
-        if ($lines == false) {
+        if (false == $lines) {
             return false;
         }
 
@@ -795,7 +795,7 @@ class Legacy_ModuleInstallUtils
         //
         // Insert comment config by old style.
         //
-        if ($module->getVar('hascomments') !=0) {
+        if (0 != $module->getVar('hascomments')) {
             require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
             $configInfos[] = [
@@ -821,7 +821,7 @@ class Legacy_ModuleInstallUtils
         //
         // Insert comment config by old style.
         //
-        if ($module->get('hasnotification') != 0) {
+        if (0 != $module->get('hasnotification')) {
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
             require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
             
@@ -883,14 +883,14 @@ class Legacy_ModuleInstallUtils
      */
     public static function uninstallAllOfConfigs(&$module, &$log)
     {
-        if ($module->get('hasconfig') == 0) {
+        if (0 == $module->get('hasconfig')) {
             return;
         }
 
         $configHandler =& xoops_gethandler('config');
         $configs =& $configHandler->getConfigs(new Criteria('conf_modid', $module->get('mid')));
 
-        if (count($configs) == 0) {
+        if (0 == count($configs)) {
             return;
         }
 
@@ -1089,7 +1089,7 @@ class Legacy_ModuleInstallUtils
         } else {
             $updateValue = null;
             if ($oldValueType != $info->mValueType) {
-                if ($oldValueType === 'array' || $info->mValueType === 'array') {
+                if ('array' === $oldValueType || 'array' === $info->mValueType) {
                     $updateValue = $info->mDefault;
                 } else {
                     $updateValue = $config->getConfValueForOutput();
@@ -1231,7 +1231,7 @@ class Legacy_ModuleInstallUtils
         $criteria->add(new Criteria('tpl_module', $module->get('dirname')));
         $criteria->add(new Criteria('tpl_type', 'block'));
         
-        if ($tplset != null) {
+        if (null != $tplset) {
             // See 'FIXME'
             $criteria->add(new Criteria('tpl_tplset', $tplset));
         }

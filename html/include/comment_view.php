@@ -46,11 +46,11 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
     $t_root =& XCube_Root::getSingleton();
     $t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');
     $comment_config = $xoopsModule->getInfo('comments');
-    $com_itemid = (trim($comment_config['itemName']) != '' && isset($_GET[$comment_config['itemName']])) ? (int)$_GET[$comment_config['itemName']] : 0;
+    $com_itemid = ('' != trim($comment_config['itemName']) && isset($_GET[$comment_config['itemName']])) ? (int)$_GET[$comment_config['itemName']] : 0;
 
     if ($com_itemid > 0) {
         $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : '';
-        if ($com_mode == '') {
+        if ('' == $com_mode) {
             if (is_object($xoopsUser)) {
                 $com_mode = $xoopsUser->getVar('umode');
             } else {
@@ -67,7 +67,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         } else {
             $com_order = (int)$_GET['com_order'];
         }
-        if ($com_order != XOOPS_COMMENT_OLD1ST) {
+        if (XOOPS_COMMENT_OLD1ST != $com_order) {
             $xoopsTpl->assign(['comment_order' => XOOPS_COMMENT_NEW1ST, 'order_other' => XOOPS_COMMENT_OLD1ST]);
             $com_dborder = 'DESC';
         } else {
@@ -84,13 +84,13 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
         $com_rootid = isset($_GET['com_rootid']) ? (int)$_GET['com_rootid'] : 0;
         $comment_handler =& xoops_gethandler('comment');
-        if ($com_mode == 'flat') {
+        if ('flat' == $com_mode) {
             $comments =& $comment_handler->getByItemId($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
             include_once XOOPS_ROOT_PATH.'/class/commentrenderer.php';
             $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
             $renderer->setComments($comments);
             $renderer->renderFlatView($admin_view);
-        } elseif ($com_mode == 'thread') {
+        } elseif ('thread' == $com_mode) {
             // RMV-FIX... added extraParam stuff here
             $comment_url = $comment_config['pageName'] . '?';
             

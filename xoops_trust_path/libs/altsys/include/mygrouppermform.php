@@ -223,7 +223,7 @@ class MyXoopsGroupPermForm extends XoopsForm
                 // group name
                 $ret .= "<tr valign='top' align='"._GLOBAL_LEFT."'><td class='head'>".$elements[$i]->getCaption();
                 // group description
-                if ($elements[$i]->getDescription() != '') {
+                if ('' != $elements[$i]->getDescription()) {
                     $ret .= '<br /><br /><span style="font-weight: normal;">'.$elements[$i]->getDescription().'</span>';
                 }
                 $ret .= "</td>\n<td class='even'>\n".$elements[$i]->render()."\n</td></tr>\n";

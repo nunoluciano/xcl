@@ -78,13 +78,13 @@ class Legacy_AbstractFilterForm
     {
         $t_start = 0;
         $t_limit = 0;
-        if ($start === null) {
+        if (null === $start) {
             $t_start = $this->mNavi->getStart();
         } else {
             $t_start = intval($start);
             $this->mNavi->setStart($t_start);
         }
-        if ($limit === null) {
+        if (null === $limit) {
             $t_limit = $this->mNavi->getPerpage();
         } else {
             $t_limit = intval($limit);

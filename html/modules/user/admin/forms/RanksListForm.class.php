@@ -20,7 +20,7 @@ class User_RanksListForm extends XCube_ActionForm
     {
         //
         //
-        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             return 'module.user.RanksSettingsForm.TOKEN';
         } else {
             return null;

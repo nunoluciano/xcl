@@ -257,7 +257,7 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         $render->setAttribute('mid', $this->_mBlock->get('mid'));
         $render->setAttribute('bid', $this->_mBlock->get('bid'));
         
-        if ($this->_mBlock->get('template') == null) {
+        if (null == $this->_mBlock->get('template')) {
             $render->setTemplateName('system_dummy.html');
             $render->setAttribute('dummy_content', $result['content']);
         } else {

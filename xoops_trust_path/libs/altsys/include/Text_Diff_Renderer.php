@@ -53,7 +53,7 @@ class Text_Diff_Renderer
     {
         $params = [];
         foreach (get_object_vars($this) as $k => $v) {
-            if ($k{0} == '_') {
+            if ('_' == $k{0}) {
                 $params[substr($k, 1)] = $v;
             }
         }

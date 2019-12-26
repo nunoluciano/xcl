@@ -140,15 +140,15 @@ class XoopsBlock extends XoopsObject
             // P : custom PHP block
             // S : use text sanitizater (smilies enabled)
             // T : use text sanitizater (smilies disabled)
-            if ($c_type == 'H') {
+            if ('H' == $c_type) {
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $this->getVar('content', 'N'));
-            } elseif ($c_type == 'P') {
+            } elseif ('P' == $c_type) {
                 ob_start();
                 echo eval($this->get('content'));
                 $content = ob_get_contents();
                 ob_end_clean();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $content);
-            } elseif ($c_type == 'S') {
+            } elseif ('S' == $c_type) {
                 $myts =& MyTextSanitizer::sGetInstance();
                 $ret = str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->get('content'), 1, 1));
             } else {
@@ -173,7 +173,7 @@ class XoopsBlock extends XoopsObject
 
         $block = [];
         // M for module block, S for system block C for Custom
-        if ($this->get('block_type') != 'C') {
+        if ('C' != $this->get('block_type')) {
             // get block display function
             $show_func = $this->getVar('show_func', 'N');
             if (!$show_func) {
@@ -217,9 +217,9 @@ class XoopsBlock extends XoopsObject
     */
     public function &buildContent($position, $content='', $contentdb='')
     {
-        if ($position == 0) {
+        if (0 == $position) {
             $ret = $contentdb.$content;
-        } elseif ($position == 1) {
+        } elseif (1 == $position) {
             $ret = $content.$contentdb;
         }
         return $ret;
@@ -227,7 +227,7 @@ class XoopsBlock extends XoopsObject
 
     public function &buildTitle($originaltitle, $newtitle='')
     {
-        if ($newtitle != '') {
+        if ('' != $newtitle) {
             $ret = $newtitle;
         } else {
             $ret = $originaltitle;
@@ -237,7 +237,7 @@ class XoopsBlock extends XoopsObject
 
     public function isCustom()
     {
-        if ($this->get('block_type') == 'C') {
+        if ('C' == $this->get('block_type')) {
             return true;
         }
         return false;
@@ -250,7 +250,7 @@ class XoopsBlock extends XoopsObject
      **/
     public function getOptions()
     {
-        if ($this->get('block_type') != 'C') {
+        if ('C' != $this->get('block_type')) {
             $edit_func = $this->getVar('edit_func', 'N');
             if (!$edit_func) {
                 return false;
@@ -427,7 +427,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
                 return $ret;
             }
             $numrows = $db->getRowsNum($result);
-            if ($numrows == 1) {
+            if (1 == $numrows) {
                 $block = new XoopsBlock();
                 $block->assignVars($db->fetchArray($result));
                 return $block;
@@ -447,7 +447,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      */
     public function insert(&$block, $autolink=false)
     {
-        if (strtolower(get_class($block)) != 'xoopsblock') {
+        if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
         }
         if (!$block->isDirty()) {
@@ -497,7 +497,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
      **/
     public function delete(&$block)
     {
-        if (strtolower(get_class($block)) != 'xoopsblock') {
+        if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
         }
         $id = $block->get('bid');
@@ -584,7 +584,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         $blocks =& $this->getObjects($criteria, true);
         $ret = [];
         foreach (array_keys($blocks) as $i) {
-            $name = ($blocks[$i]->get('block_type') != 'C') ? $blocks[$i]->getVar('name') : $blocks[$i]->getVar('title');
+            $name = ('C' != $blocks[$i]->get('block_type')) ? $blocks[$i]->getVar('name') : $blocks[$i]->getVar('title');
             $ret[$i] = $name;
         }
         return $ret;
@@ -631,9 +631,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (isset($side)) {
             $side = (int)$side;
             // get both sides in sidebox? (some themes need this)
-            if ($side == XOOPS_SIDEBLOCK_BOTH) {
+            if (XOOPS_SIDEBLOCK_BOTH == $side) {
                 $side = '(b.side=0 OR b.side=1)';
-            } elseif ($side == XOOPS_CENTERBLOCK_ALL) {
+            } elseif (XOOPS_CENTERBLOCK_ALL == $side) {
                 $side = '(b.side=3 OR b.side=4 OR b.side=5)';
             } else {
                 $side = 'b.side='.$side;
@@ -667,9 +667,9 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (isset($side)) {
             $side = (int)$side;
             // get both sides in sidebox? (some themes need this)
-            if ($side == 2) {
+            if (2 == $side) {
                 $side = '(side=0 OR side=1)';
-            } elseif ($side == 6) {
+            } elseif (6 == $side) {
                 $side = '(side=3 OR side=4 OR side=5)';
             } else {
                 $side = 'side='.$side;
@@ -697,7 +697,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             while ($myrow = $this->db->fetchArray($result)) {
                 $block =& $this->create(false);
                 $block->assignVars($myrow);
-                $name = ($block->get('block_type') != 'C') ? $block->getVar('name') : $block->getVar('title');
+                $name = ('C' != $block->get('block_type')) ? $block->getVar('name') : $block->getVar('title');
                 $ret[$block->getVar('bid')] = $name;
                 unset($block);
             }
@@ -717,7 +717,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
     public function &getByModule($moduleid, $asobject=true)
     {
         $moduleid = (int)$moduleid;
-        if ($asobject == true) {
+        if (true == $asobject) {
             $sql = $sql = 'SELECT * FROM '.$this->db->prefix('newblocks').' WHERE mid='.$moduleid;
         } else {
             $sql = 'SELECT bid FROM '.$this->db->prefix('newblocks').' WHERE mid='.$moduleid;
@@ -771,7 +771,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             if (isset($visible)) {
                 $sql .= ' AND b.visible='.(int)$visible;
             }
-            if ($module_id !== false) {
+            if (false !== $module_id) {
                 $sql .= ' AND m.module_id IN (0,'.(int)$module_id;
                 if ($toponlyblock) {
                     $sql .= ',-1';
@@ -830,7 +830,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (!empty($blockids)) {
             $sql = 'SELECT b.* FROM '.$db->prefix('newblocks').' b, '.$db->prefix('block_module_link').' m WHERE m.block_id=b.bid';
             $sql .= ' AND b.isactive=1 AND b.visible=1';
-            if ($mid !== false && $mid !== 0) {
+            if (false !== $mid && 0 !== $mid) {
                 $sql .= ' AND m.module_id IN (0,'.(int)$mid.')';
             } else {
                 $sql .= ' AND m.module_id=0';
@@ -839,7 +839,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
             //
             // SIDE
             //
-            if ($blockFlag != SHOW_BLOCK_ALL) {
+            if (SHOW_BLOCK_ALL != $blockFlag) {
                 $arr = [];
                 if ($blockFlag & SHOW_SIDEBLOCK_LEFT) {
                     $arr[] = 'b.side=' . $this->mBlockFlagMapping[SHOW_SIDEBLOCK_LEFT];

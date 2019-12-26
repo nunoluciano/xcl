@@ -43,7 +43,7 @@ class LegacyRender_TplfileCloneForm extends LegacyRender_TplfileEditForm
         $criteria =new Criteria('tplset_name', $this->get('tpl_tplset'));
         $objs =& $handler->getObjects($criteria);
         
-        if (count($objs) == 0) {
+        if (0 == count($objs)) {
             $this->addErrorMessage(_AD_LEGACYRENDER_ERROR_TPLSET_WRONG);
         }
     }

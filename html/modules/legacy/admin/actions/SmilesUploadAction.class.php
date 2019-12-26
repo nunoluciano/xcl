@@ -32,7 +32,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -48,7 +48,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         $files = [];
         $smilesimages = [];
 
-        if (strtolower($formFileExt) == 'zip') {
+        if ('zip' == strtolower($formFileExt)) {
             if (!file_exists(XOOPS_ROOT_PATH . '/class/Archive_Zip.php')) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -84,7 +84,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
-            if ($file_pos !== false) {
+            if (false !== $file_pos) {
                 $file['filename'] = substr($file['filename'], $file_pos+1);
             }
             if (!empty($file['filename']) && preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $file['filename'], $match) && !preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $file['filename'])) {
@@ -99,7 +99,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
-            if ($file_pos !== false) {
+            if (false !== $file_pos) {
                 $info['name'] = substr($info['name'], $file_pos+1);
             }
             if (!empty($info['name']) && preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $info['name'], $match) && !preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $info['name'])) {
@@ -112,7 +112,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
     public function _saveSmilesImages(&$smilesimages)
     {
-        if (count($smilesimages) == 0) {
+        if (0 == count($smilesimages)) {
             return true;
         }
         
@@ -120,7 +120,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
         for ($i = 0; $i < count($smilesimages); $i++) {
             $ext_pos = strrpos($smilesimages[$i]['name'], '.') ;
-            if ($ext_pos === false) {
+            if (false === $ext_pos) {
                 continue ;
             }
             $ext = strtolower(substr($smilesimages[$i]['name'], $ext_pos + 1)) ;
@@ -169,7 +169,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        if (count($this->mErrorMessages) == 0) {
+        if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=SmilesList', 1, _AD_LEGACY_ERROR_DBUPDATE_FAILED);
         } else {
             $render->setTemplateName('smiles_upload_error.html');

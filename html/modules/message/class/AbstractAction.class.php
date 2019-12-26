@@ -46,7 +46,7 @@ abstract class AbstractAction
     public function chk_use($uid = 0)
     {
         $modObj = $this->getSettings($uid);
-        if ($modObj->get('usepm') == 1) {
+        if (1 == $modObj->get('usepm')) {
             return true;
         } else {
             return false;
@@ -55,7 +55,7 @@ abstract class AbstractAction
   
     public function getSettings($uid = 0)
     {
-        if ($uid == 0) {
+        if (0 == $uid) {
             $uid = $this->root->mContext->mXoopsUser->get('uid');
         }
     

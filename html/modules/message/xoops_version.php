@@ -43,7 +43,7 @@ $modversion['templates'][] = ['file' => 'message_blaclist.html'];
 $modversion['hasMain'] = 1;
 $modversion['sub'][] = ['name' => _MI_MESSAGE_SUB_SEND, 'url' => 'index.php?action=send'];
 $modversion['sub'][] = ['name' => _MI_MESSAGE_SUB_NEW, 'url' => 'index.php?action=new'];
-if ($root->mServiceManager->getService('UserSearch') != null) {
+if (null != $root->mServiceManager->getService('UserSearch')) {
     $modversion['sub'][] = ['name' => _MI_MESSAGE_SUB_SEARCH, 'url' => 'index.php?action=search'];
     $modversion['sub'][] = ['name' => _MI_MESSAGE_SUB_FAVORITES, 'url' => 'index.php?action=favorites'];
 }

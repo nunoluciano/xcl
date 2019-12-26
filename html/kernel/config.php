@@ -117,7 +117,7 @@ class XoopsConfigHandler
     public function &getConfig($id, $withoptions = false)
     {
         $config =& $this->_cHandler->get($id);
-        if ($withoptions == true) {
+        if (true == $withoptions) {
             $config->setConfOptions($this->getConfigOptions(new Criteria('conf_id', $id)));
         }
         return $config;
@@ -162,7 +162,7 @@ class XoopsConfigHandler
         }
         $options =& $config->getConfOptions();
         $count = count($options);
-        if ($count == 0) {
+        if (0 == $count) {
             $options =& $this->getConfigOptions(new Criteria('conf_id', $config->getVar('conf_id')));
             $count = count($options);
         }

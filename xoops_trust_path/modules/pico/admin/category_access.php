@@ -21,7 +21,7 @@ include dirname(dirname(__FILE__)) . '/include/category_permissions.inc.php';
 //
 
 // independent permission update
-if (!empty($_POST['independentpermission_update']) && $cat_id != 0) {
+if (!empty($_POST['independentpermission_update']) && 0 != $cat_id) {
 	if (!$xoopsGTicket->check(true, 'pico_admin')) {
 		redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
 	}

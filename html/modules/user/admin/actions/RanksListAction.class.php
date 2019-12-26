@@ -35,7 +35,7 @@ class User_RanksListAction extends User_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -70,7 +70,7 @@ class User_RanksListAction extends User_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -128,7 +128,7 @@ class User_RanksListAction extends User_AbstractListAction
         }//foreach
 
               foreach (array_keys($titleArr) as $rid) {
-                  if ($this->mActionForm->get('delete', $rid) == 1) {
+                  if (1 == $this->mActionForm->get('delete', $rid)) {
                       $ranks =& $ranksHandler->get($rid);
                       if (is_object($ranks)) {
                           if (!$ranksHandler->delete($ranks)) {

@@ -77,15 +77,15 @@ if (! empty($_POST['clearcache']) || ! empty($_POST['cleartplsvars'])) {
     }
 
     if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-        while (($file = readdir($handler)) !== false) {
+        while (false !== ($file = readdir($handler))) {
             if (! empty($_POST['clearcache'])) {
                 // judging template cache '*.php'
-                if (substr($file, -4) !== '.php') {
+                if ('.php' !== substr($file, -4)) {
                     continue ;
                 }
             } else {
                 // judging tplsvars cache 'tplsvars_*'
-                if (substr($file, 0, 9) !== 'tplsvars_') {
+                if ('tplsvars_' !== substr($file, 0, 9)) {
                     continue ;
                 }
             }
@@ -110,20 +110,20 @@ foreach ($compile_hooks as $command => $compile_hook) {
 
         if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
             $file_count = 0 ;
-            while (($file = readdir($handler)) !== false) {
+            while (false !== ($file = readdir($handler))) {
 
                 // skip /. /.. and hidden files
-                if ($file{0} == '.') {
+                if ('.' == $file{0}) {
                     continue ;
                 }
 
                 // skip if the extension is not .html.php
-                if (substr($file, -9) != '.html.php') {
+                if ('.html.php' != substr($file, -9)) {
                     continue ;
                 }
 
                 // skip theme.html when comment-mode or div-mode
-                if ($compile_hook['skip_theme'] && substr($file, -15) == '%theme.html.php') {
+                if ($compile_hook['skip_theme'] && '%theme.html.php' == substr($file, -15)) {
                     $skip_mode = true ;
                 } else {
                     $skip_mode = false ;
@@ -193,10 +193,10 @@ foreach ($compile_hooks as $command => $compile_hook) {
 $compiledcache_num = 0 ;
 $tplsvars_num = 0 ;
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-    while (($file = readdir($handler)) !== false) {
-        if (strncmp($file, 'tplsvars_', 9) === 0) {
+    while (false !== ($file = readdir($handler))) {
+        if (0 === strncmp($file, 'tplsvars_', 9)) {
             $tplsvars_num ++ ;
-        } elseif (substr($file, -4) === '.php') {
+        } elseif ('.php' === substr($file, -4)) {
             $compiledcache_num ++ ;
         }
     }

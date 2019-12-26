@@ -106,13 +106,13 @@ class Legacy_ModuleUninstaller
         $t_replace = [XOOPS_DB_PREFIX, strtolower($dirname), ucfirst(strtolower($dirname)), $dirname];
         
         $tables = $this->_mXoopsModule->getInfo('tables');
-        if ($tables != false && is_array($tables)) {
+        if (false != $tables && is_array($tables)) {
             foreach ($tables as $table) {
                 //
                 // TODO Do we need to check reserved core tables?
                 //
                 $t_tableName = $table;
-                if (isset($this->_mXoopsModule->modinfo['cube_style']) && $this->_mXoopsModule->modinfo['cube_style'] == true) {
+                if (isset($this->_mXoopsModule->modinfo['cube_style']) && true == $this->_mXoopsModule->modinfo['cube_style']) {
                     $t_tableName = str_replace($t_search, $t_replace, $table);
                 } else {
                     $t_tableName = $db->prefix($table);
@@ -168,7 +168,7 @@ class Legacy_ModuleUninstaller
     public function _processScript()
     {
         $installScript = trim($this->_mXoopsModule->getInfo('onUninstall'));
-        if ($installScript != false) {
+        if (false != $installScript) {
             require_once XOOPS_MODULE_PATH . '/' . $this->_mXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_uninstall_' . $this->_mXoopsModule->get('dirname');
             
@@ -208,7 +208,7 @@ class Legacy_ModuleUninstaller
             $this->_processReport();
             return false;
         }
-        if ($this->_mXoopsModule->get('mid') != null) {
+        if (null != $this->_mXoopsModule->get('mid')) {
             $this->_uninstallModule();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();

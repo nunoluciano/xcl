@@ -51,7 +51,7 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
         $ret = [];
         
         foreach ($this->get('select') as $themeName => $isSelect) {
-            if ($isSelect == 1) {
+            if (1 == $isSelect) {
                 $ret[] = $themeName;
             }
         }

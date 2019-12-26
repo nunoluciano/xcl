@@ -106,7 +106,7 @@ class XoopsErrorHandler
      */
     public function handleError($error)
     {
-        if ($error['errno'] == E_USER_ERROR) {
+        if (E_USER_ERROR == $error['errno']) {
             $this->_isFatal = true;
             exit($error['errstr']);
         }
@@ -234,7 +234,7 @@ function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
 function XoopsErrorHandler_Shutdown()
 {
     $error = error_get_last();
-    if ($error['type'] === E_ERROR) {
+    if (E_ERROR === $error['type']) {
         XoopsErrorHandler_HandleError($error['type'], $error['message'], $error['file'], $error['line']);
     }
     $error_handler =& XoopsErrorHandler::getInstance();

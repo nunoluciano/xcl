@@ -52,7 +52,7 @@ if (!function_exists('crypt_random_string')) {
      *
      * @access private
      */
-    define('CRYPT_RANDOM_IS_WINDOWS', strtoupper(substr(PHP_OS, 0, 3)) === 'WIN');
+    define('CRYPT_RANDOM_IS_WINDOWS', 'WIN' === strtoupper(substr(PHP_OS, 0, 3)));
 
     /**
      * Generate a random string.
@@ -95,12 +95,12 @@ if (!function_exists('crypt_random_string')) {
             }
             // method 2
             static $fp = true;
-            if ($fp === true) {
+            if (true === $fp) {
                 // warning's will be output unles the error suppression operator is used. errors such as
                 // "open_basedir restriction in effect", "Permission denied", "No such file or directory", etc.
                 $fp = @fopen('/dev/urandom', 'rb');
             }
-            if ($fp !== true && $fp !== false) { // surprisingly faster than !is_bool() or is_resource()
+            if (true !== $fp && false !== $fp) { // surprisingly faster than !is_bool() or is_resource()
                 return fread($fp, $length);
             }
             // method 3. pretty much does the same thing as method 2 per the following url:
@@ -132,13 +132,13 @@ if (!function_exists('crypt_random_string')) {
         // full control over his own http requests. he, however, is not going to have control over
         // everyone's http requests.
         static $crypto = false, $v;
-        if ($crypto === false) {
+        if (false === $crypto) {
             // save old session data
             $old_session_id = session_id();
             $old_use_cookies = ini_get('session.use_cookies');
             $old_session_cache_limiter = session_cache_limiter();
             $_OLD_SESSION = isset($_SESSION) ? $_SESSION : false;
-            if ($old_session_id != '') {
+            if ('' != $old_session_id) {
                 session_write_close();
             }
 
@@ -164,13 +164,13 @@ if (!function_exists('crypt_random_string')) {
             session_write_close();
 
             // restore old session data
-            if ($old_session_id != '') {
+            if ('' != $old_session_id) {
                 session_id($old_session_id);
                 session_start();
                 ini_set('session.use_cookies', $old_use_cookies);
                 session_cache_limiter($old_session_cache_limiter);
             } else {
-                if ($_OLD_SESSION !== false) {
+                if (false !== $_OLD_SESSION) {
                     $_SESSION = $_OLD_SESSION;
                     unset($_OLD_SESSION);
                 } else {
@@ -287,7 +287,7 @@ if (!function_exists('phpseclib_safe_serialize')) {
         $arr['__phpseclib_marker'] = true;
         foreach (array_keys($arr) as $key) {
             // do not recurse on the '__phpseclib_marker' key itself, for smaller memory usage
-            if ($key !== '__phpseclib_marker') {
+            if ('__phpseclib_marker' !== $key) {
                 $safearr[$key] = phpseclib_safe_serialize($arr[$key]);
             }
         }
@@ -323,7 +323,7 @@ if (!function_exists('phpseclib_resolve_include_path')) {
             explode(PATH_SEPARATOR, get_include_path());
         foreach ($paths as $prefix) {
             // path's specified in include_path don't always end in /
-            $ds = substr($prefix, -1) == DIRECTORY_SEPARATOR ? '' : DIRECTORY_SEPARATOR;
+            $ds = DIRECTORY_SEPARATOR == substr($prefix, -1) ? '' : DIRECTORY_SEPARATOR;
             $file = $prefix . $ds . $filename;
             if (file_exists($file)) {
                 return realpath($file);

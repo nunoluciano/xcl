@@ -218,7 +218,7 @@ class User_PermissionBlockItem extends User_PermissionItem
     
     public function isActive()
     {
-        return $this->mBlock->getProperty('visible')==1 ? true : false;
+        return 1 == $this->mBlock->getProperty('visible') ? true : false;
     }
 
     public function loadPermission($groupId)

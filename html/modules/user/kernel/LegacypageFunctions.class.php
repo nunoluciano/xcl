@@ -109,10 +109,10 @@ class User_LegacypageFunctions
 
         $actionName = '';
         $action = $root->mContext->mRequest->getRequest('action');
-        if ($action != null && $action == 'UserRegister') {
+        if (null != $action && 'UserRegister' == $action) {
             $actionName = 'UserRegister';
         } else {
-            $actionName = $action != null ? 'UserRegister_confirm' : 'UserRegister';
+            $actionName = null != $action ? 'UserRegister_confirm' : 'UserRegister';
         }
 
         $moduleRunner = new User_ActionFrame(false);
@@ -234,7 +234,7 @@ class User_LegacypageFunctions
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('uname', xoops_getrequest('uname')));
         $userArr = $userHandler->getObjects($criteria);
-        if (count($userArr) != 1) {
+        if (1 != count($userArr)) {
             return;
         }
 
@@ -244,7 +244,7 @@ class User_LegacypageFunctions
             return;
         }
         
-        if ($userArr[0]->get('level') == 0) {
+        if (0 == $userArr[0]->get('level')) {
             // TODO We should use message "_MD_USER_LANG_NOACTTPADM"
             return;
         }
@@ -253,12 +253,12 @@ class User_LegacypageFunctions
         $user =& $handler->get($userArr[0]->get('uid'));
         
         if (is_callable([$user, 'getNumGroups'])) { // Compatible for replaced handler.
-            if ($user->getNumGroups() == 0) {
+            if (0 == $user->getNumGroups()) {
                 return;
             }
         } else {
             $groups = $user->getGroups();
-            if (count($groups) == 0) {
+            if (0 == count($groups)) {
                 return;
             }
         }
@@ -295,7 +295,7 @@ class User_LegacypageFunctions
 
             if (self::$passwordNeedsRehash) {
                 $url = XOOPS_URL . '/edituser.php';
-                if (($redirect = xoops_getrequest('xoops_redirect')) && $redirect[0] === '/') {
+                if (($redirect = xoops_getrequest('xoops_redirect')) && '/' === $redirect[0]) {
                     $url .= '?xoops_redirect=' . rawurlencode($redirect);
                 }
                 $root = XCube_Root::getSingleton();
@@ -326,7 +326,7 @@ class User_LegacypageFunctions
 
     public static function misc()
     {
-        if (xoops_getrequest('type') != 'online') {
+        if ('online' != xoops_getrequest('type')) {
             return;
         }
         

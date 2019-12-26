@@ -28,8 +28,8 @@ class LegacyRender_TplsetEditAction extends LegacyRender_AbstractEditAction
     {
         parent::_setupObject();
 
-        if ($this->isAllowDefault() == false) {
-            if (is_object($this->mObject) && $this->mObject->get('tplset_name') == 'default') {
+        if (false == $this->isAllowDefault()) {
+            if (is_object($this->mObject) && 'default' == $this->mObject->get('tplset_name')) {
                 $this->mObject = null;
             }
         }

@@ -23,10 +23,10 @@ class Text_Diff_Renderer_unified extends Text_Diff_Renderer
 
     public function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
     {
-        if ($xlen != 1) {
+        if (1 != $xlen) {
             $xbeg .= ',' . $xlen;
         }
-        if ($ylen != 1) {
+        if (1 != $ylen) {
             $ybeg .= ',' . $ylen;
         }
         return "@@ -$xbeg +$ybeg @@";

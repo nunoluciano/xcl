@@ -48,7 +48,7 @@ class XCube_FormFile
     public function fetch()
     {
         if ($this->mName && isset($_FILES[$this->mName])) {
-            if ($this->mKey != null) {
+            if (null != $this->mKey) {
                 $this->setFileName($_FILES[$this->mName]['name'][$this->mKey]);
                 $this->setContentType($_FILES[$this->mName]['type'][$this->mKey]);
                 $this->setFileSize($_FILES[$this->mName]['size'][$this->mKey]);

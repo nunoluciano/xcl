@@ -104,7 +104,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             $sql = 'SELECT i.*, b.image_body FROM '.$this->db->prefix('image').' i LEFT JOIN '.$this->db->prefix('imagebody').' b ON b.image_id=i.image_id WHERE i.image_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $image =new XoopsImage();
                     $image->assignVars($this->db->fetchArray($result));
                     $ret =& $image;
@@ -122,7 +122,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     public function insert(&$image)
     {
-        if (strtolower(get_class($image)) != 'xoopsimage') {
+        if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
         }
         if (!$image->isDirty()) {
@@ -143,7 +143,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             if (empty($image_id)) {
                 $image_id = $this->db->getInsertId();
             }
-            if (isset($image_body) && $image_body != '') {
+            if (isset($image_body) && '' != $image_body) {
                 $sql = sprintf('INSERT INTO %s (image_id, image_body) VALUES (%u, %s)', $this->db->prefix('imagebody'), $image_id, $this->db->quoteString($image_body));
                 if (!$result = $this->db->query($sql)) {
                     $sql = sprintf('DELETE FROM %s WHERE image_id = %u', $this->db->prefix('image'), $image_id);
@@ -157,7 +157,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             if (!$result = $this->db->query($sql)) {
                 return false;
             }
-            if (isset($image_body) && $image_body != '') {
+            if (isset($image_body) && '' != $image_body) {
                 $sql = sprintf('UPDATE %s SET image_body = %s WHERE image_id = %u', $this->db->prefix('imagebody'), $this->db->quoteString($image_body), $image_id);
                 if (!$result = $this->db->query($sql)) {
                     $this->db->query(sprintf('DELETE FROM %s WHERE image_id = %u', $this->db->prefix('image'), $image_id));
@@ -176,7 +176,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     public function delete(&$image)
     {
-        if (strtolower(get_class($image)) != 'xoopsimage') {
+        if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
         }
         $id = $image->getVar('image_id');

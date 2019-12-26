@@ -19,7 +19,7 @@ class favoritesAction extends AbstractAction
     {
         $ret = [];
         $adduid = $this->root->mContext->mRequest->getRequest('adduid');
-        if (!is_array($adduid) || count($adduid) == 0) {
+        if (!is_array($adduid) || 0 == count($adduid)) {
             $this->setErr(_MD_MESSAGE_FAVORITES0);
             return true;
         }
@@ -38,7 +38,7 @@ class favoritesAction extends AbstractAction
     private function edtFavorites()
     {
         $weight = $this->root->mContext->mRequest->getRequest('weight');
-        if (!is_array($weight) || count($weight) == 0) {
+        if (!is_array($weight) || 0 == count($weight)) {
             return true;
         }
         $client = $this->root->mServiceManager->createClient($this->mService);
@@ -57,7 +57,7 @@ class favoritesAction extends AbstractAction
     private function delFavorites()
     {
         $delid = $this->root->mContext->mRequest->getRequest('delid');
-        if (!is_array($delid) || count($delid) == 0) {
+        if (!is_array($delid) || 0 == count($delid)) {
             return;
         }
         $client = $this->root->mServiceManager->createClient($this->mService);
@@ -84,14 +84,14 @@ class favoritesAction extends AbstractAction
             $this->setUrl('index.php?action=settings');
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
         } else {
-            if ($this->mService == null) {
+            if (null == $this->mService) {
                 $this->setErr('Service Not loaded.');
                 return;
             }
       
             $this->root->mLanguageManager->loadModuleMessageCatalog('usersearch');
             $cmd = $this->root->mContext->mRequest->getRequest('cmd');
-            if ($cmd == '') {
+            if ('' == $cmd) {
                 $this->getFavorites();
             } else {
                 switch ($cmd) {

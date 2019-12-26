@@ -15,7 +15,7 @@ class Message_Preload extends XCube_ActionFilter
             $service->prepare();
       
             $this->mRoot->mServiceManager->addService('privateMessage', $service);
-            if ($conf['newalert'] == 1) {
+            if (1 == $conf['newalert']) {
                 $this->mRoot->mDelegateManager->add('Myfriend.NewAlert', 'Message_Preload::getNewMessage');
             }
             $this->mRoot->mDelegateManager->add('Legacypage.Viewpmsg.Access', 'Message_Preload::accessToReadpmsg');
@@ -75,7 +75,7 @@ class Message_Preload extends XCube_ActionFilter
   
     public static function makeHandler(&$handler, $name, $optional)
     {
-        if ($name == 'privmessage') {
+        if ('privmessage' == $name) {
             $handler = xoops_getmodulehandler('inbox', 'message', $optional);
         }
     }

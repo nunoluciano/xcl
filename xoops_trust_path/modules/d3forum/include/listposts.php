@@ -45,7 +45,7 @@ switch( $postorder ) {
 		// POS
 		//$pos = isset( $_GET['pos'] ) ? intval( $_GET['pos'] ) : (($postorder != 3) ? (int)(($post_hits-1) / $num) * $num : 0) ;
 		$pos = isset( $_GET['pos'] ) ? intval( $_GET['pos'] )
-			: (($postorder == 0) || ($postorder == 2) ? (int)(($post_hits-1) / $num) * $num : 0) ;
+			: ((0 == $postorder) || (2 == $postorder) ? (int)(($post_hits - 1) / $num) * $num : 0) ;
 		require_once dirname( dirname(__FILE__) ).'/class/D3forumPagenav.class.php' ;
 		$pagenav_obj = new D3forumPagenav( $post_hits , $num , $pos , 'pos', $query4nav ) ;
 		$pagenav = $pagenav_obj->getNav() ;
@@ -163,7 +163,7 @@ $topic4assign['last_post_uname'] = @$posts[ $last_post_offset ]['poster_uname'] 
 
 	// naao from
 if( is_object( $xoopsUser ) ) {
-	if ($xoopsModuleConfig['use_name'] == 1 && $xoopsUser->getVar( 'name' ) ) {
+	if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 		$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 	} else {
 		$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;

@@ -27,7 +27,7 @@ class D3forumMessageValidator
             }
             $nest_level++;
         }
-        if ($nest_level != 1) {
+        if (1 != $nest_level) {
             $this->errors[] = _MD_D3FORUM_ERR_TOOMANYDIVBEGIN;
             return false;
         }

@@ -22,7 +22,7 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 	if( empty( $cat_ids ) ) {
 		// all topics in the module
 		$whr_cat_ids = '';
-	} else if( sizeof( $cat_ids ) == 1 ) {
+	} else if(1 == sizeof($cat_ids )) {
 		// topics under the specified category
 		$whr_cat_ids = 'f.cat_id='.$cat_ids[0];
 	} else {
@@ -57,9 +57,9 @@ function d3forum_get_rssdata ($mydirname, $limit=0, $offset=0, $forum_id=0, $cat
 			$is_readable = $d3com->validate_id($row['topic_external_link_id']);
 		}
 		
-		if ($show_hidden_topic === true || $is_readable !== false) {
+		if (true === $show_hidden_topic || false !== $is_readable) {
 			
-			if ($is_readable !== false) {
+			if (false !== $is_readable) {
 				$html = $myts->displayTarea( $row['post_text'] , $row['html'] , $row['smiley'] , $row['xcode'] , 1 , $row['br'] );
 				
 				// quote `]]>`

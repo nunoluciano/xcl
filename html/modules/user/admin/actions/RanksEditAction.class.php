@@ -28,7 +28,7 @@ class User_RanksEditAction extends User_AbstractEditAction
     
     public function _doExecute()
     {
-        if ($this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mFormFile) {
             @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
             if (!$this->mActionForm->mFormFile->SaveAs(XOOPS_UPLOAD_PATH)) {
                 return USER_FRAME_VIEW_ERROR;

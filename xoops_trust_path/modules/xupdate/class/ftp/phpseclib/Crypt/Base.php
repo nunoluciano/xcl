@@ -526,7 +526,7 @@ class Crypt_Base
         $this->_setEngine();
 
         // Determining whether inline crypting can be used by the cipher
-        if ($this->use_inline_crypt !== false && function_exists('create_function')) {
+        if (false !== $this->use_inline_crypt && function_exists('create_function')) {
             $this->use_inline_crypt = true;
         }
     }
@@ -543,7 +543,7 @@ class Crypt_Base
      */
     public function setIV($iv)
     {
-        if ($this->mode == CRYPT_MODE_ECB) {
+        if (CRYPT_MODE_ECB == $this->mode) {
             return;
         }
 
@@ -652,11 +652,11 @@ class Crypt_Base
                 if (isset($func_args[5])) {
                     $dkLen = $func_args[5];
                 } else {
-                    $dkLen = $method == 'pbkdf1' ? 2 * $this->key_length : $this->key_length;
+                    $dkLen = 'pbkdf1' == $method ? 2 * $this->key_length : $this->key_length;
                 }
 
                 switch (true) {
-                    case $method == 'pbkdf1':
+                    case 'pbkdf1' == $method:
                         if (!class_exists('Crypt_Hash')) {
                             include_once 'Crypt/Hash.php';
                         }
@@ -733,7 +733,7 @@ class Crypt_Base
             $plaintext = $this->_pad($plaintext);
         }
 
-        if ($this->engine === CRYPT_ENGINE_OPENSSL) {
+        if (CRYPT_ENGINE_OPENSSL === $this->engine) {
             if ($this->changed) {
                 $this->_clearBuffers();
                 $this->changed = false;
@@ -808,7 +808,7 @@ class Crypt_Base
             }
         }
 
-        if ($this->engine === CRYPT_ENGINE_MCRYPT) {
+        if (CRYPT_ENGINE_MCRYPT === $this->engine) {
             if ($this->changed) {
                 $this->_setupMcrypt();
                 $this->changed = false;
@@ -821,7 +821,7 @@ class Crypt_Base
             // re: {@link https://phpseclib.sourceforge.net/cfb-demo.phps}
             // using mcrypt's default handing of CFB the above would output two different things.  using phpseclib's
             // rewritten CFB implementation the above outputs the same thing twice.
-            if ($this->mode == CRYPT_MODE_CFB && $this->continuousBuffer) {
+            if (CRYPT_MODE_CFB == $this->mode && $this->continuousBuffer) {
                 $block_size = $this->block_size;
                 $iv         = &$this->encryptIV;
                 $pos        = &$this->enbuffer['pos'];
@@ -845,8 +845,8 @@ class Crypt_Base
                     $this->enbuffer['enmcrypt_init'] = true;
                 }
                 if ($len >= $block_size) {
-                    if ($this->enbuffer['enmcrypt_init'] === false || $len > $this->cfb_init_len) {
-                        if ($this->enbuffer['enmcrypt_init'] === true) {
+                    if (false === $this->enbuffer['enmcrypt_init'] || $len > $this->cfb_init_len) {
+                        if (true === $this->enbuffer['enmcrypt_init']) {
                             mcrypt_generic_init($this->enmcrypt, $this->key, $iv);
                             $this->enbuffer['enmcrypt_init'] = false;
                         }
@@ -1036,7 +1036,7 @@ class Crypt_Base
             $ciphertext = str_pad($ciphertext, strlen($ciphertext) + ($this->block_size - strlen($ciphertext) % $this->block_size) % $this->block_size, chr(0));
         }
 
-        if ($this->engine === CRYPT_ENGINE_OPENSSL) {
+        if (CRYPT_ENGINE_OPENSSL === $this->engine) {
             if ($this->changed) {
                 $this->_clearBuffers();
                 $this->changed = false;
@@ -1119,7 +1119,7 @@ class Crypt_Base
             return $this->paddable ? $this->_unpad($plaintext) : $plaintext;
         }
 
-        if ($this->engine === CRYPT_ENGINE_MCRYPT) {
+        if (CRYPT_ENGINE_MCRYPT === $this->engine) {
             $block_size = $this->block_size;
             if ($this->changed) {
                 $this->_setupMcrypt();
@@ -1130,7 +1130,7 @@ class Crypt_Base
                 $this->dechanged = false;
             }
 
-            if ($this->mode == CRYPT_MODE_CFB && $this->continuousBuffer) {
+            if (CRYPT_MODE_CFB == $this->mode && $this->continuousBuffer) {
                 $iv        = &$this->decryptIV;
                 $pos       = &$this->debuffer['pos'];
                 $len       = strlen($ciphertext);
@@ -1551,7 +1551,7 @@ class Crypt_Base
      */
     public function enableContinuousBuffer()
     {
-        if ($this->mode == CRYPT_MODE_ECB) {
+        if (CRYPT_MODE_ECB == $this->mode) {
             return;
         }
 
@@ -1571,7 +1571,7 @@ class Crypt_Base
      */
     public function disableContinuousBuffer()
     {
-        if ($this->mode == CRYPT_MODE_ECB) {
+        if (CRYPT_MODE_ECB == $this->mode) {
             return;
         }
         if (!$this->continuousBuffer) {
@@ -1596,7 +1596,7 @@ class Crypt_Base
     {
         switch ($engine) {
             case CRYPT_ENGINE_OPENSSL:
-                if ($this->mode == CRYPT_MODE_STREAM && $this->continuousBuffer) {
+                if (CRYPT_MODE_STREAM == $this->mode && $this->continuousBuffer) {
                     return false;
                 }
                 $this->openssl_emulate_ctr = false;
@@ -1709,7 +1709,7 @@ class Crypt_Base
             $this->engine = CRYPT_ENGINE_INTERNAL;
         }
 
-        if ($this->engine != CRYPT_ENGINE_MCRYPT && $this->enmcrypt) {
+        if (CRYPT_ENGINE_MCRYPT != $this->engine && $this->enmcrypt) {
             // Closing the current mcrypt resource(s). _mcryptSetup() will, if needed,
             // (re)open them with the module named in $this->cipher_name_mcrypt
             mcrypt_module_close($this->enmcrypt);
@@ -1844,12 +1844,12 @@ class Crypt_Base
             // we need the $ecb mcrypt resource (only) in MODE_CFB with enableContinuousBuffer()
             // to workaround mcrypt's broken ncfb implementation in buffered mode
             // see: {@link https://phpseclib.sourceforge.net/cfb-demo.phps}
-            if ($this->mode == CRYPT_MODE_CFB) {
+            if (CRYPT_MODE_CFB == $this->mode) {
                 $this->ecb = mcrypt_module_open($this->cipher_name_mcrypt, '', MCRYPT_MODE_ECB, '');
             }
         } // else should mcrypt_generic_deinit be called?
 
-        if ($this->mode == CRYPT_MODE_CFB) {
+        if (CRYPT_MODE_CFB == $this->mode) {
             mcrypt_generic_init($this->ecb, $this->key, str_repeat("\0", $this->block_size));
         }
     }
@@ -1874,7 +1874,7 @@ class Crypt_Base
         $length = strlen($text);
 
         if (!$this->padding) {
-            if ($length % $this->block_size == 0) {
+            if (0 == $length % $this->block_size) {
                 return $text;
             } else {
                 user_error("The plaintext's length ($length) is not a multiple of the block size ({$this->block_size})");
@@ -1998,7 +1998,7 @@ class Crypt_Base
 
         $remainder = strlen($var) % 4;
 
-        if ($remainder == 0) {
+        if (0 == $remainder) {
             return;
         }
 

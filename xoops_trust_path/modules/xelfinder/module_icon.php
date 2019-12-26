@@ -26,7 +26,7 @@ if( is_file( $mydirpath.'/module_icon.png' ) ) {
 	//	$file_base .= '_icms' ;
 	//} else if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 	if( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-		if ($mydirname === 'xelfinder') {
+		if ('xelfinder' === $mydirname) {
 			$draw_dirname = false ;
 			$file_base .= '_x';
 		} else {

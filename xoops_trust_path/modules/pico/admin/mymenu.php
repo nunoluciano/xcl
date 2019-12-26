@@ -3,7 +3,7 @@
 /********* mymenu for D3 modules always require altsys ********/
 
 // Deny direct access
-if (preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page']) == 'mymenu') exit;
+if ('mymenu' == preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page'])) exit;
 
 // Skip for ORETEKI XOOPS
 if (defined('XOOPS_ORETEKI')) return;
@@ -49,7 +49,7 @@ if (empty($adminmenu_hilighted)) {
 
 // link conversion from relative to absolute
 foreach (array_keys($adminmenu) as $i) {
-	if (stristr($adminmenu[$i]['link'], XOOPS_URL) === false) {
+	if (false === stristr($adminmenu[$i]['link'], XOOPS_URL)) {
 		$adminmenu[$i]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[$i]['link'];
 	}
 }

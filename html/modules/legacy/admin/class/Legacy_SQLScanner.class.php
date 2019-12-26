@@ -36,20 +36,20 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
         $depth = 0;
         
         foreach (array_keys($this->mTokens) as $key) {
-            if ($this->mTokens[$key]->mType == EASYLEX_SQL_OPEN_PARENTHESIS) {
+            if (EASYLEX_SQL_OPEN_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth++;
-            } elseif ($this->mTokens[$key]->mType == EASYLEX_SQL_CLOSE_PARENTHESIS) {
+            } elseif (EASYLEX_SQL_CLOSE_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth--;
             }
             
             $t_tokens[] =& $this->mTokens[$key];
             
-            if (count($t_tokens) > 1 && $depth == 0) {
-                if ($this->mTokens[$key]->mType == EASYLEX_SQL_SEMICOLON) {
+            if (count($t_tokens) > 1 && 0 == $depth) {
+                if (EASYLEX_SQL_SEMICOLON == $this->mTokens[$key]->mType) {
                     $t_lines[] =& $t_tokens;
                     unset($t_tokens);
                     $t_tokens = [];
-                } elseif ($this->mTokens[$key]->mType == EASYLEX_SQL_LETTER && (strtoupper($this->mTokens[$key]->mValue) =='CREATE' || strtoupper($this->mTokens[$key]->mValue) =='ALTER' || strtoupper($this->mTokens[$key]->mValue) =='INSERT')) {
+                } elseif (EASYLEX_SQL_LETTER == $this->mTokens[$key]->mType && ('CREATE' == strtoupper($this->mTokens[$key]->mValue) || 'ALTER' == strtoupper($this->mTokens[$key]->mValue) || 'INSERT' == strtoupper($this->mTokens[$key]->mValue))) {
                     array_pop($t_tokens);
                     $t_lines[] =& $t_tokens;
                     unset($t_tokens);

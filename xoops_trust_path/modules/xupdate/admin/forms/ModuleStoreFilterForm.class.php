@@ -71,7 +71,7 @@ class Xupdate_Admin_ModuleStoreFilterForm extends Xupdate_AbstractFilterForm
         $this->fetchSort();
 
         $req = XCube_Root::getSingleton()->mContext->mRequest;
-        if (($value = $req->getRequest('category_id')) !== null) {
+        if (null !== ($value = $req->getRequest('category_id'))) {
             $this->mNavi->addExtra('category_id', $value);
             $this->_mCriteria->add(new Criteria('category_id', $value));
         }

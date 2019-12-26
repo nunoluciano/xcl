@@ -179,7 +179,7 @@ function d3forum_get_forum_moderate_users4show( $mydirname , $forum_id )
 	$mrs = $db->query( $sql ) ;
 		// naao from
 	while( list( $mod_uid , $mod_uname , $mod_name) = $db->fetchRow( $mrs ) ) {
-		if ($xoopsModuleConfig['use_name'] == 1 && $mod_name ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $mod_name ) {
 			$mod_uname = $mod_name ;
 		}
 		// naao to
@@ -228,7 +228,7 @@ function d3forum_get_category_moderate_users4show( $mydirname , $cat_id )
 	$mrs = $db->query( $sql ) ;
 		// naao from
 	while( list( $mod_uid , $mod_uname , $mod_name) = $db->fetchRow( $mrs ) ) {
-		if ($xoopsModuleConfig['use_name'] == 1 && $mod_name ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $mod_name ) {
 			$mod_uname = $mod_name ;
 		}
 		// naao to
@@ -298,7 +298,7 @@ function d3forum_trigger_event( $mydirname ,  $category , $item_id , $event , $e
 // started from {XOOPS_URL} for conventional modules
 function d3forum_get_comment_link( $external_link_format , $external_link_id )
 {
-	if( substr( $external_link_format , 0 , 11 ) != '{XOOPS_URL}' ) return '' ;
+	if('{XOOPS_URL}' != substr($external_link_format , 0 , 11 )) return '' ;
 
 	$format = str_replace( '{XOOPS_URL}' , XOOPS_URL , $external_link_format ) ;
 	return sprintf( $format , urlencode( $external_link_id ) ) ;
@@ -343,7 +343,7 @@ function d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override
 	foreach( $d3forum_configs_can_be_override as $key => $type ) {
 		if( isset( $xoopsModuleConfig[ $key ] ) ) {
 			$val = $xoopsModuleConfig[ $key ] ;
-			if( $type == 'int' || $type == 'bool' ) {
+			if('int' == $type || 'bool' == $type) {
 				$val = intval( $val ) ;
 			}
 			$lines[] = htmlspecialchars( $key . ':' . $val , ENT_QUOTES ) ;

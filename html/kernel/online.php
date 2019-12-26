@@ -91,7 +91,7 @@ class XoopsOnlineHandler
         list($count) = $this->db->fetchRow($this->db->queryF($sql));
         if ($count > 0) {
             $sql = 'UPDATE ' . $this->db->prefix('online') . ' SET online_updated=' . $time . ', online_module = ' . $module . ' WHERE online_uid = ' . $uid;
-            if ($uid == 0) {
+            if (0 == $uid) {
                 $sql .= ' AND online_ip=' . $ip;
             }
         } else {

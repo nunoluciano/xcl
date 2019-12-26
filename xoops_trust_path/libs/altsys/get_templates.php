@@ -12,7 +12,7 @@ include_once dirname(__FILE__) . '/include/altsys_functions.php';
 
 
 // this page can be called only from altsys
-if ($xoopsModule->getVar('dirname') != 'altsys') {
+if ('altsys' != $xoopsModule->getVar('dirname')) {
     die('this page can be called only from UI Components');
 }
 

@@ -31,7 +31,7 @@ class LegacyRender_TplsetDeleteAction extends LegacyRender_AbstractDeleteAction
         $this->mObjectHandler = $this->_getHandler();
         
         $this->mObject =& $this->mObjectHandler->get($id);
-        if (is_object($this->mObject) && $this->mObject->get('tplset_name') == 'default') {
+        if (is_object($this->mObject) && 'default' == $this->mObject->get('tplset_name')) {
             $this->mObject = null;
         }
     }

@@ -209,7 +209,7 @@ class System_SSH_Agent_Identity
 
         $length = current(unpack('N', fread($this->fsock, 4)));
         $type   = ord(fread($this->fsock, 1));
-        if ($type != SYSTEM_SSH_AGENT_SIGN_RESPONSE) {
+        if (SYSTEM_SSH_AGENT_SIGN_RESPONSE != $type) {
             user_error('Unable to retreive signature');
         }
 
@@ -309,7 +309,7 @@ class System_SSH_Agent
 
         $length = current(unpack('N', fread($this->fsock, 4)));
         $type   = ord(fread($this->fsock, 1));
-        if ($type != SYSTEM_SSH_AGENT_IDENTITIES_ANSWER) {
+        if (SYSTEM_SSH_AGENT_IDENTITIES_ANSWER != $type) {
             user_error('Unable to request identities');
         }
 
@@ -360,7 +360,7 @@ class System_SSH_Agent
      */
     public function startSSHForwarding($ssh)
     {
-        if ($this->forward_status == SYSTEM_SSH_AGENT_FORWARD_NONE) {
+        if (SYSTEM_SSH_AGENT_FORWARD_NONE == $this->forward_status) {
             $this->forward_status = SYSTEM_SSH_AGENT_FORWARD_REQUEST;
         }
     }
@@ -375,7 +375,7 @@ class System_SSH_Agent
     public function _request_forwarding($ssh)
     {
         $request_channel = $ssh->_get_open_channel();
-        if ($request_channel === false) {
+        if (false === $request_channel) {
             return false;
         }
 
@@ -395,7 +395,7 @@ class System_SSH_Agent
         }
 
         $response = $ssh->_get_channel_packet($request_channel);
-        if ($response === false) {
+        if (false === $response) {
             return false;
         }
 
@@ -417,7 +417,7 @@ class System_SSH_Agent
      */
     public function _on_channel_open($ssh)
     {
-        if ($this->forward_status == SYSTEM_SSH_AGENT_FORWARD_REQUEST) {
+        if (SYSTEM_SSH_AGENT_FORWARD_REQUEST == $this->forward_status) {
             $this->_request_forwarding($ssh);
         }
     }

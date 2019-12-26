@@ -161,7 +161,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
         $limit = 0;
         $start = 0;
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
@@ -172,7 +172,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 

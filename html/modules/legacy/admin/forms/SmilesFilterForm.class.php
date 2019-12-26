@@ -76,9 +76,9 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == 'visible') {
+            if ('visible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('display', '1'));
-            } elseif ($this->mOptionField == 'invisible') {
+            } elseif ('invisible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('display', '0'));
             } else {
                 //all

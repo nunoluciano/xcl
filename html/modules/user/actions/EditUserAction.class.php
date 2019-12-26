@@ -157,7 +157,7 @@ class User_EditUserAction extends User_AbstractEditAction
 
         $methodOptions = [];
         $methodOptions[XOOPS_NOTIFICATION_METHOD_DISABLE] = _NOT_METHOD_DISABLE;
-        if ($service != null) {
+        if (null != $service) {
             $methodOptions[XOOPS_NOTIFICATION_METHOD_PM] = _NOT_METHOD_PM;
         }
         $methodOptions[XOOPS_NOTIFICATION_METHOD_EMAIL] = _NOT_METHOD_EMAIL;
@@ -183,7 +183,7 @@ class User_EditUserAction extends User_AbstractEditAction
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $redirect = xoops_getrequest('xoops_redirect');
-        $controller->executeForward(($redirect && $redirect[0] === '/')? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
+        $controller->executeForward(($redirect && '/' === $redirect[0])? $redirect : (XOOPS_URL . '/userinfo.php?uid=' . $this->mObject->getShow('uid')));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)

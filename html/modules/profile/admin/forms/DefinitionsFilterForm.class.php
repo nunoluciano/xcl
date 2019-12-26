@@ -57,42 +57,42 @@ class Profile_Admin_DefinitionsFilterForm extends Profile_AbstractFilterForm
     
         $root =& XCube_Root::getSingleton();
     
-        if (($value = $root->mContext->mRequest->getRequest('field_id')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('field_id'))) {
             $this->mNavi->addExtra('field_id', $value);
             $this->_mCriteria->add(new Criteria('field_id', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('field_name')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('field_name'))) {
             $this->mNavi->addExtra('field_name', $value);
             $this->_mCriteria->add(new Criteria('field_name', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('label')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('label'))) {
             $this->mNavi->addExtra('label', $value);
             $this->_mCriteria->add(new Criteria('label', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('type')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('type'))) {
             $this->mNavi->addExtra('type', $value);
             $this->_mCriteria->add(new Criteria('type', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('validation')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('validation'))) {
             $this->mNavi->addExtra('validation', $value);
             $this->_mCriteria->add(new Criteria('validation', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('required')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('required'))) {
             $this->mNavi->addExtra('required', $value);
             $this->_mCriteria->add(new Criteria('required', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('show_form')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('show_form'))) {
             $this->mNavi->addExtra('show_form', $value);
             $this->_mCriteria->add(new Criteria('show_form', $value));
         }
     
-        if (($value = $root->mContext->mRequest->getRequest('weight')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('weight'))) {
             $this->mNavi->addExtra('weight', $value);
             $this->_mCriteria->add(new Criteria('weight', $value));
         }

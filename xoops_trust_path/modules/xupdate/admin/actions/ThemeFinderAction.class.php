@@ -39,7 +39,7 @@ class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction
 
     public function prepare()
     {
-        if (defined('TP_THEME_FINDER_URL') === true) {
+        if (true === defined('TP_THEME_FINDER_URL')) {
             $this->themeFinderUrl = TP_THEME_FINDER_URL; // デバッグ用
         }
         parent::prepare();

@@ -148,7 +148,7 @@ class XoopsCommentRenderer
         } else {
             $title = $tree[$comment_id]['obj']->getVar('com_title');
         }
-        if (false != $show_nav && $tree[$comment_id]['obj']->getVar('com_pid') != 0) {
+        if (false != $show_nav && 0 != $tree[$comment_id]['obj']->getVar('com_pid')) {
             $this->_tpl->assign('lang_top', _CM_TOP);
             $this->_tpl->assign('lang_parent', _CM_PARENT);
             $this->_tpl->assign('show_threadnav', true);
@@ -207,7 +207,7 @@ class XoopsCommentRenderer
         if (isset($thread[$key]['child']) && !empty($thread[$key]['child'])) {
             $depth++;
             foreach ($thread[$key]['child'] as $childkey) {
-                if (!$admin_view && $thread[$childkey]['obj']->getVar('com_status') != XOOPS_COMMENT_ACTIVE) {
+                if (!$admin_view && XOOPS_COMMENT_ACTIVE != $thread[$childkey]['obj']->getVar('com_status')) {
                     // skip this comment if it is not active and continue on processing its child comments instead
                     if (isset($thread[$childkey]['child']) && !empty($thread[$childkey]['child'])) {
                         foreach ($thread[$childkey]['child'] as $childchildkey) {
@@ -289,7 +289,7 @@ class XoopsCommentRenderer
         if (isset($thread[$key]['child']) && !empty($thread[$key]['child'])) {
             $depth++;
             foreach ($thread[$key]['child'] as $childkey) {
-                if (!$admin_view && $thread[$childkey]['obj']->getVar('com_status') != XOOPS_COMMENT_ACTIVE) {
+                if (!$admin_view && XOOPS_COMMENT_ACTIVE != $thread[$childkey]['obj']->getVar('com_status')) {
                     // skip this comment if it is not active and continue on processing its child comments instead
                     if (isset($thread[$childkey]['child']) && !empty($thread[$childkey]['child'])) {
                         foreach ($thread[$childkey]['child'] as $childchildkey) {
@@ -343,7 +343,7 @@ class XoopsCommentRenderer
             if (is_object($com_poster)) {
                 $poster['uname'] = '<a href="'.XOOPS_URL.'/userinfo.php?uid='.$poster['id'].'">'.$com_poster->getVar('uname').'</a>';
                 $poster_rank = $com_poster->rank();
-                $poster['rank_image'] = ($poster_rank['image'] != '') ? $poster_rank['image'] : 'blank.gif';
+                $poster['rank_image'] = ('' != $poster_rank['image']) ? $poster_rank['image'] : 'blank.gif';
                 $poster['rank_title'] = $poster_rank['title'];
                 $poster['avatar'] = $com_poster->getVar('user_avatar');
                 $poster['regdate'] = formatTimestamp($com_poster->getVar('user_regdate'), 's');
@@ -375,7 +375,7 @@ class XoopsCommentRenderer
     public function _getTitleIcon($icon_image)
     {
         $icon_image = trim($icon_image);
-        if ($icon_image != '') {
+        if ('' != $icon_image) {
             $icon_image = htmlspecialchars($icon_image);
             if (false != $this->_doIconCheck) {
                 if (!file_exists(XOOPS_URL.'/images/subject/'.$icon_image)) {

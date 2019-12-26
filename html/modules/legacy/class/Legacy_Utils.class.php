@@ -39,7 +39,7 @@ class Legacy_Utils
                 }
             }
         }
-        if (count($uninstalledModules) == 0 && count($disabledModules) == 0) {
+        if (0 == count($uninstalledModules) && 0 == count($disabledModules)) {
             return true;
         } else {
             return ['uninstalled' =>$uninstalledModules, 'disabled' =>$disabledModules, 'recommended' =>$recommendedModules];
@@ -112,7 +112,7 @@ class Legacy_Utils
         }
         
         $func = $block->get('show_func');
-        if (substr($func, 0, 4) == 'cl::') {
+        if ('cl::' == substr($func, 0, 4)) {
             $className = ucfirst($block->get('dirname')) . '_' . substr($func, 4);
             if (!XC_CLASS_EXISTS($className)) {
                 $filePath = XOOPS_ROOT_PATH . '/modules/' . $block->get('dirname') . '/blocks/' . $block->get('func_file');
@@ -144,7 +144,7 @@ class Legacy_Utils
     {
         $root =& XCube_Root::getSingleton();
         foreach (array_keys($_REQUEST) as $key) {
-            if (strpos($key, 'Legacy_Event_User_') === 0) {
+            if (0 === strpos($key, 'Legacy_Event_User_')) {
                 $eventName = substr($key, 18);
                 XCube_DelegateUtils::call('Legacy.Event.User.' . $eventName);
                 $root->mContext->mAttributes['userEvent'][$eventName] = true;
@@ -307,7 +307,7 @@ class Legacy_Utils
     public static function renderUri(/*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $action=null, /*** string ***/ $query=null)
     {
         $uri = null;
-        if (XCube_Root::getSingleton()->mContext->getXoopsConfig('cool_uri')==true) {
+        if (true == XCube_Root::getSingleton()->mContext->getXoopsConfig('cool_uri')) {
             if (isset($dataname)) {
                 if ($data_id>0) {
                     if (isset($action)) {

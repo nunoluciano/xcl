@@ -200,7 +200,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function getPreferenceEditUrl()
     {
-        if ($this->_mPreferenceEditUrl === null) {
+        if (null === $this->_mPreferenceEditUrl) {
             if (is_array($this->mXoopsModule->getInfo('config')) && count($this->mXoopsModule->getInfo('config')) > 0) {
                 $root =& XCube_Root::getSingleton();
                 $this->_mPreferenceEditUrl = $root->mController->getPreferenceEditUrl($this->mXoopsModule);
@@ -221,7 +221,7 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function getHelpViewUrl()
     {
-        if ($this->_mHelpViewUrl === null) {
+        if (null === $this->_mHelpViewUrl) {
             if ($this->mXoopsModule->hasHelp()) {
                 $root =& XCube_Root::getSingleton();
                 $this->_mHelpViewUrl = $root->mController->getHelpViewUrl($this->mXoopsModule);
@@ -242,22 +242,22 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     **/
     public function execute(/*** XCube_Controller ***/ &$controller)
     {
-        if ($this->_createAction() === false) {
+        if (false === $this->_createAction()) {
             $this->doActionNotFoundError();
             die();
         }
 
-        if ($this->mAction->prepare() === false) {
+        if (false === $this->mAction->prepare()) {
             $this->doPreparationError();
             die();
         }
 
-        if ($this->mAction->hasPermission() === false) {
+        if (false === $this->mAction->hasPermission()) {
             $this->doPermissionError();
             die();
         }
 
-        $viewStatus = (Xupdate_Utils::getEnv('REQUEST_METHOD') === 'POST') ?
+        $viewStatus = ('POST' === Xupdate_Utils::getEnv('REQUEST_METHOD')) ?
             $this->mAction->execute() :
             $this->mAction->getDefaultView();
 
@@ -283,9 +283,9 @@ class Xupdate_Module extends Legacy_ModuleAdapter
     {
         $root =& XCube_Root::getSingleton();
 
-        if ($this->mActionName == null) {
+        if (null == $this->mActionName) {
             $this->mActionName = $root->mContext->mRequest->getRequest('action');
-            if ($this->mActionName == null) {
+            if (null == $this->mActionName) {
                 $this->mActionName = $this->_getDefaultActionName();
             }
         }

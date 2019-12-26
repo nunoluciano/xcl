@@ -52,7 +52,7 @@ class User_AbstractViewAction extends User_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
 

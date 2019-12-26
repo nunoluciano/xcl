@@ -45,7 +45,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
         $go=true;
         do {
             $tmp=@fgets($this->_ftp_control_sock, 512);
-            if ($tmp===false) {
+            if (false === $tmp) {
                 $go=$result=false;
                 $this->PushError($fnction, 'Read failed');
             } else {
@@ -72,7 +72,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
             echo 'PUT > ',$cmd,CRLF;
         }
         $status=@fputs($this->_ftp_control_sock, $cmd.CRLF);
-        if ($status===false) {
+        if (false === $status) {
             $this->PushError($fnction, 'socket write failed');
             return false;
         }
@@ -130,7 +130,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
         }
         while (!feof($this->_ftp_data_sock)) {
             $block=fread($this->_ftp_data_sock, $this->_ftp_buff_size);
-            if ($mode!=FTP_BINARY) {
+            if (FTP_BINARY != $mode) {
                 $block=preg_replace("/\r\n|\r|\n/", $this->_eol_code[$this->OS_local], $block);
             }
             if (is_resource($fp)) {
@@ -168,11 +168,11 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase
 
     protected function _data_write_block($mode, $block)
     {
-        if ($mode!=FTP_BINARY) {
+        if (FTP_BINARY != $mode) {
             $block=preg_replace("/\r\n|\r|\n/", $this->_eol_code[$this->OS_remote], $block);
         }
         do {
-            if (($t=@fwrite($this->_ftp_data_sock, $block))===false) {
+            if (false === ($t=@fwrite($this->_ftp_data_sock, $block))) {
                 $this->PushError('_data_write', "Can't write to socket");
                 return false;
             }

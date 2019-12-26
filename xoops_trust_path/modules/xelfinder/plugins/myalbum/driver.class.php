@@ -151,7 +151,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 **/
 	protected function updateCache($path, $stat) {
 		$stat = parent::updateCache($path, $stat);
-		if ($stat && $stat['mime'] !== 'directory') $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath'])  . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
+		if ($stat && 'directory' !== $stat['mime']) $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath']) . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
 		return $this->cache[$path] = $stat;
 	}
 
@@ -165,7 +165,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	protected function cacheDir($path) {
 		$this->dirsCache[$path] = [];
 
-		if ($path === '_') {
+		if ('_' === $path) {
 			$cid = 0;
 		} else {
 			list($cid) = explode('_', substr($path, 1), 2);
@@ -292,7 +292,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _basename($path) {
-		if ($path === '_') {
+		if ('_' === $path) {
 			return '';
 		} else {
 			list($cid, $name) = explode('_', substr($path, 1), 2);
@@ -309,7 +309,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _joinPath($dir, $name) {
-		if ($dir === '_') {
+		if ('_' === $dir) {
 			$cid = 0;
 		} else {
 			list($cid) = explode('_', substr($dir, 1), 2);
@@ -368,7 +368,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _path($path) {
- 		if (($file = $this->stat($path)) == false) {
+ 		if (false == ($file = $this->stat($path))) {
 			return '';
 		}
 
@@ -417,7 +417,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _stat($path) {
-		if ($path === '_') {
+		if ('_' === $path) {
 			$cid = $lid = 0;
 		} else {
 			list($cid, $lid) = explode('_', substr($path, 1), 2);
@@ -520,7 +520,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function readlink($path) {
-		if ($path !== '_') {
+		if ('_' !== $path) {
 			list(, $name) = explode('_', substr($path, 1), 2);
 			if ($name) {
 				return realpath($this->options['filePath'] . $name);

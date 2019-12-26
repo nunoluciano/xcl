@@ -407,7 +407,7 @@ class XoopsMemberHandler
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         if (is_callable('User_Utils::passwordVerify')) {
             $user = $this->_uHandler->getObjects($criteria, false);
-            if ($user && count($user) === 1) {
+            if ($user && 1 === count($user)) {
                 if (!User_Utils::passwordVerify($pwd, $user[0]->get('pass'))) {
                     $user = [];
                 }
@@ -422,7 +422,7 @@ class XoopsMemberHandler
             }
             $user = $this->_uHandler->getObjects($criteria, false);
         }
-        if (!$user || count($user) != 1) {
+        if (!$user || 1 != count($user)) {
             $ret = false;
             return $ret;
         }
@@ -441,7 +441,7 @@ class XoopsMemberHandler
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         $criteria->add(new Criteria('pass', $md5pwd));
         $user =& $this->_uHandler->getObjects($criteria, false);
-        if (!$user || count($user) != 1) {
+        if (!$user || 1 != count($user)) {
             $ret = false;
             return $ret;
         }
@@ -531,7 +531,7 @@ class XoopsMemberHandler
      */
     public function activateUser(&$user)
     {
-        if ($user->getVar('level') != 0) {
+        if (0 != $user->getVar('level')) {
             return true;
         }
         $user->setVar('level', 1);

@@ -120,11 +120,11 @@ class Legacy_ModuleInstallAction extends Legacy_Action
         $this->mXoopsModule->set('weight', 1);
         $this->mXoopsModule->loadInfoAsVar($dirname);
         
-        if ($this->mXoopsModule->get('dirname') == null) {
+        if (null == $this->mXoopsModule->get('dirname')) {
             return false;
         }
         
-        if ($this->mXoopsModule->get('dirname') == 'system') {
+        if ('system' == $this->mXoopsModule->get('dirname')) {
             $this->mXoopsModule->set('mid', 1);
         }
         

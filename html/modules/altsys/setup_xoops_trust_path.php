@@ -12,15 +12,15 @@ if (defined('XOOPS_TRUST_PATH') && XOOPS_TRUST_PATH != '' && file_exists(XOOPS_T
 
 // show the hint if password mathes
 $hint = '' ;
-if (@$_POST['dbpassword'] == XOOPS_DB_PASS) {
+if (XOOPS_DB_PASS == @$_POST['dbpassword']) {
     // find XOOPS_TRUST_PATH
     $xoops_trust_path = '' ;
     $base_dirs = [XOOPS_ROOT_PATH, dirname(XOOPS_ROOT_PATH), dirname(dirname(XOOPS_ROOT_PATH))];
     foreach ($base_dirs as $base_dir) {
         $dh = @opendir($base_dir) ;
         if (! empty($dh)) {
-            while (($file = readdir($dh)) !== false) {
-                if (substr($file, 0, 1) == '.') {
+            while (false !== ($file = readdir($dh))) {
+                if ('.' == substr($file, 0, 1)) {
                     continue ;
                 }
                 $fullpath = $base_dir . '/' . $file ;

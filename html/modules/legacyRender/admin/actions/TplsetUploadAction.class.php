@@ -34,7 +34,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
     
     public function execute(&$controller, &$xoopsUser)
     {
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACYRENDER_FRAME_VIEW_CANCEL;
         }
 
@@ -65,11 +65,11 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         foreach ($tar->files as $id => $info) {
             $infoArr = explode('/', str_replace("\\", '/', $info['name']));
             $tplsetName = $this->mActionForm->get('tplset_name');
-            if ($tplsetName == null) {
+            if (null == $tplsetName) {
                 $tplsetName = trim($infoArr[0]);
             }
             
-            if ($tplsetName != null) {
+            if (null != $tplsetName) {
                 break;
             }
         }
@@ -77,13 +77,13 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         //
         // Check tplset name.
         //
-        if ($tplsetName == null || preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $tplsetName)) {
+        if (null == $tplsetName || preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $tplsetName)) {
             $this->_addErrorMessage(_AD_LEGACYRENDER_ERROR_TPLSET_NAME_WRONG);
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
         
         $handler =& xoops_getmodulehandler('tplset');
-        if ($handler->getCount(new Criteria('tplset_name', $tplsetName)) != 0) {
+        if (0 != $handler->getCount(new Criteria('tplset_name', $tplsetName))) {
             $this->_addErrorMessage(XCube_Utils::formatString(_AD_LEGACYRENDER_ERROR_TPLSET_ALREADY_EXISTS, $tplsetName));
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
@@ -112,11 +112,11 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         $handler =& xoops_getmodulehandler('tplfile');
         foreach ($tar->files as $id => $info) {
             $infoArr = explode('/', str_replace("\\", '/', $info['name']));
-            if (isset($infoArr[3]) && trim($infoArr[3]) == 'blocks') {
+            if (isset($infoArr[3]) && 'blocks' == trim($infoArr[3])) {
                 $default =& $handler->find('default', 'block', null, trim($infoArr[2]), trim($infoArr[4]));
-            } elseif ((!isset($infoArr[4]) || trim($infoArr[4]) == '') && $infoArr[1] == 'templates') {
+            } elseif ((!isset($infoArr[4]) || '' == trim($infoArr[4])) && 'templates' == $infoArr[1]) {
                 $default =& $handler->find('default', 'module', null, trim($infoArr[2]), trim($infoArr[3]));
-            } elseif (isset($infoArr[3]) && trim($infoArr[3]) == 'images') {
+            } elseif (isset($infoArr[3]) && 'images' == trim($infoArr[3])) {
                 $infoArr[2] = trim($infoArr[2]);
                 if (preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $infoArr[2], $match)) {
                     $themeimages[] = ['name' => $infoArr[2], 'content' => $info['file']];
@@ -140,7 +140,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 
     public function _fetchImageset(&$tar, &$tplset, &$themeimages)
     {
-        if (count($themeimages) == 0) {
+        if (0 == count($themeimages)) {
             return true;
         }
         
@@ -161,7 +161,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         
         $handler =& xoops_gethandler('imagesetimg');
         for ($i = 0; $i < count($themeimages); $i++) {
-            if (isset($themeimages[$i]['name']) && $themeimages[$i]['name'] != '') {
+            if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
                 $image =& $handler->create();
                 $image->set('imgsetimg_file', $themeimages[$i]['name']);
                 $image->set('imgsetimg_imgset', $imgset->get('imgset_id'));
@@ -189,7 +189,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        if (count($this->mErrorMessages) == 0) {
+        if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=TplsetList', 1, _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED);
         } else {
             $render->setTemplateName('tplset_upload_error.html');

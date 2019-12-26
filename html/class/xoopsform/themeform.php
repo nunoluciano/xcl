@@ -68,8 +68,8 @@ class XoopsThemeForm extends XoopsForm
      */
     public function insertBreak($extra = '', $class= '')
     {
-        $class = ($class != '') ? " class='$class'" : '';
-        $extra = ($extra != '') ? $extra : '&nbsp';
+        $class = ('' != $class) ? " class='$class'" : '';
+        $extra = ('' != $extra) ? $extra : '&nbsp';
         $this->addElement(new XoopsFormBreak($extra, $class)) ;
     }
     

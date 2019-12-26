@@ -68,7 +68,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             return LEGACY_FRAME_VIEW_ERROR;
         }
         
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
         
@@ -276,24 +276,24 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         $allowedThemes = null;
         foreach (array_keys($objectArr) as $key) {
             $name = $objectArr[$key]->get('conf_name');
-            if ($name == 'theme_set') {
+            if ('theme_set' == $name) {
                 $themeName = $objectArr[$key]->getConfValueForOutput();
-            } elseif ($name == 'theme_set_allowed') {
+            } elseif ('theme_set_allowed' == $name) {
                 $allowedThemes = $actionForm->get('theme_set_allowed');
-            } elseif ($name == 'use_mysession') {
+            } elseif ('use_mysession' == $name) {
                 $useMysession = $actionForm->get('use_mysession');
-            } elseif ($name == 'session_name') {
+            } elseif ('session_name' == $name) {
                 $sessionName = $actionForm->get('session_name');
-            } elseif ($name == 'session_expire') {
+            } elseif ('session_expire' == $name) {
                 $sessionExpire = $actionForm->get('session_expire');
             }
         }
         
-        if ($name != null && $allowedThemes != null) {
+        if (null != $name && null != $allowedThemes) {
             XCube_DelegateUtils::call('Legacy.Event.ThemeSettingChanged', $themeName, $allowedThemes);
         }
         // !Fix typo pereference = preference?
-        if ($this->_mMaster->mCategory->get('confcat_id') == LEGACY_PREFERENCE_ID_GENERAL) { //GIJ 
+        if (LEGACY_PREFERENCE_ID_GENERAL == $this->_mMaster->mCategory->get('confcat_id')) { //GIJ
             $root =& XCube_Root::getSingleton();
             if ($useMysession) {
                 $root->mSession->setParam($sessionName, $sessionExpire);

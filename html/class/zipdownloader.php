@@ -49,7 +49,7 @@ class XoopsZipDownloader extends XoopsDownloader
         $fp = fopen($filepath, 'r');
         $data = fread($fp, filesize($filepath));
         fclose($fp);
-        $filename = (isset($newfilename) && trim($newfilename) != '') ? trim($newfilename) : $filepath;
+        $filename = (isset($newfilename) && '' != trim($newfilename)) ? trim($newfilename) : $filepath;
         $filepath = is_file($filename) ? $filename : $filepath;
         $this->archiver->addFile($data, $filename, filemtime($filepath));
     }
@@ -60,7 +60,7 @@ class XoopsZipDownloader extends XoopsDownloader
         $fp = fopen($filepath, 'rb');
         $data = fread($fp, filesize($filepath));
         fclose($fp);
-        $filename = (isset($newfilename) && trim($newfilename) != '') ? trim($newfilename) : $filepath;
+        $filename = (isset($newfilename) && '' != trim($newfilename)) ? trim($newfilename) : $filepath;
         $filepath = is_file($filename) ? $filename : $filepath;
         $this->archiver->addFile($data, $filename, filemtime($filepath));
     }

@@ -524,6 +524,6 @@ $modversion['onUpdate'] = 'onupdate.php';
 $modversion['onUninstall'] = 'onuninstall.php';
 
 // keep block's options
-if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname']) {
+if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && 'modulesadmin' == $_POST['fct'] && 'update_ok' == $_POST['op'] && $_POST['dirname'] == $modversion['dirname']) {
 	include dirname(__FILE__) . '/include/x20_keepblockoptions.inc.php';
 }

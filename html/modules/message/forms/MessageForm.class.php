@@ -57,12 +57,12 @@ class MessageForm extends XCube_ActionForm
   
     public function validateUname()
     {
-        if ($this->get('uname') != '') {
+        if ('' != $this->get('uname')) {
             $uname = mb_strcut($this->get('uname'), 0, 30);
             $userhand = xoops_gethandler('user');
             $criteria = new CriteriaCompo(new Criteria('uname', $uname));
             $uobj = $userhand->getObjects($criteria);
-            if (isset($uobj) && is_array($uobj) && count($uobj) == 1) {
+            if (isset($uobj) && is_array($uobj) && 1 == count($uobj)) {
                 $this->fuid = $uobj[0]->get('uid');
             } else {
                 $this->fuid = 0;

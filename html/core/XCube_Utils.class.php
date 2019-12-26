@@ -74,7 +74,7 @@ class XCube_Utils
     {
         $arr = func_get_args();
         
-        if (count($arr)==0) {
+        if (0 == count($arr)) {
             return null;
         }
         
@@ -109,7 +109,7 @@ class XCube_Utils
      */
     public static function encrypt($plain_text, $key = null)
     {
-        if ($plain_text === '') {
+        if ('' === $plain_text) {
             return $plain_text;
         }
         
@@ -139,7 +139,7 @@ class XCube_Utils
             $crypt_text = openssl_encrypt($plain_text, 'DES-ECB', $key);
         }
         
-        return $crypt_text === false ? $plain_text : $crypt_text;
+        return false === $crypt_text ? $plain_text : $crypt_text;
     }
     
     /**
@@ -151,7 +151,7 @@ class XCube_Utils
      */
     public static function decrypt($crypt_text, $key = null)
     {
-        if ($crypt_text === '') {
+        if ('' === $crypt_text) {
             return $crypt_text;
         }
         
@@ -186,11 +186,11 @@ class XCube_Utils
         // remove pkcs#7 padding for openssl encrypted text if padding string found
         $pad_ch = substr($plain_text, -1);
         $pad_len = ord($pad_ch);
-        if (substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len) == 0) {
+        if (0 == substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len)) {
             $plain_text = substr($plain_text, 0, strlen($plain_text) - $pad_len);
         }
         
-        return $plain_text === false ? $crypt_text : $plain_text;
+        return false === $plain_text ? $crypt_text : $plain_text;
     }
     
     /**
@@ -201,9 +201,9 @@ class XCube_Utils
     {
         $arr = func_get_args();
         
-        if (count($arr) == 0) {
+        if (0 == count($arr)) {
             return null;
-        } elseif (count($arr) == 1) {
+        } elseif (1 == count($arr)) {
             return XCube_Utils::formatString($arr[0]);
         } elseif (count($arr) > 1) {
             $vals = $arr;

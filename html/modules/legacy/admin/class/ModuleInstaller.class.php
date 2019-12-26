@@ -99,7 +99,7 @@ class Legacy_ModuleInstaller
         //
         // Add a permission which administrators can manage. (Special for Legacy System Module)
         //
-        if ($this->_mXoopsModule->getVar('dirname') == 'system') {
+        if ('system' == $this->_mXoopsModule->getVar('dirname')) {
             $root =& XCube_Root::getSingleton();
             $root->mLanguageManager->loadModuleAdminMessageCatalog('system');
 
@@ -199,7 +199,7 @@ class Legacy_ModuleInstaller
     public function _processScript()
     {
         $installScript = trim($this->_mXoopsModule->getInfo('onInstall'));
-        if ($installScript != false) {
+        if (false != $installScript) {
             require_once XOOPS_MODULE_PATH . '/' . $this->_mXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_install_' . $this->_mXoopsModule->get('dirname');
             

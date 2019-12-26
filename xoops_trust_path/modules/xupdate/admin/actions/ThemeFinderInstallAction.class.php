@@ -106,7 +106,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
     public function execute()
     {
         $form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
 

@@ -160,11 +160,11 @@ class xoopsmultimailer extends PHPMailer
       $config_handler =& xoops_gethandler('config');
       $xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
       $this->From = $xoopsMailerConfig['from'];
-      if ($this->From == '') {
+      if ('' == $this->From) {
           $this->From = defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail'];
       }
       $this->Sender = defined('XOOPS_NOTIFY_SENDER_EMAIL')? XOOPS_NOTIFY_SENDER_EMAIL : $xoopsConfig['adminmail'];
-      if ($xoopsMailerConfig['mailmethod'] == 'smtpauth') {
+      if ('smtpauth' == $xoopsMailerConfig['mailmethod']) {
           $this->Mailer = 'smtp';
           $this->SMTPAuth = true;
           $this->Host = implode(';', $xoopsMailerConfig['smtphost']);
@@ -225,7 +225,7 @@ class xoopsmultimailer extends PHPMailer
     {
         // Patch for XOOPS Cube Legacy 2008/09/21
         $ext = substr($lang_path, -1, 1);
-        if ($ext != '/' && file_exists($lang_path)) {
+        if ('/' != $ext && file_exists($lang_path)) {
             include($lang_path);
             $this->language = $PHPMAILER_LANG;
             return true;

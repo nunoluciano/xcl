@@ -18,8 +18,8 @@ class FormProcessByHtml
         // register validators
         $this->validator_dir = dirname(__FILE__) . '/validators';
         if ($handler = @opendir($this->validator_dir)) {
-            while (($file = readdir($handler)) !== false) {
-                if (substr($file, 0, 1) == '.') {
+            while (false !== ($file = readdir($handler))) {
+                if ('.' == substr($file, 0, 1)) {
                     continue;
                 }
                 $this->types[] = substr($file, 0, -4);
@@ -71,9 +71,9 @@ class FormProcessByHtml
             }
 
             // tag kind
-            if (strncasecmp($tag, '<textarea', 9) === 0) {
+            if (0 === strncasecmp($tag, '<textarea', 9)) {
                 $tag_kind = 'textarea';
-            } elseif (strncasecmp($tag, '<select', 7) === 0) {
+            } elseif (0 === strncasecmp($tag, '<select', 7)) {
                 $tag_kind = 'select';
                 if (stristr($tag, 'multiple')) {
                     $count = 0x10000; // large enough
@@ -191,7 +191,7 @@ class FormProcessByHtml
             }
 
             // missing required
-            if ($attribs['required'] == true && ($value4reqcheck === '' || $value4reqcheck === null)) {
+            if (true == $attribs['required'] && ('' === $value4reqcheck || null === $value4reqcheck)) {
                 $this->fields[$field_name]['errors'][] = in_array($attribs['tag_kind'], ['text', 'textarea']) ? 'missing required' : 'missing selected';
             }
 
@@ -218,7 +218,7 @@ class FormProcessByHtml
         } else {
             // tag_kind validation (range check)
             // select
-            if ($attribs['tag_kind'] == 'select' && !$this->validateSelectOption($attribs['tags'][0], $value)) {
+            if ('select' == $attribs['tag_kind'] && !$this->validateSelectOption($attribs['tags'][0], $value)) {
                 $this->fields[$field_name]['errors'][] = 'invalid option';
             }
             // radio/checkbox
@@ -228,7 +228,7 @@ class FormProcessByHtml
                 }
             }
             // hidden
-            if ($attribs['tag_kind'] == 'hidden') {
+            if ('hidden' == $attribs['tag_kind']) {
                 $value = @$attribs['options'][0];
             }
 
@@ -498,7 +498,7 @@ class FormProcessByHtml
         $ret = '';
         foreach ($this->fields as $field_name => $attribs) {
             $ret .= $field_separator . $attribs['label'] . $mid_separator;
-            if ($attribs['array_type'] == 'linear') {
+            if ('linear' == $attribs['array_type']) {
                 $ret .= implode($this->column_separator, $attribs['value']);
             } elseif ($attribs['count'] > 1 && is_array($attribs['value'])) {
                 $ret .= implode($this->column_separator, $attribs['value']);

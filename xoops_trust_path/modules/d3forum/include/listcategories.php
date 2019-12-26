@@ -104,7 +104,7 @@ while( $cat_row = $db->fetchArray( $crs ) ) {
 // extract $top_categories and thier subcategories (F1) from $categories
 $top_categories4assign = [];
 foreach( $categories4assign as $category ) {
-	if( $category['pid'] == 0 ) {
+	if(0 == $category['pid']) {
 		$category['subcategories'] = [];
 		foreach( $categories4assign as $subcategory ) {
 			if( $subcategory['pid'] == $category['id'] ) {

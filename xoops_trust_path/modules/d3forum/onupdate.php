@@ -29,7 +29,7 @@ function d3forum_onupdate_base( $module , $mydirname )
 
 	// configs (Though I know it is not a recommended way...)
 	$check_sql = 'SHOW COLUMNS FROM ' . $db->prefix('config') . " LIKE 'conf_title'" ;
-	if( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && @$myrow['Type'] == 'varchar(30)' ) {
+	if( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && 'varchar(30)' == @$myrow['Type']) {
 		$db->queryF('ALTER TABLE ' . $db->prefix('config') . " MODIFY `conf_title` varchar(255) NOT NULL default '', MODIFY `conf_desc` varchar(255) NOT NULL default ''" ) ;
 	}
 
@@ -49,7 +49,7 @@ function d3forum_onupdate_base( $module , $mydirname )
 
 	// 0.4x/0.6x -> 0.7x
 	$check_sql = 'SHOW COLUMNS FROM ' . $db->prefix($mydirname . '_topics') . " LIKE 'topic_external_link_id'" ;
-	if( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && substr( @$myrow['Type'] , 0 , 3 ) == 'int' ) {
+	if( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && 'int' == substr(@$myrow['Type'] , 0 , 3 )) {
 		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_topics') . " MODIFY topic_external_link_id varchar(255) NOT NULL default ''" ) ;
 	}
 	$check_sql = 'SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_post_histories') ;
@@ -61,8 +61,8 @@ function d3forum_onupdate_base( $module , $mydirname )
 	$tplfile_handler =& xoops_gethandler( 'tplfile' ) ;
 	$tpl_path = dirname(__FILE__).'/templates' ;
 	if( $handler = @opendir( $tpl_path . '/' ) ) {
-		while( ( $file = readdir( $handler ) ) !== false ) {
-			if( substr( $file , 0 , 1 ) == '.' ) continue ;
+		while(false !== ( $file = readdir($handler ) )) {
+			if('.' == substr($file , 0 , 1 )) continue ;
 			$file_path = $tpl_path . '/' . $file ;
 			if( is_file( $file_path ) ) {
 				$mtime = intval( @filemtime( $file_path ) ) ;

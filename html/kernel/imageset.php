@@ -73,7 +73,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('imgset').' WHERE imgset_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $imgset =new XoopsImageset();
                     $imgset->assignVars($this->db->fetchArray($result));
                     $ret =& $imgset;
@@ -85,7 +85,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     public function insert(&$imgset)
     {
-        if (strtolower(get_class($imgset)) != 'xoopsimageset') {
+        if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;
         }
         if (!$imgset->isDirty()) {
@@ -115,7 +115,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     public function delete(&$imgset)
     {
-        if (strtolower(get_class($imgset)) != 'xoopsimageset') {
+        if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE imgset_id = %u', $this->db->prefix('imgset'), $imgset->getVar('imgset_id'));
@@ -158,7 +158,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
     {
         $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
-        if ($imgset_id <= 0 || $tplset_name == '') {
+        if ($imgset_id <= 0 || '' == $tplset_name) {
             return false;
         }
         if (!$this->unlinkThemeset($imgset_id, $tplset_name)) {
@@ -176,7 +176,7 @@ class XoopsImagesetHandler extends XoopsObjectHandler
     {
         $imgset_id = (int)$imgset_id;
         $tplset_name = trim($tplset_name);
-        if ($imgset_id <= 0 || $tplset_name == '') {
+        if ($imgset_id <= 0 || '' == $tplset_name) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE imgset_id = %u AND tplset_name = %s', $this->db->prefix('imgset_tplset_link'), $imgset_id, $this->db->quoteString($tplset_name));

@@ -7,9 +7,9 @@ function tplsadmin_save_tplsvars($file, $smarty)
 {
     $tplsvars_file = 'tplsvars_' ;
     $tplsvars_file .= substr(md5(substr(XOOPS_DB_PASS, 0, 4)), 0, 4) . '_' ;
-    if (strncmp($file, 'db:', 3) === 0) {
+    if (0 === strncmp($file, 'db:', 3)) {
         $tplsvars_file .= substr($file, 3) ;
-    } elseif (strncmp($file, 'file:', 5) === 0) {
+    } elseif (0 === strncmp($file, 'file:', 5)) {
         $tplsvars_file .= strtr(substr($file, 5), '/', '%') ;
     } else {
         $tplsvars_file .= strtr($file, '/', '%') ;

@@ -37,7 +37,7 @@ class LegacyRenderThemeObject extends XoopsSimpleObject
             // If this system can use this theme, add this to list.
             //
             if (isset($this->mPackage['Manifesto']) && isset($this->mPackage['Manifesto']['Depends'])) {
-                $this->mActiveResource = ($this->mPackage['Manifesto']['Depends'] == 'Legacy_RenderSystem');
+                $this->mActiveResource = ('Legacy_RenderSystem' == $this->mPackage['Manifesto']['Depends']);
             }
         } else {
             $file = XOOPS_THEME_PATH . '/' . $this->get('name') . '/theme.html';
@@ -77,8 +77,8 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
         $themeList = [];
         
         if ($handler=opendir(XOOPS_THEME_PATH)) {
-            while (($dir=readdir($handler))!==false) {
-                if ($dir == '.' || $dir == '..') {
+            while (false !== ($dir=readdir($handler))) {
+                if ('.' == $dir || '..' == $dir) {
                     continue;
                 }
 

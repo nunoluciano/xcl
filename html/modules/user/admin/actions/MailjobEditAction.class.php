@@ -46,7 +46,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
     
     public function execute(&$controller, &$xoopsUser)
     {
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -54,7 +54,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
         
         $ret = parent::execute($controller, $xoopsUser);
         
-        if ($ret == USER_FRAME_VIEW_SUCCESS && $isNew) {
+        if (USER_FRAME_VIEW_SUCCESS == $ret && $isNew) {
             $handler =& xoops_getmodulehandler('users_search');
             $uidArr = $handler->getUids($this->mFilter->getCriteria(0, 0));
             

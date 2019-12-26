@@ -3,7 +3,7 @@
 try {
 	//debug($_REQUEST);
 	// for keep alive
-	if (! empty($_GET['keepalive']) && $_SERVER['REQUEST_METHOD'] !== 'OPTIONS') exit(0);
+	if (! empty($_GET['keepalive']) && 'OPTIONS' !== $_SERVER['REQUEST_METHOD']) exit(0);
 
 	@ set_time_limit(120); // just in case it too long, not recommended for production
 
@@ -24,7 +24,7 @@ try {
 	// Add PEAR Dirctory into include path
 	$incPath = get_include_path();
 	$addPath = XOOPS_TRUST_PATH . '/PEAR';
-	if (strpos($incPath, $addPath) === FALSE) {
+	if (FALSE === strpos($incPath, $addPath)) {
 		//set_include_path( $incPath . PATH_SEPARATOR . $addPath );
 		set_include_path( $addPath . PATH_SEPARATOR . $incPath );
 	}
@@ -46,7 +46,7 @@ try {
 		$_ps = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 		if (! isset($_GET['cmd'])) {
 			$_cmd = $_ps[0];
-			if ($_cmd === 'netmount') {
+			if ('netmount' === $_cmd) {
 				$_GET['cmd'] = $_cmd;
 				$_i = 1;
 				foreach(['protocol', 'host'] as $_k) {
@@ -121,8 +121,8 @@ try {
 	|| $_SESSION['XELFINDER_CTOKEN'] !== $_REQUEST['ctoken']) {
 		if (($origin && isset($allowOrigins[$origin]))
 			|| isset($_GET['logout'])
-			|| (isset($_GET['cmd']) && ($_GET['cmd'] === 'callback' || $_GET['cmd'] === 'netmount'))
-			|| (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] === 'file')
+			|| (isset($_GET['cmd']) && ('callback' === $_GET['cmd'] || 'netmount' === $_GET['cmd']))
+			|| (isset($_REQUEST['cmd']) && 'file' === $_REQUEST['cmd'])
 			|| !empty($_REQUEST[_MD_XELFINDER_PROXY_TOKEN_KEY])
 		) {
 			if ($origin && $_REQUEST['ctoken'] && ! isset($_SESSION['XELFINDER_CTOKEN'])) {
@@ -161,7 +161,7 @@ try {
 			header('Access-Control-Expose-Headers: Content-Length');
 		}
 
-		if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS' || ! empty($_GET['keepalive'])) exit(0);
+		if ('OPTIONS' === $_SERVER['REQUEST_METHOD'] || ! empty($_GET['keepalive'])) exit(0);
 	}
 
 	define('ELFINDER_IMG_PARENT_URL', XOOPS_URL . '/common/elfinder/');
@@ -170,7 +170,7 @@ try {
 	require dirname(__FILE__) . '/class/xelFinderVolumeFTP.class.php';
 
 	$extras = [];
-	if (strtoupper(_CHARSET) !== 'UTF-8') {
+	if ('UTF-8' !== strtoupper(_CHARSET)) {
 		mb_convert_variables('UTF-8', _CHARSET, $config);
 	}
 	$config_MD5 = md5(json_encode($config));
@@ -251,7 +251,7 @@ try {
 	$netVolumeData = [];
 	if ($userRoll['uid'] && $userRoll['uid'] !== $session->get($uidSessionKey)) {
 		$netVolumeData = $session->get('netvolume', $netVolumeData);
-		if (count($netVolumeData) === 0) {
+		if (0 === count($netVolumeData)) {
 			$netVolumeData = $xoops_elFinder->getNetmountData();
 			if (count($netVolumeData)) {
 				$session->set('netvolume', $netVolumeData);
@@ -295,7 +295,7 @@ try {
 		}
 		
 		$config['uploadAllow'] = trim($config['uploadAllow']);
-		if (! $config['uploadAllow'] || $config['uploadAllow'] === 'none') {
+		if (! $config['uploadAllow'] || 'none' === $config['uploadAllow']) {
 			$config['uploadAllow'] = [];
 		} else {
 			$config['uploadAllow'] = explode(' ', $config['uploadAllow']);

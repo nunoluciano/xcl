@@ -18,7 +18,7 @@ class XCube_ServiceUtils
 {
     public function isXSD($typeName)
     {
-        if ($typeName == 'string' || $typeName == 'int') {
+        if ('string' == $typeName || 'int' == $typeName) {
             return true;
         }
         

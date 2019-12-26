@@ -125,24 +125,24 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
             $this->mNavi->addExtra('keyword', $this->mKeyword);
             $this->mNavi->addExtra('search_field', $this->mSearchField);
 
-            if ($this->mSearchField == 'com_both') {
+            if ('com_both' == $this->mSearchField) {
                 //title or text ( OR condition )
             $search_criteria = new CriteriaCompo(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
                 $search_criteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'), $condition='OR');
                 $this->_mCriteria->add($search_criteria);
-            } elseif ($this->mSearchField == 'com_title') {
+            } elseif ('com_title' == $this->mSearchField) {
                 //only search about title
             $this->_mCriteria->add(new Criteria('com_title', '%' . $this->mKeyword . '%', 'LIKE'));
-            } elseif ($this->mSearchField == 'com_text') {
+            } elseif ('com_text' == $this->mSearchField) {
                 //only search about text
             $this->_mCriteria->add(new Criteria('com_text', '%' . $this->mKeyword . '%', 'LIKE'));
-            } elseif ($this->mSearchField == 'com_uid') {
+            } elseif ('com_uid' == $this->mSearchField) {
                 //search about uname
-            if ($this->mKeyword != 'guest') {
+            if ('guest' != $this->mKeyword) {
                 //in case of member
             $cm_handler =& xoops_gethandler('member');
                 $cm_user =& $cm_handler->getUsers(new Criteria('uname', $this->mKeyword));
-                if (count($cm_user) == 1 && is_object($cm_user[0])) {
+                if (1 == count($cm_user) && is_object($cm_user[0])) {
                     $cm_user_uid = $cm_user[0]->getVar('uid');
                     $this->_mCriteria->add(new Criteria('com_uid', $cm_user_uid));
                 } else {

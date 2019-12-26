@@ -49,7 +49,7 @@ if (! empty($target_module) && is_object($target_module)) {
     $target_dirname4sql = addslashes($target_dirname) ;
     $target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0) ;
     //$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
-} elseif (@$_GET['dirname'] == '_custom') {
+} elseif ('_custom' == @$_GET['dirname']) {
     // custom template
     $target_mid = 0 ;
     $target_dirname = '_custom' ;
@@ -166,7 +166,7 @@ if (is_array(@$_POST['del_do'])) {
     }
 
             $tplset_from = $myts->stripSlashesGPC($tplset_from_tmp) ;
-            if ($tplset_from == 'default' && $target_dirname != '_custom') {
+            if ('default' == $tplset_from && '_custom' != $target_dirname) {
                 tplsadmin_die(_MYTPLSADMIN_ERR_CANTREMOVEDEFAULT, $target_dirname) ;
             }
             if (empty($_POST["{$tplset_from}_check"])) {
@@ -286,7 +286,7 @@ if ($breadcrumbsObj->hasPaths()) {
 echo '<h3>' . _MYTPLSADMIN_H3_MODULE . " : $target_mname</h3>\n" ;
 
 // link to create a new custom template
-if ($target_dirname == '_custom') {
+if ('_custom' == $target_dirname) {
     echo "<a href='index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default'>"._MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE."</a>\n" ;
 }
 
@@ -307,7 +307,7 @@ $fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', '
 
 // template ROWS
 while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
-    $evenodd = @$evenodd == 'even' ? 'odd' : 'even' ;
+    $evenodd = 'even' == @$evenodd ? 'odd' : 'even' ;
     $fingerprints = [];
 
     // information about the template
@@ -387,7 +387,7 @@ echo "<tfoot><tr class='foot'>
     foreach ($tplsets as $tplset) {
         $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
         echo "\t\t<td class='head'>
-			" . ($tplset == 'default' && $target_dirname != '_custom' ? '' : "<input name='del_do[{$tplset4disp}]' type='submit' value='" . _DELETE . "' onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);' /><br /><br />") . '
+			" . ('default' == $tplset && '_custom' != $target_dirname ? '' : "<input name='del_do[{$tplset4disp}]' type='submit' value='" . _DELETE . "' onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);' /><br /><br />") . '
 			'
              . _MYTPLSADMIN_CAPTION_COPYTO . ":
 			<select name='copy_to[{$tplset4disp}]'>

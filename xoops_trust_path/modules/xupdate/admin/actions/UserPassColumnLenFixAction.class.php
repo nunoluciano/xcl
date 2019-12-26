@@ -24,7 +24,7 @@ class Xupdate_Admin_UserPassColumnLenFixAction extends Xupdate_AbstractAction
     public function getDefaultView()
     {
         $redirect = xoops_getrequest('xoops_redirect');
-        if ($redirect[0] !== '/') {
+        if ('/' !== $redirect[0]) {
             $redirect = XOOPS_URL . '/index.php';
         }
         if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && $this->mod_config['_FtpLoginCheck'] && is_callable('User_Utils::checkUsersPassColumnLength')) {

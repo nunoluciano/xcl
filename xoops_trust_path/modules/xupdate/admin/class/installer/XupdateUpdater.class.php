@@ -351,8 +351,8 @@ class Xupdate_Updater
         $cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
         if (is_dir($cdir)) {
             if ($dh = opendir($cdir)) {
-                while (($file = readdir($dh)) !== false) {
-                    if (substr($file, -8) === '.ini.php') {
+                while (false !== ($file = readdir($dh))) {
+                    if ('.ini.php' === substr($file, -8)) {
                         if (@ unlink($cdir.'/'.$file)) {
                             $this->mLog->addReport('Deleted cache "'.$file.'" OK.');
                         }

@@ -23,7 +23,7 @@ function b_altsys_admin_menu_show($options)
     if (is_object(@$GLOBALS['xoopsModule'])) {
         $mid_selected = $GLOBALS['xoopsModule']->getVar('mid') ;
         // for system->preferences
-        if ($mid_selected == 1 && @$_GET['fct'] == 'preferences' && @$_GET['op'] == 'showmod' && ! empty($_GET['mod'])) {
+        if (1 == $mid_selected && 'preferences' == @$_GET['fct'] && 'showmod' == @$_GET['op'] && ! empty($_GET['mod'])) {
             $mid_selected = intval($_GET['mod']) ;
         }
     } else {
@@ -61,7 +61,7 @@ function b_altsys_admin_menu_show($options)
         $adminmenu = array_merge($adminmenu, $adminmenu4altsys) ;
         foreach ($adminmenu as $sub) {
             $link = empty($sub['altsys_link']) ? $sub['link'] : $sub['altsys_link'] ;
-            if (isset($sub['show']) && $sub['show'] === false) {
+            if (isset($sub['show']) && false === $sub['show']) {
                 continue ;
             }
             $submenus4assign[] = [
@@ -78,12 +78,12 @@ function b_altsys_admin_menu_show($options)
             $modinfo['adminindex'] = $moduleObj->getAdminIndex() ;
             $modinfo['adminindex_absolute'] = true ;
             foreach ($moduleObj->getAdminMenu() as $sub) {
-                if (@$sub['show'] === false) {
+                if (false === @$sub['show']) {
                     continue ;
                 }
                 $submenus4assign[] = [
-                    'title' => $myts->makeTboxData4Show($sub['title']) ,
-                    'url' => strncmp($sub['link'], 'http', 4) === 0 ? htmlspecialchars($sub['link'], ENT_QUOTES) : XOOPS_URL.'/modules/'.$dirname.'/'.htmlspecialchars($sub['link'], ENT_QUOTES) ,
+                    'title' => $myts->makeTboxData4Show($sub['title']),
+                    'url' => 0 === strncmp($sub['link'], 'http', 4) ? htmlspecialchars($sub['link'], ENT_QUOTES) : XOOPS_URL . '/modules/' . $dirname . '/' . htmlspecialchars($sub['link'], ENT_QUOTES),
                 ];
             }
         } elseif (empty($adminmenu4altsys)) {

@@ -74,7 +74,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('imgsetimg').' WHERE imgsetimg_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $imgsetimg =new XoopsImagesetimg();
                     $imgsetimg->assignVars($this->db->fetchArray($result));
                     $ret =& $imgsetimg;
@@ -86,7 +86,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
 
     public function insert(&$imgsetimg)
     {
-        if (strtolower(get_class($imgsetimg)) != 'xoopsimagesetimg') {
+        if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;
         }
         if (!$imgsetimg->isDirty()) {
@@ -116,7 +116,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
 
     public function delete(&$imgsetimg)
     {
-        if (strtolower(get_class($imgsetimg)) != 'xoopsimagesetimg') {
+        if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE imgsetimg_id = %u', $this->db->prefix('imgsetimg'), $imgsetimg->getVar('imgsetimg_id'));

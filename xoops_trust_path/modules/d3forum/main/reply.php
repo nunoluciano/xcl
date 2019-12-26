@@ -38,7 +38,7 @@ if( ! empty( $post_row['guest_name'] ) ) {
 	$reference_name4html = htmlspecialchars( $post_row['guest_name'] , ENT_QUOTES ) ;
 } else if( $post_row['uid'] ) {
 	$reference_name4html = XoopsUser::getUnameFromId( $post_row['uid'], $xoopsModuleConfig['use_name'] ) ;
-	if ($reference_name4html === '') {
+	if ('' === $reference_name4html) {
 		// fall back to uname
 		$reference_name4html = XoopsUser::getUnameFromId( $post_row['uid'] ) ;
 	}
@@ -50,7 +50,7 @@ $reference_subject4html = $myts->makeTboxData4Show( $post_row['subject'] , $post
 // specific variables for reply
 $pid = $post_row['post_id'] ;
 $post_id = 0 ;
-$subject4html = substr( $reference_subject4html , 0 , 3 ) == 'Re:' ? $reference_subject4html : 'Re: ' . $reference_subject4html ;
+$subject4html = 'Re:' == substr($reference_subject4html , 0 , 3 ) ? $reference_subject4html : 'Re: ' . $reference_subject4html ;
 $message4html = '' ;
 $topic_id = $topic_row['topic_id'] ;
 $u2t_marked = intval( $topic_row['u2t_marked'] ) ;

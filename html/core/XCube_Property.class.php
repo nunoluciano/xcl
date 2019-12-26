@@ -206,7 +206,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
      */
     public function isNull()
     {
-        return (strlen(trim($this->mValue)) == 0);
+        return (0 == strlen(trim($this->mValue)));
     }
     
     /**
@@ -310,14 +310,14 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      */
     public function set($arg1, $arg2 = null)
     {
-        if (is_array($arg1) && $arg2 == null) {
+        if (is_array($arg1) && null == $arg2) {
             $this->reset();
             foreach ($arg1 as $t_key => $t_value) {
                 $this->_set($t_key, $t_value);
             }
-        } elseif ($arg1===null && $arg2===null) {    //ex) all checkbox options are off
+        } elseif (null === $arg1 && null === $arg2) {    //ex) all checkbox options are off
             $this->reset();
-        } elseif ($arg1 !== null && $arg2 !== null) {
+        } elseif (null !== $arg1 && null !== $arg2) {
             $this->_set($arg1, $arg2);
         }
     }
@@ -330,11 +330,11 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      */
     public function add($arg1, $arg2 = null)
     {
-        if (is_array($arg1) && $arg2 == null) {
+        if (is_array($arg1) && null == $arg2) {
             foreach ($arg1 as $t_key => $t_value) {
                 $this->_set($t_key, $t_value);
             }
-        } elseif ($arg1 !== null && $arg2 !== null) {
+        } elseif (null !== $arg1 && null !== $arg2) {
             $this->_set($arg1, $arg2);
         }
     }
@@ -362,7 +362,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      */
     public function get($index = null)
     {
-        if ($index === null) {
+        if (null === $index) {
             $ret = [];
             
             foreach ($this->mProperties as $t_key => $t_value) {
@@ -406,7 +406,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      */
     public function isNull()
     {
-        return (count($this->mProperties) == 0);
+        return (0 == count($this->mProperties));
     }
     
     /**
@@ -504,7 +504,7 @@ class XCube_IntProperty extends XCube_AbstractProperty
 {
     public function set($value)
     {
-        $this->mValue = trim($value)!==''?(int)$value:null;
+        $this->mValue = '' !== trim($value) ?(int)$value:null;
     }
 }
 
@@ -533,7 +533,7 @@ class XCube_FloatProperty extends XCube_AbstractProperty
 {
     public function set($value)
     {
-        $this->mValue = trim($value)!== ''?(float)$value:null;
+        $this->mValue = '' !== trim($value) ?(float)$value:null;
     }
 }
 
@@ -674,7 +674,7 @@ class XCube_FileProperty extends XCube_AbstractProperty
             return false;
         }
         
-        if ($this->mIndex !== null) {
+        if (null !== $this->mIndex) {
             $this->mValue->mKey = $this->mIndex;
         }
         

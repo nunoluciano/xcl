@@ -23,7 +23,7 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
     public function _setupObject()
     {
         parent::_setupObject();
-        if ($this->mObject != null && $this->mObject->get('tpl_tplset') == 'default') {
+        if (null != $this->mObject && 'default' == $this->mObject->get('tpl_tplset')) {
             $this->mObject = null;
         }
     }

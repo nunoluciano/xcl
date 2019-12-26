@@ -55,7 +55,7 @@ class User_UserViewAction extends User_AbstractViewAction
         //
         // Because this class implemented 'execute()', convet the status here.
         //
-        if ($ret == USER_FRAME_VIEW_SUCCESS) {
+        if (USER_FRAME_VIEW_SUCCESS == $ret) {
             return USER_FRAME_VIEW_INDEX;
         } else {
             return $ret;
@@ -64,7 +64,7 @@ class User_UserViewAction extends User_AbstractViewAction
     
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
 

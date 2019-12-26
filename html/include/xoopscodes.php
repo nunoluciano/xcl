@@ -109,7 +109,7 @@ function xoopsSmilies($textarea_id)
     } else {
         $count = count($smiles);
         for ($i = 0; $i < $count; $i++) {
-            if ($smiles[$i]['display'] == 1) {
+            if (1 == $smiles[$i]['display']) {
                 //hack bis
                 echo "<img src='".XOOPS_UPLOAD_URL . '/' . htmlspecialchars($smiles[$i]['smile_url']) . "' border='0' onmouseover='style.cursor=\"hand\"' alt='' onclick='xoopsCodeSmilie(\"" . $textarea_id . '", " ' . $smiles[$i]['code'] . " \");' />";
             //fin du hack

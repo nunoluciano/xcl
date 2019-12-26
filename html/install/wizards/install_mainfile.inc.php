@@ -12,7 +12,7 @@
 
     $detected = str_replace('\\', '/', getcwd()); // "
     $detected = str_replace('/install', '', $detected);
-    if (substr($detected, -1) == '/') {
+    if ('/' == substr($detected, -1)) {
         $detected = substr($detected, 0, -1);
     }
 

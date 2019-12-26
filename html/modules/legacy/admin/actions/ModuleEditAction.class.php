@@ -38,7 +38,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('isactive') == 1);
+            return (1 == $this->mObject->get('isactive'));
         } else {
             return false;
         }
@@ -49,7 +49,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         if (!$this->_isEditable()) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
     
@@ -65,7 +65,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
         $ret = parent::execute($controller, $xoopsUser);
         
-        if ($ret == LEGACY_FRAME_VIEW_SUCCESS) {
+        if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
             $handler =& xoops_gethandler('group');
             $permHandler =& xoops_gethandler('groupperm');
 

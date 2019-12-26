@@ -112,7 +112,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$db->prefix('groups').' WHERE groupid='.$id;
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $group = new XoopsGroup();
                     $group->assignVars($db->fetchArray($result));
                     $ret =& $group;
@@ -130,7 +130,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function insert(&$group)
     {
-        if (strtolower(get_class($group)) != 'xoopsgroup') {
+        if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
         }
         if (!$group->isDirty()) {
@@ -167,7 +167,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function delete(&$group)
     {
-        if (strtolower(get_class($group)) != 'xoopsgroup') {
+        if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE groupid = %u', $this->db->prefix('groups'), $group->getVar('groupid'));
@@ -277,7 +277,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$db->prefix('groups_users_link').' WHERE linkid='.$id;
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $mship =new XoopsMembership();
                     $mship->assignVars($db->fetchArray($result));
                     $ret =& $mship;
@@ -295,7 +295,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function insert(&$mship)
     {
-        if (strtolower(get_class($mship)) != 'xoopsmembership') {
+        if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
         }
         if (!$mship->isDirty()) {
@@ -332,7 +332,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function delete(&$mship)
     {
-        if (strtolower(get_class($mship)) != 'xoopsmembership') {
+        if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE linkid = %u', $this->db->prefix('groups_users_link'), $groupm->getVar('linkid'));

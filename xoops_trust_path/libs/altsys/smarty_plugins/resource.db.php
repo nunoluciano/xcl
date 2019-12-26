@@ -60,7 +60,7 @@ function smarty_resource_db_tplinfo($tpl_name)
     
     $tplfile_handler =& xoops_gethandler('tplfile');
     // If we're not using the "default" template set, then get the templates from the DB
-    if ($tplset != 'default') {
+    if ('default' != $tplset) {
         $tplobj = $tplfile_handler->find($tplset, null, null, null, $tpl_name, true);
         if (count($tplobj)) {
             return $cache[$tpl_name] = $tplobj[0];
@@ -75,7 +75,7 @@ function smarty_resource_db_tplinfo($tpl_name)
     $tplobj = $tplobj[0];
     $module = $tplobj->getVar('tpl_module', 'n');
     $type = $tplobj->getVar('tpl_type', 'n');
-    $blockpath = ($type == 'block') ? 'blocks/' : '';
+    $blockpath = ('block' == $type) ? 'blocks/' : '';
     // First, check for an overloaded version within the theme folder
     $filepath = XOOPS_THEME_PATH . "/$theme/modules/$module/$blockpath$tpl_name";
     if (!file_exists($filepath)) {

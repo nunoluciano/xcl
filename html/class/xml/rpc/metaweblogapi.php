@@ -60,7 +60,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                     $maptag = $this->_getXoopsTagMap($tag);
                     if (!isset($this->params[3][$maptag])) {
                         $data = $this->_getTagCdata($this->params[3]['description'], $maptag, true);
-                        if (trim($data) == '') {
+                        if ('' == trim($data)) {
                             if ($detail['required']) {
                                 $missing[] = $maptag;
                             }
@@ -115,7 +115,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
                     $maptag = $this->_getXoopsTagMap($tag);
                     if (!isset($this->params[3][$maptag])) {
                         $data = $this->_getTagCdata($this->params[3]['description'], $maptag, true);
-                        if (trim($data) == '') {
+                        if ('' == trim($data)) {
                             if ($detail['required']) {
                                 $missing[] = $tag;
                             }
@@ -208,7 +208,7 @@ class MetaWeblogApi extends XoopsXmlRpcApi
             if (is_array($ret)) {
                 $arr = new XoopsXmlRpcArray();
                 $count = count($ret);
-                if ($count == 0) {
+                if (0 == $count) {
                     $this->response->add(new XoopsXmlRpcFault(106, 'Found 0 Entries'));
                 } else {
                     for ($i = 0; $i < $count; $i++) {

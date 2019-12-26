@@ -71,9 +71,9 @@ class Profile_Module extends Legacy_ModuleAdapter
      */
     public function execute(&$controller)
     {
-        if ($this->mActionName == null) {
+        if (null == $this->mActionName) {
             $this->mActionName = xoops_getrequest('action');
-            if ($this->mActionName == null) {
+            if (null == $this->mActionName) {
                 $this->mActionName = 'DataEdit';
             }
         }
@@ -121,7 +121,7 @@ class Profile_Module extends Legacy_ModuleAdapter
             die();
         }
     
-        if ($this->mAction->prepare() === false) {
+        if (false === $this->mAction->prepare()) {
             $this->doPreparationError();
             die();
         }
@@ -131,7 +131,7 @@ class Profile_Module extends Legacy_ModuleAdapter
             die();
         }
     
-        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute();
         } else {
             $viewStatus = $this->mAction->getDefaultView();

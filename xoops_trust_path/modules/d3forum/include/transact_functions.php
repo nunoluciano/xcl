@@ -224,7 +224,7 @@ function d3forum_makecattree_recursive( $tablename , $cat_id , $order = 'cat_wei
 
 	$sql = "SELECT cat_id,cat_title FROM $tablename WHERE pid=$cat_id ORDER BY $order" ;
 	$result = $db->query( $sql ) ;
-	if( $db->getRowsNum( $result ) == 0 ) {
+	if(0 == $db->getRowsNum($result )) {
 		return $parray ;
 	}
 	while( list( $new_cat_id , $new_cat_title ) = $db->fetchRow( $result ) ) {
@@ -363,7 +363,7 @@ function d3forum_maketree_recursive( $tablename , $post_id , $order = 'post_id' 
 
 	$sql = "SELECT post_id,unique_path FROM $tablename WHERE pid=$post_id ORDER BY $order" ;
 	$result = $db->query( $sql ) ;
-	if( $db->getRowsNum( $result ) == 0 ) {
+	if(0 == $db->getRowsNum($result )) {
 		return $parray ;
 	}
 	$new_post_ids = [];
@@ -401,7 +401,7 @@ function d3forum_cutpasteposts( $mydirname , $post_id , $pid , $new_forum_id , $
 	$children = $mytree->getAllChildId( $post_id ) ;
 	$children[] = $post_id ;
 
-	if( $pid == 0 ) {
+	if(0 == $pid) {
 		// check validation to $new_forum_id
 		list( $new_forum_id , $new_forum_external_link_format ) = $db->fetchRow( $db->query('SELECT forum_id,forum_external_link_format FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$new_forum_id" ) ) ;
 		if( empty( $new_forum_id ) ) die( _MD_D3FORUM_ERR_READFORUM ) ;
@@ -429,7 +429,7 @@ function d3forum_cutpasteposts( $mydirname , $post_id , $pid , $new_forum_id , $
 		}
 
 		// clear topic_external_link_id if the new forum has no external_link_fmt
-		if( $new_forum_external_link_format == '' ) {
+		if('' == $new_forum_external_link_format) {
 			if( ! $db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_external_link_id='' WHERE topic_id=$new_topic_id" ) ) die('DB ERROR in UPDATE topic' . __LINE__ ) ;
 		}
 	} else {
@@ -486,7 +486,7 @@ function d3forum_update_topic_from_post( $mydirname , $topic_id , $forum_id , $f
                                                                                                                                                                                                                                                                                                                                                                      . __LINE__ ) ;
 
 	// clear topic_external_link_id if the new forum has no external_link_fmt
-	if( $new_forum_external_link_format == '' ) {
+	if('' == $new_forum_external_link_format) {
 		if( ! $db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_external_link_id='' WHERE topic_id=$topic_id" ) ) die('DB ERROR in UPDATE topic' . __LINE__ ) ;
 	}
 
@@ -655,7 +655,7 @@ function d3forum_makecategory( $mydirname )
 		// default permissioning for top category
 		$groups = $xoopsUser->getGroups() ;
 		foreach( $groups as $groupid ) {
-			$adminflag = $groupid == 1 ? 1 : 0 ;
+			$adminflag = 1 == $groupid ? 1 : 0 ;
 			$sql = 'INSERT INTO ' . $db->prefix($mydirname . '_category_access') . " (cat_id,uid,groupid,can_post,can_edit,can_delete,post_auto_approved,can_makeforum,is_moderator) VALUES ($new_cat_id,null,$groupid,1,1,1,1,$adminflag,$adminflag)" ;
 			if( ! $db->query( $sql ) ) die( _MD_D3FORUM_ERR_SQL.__LINE__ ) ;
 		}
@@ -700,7 +700,7 @@ function d3forum_transact_make_post_history( $mydirname , $post_id , $full_backu
 	$post_id = intval( $post_id ) ;
 
 	$result = $db->query('SELECT * FROM ' . $db->prefix($mydirname . '_posts') . " WHERE post_id=$post_id" ) ;
-	if( ! $result || $db->getRowsNum( $result ) == 0 ) return ;
+	if( ! $result || 0 == $db->getRowsNum($result )) return ;
 	$post_row = $db->fetchArray( $result ) ;
 	$data = [];
 	$indexes = $full_backup ? array_keys( $post_row ) : ['subject', 'post_text'];

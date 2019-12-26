@@ -61,7 +61,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         unset($item['tag']);
         $res = parent::assignVars($item);
         $this->mDirname = 'xupdate';
-        if ($item['contents'] !== 'package') {
+        if ('package' !== $item['contents']) {
             $this->mTag = explode(' ', $tag);
         } else {
             $this->mTag = [];
@@ -71,7 +71,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
     
     public function get($key)
     {
-        if ($key === 'posttime') {
+        if ('posttime' === $key) {
             return time();
         }
         return parent::get($key);
@@ -94,7 +94,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         $hModule = Xupdate_Utils::getXoopsHandler('module');
         $dirname = $this->get('dirname');
         $contents = $this->get('contents');
-        if ($contents === 'module' || $contents === 'package') {
+        if ('module' === $contents || 'package' === $contents) {
             $this->mModule =& $hModule->getByDirname($dirname);
             $_isModule = true;
         } else {
@@ -139,7 +139,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
             if (!isset($this->modinfo['trust_dirname'])) {
                 $this->modinfo['trust_dirname'] = '';
             }
-            if (empty($trust_dirname) && $this->getVar('target_type') === 'TrustModule') {
+            if (empty($trust_dirname) && 'TrustModule' === $this->getVar('target_type')) {
                 if ($this->modinfo['trust_dirname']) {
                     $trust_dirname = $this->modinfo['trust_dirname'];
                 } else {
@@ -157,7 +157,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                     $hModule->insert($this->mModule);
                 }
             } else {
-                if ($trust_dirname && $this->getVar('target_type') !== 'TrustModule') {
+                if ($trust_dirname && 'TrustModule' !== $this->getVar('target_type')) {
                     // 以前の X-update では。TrustMode ではないモジュールなのに
                     // なぜか mytrustdirname.php が存在するモジュールに対し、
                     // 誤って XCL Core の modules テーブルの trust_name を登録してしまっていたので、その対応。
@@ -198,7 +198,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                 $this->setVar('isactive', -1);
                 if (! $_isModule) {
                     // for Theme
-                    if ($this->getVar('contents') === 'theme') {
+                    if ('theme' === $this->getVar('contents')) {
                         $t_dir = XOOPS_ROOT_PATH . '/themes/' . $this->getVar('dirname');
                         if (is_dir($t_dir)) {
                             $this->setVar('isactive', 1);
@@ -233,7 +233,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                         }
                     }
                     // for Preload
-                    if ($this->getVar('contents') === 'preload') {
+                    if ('preload' === $this->getVar('contents')) {
                         $t_file = XOOPS_ROOT_PATH . '/preload/' . $this->getVar('target_key') . '.class.php';
                         if (is_file($t_file)) {
                             $lastupdate = filemtime($t_file);
@@ -249,7 +249,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                             }
                         }
                     }
-                    if ($this->getVar('isactive') == 1) {
+                    if (1 == $this->getVar('isactive')) {
                         $this->options['modinfo'] = $this->modinfo;
                     } else {
                         unset($this->options['modinfo']);
@@ -271,7 +271,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
      */
     public function isDirnameError()
     {
-        if ($this->getVar('target_type') === 'TrustModule') {
+        if ('TrustModule' === $this->getVar('target_type')) {
             if (is_object($this->mModule)) {
                 if ($this->mModule->getVar('mid')) {
                     if ($this->getVar('trust_dirname') == $this->mModule->getVar('trust_dirname')) {
@@ -590,7 +590,7 @@ $('.ondemand-button').click(function(){
 });
 EOD;
             $ondemandBtn = '';
-            if ($type === 'ondemand') {
+            if ('ondemand' === $type) {
                 $notifyJS .= "\n".'$(\'.ondemand-button\').show();';
                 $ondemandBtn = '<div class="hide ondemand-button">
 				<a href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-arrowdown.png" /></a>

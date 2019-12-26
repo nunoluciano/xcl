@@ -44,11 +44,11 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         } else {
             $ftp_connected = $this->connect();
         }
-        if ($ftp_connected !== true) {
+        if (true !== $ftp_connected) {
             $this->mes.= "Cannot connect<br />\n";
             return false;
         } else {
-            if ($this->login($ftp_id, $ftp_pass) !== true) {
+            if (true !== $this->login($ftp_id, $ftp_pass)) {
                 $this->mes.= "login failed<br />\n";
                 return false;
             } else {
@@ -76,7 +76,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
             return false;
         }
         $this->_type=$mode;
-        $this->SendMSG('Transfer type: ' . ($this->_type == FTP_BINARY? 'binary' :($this->_type == FTP_ASCII? 'ASCII' : 'auto ASCII')));
+        $this->SendMSG('Transfer type: ' . (FTP_BINARY == $this->_type ? 'binary' :(FTP_ASCII == $this->_type ? 'ASCII' : 'auto ASCII')));
         return true;
     }
 
@@ -105,7 +105,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
             return false;
         }
         $this->_conn_id = ftp_connect($this->_host) ;
-        if ($this->_conn_id === false) {
+        if (false === $this->_conn_id) {
             return false;
         } else {
             $this->_ready=true;
@@ -126,7 +126,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
             return false;
         }
         $this->_conn_id = ftp_ssl_connect($this->_host) ;
-        if ($this->_conn_id === false) {
+        if (false === $this->_conn_id) {
             return false;
         } else {
             $this->_ready=true;
@@ -146,7 +146,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         //adump($this->_conn_id);
         //adump($this->_login);
         //adump($this->_password);
-        if (ftp_login($this->_conn_id, $this->_login, $this->_password) === true) {
+        if (true === ftp_login($this->_conn_id, $this->_login, $this->_password)) {
             $this->SendMSG('Authentication succeeded');
             return true;
         } else {
@@ -170,7 +170,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
             $this->SendMSG('Fatal error: Call to undefined function ftp_pwd');
             return false;
         }
-        if (($rtn = ftp_pwd($this->_conn_id)) == false) {
+        if (false == ($rtn = ftp_pwd($this->_conn_id))) {
             $this->SendMSG('pwd command failed' . CRLF);
             return false;
         } else {
@@ -310,7 +310,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         $pi=pathinfo($remotefile);
 //fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
         $pi['extension'] = !isset($pi['extension']) ? '' : $pi['extension'];
-        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
+        if (FTP_ASCII == $this->_type or (FTP_AUTOASCII == $this->_type and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
             $mode=FTP_ASCII;
         } else {
             $mode=FTP_BINARY;
@@ -327,7 +327,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         $pi=pathinfo($remotefile);
 //fix set '' to ["extension"] , when $pi["extension"] is nothing in pathinfo
         $pi['extension'] = !isset($pi['extension']) ? '' : $pi['extension'];
-        if ($this->_type==FTP_ASCII or ($this->_type==FTP_AUTOASCII and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
+        if (FTP_ASCII == $this->_type or (FTP_AUTOASCII == $this->_type and in_array(strtoupper($pi['extension']), $this->AutoAsciiExt))) {
             $mode=FTP_ASCII;
         } else {
             $mode=FTP_BINARY;

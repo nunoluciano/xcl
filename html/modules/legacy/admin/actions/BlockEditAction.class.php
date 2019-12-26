@@ -66,7 +66,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('visible') == 1);
+            return (1 == $this->mObject->get('visible'));
         } else {
             return false;
         }
@@ -92,7 +92,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
         $ret = parent::execute($controller, $xoopsUser);
         
-        if ($ret == LEGACY_FRAME_VIEW_SUCCESS) {
+        if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
             //
             // Reset block_module_link.
             //

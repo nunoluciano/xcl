@@ -32,7 +32,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate
     {
         //don't call this method multiple times when site owner duplicate.
         static $isCalled = false;
-        if ($isCalled === true) {
+        if (true === $isCalled) {
             return;
         }
 

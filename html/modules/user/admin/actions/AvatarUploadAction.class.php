@@ -32,7 +32,7 @@ class User_AvatarUploadAction extends User_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -48,7 +48,7 @@ class User_AvatarUploadAction extends User_Action
         $files = [];
         $avatarimages = [];
 
-        if (strtolower($formFileExt) == 'zip') {
+        if ('zip' == strtolower($formFileExt)) {
             if (!file_exists(XOOPS_ROOT_PATH . '/class/Archive_Zip.php')) {
                 return USER_FRAME_VIEW_ERROR;
             }
@@ -84,7 +84,7 @@ class User_AvatarUploadAction extends User_Action
     {
         foreach ($files as $file) {
             $file_pos = strrpos($file['filename'], '/') ;
-            if ($file_pos !== false) {
+            if (false !== $file_pos) {
                 $file['filename'] = substr($file['filename'], $file_pos+1);
             }
             if (!empty($file['filename']) && preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $file['filename'], $match) && !preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $file['filename'])) {
@@ -99,7 +99,7 @@ class User_AvatarUploadAction extends User_Action
     {
         foreach ($files as $id => $info) {
             $file_pos = strrpos($info['name'], '/') ;
-            if ($file_pos !== false) {
+            if (false !== $file_pos) {
                 $info['name'] = substr($info['name'], $file_pos+1);
             }
             if (!empty($info['name']) && preg_match("/(.*)\.(gif|jpg|jpeg|png)$/i", $info['name'], $match) && !preg_match('/[' . preg_quote('\/:*?"<>|', '/') . ']/', $info['name'])) {
@@ -112,7 +112,7 @@ class User_AvatarUploadAction extends User_Action
 
     public function _saveAvatarImages(&$avatarimages)
     {
-        if (count($avatarimages) == 0) {
+        if (0 == count($avatarimages)) {
             return true;
         }
         
@@ -120,7 +120,7 @@ class User_AvatarUploadAction extends User_Action
 
         for ($i = 0; $i < count($avatarimages); $i++) {
             $ext_pos = strrpos($avatarimages[$i]['name'], '.') ;
-            if ($ext_pos === false) {
+            if (false === $ext_pos) {
                 continue ;
             }
             $ext = strtolower(substr($avatarimages[$i]['name'], $ext_pos + 1)) ;
@@ -171,7 +171,7 @@ class User_AvatarUploadAction extends User_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        if (count($this->mErrorMessages) == 0) {
+        if (0 == count($this->mErrorMessages)) {
             $controller->executeRedirect('./index.php?action=AvatarList', 1, _AD_USER_ERROR_DBUPDATE_FAILED);
         } else {
             $render->setTemplateName('avatar_upload_error.html');

@@ -27,7 +27,7 @@ function b_pico_list_show($options)
 	// options
 	$mytrustdirname = basename(dirname(dirname(__FILE__)));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
-	$categories = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
+	$categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
 	$selected_order = empty($options[2]) || !in_array($options[2], b_pico_list_allowed_order()) ? 'o.created_time DESC' : $options[2];
 	$limit_offset = empty($options[3]) ? '10' : preg_replace('/[^0-9,]/', '', $options[3]);
 	if (strstr($limit_offset, ',')) {
@@ -46,10 +46,10 @@ function b_pico_list_show($options)
 	$content_handler = new PicoContentHandler($mydirname);
 
 	// contentObjects
-	if (sizeof($categories) == 0) {
+	if (0 == sizeof($categories)) {
 		// no category specified
 		$contents4assign = $content_handler->getContents4assign('1', $selected_order, $offset, $limit, false);
-	} else if (sizeof($categories) == 1) {
+	} else if (1 == sizeof($categories)) {
 		// single category
 		$contents4assign = $content_handler->getContents4assign('o.cat_id=' . $categories[0], $selected_order, $offset, $limit, false);
 	} else {
@@ -102,7 +102,7 @@ function b_pico_list_edit($options)
 	// options
 	$mytrustdirname = basename(dirname(dirname(__FILE__)));
 	$mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
-	$categories = trim(@$options[1]) === '' ? [] : array_map('intval', explode(',', $options[1]));
+	$categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
 	$selected_order = empty($options[2]) || !in_array($options[2], b_pico_list_allowed_order()) ? 'o.created_time DESC' : $options[2];
 	$limit_offset = empty($options[3]) ? '10' : preg_replace('/[^0-9,]/', '', $options[3]);
 	$this_template = empty($options[4]) ? 'db:' . $mydirname . '_block_list.html' : trim($options[4]);

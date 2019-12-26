@@ -39,7 +39,7 @@ function d3forum_display_comment_topicscount( $mydirname , $forum_id , $params ,
 		return ;
 	}
 
-	$select = $mode == 'topic' ? 'COUNT(t.topic_id)' : 'SUM(t.topic_posts_count)' ;
+	$select = 'topic' == $mode ? 'COUNT(t.topic_id)' : 'SUM(t.topic_posts_count)' ;
 
 	$sql = "SELECT $select FROM ".$db->prefix($mydirname . '_topics') . " t WHERE t.forum_id=$forum_id AND ! t.topic_invisible AND topic_external_link_id='" . addslashes($external_link_id) . "'" ;
 	if( ! $trs = $db->query( $sql ) ) die( 'd3forum_comment_error in '.__LINE__ ) ;
@@ -85,7 +85,7 @@ function d3forum_display_comment( $mydirname , $forum_id , $params )
 		$external_trustdirname = @$params['mytrustdirname'] ;
 
 		// auto external_dirname
-		if( $external_dirname == '' && is_object( $GLOBALS['xoopsModule'] ) ) {
+		if('' == $external_dirname && is_object($GLOBALS['xoopsModule'] ) ) {
 			$external_dirname = $GLOBALS['xoopsModule']->getVar('dirname') ;
 		}
 
@@ -186,7 +186,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 	$whr_invisible = $isadminormod ? '1' : '! t.topic_invisible' ;
 
 	/************ THREADED VIEW ************/
-	if( @$params['view'] == 'listtopics' ) {
+	if('listtopics' == @$params['view']) {
 
 		$this_template = 'db:'.$mydirname.'_comment_listtopics.html' ;
 
@@ -208,7 +208,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		}
 		*/
 
-		$sql_order = @$params['order'] == 'asc' ? 'ASC' : 'DESC' ;
+		$sql_order = 'asc' == @$params['order'] ? 'ASC' : 'DESC' ;
 
 		// main query
 		$sql = 'SELECT t.*, lp.subject AS lp_subject, lp.icon AS lp_icon, lp.number_entity AS lp_number_entity, lp.special_entity AS lp_special_entity, fp.subject AS fp_subject, fp.icon AS fp_icon, fp.number_entity AS fp_number_entity, fp.special_entity AS fp_special_entity, u2t.u2t_time, u2t.u2t_marked, u2t.u2t_rsv FROM '
@@ -275,7 +275,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		$postorder = 0 ;
 		$postorder4sql = 'post_time DESC' ;
 		if ( isset($params['order'] ) ) {
-			if ( $params['order'] == 'asc' ) {
+			if ('asc' == $params['order']) {
 				$postorder = 1 ;
 				$postorder4sql = 'post_time ASC' ;
 			}
@@ -295,7 +295,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 		if( $post_hits > $num ) {
 			// POS
 			$pos = isset( $_GET['d3f_pos'] ) ? intval( $_GET['d3f_pos'] ) 
-				: (($postorder==1) ? (int)(($post_hits-1) / $num) * $num : 0) ;
+				: ((1 == $postorder) ? (int)(($post_hits - 1) / $num) * $num : 0) ;
 
 	            if( !empty($_SERVER['QUERY_STRING'])) {
  	               if( preg_match('/^d3f_pos=[0-9]+/', $_SERVER['QUERY_STRING']) ) {
@@ -390,7 +390,7 @@ function d3forum_render_comments( $mydirname , $forum_id , $params , &$smarty )
 
 	// naao from
 	if( is_object( $xoopsUser ) ) {
-		if ($xoopsModuleConfig['use_name'] == 1 && $xoopsUser->getVar( 'name' ) ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 			$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 		} else {
 			$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;
@@ -467,7 +467,7 @@ if( $external_link_id >0 ) {
         ]
 	) ;
 	// naao from
-	if( @$params['view'] != 'listtopics' && $external_link_id >0) {
+	if('listtopics' != @$params['view'] && $external_link_id > 0) {
 		$tpl->assign(
             [
 				'tree' => $tree ,	// naao

@@ -42,7 +42,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $this->mTargetName = trim(xoops_getrequest('target'));
-        if ($this->mTargetName == '' || !preg_match('/^[a-zA-Z]\w*$/', $this->mTargetName)) {
+        if ('' == $this->mTargetName || !preg_match('/^[a-zA-Z]\w*$/', $this->mTargetName)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
         return parent::getDefaultView($controller, $xoopsUser);

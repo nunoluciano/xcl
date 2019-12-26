@@ -28,7 +28,7 @@ foreach ($modules as $module) {
 	if (file_exists($dirpath . '/mytrustdirname.php')) {
 		include $dirpath . '/mytrustdirname.php';
 	}
-	if ($mytrustdirname == 'pico' && $dirname != $mydirname) {
+	if ('pico' == $mytrustdirname && $dirname != $mydirname) {
 		// pico
 		$exportable_modules[$mid] = $module->getVar('name') . " ($dirname)";
 	}
@@ -36,9 +36,9 @@ foreach ($modules as $module) {
 
 // get $cat_id
 $cat_id = intval(@$_GET['cat_id']);
-if ($cat_id == SPECIAL_CAT_ID_ALL) {
+if (SPECIAL_CAT_ID_ALL == $cat_id) {
 	$cat_title = _MD_PICO_ALLCONTENTS;
-} else if ($cat_id == SPECIAL_CAT_ID_DELETED) {
+} else if (SPECIAL_CAT_ID_DELETED == $cat_id) {
 	$cat_title = _MD_PICO_DELETEDCONTENTS;
 } else {
 	list($cat_id, $cat_title) = $db->fetchRow($db->query('SELECT cat_id,cat_title FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$cat_id"));
@@ -85,7 +85,7 @@ if (!empty($_POST['contents_move']) && !empty($_POST['action_selects']) && isset
 
 	// cat_id check
 	$dest_cat_id = intval($_POST['dest_cat_id']);
-	if ($dest_cat_id !== 0) {
+	if (0 !== $dest_cat_id) {
 		list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_categories') . " WHERE cat_id=$dest_cat_id"));
 		if (empty($count)) die(_MD_PICO_ERR_READCATEGORY);
 	}
@@ -145,7 +145,7 @@ if (!empty($_POST['contents_export']) && !empty($_POST['action_selects']) && !em
 $cat_options = pico_common_get_cat_options($mydirname);
 
 // fetch contents
-if ($cat_id == SPECIAL_CAT_ID_DELETED) {
+if (SPECIAL_CAT_ID_DELETED == $cat_id) {
 	$ors = $db->query(
         'SELECT oh.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,1 AS is_deleted  FROM '
         . $db->prefix($mydirname . '_content_histories') . ' oh LEFT JOIN '
@@ -155,7 +155,7 @@ if ($cat_id == SPECIAL_CAT_ID_DELETED) {
         . $db->prefix($mydirname . '_contents') . ' o ON o.content_id=oh.content_id WHERE o.content_id IS NULL GROUP BY oh.content_id ORDER BY oh.modified_time DESC'
     );
 } else {
-	$whr_cat_id = $cat_id == SPECIAL_CAT_ID_ALL ? '1' : "o.cat_id=$cat_id";
+	$whr_cat_id = SPECIAL_CAT_ID_ALL == $cat_id ? '1' : "o.cat_id=$cat_id";
 	$ors = $db->query(
         'SELECT o.*,up.uname AS poster_uname,um.uname AS modifier_uname,c.cat_title,c.cat_depth_in_tree,0 AS is_deleted  FROM '
         . $db->prefix($mydirname . '_contents') . ' o LEFT JOIN '

@@ -227,7 +227,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 
 	$filters = [];
 	$dh = opendir(XOOPS_TRUST_PATH . '/modules/pico/filters');
-	while (($file = readdir($dh)) !== false) {
+	while (false !== ($file = readdir($dh))) {
 		if (preg_match('/^pico\_(.*)\.php$/', $file, $regs)) {
 			$name = $regs[1];
 			$constpref = '_MD_PICO_FILTERS_' . strtoupper($name);
@@ -311,8 +311,8 @@ function pico_main_parse_ret2uri($mydirname, $ret)
 			default:
 				return false;
 		}
-	} else if ($ret{
-		0} == '/') {
+	} else if ('/' == $ret{
+                      0}) {
 		// specify the relative link inside XOOPS_URL
 		return XOOPS_URL . str_replace('..', '', preg_replace('/[\x00-\x1f]/', '', $ret));
 	} else {
@@ -350,8 +350,8 @@ function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/'
 	// sub directries loop (1)
 	$dir_tmps = [];
 	$dh = opendir($full_dir_path);
-	while (($file = readdir($dh)) !== false) {
-		if (substr($file, 0, 1) == '.') continue;
+	while (false !== ($file = readdir($dh))) {
+		if ('.' == substr($file, 0, 1)) continue;
 		if (is_dir($full_dir_path . $file)) {
 			$dir_tmps[] = $file;
 		}
@@ -379,8 +379,8 @@ function pico_main_get_wraps_files_recursively($mydirname, $dir_path = '/')
 	$dir_tmps = [];
 	$file_tmps = [];
 	$dh = opendir($full_dir_path);
-	while (($file = readdir($dh)) !== false) {
-		if (substr($file, 0, 1) == '.') continue;
+	while (false !== ($file = readdir($dh))) {
+		if ('.' == substr($file, 0, 1)) continue;
 		if (is_dir($full_dir_path . $file)) {
 			$dir_tmps[] = $file;
 		} else if (is_file($full_dir_path . $file)) {

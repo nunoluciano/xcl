@@ -28,7 +28,7 @@ class Legacy_BlockInstallEditAction extends Legacy_BlockEditAction
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('visible') == 0);
+            return (0 == $this->mObject->get('visible'));
         } else {
             return false;
         }

@@ -57,7 +57,8 @@ class ShadeSoap_NusoapServer extends soap_server
             $delim = '';
         }
 
-        if (strlen($delim) > 0 && substr_count($this->methodname, $delim) == 1 &&
+        if (strlen($delim) > 0 && 1 == substr_count($this->methodname, $delim)
+            &&
             XC_CLASS_EXISTS(substr($this->methodname, 0, strpos($this->methodname, $delim)))) {
             // get the class and method name
             $class = substr($this->methodname, 0, strpos($this->methodname, $delim));
@@ -66,7 +67,7 @@ class ShadeSoap_NusoapServer extends soap_server
         }
 
         // does method exist?
-        if ($class == '') {
+        if ('' == $class) {
             if (!function_exists($this->methodname)) {
                 $this->debug("in invoke_method, function '$this->methodname' not found!");
                 $this->result = 'fault: method not found';
@@ -74,7 +75,7 @@ class ShadeSoap_NusoapServer extends soap_server
                 return;
             }
         } else {
-            $method_to_compare = (substr(phpversion(), 0, 2) == '4.') ? strtolower($method) : $method;
+            $method_to_compare = ('4.' == substr(phpversion(), 0, 2)) ? strtolower($method) : $method;
             if (!in_array($method_to_compare, get_class_methods($class))) {
                 $this->debug("in invoke_method, method '$this->methodname' not found in class '$class'!");
                 $this->result = 'fault: method not found';
@@ -99,10 +100,10 @@ class ShadeSoap_NusoapServer extends soap_server
         $this->appendDebug($this->varDump($this->methodparams));
         $this->debug("in invoke_method, calling '$this->methodname'");
 
-        if ($class == '') {
+        if ('' == $class) {
             $this->debug('in invoke_method, calling function using call_user_func_array()');
             $call_arg = "$this->methodname";    // straight assignment changes $this->methodname to lower case after call_user_func_array()
-        } elseif ($delim == '..') {
+        } elseif ('..' == $delim) {
             $this->debug('in invoke_method, calling class method using call_user_func_array()');
             $call_arg = [$class, $method];
         } else {

@@ -371,10 +371,10 @@ class XoopsObject extends AbstractXoopsObject
                 $ts =& MyTextSanitizer::sGetInstance();
                 $vars =&$this->vars;
                 $html = !empty($vars['dohtml']['value']) ? 1 : 0;
-                $xcode = (!isset($vars['doxcode']['value']) || $vars['doxcode']['value'] == 1) ? 1 : 0;
-                $smiley = (!isset($vars['dosmiley']['value']) || $vars['dosmiley']['value'] == 1) ? 1 : 0;
-                $image = (!isset($vars['doimage']['value']) || $vars['doimage']['value'] == 1) ? 1 : 0;
-                $br = (!isset($vars['dobr']['value']) || $vars['dobr']['value'] == 1) ? 1 : 0;
+                $xcode = (!isset($vars['doxcode']['value']) || 1 == $vars['doxcode']['value']) ? 1 : 0;
+                $smiley = (!isset($vars['dosmiley']['value']) || 1 == $vars['dosmiley']['value']) ? 1 : 0;
+                $image = (!isset($vars['doimage']['value']) || 1 == $vars['doimage']['value']) ? 1 : 0;
+                $br = (!isset($vars['dobr']['value']) || 1 == $vars['dobr']['value']) ? 1 : 0;
                 return $ts->displayTarea($ret, $html, $smiley, $xcode, $image, $br);
             case 'e':
             case 'edit':
@@ -385,10 +385,10 @@ class XoopsObject extends AbstractXoopsObject
                 $ts =& MyTextSanitizer::sGetInstance();
                 $vars =&$this->vars;
                 $html = !empty($vars['dohtml']['value']) ? 1 : 0;
-                $xcode = (!isset($vars['doxcode']['value']) || $vars['doxcode']['value'] == 1) ? 1 : 0;
-                $smiley = (!isset($vars['dosmiley']['value']) || $vars['dosmiley']['value'] == 1) ? 1 : 0;
-                $image = (!isset($vars['doimage']['value']) || $vars['doimage']['value'] == 1) ? 1 : 0;
-                $br = (!isset($vars['dobr']['value']) || $vars['dobr']['value'] == 1) ? 1 : 0;
+                $xcode = (!isset($vars['doxcode']['value']) || 1 == $vars['doxcode']['value']) ? 1 : 0;
+                $smiley = (!isset($vars['dosmiley']['value']) || 1 == $vars['dosmiley']['value']) ? 1 : 0;
+                $image = (!isset($vars['doimage']['value']) || 1 == $vars['doimage']['value']) ? 1 : 0;
+                $br = (!isset($vars['dobr']['value']) || 1 == $vars['dobr']['value']) ? 1 : 0;
                 return $ts->previewTarea($ret, $html, $smiley, $xcode, $image, $br);
             case 'f':
             case 'formpreview':
@@ -418,7 +418,7 @@ class XoopsObject extends AbstractXoopsObject
                 return $ret;
             }
         default:
-            if ($var['options'] != '' && $ret != '') {
+            if ('' != $var['options'] && '' != $ret) {
                 switch (strtolower($format)) {
                 case 's':
                 case 'show':
@@ -506,7 +506,7 @@ class XoopsObject extends AbstractXoopsObject
                 $cleanv = is_string($cleanv) ? trim($cleanv) : $cleanv;
                 switch ($v['data_type']) {
                 case XOBJ_DTYPE_TXTBOX:
-                    if ($v['required'] && $cleanv != '0' && $cleanv == '') {
+                    if ($v['required'] && '0' != $cleanv && '' == $cleanv) {
                         $this->setErrors("$k is required.");
                         break;
                     }
@@ -521,7 +521,7 @@ class XoopsObject extends AbstractXoopsObject
                     }
                     break;
                 case XOBJ_DTYPE_TXTAREA:
-                    if ($v['required'] && $cleanv != '0' && $cleanv == '') {
+                    if ($v['required'] && '0' != $cleanv && '' == $cleanv) {
                         $this->setErrors("$k is required.");
                         break;
                     }
@@ -552,11 +552,11 @@ class XoopsObject extends AbstractXoopsObject
                     break;
 
                 case XOBJ_DTYPE_EMAIL:
-                    if ($v['required'] && $cleanv == '') {
+                    if ($v['required'] && '' == $cleanv) {
                         $this->setErrors("$k is required.");
                         break;
                     }
-                    if ($cleanv != '' && !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $cleanv)) {
+                    if ('' != $cleanv && !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $cleanv)) {
                         $this->setErrors('Invalid Email');
                         break;
                     }
@@ -565,11 +565,11 @@ class XoopsObject extends AbstractXoopsObject
                     }
                     break;
                 case XOBJ_DTYPE_URL:
-                    if ($v['required'] && $cleanv == '') {
+                    if ($v['required'] && '' == $cleanv) {
                         $this->setErrors("$k is required.");
                         break;
                     }
-                    if ($cleanv != '' && !preg_match("/^http[s]*:\/\//i", $cleanv)) {
+                    if ('' != $cleanv && !preg_match("/^http[s]*:\/\//i", $cleanv)) {
                         $cleanv = 'https://' . $cleanv;
                     }
                     if (!$v['not_gpc']) {

@@ -96,7 +96,7 @@ if (!is_object($xoopsUser)) {
 
 if (false != $accesserror) {
     $ref = xoops_getenv('HTTP_REFERER');
-    if ($ref != '') {
+    if ('' != $ref) {
         redirect_header($ref, 2, _NOPERM);
     } else {
         redirect_header($redirect_page.'?'.$comment_config['itemName'].'='.(int)$com_itemid, 2, _NOPERM);
@@ -121,12 +121,12 @@ case 'delete_one':
     $com_itemid = $comment->getVar('com_itemid');
 
     // execute updateStat callback function if set
-    if (isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+    if (isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
         $skip = false;
         if (!function_exists($comment_config['callback']['update'])) {
             if (isset($comment_config['callbackFile'])) {
                 $callbackfile = trim($comment_config['callbackFile']);
-                if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                     include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                 }
                 if (!function_exists($comment_config['callback']['update'])) {
@@ -146,7 +146,7 @@ case 'delete_one':
     }
 
     // update user posts if its not an anonymous post
-    if ($comment->getVar('com_uid') != 0) {
+    if (0 != $comment->getVar('com_uid')) {
         $member_handler =& xoops_gethandler('member');
         $com_poster =& $member_handler->getUser($comment->getVar('com_uid'));
         if (is_object($com_poster)) {
@@ -239,12 +239,12 @@ case 'delete_all':
     $com_itemid = $comment->getVar('com_itemid');
 
     // execute updateStat callback function if set
-    if (isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+    if (isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
         $skip = false;
         if (!function_exists($comment_config['callback']['update'])) {
             if (isset($comment_config['callbackFile'])) {
                 $callbackfile = trim($comment_config['callbackFile']);
-                if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                     include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                 }
                 if (!function_exists($comment_config['callback']['update'])) {

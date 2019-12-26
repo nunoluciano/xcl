@@ -19,7 +19,7 @@ function altsys_mylangadmin_get_constant_names($langfile_unique_path, $mydirname
     }
 
     // We have to parse the file if it has been already included ...
-    if (empty($langfile_names) && ($reqonce_ret === true || defined($langfile_fingerprint))) {
+    if (empty($langfile_names) && (true === $reqonce_ret || defined($langfile_fingerprint))) {
         $already_read = true ;
         $langfile_names = altsys_mylangadmin_get_constant_names_by_pcre($langfile_unique_path) ;
     }
@@ -32,7 +32,7 @@ function altsys_mylangadmin_get_constant_names($langfile_unique_path, $mydirname
         $langfile_names = [];
         if ($constpref) {
             foreach (array_keys(get_defined_constants()) as $name) {
-                if (strncmp($name, $constpref, strlen($constpref)) == 0) {
+                if (0 == strncmp($name, $constpref, strlen($constpref))) {
                     $langfile_names[] = $name ;
                 }
             }

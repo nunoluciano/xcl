@@ -171,7 +171,7 @@ class XoopsFormElement
      */
     public function getId()
     {
-        return $this->_id != null ? $this->_id : $this->getName();
+        return null != $this->_id ? $this->_id : $this->getName();
     }
 
     /**

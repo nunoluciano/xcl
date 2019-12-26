@@ -155,7 +155,7 @@ $modversion['sub'] = [
 //
 // Config setting
 //
-if (!defined('XOOPSX_COREPACK_VERSION') && defined('_MI_LEGACY_DETAILED_VERSION') && substr(_MI_LEGACY_DETAILED_VERSION, 0, 9) === 'CorePack ') {
+if (!defined('XOOPSX_COREPACK_VERSION') && defined('_MI_LEGACY_DETAILED_VERSION') && 'CorePack ' === substr(_MI_LEGACY_DETAILED_VERSION, 0, 9)) {
     define('XOOPSX_COREPACK_VERSION', substr(_MI_LEGACY_DETAILED_VERSION, 9));
 }
 $_encrypt = defined('XOOPSX_COREPACK_VERSION') ? (version_compare(XOOPSX_COREPACK_VERSION, '20140125', '>=') ? 'encrypt' : 'string') : (version_compare(LEGACY_BASE_VERSION, '2.2.2.3', '>') ? 'encrypt' : 'string');

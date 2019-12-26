@@ -14,7 +14,7 @@ class deleteallAction extends AbstractAction
   
     public function execute()
     {
-        if ($this->root->mContext->mRequest->getRequest('inout') == 'in') {
+        if ('in' == $this->root->mContext->mRequest->getRequest('inout')) {
             $this->inout = 'inbox';
             $this->setUrl('index.php?action=index');
         } else {
@@ -23,7 +23,7 @@ class deleteallAction extends AbstractAction
         }
     
         $delid = $this->root->mContext->mRequest->getRequest('delmsg');
-        if (!is_array($delid) || count($delid) == 0) {
+        if (!is_array($delid) || 0 == count($delid)) {
             $this->setErr(_MD_MESSAGE_DELETEMSG2);
             return;
         }

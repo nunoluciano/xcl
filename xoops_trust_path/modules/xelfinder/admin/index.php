@@ -30,7 +30,7 @@ if (isset($_POST) && ! empty($_POST['session_table_fix'])) {
 include_once XOOPS_TRUST_PATH.'/modules/xelfinder/class/xoops_elFinder.class.php';
 $xelf = new xoops_elFinder($mydirname);
 $stype = $xelf->getSessionTableType();
-if ($stype !== 'mediumblob' && $stype !== 'longblob') {
+if ('mediumblob' !== $stype && 'longblob' !== $stype) {
 	$form = '<form method="post" style="display:inline;"><input type="hidden" name="session_table_fix" value="1"><input type="submit" value="Change"></form>';
 	$sResult = 'Session table type is "'.$stype.'" (<span style="color:red;font-weight:bold;">Recomend change type to "mediumblob"</span>'.$form.')';
 } else {

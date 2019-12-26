@@ -26,7 +26,7 @@ class Legacy_RoleManager
         $root =& XCube_Root::getSingleton();
         $context =& $root->mContext;
         
-        if ($module == null) {
+        if (null == $module) {
             return;
         }
         

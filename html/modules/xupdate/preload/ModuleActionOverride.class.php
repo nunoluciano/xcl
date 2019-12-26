@@ -28,7 +28,7 @@ class Xupdate_ModuleActionOverride extends XCube_ActionFilter
         $overrideActionNames = ['ModuleList', 'ModuleInstall', 'ModuleUpdate', 'ModuleUninstall'];
         $actionName = ucfirst($actionFrame->mActionName);
 
-        if (in_array($actionName, $overrideActionNames) === false) {
+        if (false === in_array($actionName, $overrideActionNames)) {
             // exec default _createAction
             return;
         }

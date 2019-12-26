@@ -60,7 +60,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
             switch ($config->get('conf_valuetype')) {
                 case 'text':
                 case 'string':
-                    if ($config->get('conf_formtype') == 'textarea') {
+                    if ('textarea' == $config->get('conf_formtype')) {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_TextProperty($config->get('conf_name'));
                     } else {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
@@ -92,7 +92,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
                     break;
 
                 case 'array':
-                    if ($config->get('conf_formtype') == 'textarea') {
+                    if ('textarea' == $config->get('conf_formtype')) {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
                         $this->set($config->get('conf_name'), implode('|', unserialize($config->get('conf_value'))));
                     } else {
@@ -106,7 +106,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
                     }
                     break;
                 case 'encrypt':
-                    if ($config->get('conf_formtype') == 'textarea') {
+                    if ('textarea' == $config->get('conf_formtype')) {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_TextProperty($config->get('conf_name'));
                     } else {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
@@ -128,13 +128,13 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
         foreach (array_keys($configArr) as $key) {
             $value = $this->get($configArr[$key]->get('conf_name'));
             
-            if ($configArr[$key]->get('conf_valuetype') == 'array') {
+            if ('array' == $configArr[$key]->get('conf_valuetype')) {
                 if (is_array($value)) {
                     $configArr[$key]->set('conf_value', serialize($value));
                 } else {
                     $configArr[$key]->set('conf_value', serialize(explode('|', $value)));
                 }
-            } elseif ($configArr[$key]->get('conf_valuetype') == 'encrypt') {
+            } elseif ('encrypt' == $configArr[$key]->get('conf_valuetype')) {
                 $configArr[$key]->set('conf_value', XCube_Utils::encrypt($value));
             } else {
                 $configArr[$key]->set('conf_value', $value);

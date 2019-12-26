@@ -48,7 +48,7 @@ if (! $tpl_tplset) {
 }
 $tpl_tplset4sql = addslashes($tpl_tplset) ;
 
-if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
+if (empty($_GET['tpl_file']) || '_custom' == $_GET['tpl_file']) {
     $edit_mode = 'create' ;
     $tpl_file = '_custom' ;
     $tpl = [
@@ -82,7 +82,7 @@ if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
     $tpl = $db->fetchArray($db->query($sql)) ;
 
     // get module info
-    if ($tpl['tpl_module'] == '_custom') {
+    if ('_custom' == $tpl['tpl_module']) {
         $target_module = null ;
         $target_mname = _MYTPLSADMIN_CUSTOMTEMPLATE ;
     } else {
@@ -93,7 +93,7 @@ if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
 
     // breadcrumbs
     $breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
-    if ($mydirname != 'altsys' && is_object($target_module)) {
+    if ('altsys' != $mydirname && is_object($target_module)) {
         // mytplsform in each modules
         $mod_url = XOOPS_URL.'/modules/'.$target_module->getVar('dirname') ;
         $modinfo = $target_module->getInfo() ;
@@ -109,7 +109,7 @@ if (empty($_GET['tpl_file']) || $_GET['tpl_file'] == '_custom') {
 
 // error in specifying tpl_file
 if (empty($tpl)) {
-    if (strncmp($tpl_file, 'file:', 5) === 0) {
+    if (0 === strncmp($tpl_file, 'file:', 5)) {
         die('Not DB template') ;
     } else {
         die('Invalid tpl_file.') ;
@@ -192,9 +192,9 @@ if (file_exists($basefilepath)) {
     $renderer = new Text_Diff_Renderer_unified();
     $diff_str = htmlspecialchars($renderer->render($diff), ENT_QUOTES) ;
     foreach (explode("\n", $diff_str) as $line) {
-        if (ord($line) == 0x2d) {
+        if (0x2d == ord($line)) {
             $diff_from_file4disp .= "<span style='color:red;'>".$line."</span>\n" ;
-        } elseif (ord($line) == 0x2b) {
+        } elseif (0x2b == ord($line)) {
             $diff_from_file4disp .= "<span style='color:blue;'>".$line."</span>\n" ;
         } else {
             $diff_from_file4disp .= $line."\n" ;
@@ -205,7 +205,7 @@ if (file_exists($basefilepath)) {
 
 // diff from DB-default to selected DB template
 $diff_from_default4disp = '' ;
-if ($tpl['tpl_tplset'] != 'default') {
+if ('default' != $tpl['tpl_tplset']) {
     $original_error_level = error_reporting() ;
     error_reporting($original_error_level & ~ E_NOTICE & ~ E_WARNING) ;
     list($default_source) = $db->fetchRow($db->query('SELECT tpl_source FROM ' . $db->prefix('tplfile') . ' NATURAL LEFT JOIN ' . $db->prefix('tplsource') . " WHERE tpl_tplset='default' AND tpl_file='" . addslashes($tpl['tpl_file']) . "' AND tpl_module='" . addslashes($tpl['tpl_module']) . "'")) ;
@@ -213,9 +213,9 @@ if ($tpl['tpl_tplset'] != 'default') {
     $renderer = new Text_Diff_Renderer_unified();
     $diff_str = htmlspecialchars($renderer->render($diff), ENT_QUOTES) ;
     foreach (explode("\n", $diff_str) as $line) {
-        if (ord($line) == 0x2d) {
+        if (0x2d == ord($line)) {
             $diff_from_default4disp .= "<span style='color:red;'>".$line."</span>\n" ;
-        } elseif (ord($line) == 0x2b) {
+        } elseif (0x2b == ord($line)) {
             $diff_from_default4disp .= "<span style='color:blue;'>".$line."</span>\n" ;
         } else {
             $diff_from_default4disp .= $line."\n" ;
@@ -246,7 +246,7 @@ echo "
 	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:100%; height:20vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES) . '</textarea>
 	<br />
 ';
-if ($edit_mode == 'create') {
+if ('create' == $edit_mode) {
     // create form
     echo "
 	<label for='tpl_file'>"._MD_A_MYTPLSFORM_LABEL_TPLFILE."</label>

@@ -46,7 +46,7 @@ class User_MailjobSendAction extends User_Action
             return USER_FRAME_VIEW_ERROR;
         }
         
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
         
@@ -140,7 +140,7 @@ class User_MailjobSendAction extends User_Action
         $xoopsMailer->setBody($mailjob->getReplaceBody($to_user, $from_user));
 
         if (!$xoopsMailer->send(true)) {
-            if ($link->get('message') == '' && $xoopsMailer->multimailer->ErrorInfo == '') {
+            if ('' == $link->get('message') && '' == $xoopsMailer->multimailer->ErrorInfo) {
                 $link->set('message', 'Could not send mail. ');
             } else {
                 $link->set('message', $link->get('message') . ' / ' . $xoopsMailer->multimailer->ErrorInfo);

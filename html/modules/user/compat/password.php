@@ -186,7 +186,7 @@ namespace {
                 'algoName' => 'unknown',
                 'options' => [],
             ];
-            if (PasswordCompat\binary\_substr($hash, 0, 4) == '$2y$' && PasswordCompat\binary\_strlen($hash) == 60) {
+            if ('$2y$' == PasswordCompat\binary\_substr($hash, 0, 4) && 60 == PasswordCompat\binary\_strlen($hash)) {
                 $return['algo'] = PASSWORD_BCRYPT;
                 $return['algoName'] = 'bcrypt';
                 list($cost) = sscanf($hash, '$2y$%d$');
@@ -245,7 +245,7 @@ namespace {
                 $status |= (ord($ret[$i]) ^ ord($hash[$i]));
             }
 
-            return $status === 0;
+            return 0 === $status;
         }
     }
 

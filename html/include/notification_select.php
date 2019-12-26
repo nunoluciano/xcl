@@ -78,7 +78,7 @@ if ($xoops_notification['show']) {
     } else {
         $xoops_notification['show'] = 0;
     }
-    if ($event_count == 0) {
+    if (0 == $event_count) {
         $xoops_notification['show'] = 0;
     }
 }

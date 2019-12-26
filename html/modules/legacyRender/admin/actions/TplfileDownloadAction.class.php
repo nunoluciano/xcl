@@ -21,13 +21,13 @@ class LegacyRender_TplfileDownloadAction extends LegacyRender_Action
         $handler =& xoops_getmodulehandler('tplfile');
         $this->mObject =& $handler->get($id);
         
-        return $this->mObject != null ? LEGACYRENDER_FRAME_VIEW_SUCCESS : LEGACYRENDER_FRAME_VIEW_ERROR;
+        return null != $this->mObject ? LEGACYRENDER_FRAME_VIEW_SUCCESS : LEGACYRENDER_FRAME_VIEW_ERROR;
     }
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadSource();
-        if ($this->mObject->Source == null) {
+        if (null == $this->mObject->Source) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
 

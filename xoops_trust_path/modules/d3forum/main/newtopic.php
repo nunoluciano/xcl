@@ -18,7 +18,7 @@ if( ! empty( $forum_row['forum_external_link_format'] ) && empty( $external_link
 // get external ID and validate it
 if( $external_link_id ) {
 	$d3com = d3forum_main_get_comment_object( $mydirname , $forum_row['forum_external_link_format'] , $forum_id ) ;
-	if( ( $external_link_id = $d3com->validate_id( $external_link_id ) ) === false ) {
+	if(false === ( $external_link_id = $d3com->validate_id($external_link_id ) )) {
 		die( _MD_D3FORUM_ERR_INVALIDEXTERNALLINKID ) ;
 	}
 }

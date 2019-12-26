@@ -42,7 +42,7 @@ public function renderCell4BlockPosition($block_data)
     $stextbox = 'unselected';
     $value4extra_side = '' ;
 
-    if ($visible != 1) {
+    if (1 != $visible) {
         $sseln = " checked='checked'";
         $scoln = 'disabled';
     } else {
@@ -243,7 +243,7 @@ public function renderCell4BlockPosition($block_data)
 //dhtml
     include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 
-        if ($block_data['ctype']=='H' || empty($block_data['ctype'])) {
+        if ('H' == $block_data['ctype'] || empty($block_data['ctype'])) {
             $editor_configs           = [];
             $editor_configs['name']   = 'content_block';
             $editor_configs['value']  = $block_data['content'];
@@ -341,15 +341,15 @@ public function renderCell4BlockPosition($block_data)
 //	$ret = $block->getContent( 'S' , $block_data['ctype'] ) ;
 
     $c_type = $block_data['ctype'];
-        if ($c_type == 'H') {
+        if ('H' == $c_type) {
             $ret = str_replace('{X_SITEURL}', XOOPS_URL . '/', $block->getVar('content', 'N'));
-        } elseif ($c_type == 'P') {
+        } elseif ('P' == $c_type) {
             ob_start();
             echo eval($block->getVar('content', 'N'));
             $content = ob_get_contents();
             ob_end_clean();
             $ret = str_replace('{X_SITEURL}', XOOPS_URL . '/', $content);
-        } elseif ($c_type == 'S') {
+        } elseif ('S' == $c_type) {
             (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
             $content = str_replace('{X_SITEURL}', XOOPS_URL . '/', $block->getVar('content', 'N'));
             $ret = $myts->displayTarea($content, 1, 1);

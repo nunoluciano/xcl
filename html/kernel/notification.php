@@ -110,7 +110,7 @@ class XoopsNotification extends XoopsObject
         header('Connection: close', true);
         while (ob_get_level()) {
             $len = ob_get_length();
-            if ($len !== false) {
+            if (false !== $len) {
                 header('Content-Length: '.$len, true);
             }
             @ob_end_flush();
@@ -171,12 +171,12 @@ class XoopsNotification extends XoopsObject
         include_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
         $notification_handler = xoops_gethandler('notification');
 
-        if ($this->getVar('not_mode') == XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE) {
+        if (XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE == $this->getVar('not_mode')) {
             $notification_handler->delete($this);
             return $success;
         }
 
-        if ($this->getVar('not_mode') == XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT) {
+        if (XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT == $this->getVar('not_mode')) {
             $this->setVar('not_mode', XOOPS_NOTIFICATION_MODE_WAITFORLOGIN);
             $notification_handler->insert($this);
         }
@@ -277,7 +277,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('xoopsnotifications').' WHERE not_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $notification =new XoopsNotification();
                     $notification->assignVars($this->db->fetchArray($result));
                     $ret =& $notification;
@@ -296,7 +296,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      **/
     public function insert(&$notification)
     {
-        if (strtolower(get_class($notification)) != 'xoopsnotification') {
+        if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
         }
         if (!$notification->isDirty()) {
@@ -333,7 +333,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      **/
     public function delete(&$notification)
     {
-        if (strtolower(get_class($notification)) != 'xoopsnotification') {
+        if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE not_id = %u', $this->db->prefix('xoopsnotifications'), $notification->getVar('not_id'));
@@ -358,7 +358,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         $sql = 'SELECT * FROM '.$this->db->prefix('xoopsnotifications');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
-            $sort = ($criteria->getSort() != '') ? $criteria->getSort() : 'not_id';
+            $sort = ('' != $criteria->getSort()) ? $criteria->getSort() : 'not_id';
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -459,7 +459,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         $criteria->add(new Criteria('not_event', $this->_escapeValue($event)));
         $criteria->add(new Criteria('not_uid', (int)$user_id));
         $objects = $this->getObjects($criteria);
-        if (count($objects) == 1) {
+        if (1 == count($objects)) {
             $ret =& $objects[0];
         }
         return $ret;

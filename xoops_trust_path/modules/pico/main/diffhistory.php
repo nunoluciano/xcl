@@ -14,7 +14,7 @@ require dirname(dirname(__FILE__)) . '/include/common_prepend.inc.php';
 // add request
 $picoRequest['older_history_id'] = intval(@$_GET['older_history_id']);
 $picoRequest['newer_history_id'] = intval(@$_GET['newer_history_id']);
-$picoRequest['view'] = @$_GET['view'] == 'single' ? 'single' : 'diffhistories';
+$picoRequest['view'] = 'single' == @$_GET['view'] ? 'single' : 'diffhistories';
 
 // controller
 require_once dirname(dirname(__FILE__)) . '/class/PicoControllerDiffHistories.class.php';

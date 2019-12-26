@@ -44,7 +44,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
     {
         $handler =& $this->_getHandler();
         $count = $handler->getCount();
-        if ($count == 0) {
+        if (0 == $count) {
             return PROFILE_FRAME_VIEW_INDEX;
         }
         $filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
@@ -79,7 +79,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
             foreach ($dataArr as $profile) {
                 $data = [];
                 foreach ($columns as $column) {
-                    if (isset($defArr[$column]) && $defArr[$column]->get('type') == 'date') {
+                    if (isset($defArr[$column]) && 'date' == $defArr[$column]->get('type')) {
                         $value = $value ? formatTimestamp($profile->get($column), 'Y/n/j H:i') : '';
                     } else {
                         $value = $this->_encoding($profile->get($column));
@@ -97,7 +97,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
     protected function _encoding($text)
     {
         // japanese 
-        if (strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)===0) {
+        if (0 === strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)) {
             mb_convert_variables('SJIS', _CHARSET, $text);
         }
         return $text;

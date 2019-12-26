@@ -54,7 +54,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
         //
         // check filtering criterion and if module & tplset specified mode, then remove paging function.
         //
-        if ($this->mModule != null && $this->mTplset != null) {
+        if (null != $this->mModule && null != $this->mTplset) {
             $this->mNavi->setPerpage(0);
             $this->mNavi->freezePerpage();
         }

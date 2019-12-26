@@ -174,7 +174,7 @@ class xoopsmailer
     // public
     public function setTemplateDir($value)
     {
-        if (substr($value, -1, 1) != '/') {
+        if ('/' != substr($value, -1, 1)) {
             $value .= '/';
         }
         $this->templatedir = $value;
@@ -202,7 +202,7 @@ class xoopsmailer
     // public
     public function setFromUser(&$user)
     {
-        if (strtolower(get_class($user)) == 'xoopsuser') {
+        if ('xoopsuser' == strtolower(get_class($user))) {
             $this->fromUser =& $user;
         }
     }
@@ -251,13 +251,13 @@ class xoopsmailer
     public function send($debug = false)
     {
         global $xoopsConfig;
-        if ($this->body == '' && $this->template == '') {
+        if ('' == $this->body && '' == $this->template) {
             if ($debug) {
                 $this->errors[] = _MAIL_MSGBODY;
             }
             return false;
-        } elseif ($this->template != '') {
-            $path = ($this->templatedir != '') ? $this->templatedir . '' . $this->template : (XOOPS_ROOT_PATH . '/language/' . $xoopsConfig['language'] . '/mail_template/' . $this->template);
+        } elseif ('' != $this->template) {
+            $path = ('' != $this->templatedir) ? $this->templatedir . '' . $this->template : (XOOPS_ROOT_PATH . '/language/' . $xoopsConfig['language'] . '/mail_template/' . $this->template);
             if (!($fd = @fopen($path, 'r'))) {
                 if ($debug) {
                     $this->errors[] = _MAIL_FAILOPTPL;
@@ -509,7 +509,7 @@ class xoopsmailer
     public function setToGroups($group)
     {
         if (!is_array($group)) {
-            if (strtolower(get_class($group)) == 'xoopsgroup') {
+            if ('xoopsgroup' == strtolower(get_class($group))) {
                 $member_handler =& xoops_gethandler('member');
                 $groups=&$member_handler->getUsersByGroup($group->getVar('groupid'), true);
                 $this->setToUsers($groups, true);

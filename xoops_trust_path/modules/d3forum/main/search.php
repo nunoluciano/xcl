@@ -26,7 +26,7 @@ if( ! isset( $_GET['submit'] ) ) {
 	// naao to
 
 	if( ! empty( $_GET['keyword'] ) ) {
-		if( @$_GET['andor'] == 'or' ) {
+		if('or' == @$_GET['andor']) {
 			$andor4sql = '|| ' ;
 			$andor_selected = 'or' ;
 		} else {
@@ -131,12 +131,12 @@ if( ! isset( $_GET['submit'] ) ) {
 		if( is_object( $d3com[intval($row['forum_id'])]) ) {
 			$d3com_obj = $d3com[intval($row['forum_id'])];
 			$external_link_id = intval($row['topic_external_link_id']);
-			if( ( $external_link_id = $d3com_obj->validate_id( $external_link_id ) ) === false ) {
+			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
 		}	// naao to
 
-		if ($can_display == true) {	// naao
+		if (true == $can_display) {	// naao
 			$results4assign[] = [
 				'cat_title' => $myts->makeTboxData4Show($row['cat_title']) ,
 				'cat_id' => intval( $row['cat_id'] ) ,

@@ -64,7 +64,7 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 	// naao from
 	//$last_post_uname4html = is_object( $last_poster_obj ) ? $last_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
 	if (is_object( $last_poster_obj )) {
-		if ($xoopsModuleConfig['use_name'] == 1 && $last_poster_obj->getVar( 'name' ) ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $last_poster_obj->getVar('name' ) ) {
 			$last_post_uname4html =  $last_poster_obj->getVar( 'name' ) ;
 		} else {
 			$last_post_uname4html =  $last_poster_obj->getVar( 'uname' ) ;
@@ -75,7 +75,7 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 
 	//$first_post_uname4html = is_object( $first_poster_obj ) ? $first_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
 	if (is_object( $first_poster_obj )) {
-		if ($xoopsModuleConfig['use_name'] == 1 && $first_poster_obj->getVar( 'name' ) ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $first_poster_obj->getVar('name' ) ) {
 			$first_post_uname4html =  $first_poster_obj->getVar( 'name' ) ;
 		} else {
 			$first_post_uname4html =  $first_poster_obj->getVar( 'uname' ) ;
@@ -90,13 +90,13 @@ while( $topic_row = $db->fetchArray( $trs ) ) {
 	$can_display = true;	//default
 	if( is_object( $d3com ) ) {
 		$external_link_id = intval($topic_row['topic_external_link_id']);
-		if( ( $external_link_id = $d3com->validate_id( $external_link_id ) ) === false && ! $isadminormod ) {
+		if(false === ( $external_link_id = $d3com->validate_id($external_link_id ) ) && ! $isadminormod ) {
 				$can_display = false;
 		}
 	}	// naao to
 
 	// topics array
-	if($can_display == true) {	// naao
+	if(true == $can_display) {	// naao
 	    $topics[] = [
 		'id' => $topic_row['topic_id'] ,
 		'title' => $myts->makeTboxData4Show( $topic_row['topic_title'] , $topic_row['fp_number_entity'] , $topic_row['fp_special_entity'] ) ,

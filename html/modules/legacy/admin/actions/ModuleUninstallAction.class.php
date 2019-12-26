@@ -114,7 +114,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
         $handler =& xoops_gethandler('module');
         $this->mXoopsModule =& $handler->getByDirname($dirname);
 
-        if (!(is_object($this->mXoopsModule) && $this->mXoopsModule->get('isactive') == 0)) {
+        if (!(is_object($this->mXoopsModule) && 0 == $this->mXoopsModule->get('isactive'))) {
             return false;
         }
         $this->mXoopsModule->loadInfoAsVar($dirname);

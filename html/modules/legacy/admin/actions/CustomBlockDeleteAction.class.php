@@ -37,7 +37,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
     public function _isDeletable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('block_type') == 'C' && $this->mObject->get('visible') == 0);
+            return ('C' == $this->mObject->get('block_type') && 0 == $this->mObject->get('visible'));
         } else {
             return false;
         }

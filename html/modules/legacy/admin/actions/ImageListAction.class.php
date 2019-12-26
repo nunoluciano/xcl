@@ -41,7 +41,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -61,12 +61,12 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $result = parent::getDefaultView($controller, $xoopsUser);
-        if ($result == LEGACY_FRAME_VIEW_INDEX) {
+        if (LEGACY_FRAME_VIEW_INDEX == $result) {
             $cat_id = xoops_getrequest('imgcat_id');
             $handler =& xoops_getmodulehandler('imagecategory');
             $this->mCategory =& $handler->get($cat_id);
             
-            if ($this->mCategory == null) {
+            if (null == $this->mCategory) {
                 $result = LEGACY_FRAME_VIEW_ERROR;
             }
         }

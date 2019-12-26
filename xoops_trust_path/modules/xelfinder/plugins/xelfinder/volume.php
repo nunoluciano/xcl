@@ -4,7 +4,7 @@
  */
 
 $_path = '';
-if (strpos($path, '/[trust]') === 0) {
+if (0 === strpos($path, '/[trust]')) {
 	$path = str_replace('/[trust]', XOOPS_TRUST_PATH, $path);
 } else {
 	$_path = $path;

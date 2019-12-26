@@ -139,7 +139,7 @@ class Legacy_BlockInfoCollection
     {
         foreach (array_keys($this->mBlocks) as $idx) {
             $t_block =& $collection->get($this->mBlocks[$idx]->mFuncNum);
-            if ($t_block == null) {
+            if (null == $t_block) {
                 if (!$collection->funcExists($this->mBlocks[$idx])) {
                     $this->mBlocks[$idx]->mStatus = LEGACY_INSTALLINFO_STATUS_DELETED;
                 } else {
@@ -281,7 +281,7 @@ class Legacy_PreferenceInfoCollection
 
     public function add(&$preference)
     {
-        if ($preference->mName == 'com_rule' || $preference->mName == 'com_anonpost') {
+        if ('com_rule' == $preference->mName || 'com_anonpost' == $preference->mName) {
             if (isset($this->mComments[$preference->mName])) {
                 return false;
             }
@@ -290,7 +290,7 @@ class Legacy_PreferenceInfoCollection
             return true;
         }
 
-        if ($preference->mName == 'notification_enabled' || $preference->mName == 'notification_events') {
+        if ('notification_enabled' == $preference->mName || 'notification_events' == $preference->mName) {
             if (isset($this->mNotifications[$preference->mName])) {
                 return false;
             }
@@ -379,7 +379,7 @@ class Legacy_PreferenceInfoCollection
         //
         foreach (array_keys($this->mPreferences) as $idx) {
             $t_preference =& $collection->get($this->mPreferences[$idx]->mName);
-            if ($t_preference == null) {
+            if (null == $t_preference) {
                 $this->mPreferences[$idx]->mStatus = LEGACY_INSTALLINFO_STATUS_DELETED;
             } elseif (!$this->mPreferences[$idx]->isEqual($t_preference)) {
                 $this->mPreferences[$idx]->update($t_preference);
@@ -397,11 +397,11 @@ class Legacy_PreferenceInfoCollection
         //
         // Comments
         //
-        if (count($this->mComments) > 0 && count($collection->mComments) == 0) {
+        if (count($this->mComments) > 0 && 0 == count($collection->mComments)) {
             foreach (array_keys($this->mComments) as $idx) {
                 $this->mComments[$idx]->mStatus = LEGACY_INSTALLINFO_STATUS_DELETED;
             }
-        } elseif (count($this->mComments) == 0 && count($collection->mComments) > 0) {
+        } elseif (0 == count($this->mComments) && count($collection->mComments) > 0) {
             $this->mComments =& $collection->mComments;
             foreach (array_keys($this->mComments) as $idx) {
                 $this->mComments[$idx]->mStatus = LEGACY_INSTALLINFO_STATUS_NEW;
@@ -413,7 +413,7 @@ class Legacy_PreferenceInfoCollection
         //
         foreach (array_keys($this->mNotifications) as $idx) {
             $t_preference =& $collection->getNotify($this->mNotifications[$idx]->mName);
-            if ($t_preference == null) {
+            if (null == $t_preference) {
                 $this->mNotifications[$idx]->mStatus = LEGACY_INSTALLINFO_STATUS_DELETED;
             } elseif (!$this->mNotifications[$idx]->isEqual($t_preference)) {
                 $this->mNotifications[$idx]->update($t_preference);
@@ -656,7 +656,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 
     public function _loadCommentPreferenceInfomations(&$modversion, &$collection)
     {
-        if (isset($modversion['hasComments']) && $modversion['hasComments'] == true) {
+        if (isset($modversion['hasComments']) && true == $modversion['hasComments']) {
             require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
             $comRule = [
@@ -688,7 +688,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 
     public function _loadNotificationPreferenceInfomations(&$modversion, &$collection)
     {
-        if (isset($modversion['hasNotification']) && $modversion['hasNotification'] == true) {
+        if (isset($modversion['hasNotification']) && true == $modversion['hasNotification']) {
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
             require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 

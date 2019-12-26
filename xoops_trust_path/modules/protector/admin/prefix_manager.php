@@ -121,19 +121,19 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
                     $values[] = 'NULL';
                 // a number
                 // timestamp is numeric on some MySQL 4.1
-                } elseif (preg_match('/^[0-9]+(?:\.[0-9]+)?$/', $row[$j]) && $fields_meta->type != 'timestamp') {
+                } elseif (preg_match('/^[0-9]+(?:\.[0-9]+)?$/', $row[$j]) && 'timestamp' != $fields_meta->type) {
                     $values[] = $row[$j];
                 // a binary field
                 // Note: with mysqli, under MySQL 4.1.3, we get the flag
                 // "binary" for those field types (I don't know why)
                 } elseif (stristr($field_flags[$j], 'BINARY')
-                        && $fields_meta->type != 'datetime'
-                        && $fields_meta->type != 'date'
-                        && $fields_meta->type != 'time'
-                        && $fields_meta->type != 'timestamp'
+                        && 'datetime' != $fields_meta->type
+                        && 'date' != $fields_meta->type
+                        && 'time' != $fields_meta->type
+                        && 'timestamp' != $fields_meta->type
                        ) {
                     // empty blobs need to be different, but '0' is also empty :-(
-                    if (empty($row[$j]) && $row[$j] != '0') {
+                    if (empty($row[$j]) && '0' != $row[$j]) {
                         $values[] = '\'\'';
                     } else {
                         $values[] = '0x' . bin2hex($row[$j]);
@@ -209,7 +209,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     $prefix = $_POST['prefix'] ;
 
     // check if prefix is working
-    if ($prefix == XOOPS_DB_PREFIX) {
+    if (XOOPS_DB_PREFIX == $prefix) {
         die("You can't drop working tables") ;
     }
 
@@ -256,7 +256,7 @@ if (! $db->getRowsNum($srs)) {
 $tables = [];
 $prefixes = [];
 while ($row_table = $db->fetchArray($srs)) {
-    if (substr($row_table['Name'], -6) === '_users') {
+    if ('_users' === substr($row_table['Name'], -6)) {
         $prefixes[] = [
             'name' => substr($row_table['Name'], 0, -6),
             'updated' => $row_table['Update_time']
@@ -301,7 +301,7 @@ foreach ($prefixes as $prefix) {
     $prefix4disp = htmlspecialchars($prefix['name'], ENT_QUOTES) ;
     $ticket_input = $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin') ;
 
-    if ($prefix['name'] == XOOPS_DB_PREFIX) {
+    if (XOOPS_DB_PREFIX == $prefix['name']) {
         $del_button = '' ;
         $style_append = 'background:transparent' ;
     } else {

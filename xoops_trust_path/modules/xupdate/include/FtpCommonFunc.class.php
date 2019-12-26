@@ -67,7 +67,7 @@ class Xupdate_FtpCommonFunc
         if ($handle = opendir($dir)) {
             $this->Ftp->appendMes('removing directory: '.$dir.'<br />');
             while (false !== ($item = readdir($handle))) {
-                if ($item !== '.' && $item !== '..') {
+                if ('.' !== $item && '..' !== $item) {
                     if (is_dir("$dir/$item")) {
                         $this->_cleanup("$dir/$item");
                     } else {
@@ -152,7 +152,7 @@ class Xupdate_FtpCommonFunc
         if (is_bool($result)) {
             $result = ['ok' => $result, 'ng' => []];
         }
-        if ($result['ok'] === false || !$allow_empty && !$result['ok']) {
+        if (false === $result['ok'] || !$allow_empty && !$result['ok']) {
             $this->Ftp->appendMes('fail upload '.$where.'<br />');
             return false;
         } elseif (is_numeric($result['ok'])) {

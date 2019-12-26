@@ -55,7 +55,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         $t_queries = [];
         
         $myts =& MyTextSanitizer::sGetInstance();
-        if ($this->get('andor') == 'exact' && strlen($this->get('query')) >= $this->_mKeywordMin) {
+        if ('exact' == $this->get('andor') && strlen($this->get('query')) >= $this->_mKeywordMin) {
             $this->mQueries[] = $myts->addSlashes($this->get('query'));
         } else {
             $query = $this->get('query');
@@ -81,7 +81,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
     
     public function fetchAndor()
     {
-        if ($this->get('andor') == '') {
+        if ('' == $this->get('andor')) {
             $this->set('andor', 'AND');
         }
     }

@@ -50,7 +50,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $result = parent::getDefaultView($controller, $xoopsUser);
-        if ($result == LEGACY_FRAME_VIEW_INDEX) {
+        if (LEGACY_FRAME_VIEW_INDEX == $result) {
             $this->mImgcatId = xoops_getrequest('imgcat_id');
             $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
             $this->mCategory =& $handler->get($this->mImgcatId);
@@ -87,7 +87,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         // If current category object exists, check the permission of uploading.
         //
         $hasUploadPerm = null;
-        if ($this->mCategory != null) {
+        if (null != $this->mCategory) {
             $hasUploadPerm = $this->mCategory->hasUploadPerm($groups);
         }
         $render->setAttribute('hasUploadPerm', $hasUploadPerm);

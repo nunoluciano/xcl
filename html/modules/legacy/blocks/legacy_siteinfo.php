@@ -80,12 +80,12 @@ function b_legacy_siteinfo_edit($options)
     $form .= "<input type='text' name='options[]' value='".$options[2]."' />";
     $chk = '';
     $form .= '<br />' . _MB_LEGACY_SADMIN . '&nbsp;';
-    if ($options[3] == 1) {
+    if (1 == $options[3]) {
         $chk = " checked='checked'";
     }
     $form .= "<input type='radio' name='options[3]' value='1'".$chk . ' />&nbsp;' . _YES . '';
     $chk = '';
-    if ($options[3] == 0) {
+    if (0 == $options[3]) {
         $chk = ' checked="checked"';
     }
     $form .= "&nbsp;<input type='radio' name='options[3]' value='0'".$chk . ' />' . _NO . '';

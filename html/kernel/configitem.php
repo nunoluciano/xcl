@@ -127,7 +127,7 @@ class XoopsConfigItem extends XoopsObject
         $optionArr =& $handler->getConfigOptions(new Criteria('conf_id', $this->get('conf_id')));
         $list = [];
         foreach ($optionArr as $opt) {
-            if ($opt->get('confop_value')=='none') {
+            if ('none' == $opt->get('confop_value')) {
                 $list[] = '';
             } else {
                 $list = array_merge($list, Legacy_Utils::getCommonModuleList($opt->get('confop_value')));
@@ -343,7 +343,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$db->prefix('config').' WHERE conf_id='.$id;
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $myrow = $db->fetchArray($result);
                     $config =new XoopsConfigItem();
                     $config->assignVars($myrow);
@@ -362,7 +362,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      */
     public function insert(&$config)
     {
-        if (strtolower(get_class($config)) != 'xoopsconfigitem') {
+        if ('xoopsconfigitem' != strtolower(get_class($config))) {
             return false;
         }
         if (!$config->isDirty()) {
@@ -399,7 +399,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      */
     public function delete(&$config)
     {
-        if (strtolower(get_class($config)) != 'xoopsconfigitem') {
+        if ('xoopsconfigitem' != strtolower(get_class($config))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE conf_id = %u', $this->db->prefix('config'), $config->getVar('conf_id'));

@@ -11,7 +11,7 @@ function smarty_function_formmail($params, &$smarty)
 
 	// toEmails from 'adminmail'
 	if (empty($controller->toEmails)) {
-		if (trim($GLOBALS['xoopsConfig']['adminmail']) != '') {
+		if ('' != trim($GLOBALS['xoopsConfig']['adminmail'])) {
 			$controller->toEmails[] = $GLOBALS['xoopsConfig']['adminmail'];
 		}
 	}

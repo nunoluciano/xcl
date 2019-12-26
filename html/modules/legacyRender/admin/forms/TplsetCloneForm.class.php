@@ -49,7 +49,7 @@ class LegacyRender_TplsetCloneForm extends LegacyRender_TplsetEditForm
         //
         $handler = xoops_getmodulehandler('tplset');
 
-        if ($this->get('tplset_name') != null) {
+        if (null != $this->get('tplset_name')) {
             if ($handler->getCount(new Criteria('tplset_name', $this->get('tplset_name'))) > 0) {
                 $this->addErrorMessage(_AD_LEGACYRENDER_ERROR_UNIQUE_NAME);
             }

@@ -85,7 +85,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         //
         // Adjust user's post count.
         //
-        if ($comment->get('com_status') != 1 && $comment->get('com_uid') > 0) {
+        if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
             $handler =& xoops_gethandler('member');
 
             //
@@ -107,7 +107,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         //
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
         
-        if ($comment_config == false) {
+        if (false == $comment_config) {
             return;
         }
         

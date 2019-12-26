@@ -65,8 +65,8 @@ if (!function_exists('pico_oninstall_base')) {
 		$tplfile_handler = &xoops_gethandler('tplfile');
 		$tpl_path = dirname(__FILE__) . '/templates';
 		if ($handler = @opendir($tpl_path . '/')) {
-			while (($file = readdir($handler)) !== false) {
-				if (substr($file, 0, 1) == '.') continue;
+			while (false !== ($file = readdir($handler))) {
+				if ('.' == substr($file, 0, 1)) continue;
 				$file_path = $tpl_path . '/' . $file;
 				if (is_file($file_path)) {
 					$mtime = intval(@filemtime($file_path));

@@ -52,7 +52,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract
         }
 
         // views
-        if ($request['view'] == 'rss') {
+        if ('rss' == $request['view']) {
             $this->template_name         = 'db:' . $this->mydirname . '_independent_rss20.html';
             $this->is_need_header_footer = false;
             if (function_exists('mb_http_output')) {

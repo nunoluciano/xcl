@@ -90,7 +90,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('imagecategory').' WHERE imgcat_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $imgcat =new XoopsImagecategory();
                     $imgcat->assignVars($this->db->fetchArray($result));
                     $ret =& $imgcat;
@@ -102,7 +102,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
 
     public function insert(&$imgcat)
     {
-        if (strtolower(get_class($imgcat)) != 'xoopsimagecategory') {
+        if ('xoopsimagecategory' != strtolower(get_class($imgcat))) {
             return false;
         }
         if (!$imgcat->isDirty()) {
@@ -132,7 +132,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
 
     public function delete(&$imgcat)
     {
-        if (strtolower(get_class($imgcat)) != 'xoopsimagecategory') {
+        if ('xoopsimagecategory' != strtolower(get_class($imgcat))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE imgcat_id = %u', $this->db->prefix('imagecategory'), $imgcat->getVar('imgcat_id'));
@@ -149,7 +149,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         $sql = 'SELECT DISTINCT c.* FROM '.$this->db->prefix('imagecategory').' c LEFT JOIN '.$this->db->prefix('group_permission')." l ON l.gperm_itemid=c.imgcat_id WHERE (l.gperm_name = 'imgcat_read' OR l.gperm_name = 'imgcat_write')";
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $where = $criteria->render();
-            $sql .= ($where != '') ? ' AND '.$where : '';
+            $sql .= ('' != $where) ? ' AND ' . $where : '';
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
         }
@@ -177,7 +177,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('imagecategory').' i LEFT JOIN '.$this->db->prefix('group_permission')." l ON l.gperm_itemid=i.imgcat_id WHERE (l.gperm_name = 'imgcat_read' OR l.gperm_name = 'imgcat_write')";
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $where = $criteria->render();
-            $sql .= ($where != '') ? ' AND '.$where : '';
+            $sql .= ('' != $where) ? ' AND ' . $where : '';
         }
         if (!$result =& $this->db->query($sql)) {
             return 0;
@@ -195,7 +195,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
                 $criteriaTray->add(new Criteria('gperm_groupid', $gid), 'OR');
             }
             $criteria->add($criteriaTray);
-            if ($perm == 'imgcat_read' || $perm == 'imgcat_write') {
+            if ('imgcat_read' == $perm || 'imgcat_write' == $perm) {
                 $criteria->add(new Criteria('gperm_name', $perm));
                 $criteria->add(new Criteria('gperm_modid', 1));
             }

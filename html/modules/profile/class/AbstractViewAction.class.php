@@ -54,7 +54,7 @@ class Profile_AbstractViewAction extends Profile_AbstractAction
      */
     public function getDefaultView()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return PROFILE_FRAME_VIEW_ERROR;
         }
     

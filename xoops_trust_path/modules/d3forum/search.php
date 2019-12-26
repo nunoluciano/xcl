@@ -52,14 +52,14 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 	
 	$whr_uid = $userid > 0 ? "uid=$userid" : '1';
 
-	$whr_query = $andor == 'OR' ? '0' : '1' ;
+	$whr_query = 'OR' == $andor ? '0' : '1' ;
 	if( is_array( $keywords ) ) {
 		// I know this is not a right escaping, but I can't believe $keywords :-)
 		$keywords = array_map('stripslashes', $keywords);
 		foreach( $keywords as $word ) {
 			$word4sql = addslashes($word);
 			$word_or = ['subject LIKE \'%' . $word4sql . '%\' OR post_text LIKE \'%' . $word4sql . '%\''];
-			if (($charset === 'UTF-8' || $charset === 'EUC-JP') && function_exists('mb_convert_kana')) {
+			if (('UTF-8' === $charset || 'EUC-JP' === $charset) && function_exists('mb_convert_kana')) {
 				foreach(['a', 'A', 'k', 'KV', 'h', 'HV', 'c', 'C'] as $_op) {
 					$_word = mb_convert_kana($word, $_op, $charset);
 					if ($_word !== $word) {
@@ -69,7 +69,7 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 				}
 			}
 			$word4sql = join(' OR ', $word_or);
-			$whr_query .= $andor == 'EXACT' ? ' AND' : ' '.$andor ;
+			$whr_query .= 'EXACT' == $andor ? ' AND' : ' ' . $andor ;
 			$whr_query .= ' (' . $word4sql . ')' ;
 		}
 	}
@@ -91,11 +91,11 @@ function d3forum_global_search_base( $mydirname , $keywords , $andor , $limit , 
 		$can_display = true;	//default
 		if( is_object( $d3com[intval($forum_id)]) ) {
 			$d3com_obj = $d3com[intval($forum_id)];
-			if( ( $external_link_id = $d3com_obj->validate_id( $external_link_id ) ) === false ) {
+			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
 		}
-		if ($can_display == true) { // naao to
+		if (true == $can_display) { // naao to
 			// get context for module "search"
 
 			// nao-pon

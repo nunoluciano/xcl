@@ -149,7 +149,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('configoption').' WHERE confop_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $confoption =new XoopsConfigOption();
                     $confoption->assignVars($this->db->fetchArray($result));
                     $ret =& $confoption;
@@ -167,7 +167,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     public function insert(&$confoption)
     {
-        if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
+        if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }
         if (!$confoption->isDirty()) {
@@ -203,7 +203,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     public function delete(&$confoption)
     {
-        if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
+        if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE confop_id = %u', $this->db->prefix('configoption'), $confoption->getVar('confop_id', 'n'));

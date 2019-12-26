@@ -44,7 +44,7 @@ class User_UserRegister_confirmAction extends User_Action
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if (XCube_Root::getSingleton()->mContext->mRequest->getRequest('_form_control_cancel') != null) {
+        if (null != XCube_Root::getSingleton()->mContext->mRequest->getRequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -53,7 +53,7 @@ class User_UserRegister_confirmAction extends User_Action
         $this->mRegistForm->update($this->mNewUser);
         $this->mNewUser->set('uorder', $controller->mRoot->mContext->getXoopsConfig('com_order'), true);
         $this->mNewUser->set('umode', $controller->mRoot->mContext->getXoopsConfig('com_mode'), true);
-        if ($this->mConfig['activation_type'] == 1) {
+        if (1 == $this->mConfig['activation_type']) {
             $this->mNewUser->set('level', 1, true);
         }
 
@@ -109,18 +109,18 @@ class User_UserRegister_confirmAction extends User_Action
     {
         $activationType = $this->mConfig['activation_type'];
         
-        if ($activationType == 1) {
+        if (1 == $activationType) {
             return;
         }
 
         // Wmm..
-        $builder = ($activationType == 0) ? new User_RegistUserActivateMailBuilder()
+        $builder = (0 == $activationType) ? new User_RegistUserActivateMailBuilder()
                                           : new User_RegistUserAdminActivateMailBuilder();
 
         $director =new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
         $director->contruct();
         $mailer =& $builder->getResult();
-        XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), ($activationType == 0)? 'Register' : 'AdminActivate');
+        XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), (0 == $activationType)? 'Register' : 'AdminActivate');
         
         if (!$mailer->send()) {
         }    // TODO CHECKS and use '_MD_USER_ERROR_YOURREGMAILNG'
@@ -128,7 +128,7 @@ class User_UserRegister_confirmAction extends User_Action
     
     public function _eventNotifyMail(&$controller)
     {
-        if ($this->mConfig['new_user_notify'] == 1 && !empty($this->mConfig['new_user_notify_group'])) {
+        if (1 == $this->mConfig['new_user_notify'] && !empty($this->mConfig['new_user_notify_group'])) {
             $builder =new User_RegistUserNotifyMailBuilder();
             $director =new User_UserRegistMailDirector($builder, $this->mNewUser, $controller->mRoot->mContext->getXoopsConfig(), $this->mConfig);
             $director->contruct();
@@ -174,12 +174,12 @@ class User_UserRegister_confirmAction extends User_Action
     {
         $activationType = $this->mConfig['activation_type'];
 
-        if ($activationType == 0) {
+        if (0 == $activationType) {
             $render->setTemplateName('user_register_finish.html');
             $render->setAttribute('complete_message', _MD_USER_MESSAGE_YOURREGISTERED);
-        } elseif ($activationType == 1) {
+        } elseif (1 == $activationType) {
             $controller->executeRedirect(XOOPS_URL . '/', 4, _MD_USER_MESSAGE_ACTLOGIN);
-        } elseif ($activationType == 2) {
+        } elseif (2 == $activationType) {
             $render->setTemplateName('user_register_finish.html');
             $render->setAttribute('complete_message', _MD_USER_MESSAGE_YOURREGISTERED2);
         } else {

@@ -126,7 +126,7 @@ class XoopsTarDownloader extends XoopsDownloader
         for ($i = 0; $i < $this->archiver->numFiles; $i++) {
             if ($this->archiver->files[$i]['name'] == $dummyfile) {
                 $this->archiver->files[$i]['name'] = $filename;
-                if ($time != 0) {
+                if (0 != $time) {
                     $this->archiver->files[$i]['time'] = $time;
                 }
                 break;
@@ -154,7 +154,7 @@ class XoopsTarDownloader extends XoopsDownloader
         for ($i = 0; $i < $this->archiver->numFiles; $i++) {
             if ($this->archiver->files[$i]['name'] == $dummyfile) {
                 $this->archiver->files[$i]['name'] = $filename;
-                if ($time != 0) {
+                if (0 != $time) {
                     $this->archiver->files[$i]['time'] = $time;
                 }
                 break;

@@ -8,7 +8,7 @@ $core_type = altsys_get_core_type() ;
 $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
 $current_dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', @$_GET['dirname']) ;
-if ($current_dirname == '__CustomBlocks__') {
+if ('__CustomBlocks__' == $current_dirname) {
     return ;
 }
 
@@ -25,7 +25,7 @@ if ($current_dirname == '__CustomBlocks__') {
 $adminmenu = [];
 foreach ($modules4menu as $m4menu) {
     // get block info
-    if ($core_type != ALTSYS_CORE_TYPE_X22) {
+    if (ALTSYS_CORE_TYPE_X22 != $core_type) {
         list($block_count_all) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix('newblocks') . ' WHERE mid=' . $m4menu->getVar('mid'))) ;
         list($block_count_visible) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix('newblocks') . ' WHERE mid=' . $m4menu->getVar('mid') . ' AND visible>0')) ;
         // $block_desc = " $block_count_all($block_count_visible)" ;

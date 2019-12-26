@@ -151,13 +151,13 @@ function d3forum_import_getimportablemodules( $mydirname )
 		if( file_exists( $dirpath.'/mytrustdirname.php' ) ) {
 			include $dirpath.'/mytrustdirname.php' ;
 		}
-		if( $mytrustdirname == 'd3forum' && $dirname != $mydirname ) {
+		if('d3forum' == $mytrustdirname && $dirname != $mydirname ) {
 			// d3forum
 			$ret[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
-		} else if( $dirname == 'xhnewbb' ) {
+		} else if('xhnewbb' == $dirname) {
 			// xhnewbb
 			$ret[$mid] = 'xhnewbb:'.$module->getVar('name')."($dirname)" ;
-		} else if( $dirname == 'newbb' ) {
+		} else if('newbb' == $dirname) {
 			$judge_sql = 'SELECT COUNT(*) FROM ' . $db->prefix('bb_votedata') ;
 			$judge_result = $db->query( $judge_sql ) ;
 			if( $judge_result ) {
@@ -327,7 +327,7 @@ function d3forum_import_from_newbb1( $mydirname , $import_mid )
 				} */
 			} else {
 				$can_post = 1 ;
-				if( ( $groupid == 3 && $forum_access == 1 ) || $forum_access == 3 ) {
+				if((3 == $groupid && 1 == $forum_access) || 3 == $forum_access) {
 					$can_post = 0 ;
 				}
 				$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,null,$groupid,$can_post,$can_post,$can_post,1,0)" ) ;
@@ -430,7 +430,7 @@ function d3forum_import_from_xhnewbb( $mydirname , $import_mid )
 				}
 			} else {
 				$can_post = 1 ;
-				if( ( $groupid == 3 && $forum_access == 1 ) || $forum_access == 3 ) {
+				if((3 == $groupid && 1 == $forum_access) || 3 == $forum_access) {
 					$can_post = 0 ;
 				}
 				$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,null,$groupid,$can_post,$can_post,$can_post,1,0)" ) ;
@@ -491,7 +491,7 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	// check forum_id
 	$frs = $db->query('SELECT * FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$forum_id" ) ;
 	if( ! $frs ) d3forum_import_errordie() ;
-	if( $db->getRowsNum( $frs ) != 1 ) die( 'Invalid forum_id' ) ;
+	if(1 != $db->getRowsNum($frs )) die( 'Invalid forum_id' ) ;
 
 	// get comments configs from xoops_version.php of the module
 	$module_handler =& xoops_gethandler( 'module' ) ;
@@ -505,7 +505,7 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	if( empty( $exparam ) ) $exparam = '' ;
 	else $exparam = str_replace( '&amp;' , '&' , $exparam ) ;
 
-	if( substr( $exparam , -1 ) != '&' ) $exparam .= '&' ;
+	if('&' != substr($exparam , -1 )) $exparam .= '&' ;
 
 	// import it into the forum record as format
 	$format = '{XOOPS_URL}/modules/'.$module_obj->getVar('dirname').'/'.$com_configs['pageName'].'?'.$exparam.$com_configs['itemName'].'=%s' ;

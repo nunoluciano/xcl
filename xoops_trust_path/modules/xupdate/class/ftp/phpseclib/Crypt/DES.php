@@ -1623,8 +1623,8 @@ class Crypt_DES extends Crypt_Base
      */
     public function isValidEngine($engine)
     {
-        if ($this->key_length_max == 8) {
-            if ($engine == CRYPT_ENGINE_OPENSSL) {
+        if (8 == $this->key_length_max) {
+            if (CRYPT_ENGINE_OPENSSL == $engine) {
                 $this->cipher_name_openssl_ecb = 'des-ecb';
                 $this->cipher_name_openssl     = 'des-' . $this->_openssl_translate_mode();
             }

@@ -299,12 +299,12 @@ function b_d3forum_list_topics_show( $options )
 		if( is_object( $d3com[intval($topic_row['forum_id'])]) ) {
 			$d3com_obj = $d3com[intval($topic_row['forum_id'])];
 			$external_link_id = intval($topic_row['topic_external_link_id']);
-			if( ( $external_link_id = $d3com_obj->validate_id( $external_link_id ) ) === false ) {
+			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
 		}	// naao to
 
-		if ($can_display == true) {	// naao
+		if (true == $can_display) {	// naao
 
 		    $topic4assign = [
 			'id' => intval( $topic_row['topic_id'] ) ,
@@ -556,12 +556,12 @@ function b_d3forum_list_posts_show( $options )
 		if( is_object( $d3com[intval($post_row['forum_id'])]) ) {
 			$d3com_obj = $d3com[intval($post_row['forum_id'])];
 			$external_link_id = intval($post_row['topic_external_link_id']);
-			if( ( $external_link_id = $d3com_obj->validate_id( $external_link_id ) ) === false ) {
+			if(false === ( $external_link_id = $d3com_obj->validate_id($external_link_id ) )) {
 				$can_display = false;
 			}
 		}	// naao to
 
-		if ($can_display == true) {	// naao
+		if (true == $can_display) {	// naao
 		    $post4assign = [
 			'id' => intval( $post_row['post_id'] ) ,
 			'subject' => $myts->makeTboxData4Show( $post_row['subject'] ) ,
@@ -647,7 +647,7 @@ function b_d3forum_list_posts_edit( $options )
 
 function b_d3forum_check_limits( $var )
 {
-	return ( trim( strtolower( $var ) ) !== 'auto' )? intval( $var ) : 'auto';
+	return ('auto' !== trim(strtolower($var ) ))? intval($var ) : 'auto';
 }
 
 // get object for comment integration

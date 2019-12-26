@@ -93,7 +93,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
         $time = time() - ($day * 86400);
         $sql = 'DELETE FROM `' . $this->mTable . '` ';
         $sql.= 'WHERE `utime` < ' . $time . ' ';
-        if ($type == 0) {
+        if (0 == $type) {
             $sql.= 'AND `is_read` = 1 ';
         } else {
             $sql.= 'AND `is_read` < 2 ';
@@ -114,7 +114,7 @@ class MessageInboxHandler extends XoopsObjectGenericHandler
                 for ($i = 0; $i < $criteria->getCountChildElements(); $i++) {
                     $this->_chane_old($criteria->criteriaElements[$i]);
                 }
-            } elseif (get_class($criteria) == 'Criteria') {
+            } elseif ('Criteria' == get_class($criteria)) {
                 switch ($criteria->column) {
           case 'read_msg': $criteria->column = 'is_read'; break;
           case 'to_userid': $criteria->column = 'uid'; break;

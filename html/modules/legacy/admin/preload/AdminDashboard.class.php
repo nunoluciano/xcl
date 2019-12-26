@@ -143,7 +143,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $type = 1;
             
             // Render Raw
-            if ($type == 0) {
+            if (0 == $type) {
  
                 $welcome = '<b>Welcome to XOOPS Cube Legacy!!</b><br />Have a nice and happy time!';
 
@@ -156,7 +156,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
 
             // Render Theme Template
-            elseif ($type == 1) {
+            elseif (1 == $type) {
             //Dashboard
             $template = self::getTemplate('admin_dashboard.html');
           
@@ -203,13 +203,13 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $systeminfo_message[] = _MD_AM_LANGUAGE . ' : ' . $root->mContext->mXoopsConfig['language'];
         
             $debugmode = intval($root->mContext->mXoopsConfig['debug_mode']);
-                if ($debugmode == 0) {
+                if (0 == $debugmode) {
                     $systeminfo_message[] = _MD_AM_DEBUGMODE . ' : ' . _MD_AM_DEBUGMODE0;
-                } elseif ($debugmode == 1) {
+                } elseif (1 == $debugmode) {
                     $systeminfo_message[] = _MD_AM_DEBUGMODE . ' : ' . _MD_AM_DEBUGMODE1;
-                } elseif ($debugmode == 2) {
+                } elseif (2 == $debugmode) {
                     $systeminfo_message[] = _MD_AM_DEBUGMODE . ' : ' . _MD_AM_DEBUGMODE2;
-                } elseif ($debugmode == 3) {
+                } elseif (3 == $debugmode) {
                     $systeminfo_message[] = _MD_AM_DEBUGMODE . ' : ' . _MD_AM_DEBUGMODE3;
                 }
 
@@ -349,7 +349,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $renderTarget->setAttribute($attribute, $attributes[$attribute]);
         }
         $renderSystem->render($renderTarget);
-        if ($return == true) {
+        if (true == $return) {
             $ret = $renderTarget->getResult();
             return $ret;
         } else {
@@ -365,11 +365,11 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $file = $prefix . $file;
         }
         
-        if ($infoArr['theme'] != null && $infoArr['dirname'] != null) {
+        if (null != $infoArr['theme'] && null != $infoArr['dirname']) {
             return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $file;
-        } elseif ($infoArr['theme'] != null) {
+        } elseif (null != $infoArr['theme']) {
             return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/' . $file;
-        } elseif ($infoArr['dirname'] != null) {
+        } elseif (null != $infoArr['dirname']) {
             return XOOPS_MODULE_PATH . '/' . $infoArr['dirname'] . '/admin/templates/' . $file;
         }
         

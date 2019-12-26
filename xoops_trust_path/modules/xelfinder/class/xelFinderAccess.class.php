@@ -42,9 +42,9 @@ class xelFinderAccess {
 			//$str = preg_quote($str, '/');
 			$exts = array_map('trim', explode(',', $str));
 			foreach($exts as $ext) {
-				if ($ext === '') continue;
-				if (substr($ext, -1) === '/') {
-					if ($ext === '/') {
+				if ('' === $ext) continue;
+				if ('/' === substr($ext, -1)) {
+					if ('/' === $ext) {
 						$_dirs[] = '(?=)';
 					} else {
 						$_dirs[] = preg_quote(rtrim($ext, '/'), '/');

@@ -39,7 +39,7 @@ if (count($config_handler->getConfigs(new Criteria('conf_modid', $xoopsModule->m
         $title = defined('_MD_A_MYMENU_MYPREFERENCES') ? _MD_A_MYMENU_MYPREFERENCES : _PREFERENCES ;
         array_push($adminmenu, ['title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences']) ;
     } else {
-        if ($module_handler->getByDirName('legacy') !== false) {
+        if (false !== $module_handler->getByDirName('legacy')) {
             // legacy->preferences
             array_push($adminmenu, ['title' => _PREFERENCES, 'link' => XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $xoopsModule->mid()]) ;
         } else {
@@ -55,7 +55,7 @@ $mymenu_link = substr(strstr($mymenu_uri, '/admin/'), 1) ;
 
 // link conversion from relative to absolute
 foreach (array_keys($adminmenu) as $i) {
-    if (stristr($adminmenu[$i]['link'], XOOPS_URL) === false) {
+    if (false === stristr($adminmenu[$i]['link'], XOOPS_URL)) {
         $adminmenu[$i]['link'] = XOOPS_URL."/modules/$mydirname/" . $adminmenu[$i]['link'] ;
     }
 }

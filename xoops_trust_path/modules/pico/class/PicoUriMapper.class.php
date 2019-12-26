@@ -96,11 +96,11 @@ class PicoUriMapper
         }
 
         // controller/view
-        if (@$_GET['page'] == 'singlecontent' || substr($_SERVER['REQUEST_URI'], -19) == '?page=singlecontent') {
+        if ('singlecontent' == @$_GET['page'] || '?page=singlecontent' == substr($_SERVER['REQUEST_URI'], -19)) {
             $this->request['view'] = 'singlecontent';
-        } elseif (@$_GET['page'] == 'print' || substr($_SERVER['REQUEST_URI'], -11) == '?page=print') {
+        } elseif ('print' == @$_GET['page'] || '?page=print' == substr($_SERVER['REQUEST_URI'], -11)) {
             $this->request['view'] = 'print';
-        } elseif (@$_GET['page'] == 'rss' || substr($_SERVER['REQUEST_URI'], -9) == '?page=rss') {
+        } elseif ('rss' == @$_GET['page'] || '?page=rss' == substr($_SERVER['REQUEST_URI'], -9)) {
             $this->request['controller'] = 'latestcontents';
             $this->request['view']       = 'rss';
         } elseif (!empty($_GET['tag'])) {
@@ -112,7 +112,7 @@ class PicoUriMapper
         } elseif ($cat_id > 0) {
             $this->request['controller'] = 'category';
             $this->request['view']       = 'list';
-        } elseif (@$_GET['cat_id'] !== '0' && ($this->config['show_menuinmoduletop'] || @$_GET['page'] == 'menu')) {
+        } elseif ('0' !== @$_GET['cat_id'] && ($this->config['show_menuinmoduletop'] || 'menu' == @$_GET['page'])) {
             $this->request['controller'] = 'menu';
             $this->request['view']       = 'menu';
         } else {
@@ -126,7 +126,7 @@ class PicoUriMapper
         $this->config = $currentCategoryObj->getOverriddenModConfig();
         $cat_data     = $currentCategoryObj->getData();
 
-        if (empty($this->config['show_listasindex']) && $request['controller'] == 'category' && $request['view'] == 'list' && empty($request['content_id'])) {
+        if (empty($this->config['show_listasindex']) && 'category' == $request['controller'] && 'list' == $request['view'] && empty($request['content_id'])) {
             $top_content_id = pico_main_get_top_content_id_from_cat_id($currentCategoryObj->mydirname, $cat_data['id']);
             if ($top_content_id > 0) {
                 // redirect to the top of the content
@@ -185,7 +185,7 @@ class PicoUriMapper
         }
 
         // check cat_vpath in DB (2nd)
-        if (substr($path_info, -1) == '/') {
+        if ('/' == substr($path_info, -1)) {
             $db     = XoopsDatabaseFactory::getDatabaseConnection();
             $result = $db->query('SELECT cat_id FROM ' . $db->prefix($this->mydirname . '_categories') . ' WHERE cat_vpath=' . $db->quoteString($path_info) . ' OR cat_vpath=' . $db->quoteString(substr($path_info, 0, -1)));
             list($cat_id) = $db->fetchRow($result);

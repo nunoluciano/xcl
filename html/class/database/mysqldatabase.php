@@ -93,7 +93,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
             return false;
         }
         
-        if ($selectdb != false) {
+        if (false != $selectdb) {
             if (!mysql_select_db(XOOPS_DB_NAME)) {
                 $this->logger->addQuery('', $this->error(), $this->errno());
                 return false;
@@ -300,7 +300,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
                 // [0] contains the prefixed query
                 // [4] contains unprefixed table name
                 $prefixed_query = SqlUtility::prefixQuery(trim($query), $this->prefix());
-                if ($prefixed_query != false) {
+                if (false != $prefixed_query) {
                     $this->query($prefixed_query[0]);
                 }
             }
@@ -352,7 +352,7 @@ class XoopsMySQLDatabase extends XoopsDatabase
     public function prepare($query)
     {
         $count=0;
-        while (($pos=strpos($query, '?'))!==false) {
+        while (false !== ($pos=strpos($query, '?'))) {
             $pre=substr($query, 0, $pos);
             $after='';
             if ($pos+1<=strlen($query)) {

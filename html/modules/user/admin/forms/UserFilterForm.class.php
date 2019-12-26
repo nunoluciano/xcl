@@ -149,10 +149,10 @@ class User_UserFilterForm extends User_AbstractFilterForm
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
 
-            if ($option_field == 'inactive') {
+            if ('inactive' == $option_field) {
                 //only inactive users
             $this->_mCriteria->add(new Criteria('level', '0'));
-            } elseif ($option_field == 'active') {
+            } elseif ('active' == $option_field) {
                 //only active users
             $this->_mCriteria->add(new Criteria('level', '0', '>'));
             } else {

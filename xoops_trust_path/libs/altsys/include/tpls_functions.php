@@ -14,7 +14,7 @@ function tplsadmin_import_data($tplset, $tpl_file, $tpl_source, $lastmodified = 
     }
 
     // check the template exists in the tplset
-    if ($tplset != 'default') {
+    if ('default' != $tplset) {
         list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix('tplfile') . " WHERE tpl_tplset='" . addslashes($tplset) . "' AND tpl_file='" . addslashes($tpl_file) . "'")) ;
         if ($count <= 0) {
             // copy from 'default' to the tplset
@@ -132,7 +132,7 @@ function tplsadmin_copy_templates_f2db($tplset_to, $whr_append = '1')
 function tplsadmin_get_basefilepath($dirname, $type, $tpl_file)
 {
     // module instance
-    $path = $basefilepath = XOOPS_ROOT_PATH.'/modules/'.$dirname.'/templates/'.($type=='block'?'blocks/':'').$tpl_file ;
+    $path = $basefilepath = XOOPS_ROOT_PATH.'/modules/'.$dirname.'/templates/'.('block' == $type ?'blocks/':'') . $tpl_file ;
 
     if (is_callable('Legacy_Utils::getTrustDirnameByDirname')) {
         $mytrustdirname = Legacy_Utils::getTrustDirnameByDirname($dirname);
@@ -144,12 +144,12 @@ function tplsadmin_get_basefilepath($dirname, $type, $tpl_file)
     } elseif ($mytrustdirname || @include(XOOPS_ROOT_PATH.'/modules/'.$dirname.'/mytrustdirname.php')) {
         // D3 module base
         if (! empty($mytrustdirname)) {
-            $mid_path = $mytrustdirname == 'altsys' ? '/libs/' : '/modules/' ;
+            $mid_path = 'altsys' == $mytrustdirname ? '/libs/' : '/modules/' ;
 
-            $path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').substr($tpl_file, strlen($dirname) + 1) ;
+            $path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.('block' == $type ?'blocks/':'') . substr($tpl_file, strlen($dirname) + 1) ;
             //new for xcck etc.other trust_module
             if (! file_exists($path)) {
-                $path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.($type=='block'?'blocks/':'').$tpl_file ;
+                $path = XOOPS_TRUST_PATH.$mid_path.$mytrustdirname.'/templates/'.('block' == $type ?'blocks/':'') . $tpl_file ;
                 if (! file_exists($path)) {
                     $path = $basefilepath;
                 }
@@ -163,7 +163,7 @@ function tplsadmin_get_basefilepath($dirname, $type, $tpl_file)
 
 function tplsadmin_die($msg, $target_dirname = '', $wait = 2)
 {
-    if (strtolower($_SERVER['REQUEST_METHOD']) === 'post') {
+    if ('post' === strtolower($_SERVER['REQUEST_METHOD'])) {
         redirect_header('?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$target_dirname, $wait, $msg) ;
         exit ;
     } else {

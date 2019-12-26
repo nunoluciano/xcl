@@ -21,13 +21,13 @@ foreach ($modules as $module) {
 	if (file_exists($dirpath . '/mytrustdirname.php')) {
 		include $dirpath . '/mytrustdirname.php';
 	}
-	if ($mytrustdirname == 'pico' && $dirname != $mydirname) {
+	if ('pico' == $mytrustdirname && $dirname != $mydirname) {
 		// pico
 		$importable_modules[$mid] = 'pico:' . $module->getVar('name') . " ($dirname)";
 	} else if (stristr(@$tables[0], 'tinycontent')) {
 		// tinyd
 		$importable_modules[$mid] = 'tinyd:' . $module->getVar('name') . " ($dirname)";
-	} else if (substr(@$tables[4], -10) == '_mimetypes' && substr(@$tables[3], -5) == '_meta' && substr(@$tables[2], -6) == '_files') {
+	} else if ('_mimetypes' == substr(@$tables[4], -10) && '_meta' == substr(@$tables[3], -5) && '_files' == substr(@$tables[2], -6)) {
 		$importable_modules[$mid] = 'smartsection:' . $module->getVar('name') . " ($dirname)";
 	}
 }

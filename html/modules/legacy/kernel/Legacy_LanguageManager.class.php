@@ -41,7 +41,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
     {
         #ifdef _MBSTRING_LANGUAGE
         if (defined('_MBSTRING_LANGUAGE') && function_exists('mb_language')) {
-            if (@mb_language(_MBSTRING_LANGUAGE) != false && @mb_internal_encoding(_CHARSET) != false) {
+            if (false != @mb_language(_MBSTRING_LANGUAGE) && false != @mb_internal_encoding(_CHARSET)) {
                 define('MBSTRING', true);
             } else {
                 mb_language('neutral');
@@ -101,7 +101,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      */
     public function loadPageTypeMessageCatalog($type)
     {
-        if (strpos($type, '.') === false) {
+        if (false === strpos($type, '.')) {
             if (!$this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->mLanguageName . '/' . $type . '.php')) {
                 $this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->getFallbackLanguage() . '/' . $type . '.php');
             }

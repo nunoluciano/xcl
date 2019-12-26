@@ -29,7 +29,7 @@ class User_AvatarSelectForm extends XCube_ActionForm
     {
         $ids = $this->get('avatar_id');
         
-        if (count($ids) != 1) {
+        if (1 != count($ids)) {
             $this->addErrorMessage(_MD_USER_ERROR_AVATAR_SELECT);
         }
         
@@ -37,7 +37,7 @@ class User_AvatarSelectForm extends XCube_ActionForm
             $this->mSelectedId = $avatar_id;
         }
         
-        if ($this->mSelectedId == 0) {
+        if (0 == $this->mSelectedId) {
             return;
         }
         
@@ -61,7 +61,7 @@ class User_AvatarSelectForm extends XCube_ActionForm
     {
         $handler =& xoops_getmodulehandler('avatar', 'user');
         
-        if ($this->mSelectedId == 0) {
+        if (0 == $this->mSelectedId) {
             $obj->set('user_avatar', 'blank.gif');
         } else {
             $avatar =& $handler->get($this->mSelectedId);

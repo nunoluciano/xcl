@@ -73,9 +73,9 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', $option_field);
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == 'visible') {
+            if ('visible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('image_display', '1'));
-            } elseif ($this->mOptionField == 'invisible') {
+            } elseif ('invisible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('image_display', '0'));
             } else {
                 //all
@@ -85,11 +85,11 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', $option_field2);
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == 'gif') {
+            if ('gif' == $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('image_mimetype', 'image/gif'));
-            } elseif ($this->mOptionField2 == 'png') {
+            } elseif ('png' == $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('image_mimetype', 'image/png'));
-            } elseif ($this->mOptionField2 == 'jpeg') {
+            } elseif ('jpeg' == $this->mOptionField2) {
                 $cri = new CriteriaCompo();
                 $cri->add(new Criteria('image_mimetype', 'image/jpeg'));
                 $cri->add(new Criteria('image_mimetype', 'image/pjpeg'), 'OR');

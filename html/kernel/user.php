@@ -237,7 +237,7 @@ class XoopsUser extends XoopsObject
      */
     public function isAdmin($module_id = null)
     {
-        if ($module_id === null) {
+        if (null === $module_id) {
             global $xoopsModule;
             $module_id = isset($xoopsModule) ? $xoopsModule->getVar('mid', 'n') : 1;
         } elseif ((int)$module_id < 1) {
@@ -264,7 +264,7 @@ class XoopsUser extends XoopsObject
      */
     public function isActive()
     {
-        if ($this->getVar('level') == 0) {
+        if (0 == $this->getVar('level')) {
             return false;
         }
         return true;
@@ -461,7 +461,7 @@ class XoopsUser extends XoopsObject
     public function hasAvatar()
     {
         $avatar=$this->getVar('user_avatar');
-        if (!$avatar || $avatar == 'blank.gif') {
+        if (!$avatar || 'blank.gif' == $avatar) {
             return false;
         }
 
@@ -553,7 +553,7 @@ class XoopsUserHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('users').' WHERE uid='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $user =new XoopsUser();
                     $user->assignVars($this->db->fetchArray($result));
                     $ret =& $user;
@@ -572,7 +572,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     public function insert(&$user, $force = false)
     {
-        if (strtolower(get_class($user)) != 'xoopsuser') {
+        if ('xoopsuser' != strtolower(get_class($user))) {
             return false;
         }
         if (!$user->isDirty()) {
@@ -593,7 +593,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         if ($user->isNew()) {
             $config = xoops_gethandler('config');
             $options = $config->getConfigs(new Criteria('conf_name', 'notify_method'));
-            if (isset($options) and (count($options) == 1)) {
+            if (isset($options) and (1 == count($options))) {
                 $notify_method = $options[0]->getvar('conf_value');
             }
             $uid = $this->db->genId('users_uid_seq');
@@ -627,7 +627,7 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     public function delete(&$user, $force = false)
     {
-        if (strtolower(get_class($user)) != 'xoopsuser') {
+        if ('xoopsuser' != strtolower(get_class($user))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE uid = %u', $this->db->prefix('users'), $user->getVar('uid'));
@@ -656,7 +656,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         $sql = 'SELECT * FROM '.$this->db->prefix('users');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
             }
             $limit = $criteria->getLimit();
@@ -690,7 +690,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         $sql = 'SELECT * FROM '.$this->db->prefix('users');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' '.$criteria->renderWhere();
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
             }
             $limit = $criteria->getLimit();

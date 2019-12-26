@@ -82,16 +82,16 @@ class XoopsSimpleObject extends AbstractXoopsObject
                 return;
 
             case XOBJ_DTYPE_INT:
-                $vars['value'] = $value !== null ? (int)$value : null;
+                $vars['value'] = null !== $value ? (int)$value : null;
                 return;
 
             case XOBJ_DTYPE_FLOAT:
-                $vars['value'] = $value !== null ? (float)$value : null;
+                $vars['value'] = null !== $value ? (float)$value : null;
                 return;
 
             case XOBJ_DTYPE_STRING:
                 $len = $vars['maxlength'];
-                $vars['value'] = ($len !== null && strlen($value) > $len) ? xoops_substr($value, 0, $len, null) : $value;
+                $vars['value'] = (null !== $len && strlen($value) > $len) ? xoops_substr($value, 0, $len, null) : $value;
                 return;
 
             case XOBJ_DTYPE_TEXT:

@@ -45,9 +45,9 @@ class PicoExtraFields
 
         // text fields
         foreach ($_POST as $key => $val) {
-            if (strncmp($key, PICO_EXTRA_FIELDS_PREFIX, strlen(PICO_EXTRA_FIELDS_PREFIX)) === 0) {
+            if (0 === strncmp($key, PICO_EXTRA_FIELDS_PREFIX, strlen(PICO_EXTRA_FIELDS_PREFIX))) {
                 $ret[substr($key, strlen(PICO_EXTRA_FIELDS_PREFIX))] = $this->stripSlashesGPC($val);
-            } elseif (strncmp($key, PICO_EXTRA_FIELDS_PREFIX_SHORT, strlen(PICO_EXTRA_FIELDS_PREFIX_SHORT)) === 0) {
+            } elseif (0 === strncmp($key, PICO_EXTRA_FIELDS_PREFIX_SHORT, strlen(PICO_EXTRA_FIELDS_PREFIX_SHORT))) {
                 $ret[substr($key, strlen(PICO_EXTRA_FIELDS_PREFIX_SHORT))] = $this->stripSlashesGPC($val);
             }
         }
@@ -69,9 +69,9 @@ class PicoExtraFields
     public function uploadImages(&$extra_fields)
     {
         foreach ($_FILES as $key => $file) {
-            if (strncmp($key, PICO_EXTRA_IMAGES_PREFIX, strlen(PICO_EXTRA_IMAGES_PREFIX)) === 0) {
+            if (0 === strncmp($key, PICO_EXTRA_IMAGES_PREFIX, strlen(PICO_EXTRA_IMAGES_PREFIX))) {
                 $this->uploadImage($extra_fields, $file, substr($key, strlen(PICO_EXTRA_IMAGES_PREFIX)));
-            } elseif (strncmp($key, PICO_EXTRA_IMAGES_PREFIX_SHORT, strlen(PICO_EXTRA_IMAGES_PREFIX_SHORT)) === 0) {
+            } elseif (0 === strncmp($key, PICO_EXTRA_IMAGES_PREFIX_SHORT, strlen(PICO_EXTRA_IMAGES_PREFIX_SHORT))) {
                 $this->uploadImage($extra_fields, $file, substr($key, strlen(PICO_EXTRA_IMAGES_PREFIX_SHORT)));
             }
         }
@@ -90,7 +90,7 @@ class PicoExtraFields
         }
 
         // command for removing. upload "remove.gif"
-        if ($file['name'] == PICO_EXTRA_IMAGES_REMOVAL_COMMAND) {
+        if (PICO_EXTRA_IMAGES_REMOVAL_COMMAND == $file['name']) {
             foreach (array_keys($this->image_sizes) as $size_key) {
                 unlink($this->getImageFullPath($field_name, $size_key, $extra_fields[$field_name]));
             }

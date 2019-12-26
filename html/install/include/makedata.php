@@ -212,7 +212,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
     //
     $hasconfig = isset($modversion['config']) ? 1 : 0;
     $hasmain = 0;
-    if (isset($modversion['hasMain']) && $modversion['hasMain'] == 1) {
+    if (isset($modversion['hasMain']) && 1 == $modversion['hasMain']) {
         $hasmain = 1;
     }
     $dbm->insert('modules', " VALUES (${mid}, '" . constant($module_name) . "', 100, " . $time . ", 0, 1, '${module}', ${hasmain}, 1, 0, ${hasconfig}, 0, 0)");
@@ -291,7 +291,7 @@ function installModule(&$dbm, $mid, $module, $module_name, $language = 'english'
             $valuetype = $configInfo['valuetype'];
             $default = $configInfo['default'];
             
-            if ($valuetype == 'array') {
+            if ('array' == $valuetype) {
                 $default = serialize(explode('|', trim($default)));
             }
                 

@@ -13,7 +13,7 @@ class D3forumPageNav
         $this->total   = intval($total_items);
         $this->perpage = intval($items_perpage);
         $this->current = intval($current_start);
-        if ($extra_arg != '' && (substr($extra_arg, -5) != '&amp;' || substr($extra_arg, -1) != '&')) {
+        if ('' != $extra_arg && ('&amp;' != substr($extra_arg, -5) || '&' != substr($extra_arg, -1))) {
             $extra_arg .= '&amp;';
         }
         list($_uri_) = explode('?', $_SERVER['REQUEST_URI'], 2);
@@ -43,12 +43,12 @@ class D3forumPageNav
             while ($i <= $total_pages) {
                 if ($i == $current_page) {
                     $ret .= '<b>(' . $i . ')</b> ';
-                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || $i == 1 || $i == $total_pages) {
+                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || 1 == $i || $i == $total_pages) {
                     if ($i == $total_pages && $current_page < $total_pages - $offset) {
                         $ret .= '... ';
                     }
                     $ret .= '<a href="' . $this->url . (($i - 1) * $this->perpage) . '">' . $i . '</a> ';
-                    if ($i == 1 && $current_page > 1 + $offset) {
+                    if (1 == $i && $current_page > 1 + $offset) {
                         $ret .= '... ';
                     }
                 }
@@ -93,7 +93,7 @@ class D3forumPageNav
                     $nav[$j]['class'] = 'this';
                     $nav[$j]['url']   = '';
                     $j++;
-                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || $i == 1 || $i == $total_pages) {
+                } elseif (($i > $current_page - $offset && $i < $current_page + $offset) || 1 == $i || $i == $total_pages) {
                     if ($i == $total_pages && $current_page < $total_pages - $offset) {
                         $nav[$j]['txt']   = '... ';
                         $nav[$j]['class'] = 'txt';
@@ -104,7 +104,7 @@ class D3forumPageNav
                     $nav[$j]['class'] = 'link';
                     $nav[$j]['url']   = $this->url . (($i - 1) * $this->perpage);
                     $j++;
-                    if ($i == 1 && $current_page > 1 + $offset) {
+                    if (1 == $i && $current_page > 1 + $offset) {
                         $nav[$j]['txt']   = '... ';
                         $nav[$j]['class'] = 'txt';
                         $nav[$j]['url']   = '';

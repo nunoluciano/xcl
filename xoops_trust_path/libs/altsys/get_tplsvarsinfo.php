@@ -12,7 +12,7 @@ include_once dirname(__FILE__) . '/include/altsys_functions.php';
 
 
 // this page can be called only from altsys
-if ($xoopsModule->getVar('dirname') != 'altsys') {
+if ('altsys' != $xoopsModule->getVar('dirname')) {
     die('this page can be called only from UI Components');
 }
 
@@ -37,7 +37,7 @@ function convert_array2info_recursive($var_name, $var_value, $sum_array_name)
     switch (gettype($var_value)) {
         case 'array':
             foreach ($var_value as $key => $val) {
-                if (gettype($key) == 'integer') {
+                if ('integer' == gettype($key)) {
                     $GLOBALS[$sum_array_name][$var_name] = '(array)';
                     continue;
                 }
@@ -112,10 +112,10 @@ $tplsvarsinfo_mod_tpl = [];
 $tplsvarsinfo_total = [];
 
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-    while (($file = readdir($handler)) !== false) {
+    while (false !== ($file = readdir($handler))) {
 
         // skip files other than tplsvars_* files
-        if (substr($file, 0, 9) !== 'tplsvars_') {
+        if ('tplsvars_' !== substr($file, 0, 9)) {
             continue;
         }
 

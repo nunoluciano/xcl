@@ -14,7 +14,7 @@ function protector_postcommon()
     }
 
     // configs writable check
-    if (@$_SERVER['REQUEST_URI'] == '/admin.php' && !is_writable(dirname(dirname(__FILE__)).'/configs')) {
+    if ('/admin.php' == @$_SERVER['REQUEST_URI'] && !is_writable(dirname(dirname(__FILE__)) . '/configs')) {
         trigger_error('You should turn the directory '.dirname(dirname(__FILE__)).'/configs writable', E_USER_WARNING);
     }
 
@@ -34,7 +34,7 @@ function protector_postcommon()
     if (in_array(substr(XOOPS_VERSION, 0, 12), ['XOOPS 2.0.16', 'XOOPS 2.0.13', 'XOOPS 2.2.4'])) {
         $config_handler = &xoops_gethandler('config');
         $xoopsMailerConfig = &$config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
-        if ($xoopsMailerConfig['mailmethod'] == 'sendmail' && md5_file(XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php') == 'ee1c09a8e579631f0511972f929fe36a') {
+        if ('sendmail' == $xoopsMailerConfig['mailmethod'] && 'ee1c09a8e579631f0511972f929fe36a' == md5_file(XOOPS_ROOT_PATH . '/class/mail/phpmailer/class.phpmailer.php')) {
             echo '<strong>phpmailer security hole! Change the preferences of mail from "sendmail" to another, or upgrade the core right now! (message by protector)</strong>';
         }
     }
@@ -123,7 +123,7 @@ function protector_postcommon()
         if ($denyipmove) {
             $purge = false;
             if ($protector->is_ipv6) {
-                if (strpos($last_ip, ':') !== false) {
+                if (false !== strpos($last_ip, ':')) {
                     $protector_last_numip = str_replace(':', '', $last_ip);
                     $protector_last_numip = substr($protector_last_numip, 0, @$conf['session_fixed_topbitv6'] / 4);
                     $remote_numip = str_replace(':', '', $protector->remote_ip);
@@ -135,7 +135,7 @@ function protector_postcommon()
                     $purge = true;
                 }
             } else {
-                if (strpos($last_ip, '.') !== false) {
+                if (false !== strpos($last_ip, '.')) {
                     $ips = explode('.',  $last_ip);
                     $protector_last_numip = @$ips[0] * 0x1000000 + @$ips[1] * 0x10000 + @$ips[2] * 0x100 + @$ips[3];
                     $ips = explode('.',  $protector->remote_ip);

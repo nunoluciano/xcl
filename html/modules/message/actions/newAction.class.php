@@ -25,14 +25,14 @@ class newAction extends AbstractAction
             $inboxid = intval($this->root->mContext->mRequest->getRequest('res'));
             $to_userid = intval($this->root->mContext->mRequest->getRequest('to_userid'));
       
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ('POST' == $_SERVER['REQUEST_METHOD']) {
                 $this->mActionForm->fetch();
                 $this->mActionForm->validate();
                 if ($this->mActionForm->hasError()) {
                     $this->errMsg = $this->mActionForm->getErrorMessages();
                 } elseif (!$this->chk_use($this->mActionForm->fuid) || !$this->chk_deny($this->mActionForm->fuid)) {
                     $this->errMsg = _MD_MESSAGE_SETTINGS_MSG6;
-                } elseif ($this->mActionForm->get('Legacy_Event_User_Submit') != '') {
+                } elseif ('' != $this->mActionForm->get('Legacy_Event_User_Submit')) {
                     $this->isError = true;
                     $modHand = xoops_getmodulehandler('inbox', _MY_DIRNAME);
                     $modObj = $modHand->create();
@@ -70,9 +70,9 @@ class newAction extends AbstractAction
         $fromid = $this->root->mContext->mXoopsUser->get('uid');
         $modObj = $this->getSettings($uid);
         $blacklist = $modObj->get('blacklist');
-        if ($blacklist == '') {
+        if ('' == $blacklist) {
             return true;
-        } elseif (strpos($blacklist, ',') !== false) {
+        } elseif (false !== strpos($blacklist, ',')) {
             $lists = explode(',', $blacklist);
             if (!in_array($fromid, $lists)) {
                 return true;
@@ -109,7 +109,7 @@ class newAction extends AbstractAction
   private function usemail()
   {
       $setting = $this->getSettings($this->mActionForm->fuid);
-      if ($setting->get('tomail') == 1) {
+      if (1 == $setting->get('tomail')) {
           $userhand = xoops_gethandler('user');
           $user = $userhand->get($this->mActionForm->fuid);
       
@@ -134,7 +134,7 @@ class newAction extends AbstractAction
     
         $tpl->assign('sitename', $this->root->mContext->mXoopsConfig['sitename']);
         $tpl->assign('uname', $this->root->mContext->mXoopsUser->get('uname'));
-        if ($body == 1) {
+        if (1 == $body) {
             $tpl->assign('note', $this->mActionForm->get('note'));
         } else {
             $tpl->assign('note', XCube_Utils::formatString(_MD_MESSAGE_MAILBODY, XOOPS_URL.'/'));

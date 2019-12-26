@@ -142,7 +142,7 @@ function d3forum_common_is_necessary_antispam( $user , $mod_config )
 {
 	$belong_groups = is_object( $user ) ? $user->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 
-	if( trim( $mod_config['antispam_class'] ) == '' ) return false ;
+	if('' == trim($mod_config['antispam_class'] )) return false ;
 	if( ! is_object( $user ) ) return true ;
 	if( count( array_intersect( $mod_config['antispam_groups'] , $belong_groups ) ) == count( $belong_groups ) ) return true ;
 	return false ;
@@ -181,7 +181,7 @@ function d3forum_common_simple_request( $params )
 	$queries = [];
 	foreach( $params as $key => $type ) {
 		$key_by_dot = explode( '.' , $key , 2 ) ;
-		if( sizeof( $key_by_dot ) == 1 ) {
+		if(1 == sizeof($key_by_dot )) {
 			$whr_prefix = '' ;
 		} else {
 			$whr_prefix = $key_by_dot[0].'.' ;

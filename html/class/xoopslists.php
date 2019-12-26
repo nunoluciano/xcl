@@ -37,7 +37,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
         public static function getTimeZoneList()
         {
             $root =& XCube_Root::getSingleton();
-            if ($root->mLanguageManager !== null && !defined('_TZ_GMT0')) {
+            if (null !== $root->mLanguageManager && !defined('_TZ_GMT0')) {
                 $root->mLanguageManager->loadPageTypeMessageCatalog('timezone');
             }
             $time_zone_list = [
@@ -106,7 +106,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
             if (is_dir($dirname) && $handle = opendir($dirname)) {
                 while (false !== ($file = readdir($handle))) {
                     if (!preg_match("/^\..*$/", $file)) {
-                        if (strtolower($file) != 'cvs' && is_dir($dirname.$file)) {
+                        if ('cvs' != strtolower($file) && is_dir($dirname . $file)) {
                             $dirlist[$file]=$file;
                         }
                     }
@@ -124,7 +124,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
         public static function &getFileListAsArray($dirname, $prefix= '')
         {
             $filelist = [];
-            if (substr($dirname, -1) == '/') {
+            if ('/' == substr($dirname, -1)) {
                 $dirname = substr($dirname, 0, -1);
             }
             if (is_dir($dirname) && $handle = opendir($dirname)) {
@@ -170,7 +170,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
             if ($handle = opendir($dirname)) {
                 while (false !== ($file = readdir($handle))) {
                     if ((!preg_match("/^[\.]{1,2}$/", $file) && preg_match("/(\.htm|\.html|\.xhtml)$/i", $file) && !is_dir($file))) {
-                        if (strtolower($file) != 'cvs' && !is_dir($file)) {
+                        if ('cvs' != strtolower($file) && !is_dir($file)) {
                             $file = $prefix.$file;
                             $filelist[$file] = $prefix.$file;
                         }
@@ -190,7 +190,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
         public static function &getAvatarsList($avatar_dir= '')
         {
             $avatars = [];
-            if ($avatar_dir != '') {
+            if ('' != $avatar_dir) {
                 $avatars =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/avatar/' . $avatar_dir . '/', $avatar_dir . '/');
             } else {
                 $avatars =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/avatar/');
@@ -223,7 +223,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
         public static function &getSubjectsList($sub_dir= '')
         {
             $subjects = [];
-            if ($sub_dir != '') {
+            if ('' != $sub_dir) {
                 $subjects =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/subject/' . $sub_dir, $sub_dir . '/');
             } else {
                 $subjects =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/subject/');

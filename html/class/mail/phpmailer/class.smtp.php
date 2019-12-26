@@ -331,10 +331,10 @@ class SMTP
         $this->edebug('Connection: opened', self::DEBUG_CONNECTION);
         // SMTP server can take longer to respond, give longer timeout for first read
         // Windows does not have support for this timeout function
-        if (substr(PHP_OS, 0, 3) != 'WIN') {
+        if ('WIN' != substr(PHP_OS, 0, 3)) {
             $max = ini_get('max_execution_time');
             // Don't bother if unlimited
-            if ($max != 0 && $timeout > $max) {
+            if (0 != $max && $timeout > $max) {
                 @set_time_limit($timeout);
             }
             stream_set_timeout($this->smtp_conn, $timeout, 0);
@@ -665,13 +665,13 @@ class SMTP
 
         $field = substr($lines[0], 0, strpos($lines[0], ':'));
         $in_headers = false;
-        if (!empty($field) && strpos($field, ' ') === false) {
+        if (!empty($field) && false === strpos($field, ' ')) {
             $in_headers = true;
         }
 
         foreach ($lines as $line) {
             $lines_out = [];
-            if ($in_headers and $line == '') {
+            if ($in_headers and '' == $line) {
                 $in_headers = false;
             }
             //Break this line up into several smaller lines if it's too long
@@ -702,7 +702,7 @@ class SMTP
             //Send the lines to the server
             foreach ($lines_out as $line_out) {
                 //RFC2821 section 4.5.2
-                if (!empty($line_out) and $line_out[0] == '.') {
+                if (!empty($line_out) and '.' == $line_out[0]) {
                     $line_out = '.' . $line_out;
                 }
                 $this->client_send($line_out . self::CRLF);
@@ -884,7 +884,7 @@ class SMTP
             return false;
         }
         //Reject line breaks in all commands
-        if (strpos($commandstring, "\n") !== false or strpos($commandstring, "\r") !== false) {
+        if (false !== strpos($commandstring, "\n") or false !== strpos($commandstring, "\r")) {
             $this->setError("Command '$command' contained line breaks");
             return false;
         }
@@ -1049,10 +1049,10 @@ class SMTP
 
         // the tight logic knot ;)
         if (!array_key_exists($name, $this->server_caps)) {
-            if ($name == 'HELO') {
+            if ('HELO' == $name) {
                 return $this->server_caps['EHLO'];
             }
-            if ($name == 'EHLO' || array_key_exists('EHLO', $this->server_caps)) {
+            if ('EHLO' == $name || array_key_exists('EHLO', $this->server_caps)) {
                 return false;
             }
             $this->setError('HELO handshake was used. Client knows nothing about server extensions');
@@ -1101,7 +1101,7 @@ class SMTP
             // If response is only 3 chars (not valid, but RFC5321 S4.2 says it must be handled),
             // or 4th character is a space, we are done reading, break the loop,
             // string array access is a micro-optimisation over strlen
-            if (!isset($str[3]) or (isset($str[3]) and $str[3] == ' ')) {
+            if (!isset($str[3]) or (isset($str[3]) and ' ' == $str[3])) {
                 break;
             }
             // Timed-out? Log and break

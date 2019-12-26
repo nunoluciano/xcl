@@ -36,7 +36,7 @@ if ($forum) {
 
 $e = (!empty($_GET['e']))? $_GET['e'] : '';
 
-if ($e === 'sjis') {
+if ('sjis' === $e) {
 	$encode = 'SJIS';
 	$encoding = 'Shift-JIS';
 } else {
@@ -116,7 +116,7 @@ $xoopsTpl->assign( $outputs );
 
 // RSS Build
 $out = $xoopsTpl->fetch( 'db:'.$mydirname.'_main_rss.html' ) ;
-if ($encode !== _CHARSET) {
+if (_CHARSET !== $encode) {
 	$out = mb_convert_encoding($out, $encode, _CHARSET);
 }
 

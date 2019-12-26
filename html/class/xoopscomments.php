@@ -101,7 +101,7 @@ class XoopsComments extends XoopsObject
         if (empty($comment_id)) {
             $comment_id = $this->db->getInsertId();
         }
-        if ($isnew != false) {
+        if (false != $isnew) {
             $sql = sprintf('UPDATE %s SET posts = posts+1 WHERE uid = %u', $this->db->prefix('users'), $user_id);
             if (!$result = $this->db->query($sql)) {
                 echo 'Could not update user posts.';
@@ -182,28 +182,28 @@ class XoopsComments extends XoopsObject
     {
         global $xoopsConfig, $xoopsUser;
         echo "<form method='get' action='".xoops_getenv('PHP_SELF')."'><table width='100%' border='0' cellspacing='1' cellpadding='2'><tr><td class='bg1' align='center'><select name='mode'><option value='nocomments'";
-        if ($mode == 'nocomments') {
+        if ('nocomments' == $mode) {
             echo " selected='selected'";
         }
         echo '>' . _NOCOMMENTS . "</option><option value='flat'";
-        if ($mode == 'flat') {
+        if ('flat' == $mode) {
             echo " selected='selected'";
         }
         echo '>' . _FLAT . "</option><option value='thread'";
-        if ($mode == 'thread' || $mode == '') {
+        if ('thread' == $mode || '' == $mode) {
             echo " selected='selected'";
         }
         echo '>' . _THREADED . "</option></select><select name='order'><option value='0'";
-        if ($order != 1) {
+        if (1 != $order) {
             echo " selected='selected'";
         }
         echo '>' . _OLDESTFIRST . "</option><option value='1'";
-        if ($order == 1) {
+        if (1 == $order) {
             echo " selected='selected'";
         }
         echo '>' . _NEWESTFIRST . "</option></select><input type='hidden' name='item_id' value='" . intval($item_id) . "' /><input type='submit' value='" . _CM_REFRESH . "' />";
-        if ($xoopsConfig['anonpost'] == 1 || $xoopsUser) {
-            if ($mode != 'flat' || $mode != 'nocomments' || $mode != 'thread') {
+        if (1 == $xoopsConfig['anonpost'] || $xoopsUser) {
+            if ('flat' != $mode || 'nocomments' != $mode || 'thread' != $mode) {
                 $mode = 'flat';
             }
             echo "&nbsp;<input type='button' onclick='location=\"newcomment.php?item_id=".intval($item_id) . '&amp;order=' . intval($order) . '&amp;mode=' . $mode . "\"' value='" . _CM_POSTCOMMENT . "' />";
@@ -223,7 +223,7 @@ class XoopsComments extends XoopsObject
         $reply_image = '';
         $delete_image = '';
         $post_date = formatTimestamp($this->getVar('date'), 'm');
-        if ($this->getVar('user_id') != 0) {
+        if (0 != $this->getVar('user_id')) {
             $poster = new XoopsUser($this->getVar('user_id'));
             if (!$poster->isActive()) {
                 $poster = 0;
@@ -231,7 +231,7 @@ class XoopsComments extends XoopsObject
         } else {
             $poster = 0;
         }
-        if ($this->getVar('icon') != null && $this->getVar('icon') != '') {
+        if (null != $this->getVar('icon') && '' != $this->getVar('icon')) {
             $subject_image = "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . '/images/subject/' . $this->getVar('icon') . "' alt='' />";
         } else {
             $subject_image =  "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . "/images/icons/no_posticon.gif' alt='' />";
@@ -263,7 +263,7 @@ class XoopsComments extends XoopsObject
             $user_from = _CM_FROM;
             $user_from .= $poster->getVar('user_from');
             $rank = $poster->rank();
-            if ($rank['image'] != '') {
+            if ('' != $rank['image']) {
                 $rank['image'] = "<img src='".XOOPS_UPLOAD_URL . '/' . $rank['image'] . "' alt='' />";
             }
             $avatar_image = "<img src='".XOOPS_UPLOAD_URL . '/' . $poster->getVar('user_avatar') . "' alt='' />";
@@ -284,27 +284,27 @@ class XoopsComments extends XoopsObject
                 $email_image = '';
             }
             $posterurl = $poster->getVar('url');
-            if ($posterurl != '') {
+            if ('' != $posterurl) {
                 $www_image = "<a href='$posterurl' rel='external'><img src='".XOOPS_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' /></a>";
             } else {
                 $www_image = '';
             }
-            if ($poster->getVar('user_icq') != '') {
+            if ('' != $poster->getVar('user_icq')) {
                 $icq_image = "<a href='https://wwp.icq.com/scripts/search.dll?to=".$poster->getVar('user_icq', 'E') . "'><img src='" . XOOPS_URL . "/images/icons/icq_add.gif' alt='" . _ADD . "' /></a>";
             } else {
                 $icq_image = '';
             }
-            if ($poster->getVar('user_aim') != '') {
+            if ('' != $poster->getVar('user_aim')) {
                 $aim_image = "<a href='aim:goim?screenname=".$poster->getVar('user_aim', 'E') . '&amp;message=Hi+' . $poster->getVar('user_aim') . "+Are+you+there?'><img src='" . XOOPS_URL . "/images/icons/aim.gif' alt='aim' /></a>";
             } else {
                 $aim_image = '';
             }
-            if ($poster->getVar('user_yim') != '') {
+            if ('' != $poster->getVar('user_yim')) {
                 $yim_image = "<a href='https://edit.yahoo.com/config/send_webmesg?.target=".$poster->getVar('user_yim', 'E') . "&amp;.src=pg'><img src='" . XOOPS_URL . "/images/icons/yim.gif' alt='yim' /></a>";
             } else {
                 $yim_image = '';
             }
-            if ($poster->getVar('user_msnm') != '') {
+            if ('' != $poster->getVar('user_msnm')) {
                 $msnm_image = "<a href='".XOOPS_URL . '/userinfo.php?uid=' . $poster->getVar('uid') . "'><img src='" . XOOPS_URL . "/images/icons/msnm.gif' alt='msnm' /></a>";
             } else {
                 $msnm_image = '';
@@ -327,14 +327,14 @@ class XoopsComments extends XoopsObject
 
     public function showTreeItem($order, $mode, $color_num)
     {
-        if ($color_num == 1) {
+        if (1 == $color_num) {
             $bg = 'even';
         } else {
             $bg = 'odd';
         }
         $prefix = str_replace('.', '&nbsp;&nbsp;&nbsp;&nbsp;', $this->getVar('prefix'));
         $date = formatTimestamp($this->getVar('date'), 'm');
-        if ($this->getVar('icon') != '') {
+        if ('' != $this->getVar('icon')) {
             $icon = 'subject/' . $this->getVar('icon', 'E');
         } else {
             $icon = 'icons/no_posticon.gif';

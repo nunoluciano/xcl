@@ -53,7 +53,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         //
         // Cover the spec of admin.php of the system module, for the compatibility.
         //
-        if (isset($_REQUEST['fct']) && $_REQUEST['fct'] == 'users') {
+        if (isset($_REQUEST['fct']) && 'users' == $_REQUEST['fct']) {
             $GLOBALS['xoopsOption']['pagetype'] = 'user';
         }
         
@@ -68,14 +68,14 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         //
         // Auto pre-loading.
         //
-        if ($this->mController->mRoot->getSiteConfig('Legacy', 'AutoPreload') == 1) {
+        if (1 == $this->mController->mRoot->getSiteConfig('Legacy', 'AutoPreload')) {
             $this->mController->_processPreload(XOOPS_ROOT_PATH . '/preload/admin');
         }
     }
     
     public function setupModuleContext(&$context, $dirname)
     {
-        if ($dirname == null) {
+        if (null == $dirname) {
             $dirname = 'legacy';
         }
         
@@ -105,16 +105,16 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
             return $ret_module;
         }
         
-        if ($this->mController->mRoot->mContext->mModule != null) {
+        if (null != $this->mController->mRoot->mContext->mModule) {
             $module =& $this->mController->mRoot->mContext->mXoopsModule;
             
-            if ($module->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
+            if ('legacy' == $module->get('dirname') && isset($_REQUEST['dirname'])) {
                 if (in_array(xoops_getrequest('action'), $this->_mSpecialActions)) {
                     $handler =& xoops_gethandler('module');
                     $t_xoopsModule =& $handler->getByDirname(xoops_getrequest('dirname'));
                     $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
                 }
-            } elseif ($module->get('dirname') == 'legacy' && xoops_getrequest('action') == 'PreferenceEdit' && isset($_REQUEST['confmod_id'])) {
+            } elseif ('legacy' == $module->get('dirname') && 'PreferenceEdit' == xoops_getrequest('action') && isset($_REQUEST['confmod_id'])) {
                 $handler =& xoops_gethandler('module');
                 $t_xoopsModule =& $handler->get(intval(xoops_getrequest('confmod_id')));
                 $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
@@ -155,10 +155,10 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
             return false;
         }
         
-        if ($this->mController->mRoot->mContext->mModule != null) {
+        if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
             
-            if ($dirname == 'legacy') {
+            if ('legacy' == $dirname) {
                 return $principal->isInRole('Site.Administrator');
             } elseif (defined('_LEGACY_ALLOW_ACCESS_FROM_ANY_ADMINS_')) {
                 return $this->mController->mRoot->mContext->mXoopsUser->isAdmin(0);
@@ -178,7 +178,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         
         $root->mContext->mXoopsModule->loadInfo($root->mContext->mXoopsModule->get('dirname'));
         
-        if (isset($root->mContext->mXoopsModule->modinfo['cube_style']) && $root->mContext->mXoopsModule->modinfo['cube_style'] != false) {
+        if (isset($root->mContext->mXoopsModule->modinfo['cube_style']) && false != $root->mContext->mXoopsModule->modinfo['cube_style']) {
             $root->mLanguageManager->loadModuleMessageCatalog($root->mContext->mXoopsModule->get('dirname'));
         }
         $root->mLanguageManager->loadModuleAdminMessageCatalog($root->mContext->mXoopsModule->get('dirname'));

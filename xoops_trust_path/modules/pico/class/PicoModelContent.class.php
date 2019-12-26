@@ -234,7 +234,7 @@ class PicoContent
 
         // marking for compiling errors
         if (@$content4assign['last_cached_time'] && $content4assign['last_cached_time'] < $content4assign['modified_time']) {
-            if ($content4assign['body_cached'] == _MD_PICO_ERR_COMPILEERROR) {
+            if (_MD_PICO_ERR_COMPILEERROR == $content4assign['body_cached']) {
                 return $content4assign['body_cached'];
             } else {
                 $db->queryF('UPDATE ' . $db->prefix($this->mydirname . '_contents') . ' SET body_cached=' . $db->quoteString(_MD_PICO_ERR_COMPILEERROR) . ' WHERE content_id=' . intval($content4assign['content_id']));
@@ -258,13 +258,13 @@ class PicoContent
                 continue;
             }
             // xcode special check
-            if ($filter == 'xcode') {
+            if ('xcode' == $filter) {
                 $nl2br = $smiley = 0;
                 for ($j = $i + 1; $j < $i + 3; $j++) {
-                    if (@$filters[$j] == 'nl2br') {
+                    if ('nl2br' == @$filters[$j]) {
                         $nl2br       = 1;
                         $filters[$j] = '';
-                    } elseif (@$filters[$j] == 'smiley') {
+                    } elseif ('smiley' == @$filters[$j]) {
                         $smiley      = 1;
                         $filters[$j] = '';
                     }
@@ -301,7 +301,7 @@ class PicoContent
 
         $ret4edit = [
                         'vpath'              => htmlspecialchars($this->data['vpath'], ENT_QUOTES),
-                        'subject'            => $this->data['approval'] == 0 && !$this->data['visible'] ? htmlspecialchars($this->data['subject_waiting'], ENT_QUOTES) : htmlspecialchars($this->data['subject'], ENT_QUOTES),
+                        'subject'            => 0 == $this->data['approval'] && !$this->data['visible'] ? htmlspecialchars($this->data['subject_waiting'], ENT_QUOTES) : htmlspecialchars($this->data['subject'], ENT_QUOTES),
                         'subject_waiting'    => htmlspecialchars($this->data['subject_waiting'], ENT_QUOTES),
                         'htmlheader'         => htmlspecialchars($this->data['htmlheader'], ENT_QUOTES),
                         'htmlheader_waiting' => htmlspecialchars($this->data['htmlheader_waiting'], ENT_QUOTES),

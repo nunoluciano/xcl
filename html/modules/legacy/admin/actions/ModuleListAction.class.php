@@ -43,7 +43,7 @@ class Legacy_ModuleListAction extends Legacy_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -54,7 +54,7 @@ class Legacy_ModuleListAction extends Legacy_Action
             return $this->_processConfirm($controller, $xoopsUser);
         } else {
             $result = $this->_processSave($controller, $xoopsUser);
-            if ($result === LEGACY_FRAME_VIEW_SUCCESS) {
+            if (LEGACY_FRAME_VIEW_SUCCESS === $result) {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Success', new XCube_Ref($this->mActionForm));
             } else {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Fail', new XCube_Ref($this->mActionForm));

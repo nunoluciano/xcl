@@ -18,7 +18,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     
         /// csv file check
         if (isset($_FILES['user_csv_file']) &&
-            $_FILES['user_csv_file']['error'] == 0) {
+            0 == $_FILES['user_csv_file']['error']) {
             return USER_FRAME_VIEW_SUCCESS;
         }
         return $this->getDefaultView($controller, $xoopsUser);
@@ -52,18 +52,18 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             $csv_encoding = mb_detect_encoding($_csv_contents);
         }
 
-        if (($handle = fopen($csv_file, 'r')) !== false) {
+        if (false !== ($handle = fopen($csv_file, 'r'))) {
             $current_locale = false;
-            if ($csv_encoding === 'UTF-8') {
+            if ('UTF-8' === $csv_encoding) {
                 $current_locale = setlocale(LC_ALL, '0');
                 setlocale(LC_ALL, 'ja_JP.UTF-8');
                 $bom = fread($handle, 3); // remove BOM
-                if (ord($bom[0]) !== 0xef || ord($bom[1]) !== 0xbb || ord($bom[2]) !== 0xbf) {
+                if (0xef !== ord($bom[0]) || 0xbb !== ord($bom[1]) || 0xbf !== ord($bom[2])) {
                     rewind($handle, 0); // BOM not found then do rewind
                 }
             }
             $n = 0;
-            while (($_data = fgetcsv($handle)) !== false) {
+            while (false !== ($_data = fgetcsv($handle))) {
                 if ($csv_encoding) {
                     mb_convert_variables(_CHARSET, $csv_encoding, $_data);
                 }
@@ -89,7 +89,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                             switch ($user_key[$i]) {
                               case 'user_regdate':
                               case 'last_login':
-                                $update = ($user_value || $csv_value) && strcmp(formatTimestamp($user_value, 'Y/n/j H:i'),  $csv_value)!==0;
+                                $update = ($user_value || $csv_value) && 0 !== strcmp(formatTimestamp($user_value, 'Y/n/j H:i'), $csv_value);
                                  if ($update) {
                                  }
                                 break;
@@ -109,9 +109,9 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                         $user_data['is_new'] = false;
                     }
                 }
-                if ($user_data['is_new'] == true) {
+                if (true == $user_data['is_new']) {
                     for ($i=0; $i<count($user_key); $i++) {
-                        $var = isset($_data[$i]) && $_data[$i]!=='' ? $_data[$i] : $user_tmp->get($user_key[$i]);
+                        $var = isset($_data[$i]) && '' !== $_data[$i] ? $_data[$i] : $user_tmp->get($user_key[$i]);
                         switch ($user_key[$i]) {
                           case 'user_regdate':
                           case 'last_login':
@@ -178,13 +178,13 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             }
 
             // 2. read field
-            if ($csv{$index} == '"') {
+            if ('"' == $csv{$index}) {
                 // 2A. handle quote delimited field
                 $index++;
                 while ($index < $csv_len) {
-                    if ($csv{$index} == '"') {
+                    if ('"' == $csv{$index}) {
                         // handle double quote
-                        if ($csv{$index+1} == '"') {
+                        if ('"' == $csv{$index + 1}) {
                             $field .= $csv{$index};
                             $index += 2;
                         } else {

@@ -282,17 +282,17 @@ class MyTextSanitizer
     public function _ToShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text = $this->codePreConv($text, $xcode);
-        if ($html != 1) {
+        if (1 != $html) {
             $text = $this->htmlSpecialChars($text);
         }
         $text = $this->makeClickable($text);
-        if ($smiley != 0) {
+        if (0 != $smiley) {
             $text = $this->smiley($text);
         }
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->xoopsCodeDecode($text, $image);
         }
-        if ($br != 0) {
+        if (0 != $br) {
             $text = $this->nl2Br($text);
         }
         $text = $this->codeConv($text, $xcode, $image);
@@ -348,7 +348,7 @@ class MyTextSanitizer
             $config_handler =& xoops_gethandler('config');
             $this->censorConf =& $config_handler->getConfigsByCat(XOOPS_CONF_CENSOR);
         }
-        if ($this->censorConf['censor_enable'] == 1) {
+        if (1 == $this->censorConf['censor_enable']) {
             $replacement = $this->censorConf['censor_replace'];
             foreach ($this->censorConf['censor_words'] as $bad) {
                 if (!empty($bad)) {
@@ -376,7 +376,7 @@ class MyTextSanitizer
      */
     public function codePreConv($text, $xcode = 1)
     {
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->mTextFilter->preConvertXCode($text, $xcode);
         }
         return $text;
@@ -384,7 +384,7 @@ class MyTextSanitizer
 
     public function codeConv($text, $xcode = 1, $image = 1)
     {
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->mTextFilter->postConvertXCode($text, $xcode);
         }
         return $text;

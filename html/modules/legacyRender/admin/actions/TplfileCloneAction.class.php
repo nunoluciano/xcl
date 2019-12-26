@@ -37,7 +37,7 @@ class LegacyRender_TplfileCloneAction extends LegacyRender_AbstractEditAction
         // The following code uses 'tpl_tplset' directly. This input value will
         // be checked by ActionForm.
         //
-        if (is_object($obj) && $obj->get('tpl_tplset') == 'default') {
+        if (is_object($obj) && 'default' == $obj->get('tpl_tplset')) {
             $this->mObject =& $obj->createClone(xoops_getrequest('tpl_tplset'));
         }
     }

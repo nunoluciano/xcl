@@ -57,7 +57,7 @@ class sqlutility
                     // Backquotes or no backslashes before 
                     // quotes: it's indeed the end of the 
                     // string -> exit the loop
-                    elseif ($string_start == '`' || $sql[$i-1] != '\\') {
+                    elseif ('`' == $string_start || '\\' != $sql[$i - 1]) {
                         $string_start      = '';
                         $in_string         = false;
                         break;
@@ -68,7 +68,7 @@ class sqlutility
                         // first checks for escaped backslashes
                         $j                     = 2;
                         $escaped_backslash     = false;
-                        while ($i-$j > 0 && $sql[$i-$j] == '\\') {
+                        while ($i-$j > 0 && '\\' == $sql[$i - $j]) {
                             $escaped_backslash = !$escaped_backslash;
                             $j++;
                         }
@@ -87,7 +87,7 @@ class sqlutility
                } // end for
            } // end if (in string)
             // We are not in a string, first check for delimiter...
-            elseif ($char == ';') {
+            elseif (';' == $char) {
                 // if delimiter found, add the parsed part to the returned array
                 $ret[]    = substr($sql, 0, $i);
                 $sql      = ltrim(substr($sql, min($i + 1, $sql_len)));
@@ -100,15 +100,15 @@ class sqlutility
                 }
             } // end else if (is delimiter)
             // ... then check for start of a string,...
-            elseif (($char == '"') || ($char == '\'') || ($char == '`')) {
+            elseif (('"' == $char) || ('\'' == $char) || ('`' == $char)) {
                 $in_string    = true;
                 $string_start = $char;
             } // end else if (is start of string)
 
             // for start of a comment (and remove this comment if found)...
-            elseif ($char == '#' || ($char == ' ' && $i > 1 && $sql[$i-2] . $sql[$i-1] == '--')) {
+            elseif ('#' == $char || (' ' == $char && $i > 1 && '--' == $sql[$i - 2] . $sql[$i - 1])) {
                 // starting position of the comment depends on the comment type
-                   $start_of_comment = (($sql[$i] == '#') ? $i : $i-2);
+                   $start_of_comment = (('#' == $sql[$i]) ? $i : $i - 2);
                 // if no "\n" exits in the remaining string, checks for "\r"
                 // (Mac eol style)
                    $end_of_comment   = (strpos(' ' . $sql, "\012", $i+2))
@@ -132,7 +132,7 @@ class sqlutility
         } // end for
 
         // add any rest to the returned array
-        if (!empty($sql) && trim($sql) != '') {
+        if (!empty($sql) && '' != trim($sql)) {
             $ret[] = $sql;
         }
         return true;

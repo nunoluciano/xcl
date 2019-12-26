@@ -52,7 +52,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 		$query = 'SHOW COLUMNS FROM `' . $db->prefix($mydirname . '_file') . "` LIKE 'mime'" ;
 		$res = $db->query($query);
 		$dat = $db->fetchArray($res);
-		if ($dat['Type'] !== 'varchar(255)') {
+		if ('varchar(255)' !== $dat['Type']) {
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `mime` `mime` varchar(255) NOT NULL DEFAULT \'unknown\'');
 		}
 	}
@@ -88,7 +88,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 		$query = 'SHOW COLUMNS FROM `' . $db->prefix($mydirname . '_file') . "` LIKE 'parent_id'" ;
 		$res = $db->query($query);
 		$dat = $db->fetchArray($res);
-		if ($dat['Default'] === NULL) {
+		if (NULL === $dat['Default']) {
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `parent_id` `parent_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `name` `name` varchar(255) NOT NULL DEFAULT \'\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `size` `size` int(10) unsigned NOT NULL DEFAULT \'0\'');
@@ -164,8 +164,8 @@ function xelfinder_onupdate_base( $module , $mydirname )
 	$tplfile_handler = xoops_getHandler('tplfile' ) ;
 	$tpl_path = dirname(__FILE__).'/templates' ;
 	if( $handler = @opendir( $tpl_path . '/' ) ) {
-		while( ( $file = readdir( $handler ) ) !== false ) {
-			if( substr( $file , 0 , 1 ) == '.' ) continue ;
+		while(false !== ( $file = readdir($handler ) )) {
+			if('.' == substr($file , 0 , 1 )) continue ;
 			$file_path = $tpl_path . '/' . $file ;
 			if( is_file( $file_path ) ) {
 				$mtime = intval( @filemtime( $file_path ) ) ;

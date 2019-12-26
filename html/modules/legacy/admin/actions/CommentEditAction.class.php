@@ -50,7 +50,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
      */
     public function _setupActionForm()
     {
-        if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
+        if (XOOPS_COMMENT_PENDING == $this->mObject->get('com_status')) {
             $this->mActionForm =new Legacy_PendingCommentAdminEditForm();
             $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doApprove']);
             $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doUpdate']);
@@ -77,7 +77,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('subjectIconArr', $subjectIconArr);
 
         $statusHandler =& xoops_getmodulehandler('commentstatus');
-        if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
+        if (XOOPS_COMMENT_PENDING == $this->mObject->get('com_status')) {
             $statusArr =& $statusHandler->getObjects();
         } else {
             $statusArr = [];
@@ -140,7 +140,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
     {
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
 
-        if ($comment_config == false) {
+        if (false == $comment_config) {
             return;
         }
         
@@ -169,7 +169,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         //
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
         
-        if ($comment_config == false) {
+        if (false == $comment_config) {
             return;
         }
         

@@ -53,10 +53,10 @@ class User_RanksFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == 'special') {
+            if ('special' == $this->mOptionField) {
                 //only system avatar
             $this->_mCriteria->add(new Criteria('rank_special', '1'));
-            } elseif ($this->mOptionField == 'normal') {
+            } elseif ('normal' == $this->mOptionField) {
                 //only custom avatar
             $this->_mCriteria->add(new Criteria('rank_special', '0'));
             } else {

@@ -27,7 +27,7 @@ if (!empty($_POST['action'])) {
         redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
     }
 
-    if ($_POST['action'] == 'update_ips') {
+    if ('update_ips' == $_POST['action']) {
         $error_msg = '';
 
         $lines = empty($_POST['bad_ips']) ? [] : explode("\n", trim($_POST['bad_ips']));
@@ -57,7 +57,7 @@ if (!empty($_POST['action'])) {
         $redirect_msg = $error_msg ? $error_msg : _AM_MSG_IPFILESUPDATED;
         redirect_header('index.php', 2, $redirect_msg);
         exit;
-    } elseif ($_POST['action'] == 'delete' && isset($_POST['ids']) && is_array($_POST['ids'])) {
+    } elseif ('delete' == $_POST['action'] && isset($_POST['ids']) && is_array($_POST['ids'])) {
         // remove selected records
         foreach ($_POST['ids'] as $lid) {
             $lid = intval($lid);
@@ -65,12 +65,12 @@ if (!empty($_POST['action'])) {
         }
         redirect_header('index.php', 2, _AM_MSG_REMOVED);
         exit;
-    } elseif ($_POST['action'] == 'deleteall') {
+    } elseif ('deleteall' == $_POST['action']) {
         // remove all records
         $db->query("DELETE FROM $log_table");
         redirect_header('index.php', 2, _AM_MSG_REMOVED);
         exit;
-    } elseif ($_POST['action'] == 'compactlog') {
+    } elseif ('compactlog' == $_POST['action']) {
         // compactize records (removing duplicated records (ip,type)
         $result = $db->query("SELECT `lid`,`ip`,`type` FROM $log_table ORDER BY lid DESC");
         $buf = [];
@@ -208,7 +208,7 @@ echo "
 // body of log listing
 $oddeven = 'odd';
 while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = $db->fetchRow($prs)) {
-    $oddeven = ($oddeven == 'odd' ? 'even' : 'odd');
+    $oddeven = ('odd' == $oddeven ? 'even' : 'odd');
 
     $ip = htmlspecialchars($ip, ENT_QUOTES);
     $type = htmlspecialchars($type, ENT_QUOTES);
@@ -218,7 +218,7 @@ while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = 
     // make agents shorter
     if (preg_match('/MSIE\s+([0-9.]+)/', $agent, $regs)) {
         $agent_short = 'IE '.$regs[1];
-    } elseif (stristr($agent, 'Gecko') !== false) {
+    } elseif (false !== stristr($agent, 'Gecko')) {
         $agent_short = strrchr($agent, ' ');
     } else {
         $agent_short = substr($agent, 0, strpos($agent, ' '));

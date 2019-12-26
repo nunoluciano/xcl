@@ -35,9 +35,9 @@ class MessageSettingsForm extends XCube_ActionForm
     public function fetchBlacklist()
     {
         $blacklist = $this->get('blacklist');
-        if ($blacklist == '') {
+        if ('' == $blacklist) {
             return;
-        } elseif (strpos($blacklist, ',') !== false) {
+        } elseif (false !== strpos($blacklist, ',')) {
             $lists = explode(',', $blacklist);
             $lists = array_map('intval', $lists);
             $lists = array_unique($lists);

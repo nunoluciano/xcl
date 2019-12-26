@@ -217,7 +217,7 @@ class Xupdate_Uninstaller
             return false;
         }
     
-        if ($this->_mXoopsModule->get('mid') != null) {
+        if (null != $this->_mXoopsModule->get('mid')) {
             $this->_uninstallModule();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();

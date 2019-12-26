@@ -34,7 +34,7 @@ class PicoControllerDeleteCategory extends PicoControllerAbstract
         }
 
         // cat_id != 0 check
-        if ($cat_data['id'] == 0) {
+        if (0 == $cat_data['id']) {
             // LANGTD
             redirect_header(XOOPS_URL . '/', 2, 'top category cannot be deleted');
         }

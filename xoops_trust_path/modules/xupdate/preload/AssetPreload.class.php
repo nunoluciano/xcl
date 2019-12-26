@@ -92,9 +92,9 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         if (! LEGACY_INSTALLERCHECKER_ACTIVE && XUPDATE_INSTALLERCHECKER_ACTIVE && is_dir(XOOPS_ROOT_PATH . '/install')) {
             $root =& XCube_Root::getSingleton();
             if ($root->mContext->mUser->isInRole('Site.Owner')) {
-                if (strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=InstallChecker') === false
-                 && strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=ModuleView') === false
-                 && strpos($_SERVER['REQUEST_URI'], '/legacy/admin/index.php?action=Preference') === false) {
+                if (false === strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=InstallChecker')
+                    && false === strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=ModuleView')
+                    && false === strpos($_SERVER['REQUEST_URI'], '/legacy/admin/index.php?action=Preference')) {
                     while (ob_get_level() && @ ob_end_clean()) {
                     }
                     header('Location:' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=InstallChecker');
@@ -162,7 +162,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     **/
     public static function getModule(/*** Legacy_AbstractModule ***/ &$obj, /*** XoopsModule ***/ $module)
     {
-        if ($module->getInfo('trust_dirname') === 'xupdate') {
+        if ('xupdate' === $module->getInfo('trust_dirname')) {
             require_once XUPDATE_TRUST_PATH . '/class/Module.class.php';
             $obj = new Xupdate_Module($module);
         }
@@ -180,7 +180,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     {
         $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
         $module =& $moduleHandler->get($block->get('mid'));
-        if (is_object($module) && $module->getInfo('trust_dirname') === 'xupdate') {
+        if (is_object($module) && 'xupdate' === $module->getInfo('trust_dirname')) {
             require_once XUPDATE_TRUST_PATH . '/blocks/' . $block->get('func_file');
             $className = 'Xupdate_' . substr($block->get('show_func'), 4);
             $obj = new $className($block);
@@ -231,7 +231,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     
     protected function _isAdminPage()
     {
-        return (strpos($_SERVER['SCRIPT_NAME'], '/admin/') !== false || strpos($_SERVER['SCRIPT_NAME'], '/admin.php') !== false);
+        return (false !== strpos($_SERVER['SCRIPT_NAME'], '/admin/') || false !== strpos($_SERVER['SCRIPT_NAME'], '/admin.php'));
     }
 }//END CLASS
 

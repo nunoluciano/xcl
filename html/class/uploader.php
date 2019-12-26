@@ -171,7 +171,7 @@ class XoopsMediaUploader
             $this->mediaTmpName = $media_name['tmp_name'];
             $this->mediaError = !empty($media_name['error']) ? $media_name['error'] : 0;
         }
-        if (($ext = strrpos($this->mediaName, '.')) !== false) {
+        if (false !== ($ext = strrpos($this->mediaName, '.'))) {
             $this->ext = strtolower(substr($this->mediaName, $ext + 1));
             if (isset($this->extensionToMime[$this->ext])) {
                 $this->mediaRealType = $this->extensionToMime[$this->ext];
@@ -186,11 +186,11 @@ class XoopsMediaUploader
             $this->setErrors('Invalid File Size');
             return false;
         }
-        if ($this->mediaName == '') {
+        if ('' == $this->mediaName) {
             $this->setErrors('Filename Is Empty');
             return false;
         }
-        if ($this->mediaTmpName == 'none' || !is_uploaded_file($this->mediaTmpName)) {
+        if ('none' == $this->mediaTmpName || !is_uploaded_file($this->mediaTmpName)) {
             $this->setErrors('No file uploaded');
             return false;
         }
@@ -289,7 +289,7 @@ class XoopsMediaUploader
      */
     public function upload($chmod = 0644)
     {
-        if ($this->uploadDir == '') {
+        if ('' == $this->uploadDir) {
             $this->setErrors('Upload directory not set');
             return false;
         }
@@ -441,7 +441,7 @@ class XoopsMediaUploader
     {
         $parseValue = getimagesize($this->mediaTmpName);
 
-        if ($parseValue===false) {
+        if (false === $parseValue) {
             return false;
         }
 

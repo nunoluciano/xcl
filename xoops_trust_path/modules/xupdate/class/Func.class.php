@@ -117,7 +117,7 @@ if (! class_exists('Xupdate_Func')) {
                     }
                 
                     $ch = curl_init($url);
-                    if ($ch === false) {
+                    if (false === $ch) {
                         throw new Exception('curl_init fail', 2);
                     }
                     $this->appendMes('curl_init OK ('.$data['downloadUrl'].')');
@@ -144,7 +144,7 @@ if (! class_exists('Xupdate_Func')) {
                 }
                 
                 //safe_mode  CURLOPT_FOLLOWLOCATION cannot be activated when in safe_mode
-                if (! $this->Ftp->isSafeMode && ini_get('open_basedir') == '') {
+                if (! $this->Ftp->isSafeMode && '' == ini_get('open_basedir')) {
                     try {
                         //redirect suport
                         $setopt4 = curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -212,12 +212,12 @@ if (! class_exists('Xupdate_Func')) {
                 if (empty($this->mod_config['curl_multi_select_not_use'])) {
                     do {
                         $mrc = curl_multi_exec($mh, $active);
-                    } while ($mrc === CURLM_CALL_MULTI_PERFORM);
+                    } while (CURLM_CALL_MULTI_PERFORM === $mrc);
                     
                     $this->put_debug_log('1st curl_multi_exec() $mrc: ' . $mrc);
                     $this->put_debug_log('1st curl_multi_exec() $active: ' . $active);
                     
-                    if ($active && $mrc == CURLM_OK) {
+                    if ($active && CURLM_OK == $mrc) {
                         do {
                             switch ($_res = curl_multi_select($mh)) {
                             case 0: // 正常な場合でも 0 が返ることがある(例： XAMPP 1.7.7 Win [PHP: 5.3.8])
@@ -239,7 +239,7 @@ if (! class_exists('Xupdate_Func')) {
                                     $this->put_debug_log(str_repeat('-', 5) . date('H:i:s'));
                                     $this->put_debug_log('2nd+ curl_multi_exec() $mrc: ' . $mrc);
                                     $this->put_debug_log('2nd+ curl_multi_exec() $active: ' . $active);
-                                } while ($mrc === CURLM_CALL_MULTI_PERFORM);
+                                } while (CURLM_CALL_MULTI_PERFORM === $mrc);
                         }
                         } while ($active);
                         $this->put_debug_log('curl_multi_exec() Finished');
@@ -255,7 +255,7 @@ if (! class_exists('Xupdate_Func')) {
                             break;
                         }
                         usleep(500000); // wait 500ms
-                    } while ($mrc === CURLM_CALL_MULTI_PERFORM || $active);
+                    } while (CURLM_CALL_MULTI_PERFORM === $mrc || $active);
                 }
                 
                 foreach ($chs as $key => $ch) {
@@ -265,7 +265,7 @@ if (! class_exists('Xupdate_Func')) {
                         $this->_set_error_log($_err . "\n" . '<div><pre>'.print_r($_info, true).'</pre></div>');
                     }
                     curl_multi_remove_handle($mh, $ch);
-                    if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+                    if ($_err && 404 != $_info['http_code'] /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
                         // retry 10sec later if has error
                         touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
                         $multiData[$key]['cacheMtime'] = $error_touch_time;
@@ -285,7 +285,7 @@ if (! class_exists('Xupdate_Func')) {
                     $this->appendContent($_err, true);
                     $ret = false;
                 }
-                if ($_err && $_info['http_code'] != 404 /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
+                if ($_err && 404 != $_info['http_code'] /* NotFound */ && is_file($multiData[$key]['downloadedFilePath'])) {
                     // retry 10sec later if has error
                     touch($multiData[$key]['downloadedFilePath'], $error_touch_time);
                     $multiData[$key]['cacheMtime'] = $error_touch_time;
@@ -316,7 +316,7 @@ if (! class_exists('Xupdate_Func')) {
         }
         $newDirPath = realpath($realDirPath.'/'.$directoryName);
 
-        if (strpos($newDirPath, $realDirPath) === false) {
+        if (false === strpos($newDirPath, $realDirPath)) {
             $this->_set_error_log('directory traversal error in: '.$newDirPath);
             return null;
         }
@@ -370,7 +370,7 @@ if (! class_exists('Xupdate_Func')) {
         $max = sqrt(max($cloud));
         $factor = 0;
         // specal case all tags having the same count
-        if (($max - $min) == 0) {
+        if (0 == ($max - $min)) {
             $min -= $duration;
             $factor = 1;
         } else {
@@ -477,7 +477,7 @@ if (! class_exists('Xupdate_Func')) {
         public function mainfile_to_readonly()
         {
             $mailfile = XOOPS_ROOT_PATH . '/mainfile.php';
-            if ($this->mod_config['ftp_method'] === _XUPDATE_FTP_DIRECT) {
+            if (_XUPDATE_FTP_DIRECT === $this->mod_config['ftp_method']) {
                 $set_perm = 0400;
             } else {
                 if ($main_perm = @ fileperms($mailfile)) {

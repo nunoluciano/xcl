@@ -61,9 +61,9 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
                     $new_i = strpos($sql, $string_start, $i) ;
                     $current_string .= substr($sql, $i, $new_i - $i + 1) ;
                     $i = $new_i ;
-                    if ($i === false) {
+                    if (false === $i) {
                         break 2 ;
-                    } elseif (/* $string_start == '`' || */ $sql[$i-1] != '\\') {
+                    } elseif (/* $string_start == '`' || */ '\\' != $sql[$i - 1]) {
                         $string_start = '' ;
                         $in_string = false ;
                         $strings[] = $current_string ;
@@ -71,7 +71,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
                     } else {
                         $j = 2 ;
                         $escaped_backslash = false ;
-                        while ($i - $j > 0 && $sql[$i-$j] == '\\') {
+                        while ($i - $j > 0 && '\\' == $sql[$i - $j]) {
                             $escaped_backslash = ! $escaped_backslash ;
                             $j++;
                         }
@@ -85,7 +85,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base
                         }
                     }
                 }
-            } elseif ($char == '"' || $char == "'") { // dare to ignore ``
+            } elseif ('"' == $char || "'" == $char) { // dare to ignore ``
             $in_string = true ;
                 $string_start = $char ;
                 $current_string = $char ;

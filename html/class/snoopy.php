@@ -314,7 +314,7 @@ class snoopy
 
     public function fetchlinks($URI)
     {
-        if ($this->fetch($URI) !== false) {
+        if (false !== $this->fetch($URI)) {
             if ($this->lastredirectaddr) {
                 $URI = $this->lastredirectaddr;
             }
@@ -344,7 +344,7 @@ class snoopy
 
     public function fetchform($URI)
     {
-        if ($this->fetch($URI) !== false) {
+        if (false !== $this->fetch($URI)) {
             if (is_array($this->results)) {
                 for ($x = 0; $x < count($this->results); $x++) {
                     $this->results[$x] = $this->_stripform($this->results[$x]);
@@ -369,7 +369,7 @@ class snoopy
 
     public function fetchtext($URI)
     {
-        if ($this->fetch($URI) !== false) {
+        if (false !== $this->fetch($URI)) {
             if (is_array($this->results)) {
                 for ($x = 0; $x < count($this->results); $x++) {
                     $this->results[$x] = $this->_striptext($this->results[$x]);
@@ -392,7 +392,7 @@ class snoopy
 
     public function submitlinks($URI, $formvars = '', $formfiles = '')
     {
-        if ($this->submit($URI, $formvars, $formfiles) !== false) {
+        if (false !== $this->submit($URI, $formvars, $formfiles)) {
             if ($this->lastredirectaddr) {
                 $URI = $this->lastredirectaddr;
             }
@@ -424,7 +424,7 @@ class snoopy
 
     public function submittext($URI, $formvars = '', $formfiles = '')
     {
-        if ($this->submit($URI, $formvars, $formfiles) !== false) {
+        if (false !== $this->submit($URI, $formvars, $formfiles)) {
             if ($this->lastredirectaddr) {
                 $URI = $this->lastredirectaddr;
             }
@@ -669,7 +669,7 @@ class snoopy
         $headers = $http_method . ' ' . $url . ' ' . $this->_httpversion . "\r\n";
         if (!empty($this->host) && !isset($this->rawheaders['Host'])) {
             $headers .= 'Host: ' . $this->host;
-            if (!empty($this->port) && $this->port != '80') {
+            if (!empty($this->port) && '80' != $this->port) {
                 $headers .= ':' . $this->port;
             }
             $headers .= "\r\n";
@@ -718,7 +718,7 @@ class snoopy
         }
         if (!empty($content_type)) {
             $headers .= "Content-type: $content_type";
-            if ($content_type == 'multipart/form-data') {
+            if ('multipart/form-data' == $content_type) {
                 $headers .= '; boundary=' . $this->_mime_boundary;
             }
             $headers .= "\r\n";
@@ -758,7 +758,7 @@ class snoopy
                 return false;
             }
 
-            if ($currentHeader == "\r\n") {
+            if ("\r\n" == $currentHeader) {
                 break;
             }
 
@@ -798,7 +798,7 @@ class snoopy
         $results = '';
         do {
             $_data = fread($fp, $this->maxlength);
-            if (strlen($_data) == 0) {
+            if (0 == strlen($_data)) {
                 break;
             }
             $results .= $_data;
@@ -888,7 +888,7 @@ class snoopy
             $host = $this->proxy_host;
             $port = $this->proxy_port;
 
-            if ($this->scheme == 'https') {
+            if ('https' == $this->scheme) {
                 trigger_error('HTTPS connections over proxy are currently not supported', E_USER_ERROR);
                 exit;
             }
@@ -901,7 +901,7 @@ class snoopy
 
         $context_opts = [];
 
-        if ($this->scheme == 'https') {
+        if ('https' == $this->scheme) {
             // if cafile or capath is specified, enable certificate
             // verification (including name checks)
             if (isset($this->cafile) || isset($this->capath)) {
@@ -925,7 +925,7 @@ class snoopy
         $context = stream_context_create($context_opts);
 
         if (version_compare(PHP_VERSION, '5.0.0', '>')) {
-            if ($this->scheme == 'http') {
+            if ('http' == $this->scheme) {
                 $host = 'tcp://' . $host;
             }
             $fp = stream_socket_client(
@@ -991,7 +991,7 @@ class snoopy
         settype($formfiles, 'array');
         $postdata = '';
 
-        if (count($formvars) == 0 && count($formfiles) == 0) {
+        if (0 == count($formvars) && 0 == count($formfiles)) {
             return;
         }
 

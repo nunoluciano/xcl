@@ -80,7 +80,7 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract
 
     private function setDictionary($file)
     {
-        if ($file[0] !== '/') {
+        if ('/' !== $file[0]) {
             $file = dirname(__FILE__) . '/' . $file;
         }
         if (is_readable($file)) {
@@ -92,7 +92,7 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract
 
     public function setVar($key, $val)
     {
-        if ($key === 'dictionary_file') {
+        if ('dictionary_file' === $key) {
             if (!$val || !$this->setDictionary($val)) {
                 $this->setDictionary('AntispamJapaneseDictionary.txt');
             }

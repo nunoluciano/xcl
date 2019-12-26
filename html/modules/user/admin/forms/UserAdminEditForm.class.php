@@ -181,7 +181,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
     
     public function validateUname()
     {
-        if ($this->get('uname') != null) {
+        if (null != $this->get('uname')) {
             $handler =& xoops_gethandler('user');
             $criteria =new CriteriaCompo(new Criteria('uname', $this->get('uname')));
             if ($this->get('uid')) {
@@ -259,7 +259,7 @@ class User_UserAdminEditForm extends XCube_ActionForm
             
             if (!is_object($rank)) {
                 $this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _AD_USER_LANG_RANK));
-            } elseif ($rank->get('rank_special') != 1) {
+            } elseif (1 != $rank->get('rank_special')) {
                 $this->addErrorMessage(XCube_Utils::formatString(_MD_USER_ERROR_INJURY, _AD_USER_LANG_RANK));
             }
         }

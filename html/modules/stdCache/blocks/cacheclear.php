@@ -32,7 +32,7 @@ class Stdcache_CacheclearBlock extends Legacy_BlockProcedure
         
         if (filemtime($this->_mFilePath) < time() - intval($options[0]) * 60) {
             if ($handler = opendir(XOOPS_CACHE_PATH)) {
-                while (($file = readdir($handler)) !== false) {
+                while (false !== ($file = readdir($handler))) {
                     if (preg_match("/\w+\.cache\.html$/", $file, $matches)) {
                         @unlink(XOOPS_CACHE_PATH . '/' . $matches[0]);
                     }

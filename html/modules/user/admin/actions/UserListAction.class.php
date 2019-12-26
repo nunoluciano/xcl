@@ -37,7 +37,7 @@ class User_UserListAction extends User_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -74,7 +74,7 @@ class User_UserListAction extends User_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -112,7 +112,7 @@ class User_UserListAction extends User_AbstractListAction
         $userHandler =& xoops_gethandler('user');
 
         foreach (array_keys($levelArr) as $uid) {
-            if ($uid != 1) {
+            if (1 != $uid) {
                 $user =& $userHandler->get($uid);
                 if (is_object($user)) {
                     $olddata['level'] = $user->get('level');
@@ -131,7 +131,7 @@ class User_UserListAction extends User_AbstractListAction
         }//foreach
 
                 foreach (array_keys($levelArr) as $uid) {
-                    if (($this->mActionForm->get('delete', $uid) == 1) && ($uid != 1)) {
+                    if ((1 == $this->mActionForm->get('delete', $uid)) && (1 != $uid)) {
                         $user =& $userHandler->get($uid);
                         if (is_object($user)) {
                             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));

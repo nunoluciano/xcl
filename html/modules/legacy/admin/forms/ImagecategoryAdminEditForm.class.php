@@ -80,7 +80,7 @@ class Legacy_ImagecategoryAdminEditForm extends XCube_ActionForm
     public function validateReadgroups()
     {
         $readgroups = $this->get('readgroups');
-        if (count($readgroups) == 0) {
+        if (0 == count($readgroups)) {
             $this->addErrorMessage(_AD_LEGACY_ERROR_READGROUPS);
         }
     }
@@ -88,7 +88,7 @@ class Legacy_ImagecategoryAdminEditForm extends XCube_ActionForm
     public function validateUploadgroups()
     {
         $uploadgroups = $this->get('uploadgroups');
-        if (count($uploadgroups) == 0) {
+        if (0 == count($uploadgroups)) {
             $this->addErrorMessage(_AD_LEGACY_ERROR_UPLOADGROUPS);
         }
     }

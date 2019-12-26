@@ -275,7 +275,7 @@ class Legacy_ModulePhasedUpgrader
     public function _processScript()
     {
         $installScript = trim($this->_mTargetXoopsModule->getInfo('onUpdate'));
-        if ($installScript != false) {
+        if (false != $installScript) {
             require_once XOOPS_MODULE_PATH . '/' . $this->_mTargetXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_update_' . $this->_mTargetXoopsModule->get('dirname');
             if (function_exists($funcName)) {

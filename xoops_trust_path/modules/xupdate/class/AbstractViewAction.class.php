@@ -86,7 +86,7 @@ abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
     **/
     public function getDefaultView()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     

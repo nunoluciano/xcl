@@ -27,7 +27,7 @@ foreach( $modules as $module ) {
 	if( file_exists( $dirpath.'/mytrustdirname.php' ) ) {
 		include $dirpath.'/mytrustdirname.php' ;
 	}
-	if( $mytrustdirname == 'd3forum' && $dirname != $mydirname ) {
+	if('d3forum' == $mytrustdirname && $dirname != $mydirname ) {
 		// d3forum
 		$exportable_modules[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		$dist_category_permissions = d3forum_get_category_permissions_of_current_user( $dirname ) ;

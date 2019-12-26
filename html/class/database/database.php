@@ -107,7 +107,7 @@ class XoopsDatabase
          */
         public function prefix($tablename='')
         {
-            if ($tablename != '') {
+            if ('' != $tablename) {
                 return $this->prefix .'_'. $tablename;
             } else {
                 return $this->prefix;

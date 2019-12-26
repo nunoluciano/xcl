@@ -84,7 +84,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('tplset').' WHERE tplset_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $tplset = new XoopsTplset();
                     $tplset->assignVars($this->db->fetchArray($result));
                     $ret =& $tplset;
@@ -98,11 +98,11 @@ class XoopsTplsetHandler extends XoopsObjectHandler
     {
         $ret = false;
         $tplset_name = trim($tplset_name);
-        if ($tplset_name != '') {
+        if ('' != $tplset_name) {
             $sql = 'SELECT * FROM '.$this->db->prefix('tplset').' WHERE tplset_name='.$this->db->quoteString($tplset_name);
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $tplset =new XoopsTplset();
                     $tplset->assignVars($this->db->fetchArray($result));
                     $ret =& $tplset;
@@ -114,7 +114,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 
     public function insert(&$tplset)
     {
-        if (strtolower(get_class($tplset)) != 'xoopstplset') {
+        if ('xoopstplset' != strtolower(get_class($tplset))) {
             return false;
         }
         if (!$tplset->isDirty()) {
@@ -144,7 +144,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 
     public function delete(&$tplset)
     {
-        if (strtolower(get_class($tplset)) != 'xoopstplset') {
+        if ('xoopstplset' != strtolower(get_class($tplset))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE tplset_id = %u', $this->db->prefix('tplset'), $tplset->getVar('tplset_id'));

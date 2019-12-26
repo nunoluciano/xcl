@@ -70,10 +70,10 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == 'system') {
+            if ('system' == $this->mOptionField) {
                 //only system avatar
             $this->_mCriteria->add(new Criteria('avatar_type', 'S'));
-            } elseif ($this->mOptionField == 'custom') {
+            } elseif ('custom' == $this->mOptionField) {
                 //only custom avatar
             $this->_mCriteria->add(new Criteria('avatar_type', 'C'));
             } else {
@@ -84,9 +84,9 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == 'visible') {
+            if ('visible' == $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('avatar_display', '1'));
-            } elseif ($this->mOptionField2 == 'invisible') {
+            } elseif ('invisible' == $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('avatar_display', '0'));
             } else {
                 //all
@@ -96,11 +96,11 @@ class User_AvatarFilterForm extends User_AbstractFilterForm
         if (isset($_REQUEST['option_field3'])) {
             $this->mNavi->addExtra('option_field3', xoops_getrequest('option_field3'));
             $this->mOptionField3 = $option_field3;
-            if ($this->mOptionField3 == 'gif') {
+            if ('gif' == $this->mOptionField3) {
                 $this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/gif'));
-            } elseif ($this->mOptionField3 == 'png') {
+            } elseif ('png' == $this->mOptionField3) {
                 $this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/png'));
-            } elseif ($this->mOptionField3 == 'jpeg') {
+            } elseif ('jpeg' == $this->mOptionField3) {
                 $this->_mCriteria->add(new Criteria('avatar_mimetype', 'image/jpeg'));
             } else {
                 //all

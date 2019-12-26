@@ -18,7 +18,7 @@ class DefaultSystemCheckFunction
 {
     public static function DefaultCheck()
     {
-        if (ini_get('register_globals') == 1) {
+        if (1 == ini_get('register_globals')) {
             xoops_error(sprintf(_WARNPHPENV, 'register_globals', 'on', _WARNSECURITY), '', 'warning');
         }
         if (is_dir(XOOPS_ROOT_PATH . '/install/')) {

@@ -320,7 +320,7 @@ class D3commentAbstract
         // does not check the permission of "module_read" about the d3forum
 
         // query it
-        $select = $params['view'] == 'listtopics' ? 'COUNT(t.topic_id)' : 'SUM(t.topic_posts_count)';
+        $select = 'listtopics' == $params['view'] ? 'COUNT(t.topic_id)' : 'SUM(t.topic_posts_count)';
         $sql    = "SELECT $select FROM " . $db->prefix($mydirname . '_topics') . " t WHERE t.forum_id=$forum_id AND ! t.topic_invisible AND topic_external_link_id='" . addslashes($params['external_link_id']) . "'";
         if (!$trs = $db->query($sql)) {
             die('d3forum_comment_error in ' . __LINE__);

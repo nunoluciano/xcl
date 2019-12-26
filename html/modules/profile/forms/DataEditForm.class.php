@@ -45,7 +45,7 @@ class Profile_DataEditForm extends XCube_ActionForm
             $validationArr = [];
             $this->mFieldProperties[$this->mDef[$key]->get('field_name')] =new XCube_FieldProperty($this);
             //required check
-            if ($this->mDef[$key]->get('required')==1) {
+            if (1 == $this->mDef[$key]->get('required')) {
                 $validationArr[] = 'required';
                 $this->mFieldProperties[$this->mDef[$key]->get('field_name')]->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, $this->mDef[$key]->get('label'));
             }
@@ -87,7 +87,7 @@ class Profile_DataEditForm extends XCube_ActionForm
     {
         $obj->set('uid', $this->get('uid'));
         foreach (array_keys($this->mDef) as $key) {
-            $val = ($this->mDef[$key]->get('type')!='date') ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
+            $val = ('date' != $this->mDef[$key]->get('type')) ? $this->get($this->mDef[$key]->get('field_name')) : $this->_makeUnixtime($this->mDef[$key]->get('field_name'));
             $obj->set($this->mDef[$key]->get('field_name'), $val);
         }
     }

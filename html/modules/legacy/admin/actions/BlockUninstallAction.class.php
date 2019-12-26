@@ -37,7 +37,7 @@ class Legacy_BlockUninstallAction extends Legacy_AbstractEditAction
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('visible') == 1);
+            return (1 == $this->mObject->get('visible'));
         } else {
             return false;
         }

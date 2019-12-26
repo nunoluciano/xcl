@@ -35,7 +35,7 @@ class ShadePlus_ServiceServer
         //
         foreach ($this->_mService->_mTypes as $className) {
             if (XC_CLASS_EXISTS($className)) {
-                if (call_user_func([$className, 'isArray']) == true) {
+                if (true == call_user_func([$className, 'isArray'])) {
                     $targetClassName = call_user_func([$className, 'getClassName']);
                     
                     if (XCube_ServiceUtils::isXSD($targetClassName)) {

@@ -70,7 +70,7 @@ if ($com_itemid > 0) {
         $com_title = '';
     }
     $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : '';
-    if ($com_mode == '') {
+    if ('' == $com_mode) {
         if (is_object($xoopsUser)) {
             $com_mode = $xoopsUser->getVar('umode');
         } else {

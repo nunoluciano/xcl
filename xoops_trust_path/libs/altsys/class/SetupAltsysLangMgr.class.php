@@ -74,7 +74,7 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager
     public function loadPageTypeMessageCatalog($type)
     {
         // I dare not to use langman...
-        if (strpos($type, '.') === false && $this->langman->my_language) {
+        if (false === strpos($type, '.') && $this->langman->my_language) {
             $mylang_file = $this->langman->my_language.'/'.$this->mLanguageName.'/'.$type.'.php' ;
             if (file_exists($mylang_file)) {
                 require_once $mylang_file ;

@@ -78,7 +78,7 @@ class Xupdate_AssetManager
             $instance =& $this->$methodName();
         }
 
-        if ($instance === null) {
+        if (null === $instance) {
             $instance =& $this->_fallbackCreate($type, $name, $isAdmin, $mode);
         }
 
@@ -127,7 +127,7 @@ class Xupdate_AssetManager
         // TODO:Insert your creation code.
 
         // fallback
-        if ($instance === null) {
+        if (null === $instance) {
             $instance =& $this->_fallbackCreate($type, $name);
         }
 
@@ -157,18 +157,18 @@ class Xupdate_AssetManager
                 $className = $asset['class'];
             }
 
-            if ($className == null && isset($asset['path'])) {
+            if (null == $className && isset($asset['path'])) {
                 if ($this->_loadClassFile($this->_getPublicPath() . $asset['path'], $asset['class'])) {
                     $className = $asset['class'];
                 }
 
-                if ($className == null && $this->_loadClassFile($this->_getTrustPath() . $asset['path'], $asset['class'])) {
+                if (null == $className && $this->_loadClassFile($this->_getTrustPath() . $asset['path'], $asset['class'])) {
                     $className = $asset['class'];
                 }
             }
         }
 
-        if ($className == null) {
+        if (null == $className) {
             switch ($type) {
                 case 'filter':
                     $className = $this->_getFilterName($name, $isAdmin);
@@ -184,7 +184,7 @@ class Xupdate_AssetManager
             }
         }
 
-        if ($type === 'handler') {
+        if ('handler' === $type) {
             $root =& XCube_Root::getSingleton();
             $instance = new $className($root->mController->getDB(), $this->mDirname);
         } else {

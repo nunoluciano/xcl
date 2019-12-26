@@ -94,7 +94,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
         $this->mSmarty->assign('xoops_lblocks', $blocks);
     
         $info = Xupdate_AdminRenderSystem::getOverrideFileInfo('admin_theme.html');
-        $this->mSmarty->template_dir = ($info['file'] != null) ?
+        $this->mSmarty->template_dir = (null != $info['file']) ?
             substr($file['path'], 0, -15) :
             XUPDATE_ADMIN_RENDER_FALLBACK_PATH;
         $this->mSmarty->setModulePrefix('');
@@ -143,7 +143,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             'dirname' => null,
             'file'    => null
         ];
-        if (strpos($file, '..') !== false || ($prefix && strpos($prefix, '..') !== false)) {
+        if (false !== strpos($file, '..') || ($prefix && false !== strpos($prefix, '..'))) {
             return $ret;
         }
         $root =& XCube_Root::getSingleton();
@@ -255,7 +255,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     public static function modifierTheme(/*** string ***/ $str)
     {
         $info = Xupdate_AdminRenderSystem::getOverrideFileInfo($str);
-        if ($info['url'] != null) {
+        if (null != $info['url']) {
             return $info['url'];
         }
         return XUPDATE_ADMIN_RENDER_FALLBACK_URL . '/' . $str;
@@ -271,12 +271,12 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
     **/
     public static function functionStylesheet(/*** {string 'file',string 'media'} ***/ $params, /*** Smarty ***/ &$smarty)
     {
-        if (!isset($params['file']) || strpos($params['file'], '..') !== false) {
+        if (!isset($params['file']) || false !== strpos($params['file'], '..')) {
             return;
         }
     
         $info = Xupdate_AdminRenderSystem::getOverrideFileInfo($params['file'], 'stylesheets/');
-        if ($info['file'] == null) {
+        if (null == $info['file']) {
             return;
         }
     
@@ -286,8 +286,8 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem
             (isset($params['media']) ? $params['media'] : 'all'),
             XOOPS_MODULE_URL,
             $info['file'],
-            ($info['dirname'] != null ? '&amp;dirname=' . $info['dirname'] : ''),
-            ($info['theme'] != null ? '&amp;theme=' . $info['theme'] : '')
+            (null != $info['dirname'] ? '&amp;dirname=' . $info['dirname'] : ''),
+            (null != $info['theme'] ? '&amp;theme=' . $info['theme'] : '')
         );
     }
 }

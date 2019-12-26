@@ -39,7 +39,7 @@ class altsysUtils
             $cNames = self::getDelegateCallbackClassNames('Site.TextareaEditor.HTML.Show');
             if ($cNames) {
                 $last = array_pop($cNames);
-                if ($last !== 'Legacy_TextareaEditor') {
+                if ('Legacy_TextareaEditor' !== $last) {
                     return true;
                 }
             }

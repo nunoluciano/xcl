@@ -58,7 +58,7 @@ class Profile_DataObject extends XoopsSimpleObject
         $type = $this->mDef[$key]->get('type');
         switch ($type) {
             case Profile_FormType::TEXT:
-                if ($this->mDef[$key]->get('options')=='html') {
+                if ('html' == $this->mDef[$key]->get('options')) {
                     $value = XCube_Root::getSingleton()->mTextFilter->purifyHtml($value);
                 }
                 $this->set($key, $value);
@@ -85,7 +85,7 @@ class Profile_DataHandler extends XoopsObjectGenericHandler
 
     public function insert(&$obj, $force = false)
     {
-        if (count($obj->mDef)===0) {
+        if (0 === count($obj->mDef)) {
             return true;
         }
         return parent::insert($obj, $force = false);

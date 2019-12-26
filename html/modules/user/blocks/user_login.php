@@ -17,7 +17,7 @@ function b_user_login_show()
         $block['allow_register'] = $moduleConfig['allow_register'];
 
         $block['use_ssl'] = $moduleConfig['use_ssl'];
-        if ($moduleConfig['use_ssl'] == 1 && $moduleConfig['sslloginlink'] != '') {
+        if (1 == $moduleConfig['use_ssl'] && '' != $moduleConfig['sslloginlink']) {
             $block['sslloginlink'] = $moduleConfig['sslloginlink'];
         } else {
             $block['use_ssl'] = 0;

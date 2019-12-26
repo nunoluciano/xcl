@@ -11,7 +11,7 @@ include_once dirname(__FILE__).'/include/tpls_functions.php' ;
 
 
 // this page can be called only from altsys
-if ($xoopsModule->getVar('dirname') != 'altsys') {
+if ('altsys' != $xoopsModule->getVar('dirname')) {
     die('this page can be called only from altsys') ;
 }
 
@@ -42,7 +42,7 @@ if (empty($_FILES['tplset_archive']['tmp_name']) || ! is_uploaded_file($_FILES['
 //
 
 $orig_filename4check = strtolower($_FILES['tplset_archive']['name']) ;
-if (strtolower(substr($orig_filename4check, -4)) == '.zip') {
+if ('.zip' == strtolower(substr($orig_filename4check, -4))) {
 
     // zip
     require_once dirname(__FILE__).'/include/Archive_Zip.php' ;
@@ -52,7 +52,7 @@ if (strtolower(substr($orig_filename4check, -4)) == '.zip') {
         die($reader->errorName()) ;
     }
     $do_upload = true ;
-} elseif (substr($orig_filename4check, -4) == '.tgz' || substr($orig_filename4check, -7) == '.tar.gz') {
+} elseif ('.tgz' == substr($orig_filename4check, -4) || '.tar.gz' == substr($orig_filename4check, -7)) {
 
     // tar.gz
     require_once XOOPS_ROOT_PATH.'/class/class.tar.php' ;
@@ -91,7 +91,7 @@ foreach ($files as $file) {
         continue ;
     }
     $pos = strrpos($file['filename'], '/') ;
-    $tpl_file = $pos === false ? $file['filename'] : substr($file['filename'], $pos + 1) ;
+    $tpl_file = false === $pos ? $file['filename'] : substr($file['filename'], $pos + 1) ;
 
     if (tplsadmin_import_data($tplset, $tpl_file, rtrim($file['content']), $file['mtime'])) {
         $imported ++ ;

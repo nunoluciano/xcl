@@ -158,7 +158,7 @@ class Profile_Service extends XCube_Service
         $show_form = $root->mContext->mRequest->getRequest('show_form');
     
         $criteria = new CriteriaCompo();
-        if ($show_form==true) {
+        if (true == $show_form) {
             $criteria->add(new Criteria('show_form', '1'));
         }
         $handler =& xoops_getmodulehandler('definitions', 'profile');
@@ -174,7 +174,7 @@ class Profile_Service extends XCube_Service
                         $flag = true;
                     }
                 }
-                if ($flag==true) {
+                if (true == $flag) {
                     $def = $definitions[$key]->gets();
                 }
             } elseif ($groupid>0) {

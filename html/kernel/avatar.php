@@ -91,7 +91,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('avatar').' WHERE avatar_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $avatar =new XoopsAvatar();
                     $avatar->assignVars($this->db->fetchArray($result));
                     $ret =& $avatar;
@@ -103,7 +103,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
 
     public function insert(&$avatar)
     {
-        if (strtolower(get_class($avatar)) != 'xoopsavatar') {
+        if ('xoopsavatar' != strtolower(get_class($avatar))) {
             return false;
         }
         if (!$avatar->isDirty()) {
@@ -133,7 +133,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
 
     public function delete(&$avatar)
     {
-        if (strtolower(get_class($avatar)) != 'xoopsavatar') {
+        if ('xoopsavatar' != strtolower(get_class($avatar))) {
             return false;
         }
         $id = $avatar->getVar('avatar_id');
@@ -207,7 +207,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
     public function &getUser(&$avatar)
     {
         $ret = [];
-        if (strtolower(get_class($avatar)) != 'xoopsavatar') {
+        if ('xoopsavatar' != strtolower(get_class($avatar))) {
             return $ret;
         }
         $sql = 'SELECT user_id FROM '.$this->db->prefix('avatar_user_link').' WHERE avatar_id='.$avatar->getVar('avatar_id');
@@ -224,7 +224,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
     {
         $criteria = new CriteriaCompo();
         if (isset($avatar_type)) {
-            $avatar_type = ($avatar_type == 'C') ? 'C' : 'S';
+            $avatar_type = ('C' == $avatar_type) ? 'C' : 'S';
             $criteria->add(new Criteria('avatar_type', $avatar_type));
         }
         if (isset($avatar_display)) {

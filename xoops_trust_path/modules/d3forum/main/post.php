@@ -4,12 +4,12 @@ include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
 require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
 
 // hook $mode=='sametopic' into $_POST['mode'] = 'reply' , $_POST['post_id']
-if( @$_POST['mode'] == 'sametopic' ) {
+if('sametopic' == @$_POST['mode']) {
 	d3forum_main_posthook_sametopic( $mydirname ) ;
 	$mode_sametopic = true ;
 }
 
-if( @$_POST['mode'] == 'edit' && ! empty( $_POST['post_id'] ) ) {
+if('edit' == @$_POST['mode'] && ! empty($_POST['post_id'] ) ) {
 
 	// EDIT
 	$post_id = intval( $_POST['post_id'] ) ;
@@ -27,7 +27,7 @@ if( @$_POST['mode'] == 'edit' && ! empty( $_POST['post_id'] ) ) {
 	$pid = 0 ;
 	$mode = 'edit' ;
 
-} else if( @$_POST['mode'] == 'reply' && ! empty( $_POST['pid'] ) ) {
+} else if('reply' == @$_POST['mode'] && ! empty($_POST['pid'] ) ) {
 
 	// REPLY
 	$post_id = intval( $_POST['pid'] ) ;
@@ -60,7 +60,7 @@ if( ! include dirname(dirname(__FILE__)).'/include/process_this_forum.inc.php' )
 // get&check this category ($category4assign, $category_row), override options
 if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
-if( $mode != 'newtopic' ) {
+if('newtopic' != $mode) {
 	// hidden_uid
 	if( $uid == $post_row['uid_hidden'] ) $post_row['uid'] = $post_row['uid_hidden'] ;
 	// get $post4assign
@@ -75,12 +75,12 @@ if( ! empty( $forum_row['forum_external_link_format'] ) ) {
 }
 
 // Permissions
-if( $mode == 'edit' ) {
+if('edit' == $mode) {
 	// check edit permission
 	if( empty( $can_edit ) ) die( _MD_D3FORUM_ERR_EDITPOST ) ;
 	if( ! is_object( $xoopsUser ) ) die( _MD_D3FORUM_ERR_EDITPOST ) ; // TODO
 	else if( ! $isadminormod && ( $post_row['uid'] != $xoopsUser->getVar('uid') || time() >= $post_row['post_time'] + $xoopsModuleConfig['selfeditlimit'] ) ) die( _MD_D3FORUM_ERR_EDITPOST ) ;
-} else if( $mode == 'reply' ) {
+} else if('reply' == $mode) {
 	// check reply permission
 	if( empty( $can_reply ) ) die( _MD_D3FORUM_ERR_REPLYPOST ) ;
 	if( ! $isadminormod && ( $post_row['invisible'] || ! $post_row['approval'] ) ) {
@@ -95,7 +95,7 @@ if( $mode == 'edit' ) {
 			die( _MD_D3FORUM_ERR_FORUMASCOMMENT ) ;
 		} else {
 			$external_link_id = $_POST['external_link_id'] ;
-			if( ( $external_link_id = $d3com->validate_id( $external_link_id ) ) === false ) {
+			if(false === ( $external_link_id = $d3com->validate_id($external_link_id ) )) {
 				die( _MD_D3FORUM_ERR_INVALIDEXTERNALLINKID ) ;
 			}
 		}
@@ -123,7 +123,7 @@ foreach( $requests_text as $key ) {
 }
 
 // Validations after FETCH
-$subject = trim( $subject ) == '' ? _NOTITLE : $subject ;
+$subject = '' == trim($subject ) ? _NOTITLE : $subject ;
 if( $icon < 0 || $icon >= sizeof( $d3forum_icon_meanings ) ) $icon = 0 ;
 if( empty( $xoopsModuleConfig['allow_html'] ) ) $html = 0 ;
 if( empty( $xoopsModuleConfig['allow_sig'] ) ) $allow_sig = 0 ;
@@ -157,7 +157,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	// PREVIEW
 	//
 
-	if( $mode == 'reply' ) {
+	if('reply' == $mode) {
 		// references to post reply
 		$reference_message4html = $myts->displayTarea( $post_row['post_text'] , $post_row['html'] , $post_row['smiley'] , $post_row['xcode'] , $xoopsModuleConfig['allow_textimg'] , $post_row['br'] , 0 , $post_row['number_entity'] , $post_row['special_entity'] ) ;
 		$reference_time = intval( $post_row['post_time'] ) ;
@@ -219,10 +219,10 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	$set4sql .= ",post_text='".addslashes($message)."'" ;
 
 	// reject "blank message"
-	if( trim( $message ) == '' ) die( _MD_D3FORUM_ERR_NOMESSAGE ) ;
+	if('' == trim($message )) die( _MD_D3FORUM_ERR_NOMESSAGE ) ;
 
 	// guest's post
-	if( $mode != 'edit' && $uid == 0 || $mode == 'edit' && $post_row['uid'] == 0 && $post_row['uid_hidden'] == 0 ) {
+	if('edit' != $mode && 0 == $uid || 'edit' == $mode && 0 == $post_row['uid'] && 0 == $post_row['uid_hidden']) {
 		@list( $guest_name , $trip_base ) = explode( '#' , $guest_name , 2 ) ;
 		if( ! trim( @$guest_name ) ) $guest_name = $xoopsModuleConfig['anonymous_name'] ;
 		if( ! empty( $trip_base ) && function_exists( 'crypt' ) ) {
@@ -240,7 +240,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		}
 	}
 
-	if( $mode == 'edit' ) {
+	if('edit' == $mode) {
 		// edit
 
 		// approval
@@ -266,7 +266,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 		d3forum_transact_make_post_history( $mydirname , $post_id ) ;
 		if( ! $db->query('UPDATE ' . $db->prefix($mydirname . '_posts') . " SET $set4sql WHERE post_id=$post_id" ) ) die('DB ERROR IN UPDATE post') ;
 		d3forum_sync_topic( $mydirname , $topic_id , true , ! (boolean)$post_row['pid'] ) ;
-	} else if( $mode == 'reply' ) {
+	} else if('reply' == $mode) {
 		// reply
 
 		// approval
@@ -321,7 +321,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 
 
 	// increment post
-	if( is_object( @$xoopsUser ) && $mode != 'edit' ) {
+	if( is_object( @$xoopsUser ) && 'edit' != $mode) {
 		$xoopsUser->incrementPost() ;
 	}
 
@@ -334,7 +334,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 
 		// naao from
 		if ( $uid > 0 && ! $hide_uid ){
-			if ($xoopsModuleConfig['use_name'] == 1 && $xoopsUser->getVar( 'name' ) ) {
+			if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 				$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 			} else {
 				$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;
@@ -373,7 +373,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 				$users2notify = [];
 			}
 		}
-		if( $mode == 'newtopic' ) {
+		if('newtopic' == $mode) {
 			// Notify for newtopic
 			d3forum_trigger_event( $mydirname , 'global' , 0 , 'newtopic' , $tags , $users2notify ) ;
 			d3forum_trigger_event( $mydirname ,  'category' , $cat_id , 'newtopic' , $tags , $users2notify ) ;
@@ -413,7 +413,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 			// adminormod can turn "solved" both on and off
 			$solved = empty( $_POST['solved'] ) ? 0 : 1 ;
 			$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=$solved WHERE topic_id=$topic_id" ) ;
-		} else if( $mode != 'edit' ) {
+		} else if('edit' != $mode) {
 			// normal's post will be forced to turn solved off
 			$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_solved=0 WHERE topic_id=$topic_id" ) ;
 		}
@@ -421,7 +421,7 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 
 	// auto lock the topic by posts_per_topic
 	if( ! empty( $xoopsModuleConfig['posts_per_topic'] ) ) {
-		if( $mode != 'edit' ) {
+		if('edit' != $mode) {
 			// normal's post will be forced to turn solved off
 			$db->query('UPDATE ' . $db->prefix($mydirname . '_topics') . " SET topic_locked=1 WHERE topic_id=$topic_id AND topic_posts_count>=" . intval($xoopsModuleConfig['posts_per_topic'] ) ) ;
 		}
@@ -430,13 +430,13 @@ if( ! empty( $_POST['contents_preview'] ) ) {
 	// call back to the target of comment
 	if( is_object( @$d3com ) && ! empty( $external_link_id ) ) {
 		$d3com->onUpdate( $mode , $external_link_id , $forum_id , $topic_id , $post_id ) ;
-		if( $mode == 'newtopic' || $mode == 'reply' ) {
+		if('newtopic' == $mode || 'reply' == $mode) {
 			$d3com->processCommentNotifications( $mode , $external_link_id , $forum_id , $topic_id , $post_id ) ;
 		}
 	}
 
-	$redirect_message = $mode == 'edit' ? _MD_D3FORUM_MSG_THANKSEDIT : _MD_D3FORUM_MSG_THANKSPOST ;
-	if( substr( $forum_row['forum_external_link_format'] , 0 , 11 ) == '{XOOPS_URL}' && ! empty( $external_link_id ) ) {
+	$redirect_message = 'edit' == $mode ? _MD_D3FORUM_MSG_THANKSEDIT : _MD_D3FORUM_MSG_THANKSPOST ;
+	if('{XOOPS_URL}' == substr($forum_row['forum_external_link_format'] , 0 , 11 ) && ! empty( $external_link_id ) ) {
 		// return to comment target (conventional module)
 		redirect_header( sprintf( str_replace( '{XOOPS_URL}' , XOOPS_URL , $forum_row['forum_external_link_format'] ) , $external_link_id ) , 2 , $redirect_message ) ;
 	} else if( is_object( @$d3com ) && ! empty( $external_link_id ) && is_array( $summary = $d3com->fetchSummary( $external_link_id ) ) ) {

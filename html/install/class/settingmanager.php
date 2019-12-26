@@ -80,13 +80,13 @@ class setting_manager
         
             $filepath = str_replace('\\', '/', $filepath); // "
             $filepath = str_replace('/install', '', $filepath);
-            if (substr($filepath, 0, 1) == '/') {
+            if ('/' == substr($filepath, 0, 1)) {
                 $filepath = substr($filepath, 1);
             }
-            if (substr($filepath, -1) == '/') {
+            if ('/' == substr($filepath, -1)) {
                 $filepath = substr($filepath, 0, -1);
             }
-            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
+            $protocol = (!empty($_SERVER['HTTPS']) && 'on' == $_SERVER['HTTPS']) ? 'https://' : 'http://';
             $this->xoops_url = (!empty($filepath)) ? $protocol.$_SERVER['HTTP_HOST'].'/'.$filepath : $protocol.$_SERVER['HTTP_HOST'];
             // find xoops_trust_path
             $path = $this->root_path ;
@@ -246,8 +246,8 @@ class setting_manager
                         <span style="font-size:85%;">'._INSTALL_L69.'</span>
                     </td>
                     <td class="even">
-                        <input type="radio" name="db_pconnect" value="1"'.($this->db_pconnect == 1 ? ' checked="checked"' : '').' />'._INSTALL_L23.'
-                        <input type="radio" name="db_pconnect" value="0"'.($this->db_pconnect != 1 ? ' checked="checked"' : '').' />'._INSTALL_L24.'
+                        <input type="radio" name="db_pconnect" value="1"'.(1 == $this->db_pconnect ? ' checked="checked"' : '') . ' />' . _INSTALL_L23 . '
+                        <input type="radio" name="db_pconnect" value="0"'.(1 != $this->db_pconnect ? ' checked="checked"' : '') . ' />' . _INSTALL_L24 . '
                     </td>
                 </tr>
                 ';

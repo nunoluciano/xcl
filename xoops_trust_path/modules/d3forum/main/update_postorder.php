@@ -4,7 +4,7 @@ include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
 
 // get cookie path
 $xoops_cookie_path = defined('XOOPS_COOKIE_PATH') ? XOOPS_COOKIE_PATH : preg_replace('?http://[^/]+(/.*)$?' , '$1', XOOPS_URL ) ;
-if( $xoops_cookie_path == XOOPS_URL ) $xoops_cookie_path = '/' ;
+if(XOOPS_URL == $xoops_cookie_path) $xoops_cookie_path = '/' ;
 
 // update cookie
 setcookie( $mydirname.'_postorder' , intval( $_GET['postorder'] ) , time() + 86400 * 30 , $xoops_cookie_path ) ;

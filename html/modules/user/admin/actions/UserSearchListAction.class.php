@@ -42,7 +42,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     public function &_getPageNavi()
     {
         $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && intval($_REQUEST[$navi->mPrefix.'perpage']) == 0) {
+        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && 0 == intval($_REQUEST[$navi->mPrefix . 'perpage'])) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -64,7 +64,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         $this->mFilter =& $this->_getFilterForm();
         $this->mFilter->fetch();
         //
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -115,7 +115,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         $userHandler =& xoops_gethandler('user');
 
         foreach (array_keys($levelArr) as $uid) {
-            if ($uid != 1) {
+            if (1 != $uid) {
                 $user =& $userHandler->get($uid);
                 if (is_object($user)) {
                     $olddata['level'] = $user->get('level');
@@ -134,7 +134,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         }//foreach
 
                 foreach (array_keys($levelArr) as $uid) {
-                    if (($this->mActionForm->get('delete', $uid) == 1) && ($uid != 1)) {
+                    if ((1 == $this->mActionForm->get('delete', $uid)) && (1 != $uid)) {
                         $user =& $userHandler->get($uid);
                         if (is_object($user)) {
                             XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
@@ -217,12 +217,12 @@ class User_UserSearchListAction extends User_AbstractListAction
                     $t_arr[] = $key . '=' . urlencode($value);
                 }
             
-                if (count($t_arr) == 0) {
+                if (0 == count($t_arr)) {
                     $buf = $url;
                     return;
                 }
             
-                if (strpos($url, '?') !== false) {
+                if (false !== strpos($url, '?')) {
                     $buf = $url . '&amp;' . implode('&amp;', $t_arr);
                 } else {
                     $buf = $url . '?' . implode('&amp;', $t_arr);

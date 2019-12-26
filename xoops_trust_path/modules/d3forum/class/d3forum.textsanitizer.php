@@ -183,7 +183,7 @@ class D3forumTextSanitizer extends MyTextSanitizer
     // override
     public function codeConv($text, $xcode = 1, $image = 1)
     {
-        if ($xcode != 0 && !defined('XOOPS_CUBE_LEGACY')) {
+        if (0 != $xcode && !defined('XOOPS_CUBE_LEGACY')) {
             // bug fix
             $text = preg_replace_callback("/\[code](.*)\[\/code\]/sU", [$this, 'myCodeSanitizer'], $text);
         } else {

@@ -56,7 +56,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     {
         //set uploaded image file path
         $uploaded = @$_FILES['legacy_image']['tmp_name'] ? $_FILES['legacy_image'] : null;
-        if (isset($uploaded) && file_exists($uploaded['tmp_name'][$num]) && @exif_imagetype($uploaded['tmp_name'][$num])!==false) {
+        if (isset($uploaded) && file_exists($uploaded['tmp_name'][$num]) && false !== @exif_imagetype($uploaded['tmp_name'][$num])) {
             $this->_mTemporaryPath = $uploaded['tmp_name'][$num];
             $this->_mFilename = $uploaded['name'][$num];
         }
@@ -114,7 +114,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     public function isImage(/*** int ***/ $tsize=0)
     {
         $srcPath = $this->getFilePath($tsize);
-        if (file_exists($srcPath) && @exif_imagetype($srcPath)!==false) {
+        if (file_exists($srcPath) && false !== @exif_imagetype($srcPath)) {
             return true;
         } else {
             return false;

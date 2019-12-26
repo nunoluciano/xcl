@@ -63,18 +63,18 @@ class ProtectorFilterHandler
 
         // parse $protector->_conf['filters']
         foreach (preg_split('/[\s\n,]+/', $this->protector->_conf['filters']) as $file) {
-            if (substr($file, -4) != '.php') {
+            if ('.php' != substr($file, -4)) {
                 $file .= '.php' ;
             }
-            if (strncmp($file, $type.'_', strlen($type) + 1) === 0) {
+            if (0 === strncmp($file, $type . '_', strlen($type) + 1)) {
                 $filters[] = ['file' => $file, 'base' => $this->filters_byconfig];
             }
         }
 
         // search from filters_enabled/
         $dh = opendir($this->filters_base) ;
-        while (($file = readdir($dh)) !== false) {
-            if (strncmp($file, $type.'_', strlen($type) + 1) === 0) {
+        while (false !== ($file = readdir($dh))) {
+            if (0 === strncmp($file, $type . '_', strlen($type) + 1)) {
                 $filters[] = ['file' => $file, 'base' => $this->filters_base];
             }
         }

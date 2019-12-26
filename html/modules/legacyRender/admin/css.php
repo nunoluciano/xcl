@@ -33,7 +33,7 @@ $dirname = isset($_GET['dirname']) ? trim($_GET['dirname']) : null;
 $_GET['file'] = isset($_GET['file']) ? $_GET['file'] : 'style.css';
 $file = 'stylesheets/' . trim(@$_GET['file']);
 
-if (strstr($theme, '..') !== false || strstr($dirname, '..') !== false || strstr($file, '..') !== false) {
+if (false !== strstr($theme, '..') || false !== strstr($dirname, '..') || false !== strstr($file, '..')) {
     exit();
 }
 require_once XOOPS_ROOT_PATH.'/modules/legacyRender/kernel/Legacy_AdminRenderSystem.class.php';
@@ -47,11 +47,11 @@ $smarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 //
 $smarty->force_compile = true;
 
-if ($theme != null && $dirname != null) {
+if (null != $theme && null != $dirname) {
     $path = XOOPS_THEME_PATH . "/${theme}/modules/${dirname}";
-} elseif ($theme != null) {
+} elseif (null != $theme) {
     $path = XOOPS_THEME_PATH . '/' . $theme;
-} elseif ($dirname != null) {
+} elseif (null != $dirname) {
     $path = XOOPS_MODULE_PATH . "/${dirname}/admin/templates";
 } else {
     $path = LEGACY_ADMIN_RENDER_FALLBACK_PATH;

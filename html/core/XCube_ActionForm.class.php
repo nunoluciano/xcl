@@ -149,7 +149,7 @@ class XCube_ActionForm
      */
     public function getToken()
     {
-        if ($this->_mToken == null) {
+        if (null == $this->_mToken) {
             srand(microtime() * 100000);
             $root=&XCube_Root::getSingleton();
             $salt = $root->getSiteConfig('Cube', 'Salt');
@@ -192,10 +192,10 @@ class XCube_ActionForm
     public function set()
     {
         if (isset($this->mFormProperties[func_get_arg(0)])) {
-            if (func_num_args() == 2) {
+            if (2 == func_num_args()) {
                 $value = func_get_arg(1);
                 $this->mFormProperties[func_get_arg(0)]->setValue($value);
-            } elseif (func_num_args() == 3) {
+            } elseif (3 == func_num_args()) {
                 $index = func_get_arg(1);
                 $value = func_get_arg(2);
                 $this->mFormProperties[func_get_arg(0)]->setValue($index, $value);
@@ -209,9 +209,9 @@ class XCube_ActionForm
     public function setVar()
     {
         if (isset($this->mFormProperties[func_get_arg(0)])) {
-            if (func_num_args() == 2) {
+            if (2 == func_num_args()) {
                 $this->mFormProperties[func_get_arg(0)]->setValue(func_get_arg(1));
-            } elseif (func_num_args() == 3) {
+            } elseif (3 == func_num_args()) {
                 $this->mFormProperties[func_get_arg(0)]->setValue(func_get_arg(1), func_get_arg(2));
             }
         }
@@ -307,7 +307,7 @@ class XCube_ActionForm
         //
         // check onetime & transaction token
         //
-        if ($this->getTokenName() != null) {
+        if (null != $this->getTokenName()) {
             $key = strtr($this->getTokenName(), '.', '_');
             $token = isset($_REQUEST[$key]) ? $_REQUEST[$key] : null;
             
@@ -322,7 +322,7 @@ class XCube_ActionForm
             
             if (!$flag) {
                 $message = $this->getTokenErrorMessage();
-                if ($message == null) {
+                if (null == $message) {
                     $this->mErrorFlag = true;
                 } else {
                     $this->addErrorMessage($message);
@@ -518,7 +518,7 @@ class XCube_FieldProperty
     {
         foreach ($dependsArr as $dependName) {
             $instance =& XCube_DependClassFactory::factoryClass($dependName);
-            if ($instance !== null) {
+            if (null !== $instance) {
                 $this->mDepends[$dependName] =& $instance;
             }
             

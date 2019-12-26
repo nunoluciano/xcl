@@ -252,7 +252,7 @@ class Crypt_RC4 extends Crypt_Base
      */
     public function encrypt($plaintext)
     {
-        if ($this->engine != CRYPT_ENGINE_INTERNAL) {
+        if (CRYPT_ENGINE_INTERNAL != $this->engine) {
             return parent::encrypt($plaintext);
         }
         return $this->_crypt($plaintext, CRYPT_RC4_ENCRYPT);
@@ -272,7 +272,7 @@ class Crypt_RC4 extends Crypt_Base
      */
     public function decrypt($ciphertext)
     {
-        if ($this->engine != CRYPT_ENGINE_INTERNAL) {
+        if (CRYPT_ENGINE_INTERNAL != $this->engine) {
             return parent::decrypt($ciphertext);
         }
         return $this->_crypt($ciphertext, CRYPT_RC4_DECRYPT);

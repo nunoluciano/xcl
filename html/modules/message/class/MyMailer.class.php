@@ -27,7 +27,7 @@ class My_Mailer extends PHPMailer
         $xoopsMailerConfig = $handler->getConfigsByCat(XOOPS_CONF_MAILER);
         $this->reset();
     
-        if ($xoopsMailerConfig['from'] == '') {
+        if ('' == $xoopsMailerConfig['from']) {
             $this->From = $root->mContext->mXoopsConfig['adminmail'];
         } else {
             $this->From = $xoopsMailerConfig['from'];
@@ -109,7 +109,7 @@ class My_Mailer extends PHPMailer
 
     public function EncodeHeader($str, $position = 'text')
     {
-        if ($position == 'text') {
+        if ('text' == $position) {
             return $this->convertLocal($str, true);
         } else {
             return parent::EncodeHeader($str, $position);

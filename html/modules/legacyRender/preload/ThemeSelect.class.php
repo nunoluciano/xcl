@@ -27,7 +27,7 @@ class LegacyRender_ThemeSelect extends XCube_ActionFilter
         $handler =& xoops_getmodulehandler('theme', 'legacyRender');
         $themeArr =& $handler->getObjects(new Criteria('name', $theme_name));
         
-        if (count($themeArr) == 1 && $themeArr[0]->get('enable_select')) {
+        if (1 == count($themeArr) && $themeArr[0]->get('enable_select')) {
             $flag = true;
         }
     }

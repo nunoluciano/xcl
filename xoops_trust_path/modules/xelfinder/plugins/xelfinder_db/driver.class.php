@@ -176,7 +176,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				}
 			}
 		}
-		if ($uname === '') {
+		if ('' === $uname) {
 			$config_handler = xoops_getHandler('config');
 			$xoopsConfig = $config_handler->getConfigsByCat(XOOPS_CONF);
 			$uname = $this->strToUTF8($xoopsConfig['anonymous']);
@@ -310,12 +310,12 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
      * @author Naoki Sawada
      */
 	protected function make($path, $name, $mime, $home_of = 'NULL') {
-		if ($name === '') return false;  // It's insurance 
+		if ('' === $name) return false;  // It's insurance
 		
 		$time = time();
 		$gid = 0;;
 		$umask = $this->getUmask($path, $gid);
-		if ($home_of !== 'NULL') {
+		if ('NULL' !== $home_of) {
 			$home_of = intval($home_of);
 			if ($home_of < 0 && $home_of != $this->groupHomeId) {
 				$gid = abs($home_of);
@@ -337,7 +337,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$sql = sprintf($sql, $this->tbf, intval($path), $this->db->quoteString($name), $time, $time, $perm, $umask, $this->x_uid, $gid, $home_of, $mime);
 		//$this->_debug($sql);
 		if ($this->query($sql) && $this->db->getAffectedRows() > 0) {
-			if ($mime !== 'directory') {
+			if ('directory' !== $mime) {
 				$id = $this->db->getInsertId();
 				$local = $this->readlink($id, true);
 				if ($local) return true;
@@ -392,7 +392,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		} else if ($dat['gid']) {
 			$inGroup = (in_array($dat['gid'], $this->x_groups));
 		} else {
-			if ($dat['gids'] === '') {
+			if ('' === $dat['gids']) {
 				$dat['gids'] = join(',', $this->getGroupsByUid($dat['uid']));
 				$sql = 'UPDATE '.$this->tbf.' SET `gids`=\''.$dat['gids'].'\' WHERE `file_id`='.$dat['file_id'].' LIMIT 1';
 				$this->query($sql);
@@ -405,12 +405,12 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$gus = isset($perm[2])? intval($perm[2], 16) : 0;
 
 		if ($isOwner) $dat['isowner'] = 1;
-		$dat['hidden'] = !(($isOwner && (8 & $own) !== 8) || ($inGroup && (8 & $grp) !== 8) || (8 & $gus) !== 8);
-		$dat['read']   =  (($isOwner && (4 & $own) === 4) || ($inGroup && (4 & $grp) === 4) || (4 & $gus) === 4);
-		$dat['write']  =  (($isOwner && (2 & $own) === 2) || ($inGroup && (2 & $grp) === 2) || (2 & $gus) === 2);
-		$dat['locked'] = !(($isOwner && (1 & $own) === 1) || ($inGroup && (1 & $grp) === 1) || (1 & $gus) === 1);
+		$dat['hidden'] = !(($isOwner && 8 !== (8 & $own)) || ($inGroup && 8 !== (8 & $grp)) || 8 !== (8 & $gus));
+		$dat['read']   =  (($isOwner && 4 === (4 & $own)) || ($inGroup && 4 === (4 & $grp)) || 4 === (4 & $gus));
+		$dat['write']  =  (($isOwner && 2 === (2 & $own)) || ($inGroup && 2 === (2 & $grp)) || 2 === (2 & $gus));
+		$dat['locked'] = !(($isOwner && 1 === (1 & $own)) || ($inGroup && 1 === (1 & $grp)) || 1 === (1 & $gus));
 		
-		if ($dat['mime'] !== 'directory' && $dat['gids'] && array_intersect(explode(',', $dat['gids']), $this->x_adminGroups)) {
+		if ('directory' !== $dat['mime'] && $dat['gids'] && array_intersect(explode(',', $dat['gids']), $this->x_adminGroups)) {
 			if (! isset($dat['options'])) {
 				$dat['options'] = [];
 			}
@@ -476,7 +476,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	}
 
 	protected function strToUTF8($str) {
-		if (strtoupper(_CHARSET) !== 'UTF-8') {
+		if ('UTF-8' !== strtoupper(_CHARSET)) {
 			$str = mb_convert_encoding($str, 'UTF-8', _CHARSET);
 		}
 		return $str;
@@ -501,7 +501,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		foreach($files as $file) {
 			$id = (is_null($dir))? $file : $this->_joinPath($dir, $file);
 			$stat = $this->stat($id);
-			if ($stat['mime'] === 'directory') {
+			if ('directory' === $stat['mime']) {
 				if ($mkdir && $cids = $this->_scandir($id)) {
 					$_cdir = $mkdir.DIRECTORY_SEPARATOR.$stat['name'];
 					if ($this->copyToLocalTemp($_cdir, $cids)) {
@@ -538,16 +538,16 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 				$test = $this->_joinPath($dir, $name);
 				$_stat = '';
 				($test > 0) && ($_stat = $this->_stat($test)) && ($_stat = $_stat['mime']);
-				$path = ($_stat === 'directory')? $test : $this->_mkdir($dir, $name);
+				$path = ('directory' === $_stat)? $test : $this->_mkdir($dir, $name);
 				if ($path > 0) {
 					$_ok = false;
 					foreach (scandir($localpath) as $c_name) {
-						if ($c_name != '.' && $c_name != '..') {
+						if ('.' != $c_name && '..' != $c_name) {
 							$_res = $this->localFileSave($localpath.DIRECTORY_SEPARATOR.$c_name, $path, $check_mime_accept);
 							if (!$_ok && $_res > 0) $_ok = true;
 						}
 					}
-					if (! $_ok && $test === -1) {
+					if (! $_ok && -1 === $test) {
 						$path = -1;
 						$this->_rmdir($path);
 					}
@@ -559,23 +559,23 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 					// logic based on https://httpd.apache.org/docs/2.2/mod/mod_authz_host.html#order
 					$allow  = $this->mimeAccepted($mime, $this->uploadAllow, null);
 					$deny   = $this->mimeAccepted($mime, $this->uploadDeny,  null);
-					if (strtolower($this->uploadOrder[0]) == 'allow') {
+					if ('allow' == strtolower($this->uploadOrder[0])) {
 						// array('allow', 'deny'), default is to 'deny'
 						$upload = false; // default is deny
-						if (!$deny && ($allow === true)) {
+						if (!$deny && (true === $allow)) {
 							// match only allow
 							$upload = true;
 						}// else (both match | no match | match only deny) { deny }
 					} else { // array('deny', 'allow'), default is to 'allow' - this is the default rule
 						$upload = true; // default is allow
-						if (($deny === true) && !$allow) {
+						if ((true === $deny) && !$allow) {
 							// match only deny
 							$upload = false;
 						} // else (both match | no match | match only allow) { allow }
 					}
 				}
 				if ($upload) {
-					if (strpos($mime, 'image') === 0) {
+					if (0 === strpos($mime, 'image')) {
 						if ($size = getimagesize($localpath)) {
 							$width = $size[1];
 							$height = $size[2];
@@ -616,7 +616,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		} else {
 			$stat['phash'] = null;
 		}
-		if ($stat['mime'] == 'directory') {
+		if ('directory' == $stat['mime']) {
 			unset($stat['width']);
 			unset($stat['height']);
 		} else {
@@ -624,8 +624,8 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		}
 		$this->setAuthByPerm($stat);
 		$name = $stat['name'];
-		if ($stat['mime'] !== 'directory') {
-			if (strpos($this->options['URL'], '?') === false) {
+		if ('directory' !== $stat['mime']) {
+			if (false === strpos($this->options['URL'], '?')) {
 				$stat['url'] = $this->options['URL'].$stat['file_id'].'/'.rawurlencode($name); // Use pathinfo "index.php/[id]/[name]
 			} else {
 				$stat['url'] = $this->options['URL'].$stat['file_id'].'&'.rawurlencode($name);
@@ -645,8 +645,8 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		
 		unset($stat['file_id'], $stat['parent_id'], $stat['gid'], $stat['home_of'], $stat['local_path']);
 		if (empty($stat['isowner'])) unset($stat['perm'], $stat['uid'], $stat['gids']);
-		if (empty($stat['isowner']) || $stat['mime'] !== 'directory') unset($stat['umask']);
-		if ($stat['mime'] !== 'directory') unset($stat['filter']);
+		if (empty($stat['isowner']) || 'directory' !== $stat['mime']) unset($stat['umask']);
+		if ('directory' !== $stat['mime']) unset($stat['filter']);
 		
 		return $stat;
 	}
@@ -736,7 +736,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		if ($res) {
 			while ($row = $this->db->fetchArray($res)) {
 				$id = $row['file_id'];
-				if ($row['name'] === '') $row['name'] = 'Unknown';
+				if ('' === $row['name']) $row['name'] = 'Unknown';
 				$row = $this->makeStat($row);
 				if (($stat = $this->updateCache($id, $row)) && empty($stat['hidden'])) {
 					$this->dirsCache[$path][] = $id;
@@ -751,7 +751,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$filter = str_replace('*', '%', $filter);
 			$q = [];
 			foreach(explode(' ', $filter) as $val) {
-				if (strpos($val, '/') === false && strpos($val, '%') === false ) {
+				if (false === strpos($val, '/') && false === strpos($val, '%')) {
 					$val .= '%';
 				}
 				$q[] = '`mime` LIKE \''.$val.'\'';
@@ -845,7 +845,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		if ($mimes) {
 			$whrs = [];
 			foreach($mimes as $mime) {
-				if (strpos($mime, '/') === false) {
+				if (false === strpos($mime, '/')) {
 					$mime = $this->db->quoteString($mime);
 					$mime = substr($mime, 1, strlen($mime)-2);
 					$whrs[] = sprintf('`mime` LIKE \'%s/%%\'', $mime);
@@ -867,7 +867,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$filter = str_replace('*', '%', $filter);
 			$_f = [];
 			foreach(explode(' ', $filter) as $val) {
-				if (strpos($val, '/') === false && strpos($val, '%') === false ) {
+				if (false === strpos($val, '/') && false === strpos($val, '%')) {
 					$val .= '%';
 				}
 				$_f[] = '`mime` LIKE \'' . $val . '\'';
@@ -992,7 +992,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _path($path) {
-		if (($file = $this->stat($path)) == false) {
+		if (false == ($file = $this->stat($path))) {
 			return '';
 		}
 
@@ -1053,7 +1053,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$res = $this->query($sql);
 
 		if ($res && $stat = $this->db->fetchArray($res)) {
-			if ($stat['name'] === '') $stat['name'] = 'Unknown';
+			if ('' === $stat['name']) $stat['name'] = 'Unknown';
 			return $this->makeStat($stat);
 		} else if ($rootCheck && $path == $this->root) {
 			$this->_mkdir(0, 'VolumeRoot');
@@ -1103,9 +1103,9 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			$link = $this->options['filePath'] . $path;
 		} else {
 			$link = $stat['alias'];
-			if (substr($link, 1, 1) === '/') {
+			if ('/' === substr($link, 1, 1)) {
 				$_head = substr($link, 0, 1);
-				if (strpos($link, '%') !== false) {
+				if (false !== strpos($link, '%')) {
 					$link = dirname($link) . DIRECTORY_SEPARATOR . rawurldecode(basename($link));
 				}
 				switch($_head) {
@@ -1195,7 +1195,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected function _mkfile($path, $name) {
 		$mime = $this->mimetype($name, true);
-		$res = $this->make($path, $name, ($mime === 'unknown')? 'text/plain' : $mime) ? $this->_joinPath($path, $name) : false;
+		$res = $this->make($path, $name, ('unknown' === $mime)? 'text/plain' : $mime) ? $this->_joinPath($path, $name) : false;
 		if ($res) {
 			$this->updateDirTimestamp($path, time());
 		}
@@ -1346,7 +1346,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected function _save($fp, $dir, $name, $stat) {
 		
-		if ($name === '') return false;
+		if ('' === $name) return false;
 		
 		$this->clearcache();
 
@@ -1366,7 +1366,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		$umask = $this->getUmask($dir, $gid);
 		$perm = $this->getDefaultPerm($umask);
 		$gids = join(',', $this->getGroupsByUid($uid));
-		$cut = ($_SERVER['REQUEST_METHOD'] == 'POST')? !empty($_POST['cut']) : !empty($_GET['cut']);
+		$cut = ('POST' == $_SERVER['REQUEST_METHOD'])? !empty($_POST['cut']) : !empty($_GET['cut']);
 		$local_path = (! $cut && is_array($stat) && !empty($stat['_localpath']))? $stat['_localpath'] : '';
 		
 		$mime = $stat['mime'];
@@ -1387,11 +1387,11 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 						fwrite($target, fread($fp, 8192));
 					}
 					fclose($target);
-					if ($this->mimeDetect === 'internal' && strpos($mime, 'image') === 0 && ! getimagesize($local)) {
+					if ('internal' === $this->mimeDetect && 0 === strpos($mime, 'image') && ! getimagesize($local)) {
 						$this->_unlink($id);
 						return $this->setError(elFinder::ERROR_UPLOAD_FILE_MIME);
 					}
-					if ($this->options['autoResize'] && strpos($mime, 'image') === 0 && max($w, $h) > $this->options['autoResize']) {
+					if ($this->options['autoResize'] && 0 === strpos($mime, 'image') && max($w, $h) > $this->options['autoResize']) {
 						if ($this->imgResize($local, $this->options['autoResize'], $this->options['autoResize'], true, true)) {
 							clearstatcache();
 							$size = filesize($local);
@@ -1401,7 +1401,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 							$this->query($sql);
 						}
 					}
-					if ($size === 0) {
+					if (0 === $size) {
 						clearstatcache($local);
 						$size = filesize($local);
 						$sql = 'UPDATE %s SET size=%d WHERE file_id=%d LIMIT 1';
@@ -1443,7 +1443,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 	 **/
 	protected function _filePutContents($path, $content) {
 		if ($local = $this->readlink($path)) {
-			if (file_put_contents($local, $content) !== false) {
+			if (false !== file_put_contents($local, $content)) {
 				clearstatcache();
 				$stat = $this->stat($path);
 				$mime = $this->mimetype($local, $stat['name']);
@@ -1490,7 +1490,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		}
 		if (is_dir($realpath)) {
 			foreach (scandir($realpath) as $name) {
-				if ($name != '.' && $name != '..') {
+				if ('.' != $name && '..' != $name) {
 					$p = $realpath.DIRECTORY_SEPARATOR.$name;
 					if (is_link($p) || !$this->nameAccepted($name)) {
 						$this->setError(elFinder::ERROR_SAVE, $name);
@@ -1546,7 +1546,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		// get files list
 		$ls = [];
 		foreach (scandir($localdir) as $i => $name) {
-			if ($name != '.' && $name != '..') {
+			if ('.' != $name && '..' != $name) {
 				$ls[] = $name;
 			}
 		}
@@ -1576,10 +1576,10 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 		
 		$src = $localdir.DIRECTORY_SEPARATOR.$ls[0];
 		$_ok = false;
-		if (($extractTo === 'auto' || !$extractTo) && count($ls) === 1 && is_file($src)) {
+		if (('auto' === $extractTo || !$extractTo) && 1 === count($ls) && is_file($src)) {
 			$dir = $this->localFileSave($src, $dir, true);
 			$_ok = $dir? true : false;
-		} else if ($extractTo === 'auto' || $extractTo) {
+		} else if ('auto' === $extractTo || $extractTo) {
 			// create unique name for directory
 			$name = $stat['name'];
 			if (preg_match('/\.((tar\.(gz|bz|bz2|z|lzo))|cpio\.gz|ps\.gz|xcf\.(gz|bz2)|[a-z0-9]{1,4})$/i', $name, $m)) {
@@ -1597,7 +1597,7 @@ class elFinderVolumeXoopsXelfinder_db extends elFinderVolumeDriver {
 			}
 			
 			foreach (scandir($localdir) as $name) {
-				if ($name != '.' && $name != '..') {
+				if ('.' != $name && '..' != $name) {
 					$res = $this->localFileSave($localdir.DIRECTORY_SEPARATOR.$name, $dir, true);
 					if (!$_ok && $res > 0) $_ok = true;
 				}

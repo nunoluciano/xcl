@@ -65,8 +65,8 @@ class User_AbstractFilterForm
 
     public function getCriteria($start = null, $limit = null)
     {
-        $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
-        $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
+        $t_start = (null === $start) ? $this->mNavi->getStart() : intval($start);
+        $t_limit = (null === $limit) ? $this->mNavi->getPerpage() : intval($limit);
 
         $criteria = $this->_mCriteria;
 

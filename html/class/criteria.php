@@ -171,10 +171,10 @@ class CriteriaElement
             $this->order[0] = 'ASC';
         }
         
-        if ($order != null) {
-            if (strtoupper($order) == 'ASC') {
+        if (null != $order) {
+            if ('ASC' == strtoupper($order)) {
                 $this->order[0] = 'ASC';
-            } elseif (strtoupper($order) == 'DESC') {
+            } elseif ('DESC' == strtoupper($order)) {
                 $this->order[0] = 'DESC';
             }
         }
@@ -188,9 +188,9 @@ class CriteriaElement
     public function addSort($sort, $order = 'ASC')
     {
         $this->sort[] = $sort;
-        if (strtoupper($order) == 'ASC') {
+        if ('ASC' == strtoupper($order)) {
             $this->order[] = 'ASC';
-        } elseif (strtoupper($order) == 'DESC') {
+        } elseif ('DESC' == strtoupper($order)) {
             $this->order[] = 'DESC';
         }
     }
@@ -235,9 +235,9 @@ class CriteriaElement
      */
     public function setOrder($order)
     {
-        if (strtoupper($order) == 'ASC') {
+        if ('ASC' == strtoupper($order)) {
             $this->order[0] = 'ASC';
-        } elseif (strtoupper($order) == 'DESC') {
+        } elseif ('DESC' == strtoupper($order)) {
             $this->order[0] = 'DESC';
         }
     }
@@ -409,7 +409,7 @@ class CriteriaCompo extends CriteriaElement
     public function renderWhere()
     {
         $ret = $this->render();
-        $ret = ($ret != '') ? 'WHERE ' . $ret : $ret;
+        $ret = ('' != $ret) ? 'WHERE ' . $ret : $ret;
         return $ret;
     }
 
@@ -428,9 +428,9 @@ class CriteriaCompo extends CriteriaElement
             $retval = $this->criteriaElements[0]->renderLdap();
             for ($i = 1; $i < $count; $i++) {
                 $cond = $this->conditions[$i];
-                if (strtoupper($cond) == 'AND') {
+                if ('AND' == strtoupper($cond)) {
                     $op = '&';
-                } elseif (strtoupper($cond)=='OR') {
+                } elseif ('OR' == strtoupper($cond)) {
                     $op = '|';
                 }
                 $retval = "($op$retval" . $this->criteriaElements[$i]->renderLdap() . ')';
@@ -483,7 +483,7 @@ class Criteria extends CriteriaElement
         //
         // Recive DTYPE. This is a prolongation of criterion life operation.
         //
-        if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN') {
+        if (is_array($value) && 2 == count($value) && 'IN' != $operator && 'NOT IN' != $operator) {
             $this->dtype = intval($value[0]);
             $this->value = $value[1];
         } else {

@@ -128,9 +128,9 @@ class d3utilities
             }
             if (! empty($set4sql)) {
                 $result = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
-                if ($db->getRowsNum($result) == 1) {
+                if (1 == $db->getRowsNum($result)) {
                     $db->queryF("UPDATE $this->table SET ".substr($set4sql, 0, -1)." WHERE $this->primary_key=$id") ;
-                    if ($db->getAffectedRows() == 1) {
+                    if (1 == $db->getAffectedRows()) {
                         $ret[ $id ] = $db->fetchArray($result) ;
                     }
                 }
@@ -149,7 +149,7 @@ class d3utilities
         foreach (array_keys($_POST['admin_main_checkboxes']) as $id) {
             $id = intval($id) ;    // primary_key should be 'integer'
             $result = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
-            if ($db->getRowsNum($result) == 1) {
+            if (1 == $db->getRowsNum($result)) {
                 $ret[ $id ] = $db->fetchArray($result) ;
 
                 $db->queryF("DELETE FROM $this->table WHERE $this->primary_key=$id") ;
@@ -176,7 +176,7 @@ class d3utilities
         if (@$_GET['id']) {
             $id = intval($_GET['id']) ;
             $rs = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
-            if ($db->getRowsNum($rs) == 1) {
+            if (1 == $db->getRowsNum($rs)) {
                 $row = $db->fetchArray($rs) ;
                 foreach (array_keys($this->cols) as $key) {
                     if (empty($this->cols[$key]['edit_show'])) {
@@ -248,7 +248,7 @@ class d3utilities
 
         $controllers_html = '' ;
         foreach ($controllers as $type => $body) {
-            if ($type == 'num') {
+            if ('num' == $type) {
                 $controllers_html .= $this->get_select('num', $body, $GLOBALS['num']) ;
             }
         }

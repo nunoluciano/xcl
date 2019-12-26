@@ -27,7 +27,7 @@ public $paths = [];
         $ret = [];
         foreach ($this->paths as $val) {
             // delayed language constant
-        if (substr($val['name'], 0, 1) == '_' && defined($val['name'])) {
+        if ('_' == substr($val['name'], 0, 1) && defined($val['name'])) {
             $ret[] = [
                 'url' => $val['url'] ,
                 'name' => constant($val['name']) ,

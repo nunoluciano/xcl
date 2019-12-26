@@ -34,7 +34,7 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     
         $form =new XoopsFormDhtmlTextArea($params['name'], $params['name'], $params['value'], $params['rows'], $params['cols']);
         $form->setId($params['id']);
-        if ($params['class'] != null) {
+        if (null != $params['class']) {
             $form->setClass($params['class']);
         }
         
@@ -64,7 +64,7 @@ class Legacy_TextareaEditor extends XCube_ActionFilter
     
         $form =new XoopsFormTextArea($params['name'], $params['name'], $params['value'], $params['rows'], $params['cols']);
         $form->setId($params['id']);
-        if ($params['class'] != null) {
+        if (null != $params['class']) {
             $form->setClass($params['class']);
         }
         

@@ -38,9 +38,9 @@ if ($file_id && ($res = $xoopsDB->query($query)) && $xoopsDB->getRowsNum($res)) 
 			$tmb = $file = $basepath . $file_id;
 		} else {
 			$tmb = $basepath . md5($file);
-			if (substr($file, 1, 1) === '/') {
+			if ('/' === substr($file, 1, 1)) {
 				$_head = substr($file, 0, 1);
-				if (strpos($file, '%') !== false) {
+				if (false !== strpos($file, '%')) {
 					$file = dirname($file) . DIRECTORY_SEPARATOR . rawurldecode(basename($file));
 				}
 				switch($_head) {

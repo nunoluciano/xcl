@@ -43,7 +43,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $handler =& xoops_getmodulehandler('mailjob', 'user');
         $this->mMailjob =& $handler->get($this->mActionForm->get('mailjob_id'));
         
-        if ($this->mMailjob == null) {
+        if (null == $this->mMailjob) {
             return USER_FRAME_VIEW_ERROR;
         }
         
@@ -63,7 +63,7 @@ class User_Mailjob_linkListAction extends User_AbstractListAction
         $handler =& xoops_getmodulehandler('mailjob_link', 'user');
         foreach (array_keys($uidArr) as $uid) {
             $mailjob_link =& $handler->get($mailjob_id, $uid);
-            if ($mailjob_link != null) {
+            if (null != $mailjob_link) {
                 $handler->delete($mailjob_link);
             }
         }

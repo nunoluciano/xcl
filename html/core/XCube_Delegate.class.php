@@ -178,7 +178,7 @@ class XCube_Delegate
         for ($i=0, $max=count($args); $i<$max ; $i++) {
             $arg = $args[$i];
             $idx = strpos($arg, ' &');
-            if ($idx !== false) {
+            if (false !== $idx) {
                 $args[$i] = substr($arg, 0, $idx);
             }
         }
@@ -194,7 +194,7 @@ class XCube_Delegate
     public function register($delegateName)
     {
         $root =& XCube_Root::getSingleton();
-        if ($root->mDelegateManager != null) {
+        if (null != $root->mDelegateManager) {
             $this->_mIsLazyRegister = false;
             $this->_mLazyRegisterName = null;
         
@@ -229,15 +229,15 @@ class XCube_Delegate
         $filepath = null;
         
         if (!is_array($callback) && strstr($callback, '::')) {
-            if (count($tmp = explode('::', $callback)) == 2) {
+            if (2 == count($tmp = explode('::', $callback))) {
                 $callback = $tmp;
             }
         }
         
-        if ($param2 !== null) {
+        if (null !== $param2) {
             if (is_int($param2)) {
                 $priority = $param2;
-                $filepath = ($param3 !== null && is_string($param3)) ? $param3 : null;
+                $filepath = (null !== $param3 && is_string($param3)) ? $param3 : null;
             } elseif (is_string($param2)) {
                 $filepath = $param2;
             }
@@ -261,7 +261,7 @@ class XCube_Delegate
                 if (XCube_DelegateUtils::_compareCallback($callback, $delcallback)) {
                     unset($this->_mCallbacks[$priority][$idx]);
                 }
-                if (count($this->_mCallbacks[$priority])==0) {
+                if (0 == count($this->_mCallbacks[$priority])) {
                     unset($this->_mCallbacks[$priority]);
                 }
             }
@@ -354,7 +354,7 @@ class XCube_Delegate
                     require_once $file;
                 }
                 if (is_callable($callback)) {
-                    if (call_user_func_array($callback, $args) === XCUBE_DELEGATE_CHAIN_BREAK) {
+                    if (XCUBE_DELEGATE_CHAIN_BREAK === call_user_func_array($callback, $args)) {
                         break 2;
                     }
                 }
@@ -369,7 +369,7 @@ class XCube_Delegate
      */
     public function isEmpty()
     {
-        return (count($this->_mCallbacks) == 0);
+        return (0 == count($this->_mCallbacks));
     }
 
     /**
@@ -543,7 +543,7 @@ class XCube_DelegateManager
             return $this->_mDelegates[$name]->isEmpty();
         }
         
-        return isset($this->_mCallbacks[$name]) ? (count($this->_mCallbacks[$name]) == 0) : false;
+        return isset($this->_mCallbacks[$name]) ? (0 == count($this->_mCallbacks[$name])) : false;
     }
 
     /**
@@ -580,7 +580,7 @@ class XCube_DelegateUtils
     {
         $args = func_get_args();
         $num = func_num_args();
-        if ($num == 1) {
+        if (1 == $num) {
             $delegateName = $args[0];
         } elseif ($num) {
             $delegateName = array_shift($args);

@@ -34,7 +34,7 @@ class Legacy_MiscSslloginAction extends Legacy_Action
         $config_handler =& xoops_gethandler('config');
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
     
-        if ($moduleConfigUser['use_ssl'] == 1 && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
+        if (1 == $moduleConfigUser['use_ssl'] && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
             if (!isset($_SESSION)) {
                 session_id($_POST[$moduleConfigUser['sslpost_name']]);
               }

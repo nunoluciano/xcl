@@ -48,7 +48,7 @@ class Legacy_XoopsTpl extends XoopsTpl
             $context = $root->mContext;
             $reserve = $this->_mContextReserve;
             foreach ($tpl_var as $key => $val) {
-                if ($key != '') {
+                if ('' != $key) {
                     if (isset($reserve[$key])) {
                         $context->setAttribute($reserve[$key], htmlspecialchars_decode($val));
                     }
@@ -68,7 +68,7 @@ class Legacy_XoopsTpl extends XoopsTpl
     
     public function assign_by_ref($tpl_var, &$value)
     {
-        if ($tpl_var != '') {
+        if ('' != $tpl_var) {
             if (isset($this->_mContextReserve[$tpl_var])) {
                 $root =& XCube_Root::getSingleton();
                 $root->mContext->setAttribute($this->_mContextReserve[$tpl_var], htmlspecialchars_decode($value));
@@ -184,7 +184,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             ]
         );
 
-        if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && $xoopsRedirect[0] === '/') {
+        if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && '/' === $xoopsRedirect[0]) {
             $mTpl->assign('xoops_redirect', htmlspecialchars($xoopsRedirect, ENT_QUOTES));
         }
 
@@ -208,7 +208,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             //
             $this->_mIsActiveBanner = $configs['banners'];
             if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
-                if ($configs['banners'] == 1) {
+                if (1 == $configs['banners']) {
                     $mTpl->assign('xoops_banner', xoops_getbanner());
                 } else {
                     $mTpl->assign('xoops_banner', '&nbsp;');
@@ -270,7 +270,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         //
         // Assign module informations.
         //
-        if ($context->mModule != null) {    // The process of module
+        if (null != $context->mModule) {    // The process of module
             $xoopsModule =& $context->mXoopsModule;
             $vars['xoops_modulename'] = $xoopsModule->getVar('name');
             $vars['xoops_dirname'] = $xoopsModule->getVar('dirname');
@@ -355,13 +355,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         }
 
         if ($target->getTemplateName()) {
-            if ($cachedTemplateId!==null) {
+            if (null !== $cachedTemplateId) {
                 $contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName(), $xoopsCachedTemplateId);
             } else {
                 $contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName());
             }
         } else {
-            if ($cachedTemplateId!==null) {
+            if (null !== $cachedTemplateId) {
                 $this->mXoopsTpl->assign('dummy_content', $target->getAttribute('stdout_buffer'));
                 $contents=$this->mXoopsTpl->fetch($GLOBALS['xoopsCachedTemplate'], $xoopsCachedTemplateId);
             } else {
@@ -419,7 +419,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // TODO this process depends on XOOPS 2.0.x.
         //
         if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == false) {
-            $vars['xoops_banner'] = ($this->_mIsActiveBanner == 1)?xoops_getbanner():'&nbsp;';
+            $vars['xoops_banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;';
         }
 
         $mTpl->assign($vars);
@@ -519,7 +519,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         global $xoopsConfig;
         $myts =& MyTextSanitizer::sGetInstance();
-        if ($xoopsConfig['gzip_compression'] == 1) {
+        if (1 == $xoopsConfig['gzip_compression']) {
             ob_start('ob_gzhandler');
         } else {
             ob_start();

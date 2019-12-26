@@ -104,8 +104,8 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
             $this->_mCriteria->add(new Criteria('c_type', xoops_getrequest('c_type')));
         }
 
-        if (isset($_REQUEST['dirname']) and !$_REQUEST['dirname'] == 0) {
-            if (intval($dirname) == -1) {
+        if (isset($_REQUEST['dirname']) and 0 == !$_REQUEST['dirname']) {
+            if (-1 == intval($dirname)) {
                 $this->_mCriteria->add(new Criteria('block_type', 'C'));
                 $this->mModule = 'cblock';
             } else {
@@ -126,7 +126,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
         if (isset($_REQUEST['option_field'])) {
             $this->mOptionField = $option_field;
-            if ($this->mOptionField != 'all') {
+            if ('all' != $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('side', intval($this->mOptionField)));
             }
             $this->mNavi->addExtra('option_field', $this->mOptionField);
@@ -134,7 +134,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
         // added criteria of block module link
         $selectedMid = (int) $root->mContext->mRequest->getRequest('selmid');
-        if ($selectedMid !== 0) {
+        if (0 !== $selectedMid) {
             $handler =& xoops_getmodulehandler('block_module_link');
             $criteria = new CriteriaCompo(new Criteria('module_id', $selectedMid));
             $criteria->add(new Criteria('module_id', 0), 'OR');
@@ -149,7 +149,7 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
 
         // added criteria of group permissions
         $selectedGid = (int) $root->mContext->mRequest->getRequest('selgid');
-        if ($selectedGid !== 0) {
+        if (0 !== $selectedGid) {
             $handler =& xoops_gethandler('groupperm');
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('gperm_modid', 1));
@@ -188,15 +188,15 @@ class Legacy_BlockFilterForm extends Legacy_AbstractFilterForm
         //
         // If the sort key is mid, set c_type to second sort key for list display.
         //
-        if (abs($this->mSort) == NEWBLOCKS_SORT_KEY_MID) {
+        if (NEWBLOCKS_SORT_KEY_MID == abs($this->mSort)) {
             $this->_mCriteria->addSort('c_type', $this->getOrder());
         }
 
-        if (abs($this->mSort) != NEWBLOCKS_SORT_KEY_SIDE) {
+        if (NEWBLOCKS_SORT_KEY_SIDE != abs($this->mSort)) {
             $this->_mCriteria->addSort('side', $this->getOrder());
         }
 
-        if (abs($this->mSort) != NEWBLOCKS_SORT_KEY_WEIGHT) {
+        if (NEWBLOCKS_SORT_KEY_WEIGHT != abs($this->mSort)) {
             $this->_mCriteria->addSort('weight', $this->getOrder());
         }
     }

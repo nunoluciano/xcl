@@ -95,7 +95,7 @@ class Xupdate_Ftp_Abstract
         $this->AuthorizedTransferMode= [FTP_AUTOASCII, FTP_ASCII, FTP_BINARY];
         $this->OS_FullName= [FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS'];
         $this->AutoAsciiExt= ['ASP', 'BAT', 'C', 'CPP', 'CSS', 'CSV', 'JS', 'H', 'HTM', 'HTML', 'SHTML', 'INI', 'LOG', 'PHP3', 'PHTML', 'PL', 'PERL', 'SH', 'SQL', 'TXT'];
-        $this->_port_available=($port_mode==true);
+        $this->_port_available=(true == $port_mode);
         $this->SendMSG('Staring FTP client class' . ($this->_port_available? '' : ' without PORT mode support'));
         $this->_connected=false;
         $this->_ready=false;
@@ -114,9 +114,9 @@ class Xupdate_Ftp_Abstract
         $this->OS_local=FTP_OS_Unix;
         $this->OS_remote=FTP_OS_Unix;
         $this->features= [];
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        if ('WIN' === strtoupper(substr(PHP_OS, 0, 3))) {
             $this->OS_local=FTP_OS_Windows;
-        } elseif (strtoupper(substr(PHP_OS, 0, 3)) === 'MAC') {
+        } elseif ('MAC' === strtoupper(substr(PHP_OS, 0, 3))) {
             $this->OS_local=FTP_OS_Mac;
         }
 
@@ -175,7 +175,7 @@ class Xupdate_Ftp_Abstract
             if (!$dns) {
                 $dns=$host;
             }
-            if (ip2long($ip) === -1) {
+            if (-1 === ip2long($ip)) {
                 $this->SendMSG('Wrong host name/address "' . $host . '"');
                 return false;
             }

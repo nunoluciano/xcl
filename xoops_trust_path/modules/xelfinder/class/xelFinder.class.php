@@ -37,7 +37,7 @@ class xelFinder extends elFinder {
 			$phashes = [];
 		}
 
-		if (($volume = $this->volume($targets[0])) != false) {
+		if (false != ($volume = $this->volume($targets[0]))) {
 			if (method_exists($volume, 'savePerm')) {
 				if ($volume->commandDisabled('perm')) {
 					return ['error' => $this->error(self::ERROR_PERM_DENIED)];
@@ -46,7 +46,7 @@ class xelFinder extends elFinder {
 				$uid = ($this->isAdmin && is_numeric($args['uid']))? intval($args['uid']) : null;
 				// @todo uid 存在するか？妥当性検査
 				
-				if ($args['perm'] === 'getgroups') {
+				if ('getgroups' === $args['perm']) {
 					$groups = $volume->getGroups($targets[0]);
 					return $groups? $groups : ['error' => $this->error($volume->error())];
 				} else {

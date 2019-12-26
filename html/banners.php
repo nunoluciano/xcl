@@ -70,7 +70,7 @@ function clientlogin()
 function bannerstats($login, $pass)
 {
     global $xoopsDB, $xoopsConfig, $xoopsLogger;
-    if ($login == '' || $pass == '') {
+    if ('' == $login || '' == $pass) {
         redirect_header('banners.php', 2);
         exit();
     }
@@ -92,12 +92,12 @@ function bannerstats($login, $pass)
                 <td class='b_td'><b>Functions</b></td></tr>";
         $result = $xoopsDB->query('select bid, imptotal, impmade, clicks, date from ' . $xoopsDB->prefix('banner') . " where cid=$cid");
         while (list($bid, $imptotal, $impmade, $clicks, $date) = $xoopsDB->fetchRow($result)) {
-            if ($impmade == 0) {
+            if (0 == $impmade) {
                 $percent = 0;
             } else {
                 $percent = substr(100 * $clicks / $impmade, 0, 5);
             }
-            if ($imptotal == 0) {
+            if (0 == $imptotal) {
                 $left = 'Unlimited';
             } else {
                 $left = $imptotal-$impmade;
@@ -121,7 +121,7 @@ function bannerstats($login, $pass)
             if (!empty($htmlbanner) && !empty($htmlcode)) {
                 echo $myts->displayTarea($htmlcode);
             } else {
-                if (strtolower(substr($imageurl, strrpos($imageurl, '.'))) == '.swf') {
+                if ('.swf' == strtolower(substr($imageurl, strrpos($imageurl, '.')))) {
                     echo '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/ swflash.cab#version=6,0,40,0"; width="468" height="60">';
                     echo "<param name=movie value=\"$imageurl\" />";
                     echo "<param name=quality value='high' />";
@@ -187,24 +187,24 @@ function bannerstats($login, $pass)
 function EmailStats($login, $cid, $bid, $pass)
 {
     global $xoopsDB, $xoopsConfig;
-    if ($login != '' && $pass != '') {
+    if ('' != $login && '' != $pass) {
         $cid = intval($cid);
         $bid = intval($bid);
         if ($result2 = $xoopsDB->query(sprintf('select name, email, passwd from %s where cid=%u AND login=%s', $xoopsDB->prefix('bannerclient'), $cid, $xoopsDB->quoteString($login)))) {
             list($name, $email, $passwd) = $xoopsDB->fetchRow($result2);
             if ($pass == $passwd) {
-                if ($email == '') {
+                if ('' == $email) {
                     redirect_header('banners.php', 3, "There isn't an email associated with client " . $name . '.<br />Please contact the Administrator');
                     exit();
                 } else {
                     if ($result = $xoopsDB->query('select bid, imptotal, impmade, clicks, imageurl, clickurl, date from ' . $xoopsDB->prefix('banner') . " where bid=$bid and cid=$cid")) {
                         list($bid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date) = $xoopsDB->fetchRow($result);
-                        if ($impmade == 0) {
+                        if (0 == $impmade) {
                             $percent = 0;
                         } else {
                             $percent = substr(100 * $clicks / $impmade, 0, 5);
                         }
-                        if ($imptotal == 0) {
+                        if (0 == $imptotal) {
                             $left = 'Unlimited';
                             $imptotal = 'Unlimited';
                         } else {
@@ -241,7 +241,7 @@ function EmailStats($login, $cid, $bid, $pass)
 function change_banner_url_by_client($login, $pass, $cid, $bid, $url)
 {
     global $xoopsDB;
-    if ($login != '' && $pass != '' && $url != '') {
+    if ('' != $login && '' != $pass && '' != $url) {
         $cid = intval($cid);
         $bid = intval($bid);
         $sql = sprintf('select passwd from %s where cid=%u and login=%s', $xoopsDB->prefix('bannerclient'), $cid, $xoopsDB->quoteString($login));

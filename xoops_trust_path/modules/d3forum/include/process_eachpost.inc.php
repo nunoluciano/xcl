@@ -1,7 +1,7 @@
 <?php
 
 	// can_vote
-	$can_vote = ( ($uid || $xoopsModuleConfig['guest_vote_interval']) && $xoopsModuleConfig['use_vote'] == 1 ) ? true : false ;
+	$can_vote = ( ($uid || $xoopsModuleConfig['guest_vote_interval']) && 1 == $xoopsModuleConfig['use_vote']) ? true : false ;
 
 	// invisible
 	if( $post_row['invisible'] || ! $post_row['approval'] ) {
@@ -21,7 +21,7 @@
 	if( is_object( $poster_obj ) ) {
 		// active user's post
 		// naao from
-		if ($xoopsModuleConfig['use_name'] == 1 && $poster_obj->getVar( 'name' ) ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $poster_obj->getVar('name' ) ) {
 			$poster_uname4disp = $poster_obj->getVar( 'name' ) ;
 		} else {
 			$poster_uname4disp = $poster_obj->getVar( 'uname' ) ;

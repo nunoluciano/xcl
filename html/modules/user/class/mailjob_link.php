@@ -37,7 +37,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
         $objArr = &$this->getObjects($criteria);
 
-        if (count($objArr) == 1) {
+        if (1 == count($objArr)) {
             $ret = &$objArr[0];
         }
 
@@ -65,7 +65,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
         $arr = $this->_makeVars4sql($obj);
 
         foreach ($arr as $_name => $_value) {
-            if ($_name == 'mailjob_id' || $_name == 'uid') {
+            if ('mailjob_id' == $_name || 'uid' == $_name) {
                 $where = "${_name}=${_value}";
             } else {
                 $set_lists[] = "${_name}=${_value}";

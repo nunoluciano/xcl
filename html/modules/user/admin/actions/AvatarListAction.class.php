@@ -41,7 +41,7 @@ class User_AvatarListAction extends User_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == intval($perpage)) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -78,7 +78,7 @@ class User_AvatarListAction extends User_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -138,7 +138,7 @@ class User_AvatarListAction extends User_AbstractListAction
         $linkHandler =& xoops_getmodulehandler('avatar_user_link');
 
         foreach (array_keys($nameArr) as $aid) {
-            if ($this->mActionForm->get('delete', $aid) == 1) {
+            if (1 == $this->mActionForm->get('delete', $aid)) {
                 $avatar =& $avatarHandler->get($aid);
                 if (is_object($avatar)) {
                     $criteria =new Criteria('avatar_id', $aid);

@@ -84,7 +84,7 @@ class User_UserDeleteAction extends User_Action
 
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
-        if ($xoopsUser->get('uid') == 1) {
+        if (1 == $xoopsUser->get('uid')) {
             return false;
         }
         

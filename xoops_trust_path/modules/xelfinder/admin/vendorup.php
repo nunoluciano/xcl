@@ -53,7 +53,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 	foreach($cmds as $cmd) {
 		$res = '';
 		$handle = popen($cmd, 'r');
-		while ($res !== false && $handle && !feof($handle)) {
+		while (false !== $res && $handle && !feof($handle)) {
 			if ($res = fgets($handle, 80)) {
 				echo $res . '<br />';
 				flush ();
@@ -104,7 +104,7 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 		<p>
 		<input type="submit" name="doupdate" id="xelfinder_vendorup_s"
 			value="<?php echo xelfinderAdminLang('COMPOSER_DO_UPDATE'); ?>" />
-		<input type="hidden" name="php54" value="<?php echo $curver === '5.4' ? '1' : '0'; ?>" />
+		<input type="hidden" name="php54" value="<?php echo '5.4' === $curver ? '1' : '0'; ?>" />
 		</p>
 	</form>
 </div>

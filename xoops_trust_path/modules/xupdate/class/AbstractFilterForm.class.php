@@ -152,8 +152,8 @@ abstract class Xupdate_AbstractFilterForm
      */
     public function &getCriteria(/*** int ***/ $start = null, /*** int ***/ $limit = null)
     {
-        $t_start = ($start === null) ? $this->mNavi->getStart() : (int)$start;
-        $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : (int)$limit;
+        $t_start = (null === $start) ? $this->mNavi->getStart() : (int)$start;
+        $t_limit = (null === $limit) ? $this->mNavi->getPerpage() : (int)$limit;
 
         $criteria = $this->_mCriteria;
 

@@ -47,7 +47,7 @@ class User_AvatarEditForm extends XCube_ActionForm
 
     public function validateUploadavatar()
     {
-        if ($this->get('uploadavatar') != null) {
+        if (null != $this->get('uploadavatar')) {
             /*
             $formfile = $this->get('uploadavatar');
             if ($formfile->getWidth() > $this->mWidth) {
@@ -72,7 +72,7 @@ class User_AvatarEditForm extends XCube_ActionForm
         
         $this->mFormFile = $this->get('uploadavatar');
 
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('cavt');
             
             $filename = $this->mFormFile->getFileName();
@@ -88,7 +88,7 @@ class User_AvatarEditForm extends XCube_ActionForm
     public function createAvatar()
     {
         $avatar = null;
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
             $avatar =& $avatarHandler->create();
             $avatar->set('avatar_file', $this->mFormFile->getFileName());

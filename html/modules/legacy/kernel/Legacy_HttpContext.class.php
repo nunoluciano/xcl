@@ -81,7 +81,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      */
     public function getXoopsConfig($id = null)
     {
-        if ($id != null) {
+        if (null != $id) {
             return isset($this->mXoopsConfig[$id]) ? $this->mXoopsConfig[$id] : null;
         }
 

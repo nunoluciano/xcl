@@ -57,7 +57,7 @@ class PicoControllerGetMenu extends PicoControllerAbstract
         $this->assign['categories'] = $categories4assign;
 
         // breadcrumbs and pagetitle
-        $lastnode4assign = @$_GET['page'] == 'menu' ? _MD_PICO_MENU : $GLOBALS['xoopsModule']->getVar('name');
+        $lastnode4assign = 'menu' == @$_GET['page'] ? _MD_PICO_MENU : $GLOBALS['xoopsModule']->getVar('name');
         $breadcrumbsObj  = &AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', $lastnode4assign);
         $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();

@@ -53,7 +53,7 @@ class UserinfoAction extends User_UserInfoAction
             $xoopsUser = $this->mXoopsUser;
         }
         $result = $this->getDefaultView($controller, $xoopsUser);
-        if ($result == USER_FRAME_VIEW_ERROR) {
+        if (USER_FRAME_VIEW_ERROR == $result) {
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG19);
         }
         $language = $controller->mRoot->mContext->getXoopsConfig('language');

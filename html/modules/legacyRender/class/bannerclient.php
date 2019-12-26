@@ -42,7 +42,7 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 
     public function loadBanner()
     {
-        if ($this->_mBannersLoadedFlag == false) {
+        if (false == $this->_mBannersLoadedFlag) {
             $handler =& xoops_getmodulehandler('banner', 'legacyRender');
             $this->mBanners =& $handler->getObjects(new Criteria('cid', $this->get('cid')));
             $this->_mBannersLoadedFlag = true;
@@ -51,7 +51,7 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 
     public function loadBannerCount()
     {
-        if ($this->_mBannerCountLoadedFlag == false) {
+        if (false == $this->_mBannerCountLoadedFlag) {
             $handler =& xoops_getmodulehandler('banner', 'legacyRender');
             $this->mBannerCount = $handler->getCount(new Criteria('cid', $this->get('cid')));
             $this->_mBannerCountLoadedFlag = true;
@@ -68,7 +68,7 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 
     public function loadBannerfinish()
     {
-        if ($this->_mFinishBannersLoadedFlag == false) {
+        if (false == $this->_mFinishBannersLoadedFlag) {
             $handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
             $this->mFinishBanners =& $handler->getObjects(new Criteria('cid', $this->get('cid')));
             $this->_mFinishBannersLoadedFlag = true;
@@ -77,7 +77,7 @@ class LegacyRenderBannerclientObject extends XoopsSimpleObject
 
     public function loadFinishBannerCount()
     {
-        if ($this->_mFinishBannerCountLoadedFlag == false) {
+        if (false == $this->_mFinishBannerCountLoadedFlag) {
             $handler =& xoops_getmodulehandler('bannerfinish', 'legacyRender');
             $this->mFinishBannerCount = $handler->getCount(new Criteria('cid', $this->get('cid')));
             $this->_mFinishBannerCountLoadedFlag = true;

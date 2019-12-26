@@ -23,7 +23,7 @@ class LegacyRender_DelegateFunctions
             $theme->mDirname = $dirname = basename($themeDir);
         
             if ($theme->loadManifesto($themeDir . '/manifesto.ini.php')) {
-                if ($theme->mRenderSystemName != 'Legacy_RenderSystem') {
+                if ('Legacy_RenderSystem' != $theme->mRenderSystemName) {
                     continue;
                 }
             } else {

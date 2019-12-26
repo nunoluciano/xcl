@@ -68,7 +68,7 @@ class Legacy_AbstractCacheInformation
      */
     public function hasSetEnable()
     {
-        return $this->_mEnableCache !== false;
+        return false !== $this->_mEnableCache;
     }
     
     /**

@@ -21,7 +21,7 @@ function b_user_online_show()
         //
         // TODO We have to find the best method.
         //
-        if (strpos(xoops_getenv('REQUEST_URI'), 'misc.php') === false) {
+        if (false === strpos(xoops_getenv('REQUEST_URI'), 'misc.php')) {
             $online_handler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
         }
     }

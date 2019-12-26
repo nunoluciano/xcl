@@ -17,7 +17,7 @@ class UserUsers_searchHandler extends UserUsersHandler
 
         $sql = "SELECT DISTINCT u.* FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
@@ -28,23 +28,23 @@ class UserUsers_searchHandler extends UserUsersHandler
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = $criteria->getLimit();
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = $criteria->getStart();
             }
         } else {
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = 0;
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = 0;
             }
         }
@@ -97,7 +97,7 @@ class UserUsers_searchHandler extends UserUsersHandler
 
         $sql = "SELECT DISTINCT u.uid FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
@@ -108,23 +108,23 @@ class UserUsers_searchHandler extends UserUsersHandler
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
+            if ('' != $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = $criteria->getLimit();
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = $criteria->getStart();
             }
         } else {
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = 0;
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = 0;
             }
         }
@@ -150,7 +150,7 @@ class UserUsers_searchHandler extends UserUsersHandler
         $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT COUNT(DISTINCT u.uid) c FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && is_a($criteria, 'CriteriaElement')) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if ($where) {

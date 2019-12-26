@@ -94,7 +94,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
         $db = $root->mController->getDB();
   
         foreach ($sqls as $sql) {
-            if (strpos($sql, '_message_users') !== false) {
+            if (false !== strpos($sql, '_message_users')) {
                 if (!$db->query($sql)) {
                     $this->mLog->addError($db->error());
                     return false;

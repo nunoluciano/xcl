@@ -53,7 +53,7 @@ class Profile_AssetManager
         // TODO:Insert your creation code.
 
         // fallback
-        if ($instance === null) {
+        if (null === $instance) {
             $instance =& $this->_fallbackCreate($type, $name);
         }
     

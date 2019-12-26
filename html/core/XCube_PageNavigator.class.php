@@ -141,14 +141,14 @@ class XCube_PageNavigator
         
         if ($navi->mFlags & XCUBE_PAGENAVI_START) {
             $t_start = $root->mContext->mRequest->getRequest($navi->getStartKey());
-            if ($t_start != null && intval($t_start) >= 0) {
+            if (null != $t_start && intval($t_start) >= 0) {
                 $navi->mStart = intval($t_start);
             }
         }
 
         if ($navi->mFlags & XCUBE_PAGENAVI_PERPAGE && !$navi->mPerpageFreeze) {
             $t_perpage = $root->mContext->mRequest->getRequest($navi->getPerpageKey());
-            if ($t_perpage != null && intval($t_perpage) > 0) {
+            if (null != $t_perpage && intval($t_perpage) > 0) {
                 $navi->mPerpage = intval($t_perpage);
             }
         }
@@ -180,7 +180,7 @@ class XCube_PageNavigator
 
     public function getRenderBaseUrl($mask = null)
     {
-        if ($mask == null) {
+        if (null == $mask) {
             $mask = [];
         }
         if (!is_array($mask)) {
@@ -197,11 +197,11 @@ class XCube_PageNavigator
                 }
             }
             
-            if (count($tarr)==0) {
+            if (0 == count($tarr)) {
                 return $this->mUrl;
             }
             
-            if (strpos($this->mUrl, '?') !== false) {
+            if (false !== strpos($this->mUrl, '?')) {
                 return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
             } else {
                 return $this->mUrl . '?' . implode('&amp;', $tarr);
@@ -220,14 +220,14 @@ class XCube_PageNavigator
      */
     public function getRenderUrl($mask = null)
     {
-        if ($mask != null && !is_array($mask)) {
+        if (null != $mask && !is_array($mask)) {
             $mask = [$mask];
         }
         
         $demiliter = '?';
         $url = $this->getRenderBaseUrl($mask);
         
-        if (strpos($url, '?') !== false) {
+        if (false !== strpos($url, '?')) {
             $demiliter = '&amp;';
         }
         
@@ -246,7 +246,7 @@ class XCube_PageNavigator
             
             $tarr[] = $this->getPerpageKey() . '=' . $this->mPerpage;
             
-            if (strpos($this->mUrl, '?') !== false) {
+            if (false !== strpos($this->mUrl, '?')) {
                 return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
             } else {
                 return $this->mUrl . '?' . implode('&amp;', $tarr);
@@ -271,11 +271,11 @@ class XCube_PageNavigator
     
         $tarr[] = $this->getPerpageKey() . '=' . $this->getPerpage();
     
-        if ($page !== null) {
+        if (null !== $page) {
             $tarr[] = $this->getStartKey() . '=' . intval($page);
         }
     
-        if (strpos($this->mUrl, '?') !== false) {
+        if (false !== strpos($this->mUrl, '?')) {
             return $this->mUrl . '&amp;' . implode('&amp;', $tarr);
         }
     
@@ -311,7 +311,7 @@ class XCube_PageNavigator
     
     public function getTotalItems()
     {
-        if ($this->_mIsSpecifedTotalItems == false) {
+        if (false == $this->_mIsSpecifedTotalItems) {
             $this->mGetTotalItems->call(new XCube_Ref($this->mTotal));
             $this->_mIsSpecifedTotalItems = true;
         }

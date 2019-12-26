@@ -7,7 +7,7 @@ class protectorDbIntegrate
     public function __construct($link)
     {
         $this->link = $link;
-        if (is_object($link) && get_class($link) === 'mysqli') {
+        if (is_object($link) && 'mysqli' === get_class($link)) {
             $this->api = 'mysqli';
         }
     }

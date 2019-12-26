@@ -96,7 +96,7 @@ class LegacyThemeHandler extends XoopsObjectHandler
      */
     public function _makeCache()
     {
-        if (count($this->_mResults) == 0) {
+        if (0 == count($this->_mResults)) {
             $t_themeArr = [];
             $this->mGetInstalledThemes->call(new XCube_Ref($t_themeArr));
             

@@ -44,7 +44,7 @@ if( ! class_exists( 'xelfinderPreloadBase' ) ) {
                 if ($moduleperm_handler->checkRight('module_read', $XoopsModule->getVar('mid'), (is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))) {
                     $mydirpath          = $this->mydirpath;
                     $use_bbcode_siteimg = 1;
-                    if (!isset($_GET['cb']) && (!isset($_GET['getfile']) || $_GET['getfile'] !== 'ckeditor')) {
+                    if (!isset($_GET['cb']) && (!isset($_GET['getfile']) || 'ckeditor' !== $_GET['getfile'])) {
                         $_GET['cb'] = 'bbcode';
                     }
                     require dirname(__FILE__) . '/manager.php';
@@ -71,7 +71,7 @@ if( ! class_exists( 'xelfinderPreloadBase' ) ) {
 
         public function overRideImagecategoryList(&$actionFrame)
         {
-            if ($actionFrame->mActionName === 'ImagecategoryList') {
+            if ('ImagecategoryList' === $actionFrame->mActionName) {
                 $image_handler = xoops_getModuleHandler('image');
                 if ($image_handler) {
                     $total_criteria = new CriteriaCompo();

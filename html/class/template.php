@@ -63,7 +63,7 @@ class XoopsTpl extends Smarty
         global $xoopsConfig;
         $this->Smarty();
         $this->compile_id = XOOPS_URL;
-        if ($xoopsConfig['theme_fromfile'] == 1) {
+        if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
             $this->compile_check = true;
         } else {
@@ -286,7 +286,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
     //
     XCube_DelegateUtils::call('Legacy.XoopsTpl.TemplateTouch', $tpl_id, $clear_old, new XCube_Ref($result));
     
-    if ($result === null) {
+    if (null === $result) {
         $tpl = new XoopsTpl();
         $tpl->force_compile = true;
         $tplfile_handler =& xoops_gethandler('tplfile');
@@ -320,7 +320,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
  **/
 function xoops_template_create($resource_type, $resource_name, &$template_source, &$template_timestamp, &$smarty_obj)
 {
-    if ($resource_type == 'db') {
+    if ('db' == $resource_type) {
         $file_handler =& xoops_gethandler('tplfile');
         $tpl =& $file_handler->find('default', null, null, null, $resource_name, true);
         if (count($tpl) > 0 && is_object($tpl[0])) {
@@ -349,7 +349,7 @@ function xoops_template_clear_module_cache($mid)
         $xoopsTpl = new XoopsTpl();
         $xoopsTpl->xoops_setCaching(2);
         for ($i = 0; $i < $count; $i++) {
-            if ($block_arr[$i]->getVar('template') != '') {
+            if ('' != $block_arr[$i]->getVar('template')) {
                 $xoopsTpl->clear_cache('db:'.$block_arr[$i]->getVar('template'), 'blk_'.$block_arr[$i]->getVar('bid'));
             }
         }

@@ -84,7 +84,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
      */
     public function loadOverride($tplset)
     {
-        if ($tplset == 'default' || $this->mOverride != null) {
+        if ('default' == $tplset || null != $this->mOverride) {
             return;
         }
         
@@ -144,7 +144,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
         $dobjs = [];
         foreach ($objs as $obj) {
             $set = $obj->get('tpl_tplset');
-            if ($set == 'default') {
+            if ('default' == $set) {
                 $ret[] = $obj;
             }
             if ($set == $tplset) {
@@ -209,16 +209,16 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
     {
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('tpl_tplset', $tplsetName));
-        if ($type != null) {
+        if (null != $type) {
             $criteria->add(new Criteria('tpl_type', $type));
         }
-        if ($refId != null) {
+        if (null != $refId) {
             $criteria->add(new Criteria('tpl_refid', $refId));
         }
-        if ($module != null) {
+        if (null != $module) {
             $criteria->add(new Criteria('tpl_module', $module));
         }
-        if ($file != null) {
+        if (null != $file) {
             $criteria->add(new Criteria('tpl_file', $file));
         }
         

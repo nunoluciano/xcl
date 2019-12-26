@@ -33,7 +33,7 @@ class EasyLex_SQLToken
 
     public function getOutputValue()
     {
-        if ($this->mType == EASYLEX_SQL_SEPARATER) {
+        if (EASYLEX_SQL_SEPARATER == $this->mType) {
             return '';
         } else {
             return $this->mValue;
@@ -42,11 +42,11 @@ class EasyLex_SQLToken
 
     public function getValue()
     {
-        if ($this->mType == EASYLEX_SQL_SEPARATER) {
+        if (EASYLEX_SQL_SEPARATER == $this->mType) {
             return '';
         }
 
-        if ($this->mType == EASYLEX_SQL_STRING_LITERAL) {
+        if (EASYLEX_SQL_STRING_LITERAL == $this->mType) {
             return substr($this->mValue, 1, strlen($this->mValue) - 2);
         }
 
@@ -184,19 +184,19 @@ class EasyLex_SQLScanner
             return EASYLEX_SQL_SEPARATER;
         }
 
-        if ($ch == '(') {
+        if ('(' == $ch) {
             return EASYLEX_SQL_OPEN_PARENTHESIS;
         }
 
-        if ($ch == ')') {
+        if (')' == $ch) {
             return EASYLEX_SQL_CLOSE_PARENTHESIS;
         }
 
-        if ($ch == ';') {
+        if (';' == $ch) {
             return EASYLEX_SQL_SEMICOLON;
         }
 
-        if ($ch == ',') {
+        if (',' == $ch) {
             return EASYLEX_SQL_COMMA;
         }
 
@@ -217,7 +217,7 @@ class EasyLex_SQLScanner
         $this->mActiveToken .= $ch;
         $this->mIndex++;
 
-        if ($ch == "'" || $ch == '"' || $ch == '`') {
+        if ("'" == $ch || '"' == $ch || '`' == $ch) {
             $this->mStatus = EASYLEX_SQL_STRING_LITERAL;
             $this->mActiveQuoteMark = $ch;
         }
@@ -225,10 +225,10 @@ class EasyLex_SQLScanner
 
     public function _parseDigit($ch, $type)
     {
-        if ($type == EASYLEX_SQL_DIGIT) {
+        if (EASYLEX_SQL_DIGIT == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
-        } elseif ($type == EASYLEX_SQL_LETTER) {
+        } elseif (EASYLEX_SQL_LETTER == $type) {
             $this->mStatus = EASYLEX_SQL_LETTER;
             $this->mActiveToken .= $ch;
             $this->mIndex++;
@@ -239,7 +239,7 @@ class EasyLex_SQLScanner
 
     public function _parseLetter($ch, $type)
     {
-        if ($type == EASYLEX_SQL_LETTER || $type == EASYLEX_SQL_DIGIT) {
+        if (EASYLEX_SQL_LETTER == $type || EASYLEX_SQL_DIGIT == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
         } else {
@@ -252,7 +252,7 @@ class EasyLex_SQLScanner
         $this->mActiveToken .= $ch;
         $this->mIndex++;
 
-        if ($ch == "\\") {
+        if ("\\" == $ch) {
             $this->mStatus = EASYLEX_SQL_STRING_LITERAL_ESCAPE;
         } elseif ($ch == $this->mActiveQuoteMark) {
             $this->_createToken();
@@ -276,7 +276,7 @@ class EasyLex_SQLScanner
 
     public function _parseSeparater($ch, $type)
     {
-        if ($type == EASYLEX_SQL_SEPARATER) {
+        if (EASYLEX_SQL_SEPARATER == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
         } else {
@@ -293,7 +293,7 @@ class EasyLex_SQLScanner
 
     public function _parseMark($ch, $type)
     {
-        if ($type == EASYLEX_SQL_MARK) {
+        if (EASYLEX_SQL_MARK == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
         } else {
@@ -308,11 +308,11 @@ class EasyLex_SQLScanner
 
     public function _createToken($type = null, $value = null)
     {
-        if ($type === null) {
+        if (null === $type) {
             $type = $this->mStatus;
         }
 
-        if ($value === null) {
+        if (null === $value) {
             $value = $this->mActiveToken;
         }
 
@@ -337,15 +337,15 @@ class EasyLex_SQLScanner
         $depth = 0;
 
         foreach (array_keys($this->mTokens) as $key) {
-            if ($this->mTokens[$key]->mType == EASYLEX_SQL_OPEN_PARENTHESIS) {
+            if (EASYLEX_SQL_OPEN_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth++;
-            } elseif ($this->mTokens[$key]->mType == EASYLEX_SQL_CLOSE_PARENTHESIS) {
+            } elseif (EASYLEX_SQL_CLOSE_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth--;
             }
 
             $t_tokens[] = &$this->mTokens[$key];
 
-            if ($this->mTokens[$key]->mType == EASYLEX_SQL_SEMICOLON && $depth == 0) {
+            if (EASYLEX_SQL_SEMICOLON == $this->mTokens[$key]->mType && 0 == $depth) {
                 $ret[] = &$t_tokens;
                 unset($t_tokens);
                 $t_tokens = [];

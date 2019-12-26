@@ -37,7 +37,7 @@ class Legacy_SmilesUploadForm extends XCube_ActionForm
     public function validateUpload()
     {
         $formFile = $this->get('upload');
-        if ($formFile != null) {
+        if (null != $formFile) {
             $flag = false;
             foreach ($this->_allowExtensions as $ext) {
                 $flag |= preg_match('/' . str_replace('.', "\.", $ext) . '$/', $formFile->getFileName());

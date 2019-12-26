@@ -136,7 +136,7 @@ END:VCALENDAR';
             //Output
             $filename = $this->calendarName;
             //Filename needs quoting if it contains spaces
-            if (strpos($filename, ' ') !== false) {
+            if (false !== strpos($filename, ' ')) {
                 $filename = '"'.$filename.'"';
             }
             header('Content-type: text/calendar; charset=utf-8');

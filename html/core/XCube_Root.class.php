@@ -159,7 +159,7 @@ class XCube_Root
     public function loadSiteConfig()
     {
         $n = func_num_args();
-        if ($n == 0) {
+        if (0 == $n) {
             die('FETAL: open error: site setting config.');
         }
 
@@ -243,19 +243,19 @@ class XCube_Root
         //
         $m = &$this->mSiteConfig;
         $n = func_num_args();
-        if ($n == 0) {
+        if (0 == $n) {
             return $m;
-        } elseif ($n == 1) {
+        } elseif (1 == $n) {
             $a = func_get_arg(0);
             if (isset($m[$a])) {
                 return $m[$a];
             }
-        } elseif ($n == 2) {
+        } elseif (2 == $n) {
             list($a, $b) = func_get_args();
             if (isset($m[$a][$b])) {
                 return $m[$a][$b];
             }
-        } elseif ($n == 3) {
+        } elseif (3 == $n) {
             list($a, $b, $c) = func_get_args();
             if (isset($m[$a][$b])) {
                 return $m[$a][$b];
@@ -533,8 +533,8 @@ class XCube_Root
     {
         $ret = null;
         
-        if ($classPath != null) {
-            if ($root == null) {
+        if (null != $classPath) {
+            if (null == $root) {
                 $root = $this->mSiteConfig['Cube']['Root'];
             }
             

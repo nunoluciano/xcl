@@ -24,7 +24,7 @@ class Legacy_CommentViewAction extends Legacy_Action
         $handler =& xoops_getmodulehandler('comment');
         $this->mObject =& $handler->get(xoops_getrequest('com_id'));
         
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 

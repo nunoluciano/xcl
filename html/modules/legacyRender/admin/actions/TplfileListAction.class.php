@@ -97,14 +97,14 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
             $formFile =& $formFileArr[$key];
             
             $obj =& $handler->get($key);
-            if ($obj == null) {
+            if (null == $obj) {
                 continue;
             }
 
             //
             // If $obj belongs to 'default' template-set, kick!
             //			
-            if ($obj->get('tpl_tplset') == 'default') {
+            if ('default' == $obj->get('tpl_tplset')) {
                 continue;
             }
 
@@ -116,7 +116,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
             //
             // [Warning] Access to a private property of XCube_FormFile.
             //
-            if ($formFile != null) {
+            if (null != $formFile) {
                 $source = file_get_contents($formFile->_mTmpFileName);
                 $obj->Source->set('tpl_source', $source);
                 $obj->set('tpl_lastmodified', time());
@@ -151,7 +151,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         //
         // Load override file.
         //
-        if ($this->mFilter->mTplset != null && $this->mFilter->mTplset->get('tplset_name') != 'default') {
+        if (null != $this->mFilter->mTplset && 'default' != $this->mFilter->mTplset->get('tplset_name')) {
             foreach (array_keys($this->mObjects) as $key) {
                 $this->mObjects[$key]->loadOverride($this->mFilter->mTplset->get('tplset_name'));
             }
@@ -162,7 +162,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('actionForm', $this->mActionForm);
         
-        if ($this->mFilter->mTplset != null) {
+        if (null != $this->mFilter->mTplset) {
             $render->setAttribute('targetTplset', $this->mFilter->mTplset->get('tplset_name'));
         }
         

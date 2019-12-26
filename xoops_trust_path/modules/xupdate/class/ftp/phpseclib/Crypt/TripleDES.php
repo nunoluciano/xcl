@@ -235,10 +235,10 @@ class Crypt_TripleDES extends Crypt_DES
      */
     public function isValidEngine($engine)
     {
-        if ($engine == CRYPT_ENGINE_OPENSSL) {
+        if (CRYPT_ENGINE_OPENSSL == $engine) {
             $this->cipher_name_openssl_ecb = 'des-ede3';
             $mode                          = $this->_openssl_translate_mode();
-            $this->cipher_name_openssl     = $mode == 'ecb' ? 'des-ede3' : 'des-ede3-' . $mode;
+            $this->cipher_name_openssl     = 'ecb' == $mode ? 'des-ede3' : 'des-ede3-' . $mode;
         }
 
         return parent::isValidEngine($engine);

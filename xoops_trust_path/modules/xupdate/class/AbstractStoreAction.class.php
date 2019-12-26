@@ -222,7 +222,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
     public function execute()
     {
         $form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
 
@@ -305,7 +305,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
                         if ($this->Ftp->app_login()) {
                             // APC のキャッシュ対策のため、rename の場合もタイムスタンプを更新ｓるため mkdir する。
                             $this->Ftp->localMkdir(XOOPS_MODULE_PATH . '/' . $new_dirname);
-                            if ($obj->getVar('isactive') === -1) {
+                            if (-1 === $obj->getVar('isactive')) {
                                 $this->Ftp->localRename(XOOPS_MODULE_PATH . '/' . $olddata['dirname'], XOOPS_MODULE_PATH . '/' . $new_dirname);
                             }
                         } else {

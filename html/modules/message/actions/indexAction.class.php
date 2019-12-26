@@ -32,17 +32,17 @@ class indexAction extends AbstractAction
         $this->mPagenavi->setPagenum($pagenum);
         $this->mPagenavi->addSort('utime', 'DESC');
         $this->mPagenavi->addCriteria(new Criteria('uid', $this->root->mContext->mXoopsUser->get('uid')));
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             $fromuid = intval($this->root->mContext->mRequest->getRequest('fromuid'));
             if ($fromuid > 0) {
                 $this->mPagenavi->addCriteria(new Criteria('from_uid', $fromuid));
             }
             $this->subject = $this->root->mContext->mRequest->getRequest('subject');
-            if ($this->subject != '') {
+            if ('' != $this->subject) {
                 $this->mPagenavi->addCriteria(new Criteria('title', '%'.$this->subject.'%', 'LIKE'));
             }
             $this->status = $this->root->mContext->mRequest->getRequest('status');
-            if ($this->status !== '') {
+            if ('' !== $this->status) {
                 $this->status = intval($this->status);
                 $this->mPagenavi->addCriteria(new Criteria('is_read', $this->status));
             }

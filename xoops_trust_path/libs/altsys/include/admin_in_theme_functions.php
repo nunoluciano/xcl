@@ -126,7 +126,7 @@ function altsys_admin_in_theme_in_last($contents = null)
 
     // appendix (core specific css etc)
     $xoops_module_header = '' ;
-    if (altsys_get_core_type() == ALTSYS_CORE_TYPE_XCL21) {
+    if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
         $xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/legacyRender/admin/css.php?file=style.css" />'."\n" ;
         if (is_object(@$xoopsModule)) {
             $xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/legacyRender/admin/css.php?file=module.css&amp;dirname='.$xoopsModule->getVar('dirname').'" />'."\n" ;

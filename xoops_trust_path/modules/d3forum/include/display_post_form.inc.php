@@ -64,7 +64,7 @@ include dirname(dirname(__FILE__)).'/include/wysiwyg_editors.inc.php' ;
 
 	// naao from
 if( is_object( $xoopsUser ) ) {
-	if ($xoopsModuleConfig['use_name'] == 1 && $xoopsUser->getVar( 'name' ) ) {
+	if (1 == $xoopsModuleConfig['use_name'] && $xoopsUser->getVar('name' ) ) {
 		$poster_uname4disp = $xoopsUser->getVar( 'name' ) ;
 	} else {
 		$poster_uname4disp = $xoopsUser->getVar( 'uname' ) ;
@@ -144,7 +144,7 @@ $xoopsTpl->assign([
                       'category' => $category4assign,
                       'forum' => $forum4assign,
                       'topic' => @$topic4assign,
-                      'post' => $mode == 'edit' ? @$post4assign : [],
+                      'post' => 'edit' == $mode ? @$post4assign : [],
                       'body_wysiwyg' => $d3forum_wysiwyg_body,
                       'antispam' => $antispam4assign,
                       'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace('{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri']) . '">' . $xoopsTpl->get_template_vars('xoops_module_header') . "\n" . $d3forum_wysiwyg_header,

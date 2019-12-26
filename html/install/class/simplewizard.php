@@ -91,7 +91,7 @@ class SimpleWizard
         if (func_num_args() >0) {
             if (!empty($this->_v[$args[0]])) {
                 $value = $this->_v[$args[0]];
-                if ((func_num_args() ==2) && is_array($value)) {
+                if ((2 == func_num_args()) && is_array($value)) {
                     $value = $value[$args[1]];
                 }
             } else {

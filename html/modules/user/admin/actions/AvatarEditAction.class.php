@@ -32,12 +32,12 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
     public function _doExecute()
     {
-        if ($this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mFormFile) {
             if (!$this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH)) {
                 return false;
             }
             
-            if ($this->mActionForm->mOldFileName != null && $this->mActionForm->mOldFileName != 'blank.gif') {
+            if (null != $this->mActionForm->mOldFileName && 'blank.gif' != $this->mActionForm->mOldFileName) {
                 @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
                 
                 //

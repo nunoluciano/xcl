@@ -43,10 +43,10 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
     
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $method = xoops_getrequest('method') == 'tar' ? 'tar' : 'zip';
+        $method = 'tar' == xoops_getrequest('method') ? 'tar' : 'zip';
         $this->mDownloader =& $this->_createDownloader($method);
         
-        if ($this->mDownloader == null) {
+        if (null == $this->mDownloader) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
         
@@ -55,7 +55,7 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
         $handler =& xoops_getmodulehandler('tplset');
         $this->mTplset =& $handler->get($id);
         
-        if ($this->mTplset == null) {
+        if (null == $this->mTplset) {
             return LEGACYRENDER_FRAME_VIEW_ERROR;
         }
 
@@ -80,12 +80,12 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
             $xml .= '  <templates>' . "\n";
             for ($i = 0; $i < $count; $i++) {
                 $files[$i]->loadSource();
-                if ($files[$i]->Source != null) {
+                if (null != $files[$i]->Source) {
                     $type = null;
-                    if ($files[$i]->get('tpl_type') == 'block') {
+                    if ('block' == $files[$i]->get('tpl_type')) {
                         $path = $this->mTplset->getShow('tplset_name') . '/templates/' . $files[$i]->getShow('tpl_module') . '/blocks/' . $files[$i]->getShow('tpl_file');
                         $type = 'block';
-                    } elseif ($files[$i]->get('tpl_type') == 'module') {
+                    } elseif ('module' == $files[$i]->get('tpl_type')) {
                         $path = $this->mTplset->getShow('tplset_name') . '/templates/' . $files[$i]->getShow('tpl_module') . '/' . $files[$i]->getShow('tpl_file');
                         $type = 'module';
                     }

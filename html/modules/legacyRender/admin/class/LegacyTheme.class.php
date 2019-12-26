@@ -14,7 +14,7 @@ class LegacyTheme
     public function __construct($dirName, $manifesto=null)
     {
         $this->mDirName=$dirName;
-        if ($manifesto!=null) {
+        if (null != $manifesto) {
             $this->initializeByManifesto($manifesto);
         }
     }
@@ -38,8 +38,8 @@ class LegacyThemeHandler
         $this->_mThemeList= [];
 
         if ($handler=opendir(XOOPS_THEME_PATH)) {
-            while (($dir=readdir($handler))!==false) {
-                if ($dir == '.' || $dir == '..') {
+            while (false !== ($dir=readdir($handler))) {
+                if ('.' == $dir || '..' == $dir) {
                     continue;
                 }
 
@@ -55,7 +55,7 @@ class LegacyThemeHandler
                         //
                         // If this system can use this theme, add this to list.
                         //
-                        if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && $manifesto['Manifesto']['Depends'] == 'Legacy_RenderSystem') {
+                        if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && 'Legacy_RenderSystem' == $manifesto['Manifesto']['Depends']) {
                             $this->_mThemeList[]=new LegacyTheme($dir, $manifesto);
                         }
                     } else {
