@@ -2,11 +2,13 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)
 
-## ✅ 2019-12-19 Merge Feature Branch Admin New-UI [WIP]  
-## ✅ 2019-10-19 XCL update to 7.2.x MySQL 5.6.x  
-## :construction: 2019-01-29 XCL update to PHP7  
+### ✅ 2019-12-29 Pre-release v.2.3.0-alpha 
+### ✅ 2019-12-19 Merge Feature Branch Admin New-UI [WIP]  
+### ✅ 2019-10-19 XCL update to 7.2.x MySQL 5.6.x  
+### :construction: 2019-01-29 XCL update to PHP7  
 
-The new **XCL** development avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend the Web Application Platform.
+The new **XCL** development avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend the Web Application Platform.  
+
 <img src="https://scontent.fqls1-1.fna.fbcdn.net/v/t1.0-9/79994328_10221538834129104_360579516864659456_o.jpg?_nc_cat=101&_nc_ohc=YkgYNpDnZzoAQnMwESOsQ1kGdrm9wVXfUraefwg4f5psx8w2MSpSOq98A&_nc_ht=scontent.fqls1-1.fna&oh=f957dd63c155dc4b6b022a3557fa30a0&oe=5E694B9B" alt="XCL Admin Module Management" title="XCL Admin Module Management" />
 
 ## :computer: The Requirements  
