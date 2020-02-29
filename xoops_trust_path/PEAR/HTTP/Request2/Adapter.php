@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Adapter.php 324415 2012-03-21 10:50:50Z avb $
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -56,9 +56,9 @@ require_once 'HTTP/Request2/Response.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 abstract class HTTP_Request2_Adapter
 {
@@ -75,8 +75,8 @@ abstract class HTTP_Request2_Adapter
      * RFC 2616) will be sent for these methods even if no body was added
      *
      * @var  array
-     * @link https://pear.php.net/bugs/bug.php?id=12900
-     * @link https://pear.php.net/bugs/bug.php?id=14740
+     * @link http://pear.php.net/bugs/bug.php?id=12900
+     * @link http://pear.php.net/bugs/bug.php?id=14740
      */
     protected static $bodyRequired = array('POST', 'PUT');
 

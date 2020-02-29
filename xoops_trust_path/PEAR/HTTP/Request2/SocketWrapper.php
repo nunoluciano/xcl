@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: SocketWrapper.php 324935 2012-04-07 07:10:50Z avb $
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 
 /** Exception classes for HTTP_Request2 package */
@@ -53,11 +53,11 @@ require_once 'HTTP/Request2/Exception.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     https://pear.php.net/package/HTTP_Request2
- * @link     https://pear.php.net/bugs/bug.php?id=19332
- * @link     https://tools.ietf.org/html/rfc1928
+ * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/bugs/bug.php?id=19332
+ * @link     http://tools.ietf.org/html/rfc1928
  */
 class HTTP_Request2_SocketWrapper
 {
@@ -187,7 +187,7 @@ class HTTP_Request2_SocketWrapper
         }
         $written = fwrite($this->socket, $data);
         $this->checkTimeout();
-        // https://www.php.net/manual/en/function.fwrite.php#96951
+        // http://www.php.net/manual/en/function.fwrite.php#96951
         if ($written < strlen($data)) {
             throw new HTTP_Request2_MessageException('Error writing request');
         }

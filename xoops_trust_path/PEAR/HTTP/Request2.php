@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Request2.php 324936 2012-04-07 07:49:03Z avb $
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -57,17 +57,17 @@ require_once 'HTTP/Request2/Exception.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     https://pear.php.net/package/HTTP_Request2
- * @link     https://tools.ietf.org/html/rfc2616#section-5
+ * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     http://tools.ietf.org/html/rfc2616#section-5
  */
 class HTTP_Request2 implements SplSubject
 {
     /**#@+
      * Constants for HTTP request methods
      *
-     * @link https://tools.ietf.org/html/rfc2616#section-5.1.1
+     * @link http://tools.ietf.org/html/rfc2616#section-5.1.1
      */
     const METHOD_OPTIONS = 'OPTIONS';
     const METHOD_GET     = 'GET';
@@ -82,7 +82,7 @@ class HTTP_Request2 implements SplSubject
     /**#@+
      * Constants for HTTP authentication schemes
      *
-     * @link https://tools.ietf.org/html/rfc2617
+     * @link http://tools.ietf.org/html/rfc2617
      */
     const AUTH_BASIC  = 'basic';
     const AUTH_DIGEST = 'digest';
@@ -90,14 +90,14 @@ class HTTP_Request2 implements SplSubject
 
     /**
      * Regular expression used to check for invalid symbols in RFC 2616 tokens
-     * @link https://pear.php.net/bugs/bug.php?id=15630
+     * @link http://pear.php.net/bugs/bug.php?id=15630
      */
     const REGEXP_INVALID_TOKEN = '![\x00-\x1f\x7f-\xff()<>@,;:\\\\"/\[\]?={}\s]!';
 
     /**
      * Regular expression used to check for invalid symbols in cookie strings
-     * @link https://pear.php.net/bugs/bug.php?id=15630
-     * @link https://web.archive.org/web/20080331104521/https://cgi.netscape.com/newsref/std/cookie_spec.html
+     * @link http://pear.php.net/bugs/bug.php?id=15630
+     * @link http://web.archive.org/web/20080331104521/http://cgi.netscape.com/newsref/std/cookie_spec.html
      */
     const REGEXP_INVALID_COOKIE = '/[\s,;]/';
 
@@ -236,7 +236,7 @@ class HTTP_Request2 implements SplSubject
         }
         $this->setHeader(
             'user-agent', 'HTTP_Request2/2.1.1 ' .
-            '(https://pear.php.net/package/http_request2) PHP/' . phpversion()
+            '(http://pear.php.net/package/http_request2) PHP/' . phpversion()
         );
     }
 
@@ -300,7 +300,7 @@ class HTTP_Request2 implements SplSubject
      */
     public function setMethod($method)
     {
-        // Method name should be a token: https://tools.ietf.org/html/rfc2616#section-5.1.1
+        // Method name should be a token: http://tools.ietf.org/html/rfc2616#section-5.1.1
         if (preg_match(self::REGEXP_INVALID_TOKEN, $method)) {
             throw new HTTP_Request2_LogicException(
                 "Invalid request method '{$method}'",
@@ -505,7 +505,7 @@ class HTTP_Request2 implements SplSubject
             if (null === $value && strpos($name, ':')) {
                 list($name, $value) = array_map('trim', explode(':', $name, 2));
             }
-            // Header name should be a token: https://tools.ietf.org/html/rfc2616#section-4.2
+            // Header name should be a token: http://tools.ietf.org/html/rfc2616#section-4.2
             if (preg_match(self::REGEXP_INVALID_TOKEN, $name)) {
                 throw new HTTP_Request2_LogicException(
                     "Invalid header name '{$name}'",

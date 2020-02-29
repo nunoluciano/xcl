@@ -31,9 +31,9 @@
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   SVN: $Id: Compiler.php 38 2007-07-23 11:42:30Z mcorne $
- * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
  */
 
 require_once 'I18N/UnicodeNormalizer.php';
@@ -65,10 +65,10 @@ require_once 'I18N/UnicodeNormalizer/File.php';
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   Release: @package_version@
- * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
- * @link      https://www.unicode.org/Public/UNIDATA/
+ * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      http://www.unicode.org/Public/UNIDATA/
  * @see       I18N_UnicodeNormalizer::$compiled for the list of compiled files.
  */
 class I18N_UnicodeNormalizer_Compiler
@@ -312,7 +312,7 @@ class I18N_UnicodeNormalizer_Compiler
      *
      * @return void   
      * @access private
-     * @link   https://www.unicode.org/unicode/reports/tr15/#Hangul
+     * @link   http://www.unicode.org/unicode/reports/tr15/#Hangul
      */
     private function compileHangulDecomp()
     {

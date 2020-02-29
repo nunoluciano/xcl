@@ -30,9 +30,9 @@
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   SVN: $Id: String.php 39 2007-07-25 12:33:15Z mcorne $
- * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
  */
 
 /**
@@ -45,10 +45,10 @@
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   Release: @package_version@
- * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
- * @link      https://en.wikipedia.org/wiki/Utf8
+ * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      http://en.wikipedia.org/wiki/Utf8
  */
 class I18N_UnicodeNormalizer_String
 {

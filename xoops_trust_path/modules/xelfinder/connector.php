@@ -224,10 +224,10 @@ try {
 	// Access control
 	require_once dirname(__FILE__).'/class/xelFinderAccess.class.php';
 	// custom session handler
-	require_once dirname(__FILE__) . '/class/xelFinderSession.class.php';
+	require_once _MD_ELFINDER_LIB_PATH . '/php/elFinderSession.php';
 	
 	// make sesstion handler
-	$session = new xelFinderSession(array(
+	$session = new elFinderSession(array(
 		'base64encode' => $xoops_elFinder->base64encodeSessionData,
 		'keys' => array(
 			'default'   => 'xel_'.$mydirname.'_Caches',
@@ -248,11 +248,12 @@ try {
 	// set netmount data to session
 	$netVolumeData = array();
 	if ($userRoll['uid'] && $userRoll['uid'] !== $session->get($uidSessionKey)) {
-		$netVolumeData = $session->get('netvolume', $netVolumeData);
-		if (count($netVolumeData) === 0) {
-			$netVolumeData = $xoops_elFinder->getNetmountData();
-			if (count($netVolumeData)) {
-				$session->set('netvolume', $netVolumeData);
+		$sessNetVols = $session->get('netvolume', $netVolumeData);
+		$netVolumeData = array_merge($xoops_elFinder->getNetmountData(), $sessNetVols);
+		if (count($netVolumeData)) {
+			$session->set('netvolume', $netVolumeData);
+			if (count($sessNetVols)) {
+				$xoops_elFinder->saveNetmoutData($session);
 			}
 		}
 	}
@@ -449,7 +450,7 @@ try {
 		'bind'   => array(
 			//'*' => array($xoops_elFinder, 'log'),
 			'netmount.pre' => array($xoops_elFinder, 'netmountPreCallback'),
-			'netmount' => array($xoops_elFinder, 'netmountCallback'),
+			'netmount rename' => array($xoops_elFinder, 'netmountCallback'),
 			'mkdir mkfile put upload extract' => array($xoops_elFinder, 'notifyMail'),
 			'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre' => array(
 				'Plugin.Sanitizer.cmdPreprocess',

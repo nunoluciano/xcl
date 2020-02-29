@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: MultipartBody.php 324415 2012-03-21 10:50:50Z avb $
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -50,10 +50,10 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     https://pear.php.net/package/HTTP_Request2
- * @link     https://tools.ietf.org/html/rfc1867
+ * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     http://tools.ietf.org/html/rfc1867
  */
 class HTTP_Request2_MultipartBody
 {

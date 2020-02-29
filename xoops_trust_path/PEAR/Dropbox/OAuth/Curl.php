@@ -5,7 +5,7 @@
  *
  * @package Dropbox
  * @copyright Copyright (C) 2011 Daniel Huesken
- * @author Daniel Huesken (https://www.danielhuesken.de/)
+ * @author Daniel Huesken (http://www.danielhuesken.de/)
  * @license MIT
  */
 
@@ -271,7 +271,7 @@ class Dropbox_OAuth_Curl extends Dropbox_OAuth {
 
     /**
      * Helper function to properly urlencode parameters.
-     * See https://php.net/manual/en/function.oauth-urlencode.php
+     * See http://php.net/manual/en/function.oauth-urlencode.php
      *
      * @param string $string
      * @return string
