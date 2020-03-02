@@ -1,3 +1,5 @@
+<{ include file="./components/module-overview.html" }>
+
 <div class="adminnavi" aria-label="breadcrumb">
   <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
@@ -5,45 +7,72 @@
 </div>
 
 
-
 <div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></h2>
 
 <div class="tips"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LIST_ADVICE}></div>
 
-<table class="outer">
+</div>
+<{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
 
-<thead>
-  <tr>
-    <th><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_VERSION}></th>
-    <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
-	</tr>
-</thead>
 
-<tbody>
-  <{foreach item=module from=$moduleObjects}>
-    <tr class="<{cycle values='odd,even'}>">
-      <td class="ui-card-block-image">
-        <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" alt="<{$module->getShow('name','e')}>" title="<{$module->getShow('name','e')}>" class="svg">
-        <div class="legacy_list_imagetitle"><{$module->getShow('name')}></div>
-      </td>
-      <td class="legacy_list_order"><{$module->getRenderedVersion()}></td>
-      <td class="legacy_list_control">
-        <a href="index.php?action=ModuleInstall&amp;dirname=<{$module->getShow('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-          <img src="<{"icons/icon-package.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+<div class="ui-grid-blocks">
+
+	<{foreach item=module from=$moduleObjects}>
+	<div class="ui-card-block">
+
+    <div class="ui-card-block-header">
+
+      <div class="ui-card-block-info">
+        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getVar('dirname')}>" title="<{$module->getShow('name')}> - <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
+          <img class="svg" src="<{"icons/icon-info.svg"|theme}>">
         </a>
-        <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>" title="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>" class="blue">
-          <img src="<{"icons/icon-info.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
-        </a>
-      </td>
-    </tr>
+      </div>
+
+      <div class="ui-card-block-settings">
+        <input type="checkbox" class="switch" name="<{$module->getShow('name')}>" disabled>
+      </div><{* /ui-card-block-settings *}>
+
+    </div><{* /ui-card-header *}>
+
+
+		<div class="ui-card-block-image">
+			<img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" alt="<{$module->getShow('name')}>" title="<{$module->getShow('name')}>">
+		</div>
+
+
+    <div class="ui-card-block-content">
+
+    <div class="ui-card-block-item pad-center">
+			<input type="text" size="20" name="<{$module->getShow('name')}>" value="<{$module->getShow('name')}>" title="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}> : <{$module->getShow('name')}>" disabled>
+		</div>
+
+		<div class="ui-card-block-item pad-left">
+      <span title="<{$smarty.const._AD_LEGACY_LANG_VERSION}>"><img src="<{"icons/icon-package.svg"|theme}>" class="svg"></span>
+				<{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$module->getRenderedVersion()}>
+		</div>
+
+		<div class="ui-card-block-item pad-left">
+			<span title="<{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}>"><img class="svg" src="<{"icons/icon-date-time.svg"|theme}>"></span>
+			<span>----/--/-- --:--:--</span>
+		</div>
+
+		<div class="ui-card-block-item pad-center">
+			<a href="index.php?action=ModuleInstall&amp;dirname=<{$module->getShow('dirname')}>" class="ui-btn ui-btn-small" title="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+					<path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15l-1.89 1.07L16 8.61l1.96-1.11L12 4.15M6.04 7.5L12 10.85l1.96-1.1l-5.88-3.4L6.04 7.5M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38z" fill="currentColor"></path>
+				</svg>	<{$smarty.const._AD_LEGACY_LANG_INSTALL}>
+			</a>
+		</div>
+
+    </div><{* / ui-card-block-content *}>
+
+
+	</div><{* / ui-card-block *}>
+
 	<{/foreach}>
-</tbody>
-
-</table>
 
 </div>

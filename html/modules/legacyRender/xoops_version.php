@@ -173,7 +173,8 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_CSS_FILE_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dot-luv/jquery-ui.min.css"
+        "default"=>XOOPS_URL."/common/js/jquery-ui.min.css"
+        // "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dot-luv/jquery-ui.min.css"
     );
 
 $modversion['config'][]=array(
@@ -191,7 +192,8 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_JQUERY_CORE_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+        "default"=>XOOPS_URL."/common/js/jquery.min.js"
+        // "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"
     );
 
 $modversion['config'][]=array(
@@ -200,7 +202,8 @@ $modversion['config'][]=array(
         "description"=>"_MI_LR_JQUERY_UI_DESC",
         "formtype"=>"textbox",
         "valuetype"=>"text",
-        "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        "default"=>XOOPS_URL."/common/js/jquery-ui.min.js"
+        // "default"=>"https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
     );
 
 // Menu

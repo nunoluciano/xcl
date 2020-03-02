@@ -8,36 +8,30 @@
 
 <div class="ui-card-full">
 
-  <div class="ui-dev-mode"><{$smarty.template}></div>
+	<div class="ui-dev-mode"><{$smarty.template}></div>
 
+	<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h2>
 
-<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h2>
+	<div class="tips"><{$smarty.const._AD_LEGACY_TIPS_MOD}></div>
 
-<div class="tips">
-<{$smarty.const._AD_LEGACY_TIPS_MOD}>
-</div>
+	<{if $actionForm->hasError()}>
+	<div class="error">
+		<ul>
+			<{foreach item=message from=$actionForm->getErrorMessages()}>
+				<li><{$message|xoops_escape}></li>
+			<{/foreach}>
+		</ul>
+	</div>
+	<{/if}>
 
-
-<{if $actionForm->hasError()}>
-<div class="error">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
-    <{/foreach}>
-  </ul>
-</div>
-<{/if}>
 </div><{*  /ui-card-full *}>
 
 
 <{ include file="./components/module-filter.html" }>
 
 
-
-
 <{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
 <div class="ui-grid-blocks">
-
 
 <{foreach item=module from=$moduleObjects}>
 
