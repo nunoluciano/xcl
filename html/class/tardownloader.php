@@ -109,9 +109,9 @@ class XoopsTarDownloader extends XoopsDownloader
     /**
      * Add a dummy file to the archive
      * 
-     * @param   string  $data       Data to write
-     * @param   string  $filename   Name for the file in the archive
-     * @param   integer $time
+     * @param   string $data       Data to write
+     * @param   string $filename   Name for the file in the archive
+     * @param int      $time
      **/
     public function addFileData(&$data, $filename, $time=0)
     {
@@ -126,7 +126,7 @@ class XoopsTarDownloader extends XoopsDownloader
         for ($i = 0; $i < $this->archiver->numFiles; $i++) {
             if ($this->archiver->files[$i]['name'] == $dummyfile) {
                 $this->archiver->files[$i]['name'] = $filename;
-                if ($time != 0) {
+                if (0 != $time) {
                     $this->archiver->files[$i]['time'] = $time;
                 }
                 break;
@@ -137,9 +137,9 @@ class XoopsTarDownloader extends XoopsDownloader
     /**
      * Add a binary dummy file to the archive
      * 
-     * @param   string  $data   Data to write
-     * @param   string  $filename   Name for the file in the archive
-     * @param   integer $time
+     * @param   string $data   Data to write
+     * @param   string $filename   Name for the file in the archive
+     * @param int      $time
      **/
     public function addBinaryFileData(&$data, $filename, $time=0)
     {
@@ -154,7 +154,7 @@ class XoopsTarDownloader extends XoopsDownloader
         for ($i = 0; $i < $this->archiver->numFiles; $i++) {
             if ($this->archiver->files[$i]['name'] == $dummyfile) {
                 $this->archiver->files[$i]['name'] = $filename;
-                if ($time != 0) {
+                if (0 != $time) {
                     $this->archiver->files[$i]['time'] = $time;
                 }
                 break;
@@ -165,15 +165,15 @@ class XoopsTarDownloader extends XoopsDownloader
     /**
      * Send the file to the client
      * 
-     * @param   string  $name   Filename
-     * @param   boolean $gzip   Use GZ compression
+     * @param   string $name Filename
+     * @param bool     $gzip Use GZ compression
      **/
     public function download($name, $gzip = true)
     {
         $file = $this->archiver->toTarOutput($name.$this->ext, $gzip);
         $this->_header($name.$this->ext);
         header('Content-Type: application/x-tar') ;
-        header('Content-Length: '.floatval(@strlen($file))) ;
+        header('Content-Length: ' . (float)@strlen($file)) ;
         echo $file;
     }
 }

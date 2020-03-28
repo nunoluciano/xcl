@@ -75,14 +75,14 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $From     = "";
+  public $From     = '';
   
   /**
    * "from" name
    * @var   string
    * @access  private
    */
-  public $FromName   = "";
+  public $FromName   = '';
 
   // can be "smtp", "sendmail", or "mail"
   /**
@@ -99,7 +99,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Mailer   = "mail";
+  public $Mailer   = 'mail';
 
   /**
    * set if $Mailer is "sendmail"
@@ -109,7 +109,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Sendmail = "/usr/sbin/sendmail";
+  public $Sendmail = '/usr/sbin/sendmail';
 
   /**
    * SMTP Host.
@@ -118,11 +118,11 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Host   = "";
+  public $Host   = '';
 
   /**
    * Does your SMTP host require SMTPAuth authentication?
-   * @var   boolean
+   * @var   bool
    * @access  private
    */
   public $SMTPAuth = false;
@@ -134,7 +134,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Username = "";
+  public $Username = '';
 
   /**
    * Password for SMTPAuth.
@@ -143,7 +143,7 @@ class xoopsmultimailer extends PHPMailer
    * @var   string
    * @access  private
    */
-  public $Password = "";
+  public $Password = '';
   
   /**
    * Constuctor
@@ -160,12 +160,12 @@ class xoopsmultimailer extends PHPMailer
       $config_handler =& xoops_gethandler('config');
       $xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
       $this->From = $xoopsMailerConfig['from'];
-      if ($this->From == '') {
+      if ('' == $this->From) {
           $this->From = defined('XOOPS_NOTIFY_FROM_EMAIL')? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail'];
       }
       $this->Sender = defined('XOOPS_NOTIFY_SENDER_EMAIL')? XOOPS_NOTIFY_SENDER_EMAIL : $xoopsConfig['adminmail'];
-      if ($xoopsMailerConfig["mailmethod"] == "smtpauth") {
-          $this->Mailer = "smtp";
+      if ('smtpauth' == $xoopsMailerConfig['mailmethod']) {
+          $this->Mailer = 'smtp';
           $this->SMTPAuth = true;
           $this->Host = implode(';', $xoopsMailerConfig['smtphost']);
           $this->Username = $xoopsMailerConfig['smtpuser'];
@@ -178,11 +178,12 @@ class xoopsmultimailer extends PHPMailer
       }
   }
 
-  /**
+    /**
      * Formats an address correctly. This overrides the default AddrFormat method
      * which does not seem to encode $FromName correctly
      * This method name is renamed from "addr_format", because method name in parent class is renamed.
      * @access private
+     * @param $addr
      * @return string
      */
      //TODO: We must verify,whether we should prepare this method even now.(phpmailer is upgraded from 1.65 to 1.73)
@@ -224,7 +225,7 @@ class xoopsmultimailer extends PHPMailer
     {
         // Patch for XOOPS Cube Legacy 2008/09/21
         $ext = substr($lang_path, -1, 1);
-        if ($ext != '/' && file_exists($lang_path)) {
+        if ('/' != $ext && file_exists($lang_path)) {
             include($lang_path);
             $this->language = $PHPMAILER_LANG;
             return true;

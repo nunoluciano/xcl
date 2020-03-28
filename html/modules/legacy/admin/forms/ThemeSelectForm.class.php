@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 /***
  * @internal
@@ -22,7 +22,7 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
 {
     public function getTokenName()
     {
-        return "module.legacy.ThemeSelectForm.TOKEN";
+        return 'module.legacy.ThemeSelectForm.TOKEN';
     }
 
     public function prepare()
@@ -48,10 +48,10 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
     
     public function getSelectableTheme()
     {
-        $ret = array();
+        $ret = [];
         
         foreach ($this->get('select') as $themeName => $isSelect) {
-            if ($isSelect == 1) {
+            if (1 == $isSelect) {
                 $ret[] = $themeName;
             }
         }

@@ -7,10 +7,10 @@ define('_USE_XOOPSMAILER', false);
 abstract class AbstractAction
 {
     protected $isError = false;
-    protected $errMsg = "";
+    protected $errMsg = '';
     protected $root;
     protected $url = 'index.php';
-    protected $unamelink = array();
+    protected $unamelink = [];
   
     public function __construct()
     {
@@ -46,7 +46,7 @@ abstract class AbstractAction
     public function chk_use($uid = 0)
     {
         $modObj = $this->getSettings($uid);
-        if ($modObj->get('usepm') == 1) {
+        if (1 == $modObj->get('usepm')) {
             return true;
         } else {
             return false;
@@ -55,7 +55,7 @@ abstract class AbstractAction
   
     public function getSettings($uid = 0)
     {
-        if ($uid == 0) {
+        if (0 == $uid) {
             $uid = $this->root->mContext->mXoopsUser->get('uid');
         }
     
@@ -68,9 +68,9 @@ abstract class AbstractAction
         return $modObj;
     }
   
-    public function getLinkUnameFromId($uid, $uname = "")
+    public function getLinkUnameFromId($uid, $uname = '')
     {
-        $uid = intval($uid);
+        $uid = (int)$uid;
     
         if ($uid > 0) {
             if (isset($this->unamelink[$uid])) {

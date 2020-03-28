@@ -35,11 +35,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH.'/class/xml/rpc/xmlrpcapi.php';
 
-class movabletypeapi extends XoopsXmlRpcApi
+class MovableTypeApi extends XoopsXmlRpcApi
 {
-    public function MovableTypeApi(&$params, &$response, &$module)
+    public function __construct(&$params, &$response, &$module)
     {
-        $this->XoopsXmlRpcApi($params, $response, $module);
+        parent::__construct($params, $response, $module);
     }
 
     public function getCategoryList()

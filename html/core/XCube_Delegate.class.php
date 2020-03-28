@@ -34,7 +34,7 @@ class XCube_Ref
 
     /**
      * @public Constructor.
-     * @param $obj mixed
+     * @param mixed $obj
      */
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$obj)
@@ -62,22 +62,22 @@ class XCube_Ref
 // But, developers should use {first,normal,firnal} basically.
 //
 
-define("XCUBE_DELEGATE_PRIORITY_1", 10);
-define("XCUBE_DELEGATE_PRIORITY_2", 20);
-define("XCUBE_DELEGATE_PRIORITY_3", 30);
-define("XCUBE_DELEGATE_PRIORITY_4", 40);
-define("XCUBE_DELEGATE_PRIORITY_5", 50);
-define("XCUBE_DELEGATE_PRIORITY_6", 60);
-define("XCUBE_DELEGATE_PRIORITY_7", 70);
-define("XCUBE_DELEGATE_PRIORITY_8", 80);
-define("XCUBE_DELEGATE_PRIORITY_9", 90);
-define("XCUBE_DELEGATE_PRIORITY_10", 100);
+define('XCUBE_DELEGATE_PRIORITY_1', 10);
+define('XCUBE_DELEGATE_PRIORITY_2', 20);
+define('XCUBE_DELEGATE_PRIORITY_3', 30);
+define('XCUBE_DELEGATE_PRIORITY_4', 40);
+define('XCUBE_DELEGATE_PRIORITY_5', 50);
+define('XCUBE_DELEGATE_PRIORITY_6', 60);
+define('XCUBE_DELEGATE_PRIORITY_7', 70);
+define('XCUBE_DELEGATE_PRIORITY_8', 80);
+define('XCUBE_DELEGATE_PRIORITY_9', 90);
+define('XCUBE_DELEGATE_PRIORITY_10', 100);
 
-define("XCUBE_DELEGATE_PRIORITY_FIRST", XCUBE_DELEGATE_PRIORITY_1);
-define("XCUBE_DELEGATE_PRIORITY_NORMAL", XCUBE_DELEGATE_PRIORITY_5);
-define("XCUBE_DELEGATE_PRIORITY_FINAL", XCUBE_DELEGATE_PRIORITY_10);
+define('XCUBE_DELEGATE_PRIORITY_FIRST', XCUBE_DELEGATE_PRIORITY_1);
+define('XCUBE_DELEGATE_PRIORITY_NORMAL', XCUBE_DELEGATE_PRIORITY_5);
+define('XCUBE_DELEGATE_PRIORITY_FINAL', XCUBE_DELEGATE_PRIORITY_10);
 
-define("XCUBE_DELEGATE_CHAIN_BREAK", -1);
+define('XCUBE_DELEGATE_CHAIN_BREAK', -1);
 
 /**
  * @public
@@ -103,13 +103,13 @@ class XCube_Delegate
      * @private
      * @brief Vector Array - The list of type of parameters.
      */
-    public $_mSignatures = array();
+    public $_mSignatures = [];
     
     /**
      * @private
      * @brief Complex Array - This is Array for callback type data.
      */
-    public $_mCallbacks = array();
+    public $_mCallbacks = [];
     
     /**
      * @private
@@ -160,13 +160,13 @@ class XCube_Delegate
         if (func_num_args()) {
             $this->_setSignatures(func_get_args());
         }
-        $this->_mUniqueID = uniqid(rand(), true);
+        $this->_mUniqueID = uniqid(mt_rand(), true);
     }
     
     /**
      * @private
      * @brief Set signatures for this delegate.
-     * @param $args Vector Array - std::vector<string>
+     * @param Vector $args Array - std::vector<string>
      * @return void
      * 
      * By this method, this function will come to check arguments with following
@@ -178,7 +178,7 @@ class XCube_Delegate
         for ($i=0, $max=count($args); $i<$max ; $i++) {
             $arg = $args[$i];
             $idx = strpos($arg, ' &');
-            if ($idx !== false) {
+            if (false !== $idx) {
                 $args[$i] = substr($arg, 0, $idx);
             }
         }
@@ -188,13 +188,13 @@ class XCube_Delegate
     /**
      * @public
      * @brief Registers this object to delegate manager of root.
-     * @param $delegateName string
+     * @param string $delegateName
      * @return bool
      */
     public function register($delegateName)
     {
         $root =& XCube_Root::getSingleton();
-        if ($root->mDelegateManager != null) {
+        if (null != $root->mDelegateManager) {
             $this->_mIsLazyRegister = false;
             $this->_mLazyRegisterName = null;
         
@@ -210,10 +210,13 @@ class XCube_Delegate
     /**
      * @public
      * @brief [Overload] Connects functions to this object as callbacked functions
+     * @param      $callback
+     * @param null $param2
+     * @param null $param3
      * @return void
-     * 
+     *
      * This method is virtual overload by sigunatures.
-     * 
+     *
      * \code
      *   add(callback $callback, int priority = XCUBE_DELEGATE_PRIORITY_NORMAL);
      *   add(callback $callback, string filepath = null);
@@ -226,27 +229,28 @@ class XCube_Delegate
         $filepath = null;
         
         if (!is_array($callback) && strstr($callback, '::')) {
-            if (count($tmp = explode('::', $callback)) == 2) {
+            if (2 == count($tmp = explode('::', $callback))) {
                 $callback = $tmp;
             }
         }
         
-        if ($param2 !== null) {
+        if (null !== $param2) {
             if (is_int($param2)) {
                 $priority = $param2;
-                $filepath = ($param3 !== null && is_string($param3)) ? $param3 : null;
+                $filepath = (null !== $param3 && is_string($param3)) ? $param3 : null;
             } elseif (is_string($param2)) {
                 $filepath = $param2;
             }
         }
         
-        $this->_mCallbacks[$priority][] = array($callback, $filepath);
+        $this->_mCallbacks[$priority][] = [$callback, $filepath];
         ksort($this->_mCallbacks);
     }
-    
+
     /**
      * @public
      * @brief Disconnects a function from this object.
+     * @param $delcallback
      * @return void
      */
     public function delete($delcallback)
@@ -257,7 +261,7 @@ class XCube_Delegate
                 if (XCube_DelegateUtils::_compareCallback($callback, $delcallback)) {
                     unset($this->_mCallbacks[$priority][$idx]);
                 }
-                if (count($this->_mCallbacks[$priority])==0) {
+                if (0 == count($this->_mCallbacks[$priority])) {
                     unset($this->_mCallbacks[$priority]);
                 }
             }
@@ -274,7 +278,7 @@ class XCube_Delegate
     public function reset()
     {
         unset($this->_mCallbacks);
-        $this->_mCallbacks = array();
+        $this->_mCallbacks = [];
     }
 
     /**
@@ -350,7 +354,7 @@ class XCube_Delegate
                     require_once $file;
                 }
                 if (is_callable($callback)) {
-                    if (call_user_func_array($callback, $args) === XCUBE_DELEGATE_CHAIN_BREAK) {
+                    if (XCUBE_DELEGATE_CHAIN_BREAK === call_user_func_array($callback, $args)) {
                         break 2;
                     }
                 }
@@ -365,7 +369,7 @@ class XCube_Delegate
      */
     public function isEmpty()
     {
-        return (count($this->_mCallbacks) == 0);
+        return (0 == count($this->_mCallbacks));
     }
 
     /**
@@ -398,19 +402,19 @@ class XCube_DelegateManager
      * @protected
      * @brief Complex Array
      */
-    public $_mCallbacks = array();
+    public $_mCallbacks = [];
 
     /**
      * @protected
      * @brief Complex Array
      */
-    public $_mCallbackParameters = array();
+    public $_mCallbackParameters = [];
     
     /**
      * @protected
      * @brief Map Array - std::map<string, XCube_Delegate*>
      */
-    public $_mDelegates = array();
+    public $_mDelegates = [];
 
     /**
      * @public
@@ -425,8 +429,8 @@ class XCube_DelegateManager
     /**
      * @public
      * @brief Adds $delegate as Delegate to the list of this manager.
-     * @param $name string - Registration name.
-     * @param $delegate XCube_Delegate - Delegate object which will be registered. 
+     * @param string         $name     - Registration name.
+     * @param XCube_Delegate $delegate - Delegate object which will be registered.
      * @return bool
      * 
      * If some functions that want to connect to $delegate, have been entrusted yet,
@@ -454,19 +458,22 @@ class XCube_DelegateManager
             return true;
         }
     }
-    
+
     /**
      * @public
      * @brief Connects functions to the delegate that have the specified name.
-     * @param $name string - Registration name.
+     * @param string $name - Registration name.
+     * @param        $callback
+     * @param null   $param3
+     * @param null   $param4
      * @return void
-     * 
+     *
      * If there aren't any delegates that have the specified name, this manager
      * entrust parameters to member properties. Then, when the delegate that
      * have the specified name will be registered, this manager will set these
      * parameters to the delegate.
-     * 
-     * @see XCube_Delegate::add()
+     *
+     * @see   XCube_Delegate::add()
      */
     public function add($name, $callback, $param3 = null, $param4 = null)
     {
@@ -476,14 +483,15 @@ class XCube_DelegateManager
             }
         }
         $this->_mCallbacks[$name][] = $callback;
-        $this->_mCallbackParameters[$name][] = array('0' => $param3, '1' => $param4);
+        $this->_mCallbackParameters[$name][] = ['0' => $param3, '1' => $param4];
     }
-    
+
     /**
      * @public
-     * @param $name string - Registration name
+     * @param string $name - Registration name
+     * @param        $delcallback
      * @brief Disconnects a function from the delegate that have the specified name.
-     * @see XCube_Delegate::delete()
+     * @see   XCube_Delegate::delete()
      */
     public function delete($name, $delcallback)
     {
@@ -506,7 +514,7 @@ class XCube_DelegateManager
     /**
      * @public
      * @brief Resets all functions off the delegate that have the specified name.
-     * @param $name string - Registration name which will be resetted.
+     * @param string $name - Registration name which will be resetted.
      * 
      * @see XCube_Delegate::reset()
      */
@@ -535,14 +543,13 @@ class XCube_DelegateManager
             return $this->_mDelegates[$name]->isEmpty();
         }
         
-        return isset($this->_mCallbacks[$name]) ? (count($this->_mCallbacks[$name]) == 0) : false;
+        return isset($this->_mCallbacks[$name]) ? (0 == count($this->_mCallbacks[$name])) : false;
     }
-    
-    
-   /**
-    * @public
-    * @return Map Array - std::map<string, XCube_Delegate*>
-    */
+
+    /**
+     * @public
+     * @return array Array - std::map<string, XCube_Delegate*>
+     */
     public function getDelegates()
     {
         return $this->_mDelegates;
@@ -573,7 +580,7 @@ class XCube_DelegateUtils
     {
         $args = func_get_args();
         $num = func_num_args();
-        if ($num == 1) {
+        if (1 == $num) {
             $delegateName = $args[0];
         } elseif ($num) {
             $delegateName = array_shift($args);
@@ -588,11 +595,11 @@ class XCube_DelegateUtils
                 list($key) = array_keys($delegates);
                 $delegate =& $delegates[$key];
             } else {
-                $delegate = new XCube_Delegate;
+                $delegate = new XCube_Delegate();
                 $m->register($delegateName, $delegate);
             }
         }
-        return call_user_func_array(array(&$delegate, 'call'), $args);
+        return call_user_func_array([&$delegate, 'call'], $args);
     }
 
     /**
@@ -652,7 +659,7 @@ class XCube_DelegateUtils
     {
         if (func_num_args()) {
             $args = func_get_args();
-            return call_user_func_array(array('XCube_DelegateUtils', 'call'), $args);
+            return call_user_func_array(['XCube_DelegateUtils', 'call'], $args);
         }
     }
 
@@ -676,13 +683,13 @@ class XCube_DelegateUtils
             $delegateName = $args[0];
             $string = $args[1];
             if (!empty($string) && is_string($string)) {
-                return "";
+                return '';
             }
             $args[1] = new XCube_Ref($string);
-            call_user_func_array(array('XCube_DelegateUtils', 'call'), $args);
+            call_user_func_array(['XCube_DelegateUtils', 'call'], $args);
             return $string;
         } else {
-            return "";
+            return '';
         }
     }
     

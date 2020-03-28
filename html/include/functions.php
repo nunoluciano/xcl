@@ -28,6 +28,8 @@
 // ################## Various functions from here ################
 
 /**
+ * @param $name
+ * @return
  * @deprecated see RequestObject
  */
 function xoops_getrequest($name)
@@ -37,13 +39,14 @@ function xoops_getrequest($name)
 }
 
 /**
+ * @param bool $closehead
  * @deprecated
  */
 function xoops_header($closehead = true)
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-    if ($renderSystem != null) {
+    if (null != $renderSystem) {
         $renderSystem->showXoopsHeader($closehead);
     }
 }
@@ -55,7 +58,7 @@ function xoops_footer()
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-    if ($renderSystem != null) {
+    if (null != $renderSystem) {
         $renderSystem->showXoopsFooter();
     }
 }
@@ -81,6 +84,8 @@ function xoops_error($message, $title='', $style='errorMsg')
 
 /**
  * @deprecated Don't use.
+ * @param        $message
+ * @param string $title
  */
 function xoops_result($message, $title='')
 {
@@ -135,6 +140,10 @@ function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = tr
 
 /**
  * @brief xoops_confirm alias [test]
+ * @param        $hiddens
+ * @param        $action
+ * @param        $msg
+ * @param string $submit
  */
 function xoops_token_confirm($hiddens, $action, $msg, $submit='')
 {
@@ -149,13 +158,13 @@ function xoops_confirm_validate()
 function xoops_refcheck($docheck=1)
 {
     $ref = xoops_getenv('HTTP_REFERER');
-    if ($docheck == 0) {
+    if (0 == $docheck) {
         return true;
     }
-    if ($ref == '') {
+    if ('' == $ref) {
         return false;
     }
-    if (strpos($ref, XOOPS_URL) !== 0) {
+    if (0 !== strpos($ref, XOOPS_URL)) {
         return false;
     }
     return true;
@@ -164,7 +173,7 @@ function xoops_refcheck($docheck=1)
 function xoops_getUserTimestamp($time, $timeoffset='')
 {
     global $xoopsConfig, $xoopsUser;
-    if ($timeoffset === '') {
+    if ('' === $timeoffset) {
         if ($xoopsUser) {
             static $offset;
             $timeoffset = isset($offset)?$offset:$offset = $xoopsUser->getVar('timezone_offset', 'n');
@@ -190,7 +199,7 @@ function formatTimestamp($time, $format='l', $timeoffset='')
  */
 function formatTimestampGMT($time, $format='l', $timeoffset='')
 {
-    if ($timeoffset === '') {
+    if ('' === $timeoffset) {
         global $xoopsUser;
         if ($xoopsUser) {
             $timeoffset = $xoopsUser->getVar('timezone_offset', 'n');
@@ -222,7 +231,7 @@ function _formatTimeStamp($time, $format='l')
         $datestring = _DATESTRING;
         break;
     default:
-        if ($format != '') {
+        if ('' != $format) {
             $datestring = $format;
         } else {
             $datestring = _DATESTRING;
@@ -248,13 +257,13 @@ function userTimeToServerTime($timestamp, $userTZ=null)
 function xoops_makepass()
 {
     $makepass = '';
-    $syllables = array('er','in','tia','wol','fe','pre','vet','jo','nes','al','len','son','cha','ir','ler','bo','ok','tio','nar','sim','ple','bla','ten','toe','cho','co','lat','spe','ak','er','po','co','lor','pen','cil','li','ght','wh','at','the','he','ck','is','mam','bo','no','fi','ve','any','way','pol','iti','cs','ra','dio','sou','rce','sea','rch','pa','per','com','bo','sp','eak','st','fi','rst','gr','oup','boy','ea','gle','tr','ail','bi','ble','brb','pri','dee','kay','en','be','se');
-    srand((double)microtime()*1000000);
+    $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
+    mt_srand((double)microtime() * 1000000);
     for ($count = 1; $count <= 4; $count++) {
-        if (rand()%10 == 1) {
-            $makepass .= sprintf('%0.0f', (rand()%50)+1);
+        if (1 == mt_rand() % 10) {
+            $makepass .= sprintf('%0.0f', (mt_rand() % 50) + 1);
         } else {
-            $makepass .= sprintf('%s', $syllables[rand()%62]);
+            $makepass .= sprintf('%s', $syllables[mt_rand() % 62]);
         }
     }
     return $makepass;
@@ -329,7 +338,7 @@ function checkEmail($email, $antispam = false)
 function formatURL($url)
 {
     $url = trim($url);
-    if ($url != '') {
+    if ('' != $url) {
         if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url))) {
             $url = 'https://'.$url;
         }
@@ -352,7 +361,7 @@ function xoops_getbanner()
 {
     global $xoopsConfig;
     $db =& Database::getInstance();
-    $bresult = $db->query("SELECT COUNT(*) FROM ".$db->prefix("banner"));
+    $bresult = $db->query('SELECT COUNT(*) FROM ' . $db->prefix('banner'));
     list($numrows) = $db->fetchRow($bresult);
     if ($numrows > 1) {
         $numrows = $numrows-1;
@@ -362,19 +371,19 @@ function xoops_getbanner()
         $bannum = 0;
     }
     if ($numrows > 0) {
-        $bresult = $db->query("SELECT * FROM ".$db->prefix("banner"), 1, $bannum);
+        $bresult = $db->query('SELECT * FROM ' . $db->prefix('banner'), 1, $bannum);
         list($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow($bresult);
         if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
             // EMPTY
         } else {
-            $db->queryF(sprintf("UPDATE %s SET impmade = impmade+1 WHERE bid = %u", $db->prefix("banner"), $bid));
+            $db->queryF(sprintf('UPDATE %s SET impmade = impmade+1 WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         /* Check if this impression is the last one and print the banner */
-        if ($imptotal != 0 && $imptotal == $impmade) {
-            $newid = $db->genId($db->prefix("bannerfinish")."_bid_seq");
-            $sql = sprintf("INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)", $db->prefix("bannerfinish"), $newid, $cid, $impmade, $clicks, $date, time());
+        if (0 != $imptotal && $imptotal == $impmade) {
+            $newid = $db->genId($db->prefix('bannerfinish') . '_bid_seq');
+            $sql = sprintf('INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)', $db->prefix('bannerfinish'), $newid, $cid, $impmade, $clicks, $date, time());
             $db->queryF($sql);
-            $db->queryF(sprintf("DELETE FROM %s WHERE bid = %u", $db->prefix("banner"), $bid));
+            $db->queryF(sprintf('DELETE FROM %s WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         if ($htmlbanner) {
             $bannerobject = $htmlcode;
@@ -422,8 +431,8 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
                 $url .= '&amp;xoops_redirect='.urlencode($xoopsRequestUri);
             }
         }
-        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && $xoopsConfig['session_name'] != '' && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if (strpos($url, XOOPS_URL) === 0) {
+        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' != $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
+            if (0 === strpos($url, XOOPS_URL)) {
                 if (!strstr($url, '?')) {
                     $connector = '?';
                 } else {
@@ -440,16 +449,16 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
                 }
             }
         }
-        $url = preg_replace("/&amp;/i", '&', htmlspecialchars($url, ENT_QUOTES));
+        $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         $xoopsTpl->assign('url', $url);
-        $message = trim($message) != '' ? $message : _TAKINGBACK;
+        $message = '' != trim($message) ? $message : _TAKINGBACK;
         $xoopsTpl->assign('message', $message);
         $xoopsTpl->assign('lang_ifnotreload', sprintf(_IFNOTRELOAD, $url));
         $GLOBALS['xoopsModuleUpdate'] = 1;
         $xoopsTpl->display('db:system_redirect.html');
         exit();
     } else {
-        $url = preg_replace("/&amp;/i", '&', htmlspecialchars($url, ENT_QUOTES));
+        $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         echo '
         <html>
         <head>
@@ -524,7 +533,7 @@ function getcss($theme = '')
  */
 function xoops_getcss($theme = '')
 {
-    if ($theme == '') {
+    if ('' == $theme) {
         $theme = $GLOBALS['xoopsConfig']['theme_set'];
     }
     $uagent = xoops_getenv('HTTP_USER_AGENT');
@@ -564,10 +573,13 @@ function &getMailer()
 /**
  * This function is Fly-Weight to get an instance of XoopsObject in Legacy
  * Kernel.
+ * @param      $name
+ * @param bool $optional
+ * @return bool|mixed|null
  */
 function &xoops_gethandler($name, $optional = false)
 {
-    static $handlers=array();
+    static $handlers= [];
     $name = strtolower(trim($name));
     if (isset($handlers[$name])) {
         return $handlers[$name];
@@ -653,7 +665,7 @@ function xoops_getrank($rank_id =0, $posts = 0)
     $db =& Database::getInstance();
     $myts =& MyTextSanitizer::sGetInstance();
     $rank_id = (int)$rank_id;
-    if ($rank_id != 0) {
+    if (0 != $rank_id) {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_id = '.$rank_id;
     } else {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_min <= '.$posts.' AND rank_max >= '.$posts.' AND rank_special = 0';
@@ -746,12 +758,12 @@ function xoops_comment_delete($module_id, $item_id)
         $comments =& $comment_handler->getByItemId($module_id, $item_id);
         if (is_array($comments)) {
             $count = count($comments);
-            $deleted_num = array();
+            $deleted_num = [];
             for ($i = 0; $i < $count; $i++) {
                 if (false != $comment_handler->delete($comments[$i])) {
                     // store poster ID and deleted post number into array for later use
                     $poster_id = $comments[$i]->getVar('com_uid', 'n');
-                    if ($poster_id != 0) {
+                    if (0 != $poster_id) {
                         $deleted_num[$poster_id] = !isset($deleted_num[$poster_id]) ? 1 : ($deleted_num[$poster_id] + 1);
                     }
                 }
@@ -833,8 +845,8 @@ if (!function_exists('session_regenerate_id')) { // @ToDo this compatible functi
     // session_regenerate_id compatible function for PHP Version< PHP4.3.2
     function session_regenerate_id()
     {
-        srand(microtime() * 100000);
-        $random = md5(XOOPS_SALT . uniqid(rand(), true));
+        mt_srand(microtime() * 100000);
+        $random = md5(XOOPS_SALT . uniqid(mt_rand(), true));
         if (session_id($random)) {
             return true;
         } else {

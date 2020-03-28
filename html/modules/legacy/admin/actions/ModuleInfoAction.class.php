@@ -26,11 +26,11 @@ class Legacy_ModuleInfoAction extends Legacy_Action
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $dirname = xoops_getrequest('dirname');
-        if (!preg_match("/^[a-zA-Z_][a-zA-Z0-9_]*$/", $dirname)) {
+        if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $dirname)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
-        if (!is_dir(XOOPS_MODULE_PATH . "/" . $dirname)) {
+        if (!is_dir(XOOPS_MODULE_PATH . '/' . $dirname)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
@@ -58,7 +58,7 @@ class Legacy_ModuleInfoAction extends Legacy_Action
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("module_information.html");
+        $renderer->setTemplateName('module_information.html');
         $renderer->setAttribute('module', $this->mModuleObject);
         $renderer->setAttribute('installed', $this->mInstalledFlag);
     }

@@ -12,16 +12,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentListForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/CommentEditAction.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentListForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/CommentEditAction.class.php';
 
 class Legacy_CommentListAction extends Legacy_AbstractListAction
 {
-    public $mCommentObjects = array();
+    public $mCommentObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -38,7 +38,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
     public function &_getPageNavi()
     {
         $navi =new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
-        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && intval($_REQUEST[$navi->mPrefix.'perpage']) == 0) {
+        if (isset($_REQUEST[$navi->mPrefix.'perpage']) && 0 == (int)$_REQUEST[$navi->mPrefix . 'perpage']) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -52,7 +52,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=CommentList";
+        return './index.php?action=CommentList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
@@ -66,7 +66,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             $this->mObjects[$key]->loadStatus();
         }
         
-        $moduleArr = array();
+        $moduleArr = [];
         $handler =& xoops_getmodulehandler('comment');
         $modIds = $handler->getModuleIds();
         
@@ -79,15 +79,15 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             unset($module);
         }
         
-        $statusArr = array();
+        $statusArr = [];
         $statusHandler =& xoops_getmodulehandler('commentstatus');
         $statusArr =& $statusHandler->getObjects();
         
-        $render->setTemplateName("comment_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
-        $render->setAttribute("moduleArr", $moduleArr);
-        $render->setAttribute("statusArr", $statusArr);
+        $render->setTemplateName('comment_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
+        $render->setAttribute('moduleArr', $moduleArr);
+        $render->setAttribute('statusArr', $statusArr);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
 
@@ -104,7 +104,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -158,7 +158,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                     $call_updatefunc = false;
                     $notify_event = false;
 
-                    if (!empty($newdata['com_status']) && $newdata['com_status'] != XOOPS_COMMENT_PENDING) {
+                    if (!empty($newdata['com_status']) && XOOPS_COMMENT_PENDING != $newdata['com_status']) {
                         if (XOOPS_COMMENT_PENDING == $olddata['com_status']) {
                             $add_userpost = true;
                             if (XOOPS_COMMENT_ACTIVE == $newdata['com_status']) {
@@ -175,21 +175,21 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
                     $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
 
-                    if ($comment_config && $call_approvefunc != false) {
+                    if ($comment_config && false != $call_approvefunc) {
                         $function = $comment_config['callback']['approve'];
                         if (function_exists($function)) {
                             call_user_func($function, $comment);
                         }
                     }
 
-                    if ($comment_config && $call_updatefunc != false) {
+                    if ($comment_config && false != $call_updatefunc) {
                         $function = $comment_config['callback']['update'];
                         if (function_exists($function)) {
                             $criteria = new CriteriaCompo(new Criteria('com_modid', $comment->getVar('com_modid')));
                             $criteria->add(new Criteria('com_itemid', $comment->getVar('com_itemid')));
                             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
                             $comment_count = $comment_handler->getCount($criteria);
-                            call_user_func_array($function, array($comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')));
+                            call_user_func_array($function, [$comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')]);
                         }
                     }
 
@@ -212,7 +212,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $not_category = $not_catinfo['name'];
                             $not_itemid = $comment->getVar('com_itemid');
                             $not_event = $notify_event;
-                            $comment_tags = array();
+                            $comment_tags = [];
                             $module_handler =& xoops_gethandler('module');
                             $not_module =& $module_handler->get($not_modid);
                             $com_config =& $not_module->getInfo('comments');
@@ -230,14 +230,14 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         }//foreach
 
                 foreach (array_keys($statusArr) as $cid) {
-                    if ($this->mActionForm->get('delete', $cid) == 1) {
+                    if (1 == $this->mActionForm->get('delete', $cid)) {
                         $comment =& $comment_handler->get($cid);
                         if (is_object($comment)) {
                             if (!$comment_handler->delete($comment)) {
                                 return LEGACY_FRAME_VIEW_ERROR;
                             }
 
-                            if ($comment->get('com_status') != 1 && $comment->get('com_uid') > 0) {
+                            if (1 != $comment->get('com_status') && $comment->get('com_uid') > 0) {
                                 $memberhandler =& xoops_gethandler('member');
                                 $user =& $memberhandler->getUser($comment->get('com_uid'));
                                 if (is_object($user)) {
@@ -254,7 +254,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $child_comments =& $xot->getFirstChild($cid);
                  // now set new parent ID for direct child comments
                 $new_pid = $comment->getVar('com_pid');
-                            $errs = array();
+                            $errs = [];
                             foreach (array_keys($child_comments) as $i) {
                                 $child_comments[$i]->setVar('com_pid', $new_pid);
                  // if the deleted comment is a root comment, need to change root id to own id
@@ -296,7 +296,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                                     $criteria->add(new Criteria('com_itemid', $comment->getVar('com_itemid')));
                                     $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
                                     $comment_count = $comment_handler->getCount($criteria);
-                                    call_user_func_array($function, array($comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')));
+                                    call_user_func_array($function, [$comment->getVar('com_itemid'), $comment_count, $comment->getVar('com_id')]);
                                 }
                             }
                         }//if object
@@ -307,6 +307,9 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
@@ -316,7 +319,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             $this->mCommentObjects[$key]->loadStatus();
         }
 
-        $render->setTemplateName("comment_list_confirm.html");
+        $render->setTemplateName('comment_list_confirm.html');
         $render->setAttribute('commentObjects', $this->mCommentObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         //

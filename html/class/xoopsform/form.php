@@ -82,7 +82,7 @@ class XoopsForm
      * array of {@link XoopsFormElement} objects
      * @var  array
      */
-    public $_elements = array();
+    public $_elements = [];
 
     /**
      * extra information for the <form> tag
@@ -94,7 +94,7 @@ class XoopsForm
      * required elements
      * @var array
      */
-    public $_required = array();
+    public $_required = [];
 
     /**#@-*/
 
@@ -107,17 +107,17 @@ class XoopsForm
      * @param   string  $method "method" attribute for the <form> tag
      * @param   bool    $addtoken whether to add a security token to the form
      */
-    public function __construct($title, $name, $action, $method="post", $addtoken = false)
+    public function __construct($title, $name, $action, $method= 'post', $addtoken = false)
     {
         $this->_title = $title;
         $this->_name = $name;
         $this->_action = $action;
         $this->_method = $method;
-        if ($addtoken != false) {
+        if (false != $addtoken) {
             $this->addElement(new XoopsFormHiddenToken());
         }
     }
-    public function XoopsForm($title, $name, $action, $method="post", $addtoken = false)
+    public function XoopsForm($title, $name, $action, $method= 'post', $addtoken = false)
     {
         return self::__construct($title, $name, $action, $method, $addtoken);
     }
@@ -172,7 +172,7 @@ class XoopsForm
     {
         if (is_string($formElement)) {
             $this->_elements[] = $formElement;
-        } elseif (is_subclass_of($formElement, 'xoopsformelement')) {
+        } elseif ($formElement instanceof \xoopsformelement) {
             $this->_elements[] =& $formElement;
             if ($required) {
                 if (!$formElement->isContainer()) {
@@ -199,7 +199,7 @@ class XoopsForm
         if (!$recurse) {
             return $this->_elements;
         } else {
-            $ret = array();
+            $ret = [];
             $count = count($this->_elements);
             for ($i = 0; $i < $count; $i++) {
                 if (!is_object($this->_elements[$i])) {
@@ -227,7 +227,7 @@ class XoopsForm
      */
     public function getElementNames()
     {
-        $ret = array();
+        $ret = [];
         $elements =& $this->getElements(true);
         $count = count($elements);
         for ($i = 0; $i < $count; $i++) {
@@ -316,7 +316,7 @@ class XoopsForm
         // will not use getElementByName() for performance..
         $elements =& $this->getElements(true);
         $count = count($elements);
-        $values = array();
+        $values = [];
         for ($i = 0; $i < $count; $i++) {
             $name = $elements[$i]->getName();
             if ($name && method_exists($elements[$i], 'getValue')) {
@@ -333,7 +333,7 @@ class XoopsForm
      */
     public function setExtra($extra)
     {
-        $this->_extra = " ".$extra;
+        $this->_extra = ' ' . $extra;
     }
 
     /**
@@ -405,7 +405,8 @@ class XoopsForm
     /**
      * Renders the Javascript function needed for client-side for validation
      *
-     * @param       boolean  $withtags  Include the < javascript > tags in the returned string
+     * @param bool $withtags Include the < javascript > tags in the returned string
+     * @return string|null
      */
     public function renderValidationJS($withtags = true)
     {
@@ -415,7 +416,7 @@ class XoopsForm
         $renderTarget =& $renderSystem->createRenderTarget();
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_opt_validationjs.html");
+        $renderTarget->setTemplateName('legacy_xoopsform_opt_validationjs.html');
         $renderTarget->setAttribute('form', $this);
         $renderTarget->setAttribute('withtags', $withtags);
         
@@ -430,7 +431,7 @@ class XoopsForm
         return $renderTarget->getResult();
         
         
-        $js = "";
+        $js = '';
         if ($withtags) {
             $js .= "\n<!-- Start Form Vaidation JavaScript //-->\n<script type='text/javascript'>\n<!--//\n";
         }
@@ -463,19 +464,20 @@ class XoopsForm
     public function assign(&$tpl)
     {
         $i = 0;
-        $elements = array();
+        $elements = [];
         foreach ($this->getElements() as $ele) {
-            $n = ($ele->getName() != "") ? $ele->getName() : $i;
+            $n = ('' != $ele->getName()) ? $ele->getName() : $i;
             $elements[$n]['name']     = $ele->getName();
             $elements[$n]['caption']  = $ele->getCaption();
             $elements[$n]['body']     = $ele->render();
             $elements[$n]['hidden']   = $ele->isHidden();
-            if ($ele->getDescription() != '') {
+            if ('' != $ele->getDescription()) {
                 $elements[$n]['description']  = $ele->getDescription();
             }
             $i++;
         }
         $js = $this->renderValidationJS();
-        $tpl->assign($this->getName(), array('title' => $this->getTitle(), 'name' => $this->getName(), 'action' => $this->getAction(),  'method' => $this->getMethod(), 'extra' => 'onsubmit="return xoopsFormValidate_'.$this->getName().'();"'.$this->getExtra(), 'javascript' => $js, 'elements' => $elements));
+        $tpl->assign($this->getName(), ['title' => $this->getTitle(), 'name' => $this->getName(), 'action' => $this->getAction(), 'method' => $this->getMethod(), 'extra' => 'onsubmit="return xoopsFormValidate_' . $this->getName() . '();"' . $this->getExtra(), 'javascript' => $js, 'elements' => $elements]
+        );
     }
 }

@@ -77,23 +77,23 @@ class XoopsFormPassword extends XoopsFormElement
 
     /**
      * Constructor
-     * 
-     * @param	string	$caption	Caption
-     * @param	string	$name		"name" attribute
-     * @param	int		$size		Size of the field
-     * @param	int		$maxlength	Maximum length of the text
-     * @param	int		$value		Initial value of the field. 
-     * 								<b>Warning:</b> this is readable in cleartext in the page's source!
+     *
+     * @param string $caption         Caption
+     * @param string $name            "name" attribute
+     * @param int    $size            Size of the field
+     * @param int    $maxlength       Maximum length of the text
+     * @param string $value           Initial value of the field.
+     *                                <b>Warning:</b> this is readable in cleartext in the page's source!
      */
-    public function __construct($caption, $name, $size, $maxlength, $value="")
+    public function __construct($caption, $name, $size, $maxlength, $value= '')
     {
         $this->setCaption($caption);
         $this->setName($name);
-        $this->_size = intval($size);
-        $this->_maxlength = intval($maxlength);
+        $this->_size = (int)$size;
+        $this->_maxlength = (int)$maxlength;
         $this->setValue($value);
     }
-    public function XoopsFormPassword($caption, $name, $size, $maxlength, $value="")
+    public function XoopsFormPassword($caption, $name, $size, $maxlength, $value= '')
     {
         return self::__construct($caption, $name, $size, $maxlength, $value);
     }
@@ -130,8 +130,9 @@ class XoopsFormPassword extends XoopsFormElement
 
     /**
      * Set the initial value
-     * 
-     * @patam	$value	string
+     *
+     * @patam    $value    string
+     * @param $value
      */
     public function setValue($value)
     {
@@ -151,8 +152,8 @@ class XoopsFormPassword extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_password.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_password.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

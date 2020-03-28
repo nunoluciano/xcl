@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-if (!defined("LEGACY_INSTALLERCHECKER_ACTIVE")) {
-    define("LEGACY_INSTALLERCHECKER_ACTIVE", true);
+if (!defined('LEGACY_INSTALLERCHECKER_ACTIVE')) {
+    define('LEGACY_INSTALLERCHECKER_ACTIVE', true);
 }
 
 /**
@@ -25,19 +25,22 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        if (LEGACY_INSTALLERCHECKER_ACTIVE == true && is_dir(XOOPS_ROOT_PATH . "/install")) {
+        if (LEGACY_INSTALLERCHECKER_ACTIVE == true && is_dir(XOOPS_ROOT_PATH . '/install')) {
             $root =& XCube_Root::getSingleton();
             $root->mLanguageManager->loadModuleMessageCatalog('legacy');
             $xoopsConfig = $root->mContext->mXoopsConfig;
             
             require_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl =new XoopsTpl();
-            $xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
-                                       'xoops_themecss' => xoops_getcss(),
-                                       'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                                       'lang_message_confirm' => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . "/install"),
-                                       'lang_message_warning' => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . "/install")
-                                       ));
+            $xoopsTpl->assign(
+                [
+                    'xoops_sitename'       => htmlspecialchars($xoopsConfig['sitename']),
+                    'xoops_themecss'       => xoops_getcss(),
+                    'xoops_imageurl'       => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
+                    'lang_message_confirm' => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . '/install'),
+                    'lang_message_warning' => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . '/install')
+                ]
+            );
                                        
             $xoopsTpl->compile_check = true;
             

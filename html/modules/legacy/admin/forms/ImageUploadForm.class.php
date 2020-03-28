@@ -4,19 +4,19 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Legacy_ImageUploadForm extends XCube_ActionForm
 {
     public $mOldFileName = null;
     public $_mIsNew = null;
     public $mFormFile = null;
-    public $_allowExtensions = array('tar', 'tar.gz', 'tgz', 'gz', 'zip');
+    public $_allowExtensions = ['tar', 'tar.gz', 'tgz', 'gz', 'zip'];
 
     public function getTokenName()
     {
-        return "module.legacy.ImageUploadForm.TOKEN";
+        return 'module.legacy.ImageUploadForm.TOKEN';
     }
 
     public function prepare()
@@ -31,10 +31,10 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['imgcat_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imgcat_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['imgcat_id']->setDependsByArray(['required']);
         $this->mFieldProperties['imgcat_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMGCAT_ID);
         $this->mFieldProperties['upload'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['upload']->setDependsByArray(array('required'));
+        $this->mFieldProperties['upload']->setDependsByArray(['required']);
         $this->mFieldProperties['upload']->addMessage('required', _AD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_UPLOAD_FILE);
     }
     
@@ -48,11 +48,11 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
             $root =& XCube_Root::getSingleton();
             $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
             
-            $groups = array();
+            $groups = [];
             if (is_object($xoopsUser)) {
                 $groups =& $xoopsUser->getGroups();
             } else {
-                $groups = array(XOOPS_GROUP_ANONYMOUS);
+                $groups = [XOOPS_GROUP_ANONYMOUS];
             }
             $imgcat =& $handler->get($imgcat_id);
             if (is_object($imgcat) && !$imgcat->hasUploadPerm($groups)) {
@@ -64,10 +64,10 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     public function validateUpload()
     {
         $formFile = $this->get('upload');
-        if ($formFile != null) {
+        if (null != $formFile) {
             $flag = false;
             foreach ($this->_allowExtensions as $ext) {
-                $flag |= preg_match("/" . str_replace(".", "\.", $ext) . "$/", $formFile->getFileName());
+                $flag |= preg_match('/' . str_replace('.', "\.", $ext) . '$/', $formFile->getFileName());
             }
             
             if (!$flag) {

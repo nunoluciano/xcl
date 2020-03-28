@@ -25,7 +25,7 @@ class LegacyRenderModuletplObject extends XoopsSimpleObject
 
 class LegacyRenderTplsetObject extends XoopsSimpleObject
 {
-    public $mModuleTemplates = array();
+    public $mModuleTemplates = [];
     // !Fix deprecated constructor for php 7.x
     public function __construct()   
     // public function LegacyRenderTplsetObject()
@@ -75,9 +75,9 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
 
 class LegacyRenderTplsetHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "tplset";
-    public $mPrimary = "tplset_id";
-    public $mClass = "LegacyRenderTplsetObject";
+    public $mTable = 'tplset';
+    public $mPrimary = 'tplset_id';
+    public $mClass = 'LegacyRenderTplsetObject';
     
     public function insertClone($original, $clone)
     {

@@ -5,11 +5,11 @@
 //                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
-require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;
-include_once dirname(__FILE__)."/include/gtickets.php" ;
-include_once dirname(__FILE__).'/include/altsys_functions.php' ;
-include_once dirname(__FILE__).'/include/lang_functions.php' ;
-include_once dirname(__FILE__).'/class/D3LanguageManager.class.php' ;
+require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php' ;
+include_once __DIR__ . '/include/gtickets.php';
+include_once __DIR__ . '/include/altsys_functions.php' ;
+include_once __DIR__ . '/include/lang_functions.php' ;
+include_once __DIR__ . '/class/D3LanguageManager.class.php' ;
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
@@ -49,7 +49,7 @@ if (! empty($target_module) && is_object($target_module)) {
     $target_mid = $target_module->getVar('mid') ;
     $target_dirname = $target_module->getVar('dirname') ;
     $target_dirname4sql = addslashes($target_dirname) ;
-    $target_mname = $target_module->getVar('name') . "&nbsp;" . sprintf("(%2.2f)", $target_module->getVar('version') / 100.0) ;
+    $target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0) ;
     //$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
 } else {
     // not specified by dirname (for 3rd party modules as mylangadmin)
@@ -88,19 +88,19 @@ if (empty($target_trustdirname)) {
 }
 
 // make list of language and check $target_lang
-$languages = array() ;
-$languages4disp = array() ;
+$languages = [];
+$languages4disp = [];
 if (! is_dir($base_dir)) {
     altsys_mylangadmin_errordie($target_mname, _MYLANGADMIN_ERR_MODNOLANGUAGE) ;
 }
 $dh = opendir($base_dir) ;
 if ($dh) {
     while ($file = readdir($dh)) {
-        if (substr($file, 0, 1) == '.') {
+        if ('.' == substr($file, 0, 1)) {
             continue ;
         }
         if (is_dir("$base_dir/$file")) {
-            list($count) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("altsys_language_constants")." WHERE mid=$target_mid AND language='".addslashes($file)."'")) ;
+            list($count) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix('altsys_language_constants') . " WHERE mid=$target_mid AND language='" . addslashes($file) . "'")) ;
             $languages[] = $file ;
             $languages4disp[] = $file . " ($count)" ;
         }
@@ -118,14 +118,14 @@ if (! is_dir($lang_base_dir)) {
 }
 
 // make list of files and check $target_file
-$lang_files = array() ;
+$lang_files = [];
 $dh = opendir($lang_base_dir) ;
 if ($dh) {
     while ($file = readdir($dh)) {
-        if (substr($file, 0, 1) == '.') {
+        if ('.' == substr($file, 0, 1)) {
             continue ;
         }
-        if ($file == 'index.html') {
+        if ('index.html' == $file) {
             continue ;
         }
     //if( $file == 'modinfo.php' ) continue ; // TODO(?)
@@ -150,9 +150,9 @@ $langfile_unique_path = "$lang_base_dir/$target_file" ;
 list($langfile_names, $constpref, $already_read) = altsys_mylangadmin_get_constant_names($langfile_unique_path, $target_dirname) ;
 
 // get user_values should be overridden
-$langfile_constants = array() ;
+$langfile_constants = [];
 foreach ($langfile_names as $name) {
-    list($value) = $db->fetchRow($db->query("SELECT value FROM ".$db->prefix("altsys_language_constants")." WHERE mid=$target_mid AND language='$target_lang4sql' AND name='".addslashes($name)."'")) ;
+    list($value) = $db->fetchRow($db->query('SELECT value FROM ' . $db->prefix('altsys_language_constants') . " WHERE mid=$target_mid AND language='$target_lang4sql' AND name='" . addslashes($name) . "'")) ;
     $langfile_constants[ $name ] = $value ;
 }
 
@@ -168,7 +168,7 @@ if ($langman->my_language) {
     }
 } else {
     $mylang_unique_path = '' ;
-    $mylang_constants = array() ;
+    $mylang_constants = [];
 }
 
 
@@ -194,11 +194,11 @@ if (! empty($_POST['do_update'])) {
     $overrides_counter = 0 ;
     foreach (array_reverse($langfile_names) as $name) {
         $user_value = $myts->stripSlashesGPC(@$_POST[$name]) ;
-        $db->query("DELETE FROM ".$db->prefix("altsys_language_constants")." WHERE mid=$target_mid AND language='$target_lang4sql' AND name='".addslashes($name)."'") ;
-        if ($user_value !== '') {
+        $db->query('DELETE FROM ' . $db->prefix('altsys_language_constants') . " WHERE mid=$target_mid AND language='$target_lang4sql' AND name='" . addslashes($name) . "'") ;
+        if ('' !== $user_value) {
             $overrides_counter ++ ;
             // Update table
-            $db->query("INSERT INTO ".$db->prefix("altsys_language_constants")." (mid,language,name,value) VALUES ($target_mid,'$target_lang4sql','".addslashes($name)."','".addslashes($user_value)."')") ;
+            $db->query('INSERT INTO ' . $db->prefix('altsys_language_constants') . " (mid,language,name,value) VALUES ($target_mid,'$target_lang4sql','" . addslashes($name) . "','" . addslashes($user_value) . "')") ;
             // rewrite script for cache
             // comment-out the line of define()
             if (empty($constpref)) {
@@ -240,7 +240,7 @@ $cache_file_name = $langman->getCacheFileName($target_file, $target_dirname, $ta
 $cache_file_mtime = file_exists($cache_file_name) ? filemtime($cache_file_name) : 0 ;
 
 // check core version and generate message to enable D3LanguageManager
-if (altsys_get_core_type() == ALTSYS_CORE_TYPE_XCL21) {
+if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
     // XoopsCube Legacy without preload
     if (class_exists('AltsysLangMgr_LanguageManager')) {
         // the preload enabled
@@ -289,25 +289,27 @@ if ($breadcrumbsObj->hasPaths()) {
 
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
-$tpl->assign(array(
-    'target_dirname' => $target_dirname,
-    'target_mname' => $target_mname,
-    'target_lang' => $target_lang,
-    'languages' => $languages,
-    'languages4disp' => $languages4disp,
-    'target_file' => $target_file,
-    'lang_files' => $lang_files,
-    'langfile_constants' => $langfile_constants,
-    'mylang_constants' => $mylang_constants,
-    'use_my_language' => strlen($langman->my_language) > 0,
-    'mylang_file_name' => htmlspecialchars($mylang_unique_path, ENT_QUOTES),
-    'cache_file_name' => htmlspecialchars($cache_file_name, ENT_QUOTES),
-    'cache_file_mtime' => intval($cache_file_mtime),
-    'timezone_offset' => xoops_getUserTimestamp(0),
-    'notice' => $notice4disp,
-    'already_read' => $already_read,
-    'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys'),
-)) ;
+$tpl->assign(
+    [
+        'target_dirname' => $target_dirname,
+        'target_mname' => $target_mname,
+        'target_lang' => $target_lang,
+        'languages' => $languages,
+        'languages4disp' => $languages4disp,
+        'target_file' => $target_file,
+        'lang_files' => $lang_files,
+        'langfile_constants' => $langfile_constants,
+        'mylang_constants' => $mylang_constants,
+        'use_my_language' => strlen($langman->my_language) > 0,
+        'mylang_file_name' => htmlspecialchars($mylang_unique_path, ENT_QUOTES),
+        'cache_file_name' => htmlspecialchars($cache_file_name, ENT_QUOTES),
+        'cache_file_mtime' => (int)$cache_file_mtime,
+        'timezone_offset' => xoops_getUserTimestamp(0),
+        'notice' => $notice4disp,
+        'already_read' => $already_read,
+        'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys'),
+    ]
+) ;
 $tpl->display('db:altsys_main_mylangadmin.html') ;
 
 xoops_cp_footer() ;

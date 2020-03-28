@@ -4,63 +4,62 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 
 class Legacy_AdminOnlineInfo extends Legacy_AbstractBlockProcedure
 {
-	function getName()
-	{
-		return "onlineinfo";
-	}
+    public function getName()
+    {
+        return 'onlineinfo';
+    }
 
-	function getTitle()
-	{
-		return "TEST: AdminOnlineInfo";
-	}
+    public function getTitle()
+    {
+        return 'TEST: AdminOnlineInfo';
+    }
 
-	function getEntryIndex()
-	{
-		return 0;
-	}
+    public function getEntryIndex()
+    {
+        return 0;
+    }
 
-	function isEnableCache()
-	{
-		return false;
-	}
+    public function isEnableCache()
+    {
+        return false;
+    }
 
-	function execute()
-	{
-		
-		$render =& $this->getRenderTarget();
+    public function execute()
+    {
+        $render =& $this->getRenderTarget();
 
-		// Load theme template ie fallback
-		$render->setAttribute('legacy_module', 'legacy');
-		$render->setTemplateName('legacy_admin_block_onlineinfo.html');
-		
-		$root =& XCube_Root::getSingleton();
-		$root->mLanguageManager->loadBlockMessageCatalog('user');
-		require_once XOOPS_ROOT_PATH . "/modules/user/blocks/user_online.php";
-		 
-		$contents = b_user_online_show();
+        // Load theme template ie fallback
+        $render->setAttribute('legacy_module', 'legacy');
+        $render->setTemplateName('legacy_admin_block_onlineinfo.html');
 
-		$render->setAttribute('contents', $contents);
-		$render->setAttribute('blockid', $this->getName());
-		
-		$renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
-		$renderSystem->renderBlock($render);
-	}
+        $root =& XCube_Root::getSingleton();
+        $root->mLanguageManager->loadBlockMessageCatalog('user');
+        require_once XOOPS_ROOT_PATH . '/modules/user/blocks/user_online.php';
 
-	function hasResult()
-	{
-		return true;
-	}
+        $contents = b_user_online_show();
 
-	function &getResult()
-	{
-		$dmy = "dummy";
-		return $dmy;
-	}
+        $render->setAttribute('contents', $contents);
+        $render->setAttribute('blockid', $this->getName());
 
-	function getRenderSystemName()
-	{
-		return 'Legacy_AdminRenderSystem';
-	}
+        $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
+        $renderSystem->renderBlock($render);
+    }
+
+    public function hasResult()
+    {
+        return true;
+    }
+
+    public function &getResult()
+    {
+        $dmy = 'dummy';
+        return $dmy;
+    }
+
+    public function getRenderSystemName()
+    {
+        return 'Legacy_AdminRenderSystem';
+    }
 }
 
 ?>

@@ -11,11 +11,11 @@ include_once '../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
 
 $current_timezone = date('O');
-$current_timediff = floatval(substr($current_timezone, 0, 1).(substr($current_timezone, 1, 2) + substr($current_timezone, 3, 2)/60));
+$current_timediff = (float)(substr($current_timezone, 0, 1) . (substr($current_timezone, 1, 2) + substr($current_timezone, 3, 2) / 60));
 $wizard->assign('current_timediff', $current_timediff);
 
 $wizard->assign('timediffs', XoopsLists::getTimeZoneList());
-$wizard->assign('timezones', array(
+$wizard->assign('timezones', [
     '-12'  => 'Etc/GMT+12',
     '-11'  => 'Etc/GMT+11',
     '-10'  => 'Etc/GMT+10',
@@ -50,6 +50,8 @@ $wizard->assign('timezones', array(
     '11'   => 'Etc/GMT-11',
     '12'   => 'Etc/GMT-12',
     '13'   => 'Etc/GMT-13',
-    '14'   => 'Etc/GMT-14'));
+    '14'   => 'Etc/GMT-14'
+]
+);
 
 $wizard->render('install_siteInit.tpl.php');

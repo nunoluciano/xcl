@@ -9,7 +9,7 @@ class UserUsersObject extends XoopsSimpleObject
     //
     // TODO naming rule
     //
-    public $Groups = array();
+    public $Groups = [];
     public $_mGroupsLoadedFlag = false;
 
     public $_mRankLoadedFlag = false;
@@ -114,9 +114,9 @@ class UserUsersObject extends XoopsSimpleObject
 
 class UserUsersHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "users";
-    public $mPrimary = "uid";
-    public $mClass = "UserUsersObject";
+    public $mTable = 'users';
+    public $mPrimary = 'uid';
+    public $mClass = 'UserUsersObject';
 
     public function &get($id)
     {
@@ -145,31 +145,35 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     /**
      * Return the array which consists of an integer as the uid. This member
      * function is more speedy than getObjects().
-     * 
+     *
+     * @param null $criteria
+     * @param null $limit
+     * @param null $start
+     * @param bool $id_as_key
      * @return Array
      */
     public function &getUids($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
-        $sql = "SELECT uid FROM " . $this->mTable;
+        $sql = 'SELECT uid FROM ' . $this->mTable;
 
         $limit = 0;
         $start = 0;
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
 
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+            if ('' != $criteria->getSort()) {
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
             $limit = $criteria->getLimit();
@@ -206,7 +210,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
             //
             // Delete
             //
-            $oldGroupidArr = array();
+            $oldGroupidArr = [];
             foreach (array_keys($oldLinkArr) as $key) {
                 $oldGroupidArr[] = $oldLinkArr[$key]->get('groupid');
                 if (!in_array($oldLinkArr[$key]->get('groupid'), $user->Groups)) {

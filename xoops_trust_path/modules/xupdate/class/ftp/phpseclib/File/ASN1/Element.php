@@ -31,16 +31,15 @@ class Element
      * @var string
      * @access private
      */
-    var $element;
+    public $element;
 
     /**
      * Constructor
      *
      * @param string $encoded
-     * @return \phpseclib\File\ASN1\Element
      * @access public
      */
-    function __construct($encoded)
+    public function __construct($encoded)
     {
         $this->element = $encoded;
     }

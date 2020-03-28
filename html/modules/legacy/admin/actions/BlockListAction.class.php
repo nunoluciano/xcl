@@ -12,15 +12,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockListForm.class.php';
 
 class Legacy_BlockListAction extends Legacy_AbstractListAction
 {
-    public $mBlockObjects = array();
+    public $mBlockObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -47,17 +47,17 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == (int)$perpage) {
             $navi->setPerpage(0);
         }
 
         // naao added selectedMid filter
         $selectedMid = (int)$root->mContext->mRequest->getRequest('selmid') ;
-        if ($selectedMid != 0) {
+        if (0 != $selectedMid) {
             $navi->addExtra('selmid', $selectedMid);
         }
         $selectedGid = (int)$root->mContext->mRequest->getRequest('selgid') ;
-        if ($selectedGid != 0) {
+        if (0 != $selectedGid) {
             $navi->addExtra('selgid', $selectedGid);
         }
         return $navi;
@@ -65,20 +65,20 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=BlockList";
+        return './index.php?action=BlockList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("block_list.html");
+        $render->setTemplateName('block_list.html');
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadModule();
             $this->mObjects[$key]->loadColumn();
             $this->mObjects[$key]->loadCachetime();
         }
 
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
 
         $render->setAttribute('modules', $controller->mActiveModules);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -137,7 +137,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -160,7 +160,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
         //
         foreach (array_keys($titleArr) as $bid) {
             $block =& $blockHandler->get($bid);
-            if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+            if (is_object($block) && 1 == $block->get('isactive') && 1 == $block->get('visible')) {
                 $this->mBlockObjects[$bid] =& $block;
                 $this->mBlockObjects[$bid]->loadColumn();
                 $this->mBlockObjects[$bid]->loadCachetime();
@@ -178,7 +178,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
         foreach (array_keys($titleArr) as $bid) {
             $block =& $blockHandler->get($bid);
-            if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+            if (is_object($block) && 1 == $block->get('isactive') && 1 == $block->get('visible')) {
                 $olddata['title'] = $block->get('title');
                 $olddata['weight'] = $block->get('weight');
                 $olddata['side'] = $block->get('side');
@@ -202,9 +202,9 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
         //uninstall process
                 foreach (array_keys($titleArr) as $bid) {
-                    if ($this->mActionForm->get('uninstall', $bid) == 1) {
+                    if (1 == $this->mActionForm->get('uninstall', $bid)) {
                         $block =& $blockHandler->get($bid);
-                        if (is_object($block) && $block->get('isactive') == 1 && $block->get('visible') == 1) {
+                        if (is_object($block) && 1 == $block->get('isactive') && 1 == $block->get('visible')) {
                             $block->set('visible', 0);
                             if (!$blockHandler->insert($block)) {
                                 return LEGACY_FRAME_VIEW_ERROR;
@@ -219,7 +219,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("block_list_confirm.html");
+        $render->setTemplateName('block_list_confirm.html');
         $render->setAttribute('blockObjects', $this->mBlockObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
 
@@ -241,7 +241,7 @@ class Legacy_BlockListAction extends Legacy_AbstractListAction
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BlockInstallList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BlockInstallList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)

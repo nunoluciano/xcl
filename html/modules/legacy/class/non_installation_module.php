@@ -23,12 +23,12 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
      * object cache.
      * @var Array
      */
-    public $_mXoopsModules = array();
+    public $_mXoopsModules = [];
 
     /***
      * readonly property
      */
-    public $_mExclusions = array(".", "..", "CVS");
+    public $_mExclusions = ['.', '..', 'CVS'];
     
     // !Fix deprecated constructor for PHP 7.x
     public function __construct(&$db)
@@ -43,12 +43,12 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
      */
     public function _setupObjects()
     {
-        if (count($this->_mXoopsModules) == 0) {
+        if (0 == count($this->_mXoopsModules)) {
             if ($handler = opendir(XOOPS_MODULE_PATH)) {
-                while (($dir = readdir($handler)) !== false) {
-                    if (!in_array($dir, $this->_mExclusions) && is_dir(XOOPS_MODULE_PATH . "/" . $dir)) {
+                while (false !== ($dir = readdir($handler))) {
+                    if (!in_array($dir, $this->_mExclusions) && is_dir(XOOPS_MODULE_PATH . '/' . $dir)) {
                         $module =& $this->get($dir);
-                        if ($module !== false) {
+                        if (false !== $module) {
                             $this->_mXoopsModules[] =& $module;
                         }
                         unset($module);
@@ -57,18 +57,19 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
             }
         }
     }
-    
+
     /***
      * Return module object by $dirname that is specified module directory.
      * If specified module has been installed or doesn't keep xoops_version, not return it.
-     * @param $dirname string
+     * @param string $dirname
      * @param XoopsModule or false
+     * @return bool
      */
     public function &get($dirname)
     {
         $ret = false;
         
-        if (!file_exists(XOOPS_MODULE_PATH . "/" . $dirname . "/xoops_version.php")) {
+        if (!file_exists(XOOPS_MODULE_PATH . '/' . $dirname . '/xoops_version.php')) {
             return $ret;
         }
 
@@ -92,7 +93,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     
     public function &getObjectsFor2ndInstaller()
     {
-        $ret = array();
+        $ret = [];
         
         foreach (array_keys($this->_mXoopsModules) as $key) {
             if (empty($this->_mXoopsModules[$key]->modinfo['disable_legacy_2nd_installer'])) {

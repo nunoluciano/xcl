@@ -8,10 +8,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacyRender/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileSetFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacyRender/admin/forms/TplfileUploadForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacyRender/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileSetFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileUploadForm.class.php';
 
 class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 {
@@ -43,7 +43,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     
     public function _getBaseUrl()
     {
-        return "./index.php?action=TplfileList";
+        return './index.php?action=TplfileList';
     }
 
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -66,10 +66,13 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 
     /**
      * This member function processes the uploaded file.
+     * @param $controller
+     * @param $xoopsUser
+     * @return int
      */
     public function execute(&$controller, &$xoopsUser)
     {
-        require_once XOOPS_ROOT_PATH . "/class/template.php";
+        require_once XOOPS_ROOT_PATH . '/class/template.php';
         
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
@@ -94,14 +97,14 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
             $formFile =& $formFileArr[$key];
             
             $obj =& $handler->get($key);
-            if ($obj == null) {
+            if (null == $obj) {
                 continue;
             }
 
             //
             // If $obj belongs to 'default' template-set, kick!
             //			
-            if ($obj->get('tpl_tplset') == 'default') {
+            if ('default' == $obj->get('tpl_tplset')) {
                 continue;
             }
 
@@ -113,7 +116,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
             //
             // [Warning] Access to a private property of XCube_FormFile.
             //
-            if ($formFile != null) {
+            if (null != $formFile) {
                 $source = file_get_contents($formFile->_mTmpFileName);
                 $obj->Source->set('tpl_source', $source);
                 $obj->set('tpl_lastmodified', time());
@@ -143,12 +146,12 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     {
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.LegacyRenderPagenaviHidden', 'LegacyRender_TplfileListAction::renderHiddenControl');
         
-        $render->setTemplateName("tplfile_list.html");
+        $render->setTemplateName('tplfile_list.html');
         
         //
         // Load override file.
         //
-        if ($this->mFilter->mTplset != null && $this->mFilter->mTplset->get('tplset_name') != 'default') {
+        if (null != $this->mFilter->mTplset && 'default' != $this->mFilter->mTplset->get('tplset_name')) {
             foreach (array_keys($this->mObjects) as $key) {
                 $this->mObjects[$key]->loadOverride($this->mFilter->mTplset->get('tplset_name'));
             }
@@ -159,7 +162,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('actionForm', $this->mActionForm);
         
-        if ($this->mFilter->mTplset != null) {
+        if (null != $this->mFilter->mTplset) {
             $render->setAttribute('targetTplset', $this->mFilter->mTplset->get('tplset_name'));
         }
         

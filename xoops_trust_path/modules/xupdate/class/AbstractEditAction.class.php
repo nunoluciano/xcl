@@ -22,22 +22,18 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
 
     /**
      * _getId
-     * 
-     * @param   void
-     * 
-     * @return  int
-    **/
+     *
+     * @return void
+     */
     protected function _getId()
     {
     }
 
     /**
      * &_getHandler
-     * 
-     * @param   void
-     * 
-     * @return  XoopsObjectGenericHandler
-    **/
+     *
+     * @return void
+     */
     protected function &_getHandler()
     {
     }
@@ -80,7 +76,7 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     
         $this->mObject =& $this->mObjectHandler->get($id);
     
-        if ($this->mObject == null && $this->_isEnableCreate()) {
+        if (null == $this->mObject && $this->_isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -121,7 +117,7 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     **/
     public function getDefaultView()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     
@@ -139,11 +135,11 @@ abstract class Xupdate_AbstractEditAction extends Xupdate_AbstractAction
     **/
     public function execute()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     
-        if ($this->mRoot->mContext->mRequest->getRequest('_form_control_cancel') != null) {
+        if (null != $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel')) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
     

@@ -16,7 +16,7 @@ if (!defined('XUPDATE_TRUST_PATH')) {
 
 require_once XUPDATE_TRUST_PATH . '/class/XupdateUtils.class.php';
 
-$dirname  = dirname(__FILE__);
+$dirname  = __DIR__;
 $basename = basename($dirname);
 //
 // Define a basic manifesto.
@@ -36,39 +36,39 @@ $modversion['dirname'] = $myDirName;
 $modversion['trust_dirname'] = $basename;
 
 $modversion['cube_style'] = true;
-$modversion['legacy_installer'] = array(
-    'installer'   => array(
+$modversion['legacy_installer'] = [
+    'installer'   => [
         'class'    => 'Installer',
         'namespace' => 'Xupdate',
         'filepath'    => XUPDATE_TRUST_PATH . '/admin/class/installer/XupdateInstaller.class.php'
-    ),
-    'uninstaller' => array(
+    ],
+    'uninstaller' => [
         'class'    => 'Uninstaller',
         'namespace' => 'Xupdate',
         'filepath'    => XUPDATE_TRUST_PATH . '/admin/class/installer/XupdateUninstaller.class.php'
-    ),
-    'updater' => array(
+    ],
+    'updater' => [
         'class'    => 'Updater',
         'namespace' => 'Xupdate',
         'filepath'    => XUPDATE_TRUST_PATH . '/admin/class/installer/XupdateUpdater.class.php'
-    )
-);
+    ]
+];
 $modversion['disable_legacy_2nd_installer'] = false;
 
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['sqlfile']['pdo_pgsql'] = 'sql/pdo_pgsql.sql';
-$modversion['tables'] = array(
+$modversion['tables'] = [
     //	  '{prefix}_{dirname}_xxxx',
     ##[cubson:tables]
     '{prefix}_{dirname}_store',
     '{prefix}_{dirname}_modulestore',
     ##[/cubson:tables]
-);
+];
 
 //
 // Templates. You must never change [cubson] chunk to get the help of cubson.
 //
-$modversion['templates'] = array(
+$modversion['templates'] = [
     /*
     array(
         'file'		  => '{dirname}_xxx.html',
@@ -77,9 +77,9 @@ $modversion['templates'] = array(
 */
     ##[cubson:templates]
     //array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
-    array('file' => '{dirname}_modulestore_inc.html', 'description' => _MI_XUPDATE_TPL_MODULESTORE_INC),
+    ['file' => '{dirname}_modulestore_inc.html', 'description' => _MI_XUPDATE_TPL_MODULESTORE_INC],
     ##[/cubson:templates]
-);
+];
 
 //
 // Admin panel setting
@@ -89,14 +89,14 @@ $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = 'admin/index.php?action=ModuleView';
 
 ##[cubson:adminmenu]
-$modversion['adminmenu'] = array(
-    array(
+$modversion['adminmenu'] = [
+    [
         'title'        => _MI_XUPDATE_ADMENU_STORELIST,
         'link'    => 'admin/index.php?action=ModuleView',
         'keywords'    => _MI_XUPDATE_ADMENU_STORELIST,
         'show'    => true,
         'absolute' => false
-    ),
+    ],
     //	array(
     //		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
     //		'link'	=> 'admin/index.php?action=PackageStore',
@@ -104,42 +104,42 @@ $modversion['adminmenu'] = array(
     //		'show'	=> true,
     //		'absolute' => false
     //	),
-    array(
+    [
         'title'        => _MI_XUPDATE_ADMENU_MODULE,
         'link'    => 'admin/index.php?action=ModuleStore',
         'keywords'    => _MI_XUPDATE_ADMENU_MODULE,
         'show'    => true,
         'absolute' => false
-    ),
-    array(
+    ],
+    [
         'title'        => _MI_XUPDATE_ADMENU_THEME,
         //'link'	=> 'admin/index.php?action=ThemeStore',
         'link'    => 'admin/index.php?action=ThemeStore',
         'keywords'    => _MI_XUPDATE_ADMENU_THEME,
         'show'    => true,
         'absolute' => false
-    ),
-    array(
+    ],
+    [
         'title'        => _MI_XUPDATE_ADMENU_THEMEFINDER,
         'link'    => 'admin/index.php?action=ThemeFinder',
         'keywords'    => _MI_XUPDATE_ADMENU_THEMEFINDER,
         'show'    => true,
         'absolute' => false
-    ),
-    array(
+    ],
+    [
         'title'        => _MI_XUPDATE_ADMENU_PRELOAD,
         'link'    => 'admin/index.php?action=PreloadStore',
         'keywords'    => _MI_XUPDATE_ADMENU_PRELOAD,
         'show'    => true,
         'absolute' => false
-    )
-);
+    ]
+];
 //
 // Public side control setting
 //
 $modversion['hasMain'] = 0;
 $modversion['hasSearch'] = 0;
-$modversion['sub'] = array(
+$modversion['sub'] = [
     /*
     array(
         'name' => _MI_XUPDATE_LANG_SUB_XXX,
@@ -148,18 +148,18 @@ $modversion['sub'] = array(
 */
     ##[cubson:submenu]
     ##[/cubson:submenu]
-);
+];
 
 ##[/cubson:adminmenu]
 
 //
 // Config setting
 //
-if (!defined('XOOPSX_COREPACK_VERSION') && defined('_MI_LEGACY_DETAILED_VERSION') && substr(_MI_LEGACY_DETAILED_VERSION, 0, 9) === 'CorePack ') {
+if (!defined('XOOPSX_COREPACK_VERSION') && defined('_MI_LEGACY_DETAILED_VERSION') && 'CorePack ' === substr(_MI_LEGACY_DETAILED_VERSION, 0, 9)) {
     define('XOOPSX_COREPACK_VERSION', substr(_MI_LEGACY_DETAILED_VERSION, 9));
 }
 $_encrypt = defined('XOOPSX_COREPACK_VERSION') ? (version_compare(XOOPSX_COREPACK_VERSION, '20140125', '>=') ? 'encrypt' : 'string') : (version_compare(LEGACY_BASE_VERSION, '2.2.2.3', '>') ? 'encrypt' : 'string');
-$modversion['config'] = array(
+$modversion['config'] = [
     /*	array(
         'name'			=> 'xxxx',
         'title' 		=> '_MI_XUPDATE_TITLE_XXXX',
@@ -180,262 +180,262 @@ $modversion['config'] = array(
     ) ,
 */
 
-    array(
+    [
         'name'        => 'temp_path',
         'title'        => '_MI_XUPDATE_TEMP_PATH',
         'description'    => '_MI_XUPDATE_TEMP_PATHDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => 'uploads/xupdate',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'ftp_method',
         'title'        => '_MI_XUPDATE_FTP_METHOD',
         'description'    => '_MI_XUPDATE_FTP_METHODDSC',
         'formtype'    => defined('XOOPSX_COREPACK_VERSION') ? (version_compare(XOOPSX_COREPACK_VERSION, '20121230', '>=') ? 'radio' : (version_compare(XOOPSX_COREPACK_VERSION, '20120825', '>=') ? 'radio_br' : 'select')) : (version_compare(LEGACY_BASE_VERSION, '2.2.2.1', '>=') ? 'radio' : 'select'),
         'valuetype'    => 'int',
         'default'    => '4',
-        'options'    => array(
+        'options'    => [
             '_MI_XUPDATE_DIRECT' => 4,
             '_MI_XUPDATE_CUSTOM_FTP' => 0,
             '_MI_XUPDATE_PHP_FTP' => 1,
             '_MI_XUPDATE_CUSTOM_SFTP' => 2,
             '_MI_XUPDATE_CUSTOM_SSH2' => 3
-        )
-    ),
+        ]
+    ],
 
-    array(
+    [
         'name'        => 'FTP_SSL',
         'title'        => '_MI_XUPDATE_FTP_USESSL',
         'description'    => '_MI_XUPDATE_FTP_USESSLDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
         'default'    => 0,
-        'options'    => array()
-    ),
+        'options'    => []
+    ],
 
-    array(
+    [
         'name'        => 'FTP_server',
         'title'        => '_MI_XUPDATE_FTP_SERVER',
         'description'    => '_MI_XUPDATE_FTP_SERVERDSC',
         'formtype'    => 'text',
         'valuetype'    => $_encrypt,
         'default'    => '127.0.0.1',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'FTP_UserName',
         'title'        => '_MI_XUPDATE_FTP_UNAME',
         'description'    => '_MI_XUPDATE_FTP_UNAMEDSC',
         'formtype'    => 'text',
         'valuetype'    => $_encrypt,
         'default'    => '',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'FTP_password',
         'title'        => '_MI_XUPDATE_FTP_PASS',
         'description'        => '_MI_XUPDATE_FTP_PASSDSC',
         'formtype'    => 'password',
         'valuetype'    => $_encrypt,
         'default'    => '',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'SSH_port',
         'title'        => '_MI_XUPDATE_SSH_PORT',
         'description'    => '_MI_XUPDATE_SSH_PORTDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '22',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'SSH_key',
         'title'        => '_MI_XUPDATE_SSH_KEY',
         'description'    => '_MI_XUPDATE_SSH_KEYDSC',
         'formtype'    => 'textarea',
         'valuetype'    => $_encrypt,
         'default'    => '',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'writable_file_perm',
         'title'        => '_MI_XUPDATE_WRITABLE_FILE_PERM',
         'description'    => '_MI_XUPDATE_WRITABLE_FILE_PERMDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '666',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'writable_dir_perm',
         'title'        => '_MI_XUPDATE_WRITABLE_DIR_PERM',
         'description'    => '_MI_XUPDATE_WRITABLE_DIR_PERMDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '777',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'writable_file_perm_t',
         'title'        => '_MI_XUPDATE_WRITABLE_FILE_PERM_T',
         'description'    => '_MI_XUPDATE_WRITABLE_FILE_PERM_TDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '666',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'writable_dir_perm_t',
         'title'        => '_MI_XUPDATE_WRITABLE_DIR_PERM_T',
         'description'    => '_MI_XUPDATE_WRITABLE_DIR_PERM_TDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '777',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'php_perm',
         'title'        => '_MI_XUPDATE_PHP_PERM',
         'description'    => '_MI_XUPDATE_PHP_PERMDSC',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => '',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'only_conf_lang',
         'title'        => '_MI_XUPDATE_ONLY_CONF_LANG',
         'description'    => '_MI_XUPDATE_ONLY_CONF_LANGDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
         'default'    => 0,
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'disabled_items',
         'title'        => '_MI_XUPDATE_DISABLED_ITEMS',
         'description'    => '_MI_XUPDATE_DISABLED_ITEMSDSC',
         'formtype'    => 'textarea',
         'valuetype'    => 'string',
         'default'    => '',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'          => 'tag_dirname',
         'title'         => '_MI_XUPDATE_TAG_DIRNAME',
         'description'   => '_MI_XUPDATE_TAG_DIRNAMEDSC',
         'formtype'      => 'server_module',
         'valuetype'     => 'text',
         'default'       => '',
-        'options'       => array('none', 'tag')
-    ),
+        'options'       => ['none', 'tag']
+    ],
 
-    array(
+    [
         'name'          => 'xelfinder_dirname',
         'title'         => '_MI_XUPDATE_XEL_DIRNAME',
         'description'   => '_MI_XUPDATE_XEL_DIRNAMEDSC',
         'formtype'      => 'text',
         'valuetype'     => 'string',
         'default'       => 'xelfinder',
-        'options'       => array()
-    ),
+        'options'       => []
+    ],
 
-    array(
+    [
         'name'        => 'Show_debug',
         'title'        => '_MI_XUPDATE_DEBUG',
         'description'    => '',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
         'default'    => 0,
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'Theme_download_Url_format',
         'title'        => '_MI_XUPDATE_FTP_THEME_URL',
         'description'    => '',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'stores_json_url',
         'title'        => '_MI_XUPDATE_FTP_STORE_URL',
         'description'    => '',
         'formtype'    => 'text',
         'valuetype'    => 'string',
         'default'    => 'http://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'show_disabled_store',
         'title'        => '_MI_XUPDATE_SHOW_DISABLED_STORE',
         'description'    => '_MI_XUPDATE_SHOW_DISABLED_STOREDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
         'default'    => 0,
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
     //parallel_fetch_max
-    array(
+    [
         'name'        => 'parallel_fetch_max',
         'title'        => '_MI_XUPDATE_PARALLEL_FETCH_MAX',
         'description'    => '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',
         'formtype'    => 'text',
         'valuetype'    => 'int',
         'default'    => 50,
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
     //parallel_fetch_max
-    array(
+    [
         'name'        => 'curl_multi_select_not_use',
         'title'        => '_MI_XUPDATE_CURL_MULTI_SELECT',
         'description'    => '_MI_XUPDATE_CURL_MULTI_SELECTDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
         'default'    => 0,
-        'options'    => array(),
-    ),
+        'options'    => [],
+    ],
 
-    array(
+    [
         'name'        => 'curl_ssl_no_verify',
         'title'        => '_MI_XUPDATE_CURL_SSL_NO_VERIFY',
         'description'    => '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC',
         'formtype'    => 'yesno',
         'valuetype'    => 'int',
         'default'    => 0,
-        'options'    => array(),
-    )
+        'options'    => [],
+    ]
 
     ##[cubson:config]
     ##[/cubson:config]
-);
+];
 
 //
 // Block setting
 //
-$modversion['blocks'] = array(
+$modversion['blocks'] = [
     /*
     x => array(
         'func_num'			=> x,
@@ -449,7 +449,7 @@ $modversion['blocks'] = array(
         'visible_any'		=> true
     ),
 */
-    1 => array(
+    1 => [
         'func_num'          => 1,
         'file'              => 'NotifyBlock.class.php',
         'class'             => 'NotifyBlock',
@@ -460,7 +460,7 @@ $modversion['blocks'] = array(
         'show_all_module'   => true,
         'can_clone'         => true,
         'visible_any'       => false
-    ),
+    ],
     ##[cubson:block]
     ##[/cubson:block]
-);
+];

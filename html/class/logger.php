@@ -48,11 +48,11 @@ class XoopsLogger
     /**#@+
      * @var array
      */
-    public $queries = array();
-    public $blocks = array();
-    public $extra = array();
-    public $logstart = array();
-    public $logend = array();
+    public $queries = [];
+    public $blocks = [];
+    public $extra = [];
+    public $logstart = [];
+    public $logend = [];
     /**#@-*/
 
     /**
@@ -113,9 +113,9 @@ class XoopsLogger
         if (defined('XOOPS_LOGGER_ADDQUERY_DISABLED') && XOOPS_LOGGER_ADDQUERY_DISABLED) {
             return;
         }
-        $this->queries[] = array('sql' => $sql, 'error' => $error, 'errno' => $errno);
+        $this->queries[] = ['sql' => $sql, 'error' => $error, 'errno' => $errno];
         if ($error && defined('XOOPS_MYSQL_ERROR_LOG') && XOOPS_MYSQL_ERROR_LOG) {
-            error_log("XOOPS_MYSQL_ERROR_LOG: " . print_r(end($this->queries), true));
+            error_log('XOOPS_MYSQL_ERROR_LOG: ' . print_r(end($this->queries), true));
         }
     }
 
@@ -128,7 +128,7 @@ class XoopsLogger
      */
     public function addBlock($name, $cached = false, $cachetime = 0)
     {
-        $this->blocks[] = array('name' => $name, 'cached' => $cached, 'cachetime' => $cachetime);
+        $this->blocks[] = ['name' => $name, 'cached' => $cached, 'cachetime' => $cachetime];
     }
 
     /**
@@ -139,7 +139,7 @@ class XoopsLogger
      */
     public function addExtra($name, $msg)
     {
-        $this->extra[] = array('name' => $name, 'msg' => $msg);
+        $this->extra[] = ['name' => $name, 'msg' => $msg];
     }
 
     /**
@@ -157,7 +157,7 @@ class XoopsLogger
             } else {
                 $ret .= '<tr class="'.$class.'"><td>'.htmlentities($q['sql']).'</td></tr>';
             }
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
         $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br />';
         return $ret;
@@ -174,11 +174,11 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->blocks as $b) {
             if ($b['cached']) {
-                $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> Cached (regenerates every '.intval($b['cachetime']).' seconds)</td></tr>';
+                $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> Cached (regenerates every ' . (int)$b['cachetime'] . ' seconds)</td></tr>';
             } else {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($b['name']).':</b> No Cache</td></tr>';
             }
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
         $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br />';
         return $ret;
@@ -214,7 +214,7 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->extra as $ex) {
             $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($ex['name']).':</b> '.htmlspecialchars($ex['msg']).'</td></tr>';
-            $class = ($class == 'odd') ? 'even' : 'odd';
+            $class = ('odd' == $class) ? 'even' : 'odd';
         }
         $ret .= '</table><br />';
         return $ret;
@@ -234,7 +234,7 @@ class XoopsLogger
             $class = 'even';
             foreach ($this->logstart as $k => $v) {
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($k).'</b> took <span style="color:#ff0000;">'.$this->dumpTime($k).'</span> seconds to load.</td></tr>';
-                $class = ($class == 'odd') ? 'even' : 'odd';
+                $class = ('odd' == $class) ? 'even' : 'odd';
             }
             $ret .= '</table><br />';
         }

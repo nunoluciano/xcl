@@ -58,7 +58,7 @@ class XoopsFormSelect extends XoopsFormElement
      * @var array   
      * @access	private
      */
-    public $_options = array();
+    public $_options = [];
 
     /**
      * Allow multiple selections?
@@ -79,7 +79,7 @@ class XoopsFormSelect extends XoopsFormElement
      * @var	array   
      * @access	private
      */
-    public $_value = array();
+    public $_value = [];
 
     /**
      * Constructor
@@ -95,7 +95,7 @@ class XoopsFormSelect extends XoopsFormElement
         $this->setCaption($caption);
         $this->setName($name);
         $this->_multiple = $multiple;
-        $this->_size = intval($size);
+        $this->_size = (int)$size;
         if (isset($value)) {
             $this->setValue($value);
         }
@@ -138,7 +138,7 @@ class XoopsFormSelect extends XoopsFormElement
     /**
      * Set pre-selected values
      * 
-     * @param	$value	mixed
+     * @param mixed $value
      */
     public function setValue($value)
     {
@@ -157,9 +157,9 @@ class XoopsFormSelect extends XoopsFormElement
      * @param	string  $value  "value" attribute
      * @param	string  $name   "name" attribute
      */
-    public function addOption($value, $name="")
+    public function addOption($value, $name= '')
     {
-        if ($name != "") {
+        if ('' != $name) {
             $this->_options[$value] = $name;
         } else {
             $this->_options[$value] = $value;
@@ -203,8 +203,8 @@ class XoopsFormSelect extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_select.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_select.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

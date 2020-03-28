@@ -45,7 +45,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * base class
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/formtextarea.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/formtextarea.php';
 
 // Make sure you have included /include/xoopscodes.php, otherwise DHTML will not work properly!
 
@@ -80,7 +80,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @var array
      * @access  private
      */
-    private static $_editorCheck = array();
+    private static $_editorCheck = [];
     
     /**
      * Constructor
@@ -92,12 +92,12 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @param   int     $cols       Number of columns
      * @param   string  $hiddentext Hidden Text
      */
-    public function __construct($caption, $name, $value, $rows=5, $cols=50, $hiddentext="xoopsHiddenText")
+    public function __construct($caption, $name, $value, $rows=5, $cols=50, $hiddentext= 'xoopsHiddenText')
     {
         parent::__construct($caption, $name, $value, $rows, $cols);
         $this->_xoopsHiddenText = $hiddentext;
     }
-    public function XoopsFormDhtmlTextArea($caption, $name, $value, $rows=5, $cols=50, $hiddentext="xoopsHiddenText")
+    public function XoopsFormDhtmlTextArea($caption, $name, $value, $rows=5, $cols=50, $hiddentext= 'xoopsHiddenText')
     {
         return self::__construct($caption, $name, $value, $rows, $cols, $hiddentext);
     }
@@ -145,9 +145,9 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_dhtmltextarea.html");
-        $renderTarget->setAttribute("element", $this);
-        $renderTarget->setAttribute("class", $this->getClass());
+        $renderTarget->setTemplateName('legacy_xoopsform_dhtmltextarea.html');
+        $renderTarget->setAttribute('element', $this);
+        $renderTarget->setAttribute('class', $this->getClass());
 
         $renderSystem->render($renderTarget);
     
@@ -172,9 +172,9 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_opt_smileys.html");
-        $renderTarget->setAttribute("element", $this);
-        $renderTarget->setAttribute("smilesArr", $smilesArr);
+        $renderTarget->setTemplateName('legacy_xoopsform_opt_smileys.html');
+        $renderTarget->setAttribute('element', $this);
+        $renderTarget->setAttribute('smilesArr', $smilesArr);
 
         $renderSystem->render($renderTarget);
         

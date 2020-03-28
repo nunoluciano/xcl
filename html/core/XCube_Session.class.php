@@ -46,15 +46,17 @@ class XCube_Session
         $this->mGetSessionCookiePath = new XCube_Delegate();
         $this->mGetSessionCookiePath->register('XCube_Session.GetSessionCookiePath');
     }
-    
+
     /**
      * @public
+     * @param string $sessionName
+     * @param int    $sessionExpire
      */
     public function setParam($sessionName='', $sessionExpire=0)
     {
         $allIniArray = ini_get_all();
 
-        if ($sessionName !='') {
+        if ('' != $sessionName) {
             $this->mSessionName = $sessionName;
         } else {
             $this->mSessionName = $allIniArray['session.name']['global_value'];
@@ -83,10 +85,10 @@ class XCube_Session
             // Refresh lifetime of Session Cookie
             $session_params = session_get_cookie_params();
             !$session_params['domain'] and $session_params['domain'] = null;
-            $session_cookie_params = array(
+            $session_cookie_params = [
                 $this->mSessionName, session_id(), time() + $this->mSessionLifetime, $this->_cookiePath(),
                 $session_params['domain'], $session_params['secure']
-                );
+            ];
             if (isset($session_params['httponly'])) {
                 $session_cookie_params[] = $session_params['httponly'];
             }
@@ -96,6 +98,7 @@ class XCube_Session
 
     /**
      * @public
+     * @param bool $forceCookieClear
      */
     public function destroy($forceCookieClear = false)
     {
@@ -125,7 +128,7 @@ class XCube_Session
         $oldSession = $_SESSION;
         session_id($newSessionID);
         $this->start();
-        $_SESSION = array();
+        $_SESSION = [];
         foreach (array_keys($oldSession) as $key) {
             $_SESSION[$key] = $oldSession[$key];
         }
@@ -142,7 +145,7 @@ class XCube_Session
             $this->destroy();
             session_id($oldSessionID);
             $this->start();
-            $_SESSION = array();
+            $_SESSION = [];
             foreach (array_keys($oldSession) as $key) {
                 $_SESSION[$key] = $oldSession[$key];
             }

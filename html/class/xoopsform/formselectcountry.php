@@ -44,12 +44,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * lists of values
  */
-include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
 
 /**
  * Parent
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/formselect.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/formselect.php';
 
 /**
  * A select field with countries

@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyRenderThemeObject extends XoopsSimpleObject
 {
-    public $mPackage = array();
+    public $mPackage = [];
     public $mActiveResource = true;
     
     public function __construct()
@@ -25,9 +25,9 @@ class LegacyRenderThemeObject extends XoopsSimpleObject
     
     public function loadPackage()
     {
-        $themeDir = XOOPS_THEME_PATH . "/" . $this->get('name');
+        $themeDir = XOOPS_THEME_PATH . '/' . $this->get('name');
 
-        if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
+        if (file_exists($mnfFile = $themeDir . '/manifesto.ini.php')) {
             $iniHandler = new XCube_IniHandler($mnfFile, true);
             $this->mPackage = $iniHandler->getAllConfig();
         }
@@ -37,10 +37,10 @@ class LegacyRenderThemeObject extends XoopsSimpleObject
             // If this system can use this theme, add this to list.
             //
             if (isset($this->mPackage['Manifesto']) && isset($this->mPackage['Manifesto']['Depends'])) {
-                $this->mActiveResource = ($this->mPackage['Manifesto']['Depends'] == "Legacy_RenderSystem");
+                $this->mActiveResource = ('Legacy_RenderSystem' == $this->mPackage['Manifesto']['Depends']);
             }
         } else {
-            $file = XOOPS_THEME_PATH . "/" . $this->get('name') . "/theme.html";
+            $file = XOOPS_THEME_PATH . '/' . $this->get('name') . '/theme.html';
             $this->mActiveResource = file_exists($file);
         }
     }
@@ -53,9 +53,9 @@ class LegacyRenderThemeObject extends XoopsSimpleObject
 
 class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "legacyrender_theme";
-    public $mPrimary = "id";
-    public $mClass = "LegacyRenderThemeObject";
+    public $mTable = 'legacyrender_theme';
+    public $mPrimary = 'id';
+    public $mClass = 'LegacyRenderThemeObject';
     
     public function &getByName($themeName)
     {
@@ -74,18 +74,18 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
      */
     public function searchThemes()
     {
-        $themeList = array();
+        $themeList = [];
         
         if ($handler=opendir(XOOPS_THEME_PATH)) {
-            while (($dir=readdir($handler))!==false) {
-                if ($dir=="." || $dir=="..") {
+            while (false !== ($dir=readdir($handler))) {
+                if ('.' == $dir || '..' == $dir) {
                     continue;
                 }
 
-                $themeDir=XOOPS_THEME_PATH."/".$dir;
+                $themeDir= XOOPS_THEME_PATH . '/' . $dir;
                 if (is_dir($themeDir)) {
-                    $manifesto = array();
-                    if (file_exists($mnfFile = $themeDir . "/manifesto.ini.php")) {
+                    $manifesto = [];
+                    if (file_exists($mnfFile = $themeDir . '/manifesto.ini.php')) {
                         $iniHandler = new XCube_IniHandler($mnfFile, true);
                         $manifesto = $iniHandler->getAllConfig();
                     }
@@ -98,7 +98,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
                             $themeList[]=$dir;
                         }
                     } else {
-                        $file=$themeDir."/theme.html";
+                        $file= $themeDir . '/theme.html';
                         if (file_exists($file)) {
                             $themeList[]=$dir;
                         }

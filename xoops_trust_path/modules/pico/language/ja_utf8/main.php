@@ -56,7 +56,7 @@ define('_MD_PICO_LINK_PRINTERFRIENDLY', 'プリンタ用画面');
 define('_MD_PICO_LINK_TELLAFRIEND', '友達に伝える');
 define('_MD_PICO_FMT_TELLAFRIENDSUBJECT', '%sで見つけた記事');
 define('_MD_PICO_FMT_TELLAFRIENDBODY', "興味深い記事を見つけました\n記事タイトル:%s");
-define('_MD_PICO_JUMPTOTOPOFPICOBODY', "この記事の1行目に飛ぶ");
+define('_MD_PICO_JUMPTOTOPOFPICOBODY', 'この記事の1行目に飛ぶ');
 define('_MD_PICO_MAILTOENCODING', 'Shift_JIS'); // don't define it for singlebyte
 define('_MD_PICO_CSVENCODING', 'Shift_JIS');
 
@@ -192,7 +192,7 @@ if (!defined('FOR_XOOPS_LANG_CHECKER') && !function_exists('pico_convert_encodin
 	if (function_exists('mb_convert_encoding') && function_exists('mb_internal_encoding')) {
 		function pico_convert_encoding_to_ie($str, $from = 'auto')
 		{
-			return mb_convert_encoding($str, "UTF-8", mb_detect_encoding($str, 'ASCII,JIS,UTF-8,EUC-JP,SJIS'));
+			return mb_convert_encoding($str, 'UTF-8', mb_detect_encoding($str, 'ASCII,JIS,UTF-8,EUC-JP,SJIS'));
 		}
 	} else {
 		function pico_convert_encoding_to_ie($str)

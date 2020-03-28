@@ -62,12 +62,12 @@ class setting_manager
             //
             // Generate prefix
             // !Fix A non well formed numeric value
-            srand ( (int) microtime() * 10000 );
+            mt_srand ((int) microtime() * 10000 );
             do {
-                $this->prefix = substr ( md5 ( rand(1,6) ), 0, 6);
-            } while ( !preg_match ("/^[a-z]/", $this->prefix) );
+                $this->prefix = substr (md5 (mt_rand(1, 6) ), 0, 6);
+            } while ( !preg_match ('/^[a-z]/', $this->prefix) );
             
-            $this->salt = substr ( md5 ( rand () ), 5, 8);
+            $this->salt = substr (md5 (mt_rand () ), 5, 8);
             
             $this->db_pconnect = 0;
 
@@ -80,13 +80,13 @@ class setting_manager
         
             $filepath = str_replace('\\', '/', $filepath); // "
             $filepath = str_replace('/install', '', $filepath);
-            if (substr($filepath, 0, 1) == '/') {
+            if ('/' == substr($filepath, 0, 1)) {
                 $filepath = substr($filepath, 1);
             }
-            if (substr($filepath, -1) == '/') {
+            if ('/' == substr($filepath, -1)) {
                 $filepath = substr($filepath, 0, -1);
             }
-            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';
+            $protocol = (!empty($_SERVER['HTTPS']) && 'on' == $_SERVER['HTTPS']) ? 'https://' : 'http://';
             $this->xoops_url = (!empty($filepath)) ? $protocol.$_SERVER['HTTP_HOST'].'/'.$filepath : $protocol.$_SERVER['HTTP_HOST'];
             // find xoops_trust_path
             $path = $this->root_path ;
@@ -121,7 +121,7 @@ class setting_manager
             $this->prefix = $this->sanitizer->stripSlashesGPC($_POST['prefix']);
         }
         if (isset($_POST['db_pconnect'])) {
-            $this->db_pconnect = intval($_POST['db_pconnect']) > 0 ? 1 : 0;
+            $this->db_pconnect = (int)$_POST['db_pconnect'] > 0 ? 1 : 0;
         }
         if (isset($_POST['root_path'])) {
             $this->root_path = $this->sanitizer->stripSlashesGPC($_POST['root_path']);
@@ -158,7 +158,7 @@ class setting_manager
             $this->prefix = XOOPS_DB_PREFIX;
         }
         if (defined('XOOPS_DB_PCONNECT')) {
-            $this->db_pconnect = intval(XOOPS_DB_PCONNECT) > 0 ? 1 : 0;
+            $this->db_pconnect = (int)XOOPS_DB_PCONNECT > 0 ? 1 : 0;
         }
         if (defined('XOOPS_ROOT_PATH')) {
             $this->root_path = XOOPS_ROOT_PATH;
@@ -177,7 +177,7 @@ class setting_manager
     public function checkData()
     {
         $ret = '';
-        $error = array();
+        $error = [];
 
         if (empty($this->dbhost)) {
             $error[] = sprintf(_INSTALL_L57, _INSTALL_L27);
@@ -246,8 +246,8 @@ class setting_manager
                         <span style="font-size:85%;">'._INSTALL_L69.'</span>
                     </td>
                     <td class="even">
-                        <input type="radio" name="db_pconnect" value="1"'.($this->db_pconnect == 1 ? ' checked="checked"' : '').' />'._INSTALL_L23.'
-                        <input type="radio" name="db_pconnect" value="0"'.($this->db_pconnect != 1 ? ' checked="checked"' : '').' />'._INSTALL_L24.'
+                        <input type="radio" name="db_pconnect" value="1"'.(1 == $this->db_pconnect ? ' checked="checked"' : '') . ' />' . _INSTALL_L23 . '
+                        <input type="radio" name="db_pconnect" value="0"'.(1 != $this->db_pconnect ? ' checked="checked"' : '') . ' />' . _INSTALL_L24 . '
                     </td>
                 </tr>
                 ';
@@ -256,7 +256,7 @@ class setting_manager
         $ret .= $this->editform_sub(_INSTALL_L75, _INSTALL_L76, 'trust_path', $this->sanitizer->htmlSpecialChars($this->trust_path));
         $ret .= $this->editform_sub(_INSTALL_L56, _INSTALL_L58, 'xoops_url', $this->sanitizer->htmlSpecialChars($this->xoops_url));
 
-        $ret .= "</table>";
+        $ret .= '</table>';
         return $ret;
     }
 
@@ -331,7 +331,7 @@ class setting_manager
             <input type="hidden" name="dbname" value="'.$this->sanitizer->htmlSpecialChars($this->dbname).'" />
             <input type="hidden" name="prefix" value="'.$this->sanitizer->htmlSpecialChars($this->prefix).'" />
             <input type="hidden" name="salt" value="'.$this->sanitizer->htmlSpecialChars($this->salt).'" />
-            <input type="hidden" name="db_pconnect" value="'.intval($this->db_pconnect).'" />
+            <input type="hidden" name="db_pconnect" value="' . (int)$this->db_pconnect . '" />
             <input type="hidden" name="root_path" value="'.$this->sanitizer->htmlSpecialChars($this->root_path).'" />
             <input type="hidden" name="trust_path" value="'.$this->sanitizer->htmlSpecialChars($this->trust_path).'" />
             <input type="hidden" name="xoops_url" value="'.$this->sanitizer->htmlSpecialChars($this->xoops_url).'" />
@@ -342,7 +342,7 @@ class setting_manager
 
     public function getDBList()
     {
-        return array(extension_loaded('mysql')? 'mysql' : 'mysqli');
+        return [extension_loaded('mysql')? 'mysql' : 'mysqli'];
         //$dirname = '../class/database/';
         //$dirlist = array();
         //if (is_dir($dirname) && $handle = opendir($dirname)) {

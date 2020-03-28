@@ -5,11 +5,11 @@ if (! defined('XOOPS_TRUST_PATH')) {
     die('set XOOPS_TRUST_PATH in mainfile.php') ;
 }
 
-$mydirname = basename(dirname(__FILE__)) ;
-$mydirpath = dirname(__FILE__) ;
+$mydirname = basename(__DIR__) ;
+$mydirpath = __DIR__;
 require $mydirpath.'/mytrustdirname.php' ; // set $mytrustdirname
 
-if (@$_GET['mode'] == 'admin') {
+if ('admin' == @$_GET['mode']) {
     require XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/admin.php' ;
 } else {
     require XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/main.php' ;

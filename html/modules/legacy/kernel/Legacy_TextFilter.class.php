@@ -52,27 +52,27 @@ class Legacy_TextFilter extends XCube_TextFilter
     public $mMakeClickablePre = null;
 
 
-    public $mClickablePatterns = array();
-    public $mClickableReplacements = array();
+    public $mClickablePatterns = [];
+    public $mClickableReplacements = [];
 
-    public $mXCodePatterns = array();
-    public $mXCodeReplacements = array();
-    public $mXCodeCheckImgPatterns = array();
-    public $mXCodeCallbacks = array();
-    public $mXCodeHasCallback = array();
+    public $mXCodePatterns = [];
+    public $mXCodeReplacements = [];
+    public $mXCodeCheckImgPatterns = [];
+    public $mXCodeCallbacks = [];
+    public $mXCodeHasCallback = [];
 
-    public $mPreXCodePatterns = array();
-    public $mPreXCodeReplacements = array();
-    public $mPreXCodeCallbacks = array();
+    public $mPreXCodePatterns = [];
+    public $mPreXCodeReplacements = [];
+    public $mPreXCodeCallbacks = [];
     public $mPreXCodeHasCallback = false;
 
-    public $mPostXCodePatterns = array();
-    public $mPostXCodeReplacements = array();
-    public $mPostXCodeCallbacks = array();
-    public $mPostXCodeHasCallback = array();
+    public $mPostXCodePatterns = [];
+    public $mPostXCodeReplacements = [];
+    public $mPostXCodeCallbacks = [];
+    public $mPostXCodeHasCallback = [];
     
-    public $mSmileys = array();
-    public $mSmileysConvTable = array();
+    public $mSmileys = [];
+    public $mSmileysConvTable = [];
 
     /**
      * @public
@@ -84,23 +84,23 @@ class Legacy_TextFilter extends XCube_TextFilter
     public function __construct()
     //public function Legacy_TextFilter()
     {
-        $obj = $this->mMakeClickableConvertTable = new XCube_Delegate;
+        $obj = $this->mMakeClickableConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeClickableConvertTable');
         $obj->add('Legacy_TextFilter::sMakeClickableConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakeXCodeConvertTable = new XCube_Delegate;
+        $obj = $this->mMakeXCodeConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeXCodeConvertTable');
         $obj->add('Legacy_TextFilter::sMakeXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate;
+        $obj = $this->mMakeXCodeCheckImgPatterns = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeXCodeCheckImgPatterns');
         $obj->add('Legacy_TextFilter::sMakeXCodeCheckImgPatterns', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakePreXCodeConvertTable = new XCube_Delegate;
+        $obj = $this->mMakePreXCodeConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakePreXCodeConvertTable');
         $obj->add('Legacy_TextFilter::sMakePreXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
-        $obj = $this->mMakePostXCodeConvertTable = new XCube_Delegate;
+        $obj = $this->mMakePostXCodeConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakePostXCodeConvertTable');
         $obj->add('Legacy_TextFilter::sMakePostXCodeConvertTable', XCUBE_DELEGATE_PRIORITY_2);
 
@@ -119,24 +119,24 @@ class Legacy_TextFilter extends XCube_TextFilter
             $instance = new Legacy_TextFilter();
         }
     }
-    
+
     /**
      * Filters for editing text
      *
-     * @param	string	$text
-     * @param	string	$x2comat
-     * @return	string
+     * @param string $text
+     * @param bool   $x2comat
+     * @return    string
      *
-     **/
+     */
     public function toShow($text, $x2comat=false)
     {
         if ($x2comat) {
             //ToDo: &nbsp; patern is defined for XOOPS2.0 compatiblity. But what is it?
             //		This comatiblity option is used from method from MyTextSanitizer.
             //
-            return preg_replace(array("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", "/&nbsp;/i"), array('&\\1;', '&amp;nbsp;'), htmlspecialchars($text, ENT_QUOTES, _CHARSET));
+            return preg_replace(['/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i', '/&nbsp;/i'], ['&\\1;', '&amp;nbsp;'], htmlspecialchars($text, ENT_QUOTES, _CHARSET));
         } else {
-            return preg_replace("/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i", '&\\1;', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
+            return preg_replace('/&amp;(#[0-9]+|#x[0-9a-f]+|[a-z]+[0-9]*);/i', '&\\1;', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
         }
     }
 
@@ -149,35 +149,35 @@ class Legacy_TextFilter extends XCube_TextFilter
      **/
     public function toEdit($text)
     {
-        return preg_replace("/&amp;(#0?[0-9]{4,6};)/i", '&$1', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
+        return preg_replace('/&amp;(#0?[0-9]{4,6};)/i', '&$1', htmlspecialchars($text, ENT_QUOTES, _CHARSET));
     }
 
     /**
      * Filters textarea data for display
      *
-     * @param	string	$text
-     * @param	bool	$html	allow html?
-     * @param	bool	$smiley allow smileys?
-     * @param	bool	$xcode	allow xoopscode?
-     * @param	bool	$image	allow inline images?
-     * @param	bool	$br 	convert linebreaks?
-     * @param	string	$x2comat
-     * @return	string
-     **/
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
+     * @param bool   $x2comat
+     * @return    string
+     */
     public function toShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
     {
         $text = $this->preConvertXCode($text, $xcode);
-        if ($html != 1) {
+        if (1 != $html) {
             $text = $this->toShow($text, $x2comat);
         }
         $text = $this->makeClickable($text);
-        if ($smiley != 0) {
+        if (0 != $smiley) {
             $text = $this->smiley($text);
         }
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->convertXCode($text, $image);
         }
-        if ($br != 0) {
+        if (0 != $br) {
             $text = $this->nl2Br($text);
         }
         $text = $this->postConvertXCode($text, $xcode, $image);
@@ -187,15 +187,15 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Filters textarea data for preview
      *
-     * @param	string	$text
-     * @param	bool	$html	allow html?
-     * @param	bool	$smiley allow smileys?
-     * @param	bool	$xcode	allow xoopscode?
-     * @param	bool	$image	allow inline images?
-     * @param	bool	$br 	convert linebreaks?
-     * @param	string	$x2comat
-     * @return	string
-     **/
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
+     * @param bool   $x2comat
+     * @return    string
+     */
     public function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
     {
         return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat);
@@ -214,20 +214,20 @@ class Legacy_TextFilter extends XCube_TextFilter
     public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
     {
         require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
-        $encoding = $encoding ? $encoding : _CHARSET;
+        $encoding = $encoding ?: _CHARSET;
 
         // !Fix XCL PHP7 
        // Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5
-        $doctypeArr = array("HTML 4.01 Strict","HTML 4.01 Transitional","XHTML 1.0 Strict","XHTML 1.0 Transitional","XHTML 1.1");
+        $doctypeArr = ['HTML 4.01 Strict', 'HTML 4.01 Transitional', 'XHTML 1.0 Strict', 'XHTML 1.0 Transitional', 'XHTML 1.1'];
     
-        if (is_null($config) || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
+        if (null === $config || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
             $config = HTMLPurifier_Config::createDefault();
         }
         if (in_array($doctype, $doctypeArr)) {
             $config->set('HTML.Doctype', $doctype);
         }
     
-        if ($_conv = ($encoding !== 'UTF-8' && function_exists('mb_convert_encoding'))) {
+        if ($_conv = ('UTF-8' !== $encoding && function_exists('mb_convert_encoding'))) {
             $_substitute = mb_substitute_character();
             mb_substitute_character('none');
             $html = mb_convert_encoding($html, 'UTF-8', $encoding);
@@ -255,10 +255,10 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function getSmileys()
     {
-        if (count($this->mSmileys) == 0) {
-            $this->mSmileysConvTable[0] = $this->mSmileysConvTable[1] = array();
+        if (0 == count($this->mSmileys)) {
+            $this->mSmileysConvTable[0] = $this->mSmileysConvTable[1] = [];
             $db =& Database::getInstance();
-            if ($getsmiles = $db->query("SELECT * FROM ".$db->prefix("smiles"))) {
+            if ($getsmiles = $db->query('SELECT * FROM ' . $db->prefix('smiles'))) {
                 while ($smile = $db->fetchArray($getsmiles)) {
                     $this->mSmileys[] = $smile;
                     $this->mSmileysConvTable[0][] = $smile['code'];
@@ -272,16 +272,15 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Replace emoticons in the message with smiley images
      *
-     * @param	string	$message
-     *
-     * @return	string
+     * @param $text
+     * @return    string
      */
     public function smiley($text)
     {
-        if (count($this->mSmileys) == 0) {
+        if (0 == count($this->mSmileys)) {
             $this->getSmileys();
         }
-        if (count($this->mSmileys) != 0) {
+        if (0 != count($this->mSmileys)) {
             $text = str_replace($this->mSmileysConvTable[0], $this->mSmileysConvTable[1], $text);
         }
         return $text;
@@ -331,9 +330,12 @@ class Legacy_TextFilter extends XCube_TextFilter
         $patterns[] = "/(^|[^]_a-z0-9-=\"'\/:\.])([a-z0-9\-_\.]+?)@([a-z0-9!#\$%&'\*\+\-\/=\?^_\`{\|}~\.]+)/i";
         $replacements[] = "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>";
     }
+
     /**
+     * @param $patterns
+     * @param $replacements
      * @deprecated
-     **/
+     */
     public function makeClickableConvertTable(&$patterns, &$replacements)
     {
         self::sMakeClickableConvertTable($patterns, $replacements);
@@ -342,11 +344,11 @@ class Legacy_TextFilter extends XCube_TextFilter
     /**
      * Replace XoopsCodes with their equivalent HTML formatting
      *
-     * @param	string	$text
-     * @param	bool	$allowimage Allow images in the text?
-     *								On FALSE, uses links to images.
-     * @return	string
-     **/
+     * @param string $text
+     * @param int    $allowimage      Allow images in the text?
+     *                                On FALSE, uses links to images.
+     * @return    string
+     */
     public function convertXCode($text, $allowimage = 1)
     {
         if (empty($this->mXCodePatterns)) {
@@ -369,7 +371,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             //
             //Todo: For Compatiblitiy to XC2.1 Beta3
             $this->mXCodePre->call(new XCube_Ref($this->mXCodePatterns), new XCube_Ref($this->mXCodeReplacements[0]), 0);
-            $dummy = array();
+            $dummy = [];
             $this->mXCodePre->call(new XCube_Ref($dummy), new XCube_Ref($this->mXCodeReplacements[1]), 1);
             for ($idx = 0; $idx < 2; ++$idx) {
                 $this->mXCodeHasCallback[$idx] = false;
@@ -393,11 +395,11 @@ class Legacy_TextFilter extends XCube_TextFilter
             //
             $this->mMakeXCodeCheckImgPatterns->call(new XCube_Ref($this->mXCodeCheckImgPatterns));
         }
-        $text = preg_replace_callback($this->mXCodeCheckImgPatterns, array($this, '_filterImgUrl'), $text);
-        $replacementsIdx = ($allowimage == 0) ? 0 : 1;
-        if ($this->mXCodeHasCallback[$replacementsIdx] === true) {
+        $text = preg_replace_callback($this->mXCodeCheckImgPatterns, [$this, '_filterImgUrl'], $text);
+        $replacementsIdx = (0 == $allowimage) ? 0 : 1;
+        if (true === $this->mXCodeHasCallback[$replacementsIdx]) {
             foreach ($this->mXCodePatterns as $i => $patterns) {
-                if (is_null($this->mXCodeCallbacks[$replacementsIdx][$i])) {
+                if (null === $this->mXCodeCallbacks[$replacementsIdx][$i]) {
                     $text =  preg_replace($patterns, $this->mXCodeReplacements[$replacementsIdx][$i], $text);
                 } else {
                     $text =  preg_replace_callback($patterns, $this->mXCodeCallbacks[$replacementsIdx][$i], $text);
@@ -415,7 +417,8 @@ class Legacy_TextFilter extends XCube_TextFilter
     }
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     */
     public function makeXCodeCheckImgPatterns(&$patterns)
     {
         self::sMakeXCodeCheckImgPatterns($patterns);
@@ -463,14 +466,16 @@ class Legacy_TextFilter extends XCube_TextFilter
         $replacements[0][] = $replacements[1][] = _QUOTEC.'<div class="xoopsQuote"><blockquote>';
         $patterns[] = "/\[\/quote\]/sU";
         $replacements[0][] = $replacements[1][] = '</blockquote></div>';
-        $patterns[] = "/javascript:/si";
-        $replacements[0][] = $replacements[1][] = "java script:";
-        $patterns[] = "/about:/si";
-        $replacements[0][] = $replacements[1][] = "about :";
+        $patterns[] = '/javascript:/si';
+        $replacements[0][] = $replacements[1][] = 'java script:';
+        $patterns[] = '/about:/si';
+        $replacements[0][] = $replacements[1][] = 'about :';
     }
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     * @param $replacements
+     */
     public function makeXCodeConvertTable(&$patterns, &$replacements)
     {
         self::sMakeXCodeConvertTable($patterns, $replacements);
@@ -487,7 +492,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         if ($this->_checkUrlString($matches[2])) {
             return $matches[0];
         } else {
-            return "";
+            return '';
         }
     }
 
@@ -504,7 +509,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             return false;
         }
         // check black pattern(deprecated)
-        return !preg_match("/^(javascript|vbscript|about):/i", $text);
+        return !preg_match('/^(javascript|vbscript|about):/i', $text);
     }
 
     /**
@@ -516,21 +521,21 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function nl2Br($text)
     {
-        return preg_replace("/(\015\012)|(\015)|(\012)/", "<br />", $text);
+        return preg_replace("/(\015\012)|(\015)|(\012)/", '<br />', $text);
     }
 
     /**
      * Pre XCode Converting
-     *	 By default, keep content within [code][/code] tags
+     *     By default, keep content within [code][/code] tags
      *
-     * @param	string	$text
-     * @param	string	$xcode
+     * @param string $text
+     * @param int    $xcode
      *
-     * @return	string
+     * @return    string
      */
     public function preConvertXCode($text, $xcode = 1)
     {
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             if (empty($this->mPreXCodePatterns)) {
                 // RaiseEvent 'Legacy_TextFilter.MakePreXCodeConvertTable'
                 //	Delegate may replace conversion table
@@ -549,9 +554,9 @@ class Legacy_TextFilter extends XCube_TextFilter
                     }
                 }
             }
-            if ($this->mPreXCodeHasCallback === true) {
+            if (true === $this->mPreXCodeHasCallback) {
                 foreach ($this->mPreXCodePatterns as $i => $patterns) {
-                    if (is_null($this->mPreXCodeCallbacks[$i])) {
+                    if (null === $this->mPreXCodeCallbacks[$i]) {
                         $text =  preg_replace($patterns, $this->mPreXCodeReplacements[$i], $text);
                     } else {
                         $text =  preg_replace_callback($patterns, $this->mPreXCodeCallbacks[$i], $text);
@@ -577,7 +582,9 @@ class Legacy_TextFilter extends XCube_TextFilter
     
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     * @param $replacements
+     */
     public function makePreXCodeConvertTable(&$patterns, &$replacements)
     {
         self::sMakePreXCodeConvertTable($patterns, $replacements);
@@ -585,17 +592,17 @@ class Legacy_TextFilter extends XCube_TextFilter
 
     /**
      * Post XCode Convering
-     *	 By default, convert content about [code][/code] tags
+     *     By default, convert content about [code][/code] tags
      *
-     * @param	string	$text
-     * @param	string	$xcode
-     * @param	string	$image
+     * @param string $text
+     * @param int    $xcode
+     * @param int    $image
      *
-     * @return	string
+     * @return    string
      */
     public function postConvertXCode($text, $xcode=1, $image=1)
     {
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             if (empty($this->mPostXCodePatterns)) {
                 // RaiseEvent 'Legacy_TextFilter.MakePostXCodeConvertTable'
                 //	Delegate may replace conversion table
@@ -623,10 +630,10 @@ class Legacy_TextFilter extends XCube_TextFilter
                     }
                 }
             }
-            $replacementsIdx = ($image == 0) ? 0 : 1;
-            if ($this->mPostXCodeHasCallback[$replacementsIdx] === true) {
+            $replacementsIdx = (0 == $image) ? 0 : 1;
+            if (true === $this->mPostXCodeHasCallback[$replacementsIdx]) {
                 foreach ($this->mPostXCodePatterns as $i => $patterns) {
-                    if (is_null($this->mPostXCodeCallbacks[$replacementsIdx][$i])) {
+                    if (null === $this->mPostXCodeCallbacks[$replacementsIdx][$i]) {
                         $text =  preg_replace($patterns, $this->mPostXCodeReplacements[$replacementsIdx][$i], $text);
                     } else {
                         $text =  preg_replace_callback($patterns, $this->mPostXCodeCallbacks[$replacementsIdx][$i], $text);
@@ -648,13 +655,15 @@ class Legacy_TextFilter extends XCube_TextFilter
         } else {
             $root =& XCube_Root::getSingleton();
             $me =& $root->getTextFilter();
-            $replacements[0][] = array(&$me, 'Legacy_TextFilter::codeSanitizerCallback0');
-            $replacements[1][] = array(&$me, 'Legacy_TextFilter::codeSanitizerCallback1');
+            $replacements[0][] = [&$me, 'Legacy_TextFilter::codeSanitizerCallback0'];
+            $replacements[1][] = [&$me, 'Legacy_TextFilter::codeSanitizerCallback1'];
         }
     }
     /**
      * @deprecated
-     **/
+     * @param $patterns
+     * @param $replacements
+     */
     public function makePostXCodeConvertTable(&$patterns, &$replacements)
     {
         self::sMakePostXCodeConvertTable($patterns, $replacements);

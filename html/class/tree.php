@@ -47,7 +47,7 @@ class XoopsObjectTree
     public $_parentId;
     public $_myId;
     public $_rootId = null;
-    public $_tree = array();
+    public $_tree = [];
     public $_objects;
     /**#@-*/
 
@@ -118,7 +118,7 @@ class XoopsObjectTree
      **/
     public function &getFirstChild($key)
     {
-        $ret = array();
+        $ret = [];
         if (isset($this->_tree[$key]['child'])) {
             foreach ($this->_tree[$key]['child'] as $childkey) {
                 $ret[$childkey] =& $this->_tree[$childkey]['obj'];
@@ -134,7 +134,7 @@ class XoopsObjectTree
      * @param   array   $ret    (Empty when called from client) Array of children from previous recursions.
      * @return  array   Array of child nodes.
      **/
-    public function &getAllChild($key, $ret = array())
+    public function &getAllChild($key, $ret = [])
     {
         if (isset($this->_tree[$key]['child'])) {
             foreach ($this->_tree[$key]['child'] as $childkey) {
@@ -157,7 +157,7 @@ class XoopsObjectTree
      * @param   int $uplevel (empty when called from outside) level of recursion
      * @return  array   Array of parent nodes. 
      **/
-    public function &getAllParent($key, $ret = array(), $uplevel = 1)
+    public function &getAllParent($key, $ret = [], $uplevel = 1)
     {
         if (isset($this->_tree[$key]['parent']) && isset($this->_tree[$this->_tree[$key]['parent']]['obj'])) {
             $ret[$uplevel] =& $this->_tree[$this->_tree[$key]['parent']]['obj'];
@@ -171,18 +171,18 @@ class XoopsObjectTree
 
     /**
      * Make options for a select box from
-     * 
-     * @param   string  $fieldName   Name of the member variable from the
-     *  node objects that should be used as the title for the options.
-     * @param   string  $selected    Value to display as selected
-     * @param   int $key         ID of the object to display as the root of select options
-     * @param   string  $ret         (reference to a string when called from outside) Result from previous recursions
-     * @param   string  $prefix_orig  String to indent items at deeper levels
-     * @param   string  $prefix_curr  String to indent the current item
-     * @return
-     * 
-     * @access	private 
-     **/
+     *
+     * @param string $fieldName   Name of the member variable from the
+     *                            node objects that should be used as the title for the options.
+     * @param string $selected    Value to display as selected
+     * @param int    $key         ID of the object to display as the root of select options
+     * @param string $ret         (reference to a string when called from outside) Result from previous recursions
+     * @param string $prefix_orig String to indent items at deeper levels
+     * @param string $prefix_curr String to indent the current item
+     * @return void
+     *
+     * @access    private
+     */
     public function _makeSelBoxOptions($fieldName, $selected, $key, &$ret, $prefix_orig, $prefix_curr = '')
     {
         if ($key > 0) {
@@ -204,13 +204,13 @@ class XoopsObjectTree
     /**
      * Make a select box with options from the tree
      * 
-     * @param   string  $name            Name of the select box
-     * @param   string  $fieldName       Name of the member variable from the
+     * @param   string $name           Name of the select box
+     * @param   string $fieldName      Name of the member variable from the
      *  node objects that should be used as the title for the options.  
-     * @param   string  $prefix          String to indent deeper levels
-     * @param   string  $selected        Value to display as selected
-     * @param   bool    $addEmptyOption  Set TRUE to add an empty option with value "0" at the top of the hierarchy
-     * @param   integer $key             ID of the object to display as the root of select options
+     * @param   string $prefix         String to indent deeper levels
+     * @param   string $selected       Value to display as selected
+     * @param   bool   $addEmptyOption Set TRUE to add an empty option with value "0" at the top of the hierarchy
+     * @param int      $key            ID of the object to display as the root of select options
      * @return  string  HTML select box
      **/
     public function &makeSelBox($name, $fieldName, $prefix='-', $selected='', $addEmptyOption = false, $key=0)
@@ -220,7 +220,7 @@ class XoopsObjectTree
             $ret .= '<option value="0"></option>';
         }
         $this->_makeSelBoxOptions($fieldName, $selected, $key, $ret, $prefix);
-        $ret .= "</select>";
+        $ret .= '</select>';
         return $ret;
     }
 }

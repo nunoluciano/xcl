@@ -7,7 +7,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class LegacyRender_AbstractFilterForm
 {
     public $mSort = 0;
-    public $mSortKeys = array();
+    public $mSortKeys = [];
     public $_mCriteria = null;
     public $mNavi = null;
     
@@ -21,7 +21,7 @@ class LegacyRender_AbstractFilterForm
         
         $this->_mCriteria =new CriteriaCompo();
         
-        $this->mNavi->mGetTotalItems->add(array(&$this, 'getTotalItems'));
+        $this->mNavi->mGetTotalItems->add([&$this, 'getTotalItems']);
     }
     
     public function getDefaultSortKey()
@@ -36,7 +36,7 @@ class LegacyRender_AbstractFilterForm
     public function fetchSort()
     {
         $root =& XCube_Root::getSingleton();
-        $this->mSort = intval($root->mContext->mRequest->getRequest('sort'));
+        $this->mSort = (int)$root->mContext->mRequest->getRequest('sort');
         
         if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
@@ -59,13 +59,13 @@ class LegacyRender_AbstractFilterForm
 
     public function getOrder()
     {
-        return ($this->mSort < 0) ? "DESC" : "ASC";
+        return ($this->mSort < 0) ? 'DESC' : 'ASC';
     }
 
     public function getCriteria($start = null, $limit = null)
     {
-        $t_start = ($start === null) ? $this->mNavi->getStart() : intval($start);
-        $t_limit = ($limit === null) ? $this->mNavi->getPerpage() : intval($limit);
+        $t_start = (null === $start) ? $this->mNavi->getStart() : (int)$start;
+        $t_limit = (null === $limit) ? $this->mNavi->getPerpage() : (int)$limit;
         
         $criteria = $this->_mCriteria;
         

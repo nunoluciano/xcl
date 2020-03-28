@@ -7,7 +7,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH."/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
@@ -20,8 +20,8 @@ class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
     {
         //
         //
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            return "module.xupdate.Admin_ModuleStorForm.TOKEN";
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            return 'module.xupdate.Admin_ModuleStorForm.TOKEN';
         } else {
             return null;
         }
@@ -43,9 +43,9 @@ class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
 
         // set fields
         $this->mFieldProperties['dirname']=new XCube_FieldProperty($this);
-        $this->mFieldProperties['dirname']->setDependsByArray(array('required', 'maxlength'));
-        $this->mFieldProperties['dirname']->addMessage("required", _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME, "255");
-        $this->mFieldProperties['dirname']->addMessage("maxlength", _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, "255");
-        $this->mFieldProperties['dirname']->addVar("maxlength", 255);
+        $this->mFieldProperties['dirname']->setDependsByArray(['required', 'maxlength']);
+        $this->mFieldProperties['dirname']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME, '255');
+        $this->mFieldProperties['dirname']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '255');
+        $this->mFieldProperties['dirname']->addVar('maxlength', 255);
     }
 }

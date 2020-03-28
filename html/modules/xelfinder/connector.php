@@ -19,8 +19,8 @@ while(ob_get_level()) {
 	if (! ob_end_clean()) break;
 }
 
-$mydirname = basename( dirname( __FILE__ ) ) ;
-$mydirpath = dirname( __FILE__ ) ;
+$mydirname = basename(__DIR__) ;
+$mydirpath = __DIR__;
 
 require $mydirpath.'/mytrustdirname.php' ; // set $mytrustdirname
 

@@ -19,7 +19,7 @@ class LegacyRender_ThemeSelect extends XCube_ActionFilter
     {
         parent::__construct($controller);
         $controller->mRoot->mDelegateManager->add('Legacy_ThemeSelect.IsSelectableTheme', 'LegacyRender_ThemeSelect::isSelectableTheme');
-        $controller->mRoot->mDelegateManager->add('LegacyThemeHandler.GetInstalledThemes', 'LegacyRender_DelegateFunctions::getInstalledThemes', XOOPS_ROOT_PATH . "/modules/legacyRender/kernel/DelegateFunctions.class.php");
+        $controller->mRoot->mDelegateManager->add('LegacyThemeHandler.GetInstalledThemes', 'LegacyRender_DelegateFunctions::getInstalledThemes', XOOPS_ROOT_PATH . '/modules/legacyRender/kernel/DelegateFunctions.class.php');
     }
     
     public function isSelectableTheme(&$flag, $theme_name)
@@ -27,7 +27,7 @@ class LegacyRender_ThemeSelect extends XCube_ActionFilter
         $handler =& xoops_getmodulehandler('theme', 'legacyRender');
         $themeArr =& $handler->getObjects(new Criteria('name', $theme_name));
         
-        if (count($themeArr) == 1 && $themeArr[0]->get('enable_select')) {
+        if (1 == count($themeArr) && $themeArr[0]->get('enable_select')) {
             $flag = true;
         }
     }

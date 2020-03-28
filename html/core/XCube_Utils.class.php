@@ -21,15 +21,15 @@ class XCube_Utils
     public function __construct()
     {
     }
-    
+
     /**
      * @public
      * @brief [Static] The alias for the current controller::redirectHeader(). This function will be deprecated.
-     * @param $url string
-     * @param $time int
-     * @param $message mixed - string or string[] - If you want to multiline message, you must set message as array.
+     * @param string $url
+     * @param int    $time
+     * @param null   $messages
      * @return void
-     * 
+     *
      * @deprecated XCube 1.0 will remove this method. Don't use static function of XCube
      *             layer for redirect.
      */
@@ -74,13 +74,13 @@ class XCube_Utils
     {
         $arr = func_get_args();
         
-        if (count($arr)==0) {
+        if (0 == count($arr)) {
             return null;
         }
         
         $message = $arr[0];
         
-        $variables = array();
+        $variables = [];
         if (is_array($arr[1])) {
             $variables = $arr[1];
         } else {
@@ -89,12 +89,12 @@ class XCube_Utils
         }
         
         for ($i = 0; $i < count($variables); $i++) {
-            $message = str_replace("{" . ($i) . "}", $variables[$i], $message);
+            $message = str_replace('{' . ($i) . '}', $variables[$i], $message);
             
             // Temporary....
-            $message = str_replace("{" . ($i) . ":ucFirst}", ucfirst($variables[$i]), $message);
-            $message = str_replace("{" . ($i) . ":toLower}", strtolower($variables[$i]), $message);
-            $message = str_replace("{" . ($i) . ":toUpper}", strtoupper($variables[$i]), $message);
+            $message = str_replace('{' . ($i) . ':ucFirst}', ucfirst($variables[$i]), $message);
+            $message = str_replace('{' . ($i) . ':toLower}', strtolower($variables[$i]), $message);
+            $message = str_replace('{' . ($i) . ':toUpper}', strtoupper($variables[$i]), $message);
         }
         
         return $message;
@@ -103,17 +103,17 @@ class XCube_Utils
     /**
      * @public
      * @brief [Static] To encrypt strings by "DES-ECB".
-     * @param $plain_text string
-     * @param $key        string
+     * @param string $plain_text
+     * @param string $key
      * @return string - Encrypted string.
      */
     public static function encrypt($plain_text, $key = null)
     {
-        if ($plain_text === '') {
+        if ('' === $plain_text) {
             return $plain_text;
         }
         
-        if (is_null($key) || ! is_string($key)) {
+        if (null === $key || ! is_string($key)) {
             if (! defined('XOOPS_SALT')) {
                 return $plain_text;
             }
@@ -139,23 +139,23 @@ class XCube_Utils
             $crypt_text = openssl_encrypt($plain_text, 'DES-ECB', $key);
         }
         
-        return $crypt_text === false ? $plain_text : $crypt_text;
+        return false === $crypt_text ? $plain_text : $crypt_text;
     }
     
     /**
      * @public
      * @brief [Static] To decrypt strings by "DES-ECB".
-     * @param $crypt_text string
-     * @param $key        string
+     * @param string $crypt_text
+     * @param string $key
      * @return string - Decrypted string.
      */
     public static function decrypt($crypt_text, $key = null)
     {
-        if ($crypt_text === '') {
+        if ('' === $crypt_text) {
             return $crypt_text;
         }
         
-        if (is_null($key) || ! is_string($key)) {
+        if (null === $key || ! is_string($key)) {
             if (! defined('XOOPS_SALT')) {
                 return $crypt_text;
             }
@@ -186,11 +186,11 @@ class XCube_Utils
         // remove pkcs#7 padding for openssl encrypted text if padding string found
         $pad_ch = substr($plain_text, -1);
         $pad_len = ord($pad_ch);
-        if (substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len) == 0) {
+        if (0 == substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len)) {
             $plain_text = substr($plain_text, 0, strlen($plain_text) - $pad_len);
         }
         
-        return $plain_text === false ? $crypt_text : $plain_text;
+        return false === $plain_text ? $crypt_text : $plain_text;
     }
     
     /**
@@ -201,9 +201,9 @@ class XCube_Utils
     {
         $arr = func_get_args();
         
-        if (count($arr) == 0) {
+        if (0 == count($arr)) {
             return null;
-        } elseif (count($arr) == 1) {
+        } elseif (1 == count($arr)) {
             return XCube_Utils::formatString($arr[0]);
         } elseif (count($arr) > 1) {
             $vals = $arr;
@@ -211,16 +211,19 @@ class XCube_Utils
             return XCube_Utils::formatString($arr[0], $vals);
         }
     }
-    
+
     /**
+     * @param $subject
+     * @param $arr
+     * @return string|string[]
      * @deprecated XCube 1.0 will remove this method.
      */
     public function formatMessageByMap($subject, $arr)
     {
-        $searches=array();
-        $replaces=array();
+        $searches= [];
+        $replaces= [];
         foreach ($arr as $key=>$value) {
-            $searches[]="{".$key."}";
+            $searches[]= '{' . $key . '}';
             $replaces[]=$value;
         }
 

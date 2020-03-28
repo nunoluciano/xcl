@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentFilterForm.class.php';
 
 class Legacy_CommentViewAction extends Legacy_Action
 {
@@ -24,7 +24,7 @@ class Legacy_CommentViewAction extends Legacy_Action
         $handler =& xoops_getmodulehandler('comment');
         $this->mObject =& $handler->get(xoops_getrequest('com_id'));
         
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
 
@@ -40,7 +40,7 @@ class Legacy_CommentViewAction extends Legacy_Action
         $this->mObject->loadUser();
         $this->mObject->loadStatus();
 
-        $render->setTemplateName("comment_view.html");
+        $render->setTemplateName('comment_view.html');
         $render->setAttribute('object', $this->mObject);
 
         //

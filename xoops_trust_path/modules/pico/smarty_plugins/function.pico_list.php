@@ -27,11 +27,11 @@ function smarty_function_pico_list($params, &$smarty)
 
 	if ($var_name) {
 		// just assign
-		$assigns = b_pico_list_show(array($mydirname, $cat_ids, $order, $limit_params, $template, 'disable_renderer' => true));
+		$assigns = b_pico_list_show([$mydirname, $cat_ids, $order, $limit_params, $template, 'disable_renderer' => true]);
 		$smarty->assign($var_name, $assigns);
 	} else {
 		// display
-		$block = b_pico_list_show(array($mydirname, $cat_ids, $order, $limit_params, $template));
+		$block = b_pico_list_show([$mydirname, $cat_ids, $order, $limit_params, $template]);
 		echo @$block['content'];
 	}
 }

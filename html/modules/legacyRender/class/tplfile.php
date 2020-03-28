@@ -49,7 +49,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
     /**
      * Create the clone with source for the template set that is specified by $tplsetName.
      * 
-     * @param $tplsetName string
+     * @param string $tplsetName
      * @return object LegacyRenderTplfileObject
      */
     public function &createClone($tplsetName)
@@ -76,14 +76,15 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         
         return $obj;
     }
-    
+
     /**
      * Load override template file object by $tplset that is the name of template-set specified.
      * And, set it to mOverride.
+     * @param $tplset
      */
     public function loadOverride($tplset)
     {
-        if ($tplset == 'default' || $this->mOverride != null) {
+        if ('default' == $tplset || null != $this->mOverride) {
             return;
         }
         
@@ -102,9 +103,9 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
 
 class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "tplfile";
-    public $mPrimary = "tpl_id";
-    public $mClass = "LegacyRenderTplfileObject";
+    public $mTable = 'tplfile';
+    public $mPrimary = 'tpl_id';
+    public $mClass = 'LegacyRenderTplfileObject';
     
     public function insert(&$obj, $force = false)
     {
@@ -126,21 +127,24 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
             return $handler->insert($obj->Source, $force);
         }
     }
-    
+
     /**
-     * This method load objects of two template sets by $criteria. Then, build 
+     * This method load objects of two template sets by $criteria. Then, build
      * the return value from the objects of 'default', and set the objects of
      * $tplset to object->mOverride.
+     * @param $criteria
+     * @param $tplset
+     * @return array
      */
     public function &getObjectsWithOverride($criteria, $tplset)
     {
         $objs =& $this->getObjects($criteria);
         
-        $ret = array();
-        $dobjs = array();
+        $ret = [];
+        $dobjs = [];
         foreach ($objs as $obj) {
             $set = $obj->get('tpl_tplset');
-            if ($set == 'default') {
+            if ('default' == $set) {
                 $ret[] = $obj;
             }
             if ($set == $tplset) {
@@ -172,7 +176,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
     /**
      * This is a kind of getObjects(). Return objects that were modified recently.
      * 
-     * @param $limit int
+     * @param int $limit
      * @return array array of the object
      */
     public function &getRecentModifyFile($limit = 10)
@@ -194,27 +198,27 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
      * the result. Parameters are guaranteed Type Safe because these are used by
      * getObjects() for XoopsSimpleObject.
      * 
-     * @param $tplsetName string
-     * @param $type       string
-     * @param $refId      int
-     * @param $module     string
-     * @param $file       string
+     * @param string $tplsetName
+     * @param string $type
+     * @param int    $refId
+     * @param string $module
+     * @param string $file
      * @return array      array of the object.
      */
     public function &find($tplsetName, $type = null, $refId = null, $module = null, $file = null)
     {
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('tpl_tplset', $tplsetName));
-        if ($type != null) {
+        if (null != $type) {
             $criteria->add(new Criteria('tpl_type', $type));
         }
-        if ($refId != null) {
+        if (null != $refId) {
             $criteria->add(new Criteria('tpl_refid', $refId));
         }
-        if ($module != null) {
+        if (null != $module) {
             $criteria->add(new Criteria('tpl_module', $module));
         }
-        if ($file != null) {
+        if (null != $file) {
             $criteria->add(new Criteria('tpl_file', $file));
         }
         

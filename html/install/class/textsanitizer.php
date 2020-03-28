@@ -51,15 +51,15 @@ class textsanitizer
 
     public function &makeClickable(&$text)
     {
-        $patterns = array("/([^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i", "/([^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i", "/([^]_a-z0-9-=\"'\/])([a-z0-9\-_.]+?)@([^, \r\n\"\(\)'<>]+)/i");
-        $replacements = array("\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>", "\\1<a href=\"http://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>");
+        $patterns = ["/([^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i", "/([^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i", "/([^]_a-z0-9-=\"'\/])([a-z0-9\-_.]+?)@([^, \r\n\"\(\)'<>]+)/i"];
+        $replacements = ["\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>", "\\1<a href=\"http://www.\\2.\\3\" rel=\"external\">www.\\2.\\3</a>", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>"];
         $ret = preg_replace($patterns, $replacements, $text);
         return $ret;
     }
 
     public function &nl2Br($text)
     {
-        $ret = preg_replace("/(\015\012)|(\015)|(\012)/", "<br />", $text);
+        $ret = preg_replace("/(\015\012)|(\015)|(\012)/", '<br />', $text);
         return $ret;
     }
 
@@ -86,13 +86,13 @@ class textsanitizer
     */
     public function &htmlSpecialChars($text)
     {
-        $text = preg_replace("/&amp;/i", '&', htmlspecialchars($text, ENT_QUOTES));
+        $text = preg_replace('/&amp;/i', '&', htmlspecialchars($text, ENT_QUOTES));
         return $text;
     }
 
     public function &undoHtmlSpecialChars(&$text)
     {
-        $ret = preg_replace(array("/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"), array(">", "<", "\"", "'"), $text);
+        $ret = preg_replace(['/&gt;/i', '/&lt;/i', '/&quot;/i', '/&#039;/i'], ['>', '<', '"', "'"], $text);
         return $ret;
     }
 
@@ -123,7 +123,7 @@ class textsanitizer
 
     public function sanitizeForDisplay($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)
     {
-        if ($allowhtml == 0) {
+        if (0 == $allowhtml) {
             $text = $this->htmlSpecialChars($text);
         } else {
             //$config =& $GLOBALS['xoopsConfig'];
@@ -131,10 +131,10 @@ class textsanitizer
             //$text = strip_tags($text, $allowed);
             $text = $this->makeClickable($text);
         }
-        if ($smiley == 1) {
+        if (1 == $smiley) {
             $text = $this->smiley($text);
         }
-        if ($bbcode == 1) {
+        if (1 == $bbcode) {
             $text = $this->xoopsCodeDecode($text);
         }
         $text = $this->nl2Br($text);
@@ -144,7 +144,7 @@ class textsanitizer
     public function sanitizeForPreview($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)
     {
         $text = $this->oopsStripSlashesGPC($text);
-        if ($allowhtml == 0) {
+        if (0 == $allowhtml) {
             $text = $this->htmlSpecialChars($text);
         } else {
             //$config =& $GLOBALS['xoopsConfig'];
@@ -152,10 +152,10 @@ class textsanitizer
             //$text = strip_tags($text, $allowed);
             $text = $this->makeClickable($text);
         }
-        if ($smiley == 1) {
+        if (1 == $smiley) {
             $text = $this->smiley($text);
         }
-        if ($bbcode == 1) {
+        if (1 == $bbcode) {
             $text = $this->xoopsCodeDecode($text);
         }
         $text = $this->nl2Br($text);

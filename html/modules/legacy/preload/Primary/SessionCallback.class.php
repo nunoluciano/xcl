@@ -22,7 +22,7 @@ function xclCallback($session_id, $session_write_close)
 return false;
 }
 
-ob_start("xclCallback");
+ob_start('xclCallback');
 // !Fix end
 
 class Legacy_SessionCallback extends XCube_ActionFilter
@@ -37,12 +37,13 @@ class Legacy_SessionCallback extends XCube_ActionFilter
     {
         $sessionHandler =& xoops_gethandler('session');
         session_set_save_handler(
-            array(&$sessionHandler, 'open'),
-            array(&$sessionHandler, 'close'),
-            array(&$sessionHandler, 'read'),
-            array(&$sessionHandler, 'write'),
-            array(&$sessionHandler, 'destroy'),
-            array(&$sessionHandler, 'gc'));
+            [&$sessionHandler, 'open'],
+            [&$sessionHandler, 'close'],
+            [&$sessionHandler, 'read'],
+            [&$sessionHandler, 'write'],
+            [&$sessionHandler, 'destroy'],
+            [&$sessionHandler, 'gc']
+        );
     }
     
     public static function getSessionCookiePath(&$cookiePath)

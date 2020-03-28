@@ -1,7 +1,7 @@
 <?php
 // $Id: MyBlocksAdminForXCL21.class.php ,ver 0.0.7.1 2011/01/27 16:10:00 domifara Exp $
 
-require_once dirname(__FILE__).'/MyBlocksAdmin.class.php' ;
+require_once __DIR__ . '/MyBlocksAdmin.class.php' ;
 
 class MyBlocksAdminForXCL21 extends MyBlocksAdmin
 {
@@ -28,12 +28,12 @@ public static function &getInstance()
 // options
 public function renderCell4BlockOptions($block_data)
 {
-    if ($this->target_dirname && substr($this->target_dirname, 0, 1) != '_') {
+    if ($this->target_dirname && '_' != substr($this->target_dirname, 0, 1)) {
         $langman =& D3LanguageManager::getInstance() ;
         $langman->read('admin.php', $this->target_dirname) ;
     }
 
-    $bid = intval($block_data['bid']) ;
+    $bid = (int)$block_data['bid'];
 
 //HACK by domifara
 //	$block = new XoopsBlock( $bid ) ;

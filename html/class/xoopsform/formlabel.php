@@ -65,12 +65,12 @@ class XoopsFormLabel extends XoopsFormElement
      * @param	string	$caption	Caption
      * @param	string	$value		Text
      */
-    public function __construct($caption="", $value="")
+    public function __construct($caption= '', $value= '')
     {
         $this->setCaption($caption);
         $this->_value = $value;
     }
-    public function XoopsFormLabel($caption="", $value="")
+    public function XoopsFormLabel($caption= '', $value= '')
     {
         return self::__construct($caption, $value);
     }
@@ -98,8 +98,8 @@ class XoopsFormLabel extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_label.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_label.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

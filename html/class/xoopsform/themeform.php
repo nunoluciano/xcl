@@ -45,7 +45,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * base class
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/form.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/form.php';
 
 /**
  * Form that will output as a theme-enabled HTML table
@@ -68,8 +68,8 @@ class XoopsThemeForm extends XoopsForm
      */
     public function insertBreak($extra = '', $class= '')
     {
-        $class = ($class != '') ? " class='$class'" : '';
-        $extra = ($extra != '') ? $extra : '&nbsp';
+        $class = ('' != $class) ? " class='$class'" : '';
+        $extra = ('' != $extra) ? $extra : '&nbsp';
         $this->addElement(new XoopsFormBreak($extra, $class)) ;
     }
     
@@ -85,8 +85,8 @@ class XoopsThemeForm extends XoopsForm
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_themeform.html");
-        $renderTarget->setAttribute("form", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_themeform.html');
+        $renderTarget->setAttribute('form', $this);
 
         $renderSystem->render($renderTarget);
     

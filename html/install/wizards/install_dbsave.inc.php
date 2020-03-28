@@ -27,7 +27,7 @@
     $mm->setRewrite('XOOPS_DB_USER', $myts->stripSlashesGPC($_POST['dbuname']));
     $mm->setRewrite('XOOPS_DB_PASS', $myts->stripSlashesGPC($_POST['dbpass']));
     $mm->setRewrite('XOOPS_DB_NAME', $myts->stripSlashesGPC($_POST['dbname']));
-    $mm->setRewrite('XOOPS_DB_PCONNECT', intval($_POST['db_pconnect']));
+    $mm->setRewrite('XOOPS_DB_PCONNECT', (int)$_POST['db_pconnect']);
     $mm->setRewrite('XOOPS_GROUP_ADMIN', 1);
     $mm->setRewrite('XOOPS_GROUP_USERS', 2);
     $mm->setRewrite('XOOPS_GROUP_ANONYMOUS', 3);

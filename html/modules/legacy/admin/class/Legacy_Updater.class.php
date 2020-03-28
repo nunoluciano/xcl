@@ -16,10 +16,10 @@ require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleUpdater.class.php';
 
 class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
 {
-    public $_mMilestone = array(
+    public $_mMilestone = [
         '106' => 'update106',
         '200' => 'update200'
-    );
+    ];
 
     public function _processScript()
     {
@@ -40,7 +40,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         if ($res = $db->query($sql)) {
             $row = $db->fetchArray($res);
 
-            if (strtolower($row['Type']) !== 'blob') {
+            if ('blob' !== strtolower($row['Type'])) {
                 $sql = 'ALTER TABLE `'. $table .'` CHANGE `sess_data` `sess_data` BLOB NOT NULL';
 
                 if ($db->query($sql)) {
@@ -206,15 +206,15 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         
         $permTable = $db->prefix('group_permission');
         $groupTable = $db->prefix('groups');
-        $sql = sprintf("SELECT DISTINCT `gperm_groupid` FROM `%s` LEFT JOIN `%s` ON `%s`.`gperm_groupid`=`%s`.`groupid`" .
-                       " WHERE `gperm_modid`=1 AND `groupid` IS NULL",
-                       $permTable, $groupTable, $permTable, $groupTable);
+        $sql = sprintf(
+            'SELECT DISTINCT `gperm_groupid` FROM `%s` LEFT JOIN `%s` ON `%s`.`gperm_groupid`=`%s`.`groupid`' . ' WHERE `gperm_modid`=1 AND `groupid` IS NULL',
+            $permTable, $groupTable, $permTable, $groupTable);
         $result = $db->query($sql);
         if (!$result) {
             return false;
         }
         
-        $gids = array();
+        $gids = [];
         while ($myrow = $db->fetchArray($result)) {
             $gids[] = $myrow['gperm_groupid'];
         }
@@ -222,7 +222,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         $db->freeRecordSet($result);
         
         // remove all invalid group id entries
-        if (count($gids) != 0) {
+        if (0 != count($gids)) {
             $sql = sprintf('DELETE FROM `%s` WHERE `gperm_groupid` IN (%s) AND `gperm_modid`=1',
                            $permTable, implode(',', $gids));
             $result = $xoopsDB->query($sql);

@@ -23,9 +23,9 @@ class UserMailjob_linkObject extends XoopsSimpleObject
 
 class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "user_mailjob_link";
-    public $mPrimary = "mailjob_id";
-    public $mClass = "UserMailjob_linkObject";
+    public $mTable = 'user_mailjob_link';
+    public $mPrimary = 'mailjob_id';
+    public $mClass = 'UserMailjob_linkObject';
 
     public function &get($mailjob_id, $uid)
     {
@@ -37,7 +37,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
         $objArr = &$this->getObjects($criteria);
 
-        if (count($objArr) == 1) {
+        if (1 == count($objArr)) {
             $ret = &$objArr[0];
         }
 
@@ -46,7 +46,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
     public function getCurrentRetry($mailjob_id)
     {
-        $mailjob_id = intval($mailjob_id);
+        $mailjob_id = (int)$mailjob_id;
         $table = $this->mTable;
 
         $sql = "SELECT min(retry) AS cretry FROM ${table} where mailjob_id='${mailjob_id}'";
@@ -59,20 +59,20 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
     public function _update(&$obj)
     {
-        $set_lists = array();
-        $where = "";
+        $set_lists = [];
+        $where = '';
 
         $arr = $this->_makeVars4sql($obj);
 
         foreach ($arr as $_name => $_value) {
-            if ($_name == 'mailjob_id' || $_name == 'uid') {
+            if ('mailjob_id' == $_name || 'uid' == $_name) {
                 $where = "${_name}=${_value}";
             } else {
                 $set_lists[] = "${_name}=${_value}";
             }
         }
 
-        $sql = @sprintf("UPDATE " . $this->mTable . " SET %s WHERE %s", implode(",", $set_lists), $where);
+        $sql = @sprintf('UPDATE ' . $this->mTable . ' SET %s WHERE %s', implode(',', $set_lists), $where);
 
         return $sql;
     }
@@ -86,7 +86,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('mailjob_id', $obj->get('mailjob_id')));
         $criteria->add(new Criteria('uid', $obj->get('uid')));
-        $sql = "DELETE FROM " . $this->mTable . " WHERE " . $this->_makeCriteriaElement4sql($criteria, $obj);
+        $sql = 'DELETE FROM ' . $this->mTable . ' WHERE ' . $this->_makeCriteriaElement4sql($criteria, $obj);
 
         return $force ? $this->db->queryF($sql) : $this->db->query($sql);
     }

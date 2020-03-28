@@ -8,7 +8,7 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-require_once dirname(__FILE__) . '/AbstractObject.class.php';
+require_once __DIR__ . '/AbstractObject.class.php';
 /**
  * Abstract Category Class
 **/
@@ -16,7 +16,7 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 {
     const PRIMARY = 'cat_id';
     const DATANAME = 'cat';
-    public $mChildren = array();    //Legacy_AbstractCategoryObject[]
+    public $mChildren = [];    //Legacy_AbstractCategoryObject[]
 
     public function Legacy_AbstractCategoryObject()
     {
@@ -69,25 +69,31 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 
     /**
      * checkPermitByUid
-     * 
-     * @params	string	$action
-     * @params	int 	$uid
-     * @params	string	$module
      *
+     * @params    string    $action
+     * @params    int    $uid
+     * @params    string    $module
+     *
+     * @param        $action
+     * @param int    $uid
+     * @param string $module
      * @return bool
      */
-    abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module="");
+    abstract public function checkPermitByUid(/*** string ***/ $action, /*** int ***/ $uid=0, /*** string ***/ $module= '');
 
     /**
      * checkPermitByGroupid
-     * 
-     * @params	string	$action
-     * @params	int 	$groupid
-     * @params	string	$module
      *
+     * @params    string    $action
+     * @params    int    $groupid
+     * @params    string    $module
+     *
+     * @param        $action
+     * @param int    $groupid
+     * @param string $module
      * @return bool
      */
-    abstract public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module="");
+    abstract public function checkPermitByGroupid(/*** string ***/ $action, /*** int ***/ $groupid=0, /*** string ***/ $module= '');
 
     /**
      * renderUri

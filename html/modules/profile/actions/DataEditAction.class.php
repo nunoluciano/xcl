@@ -9,12 +9,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractEditAction.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractEditAction.class.php';
 
 class Profile_DataEditAction extends Profile_AbstractEditAction
 {
-    public $mFields = array();
-    public $mOptions = array();
+    public $mFields = [];
+    public $mOptions = [];
 
     /**
      * @protected
@@ -24,7 +24,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
         if ($this->mRoot->mContext->mXoopsUser) {
             return $this->mRoot->mContext->mXoopsUser->get('uid');
         } else {
-            $this->mRoot->mController->executeRedirect(XOOPS_URL ."/user.php", 1, _MD_PROFILE_ERROR_REGISTER_REQUIRED);
+            $this->mRoot->mController->executeRedirect(XOOPS_URL . '/user.php', 1, _MD_PROFILE_ERROR_REGISTER_REQUIRED);
         }
     }
 
@@ -33,7 +33,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
      */
     public function &_getHandler()
     {
-        $handler =& $this->mAsset->load('handler', "data");
+        $handler =& $this->mAsset->load('handler', 'data');
         return $handler;
     }
 
@@ -43,7 +43,7 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
     public function _setupActionForm()
     {
         // $this->mActionForm =new Profile_DataEditForm();
-        $this->mActionForm =& $this->mAsset->create('form', "edit_data");
+        $this->mActionForm =& $this->mAsset->create('form', 'edit_data');
         $this->mActionForm->prepare();
     }
 
@@ -61,10 +61,11 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
-        $render->setTemplateName("profile_data_edit.html");
+        $render->setTemplateName('profile_data_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('fields', $this->mFields);
@@ -74,25 +75,28 @@ class Profile_DataEditAction extends Profile_AbstractEditAction
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewSuccess(&$render)
     {
-        $this->mRoot->mController->executeForward("./index.php?action=DataList");
+        $this->mRoot->mController->executeForward('./index.php?action=DataList');
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
-        $this->mRoot->mController->executeRedirect("./index.php?action=DataList", 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
+        $this->mRoot->mController->executeRedirect('./index.php?action=DataList', 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewCancel(&$render)
     {
-        $this->mRoot->mController->executeForward("./index.php?action=DataList");
+        $this->mRoot->mController->executeForward('./index.php?action=DataList');
     }
 }

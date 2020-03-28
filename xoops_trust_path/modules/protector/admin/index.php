@@ -1,19 +1,19 @@
 <?php
 
 require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php';
+require_once dirname(__DIR__) . '/class/gtickets.php';
 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
 $db = &Database::getInstance();
 
 // GET vars
-$pos = empty($_GET[ 'pos' ]) ? 0 : intval($_GET[ 'pos' ]);
-$num = empty($_GET[ 'num' ]) ? 20 : intval($_GET[ 'num' ]);
+$pos = empty($_GET[ 'pos' ]) ? 0 : (int)$_GET['pos'];
+$num = empty($_GET[ 'num' ]) ? 20 : (int)$_GET['num'];
 
 // Table Name
 $log_table = $db->prefix($mydirname.'_log');
 
 // Protector object
-require_once dirname(dirname(__FILE__)).'/class/protector.php';
+require_once dirname(__DIR__) . '/class/protector.php';
 $db = &Database::getInstance();
 $protector = Protector::getInstance($db->conn);
 $conf = $protector->getConf();
@@ -27,20 +27,20 @@ if (!empty($_POST['action'])) {
         redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
     }
 
-    if ($_POST['action'] == 'update_ips') {
+    if ('update_ips' == $_POST['action']) {
         $error_msg = '';
 
-        $lines = empty($_POST['bad_ips']) ? array() : explode("\n", trim($_POST['bad_ips']));
-        $bad_ips = array();
+        $lines = empty($_POST['bad_ips']) ? [] : explode("\n", trim($_POST['bad_ips']));
+        $bad_ips = [];
         foreach ($lines as $line) {
             @list($bad_ip, $jailed_time) = explode('-', $line, 2);
-            $bad_ips[ trim($bad_ip) ] = empty($jailed_time) ? 0x7fffffff : intval($jailed_time);
+            $bad_ips[ trim($bad_ip) ] = empty($jailed_time) ? 0x7fffffff : (int)$jailed_time;
         }
         if (!$protector->write_file_badips($bad_ips)) {
             $error_msg .= _AM_MSG_BADIPSCANTOPEN;
         }
 
-        $group1_ips = empty($_POST['group1_ips']) ? array() : explode("\n", trim($_POST['group1_ips']));
+        $group1_ips = empty($_POST['group1_ips']) ? [] : explode("\n", trim($_POST['group1_ips']));
         foreach (array_keys($group1_ips) as $i) {
             $group1_ips[$i] = trim($group1_ips[$i]);
         }
@@ -54,27 +54,27 @@ if (!empty($_POST['action'])) {
             $error_msg .= _AM_MSG_GROUP1IPSCANTOPEN;
         }
 
-        $redirect_msg = $error_msg ? $error_msg : _AM_MSG_IPFILESUPDATED;
+        $redirect_msg = $error_msg ?: _AM_MSG_IPFILESUPDATED;
         redirect_header('index.php', 2, $redirect_msg);
         exit;
-    } elseif ($_POST['action'] == 'delete' && isset($_POST['ids']) && is_array($_POST['ids'])) {
+    } elseif ('delete' == $_POST['action'] && isset($_POST['ids']) && is_array($_POST['ids'])) {
         // remove selected records
         foreach ($_POST['ids'] as $lid) {
-            $lid = intval($lid);
+            $lid = (int)$lid;
             $db->query("DELETE FROM $log_table WHERE lid='$lid'");
         }
         redirect_header('index.php', 2, _AM_MSG_REMOVED);
         exit;
-    } elseif ($_POST['action'] == 'deleteall') {
+    } elseif ('deleteall' == $_POST['action']) {
         // remove all records
         $db->query("DELETE FROM $log_table");
         redirect_header('index.php', 2, _AM_MSG_REMOVED);
         exit;
-    } elseif ($_POST['action'] == 'compactlog') {
+    } elseif ('compactlog' == $_POST['action']) {
         // compactize records (removing duplicated records (ip,type)
         $result = $db->query("SELECT `lid`,`ip`,`type` FROM $log_table ORDER BY lid DESC");
-        $buf = array();
-        $ids = array();
+        $buf = [];
+        $ids = [];
         while (list($lid, $ip, $type) = $db->fetchRow($result)) {
             if (isset($buf[ $ip.$type ])) {
                 $ids[] = $lid;
@@ -101,7 +101,7 @@ $nav_html = $nav->renderNav(10);
 
 // Number selection
 $num_options = '';
-$num_array = array(20, 100, 500, 2000);
+$num_array = [20, 100, 500, 2000];
 foreach ($num_array as $n) {
     if ($n == $num) {
         $num_options .= "<option value='$n' selected='selected'>$n</option>\n";
@@ -112,15 +112,15 @@ foreach ($num_array as $n) {
 
 // beggining of Output
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php';
+include __DIR__ . '/mymenu.php';
 
 // title
 echo "<div class='ui-card-main'>\n
         <h2>".$xoopsModule->name()."</h3>\n";
 
 // configs writable check
-if (!is_writable(dirname(dirname(__FILE__)).'/configs')) {
-    printf("<p style='color:red;font-weight:bold;'>"._AM_FMT_CONFIGSNOTWRITABLE."</p>\n", dirname(dirname(__FILE__)).'/configs');
+if (!is_writable(dirname(__DIR__) . '/configs')) {
+    printf("<p style='color:red;font-weight:bold;'>"._AM_FMT_CONFIGSNOTWRITABLE."</p>\n", dirname(__DIR__) . '/configs');
 }
 
 // bad_ips
@@ -208,7 +208,7 @@ echo "
 // body of log listing
 $oddeven = 'odd';
 while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = $db->fetchRow($prs)) {
-    $oddeven = ($oddeven == 'odd' ? 'even' : 'odd');
+    $oddeven = ('odd' == $oddeven ? 'even' : 'odd');
 
     $ip = htmlspecialchars($ip, ENT_QUOTES);
     $type = htmlspecialchars($type, ENT_QUOTES);
@@ -218,7 +218,7 @@ while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = 
     // make agents shorter
     if (preg_match('/MSIE\s+([0-9.]+)/', $agent, $regs)) {
         $agent_short = 'IE '.$regs[1];
-    } elseif (stristr($agent, 'Gecko') !== false) {
+    } elseif (false !== stristr($agent, 'Gecko')) {
         $agent_short = strrchr($agent, ' ');
     } else {
         $agent_short = substr($agent, 0, strpos($agent, ' '));

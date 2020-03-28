@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/PreferenceEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/PreferenceEditForm.class.php';
 
-define("LEGACY_PREFERENCE_ID_GENERAL", 1);
+define('LEGACY_PREFERENCE_ID_GENERAL', 1);
 
 class Legacy_PreferenceEditAction extends Legacy_Action
 {
@@ -23,7 +23,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
     public $mCategory = null;
     public $mModule = null;
 
-    public $mObjects = array();
+    public $mObjects = [];
     public $mActionForm = null;
     
     public $mState = null;
@@ -68,7 +68,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             return LEGACY_FRAME_VIEW_ERROR;
         }
         
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
         
@@ -84,7 +84,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         
         foreach (array_keys($this->mObjects) as $key) {
             if (!$handler->insertConfig($this->mObjects[$key])) {
-                die("ERROR" . $this->mObjects[$key]->get('conf_name'));
+                die('ERROR' . $this->mObjects[$key]->get('conf_name'));
             }
         }
         
@@ -95,7 +95,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("preference_edit.html");
+        $render->setTemplateName('preference_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('objectArr', $this->mObjects);
         
@@ -104,7 +104,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         
         $render->setAttribute('mcrypt_enabled', extension_loaded('mcrypt'));
         
-        $formtypeArr = array();
+        $formtypeArr = [];
         foreach ($this->mObjects as $object) {
             $formtypeArr[] = $object->get('conf_formtype');
         }
@@ -141,10 +141,10 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         // Make the list of installed languages.
         //
         if (in_array('language', $formtypeArr)) {
-            $languageArr = array();
-            $dirHandler = opendir(XOOPS_ROOT_PATH . "/language/");
+            $languageArr = [];
+            $dirHandler = opendir(XOOPS_ROOT_PATH . '/language/');
             while ($file = readdir($dirHandler)) {
-                if (is_dir(XOOPS_ROOT_PATH . "/language/" . $file) && preg_match("/^[a-z][0-9a-z_\-]+$/", $file)) {
+                if (is_dir(XOOPS_ROOT_PATH . '/language/' . $file) && preg_match("/^[a-z][0-9a-z_\-]+$/", $file)) {
                     $languageArr[$file] = $file;
                 }
             }
@@ -199,7 +199,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=PreferenceList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=PreferenceList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
@@ -250,7 +250,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         parent::prepare($controller, $xoopsUser);
         
         $handler =& xoops_gethandler('configcategory');
-        $this->_mMaster->mCategory =& $handler->get(intval(xoops_getrequest('confcat_id')));
+        $this->_mMaster->mCategory =& $handler->get((int)xoops_getrequest('confcat_id'));
         
         if (!is_object($this->_mMaster->mCategory)) {
             return;
@@ -276,24 +276,24 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         $allowedThemes = null;
         foreach (array_keys($objectArr) as $key) {
             $name = $objectArr[$key]->get('conf_name');
-            if ($name == 'theme_set') {
+            if ('theme_set' == $name) {
                 $themeName = $objectArr[$key]->getConfValueForOutput();
-            } elseif ($name == 'theme_set_allowed') {
+            } elseif ('theme_set_allowed' == $name) {
                 $allowedThemes = $actionForm->get('theme_set_allowed');
-            } elseif ($name == 'use_mysession') {
+            } elseif ('use_mysession' == $name) {
                 $useMysession = $actionForm->get('use_mysession');
-            } elseif ($name == 'session_name') {
+            } elseif ('session_name' == $name) {
                 $sessionName = $actionForm->get('session_name');
-            } elseif ($name == 'session_expire') {
+            } elseif ('session_expire' == $name) {
                 $sessionExpire = $actionForm->get('session_expire');
             }
         }
         
-        if ($name != null && $allowedThemes != null) {
+        if (null != $name && null != $allowedThemes) {
             XCube_DelegateUtils::call('Legacy.Event.ThemeSettingChanged', $themeName, $allowedThemes);
         }
         // !Fix typo pereference = preference?
-        if ($this->_mMaster->mCategory->get('confcat_id') == LEGACY_PREFERENCE_ID_GENERAL) { //GIJ 
+        if (LEGACY_PREFERENCE_ID_GENERAL == $this->_mMaster->mCategory->get('confcat_id')) { //GIJ
             $root =& XCube_Root::getSingleton();
             if ($useMysession) {
                 $root->mSession->setParam($sessionName, $sessionExpire);
@@ -306,12 +306,12 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=PreferenceList");
+        $controller->executeForward('./index.php?action=PreferenceList');
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=PreferenceList");
+        $controller->executeForward('./index.php?action=PreferenceList');
     }
 }
 
@@ -322,7 +322,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
         parent::prepare($controller, $xoopsUser);
         
         $handler =& xoops_gethandler('module');
-        $this->_mMaster->mModule =& $handler->get(intval(xoops_getrequest('confmod_id')));
+        $this->_mMaster->mModule =& $handler->get((int)xoops_getrequest('confmod_id'));
 
         if (!(is_object($this->_mMaster->mModule) && $this->_mMaster->mModule->get('isactive') &&
               ($this->_mMaster->mModule->get('hasconfig') ||

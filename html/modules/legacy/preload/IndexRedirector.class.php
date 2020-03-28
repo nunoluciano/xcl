@@ -16,13 +16,13 @@ class Legacy_IndexRedirector extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Legacypage.Top.Access", array(&$this, "redirect"));
+        $this->mController->mRoot->mDelegateManager->add('Legacypage.Top.Access', [&$this, 'redirect']);
     }
 
     public function redirect()
     {
         $startPage = $this->mRoot->mContext->getXoopsConfig('startpage');
-        if ($startPage != null && $startPage != "--") {
+        if (null != $startPage && '--' != $startPage) {
             $handler =& xoops_gethandler('module');
             $module =& $handler->get($startPage);
             if (is_object($module) && $module->get('isactive')) {

@@ -33,10 +33,10 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 		}
 
 		if ($clientId && $clientSecret) {
-			$_SESSION[$sessClientKey] = array (
+			$_SESSION[$sessClientKey] = [
 				'ClientId' => $clientId,
 				'ClientSecret' => $clientSecret
-			);
+            ];
 		} elseif (isset($_SESSION[$sessClientKey])) {
 			$clientId = $_SESSION[$sessClientKey]['ClientId'];
 			$clientSecret = $_SESSION[$sessClientKey]['ClientSecret'];
@@ -63,7 +63,7 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 }
 
 xoops_cp_header();
-include dirname(__FILE__) . '/mymenu.php';
+include __DIR__ . '/mymenu.php';
 
 echo '<h3>' . xelfinderAdminLang('GOOGLEDRIVE_GET_TOKEN') . '</h3>';
 
@@ -73,11 +73,11 @@ if ($php54up && $vendor) {
 		if (empty($_POST) && $client->getAccessToken()) {
 			try {
 				$aToken = $client->getAccessToken();
-				$token = array (
+				$token = [
 					'client_id' => $client->getClientId(),
 					'client_secret' => $client->getClientSecret(),
 					'access_token' => $aToken['access_token']
-				);
+                ];
 				if (isset($aToken['refresh_token'])) {
 					unset($token['access_token']);
 					$token['refresh_token'] = $aToken['refresh_token'];
@@ -109,7 +109,7 @@ if ($php54up && $vendor) {
 			if (! empty($_POST['revoke'])) {
 				$client->revokeToken();
 			}
-			$scopes = array();
+			$scopes = [];
 			foreach($_POST['scopes'] as $scope) {
 				switch ($scope) {
 					case 'DRIVE' :

@@ -27,7 +27,7 @@ if (INSTALL_USER != '' || INSTALL_PASSWD != '') {
         echo 'You can not access this XOOPS installer.';
         exit;
     } else {
-        if (INSTALL_USER != '' && $_SERVER['PHP_AUTH_USER'] != INSTALL_USER) {
+        if (INSTALL_USER != '' && INSTALL_USER != $_SERVER['PHP_AUTH_USER']) {
             header('HTTP/1.0 401 Unauthorized');
             echo 'You can not access this XOOPS installer.';
             exit;
@@ -57,11 +57,11 @@ define('_OKIMG', '<img src="img/yes.png" border="0" alt="OK" /> ');
 define('_NGIMG', '<img src="img/no.png" border="0" alt="NG" /> ');
 
 include_once './class/simplewizard.php';
-$wizard = new SimpleWizard;
+$wizard = new SimpleWizard();
 $wizard->setBaseTemplate('./install_tpl.php');
 $wizard->setTemplatePath('./templates');
 
-$wizardSeq = new SimpleWizardSequence;
+$wizardSeq = new SimpleWizardSequence();
 
 $wizardSeq->add('langselect',  _INSTALL_L0,   'start',      _INSTALL_L80);
 $wizardSeq->add('start',       _INSTALL_L0,   'modcheck',   _INSTALL_L81);

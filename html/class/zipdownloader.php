@@ -46,10 +46,10 @@ class XoopsZipDownloader extends XoopsDownloader
     public function addFile($filepath, $newfilename=null)
     {
         // Read in the file's contents
-        $fp = fopen($filepath, "r");
+        $fp = fopen($filepath, 'r');
         $data = fread($fp, filesize($filepath));
         fclose($fp);
-        $filename = (isset($newfilename) && trim($newfilename) != '') ? trim($newfilename) : $filepath;
+        $filename = (isset($newfilename) && '' != trim($newfilename)) ? trim($newfilename) : $filepath;
         $filepath = is_file($filename) ? $filename : $filepath;
         $this->archiver->addFile($data, $filename, filemtime($filepath));
     }
@@ -57,10 +57,10 @@ class XoopsZipDownloader extends XoopsDownloader
     public function addBinaryFile($filepath, $newfilename=null)
     {
         // Read in the file's contents
-        $fp = fopen($filepath, "rb");
+        $fp = fopen($filepath, 'rb');
         $data = fread($fp, filesize($filepath));
         fclose($fp);
-        $filename = (isset($newfilename) && trim($newfilename) != '') ? trim($newfilename) : $filepath;
+        $filename = (isset($newfilename) && '' != trim($newfilename)) ? trim($newfilename) : $filepath;
         $filepath = is_file($filename) ? $filename : $filepath;
         $this->archiver->addFile($data, $filename, filemtime($filepath));
     }
@@ -80,7 +80,7 @@ class XoopsZipDownloader extends XoopsDownloader
         $file = $this->archiver->file();
         $this->_header($name.$this->ext);
         header('Content-Type: application/zip') ;
-        header('Content-Length: '.floatval(@strlen($file))) ;
+        header('Content-Length: ' . (float)@strlen($file)) ;
         echo $file;
     }
 }

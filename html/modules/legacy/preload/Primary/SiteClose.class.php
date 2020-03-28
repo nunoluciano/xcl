@@ -19,17 +19,19 @@ class Legacy_SiteClose extends XCube_ActionFilter
 {
     public function preBlockFilter()
     {
-        if ($this->mRoot->mContext->getXoopsConfig('closesite') == 1) {
+        if (1 == $this->mRoot->mContext->getXoopsConfig('closesite')) {
             
-            $this->mController->mSetupUser->add("Legacy_SiteClose::callbackSetupUser", XCUBE_DELEGATE_PRIORITY_FINAL);
-            $this->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
+            $this->mController->mSetupUser->add('Legacy_SiteClose::callbackSetupUser', XCUBE_DELEGATE_PRIORITY_FINAL);
+            $this->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
         }
     }
 
     /**
      * Checks whether the site is closed now, and whether all of must modules
      * have been installed. This function is called through delegates.
-     * @var XoopsUser &$xoopsUser
+     * @param $principal
+     * @param $controller
+     * @param $context
      * @see preBlockFilter()
      */
     public static function callbackSetupUser(&$principal, &$controller, &$context)
@@ -40,7 +42,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
         if (!empty($_POST['xoops_login'])) {
             $controller->checkLogin();
             return;
-        } elseif (@$_GET['op']=='logout') { // GIJ
+        } elseif ('logout' == @$_GET['op']) { // GIJ
             $controller->logout();
             return;
         } elseif (is_object($context->mXoopsUser)) {
@@ -55,15 +57,18 @@ class Legacy_SiteClose extends XCube_ActionFilter
         if (!$accessAllowFlag) {
             require_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl =new XoopsTpl();
-            $xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename']),
-                                       'xoops_isuser' => is_object($context->mXoopsUser), //GIJ
-                                       'xoops_themecss' => xoops_getcss(),
-                                       'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                                       'lang_login' => _LOGIN,
-                                       'lang_username' => _USERNAME,
-                                       'lang_password' => _PASSWORD,
-                                       'lang_siteclosemsg' => $xoopsConfig['closesite_text']
-                                       ));
+            $xoopsTpl->assign(
+                [
+                    'xoops_sitename'    => htmlspecialchars($xoopsConfig['sitename']),
+                    'xoops_isuser'      => is_object($context->mXoopsUser), //GIJ
+                    'xoops_themecss'    => xoops_getcss(),
+                    'xoops_imageurl'    => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
+                    'lang_login'        => _LOGIN,
+                    'lang_username'     => _USERNAME,
+                    'lang_password'     => _PASSWORD,
+                    'lang_siteclosemsg' => $xoopsConfig['closesite_text']
+                ]
+            );
                                        
             $xoopsTpl->compile_check = true;
             
@@ -94,7 +99,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
             $accessAllowed = false;
 
             foreach ($xoopsUser->getGroups() as $group) {
-                if (in_array($group, $this->mRoot->mContext->getXoopsConfig('closesite_okgrp')) || ($group == XOOPS_GROUP_ADMIN)) {
+                if (in_array($group, $this->mRoot->mContext->getXoopsConfig('closesite_okgrp')) || (XOOPS_GROUP_ADMIN == $group)) {
                     $accessAllowed = true;
                     break;
                 }

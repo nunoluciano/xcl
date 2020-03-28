@@ -26,12 +26,12 @@ public static function &getInstance($conn = null)
         $mytrustdirpath = XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname ;
         $language = empty($xoopsConfig['language']) ? 'english' : $xoopsConfig['language'] ;
 
-        $search_paths = array(
+        $search_paths = [
         "$mydirpath/language/$language/mail_template/" ,
         "$mytrustdirpath/language/$language/mail_template/" ,
         "$mydirpath/language/english/mail_template/" ,
         "$mytrustdirpath/language/english/mail_template/" ,
-    ) ;
+        ];
 
         $mail_template_dir = "$mytrustdirpath/language/english/mail_template/" ;
         foreach ($search_paths as $path) {
@@ -45,7 +45,7 @@ public static function &getInstance($conn = null)
     }
 
 
-    public function triggerEvent($mydirname, $mytrustdirname, $category, $item_id, $event, $extra_tags=array(), $user_list=array(), $omit_user_id=null)
+    public function triggerEvent($mydirname, $mytrustdirname, $category, $item_id, $event, $extra_tags= [], $user_list= [], $omit_user_id=null)
     {
         $module_hanlder =& xoops_gethandler('module') ;
         $module =& $module_hanlder->getByDirname($mydirname) ;
@@ -85,9 +85,9 @@ public static function &getInstance($conn = null)
             }
         }
         $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('not_modid', intval($mid)));
+        $criteria->add(new Criteria('not_modid', (int)$mid));
         $criteria->add(new Criteria('not_category', $category));
-        $criteria->add(new Criteria('not_itemid', intval($item_id)));
+        $criteria->add(new Criteria('not_itemid', (int)$item_id));
         $criteria->add(new Criteria('not_event', $event));
         $mode_criteria = new CriteriaCompo();
         $mode_criteria->add(new Criteria('not_mode', XOOPS_NOTIFICATION_MODE_SENDALWAYS), 'OR');
@@ -100,7 +100,7 @@ public static function &getInstance($conn = null)
         }
 
     // Add some tag substitutions here
-    $tags = array();
+    $tags = [];
     // {X_ITEM_NAME} {X_ITEM_URL} {X_ITEM_TYPE} from lookup_func are disabled
     $tags['X_MODULE'] = $module->getVar('name', 'n');
         $tags['X_MODULE_URL'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/';

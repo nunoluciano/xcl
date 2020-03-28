@@ -49,7 +49,7 @@ class Legacy_AdminSmarty extends Smarty
         $this->compile_dir = XOOPS_COMPILE_PATH;
         $this->left_delimiter = '<{';
         $this->right_delimiter = '}>';
-        $this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
+        $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
 
         //
         // [TODO]
@@ -79,7 +79,7 @@ class Legacy_AdminSmarty extends Smarty
         $theme = $root->mSiteConfig['Legacy']['Theme'];
         $dirname = $this->mModulePrefix;
         
-        if ($dirname != null) {
+        if (null != $dirname) {
             $params['resource_base_path'] = XOOPS_THEME_PATH . '/' . $theme . '/modules/' . $dirname;
             $params['quiet'] = true;
             
@@ -123,16 +123,18 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $this->mSmarty->register_modifier('theme', 'Legacy_modifier_theme');
         $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
-        $this->mSmarty->assign(array(
+        $this->mSmarty->assign(
+            [
             'xoops_url'       => XOOPS_URL,
             'xoops_rootpath'   => XOOPS_ROOT_PATH,
             'xoops_langcode'   => _LANGCODE,
             'xoops_charset'    => _CHARSET,
             'xoops_version'    => XOOPS_VERSION,
-            'xoops_upload_url' => XOOPS_UPLOAD_URL)
+            'xoops_upload_url' => XOOPS_UPLOAD_URL
+            ]
         );
 
-        if ($controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode'] == true) {
+        if (true == $controller->mRoot->mSiteConfig['Legacy_AdminRenderSystem']['ThemeDevelopmentMode']) {
             $this->mSmarty->force_compile = true;
         }
     }
@@ -163,7 +165,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         // Assign from attributes of the render-target.
         //
         $smarty = $this->mSmarty;
-        $vars = array('stdout_buffer'=>$this->_mStdoutBuffer);
+        $vars = ['stdout_buffer' =>$this->_mStdoutBuffer];
         foreach ($target->getAttributes() as $key=>$value) {
             $vars[$key] = $value;
         }
@@ -191,7 +193,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         //
         // Theme rendering
         //
-        $blocks = array();
+        $blocks = [];
         foreach ($context->mAttributes['legacy_BlockContents'][0] as $key => $result) {
             // $smarty->append('xoops_lblocks', $result);
             $blocks[$result['name']] = $result;
@@ -230,7 +232,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $result = null;
         
         if ($target->getTemplateName()) {
-            if ($target->getAttribute('legacy_module') != null) {
+            if (null != $target->getAttribute('legacy_module')) {
                 $this->mSmarty->setModulePrefix($target->getAttribute('legacy_module'));
                 $this->mSmarty->template_dir = XOOPS_MODULE_PATH . '/' . $target->getAttribute('legacy_module') . '/admin/'. LEGACY_ADMIN_RENDER_TEMPLATE_DIRNAME;
             }
@@ -255,6 +257,8 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 }
 
 /***
+ * @param $string
+ * @return string
  * @internal
  * Return URL string by "overriding" rule.
  * (Now, test implement)
@@ -266,11 +270,11 @@ function Legacy_modifier_theme($string)
 {
     $infoArr = Legacy_get_override_file($string);
     
-    if ($infoArr['theme'] != null && $infoArr['dirname'] != null) {
+    if (null != $infoArr['theme'] && null != $infoArr['dirname']) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $string;
-    } elseif ($infoArr['theme'] != null) {
+    } elseif (null != $infoArr['theme']) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/' . $string;
-    } elseif ($infoArr['dirname'] != null) {
+    } elseif (null != $infoArr['dirname']) {
         return XOOPS_MODULE_URL . '/' . $infoArr['dirname'] . '/admin/templates/' . $string;
     }
    
@@ -286,7 +290,7 @@ function Legacy_function_stylesheet($params, &$smarty)
     
     $file = $params['file'];
     
-    if (strstr($file, '..') !== false) {
+    if (false !== strstr($file, '..')) {
         $smarty->trigger_error('stylesheet: missing file parameter.');
         return;
     }
@@ -297,7 +301,7 @@ function Legacy_function_stylesheet($params, &$smarty)
 
     // TEMP
     // TODO We must return FALLBACK_URL here.
-    if ($infoArr['file'] != null) {
+    if (null != $infoArr['file']) {
         if ($params['static']) {
             $theme=$infoArr['theme'];
             $dirname=$infoArr['dirname'];
@@ -312,10 +316,10 @@ function Legacy_function_stylesheet($params, &$smarty)
                 $url = LEGACY_ADMIN_RENDER_FALLBACK_URL . "/$file";
             }
         } else {
-            if ($infoArr['file'] != null) {
-                $request = array();
+            if (null != $infoArr['file']) {
+                $request = [];
                 foreach ($infoArr as $key => $value) {
-                    if ($value != null) {
+                    if (null != $value) {
                         $request[] = "${key}=${value}";
                     }
                 }
@@ -332,7 +336,7 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
     $root =& XCube_Root::getSingleton();
     $moduleObject =& $root->mContext->mXoopsModule;
 
-    if ($isSpDirname && is_object($moduleObject) && $moduleObject->get('dirname') == 'legacy' && isset($_REQUEST['dirname'])) {
+    if ($isSpDirname && is_object($moduleObject) && 'legacy' == $moduleObject->get('dirname') && isset($_REQUEST['dirname'])) {
         $dirname = xoops_getrequest('dirname');
         if (preg_match('/^[a-z0-9_]+$/i', $dirname)) {
             $handler = xoops_gethandler('module');
@@ -342,13 +346,13 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 
     $theme = $root->mSiteConfig['Legacy']['Theme'];
 
-    $ret = array();
+    $ret = [];
     $ret['theme'] = $theme;
     $ret['file'] = $file;
     
     $file = $prefix . $file;
 
-    static $checkCache = array();
+    static $checkCache = [];
     if (isset($checkCache[$file])) {
         return $checkCache[$file];
     }

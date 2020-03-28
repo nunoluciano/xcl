@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/SearchResultsForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/SearchResultsForm.class.php';
 
 define('LEGACY_SEARCH_RESULT_MAXHIT', 5);
 define('LEGACY_SEARCH_SHOWALL_MAXHIT', 20);
@@ -20,10 +20,10 @@ define('LEGACY_SEARCH_SHOWALL_MAXHIT', 20);
 class Legacy_SearchResultsAction extends Legacy_Action
 {
     public $mActionForm = null;
-    public $mSearchResults = array();
-    public $mModules = array();
+    public $mSearchResults = [];
+    public $mModules = [];
     
-    public $mConfig = array();
+    public $mConfig = [];
     
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -45,7 +45,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
     
     public function hasPermission(&$controller, &$xoopsUser)
     {
-        if ($this->mConfig['enable_search'] != 1) {
+        if (1 != $this->mConfig['enable_search']) {
             $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_LEGACY_ERROR_SEARCH_NOT_ENABLED);
             return false;
         }
@@ -60,11 +60,11 @@ class Legacy_SearchResultsAction extends Legacy_Action
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $root =& $controller->mRoot;
-        $service =& $root->mServiceManager->getService("LegacySearch");
+        $service =& $root->mServiceManager->getService('LegacySearch');
         
         if (is_object($service)) {
             $client =& $root->mServiceManager->createClient($service);
-            $this->mModules = $client->call('getActiveModules', array());
+            $this->mModules = $client->call('getActiveModules', []);
         }
         
         $this->mActionForm->fetch();
@@ -84,7 +84,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
             foreach ($this->_getSelectedMids() as $mid) {
                 $t_module =& $handler->get($mid);
                 if (is_object($t_module)) {
-                    $module = array();
+                    $module = [];
                     
                     $module['mid'] = $mid;
                     $module['name'] = $t_module->get('name');
@@ -139,7 +139,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
     
     public function _getTemplateName()
     {
-        return "legacy_search_results.html";
+        return 'legacy_search_results.html';
     }
     
     public function _getSelectedMids()

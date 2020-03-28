@@ -11,7 +11,7 @@ function pico_xoopstpl($mydirname, $text, $content4assign)
 
 	$tpl = new XoopsTpl();
 	//$tpl->plugins_dir[] = dirname(dirname(__FILE__)).'/smarty_plugins' ;
-	array_unshift($tpl->plugins_dir, dirname(dirname(__FILE__)) . '/smarty_plugins'); // pico plugin has the first priority
+	array_unshift($tpl->plugins_dir, dirname(__DIR__) . '/smarty_plugins'); // pico plugin has the first priority
 
 	if (is_object(@$xoopsTpl)) {
 		$tpl->assign($xoopsTpl->get_template_vars());
@@ -30,9 +30,9 @@ function pico_xoopstpl($mydirname, $text, $content4assign)
 
 	// assign special session
 	$session_prefix = $mydirname . '_' . @$content4assign['id'] . '_';
-	$session4assign = array();
+	$session4assign = [];
 	foreach (array_keys(@$_SESSION) as $index) {
-		if (strncmp($index, $session_prefix, strlen($session_prefix)) === 0) {
+		if (0 === strncmp($index, $session_prefix, strlen($session_prefix))) {
 			$session4assign[substr($index, strlen($session_prefix))] = $_SESSION[$index];
 		}
 	}

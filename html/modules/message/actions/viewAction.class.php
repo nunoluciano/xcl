@@ -15,13 +15,13 @@ class viewAction extends AbstractAction
   
     public function execute()
     {
-        if ($this->root->mContext->mRequest->getRequest('inout') == 'in') {
+        if ('in' == $this->root->mContext->mRequest->getRequest('inout')) {
             $this->inout = 'inbox';
         } else {
             $this->inout = 'outbox';
         }
     
-        $boxid = intval($this->root->mContext->mRequest->getRequest($this->inout));
+        $boxid = (int)$this->root->mContext->mRequest->getRequest($this->inout);
         $modHand = xoops_getmodulehandler($this->inout);
         $modObj = $modHand->get($boxid);
         if (!is_object($modObj)) {
@@ -34,19 +34,19 @@ class viewAction extends AbstractAction
             return;
         }
     
-        if ($this->inout == 'inbox') {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                if ($this->root->mContext->mRequest->getRequest('cmd') == 'lock') {
-                    if (intval($this->root->mContext->mRequest->getRequest('lock')) == 1) {
+        if ('inbox' == $this->inout) {
+            if ('POST' == $_SERVER['REQUEST_METHOD']) {
+                if ('lock' == $this->root->mContext->mRequest->getRequest('cmd')) {
+                    if (1 == (int)$this->root->mContext->mRequest->getRequest('lock')) {
                         $modObj->set('is_read', 2);
                     } else {
                         $modObj->set('is_read', 1);
                     }
                     $modHand->insert($modObj);
-                } elseif ($this->root->mContext->mRequest->getRequest('cmd') == 'mail') {
+                } elseif ('mail' == $this->root->mContext->mRequest->getRequest('cmd')) {
                     $this->send_mail($modObj);
                 }
-            } elseif ($modObj->get('is_read') == 0) {
+            } elseif (0 == $modObj->get('is_read')) {
                 $modObj->set('is_read', 1);
                 $modHand->insert($modObj, true);
             }
@@ -55,7 +55,7 @@ class viewAction extends AbstractAction
         foreach (array_keys($modObj->gets()) as $var_name) {
             $this->msgdata[$var_name] = $modObj->getShow($var_name);
         }
-        if ($this->inout == 'inbox') {
+        if ('inbox' == $this->inout) {
             $this->msgdata['fromname'] = $this->getLinkUnameFromId($this->msgdata['from_uid'], $this->msgdata['uname']);
         } else {
             $this->msgdata['toname'] = $this->getLinkUnameFromId($this->msgdata['to_uid'], $this->root->mContext->mXoopsConfig['anonymous']);
@@ -87,7 +87,7 @@ class viewAction extends AbstractAction
   
     public function executeView(&$render)
     {
-        if ($this->inout == 'inbox') {
+        if ('inbox' == $this->inout) {
             $render->setTemplateName('message_inboxview.html');
         } else {
             $render->setTemplateName('message_outboxview.html');

@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('IMAGECATEGORY_SORT_KEY_IMGCAT_ID', 1);
 define('IMAGECATEGORY_SORT_KEY_IMGCAT_NAME', 2);
@@ -29,7 +29,7 @@ define('IMAGECATEGORY_SORT_KEY_MAXVALUE', 9);
 
 class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         IMAGECATEGORY_SORT_KEY_IMGCAT_ID => 'imgcat_id',
         IMAGECATEGORY_SORT_KEY_IMGCAT_NAME => 'imgcat_name',
         IMAGECATEGORY_SORT_KEY_IMGCAT_MAXSIZE => 'imgcat_maxsize',
@@ -39,11 +39,11 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT => 'imgcat_weight',
         IMAGECATEGORY_SORT_KEY_IMGCAT_TYPE => 'imgcat_type',
         IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE => 'imgcat_storetype'
-    );
+    ];
 
-    public $mKeyword = "";
-    public $mOptionField = "";
-    public $mOptionField2 = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
+    public $mOptionField2 = '';
 
     public function getDefaultSortKey()
     {
@@ -87,9 +87,9 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "visible") {
+            if ('visible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('imgcat_display', xoops_getrequest('1')));
-            } elseif ($this->mOptionField == "invisible") {
+            } elseif ('invisible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('imgcat_display', xoops_getrequest('0')));
             } else {
                 //all
@@ -99,9 +99,9 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field2'])) {
             $this->mNavi->addExtra('option_field2', xoops_getrequest('option_field2'));
             $this->mOptionField2 = $option_field2;
-            if ($this->mOptionField2 == "file") {
+            if ('file' == $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('file')));
-            } elseif ($this->mOptionField2 == "db") {
+            } elseif ('db' == $this->mOptionField2) {
                 $this->_mCriteria->add(new Criteria('imgcat_storetype', xoops_getrequest('db')));
             } else {
                 //all
@@ -119,7 +119,7 @@ class Legacy_ImagecategoryFilterForm extends Legacy_AbstractFilterForm
         // Set sort conditions.
         //
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());
-        if (abs($this->mSort) != IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT) {
+        if (IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT != abs($this->mSort)) {
             $this->_mCriteria->addSort($this->mSortKeys[IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT], $this->getOrder());
         }
     }

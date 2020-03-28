@@ -33,7 +33,7 @@ class LegacyCommentstatusObject extends XoopsSimpleObject
 
 class LegacyCommentstatusHandler extends XoopsObjectHandler
 {
-    public $_mResults = array();
+    public $_mResults = [];
     // !Fix deprecated constructor for php 7.x
     public function __construct(&$db)
     // public function LegacyCommentstatusHandler(&$db)
@@ -76,7 +76,7 @@ class LegacyCommentstatusHandler extends XoopsObjectHandler
         if ($id_as_key) {
             return $this->_mResults;
         } else {
-            $ret = array();
+            $ret = [];
         
             foreach (array_keys($this->_mResults) as $key) {
                 $ret[] =& $this->_mResults[$key];

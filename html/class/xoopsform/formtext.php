@@ -83,15 +83,15 @@ class XoopsFormText extends XoopsFormElement
      * @param	int		$maxlength	Maximum length of text
      * @param	string  $value      Initial text
      */
-    public function __construct($caption, $name, $size, $maxlength, $value="")
+    public function __construct($caption, $name, $size, $maxlength, $value= '')
     {
         $this->setCaption($caption);
         $this->setName($name);
-        $this->_size = intval($size);
-        $this->_maxlength = intval($maxlength);
+        $this->_size = (int)$size;
+        $this->_maxlength = (int)$maxlength;
         $this->setValue($value);
     }
-    public function XoopsFormText($caption, $name, $size, $maxlength, $value="")
+    public function XoopsFormText($caption, $name, $size, $maxlength, $value= '')
     {
         return self::__construct($caption, $name, $size, $maxlength, $value);
     }
@@ -129,7 +129,7 @@ class XoopsFormText extends XoopsFormElement
     /**
      * Set initial text value
      * 
-     * @param	$value  string
+     * @param string $value
      */
     public function setValue($value)
     {
@@ -149,8 +149,8 @@ class XoopsFormText extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_text.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_text.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

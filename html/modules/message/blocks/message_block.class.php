@@ -37,8 +37,8 @@ class Message_Block extends Legacy_BlockProcedure
             return;
         }
         $root = XCube_Root::getSingleton();
-        $root->mLanguageManager->loadModinfoMessageCatalog(basename(dirname(dirname(__FILE__))));
-        $root->mLanguageManager->loadModuleMessageCatalog(basename(dirname(dirname(__FILE__))));
+        $root->mLanguageManager->loadModinfoMessageCatalog(basename(dirname(__DIR__)));
+        $root->mLanguageManager->loadModuleMessageCatalog(basename(dirname(__DIR__)));
     
         $render = $this->getRenderTarget();
         $render->setTemplateName($this->_mBlock->get('template'));
@@ -47,12 +47,12 @@ class Message_Block extends Legacy_BlockProcedure
     
         $service = $root->mServiceManager->getService('privateMessage');
         $uid = $root->mContext->mXoopsUser->get('uid');
-        if ($service != null) {
+        if (null != $service) {
             $client = $root->mServiceManager->createClient($service);
-            $render->setAttribute('block', $client->call('getCountUnreadPM', array('uid' => $uid)));
+            $render->setAttribute('block', $client->call('getCountUnreadPM', ['uid' => $uid]));
         }
     
-        if ($root->mServiceManager->getService('UserSearch') != null) {
+        if (null != $root->mServiceManager->getService('UserSearch')) {
             $render->setAttribute('UserSearch', true);
         }
     

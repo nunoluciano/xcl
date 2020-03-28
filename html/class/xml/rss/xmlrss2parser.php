@@ -38,14 +38,14 @@ require_once(XOOPS_ROOT_PATH.'/class/xml/xmltaghandler.php');
 
 class XoopsXmlRss2Parser extends SaxParser
 {
-    public $_tempArr = array();
-    public $_channelData = array();
-    public $_imageData = array();
-    public $_items = array();
+    public $_tempArr = [];
+    public $_channelData = [];
+    public $_imageData = [];
+    public $_items = [];
 
     public function __construct(&$input)
     {
-        $this->SaxParser($input);
+        parent::__construct($input);
         $this->useUtfEncoding();
         $this->addTagHandler(new RssChannelHandler());
         $this->addTagHandler(new RssTitleHandler());
@@ -137,7 +137,7 @@ class XoopsXmlRss2Parser extends SaxParser
     public function resetTempArr()
     {
         unset($this->_tempArr);
-        $this->_tempArr = array();
+        $this->_tempArr = [];
     }
 }
 
@@ -513,7 +513,7 @@ class RssUrlHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'image') {
+        if ('image' == $parser->getParentTag()) {
             $parser->setImageData('url', $data);
         }
     }
@@ -533,7 +533,7 @@ class RssWidthHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'image') {
+        if ('image' == $parser->getParentTag()) {
             $parser->setImageData('width', $data);
         }
     }
@@ -553,7 +553,7 @@ class RssHeightHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'image') {
+        if ('image' == $parser->getParentTag()) {
             $parser->setImageData('height', $data);
         }
     }
@@ -622,7 +622,7 @@ class RssCommentsHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('comments', $data);
         }
     }
@@ -669,7 +669,7 @@ class RssGuidHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('guid', $data);
         }
     }
@@ -689,7 +689,7 @@ class RssAuthorHandler extends XmlTagHandler
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('author', $data);
         }
     }
@@ -709,14 +709,14 @@ class RssSourceHandler extends XmlTagHandler
 
     public function handleBeginElement(&$parser, &$attributes)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('source_url', $attributes['url']);
         }
     }
 
     public function handleCharacterData(&$parser, &$data)
     {
-        if ($parser->getParentTag() == 'item') {
+        if ('item' == $parser->getParentTag()) {
             $parser->setTempArr('source', $data);
         }
     }

@@ -11,7 +11,7 @@
  *
  */
 include '../../../include/cp_header.php';
-$modid = isset($_POST['modid']) ? intval($_POST['modid']) : 0;
+$modid = isset($_POST['modid']) ? (int)$_POST['modid'] : 0;
 
 //
 // Load Message catalog
@@ -39,12 +39,12 @@ if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
             if (isset($perm_data['groups']) && is_array($perm_data['groups'])) {
                 foreach ($perm_data['groups'] as $group_id => $item_ids) {
                     foreach ($item_ids as $item_id => $selected) {
-                        if ($selected == 1) {
+                        if (1 == $selected) {
                             // make sure that all parent ids are selected as well
-                            if ($perm_data['parents'][$item_id] != '') {
+                            if ('' != $perm_data['parents'][$item_id]) {
                                 $parent_ids = explode(':', $perm_data['parents'][$item_id]);
                                 foreach ($parent_ids as $pid) {
-                                    if ($pid != 0 && !in_array($pid, array_keys($item_ids))) {
+                                    if (0 != $pid && !in_array($pid, array_keys($item_ids))) {
                                         // one of the parent items were not selected, so skip this item
                                         $msg[] = sprintf(_MD_AM_PERMADDNG, '<b>'.$perm_name.'</b>', '<b>'.$perm_data['itemname'][$item_id].'</b>', '<b>'.$group_list[$group_id].'</b>').' ('._MD_AM_PERMADDNGP.')';
                                         continue 2;

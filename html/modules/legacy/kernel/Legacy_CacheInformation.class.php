@@ -28,7 +28,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var Array of uid
      */
-    public $mIdentityArr = array();
+    public $mIdentityArr = [];
     
     /**
      * Array of groupid. This is an information for cache store program to
@@ -37,7 +37,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var Array of groupid
      */
-    public $mGroupArr = array();
+    public $mGroupArr = [];
 
     /**
      * Boolean flag indicating whether this object asks caching to the
@@ -54,7 +54,7 @@ class Legacy_AbstractCacheInformation
      * @access public
      * @var array
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function Legacy_AbstractCacheInformation()
@@ -68,7 +68,7 @@ class Legacy_AbstractCacheInformation
      */
     public function hasSetEnable()
     {
-        return $this->_mEnableCache !== false;
+        return false !== $this->_mEnableCache;
     }
     
     /**
@@ -94,8 +94,8 @@ class Legacy_AbstractCacheInformation
      */
     public function reset()
     {
-        $this->mIdentityArr = array();
-        $this->mGroupArr = array();
+        $this->mIdentityArr = [];
+        $this->mGroupArr = [];
         $this->_mEnableCache = null;
     }
     
@@ -153,10 +153,9 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
         $this->mModule = null;
         $this->mURL = null;
     }
-    
+
     /**
      * Gets a file path of a cache file for module contents.
-     * @param Legacy_ModuleCacheInformation $cacheInfo
      * @return string
      */
     public function getCacheFilePath()
@@ -165,8 +164,8 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
         $this->mGetCacheFilePath->call(new XCube_Ref($filepath), $this);
         
         if (!$filepath) {
-            $id = md5(XOOPS_SALT . $this->mURL . "(" . implode("_", $this->mIdentityArr) . ")" . implode("_", $this->mGroupArr));
-            $filepath = XOOPS_CACHE_PATH . "/" . $id . ".cache.html";
+            $id = md5(XOOPS_SALT . $this->mURL . '(' . implode('_', $this->mIdentityArr) . ')' . implode('_', $this->mGroupArr));
+            $filepath = XOOPS_CACHE_PATH . '/' . $id . '.cache.html';
         }
         
         return $filepath;
@@ -214,7 +213,6 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
 
     /**
      * Gets a file path of a cache file for module contents.
-     * @param Legacy_BlockCacheInformation $cacheInfo
      * @return string
      */
     public function getCacheFilePath()

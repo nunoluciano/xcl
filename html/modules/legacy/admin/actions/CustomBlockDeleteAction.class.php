@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractDeleteAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CustomBlockDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractDeleteAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CustomBlockDeleteForm.class.php';
 
 class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 {
@@ -37,7 +37,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
     public function _isDeletable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('block_type') == 'C' && $this->mObject->get('visible') == 0);
+            return ('C' == $this->mObject->get('block_type') && 0 == $this->mObject->get('visible'));
         } else {
             return false;
         }
@@ -63,7 +63,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("customblock_delete.html");
+        $render->setTemplateName('customblock_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         
         //
@@ -78,20 +78,20 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BlockInstallList");
+        $controller->executeForward('./index.php?action=BlockInstallList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BlockInstallList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BlockInstallList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         if ($this->mObject->isNew()) {
-            $controller->executeForward("./index.php?action=BlockInstallList");
+            $controller->executeForward('./index.php?action=BlockInstallList');
         } else {
-            $controller->executeForward("./index.php?action=BlockList");
+            $controller->executeForward('./index.php?action=BlockList');
         }
     }
 }

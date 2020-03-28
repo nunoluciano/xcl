@@ -17,16 +17,16 @@ class favoritesAction extends AbstractAction
   
     private function addFavorites()
     {
-        $ret = array();
+        $ret = [];
         $adduid = $this->root->mContext->mRequest->getRequest('adduid');
-        if (!is_array($adduid) || count($adduid) == 0) {
+        if (!is_array($adduid) || 0 == count($adduid)) {
             $this->setErr(_MD_MESSAGE_FAVORITES0);
             return true;
         }
         $mid = $this->root->mContext->mXoopsModule->get('mid');
         $client = $this->root->mServiceManager->createClient($this->mService);
         foreach ($adduid as $fuid) {
-            $ret[] = $client->call('addFavorites', array('mid' => $mid, 'fuid' => $fuid, 'weight' => 0));
+            $ret[] = $client->call('addFavorites', ['mid' => $mid, 'fuid' => $fuid, 'weight' => 0]);
         }
         if (in_array(false, $ret)) {
             $this->setErr(_MD_MESSAGE_FAVORITES1);
@@ -38,12 +38,12 @@ class favoritesAction extends AbstractAction
     private function edtFavorites()
     {
         $weight = $this->root->mContext->mRequest->getRequest('weight');
-        if (!is_array($weight) || count($weight) == 0) {
+        if (!is_array($weight) || 0 == count($weight)) {
             return true;
         }
         $client = $this->root->mServiceManager->createClient($this->mService);
         foreach ($weight as $id => $w) {
-            $ret[] = $client->call('edtFavorites', array('id' => $id, 'weight' => $w));
+            $ret[] = $client->call('edtFavorites', ['id' => $id, 'weight' => $w]);
         }
         if (in_array(false, $ret)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
@@ -57,12 +57,12 @@ class favoritesAction extends AbstractAction
     private function delFavorites()
     {
         $delid = $this->root->mContext->mRequest->getRequest('delid');
-        if (!is_array($delid) || count($delid) == 0) {
+        if (!is_array($delid) || 0 == count($delid)) {
             return;
         }
         $client = $this->root->mServiceManager->createClient($this->mService);
         foreach ($delid as $id) {
-            $ret[] = $client->call('delFavorites', array('id' => $id));
+            $ret[] = $client->call('delFavorites', ['id' => $id]);
         }
         if (in_array(false, $ret)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
@@ -75,7 +75,7 @@ class favoritesAction extends AbstractAction
     {
         $mid = $this->root->mContext->mXoopsModule->get('mid');
         $client = $this->root->mServiceManager->createClient($this->mService);
-        $this->favorites = $client->call('getFavoritesUsers', array('mid' => $mid));
+        $this->favorites = $client->call('getFavoritesUsers', ['mid' => $mid]);
     }
   
     public function execute()
@@ -84,14 +84,14 @@ class favoritesAction extends AbstractAction
             $this->setUrl('index.php?action=settings');
             $this->setErr(_MD_MESSAGE_SETTINGS_MSG5);
         } else {
-            if ($this->mService == null) {
+            if (null == $this->mService) {
                 $this->setErr('Service Not loaded.');
                 return;
             }
       
             $this->root->mLanguageManager->loadModuleMessageCatalog('usersearch');
             $cmd = $this->root->mContext->mRequest->getRequest('cmd');
-            if ($cmd == "") {
+            if ('' == $cmd) {
                 $this->getFavorites();
             } else {
                 switch ($cmd) {

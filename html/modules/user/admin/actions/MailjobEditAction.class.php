@@ -8,11 +8,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_PageNavigator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_PageNavigator.class.php';
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/MailjobAdminEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/UserSearchFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/MailjobAdminEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/UserSearchFilterForm.class.php';
 
 class User_MailjobEditAction extends User_AbstractEditAction
 {
@@ -46,7 +46,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
     
     public function execute(&$controller, &$xoopsUser)
     {
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -54,7 +54,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
         
         $ret = parent::execute($controller, $xoopsUser);
         
-        if ($ret == USER_FRAME_VIEW_SUCCESS && $isNew) {
+        if (USER_FRAME_VIEW_SUCCESS == $ret && $isNew) {
             $handler =& xoops_getmodulehandler('users_search');
             $uidArr = $handler->getUids($this->mFilter->getCriteria(0, 0));
             
@@ -72,7 +72,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("mailjob_edit.html");
+        $render->setTemplateName('mailjob_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageNavi', $this->mPageNavi);
         $render->setAttribute('object', $this->mObject);
@@ -80,17 +80,17 @@ class User_MailjobEditAction extends User_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=MailjobList");
+        $controller->executeForward('./index.php?action=MailjobList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=MailjobList", 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=MailjobList', 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=MailjobList");
+        $controller->executeForward('./index.php?action=MailjobList');
     }
     // !Fix public static function
     public static function renderHiddenControl(&$buf, $params)

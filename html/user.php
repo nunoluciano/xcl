@@ -12,6 +12,6 @@
  |   keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>        |
  *------------------------------------------------------------------------*/
 
-require_once "mainfile.php";
+require_once 'mainfile.php';
 
-XCube_DelegateUtils::call("Legacypage.User.Access");
+XCube_DelegateUtils::call('Legacypage.User.Access');

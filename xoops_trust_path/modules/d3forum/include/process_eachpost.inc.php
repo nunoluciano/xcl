@@ -1,7 +1,7 @@
 <?php
 
 	// can_vote
-	$can_vote = ( ($uid || $xoopsModuleConfig['guest_vote_interval']) && $xoopsModuleConfig['use_vote'] == 1 ) ? true : false ;
+	$can_vote = ( ($uid || $xoopsModuleConfig['guest_vote_interval']) && 1 == $xoopsModuleConfig['use_vote']) ? true : false ;
 
 	// invisible
 	if( $post_row['invisible'] || ! $post_row['approval'] ) {
@@ -17,11 +17,11 @@
 
 	// get this poster's object
 	$user_handler =& xoops_gethandler( 'user' ) ;
-	$poster_obj =& $user_handler->get( intval( $post_row['uid'] ) ) ;
+	$poster_obj =& $user_handler->get((int)$post_row['uid']) ;
 	if( is_object( $poster_obj ) ) {
 		// active user's post
 		// naao from
-		if ($xoopsModuleConfig['use_name'] == 1 && $poster_obj->getVar( 'name' ) ) {
+		if (1 == $xoopsModuleConfig['use_name'] && $poster_obj->getVar('name' ) ) {
 			$poster_uname4disp = $poster_obj->getVar( 'name' ) ;
 		} else {
 			$poster_uname4disp = $poster_obj->getVar( 'uname' ) ;
@@ -33,20 +33,20 @@
 		$poster_rank_title4disp = htmlspecialchars( @$poster_rank['title'] , ENT_QUOTES ) ;
 		$poster_rank_image4disp = htmlspecialchars( @$poster_rank['image'] , ENT_QUOTES ) ;
 		$poster_is_online = $poster_obj->isOnline() ;
-		$poster_posts_count = intval( $poster_obj->getVar( 'posts' ) ) ;
+		$poster_posts_count = (int)$poster_obj->getVar('posts');
 
 		// avatar
 		if( is_file( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ) {
 			list( $avatar_width , $avatar_height , $avatar_type , $avatar_attr ) = getimagesize( XOOPS_UPLOAD_PATH.'/'.$poster_obj->getVar( 'user_avatar' ) ) ;
-			$poster_avatar = array(
+			$poster_avatar = [
 				'path' => htmlspecialchars( $poster_obj->getVar( 'user_avatar' ) , ENT_QUOTES ) ,
 				'width' => $avatar_width ,
 				'height' => $avatar_height ,
 				'type' => $avatar_type ,
 				'attr' => $avatar_attr ,
-			) ;
+            ];
 		} else {
-			$poster_avatar = array() ;
+			$poster_avatar = [];
 		}
 
 		// signature
@@ -76,7 +76,7 @@
 		$poster_rank_title4disp = '' ;
 		$poster_rank_image4disp = '' ;
 		$poster_is_online = false ;
-		$poster_avatar = array() ;
+		$poster_avatar = [];
 		$poster_posts_count = 0 ;
 
 		// signature

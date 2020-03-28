@@ -43,7 +43,7 @@ class XoopsXmlRpcApi
     public $module;
 
     // map between xoops tags and blogger specific tags
-    public $xoopsTagMap = array();
+    public $xoopsTagMap = [];
 
     // user class object
     public $user;
@@ -103,11 +103,11 @@ class XoopsXmlRpcApi
 
     public function &_getPostFields($post_id = null, $blog_id = null)
     {
-        $ret = array();
-        $ret['title'] = array('required' => true, 'form_type' => 'textbox', 'value_type' => 'text');
-        $ret['hometext'] = array('required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea');
-        $ret['moretext'] = array('required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea');
-        $ret['categories'] = array('required' => false, 'form_type' => 'select_multi', 'data_type' => 'array');
+        $ret = [];
+        $ret['title'] = ['required' => true, 'form_type' => 'textbox', 'value_type' => 'text'];
+        $ret['hometext'] = ['required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea'];
+        $ret['moretext'] = ['required' => false, 'form_type' => 'textarea', 'data_type' => 'textarea'];
+        $ret['categories'] = ['required' => false, 'form_type' => 'select_multi', 'data_type' => 'array'];
         /*
         if (!isset($blog_id)) {
             if (!isset($post_id)) {
@@ -126,7 +126,7 @@ class XoopsXmlRpcApi
 
     public function _setXoopsTagMap($xoopstag, $blogtag)
     {
-        if (trim($blogtag) != '') {
+        if ('' != trim($blogtag)) {
             $this->xoopsTagMap[$xoopstag] = $blogtag;
         }
     }
@@ -142,7 +142,7 @@ class XoopsXmlRpcApi
     public function _getTagCdata(&$text, $tag, $remove = true)
     {
         $ret = '';
-        $match = array();
+        $match = [];
         if (preg_match("/\<".$tag."\>(.*)\<\/".$tag."\>/is", $text, $match)) {
             if ($remove) {
                 $text = str_replace($match[0], '', $text);
@@ -156,7 +156,7 @@ class XoopsXmlRpcApi
     // returns itself if the calling object is XOOPS API
     public function &_getXoopsApi(&$params)
     {
-        if (strtolower(get_class($this)) != 'xoopsapi') {
+        if ('xoopsapi' != strtolower(get_class($this))) {
             require_once(XOOPS_ROOT_PATH.'/class/xml/rpc/xoopsapi.php');
             $instance =new XoopsApi($params, $this->response, $this->module);
             return $instance;

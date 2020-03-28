@@ -21,7 +21,7 @@ class User_LostPassMailDirector
     public $mXoopsConfig;
     public $mExtraVars;
 
-    public function __construct(&$builder, &$user, &$xoopsConfig, $extraVars = array())
+    public function __construct(&$builder, &$user, &$xoopsConfig, $extraVars = [])
     {
         $this->mBuilder = &$builder;
         $this->mXoopsUser = &$user;
@@ -80,20 +80,22 @@ class User_LostPass1MailBuilder
         $root = &XCube_Root::getSingleton();
         $language = $root->mContext->getXoopsConfig('language');
         $this->mMailer->setTemplateDir(XOOPS_MODULE_PATH . '/user/language/' . $language . '/mail_template/');
-        $this->mMailer->setTemplate("lostpass1.tpl");
+        $this->mMailer->setTemplate('lostpass1.tpl');
     }
 
     public function setBody($user, $xoopsConfig, $extraVars)
     {
-        $this->mMailer->assign("SITENAME", $xoopsConfig['sitename']);
-        $this->mMailer->assign("ADMINMAIL", (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
-        $this->mMailer->assign("SITEURL", XOOPS_URL . "/");
-        $this->mMailer->assign("IP", $_SERVER['REMOTE_ADDR']);
-        $queryString = http_build_query(array(
-            'email' => $user->getShow('email'),
-            'code'  => substr($user->get("pass"), 0, 5),
-        ));
-        $this->mMailer->assign("NEWPWD_LINK", XOOPS_URL . "/lostpass.php?" . $queryString);
+        $this->mMailer->assign('SITENAME', $xoopsConfig['sitename']);
+        $this->mMailer->assign('ADMINMAIL', (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
+        $this->mMailer->assign('SITEURL', XOOPS_URL . '/');
+        $this->mMailer->assign('IP', $_SERVER['REMOTE_ADDR']);
+        $queryString = http_build_query(
+            [
+                'email' => $user->getShow('email'),
+                'code'  => substr($user->get('pass'), 0, 5),
+            ]
+        );
+        $this->mMailer->assign('NEWPWD_LINK', XOOPS_URL . '/lostpass.php?' . $queryString);
     }
 
     public function &getResult()
@@ -115,7 +117,7 @@ class User_LostPass2MailBuilder extends User_LostPass1MailBuilder
         $root = &XCube_Root::getSingleton();
         $language = $root->mContext->getXoopsConfig('language');
         $this->mMailer->setTemplateDir(XOOPS_MODULE_PATH . '/user/language/' . $language . '/mail_template/');
-        $this->mMailer->setTemplate("lostpass2.tpl");
+        $this->mMailer->setTemplate('lostpass2.tpl');
     }
 
     public function setSubject($user, $xoopsConfig)
@@ -125,10 +127,10 @@ class User_LostPass2MailBuilder extends User_LostPass1MailBuilder
 
     public function setBody($user, $xoopsConfig, $extraVars)
     {
-        $this->mMailer->assign("SITENAME", $xoopsConfig['sitename']);
-        $this->mMailer->assign("ADMINMAIL", (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
-        $this->mMailer->assign("SITEURL", XOOPS_URL . "/");
-        $this->mMailer->assign("IP", $_SERVER['REMOTE_ADDR']);
-        $this->mMailer->assign("NEWPWD", $extraVars['newpass']);
+        $this->mMailer->assign('SITENAME', $xoopsConfig['sitename']);
+        $this->mMailer->assign('ADMINMAIL', (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
+        $this->mMailer->assign('SITEURL', XOOPS_URL . '/');
+        $this->mMailer->assign('IP', $_SERVER['REMOTE_ADDR']);
+        $this->mMailer->assign('NEWPWD', $extraVars['newpass']);
     }
 }

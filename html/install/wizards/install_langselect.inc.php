@@ -13,7 +13,7 @@
     $langarr = getDirList('./language/');
     $php54 = (version_compare(PHP_VERSION, '5.5.0') >= 0);
     foreach ($langarr as $lang) {
-        if ($php54 && $lang !== 'english' && substr($lang, -5) !== '_utf8') {
+        if ($php54 && 'english' !== $lang && '_utf8' !== substr($lang, -5)) {
             continue;
         }
         $wizard->addArray('languages', $lang);

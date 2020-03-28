@@ -1,63 +1,64 @@
 <?php
 
-class D3forumAntispamAbstract {
-
-var $errors = array() ;
-
-function getErrors4Html()
+class D3forumAntispamAbstract
 {
-	$ret = '' ;
-	foreach( $this->errors as $error ) {
-		$ret .= '<span style="color:#f00;">'.htmlspecialchars($error).'</span><br>' ;
-	}
 
-	return $ret ;
-}
+    public $errors = [];
 
-function getHtml4Assign()
-{
-	return array(
-		'html_in_form' => '' ,
-		'js_global' => '' ,
-		'js_in_validate_function' => '' ,
-	) ;
-}
+    public function getErrors4Html()
+    {
+        $ret = '';
+        foreach ($this->errors as $error) {
+            $ret .= '<span style="color:#f00;">' . htmlspecialchars($error) . '</span><br>';
+        }
 
-function checkValidate()
-{
-	return true ;
-}
+        return $ret;
+    }
 
-function isMobile()
-{
-	if( class_exists( 'Wizin_User' ) ) {
-		// WizMobile (gusagi)
-		$user =& Wizin_User::getSingleton();
-		return $user->bIsMobile ;
-	} else if( defined( 'HYP_K_TAI_RENDER' ) && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2 ) {
-		// hyp_common ktai-renderer (nao-pon)
-		return true ;
-	} else {
-		return false ;
-	}
-}
+    public function getHtml4Assign()
+    {
+        return [
+            'html_in_form'            => '',
+            'js_global'               => '',
+            'js_in_validate_function' => '',
+        ];
+    }
 
-public function setVar( $key , $val )
-{
-	if (property_exists($this, $key)) {
-		$this->$key = $val;
-		return true;
-	}
-	return false;
-}
+    public function checkValidate()
+    {
+        return true;
+    }
 
-public function getVar( $key )
-{
-	if (property_exists($this, $key)) {
-		return $this->$key;
-	}
-	return null;
-}
+    public function isMobile()
+    {
+        if (class_exists('Wizin_User')) {
+            // WizMobile (gusagi)
+            $user =& Wizin_User::getSingleton();
+            return $user->bIsMobile;
+        } elseif (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2) {
+            // hyp_common ktai-renderer (nao-pon)
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setVar($key, $val)
+    {
+        if (property_exists($this, $key)) {
+            $this->$key = $val;
+            return true;
+        }
+        return false;
+    }
+
+    public function getVar($key)
+    {
+        if (property_exists($this, $key)) {
+            return $this->$key;
+        }
+        return null;
+    }
 
 }
 

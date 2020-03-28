@@ -9,7 +9,7 @@
  */
 
 if (!defined('XCUBE_CORE_PATH')) {
-    define('XCUBE_CORE_PATH', dirname(__FILE__));
+    define('XCUBE_CORE_PATH', __DIR__);
 }
 
 require_once XCUBE_CORE_PATH . '/XCube_Delegate.class.php';
@@ -18,7 +18,7 @@ class XCube_ServiceUtils
 {
     public function isXSD($typeName)
     {
-        if ($typeName == 'string' || $typeName == 'int') {
+        if ('string' == $typeName || 'int' == $typeName) {
             return true;
         }
         
@@ -46,7 +46,7 @@ class XCube_ServiceManager
      * 
      * @var Array
      */
-    public $mServices = array();
+    public $mServices = [];
     
     /**
      * @var XCube_Delegate
@@ -64,18 +64,18 @@ class XCube_ServiceManager
     //public function XCube_ServiceManager()
     {
         $this->mCreateClient = new XCube_Delegate();
-        $this->mCreateClient->register("XCube_ServiceManager.CreateClient");
+        $this->mCreateClient->register('XCube_ServiceManager.CreateClient');
         
         $this->mCreateServer = new XCube_Delegate();
-        $this->mCreateServer->register("XCube_ServiceManager.CreateServer");
+        $this->mCreateServer->register('XCube_ServiceManager.CreateServer');
     }
     
     /**
      * Add service object. $name must be unique in the list of service. If the 
      * service which has the same name, is a member of the list, return false.
      * 
-     * @param $name string
-     * @param $service XCube_Service
+     * @param string        $name
+     * @param XCube_Service $service
      * @return bool
      */
     public function addService($name, &$service)
@@ -88,11 +88,13 @@ class XCube_ServiceManager
         
         return true;
     }
-    
+
     /**
      * Add WSDL URL. $name must be unique in the list of service. If the
      * service which has the same name, is a member of the list, return false.
-     * 
+     * @param $name
+     * @param $url
+     * @return bool
      */
     public function addWSDL($name, $url)
     {
@@ -104,12 +106,15 @@ class XCube_ServiceManager
         
         return true;
     }
-    
+
     /**
      * This member function will be removed at beta version.
-     * 
-     * @deprecated
+     *
+     * @param $name
+     * @param $service
+     * @return bool
      * @see XCube_ServiceManager::addService()
+     * @deprecated
      */
     public function addXCubeService($name, &$service)
     {
@@ -126,10 +131,12 @@ class XCube_ServiceManager
         
         return $ret;
     }
-    
+
     /**
      * This member function will be removed at beta version.
-     * 
+     *
+     * @param $name
+     * @return mixed|null
      * @deprecated
      * @see XCube_ServiceManager::getService()
      */
@@ -137,13 +144,15 @@ class XCube_ServiceManager
     {
         return $this->getService($name);
     }
-    
+
     /**
      * Create client instance which to connect to a service, with following the
      * kind of the service. Then return that instance. For example, if the
      * specified service is really web service, SOAP client has to be created.
      * But, if the service is a virtual service of XCube, virtual client has to
      * be created.
+     * @param $service
+     * @return null
      */
     public function &createClient(&$service)
     {

@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryAdminEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImagecategoryAdminNewForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryAdminEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImagecategoryAdminNewForm.class.php';
 
 class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
 {
@@ -46,7 +46,7 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("imagecategory_edit.html");
+        $render->setTemplateName('imagecategory_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -57,16 +57,16 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImagecategoryList");
+        $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ImagecategoryList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImagecategoryList");
+        $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 }

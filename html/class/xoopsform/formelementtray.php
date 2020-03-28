@@ -60,13 +60,13 @@ class XoopsFormElementTray extends XoopsFormElement
      * @var array   
      * @access  private
      */
-    public $_elements = array();
+    public $_elements = [];
 
     /**
      * required elements
      * @var array   
      */
-    public $_required = array();
+    public $_required = [];
 
     /**
      * HTML to seperate the elements
@@ -77,17 +77,18 @@ class XoopsFormElementTray extends XoopsFormElement
 
     /**
      * constructor
-     * 
-     * @param	string  $caption    Caption for the group.
-     * @param	string  $delimiter  HTML to separate the elements
+     *
+     * @param string $caption Caption for the group.
+     * @param string $delimeter
+     * @param string $name
      */
-    public function __construct($caption, $delimeter="&nbsp;", $name="")
+    public function __construct($caption, $delimeter= '&nbsp;', $name= '')
     {
         $this->setName($name);
         $this->setCaption($caption);
         $this->_delimeter = $delimeter;
     }
-    public function XoopsFormElementTray($caption, $delimeter="&nbsp;", $name="")
+    public function XoopsFormElementTray($caption, $delimeter= '&nbsp;', $name= '')
     {
         return self::__construct($caption, $delimeter, $name);
     }
@@ -104,8 +105,9 @@ class XoopsFormElementTray extends XoopsFormElement
 
     /**
      * Add an element to the group
-     * 
-     * @param	object  &$element    {@link XoopsFormElement} to add
+     *
+     * @param      $formElement
+     * @param bool $required
      */
     public function addElement(&$formElement, $required=false)
     {
@@ -144,7 +146,7 @@ class XoopsFormElementTray extends XoopsFormElement
         if (!$recurse) {
             return $this->_elements;
         } else {
-            $ret = array();
+            $ret = [];
             $count = count($this->_elements);
             for ($i = 0; $i < $count; $i++) {
                 if (!$this->_elements[$i]->isContainer()) {
@@ -185,8 +187,8 @@ class XoopsFormElementTray extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_elementtray.html");
-        $renderTarget->setAttribute("tray", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_elementtray.html');
+        $renderTarget->setAttribute('tray', $this);
 
         $renderSystem->render($renderTarget);
     

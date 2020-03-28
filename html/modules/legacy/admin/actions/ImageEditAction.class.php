@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/ImageCreateAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/ImageCreateAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageAdminEditForm.class.php';
 
 class Legacy_ImageEditAction extends Legacy_ImageCreateAction
 {
@@ -42,7 +42,7 @@ class Legacy_ImageEditAction extends Legacy_ImageCreateAction
     {
         $this->mObject->loadImagecategory();
 
-        $render->setTemplateName("image_edit.html");
+        $render->setTemplateName('image_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         

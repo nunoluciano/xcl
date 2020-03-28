@@ -6,7 +6,7 @@ if( empty( $_POST['body_editor'] ) ) {
 	$body_editor = $_POST['body_editor'] ;
 }
 
-if( $body_editor == 'common_fckeditor' && ! empty( $xoopsModuleConfig['allow_html'] ) ) {
+if('common_fckeditor' == $body_editor && ! empty($xoopsModuleConfig['allow_html'] ) ) {
 
 	// FCKeditor in common/fckeditor/
 	$d3forum_wysiwyg_header = '

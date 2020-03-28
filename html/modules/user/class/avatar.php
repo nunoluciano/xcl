@@ -36,9 +36,9 @@ class UserAvatarObject extends XoopsSimpleObject
 
 class UserAvatarHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "avatar";
-    public $mPrimary = "avatar_id";
-    public $mClass = "UserAvatarObject";
+    public $mTable = 'avatar';
+    public $mPrimary = 'avatar_id';
+    public $mClass = 'UserAvatarObject';
 
     public function &createNoavatar()
     {
@@ -53,7 +53,7 @@ class UserAvatarHandler extends XoopsObjectGenericHandler
     public function delete(&$obj, $force = false)
     // public function delete(&$obj)
     {
-        @unlink(XOOPS_UPLOAD_PATH . "/" . $obj->get('avatar_file'));
+        @unlink(XOOPS_UPLOAD_PATH . '/' . $obj->get('avatar_file'));
         if (parent::delete($obj)) {
             $linkHandler = &xoops_getmodulehandler('avatar_user_link', 'user');
             $criteria = new Criteria('avatar_id', $obj->get('avatar_id'));

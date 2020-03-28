@@ -4,12 +4,12 @@
 if( ! class_exists( 'D3commentObj' ) ) {
 class D3commentObj {
 
-var $d3comObj = null ;
+public $d3comObj = null ;
 
 public function __construct ($params )
 //  $params['forum_dirname'] , $params['external_dirname'] , $params['classname'] , $params['external_trustdirname']
 {
-	$mytrustdirpath = dirname(dirname(__FILE__));
+	$mytrustdirpath = dirname(__DIR__);
 	if( empty( $params['classname'] ) ) {
 		include_once $mytrustdirpath.'/class/D3commentAbstract.class.php' ;
 		$this->d3comObj = new D3commentAbstract( $params['forum_dirname'] , '' ) ;
@@ -17,11 +17,11 @@ public function __construct ($params )
 	}
 
 	// search the class file
-	$class_bases = array(
+	$class_bases = [
 		XOOPS_ROOT_PATH.'/modules/'.$params['external_dirname'].'/class' ,
 		XOOPS_TRUST_PATH.'/modules/'.$params['external_trustdirname'].'/class' ,
 		XOOPS_TRUST_PATH.'/modules/d3forum/class' ,
-	) ;
+    ];
 
 	foreach( $class_bases as $class_base ) {
 		if( file_exists( $class_base.'/'.$params['classname'].'.class.php' ) ) {

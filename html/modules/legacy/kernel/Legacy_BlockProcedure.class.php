@@ -37,8 +37,9 @@ class Legacy_AbstractBlockProcedure
     {
         return true;
     }
-    
+
     /**
+     * @return \XCube_RenderTarget
      * @var XCube_RenderTarget
      */
     public function &getRenderTarget()
@@ -75,7 +76,7 @@ class Legacy_AbstractBlockProcedure
 
     /**
      * Gets a number as ID.
-     * @return int
+     * @return void
      */
     public function getId()
     {
@@ -88,18 +89,18 @@ class Legacy_AbstractBlockProcedure
     public function getName()
     {
     }
-    
+
     /**
      * Gets a value indicating whether the block can be cached.
-     * @return bool
+     * @return void
      */
     public function isEnableCache()
     {
     }
-    
+
     /**
      * Return cache time
-     * @return int
+     * @return void
      */
     public function getCacheTime()
     {
@@ -113,18 +114,18 @@ class Legacy_AbstractBlockProcedure
     {
         return $this->_mBlock->get('title');
     }
-    
+
     /**
      * Gets a column index of this block.
-     * @return int
+     * @return void
      */
     public function getEntryIndex()
     {
     }
-    
+
     /**
      * Gets a weight of this block.
-     * @return int
+     * @return void
      */
     public function getWeight()
     {
@@ -253,10 +254,10 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         }
         
         $render =& $this->getRenderTarget();
-        $render->setAttribute("mid", $this->_mBlock->get('mid'));
-        $render->setAttribute("bid", $this->_mBlock->get('bid'));
+        $render->setAttribute('mid', $this->_mBlock->get('mid'));
+        $render->setAttribute('bid', $this->_mBlock->get('bid'));
         
-        if ($this->_mBlock->get('template') == null) {
+        if (null == $this->_mBlock->get('template')) {
             $render->setTemplateName('system_dummy.html');
             $render->setAttribute('dummy_content', $result['content']);
         } else {
@@ -283,7 +284,7 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
     public function getOptionForm()
     {
         if ($this->_mBlock->get('func_file') && $this->_mBlock->get('edit_func')) {
-            $func_file = XOOPS_MODULE_PATH . "/" . $this->_mBlock->get('dirname') . "/blocks/" . $this->_mBlock->get('func_file');
+            $func_file = XOOPS_MODULE_PATH . '/' . $this->_mBlock->get('dirname') . '/blocks/' . $this->_mBlock->get('func_file');
             if (file_exists($func_file)) {
                 require $func_file;
                 $edit_func = $this->_mBlock->get('edit_func');
@@ -310,7 +311,7 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
             $root =& XCube_Root::getSingleton();
             $textFilter =& $root->getTextFilter();
             
-            $buf = "";
+            $buf = '';
             $options = explode('|', $this->_mBlock->get('options'));
             foreach ($options as $val) {
                 $val = $textFilter->ToEdit($val);

@@ -13,13 +13,13 @@ function altsys_set_module_config()
         $altsysModuleConfig = $config_handler->getConfigList($module->getVar('mid'));
         $altsysModuleId = $module->getVar('mid');
     } else {
-        $altsysModuleConfig = array();
+        $altsysModuleConfig = [];
         $altsysModuleId = 0;
     }
 
     // for RTL users
-    @define('_GLOBAL_LEFT', @_ADM_USE_RTL == 1 ? 'right' : 'left');
-    @define('_GLOBAL_RIGHT', @_ADM_USE_RTL == 1 ? 'left' : 'right');
+    @define('_GLOBAL_LEFT', 1 == @_ADM_USE_RTL ? 'right' : 'left');
+    @define('_GLOBAL_RIGHT', 1 == @_ADM_USE_RTL ? 'left' : 'right');
 }
 
 
@@ -27,12 +27,12 @@ function altsys_include_mymenu()
 {
     global $xoopsModule, $xoopsConfig, $mydirname, $mydirpath, $mytrustdirname, $mytrustdirpath, $mymenu_fake_uri;
 
-    $mymenu_find_paths = array(
+    $mymenu_find_paths = [
         $mydirpath . '/admin/mymenu.php',
         $mydirpath . '/mymenu.php',
         $mytrustdirpath . '/admin/mymenu.php',
         $mytrustdirpath . '/mymenu.php',
-    );
+    ];
 
     foreach ($mymenu_find_paths as $mymenu_find_path) {
         if (file_exists($mymenu_find_path)) {
@@ -146,10 +146,10 @@ function altsys_clear_templates_c()
 {
     $dh = opendir(XOOPS_COMPILE_PATH);
     while ($file = readdir($dh)) {
-        if (substr($file, 0, 1) == '.') {
+        if ('.' == substr($file, 0, 1)) {
             continue;
         }
-        if (substr($file, -4) != '.php') {
+        if ('.php' != substr($file, -4)) {
             continue;
         }
         @unlink(XOOPS_COMPILE_PATH . '/' . $file);

@@ -26,7 +26,7 @@
 //  ------------------------------------------------------------------------ //
 function getLanguage()
 {
-    $language_array = array(
+    $language_array = [
             'en' => 'english',
 //			'cn' => 'schinese',
             'cs' => 'czech',
@@ -41,11 +41,11 @@ function getLanguage()
             'ru' => 'russian',
             'zh' => 'schinese',
 
-    );
+    ];
 
-    $charset_array = array(
+    $charset_array = [
             'Shift_JIS' => 'ja_utf8',
-    );
+    ];
 
     $language = 'english';
     if (!empty($_POST['lang'])) {
@@ -71,7 +71,7 @@ function getLanguage()
                         break;
                     }
                 }
-                if (file_exists(dirname(dirname(__FILE__)).'/language/'.$al.'_utf8')) {
+                if (file_exists(dirname(__DIR__) . '/language/' . $al . '_utf8')) {
                     $language = $al.'_utf8';
                 }
             } elseif (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
@@ -96,11 +96,11 @@ function getLanguage()
  */
 function getDirList($dirname)
 {
-    $dirlist = array();
+    $dirlist = [];
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file)) {
-                if (strtolower($file) != 'cvs' && is_dir($dirname.$file)) {
+                if ('cvs' != strtolower($file) && is_dir($dirname . $file)) {
                     $dirlist[$file]=$file;
                 }
             }
@@ -117,7 +117,7 @@ function getDirList($dirname)
  */
 function getImageFileList($dirname)
 {
-    $filelist = array();
+    $filelist = [];
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file) && preg_match('/[.gif|.jpg|.png]$/i', $file)) {
@@ -171,12 +171,12 @@ function b_back($option = null)
         return '';
     }
     $content = '';
-    if (isset($option[0]) && $option[0] != '') {
+    if (isset($option[0]) && '' != $option[0]) {
         $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($option[0]).'"\' class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'"></a>';
     } else {
         $content .= '<a href="javascript:history.back();" class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'" /></a>';
     }
-    if (isset($option[1]) && $option[1] != '') {
+    if (isset($option[1]) && '' != $option[1]) {
         $content .= '<span style="font-size:90%;"> &lt;&lt; '.htmlspecialchars($option[1]).'</span>';
     }
     return $content;
@@ -208,7 +208,7 @@ function b_next($option=null)
         return '';
     }
     $content = '';
-    if (isset($option[1]) && $option[1] != '') {
+    if (isset($option[1]) && '' != $option[1]) {
         $content .= '<span style="font-size:90%;">'.htmlspecialchars($option[1]).' &gt;&gt; </span>';
     }
     $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'" />';

@@ -68,12 +68,12 @@ class XoopsMemberHandler
     /**
     * holds temporary user objects
     */
-    public $_members = array();
+    public $_members = [];
     /**#@-*/
 
     /**
      * constructor
-     *
+     * @param $db
      */
     public function __construct(&$db)
     {
@@ -152,13 +152,14 @@ class XoopsMemberHandler
 
     /**
      * Delete function. This function is virtual overload function.
-     * @param $object XoopsUser or XoopsGroup
+     * @param XoopsUser $object or XoopsGroup
+     * @return bool
      */
     public function delete(&$object)
     {
-        if (is_a($object, "XoopsUser")) {
+        if ($object instanceof \XoopsUser) {
             return $this->deleteUser($object);
-        } elseif (is_a($object, "XoopsGroup")) {
+        } elseif ($object instanceof \XoopsGroup) {
             return $this->deleteGroup($object);
         }
     }
@@ -205,8 +206,9 @@ class XoopsMemberHandler
      * insert a user into the database
      *
      * @param object $user reference to the user to insert
+     * @param bool   $force
      * @return bool TRUE if already in database and unchanged
-     * FALSE on failure
+     *                     FALSE on failure
      */
     public function insertUser(&$user, $force = false)
     {
@@ -248,7 +250,7 @@ class XoopsMemberHandler
     public function &getGroupList($criteria = null)
     {
         $groups =& $this->_gHandler->getObjects($criteria, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($groups) as $i) {
             $ret[$i] = $groups[$i]->getVar('name');
         }
@@ -270,8 +272,8 @@ class XoopsMemberHandler
      * add a user to a group
      *
      * @param int $group_id ID of the group
-     * @param int $user_id ID of the user
-     * @return object XoopsMembership
+     * @param int $user_id  ID of the user
+     * @return bool XoopsMembership
      */
     public function addUserToGroup($group_id, $user_id)
     {
@@ -295,7 +297,7 @@ class XoopsMemberHandler
      */
     public function removeUserFromGroup($group_id, $user_id)
     {
-        $user_ids = array($user_id);
+        $user_ids = [$user_id];
         return $this->removeUsersFromGroup($group_id, $user_ids);
     }
 
@@ -306,7 +308,7 @@ class XoopsMemberHandler
      * @param array $user_ids array of user-IDs
      * @return bool success?
      */
-    public function removeUsersFromGroup($group_id, $user_ids = array())
+    public function removeUsersFromGroup($group_id, $user_ids = [])
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('groupid', $group_id));
@@ -334,7 +336,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $user_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($user_ids as $u_id) {
                 $user =& $this->getUser($u_id);
                 if (is_object($user)) {
@@ -347,6 +349,11 @@ class XoopsMemberHandler
     }
 
     /**
+     * @param      $group_id
+     * @param bool $asobject
+     * @param int  $limit
+     * @param int  $start
+     * @return array
      * @see getUsersByGroup
      */
     public function &getUsersByNoGroup($group_id, $asobject = false, $limit = 0, $start = 0)
@@ -355,7 +362,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $user_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($user_ids as $u_id) {
                 $user =& $this->getUser($u_id);
                 if (is_object($user)) {
@@ -380,7 +387,7 @@ class XoopsMemberHandler
         if (!$asobject) {
             return $group_ids;
         } else {
-            $ret = array();
+            $ret = [];
             foreach ($group_ids as $g_id) {
                 $ret[] =& $this->getGroup($g_id);
             }
@@ -400,12 +407,12 @@ class XoopsMemberHandler
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         if (is_callable('User_Utils::passwordVerify')) {
             $user = $this->_uHandler->getObjects($criteria, false);
-            if ($user && count($user) === 1) {
+            if ($user && 1 === count($user)) {
                 if (!User_Utils::passwordVerify($pwd, $user[0]->get('pass'))) {
-                    $user = array();
+                    $user = [];
                 }
             } else {
-                $user = array();
+                $user = [];
             }
         } else {
             if (is_callable('User_Utils::encryptPassword')) {
@@ -415,7 +422,7 @@ class XoopsMemberHandler
             }
             $user = $this->_uHandler->getObjects($criteria, false);
         }
-        if (!$user || count($user) != 1) {
+        if (!$user || 1 != count($user)) {
             $ret = false;
             return $ret;
         }
@@ -434,7 +441,7 @@ class XoopsMemberHandler
         $criteria = new CriteriaCompo(new Criteria('uname', $uname));
         $criteria->add(new Criteria('pass', $md5pwd));
         $user =& $this->_uHandler->getObjects($criteria, false);
-        if (!$user || count($user) != 1) {
+        if (!$user || 1 != count($user)) {
             $ret = false;
             return $ret;
         }
@@ -464,8 +471,9 @@ class XoopsMemberHandler
     }
 
     /**
-     * @see getUserCountByGroup
+     * @param $group_id
      * @return int
+     * @see getUserCountByGroup
      */
     public function getUserCountByNoGroup($group_id)
     {
@@ -476,8 +484,7 @@ class XoopsMemberHandler
         $sql = "SELECT count(*) FROM ${usersTable} u LEFT JOIN ${linkTable} g ON u.uid=g.uid," .
                 "${usersTable} u2 LEFT JOIN ${linkTable} g2 ON u2.uid=g2.uid AND g2.groupid=${groupid} " .
                 "WHERE (g.groupid != ${groupid} OR g.groupid IS NULL) " .
-                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " .
-                "AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid";
+                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
 
         $result = $this->_mHandler->db->query($sql);
         if (!$result) {
@@ -524,7 +531,7 @@ class XoopsMemberHandler
      */
     public function activateUser(&$user)
     {
-        if ($user->getVar('level') != 0) {
+        if (0 != $user->getVar('level')) {
             return true;
         }
         $user->setVar('level', 1);

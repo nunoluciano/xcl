@@ -43,7 +43,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * base class
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/formselect.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/formselect.php';
 
 /**
  * A selection box with options for matching search terms.

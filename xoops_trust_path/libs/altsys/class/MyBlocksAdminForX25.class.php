@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).'/MyBlocksAdmin.class.php' ;
+require_once __DIR__ . '/MyBlocksAdmin.class.php' ;
 
 class MyBlocksAdminForX25 extends MyBlocksAdmin
 {
@@ -33,55 +33,55 @@ public static function &getInstance()
 // visible and side
 public function renderCell4BlockPosition($block_data)
 {
-    $bid = intval($block_data['bid']) ;
-    $side = intval($block_data['side']) ;
-    $visible = intval($block_data['visible']) ;
+    $bid = (int)$block_data['bid'];
+    $side = (int)$block_data['side'];
+    $visible = (int)$block_data['visible'];
 
-    $sseln = $ssel0 = $ssel1 = $ssel3 = $ssel4 = $ssel5 = $ssel7 = $ssel8 = $ssel9 = "";
-    $scoln = $scol0 = $scol1 = $scol3 = $scol4 = $scol5 = $scol7 = $scol8 = $scol9 = "unselected";
-    $stextbox = "unselected" ;
+    $sseln = $ssel0 = $ssel1 = $ssel3 = $ssel4 = $ssel5 = $ssel7 = $ssel8 = $ssel9 = '';
+    $scoln = $scol0 = $scol1 = $scol3 = $scol4 = $scol5 = $scol7 = $scol8 = $scol9 = 'unselected';
+    $stextbox = 'unselected';
     $value4extra_side = '' ;
 
-    if ($visible != 1) {
+    if (1 != $visible) {
         $sseln = " checked='checked'";
-        $scoln = "disabled";
+        $scoln = 'disabled';
     } else {
         switch ($side) {
         case XOOPS_SIDEBLOCK_LEFT :
             $ssel0 = " checked='checked'";
-            $scol0 = "selected";
+            $scol0 = 'selected';
             break ;
         case XOOPS_SIDEBLOCK_RIGHT :
             $ssel1 = " checked='checked'";
-            $scol1 = "selected";
+            $scol1 = 'selected';
             break ;
         case XOOPS_CENTERBLOCK_LEFT :
             $ssel3 = " checked='checked'";
-            $scol3 = "selected";
+            $scol3 = 'selected';
             break ;
         case XOOPS_CENTERBLOCK_RIGHT :
             $ssel4 = " checked='checked'";
-            $scol4 = "selected";
+            $scol4 = 'selected';
             break ;
         case XOOPS_CENTERBLOCK_CENTER :
             $ssel5 = " checked='checked'";
-            $scol5 = "selected";
+            $scol5 = 'selected';
             break ;
         case XOOPS_CENTERBLOCK_BOTTOMLEFT :
             $ssel7 = " checked='checked'";
-            $scol7 = "selected";
+            $scol7 = 'selected';
             break ;
         case XOOPS_CENTERBLOCK_BOTTOMRIGHT :
             $ssel8 = " checked='checked'";
-            $scol8 = "selected";
+            $scol8 = 'selected';
             break ;
         case XOOPS_CENTERBLOCK_BOTTOM :
             $ssel9 = " checked='checked'";
-            $scol9 = "selected";
+            $scol9 = 'selected';
             break ;
         default :
             $value4extra_side = $side ;
-            $stextbox = "selected" ;
+            $stextbox = 'selected';
             break ;
     }
     }
@@ -143,16 +143,16 @@ public function renderCell4BlockPosition($block_data)
 				<div class='blockposition $scoln'>
 					<input type='radio' name='sides[$bid]' value='-1' class='blockposition' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;' />
 				</div>
-				<div style='float:"._GLOBAL_LEFT.";'>"._NONE."</div>
+				<div style='float:"._GLOBAL_LEFT.";'>"._NONE . '</div>
 			</td>
 		</tr>
 	</table>
-	" ;
+	';
 }
 
     public function form_edit($bid, $mode = 'edit')
     {
-        $bid = intval($bid) ;
+        $bid = (int)$bid;
 
 //HACK by domifara
     $block = new XoopsBlock($bid) ;
@@ -193,7 +193,7 @@ public function renderCell4BlockPosition($block_data)
             break ;
     }
 
-        $is_custom = in_array($block->getVar('block_type'), array( 'C', 'E' )) ? true : false ;
+        $is_custom = in_array($block->getVar('block_type'), ['C', 'E']) ? true : false ;
         $block_template = $block->getVar('template', 'n') ;
         $block_template_tplset = '' ;
 
@@ -209,24 +209,24 @@ public function renderCell4BlockPosition($block_data)
         $block->setVar('c_type','S');
     }
 */
-    $block_data = $this->preview_request + array(
-        'bid' => $bid ,
-        'name' => $block->getVar('name', 'n') ,
-        'title' => $block->getVar('title', 'n') ,
-        'weight' => intval($block->getVar('weight')) ,
-        'bcachetime' => intval($block->getVar('bcachetime')) ,
-        'side' => intval($block->getVar('side')) ,
-        'visible' => intval($block->getVar('visible')) ,
-        'template' => $block_template ,
-        'template_tplset' => $block_template_tplset ,
-        'options' => $block->getVar('options') ,
-        'content' => $block->getVar('content', 'n') ,
-        'is_custom' => $is_custom ,
-        'type' => $block->getVar('block_type') ,
-        'ctype' => $block->getVar('c_type') ,
-    ) ;
+    $block_data = $this->preview_request + [
+            'bid' => $bid,
+            'name' => $block->getVar('name', 'n'),
+            'title' => $block->getVar('title', 'n'),
+            'weight' => (int)$block->getVar('weight'),
+            'bcachetime' => (int)$block->getVar('bcachetime'),
+            'side' => (int)$block->getVar('side'),
+            'visible' => (int)$block->getVar('visible'),
+            'template' => $block_template,
+            'template_tplset' => $block_template_tplset,
+            'options' => $block->getVar('options'),
+            'content' => $block->getVar('content', 'n'),
+            'is_custom' => $is_custom,
+            'type' => $block->getVar('block_type'),
+            'ctype' => $block->getVar('c_type'),
+        ];
 
-        $block4assign = array(
+        $block4assign = [
         'name_raw' => $block_data['name'] ,
         'title_raw' => $block_data['title'] ,
         'content_raw' => $block_data['content'] ,
@@ -235,7 +235,7 @@ public function renderCell4BlockPosition($block_data)
         'cell_group_perm' =>  $this->renderCell4BlockReadGroupPerm($block_data) ,
         'cell_options' => $this->renderCell4BlockOptions($block_data) ,
         'content_preview' => $this->previewContent($block_data) ,
-    ) + $block_data ;
+                        ] + $block_data ;
 
     // display
     require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
@@ -243,26 +243,27 @@ public function renderCell4BlockPosition($block_data)
 //dhtml
     include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 
-        if ($block_data['ctype']=='H' || empty($block_data['ctype'])) {
-            $editor_configs=array();
-            $editor_configs["name"] ="content_block";
-            $editor_configs["value"] = $block_data['content'];
-            $editor_configs["rows"] = 20;
-            $editor_configs["cols"] = 100;
-            $editor_configs["width"] = "100%";
-            $editor_configs["height"] = "400px";
-            $editor_configs["editor"] = xoops_getModuleOption('blocks_editor', 'system');
-            $form= new XoopsFormEditor('', "textarea_content", $editor_configs);
-            $rendered = $form->render();
+        if ('H' == $block_data['ctype'] || empty($block_data['ctype'])) {
+            $editor_configs           = [];
+            $editor_configs['name']   = 'content_block';
+            $editor_configs['value']  = $block_data['content'];
+            $editor_configs['rows']   = 20;
+            $editor_configs['cols']   = 100;
+            $editor_configs['width']  = '100%';
+            $editor_configs['height'] = '400px';
+            $editor_configs['editor'] = xoops_getModuleOption('blocks_editor', 'system');
+            $form                     = new XoopsFormEditor('', 'textarea_content', $editor_configs);
+            $rendered                 = $form->render();
             $tpl->assign('altsys_x25_dhtmltextarea', $rendered) ;
         } else {
             $form = new XoopsFormDhtmlTextArea('', 'textarea_content', $block_data['content'], 80, 20);
             $rendered = $form->render();
-            $rendered = '<div id="textarea_content_bbcode_buttons_pre" style="display:block;">'.str_replace(array( '<textarea', '</textarea><br />' ), array( '</div><textarea', '</textarea><div id="textarea_content_bbcode_buttons_post" style="display:block;">' ), $rendered) . '</div>' ;
+            $rendered = '<div id="textarea_content_bbcode_buttons_pre" style="display:block;">'.str_replace(['<textarea', '</textarea><br />'], ['</div><textarea', '</textarea><div id="textarea_content_bbcode_buttons_post" style="display:block;">'], $rendered) . '</div>' ;
             $tpl->assign('altsys_x25_dhtmltextarea', $rendered) ;
         }
 
-        $tpl->assign(array(
+        $tpl->assign(
+            [
         'target_dirname' => $this->target_dirname,
         'target_mname' => $this->target_mname,
         'language' => $this->lang,
@@ -274,7 +275,8 @@ public function renderCell4BlockPosition($block_data)
         'submit_button' => $button_value,
         'common_fck_installed' => file_exists(XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js'),
         'gticket_hidden' => $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'myblocksadmin'),
-    )) ;
+            ]
+        ) ;
 //HACK by domifara
     $tpl->display('db:altsys_main_myblocksadmin_edit_4x25.html') ;
 
@@ -282,11 +284,11 @@ public function renderCell4BlockPosition($block_data)
     }
     public function fetchRequest4Block($bid)
     {
-        $bid = intval($bid) ;
+        $bid = (int)$bid;
         (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance() ;
 
         if (@$_POST['extra_sides'][$bid] > 0) {
-            $_POST['sides'][$bid] = intval($_POST['extra_sides'][$bid]) ;
+            $_POST['sides'][$bid] = (int)$_POST['extra_sides'][$bid];
         }
 
         if (@$_POST['sides'][$bid] < 0) {
@@ -296,24 +298,24 @@ public function renderCell4BlockPosition($block_data)
             $visible = 1 ;
         }
 
-        return array(
-        'bid' => $bid ,
-        'side' => intval(@$_POST['sides'][$bid]) ,
-        'weight' => intval(@$_POST['weights'][$bid]) ,
-        'visible' => $visible ,
-        'title' => $myts->stripSlashesGPC(@$_POST['titles'][$bid]) ,
-        'content' => $myts->stripSlashesGPC(@$_POST['textarea_content']) ,
-        'ctype' => preg_replace('/[^A-Z]/', '', @$_POST['ctypes'][$bid]) ,
-        'bcachetime' => intval(@$_POST['bcachetimes'][$bid]) ,
-        'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : array( 0 ) ,
-        'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : array() ,
-        'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : array() ,
-    ) ;
+        return [
+            'bid' => $bid,
+            'side' => (int)@$_POST['sides'][$bid],
+            'weight' => (int)@$_POST['weights'][$bid],
+            'visible' => $visible,
+            'title' => $myts->stripSlashesGPC(@$_POST['titles'][$bid]),
+            'content' => $myts->stripSlashesGPC(@$_POST['textarea_content']),
+            'ctype' => preg_replace('/[^A-Z]/', '', @$_POST['ctypes'][$bid]),
+            'bcachetime' => (int)@$_POST['bcachetimes'][$bid],
+            'bmodule' => is_array(@$_POST['bmodules'][$bid]) ? $_POST['bmodules'][$bid] : [0],
+            'bgroup' => is_array(@$_POST['bgroups'][$bid]) ? $_POST['bgroups'][$bid] : [],
+            'options' => is_array(@$_POST['options'][$bid]) ? $_POST['options'][$bid] : [],
+        ];
     }
 
     public function previewContent($block_data)
     {
-        $bid = intval($block_data['bid']) ;
+        $bid = (int)$block_data['bid'];
 
         if (! $block_data['is_custom']) {
             return '' ;
@@ -339,15 +341,15 @@ public function renderCell4BlockPosition($block_data)
 //	$ret = $block->getContent( 'S' , $block_data['ctype'] ) ;
 
     $c_type = $block_data['ctype'];
-        if ($c_type == 'H') {
+        if ('H' == $c_type) {
             $ret = str_replace('{X_SITEURL}', XOOPS_URL . '/', $block->getVar('content', 'N'));
-        } elseif ($c_type == 'P') {
+        } elseif ('P' == $c_type) {
             ob_start();
             echo eval($block->getVar('content', 'N'));
             $content = ob_get_contents();
             ob_end_clean();
             $ret = str_replace('{X_SITEURL}', XOOPS_URL . '/', $content);
-        } elseif ($c_type == 'S') {
+        } elseif ('S' == $c_type) {
             (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
             $content = str_replace('{X_SITEURL}', XOOPS_URL . '/', $block->getVar('content', 'N'));
             $ret = $myts->displayTarea($content, 1, 1);

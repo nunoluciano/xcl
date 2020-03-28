@@ -26,7 +26,7 @@ class Legacy_RoleManager
         $root =& XCube_Root::getSingleton();
         $context =& $root->mContext;
         
-        if ($module == null) {
+        if (null == $module) {
             return;
         }
         
@@ -34,7 +34,7 @@ class Legacy_RoleManager
             return;
         }
         
-        $groups = is_object($context->mXoopsUser) ? $context->mXoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+        $groups = is_object($context->mXoopsUser) ? $context->mXoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
         
         $handler =& xoops_gethandler('groupperm');
         if ($handler->checkRight('module_read', $module->get('mid'), $groups)) {

@@ -11,7 +11,7 @@ include_once '../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
 
 $current_timezone = date('O');
-$current_timediff = floatval(substr($current_timezone, 0, 1).(substr($current_timezone, 1, 2) + substr($current_timezone, 3, 2)/60));
+$current_timediff = (float)(substr($current_timezone, 0, 1) . (substr($current_timezone, 1, 2) + substr($current_timezone, 3, 2) / 60));
 $wizard->assign('current_timediff', $current_timediff);
 
 $wizard->assign('timediffs', XoopsLists::getTimeZoneList());

@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class UserMailjobObject extends XoopsSimpleObject
 {
-    public $mUsers = array();
+    public $mUsers = [];
     public $_mUsersLoadedFlag = false;
     public $mUserCount = 0;
     public $_mUserCountLoadedFlag = false;
@@ -82,6 +82,7 @@ class UserMailjobObject extends XoopsSimpleObject
     /**
      * Gets users who this mailjob will send mail to, with $retry number.
      * @param int $retry
+     * @return
      */
     public function &getUsers($retry)
     {
@@ -126,7 +127,7 @@ class UserMailjobObject extends XoopsSimpleObject
                 $userArr[$key]->set('message', 'This user does not exist.');
             }
 
-            if ($userArr[$key]->get('message') == '') {
+            if ('' == $userArr[$key]->get('message')) {
                 $handler->delete($userArr[$key]);
             } else {
                 $userArr[$key]->set('retry', $userArr[$key]->get('retry') + 1);
@@ -165,7 +166,7 @@ class UserMailjobObject extends XoopsSimpleObject
 
 class UserMailjobHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "user_mailjob";
-    public $mPrimary = "mailjob_id";
-    public $mClass = "UserMailjobObject";
+    public $mTable = 'user_mailjob';
+    public $mPrimary = 'mailjob_id';
+    public $mClass = 'UserMailjobObject';
 }

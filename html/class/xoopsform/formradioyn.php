@@ -44,7 +44,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * base class
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/formradio.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/formradio.php';
 
 /**
  * Yes/No radio buttons.

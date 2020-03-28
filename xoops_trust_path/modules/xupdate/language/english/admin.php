@@ -5,24 +5,24 @@
  * @version $Id$
 **/
 
-define('_AD_XUPDATE_LANG_WRITABLE_RESULT', "Result of the check folder permissions");
-define('_AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT', "PHP extention check results");
-define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', "FTP configuration check results");
-define('_AD_XUPDATE_LANG_EXECUTION_TIME', "PHP Max execution time");
-define('_AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE', "PHP max execution time is too short, so the large item may be unable to be updated automatically.");
+define('_AD_XUPDATE_LANG_WRITABLE_RESULT', 'Result of the check folder permissions');
+define('_AD_XUPDATE_LANG_EXTENSION_CHECK_RESULT', 'PHP extention check results');
+define('_AD_XUPDATE_LANG_FTP_PASS_RESULT', 'FTP configuration check results');
+define('_AD_XUPDATE_LANG_EXECUTION_TIME', 'PHP Max execution time');
+define('_AD_XUPDATE_LANG_EXECUTION_TIME_NOTICE', 'PHP max execution time is too short, so the large item may be unable to be updated automatically.');
 
-define('_AD_XUPDATE_LANG_MODULES', "Module list");
-define('_AD_XUPDATE_LANG_THEME_FINDER', "Theme Finder");
+define('_AD_XUPDATE_LANG_MODULES', 'Module list');
+define('_AD_XUPDATE_LANG_THEME_FINDER', 'Theme Finder');
 
-define('_AD_XUPDATE_LANG_TYPE', "Type");
-define('_AD_XUPDATE_LANG_LICENSE', "License");
-define('_AD_XUPDATE_LANG_REQUIRED', "Required Level");
+define('_AD_XUPDATE_LANG_TYPE', 'Type');
+define('_AD_XUPDATE_LANG_LICENSE', 'License');
+define('_AD_XUPDATE_LANG_REQUIRED', 'Required Level');
 define('_AD_XUPDATE_HTML_ONLY', 'html Only');
 define('_AD_XUPDATE_HTML_ONLY_DESC', 'Only the html side will be uploaded, if a check is put in when the trust side does not need to be updated.');
-define('_AD_XUPDATE_LANG_WRITABLE_DIR', "Directories to set writable");
-define('_AD_XUPDATE_LANG_WRITABLE_FILE', "Files to set writable");
-define('_AD_XUPDATE_LANG_NO_OVERWRITE', "The protected files or folders (prefix search) will be overwritten when this check box is turned on .");
-define('_AD_XUPDATE_LANG_NO_UPDATE', "The excluded files or folders (prefix search) will be overwritten or uploaded when this check box is turned on .");
+define('_AD_XUPDATE_LANG_WRITABLE_DIR', 'Directories to set writable');
+define('_AD_XUPDATE_LANG_WRITABLE_FILE', 'Files to set writable');
+define('_AD_XUPDATE_LANG_NO_OVERWRITE', 'The protected files or folders (prefix search) will be overwritten when this check box is turned on .');
+define('_AD_XUPDATE_LANG_NO_UPDATE', 'The excluded files or folders (prefix search) will be overwritten or uploaded when this check box is turned on .');
 define('_AD_XUPDATE_LANG_DELETE_DIR', 'Delete the directory that are no longer needed');
 define('_AD_XUPDATE_LANG_DELETE_FILE', 'Delete files that are no longer needed');
 define('_AD_XUPDATE_RECENTCHANGES', 'Changes');
@@ -33,14 +33,14 @@ define('_AD_XUPDATE_LANG_CHANGE', 'Change');
 define('_AD_XUPDATE_LANG_CATEGORY_ID', 'Category');
 define('_AD_XUPDATE_LANG_STORE', 'Store');
 
-define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', "Batch OP");
-define('_AD_XUPDATE_LANG_MESSAGE_WAITING', "Waiting");
-define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', "Success");
-define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES_PRE', "Pre-getting");
-define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', "Getting files");
-define('_AD_XUPDATE_UPDATE_PRE', "Pre-updating");
-define('_AD_XUPDATE_INSTALL_PRE', "Pre-instaling");
-define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', "...");
+define('_AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL', 'Batch OP');
+define('_AD_XUPDATE_LANG_MESSAGE_WAITING', 'Waiting');
+define('_AD_XUPDATE_LANG_MESSAGE_SUCCESS', 'Success');
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES_PRE', 'Pre-getting');
+define('_AD_XUPDATE_LANG_MESSAGE_GETTING_FILES', 'Getting files');
+define('_AD_XUPDATE_UPDATE_PRE', 'Pre-updating');
+define('_AD_XUPDATE_INSTALL_PRE', 'Pre-instaling');
+define('_AD_XUPDATE_LANG_MESSAGE_PROCESSING', '...');
 define('_AD_XUPDATE_LANG_BUTTON_UPDATE', 'Update');
 
 define('_AD_XUPDATE_LANG_TIMEOUT_ERROR', 'PHP timeout');

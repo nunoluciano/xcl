@@ -73,7 +73,7 @@ class XoopsPrivmessage extends XoopsObject
     
     public function isRead()
     {
-        return $this->getVar('read_msg')==1 ? true : false;
+        return 1 == $this->getVar('read_msg') ? true : false;
     }
 }
 
@@ -120,7 +120,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('priv_msgs').' WHERE msg_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $pm =new XoopsPrivmessage();
                     $pm->assignVars($this->db->fetchArray($result));
                     $ret =& $pm;
@@ -130,14 +130,15 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         return $ret;
     }
 
-/**
- * Insert a message in the database
- * @param 	object 	$pm		{@link XoopsPrivmessage} object
- * @return 	bool
- **/
+    /**
+     * Insert a message in the database
+     * @param object $pm {@link XoopsPrivmessage} object
+     * @param bool   $force
+     * @return    bool
+     */
     public function insert(&$pm, $force=false)
     {
-        if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
+        if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
         }
         if (!$pm->isDirty()) {
@@ -151,9 +152,9 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         }
         if ($pm->isNew()) {
             $msg_id = $this->db->genId('priv_msgs_msg_id_seq');
-            $sql = sprintf("INSERT INTO %s (msg_id, msg_image, subject, from_userid, to_userid, msg_time, msg_text, read_msg) VALUES (%u, %s, %s, %u, %u, %u, %s, %u)", $this->db->prefix('priv_msgs'), $msg_id, $this->db->quoteString($msg_image), $this->db->quoteString($subject), $from_userid, $to_userid, time(), $this->db->quoteString($msg_text), 0);
+            $sql = sprintf('INSERT INTO %s (msg_id, msg_image, subject, from_userid, to_userid, msg_time, msg_text, read_msg) VALUES (%u, %s, %s, %u, %u, %u, %s, %u)', $this->db->prefix('priv_msgs'), $msg_id, $this->db->quoteString($msg_image), $this->db->quoteString($subject), $from_userid, $to_userid, time(), $this->db->quoteString($msg_text), 0);
         } else {
-            $sql = sprintf("UPDATE %s SET msg_image = %s, subject = %s, from_userid = %u, to_userid = %u, msg_text = %s, read_msg = %u WHERE msg_id = %u", $this->db->prefix('priv_msgs'), $this->db->quoteString($msg_image), $this->db->quoteString($subject), $from_userid, $to_userid, $this->db->quoteString($msg_text), $read_msg, $msg_id);
+            $sql = sprintf('UPDATE %s SET msg_image = %s, subject = %s, from_userid = %u, to_userid = %u, msg_text = %s, read_msg = %u WHERE msg_id = %u', $this->db->prefix('priv_msgs'), $this->db->quoteString($msg_image), $this->db->quoteString($subject), $from_userid, $to_userid, $this->db->quoteString($msg_text), $read_msg, $msg_id);
         }
         
         $result = $force ? $this->db->queryF($sql) : $this->db->query($sql);
@@ -176,10 +177,10 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  **/
     public function delete(&$pm)
     {
-        if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
+        if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
         }
-        if (!$result = $this->db->query(sprintf("DELETE FROM %s WHERE msg_id = %u", $this->db->prefix('priv_msgs'), $pm->getVar('msg_id')))) {
+        if (!$result = $this->db->query(sprintf('DELETE FROM %s WHERE msg_id = %u', $this->db->prefix('priv_msgs'), $pm->getVar('msg_id')))) {
             return false;
         }
         return true;
@@ -193,12 +194,12 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  **/
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('priv_msgs');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
-            $sort = !in_array($criteria->getSort(), array('msg_id', 'msg_time', 'from_userid')) ? 'msg_id' : $criteria->getSort();
+            $sort = !in_array($criteria->getSort(), ['msg_id', 'msg_time', 'from_userid']) ? 'msg_id' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -219,10 +220,13 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         }
         return $ret;
     }
-    
+
     /**
      * Return the collect of private message objects which appointed user received.
-     * @param $uid int user id
+     * @param int    $uid user id
+     * @param int    $start
+     * @param int    $limit
+     * @param string $order
      * @return array of XoopsPrivmessage.
      */
     public function &getObjectsByFromUid($uid, $start=0, $limit=20, $order = 'DESC')
@@ -256,7 +260,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('priv_msgs');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -273,10 +277,10 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
  **/
     public function setRead(&$pm)
     {
-        if (strtolower(get_class($pm)) != 'xoopsprivmessage') {
+        if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
         }
-        $sql = sprintf("UPDATE %s SET read_msg = 1 WHERE msg_id = %u", $this->db->prefix('priv_msgs'), $pm->getVar('msg_id'));
+        $sql = sprintf('UPDATE %s SET read_msg = 1 WHERE msg_id = %u', $this->db->prefix('priv_msgs'), $pm->getVar('msg_id'));
         if (!$this->db->queryF($sql)) {
             return false;
         }

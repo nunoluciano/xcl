@@ -5,13 +5,13 @@
 //                        GIJOE <https://www.peak.ne.jp/>                     //
 // ------------------------------------------------------------------------- //
 
-include_once dirname(__FILE__).'/include/gtickets.php' ;
-include_once dirname(__FILE__).'/include/altsys_functions.php' ;
-include_once dirname(__FILE__).'/include/tpls_functions.php' ;
+include_once __DIR__ . '/include/gtickets.php' ;
+include_once __DIR__ . '/include/altsys_functions.php' ;
+include_once __DIR__ . '/include/tpls_functions.php' ;
 
 
 // this page can be called only from altsys
-if ($xoopsModule->getVar('dirname') != 'altsys') {
+if ('altsys' != $xoopsModule->getVar('dirname')) {
     die('this page can be called only from altsys') ;
 }
 
@@ -42,29 +42,29 @@ if (empty($_FILES['tplset_archive']['tmp_name']) || ! is_uploaded_file($_FILES['
 //
 
 $orig_filename4check = strtolower($_FILES['tplset_archive']['name']) ;
-if (strtolower(substr($orig_filename4check, -4)) == '.zip') {
+if ('.zip' == strtolower(substr($orig_filename4check, -4))) {
 
     // zip
-    require_once dirname(__FILE__).'/include/Archive_Zip.php' ;
+    require_once __DIR__ . '/include/Archive_Zip.php' ;
     $reader = new Archive_Zip($_FILES['tplset_archive']['tmp_name']) ;
-    $files = $reader->extract(array( 'extract_as_string' => true )) ;
+    $files = $reader->extract(['extract_as_string' => true]) ;
     if (! is_array(@$files)) {
         die($reader->errorName()) ;
     }
     $do_upload = true ;
-} elseif (substr($orig_filename4check, -4) == '.tgz' || substr($orig_filename4check, -7) == '.tar.gz') {
+} elseif ('.tgz' == substr($orig_filename4check, -4) || '.tar.gz' == substr($orig_filename4check, -7)) {
 
     // tar.gz
     require_once XOOPS_ROOT_PATH.'/class/class.tar.php' ;
     $tar = new tar() ;
     $tar->openTar($_FILES['tplset_archive']['tmp_name']) ;
-    $files = array() ;
+    $files = [];
     foreach ($tar->files as $id => $info) {
-        $files[] = array(
+        $files[] = [
             'filename' => $info['name'] ,
             'mtime' => $info['time'] ,
             'content' => $info['file'] ,
-        ) ;
+        ];
     }
     if (empty($files)) {
         die(_TPLSADMIN_ERR_INVALIDARCHIVE) ;
@@ -91,7 +91,7 @@ foreach ($files as $file) {
         continue ;
     }
     $pos = strrpos($file['filename'], '/') ;
-    $tpl_file = $pos === false ? $file['filename'] : substr($file['filename'], $pos + 1) ;
+    $tpl_file = false === $pos ? $file['filename'] : substr($file['filename'], $pos + 1) ;
 
     if (tplsadmin_import_data($tplset, $tpl_file, rtrim($file['content']), $file['mtime'])) {
         $imported ++ ;

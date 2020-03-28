@@ -23,7 +23,7 @@ class LegacyRenderTplsourceObject extends XoopsSimpleObject
 
 class LegacyRenderTplsourceHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "tplsource";
-    public $mPrimary = "tpl_id";
-    public $mClass = "LegacyRenderTplsourceObject";
+    public $mTable = 'tplsource';
+    public $mPrimary = 'tpl_id';
+    public $mClass = 'LegacyRenderTplsourceObject';
 }

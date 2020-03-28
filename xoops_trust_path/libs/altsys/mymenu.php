@@ -20,7 +20,7 @@ if (! isset($module) || ! is_object($module)) {
 // language files (modinfo.php)
 altsys_include_language_file('modinfo') ;
 
-include dirname(__FILE__).'/admin_menu.php' ;
+include __DIR__ . '/admin_menu.php' ;
 
 $adminmenu = array_merge($adminmenu, $adminmenu4altsys) ;
 
@@ -52,7 +52,7 @@ if (empty($adminmenu_hilighted)) {
 
 // link conversion from relative to absolute
 foreach (array_keys($adminmenu) as $i) {
-    if (stristr($adminmenu[$i]['link'], XOOPS_URL) === false) {
+    if (false === stristr($adminmenu[$i]['link'], XOOPS_URL)) {
         $adminmenu[$i]['link'] = XOOPS_URL."/modules/$mydirname/" . $adminmenu[$i]['link'] ;
     }
 }
@@ -60,13 +60,15 @@ foreach (array_keys($adminmenu) as $i) {
 // display
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
 $tpl = new D3Tpl() ;
-$tpl->assign(array(
+$tpl->assign(
+    [
     'adminmenu' => $adminmenu,
-)) ;
+    ]
+) ;
 $tpl->display('db:altsys_inc_mymenu.html') ;
 
 // submenu
 $page = preg_replace('/[^0-9a-zA-Z_-]/', '', @$_GET['page']) ;
-if (file_exists(dirname(__FILE__).'/mymenusub/'.$page.'.php')) {
-    include dirname(__FILE__).'/mymenusub/'.$page.'.php' ;
+if (file_exists(__DIR__ . '/mymenusub/' . $page . '.php')) {
+    include __DIR__ . '/mymenusub/' . $page . '.php' ;
 }

@@ -85,8 +85,8 @@ class XoopsModule extends XoopsObject
     /**
      * Load module info
      *
-     * @param	string	$dirname	Directory Name
-     * @param	boolean $verbose
+     * @param	string $dirname	Directory Name
+     * @param bool      $verbose
      **/
     public function loadInfoAsVar($dirname, $verbose = true)
     {
@@ -100,13 +100,13 @@ class XoopsModule extends XoopsObject
         $this->setVar('trust_dirname', $trustDirname, true);
         $role = isset($this->modinfo['role']) ? $this->modinfo['role'] : null;
         $this->setVar('role', $role, true);
-        $hasmain = (isset($this->modinfo['hasMain']) && $this->modinfo['hasMain'] == 1) ? 1 : 0;
-        $hasadmin = (isset($this->modinfo['hasAdmin']) && $this->modinfo['hasAdmin'] == 1) ? 1 : 0;
-        $hassearch = (isset($this->modinfo['hasSearch']) && $this->modinfo['hasSearch'] == 1) ? 1 : 0;
+        $hasmain = (isset($this->modinfo['hasMain']) && 1 == $this->modinfo['hasMain']) ? 1 : 0;
+        $hasadmin = (isset($this->modinfo['hasAdmin']) && 1 == $this->modinfo['hasAdmin']) ? 1 : 0;
+        $hassearch = (isset($this->modinfo['hasSearch']) && 1 == $this->modinfo['hasSearch']) ? 1 : 0;
         $hasconfig = ((isset($this->modinfo['config']) && is_array($this->modinfo['config'])) || !empty($this->modinfo['hasComments'])) ? 1 : 0;
-        $hascomments = (isset($this->modinfo['hasComments']) && $this->modinfo['hasComments'] == 1) ? 1 : 0;
+        $hascomments = (isset($this->modinfo['hasComments']) && 1 == $this->modinfo['hasComments']) ? 1 : 0;
         // RMV-NOTIFY
-        $hasnotification = (isset($this->modinfo['hasNotification']) && $this->modinfo['hasNotification'] == 1) ? 1 : 0;
+        $hasnotification = (isset($this->modinfo['hasNotification']) && 1 == $this->modinfo['hasNotification']) ? 1 : 0;
         $this->setVar('hasmain', $hasmain);
         $this->setVar('hasadmin', $hasadmin);
         $this->setVar('hassearch', $hassearch);
@@ -145,7 +145,7 @@ class XoopsModule extends XoopsObject
      */
     public function mainLink()
     {
-        if ($this->getVar('hasmain') == 1) {
+        if (1 == $this->getVar('hasmain')) {
             $ret = '<a href="'.XOOPS_URL.'/modules/'.$this->getVar('dirname').'/">'.$this->getVar('name').'</a>';
             return $ret;
         }
@@ -155,14 +155,14 @@ class XoopsModule extends XoopsObject
     /**
      * Get links to the subpages
      *
-     * @return	string
+     * @return array
      */
     public function &subLink()
     {
-        $ret = array();
+        $ret = [];
         if ($this->getInfo('sub') && is_array($this->getInfo('sub'))) {
             foreach ($this->getInfo('sub') as $submenu) {
-                $ret[] = array('name' => $submenu['name'], 'url' => $submenu['url']);
+                $ret[] = ['name' => $submenu['name'], 'url' => $submenu['url']];
             }
         }
         return $ret;
@@ -180,7 +180,7 @@ class XoopsModule extends XoopsObject
         } else {
             if ($menu && file_exists($path = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$menu)) {
                 include $path;
-                $this->adminmenu = (isset($adminmenu) && is_array($adminmenu))? $adminmenu : array();
+                $this->adminmenu = (isset($adminmenu) && is_array($adminmenu))? $adminmenu : [];
             }
         }
     }
@@ -244,24 +244,24 @@ class XoopsModule extends XoopsObject
     /**
      * Search contents within a module
      *
-     * @param	string	$term
-     * @param	string	$andor	'AND' or 'OR'
-     * @param	integer $limit
-     * @param	integer $offset
-     * @param	integer $userid
+     * @param	string $term
+     * @param	string $andor	'AND' or 'OR'
+     * @param int       $limit
+     * @param int       $offset
+     * @param int       $userid
      * @return	mixed	Search result.
      **/
     public function &search($term = '', $andor = 'AND', $limit = 0, $offset = 0, $userid = 0)
     {
         $ret = false;
-        if ($this->getVar('hassearch') != 1) {
+        if (1 != $this->getVar('hassearch')) {
             return $ret;
         }
         $search =& $this->getInfo('search');
-        if ($this->getVar('hassearch') != 1 || !isset($search['file']) || !isset($search['func']) || $search['func'] == '' || $search['file'] == '') {
+        if (1 != $this->getVar('hassearch') || !isset($search['file']) || !isset($search['func']) || '' == $search['func'] || '' == $search['file']) {
             return $ret;
         }
-        if (file_exists(XOOPS_ROOT_PATH."/modules/".$this->getVar('dirname').'/'.$search['file'])) {
+        if (file_exists(XOOPS_ROOT_PATH . '/modules/' . $this->getVar('dirname') . '/' . $search['file'])) {
             include_once XOOPS_ROOT_PATH.'/modules/'.$this->getVar('dirname').'/'.$search['file'];
         } else {
             return $ret;
@@ -287,7 +287,7 @@ class XoopsModule extends XoopsObject
     public function hasHelp()
     {
         $info =& $this->getInfo();
-        if (isset($info['cube_style']) && $info['cube_style'] != false && isset($info['help']) && strlen($info['help']) > 0) {
+        if (isset($info['cube_style']) && false != $info['cube_style'] && isset($info['help']) && strlen($info['help']) > 0) {
             return true;
         }
         
@@ -362,7 +362,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @var    array
      * @access private
      */
-    public $_cachedModule_mid = array();
+    public $_cachedModule_mid = [];
 
     /**
      * holds an array of cached module references, indexed by module dirname
@@ -370,12 +370,12 @@ class XoopsModuleHandler extends XoopsObjectHandler
      * @var    array
      * @access private
      */
-    public $_cachedModule_dirname = array();
+    public $_cachedModule_dirname = [];
 
     /**
      * Create a new {@link XoopsModule} object
      *
-     * @param	boolean 	$isNew	 Flag the new object as "new"
+     * @param bool $isNew Flag the new object as "new"
      * @return	object
      **/
     public function &create($isNew = true)
@@ -405,7 +405,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
                 $sql = 'SELECT * FROM '.$this->db->prefix('modules').' WHERE mid = '.$id;
                 if ($result = $this->db->query($sql)) {
                     $numrows = $this->db->getRowsNum($result);
-                    if ($numrows == 1) {
+                    if (1 == $numrows) {
                         $module =new XoopsModule();
                         $myrow = $this->db->fetchArray($result);
                         $module->assignVars($myrow);
@@ -433,9 +433,9 @@ class XoopsModuleHandler extends XoopsObjectHandler
         $cache = &$this->_cachedModule_dirname;
         if (!empty($cache[$dirname])) {
             $ret = $cache[$dirname];
-        } elseif (count($cache)==0) {
+        } elseif (0 == count($cache)) {
             $db = $this->db;
-            $sql = "SELECT * FROM ".$db->prefix('modules');
+            $sql = 'SELECT * FROM ' . $db->prefix('modules');
             if ($result = $db->query($sql)) {
                 while ($myrow = $db->fetchArray($result)) {
                     $module = new XoopsModule();
@@ -463,7 +463,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function insert(&$module)
     {
-        if (strtolower(get_class($module)) != 'xoopsmodule') {
+        if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
         }
         
@@ -480,9 +480,9 @@ class XoopsModuleHandler extends XoopsObjectHandler
             if (empty($mid)) { //Memo: if system module, mid might be set to 1
                 $mid = $this->db->genId('modules_mid_seq');
             }
-            $sql = sprintf("INSERT INTO %s (mid, name, version, last_update, weight, isactive, dirname, trust_dirname, role, hasmain, hasadmin, hassearch, hasconfig, hascomments, hasnotification) VALUES (%u, %s, %u, %u, %u, %u, %s, %s, %s, %u, %u, %u, %u, %u, %u)", $this->db->prefix('modules'), $mid, $this->db->quoteString($name), $version, time(), $weight, 1, $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $this->db->quoteString($role), $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification);
+            $sql = sprintf('INSERT INTO %s (mid, name, version, last_update, weight, isactive, dirname, trust_dirname, role, hasmain, hasadmin, hassearch, hasconfig, hascomments, hasnotification) VALUES (%u, %s, %u, %u, %u, %u, %s, %s, %s, %u, %u, %u, %u, %u, %u)', $this->db->prefix('modules'), $mid, $this->db->quoteString($name), $version, time(), $weight, 1, $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $this->db->quoteString($role), $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification);
         } else {
-            $sql = sprintf("UPDATE %s SET name = %s, dirname = %s, trust_dirname = %s, role = %s, version = %u, last_update = %u, weight = %u, isactive = %u, hasmain = %u, hasadmin = %u, hassearch = %u, hasconfig = %u, hascomments = %u, hasnotification = %u WHERE mid = %u", $this->db->prefix('modules'), $this->db->quoteString($name), $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $this->db->quoteString($role), $version, time(), $weight, $isactive, $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification, $mid);
+            $sql = sprintf('UPDATE %s SET name = %s, dirname = %s, trust_dirname = %s, role = %s, version = %u, last_update = %u, weight = %u, isactive = %u, hasmain = %u, hasadmin = %u, hassearch = %u, hasconfig = %u, hascomments = %u, hasnotification = %u WHERE mid = %u', $this->db->prefix('modules'), $this->db->quoteString($name), $this->db->quoteString($dirname), $this->db->quoteString($trust_dirname), $this->db->quoteString($role), $version, time(), $weight, $isactive, $hasmain, $hasadmin, $hassearch, $hasconfig, $hascomments, $hasnotification, $mid);
         }
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -517,10 +517,10 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function delete(&$module)
     {
-        if (strtolower(get_class($module)) != 'xoopsmodule') {
+        if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE mid = %u", $this->db->prefix('modules'), $module->getVar('mid'));
+        $sql = sprintf('DELETE FROM %s WHERE mid = %u', $this->db->prefix('modules'), $module->getVar('mid'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }
@@ -531,16 +531,16 @@ class XoopsModuleHandler extends XoopsObjectHandler
         $sql = sprintf("DELETE FROM %s WHERE gperm_name = 'module_read' AND gperm_itemid = %u", $this->db->prefix('group_permission'), $module->getVar('mid'));
         $this->db->query($sql);
 
-        if ($module->getVar('mid')==1) {
+        if (1 == $module->getVar('mid')) {
             $sql = sprintf("DELETE FROM %s WHERE gperm_name = 'system_admin'", $this->db->prefix('group_permission'));
         } else {
-            $sql = sprintf("DELETE FROM %s WHERE gperm_modid = %u", $this->db->prefix('group_permission'), $module->getVar('mid'));
+            $sql = sprintf('DELETE FROM %s WHERE gperm_modid = %u', $this->db->prefix('group_permission'), $module->getVar('mid'));
         }
         $this->db->query($sql);
 
-        $sql = sprintf("SELECT block_id FROM %s WHERE module_id = %u", $this->db->prefix('block_module_link'), $module->getVar('mid'));
+        $sql = sprintf('SELECT block_id FROM %s WHERE module_id = %u', $this->db->prefix('block_module_link'), $module->getVar('mid'));
         if ($result = $this->db->query($sql)) {
-            $block_id_arr = array();
+            $block_id_arr = [];
             while ($myrow = $this->db->fetchArray($result)) {
                 array_push($block_id_arr, $myrow['block_id']);
             }
@@ -548,17 +548,17 @@ class XoopsModuleHandler extends XoopsObjectHandler
         // loop through block_id_arr
         if (isset($block_id_arr)) {
             foreach ($block_id_arr as $i) {
-                $sql = sprintf("SELECT block_id FROM %s WHERE module_id != %u AND block_id = %u", $this->db->prefix('block_module_link'), $module->getVar('mid'), $i);
+                $sql = sprintf('SELECT block_id FROM %s WHERE module_id != %u AND block_id = %u', $this->db->prefix('block_module_link'), $module->getVar('mid'), $i);
                 if ($result2 = $this->db->query($sql)) {
                     if (0 < $this->db->getRowsNum($result2)) {
                         // this block has other entries, so delete the entry for this module
-                        $sql = sprintf("DELETE FROM %s WHERE (module_id = %u) AND (block_id = %u)", $this->db->prefix('block_module_link'), $module->getVar('mid'), $i);
+                        $sql = sprintf('DELETE FROM %s WHERE (module_id = %u) AND (block_id = %u)', $this->db->prefix('block_module_link'), $module->getVar('mid'), $i);
                         $this->db->query($sql);
                     } else {
                         // this block doesnt have other entries, so disable the block and let it show on top page only. otherwise, this block will not display anymore on block admin page!
-                        $sql = sprintf("UPDATE %s SET visible = 0 WHERE bid = %u", $this->db->prefix('newblocks'), $i);
+                        $sql = sprintf('UPDATE %s SET visible = 0 WHERE bid = %u', $this->db->prefix('newblocks'), $i);
                         $this->db->query($sql);
-                        $sql = sprintf("UPDATE %s SET module_id = -1 WHERE module_id = %u", $this->db->prefix('block_module_link'), $module->getVar('mid'));
+                        $sql = sprintf('UPDATE %s SET module_id = -1 WHERE module_id = %u', $this->db->prefix('block_module_link'), $module->getVar('mid'));
                         $this->db->query($sql);
                     }
                 }
@@ -577,20 +577,20 @@ class XoopsModuleHandler extends XoopsObjectHandler
     /**
      * Load some modules
      *
-     * @param	object	$criteria	{@link CriteriaElement}
-     * @param	boolean $id_as_key	Use the ID as key into the array
+     * @param	object $criteria  {@link CriteriaElement}
+     * @param bool      $id_as_key Use the ID as key into the array
      * @return	array
      **/
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('modules');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
 
-            if ($criteria->getSort()!=null) {
+            if (null != $criteria->getSort()) {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
             } else {
                 $sql .= ' ORDER BY weight '.$criteria->getOrder().', mid ASC';
@@ -632,7 +632,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('modules');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {
@@ -645,15 +645,15 @@ class XoopsModuleHandler extends XoopsObjectHandler
     /**
      * returns an array of module names
      *
-     * @param	bool	$criteria
-     * @param	boolean $dirname_as_key
+     * @param	bool $criteria
+     * @param bool    $dirname_as_key
      *		if true, array keys will be module directory names
      *		if false, array keys will be module id
      * @return	array
      **/
     public function &getList($criteria = null, $dirname_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $modules =& $this->getObjects($criteria, true);
         foreach ($modules as $i=>$module) {
             if (!$dirname_as_key) {

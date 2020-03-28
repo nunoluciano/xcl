@@ -63,7 +63,7 @@ class XoopsTpl extends Smarty
         global $xoopsConfig;
         $this->Smarty();
         $this->compile_id = XOOPS_URL;
-        if ($xoopsConfig['theme_fromfile'] == 1) {
+        if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
             $this->compile_check = true;
         } else {
@@ -76,17 +76,20 @@ class XoopsTpl extends Smarty
         $this->cache_dir = XOOPS_CACHE_PATH;
         $this->compile_dir = XOOPS_COMPILE_PATH;
         //loading under root_path for compatibility with XCL2.1
-        $this->plugins_dir = array(SMARTY_DIR.'plugins', XOOPS_ROOT_PATH.'/class/smarty/plugins');
+        $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
 //		$this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
 
-        $this->assign(array('xoops_url' => XOOPS_URL,
-                            'xoops_rootpath' => XOOPS_ROOT_PATH,
-                            'xoops_langcode' => _LANGCODE,
-                            'xoops_charset' => _CHARSET,
-                            'xoops_version' => XOOPS_VERSION,
-                            'xoops_upload_url' => XOOPS_UPLOAD_URL
-                            ));
+        $this->assign(
+            [
+                'xoops_url'        => XOOPS_URL,
+                'xoops_rootpath'   => XOOPS_ROOT_PATH,
+                'xoops_langcode'   => _LANGCODE,
+                'xoops_charset'    => _CHARSET,
+                'xoops_version'    => XOOPS_VERSION,
+                'xoops_upload_url' => XOOPS_UPLOAD_URL
+            ]
+        );
 
         if (empty($this->debug_tpl)) {
             // set path to debug template from SMARTY_DIR
@@ -132,7 +135,7 @@ class XoopsTpl extends Smarty
     /**
      * Set debugging mode
      * 
-     * @param   boolean     $flag
+     * @param bool $flag
      **/
     public function xoops_setDebugging($flag=false)
     {
@@ -142,7 +145,7 @@ class XoopsTpl extends Smarty
     /**
      * Set caching
      * 
-     * @param   integer     $num
+     * @param int $num
      **/
     public function xoops_setCaching($num=0)
     {
@@ -152,7 +155,7 @@ class XoopsTpl extends Smarty
     /**
      * Set cache lifetime
      * 
-     * @param   integer     $num    Cache lifetime
+     * @param int $num Cache lifetime
      **/
     public function xoops_setCacheTime($num=0)
     {
@@ -255,7 +258,7 @@ class XoopsTpl extends Smarty
     {
         if ($this->debugging) {
             // capture time for debugging info
-            $_params = array();
+            $_params = [];
             require_once(SMARTY_CORE_DIR . 'core.get_microtime.php');
             $this->_smarty_debug_info[$_included_tpls_idx]['exec_time'] = (smarty_core_get_microtime($_params, $this) - $_debug_start_time);
             require_once(SMARTY_CORE_DIR . 'core.display_debug_console.php');
@@ -268,9 +271,9 @@ class XoopsTpl extends Smarty
 /**
  * function to update compiled template file in templates_c folder
  * 
- * @param   string  $tpl_id
- * @param   boolean $clear_old
- * @return  boolean
+ * @param   string $tpl_id
+ * @param bool     $clear_old
+ * @return  bool
  **/
 function xoops_template_touch($tpl_id, $clear_old = true)
 {
@@ -283,7 +286,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
     //
     XCube_DelegateUtils::call('Legacy.XoopsTpl.TemplateTouch', $tpl_id, $clear_old, new XCube_Ref($result));
     
-    if ($result === null) {
+    if (null === $result) {
         $tpl = new XoopsTpl();
         $tpl->force_compile = true;
         $tplfile_handler =& xoops_gethandler('tplfile');
@@ -317,7 +320,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
  **/
 function xoops_template_create($resource_type, $resource_name, &$template_source, &$template_timestamp, &$smarty_obj)
 {
-    if ($resource_type == 'db') {
+    if ('db' == $resource_type) {
         $file_handler =& xoops_gethandler('tplfile');
         $tpl =& $file_handler->find('default', null, null, null, $resource_name, true);
         if (count($tpl) > 0 && is_object($tpl[0])) {
@@ -332,12 +335,12 @@ function xoops_template_create($resource_type, $resource_name, &$template_source
 
 /**
  * Clear the module cache
- * 
+ *
+ * @param int $mid Module ID
+ * @return void
  * @deprecated
  *
- * @param   int $mid    Module ID
- * @return 
- **/
+ */
 function xoops_template_clear_module_cache($mid)
 {
     $block_arr =& XoopsBlock::sGetByModule($mid);
@@ -346,7 +349,7 @@ function xoops_template_clear_module_cache($mid)
         $xoopsTpl = new XoopsTpl();
         $xoopsTpl->xoops_setCaching(2);
         for ($i = 0; $i < $count; $i++) {
-            if ($block_arr[$i]->getVar('template') != '') {
+            if ('' != $block_arr[$i]->getVar('template')) {
                 $xoopsTpl->clear_cache('db:'.$block_arr[$i]->getVar('template'), 'blk_'.$block_arr[$i]->getVar('bid'));
             }
         }

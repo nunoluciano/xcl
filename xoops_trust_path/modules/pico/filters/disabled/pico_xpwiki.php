@@ -9,7 +9,7 @@ define('_MD_PICO_FILTERS_XPWIKIDISABLEONHTML', true);
 
 function pico_xpwiki($mydirname, $text, $content4assign)
 {
-	@include_once XOOPS_TRUST_PATH . "/modules/xpwiki/include.php";
+	@include_once XOOPS_TRUST_PATH . '/modules/xpwiki/include.php';
 
 	if (!class_exists('XpWiki')) die('xpWiki is not installed correctly');
 

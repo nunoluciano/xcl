@@ -8,17 +8,17 @@
  *
  */
 
-define("LEGACY_EXPRESSION_EQ", "=");
-define("LEGACY_EXPRESSION_NE", "<>");
-define("LEGACY_EXPRESSION_LT", "<");
-define("LEGACY_EXPRESSION_LE", "<=");
-define("LEGACY_EXPRESSION_GT", ">");
-define("LEGACY_EXPRESSION_GE", ">=");
-define("LEGACY_EXPRESSION_LIKE", "like");
-define("LEGACY_EXPRESSION_IN", "in");
+define('LEGACY_EXPRESSION_EQ', '=');
+define('LEGACY_EXPRESSION_NE', '<>');
+define('LEGACY_EXPRESSION_LT', '<');
+define('LEGACY_EXPRESSION_LE', '<=');
+define('LEGACY_EXPRESSION_GT', '>');
+define('LEGACY_EXPRESSION_GE', '>=');
+define('LEGACY_EXPRESSION_LIKE', 'like');
+define('LEGACY_EXPRESSION_IN', 'in');
  
-define("LEGACY_EXPRESSION_AND", "and");
-define("LEGACY_EXPRESSION_OR", "or");
+define('LEGACY_EXPRESSION_AND', 'and');
+define('LEGACY_EXPRESSION_OR', 'or');
 
  /**
   * @internal
@@ -61,34 +61,40 @@ define("LEGACY_EXPRESSION_OR", "or");
   */
 class Legacy_Criteria
 {
-    public $mTypeInfoArr = array();
+    public $mTypeInfoArr = [];
     
     /**
      * Childlen of this criteria.
      */
-    public $mChildlen = array();
+    public $mChildlen = [];
     
     public function __construct($typeInfoArr)
     {
         $this->mTypeInfoArr = $typeInfoArr;
     }
-    
+
     /**
      * This is alias for addAnd().
+     * @param        $column
+     * @param null   $value
+     * @param string $comparison
      */
     public function add($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
         $this->addAnd($column, $value, $comparison);
     }
-    
+
     /**
      * Add $criteria to childlen with AND condition.
+     * @param        $column
+     * @param null   $value
+     * @param string $comparison
      */
     public function addAnd($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
-        $t_arr = array();
+        $t_arr = [];
         $t_arr['condition'] = LEGACY_EXPRESSION_AND;
-        if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
+        if (is_object($column) && $column instanceof \Legacy_Criteria) {
             $t_arr['value'] = $column;
             $this->mChildlen[] = $t_arr;
         } elseif (!is_object($column)) {
@@ -102,12 +108,15 @@ class Legacy_Criteria
 
     /**
      * Add $criteria to childlen with OR condition.
+     * @param        $column
+     * @param null   $value
+     * @param string $comparison
      */
     public function addOr($column, $value = null, $comparison = LEGACY_EXPRESSION_EQ)
     {
-        $t_arr = array();
+        $t_arr = [];
         $t_arr['condition'] = LEGACY_EXPRESSION_OR;
-        if (is_object($column) && is_a($column, 'Legacy_Criteria')) {
+        if (is_object($column) && $column instanceof \Legacy_Criteria) {
             $t_arr['value'] = $column;
             $this->mChildlen[] = $t_arr;
         } elseif (!is_object($column)) {
@@ -130,11 +139,12 @@ class Legacy_Criteria
         $criteria =new Legacy_Criteria($this->mTypeInfoArr);
         return $criteria;
     }
-    
+
     /**
      * Check whether specified column exists in the list.
-     * 
+     *
      * @access protected
+     * @param $column
      * @return bool
      */
     public function _checkColumn($column)
@@ -146,8 +156,8 @@ class Legacy_Criteria
      * Do casting conversion. If type information is wrong, return false.
      * 
      * @access protected
-     * @param $column string A name of column
-     * @param $value reference of value.
+     * @param string    $column A name of column
+     * @param reference $value  of value.
      * @return bool
      */
     public function _castingConversion($column, &$value)
@@ -168,11 +178,11 @@ class Legacy_Criteria
                     break;
                     
                 case XOBJ_DTYPE_INT:
-                    $value = intval($value);
+                    $value = (int)$value;
                     break;
                     
                 case XOOPS_DTYPE_FLOAT:
-                    $value = floatval($value);
+                    $value = (float)$value;
                     break;
 
                 case XOOPS_DTYPE_STRING:

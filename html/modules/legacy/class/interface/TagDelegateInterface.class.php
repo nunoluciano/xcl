@@ -49,7 +49,7 @@ interface Legacy_iTagDelegate
      * @param string	$dataname	client module dataname
      * @param int[]		$uidList	whose tags you want
      */
-    public static function getTagCloudSrc(&$cloud, $tDirname, $dirname=null, $dataname=null, $uidList=array());
+    public static function getTagCloudSrc(&$cloud, $tDirname, $dirname=null, $dataname=null, $uidList= []);
 
     /**
      * getDataIdListByTags	Legacy_Tag.{dirname}.GetDataIdListByTags

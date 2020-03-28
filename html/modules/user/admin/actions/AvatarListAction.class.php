@@ -8,16 +8,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/admin/forms/AvatarListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/admin/forms/AvatarListForm.class.php';
 
 class User_AvatarListAction extends User_AbstractListAction
 {
 
-    public $mAvatarObjects = array();
+    public $mAvatarObjects = [];
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     // !Fix compatibility with User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
@@ -41,7 +41,7 @@ class User_AvatarListAction extends User_AbstractListAction
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
 
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == (int)$perpage) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -55,14 +55,14 @@ class User_AvatarListAction extends User_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=AvatarList";
+        return './index.php?action=AvatarList';
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_list.html");
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setTemplateName('avatar_list.html');
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
@@ -78,7 +78,7 @@ class User_AvatarListAction extends User_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return USER_FRAME_VIEW_CANCEL;
         }
 
@@ -138,7 +138,7 @@ class User_AvatarListAction extends User_AbstractListAction
         $linkHandler =& xoops_getmodulehandler('avatar_user_link');
 
         foreach (array_keys($nameArr) as $aid) {
-            if ($this->mActionForm->get('delete', $aid) == 1) {
+            if (1 == $this->mActionForm->get('delete', $aid)) {
                 $avatar =& $avatarHandler->get($aid);
                 if (is_object($avatar)) {
                     $criteria =new Criteria('avatar_id', $aid);
@@ -167,10 +167,13 @@ class User_AvatarListAction extends User_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("avatar_list_confirm.html");
+        $render->setTemplateName('avatar_list_confirm.html');
         $render->setAttribute('avatarObjects', $this->mAvatarObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         

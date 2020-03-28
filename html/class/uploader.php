@@ -60,10 +60,10 @@
  * @copyright    (c) 2000-2003 The Xoops Project - www.xoops.org
  */
 
-define("XCUBE_IMAGETYPE_ENUM_GIF", 1);
-define("XCUBE_IMAGETYPE_ENUM_JPG", 2);
-define("XCUBE_IMAGETYPE_ENUM_PNG", 3);
-define("XCUBE_IMAGETYPE_ENUM_BMP", 6);
+define('XCUBE_IMAGETYPE_ENUM_GIF', 1);
+define('XCUBE_IMAGETYPE_ENUM_JPG', 2);
+define('XCUBE_IMAGETYPE_ENUM_PNG', 3);
+define('XCUBE_IMAGETYPE_ENUM_BMP', 6);
 
 class XoopsMediaUploader
 {
@@ -78,59 +78,60 @@ class XoopsMediaUploader
     public $mediaError;
     public $mediaRealType = '';
     public $uploadDir = '';
-    public $allowedMimeTypes = array();
-    public $allowedExtensions = array();
+    public $allowedMimeTypes = [];
+    public $allowedExtensions = [];
     public $maxFileSize = 0;
     public $maxWidth;
     public $maxHeight;
     public $targetFileName;
     public $prefix;
-    public $errors = array();
+    public $errors = [];
     public $savedDestination;
     public $savedFileName;
-    public $extensionToMime = array();
+    public $extensionToMime = [];
 
-    public $_strictCheckExtensions = array();
+    public $_strictCheckExtensions = [];
 
     /**
      * Constructor
      *
-     * @param   string  $uploadDir
-     * @param   array   $allowedMimeTypes
-     * @param   int     $maxFileSize
-     * @param   int     $maxWidth
-     * @param   int     $maxHeight
-     * @param   int     $cmodvalue
-     **/
+     * @param string $uploadDir
+     * @param array  $allowedMimeTypes
+     * @param int    $maxFileSize
+     * @param int    $maxWidth
+     * @param int    $maxHeight
+     */
     public function __construct($uploadDir, $allowedMimeTypes, $maxFileSize=0, $maxWidth=null, $maxHeight=null)
     {
         @$this->extensionToMime = include(XOOPS_ROOT_PATH . '/class/mimetypes.inc.php');
         if (!is_array($this->extensionToMime)) {
-            $this->extensionToMime = array();
+            $this->extensionToMime = [];
             return false;
         }
         if (is_array($allowedMimeTypes)) {
             $this->allowedMimeTypes =& $allowedMimeTypes;
         }
         $this->uploadDir = $uploadDir;
-        $this->maxFileSize = intval($maxFileSize);
+        $this->maxFileSize = (int)$maxFileSize;
         if (isset($maxWidth)) {
-            $this->maxWidth = intval($maxWidth);
+            $this->maxWidth = (int)$maxWidth;
         }
         if (isset($maxHeight)) {
-            $this->maxHeight = intval($maxHeight);
+            $this->maxHeight = (int)$maxHeight;
         }
 
-        $this->_strictCheckExtensions = array("gif"=>XCUBE_IMAGETYPE_ENUM_GIF,
-                                               "jpg"=>XCUBE_IMAGETYPE_ENUM_JPG,
-                                               "jpeg"=>XCUBE_IMAGETYPE_ENUM_JPG,
-                                               "png"=>XCUBE_IMAGETYPE_ENUM_PNG,
-                                               "bmp"=>XCUBE_IMAGETYPE_ENUM_BMP);
+        $this->_strictCheckExtensions = [
+            'gif'  =>XCUBE_IMAGETYPE_ENUM_GIF,
+            'jpg'  =>XCUBE_IMAGETYPE_ENUM_JPG,
+            'jpeg' =>XCUBE_IMAGETYPE_ENUM_JPG,
+            'png'  =>XCUBE_IMAGETYPE_ENUM_PNG,
+            'bmp'  =>XCUBE_IMAGETYPE_ENUM_BMP
+        ];
     }
 
     public function setAllowedExtensions($extensions)
     {
-        $this->allowedExtensions = is_array($extensions) ? $extensions : array();
+        $this->allowedExtensions = is_array($extensions) ? $extensions : [];
     }
 
     public function setStrictCheckExtensions($extensions)
@@ -155,7 +156,7 @@ class XoopsMediaUploader
             $this->setErrors('File not found');
             return false;
         } elseif (is_array($_FILES[$media_name]['name']) && isset($index)) {
-            $index = intval($index);
+            $index = (int)$index;
             $this->mediaName = $_FILES[$media_name]['name'][$index];
             $this->mediaType = $_FILES[$media_name]['type'][$index];
             $this->mediaSize = $_FILES[$media_name]['size'][$index];
@@ -170,7 +171,7 @@ class XoopsMediaUploader
             $this->mediaTmpName = $media_name['tmp_name'];
             $this->mediaError = !empty($media_name['error']) ? $media_name['error'] : 0;
         }
-        if (($ext = strrpos($this->mediaName, '.')) !== false) {
+        if (false !== ($ext = strrpos($this->mediaName, '.'))) {
             $this->ext = strtolower(substr($this->mediaName, $ext + 1));
             if (isset($this->extensionToMime[$this->ext])) {
                 $this->mediaRealType = $this->extensionToMime[$this->ext];
@@ -180,16 +181,16 @@ class XoopsMediaUploader
             $this->setErrors('Invalid Extension');
             return false;
         }
-        $this->errors = array();
-        if (intval($this->mediaSize) < 0) {
+        $this->errors = [];
+        if ((int)$this->mediaSize < 0) {
             $this->setErrors('Invalid File Size');
             return false;
         }
-        if ($this->mediaName == '') {
+        if ('' == $this->mediaName) {
             $this->setErrors('Filename Is Empty');
             return false;
         }
-        if ($this->mediaTmpName == 'none' || !is_uploaded_file($this->mediaTmpName)) {
+        if ('none' == $this->mediaTmpName || !is_uploaded_file($this->mediaTmpName)) {
             $this->setErrors('No file uploaded');
             return false;
         }
@@ -207,7 +208,7 @@ class XoopsMediaUploader
      **/
     public function setTargetFileName($value)
     {
-        $this->targetFileName = strval(trim($value));
+        $this->targetFileName = (string)trim($value);
     }
 
     /**
@@ -217,7 +218,7 @@ class XoopsMediaUploader
      **/
     public function setPrefix($value)
     {
-        $this->prefix = strval(trim($value));
+        $this->prefix = (string)trim($value);
     }
 
     /**
@@ -283,18 +284,19 @@ class XoopsMediaUploader
     /**
      * Check the file and copy it to the destination
      *
+     * @param int $chmod
      * @return  bool
-     **/
+     */
     public function upload($chmod = 0644)
     {
-        if ($this->uploadDir == '') {
+        if ('' == $this->uploadDir) {
             $this->setErrors('Upload directory not set');
             return false;
         }
         if (!is_dir($this->uploadDir)) {
             $this->setErrors('Failed opening directory: '.$this->uploadDir);
         }
-        if (!is_writeable($this->uploadDir)) {
+        if (!is_writable($this->uploadDir)) {
             $this->setErrors('Failed opening directory with write permission: '.$this->uploadDir);
         }
         if (!$this->checkMaxFileSize()) {
@@ -307,7 +309,7 @@ class XoopsMediaUploader
             $this->setErrors(sprintf('File height must be smaller than %u', $this->maxHeight));
         }
         if (!$this->checkMimeType()) {
-            $this->setErrors("Invalid file type");
+            $this->setErrors('Invalid file type');
         }
         if (count($this->errors) > 0) {
             return false;
@@ -322,8 +324,9 @@ class XoopsMediaUploader
     /**
      * Copy the file to its destination
      *
+     * @param $chmod
      * @return  bool
-     **/
+     */
     public function _copyFile($chmod)
     {
         if (isset($this->targetFileName)) {
@@ -438,7 +441,7 @@ class XoopsMediaUploader
     {
         $parseValue = getimagesize($this->mediaTmpName);
 
-        if ($parseValue===false) {
+        if (false === $parseValue) {
             return false;
         }
 

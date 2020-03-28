@@ -1,7 +1,11 @@
 <?php
+
 /**
  * Replace str_split()
  *
+ * @param     $string
+ * @param int $split_length
+ * @return array|bool|mixed
  * @category    PHP
  * @package     PHP_Compat
  * @license     LGPL - https://www.gnu.org/licenses/lgpl.html
@@ -33,7 +37,7 @@ function php_compat_str_split($string, $split_length = 1)
         return $matches[0];
     } else {
         // Required due to preg limitations
-        $arr = array();
+        $arr = [];
         $idx = 0;
         $pos = 0;
         $len = strlen($string);

@@ -27,7 +27,7 @@ class Emaillogin extends XCube_ActionFilter
         $userHandler =& xoops_getmodulehandler('users', 'user');
     
         $criteria = new CriteriaCompo();
-        if (xoops_getrequest('uname') != "" && strpos(xoops_getrequest('uname'), '@') !== false) {
+        if ('' != xoops_getrequest('uname') && false !== strpos(xoops_getrequest('uname'), '@')) {
             $criteria->add(new Criteria('email', xoops_getrequest('uname')));
         } else {
             $criteria->add(new Criteria('uname', xoops_getrequest('uname')));    // use for both e-mail or uname logiin
@@ -36,10 +36,10 @@ class Emaillogin extends XCube_ActionFilter
         $criteria->add(new Criteria('pass', md5(xoops_getrequest('pass'))));
     
         $userArr =& $userHandler->getObjects($criteria);
-        if (count($userArr) != 1) {
+        if (1 != count($userArr)) {
             return;
         }
-        if ($userArr[0]->get('level') == 0) {
+        if (0 == $userArr[0]->get('level')) {
             return;
         }
     
@@ -49,7 +49,7 @@ class Emaillogin extends XCube_ActionFilter
   
         require_once XOOPS_ROOT_PATH . '/include/session.php';
         xoops_session_regenerate();
-        $_SESSION = array();
+        $_SESSION = [];
         $_SESSION['xoopsUserId'] = $xoopsUser->get('uid');
         $_SESSION['xoopsUserGroups'] = $xoopsUser->getGroups();
     }

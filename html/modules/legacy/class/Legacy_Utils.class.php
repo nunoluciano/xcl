@@ -28,8 +28,8 @@ class Legacy_Utils
         $systemModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'SystemModules')));
         $recommendedModules = array_map('trim', explode(',', $root->getSiteConfig('Cube', 'RecommendedModules')));
         $moduleHandler =& xoops_gethandler('module');
-        $uninstalledModules = array();
-        $disabledModules = array();
+        $uninstalledModules = [];
+        $disabledModules = [];
         foreach ($systemModules as $systemModule) {
             if (!empty($systemModule)) {
                 if (!($moduleObject =& $moduleHandler->getByDirname($systemModule))) {
@@ -39,17 +39,18 @@ class Legacy_Utils
                 }
             }
         }
-        if (count($uninstalledModules) == 0 && count($disabledModules) == 0) {
+        if (0 == count($uninstalledModules) && 0 == count($disabledModules)) {
             return true;
         } else {
-            return array('uninstalled' =>$uninstalledModules, 'disabled'=>$disabledModules, 'recommended'=>$recommendedModules);
+            return ['uninstalled' =>$uninstalledModules, 'disabled' =>$disabledModules, 'recommended' =>$recommendedModules];
         }
     }
-    
+
     /***
      * Creates a instance of the module with the generating convention. And,
      * returns it.
      * @param XoopsModule $module
+     * @param bool        $loadConfig
      * @return Legacy_Module
      */
     public static function &createModule($module, $loadConfig=true)
@@ -61,7 +62,7 @@ class Legacy_Utils
         //
         XCube_DelegateUtils::call('Legacy_Utils.CreateModule', new XCube_Ref($instance), $module, $loadConfig);
         
-        if (is_object($instance) && is_a($instance, 'Legacy_AbstractModule')) {
+        if (is_object($instance) && $instance instanceof \Legacy_AbstractModule) {
             return $instance;
         }
         
@@ -70,7 +71,7 @@ class Legacy_Utils
         //
         // IMPORTANT CONVENTION
         //
-        $className = ucfirst($dirname) . "_Module";
+        $className = ucfirst($dirname) . '_Module';
         if (!XC_CLASS_EXISTS($className)) {
             $filePath = XOOPS_ROOT_PATH . "/modules/${dirname}/class/Module.class.php";
             if (file_exists($filePath)) {
@@ -86,11 +87,12 @@ class Legacy_Utils
         
         return $instance;
     }
-    
+
     /***
      * Creates a instance of the block procedure with the generating convention.
      * And, returns it.
      * @static
+     * @param $block
      * @return Legacy_BlockProcedure
      */
     public static function &createBlockProcedure(&$block)
@@ -105,12 +107,12 @@ class Legacy_Utils
         //
         XCube_DelegateUtils::call('Legacy_Utils.CreateBlockProcedure', new XCube_Ref($retBlock), $block);
         
-        if (is_object($retBlock) && is_a($retBlock, 'Legacy_AbstractBlockProcedure')) {
+        if (is_object($retBlock) && $retBlock instanceof \Legacy_AbstractBlockProcedure) {
             return $retBlock;
         }
         
         $func = $block->get('show_func');
-        if (substr($func, 0, 4) == 'cl::') {
+        if ('cl::' == substr($func, 0, 4)) {
             $className = ucfirst($block->get('dirname')) . '_' . substr($func, 4);
             if (!XC_CLASS_EXISTS($className)) {
                 $filePath = XOOPS_ROOT_PATH . '/modules/' . $block->get('dirname') . '/blocks/' . $block->get('func_file');
@@ -142,7 +144,7 @@ class Legacy_Utils
     {
         $root =& XCube_Root::getSingleton();
         foreach (array_keys($_REQUEST) as $key) {
-            if (strpos($key, 'Legacy_Event_User_') === 0) {
+            if (0 === strpos($key, 'Legacy_Event_User_')) {
                 $eventName = substr($key, 18);
                 XCube_DelegateUtils::call('Legacy.Event.User.' . $eventName);
                 $root->mContext->mAttributes['userEvent'][$eventName] = true;
@@ -158,7 +160,7 @@ class Legacy_Utils
      */
     public static function convertVersionFromModinfoToInt($version)
     {
-        return round(100 * floatval($version));
+        return round(100 * (float)$version);
     }
 
     /***
@@ -168,7 +170,7 @@ class Legacy_Utils
      */
     public static function convertVersionIntToFloat($version)
     {
-        return round(floatval(intval($version) / 100), 2);
+        return round((float)(intval($version) / 100), 2);
     }
 
     /**
@@ -197,7 +199,7 @@ class Legacy_Utils
         XCube_DelegateUtils::call('Legacy_User.GetUserName', new XCube_Ref($name), $uid);
         if (! $name) {
             $handler =& xoops_gethandler('member');
-            $user =& $handler->getUser(intval($uid));
+            $user =& $handler->getUser((int)$uid);
             if ($user) {
                 $name = $user->getShow('uname');
             }
@@ -214,7 +216,7 @@ class Legacy_Utils
     **/
     public static function getDirnameListByTrustDirname(/*** string ***/ $trustDirname)
     {
-        $list = array();
+        $list = [];
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('isactive', 0, '>'));
         $cri->add(new Criteria('trust_dirname', $trustDirname));
@@ -238,7 +240,7 @@ class Legacy_Utils
         $handler =& xoops_gethandler('module');
         $module =& $handler->getByDirname($dirname);
         if ($module) {
-            return $module->get('trust_dirname') ? $module->get('trust_dirname') : null;
+            return $module->get('trust_dirname') ?: null;
         }
     }
 
@@ -256,13 +258,13 @@ class Legacy_Utils
         $handler = xoops_gethandler('config');
         $configArr = $handler->getConfigsByDirname('legacyRender');
     
-        $replace = array($modulename, $pagetitle, $action);
-        $search = array('{modulename}', '{pagetitle}', '{action}');
+        $replace = [$modulename, $pagetitle, $action];
+        $search = ['{modulename}', '{pagetitle}', '{action}'];
         $ret = str_replace($search, $replace, $configArr['pagetitle']);
     
-        $ret = (! $modulename) ? preg_replace("/\[modulename\](.*)\[\/modulename\]/U", "", $ret) : preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '$1', $ret);
-        $ret = (! $pagetitle) ? preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", "", $ret) : preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '$1', $ret);
-        $ret = (! $action) ? preg_replace("/\[action\](.*)\[\/action\]/U", "", $ret) : preg_replace("/\[action\](.*)\[\/action\]/U", '$1', $ret);
+        $ret = (! $modulename) ? preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '', $ret) : preg_replace("/\[modulename\](.*)\[\/modulename\]/U", '$1', $ret);
+        $ret = (! $pagetitle) ? preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '', $ret) : preg_replace("/\[pagetitle\](.*)\[\/pagetitle\]/U", '$1', $ret);
+        $ret = (! $action) ? preg_replace("/\[action\](.*)\[\/action\]/U", '', $ret) : preg_replace("/\[action\](.*)\[\/action\]/U", '$1', $ret);
     
         return $ret;
     }
@@ -305,7 +307,7 @@ class Legacy_Utils
     public static function renderUri(/*** string ***/ $dirname, /*** string ***/ $dataname=null, /*** int ***/ $data_id=0, /*** string ***/ $action=null, /*** string ***/ $query=null)
     {
         $uri = null;
-        if (XCube_Root::getSingleton()->mContext->getXoopsConfig('cool_uri')==true) {
+        if (true == XCube_Root::getSingleton()->mContext->getXoopsConfig('cool_uri')) {
             if (isset($dataname)) {
                 if ($data_id>0) {
                     if (isset($action)) {
@@ -354,7 +356,7 @@ class Legacy_Utils
     **/
     public static function getCommonModuleList(/*** string ***/ $role)
     {
-        $list = array();
+        $list = [];
         $cri = new CriteriaCompo();
         $cri->add(new Criteria('isactive', 0, '>'));
         $cri->add(new Criteria('role', $role));

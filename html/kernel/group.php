@@ -112,7 +112,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$db->prefix('groups').' WHERE groupid='.$id;
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $group = new XoopsGroup();
                     $group->assignVars($db->fetchArray($result));
                     $ret =& $group;
@@ -130,7 +130,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function insert(&$group)
     {
-        if (strtolower(get_class($group)) != 'xoopsgroup') {
+        if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
         }
         if (!$group->isDirty()) {
@@ -147,7 +147,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
             $groupid = $db->genId('group_groupid_seq');
             $sql = sprintf('INSERT INTO %s (groupid, name, description, group_type) VALUES (%u, %s, %s, %s)', $db->prefix('groups'), $groupid, $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type));
         } else {
-            $sql = sprintf("UPDATE %s SET name = %s, description = %s, group_type = %s WHERE groupid = %u", $db->prefix('groups'), $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type), $groupid);
+            $sql = sprintf('UPDATE %s SET name = %s, description = %s, group_type = %s WHERE groupid = %u', $db->prefix('groups'), $db->quoteString($name), $db->quoteString($description), $db->quoteString($group_type), $groupid);
         }
         if (!$result = $db->query($sql)) {
             return false;
@@ -167,7 +167,7 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function delete(&$group)
     {
-        if (strtolower(get_class($group)) != 'xoopsgroup') {
+        if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE groupid = %u', $this->db->prefix('groups'), $group->getVar('groupid'));
@@ -186,11 +186,11 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('groups');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -277,7 +277,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$db->prefix('groups_users_link').' WHERE linkid='.$id;
             if ($result = $db->query($sql)) {
                 $numrows = $db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $mship =new XoopsMembership();
                     $mship->assignVars($db->fetchArray($result));
                     $ret =& $mship;
@@ -295,7 +295,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function insert(&$mship)
     {
-        if (strtolower(get_class($mship)) != 'xoopsmembership') {
+        if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
         }
         if (!$mship->isDirty()) {
@@ -310,9 +310,9 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         $db = &$this->db;
         if ($mship->isNew()) {
             $linkid = $db->genId('groups_users_link_linkid_seq');
-            $sql = sprintf("INSERT INTO %s (linkid, groupid, uid) VALUES (%u, %u, %u)", $db->prefix('groups_users_link'), $linkid, $groupid, $uid);
+            $sql = sprintf('INSERT INTO %s (linkid, groupid, uid) VALUES (%u, %u, %u)', $db->prefix('groups_users_link'), $linkid, $groupid, $uid);
         } else {
-            $sql = sprintf("UPDATE %s SET groupid = %u, uid = %u WHERE linkid = %u", $db->prefix('groups_users_link'), $groupid, $uid, $linkid);
+            $sql = sprintf('UPDATE %s SET groupid = %u, uid = %u WHERE linkid = %u', $db->prefix('groups_users_link'), $groupid, $uid, $linkid);
         }
         if (!$result = $db->query($sql)) {
             return false;
@@ -332,7 +332,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function delete(&$mship)
     {
-        if (strtolower(get_class($mship)) != 'xoopsmembership') {
+        if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE linkid = %u', $this->db->prefix('groups_users_link'), $groupm->getVar('linkid'));
@@ -351,11 +351,11 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $db = &$this->db;
         $sql = 'SELECT * FROM '.$db->prefix('groups_users_link');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -387,7 +387,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     {
         $db = &$this->db;
         $sql = 'SELECT COUNT(*) FROM '.$db->prefix('groups_users_link');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         $result = $db->query($sql);
@@ -407,7 +407,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     public function deleteAll($criteria = null)
     {
         $sql = 'DELETE FROM '.$this->db->prefix('groups_users_link');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
@@ -418,15 +418,13 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * retrieve groups for a user
-     * 
+     *
      * @param int $uid ID of the user
-     * @param bool $asobject should the groups be returned as {@link XoopsGroup}
-     * objects? FALSE returns associative array.
      * @return array array of groups the user belongs to
      */
     public function &getGroupsByUser($uid)
     {
-        $ret = array();
+        $ret = [];
         $db = &$this->db;
         $sql = 'SELECT groupid FROM '.$db->prefix('groups_users_link').' WHERE uid='.(int)$uid;
         $result = $db->query($sql);
@@ -441,17 +439,15 @@ class XoopsMembershipHandler extends XoopsObjectHandler
 
     /**
      * retrieve users belonging to a group
-     * 
+     *
      * @param int $groupid ID of the group
-     * @param bool $asobject return users as {@link XoopsUser} objects?
-     * FALSE will return arrays
-     * @param int $limit number of entries to return
-     * @param int $start offset of first entry to return
+     * @param int $limit   number of entries to return
+     * @param int $start   offset of first entry to return
      * @return array array of users belonging to the group
      */
     public function &getUsersByGroup($groupid, $limit=0, $start=0)
     {
-        $ret = array();
+        $ret = [];
         $db = &$this->db;
         $sql = 'SELECT uid FROM ' . $db->prefix('groups_users_link') . ' WHERE groupid='.(int)$groupid;
 
@@ -466,11 +462,15 @@ class XoopsMembershipHandler extends XoopsObjectHandler
     }
 
     /**
+     * @param     $groupid
+     * @param int $limit
+     * @param int $start
+     * @return array
      * @see getUsersByGroup
      */
     public function &getUsersByNoGroup($groupid, $limit=0, $start=0)
     {
-        $ret = array();
+        $ret = [];
 
         $groupid = (int)$groupid;
         $db = &$this->db;
@@ -480,8 +480,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         $sql = "SELECT u.uid FROM ${usersTable} u LEFT JOIN ${linkTable} g ON u.uid=g.uid," .
                 "${usersTable} u2 LEFT JOIN ${linkTable} g2 ON u2.uid=g2.uid AND g2.groupid=${groupid} " .
                 "WHERE (g.groupid != ${groupid} OR g.groupid IS NULL) " .
-                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " .
-                "AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid";
+                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
 
         $result = $db->query($sql, $limit, $start);
         if (!$result) {

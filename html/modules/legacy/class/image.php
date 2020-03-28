@@ -41,7 +41,7 @@ class LegacyImageObject extends XoopsSimpleObject
 
     public function loadImagecategory()
     {
-        if ($this->_mImageCategoryLoadedFlag == false) {
+        if (false == $this->_mImageCategoryLoadedFlag) {
             $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
             $this->mImageCategory =& $handler->get($this->get('imgcat_id'));
             $this->_mImageCategoryLoadedFlag = true;
@@ -50,7 +50,7 @@ class LegacyImageObject extends XoopsSimpleObject
 
     public function loadImagebody()
     {
-        if ($this->_mImageBodyLoadedFlag == false) {
+        if (false == $this->_mImageBodyLoadedFlag) {
             $handler =& xoops_getmodulehandler('imagebody', 'legacy');
             $this->mImageBody =& $handler->get($this->get('image_id'));
             $this->_mImageBodyLoadedFlag = true;
@@ -68,9 +68,9 @@ class LegacyImageObject extends XoopsSimpleObject
 
 class LegacyImageHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "image";
-    public $mPrimary = "image_id";
-    public $mClass = "LegacyImageObject";
+    public $mTable = 'image';
+    public $mPrimary = 'image_id';
+    public $mClass = 'LegacyImageObject';
 
     public function insert(&$obj, $force = false)
     {
@@ -91,16 +91,16 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
      *
      * Delete object and image file.
      *
-     * @param $obj    LegacyImageObject
-     * @param $force  boolean
-     * @return boolean
+     * @param LegacyImageObject $obj
+     * @param bool              $force
+     * @return bool
      */
     public function delete(&$obj, $force = false)
     {
         $obj->loadImagebody();
             
         if (parent::delete($obj, $force)) {
-            $filepath = XOOPS_UPLOAD_PATH . "/" . $obj->get('image_name');
+            $filepath = XOOPS_UPLOAD_PATH . '/' . $obj->get('image_name');
             if (file_exists($filepath)) {
                 @unlink($filepath);
             }

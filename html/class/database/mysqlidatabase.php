@@ -90,7 +90,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
             mysqli_real_connect($this->conn, XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, null, null, null, MYSQLI_CLIENT_FOUND_ROWS);
         }
         
-        if ($selectdb != false) {
+        if (false != $selectdb) {
             if (!mysqli_select_db($this->conn, XOOPS_DB_NAME)) {
                 $this->logger->addQuery('', $this->error(), $this->errno());
                 return false;
@@ -133,6 +133,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Fetch a result row as an associative array
      *
+     * @param $result
      * @return array
      */
     public function fetchArray($result)
@@ -143,6 +144,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Fetch a result row as an associative array
      *
+     * @param $result
      * @return array
      */
     public function fetchBoth($result)
@@ -192,9 +194,9 @@ class XoopsMysqliDatabase extends XoopsDatabase
 
     /**
      * will free all memory associated with the result identifier result.
-     * 
+     *
      * @param resource query result
-     * @return bool TRUE on success or FALSE on failure. 
+     * @return void TRUE on success or FALSE on failure.
      */
     public function freeRecordSet($result)
     {
@@ -235,12 +237,12 @@ class XoopsMysqliDatabase extends XoopsDatabase
 
     /**
      * perform a query on the database
-     * 
-     * @param string $sql a valid MySQL query
-     * @param int $limit number of records to return
-     * @param int $start offset of first record to return
-     * @return resource query result or FALSE if successful
-     * or TRUE if successful and no result
+     *
+     * @param string $sql   a valid MySQL query
+     * @param int    $limit number of records to return
+     * @param int    $start offset of first record to return
+     * @return bool|\mysqli_result query result or FALSE if successful
+     *                      or TRUE if successful and no result
      */
     public function &queryF($sql, $limit=0, $start=0)
     {
@@ -295,7 +297,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
                 // [0] contains the prefixed query
                 // [4] contains unprefixed table name
                 $prefixed_query = SqlUtility::prefixQuery(trim($query), $this->prefix());
-                if ($prefixed_query != false) {
+                if (false != $prefixed_query) {
                     $this->query($prefixed_query[0]);
                 }
             }
@@ -314,7 +316,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     public function getFieldName($result, $offset)
     {
         if ($finfo = mysqli_fetch_field_direct($result, $offset)) {
-            return $finfo->orgname? $finfo->orgname : $finfo->name;
+            return $finfo->orgname?: $finfo->name;
         } else {
             return false;
         }
@@ -361,11 +363,12 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Emulates prepare(), but this is TEST API.
      * @remark This is TEST API. This method should be called by only Legacy.
+     * @param $query
      */
     public function prepare($query)
     {
         $count=0;
-        while (($pos=strpos($query, '?'))!==false) {
+        while (false !== ($pos=strpos($query, '?'))) {
             $pre=substr($query, 0, $pos);
             $after='';
             if ($pos+1<=strlen($query)) {
@@ -394,8 +397,8 @@ class XoopsMysqliDatabase extends XoopsDatabase
             return;
         }
 
-        $searches=array();
-        $replaces=array();
+        $searches= [];
+        $replaces= [];
         for ($i=0;$i<$count;$i++) {
             $searches[$i]='{'.$i.'}';
             switch (substr($types, $i, 1)) {
@@ -408,7 +411,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
                     break;
 
                 case 'd':
-                    $replaces[$i]=doubleval(func_get_arg($i+1));
+                    $replaces[$i]=floatval(func_get_arg($i + 1));
                     break;
                 
                 case 'b':

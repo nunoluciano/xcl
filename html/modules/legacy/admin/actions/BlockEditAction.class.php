@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockEditForm.class.php';
 
 class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 {
@@ -66,7 +66,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('visible') == 1);
+            return (1 == $this->mObject->get('visible'));
         } else {
             return false;
         }
@@ -92,7 +92,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
         $ret = parent::execute($controller, $xoopsUser);
         
-        if ($ret == LEGACY_FRAME_VIEW_SUCCESS) {
+        if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
             //
             // Reset block_module_link.
             //
@@ -109,7 +109,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
             //
             // Insert group permissions.
             //
-            $currentGroupid = array();
+            $currentGroupid = [];
             foreach ($this->mObject->mGroup as $group) {
                 $currentGroupid[] = $group->get('groupid');
             }
@@ -152,7 +152,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
     
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("block_edit.html");
+        $render->setTemplateName('block_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         
         //
@@ -228,16 +228,16 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BlockList");
+        $controller->executeForward('./index.php?action=BlockList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=BlockList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=BlockList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=BlockList");
+        $controller->executeForward('./index.php?action=BlockList');
     }
 }

@@ -16,18 +16,18 @@ class Legacy_EventFunction
 {
     public static function imageManager()
     {
-        require_once XOOPS_MODULE_PATH . "/legacy/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
         
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
     
         $moduleRunner =new Legacy_ActionFrame(false);
         
-        $action = isset($_REQUEST['op']) ? ucfirst(xoops_getrequest('op')) : "List";
+        $action = isset($_REQUEST['op']) ? ucfirst(xoops_getrequest('op')) : 'List';
         $moduleRunner->setMode(LEGACY_FRAME_MODE_IMAGE);
         $moduleRunner->setActionName($action);
         
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -36,7 +36,7 @@ class Legacy_EventFunction
 
     public static function backend()
     {
-        require_once XOOPS_MODULE_PATH . "/legacy/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
         
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
@@ -44,7 +44,7 @@ class Legacy_EventFunction
         $moduleRunner =new Legacy_ActionFrame(false);
         $moduleRunner->setActionName('Backend');
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -53,7 +53,7 @@ class Legacy_EventFunction
 
     public static function search()
     {
-        require_once XOOPS_MODULE_PATH . "/legacy/class/ActionFrame.class.php";
+        require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
         
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
@@ -62,7 +62,7 @@ class Legacy_EventFunction
         $moduleRunner->setMode(LEGACY_FRAME_MODE_SEARCH);
         $moduleRunner->setActionName(ucfirst(xoops_getrequest('action')));
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -71,18 +71,18 @@ class Legacy_EventFunction
     
     public static function misc()
     {
-        require_once XOOPS_LEGACY_PATH . "/class/ActionFrame.class.php";
+        require_once XOOPS_LEGACY_PATH . '/class/ActionFrame.class.php';
 
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
         
-        $actionName = isset($_REQUEST['type']) ? ucfirst(xoops_getrequest('type')) : "Smilies";
+        $actionName = isset($_REQUEST['type']) ? ucfirst(xoops_getrequest('type')) : 'Smilies';
 
         $moduleRunner = new Legacy_ActionFrame(false);
         $moduleRunner->setMode(LEGACY_FRAME_MODE_MISC);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->setDialogMode(true);
 
@@ -93,7 +93,7 @@ class Legacy_EventFunction
 
     public static function notifications()
     {
-        require_once XOOPS_LEGACY_PATH . "/class/ActionFrame.class.php";
+        require_once XOOPS_LEGACY_PATH . '/class/ActionFrame.class.php';
         
         $root =& XCube_Root::getSingleton();
         $root->mController->setupModuleContext('legacy');
@@ -101,21 +101,21 @@ class Legacy_EventFunction
         //
         // 'Notify' is prefix to guard accessing from misc.php.
         //
-        $actionName = isset($_REQUEST['op']) ? trim(xoops_getrequest('op')) : "List";
+        $actionName = isset($_REQUEST['op']) ? trim(xoops_getrequest('op')) : 'List';
         $deleteValue = $root->mContext->mRequest->getRequest('delete');
         $cancelValue = $root->mContext->mRequest->getRequest('delete_cancel');
         if (isset($deleteValue)) {
-            $actionName = "Delete";
+            $actionName = 'Delete';
         }
         if (isset($cancelValue)) {
-            $actionName = "Cancel";
+            $actionName = 'Cancel';
         }
 
         $moduleRunner = new Legacy_ActionFrame(false);
         $moduleRunner->setMode(LEGACY_FRAME_MODE_NOTIFY);
         $moduleRunner->setActionName($actionName);
 
-        $root->mController->mExecute->add(array(&$moduleRunner, 'execute'));
+        $root->mController->mExecute->add([&$moduleRunner, 'execute']);
 
         $root->mController->execute();
 
@@ -137,7 +137,7 @@ class Legacy_EventFunction
         $moduleConfig =& $root->mContext->mModuleConfig;
         $xoopsUser =& $root->mContext->mXoopsUser;
 
-        $xoops_notification = array();
+        $xoops_notification = [];
         $xoops_notification['show'] = is_object($xoopsModule) && is_object($xoopsUser) && notificationEnabled('inline') ? 1 : 0;
         
         if ($xoops_notification['show']) {
@@ -151,7 +151,7 @@ class Legacy_EventFunction
                     $section['title'] = $category['title'];
                     $section['description'] = $category['description'];
                     $section['itemid'] = $category['item_id'];
-                    $section['events'] = array();
+                    $section['events'] = [];
                     $subscribed_events =& $notification_handler->getSubscribedEvents($category['name'], $category['item_id'], $xoopsModule->get('mid'), $xoopsUser->get('uid'));
                     foreach (notificationEvents($category['name'], true) as $event) {
                         if (!empty($event['admin_only']) && !$xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
@@ -161,12 +161,12 @@ class Legacy_EventFunction
                             continue;
                         }
                         $subscribed = in_array($event['name'], $subscribed_events) ? 1 : 0;
-                        $section['events'][$event['name']] = array('name'=>$event['name'], 'title'=>$event['title'], 'caption'=>$event['caption'], 'description'=>$event['description'], 'subscribed'=>$subscribed);
+                        $section['events'][$event['name']] = ['name' => $event['name'], 'title' => $event['title'], 'caption' => $event['caption'], 'description' => $event['description'], 'subscribed' =>$subscribed];
                         $event_count ++;
                     }
                     $xoops_notification['categories'][$category['name']] = $section;
                 }
-                $xoops_notification['target_page'] = "notification_update.php";
+                $xoops_notification['target_page'] = 'notification_update.php';
                 $xoops_notification['redirect_script'] = xoops_getenv('PHP_SELF');
                 
                 $render->setAttribute('editprofile_url', XOOPS_URL . '/edituser.php?uid=' . $xoopsUser->getShow('uid'));
@@ -185,19 +185,21 @@ class Legacy_EventFunction
             } else {
                 $xoops_notification['show'] = 0;
             }
-            if ($event_count == 0) {
+            if (0 == $event_count) {
                 $xoops_notification['show'] = 0;
             }
         }
         
         $render->setAttribute('xoops_notification', $xoops_notification);
     }
-    
+
     /**
      * This member function is added to 'User_UserViewAction.GetUserPosts'.
      * Recount posts of $xoopsUser in the comment system.
-     * 
+     *
      * @static
+     * @param $posts
+     * @param $xoopsUser
      */
     public static function recountPost(&$posts, $xoopsUser)
     {

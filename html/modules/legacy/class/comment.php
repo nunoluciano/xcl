@@ -75,7 +75,7 @@ class LegacyCommentObject extends XoopsSimpleObject
     
     public function getVar($key)
     {
-        if ($key == 'com_text') {
+        if ('com_text' == $key) {
             $ts =& MyTextSanitizer::sGetInstance();
             return $ts->displayTarea($this->get($key), $this->get('dohtml'), $this->get('dosmiley'), $this->get('doxcode'), $this->get('doimage'), $this->get('dobr'));
         } else {
@@ -86,9 +86,9 @@ class LegacyCommentObject extends XoopsSimpleObject
 
 class LegacyCommentHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "xoopscomments";
-    public $mPrimary = "com_id";
-    public $mClass = "LegacyCommentObject";
+    public $mTable = 'xoopscomments';
+    public $mPrimary = 'com_id';
+    public $mClass = 'LegacyCommentObject';
 
     /**
      * @var XCube_Delegate
@@ -118,9 +118,12 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
             return false;
         }
     }
-    
+
     /**
      * Delete $comment and childlen of $comment.
+     * @param      $comment
+     * @param bool $force
+     * @return bool
      */
     public function delete(&$comment, $force = false)
     {
@@ -143,9 +146,9 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
      */
     public function getModuleIds()
     {
-        $ret = array();
+        $ret = [];
 
-        $sql = "SELECT DISTINCT com_modid FROM " . $this->mTable;
+        $sql = 'SELECT DISTINCT com_modid FROM ' . $this->mTable;
         $res = $this->db->query($sql);
         if ($res) {
             while ($row = $this->db->fetchArray($res)) {

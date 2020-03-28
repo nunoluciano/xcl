@@ -17,7 +17,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 class Legacy_BackendAction extends Legacy_Action
 {
-    public $mItems = array();
+    public $mItems = [];
     
     /**
      * The spec of getRSS():
@@ -50,12 +50,12 @@ class Legacy_BackendAction extends Legacy_Action
     
     public function getDefaultView(&$controll, &$xoopsUser)
     {
-        $items = array();
+        $items = [];
         $this->mGetRSSItems->call(new XCube_Ref($items));
 
-        $sortArr = array();
+        $sortArr = [];
         foreach ($items as $item) {
-            $i = intval($item['pubdate']);
+            $i = (int)$item['pubdate'];
             for (; isset($sortArr[$i]) ; $i++);
             
             $sortArr[$i] = $item;
@@ -76,7 +76,7 @@ class Legacy_BackendAction extends Legacy_Action
         
         $renderTarget =& $renderSystem->createRenderTarget('main');
 
-        $renderTarget->setTemplateName("legacy_rss.html");
+        $renderTarget->setTemplateName('legacy_rss.html');
         
         $renderTarget->setAttribute('channel_title', $xoopsConfig['sitename']);
         $renderTarget->setAttribute('channel_link', XOOPS_URL . '/');

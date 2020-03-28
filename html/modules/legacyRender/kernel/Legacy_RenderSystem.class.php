@@ -28,7 +28,7 @@ class Legacy_XoopsTpl extends XoopsTpl
      * If variables having the following key are assigned, converts value with
      * htmlspecialchars_decode, and set it to the context for compatibility.
      */
-    public $_mContextReserve = array();
+    public $_mContextReserve = [];
     
     public function Legacy_XoopsTpl()
     {
@@ -37,7 +37,7 @@ class Legacy_XoopsTpl extends XoopsTpl
 
     public function __construct()
     {
-        $this->_mContextReserve = array('xoops_pagetitle' => 'legacy_pagetitle');
+        $this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
         parent::__construct();
     }
     
@@ -48,7 +48,7 @@ class Legacy_XoopsTpl extends XoopsTpl
             $context = $root->mContext;
             $reserve = $this->_mContextReserve;
             foreach ($tpl_var as $key => $val) {
-                if ($key != '') {
+                if ('' != $key) {
                     if (isset($reserve[$key])) {
                         $context->setAttribute($reserve[$key], htmlspecialchars_decode($val));
                     }
@@ -68,7 +68,7 @@ class Legacy_XoopsTpl extends XoopsTpl
     
     public function assign_by_ref($tpl_var, &$value)
     {
-        if ($tpl_var != '') {
+        if ('' != $tpl_var) {
             if (isset($this->_mContextReserve[$tpl_var])) {
                 $root =& XCube_Root::getSingleton();
                 $root->mContext->setAttribute($this->_mContextReserve[$tpl_var], htmlspecialchars_decode($value));
@@ -176,13 +176,15 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $mTpl->xoops_setDebugging(true);
         }
         
-        $mTpl->assign(array(
+        $mTpl->assign(
+            [
             'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
             // set JavaScript/Weird, but need extra <script> tags for 2.0.x themes
             'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
-        ));
+            ]
+        );
 
-        if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && $xoopsRedirect[0] === '/') {
+        if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && '/' === $xoopsRedirect[0]) {
             $mTpl->assign('xoops_redirect', htmlspecialchars($xoopsRedirect, ENT_QUOTES));
         }
 
@@ -206,7 +208,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             //
             $this->_mIsActiveBanner = $configs['banners'];
             if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
-                if ($configs['banners'] == 1) {
+                if (1 == $configs['banners']) {
                     $mTpl->assign('xoops_banner', xoops_getbanner());
                 } else {
                     $mTpl->assign('xoops_banner', '&nbsp;');
@@ -221,15 +223,15 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // --------------------------------------
         $arr = null;
         if (is_object($context->mXoopsUser)) {
-            $arr = array(
+            $arr = [
                 'xoops_isuser' => true,
                 'xoops_userid' => $context->mXoopsUser->getVar('uid', 'n'),
                 'xoops_uname' => $context->mXoopsUser->getVar('uname')
-            );
+            ];
         } else {
-            $arr = array(
+            $arr = [
                 'xoops_isuser' => false
-            );
+            ];
         }
         
         $mTpl->assign($arr);
@@ -256,17 +258,19 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $textFilter =& $root->getTextFilter();
 
         $themeName = $context->getThemeName();
-        $vars = array('xoops_theme'=>$themeName,
-                      'xoops_imageurl'=>XOOPS_THEME_URL . "/${themeName}/",
-                      'xoops_themecss'=>xoops_getcss($themeName),
-                      'xoops_sitename'=>$textFilter->toShow($context->getAttribute('legacy_sitename')),
-                      'xoops_pagetitle'=>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
-                      'xoops_slogan'=>$textFilter->toShow($context->getAttribute('legacy_slogan')));
+        $vars = [
+            'xoops_theme'     =>$themeName,
+            'xoops_imageurl'  =>XOOPS_THEME_URL . "/${themeName}/",
+            'xoops_themecss'  =>xoops_getcss($themeName),
+            'xoops_sitename'  =>$textFilter->toShow($context->getAttribute('legacy_sitename')),
+            'xoops_pagetitle' =>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
+            'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan'))
+        ];
 
         //
         // Assign module informations.
         //
-        if ($context->mModule != null) {    // The process of module
+        if (null != $context->mModule) {    // The process of module
             $xoopsModule =& $context->mXoopsModule;
             $vars['xoops_modulename'] = $xoopsModule->getVar('name');
             $vars['xoops_dirname'] = $xoopsModule->getVar('dirname');
@@ -351,13 +355,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         }
 
         if ($target->getTemplateName()) {
-            if ($cachedTemplateId!==null) {
+            if (null !== $cachedTemplateId) {
                 $contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName(), $xoopsCachedTemplateId);
             } else {
                 $contents=$this->mXoopsTpl->fetch('db:'.$target->getTemplateName());
             }
         } else {
-            if ($cachedTemplateId!==null) {
+            if (null !== $cachedTemplateId) {
                 $this->mXoopsTpl->assign('dummy_content', $target->getAttribute('stdout_buffer'));
                 $contents=$this->mXoopsTpl->fetch($GLOBALS['xoopsCachedTemplate'], $xoopsCachedTemplateId);
             } else {
@@ -394,19 +398,19 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     
         $textFilter =& $mRoot->getTextFilter();
         $headerScript = $mContext->getAttribute('headerScript');
-        $vars['xoops_meta_keywords'] = $textFilter->toShow($headerScript->getMeta('keywords') ? $headerScript->getMeta('keywords') : $configs['meta_keywords']);
-        $vars['xoops_meta_description'] = $textFilter->toShow($headerScript->getMeta('description') ? $headerScript->getMeta('description') : $configs['meta_description']);
-        $vars['xoops_meta_robots'] = $textFilter->toShow($headerScript->getMeta('robots') ? $headerScript->getMeta('robots') : $configs['meta_robots']);
-        $vars['xoops_meta_rating'] = $textFilter->toShow($headerScript->getMeta('rating') ? $headerScript->getMeta('rating') : $configs['meta_rating']);
-        $vars['xoops_meta_author'] = $textFilter->toShow($headerScript->getMeta('author') ? $headerScript->getMeta('author') : $configs['meta_author']);
-        $vars['xoops_meta_copyright'] = $textFilter->toShow($headerScript->getMeta('copyright') ? $headerScript->getMeta('copyright') : $configs['meta_copyright']);
+        $vars['xoops_meta_keywords'] = $textFilter->toShow($headerScript->getMeta('keywords') ?: $configs['meta_keywords']);
+        $vars['xoops_meta_description'] = $textFilter->toShow($headerScript->getMeta('description') ?: $configs['meta_description']);
+        $vars['xoops_meta_robots'] = $textFilter->toShow($headerScript->getMeta('robots') ?: $configs['meta_robots']);
+        $vars['xoops_meta_rating'] = $textFilter->toShow($headerScript->getMeta('rating') ?: $configs['meta_rating']);
+        $vars['xoops_meta_author'] = $textFilter->toShow($headerScript->getMeta('author') ?: $configs['meta_author']);
+        $vars['xoops_meta_copyright'] = $textFilter->toShow($headerScript->getMeta('copyright') ?: $configs['meta_copyright']);
         // Extra Meta Webmaster Tools
-        $vars['xoops_meta_bing'] = $textFilter->toShow($headerScript->getMeta('msvalidate.01') ? $headerScript->getMeta('msvalidate.01') : $configs['meta_bing']);
-        $vars['xoops_meta_google'] = $textFilter->toShow($headerScript->getMeta('google-site-verification') ? $headerScript->getMeta('google-site-verification') : $configs['meta_google']);
-        $vars['xoops_meta_yandex'] = $textFilter->toShow($headerScript->getMeta('yandex-verification') ? $headerScript->getMeta('yandex-verification') : $configs['meta_yandex']);
+        $vars['xoops_meta_bing'] = $textFilter->toShow($headerScript->getMeta('msvalidate.01') ?: $configs['meta_bing']);
+        $vars['xoops_meta_google'] = $textFilter->toShow($headerScript->getMeta('google-site-verification') ?: $configs['meta_google']);
+        $vars['xoops_meta_yandex'] = $textFilter->toShow($headerScript->getMeta('yandex-verification') ?: $configs['meta_yandex']);
         // Extra Meta App ID
-        $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ? $headerScript->getMeta('fb:app_id') : $configs['meta_fb_app']);
-        $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ? $headerScript->getMeta('twitter:site') : $configs['meta_twitter_site']);
+        $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
+        $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
         // footer may be raw HTML text.
         $vars['xoops_footer'] = $configs['footer']; 
 
@@ -415,7 +419,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // TODO this process depends on XOOPS 2.0.x.
         //
         if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == false) {
-            $vars['xoops_banner'] = ($this->_mIsActiveBanner == 1)?xoops_getbanner():'&nbsp;';
+            $vars['xoops_banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;';
         }
 
         $mTpl->assign($vars);
@@ -428,13 +432,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
         // assign
         /// @todo I must move these to somewhere.
-        $assignNameMap = array(
-                XOOPS_SIDEBLOCK_LEFT=>array('showflag'=>'xoops_showlblock','block'=>'xoops_lblocks'),
-                XOOPS_CENTERBLOCK_LEFT=>array('showflag'=>'xoops_showcblock','block'=>'xoops_clblocks'),
-                XOOPS_CENTERBLOCK_RIGHT=>array('showflag'=>'xoops_showcblock','block'=>'xoops_crblocks'),
-                XOOPS_CENTERBLOCK_CENTER=>array('showflag'=>'xoops_showcblock','block'=>'xoops_ccblocks'),
-                XOOPS_SIDEBLOCK_RIGHT=>array('showflag'=>'xoops_showrblock','block'=>'xoops_rblocks')
-            );
+        $assignNameMap = [
+            XOOPS_SIDEBLOCK_LEFT=> ['showflag' =>'xoops_showlblock', 'block' =>'xoops_lblocks'],
+            XOOPS_CENTERBLOCK_LEFT=> ['showflag' =>'xoops_showcblock', 'block' =>'xoops_clblocks'],
+            XOOPS_CENTERBLOCK_RIGHT=> ['showflag' =>'xoops_showcblock', 'block' =>'xoops_crblocks'],
+            XOOPS_CENTERBLOCK_CENTER=> ['showflag' =>'xoops_showcblock', 'block' =>'xoops_ccblocks'],
+            XOOPS_SIDEBLOCK_RIGHT=> ['showflag' =>'xoops_showrblock', 'block' =>'xoops_rblocks']
+        ];
 
         foreach ($assignNameMap as $key=>$val) {
             $mTpl->assign($val['showflag'], $this->_getBlockShowFlag($val['showflag']));
@@ -508,13 +512,14 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     }
 
     /**
+     * @param bool $closeHead
      * @deprecated
      */
     public function showXoopsHeader($closeHead=true)
     {
         global $xoopsConfig;
         $myts =& MyTextSanitizer::sGetInstance();
-        if ($xoopsConfig['gzip_compression'] == 1) {
+        if (1 == $xoopsConfig['gzip_compression']) {
             ob_start('ob_gzhandler');
         } else {
             ob_start();
@@ -525,7 +530,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     }
     
     // TODO never output directly
+
     /**
+     * @param bool $closehead
      * @deprecated
      */
     public function _renderHeader($closehead=true)
@@ -596,9 +603,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
         return $renderTarget;
     }
-    
+
     /**
      * @TODO This function is not cool!
+     * @param bool $isDialog
+     * @return \Legacy_DialogRenderTarget|\Legacy_ThemeRenderTarget
      */
     public function &getThemeRenderTarget($isDialog = false)
     {

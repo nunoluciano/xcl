@@ -1,10 +1,14 @@
 <?php
 // $Id: bcpowmod.php,v 1.1 2007-07-02 04:19:55 terrafrost Exp $
 
-
 /**
  * Replace bcpowmod()
  *
+ * @param     $x
+ * @param     $y
+ * @param     $modulus
+ * @param int $scale
+ * @return bool|string|null
  * @category    PHP
  * @package     PHP_Compat
  * @license     LGPL - https://www.gnu.org/licenses/lgpl.html

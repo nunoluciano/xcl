@@ -52,11 +52,11 @@ class XCube_LanguageManager
     public function prepare()
     {
     }
-    
+
     /**
      * Set locale name.
-     * 
-     * @param string $local locale name
+     *
+     * @param $locale
      */
     public function setLocale($locale)
     {
@@ -118,14 +118,14 @@ class XCube_LanguageManager
     public function loadThemeMessageCatalog($themeName)
     {
     }
-    
+
     /**
      * check the exstence of the specified file in the specified section.
-     * 
+     *
      * @access public
      * @param string $section  A name of section.
      * @param string $filename A name of file
-     * @return bool
+     * @return void
      */
     public function existFile($section, $filename)
     {
@@ -176,7 +176,7 @@ class XCube_LanguageManager
      */
     public function getFallbackLanguage()
     {
-        return "eng";
+        return 'eng';
     }
 
     /**
@@ -187,7 +187,7 @@ class XCube_LanguageManager
      */
     public function getFallbackLocale()
     {
-        return "EG";
+        return 'EG';
     }
     
     public function encodeUTF8($str)

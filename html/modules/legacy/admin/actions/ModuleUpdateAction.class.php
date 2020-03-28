@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/actions/AbstractModuleInstallAction.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleUpdateForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/actions/AbstractModuleInstallAction.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleUpdateForm.class.php';
 
 /**
  * @brief Module Update function having possibility to extend by module developers.
@@ -186,7 +186,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
             XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleUpdate.Fail', new XCube_Ref($this->mXoopsModule), new XCube_Ref($this->mInstaller->mLog));
         }
         
-        $renderer->setTemplateName("module_update_success.html");
+        $renderer->setTemplateName('module_update_success.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
         $renderer->setAttribute('log', $this->mInstaller->mLog->mMessages);
         $renderer->setAttribute('currentVersion', round($this->mInstaller->getCurrentVersion() / 100, 2));
@@ -197,7 +197,7 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
 
     public function executeViewInput(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("module_update.html");
+        $renderer->setTemplateName('module_update.html');
         $renderer->setAttribute('module', $this->mXoopsModule);
         $renderer->setAttribute('actionForm', $this->mActionForm);
         $renderer->setAttribute('currentVersion', round($this->mInstaller->getCurrentVersion() / 100, 2));
@@ -207,6 +207,6 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 }

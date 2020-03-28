@@ -1,6 +1,6 @@
 <?php
 
-eval(' function xoops_module_install_'.$mydirname.'( $module ) { return protector_oninstall_base( $module , "'.$mydirname.'" ) ; } ') ;
+eval(' function xoops_module_install_'.$mydirname . '( $module ) { return protector_oninstall_base( $module , \'' . $mydirname . '\' ) ; } ') ;
 
 
 if (! function_exists('protector_oninstall_base')) {
@@ -14,10 +14,10 @@ if (! function_exists('protector_oninstall_base')) {
     if (defined('XOOPS_CUBE_LEGACY')) {
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success', 'protector_message_append_oninstall') ;
-        $ret = array() ;
+        $ret = [];
     } else {
         if (! is_array($ret)) {
-            $ret = array() ;
+            $ret = [];
         }
     }
 
@@ -25,26 +25,26 @@ if (! function_exists('protector_oninstall_base')) {
         $mid = $module->getVar('mid') ;
 
     // TABLES (loading mysql.sql)
-    $sql_file_path = dirname(__FILE__).'/sql/mysql.sql' ;
+    $sql_file_path = __DIR__ . '/sql/mysql.sql' ;
         $prefix_mod = $db->prefix() . '_' . $mydirname ;
         if (file_exists($sql_file_path)) {
-            $ret[] = "SQL file found at <b>".htmlspecialchars($sql_file_path)."</b>.<br> Creating tables...";
+            $ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path) . '</b>.<br> Creating tables...';
 
             if (file_exists(XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php')) {
                 include_once XOOPS_ROOT_PATH.'/class/database/oldsqlutility.php' ;
-                $sqlutil = new OldSqlUtility ;
+                $sqlutil = new OldSqlUtility();
             } else {
                 include_once XOOPS_ROOT_PATH.'/class/database/sqlutility.php' ;
-                $sqlutil = new SqlUtility ;
+                $sqlutil = new SqlUtility();
             }
 
             $sql_query = trim(file_get_contents($sql_file_path)) ;
             $sqlutil->splitMySqlFile($pieces, $sql_query) ;
-            $created_tables = array() ;
+            $created_tables = [];
             foreach ($pieces as $piece) {
                 $prefixed_query = $sqlutil->prefixQuery($piece, $prefix_mod) ;
                 if (! $prefixed_query) {
-                    $ret[] = "Invalid SQL <b>".htmlspecialchars($piece)."</b><br>";
+                    $ret[] = 'Invalid SQL <b>' . htmlspecialchars($piece) . '</b><br>';
                     return false ;
                 }
                 if (! $db->query($prefixed_query[0])) {
@@ -64,15 +64,15 @@ if (! function_exists('protector_oninstall_base')) {
 
     // TEMPLATES
     $tplfile_handler =& xoops_gethandler('tplfile') ;
-        $tpl_path = dirname(__FILE__).'/templates' ;
+        $tpl_path = __DIR__ . '/templates' ;
         if ($handler = @opendir($tpl_path . '/')) {
-            while (($file = readdir($handler)) !== false) {
-                if (substr($file, 0, 1) == '.') {
+            while (false !== ($file = readdir($handler))) {
+                if ('.' == substr($file, 0, 1)) {
                     continue ;
                 }
                 $file_path = $tpl_path . '/' . $file ;
-                if (is_file($file_path) && in_array(strrchr($file, '.'), array( '.html', '.css', '.js' ))) {
-                    $mtime = intval(@filemtime($file_path)) ;
+                if (is_file($file_path) && in_array(strrchr($file, '.'), ['.html', '.css', '.js'])) {
+                    $mtime = (int)@filemtime($file_path);
                     $tplfile =& $tplfile_handler->create() ;
                     $tplfile->setVar('tpl_source', file_get_contents($file_path), true) ;
                     $tplfile->setVar('tpl_refid', $mid) ;

@@ -77,7 +77,7 @@ class XoopsImageHandler extends XoopsObjectHandler
     /**
      * Create a new {@link XoopsImage} 
      * 
-     * @param   boolean $isNew  Flag the object as "new"
+     * @param bool $isNew Flag the object as "new"
      * @return  object
      **/
     public function &create($isNew = true)
@@ -92,8 +92,8 @@ class XoopsImageHandler extends XoopsObjectHandler
     /**
      * Load a {@link XoopsImage} object from the database
      * 
-     * @param   int     $id     ID
-     * @param   boolean $getbinary  
+     * @param   int $id     ID
+     * @param bool  $getbinary
      * @return  object  {@link XoopsImage}, FALSE on fail
      **/
     public function &get($id, $getbinary=true)
@@ -104,7 +104,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             $sql = 'SELECT i.*, b.image_body FROM '.$this->db->prefix('image').' i LEFT JOIN '.$this->db->prefix('imagebody').' b ON b.image_id=i.image_id WHERE i.image_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $image =new XoopsImage();
                     $image->assignVars($this->db->fetchArray($result));
                     $ret =& $image;
@@ -122,7 +122,7 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     public function insert(&$image)
     {
-        if (strtolower(get_class($image)) != 'xoopsimage') {
+        if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
         }
         if (!$image->isDirty()) {
@@ -136,31 +136,31 @@ class XoopsImageHandler extends XoopsObjectHandler
         }
         if ($image->isNew()) {
             $image_id = $this->db->genId('image_image_id_seq');
-            $sql = sprintf("INSERT INTO %s (image_id, image_name, image_nicename, image_mimetype, image_created, image_display, image_weight, imgcat_id) VALUES (%u, %s, %s, %s, %u, %u, %u, %u)", $this->db->prefix('image'), $image_id, $this->db->quoteString($image_name), $this->db->quoteString($image_nicename), $this->db->quoteString($image_mimetype), time(), $image_display, $image_weight, $imgcat_id);
+            $sql = sprintf('INSERT INTO %s (image_id, image_name, image_nicename, image_mimetype, image_created, image_display, image_weight, imgcat_id) VALUES (%u, %s, %s, %s, %u, %u, %u, %u)', $this->db->prefix('image'), $image_id, $this->db->quoteString($image_name), $this->db->quoteString($image_nicename), $this->db->quoteString($image_mimetype), time(), $image_display, $image_weight, $imgcat_id);
             if (!$result = $this->db->query($sql)) {
                 return false;
             }
             if (empty($image_id)) {
                 $image_id = $this->db->getInsertId();
             }
-            if (isset($image_body) && $image_body != '') {
-                $sql = sprintf("INSERT INTO %s (image_id, image_body) VALUES (%u, %s)", $this->db->prefix('imagebody'), $image_id, $this->db->quoteString($image_body));
+            if (isset($image_body) && '' != $image_body) {
+                $sql = sprintf('INSERT INTO %s (image_id, image_body) VALUES (%u, %s)', $this->db->prefix('imagebody'), $image_id, $this->db->quoteString($image_body));
                 if (!$result = $this->db->query($sql)) {
-                    $sql = sprintf("DELETE FROM %s WHERE image_id = %u", $this->db->prefix('image'), $image_id);
+                    $sql = sprintf('DELETE FROM %s WHERE image_id = %u', $this->db->prefix('image'), $image_id);
                     $this->db->query($sql);
                     return false;
                 }
             }
             $image->assignVar('image_id', $image_id);
         } else {
-            $sql = sprintf("UPDATE %s SET image_name = %s, image_nicename = %s, image_display = %u, image_weight = %u, imgcat_id = %u WHERE image_id = %u", $this->db->prefix('image'), $this->db->quoteString($image_name), $this->db->quoteString($image_nicename), $image_display, $image_weight, $imgcat_id, $image_id);
+            $sql = sprintf('UPDATE %s SET image_name = %s, image_nicename = %s, image_display = %u, image_weight = %u, imgcat_id = %u WHERE image_id = %u', $this->db->prefix('image'), $this->db->quoteString($image_name), $this->db->quoteString($image_nicename), $image_display, $image_weight, $imgcat_id, $image_id);
             if (!$result = $this->db->query($sql)) {
                 return false;
             }
-            if (isset($image_body) && $image_body != '') {
-                $sql = sprintf("UPDATE %s SET image_body = %s WHERE image_id = %u", $this->db->prefix('imagebody'), $this->db->quoteString($image_body), $image_id);
+            if (isset($image_body) && '' != $image_body) {
+                $sql = sprintf('UPDATE %s SET image_body = %s WHERE image_id = %u', $this->db->prefix('imagebody'), $this->db->quoteString($image_body), $image_id);
                 if (!$result = $this->db->query($sql)) {
-                    $this->db->query(sprintf("DELETE FROM %s WHERE image_id = %u", $this->db->prefix('image'), $image_id));
+                    $this->db->query(sprintf('DELETE FROM %s WHERE image_id = %u', $this->db->prefix('image'), $image_id));
                     return false;
                 }
             }
@@ -176,15 +176,15 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     public function delete(&$image)
     {
-        if (strtolower(get_class($image)) != 'xoopsimage') {
+        if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
         }
         $id = $image->getVar('image_id');
-        $sql = sprintf("DELETE FROM %s WHERE image_id = %u", $this->db->prefix('image'), $id);
+        $sql = sprintf('DELETE FROM %s WHERE image_id = %u', $this->db->prefix('image'), $id);
         if (!$result = $this->db->query($sql)) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE image_id = %u", $this->db->prefix('imagebody'), $id);
+        $sql = sprintf('DELETE FROM %s WHERE image_id = %u', $this->db->prefix('imagebody'), $id);
         $this->db->query($sql);
         return true;
     }
@@ -192,23 +192,23 @@ class XoopsImageHandler extends XoopsObjectHandler
     /**
      * Load {@link XoopsImage}s from the database
      * 
-     * @param   object  $criteria   {@link CriteriaElement} 
-     * @param   boolean $id_as_key  Use the ID as key into the array
-     * @param   boolean $getbinary  
+     * @param   object $criteria  {@link CriteriaElement}
+     * @param bool     $id_as_key Use the ID as key into the array
+     * @param bool     $getbinary
      * @return  array   Array of {@link XoopsImage} objects
      **/
     public function &getObjects($criteria = null, $id_as_key = false, $getbinary = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         if ($getbinary) {
             $sql = 'SELECT i.*, b.image_body FROM '.$this->db->prefix('image').' i LEFT JOIN '.$this->db->prefix('imagebody').' b ON b.image_id=i.image_id';
         } else {
             $sql = 'SELECT * FROM '.$this->db->prefix('image');
         }
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
-            $sort = !in_array($criteria->getSort(), array('image_id', 'image_created', 'image_mimetype', 'image_display', 'image_weight')) ? 'image_weight' : $criteria->getSort();
+            $sort = !in_array($criteria->getSort(), ['image_id', 'image_created', 'image_mimetype', 'image_display', 'image_weight']) ? 'image_weight' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
@@ -239,7 +239,7 @@ class XoopsImageHandler extends XoopsObjectHandler
     public function getCount($criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM '.$this->db->prefix('image');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
         }
         if (!$result =& $this->db->query($sql)) {
@@ -263,7 +263,7 @@ class XoopsImageHandler extends XoopsObjectHandler
             $criteria->add(new Criteria('image_display', (int)$image_display));
         }
         $images =& $this->getObjects($criteria, false, true);
-        $ret = array();
+        $ret = [];
         foreach (array_keys($images) as $i) {
             $ret[$images[$i]->getVar('image_name')] = $images[$i]->getVar('image_nicename');
         }

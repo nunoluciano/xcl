@@ -9,19 +9,19 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/profile/class/AbstractEditAction.class.php";
+require_once XOOPS_MODULE_PATH . '/profile/class/AbstractEditAction.class.php';
 
 class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 {
-    public $mTypeArr = array();
-    public $mValidationArr = array();
+    public $mTypeArr = [];
+    public $mValidationArr = [];
 
     /**
      * @protected
      */
     public function _getId()
     {
-        return intval(xoops_getrequest('field_id'));
+        return (int)xoops_getrequest('field_id');
     }
 
     /**
@@ -29,7 +29,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
      */
     public function &_getHandler()
     {
-        $handler =& $this->mAsset->load('handler', "definitions");
+        $handler =& $this->mAsset->load('handler', 'definitions');
         return $handler;
     }
 
@@ -39,7 +39,7 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
     public function _setupActionForm()
     {
         // $this->mActionForm =new Profile_Admin_DefinitionsEditForm();
-        $this->mActionForm =& $this->mAsset->create('form', "admin.edit_definitions");
+        $this->mActionForm =& $this->mAsset->create('form', 'admin.edit_definitions');
         $this->mActionForm->prepare();
     }
 
@@ -81,12 +81,13 @@ $("#legacy_xoopsform_type").change(function(){
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
         $gHandler =& xoops_gethandler('group');
     
-        $render->setTemplateName("definitions_edit.html");
+        $render->setTemplateName('definitions_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         $render->setAttribute('groupArr', $gHandler->getObjects());
@@ -98,27 +99,31 @@ $("#legacy_xoopsform_type").change(function(){
 
     /**
      * @public
+     * @param $controller
+     * @param $render
      */
     // !Fix compatibility with Profile_AbstractAction::executeViewSuccess(&$controller, &$render) in file /modules/profile/class/AbstractionAction.class.php line 62
     public function executeViewSuccess(&$controller, &$render) 
     // public function executeViewSuccess(&$render)
     {
-        $this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
+        $this->mRoot->mController->executeForward('./index.php?action=DefinitionsList');
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewError(&$render)
     {
-        $this->mRoot->mController->executeRedirect("./index.php?action=DefinitionsList", 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
+        $this->mRoot->mController->executeRedirect('./index.php?action=DefinitionsList', 1, _MD_PROFILE_ERROR_DBUPDATE_FAILED);
     }
 
     /**
      * @public
+     * @param $render
      */
     public function executeViewCancel(&$render)
     {
-        $this->mRoot->mController->executeForward("./index.php?action=DefinitionsList");
+        $this->mRoot->mController->executeForward('./index.php?action=DefinitionsList');
     }
 }

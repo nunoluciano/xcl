@@ -118,8 +118,7 @@ class MyTextSanitizer
     /**
      * Replace emoticons in the message with smiley images
      *
-     * @param   string  $message
-     *
+     * @param $text
      * @return  string
      */
     public function &smiley($text)
@@ -150,11 +149,11 @@ class MyTextSanitizer
     /**
      * Replace XoopsCodes with their equivalent HTML formatting
      *
-     * @param   string  $text
-     * @param   bool    $allowimage Allow images in the text?
+     * @param string $text
+     * @param int    $allowimage    Allow images in the text?
      *                              On FALSE, uses links to images.
      * @return  string
-     **/
+     */
     public function &xoopsCodeDecode($text, $allowimage = 1)
     {
         $text = $this->mTextFilter->convertXCode($text, $allowimage);
@@ -180,7 +179,7 @@ class MyTextSanitizer
         if ($this->checkUrlString($matches[2])) {
             return $matches[0];
         } else {
-            return "";
+            return '';
         }
     }
 
@@ -197,7 +196,7 @@ class MyTextSanitizer
             return false;
         }
         // check black pattern(deprecated)
-        return !preg_match("/^(javascript|vbscript|about):/i", $text);
+        return !preg_match('/^(javascript|vbscript|about):/i', $text);
     }
 
     /**
@@ -263,7 +262,7 @@ class MyTextSanitizer
      **/
     public function &undoHtmlSpecialChars($text)
     {
-        $ret = preg_replace(array("/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"), array(">", "<", "\"", "'"), $text);
+        $ret = preg_replace(['/&gt;/i', '/&lt;/i', '/&quot;/i', '/&#039;/i'], ['>', '<', '"', "'"], $text);
         return $ret;
     }
 
@@ -271,29 +270,29 @@ class MyTextSanitizer
      * Filters textarea data for display
      * (This method makes overhead but needed for compatibility)
      *
-     * @param   string  $text
-     * @param   bool    $html   allow html?
-     * @param   bool    $smiley allow smileys?
-     * @param   bool    $xcode  allow xoopscode?
-     * @param   bool    $image  allow inline images?
-     * @param   bool    $br     convert linebreaks?
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
      * @return  string
-     **/
+     */
 
     public function _ToShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text = $this->codePreConv($text, $xcode);
-        if ($html != 1) {
+        if (1 != $html) {
             $text = $this->htmlSpecialChars($text);
         }
         $text = $this->makeClickable($text);
-        if ($smiley != 0) {
+        if (0 != $smiley) {
             $text = $this->smiley($text);
         }
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->xoopsCodeDecode($text, $image);
         }
-        if ($br != 0) {
+        if (0 != $br) {
             $text = $this->nl2Br($text);
         }
         $text = $this->codeConv($text, $xcode, $image);
@@ -303,14 +302,14 @@ class MyTextSanitizer
     /**
      * Filters textarea form data in DB for display
      *
-     * @param   string  $text
-     * @param   bool    $html   allow html?
-     * @param   bool    $smiley allow smileys?
-     * @param   bool    $xcode  allow xoopscode?
-     * @param   bool    $image  allow inline images?
-     * @param   bool    $br     convert linebreaks?
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
      * @return  string
-     **/
+     */
     public function &displayTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text = $this->mTextFilter->toShowTarea($text, $html, $smiley, $xcode, $image, $br, true);
@@ -320,14 +319,14 @@ class MyTextSanitizer
     /**
      * Filters textarea form data submitted for preview
      *
-     * @param   string  $text
-     * @param   bool    $html   allow html?
-     * @param   bool    $smiley allow smileys?
-     * @param   bool    $xcode  allow xoopscode?
-     * @param   bool    $image  allow inline images?
-     * @param   bool    $br     convert linebreaks?
+     * @param string $text
+     * @param int    $html   allow html?
+     * @param int    $smiley allow smileys?
+     * @param int    $xcode  allow xoopscode?
+     * @param int    $image  allow inline images?
+     * @param int    $br     convert linebreaks?
      * @return  string
-     **/
+     */
     public function &previewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text =& $this->stripSlashesGPC($text);
@@ -349,19 +348,19 @@ class MyTextSanitizer
             $config_handler =& xoops_gethandler('config');
             $this->censorConf =& $config_handler->getConfigsByCat(XOOPS_CONF_CENSOR);
         }
-        if ($this->censorConf['censor_enable'] == 1) {
+        if (1 == $this->censorConf['censor_enable']) {
             $replacement = $this->censorConf['censor_replace'];
             foreach ($this->censorConf['censor_words'] as $bad) {
                 if (!empty($bad)) {
                     $bad = quotemeta($bad);
-                    $patterns[] = "/(\s)".$bad."/siU";
+                    $patterns[] = "/(\s)".$bad . '/siU';
                     $replacements[] = "\\1".$replacement;
-                    $patterns[] = "/^".$bad."/siU";
+                    $patterns[] = '/^' . $bad . '/siU';
                     $replacements[] = $replacement;
-                    $patterns[] = "/(\n)".$bad."/siU";
+                    $patterns[] = "/(\n)".$bad . '/siU';
                     $replacements[] = "\\1".$replacement;
-                    $patterns[] = "/]".$bad."/siU";
-                    $replacements[] = "]".$replacement;
+                    $patterns[] = '/]' . $bad . '/siU';
+                    $replacements[] = ']' . $replacement;
                     $text = preg_replace($patterns, $replacements, $text);
                 }
             }
@@ -369,13 +368,15 @@ class MyTextSanitizer
         return $text;
     }
 
-
     /**#@+
      * Sanitizing of [code] tag
+     * @param     $text
+     * @param int $xcode
+     * @return
      */
     public function codePreConv($text, $xcode = 1)
     {
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->mTextFilter->preConvertXCode($text, $xcode);
         }
         return $text;
@@ -383,7 +384,7 @@ class MyTextSanitizer
 
     public function codeConv($text, $xcode = 1, $image = 1)
     {
-        if ($xcode != 0) {
+        if (0 != $xcode) {
             $text = $this->mTextFilter->postConvertXCode($text, $xcode);
         }
         return $text;
@@ -392,6 +393,11 @@ class MyTextSanitizer
 ##################### Deprecated Methods ######################
 
     /**#@+
+     * @param     $text
+     * @param int $allowhtml
+     * @param int $smiley
+     * @param int $bbcode
+     * @return string
      * @deprecated
      */
     public function sanitizeForDisplay($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)

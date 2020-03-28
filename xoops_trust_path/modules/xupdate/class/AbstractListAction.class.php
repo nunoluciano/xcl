@@ -22,11 +22,9 @@ abstract class Xupdate_AbstractListAction extends Xupdate_AbstractAction
 
     /**
      * &_getHandler
-     * 
-     * @param   void
-     * 
-     * @return  &XoopsObjectGenericHandler
-    **/
+     *
+     * @return void &XoopsObjectGenericHandler
+     */
     protected function &_getHandler()
     {
     }
@@ -45,11 +43,9 @@ abstract class Xupdate_AbstractListAction extends Xupdate_AbstractAction
 
     /**
      * &_getFilterForm
-     * 
-     * @param   void
-     * 
-     * @return  &XupdateAbstractFilterForm
-    **/
+     *
+     * @return void &XupdateAbstractFilterForm
+     */
     protected function &_getFilterForm()
     {
     }
@@ -67,11 +63,9 @@ abstract class Xupdate_AbstractListAction extends Xupdate_AbstractAction
 
     /**
      * &_getPageNavi
-     * 
-     * @param   void
-     * 
-     * @return  &XCube_PageNavigator
-    **/
+     *
+     * @return \XCube_PageNavigator &XCube_PageNavigator
+     */
     protected function &_getPageNavi()
     {
         $navi = new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_START);

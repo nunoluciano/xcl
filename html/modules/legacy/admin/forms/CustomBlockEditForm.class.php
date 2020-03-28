@@ -12,15 +12,15 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/BlockEditForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/BlockEditForm.class.php';
 
 class Legacy_CustomBlockEditForm extends Legacy_BlockEditForm
 {
     public function getTokenName()
     {
-        return "module.legacy.CustomBlockEditForm.TOKEN" . $this->get('bid');
+        return 'module.legacy.CustomBlockEditForm.TOKEN' . $this->get('bid');
     }
 
     public function prepare()
@@ -37,11 +37,11 @@ class Legacy_CustomBlockEditForm extends Legacy_BlockEditForm
         // Set field properties
         //
         $this->mFieldProperties['content'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['content']->setDependsByArray(array('required'));
+        $this->mFieldProperties['content']->setDependsByArray(['required']);
         $this->mFieldProperties['content']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_CONTENT);
     
         $this->mFieldProperties['c_type'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['c_type']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['c_type']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['c_type']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_C_TYPE, '1');
         $this->mFieldProperties['c_type']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_C_TYPE, '1');
         $this->mFieldProperties['c_type']->addVar('maxlength', '1');

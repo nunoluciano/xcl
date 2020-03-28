@@ -15,7 +15,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
 </object>';
 
-    protected $mDirArray = array();
+    protected $mDirArray = [];
     protected $_mTemporaryPath = null;
     protected $_mFilename = null;
     protected $_mIsDeleted = false;
@@ -56,7 +56,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     {
         //set uploaded image file path
         $uploaded = @$_FILES['legacy_image']['tmp_name'] ? $_FILES['legacy_image'] : null;
-        if (isset($uploaded) && file_exists($uploaded['tmp_name'][$num]) && @exif_imagetype($uploaded['tmp_name'][$num])!==false) {
+        if (isset($uploaded) && file_exists($uploaded['tmp_name'][$num]) && false !== @exif_imagetype($uploaded['tmp_name'][$num])) {
             $this->_mTemporaryPath = $uploaded['tmp_name'][$num];
             $this->_mFilename = $uploaded['name'][$num];
         }
@@ -99,8 +99,8 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
             $root=&XCube_Root::getSingleton();
             $salt = $root->getSiteConfig('Cube', 'Salt');
         }
-        srand(microtime() *1000000);
-        $body = md5($salt . rand());
+        mt_srand(microtime() * 1000000);
+        $body = md5($salt . mt_rand());
         return $prefix . $body;
     }
 
@@ -114,7 +114,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     public function isImage(/*** int ***/ $tsize=0)
     {
         $srcPath = $this->getFilePath($tsize);
-        if (file_exists($srcPath) && @exif_imagetype($srcPath)!==false) {
+        if (file_exists($srcPath) && false !== @exif_imagetype($srcPath)) {
             return true;
         } else {
             return false;
@@ -135,6 +135,8 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 
     /**
      * Return file size.
+     * @param     $type
+     * @param int $tsize
      * @return int
      */
     public function getImageInfo($type, $tsize=0)

@@ -47,7 +47,7 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
     
         $this->mObject =& $this->mObjectHandler->get($id);
     
-        if ($this->mObject == null && $this->_isEnableCreate()) {
+        if (null == $this->mObject && $this->_isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -74,7 +74,7 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
      */
     public function getDefaultView()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return PROFILE_FRAME_VIEW_ERROR;
         }
     
@@ -88,11 +88,11 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
      */
     public function execute()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return PROFILE_FRAME_VIEW_ERROR;
         }
     
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return PROFILE_FRAME_VIEW_CANCEL;
         }
     
