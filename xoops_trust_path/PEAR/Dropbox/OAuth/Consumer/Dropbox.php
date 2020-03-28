@@ -3,12 +3,12 @@
  * HTTP OAuth Consumer
  * 
  * Adapted from halldirector's code in 
- * https://code.google.com/p/dropbox-php/issues/detail?id=36#c5
+ * http://code.google.com/p/dropbox-php/issues/detail?id=36#c5
  * 
  * @package Dropbox
  * @copyright Copyright (C) 2011 Joe Constant / halldirector. All rights reserved.
  * @author Joe Constant / halldirector
- * @license https://code.google.com/p/dropbox-php/wiki/License MIT
+ * @license http://code.google.com/p/dropbox-php/wiki/License MIT
  */
 
 require_once 'HTTP/OAuth.php';

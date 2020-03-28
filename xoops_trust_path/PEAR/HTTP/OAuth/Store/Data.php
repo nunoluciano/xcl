@@ -8,8 +8,8 @@
  * @package   HTTP_OAuth
  * @author    Bill Shupp <hostmaster@shupp.org> 
  * @copyright 2009 Bill Shupp
- * @license   https://www.opensource.org/licenses/bsd-license.php FreeBSD
- * @link      https://pear.php.net/http_oauth
+ * @license   http://www.opensource.org/licenses/bsd-license.php FreeBSD
+ * @link      http://pear.php.net/http_oauth
  */
 
 /**
@@ -19,8 +19,8 @@
  * @package   HTTP_OAuth
  * @author    Bill Shupp <hostmaster@shupp.org> 
  * @copyright 2009 Bill Shupp
- * @license   https://www.opensource.org/licenses/bsd-license.php FreeBSD
- * @link      https://pear.php.net/http_oauth
+ * @license   http://www.opensource.org/licenses/bsd-license.php FreeBSD
+ * @link      http://pear.php.net/http_oauth
  */
 class HTTP_OAuth_Store_Data
 {

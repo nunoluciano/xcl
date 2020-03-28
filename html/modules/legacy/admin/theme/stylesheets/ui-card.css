@@ -290,6 +290,12 @@
 		width						: var(  --ui-card-block-item-width					);
 	}
 
+	/* input[size=] width depend using fonts, 
+	   then setting by style for compatibility */
+	.ui-card-block-item input[size="20"] {
+		width: 12em;
+	}
+
 	.ui-card-block-item.pad-left {
 		padding-left: 2em;
 	}

@@ -9,8 +9,8 @@
  * @package   HTTP_OAuth
  * @author    Bill Shupp <hostmaster@shupp.org> 
  * @copyright 2010 Bill Shupp
- * @license   https://www.opensource.org/licenses/bsd-license.php FreeBSD
- * @link      https://pear.php.net/http_oauth
+ * @license   http://www.opensource.org/licenses/bsd-license.php FreeBSD
+ * @link      http://pear.php.net/http_oauth
  */
 
 require_once 'HTTP/OAuth/Store/Data.php';
@@ -25,8 +25,8 @@ require_once 'Cache/Lite.php';
  * @package   HTTP_OAuth
  * @author    Bill Shupp <hostmaster@shupp.org> 
  * @copyright 2010 Bill Shupp
- * @license   https://www.opensource.org/licenses/bsd-license.php FreeBSD
- * @link      https://pear.php.net/http_oauth
+ * @license   http://www.opensource.org/licenses/bsd-license.php FreeBSD
+ * @link      http://pear.php.net/http_oauth
  */
 class HTTP_OAuth_Store_Consumer_CacheLite
 implements HTTP_OAuth_Store_Consumer_Interface

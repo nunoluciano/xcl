@@ -5,35 +5,61 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] 2020-02-29
+
+### Added
+
+- jQuery to common/js
+
+### Changed
+
+- Admin Dashboard
+- Admin Template Module Card
+- Admin Template Install List
+- Render Local Javascripts
+
+### Fixed
+
+- Xupdate AbstractAction
+- Xupdate ModuleStore Handler
+
+### Removed
+
+- Render CDN Javascripts
+
+### Update
+
+- X-elFinder version 2.53
+
 ## [unreleased] 2019-12-19
 
 ### Added
 
 - Admin Theme version 0.0.4
-- Buttons ( custom properties)
-- Cards (custom properties)
-- Components (Admin Templates: sections filter, sort)
+- Buttons ( custom properties )
+- Cards ( custom properties )
+- Components ( Admin Templates: sections filter, sort )
 - HTML5 Web Storage ( local storage )
-- @media (prefers-color-scheme: dark)
-- @media (prefers-reduced-motion: reduce)
+- @media ( prefers-color-scheme: dark )
+- @media ( prefers-reduced-motion: reduce )
 - Select color-mode Light or Dark 
 - Script fallback to local
 - UI-root components custom properties
 
 ### Changed
 
-- Accessible Rich Internet Applications (ARIA)
-- Cards (clean-up components html and css)
-- Components (Admin Templates)
-- Custom Properties ( alphabetical order )
-- HTML5 Layout ( simple and scalable )
-- Legacy Render System ( header script )
-- Media Queries ( @media rule) 
-- SVG Icons ( simple vertical-align & scalable )
-- Tables structure ( thead, tbody, tfoot ) 
-- UI root consistency : 
-  replaced reference of fabric industry (xs, md, xl...)
-- with #xoopscube order/weight numeric values
+- Accessible Rich Internet Applications ( ARIA ) 
+- Cards ( clean-up components html and css ) 
+- Components ( Admin Templates ) 
+- Custom Properties (alphabetical order ) 
+- HTML5 Layout ( simple and scalable ) 
+- Legacy Render System ( header script ) 
+- Media Queries ( @media rule )  
+- SVG Icons ( simple vertical-align & scalable ) 
+- Tables structure ( thead, tbody, tfoot )  
+- UI root consistency :  
+  replaced reference of fabric industry ( xs, md, xl... )  
+  with #xoopscube order/weight numeric values
 
 ### Fixed
 

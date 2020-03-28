@@ -5,8 +5,8 @@
  *
  * @package Dropbox
  * @copyright Copyright (C) 2010 Rooftop Solutions. All rights reserved.
- * @author Evert Pot (https://www.rooftopsolutions.nl/)
- * @license https://code.google.com/p/dropbox-php/wiki/License MIT
+ * @author Evert Pot (http://www.rooftopsolutions.nl/)
+ * @license http://code.google.com/p/dropbox-php/wiki/License MIT
  */
 class Dropbox_API {
 

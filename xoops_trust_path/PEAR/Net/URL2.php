@@ -38,9 +38,9 @@
  * @package   Net_URL2
  * @author    Christian Schmidt <schmidt@php.net>
  * @copyright 2007-2009 Peytz & Co. A/S
- * @license   https://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version   CVS: $Id: URL2.php 309223 2011-03-14 14:26:32Z till $
- * @link      https://www.rfc-editor.org/rfc/rfc3986.txt
+ * @link      http://www.rfc-editor.org/rfc/rfc3986.txt
  */
 
 /**
@@ -50,9 +50,9 @@
  * @package   Net_URL2
  * @author    Christian Schmidt <schmidt@php.net>
  * @copyright 2007-2009 Peytz & Co. A/S
- * @license   https://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version   Release: @package_version@
- * @link      https://pear.php.net/package/Net_URL2
+ * @link      http://pear.php.net/package/Net_URL2
  */
 class Net_URL2
 {

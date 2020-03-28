@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Response.php 324936 2012-04-07 07:49:03Z avb $
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -69,10 +69,10 @@ require_once 'HTTP/Request2/Exception.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     https://pear.php.net/package/HTTP_Request2
- * @link     https://tools.ietf.org/html/rfc2616#section-6
+ * @link     http://pear.php.net/package/HTTP_Request2
+ * @link     http://tools.ietf.org/html/rfc2616#section-6
  */
 class HTTP_Request2_Response
 {
@@ -85,14 +85,14 @@ class HTTP_Request2_Response
     /**
      * Status code
      * @var  integer
-     * @link https://tools.ietf.org/html/rfc2616#section-6.1.1
+     * @link http://tools.ietf.org/html/rfc2616#section-6.1.1
      */
     protected $code;
 
     /**
      * Reason phrase
      * @var  string
-     * @link https://tools.ietf.org/html/rfc2616#section-6.1.1
+     * @link http://tools.ietf.org/html/rfc2616#section-6.1.1
      */
     protected $reasonPhrase;
 
@@ -143,7 +143,7 @@ class HTTP_Request2_Response
      * Associative array of HTTP status code / reason phrase.
      *
      * @var  array
-     * @link https://tools.ietf.org/html/rfc2616#section-10
+     * @link http://tools.ietf.org/html/rfc2616#section-10
      */
     protected static $phrases = array(
 
@@ -212,7 +212,7 @@ class HTTP_Request2_Response
      * @return string|array|null Default reason phrase for $code if $code is given
      *                           (null if no phrase is available), array of all
      *                           reason phrases if $code is null
-     * @link   https://pear.php.net/bugs/18716
+     * @link   http://pear.php.net/bugs/18716
      */
     public static function getDefaultReasonPhrase($code = null)
     {
@@ -308,7 +308,7 @@ class HTTP_Request2_Response
      *
      * @param string $cookieString value of Set-Cookie header
      *
-     * @link     https://web.archive.org/web/20080331104521/https://cgi.netscape.com/newsref/std/cookie_spec.html
+     * @link     http://web.archive.org/web/20080331104521/http://cgi.netscape.com/newsref/std/cookie_spec.html
      */
     protected function parseCookie($cookieString)
     {
@@ -370,7 +370,7 @@ class HTTP_Request2_Response
      * This may be different from the request URL if redirects were followed.
      *
      * @return string
-     * @link   https://pear.php.net/bugs/bug.php?id=18412
+     * @link   http://pear.php.net/bugs/bug.php?id=18412
      */
     public function getEffectiveUrl()
     {
@@ -499,7 +499,7 @@ class HTTP_Request2_Response
      * @return   string  decoded data
      * @throws   HTTP_Request2_LogicException
      * @throws   HTTP_Request2_MessageException
-     * @link     https://tools.ietf.org/html/rfc1952
+     * @link     http://tools.ietf.org/html/rfc1952
      */
     public static function decodeGzip($data)
     {

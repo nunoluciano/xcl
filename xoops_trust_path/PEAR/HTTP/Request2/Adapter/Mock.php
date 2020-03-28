@@ -36,9 +36,9 @@
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  SVN: $Id: Mock.php 324937 2012-04-07 10:05:57Z avb $
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 
 /**
@@ -66,9 +66,9 @@ require_once 'HTTP/Request2/Adapter.php';
  * @category HTTP
  * @package  HTTP_Request2
  * @author   Alexey Borzov <avb@php.net>
- * @license  https://opensource.org/licenses/bsd-license.php New BSD License
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @version  Release: 2.1.1
- * @link     https://pear.php.net/package/HTTP_Request2
+ * @link     http://pear.php.net/package/HTTP_Request2
  */
 class HTTP_Request2_Adapter_Mock extends HTTP_Request2_Adapter
 {
@@ -123,7 +123,7 @@ class HTTP_Request2_Adapter_Mock extends HTTP_Request2_Adapter
      * @param mixed  $response either a string, a pointer to an open file,
      *                         an instance of HTTP_Request2_Response or Exception
      * @param string $url      A request URL this response should be valid for
-     *                         (see {@link https://pear.php.net/bugs/bug.php?id=19276})
+     *                         (see {@link http://pear.php.net/bugs/bug.php?id=19276})
      *
      * @throws   HTTP_Request2_Exception
      */

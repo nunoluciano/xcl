@@ -2,7 +2,7 @@
  * @class  elFinder toast
  * 
  * This was created inspired by the toastr. Thanks to developers of toastr.
- * CodeSeven/toastr: https://johnpapa.net <https://github.com/CodeSeven/toastr>
+ * CodeSeven/toastr: http://johnpapa.net <https://github.com/CodeSeven/toastr>
  *
  * @author Naoki Sawada
  **/

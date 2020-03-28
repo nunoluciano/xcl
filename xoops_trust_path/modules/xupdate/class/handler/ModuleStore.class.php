@@ -12,7 +12,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
 
     const PRIMARY = 'id';
     const DATANAME = 'modulestore';
-    
+
     public $mModule ;
     public $modinfo = array();
     public $detailed_version = '' ;
@@ -42,11 +42,11 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         $this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
         $this->initVar('detail_url', XOBJ_DTYPE_STRING, '', false, 255);
         $this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
-        
+
         // ver >= 0.06
         $this->initVar('isactive', XOBJ_DTYPE_INT, '-1', false);
         $this->initVar('hasupdate', XOBJ_DTYPE_INT, '0', false);
-        
+
         // ver >= 0.11
         $this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 255);
 
@@ -54,7 +54,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         $this->initVar('category_id', XOBJ_DTYPE_INT, '0', false);
         parent::__construct() ;
     }
-    
+
     public function assignVars($item)
     {
         $tag = isset($item['tag']) ? $item['tag'] : '';
@@ -68,7 +68,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         }
         return $res;
     }
-    
+
     public function get($key)
     {
         if ($key === 'posttime') {
@@ -76,7 +76,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         }
         return parent::get($key);
     }
-    
+
     /**
      * @return string
      */
@@ -104,9 +104,9 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
             $this->modinfo =& $this->mModule->getInfo();
             $this->modinfo['version'] = sprintf('%01.2f', $this->mModule->getVar('version') / 100);
             $trust_dirname = $this->mModule->getVar('trust_dirname');
-            
+
             $this->options = $this->unserialize_options($readini);
-            
+
             // set detaild_version by constat (ex. '_MI_LEGACY_DETAILED_VERSION'
             if (! isset($this->modinfo['detailed_version'])) {
                 if (defined('_MI_'.strtoupper($dirname).'_DETAILED_VERSION')) {
@@ -117,7 +117,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                     $this->modinfo['detailed_version'] = '';
                 }
             }
-            
+
             if ($readini) {
                 if ($this->mModule->getVar('isactive')) {
                     if (($this->getVar('version') && $this->mModule->getVar('version') < $this->getVar('version'))
@@ -133,7 +133,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
                     $this->setVar('isactive', 0);
                 }
             }
-            
+
             if (!isset($this->modinfo['trust_dirname'])) {
                 $this->modinfo['trust_dirname'] = '';
             }
@@ -170,7 +170,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         } else {
             $this->mModule = new XoopsModule();//空のobject
             $this->mModule->cleanVars();
-            
+
             $this->options = $this->unserialize_options($readini);
             if (isset($this->options['modinfo'])) {
                 $this->modinfo = $this->options['modinfo'];
@@ -357,7 +357,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
 
     /**
      * Get this item's store name
-     * 
+     *
      * @return string Tthis item's store name
      */
     public function get_StoreName()
@@ -374,7 +374,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
     public function unserialize_options($readini = false)
     {
         $dirname = $this->getVar('dirname');
-         
+
         //unserialize xin option fileld and replace dirname
         $options = array();
         if ($option = $this->get('options')) {
@@ -446,7 +446,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         }
         return $options;
     }
-    
+
     /**
      *
      * @param $format
@@ -457,10 +457,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
     {
         $format = sprintf($format, $args[0], $args[1], $args[2]);
     }
-    
+
     /**
      * Get Store name by sid
-     * 
+     *
      * @param intger $sid
      * @return string Store name
      */
@@ -477,10 +477,10 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         }
         return $names[$sid];
     }
-    
+
     /**
      * Check hasupdate (compare $version1[local], $version2[fetched])
-     * 
+     *
      * @param $version1
      * @param $version2
      * @return boolean
@@ -505,7 +505,7 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
     public $mPrimary = 'id';
     //XoopsSimpleObject
     public $mClass = 'Xupdate_ModuleStore';
-    
+
     public $mDirname;
 
 
@@ -538,7 +538,7 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
 
     /**
      * Get count has update items
-     * 
+     *
      * @param string $contents
      * @return number
      */
@@ -552,11 +552,11 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler
         $mObjects = parent::getObjects($criteria);
         return count($mObjects);
     }
-    
+
     /**
      * Get Notify HTML (Pull down bar)
      * Add as JavaScript into headerScript
-     * 
+     *
      * @return void
      */
     public function getNotifyHTML()
@@ -591,23 +591,23 @@ EOD;
 				<a href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-arrowdown.png" /></a>
 				</div>';
             }
-            
+
             $result = '<div class="notification '.$type.' hide">
 			<a class="close" href="javascript:"><img src="'.XOOPS_URL.'/common/js/notify/images/icon-close.png" /></a>
 			<div>'.$msg.'</div>
 			</div>' . $ondemandBtn;
             $result = str_replace("'", '&#039;', $result);
             $result = str_replace(array("\r", "\n", "\t"), '', $result);
-            
+
             $headerScript= $root->mContext->getAttribute('headerScript');
             $headerScript->addStylesheet('/common/js/notify/style/default.css');
-            $headerScript->addStylesheet('/modules/'.$this->mDirname.'/admin/templates/stylesheets/module.css');
+            //$headerScript->addStylesheet('/modules/'.$this->mDirname.'/admin/templates/stylesheets/module.css'); !Fix Gigamaster - move into admin theme
             $headerScript->addLibrary('/common/js/notify/notification.js');
             $headerScript->addLibrary('/common/js/jquery.cookie.js');
             $headerScript->addScript("\njQuery('$result').appendTo('body');\n".$notifyJS);
         }
     }
-    
+
     protected function _isActivityClient(/*** mixed[] ***/ $conf)
     {
         return false;

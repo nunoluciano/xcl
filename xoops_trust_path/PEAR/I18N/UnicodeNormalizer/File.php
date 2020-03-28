@@ -31,9 +31,9 @@
  * @package   I18N_UnicodeNormalizer
  * @author    Michel Corne <mcorne@yahoo.com>
  * @copyright 2007 Michel Corne
- * @license   https://www.opensource.org/licenses/bsd-license.php The BSD License
+ * @license   http://www.opensource.org/licenses/bsd-license.php The BSD License
  * @version   SVN: $Id: File.php 38 2007-07-23 11:42:30Z mcorne $
- * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
  */
 
 /**
@@ -45,7 +45,7 @@
  * @copyright 2007 Michel Corne
  * @version   Release: @package_version@
  * @version   SVN: $Id: File.php 38 2007-07-23 11:42:30Z mcorne $
- * @link      https://pear.php.net/package/I18N_UnicodeNormalizer
+ * @link      http://pear.php.net/package/I18N_UnicodeNormalizer
  */
 class I18N_UnicodeNormalizer_File
 {
@@ -95,10 +95,10 @@ class I18N_UnicodeNormalizer_File
         ' * @package I18N_UnicodeNormalizer',
         ' * @author Michel Corne <mcorne@yahoo.com>',
         ' * @copyright 2007 Michel Corne',
-        ' * @license https://www.opensource.org/licenses/bsd-license.php The BSD License',
+        ' * @license http://www.opensource.org/licenses/bsd-license.php The BSD License',
         // the SVN tag is set dynamically so it does get changed during the versioning of this file
         ' * @version SVN: $%6$s$',
-        ' * @link https://pear.php.net/package/I18N_UnicodeNormalizer',
+        ' * @link http://pear.php.net/package/I18N_UnicodeNormalizer',
         ' */',
         '',
         'return %7$s;', // the data dumped into an array

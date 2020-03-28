@@ -111,7 +111,7 @@ abstract class Xupdate_AbstractAction
     protected function _getStylesheet()
     {
         //return $this->mRoot->mContext->mModuleConfig['css_file'];
-        return '/modules/xupdate/admin/templates/stylesheets/module.css';
+        // return '/modules/xupdate/admin/templates/stylesheets/module.css'; !Fix Gigamaster - move into admin theme
     }
 
     /**
@@ -240,7 +240,7 @@ abstract class Xupdate_AbstractAction
     public function executeViewCancel(/*** XCube_RenderTarget ***/ &$render)
     {
     }
-    
+
     protected function modalBoxJs()
     {
         return <<<EOD
@@ -254,29 +254,29 @@ jQuery(document).ready(function($) {
         if (isCancel) {
         	return;
         }
-        
+
         //Get the A tag
         var id = $('#xupdate_dialog');
-     
+
         //Get the screen height and width
         var maskHeight = $(document).height();
         var maskWidth = $(window).width();
-     
+
         //Set height and width to mask to fill up the whole screen
         $('#xupdate_mask').css({'width':maskWidth,'height':maskHeight});
-         
-        //transition effect    
-        $('#xupdate_mask').fadeIn(1000);   
-        $('#xupdate_mask').fadeTo("slow",0.8); 
-     
+
+        //transition effect
+        $('#xupdate_mask').fadeIn(1000);
+        $('#xupdate_mask').fadeTo("slow",0.8);
+
         //Get the window height and width
         var winH = $(window).height();
         var winW = $(window).width();
-               
+
         //Set the popup window to center
         $(id).css('top',  winH/2-$(id).height()/2);
         $(id).css('left', winW/2-$(id).width()/2);
-     
+
         //transition effect
         $(id).fadeIn(2000);
 
@@ -284,10 +284,10 @@ jQuery(document).ready(function($) {
 });
 EOD;
     }
-    
+
     /**
      * Remove html/install & chmod mainfile.php 0404
-     * 
+     *
      * @return boolean
      */
     protected function _removeInstallDir()
@@ -296,26 +296,26 @@ EOD;
         if ($this->Ftp->app_login()) {
             // enable protector in mainfile.php
             $this->Func->write_mainfile_protector();
-            
+
             // write protect mainfile.php
             $this->Func->mainfile_to_readonly();
-            
+
             // remove install directory
             $this->Ftp->localRmdirRecursive(XOOPS_ROOT_PATH . '/install');
-            
+
             // set writable "mod_config['temp_path']"
             if (! $this->Xupdate->params['is_writable']['result']) {
                 $this->Ftp->localChmod($this->Xupdate->params['is_writable']['path'], _MD_XUPDATE_WRITABLE_DIR_PERM_T);
             }
-            
+
             // set writable protector config dir
             $protector_config = XOOPS_TRUST_PATH . '/modules/protector/configs';
             if (! Xupdate_Utils::checkDirWritable($protector_config)) {
                 $this->Ftp->localChmod($protector_config, _MD_XUPDATE_WRITABLE_DIR_PERM_T);
             }
-            
+
             clearstatcache();
-            
+
             // edit /preload/CorePackPreload.class.php
             $src = file_get_contents(XOOPS_ROOT_PATH . '/preload/CorePackPreload.class.php');
             if (! is_dir(XOOPS_ROOT_PATH . '/install') && ! preg_match('/define\s*\(\'XUPDATE_INSTALLERCHECKER_ACTIVE\'/', $src)) {
@@ -332,7 +332,7 @@ define(\'XUPDATE_INSTALLERCHECKER_ACTIVE\', false);';
                 $this->Ftp->uploadNakami($sourcePath, XOOPS_ROOT_PATH . '/preload/');
                 $this->Ftp->localRmdirRecursive($sourcePath);
             }
-            
+
             $this->Ftp->app_logout();
         }
         return $ret;
