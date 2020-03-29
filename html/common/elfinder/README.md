@@ -124,7 +124,7 @@ Installation
 Downloads
 ------------
 **Stable releases** ([Changelog](https://github.com/Studio-42/elFinder/blob/master/Changelog))
- + [elFinder 2.1.53](https://github.com/Studio-42/elFinder/archive/2.1.53.zip)
+ + [elFinder 2.1.55](https://github.com/Studio-42/elFinder/archive/2.1.55.zip)
  + [elFinder 2.0.9](https://github.com/Studio-42/elFinder/archive/2.0.9.zip) (deprecated)
 
 **Nightly builds**
@@ -191,7 +191,7 @@ Hint: [How to load CSS with RequireJS?](https://github.com/Studio-42/elFinder/wi
 Support
 -------
 
- * [Homepage](https://elfinder.org)
+ * [Homepage](http://elfinder.org)
  * [Wiki](https://github.com/Studio-42/elFinder/wiki)
  * [Issues](https://github.com/Studio-42/elFinder/issues)
  * <dev@std42.ru>
@@ -204,7 +204,7 @@ Authors
  * Chief developer: Dmitry "dio" Levashov <dio@std42.ru>
  * Maintainer: Troex Nevelin <troex@fury.scancode.ru>
  * Developers: Alexey Sukhotin <strogg@yandex.ru>, Naoki Sawada <hypweb+elfinder@gmail.com>
- * Icons: PixelMixer, [Yusuke Kamiyamane](https://p.yusukekamiyamane.com), [Icons8](https://icons8.com)
+ * Icons: PixelMixer, [Yusuke Kamiyamane](http://p.yusukekamiyamane.com), [Icons8](https://icons8.com)
 
 We hope our tools will be helpful for you.
 

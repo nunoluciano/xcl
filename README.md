@@ -1,30 +1,29 @@
-# XCL Web Application Platform
+# XCL — Web Application Platform
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)  
 
-### ✅ 2019-12-29 Pre-release v.2.3.0-alpha 
-### ✅ 2019-12-19 Merge Feature Branch Admin New-UI [WIP]  
-### ✅ 2019-10-19 XCL update to 7.2.x MySQL 5.6.x  
-### :construction: 2019-01-29 XCL update to PHP7  
 
-The new **XCL** development avoids constraining new designs with legacy backwards compatibility issues and the design process is simplified to extend the Web Application Platform.  
 
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />
+**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform.  
 
-## :computer: The Requirements  
-
-✅ Tested PHP 7.2.x
-✅ Tested MySQL 5.6.x
-⁉️ Tested PHP 7.3.x
-❌ Tested MySQL8 #152
-
-Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />  
 
 
 ## :information_source: The App
 
 
 **The XCL** is a simple, secure and scalable web application platform. The modular architecture is built in PHP with Cube core, SQL and a smarty theming system. The graphical user interface empowers everyone to create dynamic and content rich apps with HTML, CSS and Javascript - from the best looking blogs, forums, portfolios, intranet and business websites to the much safer desktop applications on Linux, Mac or Windows.
+
+
+## :computer: The Requirements  
+
+✅ Tested PHP 7.2.x  
+✅ Tested MySQL 5.6.x  
+⁉️ Tested PHP 7.3.x  
+❌ Tested MySQL8 #152  
+
+Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album or gallery, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.  
+
 
 **The XOOPS Cube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team Core values are integrity, innovation, passion and respect. When you know who you are, you know what to do, you know what story to tell and the stories that you want to hear. We share the essential knowledge and understanding of the “spirit of open source” necessary to create tools that encourage creativity.
 
