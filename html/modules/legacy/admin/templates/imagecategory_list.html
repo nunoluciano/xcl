@@ -7,25 +7,21 @@
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}></span>
 </div>
 
-
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}></h2>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div class="tips">
-<ul>
-<li>
-  <{$smarty.const._AD_LEGACY_TIPS_IMGCAT}><br />
-  <{$smarty.const._AD_LEGACY_LANG_IMGCAT_FILETYPETOTAL}>: <{$fileImgcatTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_IMGCAT_DBTYPETOTAL}>: <{$dbImgcatTotal}>
-</li>
-<li class="addFolder"><a href="index.php?action=ImagecategoryEdit"><{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}></a></li>
-<!-- <li class="addImage"><a href="javascript:openWithSelfMain('<{$xoops_url}>/common/fckeditor/editor/plugins/kfm/index.php', 'filemanager', 750, 600);">File Manager</a></li> -->
-<li class="archive"><a href="index.php?action=ImageUpload"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}></a></li>
-<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
-</ul>
+  <ul>
+    <li>
+      <{$smarty.const._AD_LEGACY_TIPS_IMGCAT}><br />
+      <{$smarty.const._AD_LEGACY_LANG_IMGCAT_FILETYPETOTAL}>: <{$fileImgcatTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_LEGACY_LANG_IMGCAT_DBTYPETOTAL}>: <{$dbImgcatTotal}>
+    </li>
+    <li class="addFolder"><a href="index.php?action=ImagecategoryEdit"><{$smarty.const._AD_LEGACY_LANG_CREATE_NEW}></a></li>
+    <!-- <li class="addImage"><a href="javascript:openWithSelfMain('<{$xoops_url}>/common/fckeditor/editor/plugins/kfm/index.php', 'filemanager', 750, 600);">File Manager</a></li> -->
+    <li class="archive"><a href="index.php?action=ImageUpload"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD}></a></li>
+    <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
+  </ul>
 </div>
 
 
@@ -132,7 +128,5 @@
     </tr>
 </table>
 </form>
-
-</div>
 
 <{ include file="./components/pagenavi.html" }>

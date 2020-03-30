@@ -5,26 +5,28 @@
 </div>
 
 
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_SUCCESS}></h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODUNINSTALL_LOG}></h4>
 
-<div class="sqlDelete">
-<ul>
-<{foreach item=msg from=$log}>
-  <{if $msg.type == "error"}>
-    <li class="legacy_module_error"><{$msg.message|xoops_escape}></li>
-  <{elseif $msg.type == "warning"}>
-    <li class="legacy_module_warning"><{$msg.message|xoops_escape}></li>
-  <{else}>
-    <li class="legacy_module_message"><{$msg.message|xoops_escape}></li>
-  <{/if}>
-<{/foreach}>
-</ul>
+<div class="ui-card-full">
+
+  <div class="sqlDelete">
+    <ul>
+    <{foreach item=msg from=$log}>
+      <{if $msg.type == "error"}>
+        <li class="legacy_module_error"><{$msg.message|xoops_escape}></li>
+      <{elseif $msg.type == "warning"}>
+        <li class="legacy_module_warning"><{$msg.message|xoops_escape}></li>
+      <{else}>
+        <li class="legacy_module_message"><{$msg.message|xoops_escape}></li>
+      <{/if}>
+    <{/foreach}>
+    </ul>
+  </div>
+
 </div>
 
 <div class="legacy_module_return">
@@ -35,6 +37,4 @@
 	<a href="index.php?action=InstallList" class="ui-btn">
 		<img src="<{"icons/icon-package.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>
 	</a>
-</div>
-
 </div>

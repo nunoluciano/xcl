@@ -9,16 +9,13 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <{if $actionForm->get('id')}>
   <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_EDIT}></h2>
 <{else}>
   <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_NEW}></h2>
 <{/if}>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -87,4 +84,3 @@
   </table>
 </form>
 
-</div>

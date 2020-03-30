@@ -5,13 +5,11 @@
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></span>
 </div>
 
+<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h2>
 
-
-<div class="ui-card-full">
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h2>
+<div class="ui-card-full">
 
 <h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LOG}></h4>
 
@@ -42,7 +40,7 @@
 	</a>
 
 	<a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>" class="ui-btn">
-		<img src="<{"icons/icon-edt.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}>
+		<img src="<{"icons/icon-edit.svg"|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}>
 	</a>
 
 <{if $module->getInfo('blocks')}>

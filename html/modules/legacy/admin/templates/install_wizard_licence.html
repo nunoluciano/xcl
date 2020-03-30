@@ -6,12 +6,9 @@
 </div>
 
 
-<div class="ui-card-full">
+<h2 class="admintitle"><{$licence|xoops_escape}></h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
-
-
-<h3 class="admintitle"><{$licence|xoops_escape}></h3>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -22,6 +19,8 @@
   </ul>
 </div>
 <{/if}>
+
+<div class="ui-card-full">
 
 <form method="post" action="">
 <{xoops_token form=$actionForm}>

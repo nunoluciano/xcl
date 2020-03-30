@@ -13,11 +13,6 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle">
   <{if $actionForm->get('content')}>
     <{if $object->get('visible') == 1 }>
@@ -29,6 +24,8 @@
     <{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}>
   <{/if}>
 </h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -140,7 +137,7 @@ skin=silver value=$actionForm->get('content') *}>
 		</tr>
 	</tbody>
 
-	<tfoot>x
+	<tfoot>
     <tr>
       <td colspan="2" class="foot">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
@@ -152,5 +149,3 @@ skin=silver value=$actionForm->get('content') *}>
 	</table>
 
 </form>
-
-</div>

@@ -7,9 +7,9 @@
 </div>
 
 
-<div class="ui-card-full">
-
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="tips">
  <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}>
@@ -25,14 +25,10 @@
 </div>
 <{/if}>
 
-</div><{*  /ui-card-full *}>
-
 
 <{ include file="./components/block-search.html" }>
 
 <{ include file="./components/block-filter.html" }>
-
-
 
 
 <form name="blockform" method="post" action="./index.php?action=BlockList">

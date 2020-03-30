@@ -5,23 +5,21 @@
 </div>
 
 
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h2>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div class="tips">
-<ul>
-<li>
-<{$smarty.const._AD_LEGACY_LANG_IMAGE_TOTAL}>: <{$ImageTotal}>&nbsp;&nbsp;
-( <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}> )
-</li>
-<li>
-<{$smarty.const._AD_LEGACY_TIPS_IMAGE}>
-</li>
-<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
-</ul>
+  <ul>
+    <li>
+    <{$smarty.const._AD_LEGACY_LANG_IMAGE_TOTAL}>: <{$ImageTotal}>&nbsp;&nbsp;
+    ( <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}> )
+    </li>
+    <li>
+    <{$smarty.const._AD_LEGACY_TIPS_IMAGE}>
+    </li>
+    <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=legacy"><{$smarty.const._HELP}></a></li>
+  </ul>
 </div>
 
 <ul class="toptab">
@@ -130,7 +128,5 @@
 </table>
 
 </form>
-
-</div>
 
 <{ include file="./components/pagenavi.html" }>

@@ -9,11 +9,6 @@
 </div>
 
 
-
-<div class="ui-card-full">
-  <div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle">
 <{if $actionForm->get('com_id')}>
   <{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}>
@@ -21,6 +16,8 @@
   <{$smarty.const._AD_LEGACY_LANG_COMMENT_NEW}>
 <{/if}>
 </h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -98,6 +95,3 @@
 	</table>
 
 </form>
-
-
-</div>
