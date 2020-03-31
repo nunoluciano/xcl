@@ -11,7 +11,7 @@ if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php
 // special check for makeforum
 if( ! $isadmin && ! @$category_permissions[ $cat_id ]['can_makeforum'] && ! @$category_permissions[ $cat_id ]['is_moderator'] ) die( _MD_D3FORUM_ERR_CREATEFORUM ) ;
 // TRANSACTION PART
-// permissions will be set same as the parent category. (also moderator)
+// permissions will be set the same as the parent category. (also moderator)
 require_once dirname(dirname(__FILE__)).'/include/transact_functions.php' ;
 if( isset( $_POST['forumman_post'] ) ) {
 

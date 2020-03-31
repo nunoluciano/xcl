@@ -31,6 +31,7 @@ $message4html = '' ;
 $topic_id = 0 ;
 $invisible = 0 ;
 $approval = 1 ;
+// specific default options for newtopic
 $post_default_options = array_map( 'trim' , explode( ',' , strtolower( @$xoopsModuleConfig['default_options'] ) ) ) ;
 foreach( array( 'smiley' , 'xcode' , 'br' , 'number_entity' , 'special_entity' , 'html' , 'attachsig' , 'hide_uid' , 'notify' , 'u2t_marked' ) as $key ) {
 	$$key = in_array( $key , $post_default_options ) ? 1 : 0 ;
