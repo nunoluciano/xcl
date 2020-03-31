@@ -1,4 +1,5 @@
 <?php
+
 class altsysUtils
 {
     public static function getDelegateCallbackClassNames($name, $doRegist = true)

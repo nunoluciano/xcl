@@ -227,7 +227,9 @@ altsys_include_mymenu() ;
 $breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
 $breadcrumbsObj->appendPath(XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=compilehookadmin', _MI_ALTSYS_MENU_COMPILEHOOKADMIN) ;
 
-echo "<div class='ui-card-main'>
+echo "
+<h2>"._MI_ALTSYS_MENU_COMPILEHOOKADMIN."</h2>
+<div class='ui-card-full'>
 	<style>
 		dl	{ margin: 10px; }
 		dt	{ margin-bottom:5px; }

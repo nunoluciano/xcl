@@ -15,11 +15,6 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle">
   <{if $category != null}>
     <{$category->getName()|xoops_escape}>
@@ -27,6 +22,9 @@
     <{$smarty.const._MI_LEGACY_MENU_PREFERENCE}>
   <{/if}>
 </h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -271,5 +269,3 @@
 </table>
 
 </form>
-
-</div>
