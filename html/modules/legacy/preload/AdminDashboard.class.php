@@ -31,9 +31,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     if (!defined('XC_ADMINDASHBOARD_WAITING')) {
         define('XC_ADMINDASHBOARD_WAITING', 0);
     }
-    /* 
+    /*
     * !TODO - Comments
-    */ 
+    */
     if (!defined('XC_ADMINDASHBOARD_COMMENTS')) {
         define('XC_ADMINDASHBOARD_COMMENTS', 0);
     }
@@ -47,13 +47,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
     //!Fix Cannot be displayed on 'admin-dashboard.html'
     //you can determine which block should be displayed!
 
-    
+
     //display(1) or not display(0): online-info block
     if (!defined('XC_ADMINBLOCK_ONLINEINFO')) {
         define('XC_ADMINBLOCK_ONLINEINFO', 1);
     }
 
-    //display(1) or not display(0): waiting-contents block    
+    //display(1) or not display(0): waiting-contents block
     if (!defined('XC_ADMINBLOCK_WAITING')) {
     define('XC_ADMINBLOCK_WAITING', 0);
     }
@@ -63,7 +63,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
         define('XC_ADMINBLOCK_SYSINFO', 0);
     }
 
-    /* 
+    /*
     *  !TODO - ADMINTHEME - display(1) or not display(0): admin-theme select block
     */
     if (!defined('XC_ADMINBLOCK_ADMINTHEME')) {
@@ -73,7 +73,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
         /*
         * !TODO - Move to catalog - new language constants
-        */ 
+        */
 		if (!defined('_MB_LEGACY_XCLEGACYVERSION')) {
 		define('_MB_LEGACY_XCLEGACYVERSION', "XC Legacy Version");
 		}
@@ -106,7 +106,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 		}
 		//you can add your own here!
 
-  
+
 
 
 class Legacy_AdminDashboard extends XCube_ActionFilter
@@ -114,11 +114,22 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
     public function preBlockFilter()
     {
-        $root=&XCube_Root::getSingleton();
-        $root->mDelegateManager->add("Legacypage.Admin.SystemCheck", "Legacy_AdminDashboard::AdminDashboardSystem", XCUBE_DELEGATE_PRIORITY_NORMAL+1);
-        $this->mController->_mStrategy->mSetupBlock->add(array(&$this, 'AdminSetupBlock'));
-    }
 
+        $root=&XCube_Root::getSingleton();
+
+        $root->mDelegateManager->add("Legacypage.Admin.SystemCheck", "Legacy_AdminDashboard::AdminDashboardSystem", XCUBE_DELEGATE_PRIORITY_NORMAL+1);
+
+        /*
+        * Legacy/kernel/Legacy_AdminControllerStrategy
+        * Note : fix switch from AdminRenderSystem to RenderSystem
+        */
+        if ($root->mController->_mStrategy) {
+            if (get_class($root->mController->_mStrategy) == 'Legacy_AdminControllerStrategy') {
+                $this->mController->_mStrategy->mSetupBlock->add( [$this, 'AdminSetupBlock'] );
+            }
+        }
+
+    }
 
 	//If you want to add any new block, please customize this func!
 	//please refer to sample-blocks!
@@ -201,7 +212,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             xoops_result($systeminfo_message, _AD_LEGACY_SYSTEMINFO, 'tips');
         } // if Systeminfo
 
-        
+
         // PHP Settings
         if (XC_ADMINDASHBOARD_PHPSETTING) {
             $phpsetting_message = array();
