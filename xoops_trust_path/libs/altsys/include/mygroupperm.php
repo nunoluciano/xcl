@@ -100,17 +100,4 @@ if (!empty($_POST['perms']) && is_array($_POST['perms'])) {
             }
         }
     }
-}
-/*
-$backlink = XOOPS_URL.'/admin.php';
-if ($module->getVar('hasadmin')) {
-    $adminindex = $module->getInfo('adminindex');
-    if ($adminindex) {
-        $backlink = XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$adminindex;
-    }
-}
-
-$msg[] = '<br /><br /><a href="'.$backlink.'">'._BACK.'</a>';
-xoops_cp_header();
-xoops_result($msg);
-xoops_cp_footer();  GIJ */;
+};

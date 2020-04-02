@@ -73,8 +73,8 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
 
     $dbIntegrate = new protectorDbIntegrate($db->conn);
 
-    $prefix = $_POST['prefix'] ;//check line 61
-//HACK by suin & nao-pon 2012/01/06
+    $prefix = $_POST['prefix'] ; //check line 61
+    //HACK by suin & nao-pon 2012/01/06
     while (ob_get_level() > 0) {
         if (! ob_end_clean()) {
             break;
@@ -143,6 +143,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
                     $values[] = '\'' . str_replace($search, $replace, addslashes($row[$j])) . '\'';
                 } // end if
             } // end for
+
             $line = "INSERT INTO `$table` VALUES (" . implode(', ', $values) . ");\n";
             if ($tempfile) {
                 fwrite($tempfile, $line);
@@ -164,7 +165,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
         fclose($tempfile);
     }
 
-//by domifara for add action zip ,ta.gzdownload
+    //by domifara for add action zip,tar.gzdownload
     if (! empty($_POST['download_zip'])) {
         require_once XOOPS_ROOT_PATH.'/class/zipdownloader.php' ;
         $downloader = new XoopsZipDownloader();
@@ -179,7 +180,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
         exit;
     }
 
-//fix for mb_http_output setting and for add any browsers
+    //fix for mb_http_output setting and for add any browsers
     if (function_exists('mb_http_output')) {
         mb_http_output('pass');
     }
@@ -276,8 +277,7 @@ echo "<div class='ui-card-main'>
 		<th>UPDATED</th>
 		<th>COPY</th>
 		<th>ACTIONS</th>
-	</tr>
-" ;
+	</tr>";
 
 foreach ($prefixes as $prefix) {
 

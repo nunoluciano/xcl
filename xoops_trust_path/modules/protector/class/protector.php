@@ -164,15 +164,7 @@ class protector
                 $db_conf[ $key ] = $val;
             }
         } 
-/*         else {
-            $result = @mysql_query($query, $this->_conn);
-            if (!$result || mysql_num_rows($result) < 5) {
-                return false;
-            }
-            while (list($key, $val) = mysql_fetch_row($result)) {
-                $db_conf[ $key ] = $val;
-            }
-        } */
+
         $db_conf_serialized = serialize($db_conf);
 
     // update config cache
@@ -696,34 +688,6 @@ class protector
                 }
             }
         }
-/*	foreach( $_POST as $key => $val ) {
-        if( is_array( $_POST[ $key ] ) ) continue ;
-        if( substr( trim( $val ) , 0 , 3 ) == '../' || strstr( $val , '../../' ) ) {
-            $this->last_error_type = 'ParentDir' ;
-            $this->message .= "Doubtful file specification '$val' found.\n" ;
-            $this->output_log( $this->last_error_type , 0 , false , 128 ) ;
-            $sanitized_val = str_replace( chr(0) , '' , $val ) ;
-            if( substr( $sanitized_val , -2 ) != ' .' ) $sanitized_val .= ' .' ;
-            $_POST[ $key ] = $HTTP_POST_VARS[ $key ] = $sanitized_val ;
-            if( $_REQUEST[ $key ] == $_POST[ $key ] ){
-                $_REQUEST[ $key ] = $sanitized_val ;
-            }
-        }
-    }
-    foreach( $_COOKIE as $key => $val ) {
-        if( is_array( $_COOKIE[ $key ] ) ) continue ;
-        if( substr( trim( $val ) , 0 , 3 ) == '../' || strstr( $val , '../../' ) ) {
-            $this->last_error_type = 'ParentDir' ;
-            $this->message .= "Doubtful file specification '$val' found.\n" ;
-            $this->output_log( $this->last_error_type , 0 , false , 128 ) ;
-            $sanitized_val = str_replace( chr(0) , '' , $val ) ;
-            if( substr( $sanitized_val , -2 ) != ' .' ) $sanitized_val .= ' .' ;
-            $_COOKIE[ $key ] = $HTTP_COOKIE_VARS[ $key ] = $sanitized_val ;
-            if( $_REQUEST[ $key ] == $_COOKIE[ $key ] ){
-                $_REQUEST[ $key ] = $sanitized_val ;
-            }
-        }
-    }*/
 
     return true;
 }
@@ -862,18 +826,9 @@ class protector
      */
     public function check_contami_systemglobals()
     {
-        /*	if( $this->_done_contami ) return $this->_safe_contami ;
-    else $this->_done_contami = true ; */
-
-/*	foreach( $this->_bad_globals as $bad_global ) {
-        if( isset( $_REQUEST[ $bad_global ] ) ) {
-            $this->message .= "Attempt to inject '$bad_global' was found.\n" ;
-            $this->_safe_contami = false ;
-            $this->last_error_type = 'CONTAMI' ;
-        }
-    }*/
 
     return $this->_safe_contami;
+    
     }
 
     public function check_sql_isolatedcommentin($sanitize = true)

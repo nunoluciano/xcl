@@ -177,8 +177,7 @@ $mymenu_fake_uri = 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$
 // mymenu
 altsys_include_mymenu() ;
 
-echo "<div class='ui-card-main'>\n\n
-<h3 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</h3>\n" ;
+echo "<h2 style='text-align:"._GLOBAL_LEFT.";'>"._MD_A_MYTPLSFORM_EDIT." : ".htmlspecialchars($tpl['tpl_type'], ENT_QUOTES)." : ".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)." (".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES).")</h2>\n" ;
 
 
 // diff from file to selected DB template
@@ -224,7 +223,7 @@ if ($tpl['tpl_tplset'] != 'default') {
 }
 
 
-echo "
+echo "<div class='ui-card-full'>\n\n
 	<form name='diff_form' id='diff_form' action='' method='get'>\n" ;
 if ($diff_from_file4disp) {
     echo "<input type='checkbox' name='display_diff2file' value='1' onClick=\"if(this.checked){document.getElementById('diff2file').style.display='block'}else{document.getElementById('diff2file').style.display='none'};\" id='display_diff2file' checked='checked' />&nbsp;<label for='display_diff2file'>diff from file</label>

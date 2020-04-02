@@ -115,8 +115,7 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php';
 
 // title
-echo "<div class='ui-card-main'>\n
-        <h2>".$xoopsModule->name()."</h3>\n";
+echo "<h2>".$xoopsModule->name()."</h2>\n";
 
 // configs writable check
 if (!is_writable(dirname(dirname(__FILE__)).'/configs')) {
@@ -179,7 +178,7 @@ echo "
 echo "
 <table width='95%' border='0' cellpadding='4' cellspacing='0'><tr><td>
 <form action='' method='GET' style='margin-bottom:0px;'>
-  <table width='95%' border='0' cellpadding='4' cellspacing='0'>
+  <table border='0' cellpadding='4' cellspacing='0'>
     <tr>
       <td align='left'>
         <select name='num' onchange='submit();'>$num_options</select>
@@ -191,6 +190,7 @@ echo "
     </tr>
   </table>
 </form>
+
 <form name='MainForm' action='' method='POST' style='margin-top:0px;'>
 ".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin')."
 <input type='hidden' name='action' value=''>
@@ -254,7 +254,7 @@ echo "
 </div>
 </form>
 </td></tr></table>\n
-</div>
+
 ";
 
 xoops_cp_footer();

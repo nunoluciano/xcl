@@ -7,7 +7,7 @@ xoops_cp_header();
 include dirname(__FILE__).'/mymenu.php' ;
 
 // open table for ADVISORY
-echo "<div class='ui-card-main'>\n" ;
+echo "<div class='ui-card-full'>\n" ;
 
 // calculate the relative path between XOOPS_ROOT_PATH and XOOPS_TRUST_PATH
 $root_paths = explode('/', XOOPS_ROOT_PATH) ;
@@ -111,7 +111,7 @@ $uri_isocom = XOOPS_URL."/index.php?cid=".urlencode(",password /*") ;
 echo "<p>"._AM_ADV_CHECKISOCOM.":</p>\n" ;
 echo "<p><a href='$uri_isocom' target='_blank'>$uri_isocom</a></p>" ;
 
-// close div 'ui-card-main'
+// close div 'ui-card-full'
 echo "</div>\n" ;
 
 xoops_cp_footer();

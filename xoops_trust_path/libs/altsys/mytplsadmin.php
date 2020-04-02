@@ -105,12 +105,14 @@ if (! empty($_POST['clone_tplset_do']) && ! empty($_POST['clone_tplset_from']) &
 if (is_array(@$_POST['copy_do'])) {
     foreach ($_POST['copy_do'] as $tplset_from_tmp => $val) {
         if (! empty($val)) {
+
             // Ticket Check
-    if (! $xoopsGTicket->check()) {
-        redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
-    }
+            if (! $xoopsGTicket->check()) {
+                redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
+            }
 
             $tplset_from = $myts->stripSlashesGPC($tplset_from_tmp) ;
+
             if (empty($_POST['copy_to'][$tplset_from]) || $_POST['copy_to'][$tplset_from] == $tplset_from) {
                 tplsadmin_die(_MYTPLSADMIN_ERR_INVALIDTPLSET, $target_dirname) ;
             }
@@ -118,6 +120,7 @@ if (is_array(@$_POST['copy_do'])) {
                 tplsadmin_die(_MYTPLSADMIN_ERR_NOTPLFILE, $target_dirname) ;
             }
             $tplset_to = $myts->stripSlashesGPC($_POST['copy_to'][$tplset_from]) ;
+
             foreach ($_POST["{$tplset_from}_check"] as $tplfile_tmp => $val) {
                 if (empty($val)) {
                     continue ;
@@ -285,7 +288,7 @@ if ($breadcrumbsObj->hasPaths()) {
     $breadcrumbsObj->appendPath('', $target_mname) ;
 }
 
-echo "<h3>"._MYTPLSADMIN_H3_MODULE." : $target_mname</h3>\n" ;
+echo "<h2>"._MYTPLSADMIN_H3_MODULE." : $target_mname</h2>\n" ;
 
 // link to create a new custom template
 if ($target_dirname == '_custom') {
@@ -296,13 +299,15 @@ if ($target_dirname == '_custom') {
 echo "
 	<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsadmin&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."' method='post'>
 	".$xoopsGTicket->getTicketHtml(__LINE__)."
-    <table class='outer'><thead>
+    <table class='outer'>
+    <thead>
         <tr>
 			<th>"._MYTPLSADMIN_TH_NAME."</th>
 			<th>"._MYTPLSADMIN_TH_TYPE."</th>
 			<th><input type='checkbox' title="._MYTPLSADMIN_TITLE_CHECKALL." onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].name.indexOf('basecheck')>=0){elements[i].checked=this.checked;}}}\" />"._MYTPLSADMIN_TH_FILE."</th>
 			$tplsets_th4disp
-        </tr></thead>\n" ;
+        </tr>
+    </thead>\n" ;
 
 // STYLE for distinguishing fingerprints
 $fingerprint_classes = array( '' , ' fingerprint1' , ' fingerprint2' , ' fingerprint3' , ' fingerprint4' , ' fingerprint5' , ' fingerprint6' , ' fingerprint7' ) ;
@@ -329,7 +334,9 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
     if (file_exists($basefilepath)) {
         $fingerprint = tplsadmin_get_fingerprint(file($basefilepath)) ;
         $fingerprints[ $fingerprint ] = '' ;
-        echo "<td>".formatTimestamp(filemtime($basefilepath), 'm').'<br />'.substr($fingerprint, 0, 16)."<br /><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
+        echo "
+        <td>".formatTimestamp(filemtime($basefilepath), 'm').'<br />'.substr($fingerprint, 0, 16)."<br /><input type='checkbox' name='basecheck[$tpl_file]' value='1' />
+        </td>\n" ;
         $fingerprint_class_count = 0 ;
     } else {
         echo "<td><br /></td>" ;
@@ -345,7 +352,7 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
         $numrows = $db->getRowsNum($drs) ;
         $tpl = $db->fetchArray($drs) ;
         if (empty($tpl['tpl_id'])) {
-            echo "<td class='$evenodd'>($numrows)</td>\n" ;
+            echo "<td>($numrows)</td>\n" ;
         } else {
             $fingerprint = tplsadmin_get_fingerprint(explode("\n", $tpl['tpl_source'])) ;
             if (isset($fingerprints[ $fingerprint ])) {
@@ -355,7 +362,11 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
                 $class = $fingerprint_classes[++$fingerprint_class_count] ;
                 $fingerprints[ $fingerprint ] = $class ;
             }
-            echo "<td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br />'.substr($fingerprint, 0, 16)."<br /><input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."'>"._EDIT."</a> ($numrows)</td>\n" ;
+            echo "
+            <td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br />'.substr($fingerprint, 0, 16)."<br />
+            <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; 
+            <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."'>"._EDIT."</a> ($numrows)
+            </td>\n" ;
         }
     }
 
@@ -363,7 +374,8 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
 }
 
 // command submit ROW
-echo "<tfoot><tr class='foot'>
+echo "<tfoot>
+        <tr class='foot'>
 		<td>
 			"._MYTPLSADMIN_CREATE_NEW_TPLSET.": <br />
 			"._MYTPLSADMIN_CAPTION_BASE.":

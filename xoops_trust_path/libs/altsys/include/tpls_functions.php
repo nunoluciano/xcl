@@ -39,8 +39,6 @@ function tplsadmin_import_data($tplset, $tpl_file, $tpl_source, $lastmodified = 
 }
 
 
-
-
 function tplsadmin_get_fingerprint($lines)
 {
     $str = '' ;
@@ -51,7 +49,6 @@ function tplsadmin_get_fingerprint($lines)
     }
     return md5($str) ;
 }
-
 
 
 function tplsadmin_copy_templates_db2db($tplset_from, $tplset_to, $whr_append = '1')
@@ -86,7 +83,6 @@ function tplsadmin_copy_templates_db2db($tplset_from, $tplset_to, $whr_append = 
         }
     }
 }
-
 
 
 function tplsadmin_copy_templates_f2db($tplset_to, $whr_append = '1')

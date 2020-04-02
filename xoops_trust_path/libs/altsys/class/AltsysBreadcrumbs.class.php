@@ -1,14 +1,16 @@
 <?php
 
-// singleton for xoops_breadcrumbs
+/*
+* AltSys
+* singleton for xoops_breadcrumbs
+*/
+
 class AltsysBreadcrumbs
 {
 
 public $paths = array() ;
 
-	// !Fix PHP7 NOTICE: deprecated constructor
 	public function __construct()
-    // public function AltsysBreadcrumbs()
     {
     }
     //HACK by domifara for php5.3+

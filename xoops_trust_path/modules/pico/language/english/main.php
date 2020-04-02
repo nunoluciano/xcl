@@ -102,7 +102,7 @@ define('_MD_PICO_TH_TAGSDSC', 'separate tags by a space');
 define('_MD_PICO_TH_WEIGHT', 'weight');
 define('_MD_PICO_TH_CONTENTOPTIONS', 'options');
 define('_MD_PICO_LABEL_USECACHE', 'use cache');
-define('_MD_PICO_NOTE_USECACHEDSC', 'Enable it only for static contents');
+define('_MD_PICO_NOTE_USECACHEDSC', 'Enable it only for static content');
 define('_MD_PICO_LABEL_LOCKED', 'Lock (only moderators can edit/delete it)');
 define('_MD_PICO_LABEL_SPECIFY_DATETIME', 'Specify datetime');
 define('_MD_PICO_LABEL_VISIBLE', 'Visible');
@@ -114,29 +114,29 @@ define('_MD_PICO_TH_CATEGORYDESC', 'Description');
 define('_MD_PICO_TH_CATEGORYPARENT', 'Parent');
 define('_MD_PICO_TH_CATEGORYWEIGHT', 'Weight');
 define('_MD_PICO_TH_CATEGORYOPTIONS', 'Options');
-define('_MD_PICO_CONTENTS_TOTAL', 'Total contents');
+define('_MD_PICO_CONTENTS_TOTAL', 'Total content');
 define('_MD_PICO_SUBCATEGORIES_TOTAL', 'Total subcategories');
 define('_MD_PICO_SUBCATEGORY_COUNT', 'Number of subcategories');
-define('_MD_PICO_MSG_CONFIRMDELETECATEGORY', 'All contents in the category will be removed. Are you OK?');
-define('_MD_PICO_MSG_CONFIRMDELETECONTENT', 'Are you OK to delete it?');
-define('_MD_PICO_MSG_CONFIRMSAVEASCONTENT', 'Are you OK to save as?');
+define('_MD_PICO_MSG_CONFIRMDELETECATEGORY', 'All content in the category will be removed. Please confirm?');
+define('_MD_PICO_MSG_CONFIRMDELETECONTENT', 'Are you sure you want to delete?');
+define('_MD_PICO_MSG_CONFIRMSAVEASCONTENT', 'Are you sure you want to save as?');
 //define('_MD_PICO_MSG_GOTOPREFERENCE4EDITTOP','The TOP category is the special. You can change the settings of the TOP in module preferences.');
 define('_MD_PICO_LABEL_HTMLHEADERONOFF', 'display the textarea');
-define('_MD_PICO_LABEL_HTMLHEADERCONFIGALERT', '(HTML header for each contents is disabled by preferences)');
+define('_MD_PICO_LABEL_HTMLHEADERCONFIGALERT', '(HTML header for each content is disabled by preferences)');
 define('_MD_PICO_LABEL_INPUTHELPER', 'Input Helper ON/OFF');
-define('_MD_PICO_BTN_SUBMITEDITING', 'register this form');
-define('_MD_PICO_BTN_SUBMITSAVEAS', 'save as');
+define('_MD_PICO_BTN_SUBMITEDITING', 'Save this form');
+define('_MD_PICO_BTN_SUBMITSAVEAS', 'Save as...');
 define('_MD_PICO_BTN_COPYFROMWAITING', 'register waiting data');
-define('_MD_PICO_MSG_CONFIRMCOPYFROMWAITING', 'Data you edited in this form will be lost. Are you OK?');
+define('_MD_PICO_MSG_CONFIRMCOPYFROMWAITING', ' If you do not save, the entered data will be lost. Please confirm?');
 define('_MD_PICO_HOWTO_OVERRIDEOPTIONS', 'If you override preferences, write a line like:<br />(option name):(option value)<br />eg)<br />show_breadcrumbs:1 <br /><br />Overridable options and current values:');
 
 
 // vote to post
-define('_MD_PICO_ERR_VOTEPERM', 'You cannot vote it');
+define('_MD_PICO_ERR_VOTEPERM', 'You cannot vote');
 define('_MD_PICO_ERR_VOTEINVALID', 'Invalid vote');
-define('_MD_PICO_MSG_VOTEDOUBLE', 'You can vote once per a content');
+define('_MD_PICO_MSG_VOTEDOUBLE', 'You can vote once per content');
 define('_MD_PICO_MSG_VOTEACCEPTED', 'Thanks for voting!');
-define('_MD_PICO_MSG_VOTEDISABLED', 'You cannot vote into the item');
+define('_MD_PICO_MSG_VOTEDISABLED', 'You cannot vote for this item');
 define('_MD_PICO_VOTECOUNT', 'Votes');
 define('_MD_PICO_VOTEPOINTAVG', 'Average');
 define('_MD_PICO_VOTEPOINTDSCBEST', 'Useful');
@@ -169,14 +169,14 @@ define('_MD_PICO_FILTERS_XOOPSTSDESC', 'Use XOOPS default text filter, enabled s
 
 
 // permissions
-define('_MD_PICO_PERMS_CAN_READ', 'READ');
-define('_MD_PICO_PERMS_CAN_READFULL', 'READ FULL');
-define('_MD_PICO_PERMS_CAN_POST', 'POST');
-define('_MD_PICO_PERMS_CAN_EDIT', 'EDIT');
-define('_MD_PICO_PERMS_CAN_DELETE', 'DELETE');
-define('_MD_PICO_PERMS_POST_AUTO_APPROVED', 'AUTO APPROVED');
-define('_MD_PICO_PERMS_IS_MODERATOR', 'MODERATE');
-define('_MD_PICO_PERMS_CAN_MAKESUBCATEGORY', 'MAKE SUBCATEGORY');
+define('_MD_PICO_PERMS_CAN_READ', 'Read');
+define('_MD_PICO_PERMS_CAN_READFULL', 'Read Full');
+define('_MD_PICO_PERMS_CAN_POST', 'Post');
+define('_MD_PICO_PERMS_CAN_EDIT', 'Edit');
+define('_MD_PICO_PERMS_CAN_DELETE', 'Delete');
+define('_MD_PICO_PERMS_POST_AUTO_APPROVED', 'Auto Approved');
+define('_MD_PICO_PERMS_IS_MODERATOR', 'Moderate');
+define('_MD_PICO_PERMS_CAN_MAKESUBCATEGORY', 'Make a Subcategry');
 
 
 // LTR or RTL

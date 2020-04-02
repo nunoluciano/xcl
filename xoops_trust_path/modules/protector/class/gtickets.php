@@ -9,9 +9,7 @@ if (! class_exists('XoopsGTicket')) {
         public $_latest_token = '' ;
         public $messages = array() ;
 
-        // !Fix PHP7 NOTICE: deprecated constructor
 	    public function __construct()
-        // public function XoopsGTicket()
         {
             global $xoopsConfig ;
 
@@ -225,9 +223,17 @@ if (! class_exists('XoopsGTicket')) {
             }
         }
         $table .= '</table>' ;
+
         $form .= $this->getTicketHtml(__LINE__, 300, $area).'<input type="submit" value="'.$this->messages['btn_repost'].'"></form>' ;
 
-        echo '<html><head><title>'.$this->messages['err_general'].'</title><style>table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf($this->messages['fmt_prompt4repost'], $this->getErrors()) . $table . $form . '</body></html>' ;
+        echo '
+        <html>
+        <head>
+        <title>'.$this->messages['err_general'].'</title>
+        <style>table,td,th {border:solid black 1px; border-collapse:collapse;}</style>
+        </head>
+        <body>' . sprintf($this->messages['fmt_prompt4repost'], $this->getErrors()) . $table . $form . '</body>
+        </html>' ;
     }
 
         public function extract_post_recursive($key_name, $tmp_array)
@@ -240,7 +246,11 @@ if (! class_exists('XoopsGTicket')) {
                     $table .= $tmp_table ;
                     $form .= $tmp_form ;
                 } else {
-                    $table .= '<tr><th>'.$key_name.'['.htmlspecialchars($key, ENT_QUOTES).']</th><td>'.htmlspecialchars($val, ENT_QUOTES).'</td></tr>'."\n" ;
+                    $table .= '
+                    <tr>
+                    <th>'.$key_name.'['.htmlspecialchars($key, ENT_QUOTES).']</th>
+                    <td>'.htmlspecialchars($val, ENT_QUOTES).'</td>
+                    </tr>'."\n" ;
                     $form .= '<input type="hidden" name="'.$key_name.'['.htmlspecialchars($key, ENT_QUOTES).']" value="'.htmlspecialchars($val, ENT_QUOTES).'">'."\n" ;
                 }
             }

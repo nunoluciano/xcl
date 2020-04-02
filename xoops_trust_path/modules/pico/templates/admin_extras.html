@@ -1,30 +1,30 @@
-<div class="ui-card-main">
-
-<h2><{$mod_name}></h2>
-
 <!-- extras form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_EXTRAS}></h2>
+<h2><{$mod_name}> : <{$smarty.const._MD_A_PICO_H2_EXTRAS}></h2>
 
-<form method="get" action="<{$mod_url}>/admin/index.php" class="pico_pagenav">
-	<input type="hidden" name="page" value="extras">
-	<label>
-		<{$smarty.const._MD_PICO_NUM}>
-		<select name="num">
-			<{assign var="nums" value=","|explode:"10,30,100,300,1000"}>
-			<{html_options values=$nums output=$nums selected=$num}>
-		</select>
-	</label>
-	<label>
-		<{$smarty.const._MD_A_PICO_TH_ID}>
-		<input type="text" size="4" name="content_id" value="<{$content_id}>">
-	</label>
-	<label>
-		<{$smarty.const._MD_A_PICO_LABEL_SEARCHBYPHRASE}>
-		<input type="text" size="6" name="txt" value="<{$txt_raw|escape}>">
-	</label>
-	<input type="submit" value="<{$smarty.const._GO}>">
-	<{$pagenav}>
-</form>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="ui-card-full">
+	<form method="get" action="<{$mod_url}>/admin/index.php" class="pico_pagenav">
+		<input type="hidden" name="page" value="extras">
+		<label>
+			<{$smarty.const._MD_PICO_NUM}>
+			<select name="num">
+				<{assign var="nums" value=","|explode:"10,30,100,300,1000"}>
+				<{html_options values=$nums output=$nums selected=$num}>
+			</select>
+		</label>
+		<label>
+			<{$smarty.const._MD_A_PICO_TH_ID}>
+			<input type="text" size="4" name="content_id" value="<{$content_id}>">
+		</label>
+		<label>
+			<{$smarty.const._MD_A_PICO_LABEL_SEARCHBYPHRASE}>
+			<input type="text" size="6" name="txt" value="<{$txt_raw|escape}>">
+		</label>
+		<input type="submit" value="<{$smarty.const._GO}>">
+		<{$pagenav}>
+	</form>
+</div>
 
 <form name="extras" action="<{$mod_url}>/admin/index.php?page=extras&amp;cat_id=<{$cat_id}>" method="post">
 	<{$gticket_hidden}>
@@ -86,4 +86,3 @@
 		</tr>
 	</table>
 </form>
-</div>

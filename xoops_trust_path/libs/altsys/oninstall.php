@@ -24,10 +24,10 @@ if (! function_exists('altsys_oninstall_base')) {
         $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
         $mid = $module->getVar('mid') ;
 
-    /*************** BEGIN ALTSYS SPECIFIC PART ******************/
+    // ALTSYS SPECIFIC PART
     // set weight=0
     $db->queryF("UPDATE ".$db->prefix("modules")." SET weight=0 WHERE mid=$mid") ;
-    /*************** END ALTSYS SPECIFIC PART ******************/
+
 
     // TABLES (loading mysql.sql)
     $sql_file_path = dirname(__FILE__).'/sql/mysql.sql' ;
@@ -95,14 +95,6 @@ if (! function_exists('altsys_oninstall_base')) {
                         $ret[] = 'Template <b>'.htmlspecialchars($mydirname.'_'.$file).'</b> added to the database. (ID: <b>'.$tplid.'</b>)<br />';
                         require_once XOOPS_TRUST_PATH.'/libs/altsys/include/altsys_functions.php' ;
                         altsys_clear_templates_c() ;
-                    // generate compiled file
-                    /*include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
-                    include_once XOOPS_ROOT_PATH.'/class/template.php' ;
-                    if( ! xoops_template_touch( $tplid ) ) {
-                        $ret[] = '<span style="color:#ff0000;">ERROR: Failed compiling template <b>'.htmlspecialchars($mydirname.'_'.$file).'</b>.</span><br />';
-                    } else {
-                        $ret[] = 'Template <b>'.htmlspecialchars($mydirname.'_'.$file).'</b> compiled.</span><br />';
-                    }*/
                     }
                 }
             }
