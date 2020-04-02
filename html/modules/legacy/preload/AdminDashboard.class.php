@@ -16,18 +16,28 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * Dashboard Display Options
  * URL : /admin.php
- * Boolean data type - Display(1) or not display(0)
+ * Main Page Display(1) or not display(0)
+ * @return bool
  */
+if (!defined('XC_ADMINDASHBOARD_UINFO')) {
+    define('XC_ADMINDASHBOARD_UINFO', 1);
+}
 
-    // Site/System Info - !rendering error
+    /*
+    * Main Page System Info
+    */
     if (!defined('XC_ADMINDASHBOARD_SYSTEMINFO')) {
         define('XC_ADMINDASHBOARD_SYSTEMINFO', 1);
     }
-    // PHP Settings
+    /*
+    * PHP Settings
+    */
     if (!defined('XC_ADMINDASHBOARD_PHPSETTING')) {
         define('XC_ADMINDASHBOARD_PHPSETTING', 1);
     }
-    // Waiting (pending) contents
+    /*
+    * Waiting (pending) contents
+    */
     if (!defined('XC_ADMINDASHBOARD_WAITING')) {
         define('XC_ADMINDASHBOARD_WAITING', 0);
     }
@@ -37,33 +47,35 @@ if (!defined('XOOPS_ROOT_PATH')) {
     if (!defined('XC_ADMINDASHBOARD_COMMENTS')) {
         define('XC_ADMINDASHBOARD_COMMENTS', 0);
     }
-    // Full PHP Info
+    /*
+    * Full PHP Info
+    */
     if (!defined('XC_ADMINDASHBOARD_PHPINFO')) {
         define('XC_ADMINDASHBOARD_PHPINFO', 0);
     }
 
 
-    // Admin Sidemenu blocks only 'admin_theme.html'
-    //!Fix Cannot be displayed on 'admin-dashboard.html'
-    //you can determine which block should be displayed!
+    /* Admin blocks only 'admin_theme.html'. Display (1) or not display (0).
+    *  @return bool
+    */
 
-
-    //display(1) or not display(0): online-info block
+    // Display on main page the admin block "online-info"
     if (!defined('XC_ADMINBLOCK_ONLINEINFO')) {
         define('XC_ADMINBLOCK_ONLINEINFO', 1);
     }
 
-    //display(1) or not display(0): waiting-contents block
+    // Display on sidemenu the admin block "waiting-contents"
     if (!defined('XC_ADMINBLOCK_WAITING')) {
     define('XC_ADMINBLOCK_WAITING', 0);
     }
 
-    //display(1) or not display(0): system info block
+    // Display on sidemenu the admin block "system info"
     if (!defined('XC_ADMINBLOCK_SYSINFO')) {
         define('XC_ADMINBLOCK_SYSINFO', 0);
     }
 
     /*
+    *  Display on sidemenu the admin block "admin-theme"
     *  !TODO - ADMINTHEME - display(1) or not display(0): admin-theme select block
     */
     if (!defined('XC_ADMINBLOCK_ADMINTHEME')) {
@@ -103,10 +115,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 		}
 		if (!defined('_MB_LEGACY_ADMINTHEMESELECT')) {
 		define('_MB_LEGACY_ADMINTHEMESELECT', "A-Theme Changer");
-		}
-		//you can add your own here!
+        }
 
-
+		// Add custome language constants here!
 
 
 class Legacy_AdminDashboard extends XCube_ActionFilter
@@ -120,8 +131,8 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         $root->mDelegateManager->add("Legacypage.Admin.SystemCheck", "Legacy_AdminDashboard::AdminDashboardSystem", XCUBE_DELEGATE_PRIORITY_NORMAL+1);
 
         /*
-        * Legacy/kernel/Legacy_AdminControllerStrategy
-        * Note : fix switch from AdminRenderSystem to RenderSystem
+        * Note! Switch from RenderSystem to AdminRenderSystem
+        * Ref. Legacy/kernel/Legacy_AdminControllerStrategy
         */
         if ($root->mController->_mStrategy) {
             if (get_class($root->mController->_mStrategy) == 'Legacy_AdminControllerStrategy') {
@@ -131,33 +142,33 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
     }
 
-	//If you want to add any new block, please customize this func!
-	//please refer to sample-blocks!
+	// If you want to add any new block, please customize this function !
+	// Refer to legacy/admin/blocks!
 	public static function AdminSetupBlock()
 	{
 
-		//online info block
+		// online info block
 		if(XC_ADMINBLOCK_ONLINEINFO && file_exists(XOOPS_LEGACY_PATH . "/admin/blocks/AdminOnlineInfo.class.php")) {
             require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminOnlineInfo.class.php";
             $this->mController->_mBlockChain[] = new Legacy_AdminOnlineInfo();
             }
-        //system info block
+        // system info block
 		if(XC_ADMINBLOCK_SYSINFO && file_exists(XOOPS_LEGACY_PATH . "/admin/blocks/AdminSystemInfo.class.php")) {
             require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminSystemInfo.class.php";
             $this->mController->_mBlockChain[] = new Legacy_AdminSystemInfo();
             }
-        //waiting contents block
+        // waiting contents block
 		if(XC_ADMINBLOCK_WAITING && file_exists(XOOPS_LEGACY_PATH . "/admin/blocks/AdminWaiting.class.php")) {
             require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminWaiting.class.php";
             $this->mController->_mBlockChain[] = new Legacy_AdminWaiting();
             }
-		//admin-theme changer block
+		// admin-theme changer block
 		if(XC_ADMINBLOCK_ADMINTHEME && file_exists(XOOPS_LEGACY_PATH . "/admin/blocks/AdminThemeSelect.class.php") && file_exists(XOOPS_LEGACY_PATH . "/admin/preload/AdminThemeSelectPreload.class.php")) {
             require_once XOOPS_LEGACY_PATH . "/admin/blocks/AdminThemeSelect.class.php";
             $this->mController->_mBlockChain[] = new Legacy_AdminThemeSelect();
             }
 
-		//you can add your own block here!
+		// Add your custom block here!
 
 	}
 
@@ -165,6 +176,66 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
     {
 
         $root =& XCube_Root::getSingleton();
+
+        if(XC_ADMINDASHBOARD_UINFO) {
+
+            /*
+            * Select the UIType Display Option
+            * 0 - output is direct
+            * 1 - output with template "legacy_dummy.html"
+            * 2 - output with template "legacy_admin_welcome.html"
+            */
+            $uitype = 2;
+
+            // Customize the design of html/admin.php
+            if ( $uitype == 0 ) {
+
+                $uiadmin = '<b>Welcome to XOOPS Cube Admin!</b><br />Have a nice time!';
+
+                echo $uiadmin;
+
+            }
+
+            // Customize the design of html/admin.php
+            elseif ( $uitype == 1 ) {
+
+                $uiadminhtml = '<b>Welcome to XOOPS Cube !</b>
+                                <br>Have a nice and happy time!
+                                <br><b>Output with template "legacy_dummy.html"</b>!';
+
+                $attributes = [];
+                $attributes['dummy_content'] = $uiadminhtml;
+
+                $template = XOOPS_LEGACY_PATH."/templates/legacy_dummy.html";
+
+                Legacy_AdminDashboard::display_message($attributes, $template, $return = false);
+
+            }
+
+            elseif ( $uitype == 2 ) {
+
+                // Customize the design of legacy_admin_welcome.html
+                if ( file_exists(XOOPS_LEGACY_PATH . "/admin/templates/legacy_admin_welcome.html") ) {
+
+                    $uiadmindashboard_title = 'XCL Documentation';
+
+                    $uiadmindashboard_msg = [];
+                    $uiadmindashboard_msg[] = 'Separate documentation is available for each module.';
+                    $uiadmindashboard_msg[] = 'XCL provides an out-of-the-box internal search function to find admin features.';
+
+                    $attributes = [];
+                    $attributes['title'] = $uiadmindashboard_title;
+                    $attributes['messages'] = $uiadmindashboard_msg;
+
+                    $template = XOOPS_LEGACY_PATH."/admin/templates/legacy_admin_welcome.html";
+
+                    Legacy_AdminDashboard::display_message($attributes, $template, $return = false);
+
+                }
+            }
+
+        }
+
         /**
          * ADMIN System Info
          */
@@ -180,7 +251,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $systeminfo_message[] = _MD_AM_DTPLSET." : ".$root->mContext->mXoopsConfig['template_set'];
             $systeminfo_message[] = _MD_AM_LANGUAGE." : ".$root->mContext->mXoopsConfig['language'];
 
-            $debugmode = (int)($root->mContext->mXoopsConfig['debug_mode']);
+                $debugmode = (int)($root->mContext->mXoopsConfig['debug_mode']);
                 if ($debugmode == 0) {
                     $systeminfo_message[] = _MD_AM_DEBUGMODE." : "._MD_AM_DEBUGMODE0;
                 } elseif ($debugmode == 1) {
@@ -192,6 +263,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
                 }
 
             $systemconfig = [];
+
             $systemconfig['phpversion'] = phpversion();
 
                 $db = &$root->mController->getDB();
@@ -210,12 +282,15 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $systeminfo_message[] = _AD_LEGACY_MYSQLVERSION." : ".$systemconfig['mysqlversion'];
 
             xoops_result($systeminfo_message, _AD_LEGACY_SYSTEMINFO, 'tips');
-        } // if Systeminfo
+        }
 
 
-        // PHP Settings
+        /*
+        *  PHP Settings
+        */
         if (XC_ADMINDASHBOARD_PHPSETTING) {
-            $phpsetting_message = array();
+
+            $phpsetting_message = [];
 
             $phpsetting_message[] = _AD_LEGACY_PHPSETTING_SM." : ".(ini_get('safe_mode')? "<span style=color:red>" ._AD_LEGACY_PHPSETTING_ON."</span>" : "<span style=color:green>" ._AD_LEGACY_PHPSETTING_OFF. "</span>");
             $phpsetting_message[] = _AD_LEGACY_PHPSETTING_MET." : ".(ini_get('max_execution_time')? ini_get('max_execution_time')." sec." : _AD_LEGACY_PHPSETTING_OFF);
@@ -254,44 +329,53 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         }
 
 
-        // Waiting
+        /*
+        * Admin Dashboard Block Waiting
+        */
         if (XC_ADMINDASHBOARD_WAITING) {
 
-            $modules = array();
+            $modules = [];
             XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
 
-            $attributes = array();
+            $attributes = [];
             $attributes['block']['modules'] = $modules;
 
             $template = self::getTemplate('legacy_admin_block_waiting.html', 'blocks/');
 
             $result = Legacy_AdminDashboard::display_message($attributes, $template, $return = true);
             xoops_result($result, _MI_LEGACY_BLOCK_WAITING_NAME);
-        }//waiting if
+        }
 
 
-        // !TODO - COMMENTS
+        /*
+        * !TODO - Admin Dashboard Block Comments
+        */
         if (XC_ADMINDASHBOARD_COMMENTS) {
 
-            $modules = array();
+            $modules = [];
             XCube_DelegateUtils::call('b_legacy_comments_show', new XCube_Ref($modules));
 
-            $attributes = array();
+            $attributes = [];
             $attributes['block']['modules'] = $modules;
 
             $template = self::getTemplate('legacy_block_comments.html', 'blocks/');
 
             $result = Legacy_AdminDashboard::display_message($attributes, $template, $return = true);
+
             xoops_result($result, _MB_LEGACY_DISPLAYC);
-        }//waiting if
+        }
 
 
-        // PHP Information
+        /*
+        * Admin Dashboard PHP Information
+        */
         if (XC_ADMINDASHBOARD_PHPINFO) {
-        ob_start();
+
+            ob_start();
             phpinfo(INFO_GENERAL | INFO_CONFIGURATION | INFO_MODULES);
             $phpinfo = ob_get_contents();
             ob_end_clean();
+
             preg_match_all('#<body[^>]*>(.*)</body>#siU', $phpinfo, $output);
             $output = preg_replace('#<table#', '<table class="outer""', $output[1][0]);
             $output = preg_replace('#(\w),(\w)#', '\1, \2', $output);
@@ -303,16 +387,21 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $output = preg_replace('#class="p"#', 'class="odd"', $output);
             $output = str_replace('<div class="center">', '', $output);
             $output = str_replace('</div>', '', $output);
-            $attributes = array();
+
+            $attributes = [];
             $attributes['dummy_content'] = $output;
+
             $template = XOOPS_LEGACY_PATH."/templates/legacy_dummy.html";
+
             Legacy_AdminDashboard::display_message($attributes, $template, $return = false);
-        }//phpinfo if
+        }
 
-    }  // AdminDashboard
+    }
 
-
-    public static function display_message($attributes = array(), $template="", $return = false)
+    /*
+    * Admin Dashboard Display Message
+    */
+    public static function display_message($attributes = [], $template="", $return = false)
     {
         $root =& XCube_Root::getSingleton();
 
@@ -325,6 +414,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         foreach (array_keys($attributes) as $attribute) {
             $renderTarget->setAttribute($attribute, $attributes[$attribute]);
         }
+
         $renderSystem->render($renderTarget);
         if ($return == true) {
             $ret = $renderTarget->getResult();
@@ -334,7 +424,9 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         }
     }
 
-
+    /*
+    * Admin Dashboard Get Template
+    */
     private static function getTemplate($file, $prefix = null)
     {
         $infoArr = Legacy_get_override_file($file, $prefix);
