@@ -1,6 +1,5 @@
 
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 
 <div class="adminnavi" aria-label="breadcrumb">
@@ -11,7 +10,9 @@
 <h3 class="admintitle"><{$smarty.const._HELP}>
  <a href="<{$module->getAdminIndex()|xoops_escape:link}>"><{$module->mXoopsModule->getShow('name')}></a>
 </h3>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
+<div class="ui-card-full">
 <div class="help"><{$contents}></div>
 
 

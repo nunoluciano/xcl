@@ -1,5 +1,5 @@
 /*
-	Theme : XCL Admin Flex Grid
+	XOOPS Cube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.4
 	Author : Nuno Luciano aka Gigamaster
@@ -290,7 +290,7 @@
 		width						: var(  --ui-card-block-item-width					);
 	}
 
-	/* input[size=] width depend using fonts, 
+	/* input[size=] width depend using fonts,
 	   then setting by style for compatibility */
 	.ui-card-block-item input[size="20"] {
 		width: 12em;

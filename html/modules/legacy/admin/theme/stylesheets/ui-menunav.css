@@ -1,5 +1,5 @@
 /*
-	Theme : XCL Admin Flex Grid
+	XOOPS Cube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.4
 	Author : Nuno Luciano aka Gigamaster
@@ -22,7 +22,7 @@
 
 	border-radius		: var(  --ui-border-radius	);
 
-	box-shadow			: 0 10px 20px rgba(159, 162, 177, 0.8);
+	box-shadow			: 0 4px 8px rgba(159, 162, 177, 0.8);
 
 	display					: inline-flex;
 	overflow				: hidden;

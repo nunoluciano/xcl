@@ -1,5 +1,5 @@
 /*
-	Theme : XCL Admin Flex Grid
+	XOOPS Cube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.4
 	Author : Nuno Luciano aka Gigamaster
@@ -152,7 +152,7 @@
 
 	/*	-------------------- -------------------- -------------------- Color Link Dark */
 
-		--ui-color-link					: #EBF5FA;
+		--ui-color-link					: hsl(216, 15%, 64%);
 		--ui-color-link-active	: orange;
 		--ui-color-link-hover		: #face74;
 		--ui-color-link-visited	: #EBF5FA;
@@ -202,7 +202,7 @@
 
 		--ui-button-color				: #3C4858;
 
-		--ui-button-padding			: var(--ui-space-400) var(--ui-space-500);
+		--ui-button-padding			: var(--ui-space-400) var(--ui-space-500); /* 0.75rem 1rem; */
 		--ui-button-radius 			: 3px;
 		--ui-button-style  			: solid;
 		--ui-button-width  			: 1px;
