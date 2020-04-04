@@ -5,11 +5,9 @@
 </div>
 
 
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}> ( <{$group->getShow('name')}> )</h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <table class="outer">
   <tr>
@@ -120,8 +118,9 @@
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$noPageNavi}></div>
 
-<hr />
-<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h4>
+<hr>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h3>
 
 <form  method="post" action="">
 <{xoops_token name=$tokenName value=$tokenValue}>
@@ -176,5 +175,3 @@
 </form>
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-
-</div>

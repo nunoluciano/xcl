@@ -5,12 +5,9 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -53,5 +50,3 @@
     </tr>
   </table>
 </form>
-
-</div>

@@ -9,6 +9,7 @@
   <{/if}>
 </div>
 
+
 <{if $actionForm->get('uid')}>
   <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_EDIT}> (<{$actionForm->get('uname')}>)</h2>
   <div class="tips"><{$smarty.const._AD_USER_TIPS_USER_EDIT}></div>
@@ -17,6 +18,7 @@
   <div class="tips"><{$smarty.const._AD_USER_TIPS_USER_NEW}></div>
 <{/if}>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -32,6 +34,7 @@
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
   <table class="outer">
+		<thead>
     <tr>
       <th colspan="2">
       <{if $actionForm->get('uid')}>
@@ -40,7 +43,9 @@
         <{$smarty.const._AD_USER_LANG_USER_NEW}>
       <{/if}>
       </th>
-    </tr>
+		</tr>
+	</thead>
+	<tbody>
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
       <td class="<{cycle values="odd,even"}>">
@@ -59,8 +64,8 @@
         <{xoops_input type=text name=email value=$actionForm->get('email') size=30 maxlength=60}>
         <br />
         <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}>
-        
-          <{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> 
+
+        <{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}>
 
       </td>
     </tr>
@@ -78,7 +83,7 @@
         </select>
       </td>
     </tr>
-    
+
 <!-- Optional Fields
 
     <tr>
@@ -126,7 +131,7 @@
     <tr>
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_dhtmltarea name=user_sig value=$actionForm->get('user_sig')}>
+        <{* xoops_dhtmltarea type=text name=user_sig value=$actionForm->get('user_sig') *}>
         <br />
         <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}> <{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
       </td>
@@ -222,12 +227,16 @@
         <{/if}>
       </td>
     </tr>
-    <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
+		<{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
+
+	</tbody>
+	<tfoot>
     <tr>
       <td colspan="2"  class="foot">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
-    </tr>
+		</tr>
+	</tfoot>
   </table>
 </form>

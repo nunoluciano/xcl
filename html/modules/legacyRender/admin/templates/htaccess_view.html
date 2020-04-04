@@ -1,9 +1,15 @@
+<div class="adminnavi">
+  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></span>
+</div>
 
-<div class="ui-card-full">
+
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></h2>
+
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
+<div class="ui-card-full">
 
-<h1><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></h1>
 <p>
 <{$smarty.const._AD_LEGACYRENDER_DESC_HTACCESS}>
 </p>
@@ -22,6 +28,5 @@ RewriteRule ^(\w+)/(\w+)/(\d+)/(.+)$ <{$xoops_module_path}>/$1/index.php?<{$data
 RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]
 </textarea>
 </div>
-
 
 </div>

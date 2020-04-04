@@ -3,17 +3,19 @@
 	<{include file="admin_menunavi.html"}>
 	<{include file="admin_navi.html"}>
 
-	<div class="ui-card-full">
+
 
 	<h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}></h2>
 
-
+	<div class="ui-dev-mode"><{$smarty.template}></div>
+	
 	<{include file="admin_tips.html"}>
 
 	<{if $storeObject}>
 	<h4><{$storeObject->getShow('name')}></h4>
 	<{/if}>
 
+	<div class="ui-card-full">
 	<{if $mod_config.xelfinder_dirname}>
 	<div class="toptab">
 		<a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;" href="#" class="ui-btn">

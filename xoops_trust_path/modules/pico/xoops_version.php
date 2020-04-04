@@ -15,6 +15,7 @@ $modversion['version'] = "2.3.0";
 $modversion['detailed_version'] = "2.3.0";
 $modversion['credits'] = "PEAK Corp.";
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/)<br />Update by XOOPS-X (10) and XOOPS Cube Project";
+$modversion['cube_style'] = true;
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;

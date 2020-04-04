@@ -5,11 +5,9 @@
 </div>
 
 
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_DELETE}></h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="confirm"><i class="red"><img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
 
@@ -17,9 +15,12 @@
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
   <table class="outer">
+		<thead>
     <tr>
       <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_DELETE}></th>
-    </tr>
+		</tr>
+	</thead>
+	<tbody>
     <tr>
       <td class="head legacyRender_list_image" colspan="2">
         <{if $object->get('htmlbanner')}>
@@ -74,14 +75,15 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLCODE}></td>
       <td class="<{cycle values="odd,even"}>"><{$object->getShow('htmlcode')}></td>
-    </tr>
+		</tr>
+	</tbody>
+	<tfoot>
     <tr>
       <td class="foot" colspan="2">
         <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
-    </tr>
+		</tr>
+	</tfoot>
   </table>
 </form>
-
-</div>

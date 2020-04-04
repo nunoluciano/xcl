@@ -5,12 +5,9 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}> ( <{$group->getShow('name')}> )</h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <table class="outer">
   <tr>
@@ -51,8 +48,9 @@
   </tr>
 </table>
 
-<hr />
-<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h4>
+<hr>
+
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h3>
 
 <h5 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h5>
 
@@ -157,12 +155,10 @@
 <br />
 <{/foreach}>
 
-<div class="pagenavi">
-<{xoops_input type=hidden name=groupid value=$group->get('groupid')}>
-<input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-<input type="reset" value="<{$smarty.const._AD_USER_LANG_RESET}>" class="formButton" />
-</div>
+	<div class="pagenavi">
+	<{xoops_input type=hidden name=groupid value=$group->get('groupid')}>
+	<input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
+	<input type="reset" value="<{$smarty.const._AD_USER_LANG_RESET}>" class="formButton" />
+	</div>
+
 </form>
-
-
-</div>

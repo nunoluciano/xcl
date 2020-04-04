@@ -12,23 +12,23 @@ class User_AvatarUploadAction extends User_Action
     public $mActionForm = null;
     public $mErrorMessages = array();
     public $mAllowedExts = array('gif'=>'image/gif', 'jpg'=>'image/jpeg', 'jpeg'=>'image/jpeg', 'png' =>'image/png') ;
-    
-    public function prepare(&$controller, &$xoopsUser)
+
+    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_AvatarUploadForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         return USER_FRAME_VIEW_INPUT;
     }
-    
+
     public function _addErrorMessage($msg)
     {
         $this->mErrorMessages[] = $msg;
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
@@ -38,11 +38,11 @@ class User_AvatarUploadAction extends User_Action
 
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         $formFile = $this->mActionForm->get('upload');
         $formFileExt = $formFile->getExtension();
         $files = array();
@@ -79,7 +79,7 @@ class User_AvatarUploadAction extends User_Action
         }
         return USER_FRAME_VIEW_SUCCESS;
     }
-    
+
     public function _fetchZipAvatarImages(&$files, &$avatarimages)
     {
         foreach ($files as $file) {
@@ -115,7 +115,7 @@ class User_AvatarUploadAction extends User_Action
         if (count($avatarimages) == 0) {
             return true;
         }
-        
+
         $avatarhandler =& xoops_getmodulehandler('avatar');
 
         for ($i = 0; $i < count($avatarimages); $i++) {
@@ -154,10 +154,10 @@ class User_AvatarUploadAction extends User_Action
             }
             unset($avatar);
         }
-        
+
         return true;
     }
-    
+
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName("avatar_upload.html");
@@ -178,7 +178,7 @@ class User_AvatarUploadAction extends User_Action
             $render->setAttribute('errorMessages', $this->mErrorMessages);
         }
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward("./index.php?action=AvatarList");

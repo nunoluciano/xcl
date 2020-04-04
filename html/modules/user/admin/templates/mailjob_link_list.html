@@ -6,6 +6,8 @@
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_LINK_LIST}></h2>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <{if $actionForm->hasError()}>
 <div class="error">
   <ul>
@@ -36,7 +38,7 @@
   <{foreach item=obj from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
       <td class="user_list_control">
-        
+
         <{xoops_input type=checkbox name=uid key=$obj->get('uid')}>
 
       </td>

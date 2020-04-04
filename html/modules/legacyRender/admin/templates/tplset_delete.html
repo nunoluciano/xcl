@@ -5,12 +5,9 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE}> (<{$object->getShow('tplset_name')}>)</h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="confirm"><i class="red"><img src="<{"icons/icon-delete.svg"|theme}>" class="svg"></i> <{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_DELETE_CONF|replace:"%s":$object->getShow('tplset_name')}></div>
 
@@ -49,5 +46,3 @@
   </tr>
 </table>
 </form>
-
-</div>

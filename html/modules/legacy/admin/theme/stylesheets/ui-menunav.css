@@ -43,9 +43,9 @@
 
 a.adminavi-item {
 
-	border-bottom		: 3px solid var(--ui-color-link);
+	border-bottom		: 3px solid var(--ui-text-color);
 
-	color						: var(--ui-color-link);
+	color						: var(--ui-text-color);
 	font-weight			: 600;
 	padding					: 10px;
 	text-decoration	: none;

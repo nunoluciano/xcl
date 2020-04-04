@@ -11,6 +11,8 @@ $modversion['detailed_version'] = '0.83.0';
 $modversion['description'] = _MI_ALTSYS_MODULEDESC;
 $modversion['credits'] = "PEAK Corp.";
 $modversion['author'] = "GIJ=CHECKMATE<br />PEAK Corp.(https://www.peak.ne.jp/), XOOPS X Distribution(https://github.com/XoopsX)";
+$modversion['cube_style'] = true;
+$modversion['help'] = "help.html";
 $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/module_ui_components.svg";

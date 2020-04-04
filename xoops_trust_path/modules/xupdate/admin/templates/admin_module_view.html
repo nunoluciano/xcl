@@ -3,14 +3,15 @@
 	<{include file="admin_menunavi.html"}>
 	<{include file="admin_navi.html"}>
 
-	<div class="ui-card-full">
+	
 
 	<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_STORELIST}></h2>
 
 	<{include file="admin_tips.html"}>
 
 	<script>jQuery(function($){$( "#tabs" ).tabs();});</script>
-
+	
+<div class="ui-card-full">
 	<div id="tabs">
 		<ul>
 			<{if !empty($package_items) }><li><a href="#xupdate-tabs-package"><{$smarty.const._MI_XUPDATE_ADMENU_PACKAGE}> <{$smarty.const._AD_XUPDATE_LANG_STORE}></a></li><{/if}>

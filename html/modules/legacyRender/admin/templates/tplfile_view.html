@@ -5,12 +5,10 @@
 </div>
 
 
+<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW}></h2>
 
-<div class="ui-card-full">
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW}></h2>
 <script type="text/javascript">
 <!--
 function expandEditor( id, width, height )
@@ -26,10 +24,13 @@ function expandEditor( id, width, height )
 </script>
 
 <table class="outer">
+	<thead>
   <tr>
     <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_VIEW}></th>
-  </tr>
-  <tr>
+	</tr>
+</thead>
+<tbody>
+<tr>
     <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
     <td class="<{cycle values="odd,even"}>"><b><{$object->getShow('tpl_tplset')}></b></td>
   </tr>
@@ -63,12 +64,13 @@ function expandEditor( id, width, height )
       </div>
       <textarea name=tpl_source id=tpl_source class="legacyRender_TemplateManager_textarea" readonly="readonly"><{$object->Source->get('tpl_source')|xoops_escape:plain}></textarea>
     </td>
-  </tr>
+	</tr>
+</tbody>
+<tfoot>
     <tr>
       <td colspan="2" class="foot">
-      <input type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()" class="formButton" />
+      <input type="button" class="ui-btn" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()">
       </td>
-  </tr>
+	</tr>
+</tfoot>
 </table>
-
-</div>

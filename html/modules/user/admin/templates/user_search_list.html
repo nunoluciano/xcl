@@ -6,6 +6,8 @@
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></h2>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div class="confirm"><{$smarty.const._AD_USER_LANG_FOUNDUSERS}>:&nbsp;&nbsp;<{$pageNavi->getTotalItems()}></div>
 
 <ul class="toptab">
@@ -26,8 +28,8 @@
 <div>
 <form action="./index.php" method="get">
   <input type="hidden" name="action" value="UserSearchList" />
-  <{xoops_explaceholder control=UserSearchPagenaviHidden pagenavi=$pageNavi}> 
- <{$smarty.const._VIEW}> : 
+  <{xoops_explaceholder control=UserSearchPagenaviHidden pagenavi=$pageNavi}>
+ <{$smarty.const._VIEW}> :
   <select name="perpage">
     <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
     <{foreach item=page from=$pageArr}>
@@ -49,7 +51,7 @@
 <form name="usersearchlistform" method="post" action="./index.php?action=UserSearchList">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=batchjob value=1}>
-  <{xoops_explaceholder control=UserSearchPagenaviHidden pagenavi=$pageNavi}> 
+  <{xoops_explaceholder control=UserSearchPagenaviHidden pagenavi=$pageNavi}>
 <table class="outer">
   <tr>
     <th>&nbsp;</th>

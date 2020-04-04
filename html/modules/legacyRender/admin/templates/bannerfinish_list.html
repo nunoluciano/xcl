@@ -4,24 +4,26 @@
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a></span>
 </div>
 
-
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
-<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}>
+<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}>
 <{if $currentClient}>
   ( <{$currentClient->getShow('name')}> )
 <{/if}>
-</h3>
+</h2>
 
-<ul class="toptab">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<p>
+	<a href="index.php?action=BannerList" class="ui-btn ui-btn-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
+	<a href="index.php?action=BannerclientList" class="ui-btn ui-btn-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+</p>
+
+<!-- <ul class="toptab">
   <li class="addBannerList"><a href="index.php?action=BannerList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a></li>
   <li class="addBannerClientList"><a href="index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></li>
-</ul>
+</ul> -->
 
 <table class="outer">
+	<thead>
   <tr>
     <th><{$smarty.const._AD_LEGACYRENDER_LANG_BID}>
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -42,7 +44,9 @@
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
-  </tr>
+	</tr>
+</thead>
+<tbody>
   <{foreach item=obj from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
       <td class="legacyRender_list_id"><{$obj->getShow('bid')}></td>
@@ -55,10 +59,8 @@
         <a href="./index.php?action=BannerfinishDelete&amp;bid=<{$obj->getShow('bid')}>"><img src="<{"icons/delete.png"|theme}>" alt="<{$smarty.const._DELETE}>" title="<{$smarty.const._DELETE}>" /></a>
       </td>
     </tr>
-  <{/foreach}>
+	<{/foreach}>
+</tbody>
 </table>
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-
-
-</div>

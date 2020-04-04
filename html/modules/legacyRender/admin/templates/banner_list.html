@@ -4,23 +4,30 @@
 </div>
 
 
-<div class="ui-card-full">
+<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></h2>
+
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}>
 <{if $currentClient}>
   ( <{$currentClient->getShow('name')}> )
 <{/if}>
-</h2>
 
-<ul class="toptab">
+
+<p>
+	<a href="index.php?action=BannerclientList" class="ui-btn ui-btn-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+	<a href="index.php?action=BannerfinishList" class="ui-btn ui-btn-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
+	<a href="index.php?action=BannerEdit" class="ui-btn ui-btn-small"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a>
+</p>
+
+<!-- <ul class="toptab">
   <li class="addBannerClientList"><a href="index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></li>
   <li class="addBannerExpire"><a href="index.php?action=BannerfinishList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a></li>
   <li class="addBanner"><a href="index.php?action=BannerEdit"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a></li>
-</ul>
+</ul> -->
 
 <table class="outer">
+	<thead>
   <tr>
     <th><{$smarty.const._AD_LEGACYRENDER_LANG_BID}>
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_BID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
@@ -44,7 +51,9 @@
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._AD_LEGACYRENDER_LANG_CONTROL}></th>
-  </tr>
+	</tr>
+</thead>
+<tbody>
   <{foreach item=obj from=$objects}>
     <tr class="<{cycle values='odd,even'}>">
       <td class="legacyRender_list_id"><{$obj->getShow('bid')}></td>
@@ -75,9 +84,8 @@
         </a>
       </td>
     </tr>
-  <{/foreach}>
+	<{/foreach}>
+</tbody>
 </table>
 
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
-
-</div>

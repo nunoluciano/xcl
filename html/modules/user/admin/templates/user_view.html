@@ -6,14 +6,19 @@
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_VIEW}> (<{$object->getShow('uname')}>)</h2>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div class="tips">
   <{$smarty.const._AD_USER_TIPS_RECOUNT_POSTS}>
 </div>
 
 <table class="outer">
+	<thead>
   <tr>
     <th colspan="2"><{$smarty.const._AD_USER_LANG_USER_VIEW}></th>
-  </tr>
+	</tr>
+</thead>
+<tbody>
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_UID}></td>
     <td class="<{cycle values='odd,even'}>">
@@ -182,5 +187,6 @@
       <{$object->getShow('bio')}>
     </td>
   </tr>
-  <{legacy_profile uid=$object->getShow('uid')}>
+	<{legacy_profile uid=$object->getShow('uid')}>
+</tbody>
 </table>

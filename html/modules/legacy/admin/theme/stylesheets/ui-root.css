@@ -63,10 +63,10 @@
 			scroll-behavior				: auto;
 		}
 		* {
-				animation-duration: 0.01ms !important;
+				animation-duration	: 0.01ms !important;
 				animation-iteration-count: 1 !important;
-				transition-duration: 0.01ms !important;
-				scroll-behavior: auto !important;
+				transition-duration	: 0.01ms !important;
+				scroll-behavior			: auto !important;
 			}
 	}
 
@@ -141,18 +141,18 @@
 
 	/*	-------------------- -------------------- -------------------- Color Scheme Dark */
 
-		--ui-color-amber				: #ffc107;
+		/* --ui-color-amber				: #ffc107;
 		--ui-color-blue					: #0F4C81;
 		--ui-color-green				: #27ae74;
 		--ui-color-indigo				: #1b275a;
 		--ui-color-orange				: #ff9800;
 		--ui-color-purple				: #673ab7;
 		--ui-color-red					: #f44336;
-		--ui-color-white				: #FAFAFA;
+		--ui-color-white				: #FAFAFA; */
 
 	/*	-------------------- -------------------- -------------------- Color Link Dark */
 
-		--ui-color-link					: hsl(216, 15%, 64%);
+		--ui-color-link					: #face74;
 		--ui-color-link-active	: orange;
 		--ui-color-link-hover		: #face74;
 		--ui-color-link-visited	: #EBF5FA;
@@ -196,17 +196,6 @@
 		--ui-border-style  			: solid;
 		--ui-border-width  			: 1px;
 
-	/*	-------------------- -------------------- -------------------- BUTTON style [default]  */
-
-		--ui-button-active   		: 0;
-
-		--ui-button-color				: #3C4858;
-
-		--ui-button-padding			: var(--ui-space-400) var(--ui-space-500); /* 0.75rem 1rem; */
-		--ui-button-radius 			: 3px;
-		--ui-button-style  			: solid;
-		--ui-button-width  			: 1px;
-
 	/*	-------------------- -------------------- -------------------- BREADCRUMBS */
 
 		--ui-breadcrumbs-background   		: var(	--ui-color-400			);
@@ -222,6 +211,17 @@
 		--ui-breadcrumbs-margin       		: var(	--ui-space-500			)	0; /* Top & Bottom, '0' for Left & Right*/
 
 		--ui-breadcrumbs-bg-link					: var(	--ui-color-400			);
+
+		/*	-------------------- -------------------- -------------------- BUTTON style [default]  */
+
+		--ui-button-active   		: 0;
+
+		--ui-button-color				: var( --ui-color-link-hover ); /*#3C4858; */
+
+		--ui-button-padding			: var(--ui-space-400) var(--ui-space-500); /* 0.75rem 1rem; */
+		--ui-button-radius 			: 3px;
+		--ui-button-style  			: solid;
+		--ui-button-width  			: 1px;
 
 
 	/*	-------------------- -------------------- -------------------- CARD-BLOCK */
@@ -257,13 +257,6 @@
 		--ui-card-block-item-padding			: var(  --ui-space-400 			) 0.75em ;
 		--ui-card-block-item-width				: 100%;
 
-	/*	-------------------- -------------------- -------------------- Block Type SVG Color */
-
-		--ui-color-block-html							: var(  --ui-color-200		);
-		--ui-color-block-module						: var(  --ui-color-300		);
-		--ui-color-block-php							: var(  --ui-color-400		);
-		--ui-color-block-smilies					: var(  --ui-color-500		);
-
 	/*	-------------------- -------------------- -------------------- CARD-FULL */
 
 		--ui-card-full-background    			: var(	--ui-color-400		);
@@ -295,8 +288,14 @@
 		--ui-card-small-padding       		: var(	--ui-space-600			);
 		--ui-card-small-margin        		: var(	--ui-space-600			);
 
+	/*	-------------------- -------------------- -------------------- Color Block Type SVG Color !Todo : Refactory and rename */
 
-	/*	-------------------- -------------------- -------------------- DATA-FILTER */
+		--ui-color-block-html							: var(  --ui-color-200		);
+		--ui-color-block-module						: var(  --ui-color-300		);
+		--ui-color-block-php							: var(  --ui-color-400		);
+		--ui-color-block-smilies					: var(  --ui-color-500		);
+
+	/*	-------------------- -------------------- -------------------- FILTER [ DATA ] */
 
 		--ui-filter-background    				: var(	--ui-color-400			);
 
@@ -313,7 +312,7 @@
 
 	/*	-------------------- -------------------- -------------------- FORM input */
 
-		--ui-input-background							: var(  --ui-color-400			);
+		--ui-input-background							: var(  --ui-color-500			);
 
 		--ui-input-border-color  					: var(  --ui-color-300			);
 		--ui-input-border-radius 					: var(	--ui-border-radius	);

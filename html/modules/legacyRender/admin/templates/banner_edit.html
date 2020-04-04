@@ -9,16 +9,13 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
   <{if $actionForm->get('bid')}>
     <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_EDIT}></h2>
   <{else}>
     <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></h2>
-  <{/if}>
+	<{/if}>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -34,6 +31,7 @@
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
   <table class="outer">
+		<thead>
     <tr>
       <th colspan="2">
         <{if $actionForm->get('bid')}>
@@ -42,7 +40,9 @@
           <{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}>
         <{/if}>
       </th>
-    </tr>
+		</tr>
+	</thead>
+	<tbody>
     <{if $actionForm->get('bid')}>
     <tr>
       <td class="head legacyRender_list_image" colspan="2">
@@ -96,14 +96,15 @@
         <span class="ui-checkbox-custom"></span>
       </label>
       </td>
-    </tr>
+		</tr>
+	</tbody>
+	<tfoot>
     <tr>
       <td class="foot" colspan="2">
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>" />
         <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
       </td>
     </tr>
-  </table>
+	</table>
+</tfoot>
 </form>
-
-</div>

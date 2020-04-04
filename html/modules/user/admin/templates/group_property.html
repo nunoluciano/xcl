@@ -5,12 +5,9 @@
 </div>
 
 
-
-<div class="ui-card-full">
-<div class="ui-dev-mode"><{$smarty.template}></div>
-
-
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}> ( <{$group->getShow('name')}> )</h2>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <table class="outer">
   <tr>
@@ -51,8 +48,8 @@
   </tr>
 </table>
 
-<hr />
-<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h4>
+<hr>
+<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h3>
 
 <table class="outer">
   <tr>
@@ -148,7 +145,7 @@
   <{/foreach}>
 </table>
 
-<br />
+<br>
 <h5 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_BLOCK_ACCESS}></h5>
 
 <{foreach key=i item=permissions from=$blockPermissions}>
@@ -185,4 +182,3 @@
 <br />
 <{/foreach}>
 
-</div>
