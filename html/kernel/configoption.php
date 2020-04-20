@@ -85,11 +85,12 @@ class XoopsConfigOption extends XoopsObject
     {
         return defined($this->get('confop_name')) ? constant($this->get('confop_name')) : $this->get('confop_name');
     }
+
     /**
      * Compare with contents of $config object. If it's equal, return true.
      * This member function doesn't use 'conf_id' & 'conf_order' to compare.
-     * 
-     * @param XoopsConfigItem $config
+     *
+     * @param $option
      * @return bool
      */
     public function isEqual(&$option)
@@ -148,7 +149,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('configoption').' WHERE confop_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $confoption =new XoopsConfigOption();
                     $confoption->assignVars($this->db->fetchArray($result));
                     $ret =& $confoption;
@@ -166,7 +167,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     public function insert(&$confoption)
     {
-        if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
+        if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }
         if (!$confoption->isDirty()) {
@@ -202,7 +203,7 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     public function delete(&$confoption)
     {
-        if (strtolower(get_class($confoption)) != 'xoopsconfigoption') {
+        if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE confop_id = %u', $this->db->prefix('configoption'), $confoption->getVar('confop_id', 'n'));
@@ -222,10 +223,10 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('configoption');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere().' ORDER BY confop_id '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();

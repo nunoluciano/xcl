@@ -125,7 +125,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
             $sql = 'SELECT * FROM '.$this->db->prefix('configcategory').' WHERE confcat_id='.$id;
             if ($result = $this->db->query($sql)) {
                 $numrows = $this->db->getRowsNum($result);
-                if ($numrows == 1) {
+                if (1 == $numrows) {
                     $confcat =new XoopsConfigCategory();
                     $confcat->assignVars($this->db->fetchArray($result), false);
                     $ret =& $confcat;
@@ -144,7 +144,7 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      */
     public function insert(&$confcat)
     {
-        if (strtolower(get_class($confcat)) != 'xoopsconfigcategory') {
+        if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;
         }
         if (!$confcat->isDirty()) {
@@ -158,9 +158,9 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
         }
         if ($confcat->isNew()) {
             $confcat_id = $this->db->genId('configcategory_confcat_id_seq');
-            $sql = sprintf("INSERT INTO %s (confcat_id, confcat_name, confcat_order) VALUES (%u, %s, %u)", $this->db->prefix('configcategory'), $confcat_id, $this->db->quoteString($confcat_name), $confcat_order);
+            $sql = sprintf('INSERT INTO %s (confcat_id, confcat_name, confcat_order) VALUES (%u, %s, %u)', $this->db->prefix('configcategory'), $confcat_id, $this->db->quoteString($confcat_name), $confcat_order);
         } else {
-            $sql = sprintf("UPDATE %s SET confcat_name = %s, confcat_order = %u WHERE confcat_id = %u", $this->db->prefix('configcategory'), $this->db->quoteString($confcat_name), $confcat_order, $confcat_id);
+            $sql = sprintf('UPDATE %s SET confcat_name = %s, confcat_order = %u WHERE confcat_id = %u', $this->db->prefix('configcategory'), $this->db->quoteString($confcat_name), $confcat_order, $confcat_id);
         }
         if (!$result = $this->db->query($sql)) {
             return false;
@@ -181,10 +181,10 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      */
     public function delete(&$confcat)
     {
-        if (strtolower(get_class($confcat)) != 'xoopsconfigcategory') {
+        if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;
         }
-        $sql = sprintf("DELETE FROM %s WHERE confcat_id = %u", $this->db->prefix('configcategory'), $confcat->getVar('confcat_id'));
+        $sql = sprintf('DELETE FROM %s WHERE confcat_id = %u', $this->db->prefix('configcategory'), $confcat->getVar('confcat_id'));
         if (!$result = $this->db->query($sql)) {
             return false;
         }
@@ -201,12 +201,12 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
         $limit = $start = 0;
         $sql = 'SELECT * FROM '.$this->db->prefix('configcategory');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && $criteria instanceof \criteriaelement) {
             $sql .= ' '.$criteria->renderWhere();
-            $sort = !in_array($criteria->getSort(), array('confcat_id', 'confcat_name', 'confcat_order')) ? 'confcat_order' : $criteria->getSort();
+            $sort = !in_array($criteria->getSort(), ['confcat_id', 'confcat_name', 'confcat_order']) ? 'confcat_order' : $criteria->getSort();
             $sql .= ' ORDER BY '.$sort.' '.$criteria->getOrder();
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
