@@ -23,7 +23,7 @@ class LegacyRenderBannerfinishObject extends XoopsSimpleObject
 
     public function loadBannerclient()
     {
-        if ($this->_mClientLoadedFlag == false) {
+        if (false == $this->_mClientLoadedFlag) {
             $handler =& xoops_getmodulehandler('bannerclient', 'legacyRender');
             $this->mClient =& $handler->get($this->get('cid'));
             $this->_mClientLoadedFlag = true;
@@ -33,7 +33,7 @@ class LegacyRenderBannerfinishObject extends XoopsSimpleObject
 
 class LegacyRenderBannerfinishHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "bannerfinish";
-    public $mPrimary = "bid";
-    public $mClass = "LegacyRenderBannerfinishObject";
+    public $mTable = 'bannerfinish';
+    public $mPrimary = 'bid';
+    public $mClass = 'LegacyRenderBannerfinishObject';
 }
