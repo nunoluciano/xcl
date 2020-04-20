@@ -8,10 +8,10 @@ class d3utilities
     public $mid = 0 ; // id of each module instance
     public $table = '' ; // table with prefix and dirname
     public $primary_key = '' ; // column for primary_key
-    public $cols = array() ; // settings of each columns
+    public $cols = []; // settings of each columns
     public $form_mode = 'new' ; // 'new','edit' are available
     public $page_name = '' ; // controller's name  eg) page=(controller) in URI
-    public $action_base_hiddens = array() ;
+    public $action_base_hiddens = [];
 
 //HACK by domifara
 //	public function D3Utilities( $mydirname , $table_body , $primary_key , $cols , $page_name , $action_base_hiddens )
@@ -19,7 +19,7 @@ class d3utilities
     {
         $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
-        $this->dirname = basename(dirname(dirname(__FILE__))) ;
+        $this->dirname = basename(dirname(__DIR__)) ;
         $this->mydirname = $mydirname ;
         $this->table = $db->prefix($mydirname ? $mydirname . '_' . $table_body : $table_body) ;
         $this->primary_key = $primary_key ;
@@ -27,7 +27,7 @@ class d3utilities
         $module_handler =& xoops_gethandler('module') ;
         $module =& $module_handler->getByDirname($this->mydirname) ;
         if (! empty($module)) {
-            $this->mid = intval($module->getVar('mid')) ;
+            $this->mid = (int)$module->getVar('mid');
         }
         $this->page_name = $page_name ;
         $this->action_base_hiddens = $action_base_hiddens ;
@@ -45,21 +45,21 @@ class d3utilities
         switch ($col['type']) {
             case 'text' :
             case 'blob' :
-                $length = empty($col['length']) ? 65535 : intval($col['length']) ;
+                $length = empty($col['length']) ? 65535 : (int)$col['length'];
                 return "`{$col['name']}`='".addslashes(xoops_substr($value, 0, $length))."'" ;
             case 'char' :
             case 'varchar' :
             case 'string' :
-                $length = empty($col['length']) ? 255 : intval($col['length']) ;
+                $length = empty($col['length']) ? 255 : (int)$col['length'];
                 return "`{$col['name']}`='".addslashes(xoops_substr($value, 0, $length))."'" ;
             case 'int' :
             case 'integer' :
-                $value = intval($value) ;
+                $value = (int)$value;
                 if (! empty($col['max'])) {
-                    $value = min($value, intval($col['max'])) ;
+                    $value = min($value, (int)$col['max']) ;
                 }
                 if (! empty($col['min'])) {
-                    $value = max($value, intval($col['min'])) ;
+                    $value = max($value, (int)$col['min']) ;
                 }
                 return "`{$col['name']}`=$value" ;
         }
@@ -87,11 +87,11 @@ class d3utilities
             if ($id > 0) {
                 // UPDATE
                 $db->queryF("UPDATE $this->table SET ".substr($set4sql, 0, -1)." WHERE $this->primary_key='".addslashes($id)."'") ;
-                return array( $id , 'update' ) ;
+                return [$id, 'update'];
             } else {
                 // INSERT
                 $db->queryF("INSERT INTO $this->table SET ".substr($set4sql, 0, -1)) ;
-                return array( $db->getInsertId() , 'insert' ) ;
+                return [$db->getInsertId(), 'insert'];
             }
         }
     }
@@ -104,7 +104,7 @@ class d3utilities
 
         // search appropriate column for getting primary_key
         foreach ($this->cols as $col) {
-            if (in_array(@$col['list_edit'], array( 'text', 'textarea', 'hidden' ))) {
+            if (in_array(@$col['list_edit'], ['text', 'textarea', 'hidden'])) {
                 $column4key = $col['name'] ;
                 break ;
             }
@@ -113,9 +113,9 @@ class d3utilities
             $column4key = $this->cols[0]['name'] ;
         }
 
-        $ret = array() ;
+        $ret = [];
         foreach (array_keys($_POST[$column4key]) as $id) {
-            $id = intval($id) ;    // primary_key should be 'integer'
+            $id = (int)$id;    // primary_key should be 'integer'
             $set4sql = '' ;
             foreach ($this->cols as $col) {
                 if (empty($col['list_edit'])) {
@@ -128,9 +128,9 @@ class d3utilities
             }
             if (! empty($set4sql)) {
                 $result = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
-                if ($db->getRowsNum($result) == 1) {
+                if (1 == $db->getRowsNum($result)) {
                     $db->queryF("UPDATE $this->table SET ".substr($set4sql, 0, -1)." WHERE $this->primary_key=$id") ;
-                    if ($db->getAffectedRows() == 1) {
+                    if (1 == $db->getAffectedRows()) {
                         $ret[ $id ] = $db->fetchArray($result) ;
                     }
                 }
@@ -145,22 +145,22 @@ class d3utilities
     {
         $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
-        $ret = array() ;
+        $ret = [];
         foreach (array_keys($_POST['admin_main_checkboxes']) as $id) {
-            $id = intval($id) ;    // primary_key should be 'integer'
+            $id = (int)$id;    // primary_key should be 'integer'
             $result = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
-            if ($db->getRowsNum($result) == 1) {
+            if (1 == $db->getRowsNum($result)) {
                 $ret[ $id ] = $db->fetchArray($result) ;
 
                 $db->queryF("DELETE FROM $this->table WHERE $this->primary_key=$id") ;
                 if ($delete_comments) {
                     // remove comments
-                    $db->queryF("DELETE FROM ".$db->prefix("xoopscomments")." WHERE com_modid=$this->mid AND com_itemid=$id") ;
+                    $db->queryF('DELETE FROM ' . $db->prefix('xoopscomments') . " WHERE com_modid=$this->mid AND com_itemid=$id") ;
                 }
 
                 if ($delete_notifications) {
                     // remove notifications
-                    $db->queryF("DELETE FROM ".$db->prefix("xoopsnotifications")." WHERE not_modid=$this->mid AND not_itemid=$id") ;
+                    $db->queryF('DELETE FROM ' . $db->prefix('xoopsnotifications') . " WHERE not_modid=$this->mid AND not_itemid=$id") ;
                 }
             }
         }
@@ -174,9 +174,9 @@ class d3utilities
         $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
         if (@$_GET['id']) {
-            $id = intval($_GET['id']) ;
+            $id = (int)$_GET['id'];
             $rs = $db->query("SELECT * FROM $this->table WHERE $this->primary_key=$id") ;
-            if ($db->getRowsNum($rs) == 1) {
+            if (1 == $db->getRowsNum($rs)) {
                 $row = $db->fetchArray($rs) ;
                 foreach (array_keys($this->cols) as $key) {
                     if (empty($this->cols[$key]['edit_show'])) {
@@ -198,7 +198,7 @@ class d3utilities
     {
         $id = $this->init_default_values() ;
 
-        $lines = array() ;
+        $lines = [];
         foreach ($this->cols as $col) {
             if (empty($col['edit_show'])) {
                 continue ;
@@ -223,8 +223,8 @@ class d3utilities
                     break ;
                 case 'text' :
                 default :
-                    $size = empty($col['edit_size']) ? 32 : intval($col['edit_size']) ;
-                    $length = empty($col['length']) ? 255 : intval($col['length']) ;
+                    $size = empty($col['edit_size']) ? 32 : (int)$col['edit_size'];
+                    $length = empty($col['length']) ? 255 : (int)$col['length'];
                     $lines[ $col['name'] ] = "<input type='text' name='{$col['name']}' size='$size' maxlength='$length' value='".htmlspecialchars($col['default_value'], ENT_QUOTES)."' />" ;
                     break ;
                 case false :
@@ -233,7 +233,7 @@ class d3utilities
             }
         }
 
-        return array( $id , $lines ) ;
+        return [$id, $lines];
     }
 
 
@@ -248,7 +248,7 @@ class d3utilities
 
         $controllers_html = '' ;
         foreach ($controllers as $type => $body) {
-            if ($type == 'num') {
+            if ('num' == $type) {
                 $controllers_html .= $this->get_select('num', $body, $GLOBALS['num']) ;
             }
         }
@@ -265,7 +265,7 @@ class d3utilities
     {
         $ret = "<select name='".htmlspecialchars($name, ENT_QUOTES)."'>\n" ;
         foreach ($options as $key => $val) {
-            $selected = $val == $current_value ? "selected='selected'" : "" ;
+            $selected = $val == $current_value ? "selected='selected'" : '';
             $ret .= "<option value='".htmlspecialchars($key, ENT_QUOTES)."' $selected>".htmlspecialchars($val, ENT_QUOTES)."</option>\n" ;
         }
         $ret .= "</select>\n" ;

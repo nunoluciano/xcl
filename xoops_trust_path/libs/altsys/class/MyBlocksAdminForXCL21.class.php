@@ -28,12 +28,12 @@ public static function &getInstance()
 // options
 public function renderCell4BlockOptions($block_data)
 {
-    if ($this->target_dirname && substr($this->target_dirname, 0, 1) != '_') {
+    if ($this->target_dirname && '_' != substr($this->target_dirname, 0, 1)) {
         $langman =& D3LanguageManager::getInstance() ;
         $langman->read('admin.php', $this->target_dirname) ;
     }
 
-    $bid = intval($block_data['bid']) ;
+    $bid = (int)$block_data['bid'];
 
 //HACK by domifara
 //	$block = new XoopsBlock( $bid ) ;

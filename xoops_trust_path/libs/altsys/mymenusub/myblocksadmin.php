@@ -8,7 +8,7 @@ $core_type = altsys_get_core_type() ;
 $db =& XoopsDatabaseFactory::getDatabaseConnection() ;
 
 $current_dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', @$_GET['dirname']) ;
-if ($current_dirname == '__CustomBlocks__') {
+if ('__CustomBlocks__' == $current_dirname) {
     return ;
 }
 
@@ -22,24 +22,24 @@ if ($current_dirname == '__CustomBlocks__') {
         array_unshift($modules4menu, $system_module) ;
     }
 
-$adminmenu = array() ;
+$adminmenu = [];
 foreach ($modules4menu as $m4menu) {
 
     $block_desc = '' ;
 
     if ($m4menu->getVar('dirname') == $current_dirname) {
-        $adminmenu[] = array(
+        $adminmenu[] = [
             'selected' => true ,
             'title' => $m4menu->getVar('name', 'n') . $block_desc ,
             'link' => '?mode=admin&lib=altsys&page=myblocksadmin&dirname='.$m4menu->getVar('dirname', 'n') ,
-        ) ;
+        ];
 
     } else {
-        $adminmenu[] = array(
+        $adminmenu[] = [
             'selected' => false ,
             'title' => $m4menu->getVar('name', 'n') . $block_desc ,
             'link' => '?mode=admin&lib=altsys&page=myblocksadmin&dirname='.$m4menu->getVar('dirname', 'n') ,
-        ) ;
+        ];
     }
 }
 

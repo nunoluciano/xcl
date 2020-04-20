@@ -23,7 +23,7 @@ function altsys_admin_in_theme($s)
     }
 
     // outputs before cp_header()
-    @list($former_outputs, $tmp_s) = explode("<!DOCTYPE", $s, 2) ;
+    @list($former_outputs, $tmp_s) = explode('<!DOCTYPE', $s, 2) ;
     if (empty($tmp_s)) {
         $tmp_s = $s ;
     }
@@ -70,10 +70,10 @@ function altsys_admin_in_theme_in_last($contents = null)
     }
 
     // language files
-    if (file_exists(dirname(dirname(__FILE__)).'/language/'.$xoopsConfig['language'].'/admin_in_theme.php')) {
-        include_once dirname(dirname(__FILE__)).'/language/'.$xoopsConfig['language'].'/admin_in_theme.php' ;
+    if (file_exists(dirname(__DIR__) . '/language/' . $xoopsConfig['language'] . '/admin_in_theme.php')) {
+        include_once dirname(__DIR__) . '/language/' . $xoopsConfig['language'] . '/admin_in_theme.php' ;
     } else {
-        include_once dirname(dirname(__FILE__)).'/language/english/admin_in_theme.php' ;
+        include_once dirname(__DIR__) . '/language/english/admin_in_theme.php' ;
     }
 
     // set the theme
@@ -89,10 +89,10 @@ function altsys_admin_in_theme_in_last($contents = null)
     }
     error_reporting($original_error_level) ;
 
-    include dirname(__FILE__).'/admin_in_theme_header.inc.php' ;
+    include __DIR__ . '/admin_in_theme_header.inc.php' ;
 
     $xoops_module_header = '' ;
-    if (altsys_get_core_type() == ALTSYS_CORE_TYPE_XCL21) {
+    if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
         $xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/legacyRender/admin/css.php?file=style.css" />'."\n" ;
         if (is_object(@$xoopsModule)) {
             $xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/legacyRender/admin/css.php?file=module.css&amp;dirname='.$xoopsModule->getVar('dirname').'" />'."\n" ;
@@ -100,7 +100,8 @@ function altsys_admin_in_theme_in_last($contents = null)
     }
 
     // assignment
-    $xoopsTpl->assign(array(
+    $xoopsTpl->assign(
+        [
         'xoops_theme' => $xoopsConfig['theme_set'],
         'xoops_imageurl' => XOOPS_THEME_URL.'/'.$xoopsConfig['theme_set'].'/',
         'xoops_themecss'=> xoops_getcss($xoopsConfig['theme_set']),
@@ -114,7 +115,8 @@ function altsys_admin_in_theme_in_last($contents = null)
         'xoops_slogan' => htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES),
         'xoops_contents' => $xoops_admin_contents, //. '<div id="adminmenu_layers">' . $xoops_admin_menu_dv . '</div>' ,
         'xoops_module_header' => $xoops_module_header,
-    )) ;
+        ]
+    ) ;
 
     // rendering
     $xoopsTpl->display($xoopsConfig['theme_set'].'/theme.html') ;

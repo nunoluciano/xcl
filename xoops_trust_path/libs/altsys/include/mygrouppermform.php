@@ -32,7 +32,7 @@ class MyXoopsGroupPermForm extends XoopsForm
      * Tree structure of items
      * @var array
      */
-    public $_itemTree = array() ;
+    public $_itemTree = [];
     /**
      * Name of permission
      * @var string
@@ -47,10 +47,14 @@ class MyXoopsGroupPermForm extends XoopsForm
      * Appendix
      * @var array ('permname'=>,'itemid'=>,'itemname'=>,'selected'=>)
      */
-    public $_appendix = array() ;
+    public $_appendix = [];
 
     /**
      * Constructor
+     * @param $title
+     * @param $modid
+     * @param $permname
+     * @param $permdesc
      */
     //HACK by domifara
     //	public function MyXoopsGroupPermForm($title, $modid, $permname, $permdesc)
@@ -58,7 +62,7 @@ class MyXoopsGroupPermForm extends XoopsForm
     {
         //		$this->XoopsForm($title, 'groupperm_form', XOOPS_URL.'/modules/system/admin/groupperm.php', 'post'); GIJ
         $this->XoopsForm($title, 'groupperm_form', '', 'post');
-        $this->_modid = intval($modid);
+        $this->_modid = (int)$modid;
         $this->_permName = $permname;
         $this->_permDesc = $permdesc;
         // !Fix PHP7 NOTICE: Only variables should be passed by reference
@@ -87,10 +91,13 @@ class MyXoopsGroupPermForm extends XoopsForm
      * Add appendix
      *
      * @access public
+     * @param $permName
+     * @param $itemId
+     * @param $itemName
      */
     public function addAppendix($permName, $itemId, $itemName)
     {
-        $this->_appendix[] = array('permname'=>$permName,'itemid'=>$itemId,'itemname'=>$itemName,'selected'=>false);
+        $this->_appendix[] = ['permname' =>$permName, 'itemid' =>$itemId, 'itemname' =>$itemName, 'selected' =>false];
     }
 
     /**
@@ -128,7 +135,7 @@ class MyXoopsGroupPermForm extends XoopsForm
 
         // load all child ids for javascript codes
         foreach (array_keys($this->_itemTree) as $item_id) {
-            $this->_itemTree[$item_id]['allchild'] = array();
+            $this->_itemTree[$item_id]['allchild'] = [];
             $this->_loadAllChildItemIds($item_id, $this->_itemTree[$item_id]['allchild']);
         }
         $gperm_handler =& xoops_gethandler('groupperm');
@@ -188,7 +195,7 @@ class MyXoopsGroupPermForm extends XoopsForm
                 // group name
                 $ret .= "<tr valign='top' align='"._GLOBAL_LEFT."'><td class='head'>".$elements[$i]->getCaption();
                 // group description
-                if ($elements[$i]->getDescription() != '') {
+                if ('' != $elements[$i]->getDescription()) {
                     $ret .= '<br /><br /><span style="font-weight: normal;">'.$elements[$i]->getDescription().'</span>';
                 }
                 $ret .= "</td>\n<td class='even'>\n".$elements[$i]->render()."\n</td></tr>\n";
@@ -196,7 +203,7 @@ class MyXoopsGroupPermForm extends XoopsForm
                 $ret .= $elements[$i]->render();
             }
         }
-        $ret .= "</table>".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'myblocksadmin')."</form></div>";
+        $ret .= '</table>' . $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'myblocksadmin') . '</form></div>';
         return $ret;
     }
 }
@@ -233,10 +240,14 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
      * Appendix
      * @var array ('permname'=>,'itemid'=>,'itemname'=>,'selected'=>)
      */
-    public $_appendix = array() ;
+    public $_appendix = [];
 
     /**
      * Constructor
+     * @param      $caption
+     * @param      $name
+     * @param      $groupId
+     * @param null $values
      */
     // !Fix PHP7 NOTICE: deprecated constructor
 	public function __construct($caption, $name, $groupId, $values = null)
@@ -282,6 +293,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
      * Sets appendix of checkboxes
      *
      * @access public
+     * @param $appendix
      */
     public function setAppendix($appendix)
     {
@@ -298,7 +310,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
     {
         $ret = '' ;
 
-        if (sizeof($this->_appendix) > 0) {
+        if (count($this->_appendix) > 0) {
             $ret .= '<table class="outer"><tr>';
             $cols = 1;
             foreach ($this->_appendix as $append) {
@@ -344,9 +356,9 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
      * @param array $parentIds
      * @access private
      */
-    public function _renderOptionTree(&$tree, $option, $prefix, $parentIds = array())
+    public function _renderOptionTree(&$tree, $option, $prefix, $parentIds = [])
     {
-        $tree .= $prefix."<input type=\"checkbox\" name=\"".$this->getName()."[groups][".$this->_groupId."][".$option['id']."]\" id=\"".$this->getName()."[groups][".$this->_groupId."][".$option['id']."]\" onclick=\"";
+        $tree .= $prefix . '<input type="checkbox" name="' . $this->getName() . '[groups][' . $this->_groupId . '][' . $option['id'] . ']" id="' . $this->getName() . '[groups][' . $this->_groupId . '][' . $option['id'] . ']" onclick="';
         // If there are parent elements, add javascript that will
         // make them selecteded when this element is checked to make
         // sure permissions to parent items are added as well.
@@ -366,7 +378,14 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
         if (isset($this->_value) && in_array($option['id'], $this->_value)) {
             $tree .= ' checked="checked"';
         }
-        $tree .= " />".$option['name']."<input type=\"hidden\" name=\"".$this->getName()."[parents][".$option['id']."]\" value=\"".implode(':', $parentIds)."\" /><input type=\"hidden\" name=\"".$this->getName()."[itemname][".$option['id']."]\" value=\"".htmlspecialchars($option['name'])."\" /><br />\n";
+        $tree .= ' />'
+                 . $option['name'] . '<input type="hidden" name="'
+                 . $this->getName() . '[parents]['
+                 . $option['id'] . ']" value="'
+                 . implode(':', $parentIds) . '" /><input type="hidden" name="'
+                 . $this->getName() . '[itemname]['
+                 . $option['id'] . ']" value="'
+                 . htmlspecialchars($option['name']) . "\" /><br />\n";
         if (isset($option['children'])) {
             foreach ($option['children'] as $child) {
                 array_push($parentIds, $option['id']);

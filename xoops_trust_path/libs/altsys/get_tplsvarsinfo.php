@@ -7,12 +7,12 @@
 
 error_reporting(0);
 
-include_once dirname(__FILE__) . '/include/gtickets.php';
-include_once dirname(__FILE__) . '/include/altsys_functions.php';
+include_once __DIR__ . '/include/gtickets.php';
+include_once __DIR__ . '/include/altsys_functions.php';
 
 
 // this page can be called only from altsys
-if ($xoopsModule->getVar('dirname') != 'altsys') {
+if ('altsys' != $xoopsModule->getVar('dirname')) {
     die('this page can be called only from UI Components');
 }
 
@@ -37,7 +37,7 @@ function convert_array2info_recursive($var_name, $var_value, $sum_array_name)
     switch (gettype($var_value)) {
         case 'array':
             foreach ($var_value as $key => $val) {
-                if (gettype($key) == 'integer') {
+                if ('integer' == gettype($key)) {
                     $GLOBALS[$sum_array_name][$var_name] = '(array)';
                     continue;
                 }
@@ -108,14 +108,14 @@ https://www.peak.ne.jp/xoops/
 // TOTAL STAGE
 //
 
-$tplsvarsinfo_mod_tpl = array();
-$tplsvarsinfo_total = array();
+$tplsvarsinfo_mod_tpl = [];
+$tplsvarsinfo_total = [];
 
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-    while (($file = readdir($handler)) !== false) {
+    while (false !== ($file = readdir($handler))) {
 
         // skip files other than tplsvars_* files
-        if (substr($file, 0, 9) !== 'tplsvars_') {
+        if ('tplsvars_' !== substr($file, 0, 9)) {
             continue;
         }
 
@@ -128,9 +128,9 @@ if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
         $file_body = implode('', file($file_path));
         $tplsvars = @unserialize($file_body);
         if (!is_array($tplsvars)) {
-            $tplsvars = array();
+            $tplsvars = [];
         }
-        $GLOBALS['tplsvarsinfo'] = array();
+        $GLOBALS['tplsvarsinfo'] = [];
         convert_array2info_recursive('', $tplsvars, 'tplsvarsinfo');
         if (strstr($tpl_name, '%')) {
             $mod_name = 'theme_etc';

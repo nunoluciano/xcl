@@ -5,9 +5,9 @@
 //                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
-require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;
-include_once dirname(__FILE__).'/include/gtickets.php' ;
-include_once dirname(__FILE__).'/include/altsys_functions.php' ;
+require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php' ;
+include_once __DIR__ . '/include/gtickets.php' ;
+include_once __DIR__ . '/include/altsys_functions.php' ;
 
 
 // this page can be called only from altsys
@@ -20,9 +20,9 @@ altsys_include_language_file('compilehookadmin') ;
 // DEFINITIONS
 //
 
-$compile_hooks = array(
+$compile_hooks = [
 
-    'enclosebycomment' => array(
+    'enclosebycomment' => [
         'pre' => '<!-- begin altsys_tplsadmin %s -->' ,
         'post' => '<!-- end altsys_tplsadmin %s -->' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT ,
@@ -30,9 +30,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_ENCLOSEBYCOMMENT ,
         'conf_msg' => _TPLSADMIN_CNF_ENCLOSEBYCOMMENT ,
         'skip_theme' => true ,
-    ) ,
+    ],
 
-    'enclosebybordereddiv' => array(
+    'enclosebybordereddiv' => [
         'pre' => '<div class="altsys_tplsadmin_frame" style="border:1px solid black;word-wrap:break-word;">' ,
         'post' => '<br /><a href="'.XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=%1$s" style="color:red;">Edit:<br />%1$s</a></div>' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYBORDEREDDIV ,
@@ -40,9 +40,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV ,
         'conf_msg' => _TPLSADMIN_CNF_ENCLOSEBYBORDEREDDIV ,
         'skip_theme' => true ,
-    ) ,
+    ],
 
-    'hooksavevars' => array(
+    'hooksavevars' => [
         'pre' => '<?php include_once "'.XOOPS_TRUST_PATH.'/libs/altsys/include/compilehook.inc.php" ; tplsadmin_save_tplsvars(\'%s\',$this) ; ?>' ,
         'post' => '' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_HOOKSAVEVARS ,
@@ -50,9 +50,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_HOOKSAVEVARS ,
         'conf_msg' => _TPLSADMIN_CNF_HOOKSAVEVARS ,
         'skip_theme' => false ,
-    ) ,
+    ],
 
-    'removehooks' => array(
+    'removehooks' => [
         'pre' => '' ,
         'post' => '' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_REMOVEHOOKS ,
@@ -60,9 +60,9 @@ $compile_hooks = array(
         'dd' => _TPLSADMIN_DD_REMOVEHOOKS ,
         'conf_msg' => _TPLSADMIN_CNF_REMOVEHOOKS ,
         'skip_theme' => false ,
-    ) ,
+    ],
 
-) ;
+];
 
 
 //
@@ -77,15 +77,15 @@ if (! empty($_POST['clearcache']) || ! empty($_POST['cleartplsvars'])) {
     }
 
     if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-        while (($file = readdir($handler)) !== false) {
+        while (false !== ($file = readdir($handler))) {
             if (! empty($_POST['clearcache'])) {
                 // judging template cache '*.php'
-                if (substr($file, -4) !== '.php') {
+                if ('.php' !== substr($file, -4)) {
                     continue ;
                 }
             } else {
                 // judging tplsvars cache 'tplsvars_*'
-                if (substr($file, 0, 9) !== 'tplsvars_') {
+                if ('tplsvars_' !== substr($file, 0, 9)) {
                     continue ;
                 }
             }
@@ -110,20 +110,20 @@ foreach ($compile_hooks as $command => $compile_hook) {
 
         if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
             $file_count = 0 ;
-            while (($file = readdir($handler)) !== false) {
+            while (false !== ($file = readdir($handler))) {
 
                 // skip /. /.. and hidden files
-                if ($file{0} == '.') {
+                if ('.' == $file{0}) {
                     continue ;
                 }
 
                 // skip if the extension is not .html.php
-                if (substr($file, -9) != '.html.php') {
+                if ('.html.php' != substr($file, -9)) {
                     continue ;
                 }
 
                 // skip theme.html when comment-mode or div-mode
-                if ($compile_hook['skip_theme'] && substr($file, -15) == '%theme.html.php') {
+                if ($compile_hook['skip_theme'] && '%theme.html.php' == substr($file, -15)) {
                     $skip_mode = true ;
                 } else {
                     $skip_mode = false ;
@@ -193,17 +193,17 @@ foreach ($compile_hooks as $command => $compile_hook) {
 $compiledcache_num = 0 ;
 $tplsvars_num = 0 ;
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-    while (($file = readdir($handler)) !== false) {
-        if (strncmp($file, 'tplsvars_', 9) === 0) {
+    while (false !== ($file = readdir($handler))) {
+        if (0 === strncmp($file, 'tplsvars_', 9)) {
             $tplsvars_num ++ ;
-        } elseif (substr($file, -4) === '.php') {
+        } elseif ('.php' === substr($file, -4)) {
             $compiledcache_num ++ ;
         }
     }
 }
 
 // get tplsets
-$sql = "SELECT tplset_name,COUNT(distinct tpl_file) FROM ".$xoopsDB->prefix("tplset")." LEFT JOIN ".$xoopsDB->prefix("tplfile")." ON tplset_name=tpl_tplset GROUP BY tpl_tplset ORDER BY tpl_tplset='default' DESC,tpl_tplset" ;
+$sql = 'SELECT tplset_name,COUNT(distinct tpl_file) FROM ' . $xoopsDB->prefix('tplset') . ' LEFT JOIN ' . $xoopsDB->prefix('tplfile') . " ON tplset_name=tpl_tplset GROUP BY tpl_tplset ORDER BY tpl_tplset='default' DESC,tpl_tplset" ;
 $srs = $xoopsDB->query($sql);
 $tplset_options = "<option value=''>----</option>\n" ;
 while (list($tplset, $tpl_count) = $xoopsDB->fetchRow($srs)) {

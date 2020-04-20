@@ -5,10 +5,10 @@
 //                      GIJOE <https://www.peak.ne.jp/>                       //
 // ------------------------------------------------------------------------- //
 
-require_once dirname(__FILE__).'/class/AltsysBreadcrumbs.class.php' ;
-include_once dirname(__FILE__)."/include/gtickets.php" ;
-include_once dirname(__FILE__).'/include/altsys_functions.php' ;
-include_once dirname(__FILE__)."/include/tpls_functions.php" ;
+require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php' ;
+include_once __DIR__ . '/include/gtickets.php';
+include_once __DIR__ . '/include/altsys_functions.php' ;
+include_once __DIR__ . '/include/tpls_functions.php';
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
@@ -47,9 +47,9 @@ if (! empty($target_module) && is_object($target_module)) {
     $target_mid = $target_module->getVar('mid') ;
     $target_dirname = $target_module->getVar('dirname') ;
     $target_dirname4sql = addslashes($target_dirname) ;
-    $target_mname = $target_module->getVar('name') . "&nbsp;" . sprintf("(%2.2f)", $target_module->getVar('version') / 100.0) ;
+    $target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0) ;
     //$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
-} elseif (@$_GET['dirname'] == '_custom') {
+} elseif ('_custom' == @$_GET['dirname']) {
     // custom template
     $target_mid = 0 ;
     $target_dirname = '_custom' ;
@@ -86,16 +86,16 @@ if (! empty($_POST['clone_tplset_do']) && ! empty($_POST['clone_tplset_from']) &
     if (! preg_match('/^[0-9A-Za-z_-]{1,16}$/', $_POST['clone_tplset_to'])) {
         tplsadmin_die(_MYTPLSADMIN_ERR_INVALIDSETNAME, $target_dirname) ;
     }
-    list($is_exist) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("tplfile")." WHERE tpl_tplset='".addslashes($tplset_to)."'")) ;
+    list($is_exist) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix('tplfile') . " WHERE tpl_tplset='" . addslashes($tplset_to) . "'")) ;
     if ($is_exist) {
         tplsadmin_die(_MYTPLSADMIN_ERR_DUPLICATEDSETNAME, $target_dirname) ;
     }
-    list($is_exist) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("tplset")." WHERE tplset_name='".addslashes($tplset_to)."'")) ;
+    list($is_exist) = $db->fetchRow($db->query('SELECT COUNT(*) FROM ' . $db->prefix('tplset') . " WHERE tplset_name='" . addslashes($tplset_to) . "'")) ;
     if ($is_exist) {
         tplsadmin_die(_MYTPLSADMIN_ERR_DUPLICATEDSETNAME, $target_dirname) ;
     }
     // insert tplset table
-    $db->query("INSERT INTO ".$db->prefix("tplset")." SET tplset_name='".addslashes($tplset_to)."', tplset_desc='Created by tplsadmin', tplset_created=UNIX_TIMESTAMP()") ;
+    $db->query('INSERT INTO ' . $db->prefix('tplset') . " SET tplset_name='" . addslashes($tplset_to) . "', tplset_desc='Created by tplsadmin', tplset_created=UNIX_TIMESTAMP()") ;
     tplsadmin_copy_templates_db2db($tplset_from, $tplset_to, "tpl_module='$target_dirname4sql'") ;
     redirect_header('?mode=admin&lib=altsys&page=mytplsadmin&dirname='.$target_dirname, 1, _MYTPLSADMIN_DBUPDATED) ;
     exit ;
@@ -105,14 +105,12 @@ if (! empty($_POST['clone_tplset_do']) && ! empty($_POST['clone_tplset_from']) &
 if (is_array(@$_POST['copy_do'])) {
     foreach ($_POST['copy_do'] as $tplset_from_tmp => $val) {
         if (! empty($val)) {
-
             // Ticket Check
-            if (! $xoopsGTicket->check()) {
-                redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
-            }
+    if (! $xoopsGTicket->check()) {
+        redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
+    }
 
             $tplset_from = $myts->stripSlashesGPC($tplset_from_tmp) ;
-
             if (empty($_POST['copy_to'][$tplset_from]) || $_POST['copy_to'][$tplset_from] == $tplset_from) {
                 tplsadmin_die(_MYTPLSADMIN_ERR_INVALIDTPLSET, $target_dirname) ;
             }
@@ -120,7 +118,6 @@ if (is_array(@$_POST['copy_do'])) {
                 tplsadmin_die(_MYTPLSADMIN_ERR_NOTPLFILE, $target_dirname) ;
             }
             $tplset_to = $myts->stripSlashesGPC($_POST['copy_to'][$tplset_from]) ;
-
             foreach ($_POST["{$tplset_from}_check"] as $tplfile_tmp => $val) {
                 if (empty($val)) {
                     continue ;
@@ -169,7 +166,7 @@ if (is_array(@$_POST['del_do'])) {
     }
 
             $tplset_from = $myts->stripSlashesGPC($tplset_from_tmp) ;
-            if ($tplset_from == 'default' && $target_dirname != '_custom') {
+            if ('default' == $tplset_from && '_custom' != $target_dirname) {
                 tplsadmin_die(_MYTPLSADMIN_ERR_CANTREMOVEDEFAULT, $target_dirname) ;
             }
             if (empty($_POST["{$tplset_from}_check"])) {
@@ -185,11 +182,11 @@ if (is_array(@$_POST['del_do'])) {
                     continue ;
                 }
                 $tplfile = $myts->stripSlashesGPC($tplfile_tmp) ;
-                $result = $db->query("SELECT tpl_id FROM ".$db->prefix("tplfile")." WHERE tpl_tplset='".addslashes($tplset_from)."' AND tpl_file='".addslashes($tplfile)."'") ;
+                $result = $db->query('SELECT tpl_id FROM ' . $db->prefix('tplfile') . " WHERE tpl_tplset='" . addslashes($tplset_from) . "' AND tpl_file='" . addslashes($tplfile) . "'") ;
                 while (list($tpl_id) = $db->fetchRow($result)) {
-                    $tpl_id = intval($tpl_id) ;
-                    $db->query("DELETE FROM ".$db->prefix("tplfile")." WHERE tpl_id=$tpl_id") ;
-                    $db->query("DELETE FROM ".$db->prefix("tplsource")." WHERE tpl_id=$tpl_id") ;
+                    $tpl_id = (int)$tpl_id;
+                    $db->query('DELETE FROM ' . $db->prefix('tplfile') . " WHERE tpl_id=$tpl_id") ;
+                    $db->query('DELETE FROM ' . $db->prefix('tplsource') . " WHERE tpl_id=$tpl_id") ;
                 }
         // remove templates_c
         $tpl->clear_cache('db:'.$tplfile);
@@ -239,7 +236,7 @@ EOD;
 // get tplsets
 $tplset_handler =& xoops_gethandler('tplset') ;
 $tplsets = array_keys($tplset_handler->getList()) ;
-$sql = "SELECT distinct tpl_tplset FROM ".$db->prefix("tplfile")." ORDER BY tpl_tplset='default' DESC,tpl_tplset" ;
+$sql = 'SELECT distinct tpl_tplset FROM ' . $db->prefix('tplfile') . " ORDER BY tpl_tplset='default' DESC,tpl_tplset" ;
 $srs = $db->query($sql);
 while (list($tplset) = $db->fetchRow($srs)) {
     if (! in_array($tplset, $tplsets)) {
@@ -261,14 +258,13 @@ foreach ($tplsets as $tplset) {
 }
 
 // get tpl_file owned by the module
-$sql = "SELECT tpl_file,tpl_desc,tpl_type,COUNT(tpl_id) FROM ".$db->prefix("tplfile")." WHERE tpl_module='$target_dirname4sql' GROUP BY tpl_file ORDER BY tpl_type, tpl_file" ;
+$sql = 'SELECT tpl_file,tpl_desc,tpl_type,COUNT(tpl_id) FROM ' . $db->prefix('tplfile') . " WHERE tpl_module='$target_dirname4sql' GROUP BY tpl_file ORDER BY tpl_type, tpl_file" ;
 $frs = $db->query($sql);
 
 xoops_cp_header() ;
 
 // css display
 require_once XOOPS_TRUST_PATH.'/libs/altsys/class/D3Tpl.class.php' ;
-
 $tpl = new D3Tpl() ;
 
 /* echo '<style scoped="scoped">';
@@ -291,7 +287,7 @@ if ($breadcrumbsObj->hasPaths()) {
 echo "<h2>"._MYTPLSADMIN_H3_MODULE." : $target_mname</h2>\n" ;
 
 // link to create a new custom template
-if ($target_dirname == '_custom') {
+if ('_custom' == $target_dirname) {
     echo "<a href='index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default'>"._MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE."</a>\n" ;
 }
 
@@ -310,12 +306,12 @@ echo "
     </thead>\n" ;
 
 // STYLE for distinguishing fingerprints
-$fingerprint_classes = array( '' , ' fingerprint1' , ' fingerprint2' , ' fingerprint3' , ' fingerprint4' , ' fingerprint5' , ' fingerprint6' , ' fingerprint7' ) ;
+$fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', ' fingerprint4', ' fingerprint5', ' fingerprint6', ' fingerprint7'];
 
 // template ROWS
 while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
-    $evenodd = @$evenodd == 'even' ? 'odd' : 'even' ;
-    $fingerprints = array();
+    $evenodd = 'even' == @$evenodd ? 'odd' : 'even' ;
+    $fingerprints = [];
 
     // information about the template
     echo "<tbody>\n
@@ -334,12 +330,10 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
     if (file_exists($basefilepath)) {
         $fingerprint = tplsadmin_get_fingerprint(file($basefilepath)) ;
         $fingerprints[ $fingerprint ] = '' ;
-        echo "
-        <td>".formatTimestamp(filemtime($basefilepath), 'm').'<br />'.substr($fingerprint, 0, 16)."<br /><input type='checkbox' name='basecheck[$tpl_file]' value='1' />
-        </td>\n" ;
+        echo '<td>' . formatTimestamp(filemtime($basefilepath), 'm') . '<br />' . substr($fingerprint, 0, 16) . "<br /><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
         $fingerprint_class_count = 0 ;
     } else {
-        echo "<td><br /></td>" ;
+        echo '<td><br /></td>';
         $fingerprint_class_count = -1 ;
     }
 
@@ -348,11 +342,11 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
         $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
 
         // query for templates in db
-        $drs = $db->query("SELECT * FROM ".$db->prefix("tplfile")." f NATURAL LEFT JOIN ".$db->prefix("tplsource")." s WHERE tpl_file='".addslashes($tpl_file)."' AND tpl_tplset='".addslashes($tplset)."'") ;
+        $drs = $db->query('SELECT * FROM ' . $db->prefix('tplfile') . ' f NATURAL LEFT JOIN ' . $db->prefix('tplsource') . " s WHERE tpl_file='" . addslashes($tpl_file) . "' AND tpl_tplset='" . addslashes($tplset) . "'") ;
         $numrows = $db->getRowsNum($drs) ;
         $tpl = $db->fetchArray($drs) ;
         if (empty($tpl['tpl_id'])) {
-            echo "<td>($numrows)</td>\n" ;
+            echo '<td>($numrows)</td>\n' ;
         } else {
             $fingerprint = tplsadmin_get_fingerprint(explode("\n", $tpl['tpl_source'])) ;
             if (isset($fingerprints[ $fingerprint ])) {
@@ -399,8 +393,9 @@ echo "<tfoot>
     foreach ($tplsets as $tplset) {
         $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
         echo "\t\t<td class='head'>
-			" . ($tplset == 'default' && $target_dirname != '_custom' ? "" : "<input name='del_do[{$tplset4disp}]' type='submit' value='"._DELETE."' onclick='return altsys_mytpladmin_check_copy_submit(\""._MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES."\", \"{$tplset4disp}_\", false);' /><br /><br />") . "
-			"._MYTPLSADMIN_CAPTION_COPYTO.":
+			" . ('default' == $tplset && '_custom' != $target_dirname ? '' : "<input name='del_do[{$tplset4disp}]' type='submit' value='" . _DELETE . "' onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);' /><br /><br />") . '
+			'
+             . _MYTPLSADMIN_CAPTION_COPYTO . ":
 			<select name='copy_to[{$tplset4disp}]'>
 				".str_replace('<option value=\''.$tplset4disp.'\'>'.$tplset4disp.'</option>', '', $tplset_options)."
 			</select>

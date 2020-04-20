@@ -5,10 +5,10 @@
 //                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
-require_once dirname(__FILE__) . '/class/AltsysBreadcrumbs.class.php';
-require_once dirname(__FILE__) . '/include/gtickets.php';
-include_once dirname(__FILE__) . '/include/altsys_functions.php';
-include_once dirname(__FILE__) . '/include/mygrouppermform.php';
+require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php';
+require_once __DIR__ . '/include/gtickets.php';
+include_once __DIR__ . '/include/altsys_functions.php';
+include_once __DIR__ . '/include/mygrouppermform.php';
 include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 
 // language file
@@ -23,24 +23,28 @@ switch (altsys_get_core_type()) {
             break ;
 
     default:
-        include_once dirname(__FILE__) . '/class/MyBlocksAdmin.class.php';
+        include_once __DIR__ . '/class/MyBlocksAdmin.class.php';
         $myba = &MyBlocksAdmin::getInstance();
         break;
 }
-
 // permission
 $myba->checkPermission();
 
 // set parameters target_mid , target_dirname etc.
 $myba->init($xoopsModule);
 
+
+//
 // transaction stage
+//
 
 if (!empty($_POST)) {
     $myba->processPost();
 }
 
+//
 // form stage
+//
 
 // header
 xoops_cp_header();

@@ -5,13 +5,13 @@
 //$langman =& D3LanguageManager::getInstance() ;
 //$langman->read( 'modinfo.php' , 'altsys' , 'altsys' ) ;
 
-if (file_exists(dirname(__FILE__) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/modinfo.php')) {
-    include_once dirname(__FILE__) . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/modinfo.php';
-} elseif (file_exists(dirname(__FILE__) . '/language/english/modinfo.php')) {
-    include_once dirname(__FILE__) . '/language/english/modinfo.php';
+if (file_exists(__DIR__ . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/modinfo.php')) {
+    include_once __DIR__ . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/modinfo.php';
+} elseif (file_exists(__DIR__ . '/language/english/modinfo.php')) {
+    include_once __DIR__ . '/language/english/modinfo.php';
 }
 
-$controllers = array(
+$controllers = [
     'myblocksadmin',
     'compilehookadmin',
     'get_templates',
@@ -21,4 +21,4 @@ $controllers = array(
     'mytplsform',
     'put_templates',
     'mylangadmin',
-);
+];
