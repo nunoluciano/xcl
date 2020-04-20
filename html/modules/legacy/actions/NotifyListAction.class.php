@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/include/notification_functions.php";
+require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/forms/NotifyDeleteForm.class.php';
 
 /***
  * @internal
@@ -23,7 +23,7 @@ require_once XOOPS_MODULE_PATH . "/legacy/forms/NotifyDeleteForm.class.php";
  */
 class Legacy_NotifyListAction extends Legacy_Action
 {
-    public $mModules = array();
+    public $mModules = [];
     public $mActionForm = null;
     
     public function prepare(&$controller, &$xoopsUser)
@@ -67,11 +67,11 @@ class Legacy_NotifyListAction extends Legacy_Action
                 $prev_category = -1;
                 $prev_item = -1;
                 
-                $this->mModules[$t_modid] = array(
+                $this->mModules[$t_modid] = [
                     'id' => $t_modid,
                     'name' => $module->getShow('name'),
-                    'categories' => array()
-                );
+                    'categories' => []
+                ];
 
 
                 //
@@ -114,18 +114,18 @@ class Legacy_NotifyListAction extends Legacy_Action
                 if (!empty($lookupFunc)) {
                     $itemInfo = $lookupFunc($t_category, $t_item);
                 } else {
-                    $itemInfo = array('name' => '[' . _NOT_NAMENOTAVAILABLE . ']', 'url' => '');
+                    $itemInfo = ['name' => '[' . _NOT_NAMENOTAVAILABLE . ']', 'url' => ''];
                 }
-                $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item] = array(
+                $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item] = [
                     'id' => $t_item,
                     'name' => $itemInfo['name'],
                     'url' => $itemInfo['url'],
-                    'notifications' => array()
-                );
+                    'notifications' => []
+                ];
             }
             
             $eventInfo =& notificationEventInfo($t_category, $notify->get('not_event'), $notify->get('not_modid'));
-            $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item]['notifications'][] = array(
+            $this->mModules[$t_modid]['categories'][$t_category]['items'][$t_item]['notifications'][] = [
                 'id' => $notify->get('not_id'),
                 'module_id' => $notify->get('not_modid'),
                 'category' => $notify->get('not_category'),
@@ -134,7 +134,7 @@ class Legacy_NotifyListAction extends Legacy_Action
                 'event' => $notify->get('not_event'),
                 'event_title' => $eventInfo['title'],
                 'user_id' => $notify->get('not_uid')
-            );
+            ];
         }
         
         return LEGACY_FRAME_VIEW_INDEX;
@@ -142,7 +142,7 @@ class Legacy_NotifyListAction extends Legacy_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_notification_list.html");
+        $render->setTemplateName('legacy_notification_list.html');
         
         $render->setAttribute('modules', $this->mModules);
         $render->setAttribute('currentUser', $xoopsUser);
@@ -151,6 +151,6 @@ class Legacy_NotifyListAction extends Legacy_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=NotifyList");
+        $controller->executeForward('./index.php?action=NotifyList');
     }
 }

@@ -2,13 +2,13 @@
 
 //%%%%%		TIME FORMAT SETTINGS   %%%%%
 if (!defined('_DATESTRING')) {
-    define("_DATESTRING", "Y/n/j G:i:s");
+    define('_DATESTRING', 'Y/n/j G:i:s');
 }
 if (!defined('_MEDIUMDATESTRING')) {
-    define("_MEDIUMDATESTRING", "Y/n/j G:i");
+    define('_MEDIUMDATESTRING', 'Y/n/j G:i');
 }
 if (!defined('_SHORTDATESTRING')) {
-    define("_SHORTDATESTRING", "Y/n/j");
+    define('_SHORTDATESTRING', 'Y/n/j');
 }
 define('_JSDATEPICKSTRING', 'yy-mm-dd');
 define('_PHPDATEPICKSTRING', 'Y-m-d');
@@ -34,12 +34,12 @@ mb_language('ja') ;
 
 // change 0 to 1 if this language is a multi-bytes language
 if (!defined('XOOPS_USE_MULTIBYTES')) {
-    define("XOOPS_USE_MULTIBYTES", "1");
+    define('XOOPS_USE_MULTIBYTES', '1');
 }
 
 // If _MBSTRING_LANGUAGE is defined, the Legacy_LanguageManager class initializes mb functions.
 // This mechanism exists for CJK --- Chinese, Japanese, Korean ---
-define("_MBSTRING_LANGUAGE", "japanese");
+define('_MBSTRING_LANGUAGE', 'japanese');
 
 
 //
@@ -64,7 +64,7 @@ if (! defined('FOR_XOOPS_LANG_CHECKER')) {
                 $text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', "\n");
                 break;
             case '2':
-                $text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', "");
+                $text = mb_encode_mimeheader($text, LEGACY_MAIL_CHAR, 'B', '');
                 break;
         }
         } else {

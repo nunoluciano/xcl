@@ -55,13 +55,13 @@ class Legacy_HelpSmarty extends Smarty
         $this->_canUpdateFromFile = true;
         $this->compile_check = true;
         $this->compile_dir = XOOPS_COMPILE_PATH;
-        $this->left_delimiter = "<{";
-        $this->right_delimiter = "}>";
+        $this->left_delimiter = '<{';
+        $this->right_delimiter = '}>';
         
         $this->force_compile = true;
 
-        $this->register_modifier("helpurl", "Legacy_modifier_helpurl");
-        $this->register_modifier("helpimage", "Legacy_modifier_helpimage");
+        $this->register_modifier('helpurl', 'Legacy_modifier_helpurl');
+        $this->register_modifier('helpimage', 'Legacy_modifier_helpimage');
     }
     
     public function setDirname($dirname)
@@ -71,7 +71,7 @@ class Legacy_HelpSmarty extends Smarty
 
     public function _get_auto_filename($autoBase, $autoSource = null, $auotId = null)
     {
-        $autoSource = $this->mDirname . "_help_" . $autoSource;
+        $autoSource = $this->mDirname . '_help_' . $autoSource;
         return parent::_get_auto_filename($autoBase, $autoSource, $auotId);
     }
 }
@@ -83,7 +83,7 @@ function Legacy_modifier_helpurl($file, $dirname = null)
     $language = $root->mContext->getXoopsConfig('language');
     $dirname = $root->mContext->getAttribute('legacy_help_dirname');
 
-    if ($dirname == null) {
+    if (null == $dirname) {
         $moduleObject =& $root->mContext->mXoopsModule;
         $dirname = $moduleObject->get('dirname');
     }
@@ -105,7 +105,7 @@ function Legacy_modifier_helpimage($file)
     $dirname = $root->mContext->getAttribute('legacy_help_dirname');
 
     $path = "/${dirname}/language/${language}/help/images/${file}";
-    if (!file_exists(XOOPS_MODULE_PATH . $path) && $language != "english") {
+    if (!file_exists(XOOPS_MODULE_PATH . $path) && 'english' != $language) {
         $path = "/${dirname}/language/english/help/images/${file}";
     }
 
@@ -143,7 +143,7 @@ class Legacy_HelpAction extends Legacy_Action
         parent::__construct($flag);
         
         $this->mCreateHelpSmarty =new XCube_Delegate();
-        $this->mCreateHelpSmarty->add(array(&$this, '_createHelpSmarty'));
+        $this->mCreateHelpSmarty->add([&$this, '_createHelpSmarty']);
         $this->mCreateHelpSmarty->register('Legacy_HelpAction.CreateHelpSmarty');
     }
     
@@ -170,7 +170,7 @@ class Legacy_HelpAction extends Legacy_Action
         //
         // TODO We must change the following lines to ActionForm.
         //
-        $helpfile = xoops_getrequest('file') ? xoops_getrequest('file') : $this->mModuleObject->getHelp();
+        $helpfile = xoops_getrequest('file') ?: $this->mModuleObject->getHelp();
 
         //
         // Smarty
@@ -184,10 +184,10 @@ class Legacy_HelpAction extends Legacy_Action
         //
         // TODO We should not access files in language directory directly.
         //
-        $template_dir = XOOPS_MODULE_PATH . "/" . $this->_mDirname . "/language/${language}/help";
-        if (!file_exists($template_dir . "/" . $helpfile)) {
-            $template_dir = XOOPS_MODULE_PATH . "/" . $this->_mDirname . "/language/english/help";
-            if (!file_exists($template_dir . "/" . $helpfile)) {
+        $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . "/language/${language}/help";
+        if (!file_exists($template_dir . '/' . $helpfile)) {
+            $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . '/language/english/help';
+            if (!file_exists($template_dir . '/' . $helpfile)) {
                 $this->mErrorMessage = _AD_LEGACY_ERROR_NO_HELP_FILE;
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -196,7 +196,7 @@ class Legacy_HelpAction extends Legacy_Action
         $controller->mRoot->mContext->setAttribute('legacy_help_dirname', $this->_mDirname);
 
         $smarty->template_dir = $template_dir;
-        $this->mContents = $smarty->fetch("file:" . $helpfile);
+        $this->mContents = $smarty->fetch('file:' . $helpfile);
 
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
@@ -210,7 +210,7 @@ class Legacy_HelpAction extends Legacy_Action
     
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("help.html");
+        $renderer->setTemplateName('help.html');
         
         $module =& Legacy_Utils::createModule($this->mModuleObject);
         

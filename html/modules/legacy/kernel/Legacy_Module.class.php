@@ -35,7 +35,7 @@ class Legacy_AbstractModule
      * @remarks
      *    If references are must, access directly to this member.
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     
     /**
      * @public
@@ -47,7 +47,7 @@ class Legacy_AbstractModule
      * @public
      * @brief [READ ONLY] Map Array - std::map<string, string>
      */
-    public $mModuleConfig = array();
+    public $mModuleConfig = [];
     
     /**
      * @private
@@ -62,11 +62,12 @@ class Legacy_AbstractModule
      * @see getRenderTarget()
      */
     public $mRender = null;
-    
+
     /**
      * @public
      * @brief constructor
-     * @param $module XoopsModule
+     * @param XoopsModule $module
+     * @param bool        $loadConfig
      * @attention
      *     Basically, only Legacy_Controller and its utility functions should call the
      *     constructor.
@@ -77,7 +78,7 @@ class Legacy_AbstractModule
     {
         $this->setXoopsModule($module);
         
-        if ($loadConfig && ($module->get('hasconfig') == 1 || $module->get('hascomments') == 1 || $module->get('hasnotification') == 1)) {
+        if ($loadConfig && (1 == $module->get('hasconfig') || 1 == $module->get('hascomments') || 1 == $module->get('hasnotification'))) {
             $handler =& xoops_gethandler('config');
             $this->setModuleConfig($handler->getConfigsByCat(0, $module->get('mid')));
         }
@@ -86,8 +87,8 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Sets $value with $key to attributes.
-     * @param $key string
-     * @param $value mixed
+     * @param string $key
+     * @param mixed  $value
      * @return void
      * @remarks
      *    If references are must, access directly to $mAttributes. Because PHP4 can't
@@ -101,7 +102,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Gets a value indicating whether the value specified by $key exists.
-     * @param $key string
+     * @param string $key
      * @return bool
      */
     public function hasAttribute($key)
@@ -123,7 +124,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Binds an instance of XoopsModule to the property.
-     * @param $xoopsModule XoopsModule
+     * @param XoopsModule $xoopsModule
      * @return void
      */
     public function setXoopsModule(&$xoopsModule)
@@ -144,7 +145,7 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Binds array of xoops module config to the property.
-     * @param $config Map Array - std::map<string, mixed>
+     * @param Map $config Array - std::map<string, mixed>
      * @return void 
      */
     public function setModuleConfig($config)
@@ -155,12 +156,12 @@ class Legacy_AbstractModule
     /**
      * @public
      * @brief Gets a value form xoops module config with $key. 
-     * @param $key string
+     * @param string $key
      * @return mixed If $key is specified null, returns map array (std::map<string, mixed>)
      */
     public function getModuleConfig($key = null)
     {
-        if ($key == null) {
+        if (null == $key) {
             return $this->mModuleConfig;
         }
         
@@ -181,15 +182,15 @@ class Legacy_AbstractModule
         
         return $this->mCacheInfo;
     }
-    
+
     /**
      * @protected
      * @brief Creates a cache information instance and returns it.
-     * @return Legacy_ModuleCacheInformation
+     * @return void
      * @remarks
      *     This member function sets the created instance to mCacheInfo because this
      *     instance has to keep the instance for many callbacks.
-     * @see getCacheInfo()
+     * @see   getCacheInfo()
      */
     public function _createCacheInfo()
     {
@@ -206,7 +207,7 @@ class Legacy_AbstractModule
      */
     public function &getRenderTarget()
     {
-        if ($this->mRender == null) {
+        if (null == $this->mRender) {
             $this->_createRenderTarget();
         }
         
@@ -216,18 +217,18 @@ class Legacy_AbstractModule
     /**
      * @protected
      * @brief Creates a render target instance and returns it.
-     * @return XCube_RenderTarget
+     * @return void
      * @remarks
      *     This member function sets the created instance to mRender because this
      *     instance has to keep the instance for many callbacks.
-     * @see getRenderTarget()
+     * @see   getRenderTarget()
      */
     public function _createRenderTarget()
     {
         $renderSystem =& $this->getRenderSystem();
         
         $this->mRender =& $renderSystem->createRenderTarget('main');
-        if ($this->mXoopsModule != null) {
+        if (null != $this->mXoopsModule) {
             $this->mRender->setAttribute('legacy_module', $this->mXoopsModule->get('dirname'));
         }
     }
@@ -284,7 +285,7 @@ class Legacy_AbstractModule
      */
     public function isEnableCache()
     {
-        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             return false;
         }
         
@@ -328,10 +329,15 @@ class Legacy_AbstractModule
     public function doActionSearch(&$searchArgs)
     {
     }
-    
+
     /**
      * @public
      * @brief This method is called back by the xoops global search feature.
+     * @param $queries
+     * @param $andor
+     * @param $max_hit
+     * @param $start
+     * @param $uid
      */
     public function doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid)
     {
@@ -367,12 +373,12 @@ class Legacy_AbstractModule
     {
         return null;
     }
-    
+
     /**
      * @public
      * @brief Gets an array having menus for the side menu of the control panel.
-     * @return Complex Array
-     * @see /modules/legacy/admin/templates/blocks/legacy_admin_block_sidemenu.html
+     * @return void Array
+     * @see   /modules/legacy/admin/templates/blocks/legacy_admin_block_sidemenu.html
      */
     public function getAdminMenu()
     {
@@ -424,7 +430,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         }
 
         $this->mXoopsModule->loadAdminMenu();
-        if (count($this->mXoopsModule->adminmenu) == 0 && !isset($this->mXoopsModule->modinfo['config'])) {
+        if (0 == count($this->mXoopsModule->adminmenu) && !isset($this->mXoopsModule->modinfo['config'])) {
             return;
         }
             
@@ -434,7 +440,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         if (isset($this->mXoopsModule->modinfo['config'])&&count($this->mXoopsModule->modinfo['config'])>0) {
             $findFlag = false;
             foreach ($searchArgs->getKeywords() as $word) {
-                if (stristr(_PREFERENCES, $word) !== false) {
+                if (false !== stristr(_PREFERENCES, $word)) {
                     $root =& XCube_Root::getSingleton();
                     $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $root->mController->getPreferenceEditUrl($this->mXoopsModule), _PREFERENCES);
                     $findFlag = true;
@@ -443,7 +449,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
             }
             
             if (!$findFlag) {
-                $configInfos=array();
+                $configInfos= [];
                 foreach ($this->mXoopsModule->modinfo['config'] as $config) {
                     if (isset($config['title'])) {
                         $configInfos[]=@constant($config['title']);
@@ -453,14 +459,14 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     }
                     if (isset($config['options'])&&count($config['options'])>0) {
                         foreach ($config['options'] as $key=>$val) {
-                            $configInfos[]=(@constant($key) ? @constant($key) : $key);
+                            $configInfos[]=(@constant($key) ?: $key);
                         }
                     }
                 }
     
                 $findFlag=true;
                 foreach ($searchArgs->getKeywords() as $word) {
-                    $findFlag&=(stristr(implode(" ", $configInfos), $word)!==false);
+                    $findFlag&=(false !== stristr(implode(' ', $configInfos), $word));
                 }
                     
                 if ($findFlag) {
@@ -479,12 +485,12 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 $findFlag=true;
                 foreach ($searchArgs->getKeywords() as $word) {
                     $tmpFlag=false;
-                    $tmpFlag|=(stristr($menu['title'], $word)!==false);
+                    $tmpFlag|=(false !== stristr($menu['title'], $word));
 
                     // Search keyword
                     if (isset($menu['keywords'])) {
-                        $keyword=is_array($menu['keywords']) ? implode(" ", $menu['keywords']) : $menu['keywords'];
-                        $tmpFlag|=(stristr($keyword, $word)!==false);
+                        $keyword=is_array($menu['keywords']) ? implode(' ', $menu['keywords']) : $menu['keywords'];
+                        $tmpFlag|=(false !== stristr($keyword, $word));
                     }
 
                     $findFlag&=$tmpFlag;
@@ -494,11 +500,11 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     //
                     // Create url string with absolute information.
                     //
-                    $url="";
+                    $url= '';
                     if (isset($menu['absolute'])&&$menu['absolute']) {
                         $url=$menu['link'];
                     } else {
-                        $url=XOOPS_URL."/modules/".$this->mXoopsModule->getVar('dirname')."/".$menu['link'];
+                        $url= XOOPS_URL . '/modules/' . $this->mXoopsModule->getVar('dirname') . '/' . $menu['link'];
                     }
 
                     //
@@ -516,7 +522,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
             $findFlag = false;
             
             foreach ($searchArgs->getKeywords() as $word) {
-                if (stristr(_HELP, $word) !== false) {
+                if (false !== stristr(_HELP, $word)) {
                     $root =& XCube_Root::getSingleton();
                     $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $root->mController->getHelpViewUrl($this->mXoopsModule), _HELP);
                     $findFlag = true;
@@ -528,19 +534,19 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 $root =& XCube_Root::getSingleton();
                 $language = $root->mContext->getXoopsConfig('language');
                 $helpfile = $this->mXoopsModule->getHelp();
-                $dir = XOOPS_MODULE_PATH . "/" . $this->mXoopsModule->getVar('dirname') . "/language/" . $language. "/help";
+                $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/' . $language . '/help';
     
-                if (!file_exists($dir . "/" . $helpfile)) {
-                    $dir = XOOPS_MODULE_PATH . "/" . $this->mXoopsModule->getVar('dirname') . "/language/english/help";
-                    if (!file_exists($dir . "/" . $helpfile)) {
+                if (!file_exists($dir . '/' . $helpfile)) {
+                    $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
+                    if (!file_exists($dir . '/' . $helpfile)) {
                         return;
                     }
                 }
-                $lines = file($dir . "/" . $helpfile);
+                $lines = file($dir . '/' . $helpfile);
                 foreach ($lines as $line) {
                     foreach ($searchArgs->getKeywords() as $word) {
-                        if (stristr($line, $word) !== false) {
-                            $url = XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname=" . $this->mXoopsModule->getVar('dirname');
+                        if (false !== stristr($line, $word)) {
+                            $url = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=' . $this->mXoopsModule->getVar('dirname');
                             $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, _HELP);
                             return;
                         }
@@ -552,12 +558,12 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
     public function doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid)
     {
-        $ret = array();
+        $ret = [];
         $results = $this->mXoopsModule->search($queries, $andor, $max_hit, $start, $uid);
         
         if (is_array($results) && count($results) > 0) {
             foreach ($results as $result) {
-                $item = array();
+                $item = [];
                 if (isset($result['image']) && strlen($result['image']) > 0) {
                     if (file_exists(XOOPS_ROOT_PATH . '/uploads/' . $result['image'])) {
                         $item['image'] = XOOPS_URL . '/uploads/' . $result['image'];
@@ -594,7 +600,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
     public function hasAdminIndex()
     {
         $dmy =& $this->mXoopsModule->getInfo();
-        return isset($this->mXoopsModule->modinfo['adminindex']) && $this->mXoopsModule->modinfo['adminindex'] != null;
+        return isset($this->mXoopsModule->modinfo['adminindex']) && null != $this->mXoopsModule->modinfo['adminindex'];
     }
     
     /**
@@ -625,16 +631,19 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         if ($this->mXoopsModule->get('hasnotification')
             || (isset($info['config']) && is_array($info['config']))
             || (isset($info['comments']) && is_array($info['comments']))) {
-            $this->mXoopsModule->adminmenu[] = array(
+            $this->mXoopsModule->adminmenu[] = [
                     'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
                     'title' => _PREFERENCES,
-                    'absolute' => true);
+                    'absolute' => true
+            ];
         }
             
         if ($this->mXoopsModule->hasHelp()) {
-            $this->mXoopsModule->adminmenu[] = array('link' =>  $root->mController->getHelpViewUrl($this->mXoopsModule),
-                                          'title' => _HELP,
-                                          'absolute' => true);
+            $this->mXoopsModule->adminmenu[] = [
+                'link'     =>  $root->mController->getHelpViewUrl($this->mXoopsModule),
+                'title'    => _HELP,
+                'absolute' => true
+            ];
         }
         
         $this->_mAdminMenuLoadedFlag = true;
@@ -642,7 +651,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         if ($this->mXoopsModule->adminmenu) {
             $dirname = $this->mXoopsModule->get('dirname');
             foreach ($this->mXoopsModule->adminmenu as $menu) {
-                if (!isset($menu['absolute']) || (isset($menu['absolute']) && $menu['absolute'] != true)) {
+                if (!isset($menu['absolute']) || (isset($menu['absolute']) && true != $menu['absolute'])) {
                     $menu['link'] = XOOPS_MODULE_URL . '/' . $dirname . '/' . $menu['link'];
                 }
                 $this->mAdminMenu[] = $menu;

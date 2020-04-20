@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Legacy_ImageUploadForm extends XCube_ActionForm
 {
@@ -23,7 +23,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 
     public function getTokenName()
     {
-        return "module.legacy.ImageUploadForm.TOKEN" . $this->get('imgcat_id');
+        return 'module.legacy.ImageUploadForm.TOKEN' . $this->get('imgcat_id');
     }
 
     public function prepare()
@@ -39,15 +39,15 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['image_name'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_name']->setDependsByArray(array('extension'));
+        $this->mFieldProperties['image_name']->setDependsByArray(['extension']);
         $this->mFieldProperties['image_name']->addVar('extension', 'jpg,gif,png');
     
         $this->mFieldProperties['image_nicename'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_nicename']->setDependsByArray(array('required'));
+        $this->mFieldProperties['image_nicename']->setDependsByArray(['required']);
         $this->mFieldProperties['image_nicename']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMAGE_NICENAME);
         
         $this->mFieldProperties['imgcat_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['imgcat_id']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['imgcat_id']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['imgcat_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_IMGCAT_ID);
         $this->mFieldProperties['imgcat_id']->addMessage('objectExist', _MD_LEGACY_ERROR_OBJECTEXIST, _MD_LEGACY_LANG_IMGCAT_ID);
         $this->mFieldProperties['imgcat_id']->addVar('handler', 'imagecategory');
@@ -69,15 +69,15 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     public function validateImgcat_id()
     {
         $imgcat_id = $this->get('imgcat_id');
-        if ($imgcat_id != null) {
+        if (null != $imgcat_id) {
             $root =& XCube_Root::getSingleton();
             $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
             
-            $groups = array();
+            $groups = [];
             if (is_object($xoopsUser)) {
                 $groups =& $xoopsUser->getGroups();
             } else {
-                $groups = array(XOOPS_GROUP_ANONYMOUS);
+                $groups = [XOOPS_GROUP_ANONYMOUS];
             }
             
             $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
@@ -92,7 +92,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     {
         $formFile = $this->get('image_name');
         
-        if ($formFile == null && $this->_mIsNew) {
+        if (null == $formFile && $this->_mIsNew) {
             $this->addErrorMessage(_MD_LEGACY_ERROR_YOU_MUST_UPLOAD);
         }
     }
@@ -106,7 +106,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         
         $formFile = $this->get('image_name');
 
-        if ($formFile != null && is_object($category)) {
+        if (null != $formFile && is_object($category)) {
             //
             // Imagefile width & height check.
             //
@@ -143,7 +143,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 
         $this->mFormFile = $this->get('image_name');
         
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('img');
             
             $filename = $this->mFormFile->getBodyName();
@@ -155,7 +155,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
             //
             // To store db
             //
-            if ($category->get('imgcat_storetype') == 'db') {
+            if ('db' == $category->get('imgcat_storetype')) {
                 $obj->loadImageBody();
                 if (!is_object($obj->mImageBody)) {
                     $obj->mImageBody =& $obj->createImageBody();

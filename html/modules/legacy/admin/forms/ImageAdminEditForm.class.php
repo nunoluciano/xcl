@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/ImageUploadForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/ImageUploadForm.class.php';
 
 class Legacy_ImageAdminCreateForm extends Legacy_ImageUploadForm
 {
@@ -22,7 +22,7 @@ class Legacy_ImageAdminCreateForm extends Legacy_ImageUploadForm
     
     public function getTokenName()
     {
-        return "module.legacy.ImageAdminEditForm.TOKEN" . $this->get('image_id');
+        return 'module.legacy.ImageAdminEditForm.TOKEN' . $this->get('image_id');
     }
 
     public function prepare()
@@ -40,11 +40,11 @@ class Legacy_ImageAdminCreateForm extends Legacy_ImageUploadForm
         // Set field properties
         //
         $this->mFieldProperties['image_id'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_id']->setDependsByArray(array('required'));
+        $this->mFieldProperties['image_id']->setDependsByArray(['required']);
         $this->mFieldProperties['image_id']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_ID);
     
         $this->mFieldProperties['image_weight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['image_weight']->setDependsByArray(array('required'));
+        $this->mFieldProperties['image_weight']->setDependsByArray(['required']);
         $this->mFieldProperties['image_weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_IMAGE_WEIGHT);
     }
     

@@ -58,21 +58,21 @@ abstract class Legacy_AbstractGroupObject extends XoopsSimpleObject
 
     /**
      * isMember
-     * 
-     * @param	int		$uid
-     * @param	Enum	$rank	Lenum_GroupRank
-     * 
-     * @return	int[]
-    **/
+     *
+     * @param int $uid
+     * @param int $rank Lenum_GroupRank
+     *
+     * @return    int[]
+     */
     abstract public function isMember(/*** int ***/ $uid, /*** Enum ***/ $rank=Lenum_GroupRank::REGULAR);
 
     /**
      * countMembers
-     * 
-     * @param	Enum	$rank	Lenum_GroupRank
-     * 
-     * @return	int
-    **/
+     *
+     * @param int $rank Lenum_GroupRank
+     *
+     * @return    int
+     */
     abstract public function countMembers(/*** Enum ***/ $rank=Lenum_GroupRank::ASSOCIATE);
 
     /**

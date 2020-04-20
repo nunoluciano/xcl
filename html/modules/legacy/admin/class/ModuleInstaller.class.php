@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
 
 /**
  * This class extends a base class for the process of install module. This is added
@@ -78,7 +78,7 @@ class Legacy_ModuleInstaller
     {
         $moduleHandler =& xoops_gethandler('module');
         if (!$moduleHandler->insert($this->_mXoopsModule)) {
-            $this->mLog->addError("*Could not install module information*");
+            $this->mLog->addError('*Could not install module information*');
             return false;
         }
         
@@ -99,15 +99,15 @@ class Legacy_ModuleInstaller
         //
         // Add a permission which administrators can manage. (Special for Legacy System Module)
         //
-        if ($this->_mXoopsModule->getVar('dirname') == 'system') {
+        if ('system' == $this->_mXoopsModule->getVar('dirname')) {
             $root =& XCube_Root::getSingleton();
             $root->mLanguageManager->loadModuleAdminMessageCatalog('system');
 
-            require_once XOOPS_ROOT_PATH . "/modules/system/constants.php";
+            require_once XOOPS_ROOT_PATH . '/modules/system/constants.php';
             
-            $fileHandler = opendir(XOOPS_ROOT_PATH . "/modules/system/admin");
+            $fileHandler = opendir(XOOPS_ROOT_PATH . '/modules/system/admin');
             while ($file = readdir($fileHandler)) {
-                $infoFile = XOOPS_ROOT_PATH . "/modules/system/admin/" . $file . "/xoops_version.php";
+                $infoFile = XOOPS_ROOT_PATH . '/modules/system/admin/' . $file . '/xoops_version.php';
                 if (file_exists($infoFile)) {
                     require_once $infoFile;
                     if (!empty($modversion['category'])) {
@@ -163,6 +163,7 @@ class Legacy_ModuleInstaller
      * For flexibility, creation only and not save it.
      * @access private
      * @param $group
+     * @return
      */
     public function &_createPermission($group)
     {
@@ -198,11 +199,11 @@ class Legacy_ModuleInstaller
     public function _processScript()
     {
         $installScript = trim($this->_mXoopsModule->getInfo('onInstall'));
-        if ($installScript != false) {
-            require_once XOOPS_MODULE_PATH . "/" . $this->_mXoopsModule->get('dirname') . "/" . $installScript;
+        if (false != $installScript) {
+            require_once XOOPS_MODULE_PATH . '/' . $this->_mXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_install_' . $this->_mXoopsModule->get('dirname');
             
-            if (!preg_match("/^[a-zA-Z_][a-zA-Z0-9_]*$/", $funcName)) {
+            if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $funcName)) {
                 $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
                 return;
             }

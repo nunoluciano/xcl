@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ThemeSelectForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ThemeSelectForm.class.php';
 
 /***
  * @internal
@@ -109,7 +109,7 @@ class Legacy_ThemeListAction extends Legacy_Action
         //
         $themeName = $this->mActionForm->getChooseTheme();
         
-        if ($themeName != null) {
+        if (null != $themeName) {
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_name', 'theme_set'));
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
@@ -130,9 +130,9 @@ class Legacy_ThemeListAction extends Legacy_Action
     
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("theme_list.html");
-        $render->setAttribute("themes", $this->mThemes);
-        $render->setAttribute("actionForm", $this->mActionForm);
-        $render->setAttribute("currentThemeName", $this->mMainTheme);
+        $render->setTemplateName('theme_list.html');
+        $render->setAttribute('themes', $this->mThemes);
+        $render->setAttribute('actionForm', $this->mActionForm);
+        $render->setAttribute('currentThemeName', $this->mMainTheme);
     }
 }

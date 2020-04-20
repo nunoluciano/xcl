@@ -23,7 +23,7 @@ define('EASYLEX_SQL_COMMA', 9);
 class EasyLex_SQLToken
 {
     public $mType = EASYLEX_SQL_UNKNOWN;
-    public $mValue = "";
+    public $mValue = '';
 
     public function __construct($type, $value)
     {
@@ -33,8 +33,8 @@ class EasyLex_SQLToken
 
     public function getOutputValue()
     {
-        if ($this->mType == EASYLEX_SQL_SEPARATER) {
-            return "";
+        if (EASYLEX_SQL_SEPARATER == $this->mType) {
+            return '';
         } else {
             return $this->mValue;
         }
@@ -42,11 +42,11 @@ class EasyLex_SQLToken
 
     public function getValue()
     {
-        if ($this->mType == EASYLEX_SQL_SEPARATER) {
-            return "";
+        if (EASYLEX_SQL_SEPARATER == $this->mType) {
+            return '';
         }
 
-        if ($this->mType == EASYLEX_SQL_STRING_LITERAL) {
+        if (EASYLEX_SQL_STRING_LITERAL == $this->mType) {
             return substr($this->mValue, 1, strlen($this->mValue) - 2);
         }
 
@@ -61,13 +61,13 @@ class EasyLex_SQLToken
  */
 class EasyLex_SQLScanner
 {
-    public $mTokens = array();
+    public $mTokens = [];
     public $mStatus = EASYLEX_SQL_UNKNOWN;
 
     /**
      * @var Array of char
      */
-    public $mBuffer = array();
+    public $mBuffer = [];
 
     public $mIndex = 0;
 
@@ -77,7 +77,7 @@ class EasyLex_SQLScanner
 
     public function setBuffer($buffer)
     {
-        $this->mBuffer = array();
+        $this->mBuffer = [];
         for ($i = 0; $i < strlen($buffer); $i++) {
             $this->mBuffer[$i] = $buffer{
                 $i};
@@ -159,15 +159,15 @@ class EasyLex_SQLScanner
             return false;
         }
 
-        $fp = fopen($path, "rb");
+        $fp = fopen($path, 'rb');
         if (!$fp) {
             return false;
         }
 
-        $t_buff = "";
+        $t_buff = '';
         while ($str = fgets($fp)) {
             if ($preprocess) {
-                $str = preg_replace("/^\s*\#.*/", "", $str);
+                $str = preg_replace("/^\s*\#.*/", '', $str);
             }
             $t_buff .= $str;
         }
@@ -184,23 +184,23 @@ class EasyLex_SQLScanner
             return EASYLEX_SQL_SEPARATER;
         }
 
-        if ($ch == '(') {
+        if ('(' == $ch) {
             return EASYLEX_SQL_OPEN_PARENTHESIS;
         }
 
-        if ($ch == ')') {
+        if (')' == $ch) {
             return EASYLEX_SQL_CLOSE_PARENTHESIS;
         }
 
-        if ($ch == ';') {
+        if (';' == $ch) {
             return EASYLEX_SQL_SEMICOLON;
         }
 
-        if ($ch == ',') {
+        if (',' == $ch) {
             return EASYLEX_SQL_COMMA;
         }
 
-        if (preg_match("/[0-9]/", $ch)) {
+        if (preg_match('/[0-9]/', $ch)) {
             return EASYLEX_SQL_DIGIT;
         }
 
@@ -217,7 +217,7 @@ class EasyLex_SQLScanner
         $this->mActiveToken .= $ch;
         $this->mIndex++;
 
-        if ($ch == "'" || $ch == '"' || $ch == '`') {
+        if ("'" == $ch || '"' == $ch || '`' == $ch) {
             $this->mStatus = EASYLEX_SQL_STRING_LITERAL;
             $this->mActiveQuoteMark = $ch;
         }
@@ -225,10 +225,10 @@ class EasyLex_SQLScanner
 
     public function _parseDigit($ch, $type)
     {
-        if ($type == EASYLEX_SQL_DIGIT) {
+        if (EASYLEX_SQL_DIGIT == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
-        } elseif ($type == EASYLEX_SQL_LETTER) {
+        } elseif (EASYLEX_SQL_LETTER == $type) {
             $this->mStatus = EASYLEX_SQL_LETTER;
             $this->mActiveToken .= $ch;
             $this->mIndex++;
@@ -239,7 +239,7 @@ class EasyLex_SQLScanner
 
     public function _parseLetter($ch, $type)
     {
-        if ($type == EASYLEX_SQL_LETTER || $type == EASYLEX_SQL_DIGIT) {
+        if (EASYLEX_SQL_LETTER == $type || EASYLEX_SQL_DIGIT == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
         } else {
@@ -252,7 +252,7 @@ class EasyLex_SQLScanner
         $this->mActiveToken .= $ch;
         $this->mIndex++;
 
-        if ($ch == "\\") {
+        if ("\\" == $ch) {
             $this->mStatus = EASYLEX_SQL_STRING_LITERAL_ESCAPE;
         } elseif ($ch == $this->mActiveQuoteMark) {
             $this->_createToken();
@@ -276,13 +276,13 @@ class EasyLex_SQLScanner
 
     public function _parseSeparater($ch, $type)
     {
-        if ($type == EASYLEX_SQL_SEPARATER) {
+        if (EASYLEX_SQL_SEPARATER == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
         } else {
             // $this->_createToken();
             $this->mStatus = EASYLEX_SQL_UNKNOWN;
-            $this->mActiveToken = "";
+            $this->mActiveToken = '';
         }
     }
 
@@ -293,7 +293,7 @@ class EasyLex_SQLScanner
 
     public function _parseMark($ch, $type)
     {
-        if ($type == EASYLEX_SQL_MARK) {
+        if (EASYLEX_SQL_MARK == $type) {
             $this->mActiveToken .= $ch;
             $this->mIndex++;
         } else {
@@ -308,11 +308,11 @@ class EasyLex_SQLScanner
 
     public function _createToken($type = null, $value = null)
     {
-        if ($type === null) {
+        if (null === $type) {
             $type = $this->mStatus;
         }
 
-        if ($value === null) {
+        if (null === $value) {
             $value = $this->mActiveToken;
         }
 
@@ -320,7 +320,7 @@ class EasyLex_SQLScanner
         $this->mTokens[] = &$token;
 
         $this->mStatus = EASYLEX_SQL_UNKNOWN;
-        $this->mActiveToken = "";
+        $this->mActiveToken = '';
 
         return $token;
     }
@@ -332,23 +332,23 @@ class EasyLex_SQLScanner
      */
     public function &getOperations()
     {
-        $ret = array();
-        $t_tokens = array();
+        $ret = [];
+        $t_tokens = [];
         $depth = 0;
 
         foreach (array_keys($this->mTokens) as $key) {
-            if ($this->mTokens[$key]->mType == EASYLEX_SQL_OPEN_PARENTHESIS) {
+            if (EASYLEX_SQL_OPEN_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth++;
-            } elseif ($this->mTokens[$key]->mType == EASYLEX_SQL_CLOSE_PARENTHESIS) {
+            } elseif (EASYLEX_SQL_CLOSE_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth--;
             }
 
             $t_tokens[] = &$this->mTokens[$key];
 
-            if ($this->mTokens[$key]->mType == EASYLEX_SQL_SEMICOLON && $depth == 0) {
+            if (EASYLEX_SQL_SEMICOLON == $this->mTokens[$key]->mType && 0 == $depth) {
                 $ret[] = &$t_tokens;
                 unset($t_tokens);
-                $t_tokens = array();
+                $t_tokens = [];
             }
         }
 
@@ -362,15 +362,15 @@ class EasyLex_SQLScanner
 
     public function getSQL()
     {
-        $sqls = array();
+        $sqls = [];
         $lines = &$this->getOperations();
 
         foreach ($lines as $line) {
-            $t_arr = array();
+            $t_arr = [];
             foreach ($line as $token) {
                 $t_arr[] = $token->getOutputValue();
             }
-            $sqls[] = join(" ", $t_arr);
+            $sqls[] = implode(' ', $t_arr);
         }
 
         return $sqls;

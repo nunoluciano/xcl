@@ -9,14 +9,14 @@
  */
 
 $modversion['name'] = _MI_LEGACY_NAME;
-$modversion['version'] = "2.3.0";
+$modversion['version'] = '2.3.0';
 $modversion['description'] = _MI_LEGACY_NAME_DESC;
-$modversion['author'] = "";
-$modversion['credits'] = "XOOPS Cube Project";
-$modversion['help'] = "help.html";
-$modversion['license'] = "GPL see LICENSE";
-$modversion['image'] = "images/module_settings.svg";
-$modversion['dirname'] = "legacy";
+$modversion['author'] = '';
+$modversion['credits'] = 'XOOPS Cube Project';
+$modversion['help'] = 'help.html';
+$modversion['license'] = 'GPL see LICENSE';
+$modversion['image'] = 'images/module_settings.svg';
+$modversion['dirname'] = 'legacy';
 
 $modversion['cube_style'] = true;
 
@@ -30,8 +30,8 @@ $modversion['legacy_installer']['updater']['filepath'] = XOOPS_LEGACY_PATH . '/a
 
 // Admin things
 $modversion['hasAdmin'] = 1;
-$modversion['adminindex'] = "admin/index.php";
-$modversion['adminmenu'] = "admin/menu.php";
+$modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu'] = 'admin/menu.php';
 
 // Templates
 $modversion['templates'][1]['file'] = 'legacy_misc_ssllogin.html';
@@ -138,72 +138,72 @@ $modversion['hasMain'] = 0;
 
 // Blocks
 $modversion['blocks'][1]['func_num'] = 1;
-$modversion['blocks'][1]['file'] = "legacy_usermenu.php";
+$modversion['blocks'][1]['file'] = 'legacy_usermenu.php';
 $modversion['blocks'][1]['name'] = _MI_LEGACY_BLOCK_USERMENU_NAME;
 $modversion['blocks'][1]['description'] = _MI_LEGACY_BLOCK_USERMENU_DESC;
-$modversion['blocks'][1]['show_func'] = "b_legacy_usermenu_show";
+$modversion['blocks'][1]['show_func'] = 'b_legacy_usermenu_show';
 $modversion['blocks'][1]['template'] = 'legacy_block_usermenu.html';
 $modversion['blocks'][1]['visible_any'] = true;
 $modversion['blocks'][1]['show_all_module'] = true;
 
 $modversion['blocks'][2]['func_num'] = 2;
-$modversion['blocks'][2]['file'] = "legacy_mainmenu.php";
+$modversion['blocks'][2]['file'] = 'legacy_mainmenu.php';
 $modversion['blocks'][2]['name'] = _MI_LEGACY_BLOCK_MAINMENU_NAME;
 $modversion['blocks'][2]['description'] = _MI_LEGACY_BLOCK_MAINMENU_DESC;
-$modversion['blocks'][2]['show_func'] = "b_legacy_mainmenu_show";
-$modversion['blocks'][2]['edit_func'] = "b_legacy_mainmenu_edit";
+$modversion['blocks'][2]['show_func'] = 'b_legacy_mainmenu_show';
+$modversion['blocks'][2]['edit_func'] = 'b_legacy_mainmenu_edit';
 $modversion['blocks'][2]['template'] = 'legacy_block_mainmenu.html';
 $modversion['blocks'][2]['visible_any'] = true;
 $modversion['blocks'][2]['show_all_module'] = true;
 $modversion['blocks'][2]['options'] = '0';
 
 $modversion['blocks'][3]['func_num'] = 3;
-$modversion['blocks'][3]['file'] = "legacy_search.php";
+$modversion['blocks'][3]['file'] = 'legacy_search.php';
 $modversion['blocks'][3]['name'] = _MI_LEGACY_BLOCK_SEARCH_NAME;
 $modversion['blocks'][3]['description'] = _MI_LEGACY_BLOCK_SEARCH_DESC;
-$modversion['blocks'][3]['show_func'] = "b_legacy_search_show";
+$modversion['blocks'][3]['show_func'] = 'b_legacy_search_show';
 $modversion['blocks'][3]['template'] = 'legacy_block_search.html';
 $modversion['blocks'][3]['show_all_module'] = true;
 
 $modversion['blocks'][4]['func_num'] = 4;
-$modversion['blocks'][4]['file'] = "legacy_waiting.php";
+$modversion['blocks'][4]['file'] = 'legacy_waiting.php';
 $modversion['blocks'][4]['name'] = _MI_LEGACY_BLOCK_WAITING_NAME;
 $modversion['blocks'][4]['description'] = _MI_LEGACY_BLOCK_WAITING_DESC;
-$modversion['blocks'][4]['show_func'] = "b_legacy_waiting_show";
+$modversion['blocks'][4]['show_func'] = 'b_legacy_waiting_show';
 $modversion['blocks'][4]['template'] = 'legacy_block_waiting.html';
 
 $modversion['blocks'][5]['func_num'] = 5;
-$modversion['blocks'][5]['file'] = "legacy_siteinfo.php";
+$modversion['blocks'][5]['file'] = 'legacy_siteinfo.php';
 $modversion['blocks'][5]['name'] = _MI_LEGACY_BLOCK_SITEINFO_NAME;
 $modversion['blocks'][5]['description'] = _MI_LEGACY_BLOCK_SITEINFO_DESC;
-$modversion['blocks'][5]['show_func'] = "b_legacy_siteinfo_show";
-$modversion['blocks'][5]['edit_func'] = "b_legacy_siteinfo_edit";
-$modversion['blocks'][5]['options'] = "320|190|s_poweredby.gif|1";
+$modversion['blocks'][5]['show_func'] = 'b_legacy_siteinfo_show';
+$modversion['blocks'][5]['edit_func'] = 'b_legacy_siteinfo_edit';
+$modversion['blocks'][5]['options'] = '320|190|s_poweredby.gif|1';
 $modversion['blocks'][5]['template'] = 'legacy_block_siteinfo.html';
 $modversion['blocks'][5]['show_all_module'] = true;
 
 $modversion['blocks'][6]['func_num'] = 6;
-$modversion['blocks'][6]['file'] = "legacy_comments.php";
+$modversion['blocks'][6]['file'] = 'legacy_comments.php';
 $modversion['blocks'][6]['name'] = _MI_LEGACY_BLOCK_COMMENTS_NAME;
 $modversion['blocks'][6]['description'] = _MI_LEGACY_BLOCK_COMMENTS_DESC;
-$modversion['blocks'][6]['show_func'] = "b_legacy_comments_show";
-$modversion['blocks'][6]['options'] = "10";
-$modversion['blocks'][6]['edit_func'] = "b_legacy_comments_edit";
+$modversion['blocks'][6]['show_func'] = 'b_legacy_comments_show';
+$modversion['blocks'][6]['options'] = '10';
+$modversion['blocks'][6]['edit_func'] = 'b_legacy_comments_edit';
 $modversion['blocks'][6]['template'] = 'legacy_block_comments.html';
 $modversion['blocks'][6]['show_all_module'] = true;
 
 $modversion['blocks'][7]['func_num'] = 7;
-$modversion['blocks'][7]['file'] = "legacy_notification.php";
+$modversion['blocks'][7]['file'] = 'legacy_notification.php';
 $modversion['blocks'][7]['name'] = _MI_LEGACY_BLOCK_NOTIFICATION_NAME;
 $modversion['blocks'][7]['description'] = _MI_LEGACY_BLOCK_NOTIFICATION_DESC;
-$modversion['blocks'][7]['show_func'] = "b_legacy_notification_show";
+$modversion['blocks'][7]['show_func'] = 'b_legacy_notification_show';
 $modversion['blocks'][7]['template'] = 'legacy_block_notification.html';
 
 $modversion['blocks'][8]['func_num'] = 8;
-$modversion['blocks'][8]['file'] = "legacy_themes.php";
+$modversion['blocks'][8]['file'] = 'legacy_themes.php';
 $modversion['blocks'][8]['name'] = _MI_LEGACY_BLOCK_THEMES_NAME;
 $modversion['blocks'][8]['description'] = _MI_LEGACY_BLOCK_THEMES_DESC;
-$modversion['blocks'][8]['show_func'] = "b_legacy_themes_show";
-$modversion['blocks'][8]['options'] = "0|80";
-$modversion['blocks'][8]['edit_func'] = "b_legacy_themes_edit";
+$modversion['blocks'][8]['show_func'] = 'b_legacy_themes_show';
+$modversion['blocks'][8]['options'] = '0|80';
+$modversion['blocks'][8]['edit_func'] = 'b_legacy_themes_edit';
 $modversion['blocks'][8]['template'] = 'legacy_block_themes.html';

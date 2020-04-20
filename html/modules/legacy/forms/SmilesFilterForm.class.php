@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('SMILES_SORT_KEY_ID', 1);
 define('SMILES_SORT_KEY_CODE', 2);
@@ -25,13 +25,13 @@ define('SMILES_SORT_KEY_DEFAULT', SMILES_SORT_KEY_ID);
 
 class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         SMILES_SORT_KEY_ID => 'id',
         SMILES_SORT_KEY_CODE => 'code',
         SMILES_SORT_KEY_SMILE_URL => 'smile_url',
         SMILES_SORT_KEY_EMOTION => 'emotion',
         SMILES_SORT_KEY_DISPLAY => 'display'
-    );
+    ];
 
     public function getDefaultSortKey()
     {

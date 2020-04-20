@@ -36,7 +36,7 @@ class Legacy_Mailer extends PHPMailer
         $xoopsMailerConfig =& $handler->getConfigsByCat(XOOPS_CONF_MAILER);
         $this->reset();
         
-        if ($xoopsMailerConfig['from'] == '') {
+        if ('' == $xoopsMailerConfig['from']) {
             $this->From = $root->mContext->mXoopsConfig['adminmail'];
         } else {
             $this->From = $xoopsMailerConfig['from'];
@@ -100,8 +100,8 @@ class Legacy_Mailer extends PHPMailer
     public function reset()
     {
         $this->ClearAllRecipients();
-        $this->Body = "";
-        $this->Subject = "";
+        $this->Body = '';
+        $this->Subject = '';
     }
     
     public function convertLocal($text, $mime = false)

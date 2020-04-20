@@ -12,63 +12,61 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
  */
 class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
 {
-	function getName()
-	{
-		return "waiting";
-	}
+    public function getName()
+    {
+        return 'waiting';
+    }
 
-	function getTitle()
-	{
-		return "TEST: AdminWaiting";
-	}
+    public function getTitle()
+    {
+        return 'TEST: AdminWaiting';
+    }
 
-	function getEntryIndex()
-	{
-		return 0;
-	}
+    public function getEntryIndex()
+    {
+        return 0;
+    }
 
-	function isEnableCache()
-	{
-		return false;
-	}
+    public function isEnableCache()
+    {
+        return false;
+    }
 
-	function execute()
-	{
+    public function execute()
+    {
+        $render =& $this->getRenderTarget();
 
+        // Load theme template ie fallback
+        //$render->setAttribute('legacy_module', 'legacy');
+        $render->setTemplateName('legacy_admin_block_waiting.html');
 
-		$render =& $this->getRenderTarget();
+        //
+        //$root->mLanguageManager->loadBlockMessageCatalog('legacy');
 
-		// Load theme template ie fallback
-		//$render->setAttribute('legacy_module', 'legacy');
-		$render->setTemplateName('legacy_admin_block_waiting.html');
+        $modules = [];
+        XCube_DelegateUtils::call('Legacyblock.Wating.Show', new XCube_Ref($modules));
+        //$root =& XCube_Root::getSingleton();
+        $render->setAttribute('modules', $modules);
+        $render->setAttribute('blockid', $this->getName());
+        $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
+        $renderSystem->renderBlock($render);
+    }
 
-//
-		//$root->mLanguageManager->loadBlockMessageCatalog('legacy');
-		
-		$modules = array();
-		XCube_DelegateUtils::call('Legacyblock.Wating.Show', new XCube_Ref($modules));
-		$root =& XCube_Root::getSingleton();
-		$render->setAttribute('modules', $modules);
-		$render->setAttribute('blockid', $this->getName());
-		$renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
-		$renderSystem->renderBlock($render);
-	}
+    public function hasResult()
+    {
+        return true;
+    }
 
-	function hasResult()
-	{
-		return true;
-	}
+    public function &getResult()
+    {
+        $dmy = 'dummy';
+        return $dmy;
+    }
 
-	function &getResult()
-	{
-		$dmy = "dummy";
-		return $dmy;
-	}
-
-	function getRenderSystemName()
-	{
-		return 'Legacy_AdminRenderSystem';
-	}
+    public function getRenderSystemName()
+    {
+        return 'Legacy_AdminRenderSystem';
+    }
 }
 
 ?>

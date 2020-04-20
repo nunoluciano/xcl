@@ -12,14 +12,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CommentAdminEditForm.class.php";
-require_once XOOPS_ROOT_PATH . "/include/comment_constants.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CommentAdminEditForm.class.php';
+require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
 class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 {
     /**
      * Override. At first, call _setupObject().
+     * @param $controller
+     * @param $xoopsUser
      */
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -29,7 +31,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
     
     public function _getId()
     {
-        return isset($_REQUEST['com_id']) ? intval(xoops_getrequest('com_id')) : 0;
+        return isset($_REQUEST['com_id']) ? (int)xoops_getrequest('com_id') : 0;
     }
 
     public function &_getHandler()
@@ -48,13 +50,13 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
      */
     public function _setupActionForm()
     {
-        if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
+        if (XOOPS_COMMENT_PENDING == $this->mObject->get('com_status')) {
             $this->mActionForm =new Legacy_PendingCommentAdminEditForm();
-            $this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doApprove"));
-            $this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doApprove']);
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doUpdate']);
         } else {
             $this->mActionForm =new Legacy_ApprovalCommentAdminEditForm();
-            $this->mObjectHandler->mUpdateSuccess->add(array(&$this, "doUpdate"));
+            $this->mObjectHandler->mUpdateSuccess->add([&$this, 'doUpdate']);
         }
         $this->mActionForm->prepare();
     }
@@ -65,7 +67,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $this->mObject->loadModule();
         $this->mObject->loadStatus();
         
-        $render->setTemplateName("comment_edit.html");
+        $render->setTemplateName('comment_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -75,10 +77,10 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         $render->setAttribute('subjectIconArr', $subjectIconArr);
 
         $statusHandler =& xoops_getmodulehandler('commentstatus');
-        if ($this->mObject->get('com_status') == XOOPS_COMMENT_PENDING) {
+        if (XOOPS_COMMENT_PENDING == $this->mObject->get('com_status')) {
             $statusArr =& $statusHandler->getObjects();
         } else {
-            $statusArr = array();
+            $statusArr = [];
             $statusArr[0] =& $statusHandler->get(XOOPS_COMMENT_ACTIVE);
             $statusArr[1] =& $statusHandler->get(XOOPS_COMMENT_HIDDEN);
         }
@@ -88,21 +90,22 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=CommentList");
+        $controller->executeForward('./index.php?action=CommentList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=CommentList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=CommentList");
+        $controller->executeForward('./index.php?action=CommentList');
     }
 
     /**
      * @static
+     * @param $comment
      * @return Return array as the informations of comments. If $comment has fatal status, return false.
      */
     public function loadCallbackFile(&$comment)
@@ -123,7 +126,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         //
         // Load call-back file
         //
-        $file = XOOPS_MODULE_PATH . "/" . $module->get('dirname') . "/" . $comment_config['callbackFile'];
+        $file = XOOPS_MODULE_PATH . '/' . $module->get('dirname') . '/' . $comment_config['callbackFile'];
         if (!is_file($file)) {
             return false;
         }
@@ -137,7 +140,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
     {
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
 
-        if ($comment_config == false) {
+        if (false == $comment_config) {
             return;
         }
         
@@ -166,7 +169,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         //
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
         
-        if ($comment_config == false) {
+        if (false == $comment_config) {
             return;
         }
         
@@ -180,7 +183,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
             $handler =& xoops_gethandler('comment');
             $commentCount = $handler->getCount($criteria);
             
-            call_user_func_array($function, array($comment->get('com_itemid'), $commentCount, $comment->get('com_id')));
+            call_user_func_array($function, [$comment->get('com_itemid'), $commentCount, $comment->get('com_id')]);
         }
     }
 }

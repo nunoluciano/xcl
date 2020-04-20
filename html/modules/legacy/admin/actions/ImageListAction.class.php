@@ -12,16 +12,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractListAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageFilterForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageListForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractListAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageFilterForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageListForm.class.php';
 
 class Legacy_ImageListAction extends Legacy_AbstractListAction
 {
-    public $mImageObjects = array();
+    public $mImageObjects = [];
     public $mCategory = null;
     public $mActionForm = null;
-    public $mpageArr = array(5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0);
+    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser)
     {
@@ -41,7 +41,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
         $root =& XCube_Root::getSingleton();
         $perpage = $root->mContext->mRequest->getRequest($navi->mPrefix.'perpage');
-        if (isset($perpage) && intval($perpage) == 0) {
+        if (isset($perpage) && 0 == (int)$perpage) {
             $navi->setPerpage(0);
         }
         return $navi;
@@ -55,18 +55,18 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function _getBaseUrl()
     {
-        return "./index.php?action=ImageList";
+        return './index.php?action=ImageList';
     }
     
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $result = parent::getDefaultView($controller, $xoopsUser);
-        if ($result == LEGACY_FRAME_VIEW_INDEX) {
+        if (LEGACY_FRAME_VIEW_INDEX == $result) {
             $cat_id = xoops_getrequest('imgcat_id');
             $handler =& xoops_getmodulehandler('imagecategory');
             $this->mCategory =& $handler->get($cat_id);
             
-            if ($this->mCategory == null) {
+            if (null == $this->mCategory) {
                 $result = LEGACY_FRAME_VIEW_ERROR;
             }
         }
@@ -76,23 +76,23 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("image_list.html");
+        $render->setTemplateName('image_list.html');
         
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadImagecategory();
         }
         
-        $render->setAttribute("objects", $this->mObjects);
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
+        $render->setAttribute('objects', $this->mObjects);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         
-        $render->setAttribute("category", $this->mCategory);
+        $render->setAttribute('category', $this->mCategory);
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('pageArr', $this->mpageArr);
         $render->setAttribute('filterForm', $this->mFilter);
 
         $image_handler =& $this->_getHandler();
         $imgcat_id = $controller->mRoot->mContext->mRequest->getRequest('imgcat_id');
-        $cat_id = isset($imgcat_id) ? intval($imgcat_id) : 0;
+        $cat_id = isset($imgcat_id) ? (int)$imgcat_id : 0;
         $total_criteria =new CriteriaCompo(new Criteria('imgcat_id', $cat_id));
         $image_total = $image_handler->getCount($total_criteria);
         $total_criteria->add(new Criteria('image_display', 1));
@@ -104,6 +104,6 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImagecategoryList");
+        $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 }

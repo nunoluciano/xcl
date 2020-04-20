@@ -7,18 +7,18 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_HeaderScript
 {
     protected $_mType = 'google';
-    protected $_mCore = "1";
-    protected $_mUi = "1";
+    protected $_mCore = '1';
+    protected $_mUi = '1';
 
-    protected $_mLibrary = array();
-    protected $_mScript = array();
-    protected $_mMeta = array('keywords'=>'','description'=>'','robots'=>'','rating'=>'','author'=>'','copyright'=>'','msvalidate.01'=>'','google-site-verification'=>'','yandex-verification'=>'','fb:app_id'=>'','twitter:site'=>'' );
-    protected $_mOnloadScript = array();
-    protected $_mStylesheet = array();
-    protected $_mLink = array();
+    protected $_mLibrary = [];
+    protected $_mScript = [];
+    protected $_mMeta = ['keywords' =>'', 'description' =>'', 'robots' =>'', 'rating' =>'', 'author' =>'', 'copyright' =>'', 'msvalidate.01' =>'', 'google-site-verification' =>'', 'yandex-verification' =>'', 'fb:app_id' =>'', 'twitter:site' =>''];
+    protected $_mOnloadScript = [];
+    protected $_mStylesheet = [];
+    protected $_mLink = [];
 
     public $mUsePrototype = false;    //use prototype.js ?
-    public $mFuncNamePrefix = "";    //jQuery $() function's name prefix for compatibility with prototype.js
+    public $mFuncNamePrefix = '';    //jQuery $() function's name prefix for compatibility with prototype.js
 
     /**
      * __construct
@@ -38,7 +38,7 @@ class Legacy_HeaderScript
         $this->_mType = is_numeric($core) ? 'google' : 'local';
 
         //use compatibility mode with prototype.js ?
-        if ($root->getSiteConfig('jQuery', 'usePrototype')==1) {
+        if (1 == $root->getSiteConfig('jQuery', 'usePrototype')) {
             $this->mUsePrototype = true;
             $this->mPrototypeUrl = $root->getSiteConfig('jQuery', 'prototypeUrl');
             $this->mFuncNamePrefix = $root->getSiteConfig('jQuery', 'funcNamePrefix');
@@ -71,7 +71,7 @@ class Legacy_HeaderScript
     **/
     public function addLibrary($url, $xoopsUrl=true)
     {
-        $libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
+        $libUrl = (true == $xoopsUrl) ? XOOPS_URL . $url : $url;
         if (! in_array($libUrl, $this->_mLibrary)) {
             $this->_mLibrary[] = $libUrl;
         }
@@ -87,7 +87,7 @@ class Legacy_HeaderScript
     **/
     public function addStylesheet($url, $xoopsUrl=true)
     {
-        $libUrl = ($xoopsUrl==true) ? XOOPS_URL. $url : $url;
+        $libUrl = (true == $xoopsUrl) ? XOOPS_URL . $url : $url;
         if (! in_array($libUrl, $this->_mStylesheet)) {
             $this->_mStylesheet[] = $libUrl;
         }
@@ -103,7 +103,7 @@ class Legacy_HeaderScript
     **/
     public function addScript($script, $isOnloadFunction=true)
     {
-        if ($isOnloadFunction==true) {
+        if (true == $isOnloadFunction) {
             $this->_mOnloadScript[] = $script;
         } else {
             $this->_mScript[] = $script;
@@ -131,7 +131,7 @@ class Legacy_HeaderScript
     **/
     public function getScriptArr($isOnloadFunction=true)
     {
-        if ($isOnloadFunction==true) {
+        if (true == $isOnloadFunction) {
             return $this->_mOnloadScript;
         } else {
             return $this->_mScript;
@@ -150,7 +150,7 @@ class Legacy_HeaderScript
     **/
     public function addLink(/*** string ***/ $rel, /*** string ***/ $href, /*** string ***/ $type, /*** string ***/ $title=null)
     {
-        $this->_mLink[] = array('rel'=>$rel, 'type'=>$type, 'title'=>$title, 'href'=>$href);
+        $this->_mLink[] = ['rel' =>$rel, 'type' =>$type, 'title' =>$title, 'href' =>$href];
     }
 
     /**
@@ -187,7 +187,7 @@ class Legacy_HeaderScript
     **/
     public function createLibraryTag()
     {
-        $html = "";
+        $html = '';
 
         //prototype.js compatibility
         if ($this->mUsePrototype) {
@@ -195,20 +195,20 @@ class Legacy_HeaderScript
         }
 
         //load main library
-        if ($this->_mType=='google') {
+        if ('google' == $this->_mType) {
             $html .= $this->_loadGoogleJQueryLibrary();
-        } elseif ($this->_mType=='local') {
+        } elseif ('local' == $this->_mType) {
             $html .= $this->_loadLocalJQueryLibrary();
         }
 
         //load plugin libraries
         foreach ($this->_mLibrary as $lib) {
-            $html .= "<script type=\"text/javascript\" src=\"". $lib ."\"></script>\n";
+            $html .= '<script type="text/javascript" src="' . $lib . "\"></script>\n";
         }
 
         //load css
         foreach ($this->_mStylesheet as $css) {
-            $html .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". $css ."\">\n";
+            $html .= '<link type="text/css" rel="stylesheet" href="' . $css . "\">\n";
         }
 
         //load link
@@ -254,7 +254,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     **/
     protected function _loadLocalJQueryLibrary()
     {
-        $html = "";
+        $html = '';
         if ($this->_mCore) {
             $html .= '<script type="text/javascript" src="'. $this->_mCore .'"></script>';
         }
@@ -277,20 +277,20 @@ google.load("jqueryui", "'. $this->_mUi .'");
         $html = null;
         if (count($this->_mOnloadScript)>0||count($this->_mScript)>0) {
             $html = "<script type=\"text/javascript\" crossorigin=\"anonymous\"><!--\n";
-            if ($this->_mType == "google") {
+            if ('google' == $this->_mType) {
                 $html .= "google.setOnLoadCallback(function() {\n";
             }
-            if ($this->mUsePrototype == true) {
+            if (true == $this->mUsePrototype) {
                 $html .= "jQuery.noConflict();\n";
             }
             $html .= "jQuery(function($){\n";
             $html .= $this->_makeScript(true);
-            if ($this->_mType == "google") {
+            if ('google' == $this->_mType) {
                 $html .= "\n});\n";
             }
             $html .= "\n});\n";
             $html .= $this->_makeScript(false);
-            $html .= "//--></script>"."\n";
+            $html .= '//--></script>' . "\n";
         }
         return $html;
     }
@@ -305,7 +305,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     protected function _makeScript($isOnloadFunction=true)
     {
         $html = null;
-        $scriptArr = ($isOnloadFunction===true) ? $this->_mOnloadScript : $this->_mScript;
+        $scriptArr = (true === $isOnloadFunction) ? $this->_mOnloadScript : $this->_mScript;
         foreach ($scriptArr as $script) {
             $html .= $this->_convertFuncName($script);
         }
@@ -322,7 +322,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     protected function _convertFuncName($script)
     {
         if ($this->mFuncNamePrefix) {
-            $script = str_replace("$(", $this->mFuncNamePrefix."$(", $script);
+            $script = str_replace('$(', $this->mFuncNamePrefix . '$(', $script);
         }
         return $script;
     }

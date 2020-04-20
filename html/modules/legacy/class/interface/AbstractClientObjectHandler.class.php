@@ -14,8 +14,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 **/
 abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHandler
 {
-    protected $_mClientField = array('title'=>'title', 'category'=>'category_id', 'posttime'=>'posttime');
-    protected $_mClientConfig = array('tag'=>'tag_dirname', 'image'=>'use_image', 'workflow'=>'use_workflow', 'activity'=>'use_activity', 'map'=>'use_map');
+    protected $_mClientField = ['title' =>'title', 'category' =>'category_id', 'posttime' =>'posttime'];
+    protected $_mClientConfig = ['tag' =>'tag_dirname', 'image' =>'use_image', 'workflow' =>'use_workflow', 'activity' =>'use_activity', 'map' =>'use_map'];
 
     /**
      * _getTagList
@@ -40,7 +40,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
     public function insert(/*** XoopsSimpleObject ***/ &$obj, /*** bool ***/ $force=false)
     {
         $ret = parent::insert($obj, $force);
-        if ($ret == true) {
+        if (true == $ret) {
             $ret = $this->_setClientData($obj);
         }
     
@@ -76,26 +76,26 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
         $conf = $handler->getConfigsByDirname($obj->getDirname());
     
         $ret = true;
-        if ($this->_isActivityClient($conf)===true) {
-            if ($this->_saveActivity($obj)===false) {
+        if (true === $this->_isActivityClient($conf)) {
+            if (false === $this->_saveActivity($obj)) {
                 $ret = false;
             }
         }
     
-        if ($this->_isTagClient($conf)===true) {
-            if ($this->_saveTags($obj, $conf[$this->_mClientConfig['tag']])===false) {
+        if (true === $this->_isTagClient($conf)) {
+            if (false === $this->_saveTags($obj, $conf[$this->_mClientConfig['tag']])) {
                 $ret = false;
             }
         }
     
-        if ($this->_isImageClient($conf)===true) {
-            if ($this->_saveImages($obj)===false) {
+        if (true === $this->_isImageClient($conf)) {
+            if (false === $this->_saveImages($obj)) {
                 $ret = false;
             }
         }
     
-        if ($this->_isMapClient($conf)===true) {
-            if ($this->_saveMap($obj)===false) {
+        if (true === $this->_isMapClient($conf)) {
+            if (false === $this->_saveMap($obj)) {
                 $ret = false;
             }
         }
@@ -116,24 +116,24 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
         $conf = $handler->getConfigsByDirname($obj->getDirname());
     
         $ret = true;
-        if ($this->_isActivityClient($conf)===true) {
-            if ($this->_deleteActivity($obj)===false) {
+        if (true === $this->_isActivityClient($conf)) {
+            if (false === $this->_deleteActivity($obj)) {
                 $ret = false;
             }
         }
     
-        if ($this->_isTagClient($conf)===true) {
-            if ($this->_deleteTags($obj, $tagDirname)===false) {
+        if (true === $this->_isTagClient($conf)) {
+            if (false === $this->_deleteTags($obj, $tagDirname)) {
                 $ret = false;
             }
         }
     
-        if ($this->_isWorkflowClient($conf)===true) {
+        if (true === $this->_isWorkflowClient($conf)) {
             $ret = $this->_deleteWorkflow($obj);
         }
     
-        if ($this->_isImageClient($conf)===true) {
-            if ($this->_deleteImages($obj)===false) {
+        if (true === $this->_isImageClient($conf)) {
+            if (false === $this->_deleteImages($obj)) {
                 $ret = false;
             }
         }
@@ -199,12 +199,12 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
         $obj->setupImages();
         foreach ($obj->mImage as $image) {
             $result = false;
-            if ($image->isDeleted()===true) {    //delete image
+            if (true === $image->isDeleted()) {    //delete image
                 XCube_DelegateUtils::call('Legacy_Image.DeleteImage', new XCube_Ref($result), $image);
             } else {    //save image
                 XCube_DelegateUtils::call('Legacy_Image.SaveImage', new XCube_Ref($result), $image);
             }
-            if ($result===false) {
+            if (false === $result) {
                 $ret = false;
             }
         }
@@ -215,13 +215,13 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
     /**
      * save map data
      *
-     * @param XoopsSimpleObject	$obj
+     * @param XoopsSimpleObject $obj
      *
-     * @return	bool
+     * @return array
      */
     protected function _saveMap($obj)
     {
-        $result = array();
+        $result = [];
         XCube_DelegateUtils::call(
             'Legacy_Map.SetPlace',
             new XCube_Ref($result),
@@ -268,7 +268,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
             $this->getDataname(),
             $obj->get($this->mPrimary),
             $obj->get($this->_mClientField['posttime']),
-            array()
+            []
         );
         return $ret;
     }
@@ -303,7 +303,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
             }
             $result = false;
             XCube_DelegateUtils::call('Legacy_Image.DeleteImage', new XCube_Ref($result), $image);
-            if ($result===false) {
+            if (false === $result) {
                 $ret = false;
             }
         }
@@ -326,7 +326,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
         if (! isset($conf[$this->_mClientConfig[$key]])) {
             return false;
         }
-        return $conf[$this->_mClientConfig[$key]]==1 ? true : false;
+        return 1 == $conf[$this->_mClientConfig[$key]] ? true : false;
     }
 
     /**
@@ -402,7 +402,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
         if (! isset($conf[$this->_mClientConfig[$key]])) {
             return false;
         }
-        return $conf[$this->_mClientConfig[$key]]==1 ? true : false;
+        return 1 == $conf[$this->_mClientConfig[$key]] ? true : false;
     }
 
     /**

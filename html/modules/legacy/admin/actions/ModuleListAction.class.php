@@ -12,12 +12,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListFilterForm.class.php";
-require_once XOOPS_LEGACY_PATH . "/admin/forms/ModuleListForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleListFilterForm.class.php';
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ModuleListForm.class.php';
 
 class Legacy_ModuleListAction extends Legacy_Action
 {
-    public $mModuleObjects = array();
+    public $mModuleObjects = [];
     public $mFilter = null;
 
     public $mActionForm = null;
@@ -43,7 +43,7 @@ class Legacy_ModuleListAction extends Legacy_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -54,7 +54,7 @@ class Legacy_ModuleListAction extends Legacy_Action
             return $this->_processConfirm($controller, $xoopsUser);
         } else {
             $result = $this->_processSave($controller, $xoopsUser);
-            if ($result === LEGACY_FRAME_VIEW_SUCCESS) {
+            if (LEGACY_FRAME_VIEW_SUCCESS === $result) {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Success', new XCube_Ref($this->mActionForm));
             } else {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.ModuleListSave.Fail', new XCube_Ref($this->mActionForm));
@@ -116,10 +116,13 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $render
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_list_confirm.html");
+        $render->setTemplateName('module_list_confirm.html');
         $render->setAttribute('moduleObjects', $this->mModuleObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
         
@@ -133,7 +136,7 @@ class Legacy_ModuleListAction extends Legacy_Action
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("module_list.html");
+        $render->setTemplateName('module_list.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         
         //

@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractFilterForm.class.php';
 
 define('SMILES_SORT_KEY_ID', 1);
 define('SMILES_SORT_KEY_CODE', 2);
@@ -25,16 +25,16 @@ define('SMILES_SORT_KEY_MAXVALUE', 5);
 
 class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         SMILES_SORT_KEY_ID => 'id',
         SMILES_SORT_KEY_CODE => 'code',
         SMILES_SORT_KEY_SMILE_URL => 'smile_url',
         SMILES_SORT_KEY_EMOTION => 'emotion',
         SMILES_SORT_KEY_DISPLAY => 'display'
-    );
+    ];
     
-    public $mKeyword = "";
-    public $mOptionField = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
 
     public function getDefaultSortKey()
     {
@@ -76,9 +76,9 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
         if (isset($_REQUEST['option_field'])) {
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
-            if ($this->mOptionField == "visible") {
+            if ('visible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('display', '1'));
-            } elseif ($this->mOptionField == "invisible") {
+            } elseif ('invisible' == $this->mOptionField) {
                 $this->_mCriteria->add(new Criteria('display', '0'));
             } else {
                 //all

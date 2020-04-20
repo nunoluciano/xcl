@@ -35,8 +35,8 @@ class ShadePlus_ServiceServer
         //
         foreach ($this->_mService->_mTypes as $className) {
             if (XC_CLASS_EXISTS($className)) {
-                if (call_user_func(array($className, 'isArray')) == true) {
-                    $targetClassName = call_user_func(array($className, 'getClassName'));
+                if (true == call_user_func([$className, 'isArray'])) {
+                    $targetClassName = call_user_func([$className, 'getClassName']);
                     
                     if (XCube_ServiceUtils::isXSD($targetClassName)) {
                         $targetClassName = 'xsd:' . $targetClassName;
@@ -50,15 +50,15 @@ class ShadePlus_ServiceServer
                         'array',
                         '',
                         'SOAP-ENC:Array',
-                        array(),
-                        array(
-                            array('ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => $targetClassName . '[]')
-                        ),
+                        [],
+                        [
+                            ['ref' => 'SOAP-ENC:arrayType', 'wsdl:arrayType' => $targetClassName . '[]']
+                        ],
                         $targetClassName
                     );
                 } else {
-                    $t_fieldArr = call_user_func(array($className, 'getPropertyDefinition'));
-                    $t_arr = array();
+                    $t_fieldArr = call_user_func([$className, 'getPropertyDefinition']);
+                    $t_arr = [];
                     foreach ($t_fieldArr as $t_field) {
                         $name = $t_field['name'];
                         $type = $t_field['type'];
@@ -69,7 +69,7 @@ class ShadePlus_ServiceServer
                             $type = 'tns:' . $type;
                         }
                     
-                        $t_arr[$name] = array('name' => $name, 'type' => $type);
+                        $t_arr[$name] = ['name' => $name, 'type' => $type];
                     }
                 
                     $this->_mServer->wsdl->addComplexType(
@@ -102,7 +102,7 @@ class ShadePlus_ServiceServer
             //
             // Parse IN
             //
-            $in = array();
+            $in = [];
             foreach ($func['in'] as $name => $type) {
                 if (XCube_ServiceUtils::isXSD($type)) {
                     $t_type = 'xsd:' . $type;
@@ -112,13 +112,13 @@ class ShadePlus_ServiceServer
                 $in[$name] = $t_type;
             }
             
-            $this->_mServer->register($this->_mService->mClassName . "." . $func['name'], $in, $out, $this->_mService->mNameSpace);
+            $this->_mServer->register($this->_mService->mClassName . '.' . $func['name'], $in, $out, $this->_mService->mNameSpace);
         }
     }
     
     public function executeService()
     {
-        $postdata = file_get_contents("php://input"); 
+        $postdata = file_get_contents('php://input');
         //$HTTP_RAW_POST_DATA = isset($GLOBALS['HTTP_RAW_POST_DATA'])? $GLOBALS['HTTP_RAW_POST_DATA'] : null;
         $this->_mServer->service($postdata);
         //Instead php://input should be used.

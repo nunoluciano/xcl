@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 /***
  * @internal
@@ -30,8 +30,8 @@ class Legacy_BlockListForm extends XCube_ActionForm
     {
         //
         //
-        if (xoops_getenv('REQUEST_METHOD') == 'POST') {
-            return "module.legacy.BlockListForm.TOKEN";
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
+            return 'module.legacy.BlockListForm.TOKEN';
         } else {
             return null;
         }
@@ -63,27 +63,27 @@ class Legacy_BlockListForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['title']->setDependsByArray(array('required', 'maxlength'));
+        $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addVar('maxlength', '255');
 
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['weight']->setDependsByArray(array('required', 'intRange'));
+        $this->mFieldProperties['weight']->setDependsByArray(['required', 'intRange']);
         $this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addVar('min', '0');
         $this->mFieldProperties['weight']->addVar('max', '65535');
     
         $this->mFieldProperties['side'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['side']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['side']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['side']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SIDE);
         $this->mFieldProperties['side']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_SIDE);
         $this->mFieldProperties['side']->addVar('handler', 'columnside');
         $this->mFieldProperties['side']->addVar('module', 'legacy');
     
         $this->mFieldProperties['bcachetime'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['bcachetime']->setDependsByArray(array('required', 'objectExist'));
+        $this->mFieldProperties['bcachetime']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['bcachetime']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_BCACHETIME);
         $this->mFieldProperties['bcachetime']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_BCACHETIME);
         $this->mFieldProperties['bcachetime']->addVar('handler', 'cachetime');

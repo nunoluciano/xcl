@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH . "/admin/class/ModuleInstallUtils.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/class/ModuleInstallUtils.class.php';
 
 class Legacy_ModuleUninstaller
 {
@@ -52,7 +52,7 @@ class Legacy_ModuleUninstaller
     {
         $this->mLog =new Legacy_ModuleInstallLog();
         $this->m_fireNotifyUninstallTemplateBegun =new XCube_Delegate();
-        $this->m_fireNotifyUninstallTemplateBegun->register("Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun");
+        $this->m_fireNotifyUninstallTemplateBegun->register('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun');
     }
     
     /**
@@ -102,23 +102,23 @@ class Legacy_ModuleUninstaller
         $db =& $root->mController->getDB();
 
         $dirname = $this->_mXoopsModule->get('dirname');
-        $t_search = array('{prefix}', '{dirname}', '{Dirname}', '{_dirname_}');
-        $t_replace = array(XOOPS_DB_PREFIX, strtolower($dirname), ucfirst(strtolower($dirname)), $dirname);
+        $t_search = ['{prefix}', '{dirname}', '{Dirname}', '{_dirname_}'];
+        $t_replace = [XOOPS_DB_PREFIX, strtolower($dirname), ucfirst(strtolower($dirname)), $dirname];
         
         $tables = $this->_mXoopsModule->getInfo('tables');
-        if ($tables != false && is_array($tables)) {
+        if (false != $tables && is_array($tables)) {
             foreach ($tables as $table) {
                 //
                 // TODO Do we need to check reserved core tables?
                 //
                 $t_tableName = $table;
-                if (isset($this->_mXoopsModule->modinfo['cube_style']) && $this->_mXoopsModule->modinfo['cube_style'] == true) {
+                if (isset($this->_mXoopsModule->modinfo['cube_style']) && true == $this->_mXoopsModule->modinfo['cube_style']) {
                     $t_tableName = str_replace($t_search, $t_replace, $table);
                 } else {
                     $t_tableName = $db->prefix($table);
                 }
                 
-                $sql = "DROP TABLE " . $t_tableName;
+                $sql = 'DROP TABLE ' . $t_tableName;
                 
                 if ($db->query($sql)) {
                     $this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_DROP_TABLE, $t_tableName));
@@ -168,11 +168,11 @@ class Legacy_ModuleUninstaller
     public function _processScript()
     {
         $installScript = trim($this->_mXoopsModule->getInfo('onUninstall'));
-        if ($installScript != false) {
-            require_once XOOPS_MODULE_PATH . "/" . $this->_mXoopsModule->get('dirname') . "/" . $installScript;
+        if (false != $installScript) {
+            require_once XOOPS_MODULE_PATH . '/' . $this->_mXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_uninstall_' . $this->_mXoopsModule->get('dirname');
             
-            if (!preg_match("/^[a-zA-Z_][a-zA-Z0-9_]*$/", $funcName)) {
+            if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $funcName)) {
                 $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
                 return;
             }
@@ -208,7 +208,7 @@ class Legacy_ModuleUninstaller
             $this->_processReport();
             return false;
         }
-        if ($this->_mXoopsModule->get('mid') != null) {
+        if (null != $this->_mXoopsModule->get('mid')) {
             $this->_uninstallModule();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();

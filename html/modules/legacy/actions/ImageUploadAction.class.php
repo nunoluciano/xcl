@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/ImageEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/forms/ImageUploadForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/ImageEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/forms/ImageUploadForm.class.php';
 
 /***
  * @internal
@@ -52,11 +52,11 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
     
     public function hasPermission(&$controller, &$xoopsUser)
     {
-        $groups = array();
+        $groups = [];
         if (is_object($xoopsUser)) {
             $groups = $xoopsUser->getGroups();
         } else {
-            $groups = array(XOOPS_GROUP_ANONYMOUS);
+            $groups = [XOOPS_GROUP_ANONYMOUS];
         }
             
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
@@ -70,7 +70,7 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_image_upload.html");
+        $render->setTemplateName('legacy_image_upload.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -80,11 +80,11 @@ class Legacy_ImageUploadAction extends Legacy_ImageEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward(XOOPS_URL . "/imagemanager.php?imgcat_id=" . $this->mActionForm->get('imgcat_id') . "&target=" . xoops_getrequest('target'));
+        $controller->executeForward(XOOPS_URL . '/imagemanager.php?imgcat_id=' . $this->mActionForm->get('imgcat_id') . '&target=' . xoops_getrequest('target'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        redirect_header(XOOPS_URL . "/imagemanager.php", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        redirect_header(XOOPS_URL . '/imagemanager.php', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
 }

@@ -12,25 +12,25 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-define("LEGACY_FRAME_PERFORM_SUCCESS", 1);
-define("LEGACY_FRAME_PERFORM_FAIL", 2);
-define("LEGACY_FRAME_INIT_SUCCESS", 3);
+define('LEGACY_FRAME_PERFORM_SUCCESS', 1);
+define('LEGACY_FRAME_PERFORM_FAIL', 2);
+define('LEGACY_FRAME_INIT_SUCCESS', 3);
 
-define("LEGACY_FRAME_VIEW_NONE", 1);
-define("LEGACY_FRAME_VIEW_SUCCESS", 2);
-define("LEGACY_FRAME_VIEW_ERROR", 3);
-define("LEGACY_FRAME_VIEW_INDEX", 4);
-define("LEGACY_FRAME_VIEW_INPUT", 5);
-define("LEGACY_FRAME_VIEW_PREVIEW", 6);
-define("LEGACY_FRAME_VIEW_CANCEL", 7);
+define('LEGACY_FRAME_VIEW_NONE', 1);
+define('LEGACY_FRAME_VIEW_SUCCESS', 2);
+define('LEGACY_FRAME_VIEW_ERROR', 3);
+define('LEGACY_FRAME_VIEW_INDEX', 4);
+define('LEGACY_FRAME_VIEW_INPUT', 5);
+define('LEGACY_FRAME_VIEW_PREVIEW', 6);
+define('LEGACY_FRAME_VIEW_CANCEL', 7);
 
 //
 // Constatns for the mode of the frame.
 //
-define("LEGACY_FRAME_MODE_MISC", "Misc");
-define("LEGACY_FRAME_MODE_NOTIFY", "Notify");
-define("LEGACY_FRAME_MODE_IMAGE", "Image");
-define("LEGACY_FRAME_MODE_SEARCH", "Search");
+define('LEGACY_FRAME_MODE_MISC', 'Misc');
+define('LEGACY_FRAME_MODE_NOTIFY', 'Notify');
+define('LEGACY_FRAME_MODE_IMAGE', 'Image');
+define('LEGACY_FRAME_MODE_SEARCH', 'Search');
 
 class Legacy_ActionFrame
 {
@@ -61,7 +61,7 @@ class Legacy_ActionFrame
         $this->mAdminFlag = $admin;
         $this->mCreateAction =new XCube_Delegate();
         $this->mCreateAction->register('Legacy_ActionFrame.CreateAction');
-        $this->mCreateAction->add(array(&$this, '_createAction'));
+        $this->mCreateAction->add([&$this, '_createAction']);
     }
 
     public function setActionName($name)
@@ -95,8 +95,8 @@ class Legacy_ActionFrame
         //
         // Create action object by mActionName
         //
-        $className = "Legacy_" . ucfirst($actionFrame->mActionName) . "Action";
-        $fileName = ucfirst($actionFrame->mActionName) . "Action";
+        $className = 'Legacy_' . ucfirst($actionFrame->mActionName) . 'Action';
+        $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
             $fileName = XOOPS_MODULE_PATH . "/legacy/admin/actions/${fileName}.class.php";
         } else {
@@ -138,23 +138,23 @@ class Legacy_ActionFrame
         //
         $this->mCreateAction->call(new XCube_Ref($this));
     
-        if (!(is_object($this->mAction) && is_a($this->mAction, 'Legacy_Action'))) {
+        if (!(is_object($this->mAction) && $this->mAction instanceof \Legacy_Action)) {
             die();    //< TODO
         }
         
-        if ($this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser) === false) {
+        if (false === $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser)) {
             die();    //< TODO
         }
     
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser)) {
             if ($this->mAdminFlag) {
-                $controller->executeForward(XOOPS_URL . "/admin.php");
+                $controller->executeForward(XOOPS_URL . '/admin.php');
             } else {
                 $controller->executeForward(XOOPS_URL);
             }
         }
     
-        if (xoops_getenv("REQUEST_METHOD") == "POST") {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);

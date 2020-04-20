@@ -12,12 +12,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Legacy_SearchResultsForm extends XCube_ActionForm
 {
-    public $mQueries = array();
+    public $mQueries = [];
     public $_mKeywordMin = 0;
     
     // !Fix PHP7 NOTICE: deprecated constructor
@@ -27,7 +27,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         // !FIX PHP7 parent constructor
         parent::__construct();
         //parent::XCube_ActionForm();
-        $this->_mKeywordMin = intval($keywordMin);
+        $this->_mKeywordMin = (int)$keywordMin;
     }
         
     public function prepare()
@@ -43,7 +43,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['andor'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['andor']->setDependsByArray(array('mask'));
+        $this->mFieldProperties['andor']->setDependsByArray(['mask']);
         $this->mFieldProperties['andor']->addMessage('mask', _MD_LEGACY_ERROR_MASK, _MD_LEGACY_LANG_ANDOR);
         $this->mFieldProperties['andor']->addVar('mask', '/^(AND|OR|exact)$/i');
     }
@@ -52,10 +52,10 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
     {
         parent::fetch();
         
-        $t_queries = array();
+        $t_queries = [];
         
         $myts =& MyTextSanitizer::sGetInstance();
-        if ($this->get('andor') == 'exact' && strlen($this->get('query')) >= $this->_mKeywordMin) {
+        if ('exact' == $this->get('andor') && strlen($this->get('query')) >= $this->_mKeywordMin) {
             $this->mQueries[] = $myts->addSlashes($this->get('query'));
         } else {
             $query = $this->get('query');
@@ -76,12 +76,12 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
             }
         }
         
-        $this->set('query', implode(" ", $this->mQueries));
+        $this->set('query', implode(' ', $this->mQueries));
     }
     
     public function fetchAndor()
     {
-        if ($this->get('andor') == "") {
+        if ('' == $this->get('andor')) {
             $this->set('andor', 'AND');
         }
     }

@@ -26,7 +26,7 @@ define('LEGACY_ADMINMENU_CACHEPREFIX', XOOPS_CACHE_PATH.'/'.urlencode(XOOPS_URL)
  */
 class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 {
-    public $mModules = array();
+    public $mModules = [];
     
     /**
      * protected, but read OK.
@@ -37,12 +37,12 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
     public function getName()
     {
-        return "sidemenu";
+        return 'sidemenu';
     }
 
     public function getTitle()
     {
-        return "TEST: AdminSideMenu";
+        return 'TEST: AdminSideMenu';
     }
     
     public function getEntryIndex()
@@ -67,7 +67,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         
         $controller =& $root->mController;
         $user =& $root->mContext->mXoopsUser;
-        $groups = implode(",", $user->getGroups());
+        $groups = implode(',', $user->getGroups());
         $cachePath = LEGACY_ADMINMENU_CACHEPREFIX . md5(XOOPS_SALT . "($groups)". $langMgr->mLanguageName).'.html';
         $render =& $this->getRenderTarget();
         if (file_exists($cachePath)) {
@@ -78,8 +78,8 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         
         $this->mCurrentModule =& $controller->mRoot->mContext->mXoopsModule;
         
-        if ($this->mCurrentModule->get('dirname') == 'legacy') {
-            if (xoops_getrequest('action') == "help") {
+        if ('legacy' == $this->mCurrentModule->get('dirname')) {
+            if ('help' == xoops_getrequest('action')) {
                 $moduleHandler =& xoops_gethandler('module');
                 $t_module =& $moduleHandler->getByDirname(xoops_gethandler('legacy'));
                 if (is_object($t_module)) {
@@ -90,8 +90,8 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         
         $db=&$controller->getDB();
 
-        $mod = $db->prefix("modules");
-        $perm = $db->prefix("group_permission");
+        $mod = $db->prefix('modules');
+        $perm = $db->prefix('group_permission');
         
         //
         // Users who are belong to ADMIN GROUP have every permissions, so we have to prepare two kinds of SQL.
@@ -118,8 +118,8 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
             unset($module);
         }
         //
-        $tpl = $db->prefix("tplfile");
-        $tpl_modules = array();
+        $tpl = $db->prefix('tplfile');
+        $tpl_modules = [];
         $sql = "SELECT DISTINCT tpl_module FROM ${tpl}";
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)) {

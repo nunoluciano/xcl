@@ -12,17 +12,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/class/Legacy_Validator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Legacy_NotifyDeleteForm extends XCube_ActionForm
 {
-    public $mNotifiyIds = array();
+    public $mNotifiyIds = [];
     public $mFatalError = false;
     
     public function getTokenName()
     {
-        return $_SERVER['REQUEST_METHOD'] == 'POST' ? "module.legacy.NotifyDeleteForm.TOKEN" : null;
+        return 'POST' == $_SERVER['REQUEST_METHOD'] ? 'module.legacy.NotifyDeleteForm.TOKEN' : null;
     }
 
     public function fetch()
@@ -45,7 +45,7 @@ class Legacy_NotifyDeleteForm extends XCube_ActionForm
                 return;
             }
             foreach ($t_idArr as $t_id) {
-                $this->mNotifiyIds[] = array('modid' => intval($t_modid), 'id' => intval($t_id));
+                $this->mNotifiyIds[] = ['modid' => (int)$t_modid, 'id' => (int)$t_id];
             }
         }
     }

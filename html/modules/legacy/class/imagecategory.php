@@ -14,19 +14,19 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyImagecategoryObject extends XoopsSimpleObject
 {
-    public $mImage = array();
+    public $mImage = [];
     public $_mImageLoadedFlag = false;
 
     /**
      * Array of group objects which are allowed to read files of this category.
      */
-    public $mReadGroups = array();
+    public $mReadGroups = [];
     public $_mReadGroupsLoadedFlag = false;
 
     /**
      * Array of group objects which are allowed to upload a file to this category.
      */
-    public $mUploadGroups = array();
+    public $mUploadGroups = [];
     public $_mUploadGroupsLoadedFlag = false;
     
     // !Fix deprecated constructor for php 7.x
@@ -52,7 +52,7 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
     public function loadImage()
     {
-        if ($this->_mImageLoadedFlag == false) {
+        if (false == $this->_mImageLoadedFlag) {
             $handler =& xoops_getmodulehandler('image', 'legacy');
             $this->mImage =& $handler->getObjects(new Criteria('imagecat_id', $this->get('imagecat_id')));
             $this->_mImageLoadedFlag = true;
@@ -103,6 +103,8 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
     /**
      * If $groups has the permission of reading this object, return true.
+     * @param $groups
+     * @return bool
      */
     public function hasReadPerm($groups)
     {
@@ -163,9 +165,9 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
 class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "imagecategory";
-    public $mPrimary = "imgcat_id";
-    public $mClass = "LegacyImagecategoryObject";
+    public $mTable = 'imagecategory';
+    public $mPrimary = 'imgcat_id';
+    public $mClass = 'LegacyImagecategoryObject';
 
     public function insert(&$obj, $force = false)
     {
@@ -218,17 +220,17 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
         return $returnFlag;
     }
     
-    public function &getObjectsWithReadPerm($groups = array(), $display = null)
+    public function &getObjectsWithReadPerm($groups = [], $display = null)
     {
         $criteria = new CriteriaCompo();
-        if ($display != null) {
+        if (null != $display) {
             $criteria->add(new Criteria('imgcat_display', $display));
         }
         $criteria->setSort('imgcat_weight');
         $objs =& $this->getObjects($criteria);
         unset($criteria);
 
-        $ret = array();
+        $ret = [];
         foreach (array_keys($objs) as $key) {
             if ($objs[$key]->hasReadPerm($groups)) {
                 $ret[] =& $objs[$key];

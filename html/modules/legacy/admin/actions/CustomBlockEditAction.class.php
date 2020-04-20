@@ -12,9 +12,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/actions/BlockEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/CustomBlockEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/BlockEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CustomBlockEditForm.class.php';
 
 class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 {
@@ -36,7 +36,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("customblock_edit.html");
+        $render->setTemplateName('customblock_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         
         //
@@ -92,9 +92,9 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         if ($this->mObject->isNew()) {
-            $controller->executeForward("./index.php?action=BlockInstallList");
+            $controller->executeForward('./index.php?action=BlockInstallList');
         } else {
-            $controller->executeForward("./index.php?action=BlockList");
+            $controller->executeForward('./index.php?action=BlockList');
         }
     }
 }

@@ -38,7 +38,7 @@ class Legacy_AbstractEditAction extends Legacy_Action
         
         $this->mObject =& $this->mObjectHandler->get($id);
     
-        if ($this->mObject == null && $this->isEnableCreate()) {
+        if (null == $this->mObject && $this->isEnableCreate()) {
             $this->mObject =& $this->mObjectHandler->create();
         }
     }
@@ -56,7 +56,7 @@ class Legacy_AbstractEditAction extends Legacy_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
     
@@ -67,11 +67,11 @@ class Legacy_AbstractEditAction extends Legacy_Action
 
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
     
-        if (xoops_getrequest('_form_control_cancel') != null) {
+        if (null != xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 

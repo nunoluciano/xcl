@@ -4,14 +4,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ModuleEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ModuleEditForm.class.php';
 
 class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 {
 
-    public $mReadGroups = array();
-    public $mAdminGroups = array();
+    public $mReadGroups = [];
+    public $mAdminGroups = [];
     
     public function _getId()
     {
@@ -38,7 +38,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return ($this->mObject->get('isactive') == 1);
+            return (1 == $this->mObject->get('isactive'));
         } else {
             return false;
         }
@@ -49,7 +49,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         if (!$this->_isEditable()) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
     
@@ -65,7 +65,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
         $ret = parent::execute($controller, $xoopsUser);
         
-        if ($ret == LEGACY_FRAME_VIEW_SUCCESS) {
+        if (LEGACY_FRAME_VIEW_SUCCESS == $ret) {
             $handler =& xoops_gethandler('group');
             $permHandler =& xoops_gethandler('groupperm');
 
@@ -79,11 +79,11 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             //
             // Insert group permissions.
             //
-            $currentReadGroupid = array();
+            $currentReadGroupid = [];
             foreach ($this->mReadGroups as $readgroup) {
                 $currentReadGroupid[] = $readgroup->get('groupid');
             }
-            $currentAdminGroupid = array();
+            $currentAdminGroupid = [];
             foreach ($this->mAdminGroups as $admingroup) {
                 $currentAdminGroupid[] = $admingroup->get('groupid');
             }
@@ -164,7 +164,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
             $configObjects =& $confighandler->getConfigs($criteria);
             if (is_object($configObjects[0])) {
                 $oldvalue = $configObjects[0]->get('conf_value');
-                $t_arr = !empty($oldvalue) ? unserialize($oldvalue) : array();
+                $t_arr = !empty($oldvalue) ? unserialize($oldvalue) : [];
                 if (is_array($t_arr)) {
                     $t_arr[$this->mObject->get('mid')] = $this->mActionForm->get('module_cache');
                     $configObjects[0]->set('conf_value', serialize($t_arr));
@@ -187,7 +187,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadInfo($this->mObject->getShow('dirname'));
-        $render->setTemplateName("module_edit.html");
+        $render->setTemplateName('module_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -201,7 +201,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
         $criteria->add(new Criteria('gperm_name', 'module_read'));
         $gpermReadArr =&  $handler->getObjects($criteria);
-        $readgroupid = array();
+        $readgroupid = [];
         foreach ($gpermReadArr as $gpermRead) {
             $readgroupid[] = $gpermRead->get('gperm_groupid');
         }
@@ -212,7 +212,7 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
         $criteria->add(new Criteria('gperm_itemid', $this->mObject->get('mid')));
         $criteria->add(new Criteria('gperm_name', 'module_admin'));
         $gpermAdminArr =&  $handler->getObjects($criteria);
-        $admingroupid = array();
+        $admingroupid = [];
         foreach ($gpermAdminArr as $gpermAdmin) {
             $admingroupid[] = $gpermAdmin->get('gperm_groupid');
         }
@@ -226,16 +226,16 @@ class Legacy_ModuleEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ModuleList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ModuleList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ModuleList");
+        $controller->executeForward('./index.php?action=ModuleList');
     }
 }

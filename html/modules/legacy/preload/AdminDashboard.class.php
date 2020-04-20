@@ -123,6 +123,7 @@ if (!defined('XC_ADMINDASHBOARD_UINFO')) {
 class Legacy_AdminDashboard extends XCube_ActionFilter
 {
 
+
     public function preBlockFilter()
     {
 
@@ -220,8 +221,8 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
                     $uiadmindashboard_title = 'XCL Documentation';
 
                     $uiadmindashboard_msg = [];
-                    $uiadmindashboard_msg[] = 'Separate documentation is available for each module.';
                     $uiadmindashboard_msg[] = 'XCL provides an out-of-the-box internal search function to find admin features.';
+                    $uiadmindashboard_msg[] = 'Separate documentation is available for each module.';
 
                     $attributes = [];
                     $attributes['title'] = $uiadmindashboard_title;

@@ -32,7 +32,7 @@ class Legacy_InstallListAction extends Legacy_Action
     
     public function executeViewIndex(&$controller, &$xoopsUser, &$renderer)
     {
-        $renderer->setTemplateName("install_list.html");
+        $renderer->setTemplateName('install_list.html');
         $renderer->setAttribute('moduleObjects', $this->mModuleObjects);
     }
 }

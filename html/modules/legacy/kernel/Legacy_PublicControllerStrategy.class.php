@@ -23,10 +23,10 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         //parent::Legacy_AbstractControllerStrategy($controller);
         parent::__construct($controller);
         
-        $controller->mRoot->mContext->mBaseRenderSystemName = "Legacy_RenderSystem";
+        $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_RenderSystem';
         
-        if (!defined("LEGACY_DEPENDENCE_RENDERER")) {
-            define("LEGACY_DEPENDENCE_RENDERER", "Legacy_RenderSystem");
+        if (!defined('LEGACY_DEPENDENCE_RENDERER')) {
+            define('LEGACY_DEPENDENCE_RENDERER', 'Legacy_RenderSystem');
         }
     }
 
@@ -35,7 +35,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         $showFlag =0;
         $mid=0;
 
-        if ($this->mController->mRoot->mContext->mModule != null) {
+        if (null != $this->mController->mRoot->mContext->mModule) {
             $showFlag = (preg_match("/index\.php$/i", xoops_getenv('PHP_SELF')) && $this->mController->mRoot->mContext->mXoopsConfig['startpage'] == $this->mController->mRoot->mContext->mXoopsModule->get('dirname'));
             $mid = $this->mController->mRoot->mContext->mXoopsModule->get('mid');
         } else {
@@ -58,7 +58,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         foreach ($blockObjects as $blockObject) {
             $block =& Legacy_Utils::createBlockProcedure($blockObject);
 
-            if ($block->prepare() !== false) {
+            if (false !== $block->prepare()) {
                 $this->mController->_mBlockChain[] =& $block;
             }
             unset($block);
@@ -107,7 +107,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
     
     public function enableAccess()
     {
-        if ($this->mController->mRoot->mContext->mModule != null) {
+        if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
             
             return $this->mController->mRoot->mContext->mUser->isInRole("Module.${dirname}.Visitor");

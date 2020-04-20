@@ -16,10 +16,10 @@ class Legacy_SearchModule extends XCube_Object
 {
     public function getPropertyDefinition()
     {
-        $ret = array(
-            S_PUBLIC_VAR("int mid"),
-            S_PUBLIC_VAR("string name")
-        );
+        $ret = [
+            S_PUBLIC_VAR('int mid'),
+            S_PUBLIC_VAR('string name')
+        ];
         
         return $ret;
     }
@@ -29,7 +29,7 @@ class Legacy_SearchModuleArray extends XCube_ObjectArray
 {
     public function getClassName()
     {
-        return "Legacy_SearchModule";
+        return 'Legacy_SearchModule';
     }
 }
 
@@ -38,13 +38,13 @@ class Legacy_SearchItem extends XCube_Object
 {
     public function getPropertyDefinition()
     {
-        $ret = array(
-            S_PUBLIC_VAR("string image"),
-            S_PUBLIC_VAR("string link"),
-            S_PUBLIC_VAR("string title"),
-            S_PUBLIC_VAR("int uid"),
-            S_PUBLIC_VAR("int time")
-        );
+        $ret = [
+            S_PUBLIC_VAR('string image'),
+            S_PUBLIC_VAR('string link'),
+            S_PUBLIC_VAR('string title'),
+            S_PUBLIC_VAR('int uid'),
+            S_PUBLIC_VAR('int time')
+        ];
         
         return $ret;
     }
@@ -54,7 +54,7 @@ class Legacy_SearchItemArray extends XCube_ObjectArray
 {
     public function getClassName()
     {
-        return "Legacy_SearchItem";
+        return 'Legacy_SearchItem';
     }
 }
 
@@ -62,13 +62,13 @@ class Legacy_SearchModuleResult extends XCube_Object
 {
     public function getPropertyDefinition()
     {
-        $ret = array(
-            S_PUBLIC_VAR("int mid"),
-            S_PUBLIC_VAR("string name"),
-            S_PUBLIC_VAR("int has_more"),
-            S_PUBLIC_VAR("Legacy_SearchItemArray results"),
-            S_PUBLIC_VAR("string showall_link")
-        );
+        $ret = [
+            S_PUBLIC_VAR('int mid'),
+            S_PUBLIC_VAR('string name'),
+            S_PUBLIC_VAR('int has_more'),
+            S_PUBLIC_VAR('Legacy_SearchItemArray results'),
+            S_PUBLIC_VAR('string showall_link')
+        ];
         
         return $ret;
     }
@@ -78,7 +78,7 @@ class Legacy_SearchModuleResultArray extends XCube_ObjectArray
 {
     public function getClassName()
     {
-        return "Legacy_SearchModuleResult";
+        return 'Legacy_SearchModuleResult';
     }
 }
 
@@ -86,7 +86,7 @@ class Legacy_ArrayOfInt extends XCube_ObjectArray
 {
     public function getClassName()
     {
-        return "int";
+        return 'int';
     }
 }
 
@@ -94,7 +94,7 @@ class Legacy_ArrayOfString extends XCube_ObjectArray
 {
     public function getClassName()
     {
-        return "string";
+        return 'string';
     }
 }
 
@@ -103,9 +103,9 @@ class Legacy_ArrayOfString extends XCube_ObjectArray
  */
 class Legacy_SearchService extends XCube_Service
 {
-    public $mServiceName = "Legacy_SearchService";
-    public $mNameSpace = "Legacy";
-    public $mClassName = "Legacy_SearchService";
+    public $mServiceName = 'Legacy_SearchService';
+    public $mNameSpace = 'Legacy';
+    public $mClassName = 'Legacy_SearchService';
     
     public function prepare()
     {
@@ -151,10 +151,10 @@ class Legacy_SearchService extends XCube_Service
         $handler =& xoops_gethandler('groupperm');
         $groupArr = Legacy_SearchUtils::getUserGroups();
 
-        $ret = array();
+        $ret = [];
         while (list($mid, $name) = $db->fetchRow($result)) {
             if ($handler->checkRight('module_read', $mid, $groupArr)) {
-                $ret[] = array('mid' => $mid, 'name' => $name);
+                $ret[] = ['mid' => $mid, 'name' => $name];
             }
         }
         
@@ -182,17 +182,24 @@ class Legacy_SearchService extends XCube_Service
         
         return $this->_searchItems((int)$request->getRequest('mid'), null, 'and', (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), (int)$request->getRequest('uid'));
     }
-    
+
     /**
      * @access private
+     * @param $mid
+     * @param $queries
+     * @param $andor
+     * @param $max_hit
+     * @param $start
+     * @param $uid
+     * @return array|void
      */
     private function _searchItems($mid, $queries, $andor, $max_hit, $start, $uid)
     {
-        $ret = array();
+        $ret = [];
 
         static $moduleArr;
         if (!isset($moduleArr)) {
-            $moduleArr = array();
+            $moduleArr = [];
             foreach ($this->getActiveModules() as $mod) {
                 $moduleArr[$mod['mid']] = $mod['name'];
             }
@@ -244,7 +251,7 @@ class Legacy_SearchUtils
     {
         $root =& XCube_Root::getSingleton();
         $user =& $root->mController->mRoot->mContext->mXoopsUser;
-        $groups = array();
+        $groups = [];
         
         if (!is_object($user)) {
             $groups = XOOPS_GROUP_ANONYMOUS;

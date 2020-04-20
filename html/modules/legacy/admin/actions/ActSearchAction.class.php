@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_LEGACY_PATH."/admin/forms/ActionSearchForm.class.php";
+require_once XOOPS_LEGACY_PATH . '/admin/forms/ActionSearchForm.class.php';
 
 class Legacy_ActionSearchArgs
 {
@@ -30,7 +30,7 @@ class Legacy_ActionSearchArgs
     
     public function setKeywords($words)
     {
-        foreach (explode(" ", $words) as $word) {
+        foreach (explode(' ', $words) as $word) {
             if (strlen($word) > 0) {
                 $this->mKeywords[] = $word;
             }
@@ -96,7 +96,7 @@ class Legacy_ActionSearchRecord
  */
 class Legacy_ActSearchAction extends Legacy_Action
 {
-    public $mModules = array();
+    public $mModules = [];
     public $mModuleRecords = null;
     public $mRecords = null;
     public $mActionForm = null;
@@ -113,7 +113,7 @@ class Legacy_ActSearchAction extends Legacy_Action
         parent::__construct($flag);
         
         $this->mSearchAction =new XCube_Delegate();
-        $this->mSearchAction->add(array(&$this, 'defaultSearch'));
+        $this->mSearchAction->add([&$this, 'defaultSearch']);
         $this->mSearchAction->register('Legacy_ActSearchAction.SearchAction');
     }
 
@@ -123,9 +123,9 @@ class Legacy_ActSearchAction extends Legacy_Action
 
         $db=&$controller->getDB();
 
-        $mod = $db->prefix("modules");
-        $perm = $db->prefix("group_permission");
-        $groups = implode(",", $xoopsUser->getGroups());
+        $mod = $db->prefix('modules');
+        $perm = $db->prefix('group_permission');
+        $groups = implode(',', $xoopsUser->getGroups());
                          
         $sql = "SELECT DISTINCT ${mod}.weight, ${mod}.mid FROM ${mod},${perm} " .
                "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
@@ -193,20 +193,20 @@ class Legacy_ActSearchAction extends Legacy_Action
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_admin_actionsearch_success.html");
-        $render->setAttribute("records", $this->mRecords);
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setTemplateName('legacy_admin_actionsearch_success.html');
+        $render->setAttribute('records', $this->mRecords);
+        $render->setAttribute('actionForm', $this->mActionForm);
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_admin_actionsearch_input.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setTemplateName('legacy_admin_actionsearch_input.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
     }
     
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("legacy_admin_actionsearch_error.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
+        $render->setTemplateName('legacy_admin_actionsearch_error.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
     }
 }

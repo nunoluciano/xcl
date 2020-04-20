@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_LanguageManager.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_LanguageManager.class.php';
 
 class Legacy_LanguageManager extends XCube_LanguageManager
 {
@@ -40,12 +40,12 @@ class Legacy_LanguageManager extends XCube_LanguageManager
     public function _setupMbstring()
     {
         #ifdef _MBSTRING_LANGUAGE
-        if (defined('_MBSTRING_LANGUAGE') && function_exists("mb_language")) {
-            if (@mb_language(_MBSTRING_LANGUAGE) != false && @mb_internal_encoding(_CHARSET) != false) {
+        if (defined('_MBSTRING_LANGUAGE') && function_exists('mb_language')) {
+            if (false != @mb_language(_MBSTRING_LANGUAGE) && false != @mb_internal_encoding(_CHARSET)) {
                 define('MBSTRING', true);
             } else {
-                mb_language("neutral");
-                mb_internal_encoding("ISO-8859-1");
+                mb_language('neutral');
+                mb_internal_encoding('ISO-8859-1');
                 if (!defined('MBSTRING')) {
                     define('MBSTRING', false);
                 }
@@ -69,8 +69,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         }
         #endif
 
-        if (!defined("MBSTRING")) {
-            define("MBSTRING", false);
+        if (!defined('MBSTRING')) {
+            define('MBSTRING', false);
         }
     }
 
@@ -87,8 +87,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         //
         // Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.
         //
-        if (!defined("XOOPS_USE_MULTIBYTES")) {
-            define("XOOPS_USE_MULTIBYTES", 0);
+        if (!defined('XOOPS_USE_MULTIBYTES')) {
+            define('XOOPS_USE_MULTIBYTES', 0);
         }
     }
 
@@ -101,7 +101,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      */
     public function loadPageTypeMessageCatalog($type)
     {
-        if (strpos($type, '.') === false) {
+        if (false === strpos($type, '.')) {
             if (!$this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->mLanguageName . '/' . $type . '.php')) {
                 $this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->getFallbackLanguage() . '/' . $type . '.php');
             }
@@ -110,9 +110,9 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     /**
      * Load the message catalog of the specified module.
-     * 
+     *
      * @access public
-     * @param $dirname A dirname of module.
+     * @param $moduleName
      */
     public function loadModuleMessageCatalog($moduleName)
     {
@@ -123,7 +123,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module for admin.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadModuleAdminMessageCatalog($dirname)
     {
@@ -134,7 +134,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module for block.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadBlockMessageCatalog($dirname)
     {
@@ -145,7 +145,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * Load the message catalog of the specified module for modinfo.
      * 
      * @access public
-     * @param $dirname A dirname of module.
+     * @param A $dirname dirname of module.
      */
     public function loadModinfoMessageCatalog($dirname)
     {
@@ -154,12 +154,12 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     /**
      * @access protected
-     * @param $dirname      module directory name
-     * @param $fileBodyName language file body name
+     * @param module   $dirname      directory name
+     * @param language $fileBodyName file body name
      */
     public function _loadLanguage($dirname, $fileBodyName)
     {
-        static $trust_dirnames = array();
+        static $trust_dirnames = [];
         if (!isset($trust_dirnames[$dirname])) {
             $trust_dirnames[$dirname] = Legacy_Utils::getTrustDirnameByDirname($dirname);
         }
@@ -179,11 +179,11 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         );
     }
 
-
     /**
      * @access protected
-     * @param $filename A filename.
-     * @param $dirname A dirname of module. (for D3 module)
+     * @param A    $filename filename.
+     * @param null $mydirname
+     * @return bool
      */
     public function _loadFile($filename, $mydirname = null)
     {

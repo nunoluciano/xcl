@@ -25,18 +25,18 @@ class LegacyBlockctypeObject extends XoopsSimpleObject
 
 class LegacyBlockctypeHandler extends XoopsObjectHandler
 {
-    public $_mResults = array();
+    public $_mResults = [];
     
     // ! Fix
     public function __construct(&$db)
     // public function LegacyBlockctypeHandler(&$db)
     {
-        $t_arr = array(
+        $t_arr = [
                 'H' => _AD_LEGACY_LANG_CTYPE_HTML,
                 'P' => _AD_LEGACY_LANG_CTYPE_PHP,
                 'S' => _AD_LEGACY_LANG_CTYPE_WITH_SMILIES,
                 'T' => _AD_LEGACY_LANG_CTYPE_WITHOUT_SMILIES
-            );
+        ];
             
         foreach ($t_arr as $id => $name) {
             $this->_mResults[$id] =& $this->create();
@@ -66,7 +66,7 @@ class LegacyBlockctypeHandler extends XoopsObjectHandler
         if ($id_as_key) {
             return $this->_mResults;
         } else {
-            $ret = array();
+            $ret = [];
         
             foreach (array_keys($this->_mResults) as $key) {
                 $ret[] =& $this->_mResults[$key];

@@ -123,16 +123,16 @@ interface Legacy_iGroupDelegate
     public static function getMemberList(/*** int[] ***/ &$list, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** Enum ***/ $rank);
 
     /**
-     * isMember 	 Legacy_Group.{dirname}.IsMember
+     * isMember     Legacy_Group.{dirname}.IsMember
      * check the user's belonging and rank in the given group
      *
-     * @param string	$gDirname	Group Module Dirname
-     * @param bool	&$check
-     * @param int	$groupId
-     * @param int	$uid
-     * @param Enum	$rank	Lenum_GroupRank
+     * @param bool    &$check
+     * @param string   $gDirname Group Module Dirname
+     * @param int      $groupId
+     * @param int      $uid
+     * @param int      $rank     Lenum_GroupRank
      *
-     * @return	void
+     * @return    void
      */
     public static function isMember(/*** bool ***/ &$check, /*** string ***/ $gDirname, /*** int ***/ $groupId, /*** int ***/ $uid, /*** Enum ***/ $rank=Lenum_GroupRank::REGULAR);
 }

@@ -12,8 +12,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/legacy/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/legacy/admin/forms/ImageAdminEditForm.class.php";
+require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/ImageAdminEditForm.class.php';
 
 class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 {
@@ -38,7 +38,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     {
         $flag = parent::getDefaultView($controller, $xoopsUser);
         
-        if ($flag == LEGACY_FRAME_VIEW_INPUT && $this->_enableCatchImgcat()) {
+        if (LEGACY_FRAME_VIEW_INPUT == $flag && $this->_enableCatchImgcat()) {
             $this->mActionForm->set('imgcat_id', xoops_getrequest('imgcat_id'));
         }
         
@@ -59,7 +59,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         // [TODO]
         // Should the following procedure be after parent::_doExecute()?
         //
-        if ($category->get('imgcat_storetype') == 'file') {
+        if ('file' == $category->get('imgcat_storetype')) {
             $this->_storeFile();
         } else {
             $this->_storeDB();
@@ -70,18 +70,18 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     
     public function _storeFile()
     {
-        if ($this->mActionForm->mFormFile == null) {
+        if (null == $this->mActionForm->mFormFile) {
             return null;
         }
 
         //
         // If there is a old file, delete it
         //
-        if ($this->mActionForm->mOldFileName != null) {
-            @unlink(XOOPS_UPLOAD_PATH . "/" . $this->mActionForm->mOldFileName);
+        if (null != $this->mActionForm->mOldFileName) {
+            @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
             
             // Get a body name of the old file.
-            $match = array();
+            $match = [];
             if (preg_match("/(.+)\.\w+$/", $this->mActionForm->mOldFileName, $match)) {
                 $this->mActionForm->mFormFile->setBodyName($match[1]);
             }
@@ -100,7 +100,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     {
         $this->mObject->loadImagecategory();
 
-        $render->setTemplateName("image_edit.html");
+        $render->setTemplateName('image_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
         
@@ -111,16 +111,16 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImageList&imgcat_id=" . $this->mActionForm->get('imgcat_id'));
+        $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mActionForm->get('imgcat_id'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect("./index.php?action=ImagecategoryList", 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
     
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward("./index.php?action=ImagecategoryList");
+        $controller->executeForward('./index.php?action=ImagecategoryList');
     }
 }

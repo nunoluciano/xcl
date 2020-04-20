@@ -39,19 +39,21 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
         $this->mIsSelectableTheme =new XCube_Delegate();
         $this->mIsSelectableTheme->register('Legacy_ThemeSelect.IsSelectableTheme');
         
-        $controller->mSetupUser->add(array(&$this, 'doChangeTheme'));
+        $controller->mSetupUser->add([&$this, 'doChangeTheme']);
     }
     
     public function preBlockFilter()
     {
-        $this->mController->mRoot->mDelegateManager->add("Site.CheckLogin.Success", array(&$this, "callbackCheckLoginSuccess"));
+        $this->mController->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
     }
-    
+
     /**
      * Because this process needs sessions, this functions is added to
      * SiteLogin event.
-     * 
-     * @param XoopsUser $xoopsUser Must parameter, because this is added to login event.
+     *
+     * @param $principal
+     * @param $controller
+     * @param $context
      */
     public function doChangeTheme(&$principal, &$controller, &$context)
     {

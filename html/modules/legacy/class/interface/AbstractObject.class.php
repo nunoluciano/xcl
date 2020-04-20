@@ -19,14 +19,14 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
 
     protected $_mMainTable = null;  //module's main table name
 
-    /*** string[] ***/ public $mChildList = array();    //Child table's name array
-    /*** string[] ***/ public $mParentList = array();   //Parent table's name array
-    /*** XoopsSimpleObject[] ***/ public $mTable = array();
-    /*** bool[] ***/ protected $_mIsLoaded = array();
+    /*** string[] ***/ public $mChildList = [];    //Child table's name array
+    /*** string[] ***/ public $mParentList = [];   //Parent table's name array
+    /*** XoopsSimpleObject[] ***/ public $mTable = [];
+    /*** bool[] ***/ protected $_mIsLoaded = [];
 
     /*** bool ***/ protected $_mIsTagLoaded = false;
-    /*** string[] ***/ public $mTag = array();
-    /*** Legacy_ImageObject[] ***/ public $mImage = array();
+    /*** string[] ***/ public $mTag = [];
+    /*** Legacy_ImageObject[] ***/ public $mImage = [];
 
     /**
      * __construct
@@ -52,7 +52,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
     {
         foreach ($this->mChildList as $table) {
             $this->_mIsLoaded[$table] = false;
-            $this->mTable[$table] = array();
+            $this->mTable[$table] = [];
         }
         foreach ($this->mParentList as $table) {
             $this->_mIsLoaded[$table] = false;
@@ -70,7 +70,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
      */
     public function loadTable(/*** string ***/ $table, /*** string ***/ $dirname=null)
     {
-        if ($this->_mIsLoaded[$table] === true) {
+        if (true === $this->_mIsLoaded[$table]) {
             return;
         }
     
@@ -127,14 +127,12 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
 
     /**
      * getImages
-     * 
-     * @param   void
-     * 
-     * @return  void
+     *
+     * @return array
      */
     public function getImages()
     {
-        $imageObjs = array();
+        $imageObjs = [];
         if ($this->get($this->getPrimary())>0) {
             XCube_DelegateUtils::call('Legacy_Image.GetImageObjects', new XCube_Ref($imageObjs), $this->getDirname(), $this->getDataname(), $this->get($this->getPrimary()));
         }
@@ -168,13 +166,13 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
         $handler = Legacy_Utils::getModuleHandler($this->getDataname(), $this->getDirname());
     
         $n = $this->getImageNumber();
-        if ($n===0) {
+        if (0 === $n) {
             return;
         }
     
         $this->mImage = $this->getImages();
     
-        $originalImage = array();
+        $originalImage = [];
         XCube_DelegateUtils::call('Legacy_Image.CreateImageObject', new XCube_Ref($originalImage));
         $originalImage->set('title', $this->get($handler->getClientField('title')));
         $originalImage->set('uid', Legacy_Utils::getUid());
@@ -187,7 +185,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
                 $this->mImage[$i] = clone $originalImage;
                 $this->mImage[$i]->set('num', $i);
             }
-            if ($isPost===true) {
+            if (true === $isPost) {
                 $this->mImage[$i]->setupPostData($i);
             }
         }
@@ -205,8 +203,8 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
         $chandler = xoops_gethandler('config');
         $configArr = $chandler->getConfigsByDirname($this->getDirname());
     
-        if ($this->_mIsTagLoaded==false && $tagDirname = $configArr['tag_dirname']) {
-            $tagArr = array();
+        if (false == $this->_mIsTagLoaded && $tagDirname = $configArr['tag_dirname']) {
+            $tagArr = [];
             if (! $this->isNew()) {
                 XCube_DelegateUtils::call('Legacy_Tag.'.$configArr['tag_dirname'].'.GetTags',
                     new XCube_Ref($tagArr),
