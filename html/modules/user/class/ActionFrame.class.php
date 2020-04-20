@@ -4,17 +4,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-define("USER_FRAME_PERFORM_SUCCESS", 1);
-define("USER_FRAME_PERFORM_FAIL", 2);
-define("USER_FRAME_INIT_SUCCESS", 3);
+define('USER_FRAME_PERFORM_SUCCESS', 1);
+define('USER_FRAME_PERFORM_FAIL', 2);
+define('USER_FRAME_INIT_SUCCESS', 3);
 
-define("USER_FRAME_VIEW_NONE", 1);
-define("USER_FRAME_VIEW_SUCCESS", 2);
-define("USER_FRAME_VIEW_ERROR", 3);
-define("USER_FRAME_VIEW_INDEX", 4);
-define("USER_FRAME_VIEW_INPUT", 5);
-define("USER_FRAME_VIEW_PREVIEW", 6);
-define("USER_FRAME_VIEW_CANCEL", 7);
+define('USER_FRAME_VIEW_NONE', 1);
+define('USER_FRAME_VIEW_SUCCESS', 2);
+define('USER_FRAME_VIEW_ERROR', 3);
+define('USER_FRAME_VIEW_INDEX', 4);
+define('USER_FRAME_VIEW_INPUT', 5);
+define('USER_FRAME_VIEW_PREVIEW', 6);
+define('USER_FRAME_VIEW_CANCEL', 7);
 
 class User_ActionFrame
 {
@@ -37,7 +37,7 @@ class User_ActionFrame
         $this->mAdminFlag = $admin;
         $this->mCreateAction = new XCube_Delegate();
         $this->mCreateAction->register('User_ActionFrame.CreateAction');
-        $this->mCreateAction->add(array(&$this, '_createAction'));
+        $this->mCreateAction->add([&$this, '_createAction']);
     }
 
     public function setActionName($name)
@@ -61,8 +61,8 @@ class User_ActionFrame
         //
         // Create action object by mActionName
         //
-        $className = "User_" . ucfirst($actionFrame->mActionName) . "Action";
-        $fileName = ucfirst($actionFrame->mActionName) . "Action";
+        $className = 'User_' . ucfirst($actionFrame->mActionName) . 'Action';
+        $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
             $fileName = XOOPS_MODULE_PATH . "/user/admin/actions/${fileName}.class.php";
         } else {
@@ -91,7 +91,7 @@ class User_ActionFrame
         //
         $this->mCreateAction->call(new XCube_Ref($this));
 
-        if (!(is_object($this->mAction) && is_a($this->mAction, 'User_Action'))) {
+        if (!(is_object($this->mAction) && $this->mAction instanceof \User_Action)) {
             die();    //< TODO
         }
 
@@ -113,7 +113,7 @@ class User_ActionFrame
             $controller->executeForward(XOOPS_URL . '/');
         }
 
-        if (xoops_getenv("REQUEST_METHOD") == "POST") {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);

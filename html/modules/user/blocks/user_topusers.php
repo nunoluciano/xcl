@@ -1,7 +1,7 @@
 <?php
 function b_user_topusers_show($options)
 {
-    $block = array();
+    $block = [];
     $criteria = new CriteriaCompo(new Criteria('level', 0, '>'));
     $limit = (!empty($options[0])) ? $options[0] : 10;
     $size = count($options);
@@ -16,8 +16,8 @@ function b_user_topusers_show($options)
     $count = count($topposters);
     for ($i = 0; $i < $count; $i++) {
         $block['users'][$i]['rank'] = $i+1;
-        if ($options[1] == 1) {
-            $block['users'][$i]['avatar'] = $topposters[$i]->getVar('user_avatar') != 'blank.gif' ? XOOPS_UPLOAD_URL.'/'.$topposters[$i]->getVar('user_avatar') : '';
+        if (1 == $options[1]) {
+            $block['users'][$i]['avatar'] = 'blank.gif' != $topposters[$i]->getVar('user_avatar') ? XOOPS_UPLOAD_URL . '/' . $topposters[$i]->getVar('user_avatar') : '';
         } else {
             $block['users'][$i]['avatar'] = '';
         }
@@ -31,14 +31,14 @@ function b_user_topusers_show($options)
 function b_user_topusers_edit($options)
 {
     include_once XOOPS_ROOT_PATH.'/class/xoopslists.php';
-    $inputtag = '<input type="text" name="options[]" value="'.intval($options[0]).'" />';
+    $inputtag = '<input type="text" name="options[]" value="' . (int)$options[0] . '" />';
     $form = sprintf(_MB_USER_DISPLAY, $inputtag);
     $form .= '<br />'._MB_USER_DISPLAYA.'&nbsp;<input type="radio" id="options[]" name="options[]" value="1"';
-    if ($options[1] == 1) {
+    if (1 == $options[1]) {
         $form .= ' checked="checked"';
     }
     $form .= ' />&nbsp;'._YES.'<input type="radio" id="options[]" name="options[]" value="0"';
-    if ($options[1] == 0) {
+    if (0 == $options[1]) {
         $form .= ' checked="checked"';
     }
     $form .= ' />&nbsp;'._NO;
@@ -46,7 +46,7 @@ function b_user_topusers_edit($options)
     $ranks =& XoopsLists::getUserRankList();
     $size = count($options);
     foreach ($ranks as $k => $v) {
-        $sel = "";
+        $sel = '';
         for ($i = 2; $i < $size; $i++) {
             if ($k == $options[$i]) {
                 $sel = ' selected="selected"';

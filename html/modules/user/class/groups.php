@@ -31,7 +31,7 @@ class UserGroupsObject extends XoopsSimpleObject
 
 class UserGroupsHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = "groups";
-    public $mPrimary = "groupid";
-    public $mClass = "UserGroupsObject";
+    public $mTable = 'groups';
+    public $mPrimary = 'groupid';
+    public $mClass = 'UserGroupsObject';
 }

@@ -21,17 +21,17 @@ function b_user_online_show()
         //
         // TODO We have to find the best method.
         //
-        if (strpos(xoops_getenv('REQUEST_URI'), 'misc.php') === false) {
+        if (false === strpos(xoops_getenv('REQUEST_URI'), 'misc.php')) {
             $online_handler->write($uid, $uname, time(), 0, $_SERVER['REMOTE_ADDR']);
         }
     }
     $onlines =& $online_handler->getAll();
     if (false != $onlines) {
         $total = count($onlines);
-        $block = array();
+        $block = [];
         $guests = 0;
         $members = '';
-        $member_list = array();
+        $member_list = [];
         for ($i = 0; $i < $total; $i++) {
             if ($onlines[$i]['online_uid'] > 0) {
                 $member['uid'] = $onlines[$i]['online_uid'];

@@ -8,12 +8,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_PageNavigator.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_PageNavigator.class.php';
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractEditAction.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/AvatarEditForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/AvatarSelectForm.class.php";
-require_once XOOPS_MODULE_PATH . "/user/forms/AvatarFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/AvatarEditForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/AvatarSelectForm.class.php';
+require_once XOOPS_MODULE_PATH . '/user/forms/AvatarFilterForm.class.php';
 
 /***
  * @internal
@@ -63,19 +63,22 @@ class User_AvatarEditAction extends User_AbstractEditAction
     /***
      * Preset avatar object collection.
      */
-    public $mSystemAvatars = array();
+    public $mSystemAvatars = [];
     
     /***
      * Other action form for AvatarSelect.
      * @var User_AvatarSelectForm
      */
     public $mAvatarSelectForm = null;
-    
+
     /***
      * Fetch conditions from $moduleConfig and set these to member properties.
      * And, by the member property mConfig of the base class, any member
      * functions of this class can access $moduleConfig.
-     * 
+     *
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
      * @todo The limit may be not completed, yet.
      */
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
@@ -92,7 +95,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     public function _getId()
     {
-        return isset($_REQUEST['uid']) ? intval(xoops_getrequest('uid')) : 0;
+        return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
     
     public function &_getHandler()
@@ -149,12 +152,16 @@ class User_AvatarEditAction extends User_AbstractEditAction
     {
         return true;
     }
-    
+
     /***
      * Check whether a current user can access this action.
      * 1) A specified user has to exist.
      * 2) A current user has to equal the specified user, or a current user has
      *    to be a administrator.
+     * @param $controller
+     * @param $xoopsUser
+     * @param $moduleConfig
+     * @return bool
      */
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -181,10 +188,13 @@ class User_AvatarEditAction extends User_AbstractEditAction
     /***
      * This override method looks like the same method of ListAction, and tries
      * to get system avatars. After, it will call base class.
+     * @param $controller
+     * @param $xoopsUser
+     * @return int
      */
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $navi =new XCube_PageNavigator(XOOPS_URL . "/edituser.php?op=avatarform&amp;uid=" . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
+        $navi =new XCube_PageNavigator(XOOPS_URL . '/edituser.php?op=avatarform&amp;uid=' . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
         $handler =& xoops_getmodulehandler('avatar', 'user');
         
         $this->mSystemAvatars[] =& $handler->createNoavatar();
@@ -208,7 +218,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
     public function execute(&$controller, &$xoopsUser)
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
         
@@ -238,7 +248,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
      */
     public function _doExecute()
     {
-        if ($this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mFormFile) {
             if (!$this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH)) {
                 return false;
             }
@@ -246,18 +256,18 @@ class User_AvatarEditAction extends User_AbstractEditAction
     
         $this->_resize();
         
-        if ($this->mActionForm->mOldAvatarFilename != null && $this->mActionForm->mOldAvatarFilename != "blank.gif" and $this->mActionForm->mFormFile != null) {
+        if (null != $this->mActionForm->mOldAvatarFilename && 'blank.gif' != $this->mActionForm->mOldAvatarFilename and null != $this->mActionForm->mFormFile) {
             $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
             $criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
             $avatarArr =& $avatarHandler->getObjects($criteria);
-            if (count($avatarArr) > 0 && is_object($avatarArr[0]) && $avatarArr[0]->get('avatar_type') == 'C') {
+            if (count($avatarArr) > 0 && is_object($avatarArr[0]) && 'C' == $avatarArr[0]->get('avatar_type')) {
                 $avatarHandler->delete($avatarArr[0]);
             }
         }
         
         if (parent::_doExecute()) {
             $avatar =& $this->mActionForm->createAvatar();
-            if ($avatar != null) {
+            if (null != $avatar) {
                 $avatar->set('avatar_name', $this->mObject->get('uname'));
                 $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
                 $avatarHandler->insert($avatar);
@@ -326,16 +336,16 @@ class User_AvatarEditAction extends User_AbstractEditAction
         }
     }
 
-    /** 
+    /**
      * Get _resized size.
-     * 
-     * @param   int $width
-     * @param   int $height
-     * @param   int $maxWidth
-     * @param   int $maxHeight
-     * 
-     * @return  int{}
-    **/
+     *
+     * @param int $width
+     * @param int $height
+     * @param int $maxWidth
+     * @param int $maxHeight
+     *
+     * @return array {}
+     */
     public function _getResizedSize(/*** int ***/ $width, /*** int ***/ $height, /*** int ***/ $maxWidth, /*** int ***/ $maxHeight)
     {
         if (min($width, $height, $maxWidth, $maxHeight) < 1) {
@@ -343,32 +353,32 @@ class User_AvatarEditAction extends User_AbstractEditAction
             die();
         }
         $scale = min($maxWidth / $width, $maxHeight / $height, 1);
-        return array('width' => intval($width * $scale),'height' => intval($height * $scale));
+        return ['width' => (int)($width * $scale), 'height' => (int)($height * $scale)];
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        $render->setTemplateName("user_avatar_edit.html");
-        $render->setAttribute("actionForm", $this->mActionForm);
-        $render->setAttribute("thisUser", $this->mObject);
+        $render->setTemplateName('user_avatar_edit.html');
+        $render->setAttribute('actionForm', $this->mActionForm);
+        $render->setAttribute('thisUser', $this->mObject);
 
-        $render->setAttribute("allowUpload", $this->_mAllowUpload && $this->mObject->get('posts') >= $this->_mMinPost);
-        $render->setAttribute("avatarWidth", $this->mAvatarWidth);
-        $render->setAttribute("avatarHeight", $this->mAvatarHeight);
-        $render->setAttribute("avatarMaxfilesize", $this->mAvatarMaxfilesize);
+        $render->setAttribute('allowUpload', $this->_mAllowUpload && $this->mObject->get('posts') >= $this->_mMinPost);
+        $render->setAttribute('avatarWidth', $this->mAvatarWidth);
+        $render->setAttribute('avatarHeight', $this->mAvatarHeight);
+        $render->setAttribute('avatarMaxfilesize', $this->mAvatarMaxfilesize);
 
-        $render->setAttribute("pageNavi", $this->mFilter->mNavi);
-        $render->setAttribute("systemAvatars", $this->mSystemAvatars);
-        $render->setAttribute("avatarSelectForm", $this->mAvatarSelectForm);
+        $render->setAttribute('pageNavi', $this->mFilter->mNavi);
+        $render->setAttribute('systemAvatars', $this->mSystemAvatars);
+        $render->setAttribute('avatarSelectForm', $this->mAvatarSelectForm);
     }
     
     public function executeViewSuccess(&$controller, &$xoopsUser, $render)
     {
-        $controller->executeForward(XOOPS_URL . "/userinfo.php?uid=" . $this->mActionForm->get('uid'));
+        $controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mActionForm->get('uid'));
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeRedirect(XOOPS_URL . "/userinfo.php?uid=" . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
+        $controller->executeRedirect(XOOPS_URL . '/userinfo.php?uid=' . $this->mActionForm->get('uid'), 1, _MD_USER_ERROR_DBUPDATE_FAILED);
     }
 }

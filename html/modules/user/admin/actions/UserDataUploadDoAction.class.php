@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once dirname(__FILE__)."/UserDataUploadAction.class.php";
+require_once __DIR__ . '/UserDataUploadAction.class.php';
 
 class User_UserDataUploadDoAction extends User_UserDataUploadAction
 {
@@ -60,6 +60,6 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
         
         unset($_SESSION['user_csv_upload_data']);
         
-        $controller->executeRedirect("index.php", 1, _AD_USER_DATA_UPLOAD_DONE);
+        $controller->executeRedirect('index.php', 1, _AD_USER_DATA_UPLOAD_DONE);
     }
 }

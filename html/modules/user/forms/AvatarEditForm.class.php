@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class User_AvatarEditForm extends XCube_ActionForm
 {
@@ -20,7 +20,7 @@ class User_AvatarEditForm extends XCube_ActionForm
     
     public function getTokenName()
     {
-        return "module.user.AvatarEditForm.TOKEN" . $this->get('uid');
+        return 'module.user.AvatarEditForm.TOKEN' . $this->get('uid');
     }
 
     public function prepare($width, $height, $maxfilesize)
@@ -38,16 +38,16 @@ class User_AvatarEditForm extends XCube_ActionForm
         // Set field properties
         //
         $this->mFieldProperties['uploadavatar'] =new XCube_FieldProperty($this);
-        $this->mFieldProperties['uploadavatar']->setDependsByArray(array('extension', 'maxfilesize'));
+        $this->mFieldProperties['uploadavatar']->setDependsByArray(['extension', 'maxfilesize']);
         $this->mFieldProperties['uploadavatar']->addMessage('extension', _MD_USER_ERROR_AVATAR_EXTENSION);
-        $this->mFieldProperties['uploadavatar']->addVar('extension', "jpg,gif,png");
+        $this->mFieldProperties['uploadavatar']->addVar('extension', 'jpg,gif,png');
         $this->mFieldProperties['uploadavatar']->addMessage('maxfilesize', _MD_USER_ERROR_AVATAR_MAXFILESIZE);
         $this->mFieldProperties['uploadavatar']->addVar('maxfilesize', $maxfilesize);
     }
 
     public function validateUploadavatar()
     {
-        if ($this->get('uploadavatar') != null) {
+        if (null != $this->get('uploadavatar')) {
             /*
             $formfile = $this->get('uploadavatar');
             if ($formfile->getWidth() > $this->mWidth) {
@@ -72,7 +72,7 @@ class User_AvatarEditForm extends XCube_ActionForm
         
         $this->mFormFile = $this->get('uploadavatar');
 
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('cavt');
             
             $filename = $this->mFormFile->getFileName();
@@ -88,7 +88,7 @@ class User_AvatarEditForm extends XCube_ActionForm
     public function createAvatar()
     {
         $avatar = null;
-        if ($this->mFormFile != null) {
+        if (null != $this->mFormFile) {
             $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
             $avatar =& $avatarHandler->create();
             $avatar->set('avatar_file', $this->mFormFile->getFileName());

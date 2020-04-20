@@ -8,7 +8,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . "/user/class/AbstractFilterForm.class.php";
+require_once XOOPS_MODULE_PATH . '/user/class/AbstractFilterForm.class.php';
 
 define('USER_SORT_KEY_UID', 1);
 define('USER_SORT_KEY_NAME', 2);
@@ -52,7 +52,7 @@ define('USER_SORT_KEY_DEFAULT', USER_SORT_KEY_UID);
  */
 class User_UserFilterForm extends User_AbstractFilterForm
 {
-    public $mSortKeys = array(
+    public $mSortKeys = [
         USER_SORT_KEY_UID => 'uid',
         USER_SORT_KEY_NAME => 'name',
         USER_SORT_KEY_UNAME => 'uname',
@@ -84,10 +84,10 @@ class User_UserFilterForm extends User_AbstractFilterForm
         USER_SORT_KEY_BIO => 'bio',
         USER_SORT_KEY_USER_INTREST => 'user_intrest',
         USER_SORT_KEY_USER_MAILOK => 'user_mailok'
-    );
+    ];
 
-    public $mKeyword = "";
-    public $mOptionField = "";
+    public $mKeyword = '';
+    public $mOptionField = '';
 
     public function getDefaultSortKey()
     {
@@ -149,10 +149,10 @@ class User_UserFilterForm extends User_AbstractFilterForm
             $this->mNavi->addExtra('option_field', xoops_getrequest('option_field'));
             $this->mOptionField = $option_field;
 
-            if ($option_field == "inactive") {
+            if ('inactive' == $option_field) {
                 //only inactive users
             $this->_mCriteria->add(new Criteria('level', '0'));
-            } elseif ($option_field == "active") {
+            } elseif ('active' == $option_field) {
                 //only active users
             $this->_mCriteria->add(new Criteria('level', '0', '>'));
             } else {

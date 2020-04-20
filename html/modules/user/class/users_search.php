@@ -4,47 +4,47 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH . "/modules/user/class/users.php";
+require_once XOOPS_ROOT_PATH . '/modules/user/class/users.php';
 
 class UserUsers_searchHandler extends UserUsersHandler
 {
     public function &getObjects($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
-        $uTable = $this->db->prefix('users') . " as u";
-        $gTable = $this->db->prefix('groups_users_link') . " as g";
+        $uTable = $this->db->prefix('users') . ' as u';
+        $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT DISTINCT u.* FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
                 $sql .= ' WHERE ' . $where;
             }
 
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+            if ('' != $criteria->getSort()) {
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = $criteria->getLimit();
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = $criteria->getStart();
             }
         } else {
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = 0;
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = 0;
             }
         }
@@ -81,46 +81,50 @@ class UserUsers_searchHandler extends UserUsersHandler
     /**
      * Return the array which consists of an integer as the uid. This member
      * function is more speedy than getObjects().
-     * 
+     *
+     * @param null $criteria
+     * @param null $limit
+     * @param null $start
+     * @param bool $id_as_key
      * @return Array
      */
     public function &getUids($criteria = null, $limit = null, $start = null, $id_as_key = false)
     {
-        $ret = array();
+        $ret = [];
 
-        $uTable = $this->db->prefix('users') . " as u";
-        $gTable = $this->db->prefix('groups_users_link') . " as g";
+        $uTable = $this->db->prefix('users') . ' as u';
+        $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT DISTINCT u.uid FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
 
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if (trim($where)) {
                 $sql .= ' WHERE ' . $where;
             }
 
-            $sorts = array();
+            $sorts = [];
             foreach ($criteria->getSorts() as $sort) {
                 $sorts[] = $sort['sort'] . ' ' . $sort['order'];
             }
-            if ($criteria->getSort() != '') {
-                $sql .= " ORDER BY " . implode(',', $sorts);
+            if ('' != $criteria->getSort()) {
+                $sql .= ' ORDER BY ' . implode(',', $sorts);
             }
 
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = $criteria->getLimit();
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = $criteria->getStart();
             }
         } else {
-            if ($limit === null) {
+            if (null === $limit) {
                 $limit = 0;
             }
 
-            if ($start === null) {
+            if (null === $start) {
                 $start = 0;
             }
         }
@@ -140,17 +144,17 @@ class UserUsers_searchHandler extends UserUsersHandler
 
     public function getCount($criteria = null)
     {
-        $ret = array();
+        $ret = [];
 
-        $uTable = $this->db->prefix('users') . " as u";
-        $gTable = $this->db->prefix('groups_users_link') . " as g";
+        $uTable = $this->db->prefix('users') . ' as u';
+        $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
         $sql = "SELECT COUNT(DISTINCT u.uid) c FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
-        if ($criteria !== null && is_a($criteria, 'CriteriaElement')) {
+        if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 
             if ($where) {
-                $sql .= " WHERE " . $where;
+                $sql .= ' WHERE ' . $where;
             }
         }
 
@@ -170,7 +174,7 @@ class UserUsers_searchHandler extends UserUsersHandler
             //
             // Delete
             //
-            $oldGroupidArr = array();
+            $oldGroupidArr = [];
             foreach (array_keys($oldLinkArr) as $key) {
                 $oldGroupidArr[] = $oldLinkArr[$key]->get('groupid');
                 if (!in_array($oldLinkArr[$key]->get('groupid'), $user->Groups)) {
