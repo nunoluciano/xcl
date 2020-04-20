@@ -72,6 +72,6 @@ class PHPMailerOAuthGoogle
     public function getOauth64()
     {
         $token = $this->getToken();
-        return base64_encode("user=" . $this->oauthUserEmail . "\001auth=Bearer " . $token . "\001\001");
+        return base64_encode('user=' . $this->oauthUserEmail . "\001auth=Bearer " . $token . "\001\001");
     }
 }

@@ -69,12 +69,12 @@ class CriteriaElement
      * Sort order
      * @var string
      */
-    public $order = array();
+    public $order = [];
 
     /**
      * @var string
      */
-    public $sort = array();
+    public $sort = [];
 
     /**
      * Number of records to retrieve
@@ -120,17 +120,21 @@ class CriteriaElement
     {
         return 0;
     }
-    
+
     /**
      * Return child element.
+     * @param $idx
+     * @return null
      */
     public function getChildElement($idx)
     {
         return null;
     }
-    
+
     /**
      * Return condition string.
+     * @param $idx
+     * @return null
      */
     public function getCondition($idx)
     {
@@ -167,24 +171,26 @@ class CriteriaElement
             $this->order[0] = 'ASC';
         }
         
-        if ($order != null) {
-            if (strtoupper($order) == 'ASC') {
+        if (null != $order) {
+            if ('ASC' == strtoupper($order)) {
                 $this->order[0] = 'ASC';
-            } elseif (strtoupper($order) == 'DESC') {
+            } elseif ('DESC' == strtoupper($order)) {
                 $this->order[0] = 'DESC';
             }
         }
     }
-    
+
     /**
      * Add sort and order condition to this object.
+     * @param        $sort
+     * @param string $order
      */
     public function addSort($sort, $order = 'ASC')
     {
         $this->sort[] = $sort;
-        if (strtoupper($order) == 'ASC') {
+        if ('ASC' == strtoupper($order)) {
             $this->order[] = 'ASC';
-        } elseif (strtoupper($order) == 'DESC') {
+        } elseif ('DESC' == strtoupper($order)) {
             $this->order[] = 'DESC';
         }
     }
@@ -203,12 +209,12 @@ class CriteriaElement
 
     /**
      * Return sort and order condition as hashmap array.
-     * 
-     * @return hashmap 'sort' ... sort string/key'order' order string.
+     *
+     * @return array 'sort' ... sort string/key'order' order string.
      */
     public function getSorts()
     {
-        $ret = array();
+        $ret = [];
         $max = count($this->sort);
         
         for ($i = 0; $i < $max; $i++) {
@@ -229,9 +235,9 @@ class CriteriaElement
      */
     public function setOrder($order)
     {
-        if (strtoupper($order) == 'ASC') {
+        if ('ASC' == strtoupper($order)) {
             $this->order[0] = 'ASC';
-        } elseif (strtoupper($order) == 'DESC') {
+        } elseif ('DESC' == strtoupper($order)) {
             $this->order[0] = 'DESC';
         }
     }
@@ -253,7 +259,7 @@ class CriteriaElement
      */
     public function setLimit($limit=0)
     {
-        $this->limit = intval($limit);
+        $this->limit = (int)$limit;
     }
 
     /**
@@ -269,7 +275,7 @@ class CriteriaElement
      */
     public function setStart($start=0)
     {
-        $this->start = intval($start);
+        $this->start = (int)$start;
     }
 
     /**
@@ -316,13 +322,13 @@ class CriteriaCompo extends CriteriaElement
      * The elements of the collection
      * @var array   Array of {@link CriteriaElement} objects
      */
-    public $criteriaElements = array();
+    public $criteriaElements = [];
 
     /**
      * Conditions
      * @var array
      */
-    public $conditions = array();
+    public $conditions = [];
 
     /**
      * Constructor
@@ -403,7 +409,7 @@ class CriteriaCompo extends CriteriaElement
     public function renderWhere()
     {
         $ret = $this->render();
-        $ret = ($ret != '') ? 'WHERE ' . $ret : $ret;
+        $ret = ('' != $ret) ? 'WHERE ' . $ret : $ret;
         return $ret;
     }
 
@@ -422,12 +428,12 @@ class CriteriaCompo extends CriteriaElement
             $retval = $this->criteriaElements[0]->renderLdap();
             for ($i = 1; $i < $count; $i++) {
                 $cond = $this->conditions[$i];
-                if (strtoupper($cond) == 'AND') {
+                if ('AND' == strtoupper($cond)) {
                     $op = '&';
-                } elseif (strtoupper($cond)=='OR') {
+                } elseif ('OR' == strtoupper($cond)) {
                     $op = '|';
                 }
-                $retval = "($op$retval" . $this->criteriaElements[$i]->renderLdap().")";
+                $retval = "($op$retval" . $this->criteriaElements[$i]->renderLdap() . ')';
             }
         }
         return $retval;
@@ -461,10 +467,12 @@ class Criteria extends CriteriaElement
     /**
      * Constructor
      *
-     * @param   string  $column
-     * @param   string  $value
-     * @param   string  $operator
-     **/
+     * @param string $column
+     * @param string $value
+     * @param string $operator
+     * @param string $prefix
+     * @param string $function
+     */
     public function __construct($column, $value='', $operator='=', $prefix = '', $function = '')
     {
         $this->prefix = $prefix;
@@ -475,8 +483,8 @@ class Criteria extends CriteriaElement
         //
         // Recive DTYPE. This is a prolongation of criterion life operation.
         //
-        if (is_array($value) && count($value)==2 && $operator!='IN' && $operator!='NOT IN') {
-            $this->dtype = intval($value[0]);
+        if (is_array($value) && 2 == count($value) && 'IN' != $operator && 'NOT IN' != $operator) {
+            $this->dtype = (int)$value[0];
             $this->value = $value[1];
         } else {
             $this->value = $value;
@@ -507,7 +515,7 @@ class Criteria extends CriteriaElement
     public function render()
     {
         $value = $this->value;
-        if (in_array(strtoupper($this->operator), array('IN', 'NOT IN'))) {
+        if (in_array(strtoupper($this->operator), ['IN', 'NOT IN'])) {
             $value = is_array($value) ? implode(',', $value) : trim($value, " ()\t"); // [Compat] allow value '("a", "b", "c")'
             if (isset($value)) {
                 $value = '('.$value.')';
@@ -534,7 +542,7 @@ class Criteria extends CriteriaElement
      */
     public function renderLdap()
     {
-        $clause = "(" . $this->column . $this->operator . $this->value . ")";
+        $clause = '(' . $this->column . $this->operator . $this->value . ')';
         return $clause;
     }
 

@@ -44,7 +44,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * Parent
  */
-include_once XOOPS_ROOT_PATH."/class/xoopsform/formselect.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/formselect.php';
 
 /**
  * A select field with a choice of available groups

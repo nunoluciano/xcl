@@ -38,14 +38,14 @@ class POP3
 
     /**
      * Default POP3 port number.
-     * @var integer
+     * @var int
      * @access public
      */
     public $POP3_PORT = 110;
 
     /**
      * Default timeout in seconds.
-     * @var integer
+     * @var int
      * @access public
      */
     public $POP3_TIMEOUT = 30;
@@ -61,7 +61,7 @@ class POP3
     /**
      * Debug display level.
      * Options: 0 = no, 1+ = yes
-     * @var integer
+     * @var int
      * @access public
      */
     public $do_debug = 0;
@@ -75,14 +75,14 @@ class POP3
 
     /**
      * POP3 port number.
-     * @var integer
+     * @var int
      * @access public
      */
     public $port;
 
     /**
      * POP3 Timeout Value in seconds.
-     * @var integer
+     * @var int
      * @access public
      */
     public $tval;
@@ -110,7 +110,7 @@ class POP3
 
     /**
      * Are we connected?
-     * @var boolean
+     * @var bool
      * @access protected
      */
     protected $connected = false;
@@ -120,7 +120,7 @@ class POP3
      * @var array
      * @access protected
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Line break constant
@@ -130,12 +130,12 @@ class POP3
     /**
      * Simple static wrapper for all-in-one POP before SMTP
      * @param $host
-     * @param integer|boolean $port The port number to connect to
-     * @param integer|boolean $timeout The timeout value
+     * @param int|bool $port    The port number to connect to
+     * @param int|bool $timeout The timeout value
      * @param string $username
      * @param string $password
-     * @param integer $debug_level
-     * @return boolean
+     * @param int $debug_level
+     * @return bool
      */
     public static function popBeforeSmtp(
         $host,
@@ -145,7 +145,7 @@ class POP3
         $password = '',
         $debug_level = 0
     ) {
-        $pop = new POP3;
+        $pop = new POP3();
         return $pop->authorise($host, $port, $timeout, $username, $password, $debug_level);
     }
 
@@ -154,13 +154,13 @@ class POP3
      * A connect, login, disconnect sequence
      * appropriate for POP-before SMTP authorisation.
      * @access public
-     * @param string $host The hostname to connect to
-     * @param integer|boolean $port The port number to connect to
-     * @param integer|boolean $timeout The timeout value
-     * @param string $username
-     * @param string $password
-     * @param integer $debug_level
-     * @return boolean
+     * @param string   $host    The hostname to connect to
+     * @param int|bool $port    The port number to connect to
+     * @param int|bool $timeout The timeout value
+     * @param string   $username
+     * @param string   $password
+     * @param int      $debug_level
+     * @return bool
      */
     public function authorise($host, $port = false, $timeout = false, $username = '', $password = '', $debug_level = 0)
     {
@@ -181,7 +181,7 @@ class POP3
         $this->username = $username;
         $this->password = $password;
         //  Reset the error log
-        $this->errors = array();
+        $this->errors = [];
         //  connect
         $result = $this->connect($this->host, $this->port, $this->tval);
         if ($result) {
@@ -199,10 +199,10 @@ class POP3
     /**
      * Connect to a POP3 server.
      * @access public
-     * @param string $host
-     * @param integer|boolean $port
-     * @param integer $tval
-     * @return boolean
+     * @param string   $host
+     * @param int|bool $port
+     * @param int      $tval
+     * @return bool
      */
     public function connect($host, $port = false, $tval = 30)
     {
@@ -213,7 +213,7 @@ class POP3
 
         //On Windows this will raise a PHP Warning error if the hostname doesn't exist.
         //Rather than suppress it with @fsockopen, capture it cleanly instead
-        set_error_handler(array($this, 'catchWarning'));
+        set_error_handler([$this, 'catchWarning']);
 
         if (false === $port) {
             $port = $this->POP3_PORT;
@@ -233,11 +233,13 @@ class POP3
         //  Did we connect?
         if (false === $this->pop_conn) {
             //  It would appear not...
-            $this->setError(array(
+            $this->setError(
+                [
                 'error' => "Failed to connect to server $host on port $port",
                 'errno' => $errno,
                 'errstr' => $errstr
-            ));
+                ]
+            );
             return false;
         }
 
@@ -261,7 +263,7 @@ class POP3
      * @access public
      * @param string $username
      * @param string $password
-     * @return boolean
+     * @return bool
      */
     public function login($username = '', $password = '')
     {
@@ -308,7 +310,7 @@ class POP3
     /**
      * Get a response from the POP3 server.
      * $size is the maximum number of bytes to retrieve
-     * @param integer $size
+     * @param int $size
      * @return string
      * @access protected
      */
@@ -324,7 +326,7 @@ class POP3
     /**
      * Send raw data to the POP3 server.
      * @param string $string
-     * @return integer
+     * @return int
      * @access protected
      */
     protected function sendString($string)
@@ -342,17 +344,19 @@ class POP3
      * Checks the POP3 server response.
      * Looks for for +OK or -ERR.
      * @param string $string
-     * @return boolean
+     * @return bool
      * @access protected
      */
     protected function checkResponse($string)
     {
-        if (substr($string, 0, 3) !== '+OK') {
-            $this->setError(array(
+        if ('+OK' !== substr($string, 0, 3)) {
+            $this->setError(
+                [
                 'error' => "Server reported an error: $string",
                 'errno' => 0,
                 'errstr' => ''
-            ));
+                ]
+            );
             return false;
         } else {
             return true;
@@ -388,20 +392,22 @@ class POP3
 
     /**
      * POP3 connection error handler.
-     * @param integer $errno
+     * @param int    $errno
      * @param string $errstr
      * @param string $errfile
-     * @param integer $errline
+     * @param int    $errline
      * @access protected
      */
     protected function catchWarning($errno, $errstr, $errfile, $errline)
     {
-        $this->setError(array(
-            'error' => "Connecting to the POP3 server raised a PHP warning: ",
-            'errno' => $errno,
-            'errstr' => $errstr,
-            'errfile' => $errfile,
-            'errline' => $errline
-        ));
+        $this->setError(
+            [
+                'error' => 'Connecting to the POP3 server raised a PHP warning: ',
+                'errno' => $errno,
+                'errstr' => $errstr,
+                'errfile' => $errfile,
+                'errline' => $errline
+            ]
+        );
     }
 }

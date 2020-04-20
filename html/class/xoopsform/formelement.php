@@ -88,7 +88,7 @@ class XoopsFormElement
      * extra attributes to go in the tag
      * @var	string
      */
-    public $_extra = "";
+    public $_extra = '';
 
     /**
      * required field?
@@ -100,7 +100,7 @@ class XoopsFormElement
      * description of the field
      * @var	string
      */
-    public $_description = "";
+    public $_description = '';
     
     /**
      * specified id for the form.
@@ -116,7 +116,7 @@ class XoopsFormElement
      */
     public function __construct()
     {
-        exit("This class cannot be instantiated!");
+        exit('This class cannot be instantiated!');
     }
     public function XoopsFormElement()
     {
@@ -152,7 +152,7 @@ class XoopsFormElement
     public function getName($encode=true)
     {
         if (false != $encode) {
-            return str_replace("&amp;", "&", str_replace("'", "&#039;", htmlspecialchars($this->_name)));
+            return str_replace('&amp;', '&', str_replace("'", '&#039;', htmlspecialchars($this->_name)));
         }
         return $this->_name;
     }
@@ -171,7 +171,7 @@ class XoopsFormElement
      */
     public function getId()
     {
-        return $this->_id != null ? $this->_id : $this->getName();
+        return null != $this->_id ? $this->_id : $this->getName();
     }
 
     /**
@@ -210,7 +210,7 @@ class XoopsFormElement
     /**
      * set the "class" attribute for the element
      *
-     * @param	string  $key   "class" attribute for the element
+     * @param $class
      */
     public function setClass($class)
     {
@@ -301,16 +301,16 @@ class XoopsFormElement
      * This string will be inserted verbatim and unvalidated in the
      * element's tag. Know what you are doing!
      *
-     * @param	string  $extra
-     * @param   string  $replace If true, passed string will replace current content otherwise it will be appended to it
-     * @return	string New content of the extra string
+     * @param string $extra
+     * @param bool   $replace If true, passed string will replace current content otherwise it will be appended to it
+     * @return    string New content of the extra string
      */
     public function setExtra($extra, $replace = false)
     {
         if ($replace) {
-            $this->_extra = " " .trim($extra);
+            $this->_extra = ' ' . trim($extra);
         } else {
-            $this->_extra .= " " . trim($extra);
+            $this->_extra .= ' ' . trim($extra);
         }
         return $this->_extra;
     }

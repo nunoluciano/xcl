@@ -70,7 +70,7 @@ class XoopsFormHidden extends XoopsFormElement
         $this->setName($name);
         $this->setHidden();
         $this->setValue($value);
-        $this->setCaption("");
+        $this->setCaption('');
     }
     public function XoopsFormHidden($name, $value)
     {
@@ -89,8 +89,9 @@ class XoopsFormHidden extends XoopsFormElement
 
     /**
      * Sets the "value" attribute
-     * 
-     * @patam  $value	string
+     *
+     * @patam  $value    string
+     * @param $value
      */
     public function setValue($value)
     {
@@ -110,8 +111,8 @@ class XoopsFormHidden extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_hidden.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_hidden.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

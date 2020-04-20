@@ -36,8 +36,8 @@
 /**
  * make sure this is only included once!
  */
-if (!defined("XOOPS_C_DATABASE_INCLUDED")) {
-    define("XOOPS_C_DATABASE_INCLUDED", 1);
+if (!defined('XOOPS_C_DATABASE_INCLUDED')) {
+    define('XOOPS_C_DATABASE_INCLUDED', 1);
 
 /**
  * Abstract base class for Database access classes
@@ -107,7 +107,7 @@ class XoopsDatabase
          */
         public function prefix($tablename='')
         {
-            if ($tablename != '') {
+            if ('' != $tablename) {
                 return $this->prefix .'_'. $tablename;
             } else {
                 return $this->prefix;

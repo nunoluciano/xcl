@@ -11,7 +11,7 @@
  |  This file was entirely rewritten by the XOOPS Cube Legacy project for |
  |   keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>        |
  *------------------------------------------------------------------------*/
-require_once "mainfile.php";
-require_once XOOPS_ROOT_PATH . "/header.php";
+require_once 'mainfile.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 XCube_DelegateUtils::call('Legacypage.Imagemanager.Access');

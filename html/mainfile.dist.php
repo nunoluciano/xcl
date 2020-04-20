@@ -25,8 +25,8 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
-    define("XOOPS_MAINFILE_INCLUDED",1);
+if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
+    define('XOOPS_MAINFILE_INCLUDED', 1);
 
     // XOOPS Physical Path
     // Physical path to your main XOOPS directory WITHOUT trailing slash
@@ -75,9 +75,9 @@ if ( !defined("XOOPS_MAINFILE_INCLUDED") ) {
     // Default is 'No'. Choose 'No' if you are unsure.
     define('XOOPS_DB_PCONNECT', 0);
 
-    define("XOOPS_GROUP_ADMIN", "1");
-    define("XOOPS_GROUP_USERS", "2");
-    define("XOOPS_GROUP_ANONYMOUS", "3");
+    define('XOOPS_GROUP_ADMIN', '1');
+    define('XOOPS_GROUP_USERS', '2');
+    define('XOOPS_GROUP_ANONYMOUS', '3');
 
     // You can select two special module process excuting mode with defining following constants
     //

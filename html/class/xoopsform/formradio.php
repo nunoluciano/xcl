@@ -59,7 +59,7 @@ class XoopsFormRadio extends XoopsFormElement
      * @var	array	
      * @access	private
      */
-    public $_options = array();
+    public $_options = [];
 
     /**
      * Pre-selected value
@@ -101,7 +101,7 @@ class XoopsFormRadio extends XoopsFormElement
     /**
      * Set the pre-selected value
      * 
-     * @param	$value	string
+     * @param string $value
      */
     public function setValue($value)
     {
@@ -114,9 +114,9 @@ class XoopsFormRadio extends XoopsFormElement
      * @param	string	$value	"value" attribute - This gets submitted as form-data.
      * @param	string	$name	"name" attribute - This is displayed. If empty, we use the "value" instead.
      */
-    public function addOption($value, $name="")
+    public function addOption($value, $name= '')
     {
-        if ($name != "") {
+        if ('' != $name) {
             $this->_options[$value] = $name;
         } else {
             $this->_options[$value] = $value;
@@ -160,8 +160,8 @@ class XoopsFormRadio extends XoopsFormElement
         $renderTarget =& $renderSystem->createRenderTarget();
     
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_radio.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_radio.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
     

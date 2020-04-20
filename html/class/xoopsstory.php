@@ -31,8 +31,8 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-include_once XOOPS_ROOT_PATH."/class/xoopstopic.php";
-include_once XOOPS_ROOT_PATH."/class/xoopsuser.php";
+include_once XOOPS_ROOT_PATH . '/class/xoopstopic.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsuser.php';
 
 class xoopsstory
 {
@@ -42,7 +42,7 @@ class xoopsstory
     public $uid;
     public $title;
     public $hometext;
-    public $bodytext="";
+    public $bodytext= '';
     public $counter;
     public $created;
     public $published;
@@ -63,28 +63,28 @@ class xoopsstory
     public function Story($storyid=-1)
     {
         $this->db =& Database::getInstance();
-        $this->table = "";
-        $this->topicstable = "";
+        $this->table = '';
+        $this->topicstable = '';
         if (is_array($storyid)) {
             $this->makeStory($storyid);
-        } elseif ($storyid != -1) {
-            $this->getStory(intval($storyid));
+        } elseif (-1 != $storyid) {
+            $this->getStory((int)$storyid);
         }
     }
 
     public function setStoryId($value)
     {
-        $this->storyid = intval($value);
+        $this->storyid = (int)$value;
     }
 
     public function setTopicId($value)
     {
-        $this->topicid = intval($value);
+        $this->topicid = (int)$value;
     }
 
     public function setUid($value)
     {
-        $this->uid = intval($value);
+        $this->uid = (int)$value;
     }
 
     public function setTitle($value)
@@ -104,12 +104,12 @@ class xoopsstory
 
     public function setPublished($value)
     {
-        $this->published = intval($value);
+        $this->published = (int)$value;
     }
 
     public function setExpired($value)
     {
-        $this->expired = intval($value);
+        $this->expired = (int)$value;
     }
 
     public function setHostname($value)
@@ -144,7 +144,7 @@ class xoopsstory
 
     public function setApproved($value)
     {
-        $this->approved = intval($value);
+        $this->approved = (int)$value;
     }
 
     public function setTopicdisplay($value)
@@ -159,7 +159,7 @@ class xoopsstory
 
     public function setComments($value)
     {
-        $this->comments = intval($value);
+        $this->comments = (int)$value;
     }
 
     public function store($approved=false)
@@ -172,22 +172,22 @@ class xoopsstory
         $title = $myts->makeTboxData4Save($title);
         $hometext = $myts->makeTareaData4Save($hometext);
         $bodytext = $myts->makeTareaData4Save($bodytext);
-        if (!isset($this->nohtml) || $this->nohtml != 1) {
+        if (!isset($this->nohtml) || 1 != $this->nohtml) {
             $this->nohtml = 0;
         }
-        if (!isset($this->nosmiley) || $this->nosmiley != 1) {
+        if (!isset($this->nosmiley) || 1 != $this->nosmiley) {
             $this->nosmiley = 0;
         }
-        if (!isset($this->notifypub) || $this->notifypub != 1) {
+        if (!isset($this->notifypub) || 1 != $this->notifypub) {
             $this->notifypub = 0;
         }
-        if (!isset($this->topicdisplay) || $this->topicdisplay != 0) {
+        if (!isset($this->topicdisplay) || 0 != $this->topicdisplay) {
             $this->topicdisplay = 1;
         }
         $expired = !empty($this->expired) ? $this->expired : 0;
         if (!isset($this->storyid)) {
             //$newpost = 1;
-            $newstoryid = $this->db->genId($this->table."_storyid_seq");
+            $newstoryid = $this->db->genId($this->table . '_storyid_seq');
             $created = time();
             $published = ($this->approved) ? $this->published : 0;
 
@@ -212,7 +212,7 @@ class xoopsstory
 
     public function getStory($storyid)
     {
-        $sql = "SELECT * FROM ".$this->table." WHERE storyid=".$storyid."";
+        $sql = 'SELECT * FROM ' . $this->table . ' WHERE storyid=' . $storyid . '';
         $array = $this->db->fetchArray($this->db->query($sql));
         $this->makeStory($array);
     }
@@ -226,7 +226,7 @@ class xoopsstory
 
     public function delete()
     {
-        $sql = sprintf("DELETE FROM %s WHERE storyid = %u", $this->table, $this->storyid);
+        $sql = sprintf('DELETE FROM %s WHERE storyid = %u', $this->table, $this->storyid);
         if (!$result = $this->db->query($sql)) {
             return false;
         }
@@ -235,7 +235,7 @@ class xoopsstory
 
     public function updateCounter()
     {
-        $sql = sprintf("UPDATE %s SET counter = counter+1 WHERE storyid = %u", $this->table, $this->storyid);
+        $sql = sprintf('UPDATE %s SET counter = counter+1 WHERE storyid = %u', $this->table, $this->storyid);
         if (!$result = $this->db->queryF($sql)) {
             return false;
         }
@@ -244,7 +244,7 @@ class xoopsstory
 
     public function updateComments($total)
     {
-        $sql = sprintf("UPDATE %s SET comments = %u WHERE storyid = %u", $this->table, $total, $this->storyid);
+        $sql = sprintf('UPDATE %s SET comments = %u WHERE storyid = %u', $this->table, $total, $this->storyid);
         if (!$result = $this->db->queryF($sql)) {
             return false;
         }
@@ -271,7 +271,7 @@ class xoopsstory
         return XoopsUser::getUnameFromId($this->uid);
     }
 
-    public function title($format="Show")
+    public function title($format= 'Show')
     {
         $myts =& MyTextSanitizer::sGetInstance();
         $smiley = 1;
@@ -279,23 +279,23 @@ class xoopsstory
             $smiley = 0;
         }
         switch ($format) {
-        case "Show":
+        case 'Show':
             $title = $myts->makeTboxData4Show($this->title, $smiley);
             break;
-        case "Edit":
+        case 'Edit':
             $title = $myts->makeTboxData4Edit($this->title);
             break;
-        case "Preview":
+        case 'Preview':
             $title = $myts->makeTboxData4Preview($this->title, $smiley);
             break;
-        case "InForm":
+        case 'InForm':
             $title = $myts->makeTboxData4PreviewInForm($this->title);
             break;
         }
         return $title;
     }
 
-    public function hometext($format="Show")
+    public function hometext($format= 'Show')
     {
         $myts =& MyTextSanitizer::sGetInstance();
         $html = 1;
@@ -308,23 +308,23 @@ class xoopsstory
             $smiley = 0;
         }
         switch ($format) {
-        case "Show":
+        case 'Show':
             $hometext = $myts->makeTareaData4Show($this->hometext, $html, $smiley, $xcodes);
             break;
-        case "Edit":
+        case 'Edit':
             $hometext = $myts->makeTareaData4Edit($this->hometext);
             break;
-        case "Preview":
+        case 'Preview':
             $hometext = $myts->makeTareaData4Preview($this->hometext, $html, $smiley, $xcodes);
             break;
-        case "InForm":
+        case 'InForm':
             $hometext = $myts->makeTareaData4PreviewInForm($this->hometext);
             break;
         }
         return $hometext;
     }
 
-    public function bodytext($format="Show")
+    public function bodytext($format= 'Show')
     {
         $myts =& MyTextSanitizer::sGetInstance();
         $html = 1;
@@ -337,16 +337,16 @@ class xoopsstory
             $smiley = 0;
         }
         switch ($format) {
-        case "Show":
+        case 'Show':
             $bodytext = $myts->makeTareaData4Show($this->bodytext, $html, $smiley, $xcodes);
             break;
-        case "Edit":
+        case 'Edit':
             $bodytext = $myts->makeTareaData4Edit($this->bodytext);
             break;
-        case "Preview":
+        case 'Preview':
             $bodytext = $myts->makeTareaData4Preview($this->bodytext, $html, $smiley, $xcodes);
             break;
-        case "InForm":
+        case 'InForm':
             $bodytext = $myts->makeTareaData4PreviewInForm($this->bodytext);
             break;
         }
@@ -416,10 +416,10 @@ class xoopsstory
     public function topicalign($astext=true)
     {
         if ($astext) {
-            if ($this->topicalign == "R") {
-                $ret = "right";
+            if ('R' == $this->topicalign) {
+                $ret = 'right';
             } else {
-                $ret = "left";
+                $ret = 'left';
             }
             return $ret;
         }

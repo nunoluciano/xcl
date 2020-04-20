@@ -82,13 +82,13 @@ class PHPMailerOAuth extends PHPMailer
      * @return bool
      * @throws phpmailerException
      */
-    public function smtpConnect($options = array())
+    public function smtpConnect($options = [])
     {
-        if (is_null($this->smtp)) {
+        if (null === $this->smtp) {
             $this->smtp = $this->getSMTPInstance();
         }
 
-        if (is_null($this->oauth)) {
+        if (null === $this->oauth) {
             $this->oauth = $this->getOAUTHInstance();
         }
 
@@ -105,7 +105,7 @@ class PHPMailerOAuth extends PHPMailer
         $lastexception = null;
 
         foreach ($hosts as $hostentry) {
-            $hostinfo = array();
+            $hostinfo = [];
             if (!preg_match('/^((ssl|tls):\/\/)*([a-zA-Z0-9\.-]*):?([0-9]*)$/', trim($hostentry), $hostinfo)) {
                 // Not a valid host entry
                 continue;
@@ -117,12 +117,12 @@ class PHPMailerOAuth extends PHPMailer
             // If it's not specified, the default value is used
             $prefix = '';
             $secure = $this->SMTPSecure;
-            $tls = ($this->SMTPSecure == 'tls');
+            $tls = ('tls' == $this->SMTPSecure);
             if ('ssl' == $hostinfo[2] or ('' == $hostinfo[2] and 'ssl' == $this->SMTPSecure)) {
                 $prefix = 'ssl://';
                 $tls = false; // Can't have SSL and TLS at the same time
                 $secure = 'ssl';
-            } elseif ($hostinfo[2] == 'tls') {
+            } elseif ('tls' == $hostinfo[2]) {
                 $tls = true;
                 // tls doesn't use a prefix
                 $secure = 'tls';
@@ -154,7 +154,7 @@ class PHPMailerOAuth extends PHPMailer
                     // * we have openssl extension
                     // * we are not already using SSL
                     // * the server offers STARTTLS
-                    if ($this->SMTPAutoTLS and $sslext and $secure != 'ssl' and $this->smtp->getServerExt('STARTTLS')) {
+                    if ($this->SMTPAutoTLS and $sslext and 'ssl' != $secure and $this->smtp->getServerExt('STARTTLS')) {
                         $tls = true;
                     }
                     if ($tls) {
@@ -189,7 +189,7 @@ class PHPMailerOAuth extends PHPMailer
         // If we get here, all connection attempts have failed, so close connection hard
         $this->smtp->close();
         // As we've caught all exceptions, just report whatever the last one was
-        if ($this->exceptions and !is_null($lastexception)) {
+        if ($this->exceptions and null !== $lastexception) {
             throw $lastexception;
         }
         return false;

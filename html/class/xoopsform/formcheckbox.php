@@ -57,14 +57,14 @@ class XoopsFormCheckBox extends XoopsFormElement
      * @var array   
      * @access	private
      */
-    public $_options = array();
+    public $_options = [];
 
     /**
      * pre-selected values in array
      * @var	array   
      * @access	private
      */
-    public $_value = array();
+    public $_value = [];
 
     /**
      * Constructor
@@ -103,7 +103,7 @@ class XoopsFormCheckBox extends XoopsFormElement
      */
     public function setValue($value)
     {
-        $this->_value = array();
+        $this->_value = [];
         if (is_array($value)) {
             foreach ($value as $v) {
                 $this->_value[] = $v;
@@ -119,9 +119,9 @@ class XoopsFormCheckBox extends XoopsFormElement
      * @param	string  $value  
      * @param	string  $name   
      */
-    public function addOption($value, $name="")
+    public function addOption($value, $name= '')
     {
-        if ($name != "") {
+        if ('' != $name) {
             $this->_options[$value] = $name;
         } else {
             $this->_options[$value] = $value;
@@ -164,14 +164,14 @@ class XoopsFormCheckBox extends XoopsFormElement
         
         $renderTarget =& $renderSystem->createRenderTarget('main');
     
-        if (count($this->getOptions()) > 1 && substr($this->getName(), -2, 2) != "[]") {
-            $newname = $this->getName()."[]";
+        if (count($this->getOptions()) > 1 && '[]' != substr($this->getName(), -2, 2)) {
+            $newname = $this->getName() . '[]';
             $this->setName($newname);
         }
         
         $renderTarget->setAttribute('legacy_module', 'legacy');
-        $renderTarget->setTemplateName("legacy_xoopsform_checkbox.html");
-        $renderTarget->setAttribute("element", $this);
+        $renderTarget->setTemplateName('legacy_xoopsform_checkbox.html');
+        $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
         
