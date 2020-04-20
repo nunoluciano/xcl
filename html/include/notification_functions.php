@@ -52,7 +52,7 @@ function notificationEnabled($style, $module_id=null)
         }
         $module_handler =& xoops_gethandler('module');
         $module =& $module_handler->get($module_id);
-        if (!empty($module) && $module->getVar('hasnotification') == 1) {
+        if (!empty($module) && 1 == $module->getVar('hasnotification')) {
             $config_handler =& xoops_gethandler('config');
             $config = $config_handler->getConfigsByCat(0, $module_id);
             $status = $config['notification_enabled'];
@@ -61,10 +61,10 @@ function notificationEnabled($style, $module_id=null)
         }
     }
     include_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
-    if (($style == 'block') && ($status == XOOPS_NOTIFICATION_ENABLEBLOCK || $status == XOOPS_NOTIFICATION_ENABLEBOTH)) {
+    if (('block' == $style) && (XOOPS_NOTIFICATION_ENABLEBLOCK == $status || XOOPS_NOTIFICATION_ENABLEBOTH == $status)) {
         return true;
     }
-    if (($style == 'inline') && ($status == XOOPS_NOTIFICATION_ENABLEINLINE || $status == XOOPS_NOTIFICATION_ENABLEBOTH)) {
+    if (('inline' == $style) && (XOOPS_NOTIFICATION_ENABLEINLINE == $status || XOOPS_NOTIFICATION_ENABLEBOTH == $status)) {
         return true;
     }
     // if ($status != XOOPS_NOTIFICATION_DISABLE) {
@@ -78,8 +78,8 @@ function notificationEnabled($style, $module_id=null)
  * category in the selected module.  If no category is selected,
  * return an array of info for all categories.
  *
- * @param  string  $name       Category name (default all categories)
- * @param  int     $module_id  ID of the module (default current module)
+ * @param null $category_name
+ * @param int  $module_id ID of the module (default current module)
  * @return mixed
  */
 function &notificationCategoryInfo($category_name = null, $module_id = null)
@@ -99,7 +99,7 @@ function &notificationCategoryInfo($category_name = null, $module_id = null)
     }
     
     $not_config =& $module->getInfo('notification');
-    if ($category_name == null) {
+    if (null == $category_name) {
         return $not_config['category'];
     }
     foreach ($not_config['category'] as $category) {
@@ -137,7 +137,7 @@ function &notificationCommentCategoryInfo($module_id=null)
             continue;
         }
         foreach ($all_events as $event) {
-            if ($event['name'] == 'comment') {
+            if ('comment' == $event['name']) {
                 return $category;
             }
         }
@@ -181,7 +181,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
     $category =& notificationCategoryInfo($category_name, $module_id);
 
     global $xoopsConfig;
-    $event_array = array();
+    $event_array = [];
 
     $override_comment = false;
     $override_commentsubmit = false;
@@ -193,13 +193,13 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
             if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                 $event_array[] = $event;
             }
-            if ($event['name'] == 'comment') {
+            if ('comment' == $event['name']) {
                 $override_comment = true;
             }
-            if ($event['name'] == 'comment_submit') {
+            if ('comment_submit' == $event['name']) {
                 $override_commentsubmit = true;
             }
-            if ($event['name'] == 'bookmark') {
+            if ('bookmark' == $event['name']) {
                 $override_bookmark = true;
             }
         }
@@ -247,13 +247,13 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
                 }
             }
             if ($insert_comment) {
-                $event = array('name'=>'comment', 'category'=>$category['name'], 'title'=>_NOT_COMMENT_NOTIFY, 'caption'=>_NOT_COMMENT_NOTIFYCAP, 'description'=>_NOT_COMMENT_NOTIFYDSC, 'mail_template_dir'=>$mail_template_dir, 'mail_template'=>'comment_notify', 'mail_subject'=>_NOT_COMMENT_NOTIFYSBJ);
+                $event = ['name' =>'comment', 'category' => $category['name'], 'title' =>_NOT_COMMENT_NOTIFY, 'caption' =>_NOT_COMMENT_NOTIFYCAP, 'description' =>_NOT_COMMENT_NOTIFYDSC, 'mail_template_dir' =>$mail_template_dir, 'mail_template' =>'comment_notify', 'mail_subject' =>_NOT_COMMENT_NOTIFYSBJ];
                 if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                     $event_array[] = $event;
                 }
             }
             if ($insert_submit) {
-                $event = array('name'=>'comment_submit', 'category'=>$category['name'], 'title'=>_NOT_COMMENTSUBMIT_NOTIFY, 'caption'=>_NOT_COMMENTSUBMIT_NOTIFYCAP, 'description'=>_NOT_COMMENTSUBMIT_NOTIFYDSC, 'mail_template_dir'=>$mail_template_dir, 'mail_template'=>'commentsubmit_notify', 'mail_subject'=>_NOT_COMMENTSUBMIT_NOTIFYSBJ, 'admin_only'=>1);
+                $event = ['name' =>'comment_submit', 'category' => $category['name'], 'title' =>_NOT_COMMENTSUBMIT_NOTIFY, 'caption' =>_NOT_COMMENTSUBMIT_NOTIFYCAP, 'description' =>_NOT_COMMENTSUBMIT_NOTIFYDSC, 'mail_template_dir' =>$mail_template_dir, 'mail_template' =>'commentsubmit_notify', 'mail_subject' =>_NOT_COMMENTSUBMIT_NOTIFYSBJ, 'admin_only' =>1];
                 if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                     $event_array[] = $event;
                 }
@@ -265,7 +265,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
 
     if (!empty($category['allow_bookmark'])) {
         if (!$override_bookmark) {
-            $event = array('name'=>'bookmark', 'category'=>$category['name'], 'title'=>_NOT_BOOKMARK_NOTIFY, 'caption'=>_NOT_BOOKMARK_NOTIFYCAP, 'description'=>_NOT_BOOKMARK_NOTIFYDSC);
+            $event = ['name' =>'bookmark', 'category' => $category['name'], 'title' =>_NOT_BOOKMARK_NOTIFY, 'caption' =>_NOT_BOOKMARK_NOTIFYCAP, 'description' =>_NOT_BOOKMARK_NOTIFYDSC];
             if (!$enabled_only || notificationEventEnabled($category, $event, $module)) {
                 $event_array[] = $event;
             }
@@ -343,18 +343,18 @@ function &notificationSubscribableCategoryInfo($module_id=null)
     $script_url = explode('/', xoops_getenv('PHP_SELF'));
     $script_name = $script_url[count($script_url)-1];
 
-    $sub_categories = array();
+    $sub_categories = [];
 
     foreach ($all_categories as $category) {
         // Check the script name
 
         $subscribe_from = $category['subscribe_from'];
         if (!is_array($subscribe_from)) {
-            if ($subscribe_from == '*') {
-                $subscribe_from = array($script_name);
+            if ('*' == $subscribe_from) {
+                $subscribe_from = [$script_name];
                 // FIXME: this is just a hack: force a match
             } else {
-                $subscribe_from = array($subscribe_from);
+                $subscribe_from = [$subscribe_from];
             }
         }
         if (!in_array($script_name, $subscribe_from)) {
@@ -370,7 +370,7 @@ function &notificationSubscribableCategoryInfo($module_id=null)
             $sub_categories[] = $category;
         } else {
             $item_name = $category['item_name'];
-            $id = ($item_name != '' && isset($_GET[$item_name])) ? (int)$_GET[$item_name] : 0;
+            $id = ('' != $item_name && isset($_GET[$item_name])) ? (int)$_GET[$item_name] : 0;
             if ($id > 0) {
                 $category['item_id'] = $id;
                 $sub_categories[] = $category;
@@ -387,11 +387,13 @@ function &notificationSubscribableCategoryInfo($module_id=null)
  * and event titles.  These are pieced together in this function in
  * case we wish to alter the syntax.
  *
- * @param  array  $category  Array of category info
- * @param  array  $event     Array of event info
- * @param  string $type      The particular name to generate
- * return string
- **/
+ * @param array  $category Array of category info
+ * @param array  $event    Array of event info
+ * @param string $type     The particular name to generate
+ *                         return string
+ *
+ * @return bool|string
+ */
 function notificationGenerateConfig(&$category, &$event, $type)
 {
     switch ($type) {

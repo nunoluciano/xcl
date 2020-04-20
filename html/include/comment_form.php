@@ -29,9 +29,9 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
 $com_modid = $xoopsModule->getVar('mid');
-include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
-include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-$cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", 'comment_post.php'); if (isset($xoopsModuleConfig['com_rule'])) {
+include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+$cform = new XoopsThemeForm(_CM_POSTCOMMENT, 'commentform', 'comment_post.php'); if (isset($xoopsModuleConfig['com_rule'])) {
     include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
     switch ($xoopsModuleConfig['com_rule']) {
     case XOOPS_COMMENT_APPROVEALL:
@@ -62,7 +62,7 @@ $button_tray = new XoopsFormElementTray('', '&nbsp;');
 
 
 if (is_object($xoopsUser)) {
-    if ($xoopsModuleConfig['com_anonpost'] == 1) {
+    if (1 == $xoopsModuleConfig['com_anonpost']) {
         $noname = !empty($noname) ? 1 : 0;
         $noname_checkbox = new XoopsFormCheckBox('', 'noname', $noname);
         $noname_checkbox->addOption(1, _POSTANON);
@@ -73,7 +73,7 @@ if (is_object($xoopsUser)) {
         if (!empty($com_id)) {
             include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
             $status_select = new XoopsFormSelect(_CM_STATUS, 'com_status', $com_status);
-            $status_select->addOptionArray(array(XOOPS_COMMENT_PENDING => _CM_PENDING, XOOPS_COMMENT_ACTIVE => _CM_ACTIVE, XOOPS_COMMENT_HIDDEN => _CM_HIDDEN));
+            $status_select->addOptionArray([XOOPS_COMMENT_PENDING => _CM_PENDING, XOOPS_COMMENT_ACTIVE => _CM_ACTIVE, XOOPS_COMMENT_HIDDEN => _CM_HIDDEN]);
             $cform->addElement($status_select);
             $button_tray->addElement(new XoopsFormButton('', 'com_dodelete', _DELETE, 'submit'));
         }

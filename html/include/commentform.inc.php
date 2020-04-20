@@ -28,11 +28,11 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
-include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-$cform = new XoopsThemeForm(_CM_POSTCOMMENT, "commentform", "postcomment.php");
-if (!preg_match("/^re:/i", $subject)) {
-    $subject = "Re: ".xoops_substr($subject, 0, 56);
+include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+include XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+$cform = new XoopsThemeForm(_CM_POSTCOMMENT, 'commentform', 'postcomment.php');
+if (!preg_match('/^re:/i', $subject)) {
+    $subject = 'Re: ' . xoops_substr($subject, 0, 56);
 }
 $cform->addElement(new XoopsFormText(_CM_TITLE, 'subject', 50, 255, $subject), true);
 $icons_radio = new XoopsFormRadio(_MESSAGEICON, 'icon', $icon);
@@ -44,7 +44,7 @@ $cform->addElement($icons_radio);
 $cform->addElement(new XoopsFormDhtmlTextArea(_CM_MESSAGE, 'message', $message, 10, 50), true);
 $option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
 if ($xoopsUser) {
-    if ($xoopsConfig['anonpost'] == 1) {
+    if (1 == $xoopsConfig['anonpost']) {
         $noname_checkbox = new XoopsFormCheckBox('', 'noname', $noname);
         $noname_checkbox->addOption(1, _POSTANON);
         $option_tray->addElement($noname_checkbox);

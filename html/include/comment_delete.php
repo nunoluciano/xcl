@@ -62,7 +62,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_config = $xoopsModule->getInfo('comments');
     $com_modid = $xoopsModule->getVar('mid');
     $redirect_page = $comment_config['pageName'].'?';
-    $comment_confirm_extra = array();
+    $comment_confirm_extra = [];
     if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
         foreach ($comment_config['extraParams'] as $extra_param) {
             if (isset(${$extra_param})) {
@@ -96,7 +96,7 @@ if (!is_object($xoopsUser)) {
 
 if (false != $accesserror) {
     $ref = xoops_getenv('HTTP_REFERER');
-    if ($ref != '') {
+    if ('' != $ref) {
         redirect_header($ref, 2, _NOPERM);
     } else {
         redirect_header($redirect_page.'?'.$comment_config['itemName'].'='.(int)$com_itemid, 2, _NOPERM);
@@ -121,12 +121,12 @@ case 'delete_one':
     $com_itemid = $comment->getVar('com_itemid');
 
     // execute updateStat callback function if set
-    if (isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+    if (isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
         $skip = false;
         if (!function_exists($comment_config['callback']['update'])) {
             if (isset($comment_config['callbackFile'])) {
                 $callbackfile = trim($comment_config['callbackFile']);
-                if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                     include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                 }
                 if (!function_exists($comment_config['callback']['update'])) {
@@ -146,7 +146,7 @@ case 'delete_one':
     }
 
     // update user posts if its not an anonymous post
-    if ($comment->getVar('com_uid') != 0) {
+    if (0 != $comment->getVar('com_uid')) {
         $member_handler =& xoops_gethandler('member');
         $com_poster =& $member_handler->getUser($comment->getVar('com_uid'));
         if (is_object($com_poster)) {
@@ -164,7 +164,7 @@ case 'delete_one':
 
     // now set new parent ID for direct child comments
     $new_pid = $comment->getVar('com_pid');
-    $errs = array();
+    $errs = [];
     foreach (array_keys($child_comments) as $i) {
         $child_comments[$i]->setVar('com_pid', $new_pid);
         // if the deleted comment is a root comment, need to change root id to own id
@@ -213,8 +213,8 @@ case 'delete_all':
     $child_comments =& $xot->getAllChild($com_id);
     // add itself here
     $child_comments[$com_id] =& $comment;
-    $msgs = array();
-    $deleted_num = array();
+    $msgs = [];
+    $deleted_num = [];
     $member_handler =& xoops_gethandler('member');
     foreach (array_keys($child_comments) as $i) {
         if (!$comment_handler->delete($child_comments[$i])) {
@@ -239,12 +239,12 @@ case 'delete_all':
     $com_itemid = $comment->getVar('com_itemid');
 
     // execute updateStat callback function if set
-    if (isset($comment_config['callback']['update']) && trim($comment_config['callback']['update']) != '') {
+    if (isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
         $skip = false;
         if (!function_exists($comment_config['callback']['update'])) {
             if (isset($comment_config['callbackFile'])) {
                 $callbackfile = trim($comment_config['callbackFile']);
-                if ($callbackfile != '' && file_exists(XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile)) {
+                if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                     include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                 }
                 if (!function_exists($comment_config['callback']['update'])) {
@@ -272,7 +272,7 @@ case 'delete_all':
 case 'delete':
 default:
     include XOOPS_ROOT_PATH.'/header.php';
-    $comment_confirm = array('com_id' => $com_id, 'com_mode' => $com_mode, 'com_order' => $com_order, 'op' => array(_CM_DELETEONE => 'delete_one', _CM_DELETEALL => 'delete_all'));
+    $comment_confirm = ['com_id' => $com_id, 'com_mode' => $com_mode, 'com_order' => $com_order, 'op' => [_CM_DELETEONE => 'delete_one', _CM_DELETEALL => 'delete_all']];
     if (!empty($comment_confirm_extra) && is_array($comment_confirm_extra)) {
         $comment_confirm = $comment_confirm + $comment_confirm_extra;
     }
