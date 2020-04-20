@@ -23,7 +23,7 @@ class settingsAction extends AbstractAction
             $modObj = $modHand->create();
         }
         $this->mActionForm->load($modObj);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             $this->mActionForm->fetch();
             $this->mActionForm->validate();
             if ($this->mActionForm->hasError()) {

@@ -19,11 +19,11 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
     public function __construct()
     {
         parent::__construct();
-        $this->_mMilestone = array(
+        $this->_mMilestone = [
             '041' => 'update041',
             '060' => 'update060',
             '070' => 'update070'
-        );
+        ];
     }
   
     public function updatemain()
@@ -42,7 +42,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
         $root = XCube_Root::getSingleton();
         $db = $root->mController->getDB();
     
-        $sql = "ALTER TABLE `".$db->prefix('message_inbox')."` ";
+        $sql = 'ALTER TABLE `' . $db->prefix('message_inbox') . '` ';
         $sql.= "ADD `uname` varchar(100) NOT NULL default ''";
         if (!$db->query($sql)) {
             $this->mLog->addReport($db->error());
@@ -58,7 +58,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
         $root = XCube_Root::getSingleton();
         $db = $root->mController->getDB();
     
-        $sql = "ALTER TABLE `".$db->prefix('message_users')."` ";
+        $sql = 'ALTER TABLE `' . $db->prefix('message_users') . '` ';
         $sql.= "ADD `viewmsm` int( 1 ) UNSIGNED NOT NULL DEFAULT '0', ";
         $sql.= "ADD `pagenum` int( 2 ) UNSIGNED NOT NULL DEFAULT '0', ";
         $sql.= "ADD `blacklist` VARCHAR( 255 ) NOT NULL DEFAULT ''";
@@ -94,7 +94,7 @@ class Message_myUpdater extends Legacy_ModulePhasedUpgrader
         $db = $root->mController->getDB();
   
         foreach ($sqls as $sql) {
-            if (strpos($sql, '_message_users') !== false) {
+            if (false !== strpos($sql, '_message_users')) {
                 if (!$db->query($sql)) {
                     $this->mLog->addError($db->error());
                     return false;

@@ -6,7 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class blacklistAction extends AbstractAction
 {
     private $mActionForm;
-    private $blackuser = array();
+    private $blackuser = [];
 
     public function __construct()
     {
@@ -17,8 +17,8 @@ class blacklistAction extends AbstractAction
     {
         $this->setUrl('index.php?action=blacklist');
         $modobj = $this->getSettings();
-        $uid = intval($this->root->mContext->mRequest->getRequest('uid'));
-        if ($uid != 0) {  //Add
+        $uid = (int)$this->root->mContext->mRequest->getRequest('uid');
+        if (0 != $uid) {  //Add
       $this->addblklist($modobj, $uid);
         } else {
             switch ($this->root->mContext->mRequest->getRequest('cmd')) {
@@ -35,7 +35,7 @@ class blacklistAction extends AbstractAction
           $this->delblklist($modobj);
           break;
         default:
-          if ($modobj->get('blacklist') != "") {
+          if ('' != $modobj->get('blacklist')) {
               $blusers = explode(',', $modobj->get('blacklist'));
               foreach ($blusers as $bluid) {
                   $this->blackuser[$bluid] = $this->getLinkUnameFromId($bluid);
@@ -48,7 +48,7 @@ class blacklistAction extends AbstractAction
     private function delblklist($modobj)
     {
         $deluid = $this->root->mContext->mRequest->getRequest('deluid');
-        if (!is_array($deluid) || count($deluid) == 0) {
+        if (!is_array($deluid) || 0 == count($deluid)) {
             $this->setErr(_MD_MESSAGE_DELETEMSG2);
             return;
         }
@@ -67,7 +67,7 @@ class blacklistAction extends AbstractAction
             if (is_array($adduid)) {
                 $modobj->set('blacklist', implode(',', $adduid));
             } else {
-                $modobj->set('blacklist', "");
+                $modobj->set('blacklist', '');
             }
             if ($modHand->insert($modobj)) {
                 $this->setErr(_MD_MESSAGE_SETTINGS_MSG16);
@@ -86,7 +86,7 @@ class blacklistAction extends AbstractAction
             $this->setErr(XCube_Utils::formatString(_MD_MESSAGE_SETTINGS_MSG14, $blackuser));
             return;
         }
-        if ($lists[0] == "") {
+        if ('' == $lists[0]) {
             $modobj->set('blacklist', $uid);
         } else {
             $lists[] = $uid;

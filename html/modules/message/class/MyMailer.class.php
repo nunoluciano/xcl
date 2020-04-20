@@ -27,7 +27,7 @@ class My_Mailer extends PHPMailer
         $xoopsMailerConfig = $handler->getConfigsByCat(XOOPS_CONF_MAILER);
         $this->reset();
     
-        if ($xoopsMailerConfig['from'] == '') {
+        if ('' == $xoopsMailerConfig['from']) {
             $this->From = $root->mContext->mXoopsConfig['adminmail'];
         } else {
             $this->From = $xoopsMailerConfig['from'];
@@ -79,18 +79,18 @@ class My_Mailer extends PHPMailer
   
     public function setBody($text)
     {
-        $search = array("\r\n", "\r", "\n");
-        $replace = array("\n", "\n", $this->LE);
+        $search = ["\r\n", "\r", "\n"];
+        $replace = ["\n", "\n", $this->LE];
         $text = str_replace($search, $replace, $text);
         $this->Body = $this->convertLocal($text);
     }
   
     public function setToEmails($email)
     {
-        $this->AddAddress($email, "");
+        $this->AddAddress($email, '');
     }
   
-    public function setTo($add, $name = "")
+    public function setTo($add, $name = '')
     {
         $this->AddAddress($add, $name);
     }
@@ -98,8 +98,8 @@ class My_Mailer extends PHPMailer
     public function reset()
     {
         $this->ClearAllRecipients();
-        $this->Body = "";
-        $this->Subject = "";
+        $this->Body = '';
+        $this->Subject = '';
     }
 
     public function send()
@@ -109,7 +109,7 @@ class My_Mailer extends PHPMailer
 
     public function EncodeHeader($str, $position = 'text')
     {
-        if ($position == 'text') {
+        if ('text' == $position) {
             return $this->convertLocal($str, true);
         } else {
             return parent::EncodeHeader($str, $position);
