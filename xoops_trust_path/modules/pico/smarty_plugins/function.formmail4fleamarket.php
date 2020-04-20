@@ -11,7 +11,7 @@ function smarty_function_formmail4fleamarket($params, &$smarty)
 
 	// add a toEmail from xoopsUser
 	$content = $smarty->get_template_vars('content');
-	$poster_uid = intval($content['poster_uid']);
+	$poster_uid = (int)$content['poster_uid'];
 	$user_handler = &xoops_gethandler('user');
 	$poster = $user_handler->get($poster_uid);
 	if (is_object($poster)) {
@@ -24,14 +24,14 @@ function smarty_function_formmail4fleamarket($params, &$smarty)
 
 class PicoFormProcessBySmartyFormmail4fleamarket extends PicoFormProcessBySmartyBase
 {
-	function __construct()
-	{
-		$this->mypluginname = 'formmail4fleamarket';
-	}
+    public function __construct()
+    {
+        $this->mypluginname = 'formmail4fleamarket';
+    }
 
-	function executeLast()
-	{
-		$this->sendMail();
-		$this->storeDB();
-	}
+    public function executeLast()
+    {
+        $this->sendMail();
+        $this->storeDB();
+    }
 }

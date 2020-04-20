@@ -31,27 +31,27 @@ function smarty_function_pico_category_search($params, &$smarty)
 	$module_handler = &xoops_gethandler('module');
 	$config_handler = &xoops_gethandler('config');
 
-	$categories4assign = array();
+	$categories4assign = [];
 	foreach ($mydirnames as $mydirname) {
 
 		$module = &$module_handler->getByDirname($mydirname);
 		$configs = $config_handler->getConfigList($module->getVar('mid'));
 
-		$sql = "SELECT * FROM " . $db->prefix($mydirname . "_categories") . " c WHERE c.cat_title=" . $db->quoteString($cat_title);
+		$sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . ' c WHERE c.cat_title=' . $db->quoteString($cat_title);
 		$result = $db->query($sql);
 		while ($cat_row = $db->fetchArray($result)) {
-			$category4assign = array(
-				'mod_mid' => $module->getVar('mid'),
-				'mod_dirname' => $mydirname,
-				'mod_name' => $module->getVar('name'),
-				'id' => intval($cat_row['cat_id']),
-				'link' => pico_common_make_category_link4html($configs, $cat_row),
-				'title' => $myts->makeTboxData4Show($cat_row['cat_title']),
-				'desc' => $myts->displayTarea($cat_row['cat_desc'], 1),
-				'paths_raw' => pico_common_unserialize($cat_row['cat_path_in_tree']),
-				'paths_value' => array_values(pico_common_unserialize($cat_row['cat_path_in_tree'])),
-				'redundants' => pico_common_unserialize($cat_row['cat_redundants']),
-			) + $cat_row;
+			$category4assign = [
+                                   'mod_mid' => $module->getVar('mid'),
+                                   'mod_dirname' => $mydirname,
+                                   'mod_name' => $module->getVar('name'),
+                                   'id' => (int)$cat_row['cat_id'],
+                                   'link' => pico_common_make_category_link4html($configs, $cat_row),
+                                   'title' => $myts->makeTboxData4Show($cat_row['cat_title']),
+                                   'desc' => $myts->displayTarea($cat_row['cat_desc'], 1),
+                                   'paths_raw' => pico_common_unserialize($cat_row['cat_path_in_tree']),
+                                   'paths_value' => array_values(pico_common_unserialize($cat_row['cat_path_in_tree'])),
+                                   'redundants' => pico_common_unserialize($cat_row['cat_redundants']),
+                               ] + $cat_row;
 
 			$categories4assign[] = $category4assign;
 		}

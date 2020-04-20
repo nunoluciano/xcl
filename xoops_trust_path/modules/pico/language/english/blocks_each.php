@@ -8,6 +8,6 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_LOADED', 1);
 
     // definitions for displaying blocks 
-    define($constpref . "_CATEGORY", "Category");
-    define($constpref . "_TOPCATEGORY", "Top category");
+    define($constpref . '_CATEGORY', 'Category');
+    define($constpref . '_TOPCATEGORY', 'Top category');
 }

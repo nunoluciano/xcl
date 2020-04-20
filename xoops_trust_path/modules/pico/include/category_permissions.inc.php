@@ -1,6 +1,6 @@
 <?php
 
-$pico_category_permissions = array(
+$pico_category_permissions = [
 	'can_read',
 	'can_readfull',
 	'can_post',
@@ -9,4 +9,4 @@ $pico_category_permissions = array(
 	'post_auto_approved',
 	'is_moderator',
 	'can_makesubcategory',
-);
+];

@@ -1,12 +1,12 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/include/main_functions.php';
-require_once dirname(dirname(__FILE__)) . '/include/common_functions.php';
-require_once dirname(dirname(__FILE__)) . '/class/pico.textsanitizer.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoUriMapper.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoPermission.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelCategory.class.php';
-require_once dirname(dirname(__FILE__)) . '/class/PicoModelContent.class.php';
+require_once dirname(__DIR__) . '/include/main_functions.php';
+require_once dirname(__DIR__) . '/include/common_functions.php';
+require_once dirname(__DIR__) . '/class/pico.textsanitizer.php';
+require_once dirname(__DIR__) . '/class/PicoUriMapper.class.php';
+require_once dirname(__DIR__) . '/class/PicoPermission.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelCategory.class.php';
+require_once dirname(__DIR__) . '/class/PicoModelContent.class.php';
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/AltsysBreadcrumbs.class.php';
 
 // breadcrumbs
@@ -18,7 +18,7 @@ $picoPermission = &PicoPermission::getInstance();
 $permissions = $picoPermission->getPermissions($mydirname);
 
 // current category object (this "current" means "targeted")
-$currentCategoryObj = new PicoCategory($mydirname, intval(@$_REQUEST['cat_id']), $permissions);
+$currentCategoryObj = new PicoCategory($mydirname, (int)@$_REQUEST['cat_id'], $permissions);
 if ($currentCategoryObj->isError()) {
 	redirect_header(XOOPS_URL . "/modules/$mydirname/index.php", 2, _MD_PICO_ERR_READCATEGORY);
 	exit;
@@ -31,8 +31,8 @@ $xoopsModuleConfig = $currentCategoryObj->getOverriddenModConfig();
 $breadcrumbsObj->appendPath($currentCategoryObj->getBreadcrumbs());
 
 // request
-$picoRequest = array();
-$picoRequest['cat_id'] = intval(@$_REQUEST['cat_id']);
+$picoRequest = [];
+$picoRequest['cat_id'] = (int)@$_REQUEST['cat_id'];
 
 if (!empty($_POST['categoryman_post'])) {
 	$controller_class = 'PicoControllerUpdateCategory';
@@ -42,7 +42,7 @@ if (!empty($_POST['categoryman_post'])) {
 	$controller_class = 'PicoControllerEditCategory';
 }
 
-require_once dirname(dirname(__FILE__)) . '/class/' . $controller_class . '.class.php';
+require_once dirname(__DIR__) . '/class/' . $controller_class . '.class.php';
 $controller = new $controller_class($currentCategoryObj);
 $controller->execute($picoRequest);
 

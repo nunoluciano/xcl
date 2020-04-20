@@ -8,10 +8,10 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_LOADED', 1);
 
     // The name of this module
-    define($constpref . "_NAME", "pico");
+    define($constpref . '_NAME', 'pico');
 
     // A brief description of this module
-    define($constpref . "_DESC", "静的コンテンツ作成モジュール");
+    define($constpref . '_DESC', '静的コンテンツ作成モジュール');
 
     // admin menus
     define($constpref . '_ADMENU_CONTENTSADMIN', 'コンテンツ一括管理');

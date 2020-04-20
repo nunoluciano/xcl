@@ -1,7 +1,7 @@
 <?php
 
-$mytrustdirname = basename(dirname(__FILE__));
-$mytrustdirpath = dirname(__FILE__);
+$mytrustdirname = basename(__DIR__);
+$mytrustdirpath = __DIR__;
 
 // environment
 require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -30,7 +30,7 @@ if (!empty($_GET['lib'])) {
 	$page = preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page']);
 
 	// check the page can be accessed (make controllers.php just under the lib)
-	$controllers = array();
+	$controllers = [];
 	if (file_exists(XOOPS_TRUST_PATH . '/libs/' . $lib . '/controllers.php')) {
 		require XOOPS_TRUST_PATH . '/libs/' . $lib . '/controllers.php';
 		if (!in_array($page, $controllers)) $page = $controllers[0];

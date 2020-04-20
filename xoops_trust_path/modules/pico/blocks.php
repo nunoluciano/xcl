@@ -1,7 +1,7 @@
 <?php
 
-$mytrustdirname = basename(dirname(__FILE__));
-$mytrustdirpath = dirname(__FILE__);
+$mytrustdirname = basename(__DIR__);
+$mytrustdirpath = __DIR__;
 
 // language file (blocks_common.php&blocks_each.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';

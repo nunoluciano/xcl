@@ -15,7 +15,7 @@ function pico_textwiki($mydirname, $text, $content4assign)
 		ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . XOOPS_TRUST_PATH . '/PEAR');
 	}
 
-	include_once "Text/Wiki.php";
+	include_once 'Text/Wiki.php';
 	// include_once "Text/sunday_Wiki.php";
 
 	if (!class_exists('Text_Wiki')) die('PEAR/Text/Wiki is not installed correctly');

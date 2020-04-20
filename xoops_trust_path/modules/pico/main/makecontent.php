@@ -3,7 +3,7 @@
 define('PICO_URI_MAPPER_ALLOW_CAT_ID_OVERWRITING', true);
 
 // common prepend
-require dirname(dirname(__FILE__)) . '/include/common_prepend.inc.php';
+require dirname(__DIR__) . '/include/common_prepend.inc.php';
 // global $breadcrumbsObj, $picoRequest, $permissions, $currenCategoryObj
 // global $xoopsModuleConfig(overridden)
 
@@ -25,7 +25,7 @@ if (!empty($_POST['contentman_preview'])) {
 	$controller_class = 'PicoControllerEditContent';
 }
 
-require_once dirname(dirname(__FILE__)) . '/class/' . $controller_class . '.class.php';
+require_once dirname(__DIR__) . '/class/' . $controller_class . '.class.php';
 $controller = new $controller_class($currentCategoryObj);
 $controller->execute($picoRequest);
 

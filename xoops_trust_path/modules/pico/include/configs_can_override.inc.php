@@ -1,6 +1,6 @@
 <?php
 
-$pico_configs_can_be_override = array(
+$pico_configs_can_be_override = [
 	'show_listasindex' => 'bool',
 	'show_breadcrumbs' => 'bool',
 	'show_pagenavi' => 'bool',
@@ -21,4 +21,4 @@ $pico_configs_can_be_override = array(
 	'auto_register_class' => 'text',
 	'comment_dirname' => 'text',
 	'comment_forum_id' => 'int',
-);
+];

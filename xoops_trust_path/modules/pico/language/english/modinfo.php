@@ -8,10 +8,10 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_LOADED', 1);
 
     // The name of this module
-    define($constpref . "_NAME", "pico");
+    define($constpref . '_NAME', 'pico');
 
     // A brief description of this module
-    define($constpref . "_DESC", "The module manages content publication, versioning with revision history, diff and granular permissions.");
+    define($constpref . '_DESC', 'The module manages content publication, versioning with revision history, diff and granular permissions.');
 
     // admin menus
     define($constpref . '_ADMENU_CONTENTSADMIN', 'Contents list');

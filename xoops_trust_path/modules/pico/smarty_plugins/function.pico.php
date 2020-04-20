@@ -30,11 +30,11 @@ function smarty_function_pico($params, &$smarty)
 
 	if ($var_name) {
 		// just assign
-		$assigns = b_pico_content_show(array($mydirname, $content_id, $template, 'disable_renderer' => true));
+		$assigns = b_pico_content_show([$mydirname, $content_id, $template, 'disable_renderer' => true]);
 		$smarty->assign($var_name, $assigns);
 	} else {
 		// display
-		$block = b_pico_content_show(array($mydirname, $content_id, $template));
+		$block = b_pico_content_show([$mydirname, $content_id, $template]);
 		echo @$block['content'];
 	}
 }

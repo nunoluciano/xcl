@@ -1,13 +1,13 @@
 <?php
 
-$GLOBALS['pico_tables'] = array(
-	'category_permissions' => array(
+$GLOBALS['pico_tables'] = [
+    'category_permissions' => [
 		'cat_id',
 		'uid',
 		'groupid',
 		'permissions',
-	),
-	'categories' => array(
+    ],
+    'categories' => [
 		'cat_id',
 		'cat_permission_id',
 		'cat_vpath',
@@ -24,8 +24,8 @@ $GLOBALS['pico_tables'] = array(
 		'cat_modified_time',
 		'cat_vpath_mtime',
 		'cat_redundants',
-	),
-	'contents' => array(
+    ],
+    'contents' => [
 		'content_id',
 		'permission_id',
 		'vpath',
@@ -62,16 +62,16 @@ $GLOBALS['pico_tables'] = array(
 		'extra_fields',
 		'redundants',
 		'for_search',
-	),
-	'content_votes' => array(
+    ],
+    'content_votes' => [
 		'vote_id',
 		'content_id',
 		'uid',
 		'vote_point',
 		'vote_time',
 		'vote_ip',
-	),
-	'content_histories' => array(
+    ],
+    'content_histories' => [
 		'content_history_id',
 		'content_id',
 		'vpath',
@@ -86,24 +86,24 @@ $GLOBALS['pico_tables'] = array(
 		'htmlheader',
 		'body',
 		'filters',
-	),
-	'content_extras' => array(
+    ],
+    'content_extras' => [
 		'content_extra_id',
 		'content_id',
 		'extra_type',
 		'created_time',
 		'modified_time',
 		'data',
-	),
-	'tags' => array(
+    ],
+    'tags' => [
 		'label',
 		'weight',
 		'count',
 		'content_ids',
 		'created_time',
 		'modified_time',
-	),
-);
+    ],
+];
 
 function pico_import_errordie()
 {
@@ -117,13 +117,13 @@ function pico_import_errordie()
 function pico_import_from_smartsection($mydirname, $import_mid)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
-	$import_mid = intval($import_mid);
+	$import_mid = (int)$import_mid;
 
 	// get name of `contents` table 
 	$module_handler = &xoops_gethandler('module');
 	$module = &$module_handler->get($import_mid);
 	$from_tables = $module->getInfo('tables');
-	if (sizeof($from_tables) != 5) pico_import_errordie();
+	if (5 != count($from_tables)) pico_import_errordie();
 	$target_dirname = $module->getVar('dirname');
 
 	// categories
@@ -140,15 +140,15 @@ function pico_import_from_smartsection($mydirname, $import_mid)
 	$db->query("DELETE FROM `$to_table` WHERE cat_id>0");
 	$rs = $db->query("SELECT * FROM `$from_table` WHERE gperm_modid=$import_mid AND gperm_name='category_read'");
 	while ($row = $db->fetchArray($rs)) {
-		$permissions4sql = addslashes(serialize(array('can_read' => 1, 'can_readfull' => 1, 'can_post' => 0, 'can_edit' => 0, 'can_delete' => 0, 'post_auto_approved' => 0, 'is_moderator' => 0, 'can_makesubcategory' => 0)));
+		$permissions4sql = addslashes(serialize(['can_read' => 1, 'can_readfull' => 1, 'can_post' => 0, 'can_edit' => 0, 'can_delete' => 0, 'post_auto_approved' => 0, 'is_moderator' => 0, 'can_makesubcategory' => 0]));
 		$db->query("INSERT INTO `$to_table` SET cat_id={$row['gperm_itemid']},uid=NULL,groupid={$row['gperm_groupid']},permissions='$permissions4sql'");
 	}
 	// groupid=1
-	$permissions4sql = addslashes(serialize(array('can_read' => 1, 'can_readfull' => 1, 'can_post' => 1, 'can_edit' => 1, 'can_delete' => 1, 'post_auto_approved' => 1, 'is_moderator' => 1, 'can_makesubcategory' => 1)));
+	$permissions4sql = addslashes(serialize(['can_read' => 1, 'can_readfull' => 1, 'can_post' => 1, 'can_edit' => 1, 'can_delete' => 1, 'post_auto_approved' => 1, 'is_moderator' => 1, 'can_makesubcategory' => 1]));
 	$db->query("INSERT INTO `$to_table` (cat_id,uid,groupid,permissions) SELECT categoryid,NULL,1,'$permissions4sql' FROM " . $db->prefix($from_tables[0]));
 
 	// content_votes (delete all)
-	$db->query("DELETE FROM " . $db->prefix($mydirname . "_content_votes"));
+	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_content_votes'));
 
 	// contents (temporary body_waiting,body_cached for reconstruct filters)
 	$to_table = $db->prefix($mydirname . '_contents');
@@ -183,7 +183,7 @@ function pico_import_from_tinyd($mydirname, $import_mid)
 	// skip all
 
 	// content_votes (delete all)
-	$db->query("DELETE FROM " . $db->prefix($mydirname . "_content_votes"));
+	$db->query('DELETE FROM ' . $db->prefix($mydirname . '_content_votes'));
 
 	// contents (temporary body_waiting,body_cached for reconstruct filters)
 	$to_table = $db->prefix($mydirname . '_contents');
@@ -239,15 +239,15 @@ function pico_import_a_content_from_pico($mydirname, $import_mid, $content_id)
 	// contents table
 	$to_table = $db->prefix($mydirname . '_contents');
 	$from_table = $db->prefix($from_module->getVar('dirname') . '_contents');
-	$columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['contents'], array('content_id', 'cat_id')));
-	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,cat_id) SELECT $columns4sql,0 FROM `$from_table` WHERE content_id=" . intval($content_id));
+	$columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['contents'], ['content_id', 'cat_id']));
+	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,cat_id) SELECT $columns4sql,0 FROM `$from_table` WHERE content_id=" . (int)$content_id);
 	if (!$irs) pico_import_errordie();
 
 	// content_votes table
 	$new_content_id = $db->getInsertId();
 	$to_table = $db->prefix($mydirname . '_content_votes');
 	$from_table = $db->prefix($from_module->getVar('dirname') . '_content_votes');
-	$columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['content_votes'], array('vote_id', 'content_id')));
-	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,content_id) SELECT $columns4sql,$new_content_id FROM `$from_table` WHERE content_id=" . intval($content_id));
+	$columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['content_votes'], ['vote_id', 'content_id']));
+	$irs = $db->query("INSERT INTO `$to_table` ($columns4sql,content_id) SELECT $columns4sql,$new_content_id FROM `$from_table` WHERE content_id=" . (int)$content_id);
 	if (!$irs) pico_import_errordie();
 }

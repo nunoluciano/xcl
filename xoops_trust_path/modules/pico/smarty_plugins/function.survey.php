@@ -12,17 +12,16 @@ function smarty_function_survey($params, &$smarty)
 	$controller->execute($params, $smarty);
 }
 
-
 class PicoFormProcessBySmartySurvey extends PicoFormProcessBySmartyBase
 {
-	function __construct()
-	{
-		$this->mypluginname = 'survey';
-	}
+    public function __construct()
+    {
+        $this->mypluginname = 'survey';
+    }
 
-	function executeLast()
-	{
-		$this->sendMail();
-		$this->storeDB();
-	}
+    public function executeLast()
+    {
+        $this->sendMail();
+        $this->storeDB();
+    }
 }
