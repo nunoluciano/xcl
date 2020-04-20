@@ -8,16 +8,16 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_LOADED', 1);
 
     // The name of this module
-    define($constpref . "_NAME", "Forum");
+    define($constpref . '_NAME', 'Forum');
 
     // A brief description of this module
-    define($constpref . "_DESC", "Module to manage Comments and Forums.");
+    define($constpref . '_DESC', 'Module to manage Comments and Forums.');
 
     // Names of blocks for this module (Not all module has blocks)
-    define($constpref . "_BNAME_LIST_TOPICS", "Topics");
-    define($constpref . "_BDESC_LIST_TOPICS", "This block can be duplicated and used for multi-purpose.");
-    define($constpref . "_BNAME_LIST_POSTS", "Posts");
-    define($constpref . "_BNAME_LIST_FORUMS", "Forums");
+    define($constpref . '_BNAME_LIST_TOPICS', 'Topics');
+    define($constpref . '_BDESC_LIST_TOPICS', 'This block can be duplicated and used for multi-purpose.');
+    define($constpref . '_BNAME_LIST_POSTS', 'Posts');
+    define($constpref . '_BNAME_LIST_FORUMS', 'Forums');
 
     // admin menu
     define($constpref . '_ADMENU_CATEGORYACCESS', 'Permissions of Categories');
@@ -35,10 +35,10 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_SHOW_BREADCRUMBS', 'Display breadcrumbs');
     define($constpref . '_DEFAULT_OPTIONS', 'Default checked in post form');
     define($constpref . '_DEFAULT_OPTIONSDSC', 'List checked options separated by comma(,).<br />eg) smiley,xcode,br,number_entity<br />available options: special_entity html attachsig u2t_marked');
-    define($constpref . "_USENAME", "display name");
-    define($constpref . "_USENAMEDESC", "which name to use display name 'uname'(user ID) or 'name'(Real name). <br /> the default is 'uname'(user ID)");
-    define($constpref . "_USENAME_UNAME", "use'uname'(user ID)");
-    define($constpref . "_USENAME_NAME", "use'name'(Real name)");
+    define($constpref . '_USENAME', 'display name');
+    define($constpref . '_USENAMEDESC', "which name to use display name 'uname'(user ID) or 'name'(Real name). <br /> the default is 'uname'(user ID)");
+    define($constpref . '_USENAME_UNAME', "use'uname'(user ID)");
+    define($constpref . '_USENAME_NAME', "use'name'(Real name)");
     define($constpref . '_ALLOW_HTML', 'Allow HTML');
     define($constpref . '_ALLOW_HTMLDSC', 'Don\'t turn this on casually. It cause Script Insertion vulnerability if malicious user can post.');
     define($constpref . '_ALLOW_TEXTIMG', 'Allow to dipslay external images in the post');

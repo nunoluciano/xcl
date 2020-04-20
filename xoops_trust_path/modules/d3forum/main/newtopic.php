@@ -1,15 +1,15 @@
 <?php
 
-include dirname(dirname(__FILE__)).'/include/common_prepend.php' ;
+include dirname(__DIR__) . '/include/common_prepend.php' ;
 
-$forum_id = intval( @$_GET['forum_id'] ) ;
+$forum_id = (int)@$_GET['forum_id'];
 $external_link_id = @$_GET['external_link_id'] ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(dirname(__FILE__)).'/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
 
 // check post permission
 if( empty( $can_post ) ) die( _MD_D3FORUM_ERR_POSTFORUM ) ;
@@ -18,7 +18,7 @@ if( ! empty( $forum_row['forum_external_link_format'] ) && empty( $external_link
 // get external ID and validate it
 if( $external_link_id ) {
 	$d3com = d3forum_main_get_comment_object( $mydirname , $forum_row['forum_external_link_format'] , $forum_id ) ;
-	if( ( $external_link_id = $d3com->validate_id( $external_link_id ) ) === false ) {
+	if(false === ( $external_link_id = $d3com->validate_id($external_link_id ) )) {
 		die( _MD_D3FORUM_ERR_INVALIDEXTERNALLINKID ) ;
 	}
 }
@@ -31,9 +31,8 @@ $message4html = '' ;
 $topic_id = 0 ;
 $invisible = 0 ;
 $approval = 1 ;
-// specific default options for newtopic
 $post_default_options = array_map( 'trim' , explode( ',' , strtolower( @$xoopsModuleConfig['default_options'] ) ) ) ;
-foreach( array( 'smiley' , 'xcode' , 'br' , 'number_entity' , 'special_entity' , 'html' , 'attachsig' , 'hide_uid' , 'notify' , 'u2t_marked' ) as $key ) {
+foreach(['smiley', 'xcode', 'br', 'number_entity', 'special_entity', 'html', 'attachsig', 'hide_uid', 'notify', 'u2t_marked'] as $key ) {
 	$$key = in_array( $key , $post_default_options ) ? 1 : 0 ;
 }
 if( is_object( @$GLOBALS['xoopsUser'] ) ) $attachsig |= $GLOBALS['xoopsUser']->getVar('attachsig') ;
@@ -41,6 +40,6 @@ if( is_object( @$GLOBALS['xoopsUser'] ) ) $attachsig |= $GLOBALS['xoopsUser']->g
 $formTitle = $external_link_id ? _MD_D3FORUM_POSTASCOMMENTTOP : _MD_D3FORUM_POSTASNEWTOPIC ;
 $mode = 'newtopic' ;
 
-include dirname(dirname(__FILE__)).'/include/display_post_form.inc.php' ;
+include dirname(__DIR__) . '/include/display_post_form.inc.php' ;
 
 ?>

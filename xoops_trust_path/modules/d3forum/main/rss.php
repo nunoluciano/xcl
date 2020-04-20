@@ -5,12 +5,12 @@
 //$xoopsErrorHandler->activate(true);
 
 $cache_min = 5;
-$cat_ids = array();
+$cat_ids = [];
 
 require_once $mytrustdirpath.'/include/rss_functions.php';
 
-$forum = (!empty($_GET['forum_id']))? intval($_GET['forum_id']) : 0;
-if (! $forum ) $forum = (!empty($_GET['forum']))? intval($_GET['forum']) : 0;
+$forum = (!empty($_GET['forum_id']))? (int)$_GET['forum_id'] : 0;
+if (! $forum ) $forum = (!empty($_GET['forum']))? (int)$_GET['forum'] : 0;
 
 if ($forum) {
 	$cat = '0';
@@ -22,21 +22,21 @@ if ($forum) {
 	if ($cat) {
 		$cat = preg_replace('/[^0-9,]+/', '', $cat);
 
-		$cat_ids = array() ;
+		$cat_ids = [];
 		foreach( explode( ',' , $cat ) as $_id ) {
 			if( $_id > 0 ) {
-				$cat_ids[] = intval( $_id ) ;
+				$cat_ids[] = (int)$_id;
 			}
 		}
 		$cat_ids = array_unique($cat_ids);
 		sort($cat_ids);
-		$cat = ($cat_ids)? join(',', $cat_ids) : '0';
+		$cat = ($cat_ids)? implode(',', $cat_ids) : '0';
 	}
 }
 
 $e = (!empty($_GET['e']))? $_GET['e'] : '';
 
-if ($e === 'sjis') {
+if ('sjis' === $e) {
 	$encode = 'SJIS';
 	$encoding = 'Shift-JIS';
 } else {
@@ -50,7 +50,7 @@ if (defined('XOOPS_CACHE_PATH')) {
 	$c_file = XOOPS_ROOT_PATH . '/cache/' . $mydirname . '_' . $cat . '_' . $forum . $ssl . '.rss';
 }
 
-$outputs = array();
+$outputs = [];
 if (file_exists($c_file) && (filemtime($c_file) + $cache_min * 60) > time()) {
 	$outputs = unserialize(file_get_contents($c_file));
 	$outputs['b_time'] = filemtime($c_file);
@@ -62,12 +62,12 @@ if (!isset($outputs['data'])) {
 	$forum_title = '';
 
 	if ($data) {
-		if (sizeof($cat_ids) > 1) {
-			$_titles = array();
+		if (count($cat_ids) > 1) {
+			$_titles = [];
 			foreach($data as $item) {
 				$_titles[] = $item['cat_title'];
 			}
-			$cat_title = join(', ', array_unique($_titles));
+			$cat_title = implode(', ', array_unique($_titles));
 		} else {
 			$cat_title = $data[0]['cat_title'];
 		}
@@ -84,22 +84,22 @@ if (!isset($outputs['data'])) {
 	$top_link = XOOPS_URL.'/modules/'.$mydirname.'/'.$top_link;
 
 	foreach($data as $key => $item) {
-		$subtitles = array();
-		if ((!$cat || sizeof($cat_ids) > 1) && !$forum) $subtitles[] = $item['cat_title'];
+		$subtitles = [];
+		if ((!$cat || count($cat_ids) > 1) && !$forum) $subtitles[] = $item['cat_title'];
 		if (!$forum) $subtitles[] = $item['forum_title'];
-		$data[$key]['subject'] = htmlspecialchars(($subtitles? '[' . join(':',$subtitles) . '] ' : '') . $item['subject'], ENT_COMPAT, _CHARSET);
+		$data[$key]['subject'] = htmlspecialchars(($subtitles? '[' . implode(':', $subtitles) . '] ' : '') . $item['subject'], ENT_COMPAT, _CHARSET);
 		$data[$key]['context'] = htmlspecialchars(d3forum_make_context(strip_tags($item['description'])), ENT_COMPAT, _CHARSET);
 		$data[$key]['cat_title'] = htmlspecialchars($item['cat_title'], ENT_COMPAT, _CHARSET);
 		$data[$key]['forum_title'] = htmlspecialchars($item['forum_title'], ENT_COMPAT, _CHARSET);
 	}
 
-	$outputs = array(
+	$outputs = [
 		'encoding' => $encoding,
 		'title' => $title,
 		'top_link' => $top_link,
 		'b_time' => $b_time,
 		'data' => $data
-	);
+    ];
 	
 	if (is_writable($c_file)) {
 		file_put_contents($c_file, serialize($outputs));
@@ -116,7 +116,7 @@ $xoopsTpl->assign( $outputs );
 
 // RSS Build
 $out = $xoopsTpl->fetch( 'db:'.$mydirname.'_main_rss.html' ) ;
-if ($encode !== _CHARSET) {
+if (_CHARSET !== $encode) {
 	$out = mb_convert_encoding($out, $encode, _CHARSET);
 }
 

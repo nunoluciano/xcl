@@ -1,7 +1,7 @@
 <?php
 
-$GLOBALS['d3forum_tables'] = array(
-	'category_access' => array(
+$GLOBALS['d3forum_tables'] = [
+	'category_access' => [
 		'cat_id' ,
 		'uid' ,
 		'groupid' ,
@@ -11,8 +11,8 @@ $GLOBALS['d3forum_tables'] = array(
 		'post_auto_approved' ,
 		'can_makeforum' ,
 		'is_moderator' ,
-	) ,
-	'forum_access' => array(
+    ],
+	'forum_access' => [
 		'forum_id' ,
 		'uid' ,
 		'groupid' ,
@@ -21,8 +21,8 @@ $GLOBALS['d3forum_tables'] = array(
 		'can_delete' ,
 		'post_auto_approved' ,
 		'is_moderator' ,
-	) ,
-	'categories' => array(
+    ],
+	'categories' => [
 		'cat_id' ,
 		'pid' ,
 		'cat_title' ,
@@ -41,8 +41,8 @@ $GLOBALS['d3forum_tables'] = array(
 		'cat_unique_path' ,
 		'cat_weight' ,
 		'cat_options' ,
-	) ,
-	'forums' => array(
+    ],
+	'forums' => [
 		'forum_id' ,
 		'cat_id' ,
 		'forum_external_link_format' ,
@@ -54,8 +54,8 @@ $GLOBALS['d3forum_tables'] = array(
 		'forum_last_post_time' ,
 		'forum_weight' ,
 		'forum_options' ,
-	) ,
-	'topics' => array(
+    ],
+	'topics' => [
 		'topic_id' ,
 		'forum_id' ,
 		'topic_external_link_id' ,
@@ -74,8 +74,8 @@ $GLOBALS['d3forum_tables'] = array(
 		'topic_invisible' ,
 		'topic_votes_sum' ,
 		'topic_votes_count' ,
-	) ,
-	'posts' => array(
+    ],
+	'posts' => [
 		'post_id' ,
 		'pid' ,
 		'topic_id' ,
@@ -110,29 +110,29 @@ $GLOBALS['d3forum_tables'] = array(
 		'guest_trip' ,
 		'post_text' ,
 		'post_text_waiting' ,
-	) ,
-	'users2topics' => array(
+    ],
+	'users2topics' => [
 		'uid' ,
 		'topic_id' ,
 		'u2t_time' ,
 		'u2t_marked' ,
 		'u2t_rsv' ,
-	) ,
-	'post_votes' => array(
+    ],
+	'post_votes' => [
 		'vote_id' ,
 		'post_id' ,
 		'uid' ,
 		'vote_point' ,
 		'vote_time' ,
 		'vote_ip' ,
-	) ,
-	'post_histories' => array(
+    ],
+	'post_histories' => [
 		'history_id' ,
 		'post_id' ,
 		'history_time' ,
 		'data' ,
-	) ,
-) ;
+    ],
+];
 
 
 function d3forum_import_getimportablemodules( $mydirname )
@@ -141,7 +141,7 @@ function d3forum_import_getimportablemodules( $mydirname )
 	$module_handler =& xoops_gethandler( 'module' ) ;
 	$modules = $module_handler->getObjects() ;
 
-	$ret = array() ;
+	$ret = [];
 
 	foreach( $modules as $module ) {
 		$mid = $module->getVar('mid') ;
@@ -151,14 +151,14 @@ function d3forum_import_getimportablemodules( $mydirname )
 		if( file_exists( $dirpath.'/mytrustdirname.php' ) ) {
 			include $dirpath.'/mytrustdirname.php' ;
 		}
-		if( $mytrustdirname == 'd3forum' && $dirname != $mydirname ) {
+		if('d3forum' == $mytrustdirname && $dirname != $mydirname ) {
 			// d3forum
 			$ret[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
-		} else if( $dirname == 'xhnewbb' ) {
+		} else if('xhnewbb' == $dirname) {
 			// xhnewbb
 			$ret[$mid] = 'xhnewbb:'.$module->getVar('name')."($dirname)" ;
-		} else if( $dirname == 'newbb' ) {
-			$judge_sql = "SELECT COUNT(*) FROM ".$db->prefix("bb_votedata") ;
+		} else if('newbb' == $dirname) {
+			$judge_sql = 'SELECT COUNT(*) FROM ' . $db->prefix('bb_votedata') ;
 			$judge_result = $db->query( $judge_sql ) ;
 			if( $judge_result ) {
 				// CBB3?
@@ -194,7 +194,7 @@ function d3forum_import_from_cbb3( $mydirname , $import_mid )
 	// get group_ids
 	$group_handler =& xoops_gethandler( 'group' ) ;
 	$group_objects = $group_handler->getObjects() ;
-	$group_ids = array() ;
+	$group_ids = [];
 	foreach( $group_objects as $group_object ) {
 		$group_ids[] = $group_object->getVar('groupid') ;
 	}
@@ -267,7 +267,7 @@ function d3forum_import_from_newbb1( $mydirname , $import_mid )
 	// get group_ids
 	$group_handler =& xoops_gethandler( 'group' ) ;
 	$group_objects = $group_handler->getObjects() ;
-	$group_ids = array() ;
+	$group_ids = [];
 	foreach( $group_objects as $group_object ) {
 		$group_ids[] = $group_object->getVar('groupid') ;
 	}
@@ -327,7 +327,7 @@ function d3forum_import_from_newbb1( $mydirname , $import_mid )
 				} */
 			} else {
 				$can_post = 1 ;
-				if( ( $groupid == 3 && $forum_access == 1 ) || $forum_access == 3 ) {
+				if((3 == $groupid && 1 == $forum_access) || 3 == $forum_access) {
 					$can_post = 0 ;
 				}
 				$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,null,$groupid,$can_post,$can_post,$can_post,1,0)" ) ;
@@ -370,7 +370,7 @@ function d3forum_import_from_xhnewbb( $mydirname , $import_mid )
 	// get group_ids
 	$group_handler =& xoops_gethandler( 'group' ) ;
 	$group_objects = $group_handler->getObjects() ;
-	$group_ids = array() ;
+	$group_ids = [];
 	foreach( $group_objects as $group_object ) {
 		$group_ids[] = $group_object->getVar('groupid') ;
 	}
@@ -430,7 +430,7 @@ function d3forum_import_from_xhnewbb( $mydirname , $import_mid )
 				}
 			} else {
 				$can_post = 1 ;
-				if( ( $groupid == 3 && $forum_access == 1 ) || $forum_access == 3 ) {
+				if((3 == $groupid && 1 == $forum_access) || 3 == $forum_access) {
 					$can_post = 0 ;
 				}
 				$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,null,$groupid,$can_post,$can_post,$can_post,1,0)" ) ;
@@ -489,9 +489,9 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	$db =& Database::getInstance() ;
 
 	// check forum_id
-	$frs = $db->query( "SELECT * FROM ".$db->prefix($mydirname."_forums")." WHERE forum_id=$forum_id" ) ;
+	$frs = $db->query('SELECT * FROM ' . $db->prefix($mydirname . '_forums') . " WHERE forum_id=$forum_id" ) ;
 	if( ! $frs ) d3forum_import_errordie() ;
-	if( $db->getRowsNum( $frs ) != 1 ) die( 'Invalid forum_id' ) ;
+	if(1 != $db->getRowsNum($frs )) die( 'Invalid forum_id' ) ;
 
 	// get comments configs from xoops_version.php of the module
 	$module_handler =& xoops_gethandler( 'module' ) ;
@@ -500,16 +500,16 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	$com_configs = $module_obj->getInfo('comments') ;
 
 	// get exparams (consider it as "static" like "page=article&")
-	$ers = $db->query( "SELECT distinct com_exparams FROM ".$db->prefix("xoopscomments")." WHERE com_modid=$mid AND LENGTH(`com_exparams`) > 5 LIMIT 1" ) ;
+	$ers = $db->query('SELECT distinct com_exparams FROM ' . $db->prefix('xoopscomments') . " WHERE com_modid=$mid AND LENGTH(`com_exparams`) > 5 LIMIT 1" ) ;
 	list( $exparam ) = $db->fetchRow( $ers ) ;
 	if( empty( $exparam ) ) $exparam = '' ;
 	else $exparam = str_replace( '&amp;' , '&' , $exparam ) ;
 
-	if( substr( $exparam , -1 ) != '&' ) $exparam .= '&' ;
+	if('&' != substr($exparam , -1 )) $exparam .= '&' ;
 
 	// import it into the forum record as format
 	$format = '{XOOPS_URL}/modules/'.$module_obj->getVar('dirname').'/'.$com_configs['pageName'].'?'.$exparam.$com_configs['itemName'].'=%s' ;
-	$frs = $db->query( "UPDATE ".$db->prefix($mydirname."_forums")." SET forum_external_link_format='".addslashes($format)."' WHERE forum_id=$forum_id" ) ;
+	$frs = $db->query('UPDATE ' . $db->prefix($mydirname . '_forums') . " SET forum_external_link_format='" . addslashes($format) . "' WHERE forum_id=$forum_id" ) ;
 	if( ! $frs ) d3forum_import_errordie() ;
 
 	// import topics
@@ -518,10 +518,10 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 	$crs = $db->query( "SELECT com_id,com_itemid,com_title FROM `$from_table` WHERE com_modid=$mid AND com_pid=0" ) ;
 	if( ! $crs ) d3forum_import_errordie() ;
 	while( $row = $db->fetchArray( $crs ) ) {
-		$trs = $db->query( "INSERT INTO `$to_table` SET forum_id=$forum_id,topic_external_link_id=".intval($row['com_itemid']).",topic_title='".addslashes($row['com_title'])."'" ) ;
+		$trs = $db->query("INSERT INTO `$to_table` SET forum_id=$forum_id,topic_external_link_id=" . (int)$row['com_itemid'] . ",topic_title='" . addslashes($row['com_title']) . "'" ) ;
 		if( ! $trs ) d3forum_import_errordie() ;
 		$topic_id = $db->getInsertId() ;
-		d3forum_comimport_posts_recursive( $mydirname , $topic_id , intval( $row['com_id'] ) ) ;
+		d3forum_comimport_posts_recursive($mydirname , $topic_id , (int)$row['com_id']) ;
 		d3forum_sync_topic( $mydirname , $topic_id ) ;
 	}
 }
@@ -556,7 +556,7 @@ function d3forum_export_forum_to_d3forum( $mydirname , $export_mid , $export_cat
 	$table_name = 'forums' ;
 	$from_table = $db->prefix( $mydirname.'_'.$table_name ) ;
 	$to_table = $db->prefix( $export_mydirname.'_'.$table_name ) ;
-	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , array( 'forum_id' , 'cat_id' ) ) ;
+	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , ['forum_id', 'cat_id']) ;
 	$columns4sql = implode( ',' , $columns ) ;
 	$sql = "INSERT INTO `$to_table` ($columns4sql,`cat_id`) SELECT $columns4sql,$export_cat_id FROM `$from_table` WHERE forum_id=$forum_id" ;
 	$ers = $db->query( $sql ) ;
@@ -567,7 +567,7 @@ function d3forum_export_forum_to_d3forum( $mydirname , $export_mid , $export_cat
 	$table_name = 'forum_access' ;
 	$from_table = $db->prefix( $mydirname.'_'.$table_name ) ;
 	$to_table = $db->prefix( $export_mydirname.'_'.$table_name ) ;
-	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , array( 'forum_id' ) ) ;
+	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , ['forum_id']) ;
 	$columns4sql = implode( ',' , $columns ) ;
 	$sql = "INSERT INTO `$to_table` ($columns4sql,`forum_id`) SELECT $columns4sql,$export_forum_id FROM `$from_table` WHERE forum_id=$forum_id" ;
 	$ers = $db->query( $sql ) ;
@@ -595,7 +595,7 @@ function d3forum_export_topic_to_d3forum( $mydirname , $export_mid , $export_for
 	$table_name = 'topics' ;
 	$from_table = $db->prefix( $mydirname.'_'.$table_name ) ;
 	$to_table = $db->prefix( $export_mydirname.'_'.$table_name ) ;
-	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , array( 'topic_id' , 'forum_id' ) ) ;
+	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , ['topic_id', 'forum_id']) ;
 	$columns4sql = implode( ',' , $columns ) ;
 	$sql = "INSERT INTO `$to_table` ($columns4sql,`forum_id`) SELECT $columns4sql,$export_forum_id FROM `$from_table` WHERE topic_id=$topic_id" ;
 	$ers = $db->query( $sql ) ;
@@ -606,7 +606,7 @@ function d3forum_export_topic_to_d3forum( $mydirname , $export_mid , $export_for
 	$table_name = 'users2topics' ;
 	$from_table = $db->prefix( $mydirname.'_'.$table_name ) ;
 	$to_table = $db->prefix( $export_mydirname.'_'.$table_name ) ;
-	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , array( 'topic_id' ) ) ;
+	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , ['topic_id']) ;
 	$columns4sql = implode( ',' , $columns ) ;
 	$sql = "INSERT INTO `$to_table` ($columns4sql,`topic_id`) SELECT $columns4sql,$export_topic_id FROM `$from_table` WHERE topic_id=$topic_id" ;
 	$ers = $db->query( $sql ) ;
@@ -616,10 +616,10 @@ function d3forum_export_topic_to_d3forum( $mydirname , $export_mid , $export_for
 	$table_name = 'posts' ;
 	$from_table = $db->prefix( $mydirname.'_'.$table_name ) ;
 	$to_table = $db->prefix( $export_mydirname.'_'.$table_name ) ;
-	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , array( 'post_id' , 'topic_id' ) ) ;
+	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , ['post_id', 'topic_id']) ;
 	$columns4sql = implode( ',' , $columns ) ;
 	$prs = $db->query( "SELECT post_id FROM `$from_table` WHERE topic_id=$topic_id ORDER BY post_id" ) ;
-	$post_conversions = array() ;
+	$post_conversions = [];
 	while( list( $post_id ) = $db->fetchRow( $prs ) ) {
 		$sql = "INSERT INTO `$to_table` ($columns4sql,`topic_id`) SELECT $columns4sql,$export_topic_id FROM `$from_table` WHERE post_id=$post_id" ;
 		$ers = $db->query( $sql ) ;
@@ -637,7 +637,7 @@ function d3forum_export_topic_to_d3forum( $mydirname , $export_mid , $export_for
 	$table_name = 'post_votes' ;
 	$from_table = $db->prefix( $mydirname.'_'.$table_name ) ;
 	$to_table = $db->prefix( $export_mydirname.'_'.$table_name ) ;
-	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , array( 'post_id' ) ) ;
+	$columns = array_diff( $GLOBALS['d3forum_tables'][$table_name] , ['post_id']) ;
 	$columns4sql = implode( ',' , $columns ) ;
 	foreach( $post_conversions as $post_id => $export_post_id ) {
 		$sql = "INSERT INTO `$to_table` ($columns4sql,`post_id`) SELECT $columns4sql,$export_post_id FROM `$from_table` WHERE post_id=$post_id" ;

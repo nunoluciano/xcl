@@ -6,10 +6,9 @@ $d3forum_configs_can_be_override = [
 	'allow_textimg' => 'bool' ,
 	'allow_sig' => 'bool' ,
 	'allow_sigimg' => 'bool' ,
-	'body_editor' => 'text' ,
-	'topics_per_page' => 'int' ,	
-	'posts_per_topic' => 'int' ,	
+	'posts_per_topic' => 'int' ,
 	'hot_threshold' => 'int' ,
+	'topics_per_page' => 'int' ,
 	'use_vote' => 'bool' ,
 	'use_solved' => 'bool' ,
 	'allow_mark' => 'bool' ,
@@ -19,9 +18,10 @@ $d3forum_configs_can_be_override = [
 	'selfdellimit' => 'int' ,
 	'css_uri' => 'text' ,
 	'images_dir' => 'text' ,
+	'body_editor' => 'text' ,
 	'anonymous_name' => 'text' ,
 	'icon_meanings' => 'text' ,
 	'guest_vote_interval' => 'int' ,
-	] ;
+];
 
 ?>
