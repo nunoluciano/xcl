@@ -21,10 +21,10 @@
 class XCube_Validator
 {
     /**
-     * 
+     *
      * @param XCube_FormProperty $form
-     * @param array              $vars   variables of this field property.
-     * @return bool
+     * @param array              $vars variables of this field property.
+     * @return void
      */
     public function isValid(&$form, $vars)
     {
@@ -94,7 +94,7 @@ class XCube_IntRangeValidator extends XCube_Validator
         if ($form->isNull()) {
             return true;
         } else {
-            return (intval($form->toNumber()) >= $vars['min'] && intval($form->toNumber()) <= $vars['max']);
+            return ((int)$form->toNumber() >= $vars['min'] && (int)$form->toNumber() <= $vars['max']);
         }
     }
 }
@@ -130,11 +130,11 @@ class XCube_ExtensionValidator extends XCube_Validator
         if ($form->isNull()) {
             return true;
         } else {
-            if (!is_a($form, "XCube_FileProperty")) {
+            if (!$form instanceof \XCube_FileProperty) {
                 return true;
             }
             
-            $extArr = explode(",", $vars['extension']);
+            $extArr = explode(',', $vars['extension']);
             foreach ($extArr as $ext) {
                 if (strtolower($form->mValue->getExtension()) == strtolower($ext)) {
                     return true;
@@ -153,7 +153,7 @@ class XCube_MaxfilesizeValidator extends XCube_Validator
         if ($form->isNull()) {
             return true;
         } else {
-            if (!is_a($form, "XCube_FileProperty")) {
+            if (!$form instanceof \XCube_FileProperty) {
                 return true;
             }
             

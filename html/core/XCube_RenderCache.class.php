@@ -18,7 +18,8 @@ class XCube_RenderCache
     }
 
     /**
-     * @return bool
+     * @param null $cachetime
+     * @return void
      */
     public function isCache($cachetime = null)
     {
@@ -55,7 +56,7 @@ class XCube_RenderCache
     {
         if ($this->enableCache()) {
             $filename = $this->_getFileName();
-            $fp = fopen($filename, "wb");
+            $fp = fopen($filename, 'wb');
             fwrite($fp, $renderTarget->getResult());
             fclose($fp);
         }

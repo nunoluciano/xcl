@@ -17,13 +17,13 @@ class XCube_Identity
      * A name of the identity.
      * @var string
      */
-    public $mName = "";
+    public $mName = '';
     
     /**
      * The authentication type
      * @var string
      */
-    public $_mAuthenticationType = "";
+    public $_mAuthenticationType = '';
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Identity()
@@ -47,9 +47,10 @@ class XCube_Identity
     {
         return $this->_mAuthenticationType;
     }
-    
+
     /**
      * Sets a name of this object.
+     * @param $name
      */
     public function setName($name)
     {
@@ -65,11 +66,11 @@ class XCube_Identity
     {
         return $this->mName;
     }
-    
+
     /**
      * Gets a value that indicates whether the user has been authenticated.
      *
-     * @return bool
+     * @return void
      */
     public function isAuthenticated()
     {
@@ -90,9 +91,9 @@ class XCube_Principal
      * Roles in this object.
      * @var string[]
      */
-    public $_mRoles = array();
+    public $_mRoles = [];
     // !Fix PHP7 NOTICE: deprecated constructor
-    public function __construct($identity, $roles = array())
+    public function __construct($identity, $roles = [])
     //public function XCube_Principal($identity, $roles = array())
     {
         $this->mIdentity =& $identity;
@@ -107,12 +108,13 @@ class XCube_Principal
     {
         return $this->mIdentity;
     }
-    
+
     /**
      * Gets a value that indicates whether this principal has a role specified by $rolename.
      *
+     *
+     * @return void
      * @var string $rolename
-     * @return bool
      */
     public function isInRole($rolename)
     {

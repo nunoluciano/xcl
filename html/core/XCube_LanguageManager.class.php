@@ -13,14 +13,14 @@
  * components, this class loads files, or checks the existence of the specified
  * resource, or composes filepath to access real files. And, it manages some
  * locale informations.
- *
- * Rules about language are different at each bases. So it's important that a
+ * 
+ * Rules about language are different at each bases. So it's important that a 
  * base defines the sub class of this class if it can't use this class directly.
- *
+ * 
  * And, XCube or bases have to make each languages possible to have its sub
  * class. By that, languages become able to implement their logic to solve
  * problems.
- *
+ * 
  * This class calls sub directories of each languages 'section'. 'section' is
  * used to load image files and etc.
  */
@@ -31,7 +31,7 @@ class XCube_LanguageManager
      * @var string
      */
     public $mLanguageName;
-
+    
     /**
      * @access protected
      * @var string
@@ -55,16 +55,16 @@ class XCube_LanguageManager
     /**
      * Set locale name.
      *
-     * @param string $local locale name
+     * @param $locale
      */
     public function setLocale($locale)
     {
         $this->mLanguageName = $locale;
     }
-
+    
     /**
      * Get locale name.
-     *
+     * 
      * @return string  locale name
      */
     public function getLocale()
@@ -74,17 +74,17 @@ class XCube_LanguageManager
 
     /**
      * Set language name.
-     *
+     * 
      * @param string $language language name
      */
     public function setLanguage($language)
     {
         $this->mLanguageName = $language;
     }
-
+    
     /**
      * Get language name.
-     *
+     * 
      * @return string  language name
      */
     public function getLanguage()
@@ -98,20 +98,20 @@ class XCube_LanguageManager
     public function loadGlobalMessageCatalog()
     {
     }
-
+    
     /**
      * Load the module message catalog which is defined in the specified
      * module.
-     *
+     * 
      * @param string $moduleName A name of module.
      */
     public function loadModuleMessageCatalog($moduleName)
     {
     }
-
+    
     /**
      * Load the theme message catalog which is defined in the specified module.
-     *
+     * 
      * @param string $themeName A name of theme.
      */
     public function loadThemeMessageCatalog($themeName)
@@ -124,15 +124,15 @@ class XCube_LanguageManager
      * @access public
      * @param string $section  A name of section.
      * @param string $filename A name of file
-     * @return bool
+     * @return void
      */
     public function existFile($section, $filename)
     {
     }
-
+    
     /**
      * Return the file path by the specified section and the specified file.
-     *
+     * 
      * @access public
      * @param string $section  A name of section.
      * @param string $filename A name of file
@@ -144,7 +144,7 @@ class XCube_LanguageManager
 
     /**
      * Get file contents and return it.
-     *
+     * 
      * @access public
      * @param string $section  A name of section.
      * @param string $filename A name of file
@@ -156,10 +156,10 @@ class XCube_LanguageManager
 
     /**
      * Return translated message.
-     *
+     * 
      * @param  string $word
      * @return string
-     *
+     * 
      * @note This member function is test.
      */
     public function translate($word)
@@ -169,7 +169,7 @@ class XCube_LanguageManager
 
     /**
      * Return default language name.
-     *
+     * 
      * @access protected
      * @return string
      */
@@ -180,7 +180,7 @@ class XCube_LanguageManager
 
     /**
      * Return default locale name.
-     *
+     * 
      * @access protected
      * @return string
      */
@@ -188,7 +188,7 @@ class XCube_LanguageManager
     {
         return "EN"; // !Todo check UTF-8
     }
-
+    
     public function encodeUTF8($str)
     {
         return $str;

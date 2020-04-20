@@ -8,8 +8,8 @@
  *
  */
 
-define("XCUBE_CONTEXT_TYPE_DEFAULT", "web_browser");
-define("XCUBE_CONTEXT_TYPE_WEB_SERVICE", "web_service");
+define('XCUBE_CONTEXT_TYPE_DEFAULT', 'web_browser');
+define('XCUBE_CONTEXT_TYPE_WEB_SERVICE', 'web_service');
 
 /**
  * Encapsulates major HTTP specific information about a HTTP request.
@@ -24,7 +24,7 @@ class XCube_HttpContext
      * @var Array
      * @access protected
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     
     /**
      * The object which enables to read the request values.
@@ -122,11 +122,11 @@ class XCube_HttpContext
     {
         $this->mUser =& $principal;
     }
-    
+
     /**
      * Gets the object which has a interface of XCube_Principal.
      *
-     * @return XCube_AbstractPrincipal
+     * @return \XCube_Principal
      */
     public function &getUser()
     {
@@ -136,7 +136,7 @@ class XCube_HttpContext
     /**
      * Set the theme name.
      * 
-     * @param $theme string
+     * @param string $theme
      * @deprecated
      */
     public function setThemeName($theme)
@@ -219,7 +219,7 @@ class XCube_GenericRequest extends XCube_AbstractRequest
      * Hash map which stores registered values.
      * @var Array
      */
-    public $mAttributes = array();
+    public $mAttributes = [];
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($arr = null)  
     //public function XCube_GenericRequest($arr = null)

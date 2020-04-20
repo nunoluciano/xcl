@@ -9,7 +9,7 @@
  */
 
 if (!defined('XCUBE_CORE_PATH')) {
-    define('XCUBE_CORE_PATH', dirname(__FILE__));
+    define('XCUBE_CORE_PATH', __DIR__);
 }
 
 require_once XCUBE_CORE_PATH . '/XCube_Root.class.php';
@@ -65,7 +65,7 @@ class XCube_Controller
      *
      * @var Array
      */
-    public $_mBlockChain = array();
+    public $_mBlockChain = [];
     
     
     /**
@@ -76,7 +76,7 @@ class XCube_Controller
      *	   typedef std:vector<XCube_ActionFilter*> FilterList; \n
      *	   FilterList _mFilterChain; \n
      */
-    public $_mFilterChain = array();
+    public $_mFilterChain = [];
     
     /**
      * This is Map-Array to keep names of action filter classes which are
@@ -84,7 +84,7 @@ class XCube_Controller
      * 
      * @protected
      */
-    public $_mLoadedFilterNames = array();
+    public $_mLoadedFilterNames = [];
     
     /**
      * The database object which is abstract layer for the database.
@@ -136,9 +136,9 @@ class XCube_Controller
     public function __construct()
     //public function XCube_Controller()
     {
-        $this->_mBlockChain = array();
-        $this->_mFilterChain = array();
-        $this->_mLoadedFilterNames = array();
+        $this->_mBlockChain = [];
+        $this->_mFilterChain = [];
+        $this->_mLoadedFilterNames = [];
         
         $this->mSetupUser = new XCube_Delegate();
         $this->mExecute = new XCube_Delegate();
@@ -238,7 +238,7 @@ class XCube_Controller
     public function executeForward($url, $time = 0, $message = null)
     {
         // check header output
-        header("location: " . $url);
+        header('location: ' . $url);
         exit();
     }
     
@@ -256,7 +256,7 @@ class XCube_Controller
     
     /**
      * Adds the ActionFilter instance.
-     * @param $filter XCube_ActionFilter
+     * @param XCube_ActionFilter $filter
      */
     public function addActionFilter(&$filter)
     {
@@ -428,11 +428,11 @@ class XCube_Controller
      * chain.
      *
      * @access protected
-     * @param $path string Absolute path.
+     * @param string $path Absolute path.
      */
     public function _processPreload($path)
     {
-        $path = $path . "/";
+        $path = $path . '/';
         
         if (is_dir($path) && ($files = glob($path.'/*.class.php'))) {
             foreach ($files as $file) {
