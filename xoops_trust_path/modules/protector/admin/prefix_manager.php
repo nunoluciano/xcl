@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(dirname(__FILE__)).'/class/gtickets.php' ;
-require_once dirname(dirname(__FILE__)).'/class/dbIntegrate.php' ;
+require_once dirname(__DIR__) . '/class/gtickets.php' ;
+require_once dirname(__DIR__) . '/class/dbIntegrate.php' ;
 $db =& Database::getInstance() ;
 
 // COPY TABLES
@@ -21,7 +21,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     $srs = $db->queryF('SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`') ;
 
     if (! $db->getRowsNum($srs)) {
-        die("You are not allowed to copy tables") ;
+        die('You are not allowed to copy tables') ;
     }
 
     $count = 0;
@@ -73,8 +73,8 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
 
     $dbIntegrate = new protectorDbIntegrate($db->conn);
 
-    $prefix = $_POST['prefix'] ; //check line 61
-    //HACK by suin & nao-pon 2012/01/06
+    $prefix = $_POST['prefix'] ;//check line 61
+//HACK by suin & nao-pon 2012/01/06
     while (ob_get_level() > 0) {
         if (! ob_end_clean()) {
             break;
@@ -84,7 +84,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     // get table list
     $srs = $db->queryF('SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`') ;
     if (! $db->getRowsNum($srs)) {
-        die("You are not allowed to delete tables") ;
+        die('You are not allowed to delete tables') ;
     }
 
     $export_string = '' ;
@@ -105,35 +105,35 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
         $db->freeRecordSet($drs) ;
         $result = $db->query("SELECT * FROM `$table`") ;
         $fields_cnt = $db->getFieldsNum($result) ;
-        $field_flags = array();
+        $field_flags = [];
         for ($j = 0; $j < $fields_cnt; $j++) {
             $field_flags[$j] = $dbIntegrate->fieldFlags($result, $j) ;
         }
-        $search = array("\x00", "\x0a", "\x0d", "\x1a");
-        $replace = array('\0', '\n', '\r', '\Z');
+        $search = ["\x00", "\x0a", "\x0d", "\x1a"];
+        $replace = ['\0', '\n', '\r', '\Z'];
         $current_row = 0;
         while ($row = $db->fetchRow($result)) {
             $current_row ++ ;
             for ($j = 0 ; $j < $fields_cnt ; $j ++) {
                 $fields_meta = $dbIntegrate->fetchField($result, $j) ;
                 // NULL
-                if (!isset($row[$j]) || is_null($row[$j])) {
+                if (!isset($row[$j]) || null === $row[$j]) {
                     $values[] = 'NULL';
                 // a number
                 // timestamp is numeric on some MySQL 4.1
-                } elseif (preg_match('/^[0-9]+(?:\.[0-9]+)?$/', $row[$j]) && $fields_meta->type != 'timestamp') {
+                } elseif (preg_match('/^[0-9]+(?:\.[0-9]+)?$/', $row[$j]) && 'timestamp' != $fields_meta->type) {
                     $values[] = $row[$j];
                 // a binary field
                 // Note: with mysqli, under MySQL 4.1.3, we get the flag
                 // "binary" for those field types (I don't know why)
                 } elseif (stristr($field_flags[$j], 'BINARY')
-                        && $fields_meta->type != 'datetime'
-                        && $fields_meta->type != 'date'
-                        && $fields_meta->type != 'time'
-                        && $fields_meta->type != 'timestamp'
+                        && 'datetime' != $fields_meta->type
+                        && 'date' != $fields_meta->type
+                        && 'time' != $fields_meta->type
+                        && 'timestamp' != $fields_meta->type
                        ) {
                     // empty blobs need to be different, but '0' is also empty :-(
-                    if (empty($row[$j]) && $row[$j] != '0') {
+                    if (empty($row[$j]) && '0' != $row[$j]) {
                         $values[] = '\'\'';
                     } else {
                         $values[] = '0x' . bin2hex($row[$j]);
@@ -143,7 +143,6 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
                     $values[] = '\'' . str_replace($search, $replace, addslashes($row[$j])) . '\'';
                 } // end if
             } // end for
-
             $line = "INSERT INTO `$table` VALUES (" . implode(', ', $values) . ");\n";
             if ($tempfile) {
                 fwrite($tempfile, $line);
@@ -165,7 +164,7 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
         fclose($tempfile);
     }
 
-    //by domifara for add action zip,tar.gzdownload
+//by domifara for add action zip ,ta.gzdownload
     if (! empty($_POST['download_zip'])) {
         require_once XOOPS_ROOT_PATH.'/class/zipdownloader.php' ;
         $downloader = new XoopsZipDownloader();
@@ -180,17 +179,17 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
         exit;
     }
 
-    //fix for mb_http_output setting and for add any browsers
+//fix for mb_http_output setting and for add any browsers
     if (function_exists('mb_http_output')) {
         mb_http_output('pass');
     }
-    header("Pragma: public"); // required
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: private", false); // required for certain browsers
+    header('Pragma: public'); // required
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Cache-Control: private', false); // required for certain browsers
     header('Content-Type: Application/octet-stream') ;
     header('Content-Disposition: attachment; filename="'.$sqlfile_name.'"') ;
-    header("Content-Transfer-Encoding: binary");
+    header('Content-Transfer-Encoding: binary');
     header('Content-Length: '.strlen($export_string)) ;
     set_time_limit(0) ;
     echo $export_string ;
@@ -210,20 +209,20 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
     $prefix = $_POST['prefix'] ;
 
     // check if prefix is working
-    if ($prefix == XOOPS_DB_PREFIX) {
+    if (XOOPS_DB_PREFIX == $prefix) {
         die("You can't drop working tables") ;
     }
 
     // check if prefix_xoopscomments exists
     $check_rs = $db->queryF("SELECT * FROM {$prefix}_xoopscomments LIMIT 1") ;
     if (! $check_rs) {
-        die("This is not a prefix for comments") ;
+        die('This is not a prefix for comments') ;
     }
 
     // get table list
     $srs = $db->queryF('SHOW TABLE STATUS FROM `'.XOOPS_DB_NAME.'`') ;
     if (! $db->getRowsNum($srs)) {
-        die("You are not allowed to delete tables") ;
+        die('You are not allowed to delete tables') ;
     }
 
     while ($row_table = $db->fetchArray($srs)) {
@@ -243,27 +242,27 @@ if (! empty($_POST['copy']) && ! empty($_POST['old_prefix'])) {
 
 // beggining of Output
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php' ;
+include __DIR__ . '/mymenu.php' ;
 
 // query
-$srs = $db->queryF("SHOW TABLE STATUS FROM `".XOOPS_DB_NAME.'`') ;
+$srs = $db->queryF('SHOW TABLE STATUS FROM `' . XOOPS_DB_NAME . '`') ;
 if (! $db->getRowsNum($srs)) {
-    die("You are not allowed to copy tables") ;
+    die('You are not allowed to copy tables') ;
     xoops_cp_footer() ;
     exit ;
 }
 
 // search prefixes
-$tables = array() ;
-$prefixes = array() ;
+$tables = [];
+$prefixes = [];
 while ($row_table = $db->fetchArray($srs)) {
-    if (substr($row_table["Name"], -6) === '_users') {
-        $prefixes[] = array(
-                'name' => substr($row_table["Name"], 0, -6) ,
-                'updated' => $row_table["Update_time"]
-            ) ;
+    if ('_users' === substr($row_table['Name'], -6)) {
+        $prefixes[] = [
+            'name' => substr($row_table['Name'], 0, -6),
+            'updated' => $row_table['Update_time']
+        ];
     }
-    $tables[] = $row_table["Name"] ;
+    $tables[] = $row_table['Name'] ;
 }
 
 
@@ -277,7 +276,8 @@ echo "<div class='ui-card-main'>
 		<th>UPDATED</th>
 		<th>COPY</th>
 		<th>ACTIONS</th>
-	</tr>";
+	</tr>
+" ;
 
 foreach ($prefixes as $prefix) {
 
@@ -301,7 +301,7 @@ foreach ($prefixes as $prefix) {
     $prefix4disp = htmlspecialchars($prefix['name'], ENT_QUOTES) ;
     $ticket_input = $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'protector_admin') ;
 
-    if ($prefix['name'] == XOOPS_DB_PREFIX) {
+    if (XOOPS_DB_PREFIX == $prefix['name']) {
         $del_button = '' ;
         $style_append = 'background:transparent' ;
     } else {
@@ -328,10 +328,10 @@ foreach ($prefixes as $prefix) {
 				<input type='hidden' name='prefix' value='$prefix4disp'>
 				$del_button
 				<input type='submit' name='backup' value='backup' onclick='this.form.target=\"_blank\"'>";
-    if (function_exists("gzcompress")) {
+    if (function_exists('gzcompress')) {
         echo "<input type='submit' name='download_zip' value='zip' onclick='this.form.target=\"_blank\"'>" ;
     }
-    if (function_exists("gzencode")) {
+    if (function_exists('gzencode')) {
         echo "<input type='submit' name='download_tgz' value='tar.gz' onclick='this.form.target=\"_blank\"'>";
     }
     echo "	</form>
@@ -339,11 +339,11 @@ foreach ($prefixes as $prefix) {
 	</tr>\n" ;
 }
 
-echo "
+echo '
 </table>
-<p>".sprintf(_AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX)."</p>
+<p>' . sprintf(_AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX) . '</p>
 </div>
-" ;
+';
 
 // Display Log if exists
 if (! empty($_SESSION['protector_logger'])) {

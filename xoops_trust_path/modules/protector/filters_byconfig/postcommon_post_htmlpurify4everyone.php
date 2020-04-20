@@ -29,15 +29,15 @@ class protector_postcommon_post_htmlpurify4everyone extends ProtectorFilterAbstr
 
     public function purify_recursive($data) {
         static $encoding = null;
-        is_null($encoding) && ($encoding = (_CHARSET === 'UTF-8'? '' : _CHARSET));
+        null === $encoding && ($encoding = (_CHARSET === 'UTF-8'? '' : _CHARSET));
         if (is_array($data)) {
-            return array_map(array( $this, 'purify_recursive' ), $data) ;
+            return array_map([$this, 'purify_recursive'], $data) ;
         } else {
             if (strlen($data) > 32) {
                 $_substitute = mb_substitute_character();
                 mb_substitute_character('none');
                 $encoding && ($data = mb_convert_encoding($data, 'UTF-8', $encoding));
-                $data = call_user_func(array( $this->purifier, $this->method ), $data);
+                $data = call_user_func([$this->purifier, $this->method], $data);
                 $encoding && ($data = mb_convert_encoding($data, $encoding, 'UTF-8'));
                 mb_substitute_character($_substitute);
             }

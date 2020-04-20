@@ -1,6 +1,6 @@
 <?php
 
-eval(' function xoops_module_update_'.$mydirname.'( $module ) { return protector_onupdate_base( $module , "'.$mydirname.'" ) ; } ') ;
+eval(' function xoops_module_update_'.$mydirname . '( $module ) { return protector_onupdate_base( $module , \'' . $mydirname . '\' ) ; } ') ;
 
 
 if (! function_exists('protector_onupdate_base')) {
@@ -14,10 +14,10 @@ if (! function_exists('protector_onupdate_base')) {
     if (defined('XOOPS_CUBE_LEGACY')) {
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'protector_message_append_onupdate') ;
-        $msgs = array() ;
+        $msgs = [];
     } else {
         if (! is_array($msgs)) {
-            $msgs = array() ;
+            $msgs = [];
         }
     }
 
@@ -27,36 +27,36 @@ if (! function_exists('protector_onupdate_base')) {
     // TABLES (write here ALTER TABLE etc. if necessary)
 
     // configs (Though I know it is not a recommended way...)
-    $check_sql = "SHOW COLUMNS FROM ".$db->prefix("config")." LIKE 'conf_title'" ;
-        if (($result = $db->query($check_sql)) && ($myrow = $db->fetchArray($result)) && @$myrow['Type'] == 'varchar(30)') {
-            $db->queryF("ALTER TABLE ".$db->prefix("config")." MODIFY `conf_title` varchar(255) NOT NULL default '', MODIFY `conf_desc` varchar(255) NOT NULL default ''") ;
+    $check_sql = 'SHOW COLUMNS FROM ' . $db->prefix('config') . " LIKE 'conf_title'" ;
+        if (($result = $db->query($check_sql)) && ($myrow = $db->fetchArray($result)) && 'varchar(30)' == @$myrow['Type']) {
+            $db->queryF('ALTER TABLE ' . $db->prefix('config') . " MODIFY `conf_title` varchar(255) NOT NULL default '', MODIFY `conf_desc` varchar(255) NOT NULL default ''") ;
         }
-        list(, $create_string) = $db->fetchRow($db->query("SHOW CREATE TABLE ".$db->prefix("config"))) ;
+        list(, $create_string) = $db->fetchRow($db->query('SHOW CREATE TABLE ' . $db->prefix('config'))) ;
         foreach (explode('KEY', $create_string) as $line) {
             if (preg_match('/(\`conf\_title_\d+\`) \(\`conf\_title\`\)/', $line, $regs)) {
-                $db->query("ALTER TABLE ".$db->prefix("config")." DROP KEY ".$regs[1]) ;
+                $db->query('ALTER TABLE ' . $db->prefix('config') . ' DROP KEY ' . $regs[1]) ;
             }
         }
-        $db->query("ALTER TABLE ".$db->prefix("config")." ADD KEY `conf_title` (`conf_title`)") ;
+        $db->query('ALTER TABLE ' . $db->prefix('config') . ' ADD KEY `conf_title` (`conf_title`)') ;
 
     // 2.x -> 3.0
-    list(, $create_string) = $db->fetchRow($db->query("SHOW CREATE TABLE ".$db->prefix($mydirname."_log"))) ;
+    list(, $create_string) = $db->fetchRow($db->query('SHOW CREATE TABLE ' . $db->prefix($mydirname . '_log'))) ;
         if (preg_match('/timestamp\(/i', $create_string)) {
-            $db->query("ALTER TABLE ".$db->prefix($mydirname."_log")." MODIFY `timestamp` DATETIME") ;
+            $db->query('ALTER TABLE ' . $db->prefix($mydirname . '_log') . ' MODIFY `timestamp` DATETIME') ;
         }
 
 
     // TEMPLATES (all templates have been already removed by modulesadmin)
     $tplfile_handler =& xoops_gethandler('tplfile') ;
-        $tpl_path = dirname(__FILE__).'/templates' ;
+        $tpl_path = __DIR__ . '/templates' ;
         if ($handler = @opendir($tpl_path . '/')) {
-            while (($file = readdir($handler)) !== false) {
-                if (substr($file, 0, 1) == '.') {
+            while (false !== ($file = readdir($handler))) {
+                if ('.' == substr($file, 0, 1)) {
                     continue ;
                 }
                 $file_path = $tpl_path . '/' . $file ;
-                if (is_file($file_path) && in_array(strrchr($file, '.'), array( '.html', '.css', '.js' ))) {
-                    $mtime = intval(@filemtime($file_path)) ;
+                if (is_file($file_path) && in_array(strrchr($file, '.'), ['.html', '.css', '.js'])) {
+                    $mtime = (int)@filemtime($file_path);
                     $tplfile =& $tplfile_handler->create() ;
                     $tplfile->setVar('tpl_source', file_get_contents($file_path), true) ;
                     $tplfile->setVar('tpl_refid', $mid) ;

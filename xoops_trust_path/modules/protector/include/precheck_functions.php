@@ -8,7 +8,7 @@ function protector_prepare()
     }
 
     // Protector class
-    require_once dirname(dirname(__FILE__)).'/class/protector.php' ;
+    require_once dirname(__DIR__) . '/class/protector.php' ;
 
     // Protector object
     $protector = Protector::getInstance() ;
@@ -41,7 +41,7 @@ function protector_prepare()
         // for the environment of (buggy core version && magic_quotes_gpc)
         $reliable_ips = @unserialize(stripslashes(@$conf['reliable_ips'])) ;
         if (! is_array($reliable_ips)) {
-            $reliable_ips = array() ;
+            $reliable_ips = [];
         }
     }
     $is_reliable = false ;
@@ -89,7 +89,7 @@ function protector_prepare()
             } else {
                 $protector->_should_be_banned_time0 = true ;
             }
-            $_GET = $_POST = array() ;
+            $_GET = $_POST = [];
         }
 
         $protector->output_log($protector->last_error_type) ;
