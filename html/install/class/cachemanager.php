@@ -34,8 +34,8 @@
 class cache_manager
 {
 
-    public $s_files = array();
-    public $f_files = array();
+    public $s_files = [];
+    public $f_files = [];
 
     public function write($file, $source)
     {
@@ -50,7 +50,7 @@ class cache_manager
 
     public function report()
     {
-        $reports = array();
+        $reports = [];
         foreach ($this->s_files as $val) {
             $reports[]= _OKIMG.sprintf(_INSTALL_L123, "<b>$val</b>");
         }

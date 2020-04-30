@@ -1,4 +1,4 @@
-<div style="width:500px;margin:0 auto; text-align:center;">
+
 
 <div class="confirmInfo" style="text-align:center"><?php echo _INSTALL_L36?></div>
 <br />
@@ -32,6 +32,4 @@
   <?php endforeach ?>
 </select>
 <?php endif ?>
-</div>
-
 </div>

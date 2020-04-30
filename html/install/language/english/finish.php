@@ -1,17 +1,14 @@
 <?php
 // $Id: finish.php,v 1.3 2007/06/24 12:39:39 tom_g3x Exp $
 $content =
-'<h3><u>XCL Installer (2nd step)</u></h3>
-<p>The 1st step of your new XCL website installation is now completed.<br />You should delete folder "install" and change permissions of "mainfile.php" to readable (chmod 444) before you proceed to the last installation step.</p>
-<p>Click the button bellow to "The 2nd Step Installation" and use the same username and password  created during the 1st step for the administrator account.</p>
-<p>After login, select from the list of available modules those to install automatically and your new XCL website is ready to run!</p>
-<img src="img/xcl_d3.png" width="200" height="230" alt="Package D3 Modules" align="left" style="margin-right:10px" />
-<h3 align="center">XCL Modules</h3>
-<br />
-<p><u><b>Manual</b></u>
-<br />XCL modules are released the respective documentation from each module administration menu.
-<br />
-<br />
-<u><b>Support</b></u>
-<br />Visit please <a href="https://github.com/xoopscube/xcl/" rel="external">XOOPS Cube Project</a> for documentation, modules, extensions (preloads) and themes.</p>
+'<h3>XCL Global Settings (2nd step)</h3>
+<p>The 2nd Step Installation allows you to install automatically all the core modules.</p>
+<p>Your new XCL web application platform will be up and running!</p>
+<h3>XCL Documentation</h3>
+<h4>Manual</h4>
+<p>XCL core provides an advanced search functionality and for more detailed information refer to the respective documentation from each module administration help menu.</p>
+<h4>Support</h4>
+<p>The Xupdate Manager has a user-friendly interface to update and install free modules and themes that members of the community create.
+Single file extensions (preloads) can also easily be installed via the backend. Extensions can be through the addition of new functionality or through modification of existing functionality. The principle provides for enhancements without impairing existing system functions.</p>
+<p>Visit please <a href="https://github.com/xoopscube/xcl/" rel="external">XOOPS Cube Project</a> for documentation, modules, extensions (preloads) and themes.</p>
 ';

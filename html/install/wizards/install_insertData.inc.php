@@ -14,13 +14,13 @@
 
     if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i", $adminmail)) {
         $wizard->setContent('<p>'._INSTALL_L73.'</p>');
-        $wizard->setBack(array('', _INSTALL_L112));
+        $wizard->setBack(['', _INSTALL_L112]);
         $wizard->error();
         exit();
     }
-    if (!isset($adminname) || !isset($adminpass) || !isset($adminmail) || $adminmail == "" || $adminname =="" || $adminpass =="" || $adminpass != $adminpass2) {
+    if (!isset($adminname) || !isset($adminpass) || !isset($adminmail) || '' == $adminmail || '' == $adminname || '' == $adminpass || $adminpass != $adminpass2) {
         $wizard->setContent('<p>'._INSTALL_L41.'</p>');
-        $wizard->setBack(array('', _INSTALL_L112));
+        $wizard->setBack(['', _INSTALL_L112]);
         $wizard->error();
         exit();
     }
@@ -28,9 +28,9 @@
     include_once '../mainfile.php';
     include_once './include/makedata.php';
     include_once './class/dbmanager.php';
-    $dbm = new db_manager;
+    $dbm = new db_manager();
     include_once './class/cachemanager.php';
-    $cm = new cache_manager;
+    $cm = new cache_manager();
 
     $language = check_language($language);
     if (file_exists('./language/'.$language.'/install2.php')) {
@@ -59,7 +59,7 @@
     include_once './class/mainfilemanager.php';
     $mm = new mainfile_manager('../mainfile.php');
     foreach ($group as $key => $val) {
-        $mm->setRewrite($key, intval($val));
+        $mm->setRewrite($key, (int)$val);
     }
     $result = $mm->doRewrite();
     $wizard->assign('mm_reports', $mm->report());

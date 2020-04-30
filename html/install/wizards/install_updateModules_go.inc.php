@@ -8,7 +8,7 @@
  *
  */
     unset($xoopsOption['nocommon']);
-    include_once "../mainfile.php";
+    include_once '../mainfile.php';
     error_reporting(E_ERROR);
     ob_start();
     $module_handler =& xoops_gethandler('module');
@@ -22,11 +22,11 @@
                 echo '<p>Could not update '.$modules[$mid]->getVar('name').'</p>';
             } else {
                 $newmid = $modules[$mid]->getVar('mid');
-                $msgs = array();
+                $msgs = [];
                 $msgs[] = 'Module data updated.';
                 $tplfile_handler =& xoops_gethandler('tplfile');
                 $templates = $modules[$mid]->getInfo('templates');
-                if ($templates != false) {
+                if (false != $templates) {
                     $msgs[] = 'Generating templates...';
                     foreach ($templates as $tpl) {
                         $tpl['file'] = trim($tpl['file']);
@@ -59,18 +59,18 @@
                 }
                 $blocks = $modules[$mid]->getInfo('blocks');
                 $msgs[] = 'Rebuilding blocks...';
-                $showfuncs = array();
-                $funcfiles = array();
-                if ($blocks != false) {
+                $showfuncs = [];
+                $funcfiles = [];
+                if (false != $blocks) {
                     $count = count($blocks);
                     include_once(XOOPS_ROOT_PATH.'/class/xoopsblock.php');
                     for ($i = 1; $i <= $count; $i++) {
-                        if (isset($blocks[$i]['show_func']) && $blocks[$i]['show_func'] != '' && isset($blocks[$i]['file']) && $blocks[$i]['file'] != '') {
+                        if (isset($blocks[$i]['show_func']) && '' != $blocks[$i]['show_func'] && isset($blocks[$i]['file']) && '' != $blocks[$i]['file']) {
                             $editfunc = isset($blocks[$i]['edit_func']) ? $blocks[$i]['edit_func'] : '';
                             $showfuncs[] = $blocks[$i]['show_func'];
                             $funcfiles[] = $blocks[$i]['file'];
                             $template = '';
-                            if ((isset($blocks[$i]['template']) && trim($blocks[$i]['template']) != '')) {
+                            if ((isset($blocks[$i]['template']) && '' != trim($blocks[$i]['template']))) {
                                 $content =& xoops_module_gettemplate($dirname, $blocks[$i]['template'], true);
                                 $template = $blocks[$i]['template'];
                             }
@@ -78,21 +78,23 @@
                                 $content = '';
                             }
                             $options = '';
-                            if (isset($blocks[$i]['options']) && $blocks[$i]['options'] != '') {
+                            if (isset($blocks[$i]['options']) && '' != $blocks[$i]['options']) {
                                 $options = $blocks[$i]['options'];
                             }
-                            $sql = "SELECT bid, name FROM ".$xoopsDB->prefix('newblocks')." WHERE mid=".$mid." AND func_num=".$i;
+                            $sql = 'SELECT bid, name FROM ' . $xoopsDB->prefix('newblocks') . ' WHERE mid=' . $mid . ' AND func_num=' . $i;
                             $fresult = $xoopsDB->query($sql);
                             $fcount = 0;
                             while ($fblock = $xoopsDB->fetchArray($fresult)) {
                                 $fcount++;
-                                $sql = "UPDATE ".$xoopsDB->prefix("newblocks")." SET name='".addslashes($blocks[$i]['name'])."', title='".addslashes($blocks[$i]['name'])."', dirname='".addslashes($dirname)."',  func_file='".addslashes($blocks[$i]['file'])."', show_func='".addslashes($blocks[$i]['show_func'])."', template='".addslashes($template)."', edit_func='".addslashes($editfunc)."', options='".addslashes($options)."', content='', template='".$template."', last_modified=".time()." WHERE bid=".$fblock['bid'];
+                                $sql = 'UPDATE '
+                                       . $xoopsDB->prefix('newblocks') . " SET name='" . addslashes($blocks[$i]['name']) . "', title='" . addslashes($blocks[$i]['name']) . "', dirname='" . addslashes($dirname) . "',  func_file='" . addslashes($blocks[$i]['file']) . "', show_func='" . addslashes($blocks[$i]['show_func']) . "', template='" . addslashes($template) . "', edit_func='" . addslashes($editfunc) . "', options='" . addslashes($options) . "', content='', template='" . $template . "', last_modified=" . time() . ' WHERE bid='
+                                       . $fblock['bid'];
                                 $result = $xoopsDB->query($sql);
                                 if (!$result) {
                                     $msgs[] = '&nbsp;&nbsp;ERROR: Could not update '.$fblock['name'];
                                 } else {
                                     $msgs[] = '&nbsp;&nbsp;Block <b>'.$fblock['name'].'</b> updated. Block ID: <b>'.$fblock['bid'].'</b>';
-                                    if ($template != '') {
+                                    if ('' != $template) {
                                         $tplfile =& $tplfile_handler->create();
                                         $tplfile->setVar('tpl_refid', $fblock['bid']);
                                         $tplfile->setVar('tpl_source', $content, true);
@@ -118,10 +120,14 @@
                                     }
                                 }
                             }
-                            if ($fcount == 0) {
+                            if (0 == $fcount) {
                                 $newbid = $xoopsDB->genId($xoopsDB->prefix('newblocks').'_bid_seq');
                                 $block_name = addslashes($blocks[$i]['name']);
-                                $sql = "INSERT INTO ".$xoopsDB->prefix("newblocks")." (bid, mid, func_num, options, name, title, content, side, weight, visible, block_type, isactive, dirname, func_file, show_func, edit_func, template, last_modified) VALUES (".$newbid.", ".$mid.", ".$i.",'".addslashes($options)."','".$block_name."', '".$block_name."', '', 0, 0, 0, 'M', 1, '".addslashes($dirname)."', '".addslashes($blocks[$i]['file'])."', '".addslashes($blocks[$i]['show_func'])."', '".addslashes($editfunc)."', '".$template."', ".time().")";
+                                $sql = 'INSERT INTO '
+                                       . $xoopsDB->prefix('newblocks') . ' (bid, mid, func_num, options, name, title, content, side, weight, visible, block_type, isactive, dirname, func_file, show_func, edit_func, template, last_modified) VALUES ('
+                                       . $newbid . ', '
+                                       . $mid . ', '
+                                       . $i . ",'" . addslashes($options) . "','" . $block_name . "', '" . $block_name . "', '', 0, 0, 0, 'M', 1, '" . addslashes($dirname) . "', '" . addslashes($blocks[$i]['file']) . "', '" . addslashes($blocks[$i]['show_func']) . "', '" . addslashes($editfunc) . "', '" . $template . "', " . time() . ')';
                                 $result = $xoopsDB->query($sql);
                                 if (!$result) {
                                     $msgs[] = '&nbsp;&nbsp;ERROR: Could not create '.$blocks[$i]['name'];
@@ -129,7 +135,7 @@
                                     if (empty($newbid)) {
                                         $newbid = $xoopsDB->getInsertId();
                                     }
-                                    if ($template != '') {
+                                    if ('' != $template) {
                                         $tplfile =& $tplfile_handler->create();
                                         $tplfile->setVar('tpl_module', $dirname);
                                         $tplfile->setVar('tpl_refid', $newbid);
@@ -155,7 +161,7 @@
                 $block_arr = XoopsBlock::sGetByModule($mid);
                 foreach ($block_arr as $block) {
                     if (!in_array($block->getVar('show_func'), $showfuncs) || !in_array($block->getVar('func_file'), $funcfiles)) {
-                        $sql = sprintf("DELETE FROM %s WHERE bid = %u", $xoopsDB->prefix('newblocks'), $block->getVar('bid'));
+                        $sql = sprintf('DELETE FROM %s WHERE bid = %u', $xoopsDB->prefix('newblocks'), $block->getVar('bid'));
                         if (!$xoopsDB->query($sql)) {
                             $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not delete block <b>'.$block->getVar('name').'</b>. Block ID: <b>'.$block->getVar('bid').'</b></span>';
                         } else {
@@ -165,30 +171,31 @@
                 }
 
                 $configs = $modules[$mid]->getInfo('config');
-                if ($configs != false) {
-                    if ($modules[$mid]->getVar('hascomments') != 0) {
+                if (false != $configs) {
+                    if (0 != $modules[$mid]->getVar('hascomments')) {
                         include_once(XOOPS_ROOT_PATH.'/include/comment_constants.php');
-                        array_push($configs, array('name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => array('_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN)));
-                        array_push($configs, array('name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0));
+                        array_push($configs, ['name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => ['_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN]]
+                        );
+                        array_push($configs, ['name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0]);
                     }
                 } else {
-                    if ($modules[$mid]->getVar('hascomments') != 0) {
-                        $configs = array();
+                    if (0 != $modules[$mid]->getVar('hascomments')) {
+                        $configs = [];
                         include_once(XOOPS_ROOT_PATH.'/include/comment_constants.php');
-                        $configs[] = array('name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => array('_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN));
-                        array_push($configs, array('name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0));
+                        $configs[] = ['name' => 'com_rule', 'title' => '_CM_COMRULES', 'description' => '', 'formtype' => 'select', 'valuetype' => 'int', 'default' => 1, 'options' => ['_CM_COMAPPROVEALL' => XOOPS_COMMENT_APPROVEALL, '_CM_COMAPPROVEUSER' => XOOPS_COMMENT_APPROVEUSER, '_CM_COMAPPROVEADMIN' => XOOPS_COMMENT_APPROVEADMIN]];
+                        array_push($configs, ['name' => 'com_anonpost', 'title' => '_CM_COMANONPOST', 'description' => '', 'formtype' => 'yesno', 'valuetype' => 'int', 'default' => 0]);
                     }
                 }
                 // RMV-NOTIFY
-                if ($modules[$mid]->getVar('hasnotification') != 0) {
+                if (0 != $modules[$mid]->getVar('hasnotification')) {
                     if (empty($configs)) {
-                        $configs = array();
+                        $configs = [];
                     }
                     include_once(XOOPS_ROOT_PATH.'/include/notification_constants.php');
-                    $configs[] = array('name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options);
+                    $configs[] = ['name' => 'notification_enabled', 'title' => '_NOT_CONFIG_ENABLED', 'description' => '_NOT_CONFIG_ENABLEDDSC', 'formtype' => 'select', 'valuetype' => 'int', 'default' => XOOPS_NOTIFICATION_ENABLEBOTH, 'options' => $options];
                 }
 
-                if ($configs != false) {
+                if (false != $configs) {
                     $msgs[] = 'Adding module config data...';
                     $config_handler =& xoops_gethandler('config');
                     $order = 0;
@@ -215,7 +222,7 @@
                             }
                         }
                         $order++;
-                        if ($config_handler->insertConfig($confobj) != false) {
+                        if (false != $config_handler->insertConfig($confobj)) {
                             $msgs[] = '&nbsp;&nbsp;Config <b>'.$config['name'].'</b> added to the database.'.$confop_msgs;
                         } else {
                             $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">ERROR: Could not insert config <b>'.$config['name'].'</b> to the database.</span>';
@@ -230,15 +237,15 @@
             }
             // data for table 'block_module_link'
             include_once './class/dbmanager.php';
-            $dbm = new db_manager;
+            $dbm = new db_manager();
             $sql = 'SELECT bid, side FROM '.$dbm->prefix('newblocks');
             $result = $dbm->query($sql);
 
             while ($myrow = $dbm->fetchArray($result)) {
-                if ($myrow['side'] == 0) {
-                    $dbm->insert("block_module_link", " VALUES (".$myrow['bid'].", 0)");
+                if (0 == $myrow['side']) {
+                    $dbm->insert('block_module_link', ' VALUES (' . $myrow['bid'] . ', 0)');
                 } else {
-                    $dbm->insert("block_module_link", " VALUES (".$myrow['bid'].", -1)");
+                    $dbm->insert('block_module_link', ' VALUES (' . $myrow['bid'] . ', -1)');
                 }
             }
         }
@@ -251,5 +258,5 @@
     $content .= ob_get_contents();
     $content .= "</td></tr></table>\n";
     ob_end_clean();
-    $b_next = array('updateComments', _INSTALL_L14);
+    $b_next = ['updateComments', _INSTALL_L14];
     include './install_tpl.php';
