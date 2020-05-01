@@ -17,8 +17,8 @@ define('_INSTALL_L7', 'Your settings: ');
 define('_INSTALL_L8', 'We detected: ');
 define('_INSTALL_L9', '( On MS platforms, you may receive this error message even when your configuration is correct. If that is the case, please press the button below to continue)');
 define('_INSTALL_L10', 'Please press the button below to continue if this is really ok.');
-define('_INSTALL_L11', 'The server path to your XCL root directory: ');
-define('_INSTALL_L12', 'The public URL to your XCL root directory: ');
+define('_INSTALL_L11', 'The server path to your XCL root directory');
+define('_INSTALL_L12', 'The public URL to your XCL root directory');
 define('_INSTALL_L13', 'If the above settings are correct, press the button below to continue.');
 define('_INSTALL_L14', 'Next');
 define('_INSTALL_L15', 'Please open mainfile.php and enter required DB settings data');
@@ -59,7 +59,7 @@ define('_INSTALL_L31', 'Could not create database. Contact the server administra
 define('_INSTALL_L32', 'The 1st Step is completed successfully');
 define('_INSTALL_L33', "Click <a href='../index.php'>HERE</a> to see the home page of your site.");
 define('_INSTALL_L35', "If you had any errors, please contact the dev team at <a href='https://github.com/xoopscube/xcl/' rel='external'>XOOPS Cube Project</a>");
-define('_INSTALL_L36', "Create thr Administrator account.");
+define('_INSTALL_L36', "Create the Administrator account.");
 define('_INSTALL_L37', 'Admin Name');
 define('_INSTALL_L38', 'Admin Email');
 define('_INSTALL_L39', 'Admin Password');
@@ -77,10 +77,10 @@ define('_INSTALL_L43', 'Database %s created!');
 define('_INSTALL_L44', 'Unable to make %s');
 define('_INSTALL_L45', 'Table %s created.');
 
-define('_INSTALL_L46', "In order for the modules included in the package to work correctly, the following files must be writeable by the server. Please change the permission setting for these files. (i.e. 'chmod 666 file_name' and 'chmod 777 dir_name' on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server)");
+define('_INSTALL_L46', "In order for the modules included in the package to work correctly, the following files must be writeable by the server. Please change the permission settings for these files. (i.e. 'chmod 666 file_name' and 'chmod 777 dir_name' on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server)");
 define('_INSTALL_L47', 'Next');
 
-define('_INSTALL_L53', 'Please confirm the following submitted data:');
+define('_INSTALL_L53', 'Confirm Web server Settings');
 
 define('_INSTALL_L60', 'Could not write into mainfile.php. Please check the file permission and try again.');
 define('_INSTALL_L61', 'Could not write to mainfile.php. Contact the server administrator for details.');
@@ -104,8 +104,8 @@ define('_INSTALL_L92', 'Save settings');
 define('_INSTALL_L93', 'Modify settings');
 define('_INSTALL_L88', 'Saving configuration data..');
 define('_INSTALL_L166', 'Check file permissions in XOOPS_TRUST_PATH');
-define('_INSTALL_L167', 'Checking file and directory permissions..');
-define('_INSTALL_L94', 'Check path & URL');
+define('_INSTALL_L167', 'Check Trust Path permissions');
+define('_INSTALL_L94', 'Check Public PATH and URL');
 define('_INSTALL_L127', 'Checking file path & URL settings..');
 define('_INSTALL_L95', 'Could not detect the physical path to your XOOPS directory.');
 define('_INSTALL_L96', 'There is a conflict between the detected physical path (%s) and the one you input.');
@@ -124,11 +124,11 @@ define('_INSTALL_L108', 'Connection to database server is OK.');
 define('_INSTALL_L109', 'Database %s does not exists.');
 define('_INSTALL_L110', 'Database %s exists and connectable.');
 define('_INSTALL_L111', 'Database connection is OK.<br />Press the button below to create database tables.');
-define('_INSTALL_L112', 'Admin user setting');
+define('_INSTALL_L112', 'Administrator Account');
 define('_INSTALL_L113', 'Table %s deleted.');
 define('_INSTALL_L114', 'Failed creating database tables.');
 define('_INSTALL_L115', 'Database tables created.');
-define('_INSTALL_L116', 'Insert data');
+define('_INSTALL_L116', 'Add New Data');
 define('_INSTALL_L117', 'Finish');
 
 define('_INSTALL_L118', 'Failed creating table %s.');

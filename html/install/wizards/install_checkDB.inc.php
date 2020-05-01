@@ -20,7 +20,7 @@
         $wizard->addArray('checks', _OKIMG._INSTALL_L108);
         if (! $dbm->dbExists()) {
             $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L109, XOOPS_DB_NAME));
-            $wizard->addArray('msgs', _INSTALL_L21.'<br /><b>'.XOOPS_DB_NAME.'</b>');
+            $wizard->addArray('msgs', _INSTALL_L21.'<br><b>'.XOOPS_DB_NAME.'</b>');
             $wizard->addArray('msgs', _INSTALL_L22);
         } else {
             $wizard->addArray('checks', _OKIMG.sprintf(_INSTALL_L110, XOOPS_DB_NAME));
@@ -32,7 +32,8 @@
                 $wizard->setNext(['updateTables', _INSTALL_L14]);
             } else {
                 $wizard->addArray('checks', _NGIMG._INSTALL_L131);
-                $wizard->setNext('');
+                $wizard->addArray('msgs', _INSTALL_L131);
+                $wizard->setBack(['start', _INSTALL_L103]);
             }
         }
     }

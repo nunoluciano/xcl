@@ -203,7 +203,7 @@ class setting_manager
 
         if (!empty($error)) {
             foreach ($error as $err) {
-                $ret .=  '<p class="confirmError">'.$err.'</p>\n';
+                $ret .=  '<p class="confirmError">'.$err.'</p>';
             }
         }
 
@@ -259,27 +259,27 @@ class setting_manager
         $yesno = empty($this->db_pconnect) ? _INSTALL_L24 : _INSTALL_L23;
         $ret =
             '<h3>'._INSTALL_L51.'</h3>
-            '.$this->sanitizer->htmlSpecialChars($this->database).'
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->database).'</p>
             <h3>'._INSTALL_L27.'</h3>
-            '.$this->sanitizer->htmlSpecialChars($this->dbhost).'
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbhost).'</p>
             <h3>'._INSTALL_L28.'</h3>
-            '.$this->sanitizer->htmlSpecialChars($this->dbuname).'
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbuname).'</p>
             <h3>'._INSTALL_L52.'</h3>
-            '.$this->sanitizer->htmlSpecialChars($this->dbpass).'
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbpass).'</p>
             <h3>'._INSTALL_L29.'</h3>
-            '.$this->sanitizer->htmlSpecialChars($this->dbname).'
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbname).'</p>
             <h3>'._INSTALL_L30.'</h3>
-            '.$this->sanitizer->htmlSpecialChars($this->prefix).'
-            <p><b>'._INSTALL_LANG_XOOPS_SALT.'</b></p>
-            '.$this->sanitizer->htmlSpecialChars($this->salt).'
-            <p><b>'._INSTALL_L54.'</b></p>
-            '.$yesno.'
-            <p><b>'._INSTALL_L55.'</b></p>
-            '.$this->sanitizer->htmlSpecialChars($this->root_path).'
-            <p><b>'._INSTALL_L75.'</b></p>
-            '.$this->sanitizer->htmlSpecialChars($this->trust_path).'
-            <p><b>'._INSTALL_L56.'</b></p>
-            '.$this->sanitizer->htmlSpecialChars($this->xoops_url).'
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->prefix).'</p>
+            <h3>'._INSTALL_LANG_XOOPS_SALT.'</h3>
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->salt).'</p>
+            <h3>'._INSTALL_L54.'</h3>
+            <p class="data">'.$yesno.'</p>
+            <h3>'._INSTALL_L55.'</h3>
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->root_path).'</p>
+            <h3>'._INSTALL_L75.'</h3>
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->trust_path).'</p>
+            <h3>'._INSTALL_L56.'</h3>
+            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->xoops_url).'</p>
             <br>
             <input type="hidden" name="database" value="'.$this->sanitizer->htmlSpecialChars($this->database).'" />
             <input type="hidden" name="dbhost" value="'.$this->sanitizer->htmlSpecialChars($this->dbhost).'" />

@@ -63,19 +63,19 @@
                 </h2>
                 <ul class="steps">
                     <li class="start">Select Language
-                    <li class="modcheckext">Introduction
-                    <li class="dbform">Check file permissions
-                    <li class="dbconfirm">General configuration
-                    <li class="dbsave">Confirm data
-                    <li class="modcheck_trustext">Save settings
-                    <li class="mainfile">Check TRUST PATH permissions
-                    <li class="initial">Check public path and URL
-                    <li class="checkDB">Confirm database settings
-                    <li class="createDB">Check database
-                    <li class="siteInit">Create Tables
-                    <li class="insertData_theme">Administrator account
-                    <li class="finish">Insert data
-                    <li class="nextStep">Finish
+                    <li class="modcheckext"><?php echo _INSTALL_L80 ?>
+                    <li class="dbform"><?php echo _INSTALL_L81 ?>
+                    <li class="dbconfirm"><?php echo _INSTALL_L90 ?>
+                    <li class="dbsave"><?php echo _INSTALL_L53 ?>
+                    <li class="modcheck_trustext"><?php echo _INSTALL_L92 ?>
+                    <li class="mainfile"><?php echo _INSTALL_L167 ?>
+                    <li class="initial"><?php echo _INSTALL_L94 ?>
+                    <li class="checkDB"><?php echo _INSTALL_L102 ?>
+                    <li class="createDB"><?php echo _INSTALL_L104 ?>
+                    <li class="siteInit"><?php echo _INSTALL_L40 ?>
+                    <li class="insertData_theme"><?php echo _INSTALL_L112 ?>
+                    <li class="finish"><?php echo _INSTALL_L116 ?>
+                    <li class="nextStep"><?php echo _INSTALL_L117 ?>
                     </ul>
             </nav>
         </header>

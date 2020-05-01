@@ -1,30 +1,21 @@
-
-
 <?php
 
-foreach ($this->v('dbm_reports') as $report) {
-    echo $report.'<br />';
+    foreach ($this->v('dbm_reports') as $report) {
+        echo $report.'<br>';
+    }
+    
+    if (is_array($this->v('cm_reports'))) {
+        
+        foreach ($this->v('cm_reports') as $report) {
+            echo $report .'<br>';
+        }
+    } 
+    
+    foreach ($this->v('mm_reports') as $report) {
+        echo $report.'<br>';
+    } 
 
-}
-
-
-<?php if (is_array($this->v('cm_reports'))) {
-    ?>
-    <?php foreach ($this->v('cm_reports') as $report) {
-    ?>
-        <?php echo $report ."<br />"
-}
-
-} ?>
-
-
-<?php foreach ($this->v('mm_reports') as $report) {
-    ?>
-    <?php echo $report ?><br />
-<?php
-} ?>
-
-
+?>
 
 <script type="text/javascript">
 (function(){
