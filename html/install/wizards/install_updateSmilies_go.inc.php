@@ -9,7 +9,7 @@
  */
     unset($xoopsOption['nocommon']);
     include('../mainfile.php');
-    $result = $xoopsDB->query("SELECT * FROM ".$xoopsDB->prefix('smiles'));
+    $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix('smiles'));
     $content = '';
     $title = _INSTALL_L155;
     if (!defined('XOOPS_UPLOAD_PATH')) {
@@ -25,7 +25,7 @@
             $newsmiley = uniqid('smil').'.'.strtolower($matched[1]);
             if (false != $fp = fopen(XOOPS_UPLOAD_PATH.'/'.$newsmiley, 'wb')) {
                 if (-1 != fwrite($fp, $binary)) {
-                    $xoopsDB->query("UPDATE ".$xoopsDB->prefix('smiles')." SET smile_url='".$newsmiley."' WHERE id=".$smiley['id']);
+                    $xoopsDB->query('UPDATE ' . $xoopsDB->prefix('smiles') . " SET smile_url='" . $newsmiley . "' WHERE id=" . $smiley['id']);
                     $content .= _OKIMG.sprintf(_INSTALL_L154, $smiley['smile_url']).'<br />';
                 } else {
                     $content .= _NGIMG.sprintf(_INSTALL_L153, $smiley['smile_url']).'<br />';
@@ -36,7 +36,7 @@
             $content .= _OKIMG.sprintf(_INSTALL_L152, $smiley['smile_url']).'<br />';
         }
     }
-    $result = $xoopsDB->query("SELECT * FROM ".$xoopsDB->prefix('ranks'));
+    $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix('ranks'));
     while ($rank = $xoopsDB->fetchArray($result)) {
         if (file_exists('../images/ranks/'.$rank['rank_image']) && false != $fp = fopen('../images/ranks/'.$rank['rank_image'], 'rb')) {
             $binary = fread($fp, filesize('../images/ranks/'.$rank['rank_image']));
@@ -48,7 +48,7 @@
             if (false != $fp = fopen(XOOPS_UPLOAD_PATH.'/'.$newrank, 'wb')) {
                 if (-1 != fwrite($fp, $binary)) {
                     $content .= _OKIMG.sprintf(_INSTALL_L154, $rank['rank_image']).'<br />';
-                    $xoopsDB->query("UPDATE ".$xoopsDB->prefix('ranks')." SET rank_image='".$newrank."' WHERE rank_id=".$rank['rank_id']);
+                    $xoopsDB->query('UPDATE ' . $xoopsDB->prefix('ranks') . " SET rank_image='" . $newrank . "' WHERE rank_id=" . $rank['rank_id']);
                 } else {
                     $content .= _NGIMG.sprintf(_INSTALL_L153, $rank['rank_image']).'<br />';
                 }
@@ -58,5 +58,5 @@
             $content .= _OKIMG.sprintf(_INSTALL_L152, $rank['rank_image']).'<br />';
         }
     }
-    $b_next = array('updateAvatars', _INSTALL_L14);
+    $b_next = ['updateAvatars', _INSTALL_L14];
     include './install_tpl.php';

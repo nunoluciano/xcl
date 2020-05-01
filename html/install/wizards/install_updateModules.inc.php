@@ -7,6 +7,6 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    $b_next = array('updateModules_go', _INSTALL_L137);
-    $content = "<p>"._INSTALL_L141."</p>\n";
+    $b_next = ['updateModules_go', _INSTALL_L137];
+    $content = '<p>' . _INSTALL_L141 . "</p>\n";
     include './install_tpl.php';

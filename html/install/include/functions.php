@@ -26,7 +26,7 @@
 //  ------------------------------------------------------------------------ //
 function getLanguage()
 {
-    $language_array = array(
+    $language_array = [
             'en' => 'english',
 //			'cn' => 'schinese',
             'cs' => 'czech',
@@ -41,11 +41,11 @@ function getLanguage()
             'ru' => 'russian',
             'zh' => 'schinese',
 
-    );
+    ];
 
-    $charset_array = array(
+    $charset_array = [
             'Shift_JIS' => 'ja_utf8',
-    );
+    ];
 
     $language = 'english';
     if (!empty($_POST['lang'])) {
@@ -71,7 +71,7 @@ function getLanguage()
                         break;
                     }
                 }
-                if (file_exists(dirname(dirname(__FILE__)).'/language/'.$al.'_utf8')) {
+                if (file_exists(dirname(__DIR__) . '/language/' . $al . '_utf8')) {
                     $language = $al.'_utf8';
                 }
             } elseif (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
@@ -96,11 +96,11 @@ function getLanguage()
  */
 function getDirList($dirname)
 {
-    $dirlist = array();
+    $dirlist = [];
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file)) {
-                if (strtolower($file) != 'cvs' && is_dir($dirname.$file)) {
+                if ('cvs' != strtolower($file) && is_dir($dirname . $file)) {
                     $dirlist[$file]=$file;
                 }
             }
@@ -117,7 +117,7 @@ function getDirList($dirname)
  */
 function getImageFileList($dirname)
 {
-    $filelist = array();
+    $filelist = [];
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file) && preg_match('/[.gif|.jpg|.png]$/i', $file)) {
@@ -171,13 +171,13 @@ function b_back($option = null)
         return '';
     }
     $content = '';
-    if (isset($option[0]) && $option[0] != '') {
-        $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($option[0]).'"\' class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'"></a>';
+    if (isset($option[0]) && '' != $option[0]) {
+        $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($option[0]).'"\' class="wizard-back" style="display:inline-block;vertical-align:top;"><svg xmlns="http://www.w3.org/2000/svg" title="'._INSTALL_L42.'" aria-hidden="true" focusable="false" width="1em" height="1em" style="vertical-align: -0.125em;" viewBox="0 0 24 24"><path d="M17 13H8.75L12 16.25l-.664.75l-4.5-4.5l4.5-4.5l.664.75L8.75 12H17v1zm-15-.5a9.5 9.5 0 1 1 19 0a9.5 9.5 0 0 1-19 0zm1 0a8.5 8.5 0 1 0 17 0a8.5 8.5 0 0 0-17 0z" fill="currentColor"></path></svg></a>';
     } else {
-        $content .= '<a href="javascript:history.back();" class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'" /></a>';
+        $content .= '<a href="javascript:history.back();" class="wizard-back" style="display:inline-block;vertical-align:top;"><svg xmlns="http://www.w3.org/2000/svg" title="'._INSTALL_L42.'" aria-hidden="true" focusable="false" width="1em" height="1em" style="vertical-align: -0.125em;" viewBox="0 0 24 24"><path d="M17 13H8.75L12 16.25l-.664.75l-4.5-4.5l4.5-4.5l.664.75L8.75 12H17v1zm-15-.5a9.5 9.5 0 1 1 19 0a9.5 9.5 0 0 1-19 0zm1 0a8.5 8.5 0 1 0 17 0a8.5 8.5 0 0 0-17 0z" fill="currentColor"></path></svg></a>';
     }
-    if (isset($option[1]) && $option[1] != '') {
-        $content .= '<span style="font-size:90%;"> &lt;&lt; '.htmlspecialchars($option[1]).'</span>';
+    if (isset($option[1]) && '' != $option[1]) {
+        $content .= '<label class="wizard-back-label">'.htmlspecialchars($option[1]).'</label>';
     }
     return $content;
 }
@@ -197,7 +197,7 @@ function b_reload($option='')
     } else {
         $op = 'langselect';
     }
-    return  '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($op).'"\' class="reload" style="display:inline-block;vertical-align:top;"><img src="img/reload.png" alt="'._INSTALL_L200.'"></a>';
+    return  '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($op).'"\' class="wizard-reload" style="display:inline-block;vertical-align:top;"><svg xmlns="http://www.w3.org/2000/svg" title="'._INSTALL_L200.'" aria-hidden="true" focusable="false" width="1em" height="1em" style="vertical-align: -0.125em;" viewBox="0 0 24 24"><path d="M4.996 5h5v5h-1V6.493a6.502 6.502 0 0 0 2.504 12.5a6.5 6.5 0 0 0 1.496-12.827V5.142A7.5 7.5 0 1 1 7.744 6H4.996V5z" fill="#face74"/></svg></a>';
 }
 
 function b_next($option=null)
@@ -206,10 +206,10 @@ function b_next($option=null)
         return '';
     }
     $content = '';
-    if (isset($option[1]) && $option[1] != '') {
-        $content .= '<span style="font-size:90%;">'.htmlspecialchars($option[1]).' &gt;&gt; </span>';
+    if (isset($option[1]) && '' != $option[1]) {
+        $content .= '<label class="wizard-next-label">'.htmlspecialchars($option[1]).'</label>';
     }
-    $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'" />';
-    $content .= '<input type="image" src="img/next.png" class="next" title="'._INSTALL_L47.'" name="submit" value="'._INSTALL_L47.'" />';
+    $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'">';
+    $content .= '<button type="submit" class="wizard-next" title="'._INSTALL_L47.'" name="submit" value="'._INSTALL_L47.'"><svg xmlns="http://www.w3.org/2000/svg" title="'._INSTALL_L47.'" aria-hidden="true" focusable="false" width="1em" height="1em" style="vertical-align: -0.125em;" viewBox="0 0 24 24"><path d="M6.003 12h8.25l-3.25-3.25l.664-.75l4.5 4.5l-4.5 4.5l-.664-.75l3.25-3.25h-8.25v-1zm15 .5a9.5 9.5 0 1 1-19 0a9.5 9.5 0 0 1 19 0zm-1 0a8.5 8.5 0 1 0-17 0a8.5 8.5 0 0 0 17 0z" fill="currentColor"></path></svg></button>';
     return $content;
 }

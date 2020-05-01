@@ -10,13 +10,13 @@
     // checking XOOPS_ROOT_PATH and XOOPS_URL
     include_once '../mainfile.php';
 
-    $writeok = array('cache/', 'templates_c', 'uploads/', 'uploads/xupdate/', 'modules/protector/configs/');
+    $writeok = ['cache/', 'templates_c', 'uploads/', 'uploads/xupdate/', 'modules/protector/configs/'];
     $error = false;
     foreach ($writeok as $wok) {
         if (!is_dir(XOOPS_TRUST_PATH. '/'. $wok)) {
             if (file_exists(XOOPS_TRUST_PATH. '/'. $wok)) {
                 @chmod(XOOPS_TRUST_PATH. '/'. $wok, 0666);
-                if (! is_writeable(XOOPS_TRUST_PATH. '/'. $wok)) {
+                if (! is_writable(XOOPS_TRUST_PATH . '/' . $wok)) {
                     $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L83, $wok));
                     $error = true;
                 } else {
@@ -25,7 +25,7 @@
             }
         } else {
             @chmod(XOOPS_TRUST_PATH. '/'. $wok, 0777);
-            if (! is_writeable(XOOPS_TRUST_PATH. '/'. $wok)) {
+            if (! is_writable(XOOPS_TRUST_PATH . '/' . $wok)) {
                 $wizard->addArray('checks', _NGIMG.sprintf(_INSTALL_L85, XOOPS_TRUST_PATH. '/'.$wok));
                 $error = true;
             } else {

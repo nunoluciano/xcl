@@ -1,18 +1,18 @@
 # XCL — Web Application Platform
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)  
-
-
-
-**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform.  
-
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />  
-
+ 
 
 ## :information_source: The App
 
 
 **The XCL** is a simple, secure and scalable web application platform. The modular architecture is built in PHP with Cube core, SQL and a smarty theming system. The graphical user interface empowers everyone to create dynamic and content rich apps with HTML, CSS and Javascript - from the best looking blogs, forums, portfolios, intranet and business websites to the much safer desktop applications on Linux, Mac or Windows.
+
+
+**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform. 
+
+
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />  
 
 
 ## :computer: The Requirements  
@@ -54,7 +54,7 @@ Below is a list of some of XOOPS Cube Legacy features.
 
 Download the source code of XCL available on [Github](https://github.com/xoopscube/xcl).
 
-:construction: A new XCL package is coming out in may 2019.
+:construction: A new XCL package is coming out in may 2020.
 
 :memo: The Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads) area.
 
