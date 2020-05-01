@@ -6,17 +6,52 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
 
-## [unreleased] 2020-03-29
+## [unreleased] 2020-04-29
 
 ### Added
 
+- New UI XCL Installer Wizard
+- New front-end XCL Default Theme
+- New Admin Dashboard Cube Panel
+- PhpDoc Missing @return tag
+- PhpDoc Non-canonical order of elements
+- PHPDoc comment matches function/method signature
+- SVG icons
+
 ### Changed
+
+- Alias functions usage
+- chop to rtrim
+- Deprecated constructor
+- __DIR__
+- doubleval to floatval
+- floatval to float
+- fputs to fwrite
+- $i to $iMax, $x to $xMax
+- intval to int
+- is_long to is_int
+- is_subclass_of to instanceof
+- join to implode
+- sizeof to count
+- socket_set_timeout to stream_set_timeout
+- srand to mt_srand, rand to mt_rand
+- Yoda condition
 
 ### Fixed
 
+- is writable upload Dir
+- PSR12 Missing parameter list
+- PSR12 Missing visibility
+- PSR12 Order of modifiers
+- PSR12 Short form of type keywords
+- PSR12 Usage of var
+- Traditional syntax array
+
 ### Removed
 
-### Update
+- Jp deprecated files
+- Unnecessary double quotes
+- PNG graphics
 
 ### Update
 
