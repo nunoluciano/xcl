@@ -112,6 +112,10 @@
 		text-decoration	: none;
 	}
 
+	h3 {
+		margin: 1.5em 0;
+	}
+
 	img {
 		border					: 0;
 		min-width				: 0;
@@ -121,10 +125,10 @@
 /* -------------------- -------------------- -------------------- -------------------- LAYOUT */
 
 	.container {
-		background			: linear-gradient(130deg, #252b34, #20242c);
+		background			: linear-gradient(130deg, hsl(216, 17%, 17%), hsl(220, 16%, 15%));
 		border					: 1px solid hsla(210, 15%, 20%, 1);
 		border-radius		: 20px;
-		box-shadow			: 20px 20px 40px #1a1e25, -20px -20px 40px #2c323d;
+		box-shadow			: 20px 20px 30px #1a1e25, -20px -20px 30px hsl(219, 16%, 21%);
 		display					: flex;
 		height					: 100%;
 	}
@@ -210,8 +214,10 @@
 
 	main {
 		background			: hsl(219, 15%, 18%);
+		border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
 		flex						: 0 0 100%;
-		padding					: 1.5em 2em;
+		padding					: 1em 2em;
 	}
 
 	.maincontents {
@@ -248,8 +254,8 @@
 
 		border-radius		: 5px;
 		background			: #232831;
-		box-shadow			: inset 10px 10px 20px #1a1e25,
-											inset -10px -10px 20px #2c323d;
+		box-shadow			: inset 10px 10px 20px hsl(218, 17%, 12%),
+											inset -10px -10px 20px hsl(219, 16%, 21%);
 	}
 
 	.data {
@@ -325,7 +331,7 @@
 		filter						: drop-shadow( 0 1px 2px rgba(21, 25, 27, 0.25) );
 		transition				: opacity 0.3s ease, -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
 		transition				: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
-		transition				: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2), 
+		transition				: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2),
 												-webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
 	}
 
@@ -460,6 +466,7 @@
 		}
 	}
 
+  } /* @supports */
 
 /* -------------------- -------------------- -------------------- -------------------- WIZARD BUTTON */
 
@@ -473,8 +480,8 @@
 
 		border-radius		: 50%;
 		background			: linear-gradient(145deg, #252b34, #20242c);
-		box-shadow			:  10px 20px 30px #1a1e25,
-											-10px -20px 30px #2c323d;									
+		box-shadow			:  10px 10px 20px #1a1e25,
+											-10px -10px 20px #2c323d;
 		padding					: .5em;
 		pointer-events	: none;  /*CSS Trick To Trigger Parent only when Hover Child */
 	}
@@ -490,7 +497,7 @@
 	.wizard-back svg:hover,
 	.wizard-next svg:hover,
 	.wizard-reload svg:hover {
-		color: #fff;
+		color						: #fff;
 	}
 
 	.wizard-reload:hover,
@@ -550,7 +557,7 @@
 		box-shadow			: 10px 10px 20px #1a1e25,
 											-10px -10px 20px #2c323d;
 
-		margin					: 3em 1em 2em;
+		margin					: 3em 1em;
 		padding					: 2em 4em;
 	}
 
@@ -584,7 +591,7 @@
 
 		background-color	: hsl(219, 15%, 28%); /* transition */
 		border-radius			: 5px;
-		box-shadow				: 10px 20px 30px hsl(218, 17%, 12%), -10px -20px 30px hsl(219, 16%, 21%);
+		box-shadow				: 10px 10px 20px hsl(218, 17%, 12%), -10px -10px 20px hsl(219, 16%, 21%);
 		display						: flex;
 		flex-wrap					: wrap;
 		list-style				: none;
@@ -597,7 +604,7 @@
 
 	.ui-tab-wrap:hover {
 
-		box-shadow				: 0 7px 14px rgba(0,0,0,0.30), 0 7px 14px rgba(0,0,0,0.25);
+		box-shadow				: 0 5px 5px hsla(0, 0%, 0%, 0.2), 0 5px 5px hsla(0, 0%, 0%, 0.25);
 
 	}
 
@@ -704,7 +711,7 @@
 /* -------------------- -------------------- -------------------- -------------------- MEDIA QUERY */
 
 /* -------------------- -------------------- Smartphones (portrait and landscape) */
-@media 
+@media
 only screen and (min-device-width : 480px) {
 
 	body {
@@ -751,7 +758,7 @@ only screen and (min-device-width : 480px) {
 		display				: block;
 		margin				: 2em auto 1em;
 	}
-	.wizard-back-label, 
+	.wizard-back-label,
 	.wizard-next-label {
 		display: none;
 	}
@@ -764,13 +771,13 @@ only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 700px),
 only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 700px),
 only screen and (        min-device-pixel-ratio: 2)      and (min-width: 700px),
 only screen and (                min-resolution: 192dpi) and (min-width: 700px),
-only screen and (                min-resolution: 2dppx)  and (min-width: 700px) { 
+only screen and (                min-resolution: 2dppx)  and (min-width: 700px) {
 
   body {
 		margin			: 2.5em;
 	}
 
-	.wizard-back-label, 
+	.wizard-back-label,
 	.wizard-next-label {
 		display: block;
 	}
@@ -803,7 +810,7 @@ only screen and (                min-resolution: 2dppx)  and (min-width: 700px) 
 		max-width		: 980px;
 	}
 
-	.wizard-back-label, 
+	.wizard-back-label,
 	.wizard-next-label {
 		display: block;
 	}

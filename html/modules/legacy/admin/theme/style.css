@@ -9,7 +9,6 @@
 	-------------------- -------------------- -------------------- ----- IMPORT			*/
 	@import "./stylesheets/ui-root.css";				/*      UI Default Settings				 */
 	@import "./stylesheets/ui-body.css";	    	/*      Body Elements						  */
-	@import "./stylesheets/ui-qube.min.css";
 	@import "./stylesheets/ui-layout.css";	  	/*      Layout Grid-Flex				 */
 	@import "./stylesheets/ui-breadcrumbs.css";	/*      Breadcrumbs Adminnavi	  */
 	@import "./stylesheets/ui-button.css";	    /*      Buttons								 */
