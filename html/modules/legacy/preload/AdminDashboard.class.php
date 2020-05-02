@@ -145,7 +145,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
 	// If you want to add any new block, please customize this function !
 	// Refer to legacy/admin/blocks!
-	public static function AdminSetupBlock()
+	public function AdminSetupBlock()
 	{
 
 		// online info block
