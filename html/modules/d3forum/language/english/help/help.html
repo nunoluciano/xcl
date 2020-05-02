@@ -1,4 +1,212 @@
-<h4>Module D3 Forum</h4>
-<h5>Overview</h5>
+<h3>Table of Contents</h3>
+
+<ul>
+	<li>[Module Description - What the module does and why it is useful](#module-description)
+	<li>[Setup - The basics of getting started with [modulename]](#setup)
+	<li>[Beginning with [modulename]](#beginning-with-[modulename])
+	<li>[Usage - Configuration options and additional functionality](#usage)
+	<li>[Development - Guide for contributing to the module](#development)
+</ul>
+
+<p>
+	<a href ="#help-forum-start" class="ui-btn">Get started</a>
+	<a href ="#help-forum-permissions" class="ui-btn">Permissions</a>
+	<a href ="#help-forum-advanced" class="ui-btn">Advanced</a>
+	<a href ="#help-forum-histories" class="ui-btn">Histories</a>
+	<a href ="#help-forum-customize" class="ui-btn" title="Languages and Templates">Customization</a>
+	<a href ="#help-forum-blocks" class="ui-btn">Blocks</a>
+	<a href ="#help-forum-preferences" class="ui-btn">Preferences</a>
+</p>
+
+
+<h3>Overview</h3>
 <p>This module allows you to manage forums and D3 modules comments.</p>
 
+<p>XCL D3 forum module has been around for a long time. It was developed by Gijoe and Jidaikobo, improved by Naao, Nao-pon, Domifara !</p>
+
+<p>D3 Forum is a duplicatable module used to create and manage forums and forum entries.
+Once activated in the <b>General settings > Module Management</b> you must first create a <b>Category</b> and a <b>forum</b>
+from the front-end. you will be redirected to get access to the module advanced options.</p>
+
+<p>The Forum module has many of the same features as VBulletin and phpBB, but it's also tightly integrated into XCL.</p>
+
+<hr>
+<a name="help-forum-start"></a>
+<h3>Categories and Forums</h3>
+<p>some information</p>
+
+
+<hr>
+<a name="help-forum-permissions"></a>
+<h3>Permissions</h3>
+<p>some information</p>
+
+<table class="outer">
+	<thead>
+	<tr>
+		<th>groupname</th>
+		<th>View<input type="checkbox"></th>
+		<th>Post<input type="checkbox"></th>
+		<th>Edit <input type="checkbox"></th>
+		<th>Delete	<input type="checkbox"></th>
+		<th>AutoApproval	<input type="checkbox"></th>
+		<th>Moderator <input type="checkbox"></th>
+		<th>Making forums <input type="checkbox"></th>
+	</tr>
+</thead>
+<tbody>
+
+	<tr>
+		<td>Webmasters</td>
+		<td><input type="checkbox" name="can_reads[1]" id="gcol_1_1" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_posts[1]" id="gcol_2_1" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_edits[1]" id="gcol_3_1" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_deletes[1]" id="gcol_4_1" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="post_auto_approveds[1]" id="gcol_5_1" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="is_moderators[1]" id="gcol_6_1" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_makeforums[1]" id="gcol_7_1" value="1" checked="checked"></td>
+	</tr>
+
+	<tr>
+		<td>Registered Users</td>
+		<td><input type="checkbox" name="can_reads[2]" id="gcol_1_2" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_posts[2]" id="gcol_2_2" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_edits[2]" id="gcol_3_2" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="can_deletes[2]" id="gcol_4_2" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="post_auto_approveds[2]" id="gcol_5_2" value="1" checked="checked"></td>
+		<td><input type="checkbox" name="is_moderators[2]" id="gcol_6_2" value="1"></td>
+		<td><input type="checkbox" name="can_makeforums[2]" id="gcol_7_2" value="1"></td>
+	</tr>
+
+	<tr>
+		<td>Anonymous Users</td>
+		<td><input type="checkbox" name="can_reads[3]" id="gcol_1_3" value="1"></td>
+		<td><input type="checkbox" name="can_posts[3]" id="gcol_2_3" value="1"></td>
+		<td><input type="checkbox" name="can_edits[3]" id="gcol_3_3" value="1"></td>
+		<td><input type="checkbox" name="can_deletes[3]" id="gcol_4_3" value="1"></td>
+		<td><input type="checkbox" name="post_auto_approveds[3]" id="gcol_5_3" value="1"></td>
+		<td><input type="checkbox" name="is_moderators[3]" id="gcol_6_3" value="1"></td>
+		<td><input type="checkbox" name="can_makeforums[3]" id="gcol_7_3" value="1"></td>
+	</tr>
+
+	<tr>
+		<td>Translators</td>
+		<td><input type="checkbox" name="can_reads[4]" id="gcol_1_4" value="1"></td>
+		<td><input type="checkbox" name="can_posts[4]" id="gcol_2_4" value="1"></td>
+		<td><input type="checkbox" name="can_edits[4]" id="gcol_3_4" value="1"></td>
+		<td><input type="checkbox" name="can_deletes[4]" id="gcol_4_4" value="1"></td>
+		<td><input type="checkbox" name="post_auto_approveds[4]" id="gcol_5_4" value="1"></td>
+		<td><input type="checkbox" name="is_moderators[4]" id="gcol_6_4" value="1"></td>
+		<td><input type="checkbox" name="can_makeforums[4]" id="gcol_7_4" value="1"></td>
+	</tr>
+
+</tbody>
+<tfoot>
+	<tr>
+		<td colspan="100"><input type="submit" name="group_update" value="Submit"></td>
+	</tr>
+</tfoot>
+</table>
+
+
+<hr>
+<a name="help-forum-advanced"></a>
+<h3>Advanced</h3>
+<p>some information</p>
+
+
+<hr>
+<a name="help-forum-histories"></a>
+<h3>Histories</h3>
+
+<p>A page history is sometimes called revision history or edit history. You can view a page's history by clicking the "View history" tab at the top of the associated</p>
+<p>The Advanced Forum module comes already configured but you can make changes.</p>
+
+<ul>
+	<li>- Click on Configuration in the black admin menu bar.</li>
+	<li>- Click on Advanced Forum in the Content Authoring box on the left side of the screen.</li>
+</ul>
+
+
+<hr>
+<a name="help-forum-customize"></a>
+<h3>Customization</h3>
+<p>language and Templates</p>
+
+
+<hr>
+<a name="help-forum-blocks"></a>
+<h3>Forum Blocks</h3>
+<p>Adding A Forum Block</p>
+
+<p>Another nice feature you can add to your site is the Author pane provided by the Author Pane module.
+	The module creates a block that you can enable to show on the Forum topic posts (as shown here).</p>
+
+<ul>
+<li>1Download the Author pane module from http://drupal.org/project/author_pane
+<li>2Upload the module to your webserver and unpack it
+<li>3Enable the module
+<li>4Go to Structure > Blocks and click Configure next to the Author Pane block
+<li>5Check Forum topic under Node types to display on (assuming Forum topic is the content type you selected when configuring Advanced Forum module)
+<li>6Select a region under Region visibility settings (in other words, what section of the webpage do you want the block to appear)
+<li>7Save
+</ul>
+
+
+<hr>
+<a name="help-forum-preferences"></a>
+<h3>Preferences</h3>
+
+<p>You'll now see the general settings area.</p>
+
+<p>These settings focus primarily on how the forums, forum topics, and comments are styled on the site.
+The Advanced Forum module comes prepackage with several theming options for your forum. Review the list
+of Advanced forum styles and choose one that you like or, if you are familiar with theming in Drupal,
+you can copy the tpl.php files and/or CSS from the module and paste it into your theme.
+Then, you can edit the files and CSS to meet your needs.</p>
+
+<p>As you can see, one of the features the Advanced Forum module offers is the ability to use a content type
+other than default forum topic that comes with the Forum module. You can create your own forum topic content type.
+The other configuration settings under General settings address how your forum topics are styled. Review the brief
+explanation for each option to learn more about that option.</p>
+
+
+<p>Your next configuration opitons for breadcrumbs and the display of the comment quantity.</p>
+
+<p>The last Advanced Forum configuration option allows you to include an image for your forum.
+By default, this feature will not work because the forum vocabulary does not have an image field by default.
+If you want an image for your forums, add the image field to the Forum vocabulary.</p>
+
+<p>Other Settings</p>
+
+<p>In addition to the settings discussed above, below are few others to consider.</p>
+
+<p>Forums: The Forum module has some its own settings to consider.</p>
+
+<p>For instance, as you can see in the image above, the configuration options for
+Forum include adding containers and forums.
+By default, the Forum module comes with a General Discussion forum.</p>
+
+<p>Click on Structure > Forums</p>
+
+<p>Click on Add container to create another container. Look at the screen shot at the start of this tutorial.
+See the box labelled Forums.
+A container will create another box like that.</p>
+
+<p>Click on Add forum to create another forum. Forums are pages that group Forum topic posts.</p>
+
+<p>Roles: If you want to restrict forum posts and discussions to a role other than</p>
+
+<p>Authenticated (or even anonymous if you are feeling adventuresome), add a forum role.</p>
+
+<p>Permissions: There are at least three permissions to review and configure before opening our forum to the public.</p>
+
+<ul>
+	<li>- Comments</li>
+	<li>- User profile access</li>
+	<li>- Node - create/edit/delete content a forum topic to be exact.</li>
+</ul>
+
+
+
+<p>Go see what it looks like by navigating to one of your Forum topic posts:</p>

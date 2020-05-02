@@ -18,11 +18,9 @@ class Xupdate_Admin_InstallCheckerAction extends Xupdate_AbstractAction
 {
     /**
      * getDefaultView
-     * 
-     * @param	void
-     * 
-     * @return	Enum
-    **/
+     *
+     * @return void
+     */
     public function getDefaultView()
     {
         if (! $this->mod_config['_FtpLoginCheck'] || ! $this->_removeInstallDir()) {

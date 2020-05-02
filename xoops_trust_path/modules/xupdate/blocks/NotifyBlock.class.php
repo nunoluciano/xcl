@@ -32,14 +32,14 @@ class Xupdate_NotifyBlock extends Legacy_BlockProcedure
      * 
      * @private
     **/
-    protected $_mCount = array();
+    protected $_mCount = [];
     
     /**
      * @protected string[]
      * 
      * @private
     **/
-    protected $_mOptions = array();
+    protected $_mOptions = [];
     
     /**
      * prepare

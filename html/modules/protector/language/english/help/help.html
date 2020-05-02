@@ -16,3 +16,113 @@
 
 <p>Author: GIJOE</p>
 <p>Site : PEAK XOOPS - Support & Experiment </p>
+
+<p>THe Protector moule is the only module that I suggest to always install in every XCL site. The protector module can protect your site from eventual attacks by hackers.
+
+<p>it is necessary to set the protector module well, for it to work correctly, I refer you back therefore to where I analyse it in detail.
+
+<p>It is to be clear in every aspect of XCL site safety so as to have peace of mind in the case of attack.
+
+
+
+
+<p>This module was conceived by the extension of antiquated AntiDoS-P by now, that it supplied protection against the Denial of Service ype of attacks, and almost offers to completely protect against generic threats and specific threats against Xoops.
+<p>This module is recommended to install so as to at least prevent any hacker or prankster.
+
+
+<p>The module intercepts and reacts to the following types of attacks
+
+<h4>Session Hijacking</h4>
+
+<p>The Session Hijacking attack consists of the exploitation of the web session control mechanism, which is normally managed for a session token.
+
+<p>Because http communication uses many different TCP connections, the web server needs a method to recognize every user’s connections. The most useful method depends on a token that the Web Server sends to the client browser after a successful client authentication. A session token is normally composed of a string of variable width and it could be used in different ways, like in the URL, in the header of the http requisition as a cookie, in other parts of the header of the http request, or yet in the body of the http requisition.
+
+<p>The Session Hijacking attack compromises the session token by stealing or predicting a valid session token to gain unauthorized access to the Web Server.
+
+<p>The session token could be compromised in different ways; the most common are:
+
+	<ul>
+	<li>Predictable session token;
+	<li>Session Sniffing;
+	<li>Client-side attacks (XSS, malicious JavaScript Codes, Trojans, etc);
+	<li>Man-in-the-middle attack
+	<li>Man-in-the-browser attack
+	</ul>
+
+
+<h4>Denial of Servie (DoS)</h4>
+
+<p>what it consist of: a DoS attack attempts to saturate the abilities of a server
+<p>how it is carried out: a classic tipology of DoS attack consists in the continuous loading of portal portions, forcing the server into continually working to satisfy the demands
+<p>how the module reacts: the protector can estimate with what frequency the update of the same pages of the portal demands, through time and number of reloads. Once it recognises the attack as DoS it can react by supplying the IP of the attacker:
+
+<ul>
+	<li>page containing only the block of login
+	<li>nothing, as if the portal had disapeared
+	<li>an empty white screen (blank page)
+</ul>
+
+<p>or it can directly insert the IP into the directory of excluded IP addresses (therefore banning the IP)
+
+<p>Moreover in the recent versions of the module it is possible to deny the access to the portal through the use of the htaccess file (even thif this functionality is still at the experimental level)
+
+<p>Some modules, like for example the chat modules, are frequently updated by the users browser,, to follow the continuous informative flow that is modified. In order to avoid users using such modules as outlined for an attack, it is possible to indicate which modules to eclude from the anti-DoS control.
+
+<h4>Bad Crawlers</h4>
+
+<p>A crwaler is an indexing motor and information collector (for example an email sender in a forum spamming)
+<p>how it is carried out: a crwaler becomes "rude" (bad crwaler) when it approaches the portal too frequently
+<p>how the module reacts: the protector applies to crawler the same criteria seen for the DoS. When it veryfies that the crawler it is rude it can react with :
+
+<ul>
+	<li>only a page containing the login block
+	<li>nothing, as if the portal were disappeared
+	<li>an empty white page (blank page)
+	<li>banning the IP
+	<li>a block frm .htaccess (experimental)
+</ul>
+
+
+<h4>SQL Injection</h4>
+
+<p>What it consists of : the attacker agent tries to operate a query on the database injecting thrrough the browser
+<p>how it is carried out: profiting from the written code in a careless way, or taking advantage of true and proper vulnerabilities of senssitive modules.
+<p>how the module reacts: a databse-driven portal as xcl must lend much attention to the attacks of this type, due to the pain and possible irredemable corruption of the DB database. Just for this particular necessity of safety, the Protector can block/defend three various types of attack SQL injection:
+
+<ul>
+	<li>survey of isolated comment
+	<li>survey of UNION syntax
+	<li>specification of not entire fields key
+</ul>
+
+<p>The first two tipologies, if used to duty, could allow the attacker "to couple" their own query to that normally used by the portal/platform.
+<p>The Protector can react in the following ways:
+
+	<ul>
+	<li>to supply a page with a single block login
+	<li>sterilization
+	<li>to supply an empty page
+	<li>banning the IP
+</ul>
+
+<h4>XSS cross site scripting</h4>
+
+<p>what is consist of : an attack Cross Situated Scripting (abbreviation XSS, not to be confused with CSS - Cascade Styling heets) is similar by nature to the SQL injection attacks, attempting to inject arbitrary scripts.
+<p>How it is carried out: the attacks XSS can bring in desperate ways and taking advantage of the vulnerabilities of several languages (HTML, Javascript, Flash) , In most cases it is however the same developer leaves open the attacks by not planning their application correctely.
+<p>How th emodule reacts : being an extremely  varied and difficult type of attack to block, the ony true defense is to use tested, stable and sure modules, developed by a team recognized for realibility and competence.
+
+<p>The protector, in fact, it itself being a particularly powerful module, can only intercept a minimal part of these attacks, by means of treatment of the key fields like entire (see attacks SQL injection).
+
+
+<h4>Contamination of Global Variables</h4>
+
+<p>What it consists of : it consists of the achieving of particular results (corruption of the data, by obtaining administrator privileges,...) by means of the corruption of data contained in the global variables.
+<p>How it is carried out : modifying the global variables and objects property of the user side content.
+<p>how the module reacts: the module can reac with:
+
+<ul>
+	<li>page containing only login
+	<li>entry page
+	<li>banning the IP
+</ul>

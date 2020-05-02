@@ -13,7 +13,7 @@ class Xupdate_Root extends XoopsSimpleObject
     public $db = null ;    // Database instance
     public $Ftp = null ;    // Ftp instance
     public $func = null ;    // Functions instance
-    public $params = array() ;    //some parameters
+    public $params = [];    //some parameters
 
     public function __construct()
     {
@@ -100,7 +100,7 @@ class Xupdate_Root extends XoopsSimpleObject
     private function Delete_Nullbyte($value)
     {
         if (is_array($value)) {
-            return array_map(array( &$this, 'Delete_Nullbyte' ), $value) ;
+            return array_map([&$this, 'Delete_Nullbyte'], $value) ;
         } else {
             return str_replace(pack('x'), '', $value) ;
         }

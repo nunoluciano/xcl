@@ -1,4 +1,407 @@
-<h4>Module UI-Components (Altsys)</h4>
-<h5>Overview</h5>
-<p>This module allows you to manage custom blocks, templates and customize language.</p>
+<!-- Module : UI-Components (Altsys) -->
+<h3>Description</h3>
 
+<section class="ui-tab-wrap">
+
+	<!-- active tab on page load gets checked attribute -->
+	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked>
+	<label for="ui-tab1">Description</label>
+
+	<input type="radio" id="ui-tab2" name="ui-tabGroup1" class="ui-tab">
+	<label for="ui-tab2">Features</label>
+
+	<input type="radio" id="ui-tab3" name="ui-tabGroup1" class="ui-tab">
+	<label for="ui-tab3">Setup</label>
+
+	<input type="radio" id="ui-tab4" name="ui-tabGroup1" class="ui-tab">
+	<label for="ui-tab4">Usage</label>
+
+	<input type="radio" id="ui-tab5" name="ui-tabGroup1" class="ui-tab">
+	<label for="ui-tab5">Development</label>
+
+	<input type="radio" id="ui-tab6" name="ui-tabGroup1" class="ui-tab">
+	<label for="ui-tab6">other</label>
+
+	<article class="ui-tab-content">
+
+		<h3>Description</h3>
+		<p>This module aims to provide a quick access to most common tasks of the application platform.</p>
+		<p>Next we will give an overview of some common tasks you can do with the Administration. Each task will be used to highlight a particular function within the module.
+
+			For a detailed list of all the supported resources and the functions the Administration Console can perform on them please see the accompanying resource specific documentation.
+
+			Application Deployment
+			All applications running in the JBoss Application Server instance are listed in the summary view under :
+			 <machine> : JBossAS Servers : JBoss AS 6 (all) : Applications in the navigation. Applications can also be further organized by their types to simplify the view:
+				Important
+				The Embedded application types were deployed as part of an Enterprise Archive. They are listed separately for easier management and each embedded archive shows the relationship to its' parent. Embedded applications are managed via their parent. In other words, they cannot be deleted or updated and control operations do not apply to them. The management of these applications is done through the operations on the parent.
+			 </p>
+	</article>
+
+	<article class="ui-tab-content">
+
+		<h3>Features</h3>
+
+		<p>creation of custom blocks (HTML, PHP and BBCode), modules block management, advanced templates design, custommization of language translations and localization.</p>
+
+		<p>
+			<a href ="#help-custom-block">Custom Blocks</a>
+			<a href ="#help-module-block" class="ui-btn">Modules Blocks</a>
+			<a href ="#help-templates" class="ui-btn">Templates</a>
+			<a href ="#help-advanced" class="ui-btn">Advanced Templates</a>
+			<a href ="#help-language" class="ui-btn">Language</a>
+		</p>
+	</article>
+
+	<article class="ui-tab-content">
+
+		<h3>Setup</h3>
+
+		<h3>Setup - Getting Started</h3>
+
+		<p>This module is installed by default.</p>
+		<p>Permissions can be extended to trusted user groups.</p>
+
+	</article>
+
+	<article class="ui-tab-content">
+
+		<h3>Usage</h3>
+
+		<p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Nullam accumsan lorem in dui. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+	</article>
+
+	<article class="ui-tab-content">
+		<h3>Development</h3>
+		<p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Nullam accumsan lorem in dui. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+	</article>
+
+	<article class="ui-tab-content">
+		<h3>other</h3>
+		<p>Praesent nonummy mi in odio. Nullam accumsan lorem in dui. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Nullam accumsan lorem in dui. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+	</article>
+
+</section><!-- UI-Tabs -->
+
+<h3>Table of Contents</h3>
+
+<p><a href="#help-description" class="ui-btn">Module Description</a> - What the module does and why it is useful
+<p><a href="#help-features" class="ui-btn">Features</a> - Module features, blocks and templates
+<p><a href="#help-setup" class="ui-btn">Setup</a> - The basics of getting started
+<p><a href="#help-usage" class="ui-btn">Usage</a> - Configuration options and additional functionality
+<p><a href="#help-development" class="ui-btn">Development</a> - Guide for contributing to the module
+
+
+
+<hr>
+<a name="help-description"></a>
+<h3>Overview</h3>
+
+
+
+
+<hr>
+<a name="help-features"></a>
+<h3>Module Features</h3>
+
+<p>
+
+
+<hr>
+<a name="help-setup"></a>
+
+
+<hr>
+<a name="help-usage"></a>
+<h3>Usage</h3>
+
+
+<!-- Anchor link space -->
+<hr>
+<a name="help-custom-block"></a>
+<h3>Custom Block</h3>
+
+<div class="ui-grid-blocks">
+
+	<div class="ui-card-block">
+
+		<div class="ui-card-block-header">
+
+			<div class="ui-card-block-info">
+				<a href="#" title="Custom (plain HTML)">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="icon-info">
+						<path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path>
+				</svg>
+				</a>
+			</div>
+
+			<div class="ui-card-block-settings">
+					<a href="#" title="Delete">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+						<path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z" fill="currentColor"></path>
+					</svg>
+					</a>
+			</div>
+
+		</div>
+
+		<div class="ui-card-block-image">
+				<a href="#" class="ui-block-type" title="Custom (plain HTML)">
+				<svg xmlns="http://www.w3.org/2000.svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-module">
+					<g id="ui-block-module">
+					<path class="block-icon" d="M2 10.96a.985.985 0 0 1-.37-1.37L3.13 7c.11-.2.28-.34.47-.42l7.83-4.4c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.19.1.35.26.44.46l1.45 2.52c.28.48.11 1.09-.36 1.36l-1 .58v4.96c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-5.54c-.3.17-.68.18-1 0m10-6.81v6.7l5.96-3.35L12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-3.22l-5 2.9c-.33.18-.7.17-1 .01v3.69l6-3.38m-5.15-2.55l6.28-3.63l-.58-1.01l-6.28 3.63l.58 1.01z" fill="currentColor"></path>
+					<text class="block-name" x="120px" y="50px" fill="currentColor">
+					<tspan>Custom (plain HTML)</tspan>
+					</text>
+					</g>
+				</svg>
+				</a>
+		</div>
+
+		<div class="ui-card-block-content">
+
+			<div class="ui-card-block-item">
+				<input type="text" name="weights[45]" value="0" size="1" maxlength="5">
+				<input type="text" name="titles[45]" value="html-smarty" size="20" title="Custom (plain HTML)">
+			</div>
+
+			<div class="ui-card-block-item">
+
+				<div title="Block-Left">
+					<input type="radio" name="sides[45]" value="0" class="blockposition" onclick="document.getElementById(&quot;extra_side_45&quot;).value=0;">
+				</div>
+				<div>-</div>
+				<div title="Center-Block-Left">
+					<input type="radio" name="sides[45]" value="3" class="blockposition" onclick="document.getElementById(&quot;extra_side_45&quot;).value=3;">
+				</div>
+				<div title="Center-Block-Center">
+					<input type="radio" name="sides[45]" value="5" class="blockposition" checked="checked" onclick="document.getElementById(&quot;extra_side_45&quot;).value=5;">
+				</div>
+				<div title="Center-Block-Right">
+					<input type="radio" name="sides[45]" value="4" class="blockposition" onclick="document.getElementById(&quot;extra_side_45&quot;).value=4;">
+				</div>
+				<div>-</div>
+				<div title="Block-Right">
+					<input type="radio" name="sides[45]" value="1" class="blockposition" onclick="document.getElementById(&quot;extra_side_45&quot;).value=1;">
+				</div>
+
+				<div style="width:45px;" title="Block-Extra">
+					<input type="text" name="extra_sides[45]" value="" class="block-extra-side" id="extra_side_45">
+				</div>
+				<div title="None">
+					<input type="radio" name="sides[45]" value="-1" class="blockposition ui-input-red" onclick="document.getElementById(&quot;extra_side_45&quot;).value=-1;">
+				</div>
+
+			</div>
+
+			<div class="ui-card-block-item">
+
+				<select name="bmodules[45][]" size="5" multiple="multiple">
+					<option value="-1">Top Page</option>
+<option value="0" selected="selected">All Pages</option>
+<option value="7">UI Components</option>
+<option value="8">Private Message</option>
+<option value="11">xelFinder</option>
+<option value="16">Forum</option>
+<option value="18">Publish</option>
+
+				</select>
+
+
+				<select name="bgroups[45][]" size="5" multiple="multiple">
+					<option value="1" selected="selected">Webmasters</option>
+<option value="2" selected="selected">Registered Users</option>
+<option value="3">Anonymous Users</option>
+<option value="4">Translators</option>
+
+				</select>
+			</div>
+
+			<div class="ui-card-block-item pad-center">
+				<select name="bcachetimes[45]" size="1">
+					<option label="No Cache" value="0" selected="selected">No Cache</option>
+<option label="30 seconds" value="30">30 seconds</option>
+<option label="1 minute" value="60">1 minute</option>
+<option label="5 minutes" value="300">5 minutes</option>
+<option label="30 minutes" value="1800">30 minutes</option>
+<option label="1 hour" value="3600">1 hour</option>
+<option label="5 hours" value="18000">5 hours</option>
+<option label="1 day" value="86400">1 day</option>
+<option label="3 days" value="259200">3 days</option>
+<option label="1 week" value="604800">1 week</option>
+<option label="1 month" value="2592000">1 month</option>
+
+				</select>
+			</div>
+
+			<div class="ui-card-block-item">
+				<a href="#" class="ui-btn ui-btn-small" title="Edit">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+					<path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+				</svg> Edit
+				</a>
+
+
+			<a href="#" class="ui-btn ui-btn-small" title="Clone">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+				<path d="M11 17H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12v2H4v12h7v-2l4 3l-4 3v-2m8 4V7H8v6H6V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2h2v2h11z" fill="currentColor"></path>
+			</svg>Clone
+			</a>
+		</div>
+
+		</div>
+	</div>
+
+
+
+</div>
+
+
+<!-- Anchor link space -->
+<hr>
+
+<a name="help-module-block"></a>
+<h3>module-block</h3>
+
+<p>para</p>
+<!-- Anchor link space -->
+<hr>
+
+<a name="help-templates"></a>
+<h3>Templates</h3>
+<p>Doloremque a illo corporis dicta laborum! Perspiciatis qui debitis aliquid soluta doloribus reiciendis nihil. Quis tempore temporibus consequuntur a? Repellendus est quibusdam iste? Est temporibus quo eligendi rem illo natus.</p>
+<p>para</p>
+
+<!-- Anchor link space -->
+<hr>
+
+<a name="help-advanced"></a>
+<h3>advanced</h3>
+
+<p>para</p>
+<p>Doloremque a illo corporis dicta laborum! Perspiciatis qui debitis aliquid soluta doloribus reiciendis nihil. Quis tempore temporibus consequuntur a? Repellendus est quibusdam iste? Est temporibus quo eligendi rem illo natus.</p>
+<!-- Anchor link space -->
+<hr>
+<a name="help-language"></a>
+<h3>language</h3>
+<p>Doloremque a illo corporis dicta laborum! Perspiciatis qui debitis aliquid soluta doloribus reiciendis nihil. Quis tempore temporibus consequuntur a? Repellendus est quibusdam iste? Est temporibus quo eligendi rem illo natus.</p>
+<p>para</p>
+
+
+<hr>
+<a name="help-development"></a>
+<h3>Development - Contribute</h3>
+
+<ul>
+	<li>Status :	Compatibility OK</li>
+	<li>Category :	System</li>
+	<li>Module name	: Altsys L</li>
+	<li>Version	: 0.80</li>
+	<li>Download URL :	http://xoopscube.org/</li>
+</ul>
+
+
+
+
+<h3>Translation and Localization
+	<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="24px" height="24px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" data-inline="false"><path fill="currentColor" d="M.034 16.668C.388 25.179 7.403 32 16 32s15.612-6.821 15.966-15.332A.493.493 0 0 0 32 16.5c0-.036-.013-.067-.02-.1c.003-.134.02-.265.02-.4c0-8.822-7.178-16-16-16S0 7.178 0 16c0 .135.017.266.02.4c-.007.033-.02.064-.02.1c0 .06.015.115.034.168zm24.887 6.074a21.921 21.921 0 0 0-4.215-1.271c.158-1.453.251-2.962.28-4.47h4.98c-.091 2.054-.456 3.993-1.045 5.741zM26.965 17h3.984a14.885 14.885 0 0 1-2.663 7.579a17.158 17.158 0 0 0-2.457-1.44c.645-1.869 1.042-3.943 1.136-6.139zm-14.576 5.286A23.416 23.416 0 0 1 16 22c1.224 0 2.433.102 3.61.286C18.916 27.621 17.4 31 16 31s-2.916-3.379-3.611-8.714zm1.519 8.378c-2.751-.882-5.078-3.471-6.482-6.984a20.873 20.873 0 0 1 3.99-1.217c.459 3.496 1.298 6.542 2.492 8.201zm-1.634-19.955A24.43 24.43 0 0 0 16 11a24.43 24.43 0 0 0 3.726-.291c.172 1.62.274 3.388.274 5.291h-8c0-1.903.102-3.671.274-5.291zM19.985 17a49.022 49.022 0 0 1-.26 4.291A24.397 24.397 0 0 0 16 21a24.42 24.42 0 0 0-3.726.291a48.668 48.668 0 0 1-.26-4.291h7.971zm.6 5.463c1.404.282 2.743.692 3.99 1.217c-1.404 3.513-3.731 6.102-6.482 6.984c1.193-1.659 2.032-4.705 2.492-8.201zM21 16c0-1.836-.102-3.696-.294-5.47c1.48-.292 2.896-.72 4.215-1.271C25.605 11.288 26 13.574 26 16h-5zm-.415-6.463c-.46-3.496-1.298-6.543-2.493-8.201c2.751.882 5.078 3.471 6.482 6.984a20.792 20.792 0 0 1-3.989 1.217zm-.974.177C18.433 9.898 17.224 10 16 10s-2.433-.102-3.611-.286C13.084 4.379 14.6 1 16 1c1.4 0 2.916 3.379 3.611 8.714zm-8.196-.177a20.895 20.895 0 0 1-3.99-1.217c1.404-3.513 3.731-6.102 6.482-6.984c-1.193 1.659-2.032 4.705-2.492 8.201zm-.121.993A51.315 51.315 0 0 0 11 16H6c0-2.426.395-4.712 1.079-6.742c1.319.552 2.735.979 4.215 1.272zm-.28 6.47c.029 1.508.122 3.017.28 4.471c-1.48.292-2.896.72-4.215 1.271c-.589-1.748-.954-3.687-1.045-5.742h4.98zM6.17 23.139a17.24 17.24 0 0 0-2.456 1.44A14.882 14.882 0 0 1 1.051 17h3.984c.094 2.196.491 4.27 1.135 6.139zM4.313 25.38a16.126 16.126 0 0 1 2.207-1.305c1.004 2.485 2.449 4.548 4.186 5.943a15.05 15.05 0 0 1-6.393-4.638zm16.981 4.637c1.738-1.394 3.182-3.458 4.186-5.943c.79.384 1.522.826 2.207 1.305a15.033 15.033 0 0 1-6.393 4.638zM27 16c0-2.567-.428-4.987-1.17-7.139c.88-.422 1.698-.907 2.457-1.44A14.91 14.91 0 0 1 31 16h-4zm.688-9.38c-.685.479-1.417.921-2.207 1.305c-1.004-2.485-2.449-4.549-4.186-5.943a15.062 15.062 0 0 1 6.393 4.638zM10.706 1.983C8.968 3.377 7.524 5.441 6.52 7.926A16.173 16.173 0 0 1 4.313 6.62a15.04 15.04 0 0 1 6.393-4.637zM3.714 7.421a17.185 17.185 0 0 0 2.456 1.44A21.954 21.954 0 0 0 5 16H1c0-3.19 1.009-6.145 2.714-8.579z"></path></svg>
+</h3>
+<p>Keep your global voice consistent across all branches, cultures, and language locales. Easily scale the number of languages as your company expands into new markets.</p>
+<p>
+	Localization (l10n) is the process of customizing your app to work in other languages other than the default. Localization can include different spoken variations and dialects of the same language, which are referred to as locales. Locales are a combination of the language and the country it's spoken in
+</p>
+<h3>Efficient Translation
+	<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="24px" height="24px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51l.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35C8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5l3.11 3.11l.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg></h3>
+<p>Reduce time-to-market and costs with 25+ machine translation engines, traditional translation features such as translation memory, and innovative features powered by artificial intelligence.</p>
+
+<h3>Choose Your Translation Method
+	<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="24px" height="24px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M8 4a2 2 0 0 0-2 2v4h2V6h8v3h-2.5l3.5 3.5L20.5 9H18V6a2 2 0 0 0-2-2H8m-5 8v2h8v-2H3m0 3v2h8v-2H3m10 0v2h8v-2h-8M3 18v2h8v-2H3m10 0v2h8v-2h-8z"/></svg>
+
+</h3>
+<p>Whether you want to use your own translators, an agency, or machine translation, Memsource provides the tools to automate the process end-to-end.</p>
+
+<h3>Centralize Your Data</h3>
+<p>Centralize all of your translation data while providing flexibility to your regional teams to design a localization workflow that best suits their needs and capabilities.</p>
+
+<h3>50+ File Formats</h3>
+<p>Every department can easily send and receive translations in the file types they most commonly work in: .DOC, .HTML, .PSD, .INDD, .PDF, .MD, and many more.</p>
+
+<h3>Multi-vendor Management</h3>
+<p>Connect all of your translation vendors in our real-time, centralized platform. Maintaining total control of your data means that you can change your vendor setup at any time.</p>
+
+<h3>Integrate With In-House Systems</h3>
+<p>Connect to Sitecore, AEM, Marketo, Git, Zendesk, Salesforce, and more via our out-of-the-box connectors or build your own end-to-end integration using Memsource REST API.</p>
+
+<h3>Scale Your Usage</h3>
+<p>Start with one team and expand your usage to new departments, branches, target markets, and beyond. Memsource is always aligned with your business growth strategies</p>
+
+<hr>
+
+<h3>Introduction</h3>
+<p>Learn about Funancial and how it can help you</p>
+
+<h3>Start</h3>
+<p>How to deploy, set up and get started with Funancial</p>
+
+<h3>Achieve</h3>
+<p>Day-to-day operations and achieving results</p>
+
+<h3>Enhance</h3>
+<p>Customise Funancial to fit your requirements</p>
+
+<hr>
+<h3>Milestones</h3>
+<p>Your specification template should layout clear milestones.
+	If your client writes the functional and user interface design, you should subsequently agree on a set of milestones.
+	Sometimes these are billing thresholds as well, but at the very least they provide a clear metric toward completion.
+	Milestones may be in terms of functionality and/or components; they may even be separate applications if the gig involves a suite of deliverables.
+	When possible, milestones should be approximately equal in duration.</p>
+
+<p>Software Design Specification Example</p>
+<p>Here, I’ll layout the example structure of a proper design document.
+	Of course, this template should be adjusted as-needed. For another example,
+	see Joel Spolsky’s sample specification, based on this write-up.
+	He approaches the document slightly differently, but shares a similar sentiment.</p>
+
+<h3>Statement of Goals</h3>
+<p>Include a short paragraph describing the project and its intended audience.</p>
+
+
+<h3>Functional Description</h3>
+<p>What does the application do? What application states (high-level descriptions of core user scenarios) will the user encounter?</p>
+
+<p>For example, your functional description might look like:</p>
+
+<ul>
+	<li>First Run</li>
+	<li>Creating a New _____ (game, search, etc.)</li>
+	<li>Operations</li>
+	<li>Background and Foreground Behavior</li>
+</ul>
+
+
+<h3>User Interface</h3>
+<p>Include wireframes for each page, with detailed descriptions of:</p>
+
+<ul>
+	<li>Each control, including states (enabled/disabled/highlighted) and operations.</li>
+	<li>Supported orientations and transitions between them.</li>
+	<li>Functionality represented.</li>
+	<li>Error handling.</li>
+	<li>Dimensions and constraints.</li>
+</ul>
+
+<h4>For example, your UI description might look like:</h4>
+
+<p>Navigation Bar</p>
+<ul>
+	<li>Left navigation control: return to home page</li>
+	<li>Title bar: current screen or operation name</li>
+	<li>New button: create a new Thing</li>
+	<li>Table View</li>
+	<li>Section 0: Section title</li>
+	<li>Section 0 rows:</li>
+	<li>Row control 0 (e.g., image)</li>
+	<li>Text Line 0</li>
+	<li>Text Line</li>
+</ul>

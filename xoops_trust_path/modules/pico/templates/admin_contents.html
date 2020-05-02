@@ -1,5 +1,7 @@
 <h2><{$mod_name}></h2>
 
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div class="ui-card-full">
 
 <!-- category selection -->
@@ -12,18 +14,21 @@
 
 <!-- category title -->
 <p>
-	<{$smarty.const._MD_PICO_CATEGORY}>:<strong><{$cat_title}></strong>
+	<{$smarty.const._MD_PICO_CATEGORY}>: <strong><{$cat_title}></strong>
 	<{if $cat_id >= 0}>
-		[<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a>]
-		[<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>]
-		[<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>]
-		[<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$cat_id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>]
-		[<a href="<{$mod_url}>/<{$cat_link}>"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>]
+	<hr>
+	<a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._EDIT}></a>
+	<a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>
+	<a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
+	<a href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$cat_id}>&amp;ret=ac<{$cat_id}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>
+	<a href="<{$mod_url}>/<{$cat_link}>" class="ui-btn ui-btn-small"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
 	<{/if}>
 </p>
+</div>
 
 <!-- contents form -->
 <h2 class="head"><{$smarty.const._MD_A_PICO_H2_CONTENTS}></h2>
+
 <form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post" style="margin:20px 0px;">
 	<{$gticket_hidden}>
 	<div align="<{$smarty.const._ALIGN_END}>"><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></div>
@@ -61,7 +66,7 @@
 				<br>
 				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_allow_comment_')>=0){elements[i].checked=this.checked;}}}">
 			</th>
-			<th style="text-align:<{$smarty.const._ALIGN_END}>;">
+			<th style="text-align:<{$smarty.const._ALIGN_END}>">
 				<{$smarty.const._MD_A_PICO_TH_CONTENTSACTIONS}>
 				<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
 			</th>
@@ -163,4 +168,3 @@
 		</tr>
 	</table>
 </form>
-</div>

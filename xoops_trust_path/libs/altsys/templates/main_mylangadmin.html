@@ -29,11 +29,13 @@
 	<dd><{$cache_file_name}></dd>
 	<dt><{$smarty.const._MYLANGADMIN_DT_CACHESTATUS}></dt>
 	<dd><{if $cache_file_mtime}><{$smarty.const._MYLANGADMIN_CREATED}> (<{"Y-m-d H:i:s"|date:$cache_file_mtime+$timezone_offset}>)<{else}><{$smarty.const._MYLANGADMIN_NOTCREATED}><{/if}></dd>
+	<dt><{$notice}></dt>
 </dl>
 </div>
 
 <form name="MainForm" action="index.php?mode=admin&amp;lib=altsys&amp;page=mylangadmin&amp;dirname=<{$target_dirname}>&amp;target_lang=<{$target_lang}>&amp;target_file=<{$target_file}>" method="post">
 	<table class="outer">
+		<thead>
 		<tr>
 			<th><{$smarty.const._MYLANGADMIN_TH_CONSTANTNAME}></th>
 			<th>
@@ -42,7 +44,8 @@
 			</th>
 			<th><{$smarty.const._MYLANGADMIN_TH_USERVALUE}></th>
 		</tr>
-
+	</thead>
+	<tbody>
 		<{foreach from=$langfile_constants key="langfile_name" item="langfile_uservalue"}>
 		<tr class="<{cycle values="even,odd"}>" title="<{$langfile_name|escape}>">
 			<td><label for="input_<{$langfile_name|escape}>"><{$langfile_name|truncate:30|escape}></label></td>
@@ -64,18 +67,23 @@
 			</td>
 		</tr>
 		<{/foreach}>
-
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3">
+			<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>">  
+			<input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>">
+			<{$gticket_hidden}>
+			</td>
+		</tr>
+	</tfoot>
 	</table>
 	<div class="foot">
-		<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>">
-		<input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>">
-		<{$gticket_hidden}>
+
 	</div>
 </form>
 
-<div class="altsys_mylangadmin_notice">
-	<{$notice}>
-</div>
+
 
 
 

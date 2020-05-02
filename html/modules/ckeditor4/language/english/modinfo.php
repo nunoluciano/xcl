@@ -5,8 +5,8 @@
  * @version $Id$
  */
 
-define('_MI_CKEDITOR4_LANG_CKEDITOR4', "CKEditor 4");
-define('_MI_CKEDITOR4_DESC_CKEDITOR4', "Wysiwig Editor for textareas of XOOPS Cube Legacy.");
+define('_MI_CKEDITOR4_LANG_CKEDITOR4', 'CKEditor 4');
+define('_MI_CKEDITOR4_DESC_CKEDITOR4', 'CKEditor Wysiwig Editor for XCL. Full version with plugins for BBCode and XelFinder - File Manager');
 
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN', 'Toolbar for Admin');
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN_DESC', 'CKEditor\'s "config.toolbar" for admin.');

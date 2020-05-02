@@ -1,7 +1,7 @@
 /*
 	XOOPS Cube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
-	Version : 0.0.4
+	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2019-11-11
 	URL : https://github.com/xoopscube/xcl/
@@ -9,12 +9,12 @@
 -------------------- -------------------- -------------------- -------------------- Button */
 
 .ui-btn,
-[class*="ui-btn--"] {
+[class*="ui-btn-"] {
 
-	background-color			: var(  --ui-color-300	);
+	background-color			: var(  --ui-color-300			);
 
   /* border-radius					: 0.1rem; */
-  border								: 1px solid;
+  border								: var(  --ui-button-border		);
 	border-color					: transparent;
 	border-radius					: var(  --ui-button-radius	);
 
@@ -33,12 +33,12 @@
 	line-height						: 1;
 
 
-  padding								: 1.25em 2em;
-	position							: relative;
+	padding								: var( --ui-button-padding	 );
+	margin 								: var( --ui-button-margin		 );
 
   text-align						: center;
   text-decoration				: none;
-  text-transform				: uppercase;
+  /* text-transform				: uppercase; */
   touch-action					: manipulation;
   transition						: all 0.3s ease 0s;
   user-select						: none;
@@ -48,7 +48,7 @@
 }
 
 .ui-btn:active,
-[class*="ui-btn--"]:active {
+[class*="ui-btn-"]:active {
 
 	box-shadow						: var(  --ui-shadow-300				);
 
@@ -56,7 +56,7 @@
 
 
 .ui-btn.ui-btn-small,
-[class*="ui-btn--"].ui-btn-small {
+[class*="ui-btn-"].ui-btn-small {
 
 	color									: var(  --ui-button-color		);
   font-size							: 0.8rem;
@@ -78,7 +78,7 @@ color										: var(  --ui-button-color		);
 .ui-btn.ui-btn-small:hover,
 .ui-btn.ui-btn-small:focus {
 
-	background						: var(  --ui-color-link-hover	);
+	background						: var(  --ui-color-link	);
 	color									: var(  --ui-button-color			);
 
 }

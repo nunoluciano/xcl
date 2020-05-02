@@ -23,7 +23,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
         }
         
         // preload
-        if (substr($this->download_file, -10) === '.class.php') {
+        if ('.class.php' === substr($this->download_file, -10)) {
             if (@ copy($this->Xupdate->params['temp_path'].'/'.$this->download_file, $exploredDirPath.'/'.$this->download_file)) {
                 $this->exploredPreloadPath = $exploredDirPath;
                 return true;
@@ -33,17 +33,17 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             }
         }
         
-        if ($this->retry_phase === 2) {
+        if (2 === $this->retry_phase) {
             $extractor = '_unzipFile_FileArchiveCareful';
         } else {
             $extractor = ($this->Ftp->isSafeMode)? '_unzipFile_FileArchiveCareful' : '_unzipFile_FileArchive';
             
             if (! $this->Ftp->isSafeMode) {
                 // check shell cmd
-                if (substr($this->download_file, -4) === '.zip') {
+                if ('.zip' === substr($this->download_file, -4)) {
                     // check shell cmd
                     $this->procExec('unzip --help', $o, $c);
-                    if ($c === 0) {
+                    if (0 === $c) {
                         $extractor = '_unzipFile_Unzip';
                     } else {
                         // check ZipArchive
@@ -67,13 +67,13 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                             }
                         }
                     }
-                } elseif (substr($this->download_file, -7) === '.tar.gz') {
+                } elseif ('.tar.gz' === substr($this->download_file, -7)) {
                     // check shell cmd
                     $this->procExec('tar --version', $o, $c);
-                    if ($c === 0) {
+                    if (0 === $c) {
                         unset($o);
                         $this->procExec('gzip --version', $o, $c);
-                        if ($c === 0) {
+                        if (0 === $c) {
                             $extractor = '_unzipFile_Tar';
                         }
                     }
@@ -92,17 +92,19 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
         }
         return $ret;
     }
-    
+
     /**
      * _unzipFile use unzip cmd
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_Unzip($downloadFilePath, $exploredDirPath)
     {
         $this->_cleanup($exploredDirPath);
         $this->procExec('unzip ' . $downloadFilePath . ' -d ' . $exploredDirPath, $o, $c, $e);
-        if ($c !== 0) {
+        if (0 !== $c) {
             $this->_set_error_log('unzip: '.$o);
             $this->_set_error_log('unzip error: '.$e);
             return false;
@@ -110,17 +112,19 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             return true;
         }
     }
-    
+
     /**
      * _unzipFile use tar cmd
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_Tar($downloadFilePath, $exploredDirPath)
     {
         $this->_cleanup($exploredDirPath);
         $this->procExec('tar -xzf ' . $downloadFilePath . ' -C ' . $exploredDirPath, $o, $c, $e);
-        if ($c !== 0) {
+        if (0 !== $c) {
             $this->_set_error_log('tar: '.$o);
             $this->_set_error_log('tar error: '.$e);
             return false;
@@ -132,8 +136,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     /**
      * _unzipFile use ZipArchive
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_ZipArchive($downloadFilePath, $exploredDirPath)
     {
         try {
@@ -144,15 +150,15 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             $this->_set_error_log($e->getMessage());
             return false;
         }
-        $zip = new ZipArchive;
+        $zip = new ZipArchive();
     
         try {
             $result = $zip->open($downloadFilePath);
-            if ($result !==true) {
+            if (true !== $result) {
                 throw new Exception('ZipArchive open fail '.$downloadFilePath, 2);
             }
         } catch (Exception $e) {
-            $zip_open_error_arr = array(
+            $zip_open_error_arr = [
                     ZIPARCHIVE::ER_EXISTS => 'ER_EXISTS',
                     ZIPARCHIVE::ER_INCONS => 'ER_INCONS',
                     ZIPARCHIVE::ER_INVAL => 'ER_INVAL',
@@ -162,14 +168,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                     ZIPARCHIVE::ER_OPEN => 'ER_OPEN',
                     ZIPARCHIVE::ER_READ => 'ER_READ',
                     ZIPARCHIVE::ER_SEEK => 'ER_SEEK'
-            );
+            ];
             $this->_set_error_log($e->getMessage().(in_array($result, $zip_open_error_arr) ? f : 'undefine'));
             return false;
         }
     
         try {
             $result = $zip->extractTo($exploredDirPath);
-            if ($result !==true) {
+            if (true !== $result) {
                 throw new Exception('extractTo fail ', 3);
             }
         } catch (Exception $e) {
@@ -183,18 +189,20 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     
         return true;
     }
-    
+
     /**
      * _unzipFile use File_Archive
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_FileArchive($downloadFilePath, $exploredDirPath)
     {
         require_once 'File/Archive.php';
         
         if ($source = File_Archive::read($downloadFilePath.'/')) {
-            if (is_object($source) && get_class($source) !== 'PEAR_Error') {
+            if (is_object($source) && 'PEAR_Error' !== get_class($source)) {
                 File_Archive::extract(
                     $source,
                     File_Archive::appender($exploredDirPath)
@@ -207,12 +215,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             return false;
         }
     }
-    
+
     /**
      * _unzipFile use ZipArchive for recovery
      *
-     * @return	bool
-     **/
+     * @param $downloadFilePath
+     * @param $exploredDirPath
+     * @return    bool
+     */
     private function _unzipFile_FileArchiveCareful($downloadFilePath, $exploredDirPath)
     {
         require_once 'File/Archive.php';
@@ -228,8 +238,8 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                 return false;
             }
                 
-            $dirs = array();
-            while ($source->next() === true) {
+            $dirs = [];
+            while (true === $source->next()) {
                 Xupdate_Utils::check_http_timeout();
                 
                 $inner = $source->getFilename();
@@ -244,7 +254,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     
                 // make dirctory at first for safe_mode
                 if ($this->Ftp->isSafeMode) {
-                    $dir = (substr($file, -1) === '/') ? substr($file, 0, -1) : dirname($file);
+                    $dir = ('/' === substr($file, -1)) ? substr($file, 0, -1) : dirname($file);
                     if (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
                         $this->Ftp->localMkdir($dir);
                         while (!isset($dirs[$dir]) && $dir != $exploredDirPath) {
@@ -279,24 +289,24 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
         $source->close();
         return $ret;
     }
-    
+
     /**
      * Execute shell command
      *
-     * @param  string  $command       command line
-     * @param  array   $output        stdout strings
-     * @param  array   $return_var    process exit code
-     * @param  array   $error_output  stderr strings
+     * @param string $command      command line
+     * @param array  $output       stdout strings
+     * @param int    $return_var   process exit code
+     * @param array  $error_output stderr strings
      * @return int     exit code
      * @author Alexey Sukhotin
-     **/
+     */
     private function procExec($command, array &$output = null, &$return_var = -1, array &$error_output = null)
     {
-        $descriptorspec = array(
-                0 => array("pipe", "r"),  // stdin
-                1 => array("pipe", "w"),  // stdout
-                2 => array("pipe", "w")   // stderr
-        );
+        $descriptorspec = [
+            0 => ['pipe', 'r'],  // stdin
+            1 => ['pipe', 'w'],  // stdout
+            2 => ['pipe', 'w']   // stderr
+        ];
     
         $command = escapeshellcmd($command);
         $process = proc_open($command, $descriptorspec, $pipes, null, null);

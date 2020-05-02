@@ -6,3 +6,5 @@
  */
 
 define("LEGACY_INSTALLERCHECKER_ACTIVE", false);
+// XUPDATE Checker
+define('XUPDATE_INSTALLERCHECKER_ACTIVE', false);
