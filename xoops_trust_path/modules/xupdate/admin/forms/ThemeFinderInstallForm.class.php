@@ -7,7 +7,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_ROOT_PATH."/core/XCube_ActionForm.class.php";
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
 
 class Xupdate_Admin_ThemeFinderInstallForm extends XCube_ActionForm
@@ -21,7 +21,7 @@ class Xupdate_Admin_ThemeFinderInstallForm extends XCube_ActionForm
     **/
         public function getTokenName()
         {
-            return "module.xupdate.Admin_ThemeFinderInstallForm.TOKEN";
+            return 'module.xupdate.Admin_ThemeFinderInstallForm.TOKEN';
         }
     /***
      * For displaying the confirm-page, don't show CSRF error.
@@ -57,11 +57,11 @@ class Xupdate_Admin_ThemeFinderInstallForm extends XCube_ActionForm
         $this->mFieldProperties['addon_url']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'addon_url');
 */
         $this->mFieldProperties['target_key'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['target_key']->setDependsByArray(array('required'));
+        $this->mFieldProperties['target_key']->setDependsByArray(['required']);
         $this->mFieldProperties['target_key']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'target_key');
 
         $this->mFieldProperties['target_type'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['target_type']->setDependsByArray(array('required'));
+        $this->mFieldProperties['target_type']->setDependsByArray(['required']);
         $this->mFieldProperties['target_type']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, 'target_type');
     }
 

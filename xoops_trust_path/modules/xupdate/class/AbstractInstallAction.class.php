@@ -35,10 +35,10 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     protected $unzipdirlevel;
 
     // for permission control
-    protected $options = array();
-    protected $writable_dir = array();
-    protected $writable_file = array();
-    protected $install_only = array();
+    protected $options = [];
+    protected $writable_dir = [];
+    protected $writable_file = [];
+    protected $install_only = [];
 
     protected $contents;
     protected $action;
@@ -96,7 +96,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
     public function execute()
     {
         $form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
 
@@ -244,7 +244,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      **/
     public function executeViewSuccess(&$render)
     {
-        $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall ;// Xupdate instance
+        $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall();// Xupdate instance
         //setup
         $xupdateFtpModuleInstall->downloadDirPath = $this->Xupdate->params['temp_path'];
         $xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get('addon_url');
@@ -295,7 +295,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
                     }
                 }
                 if ($is_install) {
-                    $this->options['no_update'] = array();
+                    $this->options['no_update'] = [];
                 }
             }
             $_arr = $this->Xupdate->get('delete_dir');
@@ -322,7 +322,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
         $this->mActionForm->getToken();
         
         // need module update
-        if ($this->contents === 'module') {
+        if ('module' === $this->contents) {
             if ($is_install) {
                 $_needModuleUpdate = _MI_XUPDATE_MSG_DO_MODULE_INSTALL;
             } elseif ($mobj->hasNeedUpdate() && $mobj->mModule->getRenderedVersion() != $mobj->getRenderedVersion()) {
@@ -372,13 +372,13 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction
      * Is need update checking, compare version with xoops_version.php
      * 
      * @param object $mobj
-     * @return boolean
+     * @return bool
      */
     private function isNeedUpdateCheckByVersionFile($mobj)
     {
         $xoops_version = XOOPS_MODULE_PATH . '/' . $this->dirname . '/xoops_version.php';
         return (
-                $this->contents !== 'module'
+            'module' !== $this->contents
                  ||
                 !(@include($xoops_version))
                  ||

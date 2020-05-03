@@ -17,7 +17,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 {
     //ListView data
     public $sid ;
-    public $mModuleObjects = array();
+    public $mModuleObjects = [];
     public $storeObject = null;
     public $mFilter = null;
 
@@ -116,7 +116,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 
 //データの自動作成と削除
 
-        $inidataset = new Xupdate_ModulesIniDadaSet;
+        $inidataset = new Xupdate_ModulesIniDadaSet();
         $inidataset->execute('all');
 
 //-----------------------------------------------
@@ -207,7 +207,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
         $render->setAttribute('currentMenu', $this->currentMenu);
         $render->setAttribute('action', $this->action);
         
-        $tagCloud = array();
+        $tagCloud = [];
         if (! empty($this->mod_config['tag_dirname'])) {
             XCube_DelegateUtils::call('Legacy_Tag.'.$this->mod_config['tag_dirname'].'.GetTagCloudSrc', new XCube_Ref($tagCloud), $this->mod_config['tag_dirname'], 'xupdate', $this->contents . 'store');
             if ($tagCloud) {
@@ -222,7 +222,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
     public function execute()
     {
         $form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
 
@@ -253,6 +253,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
 
     /**
      * To support a template writer, this send the list of mid that actionForm kept.
+     * @param $render
      */
     public function executeViewInput(&$render)
     {
@@ -304,7 +305,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction
                         if ($this->Ftp->app_login()) {
                             // APC のキャッシュ対策のため、rename の場合もタイムスタンプを更新ｓるため mkdir する。
                             $this->Ftp->localMkdir(XOOPS_MODULE_PATH . '/' . $new_dirname);
-                            if ($obj->getVar('isactive') === -1) {
+                            if (-1 === $obj->getVar('isactive')) {
                                 $this->Ftp->localRename(XOOPS_MODULE_PATH . '/' . $olddata['dirname'], XOOPS_MODULE_PATH . '/' . $new_dirname);
                             }
                         } else {

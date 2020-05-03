@@ -1,7 +1,7 @@
 /*
-  Theme : XCL Admin Flex Grid
+  XOOP Cube Theme : XCL Admin Flex Grid
   Distribution : XCL 2.3 Alpha
-  Version : 0.0.4
+  Version : 0.0.5
   Author : Nuno Luciano aka Gigamaster
   Date : 2019-11-11
   URL : https://github.com/xoopscube/xcl/
@@ -144,6 +144,14 @@
    * Block and Module Management
    * Switch card block color on change
    */
+
+   // Sidebar - Theme Options
+		// .theme-options .theme-options-toogle
+		// $(".right-side-toggle").click(function() {
+		$(".theme-options").click(function() {
+      $(".right-sidebar").slideDown(50),
+      $(".right-sidebar").toggleClass("right-panel-show");
+  });
 
   $('input[name^=uninstall]').on('change', function() {
 
@@ -401,8 +409,7 @@
   */
  const setLabel = userColorMode => {
 
-   uiColorModeText.innerText = `${userColorMode === 'dark' ? 'light' : 'dark'} mode`;
-
+   uiColorModeText.innerHTML = `${userColorMode === 'dark' ? '&#x1F317;' : '&#x263C;'} `;
 
  }
 

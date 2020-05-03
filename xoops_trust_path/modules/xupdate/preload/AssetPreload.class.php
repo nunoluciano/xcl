@@ -67,18 +67,18 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         $this->mRoot->mDelegateManager->add('Legacy_Utils.CreateModule', 'Xupdate_AssetPreloadBase::getModule');
         $this->mRoot->mDelegateManager->add('Legacy_Utils.CreateBlockProcedure', 'Xupdate_AssetPreloadBase::getBlock');
         
-        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleListSave.Success', array($this, '_setNeedCacheRemake'));
-        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.Success', array($this, '_setNeedCacheRemakeOnInstall'));
-        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Success', array($this, '_setNeedCacheRemake'));
-        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.Success', array($this, '_setNeedCacheRemake'));
-        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModulePreference.Xupdate.Success', array($this, '_setNeedCacheRemakeOnInstall'));
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleListSave.Success', [$this, '_setNeedCacheRemake']);
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.Success', [$this, '_setNeedCacheRemakeOnInstall']);
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUpdate.Success', [$this, '_setNeedCacheRemake']);
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModuleUninstall.Success', [$this, '_setNeedCacheRemake']);
+        $this->mRoot->mDelegateManager->add('Legacy.Admin.Event.ModulePreference.Xupdate.Success', [$this, '_setNeedCacheRemakeOnInstall']);
 
         $this->mRoot->mDelegateManager->add('Legacy_TagClient.GetClientList', 'Xupdate_TagClientDelegate::getClientList', XUPDATE_TRUST_PATH.'/class/callback/TagClient.class.php');
         $this->mRoot->mDelegateManager->add('Legacy_TagClient.'.$this->mDirname.'.GetClientData', 'Xupdate_TagClientDelegate::getClientData', XUPDATE_TRUST_PATH.'/class/callback/TagClient.class.php');
 
-        $this->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show', array($this, 'callbackWaitingShow'));
+        $this->mRoot->mDelegateManager->add('Legacyblock.Waiting.Show', [$this, 'callbackWaitingShow']);
 
-        $this->mRoot->mDelegateManager->add('Legacy_AdminControllerStrategy.SetupBlock', array($this, 'onXupdateSetupBlock'));
+        $this->mRoot->mDelegateManager->add('Legacy_AdminControllerStrategy.SetupBlock', [$this, 'onXupdateSetupBlock']);
     }
     
     public function postFilter()
@@ -92,9 +92,9 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
         if (! LEGACY_INSTALLERCHECKER_ACTIVE && XUPDATE_INSTALLERCHECKER_ACTIVE && is_dir(XOOPS_ROOT_PATH . '/install')) {
             $root =& XCube_Root::getSingleton();
             if ($root->mContext->mUser->isInRole('Site.Owner')) {
-                if (strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=InstallChecker') === false
-                 && strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=ModuleView') === false
-                 && strpos($_SERVER['REQUEST_URI'], '/legacy/admin/index.php?action=Preference') === false) {
+                if (false === strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=InstallChecker')
+                    && false === strpos($_SERVER['REQUEST_URI'], '/xupdate/admin/index.php?action=ModuleView')
+                    && false === strpos($_SERVER['REQUEST_URI'], '/legacy/admin/index.php?action=Preference')) {
                     while (ob_get_level() && @ ob_end_clean()) {
                     }
                     header('Location:' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=InstallChecker');
@@ -107,12 +107,15 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
                 require_once XOOPS_ROOT_PATH . '/class/template.php';
                 $xoopsTpl =new XoopsTpl();
                 $objMsg = XCube_Utils::formatMessage();
-                $xoopsTpl->assign(array('xoops_sitename' => htmlspecialchars($xoopsConfig['sitename'], ENT_COMPAT, _CHARSET),
-                        'xoops_themecss' => xoops_getcss(),
-                        'xoops_imageurl' => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
-                        'lang_message_confirm' => $objMsg (_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . "/install"),
-                        'lang_message_warning' => $objMsg (_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . "/install")
-                ));
+                $xoopsTpl->assign(
+                    [
+                        'xoops_sitename'       => htmlspecialchars($xoopsConfig['sitename'], ENT_COMPAT, _CHARSET),
+                        'xoops_themecss'       => xoops_getcss(),
+                        'xoops_imageurl'       => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
+                        'lang_message_confirm' => $objMsg (_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . '/install'),
+                        'lang_message_warning' => $objMsg (_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . '/install')
+                    ]
+                );
                 
                 $xoopsTpl->compile_check = true;
                     
@@ -159,7 +162,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     **/
     public static function getModule(/*** Legacy_AbstractModule ***/ &$obj, /*** XoopsModule ***/ $module)
     {
-        if ($module->getInfo('trust_dirname') === 'xupdate') {
+        if ('xupdate' === $module->getInfo('trust_dirname')) {
             require_once XUPDATE_TRUST_PATH . '/class/Module.class.php';
             $obj = new Xupdate_Module($module);
         }
@@ -177,7 +180,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     {
         $moduleHandler =& Xupdate_Utils::getXoopsHandler('module');
         $module =& $moduleHandler->get($block->get('mid'));
-        if (is_object($module) && $module->getInfo('trust_dirname') === 'xupdate') {
+        if (is_object($module) && 'xupdate' === $module->getInfo('trust_dirname')) {
             require_once XUPDATE_TRUST_PATH . '/blocks/' . $block->get('func_file');
             $className = 'Xupdate_' . substr($block->get('show_func'), 4);
             $obj = new $className($block);
@@ -191,7 +194,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
             if ($count = $handler->getCountHasUpdate('module')) {
                 $this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
                 $checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
-                $blockVal = array();
+                $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleStore&amp;filter=updated&amp;sort=-6';
                 $blockVal['pendingnum'] = $count;
                 $blockVal['lang_linkname'] = _MB_XUPDATE_MODULEUPDATE . $checkimg;
@@ -200,7 +203,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
             if ($count = $handler->getCountHasUpdate('theme')) {
                 $this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
                 $checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
-                $blockVal = array();
+                $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ThemeStore&amp;filter=updated';
                 $blockVal['pendingnum'] = $count;
                 $blockVal['lang_linkname'] = _MB_XUPDATE_THEMEUPDATE . $checkimg;
@@ -209,7 +212,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
             if ($count = $handler->getCountHasUpdate('preload')) {
                 $this->mRoot->mLanguageManager->loadBlockMessageCatalog('xupdate');
                 $checkimg = '<img src="'.XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=ModuleView&amp;checkonly=1" width="1" height="1" alt="" />';
-                $blockVal = array();
+                $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_MODULE_URL.'/xupdate/admin/index.php?action=PreloadStore&amp;filter=updated';
                 $blockVal['pendingnum'] = $count;
                 $blockVal['lang_linkname'] = _MB_XUPDATE_PRELOADUPDATE . $checkimg;
@@ -228,7 +231,7 @@ class Xupdate_AssetPreloadBase extends XCube_ActionFilter
     
     protected function _isAdminPage()
     {
-        return (strpos($_SERVER['SCRIPT_NAME'], '/admin/') !== false || strpos($_SERVER['SCRIPT_NAME'], '/admin.php') !== false);
+        return (false !== strpos($_SERVER['SCRIPT_NAME'], '/admin/') || false !== strpos($_SERVER['SCRIPT_NAME'], '/admin.php'));
     }
 }//END CLASS
 
@@ -236,12 +239,12 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return "Xupdate_Block";
+        return 'Xupdate_Block';
     }
 
     public function getTitle()
     {
-        return "Xupdate_Block";
+        return 'Xupdate_Block';
     }
 
     public function getEntryIndex()
@@ -277,7 +280,7 @@ class Xupdate_Block extends Legacy_AbstractBlockProcedure
 
     public function &getResult()
     {
-        $dmy = "dummy";
+        $dmy = 'dummy';
         return $dmy;
     }
 

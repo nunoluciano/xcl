@@ -15,7 +15,7 @@ class UserInfoProtector extends XCube_ActionFilter
         $delegateMgr =& $root->getDelegateManager();
         
         $delegateMgr->add('Legacypage.Userinfo.Access',
-            "UserInfoProtector::rightCheck",
+                          'UserInfoProtector::rightCheck',
             XCUBE_DELEGATE_PRIORITY_2);
     }
     
@@ -28,7 +28,7 @@ class UserInfoProtector extends XCube_ActionFilter
         
         $uid = $root->mContext->mXoopsUser->get('uid');
         $requestUid = $root->mContext->mRequest->getRequest('uid');
-        if ($uid != null && $uid != $requestUid) {
+        if (null != $uid && $uid != $requestUid) {
             $root->mController->executeForward(XOOPS_URL);
         }
     }

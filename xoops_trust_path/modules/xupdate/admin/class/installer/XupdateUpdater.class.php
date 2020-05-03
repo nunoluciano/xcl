@@ -18,12 +18,12 @@ class Xupdate_Updater
 {
     /*** Legacy_ModuleInstallLog ***/ public $mLog = null;
 
-    /*** string[] ***/ private $_mMileStone = array(
+    /*** string[] ***/ private $_mMileStone = [
             '006' => 'update006',
             '011' => 'update011',
             '022' => 'update022',
             '060' => 'update060',
-        );
+];
 
     /*** XoopsModule ***/ private $_mCurrentXoopsModule = null;
 
@@ -278,7 +278,7 @@ class Xupdate_Updater
         ksort($this->_mMileStone);
     
         foreach ($this->_mMileStone as $tVer => $tMethod) {
-            if ($tVer > $this->getCurrentVersion() && is_callable(array($this, $tMethod))) {
+            if ($tVer > $this->getCurrentVersion() && is_callable([$this, $tMethod])) {
                 return true;
             }
         }
@@ -351,8 +351,8 @@ class Xupdate_Updater
         $cdir = XOOPS_TRUST_PATH . '/'.trim($mconf['temp_path'], '/');
         if (is_dir($cdir)) {
             if ($dh = opendir($cdir)) {
-                while (($file = readdir($dh)) !== false) {
-                    if (substr($file, -8) === '.ini.php') {
+                while (false !== ($file = readdir($dh))) {
+                    if ('.ini.php' === substr($file, -8)) {
                         if (@ unlink($cdir.'/'.$file)) {
                             $this->mLog->addReport('Deleted cache "'.$file.'" OK.');
                         }
@@ -378,7 +378,7 @@ class Xupdate_Updater
         ksort($this->_mMileStone);
     
         foreach ($this->_mMileStone as $tVer => $tMethod) {
-            if ($tVer > $this->getCurrentVersion() && is_callable(array($this, $tMethod))) {
+            if ($tVer > $this->getCurrentVersion() && is_callable([$this, $tMethod])) {
                 if (! $this->$tMethod()) {
                     return false;
                 }

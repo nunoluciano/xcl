@@ -1,3 +1,1 @@
-
-<p align="center"><?php $this->e('finish')?></p>
-
+<?php $this->e('finish')?>

@@ -224,10 +224,10 @@ try {
 	// Access control
 	require_once __DIR__ . '/class/xelFinderAccess.class.php';
 	// custom session handler
-	require_once __DIR__ . '/class/xelFinderSession.class.php';
+	require_once _MD_ELFINDER_LIB_PATH . '/php/elFinderSession.php';
 	
 	// make sesstion handler
-	$session = new xelFinderSession(
+	$session = new elFinderSession(
         [
 		'base64encode' => $xoops_elFinder->base64encodeSessionData,
 		'keys' => [
@@ -250,11 +250,12 @@ try {
 	// set netmount data to session
 	$netVolumeData = [];
 	if ($userRoll['uid'] && $userRoll['uid'] !== $session->get($uidSessionKey)) {
-		$netVolumeData = $session->get('netvolume', $netVolumeData);
-		if (0 === count($netVolumeData)) {
-			$netVolumeData = $xoops_elFinder->getNetmountData();
-			if (count($netVolumeData)) {
-				$session->set('netvolume', $netVolumeData);
+		$sessNetVols = $session->get('netvolume', $netVolumeData);
+		$netVolumeData = array_merge($xoops_elFinder->getNetmountData(), $sessNetVols);
+		if (count($netVolumeData)) {
+			$session->set('netvolume', $netVolumeData);
+			if (count($sessNetVols)) {
+				$xoops_elFinder->saveNetmoutData($session);
 			}
 		}
 	}
@@ -272,7 +273,7 @@ try {
 		
 		// set umask
 		foreach(['default', 'users_dir', 'guest_dir', 'group_dir'] as $_key) {
-			$config[$_key.'_umask'] = (string)dechex(0xfff - intval(strval($config[$_key . '_item_perm']), 16));
+			$config[$_key.'_umask'] = strval(dechex(0xfff - intval(strval($config[$_key . '_item_perm']), 16)));
 		}
 		
 		// set uploadAllow
@@ -315,11 +316,10 @@ try {
 			$extras[$mydirname.':xelfinder_db'] = [];
 		}
 		foreach (
-            [
-                'default_umask', 'use_users_dir', 'users_dir_perm', 'users_dir_umask', 'use_guest_dir', 'guest_dir_perm', 'guest_dir_umask',
-                'use_group_dir', 'group_dir_parent', 'group_dir_perm', 'group_dir_umask', 'uploadAllow', 'uploadMaxSize', 'URL', 'unzip_lang_value'
-            ]
-            as $_extra
+				['default_umask', 'use_users_dir', 'users_dir_perm', 'users_dir_umask', 'use_guest_dir', 'guest_dir_perm', 'guest_dir_umask',
+						'use_group_dir', 'group_dir_parent', 'group_dir_perm', 'group_dir_umask', 'uploadAllow', 'uploadMaxSize', 'URL', 'unzip_lang_value'
+				]
+				as $_extra
 		) {
 			$extras[$mydirname.':xelfinder_db'][$_extra] = empty($config[$_extra])? '' : $config[$_extra];
 		}
@@ -328,7 +328,7 @@ try {
 				'enable' => true,
 				'maxHeight' => $config['autoResize'],
 				'maxWidth' => $config['autoResize']
-            ];
+			];
 		}
 		
 		$rootConfig = $xoops_elFinder->getRootVolumeConfigs($config['volume_setting'], $extras);
@@ -371,7 +371,7 @@ try {
 			}
 			if (empty($config['dropbox_acc_seckey']) || $token2) {
 				$dropbox_access = null;
-				$dropboxIsInGroup = (array_intersect($memberGroups, ( isset($config['dropbox_writable_groups'])? $config['dropbox_writable_groups'] : [])));
+				$dropboxIsInGroup = (array_intersect($memberGroups, ( isset($config['dropbox_writable_groups'])? $config['dropbox_writable_groups'] : [] )));
 				if (!$isAdmin) {
 					$dropbox_access = new xelFinderAccess();
 					if (isset($config['dropbox_hidden_ext']))
@@ -446,46 +446,46 @@ try {
 	//////////////////////////////////////////////////////
 
 	$opts = [
-        'isAdmin' => $isAdmin, // for class xelFinder
-        'locale' => 'ja_JP.UTF-8',
-        'optionsNetVolumes' => $optionsNetVolumes,
-        'session' => $session,
-        'bind'   => [
-            //'*' => array($xoops_elFinder, 'log'),
-            'netmount.pre' => [$xoops_elFinder, 'netmountPreCallback'],
-            'netmount' => [$xoops_elFinder, 'netmountCallback'],
-            'mkdir mkfile put upload extract' => [$xoops_elFinder, 'notifyMail'],
-            'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre' => [
+		'isAdmin' => $isAdmin, // for class xelFinder
+		'locale' => 'ja_JP.UTF-8',
+		'optionsNetVolumes' => $optionsNetVolumes,
+		'session' => $session,
+		'bind'   => [
+			//'*' => [$xoops_elFinder, 'log'],
+			'netmount.pre' => [$xoops_elFinder, 'netmountPreCallback'],
+			'netmount rename' => [$xoops_elFinder, 'netmountCallback'],
+			'mkdir mkfile put upload extract' => [$xoops_elFinder, 'notifyMail'],
+			'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre' => [
 				'Plugin.Sanitizer.cmdPreprocess',
 				'Plugin.Normalizer.cmdPreprocess'
-            ],
-            'upload.presave' => [
-                'Plugin.Sanitizer.onUpLoadPreSave',
-                'Plugin.Normalizer.onUpLoadPreSave',
-                [$xoops_elFinder, 'autoRotateOnUpLoadPreSave'],
-                'Plugin.AutoResize.onUpLoadPreSave',
-                'Plugin.Watermark.onUpLoadPreSave'
-            ],
-            'editor.pre' => [$xoops_elFinder, 'editorPreCallback'],
-        ],
-        'plugin' => [
-            //'Sanitizer' => array(
-            //	'enable' => true,
-            //),
-            'AutoResize' => [
+			],
+			'upload.presave' => [
+				'Plugin.Sanitizer.onUpLoadPreSave',
+				'Plugin.Normalizer.onUpLoadPreSave',
+				[$xoops_elFinder, 'autoRotateOnUpLoadPreSave'],
+				'Plugin.AutoResize.onUpLoadPreSave',
+				'Plugin.Watermark.onUpLoadPreSave'
+			],
+			'editor.pre' => [$xoops_elFinder, 'editorPreCallback'],
+		],
+		'plugin' => [
+			//'Sanitizer' => [
+			//	'enable' => true,
+			//],
+			'AutoResize' => [
 				'enable' => false
-            ],
-            'Watermark' => [
+			],
+			'Watermark' => [
 				'enable' => false
-            ],
-        ],
-        'debug' => $debug,
-        'uploadTempPath' => XOOPS_TRUST_PATH . '/cache',
-        'commonTempPath' => XOOPS_TRUST_PATH . '/cache',
-        'tmpLinkPath' => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache',
-        'roots' => $rootVolumes,
-        'callbackWindowURL' => !empty($_REQUEST['myUrl'])? ($_REQUEST['myUrl'] . 'connector.php?cmd=callback') : ''
-    ];
+			],
+		],
+		'debug' => $debug,
+		'uploadTempPath' => XOOPS_TRUST_PATH . '/cache',
+		'commonTempPath' => XOOPS_TRUST_PATH . '/cache',
+		'tmpLinkPath' => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache',
+		'roots' => $rootVolumes,
+		'callbackWindowURL' => !empty($_REQUEST['myUrl'])? ($_REQUEST['myUrl'] . 'connector.php?cmd=callback') : ''
+	];
 
 	// clear output buffer
 	while( ob_get_level() ) {

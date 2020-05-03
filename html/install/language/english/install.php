@@ -104,7 +104,7 @@ define('_INSTALL_L92', 'Save settings');
 define('_INSTALL_L93', 'Modify settings');
 define('_INSTALL_L88', 'Saving configuration data..');
 define('_INSTALL_L166', 'Check file permissions in XOOPS_TRUST_PATH');
-define('_INSTALL_L167', 'Check Trust Path permissions');
+define('_INSTALL_L167', 'Check Trust Path Permissions');
 define('_INSTALL_L94', 'Check Public PATH and URL');
 define('_INSTALL_L127', 'Checking file path & URL settings..');
 define('_INSTALL_L95', 'Could not detect the physical path to your XOOPS directory.');

@@ -28,9 +28,9 @@ class Xupdate_InstallUtils
     **/
     public static function installSQLAutomatically(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        $dbTypeAliases = array(
+        $dbTypeAliases = [
             'mysqli' => 'mysql'
-        );
+        ];
         $sqlFileInfo =& $module->getInfo('sqlfile');
         $dbType = (isset($sqlfileInfo[XOOPS_DB_TYPE]) || !isset($dbTypeAliases[XOOPS_DB_TYPE])) ? XOOPS_DB_TYPE : $dbTypeAliases[XOOPS_DB_TYPE];
         if (!isset($sqlFileInfo[$dbType])) {
@@ -122,19 +122,19 @@ class Xupdate_InstallUtils
 
     /**
      * replaceDirname
-     * 
-     * @param   string  $from
-     * @param   string  $dirname
-     * @param   string  $trustDirname
-     * 
-     * @return  {string 'public',string 'trust'}
-    **/
+     *
+     * @param string $from
+     * @param string $dirname
+     * @param string $trustDirname
+     *
+     * @return array {string 'public',string 'trust'}
+     */
     public static function replaceDirname(/*** string ***/ $from, /*** string ***/ $dirname, /*** string ***/ $trustDirname = null)
     {
-        return array(
+        return [
             'public' => str_replace('{dirname}', $dirname, $from),
-            'trust' => ($trustDirname != null) ? str_replace('{dirname}', $trustDirname, $from) : null
-        );
+            'trust' => (null != $trustDirname) ? str_replace('{dirname}', $trustDirname, $from) : null
+        ];
     }
 
     /**
@@ -217,7 +217,7 @@ class Xupdate_InstallUtils
         $filename   =  Xupdate_InstallUtils::replaceDirname(trim($template['file']), $dirname, $trustDirname);
         $tplData    =  Xupdate_InstallUtils::readTemplateFile($dirname, $trustDirname, $filename['trust']);
     
-        if ($tplData == false) {
+        if (false == $tplData) {
             return false;
         }
     
@@ -225,7 +225,7 @@ class Xupdate_InstallUtils
         $tplFile->setVar('tpl_refid', $module->getVar('mid'));
         $tplFile->setVar('tpl_lastimported', 0);
         $tplFile->setVar('tpl_lastmodified', time());
-        $tplFile->setVar('tpl_type', (substr($filename['trust'], -4) === '.css') ? 'css' : 'module');
+        $tplFile->setVar('tpl_type', ('.css' === substr($filename['trust'], -4)) ? 'css' : 'module');
         $tplFile->setVar('tpl_source', $tplData, true);
         $tplFile->setVar('tpl_module', $module->getVar('dirname'));
         $tplFile->setVar('tpl_tplset', 'default');
@@ -305,12 +305,12 @@ class Xupdate_InstallUtils
 
     /**
      * &createBlockByInfo
-     * 
-     * @param   XoopsModule  &$module
-     * @param   string[]  $block
-     * 
-     * @return  XoopsBlock
-    **/
+     *
+     * @param XoopsModule  &$module
+     * @param string[]      $block
+     *
+     * @return void
+     */
     public static function &createBlockByInfo(/*** XoopsModule ***/ &$module, /*** string[] ***/ $block)
     {
         $visible = isset($block['visible']) ?
@@ -416,7 +416,7 @@ class Xupdate_InstallUtils
                 }
             }
         } else {
-            foreach (array(XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS) as $group) {
+            foreach ([XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS] as $group) {
                 $perm->setVar('gperm_groupid', $group);
                 $perm->setNew();
                 if (!$gpermHandler->insert($perm)) {
@@ -444,7 +444,7 @@ class Xupdate_InstallUtils
     **/
     public static function installBlockTemplate(/*** XoopsBlock ***/ &$block, /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        if ($block->get('template') == null) {
+        if (null == $block->get('template')) {
             return true;
         }
     
@@ -916,14 +916,14 @@ class Xupdate_InstallUtils
     **/
     public static function uninstallAllOfConfigs(/*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log)
     {
-        if ($module->get('hasconfig') == 0) {
+        if (0 == $module->get('hasconfig')) {
             return true;
         }
     
         $configHandler =& Xupdate_Utils::getXoopsHandler('config');
         $configs =& $configHandler->getConfigs(new Criteria('conf_modid', $module->get('mid')));
     
-        if (count($configs) == 0) {
+        if (0 == count($configs)) {
             return true;
         }
     

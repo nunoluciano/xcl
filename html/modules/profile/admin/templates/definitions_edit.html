@@ -8,6 +8,7 @@
   <{/if}>
 </div>
 
+
   <{if $actionForm->get('field_id')}>
     <h2><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></h2>
   <{else}>
@@ -17,27 +18,15 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="tips">
-<ul>
-<li>
-<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP1}>
-</li>
-<li>
-<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP2}>
-</li>
-<li>
-<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP3}>
-</li>
-<li>
-<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP4}>
-</li>
-<li>
-<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP5}>
-</li>
-<li>
-<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP6}>
-</li>
-<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=profile"><{$smarty.const._HELP}></a></li>
-</ul>
+	<ul>
+		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP1}></li>
+		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP2}></li>
+		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP3}></li>
+		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP4}></li>
+		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP5}></li>
+		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP6}></li>
+		<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=profile"><{$smarty.const._HELP}></a></li>
+	</ul>
 </div>
 
 <{if $actionForm->hasError()}>
@@ -49,6 +38,7 @@
     </ul>
   </div>
 <{/if}>
+
 <form action="index.php?action=DefinitionsEdit" method="post">
   <{xoops_token form=$actionForm}>
   <{xoops_input type=hidden name=field_id value=$actionForm->get('field_id')}>

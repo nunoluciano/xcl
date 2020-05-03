@@ -26,7 +26,7 @@ define('XUPDATE_STORE_SORT_KEY_DEFAULT', XUPDATE_STORE_SORT_KEY_SID);
 **/
 class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
 {
-    /*** string[] ***/ public $mSortKeys = array(
+    /*** string[] ***/ public $mSortKeys = [
        XUPDATE_STORE_SORT_KEY_SID => 'sid',
        XUPDATE_STORE_SORT_KEY_UID => 'uid',
        XUPDATE_STORE_SORT_KEY_VALID => 'valid',
@@ -35,15 +35,13 @@ class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
        XUPDATE_STORE_SORT_KEY_THEME_URL => 'theme_url',
        XUPDATE_STORE_SORT_KEY_REG_UNIXTIME => 'reg_unixtime',
 
-    );
+];
 
     /**
      * getDefaultSortKey
-     * 
-     * @param   void
-     * 
-     * @return  void
-    **/
+     *
+     * @return int
+     */
     public function getDefaultSortKey()
     {
         return XUPDATE_STORE_SORT_KEY_DEFAULT;
@@ -62,31 +60,31 @@ class Xupdate_StoreFilterForm extends Xupdate_AbstractFilterForm
     
         $root =& XCube_Root::getSingleton();
     
-        if (($value = $root->mContext->mRequest->getRequest('sid')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('sid'))) {
             $this->mNavi->addExtra('sid', $value);
             $this->_mCriteria->add(new Criteria('sid', $value));
         }
-        if (($value = $root->mContext->mRequest->getRequest('uid')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('uid'))) {
             $this->mNavi->addExtra('uid', $value);
             $this->_mCriteria->add(new Criteria('uid', $value));
         }
-        if (($value = $root->mContext->mRequest->getRequest('valid')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('valid'))) {
             $this->mNavi->addExtra('valid', $value);
             $this->_mCriteria->add(new Criteria('valid', $value));
         }
-        if (($value = $root->mContext->mRequest->getRequest('name')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('name'))) {
             $this->mNavi->addExtra('name', $value);
             $this->_mCriteria->add(new Criteria('name', $value));
         }
-        if (($value = $root->mContext->mRequest->getRequest('addon_url')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('addon_url'))) {
             $this->mNavi->addExtra('addon_url', $value);
             $this->_mCriteria->add(new Criteria('addon_url', $value));
         }
-        if (($value = $root->mContext->mRequest->getRequest('theme_url')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('theme_url'))) {
             $this->mNavi->addExtra('theme_url', $value);
             $this->_mCriteria->add(new Criteria('theme_url', $value));
         }
-        if (($value = $root->mContext->mRequest->getRequest('reg_unixtime')) !== null) {
+        if (null !== ($value = $root->mContext->mRequest->getRequest('reg_unixtime'))) {
             $this->mNavi->addExtra('reg_unixtime', $value);
             $this->_mCriteria->add(new Criteria('reg_unixtime', $value));
         }
