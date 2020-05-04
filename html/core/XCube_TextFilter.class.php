@@ -14,15 +14,15 @@
  */
 class XCube_TextFilter
 {
-    public $mDummy=null;  //Dummy member for preventing object be treated as empty.
+    public $mDummy;  //Dummy member for preventing object be treated as empty.
 
     public function getInstance(&$instance)
     {
         if (empty($instance)) {
-            $instance = new XCube_TextFilter();
+            $instance = new self();
         }
     }
-    
+
     public function toShow($str)
     {
         return htmlspecialchars($str, ENT_QUOTES);

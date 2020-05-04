@@ -43,29 +43,29 @@ class XCube_Utils
      * @public
      * @brief [Static] Formats string with special care for international.
      * @return string - Rendered string.
-     * 
+     *
      * This method renders string with modifiers and parameters. Parameters are .NET
      * style, not printf style. Because .NET style is clear.
-     * 
+     *
      * \code
      *   XCube_Utils::formatString("{0} is {1}", "Time", "Money");
      *   // Result "Time is Money"
      * \endcode
-     * 
-     * It's possible to add a modifier to parameter place holders with ':' mark. 
-     * 
+     *
+     * It's possible to add a modifier to parameter place holders with ':' mark.
+     *
      * \code
      *   XCube_Utils::formatString("{0:ucFirst} is {1:toLower}", "Time", "Money");
      *   // Result "Time is Money"
      * \endcode
-     * 
+     *
      * This feature is useful for automatic combined messages by message catalogs.
-     * 
+     *
      * \par Modifiers
-     *   -li ufFirst - Upper the first charactor of the parameter's value. 
+     *   -li ufFirst - Upper the first charactor of the parameter's value.
      *   -li toUpper - Upper the parameter's value.
      *   -li toLower - Lower the parameter's value.
-     * 
+     *
      * @remarks
      *     This method doesn't implement the provider which knows how to format
      *     for each locales. So, this method is interim implement.
@@ -73,13 +73,13 @@ class XCube_Utils
     public static function formatString()
     {
         $arr = func_get_args();
-        
-        if (0 == count($arr)) {
+
+        if (count($arr) === 0) {
             return null;
         }
-        
+
         $message = $arr[0];
-        
+
         $variables = [];
         if (is_array($arr[1])) {
             $variables = $arr[1];
@@ -87,19 +87,15 @@ class XCube_Utils
             $variables = $arr;
             array_shift($variables);
         }
-        
-        for ($i = 0; $i < count($variables); $i++) {
-            $message = str_replace('{' . ($i) . '}', $variables[$i], $message);
-            
+
+        foreach ($variables as $i => $iValue) {
             // Temporary....
-            $message = str_replace('{' . ($i) . ':ucFirst}', ucfirst($variables[$i]), $message);
-            $message = str_replace('{' . ($i) . ':toLower}', strtolower($variables[$i]), $message);
-            $message = str_replace('{' . ($i) . ':toUpper}', strtoupper($variables[$i]), $message);
+            $message = str_replace(array('{' . ($i) . '}', '{' . ($i) . ':ucFirst}', '{' . ($i) . ':toLower}', '{' . ($i) . ':toUpper}'), array($variables[$i], ucfirst($iValue), strtolower($iValue), strtoupper($iValue)), $message);
         }
-        
+
         return $message;
     }
-    
+
     /**
      * @public
      * @brief [Static] To encrypt strings by "DES-ECB".
@@ -109,10 +105,10 @@ class XCube_Utils
      */
     public static function encrypt($plain_text, $key = null)
     {
-        if ('' === $plain_text) {
+        if ($plain_text === '') {
             return $plain_text;
         }
-        
+
         if (null === $key || ! is_string($key)) {
             if (! defined('XOOPS_SALT')) {
                 return $plain_text;
@@ -126,22 +122,22 @@ class XCube_Utils
                 return $plain_text;
             }
             $td  = mcrypt_module_open('des', '', 'ecb', '');
-            
+
             if (mcrypt_generic_init($td, $key, 'iv_dummy') < 0) {
                 return $plain_text;
             }
-            
+
             $crypt_text = base64_encode(mcrypt_generic($td, $plain_text));
-            
+
             mcrypt_generic_deinit($td);
             mcrypt_module_close($td);
         } else {
             $crypt_text = openssl_encrypt($plain_text, 'DES-ECB', $key);
         }
-        
+
         return false === $crypt_text ? $plain_text : $crypt_text;
     }
-    
+
     /**
      * @public
      * @brief [Static] To decrypt strings by "DES-ECB".
@@ -154,7 +150,7 @@ class XCube_Utils
         if ('' === $crypt_text) {
             return $crypt_text;
         }
-        
+
         if (null === $key || ! is_string($key)) {
             if (! defined('XOOPS_SALT')) {
                 return $crypt_text;
@@ -164,18 +160,18 @@ class XCube_Utils
         $key = substr(md5($key), 0, 8);
 
         // PHP < 5.4.0 can not use `OPENSSL_ZERO_PADDING`
-        if (! function_exists('openssl_decrypt') || version_compare(PHP_VERSION, '5.4.0', '<')) {
+        if (! function_exists('openssl_decrypt') || PHP_VERSION_ID < 50400) {
             if (! extension_loaded('mcrypt')) {
                 return $crypt_text;
             }
             $td  = mcrypt_module_open('des', '', 'ecb', '');
-            
+
             if (mcrypt_generic_init($td, $key, 'iv_dummy') < 0) {
                 return $crypt_text;
             }
-            
+
             $plain_text = mdecrypt_generic($td, base64_decode($crypt_text));
-            
+
             mcrypt_generic_deinit($td);
             mcrypt_module_close($td);
         } else {
@@ -186,13 +182,13 @@ class XCube_Utils
         // remove pkcs#7 padding for openssl encrypted text if padding string found
         $pad_ch = substr($plain_text, -1);
         $pad_len = ord($pad_ch);
-        if (0 == substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len)) {
+        if (substr_compare($plain_text, str_repeat($pad_ch, $pad_len), -$pad_len) === 0) {
             $plain_text = substr($plain_text, 0, strlen($plain_text) - $pad_len);
         }
-        
+
         return false === $plain_text ? $crypt_text : $plain_text;
     }
-    
+
     /**
      * @deprecated XCube 1.0 will remove this method.
      * @see XCube_Utils::formatString()
@@ -200,15 +196,19 @@ class XCube_Utils
     public function formatMessage()
     {
         $arr = func_get_args();
-        
-        if (0 == count($arr)) {
+
+        if (count($arr) === 0) {
             return null;
-        } elseif (1 == count($arr)) {
-            return XCube_Utils::formatString($arr[0]);
-        } elseif (count($arr) > 1) {
+        }
+
+        if (count($arr) === 1) {
+            return self::formatString($arr[0]);
+        }
+
+        if (count($arr) > 1) {
             $vals = $arr;
             array_shift($vals);
-            return XCube_Utils::formatString($arr[0], $vals);
+            return self::formatString($arr[0], $vals);
         }
     }
 

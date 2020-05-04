@@ -46,33 +46,32 @@ class XCube_Object
     public function __construct()
     //public function XCube_Object()
     {
-        $fileds = $this->getPropertyDefinition();
-        foreach ($fileds as $t_field) {
+        foreach ($this->getPropertyDefinition() as $t_field) {
             $this->mProperty[$t_field['name']] = [
                 'type' => $t_field['type'],
                 'value' => null
             ];
         }
     }
-    
+
     /**
      * Initialize. If the exception raises, return false.
      */
     public function prepare()
     {
     }
-    
+
     public function toArray()
     {
         $retArray = [];
-        
+
         foreach ($this->mProperty as $t_key => $t_value) {
             $retArray[$t_key] = $t_value['value'];
         }
-        
+
         return $retArray;
     }
-    
+
     public function loadByArray($vars)
     {
         foreach ($vars as $t_key => $t_value) {
@@ -89,7 +88,7 @@ class XCube_ObjectArray
     {
         return true;
     }
-    
+
     /**
      * @static
      * @return string

@@ -25,19 +25,19 @@ class XCube_HttpContext
      * @access protected
      */
     public $mAttributes = [];
-    
+
     /**
      * The object which enables to read the request values.
      *
      * @access XCube_AbstractRequest
      */
-    public $mRequest = null;
-    
+    public $mRequest;
+
     /**
      * @var XCube_Principal
      */
-    public $mUser = null;
-    
+    public $mUser;
+
     /**
      * String which expresses the type of the current request.
      * @var string
@@ -50,18 +50,18 @@ class XCube_HttpContext
      *
      * @access private
      */
-    public $mThemeName = null;
+    public $mThemeName;
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_HttpContext()
     {
     }
-    
+
     /**
      * Sets $value with $key to attributes. Use direct access to $mAttributes
      * if references are must, because PHP4 can't handle reference in the
      * signature of this member function.
-     * 
+     *
      * @param string $key
      * @param mixed $value
      */
@@ -72,7 +72,7 @@ class XCube_HttpContext
 
     /**
      * Gets a value indicating whether the value specified by $key exists.
-     * 
+     *
      * @param string $key
      * @return mixed
      */
@@ -80,11 +80,11 @@ class XCube_HttpContext
     {
         return isset($this->mAttributes[$key]);
     }
-    
+
     /**
      * Gets a value of attributes with $key. If the value specified by $key
      * doesn't exist in attributes, gets null.
-     * 
+     *
      * @param string $key
      * @return mixed
      */
@@ -102,7 +102,7 @@ class XCube_HttpContext
     {
         $this->mRequest =& $request;
     }
-    
+
     /**
      * Gets the object which has a interface of XCube_AbstractRequest.
      *
@@ -135,7 +135,7 @@ class XCube_HttpContext
 
     /**
      * Set the theme name.
-     * 
+     *
      * @param string $theme
      * @deprecated
      */
@@ -143,10 +143,10 @@ class XCube_HttpContext
     {
         $this->mThemeName = $theme;
     }
-    
+
     /**
      * Return the theme name.
-     * 
+     *
      * @return string
      * @deprecated
      */
@@ -181,7 +181,7 @@ class XCube_HttpRequest extends XCube_AbstractRequest
 {
     /**
      * Gets a value of the current HTTP request.
-     * 
+     *
      * @param string $key
      * @return mixed
      */
@@ -190,12 +190,10 @@ class XCube_HttpRequest extends XCube_AbstractRequest
         if (!isset($_GET[$key]) && !isset($_POST[$key])) {
             return null;
         }
-        
-        $value = isset($_GET[$key]) ? $_GET[$key] : $_POST[$key];
-        
-        return $value;
+
+        return isset($_GET[$key]) ? $_GET[$key] : $_POST[$key];
     }
-    
+
     /**
      * Supports getRequest().
      *
@@ -221,7 +219,7 @@ class XCube_GenericRequest extends XCube_AbstractRequest
      */
     public $mAttributes = [];
     // !Fix PHP7 NOTICE: deprecated constructor
-    public function __construct($arr = null)  
+    public function __construct($arr = null)
     //public function XCube_GenericRequest($arr = null)
     {
         if (is_array($arr)) {
@@ -234,7 +232,7 @@ class XCube_GenericRequest extends XCube_AbstractRequest
         if (!isset($this->mAttributes[$key])) {
             return null;
         }
-        
+
         return $this->mAttributes[$key];
     }
 }
