@@ -20,22 +20,18 @@ abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
 
     /**
      * _getId
-     * 
-     * @param   void
-     * 
-     * @return  int
-    **/
+     *
+     * @return void
+     */
     protected function _getId()
     {
     }
 
     /**
      * &_getHandler
-     * 
-     * @param   void
-     * 
-     * @return  &XoopsObjectGenericHandler
-    **/
+     *
+     * @return void &XoopsObjectGenericHandler
+     */
     protected function &_getHandler()
     {
     }
@@ -90,7 +86,7 @@ abstract class Xupdate_AbstractViewAction extends Xupdate_AbstractAction
     **/
     public function getDefaultView()
     {
-        if ($this->mObject == null) {
+        if (null == $this->mObject) {
             return XUPDATE_FRAME_VIEW_ERROR;
         }
     

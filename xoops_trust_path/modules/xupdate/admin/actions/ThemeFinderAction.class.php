@@ -30,7 +30,7 @@ class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction
 {
     const THEME_FINDER_API_VERSION = '1';
 
-    protected $themeFinderUrl = "http://cmsthemefinder.com/store/enter_store.php";
+    protected $themeFinderUrl = 'http://cmsthemefinder.com/store/enter_store.php';
 
     public function __construct()
     {
@@ -39,7 +39,7 @@ class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction
 
     public function prepare()
     {
-        if (defined('TP_THEME_FINDER_URL') === true) {
+        if (true === defined('TP_THEME_FINDER_URL')) {
             $this->themeFinderUrl = TP_THEME_FINDER_URL; // デバッグ用
         }
         parent::prepare();
@@ -86,7 +86,7 @@ HTML;
      **/
     public function executeViewIndex(&$render)
     {
-        $render->setTemplateName("admin_themefinder.html");
+        $render->setTemplateName('admin_themefinder.html');
 
         $render->setAttribute('mod_config', $this->mod_config);
         $render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
@@ -95,8 +95,8 @@ HTML;
         $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
         $render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_THEMEFINDER);
 
-        $render->setAttribute("themeFinderUrl", Xupdate_Utils::toShow($this->themeFinderUrl));
-        $render->setAttribute("themeFinderApiVersion", self::THEME_FINDER_API_VERSION);
-        $render->setAttribute("addonManagerInstallUrl", Xupdate_Utils::toShow(XOOPS_MODULE_URL . '/' . $this->mAsset->mDirname . '/admin/index.php?action=ThemeFinderInstall&target_type=Theme&target_key='));
+        $render->setAttribute('themeFinderUrl', Xupdate_Utils::toShow($this->themeFinderUrl));
+        $render->setAttribute('themeFinderApiVersion', self::THEME_FINDER_API_VERSION);
+        $render->setAttribute('addonManagerInstallUrl', Xupdate_Utils::toShow(XOOPS_MODULE_URL . '/' . $this->mAsset->mDirname . '/admin/index.php?action=ThemeFinderInstall&target_type=Theme&target_key='));
     }
 }

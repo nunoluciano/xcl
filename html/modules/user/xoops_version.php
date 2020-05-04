@@ -201,7 +201,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_AVATAR_WIDTH',
     'formtype'  => 'textbox',
     'valuetype' => 'int',
-    'default'   =>80
+    'default'   =>120
 ];
 
 $modversion['config'][]= [
@@ -209,7 +209,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_AVATAR_HEIGHT',
     'formtype'  => 'textbox',
     'valuetype' => 'int',
-    'default'   =>80
+    'default'   =>120
 ];
 
 $modversion['config'][]= [
@@ -217,7 +217,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_AVATAR_MAXSIZE',
     'formtype'  => 'textbox',
     'valuetype' => 'int',
-    'default'   =>35000
+    'default'   =>1048576
 ];
 
 $modversion['config'][]= [
@@ -242,7 +242,7 @@ $modversion['config'][]= [
     'description' => '_MI_USER_CONF_BAD_UNAMES_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'array',
-    'default'     => ['^admin', 'webmaster', '^xoops', '^cube', '^legacy', '^xcl', '^developer', '^design', '^support', '^info', '^client', '^customer']
+    'default'     => ['^admin', 'webmaster', '^xoops', '^cube', '^xcube', '^legacy', '^xcl', '^developer', '^develop', '^development', '^design', '^designer', '^support', '^info', '^information', '^client', '^customer', '^sales', '^billing']
 ];
 
 $modversion['config'][]= [
@@ -260,7 +260,7 @@ $modversion['config'][]= [
     'description' => '_MI_USER_CONF_DISPDSCLMR_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     =>0
+    'default'     =>1
 ];
 
 $modversion['config'][]= [
@@ -288,7 +288,7 @@ $modversion['config'][]= [
     'valuetype' => 'int',
     'default'   =>1
 ];
-    
+
 $modversion['config'][]= [
     'name'      => 'sslpost_name',
     'title'     => '_MI_USER_CONF_SSLPOST_NAME',

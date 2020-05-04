@@ -8,7 +8,7 @@
 
 // to call User_Utils::checkUsersPassColumnLength()
 // and insert `define('XCUBE_CORE_USER_PASS_LEN_FIXED', true);` to mainfile.php
-if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength') && xoops_getrequest('action') !== 'InstallChecker' && xoops_getrequest('action') !== 'UserPassColumnLenFix') {
+if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength') && 'InstallChecker' !== xoops_getrequest('action') && 'UserPassColumnLenFix' !== xoops_getrequest('action')) {
     header('Location: ' . XOOPS_URL . '/modules/xupdate/admin/index.php?action=UserPassColumnLenFix&xoops_redirect='.rawurlencode($_SERVER['REQUEST_URI']));
     exit();
 }

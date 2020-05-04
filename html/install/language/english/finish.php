@@ -1,9 +1,8 @@
 <?php
 // $Id: finish.php,v 1.3 2007/06/24 12:39:39 tom_g3x Exp $
 $content =
-'<h3>XCL Global Settings (2nd step)</h3>
-<p>The 2nd Step Installation allows you to install automatically all the core modules.</p>
-<p>Your new XCL web application platform will be up and running!</p>
+'<div class="confirmInfo">XCL installer last step allows you to install automatically all the core modules.<br>
+Your new XCL web application platform will be up and running!</div>
 <h3>XCL Documentation</h3>
 <h4>Manual</h4>
 <p>XCL core provides an advanced search functionality and for more detailed information refer to the respective documentation from each module administration help menu.</p>

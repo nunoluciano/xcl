@@ -1,6 +1,6 @@
 <?php
 
-include_once dirname(__FILE__) . '/Abstract.class.php';
+include_once __DIR__ . '/Abstract.class.php';
 
 class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
 {
@@ -21,10 +21,9 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
     /**
      * quit
      *
-     * @param   void
-     *
-     * @return	void
-     **/
+     * @param bool $force
+     * @return bool
+     */
     public function quit($force=false)
     {
         return true;
@@ -85,7 +84,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         return chmod($pathname, $mode);
     }
 
-    public function nlist($pathname="")
+    public function nlist($pathname= '')
     {
         return glob($pathname . '/*');
     }

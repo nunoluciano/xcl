@@ -111,7 +111,7 @@ class Xupdate_Installer
                     }
                 }
             } else {
-                foreach (array(XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS) as $group) {
+                foreach ([XOOPS_GROUP_ADMIN, XOOPS_GROUP_USERS] as $group) {
                     $readPerm =& $this->_createPermission($group);
                     $readPerm->setVar('gperm_name', 'module_read');
                     if (!$gpermHandler->insert($readPerm)) {
@@ -126,11 +126,11 @@ class Xupdate_Installer
 
     /**
      * &_createPermission
-     * 
-     * @param   int  $group
-     * 
-     * @return  XoopsGroupPerm
-    **/
+     *
+     * @param int $group
+     *
+     * @return void
+     */
     private function &_createPermission(/*** int ***/ $group)
     {
         $gpermHandler =& Xupdate_Utils::getXoopsHandler('groupperm');

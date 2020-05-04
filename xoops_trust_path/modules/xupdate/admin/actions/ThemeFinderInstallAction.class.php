@@ -106,7 +106,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
     public function execute()
     {
         $form_cancel = $this->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if ($form_cancel != null) {
+        if (null != $form_cancel) {
             return XUPDATE_FRAME_VIEW_CANCEL;
         }
 
@@ -131,7 +131,7 @@ class Xupdate_Admin_ThemeFinderInstallAction extends Xupdate_AbstractAction
     {
         $render->setTemplateName('admin_themefinder_install.html');
 
-        $xupdateFtp = new Xupdate_FtpThemeFinderInstall ;// Xupdate instance
+        $xupdateFtp = new Xupdate_FtpThemeFinderInstall();// Xupdate instance
         //setup
         $xupdateFtp->downloadDirPath = $this->Xupdate->params['temp_path'];
 

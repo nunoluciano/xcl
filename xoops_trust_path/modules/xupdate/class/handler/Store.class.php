@@ -55,7 +55,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler
     **/
     public function __construct(/*** XoopsDatabase ***/ &$db, /*** string ***/ $dirname)
     {
-        $this->mTable = strtr($this->mTable, array('{dirname}' => $dirname));
+        $this->mTable = strtr($this->mTable, ['{dirname}' => $dirname]);
         parent::__construct($db);
         $configHandler = & xoops_gethandler('config');
         $module_config = $configHandler->getConfigsByDirname($dirname);

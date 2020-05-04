@@ -1,10 +1,13 @@
 <?php
 // $Id: array_fill.php,v 1.1 2007/07/02 04:19:55 terrafrost Exp $
 
-
 /**
  * Replace array_fill()
  *
+ * @param $start_index
+ * @param $num
+ * @param $value
+ * @return array|bool
  * @category    PHP
  * @package     PHP_Compat
  * @license     https://www.opensource.org/licenses/mit-license.html  MIT License
@@ -22,7 +25,7 @@ function php_compat_array_fill($start_index, $num, $value)
         return false;
     }
 
-    $temp = array();
+    $temp = [];
 
     $end_index = $start_index + $num;
     for ($i = (int) $start_index; $i < $end_index; $i++) {

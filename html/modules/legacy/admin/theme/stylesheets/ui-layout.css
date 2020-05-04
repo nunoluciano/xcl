@@ -1,7 +1,7 @@
 /*
 	XOOPS Cube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
-	Version : 0.0.4
+	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2019-11-11
 	URL : https://github.com/xoopscube/xcl/
@@ -14,7 +14,7 @@
 
 		display								: grid;
 
-		grid-gap							: 10px;
+		grid-gap							: 1px;
 		grid-template-columns	: 200px auto;
 		grid-template-rows		: 55px 1fr 80px;
 		grid-template-areas		:
@@ -52,34 +52,6 @@
 
 	}
 
-	/* -------------------- -------------------- -------------------- -------------------- SIDE NAV */
-
-	.nav-aside {
-
-		background				: var(  --ui-aside-background		);
-
-		color							: var(  --ui-text-color					);
-
-		grid-area					: nav-aside;
-
-		height						: 100%;
-		left							: 0;
-		overflow-y				: auto;
-		position					: fixed;
-		padding-top				: 50px;
-		transform					: translateX(-235px);
-		transition				: all 0.6s ease-in-out;
-		width							: 230px;
-		z-index						: 2;
-
-	}
-
-	.nav-aside-active {
-
-		transform					: translateX(0);
-
-	}
-
 
 	/* -------------------- -------------------- -------------------- -------------------- Main */
 
@@ -95,7 +67,7 @@
 
 		grid-area					: main;
 
-		padding						: 2rem;
+		padding						: 0 2rem 2rem;
 
 	}
 
@@ -105,32 +77,58 @@
 
 		align-items				: center;
 
-		background				: var(  --ui-footer-background	);
+		background				: var(  --ui-footer-background	  );
 
-		border-color			: var(  --ui-border-none				);
-		border-radius			: var(  --ui-border-none				);
-		border-style			: var(  --ui-border-none				);
-		border-width			: var(  --ui-border-none				);
+		border						: var(  --ui-footer-border			  );
+		border-width			: var(  --ui-footer-border-width	);
 
-		box-shadow				: var(  --ui-border-none				);
+		box-shadow				: var(  --ui-border-none				  );
 
-		color 						: var(  --ui-footer-color				);
+		color 						: var(  --ui-footer-color				  );
 
 		display						: flex;
-		font-size					: 0.8rem;
+		font-size					: 0.9rem;
 
 		grid-area					: footer;
 
 		justify-content		: space-around;;
 
-		padding						: var(--ui-space-400);
+		/* padding						: var(--ui-space-100); */
+
+		position					: fixed;
+		bottom						: 0;
+		width							: 100%;
 
 	}
-		.footer-copy,
-		.footer-credits,
-		.footer-link {
+	.footer-copy,
+	.footer-credits,
+	.footer-link {
 
-			color						: var(  --ui-color-amber	) !important;
-			cursor					: pointer;
+		color						: var(  --ui-footer-link	) !important;
+		cursor					: pointer;
 
-		}
+	}
+
+
+	/*------------------------------------------------------  sidebar*/
+
+	.ui-flex-row {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.ui-flex-column {
+		display: flex;
+		flex-direction: column;
+		flex-basis: 100%;
+		flex: 1;
+	}
+
+	.ui-flex-column-2 {
+		display: flex;
+		flex-direction: column;
+		flex-basis: 100%;
+		flex: 2;
+	}

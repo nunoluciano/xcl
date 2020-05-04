@@ -1,19 +1,145 @@
-<h4>Module Pico</h4>
-<h5>Overview</h5>
-<p>This module allows you to manage content and publications workflow with a granular permissions by user or groups.</p>
-<p>Settings allow wysiwyg editors with options according to each use group.</p>
-<p>File manager.</p>
-<p>Vote and revisions, etc.</p>
-<p>Forms.</p>
+<p>
+	<a href ="#help-description" class="ui-btn">Pico</a>
+	<a href ="#help-features" class="ui-btn">Features</a>
+	<a href ="#help-content" class="ui-btn">Content</a>
+	<a href ="#help-development" class="ui-btn">Contribution</a>
+</p>
 
-<h5>Category Management</h5>
-<p>The following features are provided:</p>
+<hr>
+<a name="help-description"></a>
+<h3>Pico Module</h3>
+<p>Pico is a D3 (Duplicatable V3) module that can be clone/duplicate to manage static content and publication workflow
+<p>The module features a granular permissions by user or groups
+<p>But also settings to customize each category and document 'header' with stylesheets and scripts
+<p>histories revisions, custom forms, full file manager integration, etc.
+
+<hr>
+<a name="help-features"></a>
+<h3>Features</h3>
 <ul>
-    <li>Summary</li>
-    <li>Description</li>
-    <li>WYSIWYG Editor</li>
-    <li>Granular permissions</li>
-    <li>Revisions history</li>
-    <li>Diff</li>
-    <li>others</li>
+	<li>hierarchical category</li>
+	<li>breadcrumbs</li>
+	<li>page navigation</li>
+	<li>XOOPS_TRUST_PATH/wraps/(dirname) files manual page-wrapping</li>
+	<li>XOOPS_TRUST_PATH/wraps/(dirname) files automatic page-wrapping/transfer</li>
+	<li>static URI (same as wraps)</li>
+	<li>overridable options at each categories</li>
+	<li>body filter system (smarty, wiki, php etc.)</li>
+	<li>better preview</li>
+	<li>contents cache</li>
+	<li>tell a friend link (tellafriend module supported natively)</li>
+	<li>printer friendly view</li>
+	<li>singlecontent view</li>
+	<li>html header customize per module/categories</li>
+	<li>html header customize per contents</li>
+	<li>search (with context)</li>
+	<li>counts views</li>
+	<li>list block (duplicatable)</li>
+	<li>menu block (duplicatable)</li>
+	<li>contents block (duplicatable)</li>
+	<li>contents controller for admin</li>
+	<li>dynamic submenu</li>
+	<li>native d3forum comment-integration</li>
+	<li>Wysiwyg Editor (common/fckeditor only)</li>
+	<li>import from TinyD per a module</li>
+	<li>import from pico per a module</li>
+	<li>import from pico per a content</li>
+	<li>plugin for sitemap module</li>
+	<li>vote</li>
+	<li>automated menu page</li>
+	<li>approval system for creating contents</li>
+	<li>approval system for modifying contents</li>
+	<li>event notification for waiting approval</li>
+	<li>plugin for waiting module</li>
+	<li>RSS (both entire module and each categories)</li>
+	<li>auto-registering wrapped files into DB</li>
+	<li>xoops_breadcrumbs</li>
+	<li>static URI by mod_rewrite (both wraps mode and normal mode)</li>
+	<li>refer histories of contents</li>
+	<li>language constants override system</li>
+	<li>Xmobile plugin</li>
+	<li>any number of extra fields or images as you like</li>
+	<li>tag</li>
+	<li>hierarchical permission system (succeeding or independent as you like)</li>
+	<li>waiting/expiring contents</li>
 </ul>
+
+<hr>
+<a name="help-content"></a>
+<h3>Content Management</h3>
+<p>The following features are available in Category and content management :</p>
+<ul>
+    <li>Name, title
+    <li>Virtual path
+    <li>Weight (order) YSIWYG Editor
+    <li>Visible (public)
+    <li>Added to Navigation
+    <li>Added to Menu
+		<li>Allow comments
+		<li>Granular Permissions
+</ul>
+<table class="outer">
+	<tbody>
+		<tr>
+		<th>ID</th>
+		<th>Subject</th>
+		<th>Virtual path</th>
+		<th>weight</th>
+		<th>VIS<br>
+			<input type="checkbox">
+		</th>
+		<th>NAVI<br>
+			<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&amp;&amp;elements[i].id.indexOf('col_show_in_navi_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+		<th>MENU<br>
+			<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&amp;&amp;elements[i].id.indexOf('col_show_in_menu_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+		<th>COM<br>
+			<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&amp;&amp;elements[i].id.indexOf('col_allow_comment_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+		<th style="text-align:right;">Actions<br>
+			<input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&amp;&amp;elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+		</th>
+	</tr>
+	<tr class="even">
+			<td style="text-align:right;">1</td>
+			<td align="left"><input type="text" size="24" name="subjects[1]" id="col_subject_1" value="Main Content"></td>
+			<td align="center"><input type="text" size="24" name="vpaths[1]" id="col_vpath_1" value=""></td>
+			<td align="center"><input type="text" size="3" name="weights[1]" id="col_weight_1" value="0" style="text-align:right;"></td>
+			<td align="center"><input type="checkbox" name="visibles[1]" id="col_visible_1" value="1" checked="checked"></td>
+			<td align="center"><input type="checkbox" name="show_in_navis[1]" id="col_show_in_navi_1" value="1" checked="checked"></td>
+			<td align="center"><input type="checkbox" name="show_in_menus[1]" id="col_show_in_menu_1" value="1" checked="checked"></td>
+			<td align="center"><input type="checkbox" name="allow_comments[1]" id="col_allow_comment_1" value="1" checked="checked"></td>
+			<td nowrap="nowrap" style="text-align:right;"><a href="#">View</a> | <a href="#">Edit</a> | <input type="checkbox" name="action_selects[1]" id="col_action_1" value="1">
+				<br>Author 2020/4/5 11:33</td>
+		</tr>
+			<tr>
+		<td colspan="9" align="center" class="foot">
+			<input type="submit" name="contents_update" value="Submit" tabindex="0">
+		</td>
+	</tr>
+	<tr>
+		<th colspan="9" style="text-align:right;">
+			selected items will be:
+			<input type="submit" name="contents_delete" value="delete" onclick="return confirm('Are you sure to delete them?');">
+			<input type="submit" name="contents_move" value="MOVED">
+			<select name="dest_cat_id" id="select_dest_cat_id"><option label="TOP (0)" value="0">TOP (0)</option>
+<option label="--Main Category (1)" value="1" selected="selected">--Main Category (1)</option>
+<option label="----Subcategory (0)" value="2">----Subcategory (0)</option>
+</select>
+			<br>
+			<input type="submit" name="contents_export" value="Export" onclick="return confirm('Selected contents are exported as the top contents of the module. Comments will not be copied. Are you OK?');">
+			<select name="export_mid" id="select_export_mid"><option label="----" value="0">----</option>
+</select>
+		</th>
+	</tr>
+</tbody>
+</table>
+<p>Categories and content can be moved to other categories or exported to compatible modules.
+
+<hr>
+<a name="help-development"></a>
+<h3>Development</h3>
+<p>Pico is a D3 module by the trusted developer Gijoe.
+<p>The XOOPS Cube project is community driven. We encourage everyone in the community to contribute their knowledge and expertise.
+<p><a href="https://github.com/xoopscube/xcl" target="_blank" rel="author">XCL Github Repository</a>

@@ -88,7 +88,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_COPYRIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'Copyright &copy; 2001-2019'
+    'default'     => 'Copyright &copy; 2001-2020'
 ];
 
 
@@ -147,15 +147,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FOOTER_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'Powered by XCL 2.3.0 &copy; 2001-2019 <a href="https://github.com/xoopscube/" rel="external">The XOOPSCube Project</a>'
-];
-
-$modversion['config'][]= [
-    'name'      => 'banners',
-    'title'     => '_MI_LEGACYRENDER_CONF_BANNERS',
-    'formtype'  => 'yesno',
-    'valuetype' => 'int',
-    'default'   =>0
+    'default'     => 'Powered by XCL 2.3.0 &copy; 2001-2020 <a href="https://github.com/xoopscube/xcl" rel="external">The XOOPSCube Project</a>'
 ];
 
 $modversion['config'][]= [
@@ -173,7 +165,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_CSS_FILE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dot-luv/jquery-ui.min.css'
+    'default'     => XOOPS_URL . '/common/js/jquery-ui.min.css'
 ];
 
 $modversion['config'][]= [
@@ -191,7 +183,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_JQUERY_CORE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'
+    'default'     => XOOPS_URL . '/common/js/jquery.min.js'
 ];
 
 $modversion['config'][]= [
@@ -200,7 +192,15 @@ $modversion['config'][]= [
     'description' => '_MI_LR_JQUERY_UI_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'
+    'default'     => XOOPS_URL . '/common/js/jquery-ui.min.js'
+];
+
+$modversion['config'][]= [
+    'name'      => 'banners',
+    'title'     => '_MI_LEGACYRENDER_CONF_BANNERS',
+    'formtype'  => 'yesno',
+    'valuetype' => 'int',
+    'default'   =>0
 ];
 
 // Menu

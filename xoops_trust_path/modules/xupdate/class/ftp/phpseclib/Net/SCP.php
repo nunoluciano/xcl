@@ -93,7 +93,7 @@ class Net_SCP
      * @var object
      * @access private
      */
-    var $ssh;
+    public $ssh;
 
     /**
      * Packet Size
@@ -101,7 +101,7 @@ class Net_SCP
      * @var int
      * @access private
      */
-    var $packet_size;
+    public $packet_size;
 
     /**
      * Mode
@@ -109,20 +109,17 @@ class Net_SCP
      * @var int
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * Default Constructor.
      *
      * Connects to an SSH server
      *
-     * @param string $host
-     * @param int $port
-     * @param int $timeout
-     * @return Net_SCP
+     * @param $ssh
      * @access public
      */
-    function __construct($ssh)
+    public function __construct($ssh)
     {
         if (!is_object($ssh)) {
             return;
@@ -134,7 +131,7 @@ class Net_SCP
                 break;
             case 'net_ssh1':
                 $this->packet_size = 50000;
-                $this->mode = NET_SCP_SSH1;
+                $this->mode        = NET_SCP_SSH1;
                 break;
             default:
                 return;
@@ -157,14 +154,14 @@ class Net_SCP
      * Currently, only binary mode is supported.  As such, if the line endings need to be adjusted, you will need to take
      * care of that, yourself.
      *
-     * @param string $remote_file
-     * @param string $data
-     * @param int $mode
+     * @param string   $remote_file
+     * @param string   $data
+     * @param int      $mode
      * @param callable $callback
      * @return bool
      * @access public
      */
-    function put($remote_file, $data, $mode = NET_SCP_STRING, $callback = null)
+    public function put($remote_file, $data, $mode = NET_SCP_STRING, $callback = null)
     {
         if (!isset($this->ssh)) {
             return false;
@@ -179,13 +176,13 @@ class Net_SCP
             return false;
         }
 
-        if ($this->mode == NET_SCP_SSH2) {
+        if (NET_SCP_SSH2 == $this->mode) {
             $this->packet_size = $this->ssh->packet_size_client_to_server[NET_SSH2_CHANNEL_EXEC] - 4;
         }
 
         $remote_file = basename($remote_file);
 
-        if ($mode == NET_SCP_STRING) {
+        if (NET_SCP_STRING == $mode) {
             $size = strlen($data);
         } else {
             if (!is_file($data)) {
@@ -211,7 +208,7 @@ class Net_SCP
         while ($sent < $size) {
             $temp = $mode & NET_SCP_STRING ? substr($data, $sent, $this->packet_size) : fread($fp, $this->packet_size);
             $this->_send($temp);
-            $sent+= strlen($temp);
+            $sent += strlen($temp);
 
             if (is_callable($callback)) {
                 call_user_func($callback, $sent);
@@ -219,7 +216,7 @@ class Net_SCP
         }
         $this->_close();
 
-        if ($mode != NET_SCP_STRING) {
+        if (NET_SCP_STRING != $mode) {
             fclose($fp);
         }
 
@@ -234,11 +231,11 @@ class Net_SCP
      * operation
      *
      * @param string $remote_file
-     * @param string $local_file
+     * @param bool   $local_file
      * @return mixed
      * @access public
      */
-    function get($remote_file, $local_file = false)
+    public function get($remote_file, $local_file = false)
     {
         if (!isset($this->ssh)) {
             return false;
@@ -258,7 +255,7 @@ class Net_SCP
 
         $size = 0;
 
-        if ($local_file !== false) {
+        if (false !== $local_file) {
             $fp = @fopen($local_file, 'wb');
             if (!$fp) {
                 return false;
@@ -269,18 +266,18 @@ class Net_SCP
         while ($size < $info['size']) {
             $data = $this->_receive();
             // SCP usually seems to split stuff out into 16k chunks
-            $size+= strlen($data);
+            $size += strlen($data);
 
-            if ($local_file === false) {
-                $content.= $data;
+            if (false === $local_file) {
+                $content .= $data;
             } else {
-                fputs($fp, $data);
+                fwrite($fp, $data);
             }
         }
 
         $this->_close();
 
-        if ($local_file !== false) {
+        if (false !== $local_file) {
             fclose($fp);
             return true;
         }
@@ -294,7 +291,7 @@ class Net_SCP
      * @param string $data
      * @access private
      */
-    function _send($data)
+    public function _send($data)
     {
         switch ($this->mode) {
             case NET_SCP_SSH2:
@@ -312,7 +309,7 @@ class Net_SCP
      * @return string
      * @access private
      */
-    function _receive()
+    public function _receive()
     {
         switch ($this->mode) {
             case NET_SCP_SSH2:
@@ -347,7 +344,7 @@ class Net_SCP
      *
      * @access private
      */
-    function _close()
+    public function _close()
     {
         switch ($this->mode) {
             case NET_SCP_SSH2:

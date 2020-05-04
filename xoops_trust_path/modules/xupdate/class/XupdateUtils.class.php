@@ -17,11 +17,10 @@ class Xupdate_Utils
     /**
      * getModuleConfig
      *
-     * @param   string  $name
-     * @param   bool  $optional
-     *
+     * @param $dirname
+     * @param $key
      * @return  XoopsObjectHandler
-     **/
+     */
     public static function getModuleConfig(/*** string ***/ $dirname, /*** mixed ***/ $key)
     {
         $handler = self::getXoopsHandler('config');
@@ -73,7 +72,7 @@ class Xupdate_Utils
             new XCube_Ref($asset),
             $dirname
         );
-        if (is_object($asset) && is_a($asset, 'Xupdate_AssetManager')) {
+        if (is_object($asset) && $asset instanceof \Xupdate_AssetManager) {
             return $asset->getObject('handler', $name);
         }
     }
@@ -99,11 +98,12 @@ class Xupdate_Utils
     {
         return htmlspecialchars(htmlspecialchars_decode($str), ENT_COMPAT, _CHARSET);
     }
-    
+
     /**
      * Get redirect URL
      * @param string $url
-     * @param int $limit
+     * @param int    $redirect
+     * @param bool   $curl_ssl_no_verify
      * @return string
      */
     public static function getRedirectUrl($url, $redirect = 10, $curl_ssl_no_verify = false)
@@ -122,14 +122,15 @@ class Xupdate_Utils
         }
         return $url;
     }
-    
+
     /**
      * Get redirect URL with cURL
-     * 
-     * @param $url
-     * @param $ch
-     * @param $max_redirect
-     * @param $redirects
+     *
+     * @param      $url
+     * @param      $ch
+     * @param int  $max_redirect
+     * @param int  $redirects
+     * @param bool $curl_ssl_no_verify
      * @return string
      */
     public static function curlGetRedirectUrl($url, $ch = null, $max_redirect = 10, $redirects = 0, $curl_ssl_no_verify = false)
@@ -147,7 +148,7 @@ class Xupdate_Utils
         
         $data = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        if ($http_code == 301 || $http_code == 302 || $http_code == 303 || $http_code == 307) {
+        if (301 == $http_code || 302 == $http_code || 303 == $http_code || 307 == $http_code) {
             list($header) = explode("\r\n\r\n", $data, 2);
             if (preg_match('/(?:Location:|URI:)(.*?)\n/i', $header, $matches)) {
                 $url = trim($matches[1]);
@@ -159,12 +160,13 @@ class Xupdate_Utils
         curl_close($ch);
         return $url;
     }
-    
+
     /**
      * Setup cURL SSL options
-     * 
-     * @param int $ch
-     * @return boolean
+     *
+     * @param int  $ch
+     * @param bool $curl_ssl_no_verify
+     * @return bool
      */
     public static function setupCurlSsl($ch, $curl_ssl_no_verify = false)
     {
@@ -182,22 +184,23 @@ class Xupdate_Utils
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2));
         }
     }
-    
+
     /**
      * Setup cURL PROXY options
-     * 
+     *
      * @param int $ch
+     * @param     $url
      * @return array errors
      */
     public static function setupCurlProxy($ch, $url)
     {
-        $errors = array();
+        $errors = [];
         $proxy = '';
         
         if (! empty($_SERVER['HTTP_PROXY']) || ! empty($_SERVER['http_proxy'])) {
             $proxy = !empty($_SERVER['http_proxy'])? $_SERVER['http_proxy'] : $_SERVER['HTTP_PROXY'];
         }
-        if (substr($url, 0, 5) === 'https' && (! empty($_SERVER['https_proxy']) || ! empty($_SERVER['HTTPS_PROXY']))) {
+        if ('https' === substr($url, 0, 5) && (! empty($_SERVER['https_proxy']) || ! empty($_SERVER['HTTPS_PROXY']))) {
             $proxy = !empty($_SERVER['https_proxy'])? $_SERVER['https_proxy'] : $_SERVER['HTTPS_PROXY'];
         }
         if ($proxy) {
@@ -208,11 +211,11 @@ class Xupdate_Utils
                 $proxyURL .= $proxy['host'];
                 
                 if (isset($proxy['port'])) {
-                    $proxyURL .= ":" . $proxy['port'];
+                    $proxyURL .= ':' . $proxy['port'];
                 } elseif ('https://' === substr($proxyURL, 0, 7)) {
-                    $proxyURL .= ":80";
+                    $proxyURL .= ':80';
                 } elseif ('https://' === substr($proxyURL, 0, 8)) {
-                    $proxyURL .= ":443";
+                    $proxyURL .= ':443';
                 }
                 try {
                     if (! curl_setopt($ch, CURLOPT_PROXY, $proxyURL)) {
@@ -244,7 +247,7 @@ class Xupdate_Utils
      * Check, Is directory writable
      * 
      * @param string $dir
-     * @return boolean
+     * @return bool
      */
     public static function checkDirWritable($dir)
     {
@@ -266,7 +269,7 @@ class Xupdate_Utils
      * Check, Can make directory
      * 
      * @param unknown $targetDir
-     * @return boolean
+     * @return bool
      */
     public static function checkMakeDirectory($targetDir)
     {
@@ -308,7 +311,7 @@ class Xupdate_Utils
     {
         static $doConvert = null;
         if (null === $doConvert) {
-            $doConvert = (function_exists('mb_convert_variables') && strtoupper(_CHARSET) !== 'UTF-8');
+            $doConvert = (function_exists('mb_convert_variables') && 'UTF-8' !== strtoupper(_CHARSET));
         }
         if ($doConvert) {
             mb_convert_variables(_CHARSET, 'UTF-8', $arg);

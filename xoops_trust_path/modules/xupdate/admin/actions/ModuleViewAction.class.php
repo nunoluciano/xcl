@@ -37,7 +37,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
     public function prepare()
     {
         //データの自動作成と削除
-        $inidataset = new Xupdate_ModulesIniDadaSet;
+        $inidataset = new Xupdate_ModulesIniDadaSet();
         $inidataset->execute('all', ($this->mRoot->mContext->mRequest->getRequest('checkonly')));
         $this->fetchLog = $inidataset->Func->Ftp->getMes();
         //-----------------------------------------------
@@ -122,7 +122,7 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
 
     private function get_storeItems($contents)
     {
-        $store_mod_arr=array();
+        $store_mod_arr= [];
         $storeHand =  & $this->_getStoreHandler();
         $modHand = & $this->_getModStoreHandler();
 
@@ -142,14 +142,14 @@ class Xupdate_Admin_ModuleViewAction extends Xupdate_AbstractAction
             $criteria->setOrder('ASC');
             $siteModuleStoreObjects =& $modHand->getObjects($criteria);
 
-            $itemsobj = array();
+            $itemsobj = [];
             foreach ($siteModuleStoreObjects as $key => $mobj) {
                 $itemsobj[$key]['id'] = $mobj->getShow('id');
                 $itemsobj[$key]['dirname'] = $mobj->getShow('dirname');
                 $itemsobj[$key]['hasupdate'] = $mobj->getShow('hasupdate');
                 $itemsobj[$key]['isactive'] = $mobj->getShow('isactive');
                 $itemsobj[$key]['category_id'] = $mobj->getShow('category_id');
-                $itemsobj[$key]['title'] = ($itemsobj[$key]['isactive'] == 1)? htmlspecialchars(_MI_XUPDATE_INSTALLED, ENT_COMPAT, _CHARSET) : ($mobj->get('description')? htmlspecialchars(strip_tags($mobj->get('description')), ENT_QUOTES, _CHARSET) : _MI_XUPDATE_FUTURE);
+                $itemsobj[$key]['title'] = (1 == $itemsobj[$key]['isactive'])? htmlspecialchars(_MI_XUPDATE_INSTALLED, ENT_COMPAT, _CHARSET) : ($mobj->get('description')? htmlspecialchars(strip_tags($mobj->get('description')), ENT_QUOTES, _CHARSET) : _MI_XUPDATE_FUTURE);
             }
             $store_mod_arr[$sid]['itemsobj'] = $itemsobj;
             $store_mod_arr[$sid]['items_count'] = count($itemsobj);
