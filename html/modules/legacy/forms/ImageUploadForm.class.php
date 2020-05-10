@@ -155,7 +155,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
             //
             // To store db
             //
-            if ('db' === $category->get('imgcat_storetype')) {
+            if ('db' == $category->get('imgcat_storetype')) {
                 $obj->loadImageBody();
                 if (!is_object($obj->mImageBody)) {
                     $obj->mImageBody =& $obj->createImageBody();

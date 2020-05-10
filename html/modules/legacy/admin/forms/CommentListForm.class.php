@@ -21,7 +21,7 @@ class Legacy_CommentListForm extends XCube_ActionForm
     {
         //
         //
-        if ('POST' === xoops_getenv('REQUEST_METHOD')) {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             return 'module.legacy.CommentSettingsForm.TOKEN';
         } else {
             return null;

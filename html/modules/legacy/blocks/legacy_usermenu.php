@@ -45,11 +45,11 @@ function b_legacy_usermenu_show()
         //
         $url = null;
         $service =& $root->mServiceManager->getService('privateMessage');
-        if (null !== $service) {
+        if (null != $service) {
             $client =& $root->mServiceManager->createClient($service);
             $url = $client->call('getPmInboxUrl', ['uid' => $xoopsUser->get('uid')]);
             
-            if (null !== $url) {
+            if (null != $url) {
                 $block['inbox_url'] = $url;
                 $block['new_messages'] = $client->call('getCountUnreadPM', ['uid' => $xoopsUser->get('uid')]);
                 $block['flagShowInbox']=true;

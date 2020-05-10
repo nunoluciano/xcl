@@ -20,7 +20,7 @@ class Legacy_ImagecategoryListForm extends XCube_ActionForm
     {
         //
         //
-        if ('POST' === xoops_getenv('REQUEST_METHOD')) {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             return 'module.legacy.ImagecategorySettingsForm.TOKEN';
         } else {
             return null;

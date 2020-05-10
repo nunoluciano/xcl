@@ -130,11 +130,7 @@ class textsanitizer
 
     public function sanitizeForDisplay($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)
     {
-        if (0 === $allowhtml) {
-            $text = $this->htmlSpecialChars($text);
-        } else {
-            $text = $this->makeClickable($text);
-        }
+        $text = 0 === $allowhtml ? $this->htmlSpecialChars($text) : $this->makeClickable($text);
         if (1 === $smiley) {
             $text = $this->smiley($text);
         }
@@ -148,11 +144,7 @@ class textsanitizer
     public function sanitizeForPreview($text, $allowhtml = 0, $smiley = 1, $bbcode = 1)
     {
         $text = $this->oopsStripSlashesGPC($text);
-        if (0 === $allowhtml) {
-            $text = $this->htmlSpecialChars($text);
-        } else {
-            $text = $this->makeClickable($text);
-        }
+        $text = 0 === $allowhtml ? $this->htmlSpecialChars($text) : $this->makeClickable($text);
         if (1 === $smiley) {
             $text = $this->smiley($text);
         }

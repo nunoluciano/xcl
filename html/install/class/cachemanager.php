@@ -52,10 +52,10 @@ class cache_manager
     {
         $reports = [];
         foreach ($this->s_files as $val) {
-            $reports[] = _OKIMG . sprintf(_INSTALL_L123, '<b>$val</b>');
+            $reports[] = _OKIMG . sprintf(_INSTALL_L123, "<b>$val</b>");
         }
         foreach ($this->f_files as $val) {
-            $reports[] = _NGIMG . sprintf(_INSTALL_L124, '<b>$val</b>');
+            $reports[] = _NGIMG . sprintf(_INSTALL_L124, "<b>$val</b>");
         }
         return $reports;
     }

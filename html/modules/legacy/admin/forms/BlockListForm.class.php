@@ -30,7 +30,7 @@ class Legacy_BlockListForm extends XCube_ActionForm
     {
         //
         //
-        if ('POST' === xoops_getenv('REQUEST_METHOD')) {
+        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             return 'module.legacy.BlockListForm.TOKEN';
         } else {
             return null;
