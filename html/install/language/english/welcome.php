@@ -1,7 +1,7 @@
 <?php
 // $Id: welcome.php,v 1.4 2008/09/22 13:52:22 kilica Exp $
 $content =
-'<div class="ui-tab-wrap">
+    '<div class="ui-tab-wrap">
 	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked="">
 	<label for="ui-tab1">About</label>
 

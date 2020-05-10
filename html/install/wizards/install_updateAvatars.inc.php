@@ -7,6 +7,7 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    $content = '<p>'._INSTALL_L151.'</p>';
-    $b_next = ['updateAvatars_go', _INSTALL_L139];
-    include './install_tpl.php';
+$content = '<p>' . _INSTALL_L151 . '</p>';
+$b_next = ['updateAvatars_go', _INSTALL_L139];
+
+include './install_tpl.php';

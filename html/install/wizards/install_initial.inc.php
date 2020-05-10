@@ -7,6 +7,7 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    // confirm database setting
-    include_once '../mainfile.php';
-    $wizard->render('install_initial.tpl.php');
+// confirm database setting
+include_once '../mainfile.php';
+
+$wizard->render('install_initial.tpl.php');

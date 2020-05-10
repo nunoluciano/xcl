@@ -25,12 +25,12 @@
 //  ------------------------------------------------------------------------ //
 
 /**
-* cache_manager for XOOPS installer
-*
-* @author Haruki Setoyama  <haruki@planewave.org>
-* @version $Id: cachemanager.php,v 1.1 2007/05/15 02:35:13 minahito Exp $
-* @access public
-**/
+ * cache_manager for XOOPS installer
+ *
+ * @author Haruki Setoyama  <haruki@planewave.org>
+ * @version $Id: cachemanager.php,v 1.1 2007/05/15 02:35:13 minahito Exp $
+ * @access public
+ **/
 class cache_manager
 {
 
@@ -39,7 +39,7 @@ class cache_manager
 
     public function write($file, $source)
     {
-        if (false != $fp = fopen(XOOPS_CACHE_PATH.'/'.$file, 'w')) {
+        if (false !== $fp = fopen(XOOPS_CACHE_PATH . '/' . $file, 'wb')) {
             fwrite($fp, $source);
             fclose($fp);
             $this->s_files[] = $file;
@@ -52,10 +52,10 @@ class cache_manager
     {
         $reports = [];
         foreach ($this->s_files as $val) {
-            $reports[]= _OKIMG.sprintf(_INSTALL_L123, "<b>$val</b>");
+            $reports[] = _OKIMG . sprintf(_INSTALL_L123, '<b>$val</b>');
         }
         foreach ($this->f_files as $val) {
-            $reports[] = _NGIMG.sprintf(_INSTALL_L124, "<b>$val</b>");
+            $reports[] = _NGIMG . sprintf(_INSTALL_L124, '<b>$val</b>');
         }
         return $reports;
     }

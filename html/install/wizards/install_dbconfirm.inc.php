@@ -7,15 +7,16 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    include_once './class/settingmanager.php';
-    $sm = new setting_manager(true);
+include_once './class/settingmanager.php';
 
-    $content = $sm->checkData();
-    if (!empty($content)) {
-        $wizard->setTitle(_INSTALL_L93);
-        $wizard->setContent($content . $sm->editform());
-        $wizard->setNext(['dbconfirm', _INSTALL_L91]);
-    } else {
-        $wizard->setContent($sm->confirmForm());
-    }
-    $wizard->render();
+$sm = new setting_manager(true);
+
+$content = $sm->checkData();
+if (!empty($content)) {
+    $wizard->setTitle(_INSTALL_L93);
+    $wizard->setContent($content . $sm->editform());
+    $wizard->setNext(['dbconfirm', _INSTALL_L91]);
+} else {
+    $wizard->setContent($sm->confirmForm());
+}
+$wizard->render();

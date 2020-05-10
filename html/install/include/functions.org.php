@@ -27,24 +27,24 @@
 function getLanguage()
 {
     $language_array = [
-            'en' => 'english',
+        'en' => 'english',
 //			'cn' => 'schinese',
-            'cs' => 'czech',
+        'cs' => 'czech',
 //			'de' => 'german',
-            'el' => 'greek',
+        'el' => 'greek',
 //			'es' => 'spanish',
-            'fr' => 'french',
-            'ja' => 'japanese',
-            'ko' => 'korean',
+        'fr' => 'french',
+        'ja' => 'japanese',
+        'ko' => 'korean',
 //			'nl' => 'dutch',
-            'pt' => 'pt_utf8',
-            'ru' => 'russian',
-            'zh' => 'schinese',
+        'pt' => 'pt_utf8',
+        'ru' => 'russian',
+        'zh' => 'schinese',
 
     ];
 
     $charset_array = [
-            'Shift_JIS' => 'ja_utf8',
+        'Shift_JIS' => 'ja_utf8',
     ];
 
     $language = 'english';
@@ -74,14 +74,14 @@ function getLanguage()
             } elseif (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
                 foreach ($charset_array as $ac => $lg) {
                     if (strstr($_SERVER['HTTP_ACCEPT_CHARSET'], $ac)) {
-                        $language = $lg ;
-                        break ;
+                        $language = $lg;
+                        break;
                     }
                 }
             }
         }
     }
-    if (!file_exists('./language/'.$language.'/install.php')) {
+    if (!file_exists('./language/' . $language . '/install.php')) {
         $language = 'english';
     }
     setcookie('install_lang', $language);
@@ -98,7 +98,7 @@ function getDirList($dirname)
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file)) {
                 if ('cvs' != strtolower($file) && is_dir($dirname . $file)) {
-                    $dirlist[$file]=$file;
+                    $dirlist[$file] = $file;
                 }
             }
         }
@@ -118,7 +118,7 @@ function getImageFileList($dirname)
     if (is_dir($dirname) && $handle = opendir($dirname)) {
         while (false !== ($file = readdir($handle))) {
             if (!preg_match('/^[.]{1,2}$/', $file) && preg_match('/[.gif|.jpg|.png]$/i', $file)) {
-                $filelist[$file]=$file;
+                $filelist[$file] = $file;
             }
         }
         closedir($handle);
@@ -128,12 +128,12 @@ function getImageFileList($dirname)
     return $filelist;
 }
 
-function &xoops_module_gettemplate($dirname, $template, $block=false)
+function &xoops_module_gettemplate($dirname, $template, $block = false)
 {
     if ($block) {
-        $path = XOOPS_ROOT_PATH.'/modules/'.$dirname.'/templates/blocks/'.$template;
+        $path = XOOPS_ROOT_PATH . '/modules/' . $dirname . '/templates/blocks/' . $template;
     } else {
-        $path = XOOPS_ROOT_PATH.'/modules/'.$dirname.'/templates/'.$template;
+        $path = XOOPS_ROOT_PATH . '/modules/' . $dirname . '/templates/' . $template;
     }
     if (!file_exists($path)) {
         $ret = false;
@@ -155,7 +155,7 @@ function &xoops_module_gettemplate($dirname, $template, $block=false)
 
 function check_language($language)
 {
-    if (file_exists('./language/'.$language.'/install.php')) {
+    if (file_exists('./language/' . $language . '/install.php')) {
         return $language;
     } else {
         return 'english';
@@ -169,17 +169,17 @@ function b_back($option = null)
     }
     $content = '';
     if (isset($option[0]) && '' != $option[0]) {
-        $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op='.htmlspecialchars($option[0]).'"\' class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'"></a>';
+        $content .= '<a href="javascript:void(0);" onclick=\'location.href="index.php?op=' . htmlspecialchars($option[0]) . '"\' class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="' . _INSTALL_L42 . '"></a>';
     } else {
-        $content .= '<a href="javascript:history.back();" class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="'._INSTALL_L42.'" /></a>';
+        $content .= '<a href="javascript:history.back();" class="back" style="display:inline-block;vertical-align:top;"><img src="img/back.png" alt="' . _INSTALL_L42 . '" /></a>';
     }
     if (isset($option[1]) && '' != $option[1]) {
-        $content .= '<span style="font-size:90%;"> &lt;&lt; '.htmlspecialchars($option[1]).'</span>';
+        $content .= '<span style="font-size:90%;"> &lt;&lt; ' . htmlspecialchars($option[1]) . '</span>';
     }
     return $content;
 }
 
-function b_reload($option='')
+function b_reload($option = '')
 {
     if (empty($option)) {
         return '';
@@ -187,19 +187,19 @@ function b_reload($option='')
     if (!defined('_INSTALL_L200')) {
         define('_INSTALL_L200', 'Reload');
     }
-    return  '<input type="image" src="img/reload.png" class="reload" title="Reload" value="'._INSTALL_L200.'" onclick="location.reload();" />';
+    return '<input type="image" src="img/reload.png" class="reload" title="Reload" value="' . _INSTALL_L200 . '" onclick="location.reload();" />';
 }
 
-function b_next($option=null)
+function b_next($option = null)
 {
     if (!isset($option) || !is_array($option)) {
         return '';
     }
     $content = '';
     if (isset($option[1]) && '' != $option[1]) {
-        $content .= '<span style="font-size:90%;">'.htmlspecialchars($option[1]).' &gt;&gt; </span>';
+        $content .= '<span style="font-size:90%;">' . htmlspecialchars($option[1]) . ' &gt;&gt; </span>';
     }
-    $content .= '<input type="hidden" name="op" value="'.htmlspecialchars($option[0]).'" />';
-    $content .= '<input type="image" src="img/next.png" class="next" title="'._INSTALL_L47.'" name="submit" value="'._INSTALL_L47.'" />';
+    $content .= '<input type="hidden" name="op" value="' . htmlspecialchars($option[0]) . '" />';
+    $content .= '<input type="image" src="img/next.png" class="next" title="' . _INSTALL_L47 . '" name="submit" value="' . _INSTALL_L47 . '" />';
     return $content;
 }

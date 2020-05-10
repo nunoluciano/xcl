@@ -25,12 +25,12 @@
 //  ------------------------------------------------------------------------ //
 
 /**
-* mainfile manager for XOOPS installer
-*
-* @author Haruki Setoyama  <haruki@planewave.org>
-* @version $Id: mainfilemanager.php,v 1.1 2007/05/15 02:35:13 minahito Exp $
-* @access public
-**/
+ * mainfile manager for XOOPS installer
+ *
+ * @author Haruki Setoyama  <haruki@planewave.org>
+ * @version $Id: mainfilemanager.php,v 1.1 2007/05/15 02:35:13 minahito Exp $
+ * @access public
+ **/
 class mainfile_manager
 {
 
@@ -38,7 +38,7 @@ class mainfile_manager
     public $distfile = '../mainfile.dist.php';
     public $rewrite = [];
 
-    public $report =  [];
+    public $report = [];
     public $error = false;
 
     public function setRewrite($def, $val)
@@ -48,18 +48,18 @@ class mainfile_manager
 
     public function copyDistFile()
     {
-        if (! copy($this->distfile, $this->path)) {
-            $this->report[] = _NGIMG.sprintf(_INSTALL_L126, '<b>'.$this->path.'</b>');
+        if (!copy($this->distfile, $this->path)) {
+            $this->report[] = _NGIMG . sprintf(_INSTALL_L126, '<b>' . $this->path . '</b>');
             $this->error = true;
             return false;
         }
-        $this->report[] = _OKIMG.sprintf(_INSTALL_L125, '<b>'.$this->path.'</b>', '<b>'.$this->distfile.'</b>');
+        $this->report[] = _OKIMG . sprintf(_INSTALL_L125, '<b>' . $this->path . '</b>', '<b>' . $this->distfile . '</b>');
         return true;
     }
 
     public function doRewrite()
     {
-        if (! $file = fopen($this->path, 'r')) {
+        if (!$file = fopen($this->path, 'r')) {
             $this->error = true;
             return false;
         }
@@ -69,29 +69,29 @@ class mainfile_manager
 
         foreach ($this->rewrite as $key => $val) {
             if (is_int($val) &&
-             preg_match("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", $content)) {
-                $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([0-9]+)\s*\)/", "define('".$key."', ".$val . ')', $content);
-                $this->report[] = _OKIMG.sprintf(_INSTALL_L121, "<b>$key</b>", $val);
-            } elseif (preg_match("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", $content)) {
+                preg_match("/(define\()([\"'])(" . $key . ")\\2,\s*([0-9]+)\s*\)/", $content)) {
+                $content = preg_replace("/(define\()([\"'])(" . $key . ")\\2,\s*([0-9]+)\s*\)/", "define('" . $key . "', " . $val . ')', $content);
+                $this->report[] = _OKIMG . sprintf(_INSTALL_L121, "<b>$key</b>", $val);
+            } elseif (preg_match("/(define\()([\"'])(" . $key . ")\\2,\s*([\"'])(.*?)\\4\s*\)/", $content)) {
                 if ('XOOPS_DB_TYPE' === $key && 'mysql' === $val) {
-                    $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", "extension_loaded('mysql')? define('XOOPS_DB_TYPE', 'mysql') : define('XOOPS_DB_TYPE', 'mysqli')", $content);
-                    $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
+                    $content = preg_replace("/(define\()([\"'])(" . $key . ")\\2,\s*([\"'])(.*?)\\4\s*\)/", "extension_loaded('mysql')? define('XOOPS_DB_TYPE', 'mysql') : define('XOOPS_DB_TYPE', 'mysqli')", $content);
+                    $this->report[] = _OKIMG . sprintf(_INSTALL_L121, '<b>' . $key . '</b>', $val);
                 } else {
-                    $content = preg_replace("/(define\()([\"'])(".$key.")\\2,\s*([\"'])(.*?)\\4\s*\)/", "define('".$key."', '".$this->sanitize($val)."')", $content);
-                    $this->report[] = _OKIMG.sprintf(_INSTALL_L121, '<b>'.$key.'</b>', $val);
+                    $content = preg_replace("/(define\()([\"'])(" . $key . ")\\2,\s*([\"'])(.*?)\\4\s*\)/", "define('" . $key . "', '" . $this->sanitize($val) . "')", $content);
+                    $this->report[] = _OKIMG . sprintf(_INSTALL_L121, '<b>' . $key . '</b>', $val);
                 }
             } else {
                 $this->error = true;
-                $this->report[] = _NGIMG.sprintf(_INSTALL_L122, '<b>'.$val.'</b>');
+                $this->report[] = _NGIMG . sprintf(_INSTALL_L122, '<b>' . $val . '</b>');
             }
         }
 
-        if (!$file = fopen($this->path, 'w')) {
+        if (!$file = fopen($this->path, 'wb')) {
             $this->error = true;
             return false;
         }
 
-        if (-1 == fwrite($file, $content)) {
+        if (fwrite($file, $content) === -1) {
             fclose($file);
             $this->error = true;
             return false;

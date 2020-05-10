@@ -7,6 +7,7 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    include './language/'.$language.'/finish.php'; //This will set message to $content;
-    $wizard->assign('finish', $content);
-    $wizard->render('install_finish.tpl.php');
+include './language/' . $language . '/finish.php'; //This will set message to $content;
+
+$wizard->assign('finish', $content);
+$wizard->render('install_finish.tpl.php');

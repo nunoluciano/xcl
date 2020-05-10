@@ -1,9 +1,9 @@
 <?php
 
-    foreach ($this->v('checks') as $check) {
+foreach ($this->v('checks') as $check) {
 
-        echo $check .'<br>';
-    }
+    echo $check . '<br>';
+}
 
 ?>
 
