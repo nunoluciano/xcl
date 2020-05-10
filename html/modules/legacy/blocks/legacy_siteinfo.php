@@ -73,21 +73,21 @@ function b_legacy_siteinfo_show($options)
 function b_legacy_siteinfo_edit($options)
 {
     $form = _MB_LEGACY_PWWIDTH . '&nbsp;';
-    $form .= "<input type='text' name='options[]' value='".$options[0]."' />";
-    $form .= '<br />' . _MB_LEGACY_PWHEIGHT . '&nbsp;';
-    $form .= "<input type='text' name='options[]' value='".$options[1]."' />";
-    $form .= '<br />' . sprintf(_MB_LEGACY_LOGO, XOOPS_URL . '/images/') . '&nbsp;';
-    $form .= "<input type='text' name='options[]' value='".$options[2]."' />";
+    $form .= "<input type='text' name='options[]' value='".$options[0]."'>";
+    $form .= '<br>' . _MB_LEGACY_PWHEIGHT . '&nbsp;';
+    $form .= "<input type='text' name='options[]' value='".$options[1]."'>";
+    $form .= '<br>' . sprintf(_MB_LEGACY_LOGO, XOOPS_URL . '/images/') . '&nbsp;';
+    $form .= "<input type='text' name='options[]' value='".$options[2]."'>";
     $chk = '';
-    $form .= '<br />' . _MB_LEGACY_SADMIN . '&nbsp;';
+    $form .= '<br>' . _MB_LEGACY_SADMIN . '&nbsp;';
     if (1 == $options[3]) {
         $chk = " checked='checked'";
     }
-    $form .= "<input type='radio' name='options[3]' value='1'".$chk . ' />&nbsp;' . _YES . '';
+    $form .= "<input type='radio' name='options[3]' value='1'".$chk . '>&nbsp;' . _YES . '';
     $chk = '';
     if (0 == $options[3]) {
         $chk = ' checked="checked"';
     }
-    $form .= "&nbsp;<input type='radio' name='options[3]' value='0'".$chk . ' />' . _NO . '';
+    $form .= "&nbsp;<input type='radio' name='options[3]' value='0'".$chk . '>' . _NO . '';
     return $form;
 }

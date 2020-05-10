@@ -22,16 +22,16 @@ define('XCUBE_FORMFILE_CHMOD', 0644);
  */
 class XCube_FormFile
 {
-    public $mName;
+    public $mName=null;
 
-    public $mKey;
+    public $mKey = null;
 
-    public $mContentType;
+    public $mContentType=null;
 
-    public $mFileName;
+    public $mFileName=null;
     public $mFileSize=0;
 
-    public $_mTmpFileName;
+    public $_mTmpFileName=null;
 
     public $mUploadFileFlag=false;
     // !Fix PHP7 NOTICE: deprecated constructor
@@ -48,7 +48,7 @@ class XCube_FormFile
     public function fetch()
     {
         if ($this->mName && isset($_FILES[$this->mName])) {
-            if ($this->mKey !== null) {
+            if (null !== $this->mKey) {
                 $this->setFileName($_FILES[$this->mName]['name'][$this->mKey]);
                 $this->setContentType($_FILES[$this->mName]['type'][$this->mKey]);
                 $this->setFileSize($_FILES[$this->mName]['size'][$this->mKey]);
@@ -111,7 +111,7 @@ class XCube_FormFile
     {
         $ret = null;
         $filename=$this->getFileName();
-        if (preg_match("/\.([a-z0-9.]+)$/i", $filename, $match)) {
+        if (preg_match("/\.([a-z0-9\.]+)$/i", $filename, $match)) {
             $ret=$match[1];
         }
 
@@ -227,7 +227,7 @@ class XCube_FormFile
     public function saveAs($file)
     {
         $destFile = '';
-        if (preg_match("#/$#", $file)) {
+        if (preg_match("#\/$#", $file)) {
             $destFile = $file . $this->getFileName();
         } elseif (is_dir($file)) {
             $destFile = $file . '/' . $this->getFileName();
@@ -284,8 +284,10 @@ class XCube_FormImageFile extends XCube_FormFile
     {
         parent::fetch();
 
-        if ($this->hasUploadFile() && !$this->_checkFormat()) {
-            $this->mUploadFileFlag = false;
+        if ($this->hasUploadFile()) {
+            if (!$this->_checkFormat()) {
+                $this->mUploadFileFlag = false;
+            }
         }
     }
 

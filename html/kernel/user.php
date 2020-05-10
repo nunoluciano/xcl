@@ -32,7 +32,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 /**
- * Class for users 
+ * Class for users
  * @author Kazumi Ono <onokazu@xoops.org>
  * @copyright copyright (c) 2000-2003 XOOPS.org
  * @package kernel
@@ -41,13 +41,13 @@ class XoopsUser extends XoopsObject
 {
 
     /**
-     * Array of groups that user belongs to 
+     * Array of groups that user belongs to
      * @var array
      * @access private
      */
     public $_groups = [];
     /**
-     * @var bool is the user admin? 
+     * @var bool is the user admin?
      * @access private
      */
     public $_isAdmin = null;
@@ -106,7 +106,7 @@ class XoopsUser extends XoopsObject
             $this->initVar('user_mailok', XOBJ_DTYPE_INT, 1, false);
             $initVars = $this->vars;
         }
-    
+
         // for backward compatibility
         if (isset($id)) {
             if (is_array($id)) {
@@ -140,7 +140,7 @@ class XoopsUser extends XoopsObject
     /**
      * Updated by Catzwolf 11 Jan 2004
      * find the username for a given ID
-     * 
+     *
      * @param int $userid ID of the user to find
      * @param int $usereal switch for usename or realname
      * @return string name of the user. name for "anonymous" if not found.
@@ -164,7 +164,7 @@ class XoopsUser extends XoopsObject
         return $GLOBALS['xoopsConfig']['anonymous'];
     }
     /**
-     * increase the number of posts for the user 
+     * increase the number of posts for the user
      *
      * @deprecated
      */
@@ -175,7 +175,7 @@ class XoopsUser extends XoopsObject
     }
     /**
      * set the groups for the user
-     * 
+     *
      * @param array $groupsArr Array of groups that user belongs to
      */
     public function setGroups($groupsArr)
@@ -198,14 +198,14 @@ class XoopsUser extends XoopsObject
         if ($bReget) {
             unset($this->_groups);
         }
-        
+
         if (empty($this->_groups)) {
             $member_handler = xoops_gethandler('member');
             $this->_groups = $member_handler->getGroupsByUser($this->getVar('uid'));
         }
         return $this->_groups;
     }
-    
+
     public function getNumGroups()
     {
         if (empty($this->_groups)) {
@@ -213,8 +213,8 @@ class XoopsUser extends XoopsObject
         }
         return count($this->_groups);
     }
-    
-    
+
+
     /**
      * alias for {@link getGroups()}
      * @see getGroups()
@@ -270,7 +270,7 @@ class XoopsUser extends XoopsObject
         return true;
     }
     /**
-     * is the user currently logged in? 
+     * is the user currently logged in?
      * @return bool
      */
     public function isOnline()
@@ -283,31 +283,31 @@ class XoopsUser extends XoopsObject
     }
     /**#@+
      * specialized wrapper for {@link XoopsObject::getVar()}
-     * 
+     *
      * kept for compatibility reasons.
-     * 
+     *
      * @see XoopsObject::getVar()
      * @deprecated
      */
     /**
-     * get the users UID 
+     * get the users UID
      * @return int
      */
     public function uid()
     {
         return $this->getVar('uid');
     }
-    
+
     /**
      * get the users name
      * @param string $format format for the output, see {@link XoopsObject::getVar()}
-     * @return string 
+     * @return string
      */
     public function name($format= 'S')
     {
         return $this->getVar('name', $format);
     }
-    
+
     /**
      * get the user's uname
      * @param string $format format for the output, see {@link XoopsObject::getVar()}
@@ -317,10 +317,10 @@ class XoopsUser extends XoopsObject
     {
         return $this->getVar('uname', $format);
     }
-    
+
     /**
-     * get the user's email 
-     * 
+     * get the user's email
+     *
      * @param string $format format for the output, see {@link XoopsObject::getVar()}
      * @return string
      */
@@ -328,27 +328,27 @@ class XoopsUser extends XoopsObject
     {
         return $this->getVar('email', $format);
     }
-    
+
     public function url($format= 'S')
     {
         return $this->getVar('url', $format);
     }
-    
+
     public function user_avatar($format= 'S')
     {
         return $this->getVar('user_avatar');
     }
-    
+
     public function user_regdate()
     {
         return $this->getVar('user_regdate');
     }
-    
+
     public function user_icq($format= 'S')
     {
         return $this->getVar('user_icq', $format);
     }
-    
+
     public function user_from($format= 'S')
     {
         return $this->getVar('user_from', $format);
@@ -357,72 +357,72 @@ class XoopsUser extends XoopsObject
     {
         return $this->getVar('user_sig', $format);
     }
-    
+
     public function user_viewemail()
     {
         return $this->getVar('user_viewemail');
     }
-    
+
     public function actkey()
     {
         return $this->getVar('actkey');
     }
-    
+
     public function user_aim($format= 'S')
     {
         return $this->getVar('user_aim', $format);
     }
-    
+
     public function user_yim($format= 'S')
     {
         return $this->getVar('user_yim', $format);
     }
-    
+
     public function user_msnm($format= 'S')
     {
         return $this->getVar('user_msnm', $format);
     }
-    
+
     public function pass()
     {
         return $this->getVar('pass');
     }
-    
+
     public function posts()
     {
         return $this->getVar('posts');
     }
-    
+
     public function attachsig()
     {
         return $this->getVar('attachsig');
     }
-    
+
     public function level()
     {
         return $this->getVar('level');
     }
-    
+
     public function theme()
     {
         return $this->getVar('theme');
     }
-    
+
     public function timezone()
     {
         return $this->getVar('timezone_offset');
     }
-    
+
     public function umode()
     {
         return $this->getVar('umode');
     }
-    
+
     public function uorder()
     {
         return $this->getVar('uorder');
     }
-   
+
     // RMV-NOTIFY
     public function notify_method()
     {
@@ -433,29 +433,29 @@ class XoopsUser extends XoopsObject
     {
         return $this->getVar('notify_mode');
     }
- 
+
     public function user_occ($format= 'S')
     {
         return $this->getVar('user_occ', $format);
     }
-    
+
     public function bio($format= 'S')
     {
         return $this->getVar('bio', $format);
     }
-    
+
     public function user_intrest($format= 'S')
     {
         return $this->getVar('user_intrest', $format);
     }
-    
+
     public function last_login()
     {
         return $this->getVar('last_login');
     }
 
     /**
-     * This class has avatar in uploads directory. 
+     * This class has avatar in uploads directory.
      * @return bool
      */
     public function hasAvatar()
@@ -468,7 +468,7 @@ class XoopsUser extends XoopsObject
         $file= XOOPS_UPLOAD_PATH . '/' . $avatar;
         return file_exists($file);
     }
-    
+
     /**
      *
      * Return Abs URL for displaying avatar.
@@ -505,7 +505,7 @@ class XoopsGuestUser extends XoopsUser
     {
         return true;
     }
-    
+
     public function getGroups($bReget = false)
     {
         return XOOPS_GROUP_ANONYMOUS;
@@ -514,8 +514,8 @@ class XoopsGuestUser extends XoopsUser
 
 
 /**
-* XOOPS user handler class.  
-* This class is responsible for providing data access mechanisms to the data source 
+* XOOPS user handler class.
+* This class is responsible for providing data access mechanisms to the data source
 * of XOOPS user class objects.
 *
 * @author  Kazumi Ono <onokazu@xoops.org>
@@ -527,7 +527,7 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * create a new user
-     * 
+     *
      * @param bool $isNew flag the new objects as "new"?
      * @return object XoopsUser
      */
@@ -542,7 +542,7 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * retrieve a user
-     * 
+     *
      * @param int $id UID of the user
      * @return mixed reference to the {@link XoopsUser} object, FALSE if failed
      */
@@ -565,7 +565,7 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * insert a new user in the database
-     * 
+     *
      * @param object $user reference to the {@link XoopsUser} object
      * @param bool $force
      * @return bool FALSE if failed, TRUE if already present and unchanged or successful
@@ -598,10 +598,10 @@ class XoopsUserHandler extends XoopsObjectHandler
             }
             $uid = $this->db->genId('users_uid_seq');
             $sql = sprintf(
-                'INSERT INTO %s (uid, uname, name, email, url, user_avatar, user_regdate, user_icq, user_from, user_sig, user_viewemail, actkey, user_aim, user_yim, user_msnm, pass, posts, attachsig, rank, level, theme, timezone_offset, last_login, umode, uorder, notify_method, notify_mode, user_occ, bio, user_intrest, user_mailok) VALUES (%u, %s, %s, %s, %s, %s, %u, %s, %s, %s, %u, %s, %s, %s, %s, %s, %u, %u, %u, %u, %s, %.2f, %u, %s, %u, %u, %u, %s, %s, %s, %u)', $this->db->prefix('users'), $uid, $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), time(), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($actkey), $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $this->db->quoteString($pass), $posts, $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, 0, $this->db->quoteString($umode), $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok);
+                'INSERT INTO %s (uid, uname, name, email, url, user_avatar, user_regdate, user_icq, user_from, user_sig, user_viewemail, actkey, user_aim, user_yim, user_msnm, pass, posts, attachsig, `rank`, level, theme, timezone_offset, last_login, umode, uorder, notify_method, notify_mode, user_occ, bio, user_intrest, user_mailok) VALUES (%u, %s, %s, %s, %s, %s, %u, %s, %s, %s, %u, %s, %s, %s, %s, %s, %u, %u, %u, %u, %s, %.2f, %u, %s, %u, %u, %u, %s, %s, %s, %u)', $this->db->prefix('users'), $uid, $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), time(), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($actkey), $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $this->db->quoteString($pass), $posts, $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, 0, $this->db->quoteString($umode), $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok);
         } else {
             $sql = sprintf(
-                'UPDATE %s SET uname = %s, name = %s, email = %s, url = %s, user_avatar = %s, user_icq = %s, user_from = %s, user_sig = %s, user_viewemail = %u, user_aim = %s, user_yim = %s, user_msnm = %s, posts = %d,  pass = %s, attachsig = %u, rank = %u, level= %u, theme = %s, timezone_offset = %.2f, umode = %s, last_login = %u, uorder = %u, notify_method = %u, notify_mode = %u, user_occ = %s, bio = %s, user_intrest = %s, user_mailok = %u WHERE uid = %u', $this->db->prefix('users'), $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $posts, $this->db->quoteString($pass), $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, $this->db->quoteString($umode), $last_login, $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok, $uid);
+                'UPDATE %s SET uname = %s, name = %s, email = %s, url = %s, user_avatar = %s, user_icq = %s, user_from = %s, user_sig = %s, user_viewemail = %u, user_aim = %s, user_yim = %s, user_msnm = %s, posts = %d,  pass = %s, attachsig = %u, `rank` = %u, level= %u, theme = %s, timezone_offset = %.2f, umode = %s, last_login = %u, uorder = %u, notify_method = %u, notify_mode = %u, user_occ = %s, bio = %s, user_intrest = %s, user_mailok = %u WHERE uid = %u', $this->db->prefix('users'), $this->db->quoteString($uname), $this->db->quoteString($name), $this->db->quoteString($email), $this->db->quoteString($url), $this->db->quoteString($user_avatar), $this->db->quoteString($user_icq), $this->db->quoteString($user_from), $this->db->quoteString($user_sig), $user_viewemail, $this->db->quoteString($user_aim), $this->db->quoteString($user_yim), $this->db->quoteString($user_msnm), $posts, $this->db->quoteString($pass), $attachsig, $rank, $level, $this->db->quoteString($theme), $timezone_offset, $this->db->quoteString($umode), $last_login, $uorder, $notify_method, $notify_mode, $this->db->quoteString($user_occ), $this->db->quoteString($bio), $this->db->quoteString($user_intrest), $user_mailok, $uid);
         }
         if (false != $force) {
             $result = $this->db->queryF($sql);
@@ -620,7 +620,7 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * delete a user from the database
-     * 
+     *
      * @param object $user reference to the user to delete
      * @param bool $force
      * @return bool FALSE if failed.
@@ -644,7 +644,7 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * Get unames from the database
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} conditions to be met
      * @param bool $id_as_key use the UID as key for the array?
      * @return array array of uname
@@ -678,7 +678,7 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * retrieve users from the database
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} conditions to be met
      * @param bool $id_as_key use the UID as key for the array?
      * @return array array of {@link XoopsUser} objects
@@ -735,13 +735,13 @@ class XoopsUserHandler extends XoopsObjectHandler
             $ret[]=&$user;
             unset($user);
         }
-        
+
         return $ret;
     }
 
     /**
      * count users matching a condition
-     * 
+     *
      * @param object $criteria {@link CriteriaElement} to match
      * @return int count of users
      */
@@ -761,8 +761,8 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * delete users matching a set of conditions
-     * 
-     * @param object $criteria {@link CriteriaElement} 
+     *
+     * @param object $criteria {@link CriteriaElement}
      * @return bool FALSE if deletion failed
      */
     public function deleteAll($criteria = null)
@@ -779,11 +779,11 @@ class XoopsUserHandler extends XoopsObjectHandler
 
     /**
      * Change a value for users with a certain criteria
-     * 
+     *
      * @param   string  $fieldname  Name of the field
      * @param   string  $fieldvalue Value to write
-     * @param   object  $criteria   {@link CriteriaElement} 
-     * 
+     * @param   object  $criteria   {@link CriteriaElement}
+     *
      * @return  bool
      **/
     public function updateAll($fieldname, $fieldvalue, $criteria = null)

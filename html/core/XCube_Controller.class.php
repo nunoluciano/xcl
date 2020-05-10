@@ -66,8 +66,8 @@ class XCube_Controller
      * @var Array
      */
     public $_mBlockChain = [];
-
-
+    
+    
     /**
      * Vector Array of XCube_ActionFilter class object.
      * @protected
@@ -77,29 +77,29 @@ class XCube_Controller
      *	   FilterList _mFilterChain; \n
      */
     public $_mFilterChain = [];
-
+    
     /**
      * This is Map-Array to keep names of action filter classes which are
      * applied as filters.
-     *
+     * 
      * @protected
      */
     public $_mLoadedFilterNames = [];
-
+    
     /**
      * The database object which is abstract layer for the database.
      *
      * @var object
      */
     public $mDB;
-
+    
     /**
      * A name of the current local.
      *
      * @access public
      * @var string
      */
-    public $mLocale;
+    public $mLocale = null;
 
     /**
      * A name of the current language.
@@ -107,7 +107,7 @@ class XCube_Controller
      * @access public
      * @var string
      */
-    public $mLanguage;
+    public $mLanguage = null;
 
     /**
      * Rebuilds the principal object for the current HTTP-request.
@@ -115,23 +115,23 @@ class XCube_Controller
      *
      * @var XCube_Delegate
      */
-    public $mSetupUser;
-
+    public $mSetupUser = null;
+    
     /**
      * Executes the main logic of the controller.
      * void execute(XCube_Controller &);
-     *
+     * 
      * @var XCube_Delegate
      */
-    public $mExecute;
-
+    public $mExecute = null;
+    
     /**
      * Make a instance of TextFilter.
      * void senupTextFilter(XCube_TextFilter &);
-     *
+     * 
      * @var XCube_Delegate
      */
-    public $mSetupTextFilter;
+    public $mSetupTextFilter = null;
     // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
     //public function XCube_Controller()
@@ -139,13 +139,13 @@ class XCube_Controller
         $this->_mBlockChain = [];
         $this->_mFilterChain = [];
         $this->_mLoadedFilterNames = [];
-
+        
         $this->mSetupUser = new XCube_Delegate();
         $this->mExecute = new XCube_Delegate();
         $this->mSetupTextFilter = new XCube_Delegate();
         $this->mSetupTextFilter->add('XCube_TextFilter::getInstance', XCUBE_DELEGATE_PRIORITY_FINAL);
     }
-
+    
     /**
      * This member function is overridden. The sub-class implements the
      * initialization process which sets up the root object finally.
@@ -155,7 +155,7 @@ class XCube_Controller
     public function prepare(&$root)
     {
         $this->mRoot =& $root;
-
+        
         $this->mRoot->setDelegateManager($this->_createDelegateManager());
         $this->mRoot->setServiceManager($this->_createServiceManager());
         $this->mRoot->setPermissionManager($this->_createPermissionManager());
@@ -178,7 +178,7 @@ class XCube_Controller
         $this->_processFilter();
 
         $this->_setupEnvironment();
-
+        
         $this->_setupDB();
 
         $this->_setupLanguage();
@@ -186,7 +186,7 @@ class XCube_Controller
         $this->_setupTextFilter();
 
         $this->_setupConfig();
-
+        
         //
         // Block section
         //
@@ -196,7 +196,7 @@ class XCube_Controller
 
         $this->_setupUser();
     }
-
+    
     /**
      * Usually this member function is called after executeCommon(). But, some
      * cases don't call this. Therefore, the page controller type base should
@@ -218,7 +218,7 @@ class XCube_Controller
     {
         $this->mExecute->call(new XCube_Ref($this));
     }
-
+    
     /**
      * Executes the view logic. This member function is overridden.
      *
@@ -227,10 +227,10 @@ class XCube_Controller
     public function executeView()
     {
     }
-
+    
     /**
      * TODO We may change this name to forward()
-     *
+     * 
      * @param string  $url		Can't use html tags.
      * @param int	  $time
      * @param string  $message
@@ -241,10 +241,10 @@ class XCube_Controller
         header('location: ' . $url);
         exit();
     }
-
+    
     /**
      * Redirect to the specified URL with displaying message.
-     *
+     * 
      * @param string  $url		Can't use html tags.
      * @param int	  $time
      * @param string  $message
@@ -253,7 +253,7 @@ class XCube_Controller
     {
         $this->executeForward($url, $time, $message);
     }
-
+    
     /**
      * Adds the ActionFilter instance.
      * @param XCube_ActionFilter $filter
@@ -278,7 +278,7 @@ class XCube_Controller
     public function _setupEnvironment()
     {
     }
-
+    
     /**
      * Creates the instance of DataBase class, and sets it to member property.
      *
@@ -287,7 +287,7 @@ class XCube_Controller
     public function _setupDB()
     {
     }
-
+    
     /**
      * Gets the DB instance.
      *
@@ -308,8 +308,8 @@ class XCube_Controller
     {
         $this->mRoot->mLanguageManager = new XCube_LanguageManager();
     }
-
-
+    
+    
     /**
      * Creates the instance of Text Filter class, and sets it to member
      * property.
@@ -322,8 +322,8 @@ class XCube_Controller
         $this->mSetupTextFilter->call(new XCube_Ref($textFilter));
         $this->mRoot->setTextFilter($textFilter);
     }
-
-
+    
+    
     /**
      * This member function is overridden. Loads site configuration informations,
      * and sets them to the member property.
@@ -335,7 +335,7 @@ class XCube_Controller
     /**
      * This member function is overridden. Sets up handler for session, then
      * starts session.
-     *
+     * 
      * @access protected
      * @return void
      */
@@ -345,9 +345,9 @@ class XCube_Controller
         //$this->mRoot->setSession(new XCube_Session());
         $session = new XCube_Session();
         $this->mRoot->setSession($session);
-
+        
     }
-
+    
     /**
      * Sets up a principal object to the root object. In other words, restores
      * the principal object from session or other.
@@ -356,7 +356,7 @@ class XCube_Controller
     {
         $this->mSetupUser->call(new XCube_Ref($this->mRoot->mContext->mUser), new XCube_Ref($this), new XCube_Ref($this->mRoot->mContext));
     }
-
+    
     /**
      * Calls the preFilter() member function of action filters which have been
      * loaded to the list of the controller.
@@ -369,7 +369,7 @@ class XCube_Controller
             $this->_mFilterChain[$key]->preFilter();
         }
     }
-
+    
     /**
      * FIXME.
      */
@@ -386,9 +386,9 @@ class XCube_Controller
             if ($this->mBlockChain[$key]->hasPermission($this, $this->getUser())) {
                 $renderTarget =new XCube_RenderTarget();
                 $renderTarget->setType(XCUBE_RENDER_TARGET_TYPE_MAIN);
-
+                
                 $this->mBlockChain[$key]->execute($this, $this->getUser(), $renderTarget);
-
+                
                 $this->mBlockChain[$key]->mRenderTarget =& $renderTarget;
 
                 unset($renderTarget);
@@ -408,7 +408,7 @@ class XCube_Controller
             $this->_mFilterChain[$key]->preBlockFilter();
         }
     }
-
+    
     /**
      * Calls the postFilter() member function of action filters which have been
      * loaded to the list of the controller.
@@ -432,9 +432,9 @@ class XCube_Controller
      */
     public function _processPreload($path)
     {
-        $path .= '/';
-
-        if (is_dir($path) && ($files = glob($path . '/*.class.php', GLOB_NOSORT))) {
+        $path = $path . '/';
+        
+        if (is_dir($path) && ($files = glob($path.'/*.class.php'))) {
             foreach ($files as $file) {
                 require_once $file;
                 $className = basename($file, '.class.php');
@@ -447,10 +447,10 @@ class XCube_Controller
             }
         }
     }
-
+    
     /**
      * Creates an instance of the delegate manager and returns it.
-     *
+     * 
      * @return XCube_DelegateManager
      */
     public function &_createDelegateManager()
@@ -461,7 +461,7 @@ class XCube_Controller
 
     /**
      * Creates an instance of the service manager and returns it.
-     *
+     * 
      * @return XCube_ServiceManager
      */
     public function &_createServiceManager()
@@ -473,38 +473,38 @@ class XCube_Controller
 
     /**
      * Creates an instance of the permission manager and returns it.
-     *
+     * 
      * @return XCube_PermissionManager
      */
     public function &_createPermissionManager()
     {
         $chunkName = $this->mRoot->getSiteConfig('Cube', 'PermissionManager');
-
+        
         //
         // FIXME: Access private method.
         //
         $manager =& $this->mRoot->_createInstance($this->mRoot->getSiteConfig($chunkName, 'class'), $this->mRoot->getSiteConfig($chunkName, 'path'));
-
+        
         return $manager;
     }
-
+    
     /**
      * Creates an instance of the role manager and returns it.
-     *
+     * 
      * @return XCube_RoleManager
      */
     public function &_createRoleManager()
     {
         $chunkName = $this->mRoot->getSiteConfig('Cube', 'RoleManager');
-
+        
         //
         // FIXME: Access private method.
         //
         $manager =& $this->mRoot->_createInstance($this->mRoot->getSiteConfig($chunkName, 'class'), $this->mRoot->getSiteConfig($chunkName, 'path'));
-
+        
         return $manager;
     }
-
+    
     /**
      * Creates the context object to initial the root object, and returns it.
      *
@@ -515,7 +515,7 @@ class XCube_Controller
         $context = new XCube_HttpContext();
         $request = new XCube_HttpRequest();
         $context->setRequest($request);
-
+        
         return $context;
     }
 }

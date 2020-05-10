@@ -18,21 +18,21 @@ class Legacy_ModuleUninstaller
 {
     /**
      * This instance is prepared automatically in the constructor.
-     * 
+     *
      * @public
      * @var Legacy_ModuleInstallLog
      */
     public $mLog = null;
-    
+
     public $_mForceMode = false;
-    
+
     /**
      * @protected
      * @var XoopsModule
      * @remark [Precondition] _mXoopsModule has to be an object.
      */
     public $_mXoopsModule = null;
-    
+
     /**
      * @brief XCube_Delegate
      * @attention
@@ -42,7 +42,7 @@ class Legacy_ModuleUninstaller
      *     have to add the same delegates to other installer classes.
      */
     public $m_fireNotifyUninstallTemplateBegun;
-    
+
     public function Legacy_ModuleUninstaller()
     {
         self::__construct();
@@ -54,10 +54,10 @@ class Legacy_ModuleUninstaller
         $this->m_fireNotifyUninstallTemplateBegun =new XCube_Delegate();
         $this->m_fireNotifyUninstallTemplateBegun->register('Legacy_ModuleUninstaller._fireNotifyUninstallTemplateBegun');
     }
-    
+
     /**
      * Sets the current XoopsModule.
-     * 
+     *
      * @public
      * @param XoopsModule $xoopsModule
      */
@@ -65,7 +65,7 @@ class Legacy_ModuleUninstaller
     {
         $this->_mXoopsModule =& $xoopsModule;
     }
-    
+
     /**
      * Sets a value indicating whether the force mode is on.
      * @param bool $isForceMode
@@ -74,11 +74,11 @@ class Legacy_ModuleUninstaller
     {
         $this->_mForceMode = $isForceMode;
     }
-    
+
     /**
      * Deletes module information from XOOPS database because this class is
      * uninstaller.
-     * 
+     *
      * @protected
      */
     public function _uninstallModule()
@@ -93,7 +93,7 @@ class Legacy_ModuleUninstaller
 
     /**
      * Drop table because this class is uninstaller.
-     * 
+     *
      * @protected
      */
     public function _uninstallTables()
@@ -104,22 +104,22 @@ class Legacy_ModuleUninstaller
         $dirname = $this->_mXoopsModule->get('dirname');
         $t_search = ['{prefix}', '{dirname}', '{Dirname}', '{_dirname_}'];
         $t_replace = [XOOPS_DB_PREFIX, strtolower($dirname), ucfirst(strtolower($dirname)), $dirname];
-        
+
         $tables = $this->_mXoopsModule->getInfo('tables');
-        if (false != $tables && is_array($tables)) {
+        if (false !== $tables && is_array($tables)) {
             foreach ($tables as $table) {
                 //
                 // TODO Do we need to check reserved core tables?
                 //
                 $t_tableName = $table;
-                if (isset($this->_mXoopsModule->modinfo['cube_style']) && true == $this->_mXoopsModule->modinfo['cube_style']) {
+                if (isset($this->_mXoopsModule->modinfo['cube_style']) && true === $this->_mXoopsModule->modinfo['cube_style']) {
                     $t_tableName = str_replace($t_search, $t_replace, $table);
                 } else {
                     $t_tableName = $db->prefix($table);
                 }
-                
+
                 $sql = 'DROP TABLE ' . $t_tableName;
-                
+
                 if ($db->query($sql)) {
                     $this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_DROP_TABLE, $t_tableName));
                 } else {
@@ -141,7 +141,7 @@ class Legacy_ModuleUninstaller
 
     /**
      * Delete all of module's blocks.
-     * 
+     *
      * @note Templates Delete is move into Legacy_ModuleInstallUtils.
      */
     public function _uninstallBlocks()
@@ -171,12 +171,12 @@ class Legacy_ModuleUninstaller
         if (false != $installScript) {
             require_once XOOPS_MODULE_PATH . '/' . $this->_mXoopsModule->get('dirname') . '/' . $installScript;
             $funcName = 'xoops_module_uninstall_' . $this->_mXoopsModule->get('dirname');
-            
+
             if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $funcName)) {
                 $this->mLog->addError(XCube_Utils::formatString(_AD_LEGACY_ERROR_FAILED_TO_EXECUTE_CALLBACK, $funcName));
                 return;
             }
-            
+
             if (function_exists($funcName)) {
                 // Because X2 can use reference parameter, Legacy doesn't use the following code;'
                 // if (!call_user_func($funcName, $this->_mXoopsModule, new XCube_Ref($this->mLog))) {
@@ -188,7 +188,7 @@ class Legacy_ModuleUninstaller
             }
         }
     }
-    
+
     public function _processReport()
     {
         if (!$this->mLog->hasError()) {
@@ -208,7 +208,7 @@ class Legacy_ModuleUninstaller
             $this->_processReport();
             return false;
         }
-        if (null != $this->_mXoopsModule->get('mid')) {
+        if (null !== $this->_mXoopsModule->get('mid')) {
             $this->_uninstallModule();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
@@ -226,13 +226,13 @@ class Legacy_ModuleUninstaller
                 $this->_processReport();
                 return false;
             }
-            
+
             $this->_uninstallPreferences();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
                 return false;
             }
-            
+
             $this->_processScript();
             if (!$this->_mForceMode && $this->mLog->hasError()) {
                 $this->_processReport();
@@ -240,7 +240,7 @@ class Legacy_ModuleUninstaller
             }
         }
         $this->_processReport();
-        
+
         return true;
     }
 }

@@ -69,16 +69,16 @@ function xoops_error($message, $title='', $style='errorMsg')
     $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
 
     $renderTarget =& $renderSystem->createRenderTarget('main');
-    
+
     $renderTarget->setAttribute('legacy_module', 'legacy');
     $renderTarget->setTemplateName('legacy_xoops_error.html');
-    
+
     $renderTarget->setAttribute('style', $style);
     $renderTarget->setAttribute('title', $title);
     $renderTarget->setAttribute('message', $message);
 
     $renderSystem->render($renderTarget);
-    
+
     print $renderTarget->getResult();
 }
 
@@ -91,17 +91,17 @@ function xoops_result($message, $title='')
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
-    
+
     $renderTarget =& $renderSystem->createRenderTarget('main');
-    
+
     $renderTarget->setAttribute('legacy_module', 'legacy');
     $renderTarget->setTemplateName('legacy_xoops_result.html');
-    
+
     $renderTarget->setAttribute('title', $title);
     $renderTarget->setAttribute('message', $message);
 
     $renderSystem->render($renderTarget);
-    
+
     print $renderTarget->getResult();
 }
 
@@ -117,12 +117,12 @@ function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = tr
     // Register to session. And, set it to own property.
     //
     $tokenHandler->register($token);
-    
+
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem($root->mContext->mBaseRenderSystemName);
-    
+
     $renderTarget =& $renderSystem->createRenderTarget('main');
-    
+
     $renderTarget->setAttribute('legacy_module', 'legacy');
     $renderTarget->setTemplateName('legacy_xoops_confirm.html');
 
@@ -134,7 +134,7 @@ function xoops_confirm($hiddens, $action, $message, $submit = '', $addToken = tr
     $renderTarget->setAttribute('tokenValue', $token->getTokenValue());
 
     $renderSystem->render($renderTarget);
-    
+
     print $renderTarget->getResult();
 }
 
@@ -207,7 +207,7 @@ function formatTimestampGMT($time, $format='l', $timeoffset='')
             $timeoffset = $GLOBALS['xoopsConfig']['default_TZ'];
         }
     }
-    
+
     $usertimestamp = (int)$time + ((int)$timeoffset)*3600;
     return _formatTimeStamp($usertimestamp, $format);
 }
@@ -642,7 +642,7 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
         } elseif (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/'.$name.'.php')) {
             include_once $hnd_file;
         }
-        
+
     $className = ($ucdir = ucfirst(strtolower($module_dir))) . '_' . $ucname . 'Handler';
     if (XC_CLASS_EXISTS($className)) {
         $mhdr[$name] = new $className($GLOBALS['xoopsDB']);
@@ -656,7 +656,7 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     if (!isset($mhdr[$name]) && !$optional) {
         trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
     }
-    
+
     return $mhdr[$name];
 }
 
@@ -672,7 +672,7 @@ function xoops_getrank($rank_id =0, $posts = 0)
     }
     $rank = $db->fetchArray($db->query($sql));
     $rank['title'] = $myts->makeTboxData4Show($rank['title']);
-    
+
     return $rank;
 }
 

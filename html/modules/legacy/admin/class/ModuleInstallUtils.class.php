@@ -131,7 +131,7 @@ class Legacy_ModuleInstallUtils
             $filePath = isset($updateInfo['filepath']) ? $updateInfo['filepath'] : XOOPS_MODULE_PATH . "/${dirname}/admin/class/${className}.class.php";
             $namespace = isset($updateInfo['namespace']) ? $updateInfo['namespace'] : ucfirst($dirname);
                 
-            if (null != $namespace) {
+            if (null !== $namespace) {
                 $className = "${namespace}_${className}";
             }
                 
@@ -269,7 +269,7 @@ class Legacy_ModuleInstallUtils
     public static function installAllOfModuleTemplates(&$module, &$log)
     {
         $templates = $module->getInfo('templates');
-        if (false != $templates) {
+        if (false !== $templates) {
             foreach ($templates as $template) {
                 Legacy_ModuleInstallUtils::installModuleTemplate($module, $template, $log);
             }
@@ -300,7 +300,7 @@ class Legacy_ModuleInstallUtils
         $fileName = trim($template['file']);
 
         $tpldata = Legacy_ModuleInstallUtils::readTemplateFile($module->get('dirname'), $fileName);
-        if (false == $tpldata) {
+        if (false === $tpldata) {
             return false;
         }
 
@@ -439,7 +439,7 @@ class Legacy_ModuleInstallUtils
             }
             
             // Try (3) --- automatic
-            if (false == $successFlag) {
+            if (false === $successFlag) {
                 $successFlag = true;
                 $updateblocks = [];
 
@@ -708,7 +708,7 @@ class Legacy_ModuleInstallUtils
         }
 
         $lines = file($filePath);
-        if (false == $lines) {
+        if (false === $lines) {
             return false;
         }
 
@@ -795,7 +795,7 @@ class Legacy_ModuleInstallUtils
         //
         // Insert comment config by old style.
         //
-        if (0 != $module->getVar('hascomments')) {
+        if (0 !== $module->getVar('hascomments')) {
             require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
 
             $configInfos[] = [
@@ -821,7 +821,7 @@ class Legacy_ModuleInstallUtils
         //
         // Insert comment config by old style.
         //
-        if (0 != $module->get('hasnotification')) {
+        if (0 !== $module->get('hasnotification')) {
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
             require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
             
@@ -1231,7 +1231,7 @@ class Legacy_ModuleInstallUtils
         $criteria->add(new Criteria('tpl_module', $module->get('dirname')));
         $criteria->add(new Criteria('tpl_type', 'block'));
         
-        if (null != $tplset) {
+        if (null !== $tplset) {
             // See 'FIXME'
             $criteria->add(new Criteria('tpl_tplset', $tplset));
         }

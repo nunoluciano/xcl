@@ -55,6 +55,3 @@ define('LEGACY_SYSTEM_COMMENT', 14);
 // A name of the render-system used by the embedded template of XoopsForm.
 //
 define('XOOPSFORM_DEPENDENCE_RENDER_SYSTEM', 'Legacy_RenderSystem');
-
-
-

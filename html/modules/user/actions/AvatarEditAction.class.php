@@ -18,13 +18,13 @@ require_once XOOPS_MODULE_PATH . '/user/forms/AvatarFilterForm.class.php';
 /***
  * @internal
  * This action handles the uploaded avatar image file.
- * 
+ *
  * Users who are allowed to upload, can upload custom avatars and select system
  * avatars. So this action has to implement both of uploading and selecting.
  * In the case of GET request, this action shows two forms to changing a avatar
  * for specified user. One of form shows upload-form. Anther form shows the list
  * of system avatars and the page navigator of the list.
- * 
+ *
  * @see User_AvatarEditForm
  * @see User_AvatarSelectForm
  */
@@ -34,27 +34,27 @@ class User_AvatarEditAction extends User_AbstractEditAction
      * @var int
      */
     public $mAvatarWidth = 0;
-    
+
     /***
      * @var int
      */
     public $mAvatarHeight = 0;
-    
+
     /***
      * @var int
      */
     public $mAvatarMaxfilesize = 0;
-    
+
     /***
      * @var int
      */
     public $_mMinPost = 0;
-    
+
     /***
      * @var bool
      */
     public $_mAllowUpload = false;
-    
+
     /***
      * @var User_AvatarFilterForm
      */
@@ -64,7 +64,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
      * Preset avatar object collection.
      */
     public $mSystemAvatars = [];
-    
+
     /***
      * Other action form for AvatarSelect.
      * @var User_AvatarSelectForm
@@ -86,7 +86,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
         $this->mAvatarWidth = $moduleConfig['avatar_width'];
         $this->mAvatarHeight = $moduleConfig['avatar_height'];
         $this->mAvatarMaxfilesize = $moduleConfig['avatar_maxsize'];
-        
+
         $this->_mMinPost = $moduleConfig['avatar_minposts'];
         $this->_mAllowUpload = $moduleConfig['avatar_allow_upload'];
 
@@ -97,7 +97,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     {
         return isset($_REQUEST['uid']) ? (int)xoops_getrequest('uid') : 0;
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('users', 'user');
@@ -106,9 +106,9 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     /**
      * _getPageTitle
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
     **/
     protected function _getPagetitle()
@@ -118,9 +118,9 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     /**
      * _getPageAction
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
     **/
     protected function _getPageAction()
@@ -131,7 +131,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     /***
      * This class uses AvatarUploadForm class. It requests three condition
      * which are width limit, height limit and filesize limit.
-     * 
+     *
      * @todo We may have to hand three parameters to constructor.
      */
     public function _setupActionForm()
@@ -139,7 +139,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
         $this->mActionForm =new User_AvatarEditForm();
         $this->mActionForm->prepare($this->mAvatarWidth, $this->mAvatarHeight, $this->mAvatarMaxfilesize);
     }
-    
+
     public function isEnableCreate()
     {
         return false;
@@ -178,10 +178,10 @@ class User_AvatarEditAction extends User_AbstractEditAction
             if ($handler->getCount($criteria) > 0) {
                 return true;
             }
-            
+
             return ($this->mObject->get('posts') >= $this->_mMinPost);
         }
-        
+
         return false;
     }
 
@@ -196,47 +196,47 @@ class User_AvatarEditAction extends User_AbstractEditAction
     {
         $navi =new XCube_PageNavigator(XOOPS_URL . '/edituser.php?op=avatarform&amp;uid=' . $xoopsUser->get('uid'), XCUBE_PAGENAVI_START);
         $handler =& xoops_getmodulehandler('avatar', 'user');
-        
+
         $this->mSystemAvatars[] =& $handler->createNoavatar();
-        
+
         $this->mFilter =new User_AvatarFilterForm($navi, $handler);
         $this->mFilter->fetch();
-        
+
         $criteria = $this->mFilter->getCriteria();
         $t_avatarArr =& $handler->getObjects($criteria);
         foreach (array_keys($t_avatarArr) as $key) {
             $this->mSystemAvatars[] =& $t_avatarArr[$key];
         }
-        
+
         $this->mAvatarSelectForm =new User_AvatarSelectForm();
         $this->mAvatarSelectForm->prepare();
-        
+
         $this->mAvatarSelectForm->load($this->mObject);
-        
+
         return parent::getDefaultView($controller, $xoopsUser);
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         if (null == $this->mObject) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         if ($this->_mMinPost > 0 && $this->mObject->get('posts') < $this->_mMinPost) {
             return USER_FRAME_VIEW_ERROR;
         }
-        
+
         $this->mActionForm->load($this->mObject);
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-    
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-    
+
         $this->mActionForm->update($this->mObject);
-        
+
         return $this->_doExecute($this->mObject) ? USER_FRAME_VIEW_SUCCESS
                                                  : USER_FRAME_VIEW_ERROR;
     }
@@ -253,9 +253,9 @@ class User_AvatarEditAction extends User_AbstractEditAction
                 return false;
             }
         }
-    
+
         $this->_resize();
-        
+
         if (null != $this->mActionForm->mOldAvatarFilename && 'blank.gif' != $this->mActionForm->mOldAvatarFilename and null != $this->mActionForm->mFormFile) {
             $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
             $criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
@@ -264,21 +264,21 @@ class User_AvatarEditAction extends User_AbstractEditAction
                 $avatarHandler->delete($avatarArr[0]);
             }
         }
-        
+
         if (parent::_doExecute()) {
             $avatar =& $this->mActionForm->createAvatar();
             if (null != $avatar) {
                 $avatar->set('avatar_name', $this->mObject->get('uname'));
                 $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
                 $avatarHandler->insert($avatar);
-                
+
                 $linkHandler =& xoops_getmodulehandler('avatar_user_link', 'user');
                 $linkHandler->deleteAllByUser($this->mObject);
-                
+
                 $link =& $linkHandler->create();
                 $link->set('user_id', $this->mObject->get('uid'));
                 $link->set('avatar_id', $avatar->get('avatar_id'));
-                
+
                 $linkHandler->insert($link);
             }
 
@@ -290,9 +290,9 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
     /**
      * Resize image resource.
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     public function _resize()
@@ -301,7 +301,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
         if (! function_exists('imagecreatefromjpeg') || ! function_exists('imagecreatefrompng') || ! function_exists('imagecreatefromgif')) {
             return;
         }
-    
+
         if (! $formFile = $this->mActionForm->mFormFile) {
             return;
         }
@@ -371,8 +371,8 @@ class User_AvatarEditAction extends User_AbstractEditAction
         $render->setAttribute('systemAvatars', $this->mSystemAvatars);
         $render->setAttribute('avatarSelectForm', $this->mAvatarSelectForm);
     }
-    
-    public function executeViewSuccess(&$controller, &$xoopsUser, $render)
+
+    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward(XOOPS_URL . '/userinfo.php?uid=' . $this->mActionForm->get('uid'));
     }

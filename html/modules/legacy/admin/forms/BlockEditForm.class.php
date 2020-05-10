@@ -84,7 +84,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
             $handler =& xoops_gethandler('module');
             foreach ($this->get('bmodule') as $mid) {
                 $module =& $handler->get($mid);
-                if (-1 != $mid && 0 != $mid && !is_object($module)) {
+                if (-1 !== $mid && 0 !== $mid && !is_object($module)) {
                     $this->addErrorMessage(XCube_Utils::formatString(_AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_BMODULE));
                 }
             }

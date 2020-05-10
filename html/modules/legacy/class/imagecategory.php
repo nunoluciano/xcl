@@ -52,7 +52,7 @@ class LegacyImagecategoryObject extends XoopsSimpleObject
 
     public function loadImage()
     {
-        if (false == $this->_mImageLoadedFlag) {
+        if (false === $this->_mImageLoadedFlag) {
             $handler =& xoops_getmodulehandler('image', 'legacy');
             $this->mImage =& $handler->getObjects(new Criteria('imagecat_id', $this->get('imagecat_id')));
             $this->_mImageLoadedFlag = true;
@@ -223,7 +223,7 @@ class LegacyImagecategoryHandler extends XoopsObjectGenericHandler
     public function &getObjectsWithReadPerm($groups = [], $display = null)
     {
         $criteria = new CriteriaCompo();
-        if (null != $display) {
+        if (null !== $display) {
             $criteria->add(new Criteria('imgcat_display', $display));
         }
         $criteria->setSort('imgcat_weight');

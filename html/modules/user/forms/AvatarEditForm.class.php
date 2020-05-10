@@ -14,20 +14,25 @@ class User_AvatarEditForm extends XCube_ActionForm
 {
     public $mOldAvatarFilename = null;
     public $mFormFile = null;
-    
+
     public $mWidth = 0;
     public $mHeight = 0;
-    
+
     public function getTokenName()
     {
         return 'module.user.AvatarEditForm.TOKEN' . $this->get('uid');
     }
 
-    public function prepare($width, $height, $maxfilesize)
+    public function prepare($width = null, $height = null, $maxfilesize = null)
+    //public function prepare()
     {
+        // $width = '';
+        // $height = '';
+        // $maxfilesize = '';assert($baz instanceof Baz);
+        //parent::prepare($width, $height, $maxfilesize);
         $this->mWidth = $width;
         $this->mHeight = $height;
-        
+
         //
         // Set form properties
         //
@@ -59,7 +64,7 @@ class User_AvatarEditForm extends XCube_ActionForm
         */
         }
     }
-    
+
     public function load(&$obj)
     {
         $this->set('uid', $obj->get('uid'));
@@ -69,15 +74,15 @@ class User_AvatarEditForm extends XCube_ActionForm
     public function update(&$obj)
     {
         $obj->set('uid', $this->get('uid'));
-        
+
         $this->mFormFile = $this->get('uploadavatar');
 
         if (null != $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('cavt');
-            
+
             $filename = $this->mFormFile->getFileName();
             $this->mFormFile->setBodyName(substr($filename, 0, 25));
-            
+
             $obj->set('user_avatar', $this->mFormFile->getFileName());    //< TODO
         }
     }
@@ -95,7 +100,7 @@ class User_AvatarEditForm extends XCube_ActionForm
             $avatar->set('avatar_mimetype', $this->mFormFile->getContentType());
             $avatar->set('avatar_type', 'C');
         }
-        
+
         return $avatar;
     }
 }

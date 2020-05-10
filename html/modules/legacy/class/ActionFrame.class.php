@@ -25,7 +25,7 @@ define('LEGACY_FRAME_VIEW_PREVIEW', 6);
 define('LEGACY_FRAME_VIEW_CANCEL', 7);
 
 //
-// Constatns for the mode of the frame.
+// Constants for the mode of the frame.
 //
 define('LEGACY_FRAME_MODE_MISC', 'Misc');
 define('LEGACY_FRAME_MODE_NOTIFY', 'Notify');
@@ -41,7 +41,7 @@ class Legacy_ActionFrame
     /**
      * Mode. The rule refers this property to load a file and create an
      * instance in execute().
-     * 
+     *
      * @var string
      */
     public $mMode = null;
@@ -50,7 +50,7 @@ class Legacy_ActionFrame
      * @var XCube_Delegate
      */
     public $mCreateAction = null;
-    
+
     public function Legacy_ActionFrame($admin)
     {
         self::__construct($admin);
@@ -67,7 +67,7 @@ class Legacy_ActionFrame
     public function setActionName($name)
     {
         $this->mActionName = $name;
-        
+
         //
         // Temp FIXME!
         //
@@ -75,10 +75,10 @@ class Legacy_ActionFrame
         $root->mContext->setAttribute('actionName', $name);
         $root->mContext->mModule->setAttribute('actionName', $name);
     }
-    
+
     /**
      * Set mode.
-     * 
+     *
      * @param string $mode   Use constants (LEGACY_FRAME_MODE_MISC and more...)
      */
     public function setMode($mode)
@@ -91,7 +91,7 @@ class Legacy_ActionFrame
         if (is_object($actionFrame->mAction)) {
             return;
         }
-        
+
         //
         // Create action object by mActionName
         //
@@ -102,18 +102,18 @@ class Legacy_ActionFrame
         } else {
             $fileName = XOOPS_MODULE_PATH . "/legacy/actions/${fileName}.class.php";
         }
-    
+
         if (!file_exists($fileName)) {
             die();
         }
-    
+
         require_once $fileName;
-    
+
         if (XC_CLASS_EXISTS($className)) {
             $actionFrame->mAction =new $className($actionFrame->mAdminFlag);
         }
     }
-    
+
     public function execute(&$controller)
     {
         if (strlen($this->mActionName) > 0 && !preg_match("/^\w+$/", $this->mActionName)) {
@@ -123,29 +123,29 @@ class Legacy_ActionFrame
         //
         // Actions of the public side in this module are hook type. So it's
         // necessary to load catalog here.
-        //		
+        //
         if (!$this->mAdminFlag) {
             $controller->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
         }
-        
+
         //
         // Add mode.
         //
         $this->setActionName($this->mMode . $this->mActionName);
-    
+
         //
         // Create action object by mActionName
         //
         $this->mCreateAction->call(new XCube_Ref($this));
-    
+
         if (!(is_object($this->mAction) && $this->mAction instanceof \Legacy_Action)) {
             die();    //< TODO
         }
-        
+
         if (false === $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser)) {
             die();    //< TODO
         }
-    
+
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser)) {
             if ($this->mAdminFlag) {
                 $controller->executeForward(XOOPS_URL . '/admin.php');
@@ -153,26 +153,26 @@ class Legacy_ActionFrame
                 $controller->executeForward(XOOPS_URL);
             }
         }
-    
+
         if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
         }
-    
+
         switch ($viewStatus) {
             case LEGACY_FRAME_VIEW_SUCCESS:
                 $this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACY_FRAME_VIEW_ERROR:
                 $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACY_FRAME_VIEW_INDEX:
                 $this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACY_FRAME_VIEW_INPUT:
                 $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
@@ -194,7 +194,7 @@ class Legacy_Action
      * @access private
      */
     public $_mAdminFlag = false;
-    
+
     public function Legacy_Action($adminFlag = false)
     {
         self::__construct($adminFlag);
@@ -216,7 +216,7 @@ class Legacy_Action
             return true;
         }
     }
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
     }

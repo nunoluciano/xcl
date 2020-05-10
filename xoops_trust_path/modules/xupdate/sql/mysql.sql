@@ -5,7 +5,7 @@ CREATE TABLE `{prefix}_{dirname}_store` (
 	`addon_url` varchar(255) NOT NULL default '',
 	`setting_type` int(11) unsigned  NOT NULL default 0,
 	`reg_unixtime` int(11) unsigned NOT NULL default 0,
-PRIMARY KEY  (`sid`)) ENGINE=MyISAM;
+PRIMARY KEY  (`sid`)) ENGINE=InnoDB;
 
 CREATE TABLE `{prefix}_{dirname}_modulestore` (
 	`id` int(11) unsigned NOT NULL  auto_increment,
@@ -31,5 +31,5 @@ CREATE TABLE `{prefix}_{dirname}_modulestore` (
 PRIMARY KEY  (`id`),
 KEY sid (sid),
 KEY dirname (dirname)
- ) ENGINE=MyISAM;
+ ) ENGINE=InnoDB;
 

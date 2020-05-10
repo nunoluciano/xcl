@@ -222,7 +222,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         $db->freeRecordSet($result);
         
         // remove all invalid group id entries
-        if (0 != count($gids)) {
+        if (0 !== count($gids)) {
             $sql = sprintf('DELETE FROM `%s` WHERE `gperm_groupid` IN (%s) AND `gperm_modid`=1',
                            $permTable, implode(',', $gids));
             $result = $xoopsDB->query($sql);

@@ -41,8 +41,8 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_modid', $this->mActionForm->getModuleId()));
-            $criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId())); //!Fix conf_catid or confcat_id
-            
+            $criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId()));
+
             $this->mObjects =& $handler->getConfigs($criteria);
             $this->mActionForm->prepare($this->mObjects);
         }
@@ -68,7 +68,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             return LEGACY_FRAME_VIEW_ERROR;
         }
         
-        if (null != xoops_getrequest('_form_control_cancel')) {
+        if (null !== xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
         
@@ -212,10 +212,10 @@ class Legacy_AbstractPreferenceEditState
 {
     public $_mMaster = null;
 
-    // public function Legacy_AbstractPreferenceEditState(&$master)
-    // {
-    //     self::__construct($master);
-    // }
+    public function Legacy_AbstractPreferenceEditState(&$master)
+    {
+        self::__construct($master);
+    }
 
     public function __construct(&$master)
     {
@@ -276,20 +276,20 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
         $allowedThemes = null;
         foreach (array_keys($objectArr) as $key) {
             $name = $objectArr[$key]->get('conf_name');
-            if ('theme_set' == $name) {
+            if ('theme_set' === $name) {
                 $themeName = $objectArr[$key]->getConfValueForOutput();
-            } elseif ('theme_set_allowed' == $name) {
+            } elseif ('theme_set_allowed' === $name) {
                 $allowedThemes = $actionForm->get('theme_set_allowed');
-            } elseif ('use_mysession' == $name) {
+            } elseif ('use_mysession' === $name) {
                 $useMysession = $actionForm->get('use_mysession');
-            } elseif ('session_name' == $name) {
+            } elseif ('session_name' === $name) {
                 $sessionName = $actionForm->get('session_name');
-            } elseif ('session_expire' == $name) {
+            } elseif ('session_expire' === $name) {
                 $sessionExpire = $actionForm->get('session_expire');
             }
         }
         
-        if (null != $name && null != $allowedThemes) {
+        if (null !== $name && null !== $allowedThemes) {
             XCube_DelegateUtils::call('Legacy.Event.ThemeSettingChanged', $themeName, $allowedThemes);
         }
         // !Fix typo pereference = preference?

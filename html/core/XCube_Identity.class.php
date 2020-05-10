@@ -18,7 +18,7 @@ class XCube_Identity
      * @var string
      */
     public $mName = '';
-
+    
     /**
      * The authentication type
      * @var string
@@ -29,7 +29,7 @@ class XCube_Identity
     //public function XCube_Identity()
     {
     }
-
+    
     /**
      * Sets the authentication type.
      * @param string $type
@@ -38,7 +38,7 @@ class XCube_Identity
     {
         $this->_mAuthenticationType = $type;
     }
-
+    
     /**
      * Gets the authentication type.
      * @return string
@@ -56,7 +56,7 @@ class XCube_Identity
     {
         $this->mName = $name;
     }
-
+    
     /**
      * Gets a name of this object.
      *
@@ -85,8 +85,8 @@ class XCube_Principal
     /**
      * The identity object which is tied to this object.
      */
-    public $mIdentity;
-
+    public $mIdentity = null;
+    
     /**
      * Roles in this object.
      * @var string[]
@@ -99,7 +99,7 @@ class XCube_Principal
         $this->mIdentity =& $identity;
         $this->_mRoles = $roles;
     }
-
+    
     /**
      * Gets a identity object which is tied to this object.
      * @return XCube_Identity

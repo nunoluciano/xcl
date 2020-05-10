@@ -41,7 +41,7 @@ class LegacyImageObject extends XoopsSimpleObject
 
     public function loadImagecategory()
     {
-        if (false == $this->_mImageCategoryLoadedFlag) {
+        if (false === $this->_mImageCategoryLoadedFlag) {
             $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
             $this->mImageCategory =& $handler->get($this->get('imgcat_id'));
             $this->_mImageCategoryLoadedFlag = true;
@@ -50,7 +50,7 @@ class LegacyImageObject extends XoopsSimpleObject
 
     public function loadImagebody()
     {
-        if (false == $this->_mImageBodyLoadedFlag) {
+        if (false === $this->_mImageBodyLoadedFlag) {
             $handler =& xoops_getmodulehandler('imagebody', 'legacy');
             $this->mImageBody =& $handler->get($this->get('image_id'));
             $this->_mImageBodyLoadedFlag = true;

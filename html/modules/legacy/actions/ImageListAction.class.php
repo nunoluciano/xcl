@@ -87,7 +87,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
         // If current category object exists, check the permission of uploading.
         //
         $hasUploadPerm = null;
-        if (null != $this->mCategory) {
+        if (null !== $this->mCategory) {
             $hasUploadPerm = $this->mCategory->hasUploadPerm($groups);
         }
         $render->setAttribute('hasUploadPerm', $hasUploadPerm);

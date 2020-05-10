@@ -27,7 +27,8 @@ class User_AbstractFilterForm
     }
 
     public function getDefaultSortKey()
-    { }
+    {
+    }
 
     public function getTotalItems(&$total)
     {

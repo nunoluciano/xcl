@@ -83,7 +83,7 @@ function Legacy_modifier_helpurl($file, $dirname = null)
     $language = $root->mContext->getXoopsConfig('language');
     $dirname = $root->mContext->getAttribute('legacy_help_dirname');
 
-    if (null == $dirname) {
+    if (null === $dirname) {
         $moduleObject =& $root->mContext->mXoopsModule;
         $dirname = $moduleObject->get('dirname');
     }
@@ -105,7 +105,7 @@ function Legacy_modifier_helpimage($file)
     $dirname = $root->mContext->getAttribute('legacy_help_dirname');
 
     $path = "/${dirname}/language/${language}/help/images/${file}";
-    if (!file_exists(XOOPS_MODULE_PATH . $path) && 'english' != $language) {
+    if (!file_exists(XOOPS_MODULE_PATH . $path) && 'english' !== $language) {
         $path = "/${dirname}/language/english/help/images/${file}";
     }
 

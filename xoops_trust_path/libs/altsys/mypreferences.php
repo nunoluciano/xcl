@@ -183,7 +183,7 @@ if ('showmod' == $op) {
     echo "<h3 style='text-align:"._GLOBAL_LEFT.";'>".$module->getvar('name').' &nbsp; '._PREFERENCES."</h3>\n" ;
 
     $form->display();
- 
+
     xoops_cp_footer();
     exit();
 }
@@ -197,6 +197,7 @@ if ($op == 'save') {
     $xoopsTpl = new XoopsTpl();
     //HACK by domifara for new XOOPS and XCL etc.
     //old xoops
+    //!TODO XCL version
     $core_type = (int)altsys_get_core_type();
     if ($core_type <= 10) {
         $xoopsTpl->clear_all_cache();

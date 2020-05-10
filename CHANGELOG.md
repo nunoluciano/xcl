@@ -39,6 +39,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- PHP74 AdminDashboard function static 
 - is writable upload Dir
 - PSR12 Missing parameter list
 - PSR12 Missing visibility

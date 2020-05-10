@@ -4,17 +4,17 @@
 /**
  * @package     kernel
  * @subpackage  database
- * 
+ *
  * @author	    Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 XOOPS.org
  */
 
 /**
  * provide some utility methods for databases
- * 
+ *
  * @author Kazumi Ono <onokazu@xoops.org>
  * @copyright copyright (c) 2000-2003 XOOPS.org
- * 
+ *
  * @package kernel
  * @subpackage  database
  */
@@ -54,15 +54,15 @@ class sqlutility
                         $ret[] = $sql;
                         return true;
                     }
-                    // Backquotes or no backslashes before 
-                    // quotes: it's indeed the end of the 
+                    // Backquotes or no backslashes before
+                    // quotes: it's indeed the end of the
                     // string -> exit the loop
                     elseif ('`' == $string_start || '\\' != $sql[$i - 1]) {
                         $string_start      = '';
                         $in_string         = false;
                         break;
                     }
-                    // one or more Backslashes before the presumed 
+                    // one or more Backslashes before the presumed
                     // end of string...
                     else {
                         // first checks for escaped backslashes
@@ -72,7 +72,7 @@ class sqlutility
                             $escaped_backslash = !$escaped_backslash;
                             $j++;
                         }
-                        // ... if escaped backslashes: it's really the 
+                        // ... if escaped backslashes: it's really the
                         // end of the string -> exit the loop
                         if ($escaped_backslash) {
                             $string_start  = '';
@@ -139,7 +139,7 @@ class sqlutility
 
     /**
      * add a prefix.'_' to all tablenames in a query
-     * 
+     *
      * @param   string  $query  valid SQL query string
      * @param   string  $prefix prefix to add to all table names
      * @return  mixed   FALSE on failure
@@ -154,10 +154,10 @@ class sqlutility
 
             // CREATE TABLE force utf8
             // DB Engine use default (remove MyISAM)
-            if ($matches[1] == "CREATE TABLE") {
-                $matches[0] = preg_replace("/ ENGINE=MyISAM/i", "", $matches[0]);
+            if ($matches[1] === 'CREATE TABLE') {
+                $matches[0] = preg_replace('/ ENGINE=MyISAM/i', '', $matches[0]);
                 if (!preg_match("/ CHARACTER SET /i", $matches[0])) {
-                    $matches[0] .= " CHARACTER SET utf8";
+                    $matches[0] .= ' CHARACTER SET utf8';
                 }
             }
             return $matches;
