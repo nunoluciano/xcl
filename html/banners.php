@@ -275,90 +275,93 @@ function clickbanner($bid)
     }
     exit();
 }
+
 $op = '';
 if (!empty($_POST['op'])) {
     $op = $_POST['op'];
 } elseif (!empty($_GET['op'])) {
     $op = $_GET['op'];
 }
+
 $myts =& MyTextSanitizer::sGetInstance();
+
 switch ($op) {
-case 'click':
-    $bid = 0;
-    if (!empty($_GET['bid'])) {
-        $bid = (int)$_GET['bid'];
-    }
-    clickbanner($bid);
-    break;
-case 'login':
-    clientlogin();
-    break;
-case 'Ok':
-    if (!XoopsMultiTokenHandler::quickValidate('banner_Ok')) {
-        redirect_header('banners.php');
-        exit();
-    }
-    $login = $pass = '';
-    if (!empty($_GET['login'])) {
-        $login = $myts->stripslashesGPC(trim($_GET['login']));
-    }
-    if (!empty($_GET['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_GET['pass']));
-    }
-    if (!empty($_POST['login'])) {
-        $login = $myts->stripslashesGPC(trim($_POST['login']));
-    }
-    if (!empty($_POST['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_POST['pass']));
-    }
-    bannerstats($login, $pass);
-    break;
-case 'Change':
-    if (!XoopsMultiTokenHandler::quickValidate('banner_Change')) {
-        redirect_header('banners.php');
-        exit();
-    }
-    $login = $pass = $url = '';
-    $bid = $cid = 0;
-    if (!empty($_POST['login'])) {
-        $login = $myts->stripslashesGPC(trim($_POST['login']));
-    }
-    if (!empty($_POST['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_POST['pass']));
-    }
-    if (!empty($_POST['url'])) {
-        $url = $myts->stripslashesGPC(trim($_POST['url']));
-    }
-    if (!empty($_POST['bid'])) {
-        $bid = (int)$_POST['bid'];
-    }
-    if (!empty($_POST['cid'])) {
-        $cid = (int)$_POST['cid'];
-    }
-    change_banner_url_by_client($login, $pass, $cid, $bid, $url);
-    break;
-case 'EmailStats':
-    if (!XoopsMultiTokenHandler::quickValidate('banner_EmailStats')) {
-        redirect_header('banners.php');
-        exit();
-    }
-    $login = $pass = '';
-    $bid = $cid = 0;
-    if (!empty($_GET['login'])) {
-        $login = $myts->stripslashesGPC(trim($_GET['login']));
-    }
-    if (!empty($_GET['pass'])) {
-        $pass = $myts->stripslashesGPC(trim($_GET['pass']));
-    }
-    if (!empty($_GET['bid'])) {
-        $bid = (int)$_GET['bid'];
-    }
-    if (!empty($_GET['cid'])) {
-        $cid = (int)$_GET['cid'];
-    }
-    EmailStats($login, $cid, $bid, $pass);
-    break;
-default:
-    clientlogin();
-    break;
+    case 'click':
+        $bid = 0;
+        if (!empty($_GET['bid'])) {
+            $bid = (int)$_GET['bid'];
+        }
+        clickbanner($bid);
+        break;
+    case 'login':
+        clientlogin();
+        break;
+    case 'Ok':
+        if (!XoopsMultiTokenHandler::quickValidate('banner_Ok')) {
+            redirect_header('banners.php');
+            exit();
+        }
+        $login = $pass = '';
+        if (!empty($_GET['login'])) {
+            $login = $myts->stripslashesGPC(trim($_GET['login']));
+        }
+        if (!empty($_GET['pass'])) {
+            $pass = $myts->stripslashesGPC(trim($_GET['pass']));
+        }
+        if (!empty($_POST['login'])) {
+            $login = $myts->stripslashesGPC(trim($_POST['login']));
+        }
+        if (!empty($_POST['pass'])) {
+            $pass = $myts->stripslashesGPC(trim($_POST['pass']));
+        }
+        bannerstats($login, $pass);
+        break;
+    case 'Change':
+        if (!XoopsMultiTokenHandler::quickValidate('banner_Change')) {
+            redirect_header('banners.php');
+            exit();
+        }
+        $login = $pass = $url = '';
+        $bid = $cid = 0;
+        if (!empty($_POST['login'])) {
+            $login = $myts->stripslashesGPC(trim($_POST['login']));
+        }
+        if (!empty($_POST['pass'])) {
+            $pass = $myts->stripslashesGPC(trim($_POST['pass']));
+        }
+        if (!empty($_POST['url'])) {
+            $url = $myts->stripslashesGPC(trim($_POST['url']));
+        }
+        if (!empty($_POST['bid'])) {
+            $bid = (int)$_POST['bid'];
+        }
+        if (!empty($_POST['cid'])) {
+            $cid = (int)$_POST['cid'];
+        }
+        change_banner_url_by_client($login, $pass, $cid, $bid, $url);
+        break;
+    case 'EmailStats':
+        if (!XoopsMultiTokenHandler::quickValidate('banner_EmailStats')) {
+            redirect_header('banners.php');
+            exit();
+        }
+        $login = $pass = '';
+        $bid = $cid = 0;
+        if (!empty($_GET['login'])) {
+            $login = $myts->stripslashesGPC(trim($_GET['login']));
+        }
+        if (!empty($_GET['pass'])) {
+            $pass = $myts->stripslashesGPC(trim($_GET['pass']));
+        }
+        if (!empty($_GET['bid'])) {
+            $bid = (int)$_GET['bid'];
+        }
+        if (!empty($_GET['cid'])) {
+            $cid = (int)$_GET['cid'];
+        }
+        EmailStats($login, $cid, $bid, $pass);
+        break;
+    default:
+        clientlogin();
+        break;
 }

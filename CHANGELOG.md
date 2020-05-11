@@ -17,7 +17,8 @@ All notable changes to this project will be documented in this file.
 - Installer Wizard stylesheet
 - Installer Wizard english
 - Installer Wizard templates
-- Token numeric value to mt_srand #198 
+- MultiTokenHandler extend #199
+- Token numeric value to mt_srand #198
 - XCube Core
 - XCube_IniHandler
 
@@ -25,6 +26,7 @@ All notable changes to this project will be documented in this file.
 
 - ActionSearch - WARNING: count() #157
 - AbstractFilterForm - Warning #195
+- Advertising Statistics, client login #199
 - CKEditor4Utiles class deprecated join #197
 - Installer Wizard missing $key #196
 - Kernel object Null coalesce operator @gigamaster

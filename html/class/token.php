@@ -322,7 +322,7 @@ class XoopsSingleTokenHandler extends XoopsTokenHandler
  * This class publish a token of the different same name of a serial number
  * for the tab browser.
  */
-class XoopsMultiTokenHandler
+class XoopsMultiTokenHandler extends XoopsTokenHandler
 {
     /**
      * @access private
@@ -364,7 +364,8 @@ class XoopsMultiTokenHandler
     public function autoValidate($name, $clearIfValid=true)
     {
         $serial_number = $this->getRequestNumber($name);
-        if (null !== $serial_number) {
+
+        if (null != $serial_number) {
             if ($token =& $this->fetch($name, $serial_number)) {
                 return $this->validate($token, $clearIfValid);
             }
