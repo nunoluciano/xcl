@@ -12,7 +12,7 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 //
 $modversion['name'] = _MI_CKEDITOR4_LANG_CKEDITOR4;
 $modversion['version'] = 2.30;
-$modversion['description'] = _MI_CKEDITOR4_DESC_CKEDITOR4;
+$modversion['description'] = 'v4.14.0 [ 04-03-2020 ] '._MI_CKEDITOR4_DESC_CKEDITOR4;
 $modversion['author'] = "nao-pon https://xoops.hypweb.net/";
 $modversion['credits'] = "Naoki Sawada aka nao-pon";
 $modversion['help'] = "help.html";
