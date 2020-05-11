@@ -1,13 +1,13 @@
 ## XCL
 # ignore temporary files, cache, templates
 html/mainfile.php
+html/uploads/*
 html/modules/xelfinder/cache/*
 
 xoops_trust_path/cache/*
 xoops_trust_path/templates_c/*
 xoops_trust_path/uploads/xupdate/*
 *.bak
-master.code-workspace
 
 #CHANGELOG.md
 #README.md
