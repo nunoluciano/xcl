@@ -18,7 +18,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 {
     public $mKeyName = 'confcat_id';
     public $mKeyValue = 0;
-    
+
     public function Legacy_PreferenceEditForm($category)
     {
         self::__construct($category);
@@ -26,14 +26,12 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 
     public function __construct($category)
     {
-        // ! Call parent::__construct() instead of parent::Controller()
+
         parent::__construct();
 
-        $this->mKeyValue = $category->get('confcat_id'); 
-        // XCL 2.3.0 Alpha Bug fix #63 @gigamaster
-        //if ( isset( $this->mKeyValue["confcat_id"] ) && ($this->mKeyValue["confcat_id"] = "") ) {
-          //  $this->mKeyValue = $category->get('confcat_id');
-        //}
+        $this->mKeyValue = $category->get('confcat_id');
+
+
     }
 
     public function getTokenName()
@@ -147,9 +145,11 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
     }
 }
 
+
 class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
 {
     public $mKeyName = 'confmod_id';
+    public $mKeyValue = 0;
 
     public function Legacy_ModulePreferenceEditForm(&$module)
     {
@@ -158,7 +158,6 @@ class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
 
     public function __construct(&$module)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($module);
         $this->mKeyValue = $module->get('mid');
     }

@@ -129,9 +129,7 @@ class PicoContent
     public $errorno          = 0;
     public $need_filter_body = false;
 
-    // !Fix deprecated constructor
     public function __construct($mydirname, $content_id, $categoryObj = null, $allow_makenew = false)
-        //function PicoContent( $mydirname , $content_id , $categoryObj = null , $allow_makenew = false )
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 

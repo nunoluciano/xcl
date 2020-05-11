@@ -35,9 +35,9 @@ function xoops_cp_header()
     //
     $root=&XCube_Root::getSingleton();
     require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_AdminControllerStrategy.class.php';
-    
+
     $strategy =new Legacy_AdminControllerStrategy($root->mController);
-    
+
     $root->mController->setStrategy($strategy);
     $root->mController->setupModuleContext();
     $root->mController->_mStrategy->setupModuleLanguage();    //< Umm...
@@ -128,13 +128,13 @@ function xoops_module_get_admin_menu()
         // because sometimes comments, notification gives options but
         // module may have no other admin functions...
         /*if ($mod->getInfo('adminindex') && trim($mod->getInfo('adminindex')) != '') {*/
-            $tree[$cnt][0] = 1;
+        $tree[$cnt][0] = 1;
         $tree[$cnt][5] = "<img src='\".XOOPS_URL.\"/modules/".$mod->getVar('dirname') . '/' . $mod->getInfo('image') . "' alt='' />";
         $tree[$cnt][1] = $mod->getVar('name');
         $tree[$cnt][2] = '".XOOPS_URL."/modules/' . $mod->getVar('dirname') . '/' . trim($mod->getInfo('adminindex'));
         $tree[$cnt][3] = '';
         $tree[$cnt][4] = $mod->getVar('mid');
-        // !Fix TODO replace round a float by specifc version 0.0.0
+        // !Fix version TODO replace round a float by specifc version 0.0.0
         //$tree[$cnt][6] = "<b>\"._VERSION.\":</b> ".round($mod->getVar('version')/100, 2)."<br /><b>\"._DESCRIPTION.\":</b> ".$mod->getInfo('description');
         $tree[$cnt][6] = '<b>"._VERSION.":</b> ' . $mod->getVar('version') . '<br /><b>"._DESCRIPTION.":</b> ' . $mod->getInfo('description');
         $layer_label[$cnt] = 'L' . $cnt;
@@ -166,9 +166,8 @@ function xoops_module_get_admin_menu()
                 $cnt++;
             }
         }
-        /*
-        }*/
     }
+
     $tmpcount = count($tree);
     $tree[$tmpcount+1][0] = 0;
     for ($i = 0; $i < $maxlevel; $i++) {
@@ -187,7 +186,7 @@ function xoops_module_get_admin_menu()
         if ($tree[$cnt][0] < $maxlevel) {
             $ordinata[$tree[$cnt][0]] += $ordinata_step;
         }
-        if ($tree[$cnt+1][0]>$tree[$cnt][0] && $cnt<$tmpcount) {                        // the node is not a leaf, hence it has at least a child
+        if ($tree[$cnt+1][0]>$tree[$cnt][0] && $cnt<$tmpcount) {  // the node is not a leaf, hence it has at least a child
             // initialize the corresponding layer content trought a void string
             $layer[$layer_label[$cnt]] = '';
             // prepare the popUp function related to the children
@@ -224,18 +223,9 @@ function xoops_module_get_admin_menu()
             // a leaf
                 $currentarrow = '';
         }
-            /* */
+
             $currentlink = $tree[$cnt][2];
-            /* */
-            /*
-            if ( $tree[$cnt+1][0] > $tree[$cnt][0] && $cnt < $tmpcount) {
-                // not a leaf
-                $currentlink = "#";
-            } else {
-                // a leaf
-                $currentlink = $tree[$cnt][2];
-            }
-            */
+
             if ('' != $tree[$cnt][3]) {
                 $currenttarget = " target='" . $tree[$cnt][3] . "'";
             } else {

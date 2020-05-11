@@ -5,14 +5,11 @@ require_once dirname(__DIR__) . '/include/common_functions.php';
 // singleton
 class PicoPermission
 {
-
     public $db          = null;  // Database instance
     public $uid         = 0; // intval
     public $permissions = []; // [dirname][permission_id] or [dirname]['is_module_admin']
 
-    // !Fix deprecated constructor
     public function __construct()
-        //function PicoPermission()
     {
         global $xoopsUser;
 

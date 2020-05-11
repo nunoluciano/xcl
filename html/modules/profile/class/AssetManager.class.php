@@ -18,25 +18,21 @@ class Profile_AssetManager
     /**
      * @private
      */
-    // !Fix deprecated constructor for PHP 7.x
     public function __construct()
-    //public function Profile_AssetManager()
     {
     }
 
     /**
      * @public
      */
-    // !Fix non-static function called statically in file /modules/profile/preload/AssetPreload.class.php line 43
     public static function &getSingleton()
-    // public function &getSingleton()
     {
         static $instance;
-    
+
         if (!is_object($instance)) {
             $instance = new Profile_AssetManager();
         }
-    
+
         return $instance;
     }
 
@@ -49,16 +45,16 @@ class Profile_AssetManager
     public function &create($type, $name)
     {
         $instance = null;
-    
+
         // TODO:Insert your creation code.
 
         // fallback
         if (null === $instance) {
             $instance =& $this->_fallbackCreate($type, $name);
         }
-    
+
         $this->_mCache[$type][$name] =& $instance;
-    
+
         return $instance;
     }
 
@@ -77,7 +73,7 @@ class Profile_AssetManager
             } else {
                 $filePath = XOOPS_MODULE_PATH . '/' . $this->mDirname . '/' . $this->mAssetList[$type][$name]['path'];
             }
-            
+
             $instance =& $this->_createInstance($className, $filePath);
         } else {
             switch ($type) {
@@ -92,7 +88,7 @@ class Profile_AssetManager
                     break;
             }
         }
-    
+
         return $instance;
     }
 
@@ -107,7 +103,7 @@ class Profile_AssetManager
         if (isset($this->_mCache[$type][$name])) {
             return $this->_mCache[$type][$name];
         }
-    
+
         return $this->create($type, $name);
     }
 
@@ -131,18 +127,18 @@ class Profile_AssetManager
         $entity = $name;
         $isAdmin = false;
         $adminToken = '';
-    
+
         if (preg_match("/^admin\.([a-z\_]+)$/i", $name, $matches)) {
             $entity = $matches[1];
             $isAdmin = true;
             $adminToken = 'Admin_';
         }
-    
+
         $filePath = $this->_getBasePath($isAdmin) . '/forms/' . ucfirst($entity) . 'FilterForm.class.php';
         $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . 'FilterForm';
-    
+
         $instance =& $this->_createInstance($className, $filePath);
-    
+
         return $instance;
     }
 
@@ -157,23 +153,23 @@ class Profile_AssetManager
         $entity = $name;
         $isAdmin = false;
         $adminToken = '';
-    
+
         if (preg_match("/^admin\.([a-z\_]+)$/i", $name, $matches)) {
             $entity = $matches[1];
             $isAdmin = true;
             $adminToken = 'Admin_';
         }
-    
+
         if (preg_match("/^([^\_]+)\_(.+)$/", $entity, $matches)) {
             $mode = $matches[1];
             $entity = $matches[2];
         }
-    
+
         $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . ucfirst($mode) . 'Form';
         $filePath = $this->_getBasePath($isAdmin) . '/forms/' . ucfirst($entity) . ucfirst($mode) . 'Form.class.php';
-    
+
         $instance =& $this->_createInstance($className, $filePath);
-    
+
         return $instance;
     }
 
@@ -186,22 +182,22 @@ class Profile_AssetManager
     public function &_createInstance($className, $filePath)
     {
         $instance = null;
-    
+
         if (class_exists($className)) {
             $instance =new $className();
             return $instance;
         }
-    
+
         if (!file_exists($filePath)) {
             return $instance;
         }
-    
+
         require_once $filePath;
-    
+
         if (class_exists($className)) {
             $instance =new $className();
         }
-    
+
         return $instance;
     }
 
@@ -216,7 +212,7 @@ class Profile_AssetManager
         if ($isAdmin) {
             $filePath .= '/admin';
         }
-    
+
         return $filePath;
     }
 }

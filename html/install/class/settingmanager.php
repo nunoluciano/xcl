@@ -61,8 +61,6 @@ class setting_manager
 
             //
             // Generate prefix
-            // !Fix A non well formed numeric value
-            //mt_srand((int)microtime() * 10000);
             mt_srand ( (double)microtime () * 1000000 );
             do {
                 $this->prefix = substr(md5( random_int(1, 6)), 0, 6);

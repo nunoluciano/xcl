@@ -192,7 +192,7 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
         $renderer->setTemplateName('module_uninstall.html');
         $renderer->setAttribute('actionForm', $this->mActionForm);
         $renderer->setAttribute('module', $this->mXoopsModule);
-        $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2)); // !TODO version revision
+        $renderer->setAttribute('currentVersion', round($this->mXoopsModule->get('version') / 100, 2)); // !Fix version TODO revision
     }
 
     public function executeViewCancel(&$controller, &$xoopsUser, &$renderer)

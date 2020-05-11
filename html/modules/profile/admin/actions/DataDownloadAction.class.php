@@ -17,14 +17,12 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         $handler =& xoops_getmodulehandler('data');
         return $handler;
     }
-    
-    // !Fix compatibility with Profile_AbstractListAction::_getBaseUrl() in file /modules/profile/class/AbstractListAction.class.php line 36
+
     public function &_getBaseUrl()
-    // public function _getBaseUrl()
     {
         return './index.php?action=DataDownload';
     }
-    
+
     public function executeViewIndex(&$render)
     {
         $render->setTemplateName('data_download.html');
@@ -32,13 +30,13 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
         $count = $handler->getCount();
         $render->setAttribute('profileCount', $count);
     }
-    
+
     public function getDefaultView()
     {
         return PROFILE_FRAME_VIEW_INDEX;
     }
-    
-    
+
+
     /// CSVファイルを出力する
     public function execute()
     {
@@ -48,7 +46,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
             return PROFILE_FRAME_VIEW_INDEX;
         }
         $filename = sprintf('%s_Profile_data_List.csv', $GLOBALS['xoopsConfig']['sitename']);
-        
+
         if (preg_match('/firefox/i', xoops_getenv('HTTP_USER_AGENT'))) {
             header('Content-Type: application/x-csv');
         } else {
@@ -96,7 +94,7 @@ class Profile_Admin_DataDownloadAction extends Profile_AbstractListAction
 
     protected function _encoding($text)
     {
-        // japanese 
+        // japanese
         if (0 === strncasecmp($GLOBALS['xoopsConfig']['language'], 'ja', 2)) {
             mb_convert_variables('SJIS', _CHARSET, $text);
         }

@@ -70,7 +70,7 @@ class Legacy_TextFilter extends XCube_TextFilter
     public $mPostXCodeReplacements = [];
     public $mPostXCodeCallbacks = [];
     public $mPostXCodeHasCallback = [];
-    
+
     public $mSmileys = [];
     public $mSmileysConvTable = [];
 
@@ -80,9 +80,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      * @todo
      *	  This method keeps a deprecated delegate.
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
-    //public function Legacy_TextFilter()
     {
         $obj = $this->mMakeClickableConvertTable = new XCube_Delegate();
         $obj->register('Legacy_TextFilter.MakeClickableConvertTable');
@@ -112,7 +110,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         $this->mXCodePre = new XCube_Delegate();
         $this->mXCodePre->register('MyTextSanitizer.XoopsCodePre');
     }
-    
+
     public function getInstance(&$instance)
     {
         if (empty($instance)) {
@@ -203,12 +201,12 @@ class Legacy_TextFilter extends XCube_TextFilter
 
     /**
      * purifyHtml
-     * 
+     *
      * @param	string	$html
      * @param	string	$encoding
      * @param	string	$doctype
      * @param	object	$config
-     * 
+     *
      * @return	string
      **/
     public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
@@ -216,17 +214,16 @@ class Legacy_TextFilter extends XCube_TextFilter
         require_once XOOPS_LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
         $encoding = $encoding ?: _CHARSET;
 
-        // !Fix XCL PHP7 
-       // Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5
-        $doctypeArr = ['HTML 4.01 Strict', 'HTML 4.01 Transitional', 'XHTML 1.0 Strict', 'XHTML 1.0 Transitional', 'XHTML 1.1'];
-    
+       // !Todo : update to HTML5 HTML.Doctype https://github.com/xemlock/htmlpurifier-html5
+        $doctypeArr = ['HTML', 'HTML 4.01 Strict', 'HTML 4.01 Transitional', 'XHTML 1.0 Strict', 'XHTML 1.0 Transitional', 'XHTML 1.1'];
+
         if (null === $config || !is_object($config) || !($config instanceof HTMLPurifier_Config)) {
             $config = HTMLPurifier_Config::createDefault();
         }
         if (in_array($doctype, $doctypeArr)) {
             $config->set('HTML.Doctype', $doctype);
         }
-    
+
         if ($_conv = ('UTF-8' !== $encoding && function_exists('mb_convert_encoding'))) {
             $_substitute = mb_substitute_character();
             mb_substitute_character('none');
@@ -235,15 +232,15 @@ class Legacy_TextFilter extends XCube_TextFilter
         } else {
             $config->set('Core.Encoding', $encoding);
         }
-    
+
         $purifier = new HTMLPurifier($config);
         $html = $purifier->purify($html);
-    
+
         if ($_conv) {
             $html = mb_convert_encoding($html, $encoding, 'UTF-8');
             mb_substitute_character($_substitute);
         }
-    
+
         return $html;
     }
 
@@ -297,7 +294,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         if (empty($this->mClickablePatterns)) {
             // Delegate Call 'Legacy_TextFilter.MakeClickableConvertTable'
             //	Delegate may replace makeClickable conversion table
-            //	Args : 
+            //	Args :
             //		'patterns'	   [I/O] : &Array of pattern RegExp
             //		'replacements' [I/O] : &Array of replacing string or callable
             //
@@ -305,7 +302,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 
             // Delegate Call 'MyTextSanitizer.MakeClickablePre'
             //	Delegate may replace makeClickable conversion table
-            //	Args : 
+            //	Args :
             //		'patterns'	   [I/O] : &Array of pattern RegExp
             //		'replacements' [I/O] : &Array of replacing string or callable
             //
@@ -354,7 +351,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         if (empty($this->mXCodePatterns)) {
             // Delegate Call 'Legacy_TextFilter.MakeXCodeConvertTable'
             //	Delegate may replace makeClickable conversion table
-            //	Args : 
+            //	Args :
             //		'patterns'	   [I/O] : &Array of pattern RegExp
             //		'replacements' [I/O] : &Array[0..1] of Array of replacing string or callable
             //							   replacements[0] for $allowimage = 0;
@@ -364,7 +361,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 
             // RaiseEvent 'MyTextSanitizer.XoopsCodePre'
             //	Delegate may replace conversion table
-            //	Args : 
+            //	Args :
             //		'patterns'	   [I/O] : &Array of pattern RegExp
             //		'replacements' [I/O] : &Array of replacing string or callable
             //		'allowimage'   [I]	 : xoopsCodeDecode $allowimage parameter
@@ -389,7 +386,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         if (empty($this->mXCodeCheckImgPatterns)) {
             // RaiseEvent 'Legacy_TextFilter.MakeXCodeCheckImgPatterns'
             //	Delegate may replace conversion table
-            //	Args : 
+            //	Args :
             //		'patterns'	   [I/O] : &Array of pattern RegExp
             //		'replacements' [I/O] : &Array of replacing string
             //
@@ -410,7 +407,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         }
         return $text;
     }
-    
+
     public static function sMakeXCodeCheckImgPatterns(&$patterns)
     {
         $patterns[] = "/\[img( align=\w+)]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
@@ -539,7 +536,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             if (empty($this->mPreXCodePatterns)) {
                 // RaiseEvent 'Legacy_TextFilter.MakePreXCodeConvertTable'
                 //	Delegate may replace conversion table
-                //	Args : 
+                //	Args :
                 //		'patterns'	   [I/O] : &Array of pattern RegExp
                 //		'replacements' [I/O] : &Array of replacing string or callable
                 //
@@ -568,18 +565,18 @@ class Legacy_TextFilter extends XCube_TextFilter
         }
         return $text;
     }
-    
+
     public static function sMakePreXCodeConvertTable(&$patterns, &$replacements)
     {
         $patterns[] = "/\[code\](.*)\[\/code\]/sU";
         $replacements[] = 'self::_sCodeToBase64Encode';
     }
-    
+
     protected static function _sCodeToBase64Encode($match)
     {
         return '[code]' . base64_encode($match[1]) . '[/code]';
     }
-    
+
     /**
      * @deprecated
      * @param $patterns
@@ -606,7 +603,7 @@ class Legacy_TextFilter extends XCube_TextFilter
             if (empty($this->mPostXCodePatterns)) {
                 // RaiseEvent 'Legacy_TextFilter.MakePostXCodeConvertTable'
                 //	Delegate may replace conversion table
-                //	Args : 
+                //	Args :
                 //		'patterns'	   [I/O] : &Array of pattern RegExp
                 //		'replacements' [I/O] : &Array[0..1] of Array of replacing string or callable
                 //							   replacements[0] for $allowimage = 0;
@@ -684,7 +681,7 @@ class Legacy_TextFilter extends XCube_TextFilter
     {
         return $this->codeSanitizerCallback($m, 1);
     }
-    
+
     public function codeSanitizer($text, $image = 1)
     {
         return $this->convertXCode(htmlspecialchars(str_replace('\"', '"', base64_decode($text)), ENT_QUOTES, _CHARSET), $image);

@@ -57,7 +57,6 @@ class PicoControllerUpdateCategory extends PicoControllerAbstract
         $this->is_need_header_footer = false;
     }
 
-    // !Fix compatible with PicoControllerAbstract
     public function render($target = null)
     {
         redirect_header(XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html($this->mod_config, $this->cat_id, $this->mydirname), 2, _MD_PICO_MSG_CATEGORYUPDATED);

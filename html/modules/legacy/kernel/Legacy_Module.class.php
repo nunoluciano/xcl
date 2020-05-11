@@ -72,9 +72,7 @@ class Legacy_AbstractModule
      *     Basically, only Legacy_Controller and its utility functions should call the
      *     constructor.
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$module, $loadConfig=true)
-    //public function Legacy_AbstractModule(&$module, $loadConfig=true)
     {
         $this->setXoopsModule($module);
 
@@ -409,9 +407,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
     public function __construct($module, $loadConfig=true)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($module, $loadConfig);
-        //parent::Legacy_AbstractModule($module, $loadConfig);
     }
 
     /**

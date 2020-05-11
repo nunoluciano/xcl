@@ -40,7 +40,7 @@ if (isset($GLOBALS['xoopsConfig']['language']) && file_exists(XOOPS_ROOT_PATH.'/
 }
 
 /**
- * The new Multimailer class that will carry out the actual sending and will later replace this class. 
+ * The new Multimailer class that will carry out the actual sending and will later replace this class.
  * If you're writing new code, please use that class instead.
  */
 include_once(XOOPS_ROOT_PATH . '/class/mail/xoopsmultimailer.php');
@@ -154,8 +154,7 @@ class xoopsmailer
         // Change below to \r\n if you have problem sending mail
         'LE'           => "\n"
     ];
-// !Fix PHP7 deprecated contructor
-    //public function XoopsMailer()
+
     public function __construct()
     {
         $this->multimailer = new XoopsMultiMailer();
@@ -326,7 +325,7 @@ class xoopsmailer
             $text = str_replace('{X_UEMAIL}', $user->getVar('email'), $text);
             $text = str_replace('{X_UNAME}', $user->getVar('uname'), $text);
             $text = str_replace('{X_UACTLINK}', XOOPS_URL . '/user.php?op=actv&id=' . $user->getVar('uid') . '&actkey=' . $user->getVar('actkey'), $text);
-            
+
             // send mail
             if ($this->isMail) {
                 if (!$this->sendMail($user->getVar('email'), $subject, $text, $headers)) {
@@ -351,7 +350,7 @@ class xoopsmailer
                     }
                 }
             }
-            
+
             // 2.1.2 removes the following code. If this patch doesn't cause a bug, we'll remove it perfectly.
             // flush();
         }

@@ -34,9 +34,7 @@ class XCube_Session
      */
     public $mGetSessionCookiePath = null;
 
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($sessionName='', $sessionExpire=0)
-    //public function XCube_Session($sessionName='', $sessionExpire=0)
     {
         $this->setParam($sessionName, $sessionExpire);
 
@@ -61,7 +59,7 @@ class XCube_Session
         } else {
             $this->mSessionName = $allIniArray['session.name']['global_value'];
         }
-        
+
         if (!empty($sessionExpire)) {
             $this->mSessionLifetime = 60 * $sessionExpire;
         } else {

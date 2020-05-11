@@ -30,7 +30,7 @@ class XCube_Object
     {
         return false;
     }
-    
+
     /**
      * Return member property information. This member function is called in
      * the initialize of object and service. This member function has to be
@@ -42,9 +42,8 @@ class XCube_Object
     public function getPropertyDefinition()
     {
     }
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct()
-    //public function XCube_Object()
     {
         $fileds = $this->getPropertyDefinition();
         foreach ($fileds as $t_field) {
@@ -54,25 +53,25 @@ class XCube_Object
             ];
         }
     }
-    
+
     /**
      * Initialize. If the exception raises, return false.
      */
     public function prepare()
     {
     }
-    
+
     public function toArray()
     {
         $retArray = [];
-        
+
         foreach ($this->mProperty as $t_key => $t_value) {
             $retArray[$t_key] = $t_value['value'];
         }
-        
+
         return $retArray;
     }
-    
+
     public function loadByArray($vars)
     {
         foreach ($vars as $t_key => $t_value) {
@@ -89,7 +88,7 @@ class XCube_ObjectArray
     {
         return true;
     }
-    
+
     /**
      * @static
      * @return string

@@ -18,36 +18,34 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_ADMIN;
-    
+
     /**
      * @var XCube_Delegate
      * @param XCube_Controller &$controller
      */
     public $mSetupBlock = null;
-    
+
     /**
      *  If this array includes current action, getVirtualCurrentModule() returns
      * the module object that specified by dirname.
-     * 
+     *
      * @access private
      */
     public $_mSpecialActions = ['Help', 'CommentList'];
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct(&$controller)
-    //public function Legacy_AdminControllerStrategy(&$controller)
     {
         global $xoopsOption;
-        // ! call parent::__construct() instead of parent::Controller()
+
         parent::__construct($controller);
-        //parent::Legacy_AbstractControllerStrategy($controller);
-        
+
         //
         // TODO We have to develop completed-switching-controller-mechanism.
         //
         if (!defined('LEGACY_DEPENDENCE_RENDERER')) {
             define('LEGACY_DEPENDENCE_RENDERER', 'Legacy_AdminRenderSystem');
         }
-        
+
         $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_AdminRenderSystem';
 
         //
@@ -56,7 +54,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         if (isset($_REQUEST['fct']) && 'users' == $_REQUEST['fct']) {
             $GLOBALS['xoopsOption']['pagetype'] = 'user';
         }
-        
+
         $this->mSetupBlock =new XCube_Delegate();
         $this->mSetupBlock->register('Legacy_AdminControllerStrategy.SetupBlock');
     }
@@ -72,23 +70,23 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
             $this->mController->_processPreload(XOOPS_ROOT_PATH . '/preload/admin');
         }
     }
-    
+
     public function setupModuleContext(&$context, $dirname)
     {
         if (null == $dirname) {
             $dirname = 'legacy';
         }
-        
+
         parent::setupModuleContext($context, $dirname);
     }
-    
+
     public function setupBlock()
     {
         require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminActionSearch.class.php';
         require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminSideMenu.class.php';
         $this->mController->_mBlockChain[] =new Legacy_AdminActionSearch();
         $this->mController->_mBlockChain[] =new Legacy_AdminSideMenu();
-        
+
         $this->mSetupBlock->call(new XCube_Ref($this->mController));
     }
 
@@ -104,10 +102,10 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         if (is_object($ret_module)) {
             return $ret_module;
         }
-        
+
         if (null != $this->mController->mRoot->mContext->mModule) {
             $module =& $this->mController->mRoot->mContext->mXoopsModule;
-            
+
             if ('legacy' == $module->get('dirname') && isset($_REQUEST['dirname'])) {
                 if (in_array(xoops_getrequest('action'), $this->_mSpecialActions)) {
                     $handler =& xoops_gethandler('module');
@@ -119,12 +117,12 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
                 $t_xoopsModule =& $handler->get((int)xoops_getrequest('confmod_id'));
                 $ret_module =& Legacy_Utils::createModule($t_xoopsModule);
             }
-            
+
             if (!is_object($ret_module)) {
                 $ret_module =& Legacy_Utils::createModule($module);
             }
         }
-        
+
         return $ret_module;
     }
 
@@ -132,52 +130,52 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
     {
         $handler =& xoops_getmodulehandler('theme', 'legacy');
         $theme =& $handler->create();
-        
+
         //
         // TODO Load manifesto here.
         //
         $theme->set('dirname', $this->mController->mRoot->mSiteConfig['Legacy']['Theme']);
         $theme->set('render_system', 'Legacy_AdminRenderSystem');
-        
+
         return $theme;
     }
-    
+
     public function isEnableCacheFeature()
     {
         return false;
     }
-    
+
     public function enableAccess()
     {
         $principal =& $this->mController->mRoot->mContext->mUser;
-        
+
         if (!$principal->mIdentity->isAuthenticated()) {
             return false;
         }
-        
+
         if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
-            
+
             if ('legacy' == $dirname) {
                 return $principal->isInRole('Site.Administrator');
             } elseif (defined('_LEGACY_ALLOW_ACCESS_FROM_ANY_ADMINS_')) {
                 return $this->mController->mRoot->mContext->mXoopsUser->isAdmin(0);
             }
-            
+
             return $principal->isInRole("Module.${dirname}.Admin");
         } else {
             return $principal->isInRole('Site.Administrator');
         }
-        
+
         return false;
     }
-    
+
     public function setupModuleLanguage()
     {
         $root =& XCube_Root::getSingleton();
-        
+
         $root->mContext->mXoopsModule->loadInfo($root->mContext->mXoopsModule->get('dirname'));
-        
+
         if (isset($root->mContext->mXoopsModule->modinfo['cube_style']) && false != $root->mContext->mXoopsModule->modinfo['cube_style']) {
             $root->mLanguageManager->loadModuleMessageCatalog($root->mContext->mXoopsModule->get('dirname'));
         }

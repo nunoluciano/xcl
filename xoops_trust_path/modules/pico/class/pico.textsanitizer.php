@@ -6,12 +6,9 @@ class PicoTextSanitizer extends MyTextSanitizer
 {
     public $nbsp = 0;
 
-    // !Fix deprecated constructor
     public function __construct()
-        //function PicoTextSanitizer()
     {
         parent::__construct();
-        //parent::MyTextSanitizer() ;
     }
 
     public static function &sGetInstance()

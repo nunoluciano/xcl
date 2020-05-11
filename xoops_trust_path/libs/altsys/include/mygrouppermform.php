@@ -65,7 +65,6 @@ class MyXoopsGroupPermForm extends XoopsForm
         $this->_modid = (int)$modid;
         $this->_permName = $permname;
         $this->_permDesc = $permdesc;
-        // !Fix PHP7 NOTICE: Only variables should be passed by reference
         $instance = new XoopsFormHidden('modid', $this->_modid);
         $this->addElement($instance);
         //$this->addElement(new XoopsFormHidden('modid', $this->_modid));
@@ -171,13 +170,9 @@ class MyXoopsGroupPermForm extends XoopsForm
         // GIJ end
 
         $tray = new XoopsFormElementTray('');
-        // !Fix PHP7 NOTICE: Only variables should be passed by reference
-        // $tray->addElement(new XoopsFormButton('', 'reset', _CANCEL, 'reset'));
         $buttonReset = new XoopsFormButton('', 'reset', _CANCEL, 'reset');
         $tray->addElement($buttonReset);
 
-        // !Fix PHP7 NOTICE: Only variables should be passed by reference
-        // $tray->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
         $buttonSubmit = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');
         $tray->addElement($buttonSubmit);
 
@@ -249,9 +244,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
      * @param      $groupId
      * @param null $values
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
-	public function __construct($caption, $name, $groupId, $values = null)
-    //public function MyXoopsGroupFormCheckBox($caption, $name, $groupId, $values = null)
+     public function __construct($caption, $name, $groupId, $values = null)
     {
         $this->setCaption($caption);
         $this->setName($name);

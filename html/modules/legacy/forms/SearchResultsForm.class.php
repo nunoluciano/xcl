@@ -19,17 +19,13 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
 {
     public $mQueries = [];
     public $_mKeywordMin = 0;
-    
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct($keywordMin)
-    // public function Legacy_SearchResultsForm($keywordMin)
     {
-        // !FIX PHP7 parent constructor
         parent::__construct();
-        //parent::XCube_ActionForm();
         $this->_mKeywordMin = (int)$keywordMin;
     }
-        
+
     public function prepare()
     {
         //
@@ -38,7 +34,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         $this->mFormProperties['mids'] =new XCube_IntArrayProperty('mids');
         $this->mFormProperties['andor'] =new XCube_StringProperty('andor');
         $this->mFormProperties['query'] =new XCube_StringProperty('query');
-    
+
         //
         // Set field properties
         //
@@ -47,13 +43,13 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
         $this->mFieldProperties['andor']->addMessage('mask', _MD_LEGACY_ERROR_MASK, _MD_LEGACY_LANG_ANDOR);
         $this->mFieldProperties['andor']->addVar('mask', '/^(AND|OR|exact)$/i');
     }
-    
+
     public function fetch()
     {
         parent::fetch();
-        
+
         $t_queries = [];
-        
+
         $myts =& MyTextSanitizer::sGetInstance();
         if ('exact' == $this->get('andor') && strlen($this->get('query')) >= $this->_mKeywordMin) {
             $this->mQueries[] = $myts->addSlashes($this->get('query'));
@@ -67,7 +63,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
             if (defined('_MD_LEGACY_FORMAT_SEARCH_SEPARATOR')) {
                 $separator = _MD_LEGACY_FORMAT_SEARCH_SEPARATOR;
             }
-        
+
             $tmpArr = preg_split($separator, $query);
             foreach ($tmpArr as $tmp) {
                 if (strlen($tmp) >= $this->_mKeywordMin) {
@@ -75,33 +71,33 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
                 }
             }
         }
-        
+
         $this->set('query', implode(' ', $this->mQueries));
     }
-    
+
     public function fetchAndor()
     {
         if ('' == $this->get('andor')) {
             $this->set('andor', 'AND');
         }
     }
-    
+
     public function validate()
     {
         parent::validate();
-        
+
         if (!count($this->mQueries)) {
             $this->addErrorMessage(_MD_LEGACY_ERROR_SEARCH_QUERY_REQUIRED);
         }
     }
-    
+
     public function update(&$params)
     {
         $mids = $this->get('mids');
         if (count($mids) > 0) {
             $params['mids'] = $mids;
         }
-        
+
         $params['queries'] = $this->mQueries;
         $params['andor'] = $this->get('andor');
         $params['maxhit'] = LEGACY_SEARCH_RESULT_MAXHIT;

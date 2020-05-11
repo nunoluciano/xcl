@@ -60,9 +60,7 @@ class XoopsLogger
      *
      * @access  private
      */
-    // !Fix PHP7
     public function __construct()
-    //public function XoopsLogger()
     {
     }
 

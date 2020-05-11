@@ -17,9 +17,8 @@ class LegacyCommentObject extends XoopsSimpleObject
     public $mUser = null;
     public $mModule = null;
     public $mStatus = null;
-    // !Fix deprecated constructor for php 7.x
+
     public function __construct()
-    // public function LegacyCommentObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -48,31 +47,31 @@ class LegacyCommentObject extends XoopsSimpleObject
         $this->initVar('dobr', XOBJ_DTYPE_BOOL, '1', true);
         $initVars=$this->mVars;
     }
-    
+
     /**
-     * Load a user object who wrote this comment to $mUser. 
+     * Load a user object who wrote this comment to $mUser.
      */
     public function loadUser()
     {
         $handler =& xoops_gethandler('member');
         $this->mUser =& $handler->getUser($this->get('com_uid'));
     }
-    
+
     /**
-     * Load a module object to $mModule. 
+     * Load a module object to $mModule.
      */
     public function loadModule()
     {
         $handler =& xoops_gethandler('module');
         $this->mModule =& $handler->get($this->get('com_modid'));
     }
-    
+
     public function loadStatus()
     {
         $handler =& xoops_getmodulehandler('commentstatus', 'legacy');
         $this->mStatus =& $handler->get($this->get('com_status'));
     }
-    
+
     public function getVar($key)
     {
         if ('com_text' == $key) {
@@ -94,21 +93,20 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
      * @var XCube_Delegate
      */
     public $mUpdateSuccess;
-    
+
     /**
      * @var XCube_Delegate
      */
     public $mDeleteSuccess;
-    // !Fix deprecated constructor for php 7.x
+
     public function __construct(&$db)
-    // public function LegacyCommentHandler(&$db)
     {
         parent::__construct($db);
-        
+
         $this->mUpdateSuccess =new XCube_Delegate();
         $this->mDeleteSuccess =new XCube_Delegate();
     }
-    
+
     public function insert(&$comment, $force = false)
     {
         if (parent::insert($comment, $force)) {
@@ -129,7 +127,7 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
     {
         $criteria =new Criteria('com_pid', $comment->get('com_id'));
         $this->deleteAll($criteria);
-        
+
         if (parent::delete($comment, $force)) {
             $this->mDeleteSuccess->call($comment);
             return true;
@@ -139,9 +137,9 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
     }
 
     /**
-     * 
+     *
      * Return array of module id that comments are written.
-     * 
+     *
      * @return array
      */
     public function getModuleIds()
@@ -155,7 +153,7 @@ class LegacyCommentHandler extends XoopsObjectGenericHandler
                 $ret[] = $row['com_modid'];
             }
         }
-        
+
         return $ret;
     }
 }

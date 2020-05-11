@@ -226,7 +226,6 @@ class Text_MappedDiff extends Text_Diff
      *                                  of elements as $to_lines.
      */
 
-     // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
     public function __construct($from_lines, $to_lines,
                              $mapped_from_lines, $mapped_to_lines)
     {
@@ -643,7 +642,7 @@ class Text_Diff_Engine_native
     {
         $i = 0;
         $j = 0;
-        // !Fix DEPRECATED: assert(): Calling assert() with a string argument is deprecated
+
         assert(count($lines) == count($changed));
         $len = count($lines);
         $other_len = count($other_changed);
@@ -665,7 +664,7 @@ class Text_Diff_Engine_native
             }
 
             while ($i < $len && ! $changed[$i]) {
-                // !Fix DEPRECATED: assert(): Calling assert() with a string argument is deprecated
+
                 assert($j < $other_len && ! $other_changed[$j]);
                 $i++;
                 $j++;
@@ -786,7 +785,6 @@ class Text_Diff_Op
  */
 class Text_Diff_Op_copy extends Text_Diff_Op
 {
-    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
     public function __construct($orig, $final = false)
     {
         if (!is_array($final)) {
@@ -810,7 +808,6 @@ class Text_Diff_Op_copy extends Text_Diff_Op
  */
 class Text_Diff_Op_delete extends Text_Diff_Op
 {
-    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
     public function __construct($lines)
     {
         $this->orig = $lines;
@@ -831,7 +828,6 @@ class Text_Diff_Op_delete extends Text_Diff_Op
  */
 class Text_Diff_Op_add extends Text_Diff_Op
 {
-    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
     public function __construct($lines)
     {
         $this->final = $lines;
@@ -852,7 +848,6 @@ class Text_Diff_Op_add extends Text_Diff_Op
  */
 class Text_Diff_Op_change extends Text_Diff_Op
 {
-    // !Fix DEPRECATED: Methods with the same name as their class will not be constructors in a future version of PHP
     public function __construct($orig, $final)
     {
         $this->orig = $orig;

@@ -7,9 +7,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class UserOnlineObject extends XoopsSimpleObject
 {
     public $mModule = null;
-    // !Fix PHP7
+
     public function __construct()
-    //public function UserOnlineObject()
     {
         static $initVars;
         if (isset($initVars)) {

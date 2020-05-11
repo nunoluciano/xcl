@@ -35,9 +35,7 @@ class Profile_AbstractFilterForm
     /**
      * @protected
      */
-    // !Fix deprecated constructor for PHP 7.x
     public function __construct()
-    // public function Profile_AbstractFilterForm()
     {
         $this->_mCriteria =new CriteriaCompo();
     }
@@ -51,7 +49,7 @@ class Profile_AbstractFilterForm
     {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
-    
+
         $this->mNavi->mGetTotalItems->add([&$this, 'getTotalItems']);
     }
 
@@ -71,11 +69,11 @@ class Profile_AbstractFilterForm
     {
         $root =& XCube_Root::getSingleton();
         $this->mSort = (int)$root->mContext->mRequest->getRequest($this->mNavi->mPrefix . 'sort');
-    
+
         if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
         }
-    
+
         $this->mNavi->mSort[$this->mNavi->mPrefix . 'sort'] = $this->mSort;
     }
 
@@ -115,9 +113,9 @@ class Profile_AbstractFilterForm
     {
         $t_start = (null === $start) ? $this->mNavi->getStart() : (int)$start;
         $t_limit = (null === $limit) ? $this->mNavi->getPerpage() : (int)$limit;
-    
+
         $criteria = $this->_mCriteria;
-    
+
         $criteria->setStart($t_start);
         $criteria->setLimit($t_limit);
         return $criteria;

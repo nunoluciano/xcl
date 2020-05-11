@@ -11,7 +11,7 @@
 /**
  * @public
  * @brief [Abstract] Defines a interface for the property class group.
- * 
+ *
  * XCube_PropertyInterface is designed to work in XCube_ActionForm or XCube_Service (in the near future).
  * Therefore only sub-classes of them should call constructors of XCube_Property classes.
  */
@@ -22,9 +22,7 @@ class XCube_PropertyInterface
      * @brief Constructor.
      * @param string $name - A name of this property.
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_PropertyInterface($name)
     {
     }
 
@@ -36,7 +34,7 @@ class XCube_PropertyInterface
     public function set($value)
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets the value of this property.
@@ -55,7 +53,7 @@ class XCube_PropertyInterface
     {
         $this->set($arg0, $arg1);
     }
-    
+
     /**
      * @param null $arg0
      * @return mixed
@@ -65,7 +63,7 @@ class XCube_PropertyInterface
     {
         return $this->get($arg0);
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value indicating whether this object expresses Array.
@@ -74,7 +72,7 @@ class XCube_PropertyInterface
     public function isArray()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value indicating whether this object is null.
@@ -83,7 +81,7 @@ class XCube_PropertyInterface
     public function isNull()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value as integer.
@@ -92,7 +90,7 @@ class XCube_PropertyInterface
     public function toNumber()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value as string.
@@ -111,7 +109,7 @@ class XCube_PropertyInterface
     public function toHTML()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Gets a value indicating whether this object has a fetch control.
@@ -142,7 +140,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
      * @brief string
      */
     public $mName = null;
-    
+
     /**
      * @protected
      * @brief string
@@ -154,16 +152,13 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
      * @brief Constructor.
      * @param string $name - A name of this property.
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_AbstractProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($name);
         //parent::XCube_PropertyInterface($name);
         $this->mName = $name;
     }
-    
+
     /**
      * @public
      * @brief Sets $value as raw value to this property. And the value is casted by the property's type'.
@@ -173,7 +168,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         $this->mValue = $value;
     }
-    
+
     /**
      * @public
      * @brief Gets the value of this property.
@@ -184,12 +179,12 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         return $this->mValue;
     }
-    
+
     /**
      * @public
      * @brief Gets a value indicating whether this object expresses Array.
      * @return bool
-     * 
+     *
      * @remarks
      *     This class is a base class for none-array properties, so a sub-class of this
      *     does not override this method.
@@ -198,7 +193,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         return false;
     }
-    
+
     /**
      * @public
      * @brief Gets a value indicating whether this object is null.
@@ -208,7 +203,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         return (0 === strlen(trim($this->mValue)));
     }
-    
+
     /**
      * @public
      * @brief Gets a value as integer.
@@ -218,7 +213,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         return $this->mValue;
     }
-    
+
     /**
      * @public
      * @brief Gets a value as string.
@@ -228,7 +223,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         return $this->mValue;
     }
-    
+
     /**
      * @public
      * @brief Gets a value as encoded HTML code.
@@ -239,7 +234,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
     {
         return htmlspecialchars($this->toString(), ENT_QUOTES);
     }
-    
+
     /**
      * @public
      * @brief Gets a value indicating whether this object has a fetch control.
@@ -254,7 +249,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface
 /**
  * @public
  * @brief [Abstract] Defines common array property class which implements XCube_PropertyInterface.
- * 
+ *
  * This class is a kind of template-class --- XCube_GenericArrayProperty<T>.
  * Developers should know about sub-classes of XCube_AbstractProperty.
  */
@@ -271,38 +266,36 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
      * @brief XCube_AbstractProperty[] - std::map<mixed_key, mixed_value>
      */
     public $mProperties = [];
-    
+
     /**
      * @protected
      * @brief string - <T>
-     * 
+     *
      * If this class is XCube_GenericArrayProperty<T>, mPropertyClassName is <T>.
      */
     public $mPropertyClassName = null;
-    
+
     /**
      * @public
      * @brief Constructor.
      * @param string $classname - <T>
      * @param string $name      - A name of the property.
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($classname, $name)
-    //public function XCube_GenericArrayProperty($classname, $name)
     {
         $this->mPropertyClassName = $classname;
         $this->mName = $name;
     }
-    
+
     /**
      * @public
      * @brief Sets a value. And the value is casted by the property's type'.
-     * 
+     *
      *   This member function has two signatures.
-     * 
+     *
      * \par set(something[] values);
      *    Fetches values from the array.
-     * 
+     *
      * \par set(mixed key, mixed value);
      *    Set values with index 'key'.
      * @param      $arg1
@@ -321,7 +314,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
             $this->_set($arg1, $arg2);
         }
     }
-    
+
     /**
      * @param      $arg1
      * @param null $arg2
@@ -338,7 +331,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
             $this->_set($arg1, $arg2);
         }
     }
-    
+
     /**
      * @private
      * @brief This member function helps set().
@@ -353,7 +346,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
         }
         $this->mProperties[$index]->set($value);
     }
-    
+
     /**
      * @public
      * @brief Gets values of this property.
@@ -364,17 +357,17 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     {
         if (null === $index) {
             $ret = [];
-            
+
             foreach ($this->mProperties as $t_key => $t_value) {
                 $ret[$t_key] = $t_value->get();
             }
-            
+
             return $ret;
         }
-        
+
         return isset($this->mProperties[$index]) ? $this->mProperties[$index]->get() : null;
     }
-    
+
     /**
      * @protected
      * @brief Resets all properties of this.
@@ -384,12 +377,12 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
         unset($this->mProperties);
         $this->mProperties = [];
     }
-    
+
     /**
      * @public
      * @brief Gets a value indicating whether this object expresses Array.
      * @return bool
-     * 
+     *
      * @remarks
      *     This class is a base class for array properties, so a sub-class of this
      *     does not override this method.
@@ -398,7 +391,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     {
         return true;
     }
-    
+
     /**
      * @public
      * @brief Gets a value indicating whether this object is null.
@@ -408,7 +401,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     {
         return (0 === count($this->mProperties));
     }
-    
+
     /**
      * @public
      * @brief Gets a value as integer --- but, gets null always.
@@ -418,7 +411,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     {
         return null;
     }
-    
+
     /**
      * @public
      * @brief Gets a value as string --- but, gets 'Array' always.
@@ -428,7 +421,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     {
         return 'Array';
     }
-    
+
     /**
      * @public
      * @brief Gets a value as encoded HTML code --- but, gets 'Array' always.
@@ -439,7 +432,7 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
     {
         return htmlspecialchars($this->toString(), ENT_QUOTES);
     }
-    
+
     /**
      * @public
      * @brief Gets a value indicating whether this object has a fetch control.
@@ -457,11 +450,8 @@ class XCube_GenericArrayProperty extends XCube_PropertyInterface
  */
 class XCube_AbstractArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_AbstractArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($this->mPropertyClassName, $name);
         //parent::XCube_GenericArrayProperty($this->mPropertyClassName, $name);
     }
@@ -469,7 +459,7 @@ class XCube_AbstractArrayProperty extends XCube_GenericArrayProperty
 
 /**
  * @public
- * @brief Represents bool property. 
+ * @brief Represents bool property.
  */
 class XCube_BoolProperty extends XCube_AbstractProperty
 {
@@ -486,19 +476,15 @@ class XCube_BoolProperty extends XCube_AbstractProperty
  */
 class XCube_BoolArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_BoolArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_BoolProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_BoolProperty", $name);
     }
 }
 
 /**
  * @public
- * @brief Represents int property. 
+ * @brief Represents int property.
  */
 class XCube_IntProperty extends XCube_AbstractProperty
 {
@@ -515,19 +501,15 @@ class XCube_IntProperty extends XCube_AbstractProperty
  */
 class XCube_IntArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_IntArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_IntProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_IntProperty", $name);
     }
 }
 
 /**
  * @public
- * @brief Represents float property. 
+ * @brief Represents float property.
  */
 class XCube_FloatProperty extends XCube_AbstractProperty
 {
@@ -544,20 +526,16 @@ class XCube_FloatProperty extends XCube_AbstractProperty
  */
 class XCube_FloatArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_FloatArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_FloatProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_FloatProperty", $name);
     }
 }
 
 /**
  * @public
- * @brief Represents string property. 
- * 
+ * @brief Represents string property.
+ *
  * This class shows the property of string. Check whether a request includes control
  * code. If it does, stop own process.
  */
@@ -571,7 +549,7 @@ class XCube_StringProperty extends XCube_AbstractProperty
 
         $this->mValue = preg_replace("/[\\x00-\\x1f]/", '', $value);
     }
-    
+
     public function toNumber()
     {
         return (int)$this->mValue;
@@ -585,20 +563,16 @@ class XCube_StringProperty extends XCube_AbstractProperty
  */
 class XCube_StringArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_StringArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_StringProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_StringProperty", $name);
     }
 }
 
 /**
  * @public
  * @brief Represents string property which allows CR and LF.
- *  
+ *
  *  This class shows the property of text. Check whether a request includes control
  * code. If it does, stop own process.
  */
@@ -607,14 +581,14 @@ class XCube_TextProperty extends XCube_AbstractProperty
     public function set($value)
     {
         $matches = [];
-        
+
         // if (preg_match_all("/[\\x00-\\x08]|[\\x0b-\\x0c]|[\\x0e-\\x1f]/", $value, $matches,PREG_PATTERN_ORDER)) {
         // 	die("Get control code :" . ord($matches[0][0]));
         // }
 
         $this->mValue = preg_replace("/[\\x00-\\x08]|[\\x0b-\\x0c]|[\\x0e-\\x1f]/", '', $value);
     }
-    
+
     public function toNumber()
     {
         return (int)$this->mValue;
@@ -628,14 +602,9 @@ class XCube_TextProperty extends XCube_AbstractProperty
  */
 class XCube_TextArrayProperty extends XCube_GenericArrayProperty
 {
-
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_TextArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_TextProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_TextProperty", $name);
     }
 }
 
@@ -649,56 +618,53 @@ class XCube_FileProperty extends XCube_AbstractProperty
     /**
      * @protected
      * @brief mixed - ID for XCube_FileArrayProperty.
-     * 
+     *
      * friend XCube_FileArrayProperty;
      */
     public $mIndex = null;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct($name)
-    //public function XCube_FileProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($name);
-        //parent::XCube_AbstractProperty($name);
         $this->mValue = new XCube_FormFile($name);
     }
-    
+
     public function hasFetchControl()
     {
         return true;
     }
-    
+
     public function fetch(&$form)
     {
         if (!is_object($this->mValue)) {
             return false;
         }
-        
+
         if (null !== $this->mIndex) {
             $this->mValue->mKey = $this->mIndex;
         }
-        
+
         $this->mValue->fetch();
-        
+
         if (!$this->mValue->hasUploadFile()) {
             $this->mValue = null;
         }
     }
-    
+
     public function isNull()
     {
         if (!is_object($this->mValue)) {
             return true;
         }
-        
+
         return !$this->mValue->hasUploadFile();
     }
-    
+
     public function toString()
     {
         return null;
     }
-    
+
     public function toNumber()
     {
         return null;
@@ -712,20 +678,16 @@ class XCube_FileProperty extends XCube_AbstractProperty
  */
 class XCube_FileArrayProperty extends XCube_GenericArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_FileArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_FileProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_FileProperty", $name);
     }
-    
+
     public function hasFetchControl()
     {
         return true;
     }
-    
+
     public function fetch(&$form)
     {
         unset($this->mProperties);
@@ -747,13 +709,9 @@ class XCube_FileArrayProperty extends XCube_GenericArrayProperty
  */
 class XCube_ImageFileProperty extends XCube_FileProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_ImageFileProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($name);
-        //parent::XCube_AbstractProperty($name);
         $this->mValue = new XCube_FormImageFile($name);
     }
 }
@@ -765,12 +723,8 @@ class XCube_ImageFileProperty extends XCube_FileProperty
  */
 class XCube_ImageFileArrayProperty extends XCube_FileArrayProperty
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($name)
-    //public function XCube_ImageFileArrayProperty($name)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct('XCube_ImageFileProperty', $name);
-        //parent::XCube_GenericArrayProperty("XCube_ImageFileProperty", $name);
     }
 }

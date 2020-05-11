@@ -19,9 +19,7 @@ class LegacyImageObject extends XoopsSimpleObject
     public $mImageBody = null;
     public $_mImageBodyLoadedFlag = false;
 
-    // !Fix deprecated constructor for php 7.x
     public function __construct()
-    // public function LegacyImageObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -80,13 +78,13 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
                 $handler =& xoops_getmodulehandler('imagebody', 'legacy');
                 return $handler->insert($obj->mImageBody, $force);
             }
-            
+
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      *
      * Delete object and image file.
@@ -98,21 +96,21 @@ class LegacyImageHandler extends XoopsObjectGenericHandler
     public function delete(&$obj, $force = false)
     {
         $obj->loadImagebody();
-            
+
         if (parent::delete($obj, $force)) {
             $filepath = XOOPS_UPLOAD_PATH . '/' . $obj->get('image_name');
             if (file_exists($filepath)) {
                 @unlink($filepath);
             }
-            
+
             if (is_object($obj->mImageBody)) {
                 $handler =& xoops_getmodulehandler('imagebody', 'legacy');
                 $handler->delete($obj->mImageBody, $force);
             }
-            
+
             return true;
         }
-        
+
         return false;
     }
 }

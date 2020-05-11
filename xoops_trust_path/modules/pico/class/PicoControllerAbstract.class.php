@@ -15,9 +15,7 @@ class PicoControllerAbstract
     public $html_header           = '';
     public $contentObjs           = [];
 
-    // !Fix deprecated constructor
     public function __construct(&$currentCategoryObj)
-        //function PicoControllerAbstract( &$currentCategoryObj )
     {
         global $xoopsUser;
 

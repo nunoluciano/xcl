@@ -51,11 +51,9 @@ if (! class_exists('XoopsGTicket')) {
     // add a ticket as Hidden Element into XoopsForm
     public function addTicketXoopsFormElement(&$form, $salt = '', $timeout = 1800, $area = '')
     {
-        // !Fix PHP7 NOTICE: Only variables should be passed by reference
-        // $form->addElement(new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area))) ;
         $gticket = new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area));
         $form->addElement($gticket);
-        
+
     }
 
     // returns an array for xoops_confirm() ;

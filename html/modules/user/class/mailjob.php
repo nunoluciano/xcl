@@ -26,9 +26,7 @@ class UserMailjobObject extends XoopsSimpleObject
      */
     public $mSend = null;
 
-    // !Fix deprecated constructor for PHP 7.x
     public function __construct()
-    // public function UserMailjobObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -56,7 +54,7 @@ class UserMailjobObject extends XoopsSimpleObject
     }
 
     /**
-     * Count the number of target users, and set it to mUserCount. 
+     * Count the number of target users, and set it to mUserCount.
      */
     public function loadUserCount()
     {
@@ -99,7 +97,7 @@ class UserMailjobObject extends XoopsSimpleObject
 
     /**
      * Gets count of users who this mailjob will send mail to.
-     * @return int count of users 
+     * @return int count of users
      */
     public function getUserCount()
     {

@@ -19,9 +19,7 @@ class User_AvatarListAction extends User_AbstractListAction
     public $mActionForm = null;
     public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
-    // !Fix compatibility with User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
-    // public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new User_AvatarListForm();
         $this->mActionForm->prepare();
@@ -91,7 +89,7 @@ class User_AvatarListAction extends User_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $nameArr = $this->mActionForm->get('name');
@@ -143,7 +141,7 @@ class User_AvatarListAction extends User_AbstractListAction
                 if (is_object($avatar)) {
                     $criteria =new Criteria('avatar_id', $aid);
                     $linkArr =& $linkHandler->getObjects($criteria);
-        
+
                     if ($avatarHandler->delete($avatar)) {
                         if (count($linkArr) > 0) {
                             $userHandler =& xoops_gethandler('user');
@@ -176,7 +174,7 @@ class User_AvatarListAction extends User_AbstractListAction
         $render->setTemplateName('avatar_list_confirm.html');
         $render->setAttribute('avatarObjects', $this->mAvatarObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.
