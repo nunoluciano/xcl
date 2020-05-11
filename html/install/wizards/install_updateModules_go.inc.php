@@ -224,7 +224,7 @@ foreach (array_keys($modules) as $mid) {
                             $confop->setVar('confop_name', $key, true);
                             $confop->setVar('confop_value', $value, true);
                             $confobj->setConfOptions($confop);
-                            $confop_msgs .= '<br />&nbsp;&nbsp;&nbsp;&nbsp;Config option added. Name: <b>' . $key . '</b> Value: <b>' . $value . '</b>';
+                            $confop_msgs .= '<br>&nbsp;&nbsp;&nbsp;&nbsp;Config option added. Name: <b>' . $key . '</b> Value: <b>' . $value . '</b>';
                             unset($confop);
                         }
                     }
@@ -239,7 +239,7 @@ foreach (array_keys($modules) as $mid) {
                 unset($configs);
             }
             foreach ($msgs as $msg) {
-                echo '<code>' . $msg . '</code><br />';
+                echo '<code>' . $msg . '</code><br>';
             }
         }
         // data for table 'block_module_link'

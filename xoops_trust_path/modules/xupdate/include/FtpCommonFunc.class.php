@@ -65,7 +65,7 @@ class Xupdate_FtpCommonFunc
     public function _cleanup($dir)
     {
         if ($handle = opendir($dir)) {
-            $this->Ftp->appendMes('removing directory: '.$dir.'<br />');
+            $this->Ftp->appendMes('removing directory: '.$dir.'<br>');
             while (false !== ($item = readdir($handle))) {
                 if ('.' !== $item && '..' !== $item) {
                     if (is_dir("$dir/$item")) {
@@ -91,8 +91,8 @@ class Xupdate_FtpCommonFunc
     public function _set_error_log($msg)
     {
         if ($msg) {
-            $this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
-            $this->content.= '<span style="color:red;">'.$msg.'</span><br />';
+            $this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br>');
+            $this->content.= '<span style="color:red;">'.$msg.'</span><br>';
         }
     }
     
@@ -153,7 +153,7 @@ class Xupdate_FtpCommonFunc
             $result = ['ok' => $result, 'ng' => []];
         }
         if (false === $result['ok'] || !$allow_empty && !$result['ok']) {
-            $this->Ftp->appendMes('fail upload '.$where.'<br />');
+            $this->Ftp->appendMes('fail upload '.$where.'<br>');
             return false;
         } elseif (is_numeric($result['ok'])) {
             $desc = '';
@@ -170,10 +170,10 @@ class Xupdate_FtpCommonFunc
             if ($un_upload) {
                 $desc .= ', upload: ' . ($result['ok'] - $un_upload);
             }
-            $this->Ftp->appendMes('succeeded '.$result['ok'].' files into '.$where.'.'.$desc.'<br />');
+            $this->Ftp->appendMes('succeeded '.$result['ok'].' files into '.$where.'.'.$desc.'<br>');
         }
         if ($result['ng']) {
-            $this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . implode('<br />' . _MI_XUPDATE_ERR_NOT_UPLOADED . ': ', $result['ng']));
+            $this->_set_error_log(_MI_XUPDATE_ERR_NOT_UPLOADED.': ' . implode('<br>' . _MI_XUPDATE_ERR_NOT_UPLOADED . ': ', $result['ng']));
         }
         return true;
     }

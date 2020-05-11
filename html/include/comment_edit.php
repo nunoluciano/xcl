@@ -106,14 +106,14 @@ if ('system' != $xoopsModule->getVar('dirname')) {
     //
     $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
     $renderTarget =& $renderSystem->createRenderTarget('main');
-    
+
     $renderTarget->setTemplateName('legacy_comment_edit.html');
 
     $renderTarget->setAttribute('actionForm', $actionForm);
     $renderTarget->setAttribute('subjectIcons', $subjectIcons);
     $renderTarget->setAttribute('xoopsModuleConfig', $xoopsModuleConfig);
     $renderTarget->setAttribute('com_order', $com_order);
-    
+
     //
     // Rendering
     //
@@ -125,11 +125,12 @@ if ('system' != $xoopsModule->getVar('dirname')) {
     print $renderTarget->getResult();
 
     require_once XOOPS_ROOT_PATH.'/footer.php';
-} else {
-    //
-    // TODO
-    //
-    xoops_cp_header();
-    require_once XOOPS_ROOT_PATH.'/include/comment_form.php';
-    xoops_cp_footer();
-}
+
+    } else {
+        //
+        // TODO
+        //
+        xoops_cp_header();
+        require_once XOOPS_ROOT_PATH.'/include/comment_form.php';
+        xoops_cp_footer();
+    }

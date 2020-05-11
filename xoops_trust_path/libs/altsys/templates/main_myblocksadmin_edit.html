@@ -1,5 +1,5 @@
 <div class="adminnavi ui-breadcrumbs">
-<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>"><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$form_title}><br /><br />
+<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>"><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}></a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$form_title}><br><br>
 </div>
 
 
@@ -55,7 +55,7 @@
 			<td class="even">
 				<{if $block.ctype == 'P' || ! $common_fck_installed}>
 					<textarea name="contents[<{$block.bid}>]" id="textarea_content" style="width: 100%;" rows="20"><{$block.content_raw|escape}></textarea>
-					<{if ! $common_fck_installed}><br /><{$smarty.const._MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK}><{/if}>
+					<{if ! $common_fck_installed}><br><{$smarty.const._MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK}><{/if}>
 				<{else}>
 					<textarea name="contents[<{$block.bid}>]" id="textarea_content"><{$block.content_raw|escape}></textarea>
 					<script>fckeditor_exec();</script>

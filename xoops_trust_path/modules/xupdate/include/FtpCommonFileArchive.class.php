@@ -81,10 +81,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             }
         }
         
-        $this->Ftp->appendMes('set extractor: '.$extractor.'<br />');
-        $this->Ftp->appendMes('Srart extract into '.$exploredDirPath.'.<br />');
+        $this->Ftp->appendMes('set extractor: '.$extractor.'<br>');
+        $this->Ftp->appendMes('Srart extract into '.$exploredDirPath.'.<br>');
         if ($this->$extractor($downloadFilePath, $exploredDirPath)) {
-            $this->Ftp->appendMes('Extracting all done.<br />');
+            $this->Ftp->appendMes('Extracting all done.<br>');
             $ret = true;
         } else {
             $this->_set_error_log('extract error.');

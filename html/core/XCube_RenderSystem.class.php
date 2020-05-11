@@ -146,7 +146,7 @@ class XCube_RenderTarget
 class XCube_RenderSystem
 {
     /**
-     @access private
+     * @access private
      */
     public $mController;
 

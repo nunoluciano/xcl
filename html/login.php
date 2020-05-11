@@ -1,5 +1,5 @@
 <?php
-// This script displays a login screen in a popupbox when SSL is enabled in the preferences. 
+// This script displays a login screen in a popupbox when SSL is enabled in the preferences.
 // You should use this script only when your server supports SSL. Place this file under your SSL directory
 
 // path to your xoops main directory
@@ -82,7 +82,7 @@ if ('dologin' == $op) {
             echo '<div style="text-align:center;"><input value="'._CLOSE.'" type="button" onclick="document.window.opener.location.reload();document.window.close();" /></div>';
         }
     } else {
-        xoops_error(_US_INCORRECTLOGIN.'<br /><a href="login.php">'._BACK.'</a>');
+        xoops_error(_US_INCORRECTLOGIN.'<br><a href="login.php">'._BACK.'</a>');
     }
 }
 

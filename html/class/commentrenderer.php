@@ -113,7 +113,7 @@ class XoopsCommentRenderer
             }
             $poster = $this->_getPosterArray($this->_comments[$i]->getVar('com_uid'));
             if (false != $admin_view) {
-                $text = $this->_comments[$i]->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-bottom: 0px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$this->_comments[$i]->getVar('com_status')].'<br />IP: <span style="font-weight: bold;">'.$this->_comments[$i]->getVar('com_ip').'</span></div>';
+                $text = $this->_comments[$i]->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-bottom: 0px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$this->_comments[$i]->getVar('com_status')].'<br>IP: <span style="font-weight: bold;">'.$this->_comments[$i]->getVar('com_ip').'</span></div>';
             } else {
                 // hide comments that are not active
                 if (XOOPS_COMMENT_ACTIVE != $this->_comments[$i]->getVar('com_status')) {
@@ -157,7 +157,7 @@ class XoopsCommentRenderer
         }
         if (false != $admin_view) {
             // admins can see all
-            $text = $tree[$comment_id]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-bottom: 0px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$tree[$comment_id]['obj']->getVar('com_status')].'<br />IP: <span style="font-weight: bold;">'.$tree[$comment_id]['obj']->getVar('com_ip').'</span></div>';
+            $text = $tree[$comment_id]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-bottom: 0px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$tree[$comment_id]['obj']->getVar('com_status')].'<br>IP: <span style="font-weight: bold;">'.$tree[$comment_id]['obj']->getVar('com_ip').'</span></div>';
         } else {
             // hide comments that are not active
             if (XOOPS_COMMENT_ACTIVE != $tree[$comment_id]['obj']->getVar('com_status')) {
@@ -240,7 +240,7 @@ class XoopsCommentRenderer
             $title = $tree[$comment_id]['obj']->getVar('com_title');
         }
         if (false != $admin_view) {
-            $text = $tree[$comment_id]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-bottom: 0px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$tree[$comment_id]['obj']->getVar('com_status')].'<br />IP: <span style="font-weight: bold;">'.$tree[$comment_id]['obj']->getVar('com_ip').'</span></div>';
+            $text = $tree[$comment_id]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-bottom: 0px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$tree[$comment_id]['obj']->getVar('com_status')].'<br>IP: <span style="font-weight: bold;">'.$tree[$comment_id]['obj']->getVar('com_ip').'</span></div>';
         } else {
             // skip this comment if it is not active and continue on processing its child comments instead
             if (XOOPS_COMMENT_ACTIVE != $tree[$comment_id]['obj']->getVar('com_status')) {
@@ -281,7 +281,7 @@ class XoopsCommentRenderer
             } else {
                 $title = $thread[$key]['obj']->getVar('com_title');
             }
-            $text = (false != $admin_view) ? $thread[$key]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$thread[$key]['obj']->getVar('com_status')].'<br />IP: <span style="font-weight: bold;">'.$thread[$key]['obj']->getVar('com_ip').'</span></div>' : $thread[$key]['obj']->getVar('com_text');
+            $text = (false != $admin_view) ? $thread[$key]['obj']->getVar('com_text').'<div style="text-align:right; margin-top: 2px; margin-right: 2px;">'._CM_STATUS.': '.$this->_statusText[$thread[$key]['obj']->getVar('com_status')].'<br>IP: <span style="font-weight: bold;">'.$thread[$key]['obj']->getVar('com_ip').'</span></div>' : $thread[$key]['obj']->getVar('com_text');
             $replies[] = ['id' => $key, 'prefix' => $prefix, 'pid' => $thread[$key]['obj']->getVar('com_pid'), 'itemid' => $thread[$key]['obj']->getVar('com_itemid'), 'rootid' => $thread[$key]['obj']->getVar('com_rootid'), 'title' => $title, 'text' => $text, 'date_posted' => formatTimestamp($thread[$key]['obj']->getVar('com_created'), 'm'), 'date_modified' => formatTimestamp($thread[$key]['obj']->getVar('com_modified'), 'm'), 'poster' => $this->_getPosterArray($thread[$key]['obj']->getVar('com_uid'))];
 
             $prefix = $prefix + 25;

@@ -1,6 +1,6 @@
-<{$block.online_total}><br /><br />
-<{$smarty.const._MB_USER_MEMBERS}>: <{$block.online_members}><br />
-<{$smarty.const._MB_USER_GUESTS}>: <{$block.online_guests}><br /><br />
+<{$block.online_total}><br><br>
+<{$smarty.const._MB_USER_MEMBERS}>: <{$block.online_members}><br>
+<{$smarty.const._MB_USER_GUESTS}>: <{$block.online_guests}><br><br>
 <{foreach item=member from=$block.online_member_list}>
 <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>"><{$member.uname}></a>
 <{/foreach}>

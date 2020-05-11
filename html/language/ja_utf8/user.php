@@ -11,7 +11,7 @@ define('_US_INCORRECTLOGIN', 'ログイン情報が間違っています。');
 define('_US_LOGGINGU', '%sさん、ようこそ。ログイン処理中です。');
 
 // 2001-11-17 ADD
-define('_US_NOACTTPADM', '選択されたユーザはまだ存在しないか、承認が完了していません。<br />詳細についてはサイト管理者にお問合せください。');
+define('_US_NOACTTPADM', '選択されたユーザはまだ存在しないか、承認が完了していません。<br>詳細についてはサイト管理者にお問合せください。');
 define('_US_ACTKEYNOT', '承認キーが間違っています。');
 define('_US_ACONTACT', '選択されたアカウントは既に承認が完了しています。');
 define('_US_ACTLOGIN', 'アカウントを承認しました。登録の際に記入したパスワードを使用してログインしてください。');
@@ -34,7 +34,7 @@ define('_US_SUBMIT', '送信');
 define('_US_USERNAME', 'ユーザ名');
 define('_US_FINISH', '送信');
 define('_US_REGISTERNG', '登録できませんでした');
-define('_US_MAILOK', '当サイトの新着情報などを<br />メールで受け取る');
+define('_US_MAILOK', '当サイトの新着情報などを<br>メールで受け取る');
 
 define('_US_INVALIDMAIL', '不正なメールアドレスです。');
 define('_US_EMAILNOSPACES', 'メールアドレスに空白を含めないでください。');

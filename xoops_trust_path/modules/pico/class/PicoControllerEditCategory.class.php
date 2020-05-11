@@ -105,6 +105,6 @@ class PicoControllerEditCategory extends PicoControllerAbstract
                 $lines[] = htmlspecialchars($key . ':' . $val, ENT_QUOTES);
             }
         }
-        return implode('<br />', $lines);
+        return implode('<br>', $lines);
     }
 }

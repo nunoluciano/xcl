@@ -47,7 +47,7 @@
       <{if $actionForm->get('emotion',$sid) == $smilesObjects[$sid]->get('emotion')}>
         <{$actionForm->get('emotion',$sid)|xoops_escape}>
       <{else}>
-         (<{$smilesObjects[$sid]->getShow('emotion')}>) &raquo; <br /><b  class="legacy_module_error"><{$actionForm->get('emotion',$sid)|xoops_escape}></b>
+         (<{$smilesObjects[$sid]->getShow('emotion')}>) &raquo; <br><b  class="legacy_module_error"><{$actionForm->get('emotion',$sid)|xoops_escape}></b>
       <{/if}>
     </td>
     <td class="legacy_list_select">

@@ -34,7 +34,7 @@ $compile_hooks = [
 
     'enclosebybordereddiv' => [
         'pre' => '<div class="altsys_tplsadmin_frame" style="border:1px solid black;word-wrap:break-word;">' ,
-        'post' => '<br /><a href="'.XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=%1$s" style="color:red;">Edit:<br />%1$s</a></div>' ,
+        'post' => '<br><a href="'.XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=%1$s" style="color:red;">Edit:<br>%1$s</a></div>' ,
         'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYBORDEREDDIV ,
         'dt' => _TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV ,
         'dd' => _TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV ,
@@ -277,7 +277,7 @@ echo "
 				</dt>
 				<dd>
 					"._TPLSADMIN_DD_GETTPLSVARSINFO_DW."
-					<br />
+					<br>
 					<input type='submit' name='as_dw_extension_zip' value='zip' />
 					<input type='submit' name='as_dw_extension_tgz' value='tar.gz' />
 				</dd>
@@ -293,7 +293,7 @@ echo "
 				</dt>
 				<dd>
 					"._TPLSADMIN_DD_GETTEMPLATES."
-					<br />
+					<br>
 					<select name='tplset'>$tplset_options</select>
 					<input type='submit' name='download_zip' value='zip' />
 					<input type='submit' name='download_tgz' value='tar.gz' />
@@ -310,7 +310,7 @@ echo "
 				</dt>
 				<dd>
 					"._TPLSADMIN_DD_PUTTEMPLATES."
-					<br />
+					<br>
 					<select name='tplset'>$tplset_options</select>
 					<input type='file' name='tplset_archive' size='60' />
 					<input type='submit' value='"._SUBMIT."' />

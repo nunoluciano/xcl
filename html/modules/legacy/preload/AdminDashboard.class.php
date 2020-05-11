@@ -191,7 +191,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             // Customize the design of html/admin.php
             if ( $uitype == 0 ) {
 
-                $uiadmin = '<b>Welcome to XOOPS Cube Admin!</b><br />Have a nice time!';
+                $uiadmin = '<b>Welcome to XOOPS Cube Admin!</b><br>Have a nice time!';
 
                 echo $uiadmin;
 

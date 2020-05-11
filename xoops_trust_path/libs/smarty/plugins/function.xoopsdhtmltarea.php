@@ -33,7 +33,7 @@ function smarty_function_xoopsdhtmltarea($params, &$smarty)
         $value = isset($params['value']) ? $params['value'] : "";
         $form = new XoopsFormDhtmlTextArea($name, $name, $value, $rows, $cols);
         $rendered = $form->render();
-        print '<div id="'.$name.'_bbcode_buttons_pre" style="'.@$params['pre_style'].'">'.str_replace(array( '<textarea', '</textarea><br />' ), array( '</div><textarea', '</textarea><div id="'.$name.'_bbcode_buttons_post" style="'.@$params['post_style'].'">' ), $rendered) . '</div>' ;
+        print '<div id="'.$name.'_bbcode_buttons_pre" style="'.@$params['pre_style'].'">'.str_replace(array( '<textarea', '</textarea><br>' ), array( '</div><textarea', '</textarea><div id="'.$name.'_bbcode_buttons_post" style="'.@$params['post_style'].'">' ), $rendered) . '</div>' ;
     }
 }
 

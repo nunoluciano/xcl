@@ -5,17 +5,17 @@
  * @version $Id$
 **/
 
-define('_MD_XUPDATE_ERROR_REQUIRED', '{0}¤ÏÉ¬¤ºÆþÎÏ¤·¤Æ²¼¤µ¤¤');
-define('_MD_XUPDATE_ERROR_MINLENGTH', '{0}¤ÏÈ¾³Ñ{1}Ê¸»ú°Ê¾å¤Ë¤·¤Æ²¼¤µ¤¤');
-define('_MD_XUPDATE_ERROR_MAXLENGTH', '{0}¤ÏÈ¾³Ñ{1}Ê¸»ú°ÊÆâ¤ÇÆþÎÏ¤·¤Æ²¼¤µ¤¤');
-define('_MD_XUPDATE_ERROR_EXTENSION', '¥¢¥Ã¥×¥í¡¼¥É¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤Ïµö²Ä¤µ¤ì¤¿³ÈÄ¥»Ò¤È°ìÃ×¤·¤Þ¤»¤ó');
-define('_MD_XUPDATE_ERROR_INTRANGE', '{0}¤ÎÆþÎÏÃÍ¤¬ÉÔÀµ¤Ç¤¹');
-define('_MD_XUPDATE_ERROR_MIN', '{0}¤Ï{1}°Ê¾å¤Î¿ôÃÍ¤ò»ØÄê¤·¤Æ²¼¤µ¤¤');
-define('_MD_XUPDATE_ERROR_MAX', '{0}¤Ï{1}°Ê²¼¤Î¿ôÃÍ¤ò»ØÄê¤·¤Æ²¼¤µ¤¤');
-define('_MD_XUPDATE_ERROR_OBJECTEXIST', '{0}¤ÎÆþÎÏÃÍ¤¬ÉÔÀµ¤Ç¤¹');
-define('_MD_XUPDATE_ERROR_DBUPDATE_FAILED', '¥Ç¡¼¥¿¥Ù¡¼¥¹¤Î¹¹¿·¤Ë¼ºÇÔ¤·¤Þ¤·¤¿');
-define('_MD_XUPDATE_ERROR_EMAIL', '{0}¤ÏÉÔÀµ¤Ê¥á¡¼¥ë¥¢¥É¥ì¥¹¤Ç¤¹');
-define('_MD_XUPDATE_MESSAGE_CONFIRM_DELETE', '°Ê²¼¤Î¥Ç¡¼¥¿¤òËÜÅö¤Ëºï½ü¤·¤Þ¤¹¤«¡©');
+define('_MD_XUPDATE_ERROR_REQUIRED', '{0}ï¿½ï¿½É¬ï¿½ï¿½ï¿½ï¿½ï¿½Ï¤ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_MINLENGTH', '{0}ï¿½ï¿½È¾ï¿½ï¿½{1}Ê¸ï¿½ï¿½ï¿½Ê¾ï¿½Ë¤ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_MAXLENGTH', '{0}ï¿½ï¿½È¾ï¿½ï¿½{1}Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¤ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_EXTENSION', 'ï¿½ï¿½ï¿½Ã¥×¥ï¿½ï¿½ï¿½ï¿½É¤ï¿½ï¿½ì¤¿ï¿½Õ¥ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½Ä¤ï¿½ï¿½ì¤¿ï¿½ï¿½Ä¥ï¿½Ò¤È°ï¿½ï¿½×¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_INTRANGE', '{0}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¤ï¿½');
+define('_MD_XUPDATE_ERROR_MIN', '{0}ï¿½ï¿½{1}ï¿½Ê¾ï¿½Î¿ï¿½ï¿½Í¤ï¿½ï¿½ï¿½ê¤·ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_MAX', '{0}ï¿½ï¿½{1}ï¿½Ê²ï¿½ï¿½Î¿ï¿½ï¿½Í¤ï¿½ï¿½ï¿½ê¤·ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_OBJECTEXIST', '{0}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¤ï¿½');
+define('_MD_XUPDATE_ERROR_DBUPDATE_FAILED', 'ï¿½Ç¡ï¿½ï¿½ï¿½ï¿½Ù¡ï¿½ï¿½ï¿½ï¿½Î¹ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ï¿½Ô¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½');
+define('_MD_XUPDATE_ERROR_EMAIL', '{0}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¥á¡¼ï¿½ë¥¢ï¿½É¥ì¥¹ï¿½Ç¤ï¿½');
+define('_MD_XUPDATE_MESSAGE_CONFIRM_DELETE', 'ï¿½Ê²ï¿½ï¿½Î¥Ç¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½ï¿½ï¿½');
 define('_MD_XUPDATE_LANG_CONTROL', 'CONTROL');
 define('_MD_XUPDATE_ERROR_CONTENT_IS_NOT_FOUND', 'CONTENT_IS_NOT_FOUND');
 define('_MD_XUPDATE_LANG_ADD_A_NEW_STORE', 'Add a new STORE');
@@ -28,4 +28,4 @@ define('_MD_XUPDATE_LANG_NAME', 'NAME');
 define('_MD_XUPDATE_LANG_ADDON_URL', 'ADDON_URL');
 define('_MD_XUPDATE_LANG_THEME_URL', 'THEME_URL');
 define('_MD_XUPDATE_LANG_REG_UNIXTIME', 'REG_UNIXTIME');
-define('_MD_XUPDATE_MESSAGE_INSTALL_COMPLETE_WARNING', '¤¢¤Ê¤¿¤Î¥µ¡¼¥Ð¡¼¤Ë '.XOOPS_ROOT_PATH.'/install ¥Ç¥£¥ì¥¯¥È¥ê¤¬»Ä¤Ã¤Æ¤¤¤Þ¤¹¡£<br />°­°Õ¤Î¤¢¤ë¹¶·â¼Ô¤¬¤³¤Î¥¤¥ó¥¹¥È¡¼¥ë¥¦¥£¥¶¡¼¥É¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ê¤¤¤è¤¦¤Ë¤¹¤ë°Ù¤Ë¡¢¤³¤Î¥Ç¥£¥ì¥¯¥È¥ê¤òºï½ü¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Þ¤¹¡£<br />¼¡¤Î²èÌÌ¤Ç FTP ÀÜÂ³¾ðÊó¤òÀßÄê¤¹¤ë¤«¡¢¼êºî¶È¤Çºï½ü¤·¤Æ¤¯¤À¤µ¤¤¡£');
+define('_MD_XUPDATE_MESSAGE_INSTALL_COMPLETE_WARNING', 'ï¿½ï¿½ï¿½Ê¤ï¿½ï¿½Î¥ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ '.XOOPS_ROOT_PATH.'/install ï¿½Ç¥<br>ï¿½Ä¤Ã¤Æ¤ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½<br />ï¿½ï¿½ï¿½Õ¤Î¤ï¿½ï¿½ë¹¶ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½Î¥ï¿½ï¿½ó¥¹¥È¡ï¿½ï¿½ë¥¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¤Ë¥<br>ï¿½ï¿½Ç¤ï¿½ï¿½Ê¤ï¿½ï¿½è¤¦ï¿½Ë¤ï¿½ï¿½ï¿½Ù¤Ë¡ï¿½ï¿½ï¿½ï¿½Î¥Ç¥ï¿½ï¿½ì¥¯ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¬ï¿½×¤ï¿½ï¿½ï¿½ï¿½ï¿½Þ¤ï¿½ï¿½ï¿½<br />ï¿½ï¿½ï¿½Î²ï¿½ï¿½Ì¤ï¿½ FTP ï¿½ï¿½Â³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê¤¹ï¿½ë¤«ï¿½ï¿½ï¿½ï¿½ï¿½È¤Çºï¿½ï¿½ï¿½ï¿½ï¿½Æ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');

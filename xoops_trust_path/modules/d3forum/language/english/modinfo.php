@@ -34,9 +34,9 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_TOP_MESSAGEDEFAULT', '<h1 class="d3f_title">Top Forum</h1><p class="d3f_welcome">To start viewing messages, select a category and then a forum from the selection below.</p>');
     define($constpref . '_SHOW_BREADCRUMBS', 'Display breadcrumbs');
     define($constpref . '_DEFAULT_OPTIONS', 'Default checked in post form');
-    define($constpref . '_DEFAULT_OPTIONSDSC', 'List checked options separated by comma(,).<br />eg) smiley,xcode,br,number_entity<br />available options: special_entity html attachsig u2t_marked');
+    define($constpref . '_DEFAULT_OPTIONSDSC', 'List checked options separated by comma(,).<br>eg) smiley,xcode,br,number_entity<br>available options: special_entity html attachsig u2t_marked');
     define($constpref . '_USENAME', 'display name');
-    define($constpref . '_USENAMEDESC', "which name to use display name 'uname'(user ID) or 'name'(Real name). <br /> the default is 'uname'(user ID)");
+    define($constpref . '_USENAMEDESC', "which name to use display name 'uname'(user ID) or 'name'(Real name). <br> the default is 'uname'(user ID)");
     define($constpref . '_USENAME_UNAME', "use'uname'(user ID)");
     define($constpref . '_USENAME_NAME', "use'name'(Real name)");
     define($constpref . '_ALLOW_HTML', 'Allow HTML');

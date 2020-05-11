@@ -292,7 +292,7 @@
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Conferma richiesta',
-			'confirmRm'       : 'Sei sicuro di voler eliminare i file?<br />L\'operazione non è reversibile!',
+			'confirmRm'       : 'Sei sicuro di voler eliminare i file?<br>L\'operazione non è reversibile!',
 			'confirmRepl'     : 'Sostituire i file ?',
 			'confirmRest'     : 'Rimpiazza l\'oggetto esistente con quello nel cestino?', // fromv2.1.24 added 5.5.2017
 			'confirmConvUTF8' : 'Non in formato UTF-8<br/>Convertire in UTF-8?<br/>Il contenuto diventerà UTF-8 salvando dopo la conversione.', // from v2.1 added 08.04.2014

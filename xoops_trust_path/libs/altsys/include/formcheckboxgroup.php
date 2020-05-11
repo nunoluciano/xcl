@@ -47,7 +47,7 @@ class AltsysFormCheckboxGroup extends XoopsFormCheckbox
             $options = $member_handler->getGroupList();
         }
         foreach ($options as $k => $v) {
-            $options[$k] = $v . '<br />';
+            $options[$k] = $v . '<br>';
         }
         $this->addOptionArray($options);
     }

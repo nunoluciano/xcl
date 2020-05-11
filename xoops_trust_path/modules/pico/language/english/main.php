@@ -128,7 +128,7 @@ define('_MD_PICO_BTN_SUBMITEDITING', 'Save this form');
 define('_MD_PICO_BTN_SUBMITSAVEAS', 'Save as...');
 define('_MD_PICO_BTN_COPYFROMWAITING', 'register waiting data');
 define('_MD_PICO_MSG_CONFIRMCOPYFROMWAITING', ' If you do not save, the entered data will be lost. Please confirm?');
-define('_MD_PICO_HOWTO_OVERRIDEOPTIONS', 'If you override preferences, write a line like:<br />(option name):(option value)<br />eg)<br />show_breadcrumbs:1 <br /><br />Overridable options and current values:');
+define('_MD_PICO_HOWTO_OVERRIDEOPTIONS', 'If you override preferences, write a line like:<br>(option name):(option value)<br>eg)<br>show_breadcrumbs:1 <br><br>Overridable options and current values:');
 
 
 // vote to post

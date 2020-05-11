@@ -34,7 +34,7 @@ define('_MD_A_PICO_H2_USERPERMS', 'ユーザー毎の権限');
 define('_MD_A_PICO_TH_UID', 'ユーザID');
 define('_MD_A_PICO_TH_UNAME', 'ユーザ名');
 define('_MD_A_PICO_TH_GROUPNAME', 'グループ名');
-define('_MD_A_PICO_NOTICE_ADDUSERS', '※ユーザを個別に新規追加する場合、ユーザID（数字）かユーザ名のいずれかを直接入力してください。<br />閲覧権限を外せば、そのユーザはこのリストからも消えます。');
+define('_MD_A_PICO_NOTICE_ADDUSERS', '※ユーザを個別に新規追加する場合、ユーザID（数字）かユーザ名のいずれかを直接入力してください。<br>閲覧権限を外せば、そのユーザはこのリストからも消えます。');
 
 // import
 define('_MD_A_PICO_H2_IMPORTFROM', 'インポート');

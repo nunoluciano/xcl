@@ -39,12 +39,12 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
         $this->sftp = new Net_SFTP($server, $port);
 
         if (!$this->sftp->login($ftp_id, $ftp_pass)) {
-            $this->mes.= "SSH Login Failed<br />\n";
+            $this->mes.= "SSH Login Failed<br>\n";
             $this->mes.= $this->getSFTPErrors();
             return false;
         }
 
-        $this->mes.= 'PWD:' . $this->sftp->pwd() . "<br />\n";
+        $this->mes.= 'PWD:' . $this->sftp->pwd() . "<br>\n";
         $this->mes.= $this->getSFTPLog();
 
         return true;

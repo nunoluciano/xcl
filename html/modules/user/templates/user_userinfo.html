@@ -38,7 +38,7 @@
             <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" />
           <{/if}>
           <{if $user_ownpage == true}>
-            <br /><a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a>
+            <br><a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a>
           <{/if}>
         </td>
       </tr>
@@ -118,7 +118,7 @@
         <tr valign="top">
           <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
           <td class="<{cycle values='odd,even'}>" style="text-align:center;">
-            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" /><br />
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" /><br>
             <{$rank->getShow('rank_title')}>
           </td>
         </tr>
@@ -132,7 +132,7 @@
         <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></td>
       </tr>
     </table>
-    <br />
+    <br>
     <table class="outer" cellpadding="4" cellspacing="1" width="100%">
       <tr valign="top">
         <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_USER_SIG}></th>
@@ -152,7 +152,7 @@
 
   <!-- start results item loop -->
   <{foreach item=result from=$module.results}>
-    <img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b><br /><small>(<{$result.time|xoops_formattimestampGMT:l}>)</small><br />
+    <img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b><br><small>(<{$result.time|xoops_formattimestampGMT:l}>)</small><br>
   <{/foreach}>
   <!-- end results item loop -->
 

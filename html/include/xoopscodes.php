@@ -47,7 +47,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     &nbsp;<img src='".XOOPS_URL."/images/image.gif' alt='image' onmouseover='style.cursor=\"hand\"' onclick='openWithSelfMain(\"".XOOPS_URL . '/imagemanager.php?target='
          . $textarea_id . "\",\"imgmanager\",400,430);' />
     &nbsp;<img src='".XOOPS_URL."/images/code.gif' alt='code' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeCode(\"$textarea_id\", \"".htmlspecialchars(_ENTERCODE, ENT_QUOTES)."\");' />
-    &nbsp;<img src='".XOOPS_URL."/images/quote.gif' alt='quote' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeQuote(\"$textarea_id\");'/><br />\n";
+    &nbsp;<img src='".XOOPS_URL."/images/quote.gif' alt='quote' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeQuote(\"$textarea_id\");'/><br>\n";
 
     $sizearray = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
     echo "<select id='".$textarea_id."Size' onchange='setVisible(\"xoopsHiddenText\");setElementSize(\"".$hiddentext."\",this.options[this.selectedIndex].value);'>\n";
@@ -77,7 +77,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     }
     echo "</select><span id='".$hiddentext."'>"._EXAMPLE."</span>\n";
 
-    echo "<br />\n";
+    echo "<br>\n";
     //Hack smilies move for bold, italic ...
     $areacontent = isset($GLOBALS[$textarea_id]) ? $GLOBALS[$textarea_id] : '';
     echo "<img src='".XOOPS_URL."/images/bold.gif' alt='bold' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"".$hiddentext . '");makeBold("'
@@ -85,7 +85,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
          . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/underline.gif' alt='underline' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeUnderline("'
          . $hiddentext . "\");'/>&nbsp;<img src='" . XOOPS_URL . "/images/linethrough.gif' alt='linethrough' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeLineThrough("'
          . $hiddentext . "\");' />&nbsp;<input type='text' id='" . $textarea_id . "Addtext' size='20' />&nbsp;<input type='button' onclick='xoopsCodeText(\"$textarea_id\", \"" . $hiddentext . '", "'
-         . htmlspecialchars(_ENTERTEXTBOX, ENT_QUOTES) . "\")' value='" . _ADD . "' /><br /><br /><textarea id='" . $textarea_id . "' name='" . $textarea_id . "' cols='$cols' rows='$rows'>" . $areacontent . "</textarea><br />\n";
+         . htmlspecialchars(_ENTERTEXTBOX, ENT_QUOTES) . "\")' value='" . _ADD . "' /><br><br><textarea id='" . $textarea_id . "' name='" . $textarea_id . "' cols='$cols' rows='$rows'>" . $areacontent . "</textarea><br>\n";
     //Fin du hack
 }
 

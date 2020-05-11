@@ -185,7 +185,7 @@ class XCube_Root
     /**
      * @param Array$config
      * @return void
-     *@internal
+     * @internal
      * @public
      * @brief Sets site configs.
      */
@@ -237,7 +237,7 @@ class XCube_Root
     public function getSiteConfig()
     {
         //
-        // TODO Check keys with using 'isset'
+        // ! TODO Check keys with using 'isset'
         //
         $m = &$this->mSiteConfig;
         $n = func_num_args();

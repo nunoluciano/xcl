@@ -39,24 +39,25 @@
 if (!defined('XOOPS_C_DATABASE_INCLUDED')) {
     define('XOOPS_C_DATABASE_INCLUDED', 1);
 
-/**
- * Abstract base class for Database access classes
- *
- * @abstract
- *
- * @author Kazumi Ono <onokazu@xoops.org>
- * @copyright copyright (c) 2000-2003 XOOPS.org
- *
- * @package kernel
- * @subpackage database
- */
-class XoopsDatabase
-{
     /**
+     * Abstract base class for Database access classes
+     *
+     * @abstract
+     *
+     * @author Kazumi Ono <onokazu@xoops.org>
+     * @copyright copyright (c) 2000-2003 XOOPS.org
+     *
+     * @package kernel
+     * @subpackage database
+     */
+    class XoopsDatabase
+    {
+        /**
          * Prefix for tables in the database
          * @var string
          */
         public $prefix = '';
+
         /**
          * reference to a {@link XoopsLogger} object
          * @see XoopsLogger
@@ -111,7 +112,7 @@ class XoopsDatabase
                 return $this->prefix;
             }
         }
-}
+    }
 }
 
 

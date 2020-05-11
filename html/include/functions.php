@@ -277,7 +277,7 @@ function OpenWaitBox()
     echo '<div id="waitDiv" style="position:absolute;left:40%;top:50%;visibility:hidden;text-align: center;">
     <table cellpadding="6" border="2" class="bg2">
       <tr>
-        <td align="center"><b><big>' ._FETCHING.'</big></b><br /><img src="'.XOOPS_URL.'/images/await.gif" alt="" /><br />' ._PLEASEWAIT.'</td>
+        <td align="center"><b><big>' ._FETCHING.'</big></b><br><img src="'.XOOPS_URL.'/images/await.gif" alt="" /><br>' ._PLEASEWAIT.'</td>
       </tr>
     </table>
     </div>
@@ -606,7 +606,7 @@ function &xoops_gethandler($name, $optional = false)
     }
 
     if (!$optional) {
-        trigger_error('Class <b>'.$class.'</b> does not exist<br />Handler Name: '.$name, E_USER_ERROR);
+        trigger_error('Class <b>'.$class.'</b> does not exist<br>Handler Name: '.$name, E_USER_ERROR);
     }
 
     $falseRet = false;
@@ -654,7 +654,7 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
     }
 
     if (!isset($mhdr[$name]) && !$optional) {
-        trigger_error('Handler does not exist<br />Module: '.$module_dir.'<br />Name: '.$name, E_USER_ERROR);
+        trigger_error('Handler does not exist<br>Module: '.$module_dir.'<br>Name: '.$name, E_USER_ERROR);
     }
 
     return $mhdr[$name];

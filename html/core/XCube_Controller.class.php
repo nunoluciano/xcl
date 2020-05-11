@@ -367,14 +367,14 @@ class XCube_Controller
     }
 
     /**
-     * FIXME.
+     * !FIXME.
      */
     public function _setupBlock()
     {
     }
 
     /**
-     * FIXME.
+     * !FIXME.
      */
     public function _processBlock()
     {
@@ -494,7 +494,7 @@ class XCube_Controller
         $chunkName = $this->mRoot->getSiteConfig('Cube', 'RoleManager');
 
         //
-        // FIXME: Access private method.
+        // !FIXME: Access private method.
         //
         $manager =& $this->mRoot->_createInstance($this->mRoot->getSiteConfig($chunkName, 'class'), $this->mRoot->getSiteConfig($chunkName, 'path'));
 

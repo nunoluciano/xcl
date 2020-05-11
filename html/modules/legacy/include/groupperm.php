@@ -80,7 +80,7 @@ if ($module->getVar('hasadmin')) {
     }
 }
 
-$msg[] = '<br /><br /><a href="'.$backlink.'">'._BACK.'</a>';
+$msg[] = '<br><br><a href="'.$backlink.'">'._BACK.'</a>';
 xoops_cp_header();
 xoops_result($msg);
 xoops_cp_footer();

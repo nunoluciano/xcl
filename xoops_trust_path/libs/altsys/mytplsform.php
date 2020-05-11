@@ -243,13 +243,13 @@ echo "
 <form name='MainForm' id='altsys_tplsform' action='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl_file, ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".$target_mname."' method='post'>
 	".$xoopsGTicket->getTicketHtml(__LINE__, 1800, 'altsys_tplsform')."
 	<textarea name='tpl_source' id='altsys_tpl_source' wrap='off' style='width:100%; height:20vh'>".htmlspecialchars($tpl['tpl_source'], ENT_QUOTES)."</textarea>
-	<br />
+	<br>
 ";
 if ('create' == $edit_mode) {
     // create form
     echo "
 	<label for='tpl_file'>"._MD_A_MYTPLSFORM_LABEL_TPLFILE."</label>
-	<input type='text' name='tpl_file' id='tpl_file' value='".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."' size='64' /><br />
+	<input type='text' name='tpl_file' id='tpl_file' value='".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."' size='64' /><br>
 	<input type='submit' name='do_create' id='do_create' value='"._MD_A_MYTPLSFORM_BTN_CREATE."' />\n" ;
 } else {
     // modify form

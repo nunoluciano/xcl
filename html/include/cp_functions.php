@@ -63,7 +63,7 @@ function CloseTable()
 
 function themecenterposts($title, $content)
 {
-    echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td class="head">'.$title.'</td></tr><tr><td><br />'.$content.'<br /></td></tr></table>';
+    echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td class="head">'.$title.'</td></tr><tr><td><br>'.$content.'<br></td></tr></table>';
 }
 
 function myTextForm($url, $value)
@@ -135,8 +135,8 @@ function xoops_module_get_admin_menu()
         $tree[$cnt][3] = '';
         $tree[$cnt][4] = $mod->getVar('mid');
         // !Fix version TODO replace round a float by specifc version 0.0.0
-        //$tree[$cnt][6] = "<b>\"._VERSION.\":</b> ".round($mod->getVar('version')/100, 2)."<br /><b>\"._DESCRIPTION.\":</b> ".$mod->getInfo('description');
-        $tree[$cnt][6] = '<b>"._VERSION.":</b> ' . $mod->getVar('version') . '<br /><b>"._DESCRIPTION.":</b> ' . $mod->getInfo('description');
+        //$tree[$cnt][6] = "<b>\"._VERSION.\":</b> ".round($mod->getVar('version')/100, 2)."<br><b>\"._DESCRIPTION.\":</b> ".$mod->getInfo('description');
+        $tree[$cnt][6] = '<b>"._VERSION.":</b> ' . $mod->getVar('version') . '<br><b>"._DESCRIPTION.":</b> ' . $mod->getInfo('description');
         $layer_label[$cnt] = 'L' . $cnt;
         if ($tree[$cnt][0] > $maxlevel) {
             $maxlevel = $tree[$cnt][0];
@@ -240,7 +240,7 @@ function xoops_module_get_admin_menu()
                 } else {        // a leaf
                     $onmouseover = " onmouseover='popUp" . $layername[$tree[$cnt][0]-1] . '();';
                 }
-            $layer[$layername[$tree[$cnt][0]-1]] .= "<img src='\".XOOPS_URL.\"/images/pointer.gif' width='8' height='8' alt='' />&nbsp;<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][1] . '</a>' . $currentarrow . "<br />\n";
+            $layer[$layername[$tree[$cnt][0]-1]] .= "<img src='\".XOOPS_URL.\"/images/pointer.gif' width='8' height='8' alt='' />&nbsp;<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][1] . '</a>' . $currentarrow . "<br>\n";
         } elseif (1 == $tree[$cnt][0]) {
             // the hierarchical level is = 1, hence the current node is a child of the root node
                 // handle accordingly the corresponding link, distinguishing if the current node is a leaf or not
@@ -253,9 +253,9 @@ function xoops_module_get_admin_menu()
                    $onmouseover = " onmouseover='shutdown();";
                 }
             if (!isset($firstleveltable[$tree[$cnt][4]])) {
-                $firstleveltable[$tree[$cnt][4]] = "<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][5] . '</a>' . $currentarrow . "<br />\n";
+                $firstleveltable[$tree[$cnt][4]] = "<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][5] . '</a>' . $currentarrow . "<br>\n";
             } else {
-                $firstleveltable[$tree[$cnt][4]] .= "<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][5] . '</a>' . $currentarrow . "<br />\n";
+                $firstleveltable[$tree[$cnt][4]] .= "<a href='" . $currentlink . "'" . $onmouseover . "'" . $currenttarget . '>' . $tree[$cnt][5] . '</a>' . $currentarrow . "<br>\n";
             }
         }
     }        // end of the "for" cycle scanning all nodes
@@ -265,7 +265,7 @@ function xoops_module_get_admin_menu()
     $menu_layers = '';
     for ($cnt = 1; $cnt <= $tmpcount; $cnt++) {
         if (!($tree[$cnt+1][0]<=$tree[$cnt][0])) {
-            $menu_layers .= "<div id='".$layer_label[$cnt]."' style='position: absolute; visibility: hidden; z-index:1000;'><table class='outer' width='150' cellspacing='1'><tr><th nowrap='nowrap'>".$tree[$cnt][1]."</th></tr><tr><td class='even' nowrap='nowrap'>".$layer[$layer_label[$cnt]]."<div style='margin-top: 5px; font-size: smaller; text-align: right;'><a href='#' onmouseover='shutdown();'>["._CLOSE."]</a></div></td></tr><tr><th style='font-size: smaller; text-align: left;'>".$tree[$cnt][5] . '<br />'
+            $menu_layers .= "<div id='".$layer_label[$cnt]."' style='position: absolute; visibility: hidden; z-index:1000;'><table class='outer' width='150' cellspacing='1'><tr><th nowrap='nowrap'>".$tree[$cnt][1]."</th></tr><tr><td class='even' nowrap='nowrap'>".$layer[$layer_label[$cnt]]."<div style='margin-top: 5px; font-size: smaller; text-align: right;'><a href='#' onmouseover='shutdown();'>["._CLOSE."]</a></div></td></tr><tr><th style='font-size: smaller; text-align: left;'>".$tree[$cnt][5] . '<br>'
                             . $tree[$cnt][6] . "</th></tr></table></div>\n";
         }
     }

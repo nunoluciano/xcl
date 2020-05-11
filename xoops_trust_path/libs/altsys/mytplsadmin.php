@@ -330,10 +330,10 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
     if (file_exists($basefilepath)) {
         $fingerprint = tplsadmin_get_fingerprint(file($basefilepath)) ;
         $fingerprints[ $fingerprint ] = '' ;
-        echo '<td>' . formatTimestamp(filemtime($basefilepath), 'm') . '<br />' . substr($fingerprint, 0, 16) . "<br /><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
+        echo '<td>' . formatTimestamp(filemtime($basefilepath), 'm') . '<br>' . substr($fingerprint, 0, 16) . "<br><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
         $fingerprint_class_count = 0 ;
     } else {
-        echo '<td><br /></td>';
+        echo '<td><br></td>';
         $fingerprint_class_count = -1 ;
     }
 
@@ -357,7 +357,7 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
                 $fingerprints[ $fingerprint ] = $class ;
             }
             echo "
-            <td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br />'.substr($fingerprint, 0, 16)."<br />
+            <td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br>'.substr($fingerprint, 0, 16)."<br>
             <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; 
             <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."'>"._EDIT."</a> ($numrows)
             </td>\n" ;
@@ -371,13 +371,13 @@ while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
 echo "<tfoot>
         <tr class='foot'>
 		<td>
-			"._MYTPLSADMIN_CREATE_NEW_TPLSET.": <br />
+			"._MYTPLSADMIN_CREATE_NEW_TPLSET.": <br>
 			"._MYTPLSADMIN_CAPTION_BASE.":
 			<select name='clone_tplset_from'>
 				$tplset_options
 				<option value='_blank_'>"._MYTPLSADMIN_OPT_BLANKSET."</option>
 			</select>
-			<br />
+			<br>
 			"._MYTPLSADMIN_CAPTION_SETNAME.": <input type='text' name='clone_tplset_to' size='8' maxlength='16' /> <input type='submit' name='clone_tplset_do' value='"._MYTPLSADMIN_BTN_NEWTPLSET."' />
 		</td>
 		<td class='head'></td>
@@ -386,14 +386,14 @@ echo "<tfoot>
 			<select name='copyf2db_to'>
 				$tplset_options
 			</select>
-			<br />
+			<br>
 			<input name='copyf2db_do' type='submit' value='"._MYTPLSADMIN_BTN_COPY."' onclick='return altsys_mytpladmin_check_copy_submit(\""._MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES."\", \"base\", true);' />
 		</td>\n" ;
 
     foreach ($tplsets as $tplset) {
         $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
         echo "\t\t<td class='head'>
-			" . ('default' == $tplset && '_custom' != $target_dirname ? '' : "<input name='del_do[{$tplset4disp}]' type='submit' value='" . _DELETE . "' onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);' /><br /><br />") . '
+			" . ('default' == $tplset && '_custom' != $target_dirname ? '' : "<input name='del_do[{$tplset4disp}]' type='submit' value='" . _DELETE . "' onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);' /><br><br>") . '
 			'
              . _MYTPLSADMIN_CAPTION_COPYTO . ":
 			<select name='copy_to[{$tplset4disp}]'>

@@ -510,7 +510,7 @@ class Legacy_TextFilter extends XCube_TextFilter
     }
 
     /**
-     * Convert linebreaks to <br /> tags
+     * Convert linebreaks to <br> tags
      *
      * @param	string	$text
      *

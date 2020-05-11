@@ -392,7 +392,7 @@ if (! class_exists('Xupdate_Func')) {
     public function _set_error_log($msg)
     {
         if ($msg) {
-            $this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br />');
+            $this->Ftp->appendMes('<span style="color:red;">'.$msg.'</span><br>');
             $this->put_debug_log('[Error] ' . strip_tags($msg));
         }
     }
@@ -406,7 +406,7 @@ if (! class_exists('Xupdate_Func')) {
     private function appendMes($msg)
     {
         if ($msg) {
-            $this->Ftp->appendMes($msg.'<br />');
+            $this->Ftp->appendMes($msg.'<br>');
             $this->put_debug_log(strip_tags($msg));
         }
     }
@@ -422,7 +422,7 @@ if (! class_exists('Xupdate_Func')) {
     {
         if ($msg) {
             $style = $isError? 'color:red;' : '';
-            $this->content.= '<span style="'.$style.'">'.$msg.'</span><br />';
+            $this->content.= '<span style="'.$style.'">'.$msg.'</span><br>';
         }
     }
     

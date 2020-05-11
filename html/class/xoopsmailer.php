@@ -425,7 +425,7 @@ class xoopsmailer
             if (!empty($this->errors)) {
                 $ret = '<h4>' . _ERRORS . '</h4>';
                 foreach ($this->errors as $error) {
-                    $ret .= $error . '<br />';
+                    $ret .= $error . '<br>';
                 }
             } else {
                 $ret = '';
@@ -443,7 +443,7 @@ class xoopsmailer
             $ret = '';
             if (!empty($this->success)) {
                 foreach ($this->success as $suc) {
-                    $ret .= $suc . '<br />';
+                    $ret .= $suc . '<br>';
                 }
             }
             return $ret;

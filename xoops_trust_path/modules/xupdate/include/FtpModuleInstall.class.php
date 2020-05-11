@@ -72,7 +72,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             if (! $this->retry_phase) {
                 $this->_cleanUp_downloadDir();
             } else {
-                $this->Ftp->appendMes('Retry phase: '.$this->retry_phase.'<br />');
+                $this->Ftp->appendMes('Retry phase: '.$this->retry_phase.'<br>');
             }
             
             $this->_set_stage(1);
@@ -94,7 +94,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             // set stat time
             Xupdate_Utils::check_http_timeout();
             
-            $this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br />';
+            $this->content.= _MI_XUPDATE_PROG_FILE_GETTING . '<br>';
             if ($this->retry_phase || $this->Func->_downloadFile($this->target_key, $downloadUrl, $this->download_file, $this->downloadedFilePath)) {
                 $this->_set_stage(2);
                 $this->exploredDirPath = $exploredDirPath;
@@ -188,7 +188,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
                 $result = false;
             }
 
-            $this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br />';
+            $this->content.= _MI_XUPDATE_PROG_CLEANING_UP . '<br>';
             $this->_cleanup($exploredDirPath);
 
             if ($this->Ftp->isConnected()) {
@@ -199,7 +199,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             @ unlink($this->downloadedFilePath);
 
             if ($result) {
-                $this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br /><br />';
+                $this->content.= _MI_XUPDATE_PROG_COMPLETED . '<br><br>';
             }
             
             @ unlink(_MD_XUPDATE_SYS_LOCK_FILE);
@@ -244,8 +244,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     {
         //$this->Ftp->connect();
 
-        $this->Ftp->appendMes('start uploading..<br />');
-        $this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br />';
+        $this->Ftp->appendMes('start uploading..<br>');
+        $this->content.= _MI_XUPDATE_PROG_UPLOADING . '<br>';
 
         if ('module' === $caller && 'TrustModule' === $this->target_type) {
             if (!empty($this->trust_dirname) && !empty($this->dirname) && $this->trust_dirname != $this->dirname) {
@@ -361,7 +361,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         // maifile write protect
         $this->Func->mainfile_to_readonly();
 
-        $this->Ftp->appendMes('end uploaded success<br />');
+        $this->Ftp->appendMes('end uploaded success<br>');
         return true;
     }
 
@@ -469,7 +469,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     private function _exploredDirPath_DownDir($member = '', $checkfile = '')
     {
         $dir = $this->exploredDirPath;
-        $this->Ftp->appendMes('check exploredDirPath: '.$this->exploredDirPath.'<br />');
+        $this->Ftp->appendMes('check exploredDirPath: '.$this->exploredDirPath.'<br>');
         $items = scandir($dir);
         $checker = [];
         foreach ($items as $item) {
@@ -481,7 +481,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
             }
             if ($member && $checkfile) {
                 if (is_file($dir.'/'.$checkfile)) {
-                    $this->Ftp->appendMes('found '.$checkfile.' in exploredDirPath: '.$this->exploredDirPath.'<br />');
+                    $this->Ftp->appendMes('found '.$checkfile.' in exploredDirPath: '.$this->exploredDirPath.'<br>');
                     $this->$member = $this->exploredDirPath;
                     return true;
                 }
@@ -489,7 +489,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
         }
         if (isset($checker['html']) || isset($checker['xoops_trust_path'])) {
             $this->Ftp->exploredDirPath = $this->exploredDirPath;
-            $this->Ftp->appendMes('found files exploredDirPath: '.$this->exploredDirPath.'<br />');
+            $this->Ftp->appendMes('found files exploredDirPath: '.$this->exploredDirPath.'<br>');
             return true;
         }
         foreach (array_keys($checker) as $item) {
@@ -511,7 +511,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive
     private function _exploredDirPath_UpDir()
     {
         $this->exploredDirPath = dirname($this->exploredDirPath);
-        $this->Ftp->appendMes('up dir exploredDirPath: '.$this->exploredDirPath.'<br />');
+        $this->Ftp->appendMes('up dir exploredDirPath: '.$this->exploredDirPath.'<br>');
     }
 
     /**
@@ -776,6 +776,6 @@ function xupdate_on_shutdown($cache_dir, $download_url)
         if (! headers_sent()) {
             header('Content-type: text/html; charset='._CHARSET);
         }
-        echo implode('<br />' . "\n", $msg);
+        echo implode('<br>' . "\n", $msg);
     }
 }

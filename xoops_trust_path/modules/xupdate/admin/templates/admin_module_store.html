@@ -208,7 +208,7 @@
 				</a>
 	          <a href="<{$module->get_UpdateUrl()}>"></a>
 			  <{if $module->mModule->getVar('dirname') === 'legacy'}>
-			  <br /><span class="legacy_list_select" style="white-space:nowrap;">
+			  <br><span class="legacy_list_select" style="white-space:nowrap;">
 				<a href="<{$module->get_StoreUrl()}>"><{$smarty.const._AD_LEGACY_LANG_UPDATE}></a></span><{/if}>
 	          <{else}>
 	          <img src="<{"icons/error.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" title="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" />

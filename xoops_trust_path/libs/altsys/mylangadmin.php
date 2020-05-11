@@ -251,7 +251,7 @@ if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
     }
 } else {
     // X2 core etc.
-    $notice4disp = _MYLANGADMIN_MSG_HOWTOENABLED3LANGMAN4X2.'<br />' ;
+    $notice4disp = _MYLANGADMIN_MSG_HOWTOENABLED3LANGMAN4X2.'<br>' ;
     $notice4disp .= '
 		<h4>include/common.php</h4>
 		<pre>

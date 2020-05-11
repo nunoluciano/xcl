@@ -321,7 +321,7 @@ define('_MD_D3FORUM_TH_CATEGORYPARENT','Parent category');
 define('_MD_D3FORUM_TH_CATEGORYDESC','Category desc');
 define('_MD_D3FORUM_TH_CATEGORYOPTIONS','Category options');
 define('_MD_D3FORUM_ONOFF','ON/OFF');
-define('_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS','If you override preferences, write a line like:<br />(option name):(option value)<br />eg)<br />show_breadcrumbs:1 <br /><br />Overridable options and current values:');
+define('_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS','If you override preferences, write a line like:<br>(option name):(option value)<br>eg)<br>show_breadcrumbs:1 <br><br>Overridable options and current values:');
 
 define('_MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY','(under this category)');
 define('_MD_D3FORUM_SUFFIX_UNDERTHISFORUM','(under this forum)');

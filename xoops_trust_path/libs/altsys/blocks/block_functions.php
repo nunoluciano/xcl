@@ -148,7 +148,7 @@ function b_altsys_admin_menu_edit($options)
 		<input type='hidden' name='options[0]' value='$mydirname' />
 		<label for='this_template'>"._MB_ALTSYS_THISTEMPLATE."</label>&nbsp;:
 		<input type='text' size='60' name='options[1]' id='this_template' value='".htmlspecialchars($this_template, ENT_QUOTES)."' />
-		<br />
+		<br>
 	\n" ;
 
     return $form;

@@ -179,7 +179,7 @@ class MyXoopsGroupPermForm extends XoopsForm
         $this->addElement($tray);
 
         $ret = '<div class="ui-block-permissions">';
-        $ret .= '<h4>'.$this->getTitle().'</h4>'.$this->_permDesc.'<br />';
+        $ret .= '<h4>'.$this->getTitle().'</h4>'.$this->_permDesc.'<br>';
         $ret .= "<form name='".$this->getName()."' id='".$this->getName()."' action='".$this->getAction()."' method='".$this->getMethod()."'".$this->getExtra().">\n";
         $ret .= "<table width='100%' class='outer'>\n";
         $elements =& $this->getElements();
@@ -191,7 +191,7 @@ class MyXoopsGroupPermForm extends XoopsForm
                 $ret .= "<tr valign='top' align='"._GLOBAL_LEFT."'><td class='head'>".$elements[$i]->getCaption();
                 // group description
                 if ('' != $elements[$i]->getDescription()) {
-                    $ret .= '<br /><br /><span style="font-weight: normal;">'.$elements[$i]->getDescription().'</span>';
+                    $ret .= '<br><br><span style="font-weight: normal;">'.$elements[$i]->getDescription().'</span>';
                 }
                 $ret .= "</td>\n<td class='even'>\n".$elements[$i]->render()."\n</td></tr>\n";
             } else {
@@ -315,7 +315,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
                 $name = 'perms['.$append['permname'].']' ;
                 $itemid = $append['itemid'] ;
                 $itemid = $append['itemid'] ;
-                $ret .= "<td class=\"odd\"><input type=\"checkbox\" name=\"{$name}[groups][$this->_groupId][$itemid]\" id=\"{$name}[groups][$this->_groupId][$itemid]\" value=\"1\" $checked />{$append['itemname']}<input type=\"hidden\" name=\"{$name}[parents][$itemid]\" value=\"\" /><input type=\"hidden\" name=\"{$name}[itemname][$itemid]\" value=\"{$append['itemname']}\" /><br /></td>" ;
+                $ret .= "<td class=\"odd\"><input type=\"checkbox\" name=\"{$name}[groups][$this->_groupId][$itemid]\" id=\"{$name}[groups][$this->_groupId][$itemid]\" value=\"1\" $checked />{$append['itemname']}<input type=\"hidden\" name=\"{$name}[parents][$itemid]\" value=\"\" /><input type=\"hidden\" name=\"{$name}[itemname][$itemid]\" value=\"{$append['itemname']}\" /><br></td>" ;
                 $cols++;
             }
             $ret .= '</tr></table>';
@@ -378,7 +378,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement
                  . implode(':', $parentIds) . '" /><input type="hidden" name="'
                  . $this->getName() . '[itemname]['
                  . $option['id'] . ']" value="'
-                 . htmlspecialchars($option['name']) . "\" /><br />\n";
+                 . htmlspecialchars($option['name']) . "\" /><br>\n";
         if (isset($option['children'])) {
             foreach ($option['children'] as $child) {
                 array_push($parentIds, $option['id']);

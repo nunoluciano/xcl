@@ -32,8 +32,11 @@
 if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
+
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
+
 $op = 'delete';
+
 if (!empty($_POST)) {
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
@@ -44,6 +47,7 @@ if (!empty($_POST)) {
     $com_order = isset($_GET['com_order']) ? (int)$_GET['com_order'] : XOOPS_COMMENT_OLD1ST;
     $com_id = isset($_GET['com_id']) ? (int)$_GET['com_id'] : 0;
 }
+
 
 if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_handler =& xoops_gethandler('comment');
@@ -83,6 +87,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
 }
 
 $accesserror = false;
+
 if (!is_object($xoopsUser)) {
     $accesserror = true;
 } else {
@@ -105,7 +110,8 @@ if (false != $accesserror) {
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< Is this must?
+
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< Is this must needed?
 
 switch ($op) {
 case 'delete_one':
@@ -264,8 +270,9 @@ case 'delete_all':
     }
 
     include XOOPS_ROOT_PATH.'/header.php';
+
     xoops_result($msgs);
-    echo '<br /><a href="'.$redirect_page.'='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.'">'._BACK.'</a>';
+    echo '<br><a href="'.$redirect_page.'='.$com_itemid.'&amp;com_order='.$com_order.'&amp;com_mode='.$com_mode.'">'._BACK.'</a>';
     include XOOPS_ROOT_PATH.'/footer.php';
     break;
 

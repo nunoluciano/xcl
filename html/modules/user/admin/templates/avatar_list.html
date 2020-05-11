@@ -10,7 +10,7 @@
 
 <div class="tips">
 	<ul>
-		<li><{$smarty.const._AD_USER_LANG_AVATAR_TOTAL}>: <{$avatarTotal}>&nbsp;&nbsp;<br />
+		<li><{$smarty.const._AD_USER_LANG_AVATAR_TOTAL}>: <{$avatarTotal}>&nbsp;&nbsp;<br>
 		<{$smarty.const._AD_USER_LANG_AVATAR_TYPE_S}>: <{$savatarTotal}>&nbsp;&nbsp;|&nbsp; <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}>: <{$cavatarTotal}>
 		</li>
 		<li><{$smarty.const._AD_USER_TIPS_AVATAR}></li>
@@ -125,7 +125,7 @@
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_TYPE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
       <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_TYPE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a></th>
     <th><{$smarty.const._AD_USER_LANG_AVATAR_USING_COUNT}></th>
-    <th><{$smarty.const._DELETE}><br />
+    <th><{$smarty.const._DELETE}><br>
       <input name="allbox" id="allbox" onclick="with(document.avatarlistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All" /></th>
     <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
   </tr>

@@ -164,7 +164,7 @@ class db_manager
                 $reports[] = _OKIMG . sprintf(_INSTALL_L163, "<b>$key</b>");
             }
         }
-//        $content .= "<br />\n";	//< What's!?
+//        $content .= "<br>\n";	//< What's!?
         if (isset($this->f_tables['create'])) {
             foreach ($this->f_tables['create'] as $key => $val) {
                 $reports[] = _NGIMG . sprintf(_INSTALL_L118, "<b>$key</b>");
