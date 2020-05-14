@@ -40,9 +40,9 @@ if (XOOPS_DB_PASS == @$_POST['dbpassword']) {
     }
     // create the hint
     if (! defined('XOOPS_TRUST_PATH')) {
-        $hint = "Insert the red line.<br />define('XOOPS_ROOT_PATH', '".htmlspecialchars(XOOPS_ROOT_PATH, ENT_QUOTES)."');<br /><ins style='color:red;'>define('XOOPS_TRUST_PATH', '".htmlspecialchars($xoops_trust_path, ENT_QUOTES)."');</ins>";
+        $hint = "Insert the red line.<br>define('XOOPS_ROOT_PATH', '".htmlspecialchars(XOOPS_ROOT_PATH, ENT_QUOTES)."');<br><ins style='color:red;'>define('XOOPS_TRUST_PATH', '".htmlspecialchars($xoops_trust_path, ENT_QUOTES)."');</ins>";
     } else {
-        $hint = "<del>define('XOOPS_TRUST_PATH', '');</del><br /><ins style='color:red;'>define('XOOPS_TRUST_PATH', '".htmlspecialchars($xoops_trust_path, ENT_QUOTES)."');</ins>";
+        $hint = "<del>define('XOOPS_TRUST_PATH', '');</del><br><ins style='color:red;'>define('XOOPS_TRUST_PATH', '".htmlspecialchars($xoops_trust_path, ENT_QUOTES)."');</ins>";
     }
 }
 

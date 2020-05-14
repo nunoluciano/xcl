@@ -10,11 +10,11 @@ Requirement
 
 Main Feature
 ------------
-- Implement CK Editor(https://ckeditor.com/) to textarea
+- Implement CK Editor ( https://ckeditor.com ) to textarea.
 
 How to Use
 ----------
-1) Install this module as normal.
+1) Install from admin module management.
 2) Change the templates target textarea's "editor" parameter to <{xoops_dhtmltarea editor=html}>
 
 Note: This module changes the textarea input field only. 

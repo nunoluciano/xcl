@@ -19,10 +19,10 @@ class XCube_TextFilter
     public function getInstance(&$instance)
     {
         if (empty($instance)) {
-            $instance = new XCube_TextFilter();
+            $instance = new self();
         }
     }
-    
+
     public function toShow($str)
     {
         return htmlspecialchars($str, ENT_QUOTES);

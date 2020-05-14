@@ -716,7 +716,7 @@
 					},
 
 					// Remove any bogus br from the end of a pseudo block,
-					// e.g. <div>some text<br /><p>paragraph</p></div>
+					// e.g. <div>some text<br><p>paragraph</p></div>
 					br: function( element ) {
 						var next = element.next;
 						if ( next && next.name in blockLikeTags )

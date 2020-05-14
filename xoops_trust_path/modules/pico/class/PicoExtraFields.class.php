@@ -21,9 +21,7 @@ class PicoExtraFields
     public $images_path;
     public $image_sizes;
 
-    // !Fix deprecated constructor
     public function __construct($mydirname, $mod_config, $auto_approval, $isadminormod, $content_id)
-        //function PicoExtraFields( $mydirname , $mod_config , $auto_approval , $isadminormod , $content_id )
     {
         $this->mydirname     = $mydirname;
         $this->mod_config    = $mod_config;

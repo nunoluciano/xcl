@@ -1,9 +1,9 @@
 <?php
-// $Id: mainfile.php,v 1.1 2007/05/15 02:34:30 minahito Exp $
+// $Id: mainfile.dist.php,v 1.2 2007/09/22 06:43:42 minahito Exp $
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                       <https://www.xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -24,12 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-/**
- * Xoops is not installed, redirect to the installer 
- **/
 
-// XOOPS is not installed yet.
-if(! defined('XOOPS_INSTALL')){
-    header('Location: install/index.php');
+if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
+    define('XOOPS_MAINFILE_INCLUDED', 1);
 }
-

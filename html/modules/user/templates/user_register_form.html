@@ -21,7 +21,7 @@
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
     <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email')}><br />
+      <{xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email')}><br>
       <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
     </td>
   </tr>
@@ -64,7 +64,7 @@
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_DISCLAIMER}></td>
     <td class="<{cycle values="odd,even"}>">
-      <{xoops_textarea name=disclaimer rows=8 cols=50 readonly=true value=$disclaimer}><br />
+      <{xoops_textarea name=disclaimer rows=8 cols=50 readonly=true value=$disclaimer}><br>
       <label><{xoops_input type=checkbox name=agree value=1 default=$actionForm->get('agree')}> <{$smarty.const._MD_USER_MESSAGE_IAGREE}></label>
     </td>
   </tr>

@@ -24,7 +24,7 @@ INSERT INTO bannerclient VALUES (0, 'Sample client', 'XOOPS Cube Project Team', 
 # Dumping data for table `newblocks`
 #
 INSERT INTO newblocks (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `content`, `side`, `weight`, `visible`, `block_type`, `c_type`, `isactive`, `dirname`, `func_file`, `show_func`, `edit_func`, `template`, `bcachetime`, `last_modified`) VALUES
-(27,	0,	0,	'',	'Custom HTML',	'Welcome',	'<h2>Welcome to your new website!</h2>\r\n<p>The aim is to provie a web application platform to allow you to find the information you need with<br />\r\na more accessible format and expanded search capabilities, simpler navigation, and direct access to the information.&nbsp;</p>\r\n',	5,	0,	1,	'C',	'H',	1,	'',	'',	'',	'',	'',	0,	1587889128);
+(27,	0,	0,	'',	'Custom HTML',	'Welcome',	'<h2>Welcome to your new website!</h2>\r\n<p>The aim is to provie a web application platform to allow you to find the information you need with<br>\r\na more accessible format and expanded search capabilities, simpler navigation, and direct access to the information.&nbsp;</p>\r\n',	5,	0,	1,	'C',	'H',	1,	'',	'',	'',	'',	'',	0,	1587889128);
 
 
 #

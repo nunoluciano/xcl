@@ -18,7 +18,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
 {
     public $mPageNavi = null;
     public $mFilter = null;
-    
+
     public function _getId()
     {
         return xoops_getrequest('mailjob_id');
@@ -37,13 +37,13 @@ class User_MailjobEditAction extends User_AbstractEditAction
 
         $this->mPageNavi =new XCube_PageNavigator('./index?action=MailjobEdit', XCUBE_PAGENAVI_START | XCUBE_PAGENAVI_PERPAGE);
         $this->mFilter =new User_UserSearchFilterForm($this->mPageNavi, xoops_getmodulehandler('users_search', 'user'));
-        
+
         $this->mFilter->fetch();
 
         $root =& XCube_Root::getSingleton();
         $root->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserPagenaviHidden', 'User_MailjobEditAction::renderHiddenControl');
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         if (null != xoops_getrequest('_form_control_cancel')) {
@@ -51,13 +51,13 @@ class User_MailjobEditAction extends User_AbstractEditAction
         }
 
         $isNew = $this->mObject->isNew();
-        
+
         $ret = parent::execute($controller, $xoopsUser);
-        
+
         if (USER_FRAME_VIEW_SUCCESS == $ret && $isNew) {
             $handler =& xoops_getmodulehandler('users_search');
             $uidArr = $handler->getUids($this->mFilter->getCriteria(0, 0));
-            
+
             $handler =& xoops_getmodulehandler('mailjob_link');
             foreach ($uidArr as $uid) {
                 $obj =& $handler->create();
@@ -66,7 +66,7 @@ class User_MailjobEditAction extends User_AbstractEditAction
                 $handler->insert($obj);
             }
         }
-        
+
         return $ret;
     }
 
@@ -92,13 +92,13 @@ class User_MailjobEditAction extends User_AbstractEditAction
     {
         $controller->executeForward('./index.php?action=MailjobList');
     }
-    // !Fix public static function
+
     public static function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
             $mask = isset($params['mask']) ? $params['mask'] : null;
-            
+
             foreach ($navi->mExtra as $key => $value) {
                 if ($key != $mask) {
                     $value = htmlspecialchars($value, ENT_QUOTES);

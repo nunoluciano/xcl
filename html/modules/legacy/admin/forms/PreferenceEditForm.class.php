@@ -26,9 +26,12 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
 
     public function __construct($category)
     {
-        // ! Call parent::__construct() instead of parent::Controller()
+
         parent::__construct();
-		$this->mKeyValue = $category->get('confcat_id');
+
+        $this->mKeyValue = $category->get('confcat_id');
+
+
     }
 
     public function getTokenName()
@@ -59,7 +62,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
             switch ($config->get('conf_valuetype')) {
                 case 'text':
                 case 'string':
-                    if ('textarea' == $config->get('conf_formtype')) {
+                    if ('textarea' === $config->get('conf_formtype')) {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_TextProperty($config->get('conf_name'));
                     } else {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
@@ -91,7 +94,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
                     break;
 
                 case 'array':
-                    if ('textarea' == $config->get('conf_formtype')) {
+                    if ('textarea' === $config->get('conf_formtype')) {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
                         $this->set($config->get('conf_name'), implode('|', unserialize($config->get('conf_value'))));
                     } else {
@@ -105,7 +108,7 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
                     }
                     break;
                 case 'encrypt':
-                    if ('textarea' == $config->get('conf_formtype')) {
+                    if ('textarea' === $config->get('conf_formtype')) {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_TextProperty($config->get('conf_name'));
                     } else {
                         $this->mFormProperties[$config->get('conf_name')] =new XCube_StringProperty($config->get('conf_name'));
@@ -127,13 +130,13 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
         foreach (array_keys($configArr) as $key) {
             $value = $this->get($configArr[$key]->get('conf_name'));
 
-            if ('array' == $configArr[$key]->get('conf_valuetype')) {
+            if ('array' === $configArr[$key]->get('conf_valuetype')) {
                 if (is_array($value)) {
                     $configArr[$key]->set('conf_value', serialize($value));
                 } else {
                     $configArr[$key]->set('conf_value', serialize(explode('|', $value)));
                 }
-            } elseif ('encrypt' == $configArr[$key]->get('conf_valuetype')) {
+            } elseif ('encrypt' === $configArr[$key]->get('conf_valuetype')) {
                 $configArr[$key]->set('conf_value', XCube_Utils::encrypt($value));
             } else {
                 $configArr[$key]->set('conf_value', $value);
@@ -142,9 +145,11 @@ class Legacy_PreferenceEditForm extends XCube_ActionForm
     }
 }
 
+
 class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
 {
     public $mKeyName = 'confmod_id';
+    public $mKeyValue = 0;
 
     public function Legacy_ModulePreferenceEditForm(&$module)
     {
@@ -153,7 +158,6 @@ class Legacy_ModulePreferenceEditForm extends Legacy_PreferenceEditForm
 
     public function __construct(&$module)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($module);
         $this->mKeyValue = $module->get('mid');
     }

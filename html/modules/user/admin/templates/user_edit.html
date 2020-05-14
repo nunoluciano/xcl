@@ -62,7 +62,7 @@
       <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=text name=email value=$actionForm->get('email') size=30 maxlength=60}>
-        <br />
+        <br>
         <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}>
 
         <{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}>
@@ -132,7 +132,7 @@
       <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
       <td class="<{cycle values="odd,even"}>">
         <{* xoops_dhtmltarea type=text name=user_sig value=$actionForm->get('user_sig') *}>
-        <br />
+        <br>
         <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}> <{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
       </td>
     </tr>

@@ -1,6 +1,6 @@
 <?php
 $content =
-"<u><b>はじめに</b></u>
+    "<u><b>はじめに</b></u>
 <p>
 <b>XOOPS Cube Legacy</b>は、オブジェクト指向ベースで作成された、PHPによるオープンソースのポータルサイト作成ソフトです。
 XOOPS Cube Legacyは様々なデータベースサーバで動作します。

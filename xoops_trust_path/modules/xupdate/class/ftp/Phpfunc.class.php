@@ -35,7 +35,7 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
 
         if (!$this->SetServer($server, 21, true)) {
             $this->quit();
-            $this->mes.= "Setiing server failed<br />\n";
+            $this->mes.= "Setiing server failed<br>\n";
             return false;
         }
 
@@ -45,23 +45,23 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract
             $ftp_connected = $this->connect();
         }
         if (true !== $ftp_connected) {
-            $this->mes.= "Cannot connect<br />\n";
+            $this->mes.= "Cannot connect<br>\n";
             return false;
         } else {
             if (true !== $this->login($ftp_id, $ftp_pass)) {
-                $this->mes.= "login failed<br />\n";
+                $this->mes.= "login failed<br>\n";
                 return false;
             } else {
-                $this->mes.= "login succeeded<br />\n";
+                $this->mes.= "login succeeded<br>\n";
             }
         }
         if (!$this->Passive(true)) {
-            $this->mes.= "Passive FAILS!<br />\n";
+            $this->mes.= "Passive FAILS!<br>\n";
         }
 
         // SET BINARY MODE
         if (!$this->SetType(FTP_BINARY)) {
-            $this->mes.= "Binary mode FAILS!<br />\n";
+            $this->mes.= "Binary mode FAILS!<br>\n";
         }//bugfix 'FTP_BINARY'->FTP_BINARY
 
         $this->mes.= 'PWD:';

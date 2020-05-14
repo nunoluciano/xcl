@@ -27,7 +27,7 @@ function b_user_newusers_edit($options)
 {
     $inputtag = '<input type="text" name="options[]" value="'.$options[0].'" />';
     $form = sprintf(_MB_USER_DISPLAY, $inputtag);
-    $form .= '<br />'._MB_USER_DISPLAYA.'&nbsp;<input type="radio" id="options[]" name="options[]" value="1"';
+    $form .= '<br>'._MB_USER_DISPLAYA.'&nbsp;<input type="radio" id="options[]" name="options[]" value="1"';
     if (1 == $options[1]) {
         $form .= ' checked="checked"';
     }

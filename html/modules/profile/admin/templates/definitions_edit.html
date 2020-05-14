@@ -54,7 +54,7 @@
   <{/if}>
     </tr>
     <tr>
-      <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}><br />
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}><br>
       <{$smarty.const._MD_PROFILE_LANG_FIELD_NAME_DESC}></td>
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=text name=field_name value=$actionForm->get('field_name') size=15 maxlength=32}>
@@ -98,7 +98,7 @@
       </td>
     </tr>
     <tr>
-      <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}><br />
+      <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}><br>
 		<{$smarty.const._MD_PROFILE_LANG_SHOW_FORM_DESC}></td>
       <td class="<{cycle values="odd,even"}>">
         <{xoops_input type=checkbox name=show_form value=1 default=$actionForm->get('show_form')}>
@@ -169,7 +169,7 @@
 	      </div>
 
 
-      	<{*$smarty.const._MD_PROFILE_DESC_OPTIONS*}><br />
+      	<{*$smarty.const._MD_PROFILE_DESC_OPTIONS*}><br>
         <{*xoops_textarea type=text name=options value=$actionForm->get('options') cols=60 rows=1*}>
       </td>
     </tr>

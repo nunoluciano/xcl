@@ -428,7 +428,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_
                             //checking XOOPS_ROOT_PATH root dir
                             if (! $this->rootChangeFlg && preg_match($rootReg, $remote_directory)) {
                                 $this->rootChangeFlg = true;
-                                $this->appendMes('mkdir into XOOPS_ROOT_PATH ('.$remote_directory.')<br />');
+                                $this->appendMes('mkdir into XOOPS_ROOT_PATH ('.$remote_directory.')<br>');
                             }
                         }
                     }

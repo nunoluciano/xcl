@@ -139,7 +139,7 @@ if ($php54up && $vendor) {
 	<li>Make Project in Google Developers Console (<a href="https://console.developers.google.com/apis/dashboard" target="_brank">console.developers.google.com/apis/dashboard</a>)</li>
 	<li>Enable Drive API</li>
 	<li>Make Authentication  infomation (Type of Web Server & User data)</li>
-	<li>Make OAuth 2.0 Client<br />(Redirect URI: <?php echo $selfURL; ?> )</li>
+	<li>Make OAuth 2.0 Client<br>(Redirect URI: <?php echo $selfURL; ?> )</li>
 	<li>Get JSON and Paste it next TextArea</li>
 	<li>And Click "Get authentication link"</li>
 	<li>Then Approve this app in your account</li>
@@ -152,7 +152,7 @@ if ($php54up && $vendor) {
 	<p><strong>OR</strong></p>
 	<p>
 		ClientId: <input type="text" name="ClientId" style="width: 50em"
-			value="<?php echo htmlspecialchars($clientId); ?>"><br />
+			value="<?php echo htmlspecialchars($clientId); ?>"><br>
 	</p>
 	<p>
 		ClientSecret: <input type="text" name="ClientSecret"

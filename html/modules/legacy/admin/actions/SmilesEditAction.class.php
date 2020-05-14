@@ -37,7 +37,7 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
     
     public function _doExecute()
     {
-        if (null != $this->mActionForm->mFormFile) {
+        if (null !== $this->mActionForm->mFormFile) {
             if (!$this->mActionForm->mFormFile->saveAs(XOOPS_UPLOAD_PATH)) {
                 return false;
             }
@@ -46,7 +46,7 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         //
         // Delete old file, if the file exists.
         //
-        if (null != $this->mActionForm->mOldFilename && 'blank.gif' != $this->mActionForm->mOldFilename) {
+        if (null !== $this->mActionForm->mOldFilename && 'blank.gif' != $this->mActionForm->mOldFilename) {
             @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFilename);
         }
 

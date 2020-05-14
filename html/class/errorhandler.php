@@ -63,9 +63,7 @@ class XoopsErrorHandler
      * registering an error handler, the setting or 'error_reporting' is
      * ignored and *everything* is trapped.
      */
-            // !Fix PHP7
-            public function __construct()
-    //public function XoopsErrorHandler()
+    public function __construct()
     {
         set_error_handler('XoopsErrorHandler_HandleError');
         register_shutdown_function('XoopsErrorHandler_Shutdown');
@@ -133,7 +131,7 @@ class XoopsErrorHandler
      * @TODO Use language? or allow customized message?
      *
      * @access public
-     * @return void
+     * @return string
      */
     public function renderErrors()
     {
@@ -142,8 +140,8 @@ class XoopsErrorHandler
         //
         $output = '';
         if ($this->_isFatal) {
-            $output .= 'This page cannot be displayed due to an internal error.<br/><br/>';
-            $output .= 'If you are the administrator of this site, please visit the <a href="https://github.com/xoopscube/legacy/">XOOPS Cube Project Site</a> for assistance.<br/><br/>';
+            $output .= 'This page cannot be displayed due to an internal error.<br><br>';
+            $output .= 'If you are the administrator of this site, please visit the <a href="https://github.com/xoopscube/">XOOPS Cube Project Site</a> for assistance.<br><br>';
         }
         if (!$this->_showErrors || empty($this->_errors)) {
             return $output;
@@ -194,7 +192,7 @@ class XoopsErrorHandler
                 $count[$md5] = 1;
             }
         }
-        return implode("<br />\n", $output);
+        return implode("<br>\n", $output);
     }
 }
 

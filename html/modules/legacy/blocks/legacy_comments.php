@@ -43,7 +43,7 @@ function b_legacy_comments_show($options)
         $com['id'] = $i;
         $com['title'] = '<a href="'.XOOPS_URL.'/modules/'.$modules[$mid]->getVar('dirname').'/'.$comment_config[$mid]['pageName'].'?'.$comment_config[$mid]['itemName'].'='.$comments[$i]->getVar('com_itemid').'&amp;com_id='.$i.'&amp;com_rootid='.$comments[$i]->getVar('com_rootid').'&amp;'.htmlspecialchars($comments[$i]->getVar('com_exparams')).'#comment'.$i.'">'.$comments[$i]->getVar('com_title').'</a>';
         $com['icon'] = $comments[$i]->getVar('com_icon');
-        $com['icon'] = ('' != $com['icon']) ? $com['icon'] : 'icon1.gif';
+        $com['icon'] = ('' !== $com['icon']) ? $com['icon'] : 'icon1.gif';
         $com['time'] = $comments[$i]->getVar('com_created');
         if ($comments[$i]->getVar('com_uid') > 0) {
             $poster =& $member_handler->getUser($comments[$i]->getVar('com_uid'));

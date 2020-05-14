@@ -43,7 +43,7 @@ class Legacy_ModuleListAction extends Legacy_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if (null != $form_cancel) {
+        if (null !== $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 

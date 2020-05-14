@@ -33,7 +33,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if (null != $form_cancel) {
+        if (null !== $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -51,7 +51,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $files = [];
         $targetimages = [];
 
-        if ('zip' == strtolower($formFileExt)) {
+        if ('zip' === strtolower($formFileExt)) {
             if (!file_exists(XOOPS_ROOT_PATH . '/class/Archive_Zip.php')) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -115,7 +115,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 
     public function _saveTargetImages(&$targetimages, $t_imgcat_id)
     {
-        if (0 == count($targetimages)) {
+        if (0 === count($targetimages)) {
             return true;
         }
         
@@ -124,7 +124,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $t_category_type = $t_category->get('imgcat_storetype');
         $imagehandler =& xoops_getmodulehandler('image');
         
-        if ('file' == strtolower($t_category_type)) {
+        if ('file' === strtolower($t_category_type)) {
             for ($i = 0; $i < count($targetimages); $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if (false === $ext_pos) {
@@ -161,7 +161,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
                 unset($image);
             } //end of for
         } //end of if
-        elseif ('db' == strtolower($t_category_type)) {
+        elseif ('db' === strtolower($t_category_type)) {
             for ($i = 0; $i < count($targetimages); $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if (false === $ext_pos) {

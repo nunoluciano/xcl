@@ -6,9 +6,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class LegacyRenderModuletplObject extends XoopsSimpleObject
 {
-    // !Fix deprecated constructor for php 7.x
     public function __construct()
-    // public function LegacyRenderModuletplObject()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -26,9 +24,8 @@ class LegacyRenderModuletplObject extends XoopsSimpleObject
 class LegacyRenderTplsetObject extends XoopsSimpleObject
 {
     public $mModuleTemplates = [];
-    // !Fix deprecated constructor for php 7.x
-    public function __construct()   
-    // public function LegacyRenderTplsetObject()
+
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -42,7 +39,7 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
         $this->initVar('tplset_created', XOBJ_DTYPE_INT, time(), true);
         $initVars=$this->mVars;
     }
-    
+
     public function loadModuletpl()
     {
         //
@@ -50,23 +47,23 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
         //
         $moduleHandler =& xoops_gethandler('module');
         $modules =& $moduleHandler->getObjects();
-        
+
         $tplfileHandler =& xoops_getmodulehandler('tplfile', 'legacyRender');
-        
+
         foreach ($modules as $module) {
             $modtpl =new LegacyRenderModuletplObject();
-            
+
             $modtpl->set('mid', $module->get('mid'));
             $modtpl->set('dirname', $module->get('dirname'));
             $modtpl->set('name', $module->get('name'));
-            
+
             $criteria = new CriteriaCompo();
             $criteria->add(new Criteria('tpl_module', $module->get('dirname')));
             $criteria->add(new Criteria('tpl_tplset', $this->get('tplset_name')));
-            
+
             $count = $tplfileHandler->getCount($criteria);
             $modtpl->set('count', $count);
-            
+
             $this->mModuleTemplates[] =& $modtpl;
             unset($modtpl);
         }
@@ -78,29 +75,28 @@ class LegacyRenderTplsetHandler extends XoopsObjectGenericHandler
     public $mTable = 'tplset';
     public $mPrimary = 'tplset_id';
     public $mClass = 'LegacyRenderTplsetObject';
-    
+
     public function insertClone($original, $clone)
     {
         if (!$this->insert($clone)) {
             return false;
         }
-        
+
         //
         // fetch all tplfile object and do cloning.
         //
         $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
-        
+
         $files =& $handler->getObjects(new Criteria('tpl_tplset', $original->get('tplset_name')));
         foreach ($files as $file) {
             $cloneFile =& $file->createClone($clone->get('tplset_name'));
             $handler->insert($cloneFile);
         }
-        
+
         return true;    ///< TODO
     }
-    // !Fix compatibility with XoopsObjectGenericHandler::delete(&$obj, $force = false) 
+
     public function delete(&$obj, $force = false)
-    // public function delete(&$obj, $force)
     {
         $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
         $handler->deleteAll(new Criteria('tpl_tplset', $obj->get('tplset_name')));

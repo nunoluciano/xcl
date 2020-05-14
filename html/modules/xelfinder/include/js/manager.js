@@ -90,7 +90,7 @@ $(document).ready(function() {
 				mes_en.continues     = 'Continue more';
 				mes_en.imageinsert   = 'Image insert options';
 				mes_en.CannotUploadOldIE = '<p>Your browser "IE" cannot upload by this manager.</p><p>Please use the newest browser, when you upload files.</p>';
-				mes_en.errPleaseReload = 'Not found access token.<br />Please reload on browser, or re-open popup window.';
+				mes_en.errPleaseReload = 'Not found access token.<br>Please reload on browser, or re-open popup window.';
 				mes_en.errAccessReload = 'There are no token necessary to a connection, so reload this file manager.';
 
 				if (typeof fm.i18.ja !== "undefined") {
@@ -113,7 +113,7 @@ $(document).ready(function() {
 					mes_ja.continues     = 'さらに続ける';
 					mes_ja.imageinsert   = '画像挿入オプション';
 					mes_ja.CannotUploadOldIE = '<p>あなたがお使いの IE ブラウザでは、このマネージャーではファイルをアップロードすることができません。</p><p>ファイルをアップロードする場合は、最新のブラウザをご利用下さい。</p>';
-					mes_ja.errPleaseReload = '接続に必要なトークンがありません。<br />ブラウザでリロードするかポップアップウィンドウを開きなおしてください。';
+					mes_ja.errPleaseReload = '接続に必要なトークンがありません。<br>ブラウザでリロードするかポップアップウィンドウを開きなおしてください。';
 					mes_ja.errAccessReload = '接続に必要なトークンがないので、ファイルマネージャーを再読込します。';
 					mes_ja.cmdlogin = 'ログイン';
 					mes_ja.logout   = '$1: ログアウト';

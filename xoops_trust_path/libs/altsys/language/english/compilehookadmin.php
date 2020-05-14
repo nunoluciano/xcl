@@ -29,7 +29,7 @@ define('_TPLSADMIN_CNF_DELETEOK', 'Delete OK?') ;
 
 
 define('_TPLSADMIN_DT_GETTPLSVARSINFO_DW', 'Get info of template variables as DreamWeaver Extensions') ;
-define('_TPLSADMIN_DD_GETTPLSVARSINFO_DW', 'Open Macromedia Extension Manager, first.<br />Extract the download archive.<br />Execute the files which extensions are .mxi and you will meet installing dialogs.<br />The snippets for template variables of your site will be usable after restarting Dream Weaver.') ;
+define('_TPLSADMIN_DD_GETTPLSVARSINFO_DW', 'Open Macromedia Extension Manager, first.<br>Extract the download archive.<br>Execute the files which extensions are .mxi and you will meet installing dialogs.<br>The snippets for template variables of your site will be usable after restarting Dream Weaver.') ;
 
 define('_TPLSADMIN_DT_GETTEMPLATES', 'Download templates') ;
 define('_TPLSADMIN_DD_GETTEMPLATES', 'Select a set before pushing either button') ;

@@ -107,7 +107,7 @@ class CriteriaElement
     public function render()
     {
     }
-    
+
     /**
      * Return true if this object has child elements.
      */
@@ -115,7 +115,7 @@ class CriteriaElement
     {
         return false;
     }
-    
+
     public function getCountChildElements()
     {
         return 0;
@@ -145,12 +145,12 @@ class CriteriaElement
     {
         return null;
     }
-    
+
     public function getValue()
     {
         return null;
     }
-    
+
     public function getOperator()
     {
         return null;
@@ -166,11 +166,11 @@ class CriteriaElement
     public function setSort($sort, $order = null)
     {
         $this->sort[0] = $sort;
-        
+
         if (!isset($this->order[0])) {
             $this->order[0] = 'ASC';
         }
-        
+
         if (null != $order) {
             if ('ASC' == strtoupper($order)) {
                 $this->order[0] = 'ASC';
@@ -216,7 +216,7 @@ class CriteriaElement
     {
         $ret = [];
         $max = count($this->sort);
-        
+
         for ($i = 0; $i < $max; $i++) {
             $ret[$i]['sort'] = $this->sort[$i];
             if (isset($this->order[$i])) {
@@ -225,7 +225,7 @@ class CriteriaElement
                 $ret[$i]['order'] = 'ASC';
             }
         }
-        
+
         return $ret;
     }
 
@@ -237,7 +237,7 @@ class CriteriaElement
     {
         if ('ASC' == strtoupper($order)) {
             $this->order[0] = 'ASC';
-        } elseif ('DESC' == strtoupper($order)) {
+        } elseif ('DESC' === strtoupper($order)) {
             $this->order[0] = 'DESC';
         }
     }
@@ -342,22 +342,22 @@ class CriteriaCompo extends CriteriaElement
             $this->add($ele, $condition);
         }
     }
-    
+
     public function hasChildElements()
     {
         return count($this->criteriaElements) > 0;
     }
-    
+
     public function getCountChildElements()
     {
         return count($this->criteriaElements);
     }
-    
+
     public function getChildElement($idx)
     {
         return $this->criteriaElements[$idx];
     }
-    
+
     public function getCondition($idx)
     {
         return $this->conditions[$idx];
@@ -461,7 +461,7 @@ class Criteria extends CriteriaElement
     public $column;
     public $operator;
     public $value;
-    
+
     public $dtype = 0;
 
     /**
@@ -490,17 +490,17 @@ class Criteria extends CriteriaElement
             $this->value = $value;
         }
     }
-    
+
     public function getName()
     {
         return $this->column;
     }
-    
+
     public function getValue()
     {
         return $this->value;
     }
-    
+
     public function getOperator()
     {
         return $this->operator;
@@ -532,7 +532,7 @@ class Criteria extends CriteriaElement
         $clause .= ' '.$this->operator.' '.$value;
         return $clause;
     }
-    
+
    /**
      * Generate an LDAP filter from criteria
      *

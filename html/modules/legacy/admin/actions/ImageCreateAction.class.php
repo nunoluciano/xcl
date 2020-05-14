@@ -38,7 +38,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     {
         $flag = parent::getDefaultView($controller, $xoopsUser);
         
-        if (LEGACY_FRAME_VIEW_INPUT == $flag && $this->_enableCatchImgcat()) {
+        if (LEGACY_FRAME_VIEW_INPUT === $flag && $this->_enableCatchImgcat()) {
             $this->mActionForm->set('imgcat_id', xoops_getrequest('imgcat_id'));
         }
         
@@ -59,7 +59,7 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
         // [TODO]
         // Should the following procedure be after parent::_doExecute()?
         //
-        if ('file' == $category->get('imgcat_storetype')) {
+        if ('file' === $category->get('imgcat_storetype')) {
             $this->_storeFile();
         } else {
             $this->_storeDB();
@@ -70,14 +70,14 @@ class Legacy_ImageCreateAction extends Legacy_AbstractEditAction
     
     public function _storeFile()
     {
-        if (null == $this->mActionForm->mFormFile) {
+        if (null === $this->mActionForm->mFormFile) {
             return null;
         }
 
         //
         // If there is a old file, delete it
         //
-        if (null != $this->mActionForm->mOldFileName) {
+        if (null !== $this->mActionForm->mOldFileName) {
             @unlink(XOOPS_UPLOAD_PATH . '/' . $this->mActionForm->mOldFileName);
             
             // Get a body name of the old file.

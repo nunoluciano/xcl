@@ -8,9 +8,7 @@ class PicoUriMapper
     public $request   = []; // public
     public $path_info = null; // public
 
-    // !Fix deprecated constructor
     public function __construct($mydirname, $config)
-        //function PicoUriMapper( $mydirname , $config )
     {
         $this->mydirname = $mydirname;
         $this->config    = $config;

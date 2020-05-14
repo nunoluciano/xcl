@@ -63,7 +63,7 @@ class AbstractXoopsObject
     public function setNew()
     {
     }
-    
+
     public function unsetNew()
     {
     }
@@ -74,11 +74,11 @@ class AbstractXoopsObject
     public function isNew()
     {
     }
-    
+
     public function initVar($key, $data_type, $default, $required, $size)
     {
     }
-    
+
     /**
      * You should use this method to initilize object's properties.
      * This method may not trigger setDirty().
@@ -97,7 +97,7 @@ class AbstractXoopsObject
     public function set($key, $value)
     {
     }
-    
+
     public function get($key)
     {
     }
@@ -449,7 +449,7 @@ class XoopsObject extends AbstractXoopsObject
     {
         return $this->getVar($key, 's');
     }
-    
+
     /**
      * Sets $value to $key property. This method calls setVar(), but make
      * not_gpc true for the compatibility with XoopsSimpleObject.
@@ -463,7 +463,11 @@ class XoopsObject extends AbstractXoopsObject
 
     public function get($key)
     {
-        return $this->vars[$key]['value'];
+        // ! Fix PHP7 Undefined index, variable not initialized with Null coalesce operator @gigamaster
+        // The coalesce, or ??, operator is added, which returns the result of its first operand if it exists and is not NULL,
+        // or else its second operand. This means the $_GET['mykey'] ?? "" is completely safe and will not raise an E_NOTICE.
+        //  https://wiki.php.net/rfc/isset_ternary
+        return $this->vars[$key]['value'] ?? '';
     }
 
     /**
@@ -673,10 +677,10 @@ class XoopsObject extends AbstractXoopsObject
         $ret = '<h4>Errors</h4>';
         if (!empty($this->_errors)) {
             foreach ($this->_errors as $error) {
-                $ret .= $error.'<br />';
+                $ret .= $error.'<br>';
             }
         } else {
-            $ret .= 'None<br />';
+            $ret .= 'None<br>';
         }
         return $ret;
     }

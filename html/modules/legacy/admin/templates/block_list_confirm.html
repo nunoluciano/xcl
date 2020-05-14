@@ -56,7 +56,7 @@
 				<{if $actionForm->get('side',$bid) == $blockObjects[$bid]->get('side')}>
 					<{$formside_obj->getShow('name')}>
 				<{else}>
-					(<{$blockObjects[$bid]->mColumn->getShow('name')}>) &raquo; <br /><b  class="legacy_module_error"><{$formside_obj->getShow('name')}></b>
+					(<{$blockObjects[$bid]->mColumn->getShow('name')}>) &raquo; <br><b  class="legacy_module_error"><{$formside_obj->getShow('name')}></b>
 				<{/if}>
 			</td>
 			<td class="legacy_list_order">
@@ -72,7 +72,7 @@
 				<{if $actionForm->get('bcachetime',$bid) == $blockObjects[$bid]->get('bcachetime')}>
 					<{$formcache_obj->getShow('label')}>
 				<{else}>
-					(<{$blockObjects[$bid]->mCachetime->getShow('label')}>) &raquo; <br /><b  class="legacy_module_error"><{$formcache_obj->getShow('label')}></b>
+					(<{$blockObjects[$bid]->mCachetime->getShow('label')}>) &raquo; <br><b  class="legacy_module_error"><{$formcache_obj->getShow('label')}></b>
 				<{/if}>
 				<input type="hidden" name="title[<{$bid}>]" value="<{$actionForm->get('title',$bid)|xoops_escape:edit}>" />
 				<input type="hidden" name="side[<{$bid}>]" value="<{$actionForm->get('side',$bid)|xoops_escape:edit}>" />

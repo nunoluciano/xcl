@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [unreleased] 2020-05-11
+
+### Added
+
+- html/editorconfig
+- spaces, indent_size = 4
+
+### Changed
+
+- Installer Wizard stylesheet
+- Installer Wizard english
+- Installer Wizard 'break' warning
+- MultiTokenHandler extend #199
+- Token numeric value to mt_srand #198
+- XCube Core
+- XCube_IniHandler
+
+### Fixed
+
+- ActionSearch - WARNING: count() #157
+- AbstractFilterForm - Warning #195
+- Advertising Statistics, client login #199
+- CKEditor4Utiles class deprecated join #197
+- Installer Wizard missing $key #196
+- Kernel object Null coalesce operator @gigamaster
+- Mixed Tables engine MyISAM ad InnoDB #194
+- PreferenceEditForm Undefined index: confcat_id #63
+- SearchResultsForm - Notice #163
+
+### Removed
+
+- Cleanup code refactoring
+- Useless japanese files (fail to pass test)
+- Unused phpmailer language files 
+- Theme Grid Flex Boilerplate
+- Theme Legacy_default
+
 
 ## [unreleased] 2020-04-29
 

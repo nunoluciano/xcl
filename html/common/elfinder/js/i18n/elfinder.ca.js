@@ -19,7 +19,7 @@
 		dateFormat : 'M d, Y h:i A', // Mar 13, 2012 05:27 PM
 		fancyDateFormat : '$1 h:i A', // will produce smth like: Today 12:25 PM
 		messages   : {
-			
+
 			/********************************** errors **********************************/
 			'error'                : 'Error',
 			'errUnknown'           : 'Error desconegut.',
@@ -64,7 +64,7 @@
 			'errUploadTotalSize'   : 'Les dades excedeixen la mida màxima permesa.',
 			'errUploadFileSize'    : 'El fitxer excedeix la mida màxima permesa.',
 			'errUploadMime'        : 'El tipus de fitxer no està permès.',
-			'errUploadTransfer'    : 'S\'ha produït un error en transferir "$1".', 
+			'errUploadTransfer'    : 'S\'ha produït un error en transferir "$1".',
 			'errNotReplace'        : 'Object "$1" already exists at this location and can not be replaced by object with another type.',
 			'errReplace'           : 'Unable to replace "$1".',
 			'errSave'              : 'No s\'ha pogut desar "$1".',
@@ -99,7 +99,7 @@
 			'errFtpMkdir' : 'Unable to create remote directory on FTP: "$1"',
 			'errArchiveExec' : 'Error while archiving files: "$1"',
 			'errExtractExec' : 'Error while extracting files: "$1"',
-			
+
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Crea arxiu',
 			'cmdback'      : 'Enrere',
@@ -129,8 +129,8 @@
 			'cmdresize'    : 'Redimensiona la imatge',
 			'cmdsort'      : 'Ordena',
 			'cmdnetmount'  : 'Mount network volume',
-			
-			/*********************************** buttons ***********************************/ 
+
+			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Tanca',
 			'btnSave'   : 'Desa',
 			'btnRm'     : 'Suprimeix',
@@ -139,7 +139,7 @@
 			'btnNo'     : 'No',
 			'btnYes'    : 'Sí',
 			'btnMount'  : 'Mount',
-			
+
 			/******************************** notifications ********************************/
 			'ntfopen'     : 'S\'està obrint la carpeta',
 			'ntffile'     : 'S\'està obrint el fitxer',
@@ -162,7 +162,7 @@
 			'ntfloadimg'  : 'S\'està carregant la imatge',
 			'ntfnetmount' : 'Mounting network volume',
 			'ntfdim'      : 'Acquiring image dimension',
-			
+
 			/************************************ dates **********************************/
 			'dateUnknown' : 'desconegut',
 			'Today'       : 'Avui',
@@ -198,24 +198,24 @@
 			'Thursday'    : 'Thursday',
 			'Friday'      : 'Friday',
 			'Saturday'    : 'Saturday',
-			'Sun'         : 'Sun', 
-			'Mon'         : 'Mon', 
-			'Tue'         : 'Tue', 
-			'Wed'         : 'Wed', 
-			'Thu'         : 'Thu', 
-			'Fri'         : 'Fri', 
+			'Sun'         : 'Sun',
+			'Mon'         : 'Mon',
+			'Tue'         : 'Tue',
+			'Wed'         : 'Wed',
+			'Thu'         : 'Thu',
+			'Fri'         : 'Fri',
 			'Sat'         : 'Sat',
-			
+
 			/******************************** sort variants ********************************/
-			'sortname'          : 'per nom', 
-			'sortkind'          : 'per tipus', 
+			'sortname'          : 'per nom',
+			'sortkind'          : 'per tipus',
 			'sortsize'          : 'per mida',
 			'sortdate'          : 'per data',
 			'sortFoldersFirst' : 'Folders first',
-			
+
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Es necessita confirmació',
-			'confirmRm'       : 'Voleu suprimir els fitxers?<br />L\'acció es podrà desfer!',
+			'confirmRm'       : 'Voleu suprimir els fitxers?<br>L\'acció es podrà desfer!',
 			'confirmRepl'     : 'Voleu reemplaçar el fitxer antic amb el nou?',
 			'apllyAll'        : 'Aplica a tot',
 			'name'            : 'Nom',
@@ -235,7 +235,7 @@
 			'viewlist'        : 'Vista en llista',
 			'viewicons'       : 'Vista en icones',
 			'places'          : 'Llocs',
-			'calc'            : 'Calcula', 
+			'calc'            : 'Calcula',
 			'path'            : 'Camí',
 			'aliasfor'        : 'Àlies per',
 			'locked'          : 'Bloquejat',
@@ -246,7 +246,7 @@
 			'yes'             : 'sí',
 			'no'              : 'no',
 			'link'            : 'Enllaç',
-			'searcresult'     : 'Resultats de la cerca',  
+			'searcresult'     : 'Resultats de la cerca',
 			'selected'        : 'Elements seleccionats',
 			'about'           : 'Quant a',
 			'shortcuts'       : 'Dreceres',
@@ -290,7 +290,7 @@
 			'port'            : 'Port',
 			'user'            : 'User',
 			'pass'            : 'Password',
-			
+
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Desconegut',
 			'kindFolder'      : 'Carpeta',

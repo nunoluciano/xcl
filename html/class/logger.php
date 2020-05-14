@@ -60,9 +60,7 @@ class XoopsLogger
      *
      * @access  private
      */
-    // !Fix PHP7
     public function __construct()
-    //public function XoopsLogger()
     {
     }
 
@@ -153,13 +151,13 @@ class XoopsLogger
         $class = 'even';
         foreach ($this->queries as $q) {
             if (isset($q['error'])) {
-                $ret .= '<tr class="'.$class.'"><td><span style="color:#ff0000;">'.htmlentities($q['sql']).'<br /><b>Error number:</b> '.$q['errno'].'<br /><b>Error message:</b> '.$q['error'].'</span></td></tr>';
+                $ret .= '<tr class="'.$class.'"><td><span style="color:#ff0000;">'.htmlentities($q['sql']).'<br><b>Error number:</b> '.$q['errno'].'<br><b>Error message:</b> '.$q['error'].'</span></td></tr>';
             } else {
                 $ret .= '<tr class="'.$class.'"><td>'.htmlentities($q['sql']).'</td></tr>';
             }
             $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br />';
+        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br>';
         return $ret;
     }
 
@@ -180,7 +178,7 @@ class XoopsLogger
             }
             $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br />';
+        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br>';
         return $ret;
     }
 
@@ -216,7 +214,7 @@ class XoopsLogger
             $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($ex['name']).':</b> '.htmlspecialchars($ex['msg']).'</td></tr>';
             $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '</table><br />';
+        $ret .= '</table><br>';
         return $ret;
     }
 
@@ -236,7 +234,7 @@ class XoopsLogger
                 $ret .= '<tr><td class="'.$class.'"><b>'.htmlspecialchars($k).'</b> took <span style="color:#ff0000;">'.$this->dumpTime($k).'</span> seconds to load.</td></tr>';
                 $class = ('odd' == $class) ? 'even' : 'odd';
             }
-            $ret .= '</table><br />';
+            $ret .= '</table><br>';
         }
         $ret .= $this->dumpExtra();
         return $ret;

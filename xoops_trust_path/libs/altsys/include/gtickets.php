@@ -30,7 +30,7 @@ if (! class_exists('XoopsGTicket')) {
             'err_nopair' => 'No valid ticket-stub pair found' ,
             'err_timeout' => 'Time out' ,
             'err_areaorref' => 'Invalid area or referer' ,
-            'fmt_prompt4repost' => 'error(s) found:<br /><span style="background-color:red;font-weight:bold;color:white;">%s</span><br />Confirm it.<br />And do you want to post again?' ,
+            'fmt_prompt4repost' => 'error(s) found:<br><span style="background-color:red;font-weight:bold;color:white;">%s</span><br>Confirm it.<br>And do you want to post again?' ,
             'btn_repost' => 'repost' ,
             ];
         }
@@ -51,11 +51,9 @@ if (! class_exists('XoopsGTicket')) {
     // add a ticket as Hidden Element into XoopsForm
     public function addTicketXoopsFormElement(&$form, $salt = '', $timeout = 1800, $area = '')
     {
-        // !Fix PHP7 NOTICE: Only variables should be passed by reference
-        // $form->addElement(new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area))) ;
         $gticket = new XoopsFormHidden('XOOPS_G_TICKET', $this->issue($salt, $timeout, $area));
         $form->addElement($gticket);
-        
+
     }
 
     // returns an array for xoops_confirm() ;
@@ -273,7 +271,7 @@ if (! class_exists('XoopsGTicket')) {
         if ($ashtml) {
             $ret = '' ;
             foreach ($this->_errors as $msg) {
-                $ret .= "$msg<br />\n" ;
+                $ret .= "$msg<br>\n" ;
             }
         } else {
             $ret = $this->_errors ;

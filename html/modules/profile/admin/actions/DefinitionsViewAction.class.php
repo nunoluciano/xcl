@@ -35,8 +35,6 @@ class Profile_Admin_DefinitionsViewAction extends Profile_AbstractViewAction
      * @param $controller
      * @param $render
      */
-    // !Fix compatibility with Profile_AbstractAction::executeViewSuccess(&$controller, &$render)
-    // public function executeViewSuccess(&$render)
     public function executeViewSuccess(&$controller, &$render)
     {
         $render->setTemplateName('definitions_view.html');

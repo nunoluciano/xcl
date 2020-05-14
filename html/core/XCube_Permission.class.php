@@ -17,7 +17,7 @@ class XCube_Permissions
     {
         $args = func_get_args();
         $actionName = array_shift($args);
-        
+
         $root =& XCube_Root::getSingleton();
         return $root->mPermissionManager->getRolesOfAction($actionName, $args);
     }
@@ -25,16 +25,14 @@ class XCube_Permissions
 
 class XCube_AbstractPermissionProvider
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
-    //public function XCube_AbstractPermissionProvider()
     {
     }
-    
+
     public function prepare()
     {
     }
-    
+
     public function getRolesOfAction($actionName, $args)
     {
     }

@@ -1,13 +1,13 @@
-## XCL 
+## XCL
 # ignore temporary files, cache, templates
 html/mainfile.php
+html/uploads/*
 html/modules/xelfinder/cache/*
 
 xoops_trust_path/cache/*
 xoops_trust_path/templates_c/*
 xoops_trust_path/uploads/xupdate/*
 *.bak
-master.code-workspace
 
 #CHANGELOG.md
 #README.md
@@ -28,7 +28,7 @@ master.code-workspace
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-## Mac 
+## Mac
 # ignore general files
 .DS_Store
 .AppleDouble
@@ -57,7 +57,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-## Windows 
+## Windows
 # ignore thumbnail cache files
 Thumbs.db
 ehthumbs.db
@@ -313,7 +313,7 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
-# Including strong name files can present a security risk 
+# Including strong name files can present a security risk
 # (https://github.com/github/gitignore/pull/2483#issue-259490424)
 #*.snk
 
@@ -371,6 +371,8 @@ node_modules/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+*.code-workspace
+**/*.code-workspace
 
 # Paket dependency manager
 .paket/paket.exe
@@ -409,7 +411,7 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 
-# Azure Stream Analytics local run output 
+# Azure Stream Analytics local run output
 ASALocalRun/
 
 # MSBuild Binary and Structured Log
@@ -418,5 +420,5 @@ ASALocalRun/
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
 
-# MFractors (Xamarin productivity tool) working folder 
+# MFractors (Xamarin productivity tool) working folder
 .mfractor/

@@ -10,7 +10,7 @@
 <a href="#" onclick='javascript:xoopsCodeCode("<{$element->getId()}>", "<{$smarty.const._ENTERCODE}>"); return false;'>
   <img src='<{$xoops_url}>/images/code.gif' alt='code' /></a>&nbsp;
 <a href="#" onclick='javascript:xoopsCodeQuote("<{$element->getId()}>", "<{$smarty.const._ENTERQUOTE}>"); return false;'>
-  <img src='<{$xoops_url}>/images/quote.gif' alt='quote' /></a><br />
+  <img src='<{$xoops_url}>/images/quote.gif' alt='quote' /></a><br>
 <select id='<{$element->getId()}>Size' onchange='setVisible("<{$element->_xoopsHiddenText}>");setElementSize("<{$element->_xoopsHiddenText}>",this.options[this.selectedIndex].value);'>
   <option value='SIZE'><{$smarty.const._SIZE}></option>
   <option value='xx-small'>xx-small</option>
@@ -274,7 +274,7 @@
   <option value='FFFFFF' style='background-color:#FFFFFF;color:#FFFFFF;'>#FFFFFF</option>
 </select>
 <span id='<{$element->_xoopsHiddenText}>'><{$smarty.const._EXAMPLE}></span>
-<br />
+<br>
 <a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeBold("<{$element->_xoopsHiddenText}>"); return false;'>
   <img src='<{$xoops_url}>/images/bold.gif' alt='bold' /></a>&nbsp;
 <a href="#" onclick='javascript:setVisible("<{$element->_xoopsHiddenText}>");makeItalic("<{$element->_xoopsHiddenText}>"); return false;'>
@@ -285,6 +285,6 @@
   <img  src='<{$xoops_url}>/images/linethrough.gif' alt='linethrough' /></a>&nbsp;&nbsp;
 <input type='text' id='<{$element->getId()}>Addtext' size='20' />&nbsp;
 <input type='button' onclick='xoopsCodeText("<{$element->getId()}>", "<{$element->_xoopsHiddenText}>", "<{$smarty.const._ENTERTEXTBOX}>")' class='formButton' value='<{$smarty.const._ADD}>' />
-<br /><br />
+<br><br>
 <textarea id='<{$element->getId()}>' name='<{$element->getName()}>' <{if $class}>class='<{$class}>' <{/if}>cols='<{$element->getCols()}>' rows='<{$element->getRows()}>' onselect="xoopsSavePosition('<{$element->getId()}>');" onclick="xoopsSavePosition('<{$element->getId()}>');" onkeyup="xoopsSavePosition('<{$element->getId()}>');"<{if $element->getExtra()}><{$element->getExtra()}><{/if}>><{$element->getValue()}>
-</textarea><br />
+</textarea><br>

@@ -20,14 +20,14 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
      * @var LegacyRender_TplfileUploadForm
      */
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         LegacyRender_AbstractListAction::prepare($controller, $xoopsUser, $moduleConfig);
         $this->mActionForm =new LegacyRender_TplfileUploadForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('tplfile');
@@ -40,7 +40,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
                                                  : new LegacyRender_TplfileFilterForm($this->_getPageNavi(), $this->_getHandler());
         return $filter;
     }
-    
+
     public function _getBaseUrl()
     {
         return './index.php?action=TplfileList';
@@ -50,17 +50,17 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     {
         $this->mFilter =& $this->_getFilterForm();
         $this->mFilter->fetch();
-        
+
         $handler =& $this->_getHandler();
-        
+
         $criteria = $this->mFilter->getCriteria();
-        
+
         if (isset($_REQUEST['tpl_tplset'])) {
             $this->mObjects =& $handler->getObjectsWithOverride($criteria, xoops_getrequest('tpl_tplset'));
         } else {
             $this->mObjects =& $handler->getObjects($criteria);
         }
-    
+
         return LEGACYRENDER_FRAME_VIEW_INDEX;
     }
 
@@ -73,14 +73,14 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     public function execute(&$controller, &$xoopsUser)
     {
         require_once XOOPS_ROOT_PATH . '/class/template.php';
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         $formFileArr = $this->mActionForm->get('upload');
 
         //
@@ -88,14 +88,14 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         //
         $last_tplset = null;
         $last_module = null;
-        
+
         $handler =& xoops_getmodulehandler('tplfile');
-        
+
         $successFlag = true;
-        
+
         foreach (array_keys($formFileArr) as $key) {
             $formFile =& $formFileArr[$key];
-            
+
             $obj =& $handler->get($key);
             if (null == $obj) {
                 continue;
@@ -103,16 +103,16 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 
             //
             // If $obj belongs to 'default' template-set, kick!
-            //			
+            //
             if ('default' == $obj->get('tpl_tplset')) {
                 continue;
             }
 
             $obj->loadSource();
-            
+
             $last_tplset = $obj->get('tpl_tplset');
             $last_module = $obj->get('tpl_module');
-            
+
             //
             // [Warning] Access to a private property of XCube_FormFile.
             //
@@ -121,20 +121,20 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
                 $obj->Source->set('tpl_source', $source);
                 $obj->set('tpl_lastmodified', time());
                 $obj->set('tpl_lastimported', time());
-                
+
                 $successFlag &= $handler->insert($obj);
-                
+
                 $xoopsTpl =new XoopsTpl();
                 $xoopsTpl->clear_cache('db:' . $obj->get('tpl_file'));
                 $xoopsTpl->clear_compiled_tpl('db:' . $obj->get('tpl_file'));
             }
-        
+
             unset($obj);
             unset($formFile);
         }
-        
+
         $errorMessage = $successFlag ? _AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS : _AD_LEGACYRENDER_ERROR_DBUPDATE_FAILED;
-        
+
         //
         // No good exmaple ;)
         // Because some local variables are used, jump directly without the return value of view status.
@@ -145,9 +145,9 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.LegacyRenderPagenaviHidden', 'LegacyRender_TplfileListAction::renderHiddenControl');
-        
+
         $render->setTemplateName('tplfile_list.html');
-        
+
         //
         // Load override file.
         //
@@ -156,21 +156,21 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
                 $this->mObjects[$key]->loadOverride($this->mFilter->mTplset->get('tplset_name'));
             }
         }
-        
+
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         if (null != $this->mFilter->mTplset) {
             $render->setAttribute('targetTplset', $this->mFilter->mTplset->get('tplset_name'));
         }
-        
+
         $render->setAttribute('targetModule', xoops_getrequest('tpl_module'));
-        
+
         //
         // TODO We must fetch only module objects that has templates.
-        // 
+        //
         // fetch module objects, assign to template for pull-down menu.
         //
         $moduleHandler =& xoops_gethandler('module');
@@ -181,15 +181,13 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $tplsets =& $handler->getObjects();
         $render->setAttribute('tplsets', $tplsets);
     }
-    
-    // !Fix static function call for PHP 7.x
+
     public static function renderHiddenControl(&$buf, $params)
-    // public function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
             $mask = isset($params['mask']) ? $params['mask'] : null;
-            
+
             foreach ($navi->mExtra as $key => $value) {
                 if ($key != $mask) {
                     $value = htmlspecialchars($value, ENT_QUOTES);

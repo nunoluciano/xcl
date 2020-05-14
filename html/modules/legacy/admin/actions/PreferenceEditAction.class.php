@@ -19,13 +19,13 @@ define('LEGACY_PREFERENCE_ID_GENERAL', 1);
 class Legacy_PreferenceEditAction extends Legacy_Action
 {
     public $mPreparedFlag = false;
-    
+
     public $mCategory = null;
     public $mModule = null;
 
     public $mObjects = [];
     public $mActionForm = null;
-    
+
     public $mState = null;
 
     public function prepare(&$controller, &$xoopsUser)
@@ -35,61 +35,61 @@ class Legacy_PreferenceEditAction extends Legacy_Action
 
         $this->mState = (xoops_getrequest('confmod_id') > 0) ? new Legacy_ModulePreferenceEditState($this) : new Legacy_PreferenceEditState($this);
         $this->mState->prepare($controller, $xoopsUser);
-        
+
         if ($this->mPreparedFlag) {
             $handler =& xoops_gethandler('config');
-            
+
             $criteria =new CriteriaCompo();
             $criteria->add(new Criteria('conf_modid', $this->mActionForm->getModuleId()));
-            $criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId())); //!Fix conf_catid or confcat_id
-            
+            $criteria->add(new Criteria('conf_catid', $this->mActionForm->getCategoryId()));
+
             $this->mObjects =& $handler->getConfigs($criteria);
             $this->mActionForm->prepare($this->mObjects);
         }
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         if (!$this->mPreparedFlag) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        
+
         return LEGACY_FRAME_VIEW_INPUT;
     }
-    
+
     public function hasPermission(&$controller, &$xoopsUser)
     {
         return $this->mState->hasPermission($controller, $xoopsUser);
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         if (!$this->mPreparedFlag) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        
-        if (null != xoops_getrequest('_form_control_cancel')) {
+
+        if (null !== xoops_getrequest('_form_control_cancel')) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         if ($this->mActionForm->hasError()) {
             return $this->getDefaultView($controller, $xoopsUser);
         }
-        
+
         $this->mActionForm->update($this->mObjects);
         $handler =& xoops_gethandler('config');
-        
+
         foreach (array_keys($this->mObjects) as $key) {
             if (!$handler->insertConfig($this->mObjects[$key])) {
                 die('ERROR' . $this->mObjects[$key]->get('conf_name'));
             }
         }
-        
+
         $this->mState->postFilter($this->mObjects, $this->mActionForm);
-        
+
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
 
@@ -98,18 +98,18 @@ class Legacy_PreferenceEditAction extends Legacy_Action
         $render->setTemplateName('preference_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('objectArr', $this->mObjects);
-        
+
         $render->setAttribute('category', $this->mCategory);
         $render->setAttribute('module', $this->mModule);
-        
+
         $render->setAttribute('mcrypt_enabled', extension_loaded('mcrypt'));
-        
+
         $formtypeArr = [];
         foreach ($this->mObjects as $object) {
             $formtypeArr[] = $object->get('conf_formtype');
         }
         $formtypeArr = array_unique($formtypeArr);
-        
+
         //
         // Make the array of timezone object
         //
@@ -118,7 +118,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             $timezoneArr =& $handler->getObjects();
             $render->setAttribute('timezoneArr', $timezoneArr);
         }
-        
+
         //
         // Make the array of group object
         //
@@ -136,7 +136,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             $tplsetArr =& $handler->getObjects();
             $render->setAttribute('tplsetArr', $tplsetArr);
         }
-        
+
         //
         // Make the list of installed languages.
         //
@@ -151,7 +151,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             closedir($dirHandler);
             $render->setAttribute('languageArr', $languageArr);
         }
-        
+
         //
         // Make the array of module object for selecting startpage.
         //
@@ -163,7 +163,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             $moduleArr = $handler->getObjects($criteria);
             $render->setAttribute('moduleArr', $moduleArr);
         }
-        
+
         //
         // Make the list of theme.
         //
@@ -172,7 +172,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
             $themeArr =& $handler->getObjects();
             $render->setAttribute('themeArr', $themeArr);
         }
-        
+
         //
         // Make the array of cachetime.
         //
@@ -201,7 +201,7 @@ class Legacy_PreferenceEditAction extends Legacy_Action
     {
         $controller->executeRedirect('./index.php?action=PreferenceList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $this->mState->executeViewCancel($controller, $xoopsUser, $render);
@@ -212,28 +212,28 @@ class Legacy_AbstractPreferenceEditState
 {
     public $_mMaster = null;
 
-    // public function Legacy_AbstractPreferenceEditState(&$master)
-    // {
-    //     self::__construct($master);
-    // }
+    public function Legacy_AbstractPreferenceEditState(&$master)
+    {
+        self::__construct($master);
+    }
 
     public function __construct(&$master)
     {
         $this->_mMaster =& $master;
     }
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
     }
-    
+
     public function hasPermission(&$controller, &$xoopsUser)
     {
     }
-    
+
     public function postFilter(&$objectArr, &$actionForm)
     {
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
     }
@@ -248,52 +248,53 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
     public function prepare(&$controller, &$xoopsUser)
     {
         parent::prepare($controller, $xoopsUser);
-        
+
         $handler =& xoops_gethandler('configcategory');
         $this->_mMaster->mCategory =& $handler->get((int)xoops_getrequest('confcat_id'));
-        
+
         if (!is_object($this->_mMaster->mCategory)) {
             return;
         }
 
         $this->_mMaster->mActionForm =new Legacy_PreferenceEditForm($this->_mMaster->mCategory);
-        
+
         $this->_mMaster->mPreparedFlag = true;
     }
-    
+
     public function hasPermission(&$controller, &$xoopsUser)
     {
         $moduleHandler =& xoops_gethandler('module');
         $module =& $moduleHandler->getByDirname('legacy');
-        
+
         $permHandler =& xoops_gethandler('groupperm');
         return $permHandler->checkRight('module_admin', $module->get('mid'), $xoopsUser->getGroups());
     }
-    
+
     public function postFilter(&$objectArr, &$actionForm)
     {
         $themeName = null;
         $allowedThemes = null;
         foreach (array_keys($objectArr) as $key) {
             $name = $objectArr[$key]->get('conf_name');
-            if ('theme_set' == $name) {
+            if ('theme_set' === $name) {
                 $themeName = $objectArr[$key]->getConfValueForOutput();
-            } elseif ('theme_set_allowed' == $name) {
+            } elseif ('theme_set_allowed' === $name) {
                 $allowedThemes = $actionForm->get('theme_set_allowed');
-            } elseif ('use_mysession' == $name) {
+            } elseif ('use_mysession' === $name) {
                 $useMysession = $actionForm->get('use_mysession');
-            } elseif ('session_name' == $name) {
+            } elseif ('session_name' === $name) {
                 $sessionName = $actionForm->get('session_name');
-            } elseif ('session_expire' == $name) {
+            } elseif ('session_expire' === $name) {
                 $sessionExpire = $actionForm->get('session_expire');
             }
         }
-        
-        if (null != $name && null != $allowedThemes) {
+
+        if (null !== $name && null !== $allowedThemes) {
             XCube_DelegateUtils::call('Legacy.Event.ThemeSettingChanged', $themeName, $allowedThemes);
         }
-        // !Fix typo pereference = preference?
-        if (LEGACY_PREFERENCE_ID_GENERAL == $this->_mMaster->mCategory->get('confcat_id')) { //GIJ
+
+        if (LEGACY_PREFERENCE_ID_GENERAL == $this->_mMaster->mCategory->get('confcat_id'))
+        { //GIJ
             $root =& XCube_Root::getSingleton();
             if ($useMysession) {
                 $root->mSession->setParam($sessionName, $sessionExpire);
@@ -303,7 +304,7 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
             $root->mSession->rename();
         } // GIJ
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=PreferenceList');
@@ -320,7 +321,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
     public function prepare(&$controller, &$xoopsUser)
     {
         parent::prepare($controller, $xoopsUser);
-        
+
         $handler =& xoops_gethandler('module');
         $this->_mMaster->mModule =& $handler->get((int)xoops_getrequest('confmod_id'));
 
@@ -333,13 +334,13 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
         }
 
         $this->_mMaster->mActionForm =new Legacy_ModulePreferenceEditForm($this->_mMaster->mModule);
-        
+
         //
         // Load constants
         //
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadModinfoMessageCatalog($this->_mMaster->mModule->get('dirname'));
-        
+
         $this->_mMaster->mPreparedFlag = true;
     }
 
@@ -348,7 +349,7 @@ class Legacy_ModulePreferenceEditState extends Legacy_AbstractPreferenceEditStat
         $controller->mRoot->mRoleManager->loadRolesByModule($this->_mMaster->mModule);
         return $controller->mRoot->mContext->mUser->isInRole('Module.' . $this->_mMaster->mModule->get('dirname') . '.Admin');
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $module = Legacy_Utils::createModule($this->_mMaster->mModule);

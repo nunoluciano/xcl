@@ -38,7 +38,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 	}
 	if (! is_numeric($lastupdate)) $lastupdate = 0;
 	file_put_contents($cache_dir . '/lastupdate.dat', serialize($module->getVar('version')));
-	
+
 	// from v 0.10
 	if ($lastupdate < 10) {
 		$query = 'SELECT `mime_filter` FROM ' . $db->prefix($mydirname . '_file') ;
@@ -46,7 +46,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` ADD `mime_filter` VARCHAR( 255 ) NOT NULL');
 		}
 	}
-	
+
 	// from v 0.13
 	if ($lastupdate < 13) {
 		$query = 'SHOW COLUMNS FROM `' . $db->prefix($mydirname . '_file') . "` LIKE 'mime'" ;
@@ -71,10 +71,10 @@ function xelfinder_onupdate_base( $module , $mydirname )
 				  `mtime` int(10) unsigned NOT NULL,
 				  PRIMARY KEY (`id`),
 				  KEY `uid_key` (`uid`,`key`)
-				) ENGINE=MyISAM' );
+				) ENGINE=InnoDB' );
 		}
 	}
-	
+
 	//from v0.22
 	if ($lastupdate < 22) {
 		$query = 'SELECT `local_path` FROM ' . $db->prefix($mydirname . '_file') ;
@@ -82,7 +82,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` ADD `local_path` VARCHAR( 255 ) NOT NULL');
 		}
 	}
-	
+
 	//from v0.66 add default value for strict mode
 	if ($lastupdate < 66) {
 		$query = 'SHOW COLUMNS FROM `' . $db->prefix($mydirname . '_file') . "` LIKE 'parent_id'" ;
@@ -115,7 +115,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_userdat') . '` CHANGE `mtime` `mtime` int(10) unsigned NOT NULL DEFAULT \'0\'');
 		}
 	}
-	
+
 	// for version < 0.99 remove unless tmb file
 	if ($lastupdate < 99) {
 		$msgs[] = 'checking unless tmbs (Version < 0.99)';
@@ -131,18 +131,18 @@ function xelfinder_onupdate_base( $module , $mydirname )
 		}
 		if ($_res) $msgs[] = 'removed unless tmbs';
 	}
-	
+
 	if ($lastupdate < 166) {
-		$msgs[] = 'ALTER TABLE file `home_of` and fix data (Version < 1.66)';		
+		$msgs[] = 'ALTER TABLE file `home_of` and fix data (Version < 1.66)';
 		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `home_of` `home_of` INT(10) NULL DEFAULT NULL');
 		$db->queryF('UPDATE `'.$db->prefix($mydirname . '_file') . '` SET `home_of` = NULL WHERE `home_of` = 0 AND `mime` != \'directory\'');
 	}
-	
+
 	if ($lastupdate < 182) {
-		$msgs[] = 'ALTER TABLE file `home_of` Add Index (Version < 1.82)';		
+		$msgs[] = 'ALTER TABLE file `home_of` Add Index (Version < 1.82)';
 		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` ADD INDEX home_of( home_of )');
 	}
-	
+
 	if ($lastupdate < 219) {
 		$msgs[] = 'ALTER TABLE `file` CHANGE `size` `size` BIGINT UNSIGNED NOT NULL DEFAULT \'0\'; (Version < 2.19)';
 		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '`  CHANGE `size` `size` BIGINT( 20 ) UNSIGNED NOT NULL DEFAULT \'0\'');
@@ -159,7 +159,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 			}
 		}
 	}
-	
+
 	// TEMPLATES (all templates have been already removed by modulesadmin)
 	$tplfile_handler = xoops_getHandler('tplfile' ) ;
 	$tpl_path = __DIR__ . '/templates' ;

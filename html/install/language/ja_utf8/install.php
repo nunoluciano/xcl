@@ -2,7 +2,7 @@
 // $Id: install.php,v 1.4 2007/07/02 02:18:11 minahito Exp $
 define('_INSTALL_L0', 'XOOPS Cube 2.2 インストールウィザードへようこそ');
 define('_INSTALL_L168', 'XOOPS Cube Legacy の動作には PHP5 以降が必要です');
-define('_INSTALL_L70', 'サーバ上のmainfile.php への書き込み権限を与えてください。<br />（例：UNIX/LINUXサーバの場合はchmod 777 mainfile.php、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br />権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。');
+define('_INSTALL_L70', 'サーバ上のmainfile.php への書き込み権限を与えてください。<br>（例：UNIX/LINUXサーバの場合はchmod 777 mainfile.php、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br>権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。');
 //define("_INSTALL_L71","下記のボタンをクリックするとインストールを開始します。");
 define('_INSTALL_L1', 'mainfile.phpを開き、31行目に以下のコードがあることを確認してください。');
 define('_INSTALL_L2', 'この行を以下のように変更してください。');
@@ -16,7 +16,7 @@ define('_INSTALL_L9', '（Windows環境下では設定が正しくても注意�
 define('_INSTALL_L10', '設定が間違いが無ければ、下記のボタンをクリックしてインストールを続けてください。');
 define('_INSTALL_L11', 'XOOPS Cubeのディレクトリへのパス：');
 define('_INSTALL_L12', 'XOOPS CubeへのURL：');
-define('_INSTALL_L13', '上記設定が正しい場合は、インストールを続けてください。<br />間違っている場合は、はじめからやり直してください。<br />または、mainfile.phpを直接編集して、このページを再読み込みしてください。');
+define('_INSTALL_L13', '上記設定が正しい場合は、インストールを続けてください。<br>間違っている場合は、はじめからやり直してください。<br>または、mainfile.phpを直接編集して、このページを再読み込みしてください。');
 define('_INSTALL_L14', '次へ');
 define('_INSTALL_L15', 'mainfile.phpを開き、必要な設定をすべて記入してください');
 define('_INSTALL_L16', '%s はデータベースサーバのホスト名です。');
@@ -25,7 +25,7 @@ define('_INSTALL_L18', '%s はデータベースにアクセスするために�
 define('_INSTALL_L19', '%s はXOOPS Cubeが使用するデータベースの名前です。');
 define('_INSTALL_L20', '%s はXOOPS Cubeが使用する各データベーステーブルに付加されるprefix（接頭語）です。prefixを付加することで、既存テーブルとのテーブル名称の重複を防ぎます。');
 define('_INSTALL_L21', '下記のデータベースが見つかりませんでした：');
-define('_INSTALL_L22', 'このデータベースの作成を試みる場合は、インストールを続けてください。<br />データベース名が間違っている場合は、はじめからやり直してください。<br />設定されたユーザアカウントでは、このデータベースが作成できない場合は、別途作成し、このページを再読み込みしてください。');
+define('_INSTALL_L22', 'このデータベースの作成を試みる場合は、インストールを続けてください。<br>データベース名が間違っている場合は、はじめからやり直してください。<br>設定されたユーザアカウントでは、このデータベースが作成できない場合は、別途作成し、このページを再読み込みしてください。');
 define('_INSTALL_L23', 'はい');
 define('_INSTALL_L24', 'いいえ');
 define('_INSTALL_L25', 'mainfile.phpに記述された以下の設定に間違いがないか確認してください。');
@@ -33,25 +33,25 @@ define('_INSTALL_L26', 'データベース設定');
 define('_INSTALL_L51', 'データベースサーバ');
 define('_INSTALL_L66', '　使用するデータベースサーバの種類を選択してください。');
 define('_INSTALL_L27', 'データベースサーバのホスト名');
-define('_INSTALL_L67', '　使用するデータベースサーバのホスト名を入力してください。<br />　よく分からない場合は、「localhost」として、ほぼ問題はありません。');
+define('_INSTALL_L67', '　使用するデータベースサーバのホスト名を入力してください。<br>　よく分からない場合は、「localhost」として、ほぼ問題はありません。');
 define('_INSTALL_L28', 'データベースユーザ名');
 define('_INSTALL_L65', '　上記データベースサーバにおけるユーザアカウント名を入力してください。');
 define('_INSTALL_L29', 'データベース名');
-define('_INSTALL_L64', '　使用するデータベース名を入力してください。<br />　見つからない場合は、この名称でデータベースの作成を試みます。');
+define('_INSTALL_L64', '　使用するデータベース名を入力してください。<br>　見つからない場合は、この名称でデータベースの作成を試みます。');
 define('_INSTALL_L52', 'データベースパスワード');
 define('_INSTALL_L68', '　上記ユーザアカウントのパスワードを入力してください。');
 define('_INSTALL_L30', 'テーブル接頭語');
-define('_INSTALL_L63', '　各テーブル名にこの接頭語を付加し、既存テーブルとの名称の重複を防ぎます。<br />　よく分からない場合はデフォルトのままにしておいてください。');
+define('_INSTALL_L63', '　各テーブル名にこの接頭語を付加し、既存テーブルとの名称の重複を防ぎます。<br>　よく分からない場合はデフォルトのままにしておいてください。');
 define('_INSTALL_L54', 'データベースへ持続的接続');
 define('_INSTALL_L69', '　デフォルトは「いいえ」です。よく分からない場合は「いいえ」を選択してください。');
 define('_INSTALL_L55', 'XOOPS Cubeへのパス');
-define('_INSTALL_L59', '　XOOPS Cubeが設置されているディレクトリへのフルパスを入力してください。<br />　末尾には「/」を付加しないでください。');
+define('_INSTALL_L59', '　XOOPS Cubeが設置されているディレクトリへのフルパスを入力してください。<br>　末尾には「/」を付加しないでください。');
 define('_INSTALL_L75', 'XOOPS_TRUST_PATH へのパス');
-define('_INSTALL_L76', "XOOPS_TRUST_PATH ディレクトリへのフルパスを入力してください。末尾には「/」を付加しないでください。<br />XOOPS_TRUST_PATH はドキュメントルートの外に置いてください（'public_html', 'html'などのディレクトリの下はNGです）。");
+define('_INSTALL_L76', "XOOPS_TRUST_PATH ディレクトリへのフルパスを入力してください。末尾には「/」を付加しないでください。<br>XOOPS_TRUST_PATH はドキュメントルートの外に置いてください（'public_html', 'html'などのディレクトリの下はNGです）。");
 define('_INSTALL_L56', 'XOOPS CubeへのURL');
-define('_INSTALL_L58', '　XOOPS CubeにアクセスするURLを入力してください。<br />　末尾には「/」を付加しないでください。');
+define('_INSTALL_L58', '　XOOPS CubeにアクセスするURLを入力してください。<br>　末尾には「/」を付加しないでください。');
 
-define('_INSTALL_L31', 'データベースの作成に失敗しました。<br /><br />設定されたユーザアカウントの権限ではデータベースの作成ができない場合は、別途作成し、インストールを続けてください。<br />または、はじめからやり直してください。<br />よくわからない場合は、サーバ管理者にお問い合わせください。');
+define('_INSTALL_L31', 'データベースの作成に失敗しました。<br><br>設定されたユーザアカウントの権限ではデータベースの作成ができない場合は、別途作成し、インストールを続けてください。<br>または、はじめからやり直してください。<br>よくわからない場合は、サーバ管理者にお問い合わせください。');
 define('_INSTALL_L32', 'インストール第１ステップ完了');
 define('_INSTALL_L33', "インストールされたホームページを見るには<a href='../index.php'> ここ </a>をクリックしてください。");
 define('_INSTALL_L35', "インストール中にエラーが発生した場合は<a href='http://xoopscube.jp/'>XOOPS Cube日本語サイト</a>のサポートフォーラムをご利用ください。");
@@ -120,7 +120,7 @@ define('_INSTALL_L107', 'データベース設定に誤りは無いか、デー�
 define('_INSTALL_L108', 'データベースサーバへ接続できます。');
 define('_INSTALL_L109', 'データベース%sは存在しません。');
 define('_INSTALL_L110', 'データベース%sは存在し、接続可能です。');
-define('_INSTALL_L111', 'データベースサーバへの接続に問題はありません。<br />下記のボタンをクリックすると、データベーステーブルを作成します。');
+define('_INSTALL_L111', 'データベースサーバへの接続に問題はありません。<br>下記のボタンをクリックすると、データベーステーブルを作成します。');
 define('_INSTALL_L112', 'サイト管理者についての設定');
 define('_INSTALL_L113', 'テーブル%sが削除されました。');
 define('_INSTALL_L114', 'データベーステーブルの作成に失敗しました。');
@@ -141,7 +141,7 @@ define('_INSTALL_L124', 'ファイル%sの書込みに失敗しました。');
 define('_INSTALL_L125', 'ファイル%sがファイル%sで上書きされました。');
 define('_INSTALL_L126', 'ファイル%sを上書きできませんでした。');
 
-define('_INSTALL_L130', 'インストーラがデータベースよりXOOPS 1.3.x のテーブルを見つけました。<br />インストーラは今から、データベースをXOOPS2へアップグレードすることを試みます。');
+define('_INSTALL_L130', 'インストーラがデータベースよりXOOPS 1.3.x のテーブルを見つけました。<br>インストーラは今から、データベースをXOOPS2へアップグレードすることを試みます。');
 define('_INSTALL_L131', 'XOOPS2のテーブルがデータベースに既に存在します。');
 define('_INSTALL_L132', 'テーブルのアップデート');
 define('_INSTALL_L133', 'テーブル %s をアップデートしました。');
@@ -152,7 +152,7 @@ define('_INSTALL_L137', 'モジュールのアップデート');
 define('_INSTALL_L138', 'コメントのアップデート');
 define('_INSTALL_L139', 'アバターのアップデート');
 define('_INSTALL_L140', '顔アイコンのアップデート');
-define('_INSTALL_L141', 'インストーラは今から、XOOPS Cubeで動くように各モジュールをアップデートします。<br />XOOPS Cubeのパッケージに含まれるすべてのファイルがサーバにアップロードされているか確認してください。<br />これが完了するまでには、しばらく時間が掛かるかもしれません。');
+define('_INSTALL_L141', 'インストーラは今から、XOOPS Cubeで動くように各モジュールをアップデートします。<br>XOOPS Cubeのパッケージに含まれるすべてのファイルがサーバにアップロードされているか確認してください。<br>これが完了するまでには、しばらく時間が掛かるかもしれません。');
 define('_INSTALL_L142', 'モジュールのアップデート中…');
 define('_INSTALL_L143', 'The installer will now update configuration data of XOOPS 1.3.x to be used with XOOPS Cube.');    //[MADA]
 define('_INSTALL_L144', 'コンフィギュレーションのアップデート');
@@ -160,9 +160,9 @@ define('_INSTALL_L145', 'コメント(ID: %s)をデータベースに格納し�
 define('_INSTALL_L146', 'コメント(ID: %s)がデータベースに格納できません。');
 define('_INSTALL_L147', 'コメントのアップデート中…');
 define('_INSTALL_L148', 'アップデートが完了しました。');
-define('_INSTALL_L149', 'インストーラは今から、XOOPS Cubeで使えるようにXOOPS 1.3.xのコメントポストをアップデートします。<br />これが完了するまでには、しばらく時間が掛かるかもしれません。');
-define('_INSTALL_L150', 'インストーラは今から、XOOPS Cubeで使えるように顔アイコンとユーザランキングの画像をアップデートします。<br />これが完了するまでには、しばらく時間が掛かるかもしれません。');
-define('_INSTALL_L151', 'インストーラは今から、XOOPS Cubeで使えるようにユーザアバターの画像をアップデートします。<br />これが完了するまでには、しばらく時間が掛かるかもしれません。');
+define('_INSTALL_L149', 'インストーラは今から、XOOPS Cubeで使えるようにXOOPS 1.3.xのコメントポストをアップデートします。<br>これが完了するまでには、しばらく時間が掛かるかもしれません。');
+define('_INSTALL_L150', 'インストーラは今から、XOOPS Cubeで使えるように顔アイコンとユーザランキングの画像をアップデートします。<br>これが完了するまでには、しばらく時間が掛かるかもしれません。');
+define('_INSTALL_L151', 'インストーラは今から、XOOPS Cubeで使えるようにユーザアバターの画像をアップデートします。<br>これが完了するまでには、しばらく時間が掛かるかもしれません。');
 define('_INSTALL_L155', '顔アイコンとユーザランキング画像のアップデート中…');
 define('_INSTALL_L156', 'ユーザアバター画像のアップデート中…');
 define('_INSTALL_L157', '各グループについてデフォルトのグループを選択してください。');
@@ -194,8 +194,8 @@ define('_INSTALL_LANG_XOOPS_SALT_DESC', '暗号・トークンを生成するた
 define('_INSTALL_HEADER_MESSAGE', '画面上の指示に従って設定を行ってください');
 
 if (function_exists('mb_language')) {
-    mb_language('Japanese') ;
-    mb_internal_encoding('UTF-8') ;
-    mb_http_output('UTF-8') ;
+    mb_language('Japanese');
+    mb_internal_encoding('UTF-8');
+    mb_http_output('UTF-8');
 }
 @ini_set('default_charset', _INSTALL_CHARSET);

@@ -9,9 +9,7 @@ if (! class_exists('XoopsGTicket')) {
         public $_latest_token = '' ;
         public $messages = [];
 
-        // !Fix PHP7 NOTICE: deprecated constructor
 	    public function __construct()
-        // public function XoopsGTicket()
         {
             global $xoopsConfig ;
 

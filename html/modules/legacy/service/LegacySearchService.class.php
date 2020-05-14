@@ -20,7 +20,7 @@ class Legacy_SearchModule extends XCube_Object
             S_PUBLIC_VAR('int mid'),
             S_PUBLIC_VAR('string name')
         ];
-        
+
         return $ret;
     }
 }
@@ -45,7 +45,7 @@ class Legacy_SearchItem extends XCube_Object
             S_PUBLIC_VAR('int uid'),
             S_PUBLIC_VAR('int time')
         ];
-        
+
         return $ret;
     }
 }
@@ -69,7 +69,7 @@ class Legacy_SearchModuleResult extends XCube_Object
             S_PUBLIC_VAR('Legacy_SearchItemArray results'),
             S_PUBLIC_VAR('string showall_link')
         ];
-        
+
         return $ret;
     }
 }
@@ -106,7 +106,7 @@ class Legacy_SearchService extends XCube_Service
     public $mServiceName = 'Legacy_SearchService';
     public $mNameSpace = 'Legacy';
     public $mClassName = 'Legacy_SearchService';
-    
+
     public function prepare()
     {
         $this->addType('Legacy_SearchModule');
@@ -117,12 +117,12 @@ class Legacy_SearchService extends XCube_Service
         $this->addType('Legacy_SearchModuleResultArray');
         $this->addType('Legacy_ArrayOfInt');
         $this->addType('Legacy_ArrayOfString');
-    
+
         $this->addFunction(S_PUBLIC_FUNC('Legacy_SearchItemArray searchItems(int mid, Legacy_ArrayOfString queries, string andor, int maxhit, int start)'));
         $this->addFunction(S_PUBLIC_FUNC('Legacy_SearchItemArray searchItemsOfUser(int mid, int uid, int maxhit, int start)'));
         $this->addFunction(S_PUBLIC_FUNC('Legacy_SearchModuleArray getActiveModules()'));
     }
-    
+
     public function getActiveModules()
     {
         //
@@ -134,7 +134,7 @@ class Legacy_SearchService extends XCube_Service
         }
 
         $handler =& xoops_gethandler('module');
-        
+
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('isactive', 1));
         $criteria->add(new Criteria('hassearch', 1));
@@ -157,10 +157,10 @@ class Legacy_SearchService extends XCube_Service
                 $ret[] = ['mid' => $mid, 'name' => $name];
             }
         }
-        
+
         return $ret;
     }
-    
+
     public function searchItems()
     {
         //
@@ -168,10 +168,10 @@ class Legacy_SearchService extends XCube_Service
         //
         $root =& XCube_Root::getSingleton();
         $request =& $root->mContext->mRequest;
-        
+
         return $this->_searchItems((int)$request->getRequest('mid'), $request->getRequest('queries'), $request->getRequest('andor'), (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), 0);
     }
-    
+
     public function searchItemsOfUser()
     {
         //
@@ -179,7 +179,7 @@ class Legacy_SearchService extends XCube_Service
         //
         $root =& XCube_Root::getSingleton();
         $request =& $root->mContext->mRequest;
-        
+
         return $this->_searchItems((int)$request->getRequest('mid'), null, 'and', (int)$request->getRequest('maxhit'), (int)$request->getRequest('start'), (int)$request->getRequest('uid'));
     }
 
@@ -220,14 +220,14 @@ class Legacy_SearchService extends XCube_Service
         if (!is_object($xoopsModule)) {
             return $ret;
         }
-        
+
         if (!$xoopsModule->get('isactive') || !$xoopsModule->get('hassearch')) {
             return $ret;
         }
 
         $module =& Legacy_Utils::createModule($xoopsModule, false);
         $results = $module->doLegacyGlobalSearch($queries, $andor, $max_hit, $start, $uid);
-                
+
         if (is_array($results) && count($results) > 0) {
             foreach (array_keys($results) as $key) {
                 $timeval =& $results[$key]['time'];
@@ -240,7 +240,7 @@ class Legacy_SearchService extends XCube_Service
                 }
             }
         }
-        
+
         return $results;
     }
 }
@@ -252,13 +252,13 @@ class Legacy_SearchUtils
         $root =& XCube_Root::getSingleton();
         $user =& $root->mController->mRoot->mContext->mXoopsUser;
         $groups = [];
-        
+
         if (!is_object($user)) {
             $groups = XOOPS_GROUP_ANONYMOUS;
         } else {
             $groups = $user->getGroups();
         }
-        
+
         return $groups;
     }
 }

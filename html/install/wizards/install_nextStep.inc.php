@@ -7,5 +7,6 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-    include_once '../mainfile.php';
-    header('Location: ' . XOOPS_URL . '/');
+include_once '../mainfile.php';
+
+header('Location: ' . XOOPS_URL . '/');

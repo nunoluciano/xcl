@@ -354,7 +354,8 @@ EOD;
 				}
 				$config_json[] = '"' . $key . '":' . $val;
 			}
-			$config_json = '{' . join($config_json, ',') . '}';
+            //$config_json = '{' . join($config_json, ',') . '}';
+            $config_json = '{' . implode( ',', $config_json ) . '}';
 
 			foreach (array('html', 'bbcode') as $mode) {
 				$name = 'config_json_' . $mode;
@@ -365,7 +366,8 @@ EOD;
 					}
 					array_push($$name, '"' . $key . '":' . $val);
 				}
-				$$name = '{' . join($$name, ',') . '}';
+                //$$name = '{' . join($$name, ',') . '}';
+                $$name = '{' . implode( ',', $$name ) . '}';
 			}
 
 			// allow html
@@ -636,7 +638,7 @@ EOD;
 					return false;
 				}
 			}
-		} 
+		}
 	});
 EOD;
 				}

@@ -7,9 +7,7 @@ class PicoAutoRegisterWraps
     public $config    = [];
     public $wrap_base = '';
 
-    // !Fix deprecated constructor
     public function __construct($mydirname, $config)
-        //function PicoAutoRegisterWraps( $mydirname , $config )
     {
         $this->mydirname = $mydirname;
         $this->config    = $config;

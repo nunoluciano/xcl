@@ -12,7 +12,7 @@ CREATE TABLE log (
   KEY (ip) ,
   KEY (type) ,
   KEY (timestamp)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB;
 
 CREATE TABLE access (
   ip varchar(255) NOT NULL default '0.0.0.0',
@@ -23,4 +23,4 @@ CREATE TABLE access (
   KEY (request_uri),
   KEY (malicious_actions),
   KEY (expire)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB;

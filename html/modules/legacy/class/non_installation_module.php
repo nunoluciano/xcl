@@ -29,10 +29,8 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
      * readonly property
      */
     public $_mExclusions = ['.', '..', 'CVS'];
-    
-    // !Fix deprecated constructor for PHP 7.x
+
     public function __construct(&$db)
-    // public function LegacyNon_installation_moduleHandler(&$db)
     {
         parent::__construct($db);
         $this->_setupObjects();
@@ -68,7 +66,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     public function &get($dirname)
     {
         $ret = false;
-        
+
         if (!file_exists(XOOPS_MODULE_PATH . '/' . $dirname . '/xoops_version.php')) {
             return $ret;
         }
@@ -82,7 +80,7 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
 
         $module =& $moduleHandler->create();
         $module->loadInfoAsVar($dirname);
-        
+
         return $module;
     }
 
@@ -90,17 +88,17 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
     {
         return $this->_mXoopsModules;
     }
-    
+
     public function &getObjectsFor2ndInstaller()
     {
         $ret = [];
-        
+
         foreach (array_keys($this->_mXoopsModules) as $key) {
             if (empty($this->_mXoopsModules[$key]->modinfo['disable_legacy_2nd_installer'])) {
                 $ret[] =& $this->_mXoopsModules[$key];
             }
         }
-        
+
         return $ret;
     }
 }

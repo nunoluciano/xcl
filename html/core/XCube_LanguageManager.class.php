@@ -55,16 +55,16 @@ class XCube_LanguageManager
     /**
      * Set locale name.
      *
-     * @param $locale
+     * @param string $local locale name
      */
     public function setLocale($locale)
     {
         $this->mLanguageName = $locale;
     }
-    
+
     /**
      * Get locale name.
-     * 
+     *
      * @return string  locale name
      */
     public function getLocale()
@@ -74,17 +74,17 @@ class XCube_LanguageManager
 
     /**
      * Set language name.
-     * 
+     *
      * @param string $language language name
      */
     public function setLanguage($language)
     {
         $this->mLanguageName = $language;
     }
-    
+
     /**
      * Get language name.
-     * 
+     *
      * @return string  language name
      */
     public function getLanguage()
@@ -98,20 +98,20 @@ class XCube_LanguageManager
     public function loadGlobalMessageCatalog()
     {
     }
-    
+
     /**
      * Load the module message catalog which is defined in the specified
      * module.
-     * 
+     *
      * @param string $moduleName A name of module.
      */
     public function loadModuleMessageCatalog($moduleName)
     {
     }
-    
+
     /**
      * Load the theme message catalog which is defined in the specified module.
-     * 
+     *
      * @param string $themeName A name of theme.
      */
     public function loadThemeMessageCatalog($themeName)
@@ -129,10 +129,10 @@ class XCube_LanguageManager
     public function existFile($section, $filename)
     {
     }
-    
+
     /**
      * Return the file path by the specified section and the specified file.
-     * 
+     *
      * @access public
      * @param string $section  A name of section.
      * @param string $filename A name of file
@@ -144,7 +144,7 @@ class XCube_LanguageManager
 
     /**
      * Get file contents and return it.
-     * 
+     *
      * @access public
      * @param string $section  A name of section.
      * @param string $filename A name of file
@@ -156,10 +156,10 @@ class XCube_LanguageManager
 
     /**
      * Return translated message.
-     * 
+     *
      * @param  string $word
      * @return string
-     * 
+     *
      * @note This member function is test.
      */
     public function translate($word)
@@ -169,7 +169,7 @@ class XCube_LanguageManager
 
     /**
      * Return default language name.
-     * 
+     *
      * @access protected
      * @return string
      */
@@ -180,7 +180,7 @@ class XCube_LanguageManager
 
     /**
      * Return default locale name.
-     * 
+     *
      * @access protected
      * @return string
      */
@@ -188,7 +188,7 @@ class XCube_LanguageManager
     {
         return "EN"; // !Todo check UTF-8
     }
-    
+
     public function encodeUTF8($str)
     {
         return $str;

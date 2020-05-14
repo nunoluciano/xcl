@@ -11,17 +11,17 @@
 /**
  * @public
  * @brief [Abstract] Used for initialization, post-processing and others by the controller.
- * 
+ *
  *    This class is chained and called by the initialization procedure of the
  *    controller class. Developers or users can use the subclass of this class for
  *    dynamic customizing.
- * 
+ *
  *    Users usually don't need to add on filters because each controllers should
  *    have initialization code enough. This class is used to the case of special
  *    customizing by modules and users.
- * 
+ *
  *    Each controllers should not use this class to their initialization procedure.
- * 
+ *
  *    Two member functions are called by the controller at the special timing.
  *    These timing is different in each controllers.
  *
@@ -35,21 +35,19 @@ class XCube_ActionFilter
      * @brief [READ ONLY] XCube_Controller
      */
     public $mController;
-    
+
     /**
      * @protected
      * @brief [READ ONLY] XCube_Root
      */
     public $mRoot;
-    
+
     /**
      * @public
      * @brief Constructor.
-     * @param XCube_Controller $controller
+     * @param $controller XCube_Controller
      */
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct(&$controller)
-    //public function XCube_ActionFilter(&$controller)
     {
         $this->mController =& $controller;
         $this->mRoot =& $this->mController->mRoot;
@@ -59,13 +57,13 @@ class XCube_ActionFilter
      * @public
      * @brief [Abstract] Executes the logic, when the controller executes preFilter().
      * @remarks
-     *     This method is called earliest in the controller's initialization process, so 
+     *     This method is called earliest in the controller's initialization process, so
      *     some of filters may not be called if these filters are registered later.
      */
     public function preFilter()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Executes the logic, when the controller executes preBlockFilter().
@@ -75,7 +73,7 @@ class XCube_ActionFilter
     public function preBlockFilter()
     {
     }
-    
+
     /**
      * @public
      * @brief [Abstract] Executes the logic, when the controller executes postFilter().

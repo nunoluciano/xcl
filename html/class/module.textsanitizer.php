@@ -200,7 +200,7 @@ class MyTextSanitizer
     }
 
     /**
-     * Convert linebreaks to <br /> tags
+     * Convert linebreaks to <br> tags
      *
      * @param   string  $text
      *

@@ -10,38 +10,37 @@ class LegacyRender_AbstractFilterForm
     public $mSortKeys = [];
     public $_mCriteria = null;
     public $mNavi = null;
-    
+
     public $_mHandler = null;
-    // !Fix deprecated constructor for php 7.x
-    public function __construct($navi, $handler)  
-    // public function LegacyRender_AbstractFilterForm(&$navi, &$handler)
+
+    public function __construct($navi, $handler)
     {
         $this->mNavi =& $navi;
         $this->_mHandler =& $handler;
-        
+
         $this->_mCriteria =new CriteriaCompo();
-        
+
         $this->mNavi->mGetTotalItems->add([&$this, 'getTotalItems']);
     }
-    
+
     public function getDefaultSortKey()
     {
     }
-    
+
     public function getTotalItems(&$total)
     {
         $total = $this->_mHandler->getCount($this->getCriteria());
     }
-    
+
     public function fetchSort()
     {
         $root =& XCube_Root::getSingleton();
         $this->mSort = (int)$root->mContext->mRequest->getRequest('sort');
-        
+
         if (!isset($this->mSortKeys[abs($this->mSort)])) {
             $this->mSort = $this->getDefaultSortKey();
         }
-        
+
         $this->mNavi->mSort['sort'] = $this->mSort;
     }
 
@@ -50,7 +49,7 @@ class LegacyRender_AbstractFilterForm
         $this->mNavi->fetch();
         $this->fetchSort();
     }
-    
+
     public function getSort()
     {
         $sortkey = abs($this->mNavi->mSort['sort']);
@@ -66,12 +65,12 @@ class LegacyRender_AbstractFilterForm
     {
         $t_start = (null === $start) ? $this->mNavi->getStart() : (int)$start;
         $t_limit = (null === $limit) ? $this->mNavi->getPerpage() : (int)$limit;
-        
+
         $criteria = $this->_mCriteria;
-        
+
         $criteria->setStart($t_start);
         $criteria->setLimit($t_limit);
-        
+
         return $criteria;
     }
 }

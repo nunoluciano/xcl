@@ -15,16 +15,13 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct(&$controller)
-    //public function Legacy_PublicControllerStrategy(&$controller)
     {
-        // ! call parent::__construct() instead of parent::Controller()
-        //parent::Legacy_AbstractControllerStrategy($controller);
         parent::__construct($controller);
-        
+
         $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_RenderSystem';
-        
+
         if (!defined('LEGACY_DEPENDENCE_RENDERER')) {
             define('LEGACY_DEPENDENCE_RENDERER', 'Legacy_RenderSystem');
         }
@@ -90,7 +87,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
                 return $theme;
             }
         }
-        
+
         $objs =& $handler->getObjects();
         if (count($objs) > 0) {
             return $objs[0];
@@ -99,23 +96,23 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         $theme = null;
         return $theme;
     }
-    
+
     public function isEnableCacheFeature()
     {
         return true;
     }
-    
+
     public function enableAccess()
     {
         if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
-            
+
             return $this->mController->mRoot->mContext->mUser->isInRole("Module.${dirname}.Visitor");
         }
-        
+
         return true;
     }
-    
+
     public function setupModuleLanguage()
     {
         $root =& XCube_Root::getSingleton();

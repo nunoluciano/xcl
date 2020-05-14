@@ -32,7 +32,7 @@ class Legacy_DebuggerManager
         if (is_object($instance)) {
             return;
         }
-        
+
         switch ($debug_mode) {
             case XOOPS_DEBUG_PHP:
                 $instance = new Legacy_PHPDebugger();
@@ -45,7 +45,7 @@ class Legacy_DebuggerManager
             case XOOPS_DEBUG_SMARTY:
                 $instance = new Legacy_SmartyDebugger();
                 break;
-            
+
             case XOOPS_DEBUG_OFF:
             default:
                 $instance = new Legacy_NonDebugger();
@@ -56,16 +56,14 @@ class Legacy_DebuggerManager
 
 class Legacy_AbstractDebugger
 {
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct()
-    //public function Legacy_AbstractDebugger()
     {
     }
 
     public function prepare()
     {
     }
-    
+
     public function isDebugRenderSystem()
     {
         return false;
@@ -77,7 +75,7 @@ class Legacy_AbstractDebugger
     public function renderLog()
     {
     }
-    
+
     public function displayLog()
     {
     }
@@ -120,13 +118,13 @@ class Legacy_MysqlDebugger extends Legacy_AbstractDebugger
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
     }
-    
+
     public function renderLog()
     {
         $xoopsLogger =& XoopsLogger::instance();
         return $xoopsLogger->dumpAll();
     }
-    
+
     public function displayLog()
     {
         echo '<script type="text/javascript">
@@ -156,12 +154,12 @@ class Legacy_SmartyDebugger extends Legacy_AbstractDebugger
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
     }
-    
+
     public function isDebugRenderSystem()
     {
         $root =& XCube_Root::getSingleton();
         $user =& $root->mContext->mXoopsUser;
-        
+
         return is_object($user) ? $user->isAdmin(0) : false;
     }
 }

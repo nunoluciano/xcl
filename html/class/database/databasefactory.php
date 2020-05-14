@@ -1,9 +1,7 @@
 <?php
 class XoopsDatabaseFactory
 {
-    // !Fix PHP7
     public function __construct()
-    //public function XoopsDatabaseFactory()
     {
     }
 

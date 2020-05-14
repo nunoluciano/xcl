@@ -45,9 +45,9 @@ class Profile_Admin_DefinitionsEditAction extends Profile_AbstractEditAction
 
     /**
      * _setHeaderScript
-     * 
+     *
      * @param   void
-     * 
+     *
      * @return  void
     **/
     protected function _setHeaderScript()
@@ -86,7 +86,7 @@ $("#legacy_xoopsform_type").change(function(){
     public function executeViewInput(&$render)
     {
         $gHandler =& xoops_gethandler('group');
-    
+
         $render->setTemplateName('definitions_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
@@ -102,9 +102,7 @@ $("#legacy_xoopsform_type").change(function(){
      * @param $controller
      * @param $render
      */
-    // !Fix compatibility with Profile_AbstractAction::executeViewSuccess(&$controller, &$render) in file /modules/profile/class/AbstractionAction.class.php line 62
-    public function executeViewSuccess(&$controller, &$render) 
-    // public function executeViewSuccess(&$render)
+    public function executeViewSuccess(&$controller, &$render)
     {
         $this->mRoot->mController->executeForward('./index.php?action=DefinitionsList');
     }

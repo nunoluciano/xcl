@@ -26,12 +26,12 @@
 include_once './class/textsanitizer.php';
 
 /**
-* setting manager for XOOPS installer
-*
-* @author Haruki Setoyama  <haruki@planewave.org>
-* @version $Id: settingmanager.php,v 1.2 2008/02/23 01:45:50 nobunobu Exp $
-* @access public
-**/
+ * setting manager for XOOPS installer
+ *
+ * @author Haruki Setoyama  <haruki@planewave.org>
+ * @version $Id: settingmanager.php,v 1.2 2008/02/23 01:45:50 nobunobu Exp $
+ * @access public
+ **/
 class setting_manager
 {
 
@@ -50,7 +50,7 @@ class setting_manager
 
     public $sanitizer;
 
-    public function __construct($post=false)
+    public function __construct($post = false)
     {
         $this->sanitizer = TextSanitizer::getInstance();
         if ($post) {
@@ -61,41 +61,40 @@ class setting_manager
 
             //
             // Generate prefix
-            // !Fix A non well formed numeric value
-            mt_srand ((int) microtime() * 10000 );
+            mt_srand ( (double)microtime () * 1000000 );
             do {
-                $this->prefix = substr (md5 (mt_rand(1, 6) ), 0, 6);
-            } while ( !preg_match ('/^[a-z]/', $this->prefix) );
+                $this->prefix = substr(md5( random_int(1, 6)), 0, 6);
+            } while (!preg_match('/^[a-z]/', $this->prefix));
 
-            $this->salt = substr (md5 (mt_rand () ), 5, 8);
+            $this->salt = substr(md5(mt_rand()), 5, 8);
 
             $this->db_pconnect = 0;
 
             $this->root_path = str_replace('\\', '/', getcwd()); // "
             $this->root_path = str_replace('/install', '', $this->root_path);
 
-            $filepath = (! empty($_SERVER['REQUEST_URI']))
-                            ? dirname($_SERVER['REQUEST_URI'])
-                            : dirname($_SERVER['SCRIPT_NAME']);
+            $filepath = (!empty($_SERVER['REQUEST_URI']))
+                ? dirname($_SERVER['REQUEST_URI'])
+                : dirname($_SERVER['SCRIPT_NAME']);
 
-            $filepath = str_replace('\\', '/', $filepath); // "
-            $filepath = str_replace('/install', '', $filepath);
-            if ('/' == substr($filepath, 0, 1)) {
+            // "
+            $filepath = str_replace(['\\', '/install'], ['/', ''], $filepath);
+            if ('/' === substr($filepath, 0, 1)) {
                 $filepath = substr($filepath, 1);
             }
-            if ('/' == substr($filepath, -1)) {
+            if ('/' === substr($filepath, -1)) {
                 $filepath = substr($filepath, 0, -1);
             }
-            $protocol = (!empty($_SERVER['HTTPS']) && 'on' == $_SERVER['HTTPS']) ? 'https://' : 'http://';
-            $this->xoops_url = (!empty($filepath)) ? $protocol.$_SERVER['HTTP_HOST'].'/'.$filepath : $protocol.$_SERVER['HTTP_HOST'];
+            $protocol = (!empty($_SERVER['HTTPS']) && ('on' === $_SERVER['HTTPS'])) ? 'https://' : 'http://';
+            $this->xoops_url = (!empty($filepath)) ? $protocol . $_SERVER['HTTP_HOST'] . '/' . $filepath : $protocol . $_SERVER['HTTP_HOST'];
             // find xoops_trust_path
-            $path = $this->root_path ;
+            $path = $this->root_path;
             while (strlen($path) > 4) {
                 if (is_dir($path . '/xoops_trust_path')) {
-                    $this->trust_path = $path . '/xoops_trust_path' ;
-                    break ;
+                    $this->trust_path = $path . '/xoops_trust_path';
+                    break;
                 }
-                $path = dirname($path) ;
+                $path = dirname($path);
             }
         }
     }
@@ -203,7 +202,7 @@ class setting_manager
 
         if (!empty($error)) {
             foreach ($error as $err) {
-                $ret .=  '<p class="confirmError">'.$err.'</p>';
+                $ret .= '<p class="confirmError">' . $err . '</p>';
             }
         }
 
@@ -213,17 +212,17 @@ class setting_manager
     public function editform()
     {
         $ret =
-            '<h3>'._INSTALL_L51.'</h3>
-            <span style="font-size:85%;">'._INSTALL_L66.'</span>
+            '<h3>' . _INSTALL_L51 . '</h3>
+            <span style="font-size:85%;">' . _INSTALL_L66 . '</span>
             <br>
             <select size="1" name="database" id="database">';
         $dblist = $this->getDBList();
         foreach ($dblist as $val) {
-            $ret .= '<option value="'.$val.'"';
-            if ($val == $this->database) {
+            $ret .= '<option value="' . $val . '"';
+            if ($val === $this->database) {
                 $ret .= ' selected="selected"';
             }
-            $ret .= '>'.$val.'</option>';
+            $ret .= '>' . $val . '</option>';
         }
         $ret .= '</select> ';
         $ret .= $this->editform_sub(_INSTALL_L27, _INSTALL_L67, 'dbhost', $this->sanitizer->htmlSpecialChars($this->dbhost));
@@ -233,10 +232,10 @@ class setting_manager
         $ret .= $this->editform_sub(_INSTALL_L30, _INSTALL_L63, 'prefix', $this->sanitizer->htmlSpecialChars($this->prefix));
         $ret .= $this->editform_sub(_INSTALL_LANG_XOOPS_SALT, _INSTALL_LANG_XOOPS_SALT_DESC, 'salt', $this->sanitizer->htmlSpecialChars($this->salt));
 
-        $ret .= '<h3>'._INSTALL_L54.'</h3>
-                <p><span style="font-size:85%;">'._INSTALL_L69.'</span>
-                <input type="radio" name="db_pconnect" value="1"'.(1 == $this->db_pconnect ? ' checked="checked"' : '') . '>' . _INSTALL_L23 . '
-                <input type="radio" name="db_pconnect" value="0"'.(1 != $this->db_pconnect ? ' checked="checked"' : '') . '>' . _INSTALL_L24 . '
+        $ret .= '<h3>' . _INSTALL_L54 . '</h3>
+                <p><span style="font-size:85%;">' . _INSTALL_L69 . '</span>
+                <input type="radio" name="db_pconnect" value="1"' . (1 === $this->db_pconnect ? ' checked="checked"' : '') . '>' . _INSTALL_L23 . '
+                <input type="radio" name="db_pconnect" value="0"' . (1 !== $this->db_pconnect ? ' checked="checked"' : '') . '>' . _INSTALL_L24 . '
                 </p>';
 
         $ret .= $this->editform_sub(_INSTALL_L55, _INSTALL_L59, 'root_path', $this->sanitizer->htmlSpecialChars($this->root_path));
@@ -248,9 +247,9 @@ class setting_manager
 
     public function editform_sub($title, $desc, $name, $value)
     {
-        return  '<h3>'.$title.'</h3>
-                <p><span style="font-size:85%;">'.$desc.'</span><br>
-                <input type="text" name="'.$name.'" id="'.$name.'" size="30" maxlength="100" value="'.htmlspecialchars($value).'">
+        return '<h3>' . $title . '</h3>
+                <p><span style="font-size:85%;">' . $desc . '</span><br>
+                <input type="text" name="' . $name . '" id="' . $name . '" size="30" maxlength="100" value="' . htmlspecialchars($value, ENT_QUOTES | ENT_HTML5) . '">
                 </p>';
     }
 
@@ -258,40 +257,40 @@ class setting_manager
     {
         $yesno = empty($this->db_pconnect) ? _INSTALL_L24 : _INSTALL_L23;
         $ret =
-            '<h3>'._INSTALL_L51.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->database).'</p>
-            <h3>'._INSTALL_L27.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbhost).'</p>
-            <h3>'._INSTALL_L28.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbuname).'</p>
-            <h3>'._INSTALL_L52.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbpass).'</p>
-            <h3>'._INSTALL_L29.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->dbname).'</p>
-            <h3>'._INSTALL_L30.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->prefix).'</p>
-            <h3>'._INSTALL_LANG_XOOPS_SALT.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->salt).'</p>
-            <h3>'._INSTALL_L54.'</h3>
-            <p class="data">'.$yesno.'</p>
-            <h3>'._INSTALL_L55.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->root_path).'</p>
-            <h3>'._INSTALL_L75.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->trust_path).'</p>
-            <h3>'._INSTALL_L56.'</h3>
-            <p class="data">'.$this->sanitizer->htmlSpecialChars($this->xoops_url).'</p>
+            '<h3>' . _INSTALL_L51 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->database) . '</p>
+            <h3>' . _INSTALL_L27 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->dbhost) . '</p>
+            <h3>' . _INSTALL_L28 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->dbuname) . '</p>
+            <h3>' . _INSTALL_L52 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->dbpass) . '</p>
+            <h3>' . _INSTALL_L29 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->dbname) . '</p>
+            <h3>' . _INSTALL_L30 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->prefix) . '</p>
+            <h3>' . _INSTALL_LANG_XOOPS_SALT . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->salt) . '</p>
+            <h3>' . _INSTALL_L54 . '</h3>
+            <p class="data">' . $yesno . '</p>
+            <h3>' . _INSTALL_L55 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->root_path) . '</p>
+            <h3>' . _INSTALL_L75 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->trust_path) . '</p>
+            <h3>' . _INSTALL_L56 . '</h3>
+            <p class="data">' . $this->sanitizer->htmlSpecialChars($this->xoops_url) . '</p>
             <br>
-            <input type="hidden" name="database" value="'.$this->sanitizer->htmlSpecialChars($this->database).'" />
-            <input type="hidden" name="dbhost" value="'.$this->sanitizer->htmlSpecialChars($this->dbhost).'" />
-            <input type="hidden" name="dbuname" value="'.$this->sanitizer->htmlSpecialChars($this->dbuname).'" />
-            <input type="hidden" name="dbpass" value="'.$this->sanitizer->htmlSpecialChars($this->dbpass).'" />
-            <input type="hidden" name="dbname" value="'.$this->sanitizer->htmlSpecialChars($this->dbname).'" />
-            <input type="hidden" name="prefix" value="'.$this->sanitizer->htmlSpecialChars($this->prefix).'" />
-            <input type="hidden" name="salt" value="'.$this->sanitizer->htmlSpecialChars($this->salt).'" />
+            <input type="hidden" name="database" value="' . $this->sanitizer->htmlSpecialChars($this->database) . '" />
+            <input type="hidden" name="dbhost" value="' . $this->sanitizer->htmlSpecialChars($this->dbhost) . '" />
+            <input type="hidden" name="dbuname" value="' . $this->sanitizer->htmlSpecialChars($this->dbuname) . '" />
+            <input type="hidden" name="dbpass" value="' . $this->sanitizer->htmlSpecialChars($this->dbpass) . '" />
+            <input type="hidden" name="dbname" value="' . $this->sanitizer->htmlSpecialChars($this->dbname) . '" />
+            <input type="hidden" name="prefix" value="' . $this->sanitizer->htmlSpecialChars($this->prefix) . '" />
+            <input type="hidden" name="salt" value="' . $this->sanitizer->htmlSpecialChars($this->salt) . '" />
             <input type="hidden" name="db_pconnect" value="' . (int)$this->db_pconnect . '" />
-            <input type="hidden" name="root_path" value="'.$this->sanitizer->htmlSpecialChars($this->root_path).'" />
-            <input type="hidden" name="trust_path" value="'.$this->sanitizer->htmlSpecialChars($this->trust_path).'" />
-            <input type="hidden" name="xoops_url" value="'.$this->sanitizer->htmlSpecialChars($this->xoops_url).'" />
+            <input type="hidden" name="root_path" value="' . $this->sanitizer->htmlSpecialChars($this->root_path) . '" />
+            <input type="hidden" name="trust_path" value="' . $this->sanitizer->htmlSpecialChars($this->trust_path) . '" />
+            <input type="hidden" name="xoops_url" value="' . $this->sanitizer->htmlSpecialChars($this->xoops_url) . '" />
             ';
         return $ret;
     }
@@ -299,7 +298,7 @@ class setting_manager
 
     public function getDBList()
     {
-        return [extension_loaded('mysql')? 'mysql' : 'mysqli'];
+        return [extension_loaded('mysql') ? 'mysql' : 'mysqli'];
         //$dirname = '../class/database/';
         //$dirlist = array();
         //if (is_dir($dirname) && $handle = opendir($dirname)) {

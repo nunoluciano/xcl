@@ -155,20 +155,20 @@ define('_AD_USER_MESSAGE_CONFIRM_UPDATE_USER', 'Are you sure you want to update 
 define('_AD_USER_MESSAGE_RECOUNT_SUCCESS', 'Recalculate success');
 
 // Tips
-define('_AD_USER_TIPS_AVATAR', 'Site members can optionally fashion their own online personae called avatars.<br />This option can be set off from module User preferences.');
-define('_AD_USER_TIPS_AVATAR_UPLOAD', "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
+define('_AD_USER_TIPS_AVATAR', 'Site members can optionally fashion their own online personae called avatars.<br>This option can be set off from module User preferences.');
+define('_AD_USER_TIPS_AVATAR_UPLOAD', "You can easily register many avatars by uploading Archive file including them! <br>This batch-upload doesn't check Length and File-Size of each avatar!<br>Please pre-adjust them before you archive them!<br>(Only tar.gz or zip archive)");
 define('_AD_USER_TIPS_DATA_DOWNLOAD', 'You are only able to get CSV User data order by user_id.');
 define('_AD_USER_TIPS_DELETE_AVATAR', 'Users who are using this avatar will have blank.gif as the avatar image file.');
 define('_AD_USER_TIPS_MAILJOB_SEND', 'If there are too many users to send mail, the server may not respond as expected (blank page etc.). In that case, reload the browser several times to complete sending mail to all users.');
 define('_AD_USER_TIPS_RANK', 'A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.');
 define('_AD_USER_TIPS_RECOUNT_POSTS', "You may recalculate the number of posts for the user by clicking on the 'Recalculate' button below.");
 define('_AD_USER_TIPS_USER_ADMIN',
-       'Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br />
+       'Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br>
 You can also extend default User Profile by adding new fields. To learn more, click the following link :'
 );
 define('_AD_USER_TIPS_USER_EDIT', "To change the password, fill the input fields 'Password' and 'Verify password' with a new value.");
 define('_AD_USER_TIPS_USER_NEW', "The following fields are required: 'User name', 'Email address' and 'Password' & 'Verify password'.");
-define('_AD_USER_TIPS_USER_SEARCH', 'You can search and sort your users data to find the vital information you are looking for.<br />The accuracy of the end result will be directly related to the number of fields you fill.');
+define('_AD_USER_TIPS_USER_SEARCH', 'You can search and sort your users data to find the vital information you are looking for.<br>The accuracy of the end result will be directly related to the number of fields you fill.');
 define('_AD_USER_TIPS1_DATA_UPLOAD', 'The user batch registration with CSV file is possible.');
 define('_AD_USER_TIPS2_DATA_UPLOAD', 'Use CSV file downloaded from <a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._MI_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> Do not increase and decrease columns.');
 define('_AD_USER_TIPS3_DATA_UPLOAD', 'Please describe only the user who wants to update and wants to register information newly in CSV file.');

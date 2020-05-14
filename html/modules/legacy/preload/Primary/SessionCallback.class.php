@@ -23,7 +23,6 @@ return false;
 }
 
 ob_start('xclCallback');
-// !Fix end
 
 class Legacy_SessionCallback extends XCube_ActionFilter
 {
@@ -45,7 +44,7 @@ class Legacy_SessionCallback extends XCube_ActionFilter
             [&$sessionHandler, 'gc']
         );
     }
-    
+
     public static function getSessionCookiePath(&$cookiePath)
     {
         $parse_array = parse_url(XOOPS_URL);

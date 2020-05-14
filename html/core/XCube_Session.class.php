@@ -34,9 +34,7 @@ class XCube_Session
      */
     public $mGetSessionCookiePath = null;
 
-    // !Fix PHP7 NOTICE: deprecated constructor
     public function __construct($sessionName='', $sessionExpire=0)
-    //public function XCube_Session($sessionName='', $sessionExpire=0)
     {
         $this->setParam($sessionName, $sessionExpire);
 
@@ -56,12 +54,12 @@ class XCube_Session
     {
         $allIniArray = ini_get_all();
 
-        if ('' != $sessionName) {
+        if ('' !== $sessionName) {
             $this->mSessionName = $sessionName;
         } else {
             $this->mSessionName = $allIniArray['session.name']['global_value'];
         }
-        
+
         if (!empty($sessionExpire)) {
             $this->mSessionLifetime = 60 * $sessionExpire;
         } else {
@@ -107,7 +105,7 @@ class XCube_Session
         // (This case will occur when session config params are changed in preference screen.)
         $currentSessionName = session_name();
         if (isset($_COOKIE[$currentSessionName])) {
-            if ($forceCookieClear || ($currentSessionName != $this->mSessionName)) {
+            if ($forceCookieClear || ($currentSessionName !== $this->mSessionName)) {
                 // Clearing Session Cookie
                 setcookie($currentSessionName, '', time() - 86400, $this->_cookiePath());
             }
@@ -139,7 +137,7 @@ class XCube_Session
      */
     public function rename()
     {
-        if (session_name() != $this->mSessionName) {
+        if (session_name() !== $this->mSessionName) {
             $oldSessionID = session_id();
             $oldSession = $_SESSION;
             $this->destroy();

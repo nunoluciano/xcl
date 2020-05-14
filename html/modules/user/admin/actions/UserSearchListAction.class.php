@@ -20,7 +20,6 @@ class User_UserSearchListAction extends User_AbstractListAction
     public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
     public $mExtraURL = '';
 
-    // !Fix public function prepare(&$controller, &$xoopsUser)
     public function prepare(&$controller, &$xoopsUser, &$moduleConfig)
     {
         $this->mActionForm =new User_UserSearchListForm();
@@ -52,7 +51,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     {
         return './index.php?action=UserSearchList';
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         //in case of result of user-search
@@ -60,7 +59,7 @@ class User_UserSearchListAction extends User_AbstractListAction
             return $this->getDefaultView($controller, $xoopsUser);
         }
 
-        //To return user to proper-url with search condition 
+        //To return user to proper-url with search condition
         $this->mFilter =& $this->_getFilterForm();
         $this->mFilter->fetch();
         //
@@ -163,14 +162,14 @@ class User_UserSearchListAction extends User_AbstractListAction
         $render->setTemplateName('user_search_list_confirm.html');
         $render->setAttribute('userObjects', $this->mUserObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.
         //
         $t_arr = $this->mActionForm->get('level');
         $render->setAttribute('uids', array_keys($t_arr));
-        //To return user to proper-url with search condition 
+        //To return user to proper-url with search condition
         $controller->mRoot->mDelegateManager->add('Legacy.Event.Explaceholder.Get.UserSearchPagenaviHidden', 'User_UserSearchListAction::renderHiddenControl');
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
     }
@@ -204,7 +203,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         }
         return $extraurl;
     }
-    // !Fix Public static function
+
     public static function renderOtherUrlControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
@@ -212,16 +211,16 @@ class User_UserSearchListAction extends User_AbstractListAction
             $url = $params['url'];
             if (count($navi->mExtra) > 0) {
                 $t_arr = [];
-            
+
                 foreach ($navi->mExtra as $key => $value) {
                     $t_arr[] = $key . '=' . urlencode($value);
                 }
-            
+
                 if (0 == count($t_arr)) {
                     $buf = $url;
                     return;
                 }
-            
+
                 if (false !== strpos($url, '?')) {
                     $buf = $url . '&amp;' . implode('&amp;', $t_arr);
                 } else {
@@ -230,7 +229,7 @@ class User_UserSearchListAction extends User_AbstractListAction
             }
         }
     }
-    // !Fix Public static function
+
     public static function renderHiddenControl(&$buf, $params)
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {

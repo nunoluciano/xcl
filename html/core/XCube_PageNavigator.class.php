@@ -102,7 +102,8 @@ class XCube_PageNavigator
      * @var XCube_Delegate
      */
     public $mGetTotalItems = null;
-
+    
+    
     /**
      * Constructor.
      * @param string $url
@@ -141,14 +142,14 @@ class XCube_PageNavigator
         
         if ($navi->mFlags & XCUBE_PAGENAVI_START) {
             $t_start = $root->mContext->mRequest->getRequest($navi->getStartKey());
-            if (null != $t_start && (int)$t_start >= 0) {
+            if (null !== $t_start && (int)$t_start >= 0) {
                 $navi->mStart = (int)$t_start;
             }
         }
 
         if ($navi->mFlags & XCUBE_PAGENAVI_PERPAGE && !$navi->mPerpageFreeze) {
             $t_perpage = $root->mContext->mRequest->getRequest($navi->getPerpageKey());
-            if (null != $t_perpage && (int)$t_perpage > 0) {
+            if (null !== $t_perpage && (int)$t_perpage > 0) {
                 $navi->mPerpage = (int)$t_perpage;
             }
         }
@@ -180,7 +181,7 @@ class XCube_PageNavigator
 
     public function getRenderBaseUrl($mask = null)
     {
-        if (null == $mask) {
+        if (null === $mask) {
             $mask = [];
         }
         if (!is_array($mask)) {
@@ -197,7 +198,7 @@ class XCube_PageNavigator
                 }
             }
             
-            if (0 == count($tarr)) {
+            if (0 === count($tarr)) {
                 return $this->mUrl;
             }
             
@@ -210,17 +211,16 @@ class XCube_PageNavigator
         
         return $this->mUrl;
     }
-
+    
     /**
      * Return url string for navigation. The return value is lose start value.
      * The user need to add start value. For example, It is "$navi->getRenderUrl().'20'".
      * This method name is bad. I must rename this.
-     * @param null $mask
      * @return string
      */
     public function getRenderUrl($mask = null)
     {
-        if (null != $mask && !is_array($mask)) {
+        if (null !== $mask && !is_array($mask)) {
             $mask = [$mask];
         }
         
@@ -281,7 +281,7 @@ class XCube_PageNavigator
     
         return $this->mUrl . '?' . implode('&amp;', $tarr);
     }
-
+    
     /**
      * Return url string for sort. The return value is complete style.
      * @param null $mask
@@ -311,7 +311,7 @@ class XCube_PageNavigator
     
     public function getTotalItems()
     {
-        if (false == $this->_mIsSpecifedTotalItems) {
+        if (false === $this->_mIsSpecifedTotalItems) {
             $this->mGetTotalItems->call(new XCube_Ref($this->mTotal));
             $this->_mIsSpecifedTotalItems = true;
         }

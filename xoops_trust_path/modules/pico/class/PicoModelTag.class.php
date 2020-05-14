@@ -5,9 +5,7 @@ class PicoTagHandler
 
     public $mydirname;
 
-    // !Fix deprecated constructor
     public function __construct($mydirname)
-        //function PicoTagHandler( $mydirname )
     {
         $this->mydirname = $mydirname;
     }
@@ -39,9 +37,7 @@ class PicoTag
 
     public $mydirname;
 
-    // !Fix deprecated constructor
     public function __construct($mydirname, $label)
-        //function PicoTag( $mydirname , $label )
     {
     }
 }

@@ -8,7 +8,7 @@ define('_MD_PICO_FORMMAIL_CCMAILSUBJECT', '%s への問い合わせ（確認メ�
 define('_MD_PICO_FORMMAIL_MAILFLDSEP', "\n---------------------------------------------------------------\n");
 define('_MD_PICO_FORMMAIL_MAILMIDSEP', "\n--------\n");
 
-define('_MD_PICO_FORMMAIL_BLOCK_POSTCONFIRM', '<div class="confirmMsg">以下の内容で送信しますか<br /><input type="submit" value="送信する" /> <input type="submit" name="cancel" value="キャンセル" /></div>');
+define('_MD_PICO_FORMMAIL_BLOCK_POSTCONFIRM', '<div class="confirmMsg">以下の内容で送信しますか<br><input type="submit" value="送信する" /> <input type="submit" name="cancel" value="キャンセル" /></div>');
 define('_MD_PICO_FORMMAIL_BLOCK_ERROR_BEGIN', '<div class="errorMsg"><ul>入力項目に不備があります');
 define('_MD_PICO_FORMMAIL_BLOCK_ERROR_END', '</ul></div>');
 

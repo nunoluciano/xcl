@@ -32,7 +32,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
     public function execute(&$controller, &$xoopsUser)
     {
         $form_cancel = $controller->mRoot->mContext->mRequest->getRequest('_form_control_cancel');
-        if (null != $form_cancel) {
+        if (null !== $form_cancel) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
 
@@ -48,7 +48,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
         $files = [];
         $smilesimages = [];
 
-        if ('zip' == strtolower($formFileExt)) {
+        if ('zip' === strtolower($formFileExt)) {
             if (!file_exists(XOOPS_ROOT_PATH . '/class/Archive_Zip.php')) {
                 return LEGACY_FRAME_VIEW_ERROR;
             }
@@ -112,7 +112,7 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
     public function _saveSmilesImages(&$smilesimages)
     {
-        if (0 == count($smilesimages)) {
+        if (0 === count($smilesimages)) {
             return true;
         }
         

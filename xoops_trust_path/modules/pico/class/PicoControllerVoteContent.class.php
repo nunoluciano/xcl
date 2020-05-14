@@ -69,7 +69,6 @@ class PicoControllerVoteContent extends PicoControllerAbstract
         $this->is_need_header_footer = false;
     }
 
-    // !Fix WARNING: Declaration compatible with PicoControllerAbstract::render
     public function render($target = null)
     {
         redirect_header(XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_content_link4html($this->mod_config, $this->contentObj->getData()), 0, _MD_PICO_MSG_VOTEACCEPTED);

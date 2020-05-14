@@ -50,6 +50,6 @@ if (!function_exists('closetable')) {
 if (!function_exists('themecenterposts')) {
     function themecenterposts($title, $content)
     {
-        echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td class="head">'.$title.'</td></tr><tr><td><br />'.$content.'<br /></td></tr></table>';
+        echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td class="head">'.$title.'</td></tr><tr><td><br>'.$content.'<br></td></tr></table>';
     }
 }

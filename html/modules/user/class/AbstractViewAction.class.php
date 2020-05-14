@@ -13,16 +13,18 @@ class User_AbstractViewAction extends User_Action
 {
     public $mObject = null;
     public $mObjectHandler = null;
-    // !Fix PHP7
+
     public function __construct()
-    //public function User_AbstractViewAction()
-    { }
+    {
+    }
 
     public function _getId()
-    { }
+    {
+    }
 
     public function &_getHandler()
-    { }
+    {
+    }
 
     public function _setupObject()
     {
@@ -35,9 +37,9 @@ class User_AbstractViewAction extends User_Action
 
     /**
      * _getPageAction
-     * 
+     *
      * @param	void
-     * 
+     *
      * @return	string
      **/
     protected function _getPageAction()

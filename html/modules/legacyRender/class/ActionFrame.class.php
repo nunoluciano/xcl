@@ -21,14 +21,12 @@ class LegacyRender_ActionFrame
     public $mActionName = null;
     public $mAction = null;
     public $mAdminFlag = null;
-    
+
     /**
      * @var XCube_Delegate
      */
     public $mCreateAction = null;
-    // !Fix deprecated constructor for php 7.x
     public function __construct($admin)
-    // public function LegacyRender_ActionFrame($admin)
     {
         $this->mAdminFlag = $admin;
         $this->mCreateAction =new XCube_Delegate();
@@ -39,7 +37,7 @@ class LegacyRender_ActionFrame
     public function setActionName($name)
     {
         $this->mActionName = $name;
-        
+
         //
         // Temp FIXME!
         //
@@ -53,7 +51,7 @@ class LegacyRender_ActionFrame
         if (is_object($actionFrame->mAction)) {
             return;
         }
-        
+
         //
         // Create action object by mActionName
         //
@@ -64,36 +62,36 @@ class LegacyRender_ActionFrame
         } else {
             $fileName = XOOPS_MODULE_PATH . "/legacyRender/actions/${fileName}.class.php";
         }
-    
+
         if (!file_exists($fileName)) {
             die();
         }
-    
+
         require_once $fileName;
-    
+
         if (XC_CLASS_EXISTS($className)) {
             $actionFrame->mAction =new $className($actionFrame->mAdminFlag);
         }
     }
-    
+
     public function execute(&$controller)
     {
         if (!preg_match("/^\w+$/", $this->mActionName)) {
             die();
         }
-    
+
         //
         // Create action object by mActionName
         //
         $this->mCreateAction->call(new XCube_Ref($this));
-    
+
         if (!(is_object($this->mAction) && $this->mAction instanceof \LegacyRender_Action)) {
             die();    //< TODO
         }
 
         $handler =& xoops_gethandler('config');
         $moduleConfig =& $handler->getConfigsByDirname('legacyRender');
-    
+
         $this->mAction->prepare($controller, $controller->mRoot->mContext->mXoopsUser, $moduleConfig);
 
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser)) {
@@ -103,34 +101,34 @@ class LegacyRender_ActionFrame
                 $controller->executeForward(XOOPS_URL);
             }
         }
-    
+
         if ('POST' == xoops_getenv('REQUEST_METHOD')) {
             $viewStatus = $this->mAction->execute($controller, $controller->mRoot->mContext->mXoopsUser);
         } else {
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
         }
-    
+
         switch ($viewStatus) {
             case LEGACYRENDER_FRAME_VIEW_SUCCESS:
                 $this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACYRENDER_FRAME_VIEW_ERROR:
                 $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACYRENDER_FRAME_VIEW_INDEX:
                 $this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACYRENDER_FRAME_VIEW_INPUT:
                 $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACYRENDER_FRAME_VIEW_PREVIEW:
                 $this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
-        
+
             case LEGACYRENDER_FRAME_VIEW_CANCEL:
                 $this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
                 break;
@@ -144,9 +142,8 @@ class LegacyRender_Action
      * @access private
      */
     public $_mAdminFlag = false;
-    // !Fix deprecated constructor for php 7.x
+
     public function __construct($adminFlag = false)
-    // public function LegacyRender_Action($adminFlag = false)
     {
         $this->_mAdminFlag = $adminFlag;
     }
@@ -155,7 +152,7 @@ class LegacyRender_Action
     {
         return true;
     }
-    
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
     }

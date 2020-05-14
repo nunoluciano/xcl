@@ -18,18 +18,17 @@ class XCube_Identity
      * @var string
      */
     public $mName = '';
-    
+
     /**
      * The authentication type
      * @var string
      */
     public $_mAuthenticationType = '';
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct()
-    //public function XCube_Identity()
     {
     }
-    
+
     /**
      * Sets the authentication type.
      * @param string $type
@@ -38,7 +37,7 @@ class XCube_Identity
     {
         $this->_mAuthenticationType = $type;
     }
-    
+
     /**
      * Gets the authentication type.
      * @return string
@@ -56,7 +55,7 @@ class XCube_Identity
     {
         $this->mName = $name;
     }
-    
+
     /**
      * Gets a name of this object.
      *
@@ -86,20 +85,19 @@ class XCube_Principal
      * The identity object which is tied to this object.
      */
     public $mIdentity = null;
-    
+
     /**
      * Roles in this object.
      * @var string[]
      */
     public $_mRoles = [];
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct($identity, $roles = [])
-    //public function XCube_Principal($identity, $roles = array())
     {
         $this->mIdentity =& $identity;
         $this->_mRoles = $roles;
     }
-    
+
     /**
      * Gets a identity object which is tied to this object.
      * @return XCube_Identity

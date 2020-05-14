@@ -34,9 +34,8 @@ class XCube_FormFile
     public $_mTmpFileName=null;
 
     public $mUploadFileFlag=false;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct($name = null, $key = null)
-    //public function XCube_FormFile($name = null, $key = null)
     {
         $this->mName = $name;
         $this->mKey = $key;
@@ -48,7 +47,7 @@ class XCube_FormFile
     public function fetch()
     {
         if ($this->mName && isset($_FILES[$this->mName])) {
-            if (null != $this->mKey) {
+            if (null !== $this->mKey) {
                 $this->setFileName($_FILES[$this->mName]['name'][$this->mKey]);
                 $this->setContentType($_FILES[$this->mName]['type'][$this->mKey]);
                 $this->setFileSize($_FILES[$this->mName]['size'][$this->mKey]);

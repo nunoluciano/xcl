@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @package Legacy
@@ -15,7 +16,7 @@ class SimpleWizard
     public $_content;
     public $_next = '';
     public $_back = '';
-    public $_reload ='';
+    public $_reload = '';
     public $_template_path;
     public $_base_template_name;
     public $_custom_seq;
@@ -34,7 +35,7 @@ class SimpleWizard
     {
         $this->_v[$name] = $value;
     }
-    
+
     public function setContent($value)
     {
         $this->_content = $value;
@@ -78,20 +79,16 @@ class SimpleWizard
 
     public function v($name)
     {
-        if (!empty($this->_v[$name])) {
-            return $this->_v[$name];
-        } else {
-            return false;
-        }
+        return !empty($this->_v[$name]) ? $this->_v[$name] : false;
     }
 
     public function e()
     {
         $args = func_get_args();
-        if (func_num_args() >0) {
+        if (func_num_args() > 0) {
             if (!empty($this->_v[$args[0]])) {
                 $value = $this->_v[$args[0]];
-                if ((2 == func_num_args()) && is_array($value)) {
+                if (2 === func_num_args() && is_array($value)) {
                     $value = $value[$args[1]];
                 }
             } else {
@@ -100,12 +97,12 @@ class SimpleWizard
             echo $value;
         }
     }
-    
-    public function render($fname='')
+
+    public function render($fname = '')
     {
-        if ($fname && file_exists($this->_template_path.'/'.$fname)) {
+        if ($fname && file_exists($this->_template_path . '/' . $fname)) {
             ob_start();
-            include $this->_template_path.'/'.$fname;
+            include $this->_template_path . '/' . $fname;
             $this->setContent(ob_get_contents());
             ob_end_clean();
         }
@@ -138,6 +135,7 @@ class SimpleWizard
         }
         include $this->_base_template_name;
     }
+
     public function error()
     {
         $content = $this->_content;
@@ -168,8 +166,8 @@ class SimpleWizard
 class SimpleWizardSequence
 {
     public $_list;
-  
-    public function add($name, $title='', $next='', $next_btn='', $back='', $back_btn='', $reload='')
+
+    public function add($name, $title = '', $next = '', $next_btn = '', $back = '', $back_btn = '', $reload = '')
     {
         $this->_list[$name]['title'] = $title;
         $this->_list[$name]['next'] = $next;
@@ -178,8 +176,8 @@ class SimpleWizardSequence
         $this->_list[$name]['back_btn'] = $back_btn;
         $this->_list[$name]['reload'] = $reload;
     }
-    
-    public function insertAfter($after, $name, $title='', $back='', $back_btn='', $reload='')
+
+    public function insertAfter($after, $name, $title = '', $back = '', $back_btn = '', $reload = '')
     {
         if (!empty($this->_list[$after])) {
             $this->_list[$name]['title'] = $title;
@@ -194,7 +192,7 @@ class SimpleWizardSequence
     }
 
     // Add replaceAfter method from GIJOE's patch.
-    public function replaceAfter($after, $name, $title='', $next='', $next_btn='', $back='', $back_btn='', $reload='')
+    public function replaceAfter($after, $name, $title = '', $next = '', $next_btn = '', $back = '', $back_btn = '', $reload = '')
     {
         if (!empty($this->_list[$after])) {
             $this->_list[$name]['title'] = $title;
@@ -210,37 +208,21 @@ class SimpleWizardSequence
 
     public function getTitle($name)
     {
-        if (!empty($this->_list[$name]['title'])) {
-            return($this->_list[$name]['title']);
-        } else {
-            return '';
-        }
+        return !empty($this->_list[$name]['title']) ? ($this->_list[$name]['title']) : '';
     }
 
     public function getNext($name)
     {
-        if (!empty($this->_list[$name]['next'])||!empty($this->_list[$name]['next_btn'])) {
-            return([$this->_list[$name]['next'], $this->_list[$name]['next_btn']]);
-        } else {
-            return '';
-        }
+        return !empty($this->_list[$name]['next']) || !empty($this->_list[$name]['next_btn']) ? ([$this->_list[$name]['next'], $this->_list[$name]['next_btn']]) : '';
     }
 
     public function getBack($name)
     {
-        if (!empty($this->_list[$name]['back'])||!empty($this->_list[$name]['back_btn'])) {
-            return([$this->_list[$name]['back'], $this->_list[$name]['back_btn']]);
-        } else {
-            return '';
-        }
+        return !empty($this->_list[$name]['back']) || !empty($this->_list[$name]['back_btn']) ? ([$this->_list[$name]['back'], $this->_list[$name]['back_btn']]) : '';
     }
 
     public function getReload($name)
     {
-        if (!empty($this->_list[$name]['reload'])) {
-            return($this->_list[$name]['reload']);
-        } else {
-            return '';
-        }
+        return !empty($this->_list[$name]['reload']) ? ($this->_list[$name]['reload']) : '';
     }
 }

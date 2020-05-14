@@ -11,12 +11,10 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
      * @todo mSource
      */
     public $Source = null;
-    
+
     public $mOverride = null;
-       
-    // !Fix deprecated constructor for php 7.x
-    public function __construct() 
-    // public function LegacyRenderTplfileObject()
+
+    public function __construct()
     {
         static $initVars;
         if (isset($initVars)) {
@@ -34,7 +32,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         $this->initVar('tpl_type', XOBJ_DTYPE_STRING, '', true, 20);
         $initVars=$this->mVars;
     }
-    
+
     public function loadSource()
     {
         if (!is_object($this->Source)) {
@@ -45,17 +43,17 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
             }
         }
     }
-    
+
     /**
      * Create the clone with source for the template set that is specified by $tplsetName.
-     * 
+     *
      * @param string $tplsetName
      * @return object LegacyRenderTplfileObject
      */
     public function &createClone($tplsetName)
     {
         $this->loadSource();
-        
+
         $obj =new LegacyRenderTplfileObject();
 
         $obj->set('tpl_refid', $this->get('tpl_refid'));
@@ -68,12 +66,12 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         $obj->set('tpl_lastmodified', $this->get('tpl_lastmodified'));
         $obj->set('tpl_lastimported', $this->get('tpl_lastimported'));
         $obj->set('tpl_type', $this->get('tpl_type'));
-        
+
         $handler =& xoops_getmodulehandler('tplsource', 'legacyRender');
         $obj->Source =& $handler->create();
-        
+
         $obj->Source->set('tpl_source', $this->Source->get('tpl_source'));
-        
+
         return $obj;
     }
 
@@ -87,13 +85,13 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         if ('default' == $tplset || null != $this->mOverride) {
             return;
         }
-        
+
         $handler =& xoops_getmodulehandler('tplfile', 'legacyRender');
-        
+
         $criteria =new CriteriaCompo();
         $criteria->add(new Criteria('tpl_tplset', $tplset));
         $criteria->add(new Criteria('tpl_file', $this->get('tpl_file')));
-        
+
         $objs =& $handler->getObjects($criteria);
         if (count($objs) > 0) {
             $this->mOverride =& $objs[0];
@@ -106,15 +104,15 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
     public $mTable = 'tplfile';
     public $mPrimary = 'tpl_id';
     public $mClass = 'LegacyRenderTplfileObject';
-    
+
     public function insert(&$obj, $force = false)
     {
         if (!parent::insert($obj, $force)) {
             return false;
         }
-        
+
         $obj->loadSource();
-        
+
         if (!is_object($obj->Source)) {
             return true;
         } else {
@@ -139,7 +137,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
     public function &getObjectsWithOverride($criteria, $tplset)
     {
         $objs =& $this->getObjects($criteria);
-        
+
         $ret = [];
         $dobjs = [];
         foreach ($objs as $obj) {
@@ -151,18 +149,18 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
                 $dobjs[$obj->get('tpl_file')] = $obj;
             }
         }
-        
+
         foreach ($ret as $obj) {
             $obj->mOverride = $dobjs[$obj->get('tpl_file')];
         }
-        
+
         return $ret;
     }
-    
+
     public function delete(&$obj, $force = false)
     {
         $obj->loadSource();
-        
+
         if (is_object($obj->Source)) {
             $handler =& xoops_getmodulehandler('tplsource', 'legacyRender');
             if (!$handler->delete($obj->Source, $force)) {
@@ -172,10 +170,10 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 
         return parent::delete($obj, $force);
     }
-    
+
     /**
      * This is a kind of getObjects(). Return objects that were modified recently.
-     * 
+     *
      * @param int $limit
      * @return array array of the object
      */
@@ -187,17 +185,17 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
 
         $criteria->setSort('tpl_lastmodified');
         $criteria->setOrder('DESC');
-        
+
         $objs =& $this->getObjects($criteria);
-        
+
         return $objs;
     }
-    
+
     /**
      * This is a kind of getObjects(). Call getObjects() by 5 parameters and return
      * the result. Parameters are guaranteed Type Safe because these are used by
      * getObjects() for XoopsSimpleObject.
-     * 
+     *
      * @param string $tplsetName
      * @param string $type
      * @param int    $refId
@@ -221,7 +219,7 @@ class LegacyRenderTplfileHandler extends XoopsObjectGenericHandler
         if (null != $file) {
             $criteria->add(new Criteria('tpl_file', $file));
         }
-        
+
         $objs =& $this->getObjects($criteria);
         return $objs;
     }

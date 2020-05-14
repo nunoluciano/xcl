@@ -298,7 +298,7 @@
 
 			/********************************** messages **********************************/
 			'confirmReq'      : 'Confirmação requerida',
-			'confirmRm'       : 'Você tem certeza que deseja remover os arquivos?<br />Isto não pode ser desfeito!',
+			'confirmRm'       : 'Você tem certeza que deseja remover os arquivos?<br>Isto não pode ser desfeito!',
 			'confirmRepl'     : 'Substituir arquivo velho com este novo?',
 			'confirmRest'     : 'Substituir o item existente pelo item na lixeira?', // fromv2.1.24 added 5.5.2017
 			'confirmConvUTF8' : 'Não está em UTF-8<br/>Converter para UTF-8?<br/>Conteúdo se torna UTF-8 após salvar as conversões.', // from v2.1 added 08.04.2014

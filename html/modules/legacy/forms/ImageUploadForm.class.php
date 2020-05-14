@@ -69,7 +69,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
     public function validateImgcat_id()
     {
         $imgcat_id = $this->get('imgcat_id');
-        if (null != $imgcat_id) {
+        if (null !== $imgcat_id) {
             $root =& XCube_Root::getSingleton();
             $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
             
@@ -106,7 +106,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
         
         $formFile = $this->get('image_name');
 
-        if (null != $formFile && is_object($category)) {
+        if (null !== $formFile && is_object($category)) {
             //
             // Imagefile width & height check.
             //
@@ -143,7 +143,7 @@ class Legacy_ImageUploadForm extends XCube_ActionForm
 
         $this->mFormFile = $this->get('image_name');
         
-        if (null != $this->mFormFile) {
+        if (null !== $this->mFormFile) {
             $this->mFormFile->setRandomToBodyName('img');
             
             $filename = $this->mFormFile->getBodyName();

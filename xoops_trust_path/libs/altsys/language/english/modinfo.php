@@ -28,7 +28,7 @@ define('_MI_ALTSYS_ADMINMENU_IM', 'Copy mymenu links into admin menu');
 define('_MI_ALTSYS_ADMINMENU_IMDSC', 'If your admin menu is broken, remove cache/adminmenu.php. This feature works only with XOOPS 2.0.x');
 
 define('_MI_ALTSYS_ADMIN_IN_THEME', 'Theme set for admin');
-define('_MI_ALTSYS_ADMIN_IN_THEMEDSC', 'Set the name of the theme displaying admin area. Insert a line just after including common.php in mainfile.php<br />include XOOPS_TRUST_PATH.\'/libs/altsys/include/admin_in_theme.inc.php\';<br /> to enable this. This feature works only with XOOPS 2.0.x');
+define('_MI_ALTSYS_ADMIN_IN_THEMEDSC', 'Set the name of the theme displaying admin area. Insert a line just after including common.php in mainfile.php<br>include XOOPS_TRUST_PATH.\'/libs/altsys/include/admin_in_theme.inc.php\';<br> to enable this. This feature works only with XOOPS 2.0.x');
 
 define('_MI_ALTSYS_ENABLEFORCECLONE', 'Force all blocks to be clonable');
 define('_MI_ALTSYS_ENABLEFORCECLONEDSC', 'You should know there are blocks cause errors if multiple instances is displayed on a page');

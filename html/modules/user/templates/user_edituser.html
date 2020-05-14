@@ -34,9 +34,9 @@
     <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
     <td class="<{cycle values="odd,even"}>">
       <{if $allow_chgmail}>
-        <{xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email')}><br />
+        <{xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email')}><br>
       <{else}>
-        <{$thisUser->getShow('email')}><br />
+        <{$thisUser->getShow('email')}><br>
       <{/if}>
       <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
     </td>
@@ -106,7 +106,7 @@
   <tr>
     <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
     <td class="<{cycle values="odd,even"}>">
-      <{xoops_dhtmltarea name=user_sig value=$actionForm->get('user_sig')}><br />
+      <{xoops_dhtmltarea name=user_sig value=$actionForm->get('user_sig')}><br>
       <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}><{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
     </td>
   </tr>
@@ -141,7 +141,7 @@
     </td>
   </tr>
   <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_PASSWORD}><br />
+    <td class="head"><{$smarty.const._MD_USER_LANG_PASSWORD}><br>
     <{$smarty.const._MD_USER_LANG_TYPEPASSTWICE}></td>
     <td class="<{cycle values="odd,even"}>">
       <{xoops_input type=password name=pass size=10 maxlength=32 value=$actionForm->get('pass')}>

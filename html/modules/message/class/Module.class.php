@@ -10,23 +10,20 @@ class Message_Module extends Legacy_ModuleAdapter
 {
     public function __construct(&$xoopsModule)
     {
-        // ! call parent::__construct() instead of parent::Controller()
         parent::__construct($xoopsModule);
-        //parent::Legacy_ModuleAdapter($xoopsModule);
     }
-  
+
     public function hasAdminIndex()
     {
         return true;
     }
-  
+
     public function getAdminIndex()
     {
-        //return XOOPS_MODULE_URL.'/'.$this->mXoopsModule->get('dirname').'/admin/index.php';
     $root = XCube_Root::getSingleton();
         return $root->mController->getPreferenceEditUrl($this->mXoopsModule);
     }
-  
+
     public function getAdminMenu()
     {
         if ($this->_mAdminMenuLoadedFlag) {

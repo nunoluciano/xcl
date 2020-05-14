@@ -22,7 +22,7 @@ class Legacy_IndexRedirector extends XCube_ActionFilter
     public function redirect()
     {
         $startPage = $this->mRoot->mContext->getXoopsConfig('startpage');
-        if (null != $startPage && '--' != $startPage) {
+        if (null !== $startPage && '--' !== $startPage) {
             $handler =& xoops_gethandler('module');
             $module =& $handler->get($startPage);
             if (is_object($module) && $module->get('isactive')) {

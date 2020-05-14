@@ -39,6 +39,7 @@ $t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< @todo 
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
 $com_id = isset($_POST['com_id']) ? (int)$_POST['com_id'] : 0;
+
 $extra_params = '';
 if ('system' == $xoopsModule->getVar('dirname')) {
     if (empty($com_id)) {
@@ -71,6 +72,7 @@ if ('system' == $xoopsModule->getVar('dirname')) {
     $comment_url = $redirect_page;
     $moddir = $xoopsModule->getVar('dirname');
 }
+
 $op = '';
 if (!empty($_POST)) {
     if (isset($_POST['com_dopost'])) {
@@ -82,11 +84,11 @@ if (!empty($_POST)) {
         $op = 'delete';
     }
 
-//    if ($op == 'preview' || $op == 'post') {
-//        if (!xoops_token_validate()) {
-//            $op = '';
-//        }
-//    }
+    //    if ($op == 'preview' || $op == 'post') {
+    //        if (!xoops_token_validate()) {
+    //            $op = '';
+    //        }
+    //    }
 
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
@@ -101,9 +103,9 @@ if (!empty($_POST)) {
     $doimage = (isset($_POST['doimage']) && (int)$_POST['doimage'] > 0) ? 1 : 0;
     $com_icon = isset($_POST['com_icon']) ? trim($_POST['com_icon']) : '';
     $noname = isset($_POST['noname']) ? (int)$_POST['noname'] : 0;
-} else {
-    exit();
-}
+    } else {
+        exit();
+    }
 
 switch ($op) {
 

@@ -14,9 +14,7 @@ class User_RanksListAction extends User_AbstractListAction
     public $mActionForm = null;
     public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
 
-    // !Fix compatibility with  User_Action::prepare(&$controller, &$xoopsUser, $moduleConfig)
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
-    // public function prepare(&$controller, &$xoopsUser)
     {
         $this->mActionForm =new User_RanksListForm();
         $this->mActionForm->prepare();
@@ -83,7 +81,7 @@ class User_RanksListAction extends User_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $titleArr = $this->mActionForm->get('title');
@@ -151,7 +149,7 @@ class User_RanksListAction extends User_AbstractListAction
         $render->setTemplateName('ranks_list_confirm.html');
         $render->setAttribute('ranksObjects', $this->mRanksObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.

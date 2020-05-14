@@ -97,7 +97,6 @@ class PicoControllerInsertContent extends PicoControllerAbstract
         $this->is_need_header_footer = false;
     }
 
-    // !Fix WARNING: Declaration compatible with PicoControllerAbstract::render
     public function render($target = null)
     {
         exit;

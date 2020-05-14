@@ -89,7 +89,6 @@ class PicoControllerUpdateContent extends PicoControllerAbstract
         $this->is_need_header_footer = false;
     }
 
-    // !Fix Warning Declaration PicoControllerAbstract::render($target = NULL)
     public function render($target = null)
     {
         exit;

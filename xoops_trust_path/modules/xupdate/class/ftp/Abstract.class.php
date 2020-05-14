@@ -137,7 +137,7 @@ class Xupdate_Ftp_Abstract
     protected function SendMSG($message = '', $crlf=true)
     {
         if ($this->Verbose) {
-            $this->mes.= $message.($crlf? CRLF . '<br />' : '');
+            $this->mes.= $message.($crlf? CRLF . '<br>' : '');
             if ($this->LocalEcho) {
                 flush();
             }

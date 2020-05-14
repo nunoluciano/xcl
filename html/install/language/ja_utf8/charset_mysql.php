@@ -7,7 +7,7 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
-$set_charset = (XOOPS_DB_TYPE === 'mysqli')? 'mysqli_set_charset' : 'mysql_set_charset';
+$set_charset = (XOOPS_DB_TYPE === 'mysqli') ? 'mysqli_set_charset' : 'mysql_set_charset';
 if (function_exists($set_charset)) {
     if (XOOPS_DB_TYPE === 'mysqli') {
         $set_charset($this->db->conn, 'utf8');

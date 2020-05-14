@@ -67,7 +67,7 @@ if (!defined('XOOPS_C_ERRORHANDLER_INCLUDED')) {
                 '0010' => 'Could not move selected topic to selected forum. Please go back and try again.',
                 '0011' => 'Could not lock the selected topic. Please go back and try again.',
                 '0012' => 'Could not unlock the selected topic. Please go back and try again.',
-                '0013' => 'Could not query the database. <br />Error: ' . htmlspecialchars($db->error(), ENT_QUOTES, _CHARSET),
+                '0013' => 'Could not query the database. <br>Error: ' . htmlspecialchars($db->error(), ENT_QUOTES, _CHARSET),
                 '0014' => 'No such user or post in the database.',
                 '0015' => 'Search Engine was unable to query the forums database.',
                 '0016' => 'That user does not exist. Please go back and search again.',
@@ -97,8 +97,8 @@ if (!defined('XOOPS_C_ERRORHANDLER_INCLUDED')) {
                 '1006' => 'Please enter value for State/Province.',
                 '1007' => 'Please enter value for Zipcode.',
                 '1008' => 'Please enter value for Description.',
-                '1009' => 'Vote for the selected resource only once.<br />All votes are logged and reviewed.',
-                '1010' => 'You cannot vote on the resource you submitted.<br />All votes are logged and reviewed.',
+                '1009' => 'Vote for the selected resource only once.<br>All votes are logged and reviewed.',
+                '1010' => 'You cannot vote on the resource you submitted.<br>All votes are logged and reviewed.',
                 '1011' => 'No rating selected - no vote tallied.',
                 '1013' => 'Please enter a search query.',
                 '1016' => 'Please enter value for URL.',
@@ -112,9 +112,9 @@ if (!defined('XOOPS_C_ERRORHANDLER_INCLUDED')) {
             }
             include_once XOOPS_ROOT_PATH . '/header.php';
             //OpenTable();
-            echo '<div><b>' . htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES) . ' Error</b><br /><br />';
-            echo "Error Code: $e_code<br /><br /><br />";
-            echo "<b>ERROR:</b> $errmsg[$e_code]<br /><br /><br />";
+            echo '<div><b>' . htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES) . ' Error</b><br><br>';
+            echo "Error Code: $e_code<br><br><br>";
+            echo "<b>ERROR:</b> $errmsg[$e_code]<br><br><br>";
             echo "[ <a href='javascript:history.go(-".$pages.")'>Go Back</a> ]</div>";
             //CloseTable();
             include_once XOOPS_ROOT_PATH . '/footer.php';

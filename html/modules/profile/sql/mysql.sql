@@ -1,7 +1,7 @@
 CREATE TABLE `{prefix}_profile_data` (
   `uid` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY  (`uid`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB;
 
 CREATE TABLE `{prefix}_profile_definitions` (
   `field_id` smallint(5) unsigned NOT NULL auto_increment,
@@ -16,4 +16,4 @@ CREATE TABLE `{prefix}_profile_definitions` (
   `access` text NOT NULL,
   `options` text NOT NULL,
   PRIMARY KEY  (`field_id`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB;

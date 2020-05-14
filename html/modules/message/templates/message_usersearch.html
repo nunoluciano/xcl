@@ -26,12 +26,12 @@
 <{foreach item=user from=$listdata.udata}>
     <input type="checkbox" name="adduid[]" value="<{$user->get('uid')}>">
 <a href="<{$xoops_url}>/modules/message/index.php?action=new&to_userid=<{$user->get('uid')}>"><{$user->get('uname')}></a>
-<br />
+<br>
 <{/foreach}>
 <input type="hidden" name="cmd" value="add" />
 <{xoops_input type=hidden name=action value=favorites}>
 <input type="submit" value="<{$smarty.const._MD_MESSAGE_ADDFAVORITES}>" />
-</form><br />
+</form><br>
 <div class="pagenavi"><{xoops_pagenavi pagenavi=$listdata.pagenavi}></div>
 <{else}>
 <div><{$smarty.const._MD_USERSEARCH_8}></div>

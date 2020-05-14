@@ -55,7 +55,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 		$handle = popen($cmd, 'r');
 		while (false !== $res && $handle && !feof($handle)) {
 			if ($res = fgets($handle, 80)) {
-				echo $res . '<br />';
+				echo $res . '<br>';
 				flush ();
 			}
 		}
@@ -89,7 +89,7 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 		target="composer_update">
 		<table><tr>
 			<td>
-				<p>PHP CLI Command<br /><label><input value="php" type="radio" name="cli" checked="checked">Default is "php"</label></p>
+				<p>PHP CLI Command<br><label><input value="php" type="radio" name="cli" checked="checked">Default is "php"</label></p>
 				<p><input type="text" name="phpcli" value="php" /></p>
 			</td>
 			<td>

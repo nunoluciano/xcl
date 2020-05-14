@@ -69,7 +69,6 @@ class PicoControllerGetHistory extends PicoControllerAbstract
         }
     }
 
-    // !Fix WARNING: Declaration compatible with PicoControllerAbstract::render
     public function render($target = null)
     {
         // remove all ob filters

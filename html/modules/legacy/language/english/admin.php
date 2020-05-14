@@ -340,7 +340,7 @@ define('_AD_LEGACY_TIPS_BLOCK2', "You can edit each block's options when you ins
 define('_AD_LEGACY_TIPS_COMMENT', 'Search and manage active, pending or hidden comments from any user on any module.');
 define('_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL', "Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">'install block' page</a>.");
 define('_AD_LEGACY_TIPS_IMAGE', 'You can easily register many smiles by uploading a compressed archive!)');
-define('_AD_LEGACY_TIPS_IMAGE_UPLOAD', "You can easily register many images by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each image!<br />Please pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
+define('_AD_LEGACY_TIPS_IMAGE_UPLOAD', "You can easily register many images by uploading a compressed archive!<br>This batch-upload doesn't check Length and File-Size of each image!<br>Please pre-adjust them before you archive!<br>(Only tar.gz or zip archive)");
 define('_AD_LEGACY_TIPS_IMGCAT', 'Manage categories of images and users permissions.');
 define('_AD_LEGACY_TIPS_IMGCAT_STORETYPE',
        'Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.'
@@ -349,7 +349,7 @@ define('_AD_LEGACY_TIPS_INSTALL_BLOCK', 'You can customize your site by installi
 define('_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE', 'You may need to upgrade this module to the latest release. This step will make your package upgrade correctly. ');
 define('_AD_LEGACY_TIPS_MOD', 'If you install a new module, remember to setup module preferences, blocks and users permissions!');
 define('_AD_LEGACY_TIPS_SMILES', 'Display, rename, delete or upload an archive with your custom smilies.');
-define('_AD_LEGACY_TIPS_SMILES_UPLOAD', "You can easily register many smiles by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
+define('_AD_LEGACY_TIPS_SMILES_UPLOAD', "You can easily register many smiles by uploading a compressed archive!<br>This batch-upload doesn't check Length and File-Size of each smiles!<br>Pre-adjust them before you archive!<br>(Only tar.gz or zip archive)");
 define('_AD_LEGACY_TIPS_THEME_ADMIN', "Choose the look and feel of your site by clicking the 'select' button next to your favourite theme.<br/> You can let your users choose their favourite theme for your site. Check the boxes to add a theme to the theme selection block. For more details, read module Help.");
 
 // MODULE ADMIN
@@ -363,13 +363,13 @@ define('_MD_AM_ALLOWTHEME', 'Allow users to select theme?');
 define('_MD_AM_ALWDHTML', 'HTML tags allowed in all posts.');
 define('_MD_AM_ANONNAME', 'Username for anonymous users');
 define('_MD_AM_ANONPOST', 'Anonymous user can post');
-define('_MD_AM_BADIPS', 'Enter IP addresses that should be banned from the site.<br />Separate each with a <b>|</b>, case insensitive, regex enabled.');
-define('_MD_AM_BADIPSDSC', '^aaa.bbb.ccc will disallow visitors with an IP that starts with aaa.bbb.ccc<br />aaa.bbb.ccc$ will disallow visitors with an IP that ends with aaa.bbb.ccc<br />aaa.bbb.ccc will disallow visitors with an IP that contains aaa.bbb.ccc');
+define('_MD_AM_BADIPS', 'Enter IP addresses that should be banned from the site.<br>Separate each with a <b>|</b>, case insensitive, regex enabled.');
+define('_MD_AM_BADIPSDSC', '^aaa.bbb.ccc will disallow visitors with an IP that starts with aaa.bbb.ccc<br>aaa.bbb.ccc$ will disallow visitors with an IP that ends with aaa.bbb.ccc<br>aaa.bbb.ccc will disallow visitors with an IP that contains aaa.bbb.ccc');
 define('_MD_AM_CENSOR', 'Word Censoring Options');
 define('_MD_AM_CENSORRPLC', 'Censored words will be replaced with:');
 define('_MD_AM_CENSORRPLCDSC', 'Censored words will be replaced with the characters entered in this textbox');
 define('_MD_AM_CENSORWRD', 'Words to censor');
-define('_MD_AM_CENSORWRDDSC', 'Enter words that should be censored in user posts.<br />Separate each with a <b>|</b>, case insensitive.');
+define('_MD_AM_CENSORWRDDSC', 'Enter words that should be censored in user posts.<br>Separate each with a <b>|</b>, case insensitive.');
 define('_MD_AM_CHNGUTHEME', "Change all users' theme");
 define('_MD_AM_CLOSESITE', 'Turn your site off?');
 define('_MD_AM_CLOSESITEDSC', 'Select yes to turn your site off so that only users in selected groups have access to the site. ');

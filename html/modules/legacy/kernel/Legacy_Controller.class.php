@@ -105,11 +105,9 @@ class Legacy_Controller extends XCube_Controller
      * @var XoopsLogger
      */
     public $mLogger = null;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct()
-    //public function Legacy_Controller()
     {
-        //parent::XCube_Controller();
         parent::__construct();
 
         //
@@ -791,9 +789,6 @@ class Legacy_Controller extends XCube_Controller
                             $className = ucfirst($mod_dir) . '_' . basename($file, '.class.php');
 
                             if (XC_CLASS_EXISTS($className) && !isset($this->_mLoadedFilterNames[$className])) {
-                                //$this->_mLoadedFilterNames[$className] = true;
-                                // !Fix PHP7 NOTICE: Only variables should be passed by reference
-                                // $this->addActionFilter(new $className($this));
                                 $instance = new $className($this);
                                 $this->addActionFilter($instance);
                                 unset($instance);
@@ -1020,7 +1015,6 @@ class Legacy_Controller extends XCube_Controller
 
             if (is_object($this->mRoot->mContext->mXoopsUser)) {
                 // If the current user doesn't belong to any groups, kick out him for XCL's security.
-                // !Fix TODO : Strict Standards: Only variables should be passed by reference - php error
                 $t_groups = $this->mRoot->mContext->mXoopsUser->getGroups();
                 if (!is_array($t_groups)) {
                     // exception
@@ -1418,9 +1412,8 @@ class Legacy_AbstractControllerStrategy
     public $mController = null;
 
     public $mStatusFlag;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct(&$controller)
-    //public function Legacy_AbstractControllerStrategy(&$controller)
     {
         $this->mController =& $controller;
     }

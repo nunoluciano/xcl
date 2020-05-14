@@ -18,7 +18,7 @@ define('XCUBE_RENDER_MODE_DIALOG', 2);
  * style gives a heavy load to our XOOPS Cube system that is a PHP application.
  *
  * We prepare the following constants for the flag of a render-target instead of
- * the group of many classes. 
+ * the group of many classes.
  */
 define('XCUBE_RENDER_TARGET_TYPE_BUFFER', null);
 define('XCUBE_RENDER_TARGET_TYPE_THEME', 'theme');
@@ -35,22 +35,21 @@ class XCube_RenderTarget
     public $mName = null;
 
     public $mRenderBuffer = null;
-    
+
     public $mModuleName = null;
-    
+
     public $mTemplateName = null;
 
     public $mAttributes = [];
-    
+
     /**
      * @deprecated
      */
     public $mType = XCUBE_RENDER_TARGET_TYPE_BUFFER;
-    
+
     public $mCacheTime = null;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct()
-    //public function XCube_RenderTarget()
     {
     }
 
@@ -63,7 +62,7 @@ class XCube_RenderTarget
     {
         return $this->mName;
     }
-    
+
     public function setTemplateName($name)
     {
         $this->mTemplateName = $name;
@@ -73,17 +72,17 @@ class XCube_RenderTarget
     {
         return $this->mTemplateName;
     }
-    
+
     public function setAttribute($key, $value)
     {
         $this->mAttributes[$key] = $value;
     }
-    
+
     public function setAttributes($attr)
     {
         $this->mAttributes = $attr;
     }
-    
+
     public function getAttribute($key)
     {
         return isset($this->mAttributes[$key]) ? $this->mAttributes[$key] : null;
@@ -93,7 +92,7 @@ class XCube_RenderTarget
     {
         return $this->mAttributes;
     }
-    
+
     /**
      * Set render-target type.
      * @param int $type Use constants that are defined by us.
@@ -104,7 +103,7 @@ class XCube_RenderTarget
         $this->mType = $type;
         $this->setAttribute('legacy_buffertype', $type);
     }
-    
+
     /**
      * Return render-target type.
      * @return int
@@ -115,17 +114,17 @@ class XCube_RenderTarget
         return $this->getAttribute('legacy_buffertype');
         //return $this->mType;
     }
-    
+
     public function setResult(&$result)
     {
         $this->mRenderBuffer = $result;
     }
-    
+
     public function getResult()
     {
         return $this->mRenderBuffer;
     }
-    
+
     /**
      * Reset a template name and attributes in own properties.
      */
@@ -147,17 +146,16 @@ class XCube_RenderTarget
 class XCube_RenderSystem
 {
     /**
-     @access private
+     * @access private
      */
     public $mController;
 
     public $mRenderMode = XCUBE_RENDER_MODE_NORMAL;
-    // !Fix PHP7 NOTICE: deprecated constructor
+
     public function __construct()
-    //public function XCube_RenderSystem()
     {
     }
-    
+
     /**
      * Prepare.
      *
@@ -167,7 +165,7 @@ class XCube_RenderSystem
     {
         $this->mController =& $controller;
     }
-    
+
     /**
      * Create an object of the render-target, and return it.
      *

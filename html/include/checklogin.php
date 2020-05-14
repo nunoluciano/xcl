@@ -19,5 +19,5 @@ if (!defined('XOOPS_ROOT_PATH')) {
 $root =& XCube_Root::getSingleton();
 $root->mController->checkLogin();
 
-// ToDo Add after care!
+// ! ToDo Add after care!
 ;
