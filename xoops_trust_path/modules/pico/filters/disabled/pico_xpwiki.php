@@ -9,13 +9,13 @@ define('_MD_PICO_FILTERS_XPWIKIDISABLEONHTML', true);
 
 function pico_xpwiki($mydirname, $text, $content4assign)
 {
-	@include_once XOOPS_TRUST_PATH . '/modules/xpwiki/include.php';
+    @include_once XOOPS_TRUST_PATH . '/modules/xpwiki/include.php';
 
-	if (!class_exists('XpWiki')) die('xpWiki is not installed correctly');
+    if (!class_exists('XpWiki')) die('xpWiki is not installed correctly');
 
-	// �����ϡ�xpWiki�򥤥󥹥ȡ��뤷���ǥ��쥯�ȥ�̾�Ǥ���
-	$wiki = new XpWiki('xpwiki'); // create instance. option is xpWiki module's directory name.
+    // xpWiki
+    $wiki = new XpWiki('xpwiki'); // create instance. option is xpWiki module's directory name.
 
-	// ��������ϡ�xpWiki��CSS��Ŭ�Ѥ��뤿���DIV���饹̾�Ǥ���
-	return $wiki->transform($text, 'pico_body');
+    // xpWiki CSS
+    return $wiki->transform($text, 'pico_body');
 }

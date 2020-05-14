@@ -34,7 +34,8 @@ if (false != $error) {
     $b_back = [];
     $content = _INSTALL_L162;
     include './install_tpl.php';
-    break;
+    // break; !warning in php7.x
+    return false;
 }
 include_once './class/dbmanager.php';
 $dbm = new db_manager();

@@ -102,7 +102,7 @@ $dbm->insert('config', " VALUES (73,0,6,'fromuid','_MD_AM_MAILFROMUID','1','_MD_
 // default the default theme
 
 $time = time();
-$dbm->insert('tplset', " VALUES (1, 'legacy_default', 'Legacy 2.2 Default Theme', '', " . $time . ')'); //TODO check install tplset
+$dbm->insert('tplset', " VALUES (1, 'xcl_default', 'XCL 2.3.0 Default Theme', '', " . $time . ')'); //TODO check install tplset
 
 //  include_once './class/cachemanager.php';
 //    $cm = new cache_manager;

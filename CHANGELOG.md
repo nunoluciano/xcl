@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 
 - Installer Wizard stylesheet
 - Installer Wizard english
-- Installer Wizard templates
+- Installer Wizard 'break' warning
 - MultiTokenHandler extend #199
 - Token numeric value to mt_srand #198
 - XCube Core
@@ -37,6 +37,11 @@ All notable changes to this project will be documented in this file.
 ### Removed
 
 - Cleanup code refactoring
+- Useless japanese files (fail to pass test)
+- Unused phpmailer language files 
+- Theme Grid Flex Boilerplate
+- Theme Legacy_default
+
 
 ## [unreleased] 2020-04-29
 
