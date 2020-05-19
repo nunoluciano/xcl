@@ -5,10 +5,10 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
+<{* Active ui-Tab on page load with attribute checked *}>
 <div class="ui-tab-wrap">
 
-	<{* Active ui-Tab on page load with attribute checked *}>
+
 	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked>
 	<label for="ui-tab1">Overview</label>
 
@@ -206,20 +206,440 @@
 
 <div class="ui-card-full">
 <ul>
-	<li>Dashboard
-	<li>Typography
-	<li>Widgets
+    <li>Buttons
+    <li>Calendar
+    <li>Card
+    <li>Charts and Maps
+    <li>Colors
+    <li>Dashboard
+    <li>Forms
+    <li>HTML Tags
+    <li>Javascript Components
 	<li>Tables
-	<li>Normal Tables
-	<li>Data Tables
-	<li>Forms
+    <li>Tabs
+    <li>Typography
+    <li>Widgets
 	<li>User Interface
-	<li>Javascript Components
-	<li>Charts and Maps
 	<li>Photo Gallery
-	<li>Calendar
 	<li>Sample Pages
 </ul>
 </div>
 
+
+<h3>Buttons</h3>
+
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+        <p><button class="ui-btn">button ui-btn</button>
+            <button class="ui-btn ui-btn-small">ui-btn.ui-btn-small</button>
+            <button class="ui-btn disabled">ui-btn.disabled</button>
+            <button class="ui-btn ui-btn-black">ui-btn.ui-btn-black</button>
+            <button class="ui-btn ui-btn-white">ui-btn.ui-btn-white</button>
+            <button class="ui-btn ui-btn-small">ui-btn.ui-btn-small</button>
+            <button class="ui-btn ui-btn-danger">ui-btn.ui-btn-danger</button>
+            <button class="ui-btn ui-btn-success">ui-btn.ui-btn-success</button>
+            <button class="ui-btn ui-btn-warning">ui-btn.ui-btn-warning</button>
+            <button class="ui-badge">ui-badge</button>
+            <button class="ui-btn ui-btn-block">ui-btn.ui-btn-block</button>
+        </p>
+    </div>
+
+    <div class="ui-flex-column">
+        <p>
+            <a href="#" class="ui-btn">ui-btn</a>
+            <a href="#" class="ui-btn ui-btn-small">ui-btn.ui-btn-small</a>
+            <a href="#" class="ui-btn-block">ui-btn-block</a>
+            <a href="#" class="ui-badge">ui-badge</a>
+        </p>
+        <p>
+            <a href="#" class="ui-btn ui-btn-small" title="Edit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+            </svg> Edit </a>
+
+            <a href="#" class="ui-btn ui-btn-small" title="Clone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M11 17H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12v2H4v12h7v-2l4 3l-4 3v-2m8 4V7H8v6H6V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2h2v2h11z" fill="currentColor">
+            </path>
+            </svg> Clone </a>
+        </p>
+    </div>
+
+    <div class="ui-flex-column">
+        <p>
+            <input class="button-cancel" type="reset" name="reset" id="reset" value="Cancel"> button-cancel (reset)
+            <input class="button-cancel" type="submit" value="Back" name="_form_control_cancel"> button-cancel
+            <input class="button-delete" type="submit" name="contents_delete" value="delete" onclick="return confirm('Are you sure to delete them?');"> button-delete
+            <input class="button-export" type="submit" name="contents_export" value="Export" onclick="return confirm('Selected contents are exported as the top contents of the module. Comments will not be copied. Are you OK?');"> button-export
+            <input class="button-install" type="submit" value="Install"> button-install
+            <input class="button-move" type="submit" name="contents_move" value="MOVED"> button-move
+            <input class="button-update"type="submit" value="Update"> button-update
+            <input class="button-update"type="submit" value="Upload"> button-upload
+        </p>
+    </div>
+
+    <div class="ui-flex-column">
+        <p>
+            <input type="search"> search
+            <input type="button"> button
+            <input type="reset"> reset
+            <input type="checkbox"> checkbox
+            <input type="radio"> radio
+        </p>
+
+        <hr>
+
+        <p><a href="#" class="ui-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor">
+            </path>
+            </svg>Information </a>
+
+        <a href="#" class="ui-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+            </svg> Module Edit
+        </a>
+
+        <a href="#" class="ui-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M17 14h2v3h3v2h-3v3h-2v-3h-3v-2h3v-3m-6 2L2 9l9-7l9 7l-9 7m0 2.54l1-.79V18c0 .71.12 1.39.35 2L11 21.07l-9-7l1.62-1.26L11 18.54z" fill="currentColor">
+            </path>
+            </svg> Block Installation</a>
+
+
+        <a href="#" class="ui-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15l-1.89 1.07L16 8.61l1.96-1.11L12 4.15M6.04 7.5L12 10.85l1.96-1.1l-5.88-3.4L6.04 7.5M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-6.7l-6 3.37v6.71l6-3.38z" fill="currentColor"></path>
+            </svg> Module administration</a>
+
+
+        <a href="#" class="ui-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M12 17l-5-5h3V8h4v4h3l-5 5m9-.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15L5 8.09v7.82l7 3.94l7-3.94V8.09l-7-3.94z" fill="currentColor"></path>
+            </svg> Module install</a>
+
+        <a href="#" class="ui-btn ui-btn-small" title="Clone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+            <path d="M11 17H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12v2H4v12h7v-2l4 3l-4 3v-2m8 4V7H8v6H6V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2h2v2h11z" fill="currentColor">
+            </path>
+            </svg> Clone</a>
+        </p>
+    </div>
+
+</div>
+
+    <h3>Calendar</h3>
+    <p><input type="date">date</p>
+
+    <hr>
+
+<h3>HTML Elements</h3>
+<div class="ui-card-full">
+<h1>Header 1</h1>
+<h2>Header 2</h2>
+<h3>Header</h3>
+<h4>Header</h4>
+<h5>Header</h5>
+<h6>Header</h6>
+<p title="I'm a tooltip">
+    This is a paragraph.
+    </p>
+
+    <ul>
+        <li><code class="w3-codespan">&lt;b&gt;</code> - Bold text</li>
+        <li><code class="w3-codespan">&lt;strong&gt;</code> - Important text</li>
+        <li><code class="w3-codespan">&lt;i&gt;</code> - Italic text</li>
+        <li><code class="w3-codespan">&lt;em&gt;</code> - Emphasized text</li>
+        <li><code class="w3-codespan">&lt;mark&gt;</code> - Marked text</li>
+        <li><code class="w3-codespan">&lt;small&gt;</code> - Small text</li>
+        <li><code class="w3-codespan">&lt;del&gt;</code> - Deleted text</li>
+        <li><code class="w3-codespan">&lt;ins&gt;</code> - Inserted text</li>
+        <li><code class="w3-codespan">&lt;sub&gt;</code> - Subscript text</li>
+        <li><code class="w3-codespan">&lt;sup&gt;</code> - Superscript text</li>
+       </ul>
+
+<p>Tag <small>small</small> <em>em</em> and <strong>strong</strong> or <b>bold</b> and <i>italic</i> <u>underline</u></p>
+
+<h2>An Unordered HTML List</h2>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+</div>
+
 <hr>
+
+<h3>Spinner - currency</h3>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+
+        <script>
+            $( function() {
+              $( "#currency" ).on( "change", function() {
+                $( "#spinner" ).spinner( "option", "culture", $( this ).val() );
+              });
+
+              $( "#spinner" ).spinner({
+                min: 5,
+                max: 2500,
+                step: 25,
+                start: 1000,
+                numberFormat: "C"
+              });
+            } );
+            </script>
+            <p>
+                <label for="spinner">Amount to donate:</label>
+                <input id="spinner" name="spinner" value="5">
+              </p>
+
+              <p>
+                <label for="currency">Currency to donate</label>
+                <select id="currency" name="currency">
+                  <option value="en-US">US $</option>
+                  <option value="de-DE">EUR €</option>
+                  <option value="ja-JP">YEN ¥</option>
+                </select>
+              </p>
+    </div>
+
+</div>
+
+
+<h3>Toggler</h3>
+
+<div class="ui-flex-row">
+
+    <div class="ui-flex-column">
+
+    <script>
+    $( function() {
+        // run the currently selected effect
+        function runEffect() {
+        // get effect type from
+        var selectedEffect = $( "#effectTypes" ).val();
+
+        // Most effect types need no options passed by default
+        var options = {};
+        // some effects have required parameters
+        if ( selectedEffect === "scale" ) {
+            options = { percent: 50 };
+        } else if ( selectedEffect === "transfer" ) {
+            options = { to: "#button", className: "ui-effects-transfer" };
+        } else if ( selectedEffect === "size" ) {
+            options = { to: { width: 200, height: 60 } };
+        }
+
+        // Run the effect
+        $( "#effect" ).effect( selectedEffect, options, 500, callback );
+        };
+
+        // Callback function to bring a hidden box back
+        function callback() {
+        setTimeout(function() {
+            $( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+        }, 1000 );
+        };
+
+        // Set effect from select menu value
+        $( "#button" ).on( "click", function() {
+        runEffect();
+        return false;
+        });
+    } );
+    </script>
+
+
+
+        <div class="toggler">
+        <div id="effect" class="ui-widget-content ui-corner-all">
+            <h3 class="ui-widget-header ui-corner-all">Effect</h3>
+            <p>
+            Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+            </p>
+        </div>
+        </div>
+
+    </div>
+
+
+    <div class="ui-flex-column">
+        <p>
+        <select name="effects" id="effectTypes">
+            <option value="blind">Blind</option>
+            <option value="bounce">Bounce</option>
+            <option value="clip">Clip</option>
+            <option value="drop">Drop</option>
+            <option value="explode">Explode</option>
+            <option value="fade">Fade</option>
+            <option value="fold">Fold</option>
+            <option value="highlight">Highlight</option>
+            <option value="puff">Puff</option>
+            <option value="pulsate">Pulsate</option>
+            <option value="scale">Scale</option>
+            <option value="shake">Shake</option>
+            <option value="size">Size</option>
+            <option value="slide">Slide</option>
+            <option value="transfer">Transfer</option>
+            </select>
+        </p>
+        <p>
+            <button id="button" class="ui-state-default ui-corner-all">Run Effect</button>
+        </p>
+
+    </div>
+
+
+</div>
+
+<h3>Modal</h3>
+<hr>
+<script>
+    $( function() {
+      $( "#dialog" ).dialog({
+        autoOpen: false,
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+      });
+
+      $( "#opener" ).on( "click", function() {
+        $( "#dialog" ).dialog( "open" );
+      });
+    } );
+    </script>
+
+<div id="dialog" title="Basic dialog">
+    <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+  </div>
+
+  <p><button id="opener">Open Dialog</button></p>
+
+  <h3>Controlgroup</h3>
+<hr>  <script>
+    $( function() {
+      $( "select" ).selectmenu({
+        classes: {
+          "ui-selectmenu-button": "ui-button-icon-only demo-splitbutton-select"
+        },
+        change: function(){
+          $( ".output" ).append( "<li>" + this.value + "</li>" );
+        }
+      });
+      $( ".controlgroup" ).controlgroup();
+      $( "button" ).click(function() {
+        $( ".output" ).append( "<li>Running Last Action...</li>" );
+      });
+    } );
+    </script>
+<div class="widget">
+    <h1>Split button</h1>
+    <div class="controlgroup">
+      <button>Run last option</button>
+      <select>
+        <option>Open...</option>
+        <option>Save</option>
+        <option>Delete</option>
+      </select>
+    </div>
+    <br>
+    <h3>Output:</h3>
+    <ul class="output"></ul>
+  </div>
+
+  <h3>controlGroup</h3>
+  <hr>
+  <style>
+    .ui-controlgroup-vertical {
+      width: 150px;
+    }
+    .ui-controlgroup.ui-controlgroup-vertical > button.ui-button,
+    .ui-controlgroup.ui-controlgroup-vertical > .ui-controlgroup-label {
+      text-align: center;
+    }
+    #car-type-button {
+      width: 120px;
+    }
+    .ui-controlgroup-horizontal .ui-spinner-input {
+      width: 20px;
+    }
+  </style>
+  <script>
+    $( function() {
+      $( ".controlgroup" ).controlgroup()
+      $( ".controlgroup-vertical" ).controlgroup({
+        "direction": "vertical"
+      });
+    } );
+    </script>
+
+
+  <p>po</p>
+  <div class="widget">
+    <h1>Controlgroup</h1>
+    <fieldset>
+      <legend>Rental Car</legend>
+      <div class="controlgroup">
+        <select id="car-type">
+          <option>Compact car</option>
+          <option>Midsize car</option>
+          <option>Full size car</option>
+          <option>SUV</option>
+          <option>Luxury</option>
+          <option>Truck</option>
+          <option>Van</option>
+        </select>
+        <label for="transmission-standard">Standard</label>
+        <input type="radio" name="transmission" id="transmission-standard">
+        <label for="transmission-automatic">Automatic</label>
+        <input type="radio" name="transmission" id="transmission-automatic">
+        <label for="insurance">Insurance</label>
+        <input type="checkbox" name="insurance" id="insurance">
+        <label for="horizontal-spinner" class="ui-controlgroup-label"># of cars</label>
+        <input id="horizontal-spinner" class="ui-spinner-input">
+        <button>Book Now!</button>
+      </div>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Rental Car</legend>
+      <div class="controlgroup-vertical">
+        <select>
+          <option>Compact car</option>
+          <option>Midsize car</option>
+          <option>Full size car</option>
+          <option>SUV</option>
+          <option>Luxury</option>
+          <option>Truck</option>
+          <option>Van</option>
+        </select>
+        <label for="transmission-standard-v">Standard</label>
+        <input type="radio" name="transmission-v" id="transmission-standard-v">
+        <label for="transmission-automatic-v">Automatic</label>
+        <input type="radio" name="transmission-v" id="transmission-automatic-v">
+        <label for="insurance-v">Insurance</label>
+        <input type="checkbox" name="insurance" id="insurance-v">
+        <label for="vertical-spinner" class="ui-controlgroup-label"># of cars</label>
+        <input id="vertical-spinner" class="ui-spinner-input">
+        <button id="book">Book Now!</button>
+      </div>
+    </fieldset>
+  </div>

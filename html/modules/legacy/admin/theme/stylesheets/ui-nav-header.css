@@ -1,188 +1,188 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+    XOOPSCube Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-	-------------------- -------------------- -------------------- -------------------- HEADER NAV */
+    -------------------- -------------------- -------------------- -------------------- HEADER NAV */
 
-	header > nav {
+    header > nav {
 
-		color							: var(  --ui-text-light		);
-		height						: 50px;
-		margin						: 0;
-		overflow					: hidden;
-		padding						: 0;
-		width							: 100%;
+        color           : var(  --ui-text-light		);
+        height          : 50px;
+        margin          : 0;
+        overflow        : hidden;
+        padding         : 0;
+        width           : 100%;
 
-	}
+    }
 
-	nav ul {
+    nav ul {
 
-		align-items				: center;
-		display						: flex;
-		margin						: 0;
-		padding						: 0;
+        align-items     : center;
+        display         : flex;
+        margin          : 0;
+        padding         : 0;
 
-	}
+    }
 
-	nav ul li {
+    nav ul li {
 
-		list-style-type		: none;
-		transition				: all 0.2s;
+        list-style-type : none;
+        transition      : all 0.2s;
 
-	}
+    }
 
-	nav ul li.nav-logo {
+    nav ul li.nav-logo {
 
-		/* text-align				: center; */
-		width							: 207px;
+        /* text-align   : center; */
+        width           : 207px;
 
-	}
-	nav ul li.nav-logo > a > img {
+    }
+    nav ul li.nav-logo > a > img {
 
-		bottom 						: -5px;
-		flex-shrink				: 0;
-		max-height				: 42px;
-		position					: relative;
+        bottom          : -5px;
+        flex-shrink     : 0;
+        max-height      : 42px;
+        position        : relative;
 
-	}
+    }
 
-	/* Remove Color Mode Switch if there’s no JS */
-	.no-js .ui-color-mode {
-		display						: none;
-	}
-	nav ul li.ui-color-mode {
-		align-items				: center;
-		display						: flex;
-		margin						: 0 1em 0 auto;
-		padding						: 0 1rem;
-	}
-	nav ul li.ui-color-mode > a,
-	nav ul li.ui-color-mode > span {
-		margin			: 0 1em;
-	}
-
-
-	nav > ul > li > a {
-		color							: var(--ui-text-light) !important;
-		padding						: 0px var(  --ui-space-500			);
-
-	}
-
-	nav > ul > li > a > .caret {
-
-		border-top				: 5px solid var(  --ui-color-200	);
-		border-right			: 5px solid transparent;
-		border-left				: 5px solid transparent;
-
-		content						: "";
-
-		display						: inline-block;
-
-		height						: 0;
-
-		transition				: color 0.1s linear;
-		vertical-align		: middle;
-		width							: 0;
-
-	}
-
-	nav > ul > li:hover > a > .caret {
-
-		border-top-color	: var(  --ui-color-100		);
-
-	}
-
-	nav > ul > li:hover {
-
-		background				: transparent;
-
-	}
+    /* Remove Color Mode Switch if there’s no JS */
+    .no-js .ui-color-mode {
+        display         : none;
+    }
+    nav ul li.ui-color-mode {
+        align-items     : center;
+        display         : flex;
+        margin          : 0 1em 0 auto;
+        padding         : 0 1rem;
+    }
+    nav ul li.ui-color-mode > a,
+    nav ul li.ui-color-mode > span {
+        margin          : 0 1em;
+    }
 
 
-	/* nav-sub */
-	nav > ul > li > ul.nav-sub  {
+    nav > ul > li > a {
+        color           : var(--ui-text-light) !important;
+        padding         : 0px var(  --ui-space-500  );
 
-		background				: var(  --ui-color-500			);
+    }
 
-		border-top				: 0;
-		border-radius			: var(  --ui-border-radius	);
+    nav > ul > li > a > .caret {
 
-		box-shadow				: var(  --ui-shadow-400 		);
+        border-top      : 5px solid var(  --ui-color-200    );
+        border-right    : 5px solid transparent;
+        border-left     : 5px solid transparent;
 
-		display						: none;
+        content         : "";
 
-		margin						: 0;
-		opacity						: 0;
-		position					: absolute;
-		left							: 15px;
-		width							: 200px;
-		visibility				: hidden;
+        display         : inline-block;
 
-		transition				: opacity 0.3s;
+        height          : 0;
 
-	}
+        transition      : color 0.1s linear;
+        vertical-align  : middle;
+        width           : 0;
+
+    }
+
+    nav > ul > li:hover > a > .caret {
+
+        border-top-color : var(  --ui-color-100		);
+
+    }
+
+    nav > ul > li:hover {
+
+        background      : transparent;
+
+    }
 
 
-	nav > ul > li:hover > ul.nav-sub {
+    /* nav-sub */
+    nav > ul > li > ul.nav-sub  {
 
-		display						: block;
-		opacity						: 1;
-		visibility				: visible;
+        background      : var(  --ui-color-500      );
 
-	}
+        border-top      : 0;
+        border-radius   : var(  --ui-border-radius  );
 
-	nav > ul > li > ul.nav-sub > li {
+        box-shadow      : var(  --ui-shadow-400     );
 
-		display						: block;
+        display         : none;
 
-	}
+        margin          : 0;
+        opacity         : 0;
+        position        : absolute;
+        left            : 15px;
+        width           : 200px;
+        visibility      : hidden;
 
-	/*
-	Theme : XCL Admin Flex Grid
-	Distribution : XCL 2.3 Alpha
-	Version : 0.0.5
-	Author : Nuno Luciano aka Gigamaster
-	Date : 2019-11-11
-	URL : https://github.com/xoopscube/xcl/
+        transition      : opacity 0.3s;
 
-	-------------------- -------------------- -------------------- -------------------- NAV HEADER */
+    }
 
-	nav > ul > li > ul.nav-sub > li > a {
 
-		padding						: var(  --ui-space-500 		);
-		text-decoration		: none;
-		width							: 100%;
+    nav > ul > li:hover > ul.nav-sub {
 
-	}
+        display         : block;
+        opacity         : 1;
+        visibility      : visible;
 
-	nav > ul > li > ul.nav-sub > li:hover > a {
+    }
 
-		background				: var(  --ui-color-400	);
+    nav > ul > li > ul.nav-sub > li {
 
-	}
+        display         : block;
 
-	/* nav-sub nav-user-menu */
-	nav > ul > li.nav-user-menu > ul.nav-sub {
-		float						: right;
+    }
 
-	}
-	nav > ul > li.nav-user-menu:hover > ul.nav-sub {
+    /*
+    Theme : XCL Admin Flex Grid
+    Distribution : XCL 2.3 Alpha
+    Version : 0.0.5
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2019-11-11
+    URL : https://github.com/xoopscube/xcl/
 
-		display					: block;
-		opacity					: 1;
-		visibility			: visible;
-		right 					: 0px;
-		width						: 200px;
+    -------------------- -------------------- -------------------- -------------------- NAV HEADER */
 
-	}
+    nav > ul > li > ul.nav-sub > li > a {
 
-	ul.nav-sub > li > a > .svg-ui-icon {
+        padding         : var(  --ui-space-500 		);
+        text-decoration : none;
+        width           : 100%;
 
-		margin-right		: 1em; /* Space icon -> text */
-		vertical-align	: middle; /* Align icon and text */
-		width						: 1.5em; /* Size icon to text */
-	}
+    }
+
+    nav > ul > li > ul.nav-sub > li:hover > a {
+
+        background      : var(  --ui-color-400	);
+
+    }
+
+    /* nav-sub nav-user-menu */
+    nav > ul > li.nav-user-menu > ul.nav-sub {
+        float           : right;
+
+    }
+    nav > ul > li.nav-user-menu:hover > ul.nav-sub {
+
+        display         : block;
+        opacity         : 1;
+        visibility      : visible;
+        right           : 0px;
+        width           : 200px;
+
+    }
+
+    ul.nav-sub > li > a > .svg-ui-icon {
+
+        margin-right    : 1em; /* Space icon -> text */
+        vertical-align  : middle; /* Align icon and text */
+        width           : 1.5em; /* Size icon to text */
+    }

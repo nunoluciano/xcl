@@ -51,7 +51,7 @@
       <{else}>
          (<{$imagecategoryObjects[$icid]->getShow('imgcat_name')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('name',$icid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="name[<{$icid}>]" value="<{$actionForm->get('name',$icid)|xoops_escape:edit}>" />
+      <input type="hidden" name="name[<{$icid}>]" value="<{$actionForm->get('name',$icid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_number">
       <{if $actionForm->get('maxsize',$icid) == $imagecategoryObjects[$icid]->get('imgcat_maxsize')}>
@@ -59,7 +59,7 @@
       <{else}>
          (<{$imagecategoryObjects[$icid]->getShow('imgcat_maxsize')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('maxsize',$icid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="maxsize[<{$icid}>]" value="<{$actionForm->get('maxsize',$icid)|xoops_escape:edit}>" />
+      <input type="hidden" name="maxsize[<{$icid}>]" value="<{$actionForm->get('maxsize',$icid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_number">
       <{if $actionForm->get('maxwidth',$icid) == $imagecategoryObjects[$icid]->get('imgcat_maxwidth')}>
@@ -67,7 +67,7 @@
       <{else}>
          (<{$imagecategoryObjects[$icid]->getShow('imgcat_maxwidth')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('maxwidth',$icid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="maxwidth[<{$icid}>]" value="<{$actionForm->get('maxwidth',$icid)|xoops_escape:edit}>" />
+      <input type="hidden" name="maxwidth[<{$icid}>]" value="<{$actionForm->get('maxwidth',$icid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_number">
       <{if $actionForm->get('maxheight',$icid) == $imagecategoryObjects[$icid]->get('imgcat_maxheight')}>
@@ -75,7 +75,7 @@
       <{else}>
          (<{$imagecategoryObjects[$icid]->getShow('imgcat_maxheight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('maxheight',$icid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="maxheight[<{$icid}>]" value="<{$actionForm->get('maxheight',$icid)|xoops_escape:edit}>" />
+      <input type="hidden" name="maxheight[<{$icid}>]" value="<{$actionForm->get('maxheight',$icid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_select">
       <{if $actionForm->get('display',$icid)|intval == $imagecategoryObjects[$icid]->get('imgcat_display')}>
@@ -101,9 +101,9 @@
         <{/if}></b>
       <{/if}>
       <{if $actionForm->get('display',$icid)}>
-        <input type="hidden" name="display[<{$icid}>]" value="1" />
+        <input type="hidden" name="display[<{$icid}>]" value="1">
       <{else}>
-        <input type="hidden" name="display[<{$icid}>]" value="0" />
+        <input type="hidden" name="display[<{$icid}>]" value="0">
       <{/if}>
     </td>
     <td class="legacy_list_number">
@@ -112,7 +112,7 @@
       <{else}>
          (<{$imagecategoryObjects[$icid]->getShow('imgcat_weight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('weight',$icid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="weight[<{$icid}>]" value="<{$actionForm->get('weight',$icid)|xoops_escape:edit}>" />
+      <input type="hidden" name="weight[<{$icid}>]" value="<{$actionForm->get('weight',$icid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_select">
 
@@ -125,9 +125,9 @@
         <{/if}>
 				</b>
       <{if $actionForm->get('delete',$icid)}>
-        <input type="hidden" name="delete[<{$icid}>]" value="1" />
+        <input type="hidden" name="delete[<{$icid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$icid}>]" value="0" />
+        <input type="hidden" name="delete[<{$icid}>]" value="0">
       <{/if}>
     </td>
   </tr>
@@ -137,8 +137,8 @@
 <tfoot>
   <tr>
     <td class="foot" colspan="8">
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+      <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
 	</tr>
 </tfoot>

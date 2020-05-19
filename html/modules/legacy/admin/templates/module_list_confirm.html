@@ -64,12 +64,12 @@
           <{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>
         <{/if}></b>
       <{/if}>
-      <input type="hidden" name="name[<{$mid}>]" value="<{$actionForm->get('name',$mid)|xoops_escape:edit}>" />
-      <input type="hidden" name="weight[<{$mid}>]" value="<{$actionForm->get('weight',$mid)|xoops_escape:edit}>" />
+      <input type="hidden" name="name[<{$mid}>]" value="<{$actionForm->get('name',$mid)|xoops_escape:edit}>">
+      <input type="hidden" name="weight[<{$mid}>]" value="<{$actionForm->get('weight',$mid)|xoops_escape:edit}>">
       <{if $actionForm->get('isactive',$mid)}>
-        <input type="hidden" name="isactive[<{$mid}>]" value="1" />
+        <input type="hidden" name="isactive[<{$mid}>]" value="1">
       <{else}>
-        <input type="hidden" name="isactive[<{$mid}>]" value="0" />
+        <input type="hidden" name="isactive[<{$mid}>]" value="0">
       <{/if}>
     </td>
   </tr>
@@ -79,8 +79,8 @@
 <tfoot>
 	<tr>
     <td class="foot" colspan="4">
-      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input class="button-submit" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+      <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
 	</tr>
 </tfoot>

@@ -69,12 +69,12 @@
           <{$smarty.const._NO}>
         <{/if}></b>
       <{/if}>
-      <input type="hidden" name="code[<{$sid}>]" value="<{$actionForm->get('code',$sid)|xoops_escape:edit}>" />
-      <input type="hidden" name="emotion[<{$sid}>]" value="<{$actionForm->get('emotion',$sid)|xoops_escape:edit}>" />
+      <input type="hidden" name="code[<{$sid}>]" value="<{$actionForm->get('code',$sid)|xoops_escape:edit}>">
+      <input type="hidden" name="emotion[<{$sid}>]" value="<{$actionForm->get('emotion',$sid)|xoops_escape:edit}>">
       <{if $actionForm->get('display',$sid)}>
-        <input type="hidden" name="display[<{$sid}>]" value="1" />
+        <input type="hidden" name="display[<{$sid}>]" value="1">
       <{else}>
-        <input type="hidden" name="display[<{$sid}>]" value="0" />
+        <input type="hidden" name="display[<{$sid}>]" value="0">
       <{/if}>
     </td>
     <td class="legacy_list_select">
@@ -87,17 +87,17 @@
           <{$smarty.const._NO}>
         <{/if}></b>
       <{if $actionForm->get('delete',$sid)}>
-        <input type="hidden" name="delete[<{$sid}>]" value="1" />
+        <input type="hidden" name="delete[<{$sid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$sid}>]" value="0" />
+        <input type="hidden" name="delete[<{$sid}>]" value="0">
       <{/if}>
     </td>
   </tr>
 <{/foreach}>
   <tr>
     <td class="foot" colspan="5">
-      <input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+      <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
   </tr>
 </table>

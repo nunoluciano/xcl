@@ -74,10 +74,10 @@
 				<{else}>
 					(<{$blockObjects[$bid]->mCachetime->getShow('label')}>) &raquo; <br><b  class="legacy_module_error"><{$formcache_obj->getShow('label')}></b>
 				<{/if}>
-				<input type="hidden" name="title[<{$bid}>]" value="<{$actionForm->get('title',$bid)|xoops_escape:edit}>" />
-				<input type="hidden" name="side[<{$bid}>]" value="<{$actionForm->get('side',$bid)|xoops_escape:edit}>" />
-				<input type="hidden" name="weight[<{$bid}>]" value="<{$actionForm->get('weight',$bid)|xoops_escape:edit}>" />
-				<input type="hidden" name="bcachetime[<{$bid}>]" value="<{$actionForm->get('bcachetime',$bid)|xoops_escape:edit}>" />
+				<input type="hidden" name="title[<{$bid}>]" value="<{$actionForm->get('title',$bid)|xoops_escape:edit}>">
+				<input type="hidden" name="side[<{$bid}>]" value="<{$actionForm->get('side',$bid)|xoops_escape:edit}>">
+				<input type="hidden" name="weight[<{$bid}>]" value="<{$actionForm->get('weight',$bid)|xoops_escape:edit}>">
+				<input type="hidden" name="bcachetime[<{$bid}>]" value="<{$actionForm->get('bcachetime',$bid)|xoops_escape:edit}>">
 			</td>
 			<td class="legacy_list_select">
 
@@ -89,9 +89,9 @@
 						<{$smarty.const._NO}>
 					<{/if}></b>
 				<{if $actionForm->get('uninstall',$bid)}>
-					<input type="hidden" name="uninstall[<{$bid}>]" value="1" />
+					<input type="hidden" name="uninstall[<{$bid}>]" value="1">
 				<{else}>
-					<input type="hidden" name="uninstall[<{$bid}>]" value="0" />
+					<input type="hidden" name="uninstall[<{$bid}>]" value="0">
 				<{/if}>
 			</td>
 		</tr>
@@ -101,8 +101,8 @@
 	<tfoot class="foot">
 		<tr>
 			<td colspan="6">
-				<input type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>" class="formButton">
-				<input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+				<input class="button-submit" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+				<input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
 			</td>
 		</tr>
 	</tfoot>

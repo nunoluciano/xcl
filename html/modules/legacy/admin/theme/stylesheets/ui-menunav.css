@@ -1,5 +1,5 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
+	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
@@ -60,8 +60,8 @@ a.adminavi-item:not(.selected) {
 }
 
 a.adminavi-item:not(.selected):hover {
-	color						: var(--ui-color-link-hover);
-	border-bottom		: 3px solid var(--ui-color-link-hover);
+	color						: var(--ui-link-hover);
+	border-bottom		: 3px solid var(--ui-link-hover);
 
 }
 
@@ -69,8 +69,8 @@ a.adminavi-item:not(.selected):hover {
 a.adminavi-item.selected,
 a.adminavi-item.selected:active {
 
-	color		 				: var(--ui-color-link-hover);
-	border-bottom		: 3px solid var(--ui-color-link-hover);
+	color		 				: var(--ui-link-hover);
+	border-bottom		: 3px solid var(--ui-link-hover);
 	outline-width		: 0;
 }
 

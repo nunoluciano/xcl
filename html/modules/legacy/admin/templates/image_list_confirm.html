@@ -50,7 +50,7 @@
       <{else}>
          (<{$imageObjects[$imid]->getShow('image_nicename')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('nicename',$imid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="nicename[<{$imid}>]" value="<{$actionForm->get('nicename',$imid)|xoops_escape:edit}>" />
+      <input type="hidden" name="nicename[<{$imid}>]" value="<{$actionForm->get('nicename',$imid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_type"><{$imageObjects[$imid]->getShow('image_mimetype')}></td>
     <td class="legacy_list_select">
@@ -77,9 +77,9 @@
         <{/if}></b>
       <{/if}>
       <{if $actionForm->get('display',$imid)}>
-        <input type="hidden" name="display[<{$imid}>]" value="1" />
+        <input type="hidden" name="display[<{$imid}>]" value="1">
       <{else}>
-        <input type="hidden" name="display[<{$imid}>]" value="0" />
+        <input type="hidden" name="display[<{$imid}>]" value="0">
       <{/if}>
     </td>
     <td class="legacy_list_number">
@@ -88,7 +88,7 @@
       <{else}>
          (<{$imageObjects[$imid]->getShow('image_weight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('weight',$imid)|xoops_escape}></b>
       <{/if}>
-      <input type="hidden" name="weight[<{$imid}>]" value="<{$actionForm->get('weight',$imid)|xoops_escape:edit}>" />
+      <input type="hidden" name="weight[<{$imid}>]" value="<{$actionForm->get('weight',$imid)|xoops_escape:edit}>">
     </td>
     <td class="legacy_list_select">
 
@@ -101,9 +101,9 @@
 				<{/if}>
 				</b>
       <{if $actionForm->get('delete',$imid)}>
-        <input type="hidden" name="delete[<{$imid}>]" value="1" />
+        <input type="hidden" name="delete[<{$imid}>]" value="1">
       <{else}>
-        <input type="hidden" name="delete[<{$imid}>]" value="0" />
+        <input type="hidden" name="delete[<{$imid}>]" value="0">
       <{/if}>
     </td>
   </tr>
@@ -113,9 +113,9 @@
 <tfoot>
   <tr>
     <td class="foot" colspan="6">
-      <input type="hidden" name="imgcatid" value="<{$category->getShow('imgcat_id')}>" />
-      <input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton" />
-      <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel" />
+      <input type="hidden" name="imgcatid" value="<{$category->getShow('imgcat_id')}>">
+      <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+      <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
     </td>
 	</tr>
 </tfoot>

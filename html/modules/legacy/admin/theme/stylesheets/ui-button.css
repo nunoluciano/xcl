@@ -1,5 +1,5 @@
 /*
-	XOOPS Cube Theme : XCL Admin Flex Grid
+	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XCL 2.3 Alpha
 	Version : 0.0.5
 	Author : Nuno Luciano aka Gigamaster
@@ -11,46 +11,43 @@
 .ui-btn,
 [class*="ui-btn-"] {
 
-	background-color			: var(  --ui-color-300			);
+    background-color    : var(  --ui-button-background  );
 
-  /* border-radius					: 0.1rem; */
-  border								: var(  --ui-button-border		);
-	border-color					: transparent;
-	border-radius					: var(  --ui-button-radius	);
+    border              : var(  --ui-button-border      );
+    border-radius       : var(  --ui-button-radius      );
 
-  box-shadow						: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow          : var(  --ui-button-box-shadow  );
 
-	color									: var(  --ui-button-color		) !important;
-	cursor								: pointer;
+    color               : var(  --ui-button-color   ) !important;
+    cursor              : pointer;
 
-	display								: inline-block;
+    display             : inline-block;
 
-  font-size							: 0.875rem;
-  font-family						: sans-serif;
-  font-style						: normal;
-  font-weight						: 300;
-  letter-spacing				: 0.08rem;
-	line-height						: 1;
+    font-size           : 0.875rem;
+    font-family         : sans-serif;
+    font-style          : normal;
+    font-weight         : 300;
+    letter-spacing      : 0.08rem;
+    line-height         : 1;
 
+    padding             : var( --ui-button-padding  );
+    margin              : var( --ui-button-margin   );
 
-	padding								: var( --ui-button-padding	 );
-	margin 								: var( --ui-button-margin		 );
-
-  text-align						: center;
-  text-decoration				: none;
-  /* text-transform				: uppercase; */
-  touch-action					: manipulation;
-  transition						: all 0.3s ease 0s;
-  user-select						: none;
-  vertical-align				: middle;
-	white-space						: nowrap;
+    text-align          : center;
+    text-decoration     : none;
+    /* text-transform   : uppercase; */
+    touch-action        : manipulation;
+    transition          : all 0.3s ease 0s;
+    user-select         : none;
+    vertical-align      : middle;
+    white-space         : nowrap;
 
 }
 
 .ui-btn:active,
 [class*="ui-btn-"]:active {
 
-	box-shadow						: var(  --ui-shadow-300				);
+	box-shadow          : var(  --ui-shadow-300     );
 
 }
 
@@ -58,39 +55,45 @@
 .ui-btn.ui-btn-small,
 [class*="ui-btn-"].ui-btn-small {
 
-	color									: var(  --ui-button-color		);
-  font-size							: 0.8rem;
-	/* padding								: 0.75rem 1rem; */
-	padding								: var(  --ui-button-padding	);
+    color               : var(  --ui-button-color   );
+    font-size           : 0.8rem;
+    /* padding          : 0.75rem 1rem; */
+    padding             : var(  --ui-button-padding );
 
 }
 
-a.ui-btn.ui-btn-small > svg.svg-ui-icon {
+a.ui-btn > svg.svg-ui-icon,
+a.ui-btn.ui-btn-small > svg.svg-ui-icon,
+[class*="ui-btn-"]> svg.svg-ui-icon {
 
-vertical-align					: middle; /* Align icon = text  */
-width										: 1.4em !important;          /* Size icon + text   */
-color										: var(  --ui-button-color		);
-
+    color               : var(  --ui-button-color   );
+    font-size           : 1.5rem;
+    padding-right       : 0.5em;
+    vertical-align      : middle;            /* Align icon = text  */
+    width               : 1.4em !important; /* Size icon + text   */
 
 }
 
-.ui-btn:hover,.ui-btn:focus,
+.ui-btn:hover,
+.ui-btn:focus,
 .ui-btn.ui-btn-small:hover,
 .ui-btn.ui-btn-small:focus {
 
-	background						: var(  --ui-color-link	);
-	color									: var(  --ui-button-color			);
+	background          : var(  --ui-button-hover-bg    );
+	color               : var(  --ui-button-hover-txt   );
 
 }
 
 
 a.ui-btn.disabled,
-.ui-btn.disabled, .ui-btn:disabled,
+.ui-btn.disabled,
+.ui-btn:disabled:hover,
 [class*="ui-btn--"].disabled,
-[class*="ui-btn--"]:disabled {
-
-  cursor: not-allowed;
-	opacity								: 0.5;
+[class*="ui-btn--"]:disabled:hover {
+    background-color    : var(  --button-disable-bg     );
+    color               : var(  --button-disable-txt    );
+    cursor              : not-allowed;
+    opacity             : 0.5;
 
 }
 
@@ -98,18 +101,18 @@ a.ui-btn.disabled,
 
 .ui-btn-black {
 
-  background						: var(  --ui-color-black	);
-	color									: var(  --ui-color-link		);
+    background          : var(  --ui-color-black    );
+    color               : var(  --ui-link     );
 
 }
 .ui-btn-black:active {
 
-  background						: var(  --ui-color-black	);
+  background            : var(  --ui-color-black    );
 
 }
 .ui-btn-black:hover, .ui-btn-black:focus {
 
-	background						: var(  --ui-color-black	);
+	background          : var(  --ui-color-black    );
 
 }
 
@@ -118,19 +121,19 @@ a.ui-btn.disabled,
 
 .ui-btn-white {
 
-  background						: var(  --ui-color-100			);
-	color									: var(  --ui-color-black		);
+    background          : var(  --ui-color-100      );
+    color               : var(  --ui-color-black    );
 
 }
 .ui-btn-white:active {
 
-  background						: var(  --ui-color-link-hover	);
+    background          : var(  --ui-link-hover   );
 
 }
 
 .ui-btn-white:hover, .ui-btn-white:focus {
 
-	background						: var(  --ui-color-link-hover	);
+    background          : var(  --ui-link-hover   );
 
 }
 
@@ -139,20 +142,20 @@ a.ui-btn.disabled,
 
 .ui-btn-danger {
 
-  background						: var(  --ui-color-red		);
-	color									: var(  --ui-color-200		);
+    background          : var(  --ui-color-red  );
+    color               : var(  --ui-color-200  );
 
 }
 
 .ui-btn-danger:active {
 
-  background						: var(  --ui-color-red		);
+    background          : var(  --ui-color-red  );
 
 }
 
 .ui-btn-danger:hover, .ui-btn-danger:focus {
 
-  background						: var(  --ui-color-red		);
+    background          : var(  --ui-color-red  );
 
 }
 
@@ -160,22 +163,20 @@ a.ui-btn.disabled,
 
 .ui-btn-success {
 
-  background						: var(  --ui-color-green	);
-	color									: var(  --ui-color-200		);
+    background          : var(  --ui-color-green    );
+    color               : var(  --ui-color-200      );
 
 }
 
 .ui-btn-success:active {
 
-  background						: var(  --ui-color-green		);
-
+    background          : var(  --ui-color-green    );
 
 }
 
 .ui-btn-success:hover, .ui-btn-success:focus {
 
-  background						: var(  --ui-color-green		);
-
+    background          : var(  --ui-color-green    );
 
 }
 
@@ -183,60 +184,61 @@ a.ui-btn.disabled,
 
 .ui-btn-warning {
 
-  background					: var(  --ui-color-orange	);
-	color								: var(  --ui-color-200		);
+    background          : var(  --ui-color-orange   );
+    color               : var(  --ui-color-200      );
 
 }
 
 .ui-btn-warning:active {
 
-  background					: var(  --ui-color-orange	);
+    background          : var(  --ui-color-orange   );
 
 }
 .ui-btn-warning:hover, .ui-btn-warning:focus {
 
-  background					: var(  --ui-color-orange	);
+    background          : var(  --ui-color-orange   );
 
 }
 
 
 /* -------------------- -------------------- -------------------- -------------------- BADGE */
 
+a.ui-badge,
 .ui-badge {
 
-  background					: var(  --ui-color-100		);
-  border-radius				: 50px;
-  color								: var(  --ui-color-black	);
-  display							: inline-block;
-  font-size						: 0.7rem;
-  font-family					: sans-serif;
-  font-style					: normal;
-  font-weight					: 300;
-  letter-spacing			: 0.08rem;
-  line-height					: 1.2;
-  padding							: .25rem .8rem;
-  text-align					: center;
-  text-transform			: uppercase;
-  vertical-align			: baseline;
-	white-space					: nowrap;
+    background          : var(  --ui-color-200  );
+    border-radius       : 50px;
+    color               : var(  --ui-color-100  );
+    display             : inline-block;
+    font-size           : 0.7rem;
+    font-family         : sans-serif;
+    font-style          : normal;
+    font-weight         : 300;
+    letter-spacing      : 0.08rem;
+    line-height         : 1.2;
+    padding             : .25rem .8rem;
+    text-align          : center;
+    text-transform      : uppercase;
+    vertical-align      : baseline;
+    white-space         : nowrap;
 
 }
 .ui-badge:hover {
-  transition					: all 0.45s;
-  box-shadow					: var(	--ui-shadow-300		);
+    transition          : all 0.45s;
+    box-shadow          : var(	--ui-shadow-300		);
 }
 
 
 .ui-btn-block {
 
-  display							: block;
-	width								: 100%;
+    display             : block;
+    width               : 100%;
 
 }
 
 .ui-btn-block + .ui-btn-block {
 
-	margin-top					: 5px;
+    margin-top          : 5px;
 
 }
 
@@ -244,6 +246,6 @@ input[type="submit"].ui-btn-block,
 input[type="reset"].ui-btn-block,
 input[type="button"].ui-btn-block {
 
-	width								: 100%;
+    width               : 100%;
 
 }
