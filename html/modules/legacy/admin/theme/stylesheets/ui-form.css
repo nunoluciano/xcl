@@ -82,7 +82,8 @@
         color: #ff5722;
     }
 
-    input[type="submit"] {
+    input[type="submit"],
+    input[type="submit"].button-cancel {
 
         background		: var(  --ui-input-background       );
 
@@ -105,9 +106,10 @@
 
     }
 
-    input[type="submit"]:hover {
+    input[type="submit"]:hover,
+    input[type="submit"].button-cancel:hover {
 
-        background        : var(  --ui-input-background     );
+        /* background        : var(  --ui-input-background     ); */
         background        : rgba(248, 194, 0, 0.42);
         border-color      : rgba(248, 194, 0, 0.42);
         /* box-shadow        : 0 12px 20px -10px rgba(248, 194, 0, 0.42), 0 4px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(248, 194, 0, 0.2); */
@@ -117,6 +119,7 @@
         color             : #ffffff;
 
     }
+
 
     input[type="submit"].button-delete,
     input.button-unassign,

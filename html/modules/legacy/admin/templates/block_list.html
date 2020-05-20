@@ -6,7 +6,6 @@
 
 <{ include file="./components/block-overview.html" }>
 
-
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
@@ -31,7 +30,7 @@
 <{ include file="./components/block-filter.html" }>
 
 
-<form name="blockform" method="post" action="./index.php?action=BlockList">
+<form id="blockform" name="blockform" method="post" action="./index.php?action=BlockList" data-confirm="1">
   <{xoops_token form=$actionForm}>
 
 	<{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
@@ -47,7 +46,7 @@
 
 	</div><{* ui-grid-blocks *}>
 
-  <div class="foot">
+  <div class="ui-card-full foot">
     <input type="submit" value="<{$smarty.const._SUBMIT}>" class="button-submit">
   </div>
 

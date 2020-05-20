@@ -64,7 +64,7 @@
 		<{$smarty.const._CM_HIDDEN}>
 					<{/if}>)
 					&raquo;
-					<b class="legacy_module_error">
+					<b class="message-warning">
 					<{if $actionForm->get('status',$cid) == 1 }>
 		<{$smarty.const._CM_PENDING}>
 					<{elseif $actionForm->get('status',$cid) == 2 }>
@@ -78,7 +78,7 @@
 			<td class="legacy_list_select">
 
 					<{if $actionForm->get('delete',$cid) == 1}>
-						<b class="legacy_module_error">
+						<b class="message-warning">
 						<{$smarty.const._YES}>
 						<b class="legacy_module_warning">
 					<{else}>

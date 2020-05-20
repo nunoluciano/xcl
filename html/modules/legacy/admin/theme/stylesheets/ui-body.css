@@ -140,51 +140,32 @@
     }
 
     h1 {
-
-        font-size       : var(  --ui-text-500   );
-
+        font-size   : var(  --ui-text-500   );
     }
-
     h2 {
-
-        font-size       : var(  --ui-text-500   );
-
+        font-size   : var(  --ui-text-400   );
     }
     h3 {
-
-        font-size       : var(  --ui-text-400   );
-
+        font-size   : var(  --ui-text-400   );
     }
-
     h4 {
-
-        font-size       : var(  --ui-text-400   );
-
+        font-size   : var(  --ui-text-300   );
     }
-
     h5 {
-
-        font-size       : var(  --ui-text-300   );
+        font-size   : var(  --ui-text-300   );
     }
-
     h6 {
-
-        font-size       : var(  --ui-text-300   );
-
+        font-size   : var(  --ui-text-300   );
     }
 
     h1, h2, h3, h4, h5 {
-
-        font-weight     : 300;
-
+        font-weight : 300;
     }
 
     hr {
-
-        border          : 0;
-        border-top      : 1px solid var(    --ui-color-300  );
-        margin          : 20px 0
-
+        border      : 0;
+        border-top  : 1px solid var(  --ui-color-300    );
+        margin      : 20px 0
     }
 
     /* -------------------- -------------------- -------------------- -------------------- Right side toggle */

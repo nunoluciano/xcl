@@ -207,7 +207,7 @@
 /* -------------------- -------------------- -------------------- BUTTON style [default]  */
 
     --ui-button-active      : 0;
-    --ui-button-background  : var(	--ui-color-500      );
+    --ui-button-background  : var(	--ui-color-300      );
 
     --ui-button-box-shadow  : 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
@@ -221,7 +221,7 @@
 
     --ui-button-font-size   : var(  --ui-text-300   );
 
-    --ui-button-hover-bg    : var(  --ui-color-300      );
+    --ui-button-hover-bg    : var(  --ui-color-400      );
     --ui-button-hover-txt   : var(  --ui-color-100      );
 
     --ui-button-margin      : var(  --ui-space-400  ) var(  --ui-space-200  ); /* 0.75rem 1rem; */
@@ -386,7 +386,7 @@
 
 /*	-------------------- -------------------- -------------------- NOTIFICATION */
 
-    --ui-notif-background    : var(	--ui-color-400      );
+    --ui-notif-background    : var(	--ui-color-500      );
 
     --ui-notif-border-color  : var(	--ui-color-400      );
     --ui-notif-border-radius : var(	--ui-border-radius  );
@@ -511,7 +511,7 @@
             'ui-font-size' = 15px / 1.5 = 10px
             'ui-font-size' = 16px x 'ui-space-400' = 8px of space
     */
-        --ui-text-scale-ratio	: 1.25;
+        --ui-text-scale-ratio	: 1.5;
 
         --ui-text-100       : calc((1em / var(--ui-text-scale-ratio)) );
         --ui-text-200       : calc(var(--ui-text-100) * var(--ui-text-scale-ratio));

@@ -47,9 +47,11 @@
 		<{stylesheet file=style.css static=true}>
 		<link type="text/css" rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
 
-		<{* ---------- ---------- ---------- ---------- ---------- CDN Script Fallback Local *}>
+		<{* ---------- ---------- ---------- ---------- ---------- Javascript plugin *}>
 
-		<!-- <script src='<{* "js/jquery-1.12.4.min.js"|theme *}>'></script> -->
+        <!-- <script src='<{* "js/autosave.js"|theme *}>'></script> -->
+        <script src='<{$xoops_url}>/common/js/jquery.form.min.js'></script>
+        <script src='<{$xoops_url}>/common/js/jquery.autosave.js'></script>
 
 		<{* ---------- ---------- ---------- ---------- ---------- Xoops javascript *}>
 

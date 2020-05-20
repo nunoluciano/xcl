@@ -35,14 +35,14 @@
       <{if $actionForm->get('name',$mid) == $moduleObjects[$mid]->get('name')}>
         <{$actionForm->get('name',$mid)|xoops_escape}>
       <{else}>
-         (<{$moduleObjects[$mid]->getShow('name')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('name',$mid)|xoops_escape}></b>
+         (<{$moduleObjects[$mid]->getShow('name')}>) &raquo; <b  class="message-warning"><{$actionForm->get('name',$mid)|xoops_escape}></b>
       <{/if}>
     </td>
     <td class="legacy_list_order">
       <{if $actionForm->get('weight',$mid) == $moduleObjects[$mid]->get('weight')}>
         <{$actionForm->get('weight',$mid)|xoops_escape}>
       <{else}>
-         (<{$moduleObjects[$mid]->getShow('weight')}>) &raquo; <b  class="legacy_module_error"><{$actionForm->get('weight',$mid)|xoops_escape}></b>
+         (<{$moduleObjects[$mid]->getShow('weight')}>) &raquo; <b  class="message-warning"><{$actionForm->get('weight',$mid)|xoops_escape}></b>
       <{/if}>
     </td>
     <td class="legacy_list_select">
@@ -57,7 +57,7 @@
         &raquo;
 
         <{if $actionForm->get('isactive',$mid) == 1}>
-        <b class="legacy_module_error">
+        <b class="message-warning">
           <{$smarty.const._AD_LEGACY_LANG_ISACTIVE}>
         <{else}>
         <b class="legacy_module_warning">
