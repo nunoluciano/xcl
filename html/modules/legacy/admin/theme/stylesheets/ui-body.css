@@ -24,7 +24,7 @@
     a{background-color:transparent}
     a:active,a:hover{outline-width:0}
     abbr[title]{border-bottom:none;text-decoration:underline dotted}
-    b,strong{font-weight:bolder}
+    b,strong{font-weight:bold}
     dfn{font-style:italic}
     mark{background:#b49900;color:#000}
     small{font-size:80%}
@@ -41,7 +41,7 @@
     button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}
     button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
     button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
-    fieldset{border:1px solid #888;margin:0 2px;padding:.35em .625em .75em}
+    fieldset{border:1px solid var(--ui-color-300);margin:0 2px;padding:.35em .625em .75em}
     legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
     textarea{overflow:auto}
     [type=checkbox],[type=radio]{padding:0}
@@ -55,48 +55,41 @@
 
     html,
     body {
-
         background      : var(  --ui-body-background    );
-        color           : var(  --ui-text-color         );
+        color           : var(  --ui-color-200         );
 
         font-family     : var(  --ui-font-family        );
         font-size       : var(  --ui-font-size          );
         font-weight     : var(  --ui-font-weight        );
-        line-height     : var(  --ui-font-line-height   );
 
         margin          : var(  --ui-space-no           );
         padding         : var(  --ui-space-no           );
 
         text-rendering	: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
-
     }
 
     html{
-
         overflow-x      : hidden
-
     }
 
     body {
-
         transition      : background 500ms ease-in-out, color 200ms ease;
-
     }
 
     .ui-dev-mode {
 
-        display         : var(  --ui-dev-mode   );
-        border-color    : var(  --ui-notif-border-color  );
-        border-radius   : var(  --ui-notif-border-radius );
-        border-style    : var(  --ui-notif-border-style  );
-        border-width    : var(  --ui-notif-border-width  );
+        background      : var(  --ui-notif-background       ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") 1em 1em no-repeat;
+        border-color    : var(  --ui-notif-border-color     );
+        border-radius   : var(  --ui-notif-border-radius    );
+        border-style    : var(  --ui-notif-border-style     );
+        border-width    : var(  --ui-notif-border-width     );
 
-        box-shadow      : var(  --ui-notif-box-shadow    );
+        box-shadow      : var(  --ui-notif-box-shadow       );
 
-        color           : var(  --ui-notif-color-text    );
-
-        padding         : var(  --ui-notif-padding       );
+        color           : var(  --ui-notif-color-text       );
+        display         : var(  --ui-dev-mode               );
+        padding         : var(  --ui-notif-padding          );
 
     }
 
@@ -105,33 +98,27 @@
     a,
     a:link,
     a:visited {
-
         color           : var(  --ui-link );
         display         : inline-block;
         text-decoration : none;
-
     }
 
     a:active,
     a:focus {
-
         color           : var(  --ui-link-active  );
-
     }
 
     a:hover,
     a:visited:hover {
-
         color           : var(  --ui-link-hover   );
-
     }
     /* Add icon to link */
     /* a[href^="http"]::after {
 
-        font-size				: 0.75rem;
-        vertical-align	: text-top;
-        content					: '\0020\2197';
-        text-decoration	: none;
+        font-size       : 0.75rem;
+        vertical-align  : text-top;
+        content         : '\0020\2197';
+        text-decoration : none;
 
     } */
 
@@ -139,34 +126,64 @@
         scroll-margin-top: 5em;
     }
 
-    h1 {
-        font-size   : var(  --ui-text-500   );
-    }
-    h2 {
-        font-size   : var(  --ui-text-400   );
-    }
-    h3 {
-        font-size   : var(  --ui-text-400   );
-    }
-    h4 {
-        font-size   : var(  --ui-text-300   );
-    }
-    h5 {
-        font-size   : var(  --ui-text-300   );
-    }
-    h6 {
-        font-size   : var(  --ui-text-300   );
+    blockquote {
+        border-left     : 3px solid var(  --ui-color-300  );
+        font-style      : italic;
+        font-size       : var(  --ui-size-300   );
+        padding         : var(  --ui-space-500   ) var(  --ui-space-700  );
     }
 
-    h1, h2, h3, h4, h5 {
-        font-weight : 300;
+    code,kbd,pre,samp {
+        background      : var( --ui-color-500 );
+        border-left     : 1px solid var( --ui-color-400 );
+        color           : var(--ui-color-100);
+        padding         : var(--ui-space-200) var(--ui-space-500);
+    }
+
+    h1 {
+        font-size       : var(  --ui-size-600   );
+        margin          : 0 0 var(  --ui-space-300  );
+
+    }
+    h2 {
+        font-size       : var(  --ui-size-500   );
+        margin          : 0 0 var(  --ui-space-300  );
+    }
+    h3 {
+        font-size       : var(  --ui-size-400   );
+        margin          : 0 0 var(  --ui-space-300  );
+    }
+    h4 {
+        font-size       : var(  --ui-size-300   );
+        margin          : var(  --ui-space-400  ) 0;
+    }
+    h5 {
+        font-size       : var(  --ui-size-200   );
+        letter-spacing  : 2px;
+        margin          : var(  --ui-space-500  ) 0;
+    }
+    h6 {
+        font-size       : var(  --ui-size-200   );
+        text-transform  : uppercase;
+        margin          : var(  --ui-space-600  ) 0;
+    }
+
+    h1, h2, h3, h4 {
+        font-weight     : 300;
+        width           : 100%;
     }
 
     hr {
-        border      : 0;
-        border-top  : 1px solid var(  --ui-color-300    );
-        margin      : 20px 0
+        border          : 0;
+        border-top      : 1px solid var(  --ui-color-300    );
+        margin          : 20px 0
     }
+
+    p {
+        font-size       : var(  --ui-size-200   );
+        margin          : var(  --ui-space-500  ) 0;
+    }
+
 
     /* -------------------- -------------------- -------------------- -------------------- Right side toggle */
 
@@ -217,8 +234,8 @@
     .theme-options-toogle:hover {
         box-shadow      : 1px 1px 1px 1px rgba(0,0,0,0.27);
         filter          : drop-shadow(1px 1px 0px rgba(10, 10, 10, 0.7));
-        /* box-shadow      : 1px 1px 1px 1px rgba(204, 15, 15, 0.27); */
-  /* Similar syntax to box-shadow */
+        /* box-shadow   : 1px 1px 1px 1px rgba(204, 15, 15, 0.27); */
+        /* Similar syntax to box-shadow */
     }
 
     /* -------------------- -------------------- -------------------- -------------------- XCL CUBE

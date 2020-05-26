@@ -34,7 +34,7 @@
         align-items     : center;
 
         background      : var(  --ui-header-background  );
-
+        background-image: linear-gradient(200deg, hsla(219, 15%, 25%, 0.50), hsla(0, 0%, 0%, 0.80));
         border-color    : var(  --ui-border-none    );
         border-radius   : var(  --ui-border-none    );
         border-style    : var(  --ui-border-none    );
@@ -67,7 +67,7 @@
 
         grid-area       : main;
 
-        padding         : 0 2rem 2rem;
+        padding         : 0 4rem 2rem;
 
     }
 
@@ -78,6 +78,7 @@
         align-items     : center;
 
         background      : var(  --ui-footer-background      );
+        background-image: linear-gradient(200deg, hsla(219, 15%, 25%, 0.50), hsla(0, 0%, 0%, 0.80));
 
         border          : var(  --ui-footer-border          );
         border-width    : var(  --ui-footer-border-width    );
@@ -126,6 +127,7 @@
         flex-direction  : column;
         flex-basis      : 100%;
         flex            : 1;
+        padding         : .5em;
     }
 
     .ui-flex-column-2 {

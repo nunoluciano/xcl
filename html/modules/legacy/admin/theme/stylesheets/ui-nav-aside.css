@@ -45,7 +45,7 @@
 
         background      : var(  --ui-aside-background   );
 
-        color           : var(  --ui-text-color         );
+        color           : var(  --ui-color-600         );
 
         grid-area       : nav-aside;
 

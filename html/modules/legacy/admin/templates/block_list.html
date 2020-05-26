@@ -1,28 +1,28 @@
 <div class="adminnavi" aria-label="breadcrumb">
-	<a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-	&raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
+<a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+&raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
 </div>
 
 
 <{ include file="./components/block-overview.html" }>
 
-<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h2>
+    <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h2>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
+    <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="tips">
- <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}>
-</div>
+    <div class="tips">
+    <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}>
+    </div>
 
-<{if $actionForm->hasError()}>
-<div class="error">
-  <ul>
+    <{if $actionForm->hasError()}>
+    <div class="error">
+    <ul>
     <{foreach item=message from=$actionForm->getErrorMessages()}>
-      <li><{$message|xoops_escape}></li>
+        <li><{$message|xoops_escape}></li>
     <{/foreach}>
-  </ul>
-</div>
-<{/if}>
+    </ul>
+    </div>
+    <{/if}>
 
 
 <{ include file="./components/block-search.html" }>
@@ -30,26 +30,26 @@
 <{ include file="./components/block-filter.html" }>
 
 
-<form id="blockform" name="blockform" method="post" action="./index.php?action=BlockList" data-confirm="1">
-  <{xoops_token form=$actionForm}>
+    <form id="blockform" name="blockform" method="post" action="./index.php?action=BlockList">
+    <{xoops_token form=$actionForm}>
 
-	<{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
-	<div class="ui-grid-blocks">
-
-
-			<{foreach item=obj from=$objects}>
-
-			<{ include file="./components/block-card.html" }>
-
-			<{/foreach}>
+    <{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
+    <div class="ui-grid-blocks">
 
 
-	</div><{* ui-grid-blocks *}>
+        <{foreach item=obj from=$objects}>
 
-  <div class="ui-card-full foot">
+        <{ include file="./components/block-card.html" }>
+
+        <{/foreach}>
+
+
+    </div><{* ui-grid-blocks *}>
+
+    <div class="ui-card-full foot">
     <input type="submit" value="<{$smarty.const._SUBMIT}>" class="button-submit">
-  </div>
+    </div>
 
-</form>
+    </form>
 
 <{ include file="./components/pagenavi.html" }>

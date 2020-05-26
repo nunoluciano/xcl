@@ -59,28 +59,31 @@
     } */
 
 /* -------------------- -------------------- -------------------- Color Theme Default */
+/* @media (prefers-color-scheme: dark) {
 
-@media (prefers-color-scheme: dark) {
+
+ } */
+
 
     :root {
 
-    /* localStorage const UI_COLOR_MODE_KEY */
-    --color-mode        : 'dark';
+/* -------------------- -------------------- -------------------- Color Theme Dark */
 
-    --ui-body-background: hsl(210, 18%, 80%);
+
+    --ui-body-background: var(  --ui-color-800  ); /* hsl(210, 18%, 80%); */
 
 
     /* -------------------- -------------------- Color Theme Light */
 
-    --ui-color-100      : hsl(0, 0%, 98%);
-    --ui-color-200      : hsl(0, 0%, 95%);
-    --ui-color-300      : hsl(210, 82%, 97%);
-    --ui-color-400      : hsl(210, 18%, 89%);
-    --ui-color-500      : hsl(210, 20%, 18%);
-
-    --ui-text-color     : hsl(210, 20%, 12%);
-    --ui-text-dark      : hsl(210, 20%, 8%);
-    --ui-text-light     : hsl(200, 60%, 95%);
+    --ui-color-900      : hsl(219, 15%, 80%);
+    --ui-color-800      : hsl(219, 15%, 70%);
+    --ui-color-700      : hsl(219, 15%, 60%);
+    --ui-color-600      : hsl(219, 15%, 55%);
+    --ui-color-500      : hsl(219, 15%, 40%);
+    --ui-color-400      : hsl(219, 15%, 35%);
+    --ui-color-300      : hsl(219, 15%, 20%);
+    --ui-color-200      : hsl(219, 15%, 10%);
+    --ui-color-100      : hsl(219, 15%, 5%);
 
     /* -------------------- -------------------- Color Scheme Light */
 
@@ -88,11 +91,11 @@
     --ui-color-black    : #101010;
     --ui-color-blue     : #0F4C81;
     --ui-color-green    : #1a9f27;
-    --ui-color-indigo   : #1b275a;
+    --ui-color-indigo   : #4B0082;
     --ui-color-orange   : #ff9800;
-    --ui-color-purple   : #673ab7;
+    --ui-color-purple   : #800080; /* #673ab7 */
     --ui-color-red      : #f44336;
-    --ui-color-white    : #fafafa;
+    --ui-color-white    : hsl(0, 0%, 90%);
 
     /* -------------------- -------------------- Color Link Light */
 
@@ -101,53 +104,13 @@
     --ui-link-hover     : orange;
     --ui-link-visited   : rgb(255, 0, 0);
 
-    }
-
-
-
-/* -------------------- -------------------- -------------------- Color Theme Dark */
-
-    [data-color-scheme="dark"] {
-
-    --ui-body-background: #232831;
-
-    --ui-color-100      : hsl(216, 15%, 64%);
-    --ui-color-200      : hsl(216, 15%, 32%);
-    --ui-color-300      : hsl(219, 15%, 28%);
-    --ui-color-400      : hsl(219, 15%, 24%);
-    --ui-color-500      : hsl(219, 15%, 18%);
-
-    --ui-text-color     : #C0CCDA;
-    --ui-text-dark      : #001527;
-    --ui-text-light     : #EBF5FA;
-
-/* -------------------- -------------------- -------------------- Color Scheme Dark */
-
-    /* --ui-color-amber : #ffc107;
-    --ui-color-blue     : #0F4C81;
-    --ui-color-green    : #27ae74;
-    --ui-color-indigo   : #1b275a;
-    --ui-color-orange   : #ff9800;
-    --ui-color-purple   : #673ab7;
-    --ui-color-red      : #f44336;
-    --ui-color-white    : #FAFAFA; */
-
-/* -------------------- -------------------- -------------------- Color Link Dark */
-
-    --ui-link         : #face74;
-    --ui-link-active  : orange;
-    --ui-link-hover   : #EBF5FA;
-    --ui-link-visited : #face74;
-
-    }
-}
 
 /* -------------------- -------------------- -------------------- ROOT DEFAULT */
 
-:root {
+
 
     /* Development Mode Display Smarty Template Name : block / none */
-    --ui-dev-mode           : block;
+    --ui-dev-mode           : none;
 
     /* Fallback for Custom Properties */
     /* --vh                 : 1vh; */
@@ -155,8 +118,7 @@
     --ui-font-family        : 'Avenir', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif;
     --ui-font-monospace     : SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     --ui-font-serif         : serif;
-    --ui-font-line-height   : 1.5rem;
-    --ui-font-size          : 14px;
+    --ui-font-size          : 15px;
     --ui-font-weight        : 300;
 
 
@@ -164,16 +126,16 @@
 
     --ui-aside-background   : none;
 
-    --ui-footer-background  : var(  --ui-color-500  );
-    --ui-footer-border      : solid var(  --ui-color-400  );
+    --ui-footer-background  : var(  --ui-color-900  );
+    --ui-footer-border      : solid var(  --ui-color-800  );
     --ui-footer-border-width: 1px 0 0 0 ;
-    --ui-footer-color       : var(  --ui-color-100  );
+    --ui-footer-color       : var(  --ui-color-200  );
     --ui-footer-link        : var(  --ui-link );
 
     --ui-grid-background    : none;
 
-    --ui-header-background  : var(  --ui-color-500  );
-    --ui-header-shadow      : var(  --ui-shadow-200 );
+    --ui-header-background  : var(  --ui-color-800  );
+    --ui-header-shadow      : var(  --ui-shadow-300 );
     --ui-header-position    : fixed;
 
     --ui-main-background    : none;
@@ -182,14 +144,14 @@
 /* -------------------- -------------------- -------------------- BORDER style [default] */
 
     --ui-border-none        : 0;
-    --ui-border-color       : var(  --ui-color-200  );
+    --ui-border-color       : var(  --ui-color-300  );
     --ui-border-radius      : 5px;
     --ui-border-style       : solid;
     --ui-border-width       : 1px;
 
 /* -------------------- -------------------- -------------------- BREADCRUMBS */
 
-    --ui-breadcrumbs-background   	: var(	--ui-color-500      );
+    --ui-breadcrumbs-background   	: var(	--ui-color-600      );
 
     --ui-breadcrumbs-border-color 	: var(	--ui-color-500      );
     --ui-breadcrumbs-border-radius	: var(	--ui-border-radius  );
@@ -207,21 +169,23 @@
 /* -------------------- -------------------- -------------------- BUTTON style [default]  */
 
     --ui-button-active      : 0;
-    --ui-button-background  : var(	--ui-color-300      );
+    --ui-button-background  : var(	--ui-color-500      );
 
-    --ui-button-box-shadow  : 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    /* --ui-button-box-shadow  : 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
 
-    --ui-button-border      : 1px solid var(	--ui-color-500      );
+    --ui-button-box-shadow  : none;
+
+    --ui-button-border      : 1px solid var(	--ui-color-600      );
     --ui-button-radius      : var(	--ui-border-radius  );
 
     --ui-button-color       : var(  --ui-color-white    ); /*#3C4858; */
 
-    --button-disable-bg     : var(  --ui-color-300      );
-    --button-disable-txt    : var(  --ui-color-100      );
+    --ui-button-disable-bg     : var(  --ui-color-600      );
+    --ui-button-disable-txt    : var(  --ui-color-300      );
 
-    --ui-button-font-size   : var(  --ui-text-300   );
+    --ui-button-font-size   : var(  --ui-size-300   );
 
-    --ui-button-hover-bg    : var(  --ui-color-400      );
+    --ui-button-hover-bg    : var(  --ui-color-300      );
     --ui-button-hover-txt   : var(  --ui-color-100      );
 
     --ui-button-margin      : var(  --ui-space-400  ) var(  --ui-space-200  ); /* 0.75rem 1rem; */
@@ -230,16 +194,16 @@
 
 /* -------------------- -------------------- -------------------- CARD-BLOCK */
 
-    --ui-card-block-background    	: var(  --ui-color-400      );
+    --ui-card-block-background    	: var(  --ui-color-700      );
 
-    --ui-card-block-border-color  	: var(  --ui-color-400      );
+    --ui-card-block-border-color  	: var(  --ui-color-800      );
     --ui-card-block-border-radius 	: var(  --ui-border-radius  );
     --ui-card-block-border-style  	: var(  --ui-border-style   );
     --ui-card-block-border-width  	: var(  --ui-border-width   );
 
-    --ui-card-block-box-shadow      : var(  --ui-shadow-100     );
+    --ui-card-block-box-shadow      : var(  --ui-shadow-200     );
 
-    --ui-card-block-hover           : var(  --ui-color-200      );
+    --ui-card-block-hover           : var(  --ui-color-600      );
 
     --ui-card-block-padding         : var(  --ui-space-600      );
     --ui-card-block-margin          : var(  --ui-space-600      );
@@ -265,9 +229,9 @@
 
 /* -------------------- -------------------- -------------------- CARD-FULL */
 
-    --ui-card-full-background       : var(  --ui-color-400      );
+    --ui-card-full-background       : var(  --ui-color-700      );
 
-    --ui-card-full-border-color     : var(  --ui-color-400      );
+    --ui-card-full-border-color     : var(  --ui-color-600      );
     --ui-card-full-border-radius    : var(  --ui-border-radius  );
     --ui-card-full-border-style     : var(  --ui-border-style   );
     --ui-card-full-border-width     : var(  --ui-border-width   );
@@ -280,9 +244,9 @@
 
 /* -------------------- -------------------- -------------------- CARD-SMALL */
 
-    --ui-card-small-background      : var(	--ui-color-400      );
+    --ui-card-small-background      : var(	--ui-color-600      );
 
-    --ui-card-small-border-color    : var(  --ui-color-400      );
+    --ui-card-small-border-color    : var(  --ui-color-500      );
     --ui-card-small-border-radius   : var(  --ui-border-radius  );
     --ui-card-small-border-style    : var(  --ui-border-style   );
     --ui-card-small-border-width    : var(  --ui-border-width   );
@@ -297,17 +261,17 @@
 
 /* -------------------- -------------------- -------------------- Color Block Type SVG Color !Todo : Refactory and rename */
 
-    --ui-color-block-html       : var(  --ui-color-200  );
-    --ui-color-block-module     : var(  --ui-color-300  );
-    --ui-color-block-php        : var(  --ui-color-400  );
-    --ui-color-block-smilies    : var(  --ui-color-500  );
+    --ui-color-block-html       : var(  --ui-color-700  );
+    --ui-color-block-module     : var(  --ui-color-700  );
+    --ui-color-block-php        : var(  --ui-color-700  );
+    --ui-color-block-smilies    : var(  --ui-color-700  );
 
 
 /* -------------------- -------------------- -------------------- FILTER [ DATA ] */
 
-    --ui-filter-background    	: var(  --ui-color-400      );
+    --ui-filter-background    	: var(  --ui-color-700      );
 
-    --ui-filter-border-color  	: var(  --ui-color-400      );
+    --ui-filter-border-color  	: var(  --ui-color-600      );
     --ui-filter-border-radius 	: var(  --ui-border-radius  );
     --ui-filter-border-style  	: var(  --ui-border-style   );
     --ui-filter-border-width  	: var(  --ui-border-width   );
@@ -320,9 +284,9 @@
 
 /* -------------------- -------------------- -------------------- FORM input */
 
-    --ui-input-background       : var(  --ui-color-500      );
+    --ui-input-background       : var(  --ui-color-700      );
 
-    --ui-input-border-color     : var(  --ui-color-300      );
+    --ui-input-border-color     : var(  --ui-color-500      );
     --ui-input-border-radius    : var(	--ui-border-radius  );
     --ui-input-border-style     : var(	--ui-border-style   );
     --ui-input-border-width     : var(	--ui-border-width   );
@@ -330,7 +294,7 @@
     --ui-input-border-hover     : 1px solid var(  --ui-link-active  );
     --ui-input-border-focus     : 1px solid var(  --ui-link-active  );
 
-    --ui-input-color            : var(  --ui-text-color );
+    --ui-input-color            : var(  --ui-color-200 );
 
     /* --ui-input-shadow        : var(  --ui-shadow-inset 	); */
 
@@ -357,12 +321,12 @@
 
 /*	-------------------- -------------------- -------------------- NAV SIDE */
 
-    --ui-nav-side-background    : var(  --ui-color-200      );
+    --ui-nav-side-background    : transparent; /* var(  --ui-color-200      ); */
 
 
     --ui-nav-side-box-shadow    : var(  --ui-shadow-300     );
 
-    --ui-nav-side-color         : var(  --ui-link     );
+    --ui-nav-side-color         : var(  --ui-color-100     );
     --ui-nav-side-padding       : var(  --ui-space-600      ) 0 0;
     --ui-nav-side-margin        : var(  --ui-space-600      );
 
@@ -386,7 +350,7 @@
 
 /*	-------------------- -------------------- -------------------- NOTIFICATION */
 
-    --ui-notif-background    : var(	--ui-color-500      );
+    --ui-notif-background    : var(	--ui-color-600      );
 
     --ui-notif-border-color  : var(	--ui-color-400      );
     --ui-notif-border-radius : var(	--ui-border-radius  );
@@ -395,7 +359,7 @@
 
     --ui-notif-box-shadow    : var(	--ui-shadow-100     );
 
-    --ui-notif-color-text    : var(	--ui-text-color     );
+    --ui-notif-color-text    : var(	--ui-color-200     );
 
     --ui-notif-margin        : var(	--ui-space-600      ) 0;
     --ui-notif-padding       : var(	--ui-space-600      ) var(	--ui-space-800      );
@@ -438,7 +402,7 @@
 
 /*	-------------------- -------------------- -------------------- SORT */
 
-    --ui-sort-background    : var(  --ui-color-400  );
+    --ui-sort-background    : var(  --ui-color-700  );
 
     --ui-sort-border-color  : var(  --ui-border-color   );
     --ui-sort-border-radius : var(  --ui-border-radius  );
@@ -472,36 +436,36 @@
 
 /*	-------------------- -------------------- -------------------- TABLE */
 
-    --ui-table-background   : var(  --ui-color-400  );
+    --ui-table-background   : var(  --ui-color-700  );
 
     --ui-table-thead        : transparent;
     --ui-table-tbody        : transparent;
     --ui-table-tfoot        : transparent;
 
-    --ui-table-even         : var(  --ui-color-400  );
-    --ui-table-odd          : var(  --ui-color-300  );
+    --ui-table-even         : var(  --ui-color-600  );
+    --ui-table-odd          : var(  --ui-color-700  );
 
-    --ui-table-hover        : var(  --ui-color-100  );
-    --ui-table-hover-text   : var(  --ui-text-dark  );
+    --ui-table-hover        : var(  --ui-color-500  );
+    --ui-table-hover-text   : var(  --ui-color-200  );
 
-    --ui-table-padding      : var(  --ui-space-500  );
+    --ui-table-padding      : var(  --ui-space-600  );
 
 
 /*	-------------------- -------------------- -------------------- TABS */
 
-    --ui-tab-background         : var(  --ui-color-200  );
-    --ui-tab-background-hover   : var(  --ui-color-500  );
+    --ui-tab-background         : var(  --ui-color-700  );
+    --ui-tab-background-hover   : var(  --ui-color-600  );
 
-    --ui-tab-shadow         : var(  --ui-shadow-100 );
-    --ui-tab-shadow-hover   : var(  --ui-shadow-800 );
+    --ui-tab-shadow         : var(  --ui-shadow-200 );
+    --ui-tab-shadow-hover   : var(  --ui-shadow-600 );
     --ui-tab-tbody          : transparent;
     --ui-tab-tfoot          : transparent;
 
-    --ui-tab-even           : var(  --ui-color-400  );
-    --ui-tab-odd            : var(  --ui-color-300  );
+    --ui-tab-even           : var(  --ui-color-700  );
+    --ui-tab-odd            : var(  --ui-color-600  );
 
-    --ui-tab-hover          : var(  --ui-color-100  );
-    --ui-tab-hover-text     : var(  --ui-text-dark  );
+    --ui-tab-hover          : var(  --ui-color-600  );
+    --ui-tab-hover-text     : var(  --ui-color-700  );
 
     --ui-tab-padding        : var(  --ui-space-500  );
 
@@ -511,16 +475,16 @@
             'ui-font-size' = 15px / 1.5 = 10px
             'ui-font-size' = 16px x 'ui-space-400' = 8px of space
     */
-        --ui-text-scale-ratio	: 1.5;
+        --ui-size-scale-ratio	: 1.5;
 
-        --ui-text-100       : calc((1em / var(--ui-text-scale-ratio)) );
-        --ui-text-200       : calc(var(--ui-text-100) * var(--ui-text-scale-ratio));
-        --ui-text-300       : calc(var(--ui-text-200) * var(--ui-text-scale-ratio));
-        --ui-text-400       : calc(var(--ui-text-300) * var(--ui-text-scale-ratio));
-        --ui-text-500       : calc(var(--ui-text-400) * var(--ui-text-scale-ratio));
-        --ui-text-600       : calc(var(--ui-text-500) * var(--ui-text-scale-ratio));
-        --ui-text-700       : calc(var(--ui-text-600) * var(--ui-text-scale-ratio));
-        --ui-text-800       : calc(var(--ui-text-700) * var(--ui-text-scale-ratio));
+        --ui-size-100       : calc((1em / var(--ui-size-scale-ratio)) );
+        --ui-size-200       : calc(var(--ui-size-100) * var(--ui-size-scale-ratio));
+        --ui-size-300       : calc(var(--ui-size-200) * var(--ui-size-scale-ratio));
+        --ui-size-400       : calc(var(--ui-size-300) * var(--ui-size-scale-ratio));
+        --ui-size-500       : calc(var(--ui-size-400) * var(--ui-size-scale-ratio));
+        --ui-size-600       : calc(var(--ui-size-500) * var(--ui-size-scale-ratio));
+        --ui-size-700       : calc(var(--ui-size-600) * var(--ui-size-scale-ratio));
+        --ui-size-800       : calc(var(--ui-size-700) * var(--ui-size-scale-ratio));
 
 
     /*	-------------------- -------------------- -------------------- @UTILS LEGACY */
@@ -538,3 +502,43 @@
     --ui-nav-link-color     : orange;
     --ui-nav-link-border    : 3px solid orange;
 }
+
+    [data-theme="dark"] {
+
+
+        /* localStorage const UI_COLOR_MODE_KEY */
+        --color-mode        : 'dark';
+
+        --ui-body-background: var(  --ui-color-700  ); /* #232831; */
+
+
+        --ui-color-100      : hsl(219, 15%, 80%);
+        --ui-color-200      : hsl(219, 15%, 70%);
+        --ui-color-300      : hsl(219, 15%, 30%);
+        --ui-color-400      : hsl(219, 15%, 25%);
+        --ui-color-500      : hsl(219, 15%, 20%);
+        --ui-color-600      : hsl(219, 15%, 15%);
+        --ui-color-700      : hsl(219, 15%, 12%);
+        --ui-color-800      : hsl(219, 15%, 8%);
+        --ui-color-900      : hsl(219, 15%, 5%);
+
+    /* -------------------- -------------------- -------------------- Color Scheme Dark */
+
+        /* --ui-color-amber : #ffc107;
+        --ui-color-blue     : #0F4C81;
+        --ui-color-green    : #27ae74;
+        --ui-color-indigo   : #1b275a;
+        --ui-color-orange   : #ff9800;
+        --ui-color-purple   : #673ab7;
+        --ui-color-red      : #f44336;
+        --ui-color-white    : #FAFAFA; */
+
+    /* -------------------- -------------------- -------------------- Color Link Dark */
+
+        --ui-link         : var(  --ui-color-100    );
+        --ui-link-active  : #face74;
+        --ui-link-hover   : #face74;
+        --ui-link-visited : var(  --ui-color-100    );
+
+
+    }

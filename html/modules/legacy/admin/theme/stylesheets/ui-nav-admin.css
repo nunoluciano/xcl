@@ -29,7 +29,7 @@
 .adminavi-sub {
 
 	box-shadow			: var(  --ui-shadow-300		);
-	font-size				: var(  --ui-text-200			);
+	font-size				: var(  --ui-size-200			);
 	margin					: var(  --ui-space-400		) 0 0;
 	text-align			: center;
 

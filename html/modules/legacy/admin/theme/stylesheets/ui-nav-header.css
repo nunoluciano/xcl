@@ -10,7 +10,7 @@
 
     header > nav {
 
-        color           : var(  --ui-text-light		);
+        color           : var(  --ui-color-white		);
         height          : 50px;
         margin          : 0;
         overflow        : hidden;
@@ -37,16 +37,13 @@
 
     nav ul li.nav-logo {
 
-        /* text-align   : center; */
-        width           : 207px;
+        padding:0
 
     }
     nav ul li.nav-logo > a > img {
 
-        bottom          : -5px;
         flex-shrink     : 0;
         max-height      : 42px;
-        position        : relative;
 
     }
 
@@ -57,8 +54,8 @@
     nav ul li.ui-color-mode {
         align-items     : center;
         display         : flex;
-        margin          : 0 1em 0 auto;
-        padding         : 0 1rem;
+        margin          : 0 0 0 auto;
+        padding         : 0;
     }
     nav ul li.ui-color-mode > a,
     nav ul li.ui-color-mode > span {
@@ -67,7 +64,7 @@
 
 
     nav > ul > li > a {
-        color           : var(--ui-text-light) !important;
+        color           : var(--ui-color-white) !important;
         padding         : 0px var(  --ui-space-500  );
 
     }
@@ -106,7 +103,7 @@
     /* nav-sub */
     nav > ul > li > ul.nav-sub  {
 
-        background      : var(  --ui-color-500      );
+        background      : var(  --ui-color-600      );
 
         border-top      : 0;
         border-radius   : var(  --ui-border-radius  );
@@ -114,13 +111,13 @@
         box-shadow      : var(  --ui-shadow-400     );
 
         display         : none;
-
+        left            : 150px;
         margin          : 0;
         opacity         : 0;
         position        : absolute;
-        left            : 15px;
-        width           : 200px;
         visibility      : hidden;
+        width           : 200px;
+        top             : 50px;
 
         transition      : opacity 0.3s;
 
