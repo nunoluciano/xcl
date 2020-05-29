@@ -87,6 +87,11 @@
 
     }
 
+    .main {
+
+        padding: 0 2rem 2rem;
+
+    }
     .nav-side-menu {
 
         margin      : 0;
@@ -131,6 +136,12 @@
     /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
 
     @media only screen and (min-width: 46.875em) {
+
+    .main {
+
+        padding: 0 4rem 2rem;
+
+    }
 
     table {
 

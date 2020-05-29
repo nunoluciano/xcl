@@ -10,7 +10,6 @@
 
     header > nav {
 
-        color           : var(  --ui-color-white		);
         height          : 50px;
         margin          : 0;
         overflow        : hidden;
@@ -21,8 +20,9 @@
 
     nav ul {
 
-        align-items     : center;
+
         display         : flex;
+
         margin          : 0;
         padding         : 0;
 
@@ -37,14 +37,47 @@
 
     nav ul li.nav-logo {
 
-        padding:0
+        padding         : 0 1em;
 
     }
+
     nav ul li.nav-logo > a > img {
+        max-height      : 45px;
+        transition: all 2s ease-in-out;
+        filter:drop-shadow(1px 10px 10px #face74);
+    }
+    nav ul li.nav-logo > a > img:hover {
+    /* filter:drop-shadow(2px 2px 1px #face74); */
 
-        flex-shrink     : 0;
-        max-height      : 42px;
+    animation: filter-animation 2.5s infinite;
+    }
 
+    @keyframes filter-animation {
+        0% {
+          filter:brightness(100%);
+          filter:drop-shadow(1px 10px 10px #face74);
+          transition: all 0.5s ease-in-out;
+        }
+        25% {
+          filter:brightness(115%);
+          filter:drop-shadow(-10px 1px 10px #face74);
+          transition: all 0.5s ease-in-out;
+        }
+        50% {
+            filter:brightness(135%);
+            filter:drop-shadow(1px 1px 10px #face74);
+            transition: all 0.5s ease-in-out;
+          }
+        75% {
+            filter:brightness(145%);
+            filter:drop-shadow(10px 1px 10px #face74);
+            transition: all 0.5s ease-in-out;
+        }
+        100% {
+          filter:brightness(100%);
+          filter:drop-shadow(1px 10px 10px #face74);
+          transition: all 0.5s ease-in-out;
+        }
     }
 
     /* Remove Color Mode Switch if there’s no JS */
@@ -64,9 +97,19 @@
 
 
     nav > ul > li > a {
-        color           : var(--ui-color-white) !important;
         padding         : 0px var(  --ui-space-500  );
 
+    }
+    nav ul li .ui-nav-icon {
+        font-size: 1.25em;
+        /* width: 20px; */
+        /* height: 20px; */
+        background: var( --ui-color-700);
+        color: var( --ui-color-200);
+        cursor: pointer;
+        text-align: center;
+        margin: 0 1em;
+        line-height: 50px;
     }
 
     nav > ul > li > a > .caret {
@@ -120,6 +163,7 @@
         top             : 50px;
 
         transition      : opacity 0.3s;
+        z-index: 710;
 
     }
 
@@ -138,15 +182,7 @@
 
     }
 
-    /*
-    Theme : XCL Admin Flex Grid
-    Distribution : XCL 2.3 Alpha
-    Version : 0.0.5
-    Author : Nuno Luciano aka Gigamaster
-    Date : 2019-11-11
-    URL : https://github.com/xoopscube/xcl/
-
-    -------------------- -------------------- -------------------- -------------------- NAV HEADER */
+    /* -------------------- -------------------- -------------------- -------------------- NAV HEADER */
 
     nav > ul > li > ul.nav-sub > li > a {
 

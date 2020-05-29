@@ -68,7 +68,7 @@ a.ui-btn.ui-btn-small > svg.svg-ui-icon,
 
     color               : var(  --ui-button-color   );
     font-size           : 1rem;
-    padding-right       : 0.5em;
+    padding-right       : 0.25em;
     vertical-align      : middle;            /* Align icon = text  */
     width               : 1.4em !important; /* Size icon + text   */
 

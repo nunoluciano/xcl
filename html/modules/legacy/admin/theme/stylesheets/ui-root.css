@@ -58,17 +58,13 @@
             }
     } */
 
-/* -------------------- -------------------- -------------------- Color Theme Default */
-/* @media (prefers-color-scheme: dark) {
+
+/* -------------------- -------------------- -------------------- Color Theme Light */
+
+ [data-theme="light"] {
 
 
- } */
-
-
-    :root {
-
-/* -------------------- -------------------- -------------------- Color Theme Dark */
-
+    --color-mode        : 'light';
 
     --ui-body-background: var(  --ui-color-800  ); /* hsl(210, 18%, 80%); */
 
@@ -82,8 +78,8 @@
     --ui-color-500      : hsl(219, 15%, 40%);
     --ui-color-400      : hsl(219, 15%, 35%);
     --ui-color-300      : hsl(219, 15%, 20%);
-    --ui-color-200      : hsl(219, 15%, 10%);
-    --ui-color-100      : hsl(219, 15%, 5%);
+    --ui-color-200      : hsl(219, 15%, 15%);
+    --ui-color-100      : hsl(219, 15%, 7%);
 
     /* -------------------- -------------------- Color Scheme Light */
 
@@ -104,9 +100,52 @@
     --ui-link-hover     : orange;
     --ui-link-visited   : rgb(255, 0, 0);
 
+ }
 
-/* -------------------- -------------------- -------------------- ROOT DEFAULT */
 
+ @media (prefers-color-scheme: dark) {
+
+    [data-theme="dark"] {
+
+    --color-mode        : 'dark';
+
+    --ui-color-100      : hsl(219, 15%, 80%);
+    --ui-color-200      : hsl(219, 15%, 70%);
+    --ui-color-300      : hsl(219, 15%, 30%);
+    --ui-color-400      : hsl(219, 15%, 25%);
+    --ui-color-500      : hsl(219, 15%, 20%);
+    --ui-color-600      : hsl(219, 15%, 15%);
+    --ui-color-700      : hsl(219, 15%, 13%);
+    --ui-color-800      : hsl(219, 15%, 10%);
+    --ui-color-900      : hsl(219, 15%, 7%);
+
+/* -------------------- -------------------- -------------------- Color Scheme Dark */
+
+    --ui-color-amber    : hsl(45, 74%, 47%);
+    --ui-color-black    : hsl(0, 0%, 6%);
+    --ui-color-blue     : hsl(208, 74%, 27%);
+    --ui-color-green    : hsl(126, 74%, 27%);
+    --ui-color-indigo   : hsl(275, 74%, 27%);
+    --ui-color-orange   : hsl(36, 74%, 47%);
+    --ui-color-purple   : hsl(300, 74%, 27%); /* #673ab7 */
+    --ui-color-red      : hsl(4, 74%, 47%);
+    --ui-color-white    : hsl(0, 0%, 90%);
+
+/* -------------------- -------------------- -------------------- Color Link Dark */
+
+    --ui-body-background: var(  --ui-color-600  ); /* #232831; */
+    --ui-link         : var(  --ui-color-100    );
+    --ui-link-active  : #face74;
+    --ui-link-hover   : #face74;
+    --ui-link-visited : var(  --ui-color-100    );
+
+
+    }
+}
+
+ /* -------------------- -------------------- -------------------- ROOT DEFAULT */
+
+ :root {
 
 
     /* Development Mode Display Smarty Template Name : block / none */
@@ -203,7 +242,7 @@
 
     --ui-card-block-box-shadow      : var(  --ui-shadow-200     );
 
-    --ui-card-block-hover           : var(  --ui-color-600      );
+    --ui-card-block-hover           : var(  --ui-color-500      );
 
     --ui-card-block-padding         : var(  --ui-space-600      );
     --ui-card-block-margin          : var(  --ui-space-600      );
@@ -335,9 +374,9 @@
 
 /*	-------------------- -------------------- -------------------- NAV SIDE Block Module */
 
-    --ui-nav-block-background   : var(  --ui-color-500      );
+    --ui-nav-block-background   : var(  --ui-color-700      );
 
-    --ui-nav-block-border-color : var(  --ui-color-amber    );
+    --ui-nav-block-border-color : var(  --ui-link-hover    );
     --ui-nav-block-border-style : solid;
     --ui-nav-block-border-width : 3px;
 
@@ -417,11 +456,12 @@
 
 /*	-------------------- -------------------- -------------------- SPACE : relative margin and padding */
     /* Exmple :
-            'ui-space-unit' = 16px x 'ui-space-100' = 2px of space
+            '--ui-size-100' = 15px * (ui-size-scale-ratio 1.5) = 10px
+            'ui-space-unit' =
             'ui-space-unit' = 16px x 'ui-space-400' = 8px of space
     */
 
-    --ui-space-unit : 1em;
+    --ui-space-unit : 16px;
 
     --ui-space-no   : 0;
     --ui-space-100  : calc(var(--ui-space-unit) * 0.125);
@@ -472,8 +512,9 @@
 
 /*	-------------------- -------------------- -------------------- TEXT typography scalable */
     /* Exmple :
-            'ui-font-size' = 15px / 1.5 = 10px
-            'ui-font-size' = 16px x 'ui-space-400' = 8px of space
+            'ui-size-100' = 15px / 1.5 = 10px
+            'ui-size-200' = 10px x 'ui-size-scale-ratio' = 15px
+            'ui-size-300' = 15px x 'ui-size-scale-ratio' = 22,5px
     */
         --ui-size-scale-ratio	: 1.5;
 
@@ -503,42 +544,4 @@
     --ui-nav-link-border    : 3px solid orange;
 }
 
-    [data-theme="dark"] {
 
-
-        /* localStorage const UI_COLOR_MODE_KEY */
-        --color-mode        : 'dark';
-
-        --ui-body-background: var(  --ui-color-700  ); /* #232831; */
-
-
-        --ui-color-100      : hsl(219, 15%, 80%);
-        --ui-color-200      : hsl(219, 15%, 70%);
-        --ui-color-300      : hsl(219, 15%, 30%);
-        --ui-color-400      : hsl(219, 15%, 25%);
-        --ui-color-500      : hsl(219, 15%, 20%);
-        --ui-color-600      : hsl(219, 15%, 15%);
-        --ui-color-700      : hsl(219, 15%, 12%);
-        --ui-color-800      : hsl(219, 15%, 8%);
-        --ui-color-900      : hsl(219, 15%, 5%);
-
-    /* -------------------- -------------------- -------------------- Color Scheme Dark */
-
-        /* --ui-color-amber : #ffc107;
-        --ui-color-blue     : #0F4C81;
-        --ui-color-green    : #27ae74;
-        --ui-color-indigo   : #1b275a;
-        --ui-color-orange   : #ff9800;
-        --ui-color-purple   : #673ab7;
-        --ui-color-red      : #f44336;
-        --ui-color-white    : #FAFAFA; */
-
-    /* -------------------- -------------------- -------------------- Color Link Dark */
-
-        --ui-link         : var(  --ui-color-100    );
-        --ui-link-active  : #face74;
-        --ui-link-hover   : #face74;
-        --ui-link-visited : var(  --ui-color-100    );
-
-
-    }

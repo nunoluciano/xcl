@@ -48,7 +48,7 @@
 
         position        : var(  --ui-header-position    );
         width           : 100%;
-        z-index         : 100;
+        z-index         : 800;
 
     }
 
@@ -99,7 +99,7 @@
         position        : fixed;
         bottom          : 0;
         width           : 100%;
-        z-index         : 40;
+        z-index         : 600;
 
     }
 
