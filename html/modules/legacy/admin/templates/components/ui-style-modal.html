@@ -223,7 +223,7 @@
             .ui-widget-header, .ui-state-active {
             background: var(--ui-color-300);
             border: 1px solid var( --ui-border-color );
-            color: var(--ui-color-100);
+            color: var( --ui-notif-color-text );
             width: 100%;
             }
             .ui-widget.ui-widget-content {
@@ -247,10 +247,10 @@
             <div id="dialog-message" title="Download complete">
                 <p>
                   <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-                  Your files have downloaded successfully into your folder.
+                  XCL has successfully load the style guide file into the Dashboard.
                 </p>
                 <p>
-                  Currently using <b>36% of your storage space</b>.
+                  Currently <b>65% of code review</b>.
                 </p>
               </div>
               <p><button class="ui-btn-s" id="open-dialog-message">Open Dialog Message</button></p>
@@ -353,7 +353,7 @@
 
     <script>
         $( function() {
-            $( "#dialogpro" ).dialog({
+            $( "#dialog-help" ).dialog({
                 autoOpen: false,
                 maxWidth:600,
                 maxHeight: 400,
@@ -368,8 +368,8 @@
                 duration: 300
                 }
             });
-            $( "#openpro" ).on( "click", function() {
-                $( "#dialogpro" ).dialog( "open" );
+            $( "#open-help" ).on( "click", function() {
+                $( "#dialog-help" ).dialog( "open" );
                 $('#help-description').load('./modules/legacy/admin/index.php?action=Help&dirname=legacy section#help-intro', function() {
                     console.log('Load was performed.');
                 })
@@ -379,10 +379,10 @@
     <div class="ui-flex-row">
 
         <div class="ui-flex-column">
-            <div id="dialogpro" title="Basic dialog" class="display:none">
+            <div id="dialog-help" title="Basic dialog" class="display:none">
                 <div id="help-description"></div>
             </div>
-            <p><button id="openpro" class="ui-btn-warning">Open Ajax Help</button></p>
+            <p><button id="open-help" class="ui-btn-warning">Open Ajax Help</button></p>
         </div>
 
         <div class="ui-flex-column">

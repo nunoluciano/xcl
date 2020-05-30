@@ -211,7 +211,7 @@
 	.ui-card-block {
 
 		background      : var(  --ui-card-block-background			);
-        background-image: linear-gradient(200deg, hsla(219, 15%, 15%, 0.50), hsla(219, 15%, 10%, 0.80));
+        background-image: var(  --ui-card-block-image   			);
 		border-color    : var(  --ui-card-block-border-color		);
 		border-radius   : var(  --ui-card-block-border-radius		);
 		border-style    : var(  --ui-card-block-border-style		);
@@ -229,15 +229,15 @@
 		page-break-inside: avoid;
 		break-inside: avoid;
 
-		transition 			: var(  --ui-shadow-transition					);
+		transition 			: var(  --ui-shadow-transition  );
 
 	}
 
 	.ui-card-block:hover  {
 
-		background      : var(  --ui-card-block-hover						);
+		background      : var(  --ui-card-block-hover       );
 
-		box-shadow      : var(  --ui-shadow-hover								);
+		box-shadow      : var(  --ui-shadow-hover           );
 
 	}
 
@@ -264,8 +264,11 @@
 
 		text-align			: center;
 
-	}
-
+    }
+    /* TODO : change altsys templates "ui-block-type" */
+    a.ui-block-type {
+        display: block;
+    }
 	.ui-card-block-content {
 
 		align-items			: center;

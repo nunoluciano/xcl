@@ -11,15 +11,14 @@
     /* Theme customization
 
     - ROOT Motion
-    - Color Theme Default
-
-    - Color Theme Light
-    - Color Scheme Light
-    - Color Link Light
 
     - Color Theme Dark
     - Color Scheme Dark
     - Color Link Dark
+
+    - Color Theme Light
+    - Color Scheme Light
+    - Color Link Light
 
     - ROOT DEFAULT
     - Grid template
@@ -59,53 +58,11 @@
     } */
 
 
-/* -------------------- -------------------- -------------------- Color Theme Light */
-
- [data-theme="light"] {
 
 
-    --color-mode        : 'light';
+@media (prefers-color-scheme: dark) {
 
-    --ui-body-background: var(  --ui-color-800  ); /* hsl(210, 18%, 80%); */
-
-
-    /* -------------------- -------------------- Color Theme Light */
-
-    --ui-color-900      : hsl(219, 15%, 80%);
-    --ui-color-800      : hsl(219, 15%, 70%);
-    --ui-color-700      : hsl(219, 15%, 60%);
-    --ui-color-600      : hsl(219, 15%, 55%);
-    --ui-color-500      : hsl(219, 15%, 40%);
-    --ui-color-400      : hsl(219, 15%, 35%);
-    --ui-color-300      : hsl(219, 15%, 20%);
-    --ui-color-200      : hsl(219, 15%, 15%);
-    --ui-color-100      : hsl(219, 15%, 7%);
-
-    /* -------------------- -------------------- Color Scheme Light */
-
-    --ui-color-amber    : #ffc107;
-    --ui-color-black    : #101010;
-    --ui-color-blue     : #0F4C81;
-    --ui-color-green    : #1a9f27;
-    --ui-color-indigo   : #4B0082;
-    --ui-color-orange   : #ff9800;
-    --ui-color-purple   : #800080; /* #673ab7 */
-    --ui-color-red      : #f44336;
-    --ui-color-white    : hsl(0, 0%, 90%);
-
-    /* -------------------- -------------------- Color Link Light */
-
-    --ui-link           : hsl(210, 30%, 18%);
-    --ui-link-active    : orange;
-    --ui-link-hover     : orange;
-    --ui-link-visited   : rgb(255, 0, 0);
-
- }
-
-
- @media (prefers-color-scheme: dark) {
-
-    [data-theme="dark"] {
+:root[data-theme="dark"] {
 
     --color-mode        : 'dark';
 
@@ -114,7 +71,7 @@
     --ui-color-300      : hsl(219, 15%, 30%);
     --ui-color-400      : hsl(219, 15%, 25%);
     --ui-color-500      : hsl(219, 15%, 20%);
-    --ui-color-600      : hsl(219, 15%, 15%);
+    --ui-color-600      : hsl(219, 15%, 16%);
     --ui-color-700      : hsl(219, 15%, 13%);
     --ui-color-800      : hsl(219, 15%, 10%);
     --ui-color-900      : hsl(219, 15%, 7%);
@@ -134,14 +91,74 @@
 /* -------------------- -------------------- -------------------- Color Link Dark */
 
     --ui-body-background: var(  --ui-color-600  ); /* #232831; */
+
     --ui-link         : var(  --ui-color-100    );
     --ui-link-active  : #face74;
     --ui-link-hover   : #face74;
     --ui-link-visited : var(  --ui-color-100    );
 
-
     }
-}
+ }
+
+
+/* -------------------- -------------------- -------------------- Color Theme Light */
+
+    :root[data-theme="light"] {
+
+        --color-mode        : 'light';
+
+        /* -------------------- -------------------- Color Theme Light */
+
+        --ui-color-900      : hsl(219, 15%, 90%);
+        --ui-color-800      : hsl(219, 15%, 85%);
+        --ui-color-700      : hsl(219, 15%, 80%);
+        --ui-color-600      : hsl(219, 15%, 70%);
+        --ui-color-500      : hsl(219, 15%, 60%);
+        --ui-color-400      : hsl(219, 15%, 50%);
+        --ui-color-300      : hsl(219, 15%, 30%);
+        --ui-color-200      : hsl(219, 15%, 15%);
+        --ui-color-100      : hsl(219, 15%, 7%);
+
+        /* -------------------- -------------------- Color Scheme Light */
+
+        --ui-color-amber    : #ffc107;
+        --ui-color-black    : #101010;
+        --ui-color-blue     : #0F4C81;
+        --ui-color-green    : #1a9f27;
+        --ui-color-indigo   : #4B0082;
+        --ui-color-orange   : #ff9800;
+        --ui-color-purple   : #800080; /* #673ab7 */
+        --ui-color-red      : #f44336;
+        --ui-color-white    : hsl(0, 0%, 90%);
+
+        /* -------------------- -------------------- Color Link Light */
+
+        --ui-link           : var(--ui-color-200);
+        --ui-link-active    : var(--ui-color-blue);
+        --ui-link-hover     : var(--ui-color-blue);
+        --ui-link-visited   : var(--ui-color-200);
+
+        /* -------------------- -------------------- Color Link Misc */
+
+        --ui-body-background        : var(  --ui-color-600      ); /* hsl(210, 18%, 80%); */
+        --ui-breadcrumbs-background : var(  --ui-color-500      );
+        --ui-breadcrumbs-bg-link    : var(  --ui-color-700      );
+        --ui-button-background      : var(  --ui-color-700      );
+        --ui-button-hover-txt       : var(  --ui-color-700      );
+        --ui-card-block-background  : var(  --ui-color-700      );
+        --ui-card-block-image    	: none;
+        --ui-card-block-hover       : var(  --ui-color-900      );
+        --ui-card-small-background  : var(  --ui-color-700      );
+        --ui-footer-background      : var(  --ui-color-200      );
+        --ui-footer-border          : solid var(  --ui-color-100);
+        --ui-footer-border-width    : 1px 0 0 0 ;
+        --ui-footer-color           : var(  --ui-color-600      );
+        --ui-footer-link            : var(  --ui-color-700      );
+        --ui-header-background      : var(  --ui-color-200      );
+        --ui-notif-background       : var(  --ui-color-300      );
+        --ui-notif-color-text       : var(  --ui-color-700      );
+    }
+
 
  /* -------------------- -------------------- -------------------- ROOT DEFAULT */
 
@@ -190,7 +207,7 @@
 
 /* -------------------- -------------------- -------------------- BREADCRUMBS */
 
-    --ui-breadcrumbs-background   	: var(	--ui-color-600      );
+    --ui-breadcrumbs-background   	: var(	--ui-color-700      );
 
     --ui-breadcrumbs-border-color 	: var(	--ui-color-500      );
     --ui-breadcrumbs-border-radius	: var(	--ui-border-radius  );
@@ -199,7 +216,7 @@
 
     --ui-breadcrumbs-box-shadow     : var(	--ui-shadow-100     );
 
-    --ui-breadcrumbs-padding        : var(	--ui-space-200      ) var(  --ui-space-500  );
+    --ui-breadcrumbs-padding        : var(	--ui-space-300      ) var(  --ui-space-500  );
     --ui-breadcrumbs-margin         : var(	--ui-space-200      ) 0 var(  --ui-space-500  ); /* Top & Bottom, '0' for Left & Right*/
 
     --ui-breadcrumbs-bg-link        : var(	--ui-color-400      );
@@ -212,15 +229,15 @@
 
     /* --ui-button-box-shadow  : 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
 
-    --ui-button-box-shadow  : none;
+    --ui-button-box-shadow  : var(  --ui-shadow-100     );
 
     --ui-button-border      : 1px solid var(	--ui-color-600      );
     --ui-button-radius      : var(	--ui-border-radius  );
 
-    --ui-button-color       : var(  --ui-color-white    ); /*#3C4858; */
+    --ui-button-color       : var(  --ui-color-100    ); /*#3C4858; */
 
-    --ui-button-disable-bg     : var(  --ui-color-600      );
-    --ui-button-disable-txt    : var(  --ui-color-300      );
+    --ui-button-disable-bg  : var(  --ui-color-500      );
+    --ui-button-disable-txt : var(  --ui-color-300      );
 
     --ui-button-font-size   : var(  --ui-size-300   );
 
@@ -228,13 +245,13 @@
     --ui-button-hover-txt   : var(  --ui-color-100      );
 
     --ui-button-margin      : var(  --ui-space-400  ) var(  --ui-space-200  ); /* 0.75rem 1rem; */
-    --ui-button-padding     : var(  --ui-space-500  ) var(  --ui-space-600  ); /* 0.75rem 1rem; */
+    --ui-button-padding     : var(  --ui-space-500  ) var(  --ui-space-500  ); /* 0.75rem 1rem; */
 
 
 /* -------------------- -------------------- -------------------- CARD-BLOCK */
 
-    --ui-card-block-background    	: var(  --ui-color-700      );
-
+    --ui-card-block-background    	: var(  --ui-color-600      );
+    --ui-card-block-background    	: none; /* linear-gradient(200deg, hsla(219, 15%, 15%, 0.50), hsla(219, 15%, 10%, 0.80)); */
     --ui-card-block-border-color  	: var(  --ui-color-800      );
     --ui-card-block-border-radius 	: var(  --ui-border-radius  );
     --ui-card-block-border-style  	: var(  --ui-border-style   );
@@ -344,9 +361,9 @@
     --input-check-active-inner  : rgba(255, 255, 255, 0.9);
     --input-check-animation     : var(  --ui-color-amber    );
 
-    --input-check-background    : var(  --ui-color-400      );
+    --input-check-background    : var(  --ui-color-600      );
 
-    --input-check-border        : 1px solid #6c757d;
+    --input-check-border        : 1px solid var(  --ui-border-color    );
     --input-check-border-hover  : 1px solid var(  --ui-color-100    );
 
     --input-check-disabled      : var(  --ui-color-400      );
@@ -354,13 +371,13 @@
 
     --input-check-shadow-inner  : rgba(21, 25, 27, 0.25);
 
-    --input-padding             : var(  --ui-space-300      );
+    --input-padding             : var(  --ui-space-400      );
     --input-margin              : var(  --ui-space-no       );
 
 
 /*	-------------------- -------------------- -------------------- NAV SIDE */
 
-    --ui-nav-side-background    : transparent; /* var(  --ui-color-200      ); */
+    --ui-nav-side-background    : var(  --ui-color-800      );
 
 
     --ui-nav-side-box-shadow    : var(  --ui-shadow-300     );
@@ -476,7 +493,7 @@
 
 /*	-------------------- -------------------- -------------------- TABLE */
 
-    --ui-table-background   : var(  --ui-color-700  );
+    --ui-table-background   : var(  --ui-color-800  );
 
     --ui-table-thead        : transparent;
     --ui-table-tbody        : transparent;

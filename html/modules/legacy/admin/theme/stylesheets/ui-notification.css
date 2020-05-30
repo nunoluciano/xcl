@@ -45,7 +45,7 @@ URL : https://github.com/xoopscube/xcl/
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M1 21L11.5 2.813L22 21H1zm19.268-1L11.5 4.813L2.732 20h17.536zM11 14v-4h1v4h-1zm0 2h1v2h-1v-2z' fill='%23face74'/%3E %3C/svg%3E");
         background-position:  1em center;
         background-repeat: no-repeat;
-        animation: warning 1s infinite alternate;
+        /* animation: warning 1s infinite alternate; */
     }
 
     .message-warning {

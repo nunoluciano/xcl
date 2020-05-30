@@ -35,8 +35,8 @@ URL : https://github.com/xoopscube/xcl/
     .adminavi-sub {
 
     /* box-shadow   : var(  --ui-shadow-300     ); */
-    font-size       : var(  --ui-size-100       );
-    margin          : var(  --ui-space-700      ) 0 ;
+    font-size       : var(  --ui-size-200       );
+    margin          : var(  --ui-space-600      ) 0 ;
     text-align      : center;
     list-style-type : none;
     }
@@ -45,14 +45,11 @@ URL : https://github.com/xoopscube/xcl/
 
     a.adminavi-item {
 
-    /* border-bottom		: 3px solid var(--ui-color-600); */
-
     color           : var(  --ui-link      );
     font-weight     : 300;
     padding         : 10px;
     text-decoration : none;
     transition      : .3s;
-   /*  z-index         : 1; */
 
     }
 

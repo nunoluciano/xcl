@@ -10,13 +10,13 @@
 
     .nav-mobile {
 
-        background      : var(  --ui-color-500  );
+        background      : var(  --ui-color-500      );
 
         border-color    : var(  --ui-border-color   );
-        border-radius   : 0 var(    --ui-border-radius  ) 0 0;
+        border-radius   : 0 var(--ui-border-radius  ) 0 0;
         border-style    : var(  --ui-border-style   );
         border-width    : var(  --ui-border-width   );
-        box-shadow      : var(  --ui-shadow-300 );
+        box-shadow      : var(  --ui-shadow-300     );
 
         /* border-top-right-radius  : 5px;
         border-bottom-right-radius: 5px; */
@@ -73,7 +73,7 @@
     .nav-side-menu {
 
         background      : var(  --ui-nav-side-background    );
-        background-image: linear-gradient(200deg,hsla(0, 0%, 0%, 0.80), hsla(219, 15%, 25%, 0.50) );
+        background-image: var(  --ui-nav-side-image         );
 
         box-shadow      : var(  --ui-nav-side-box-shadow    );
 
