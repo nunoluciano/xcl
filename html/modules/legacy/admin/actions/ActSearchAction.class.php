@@ -27,7 +27,7 @@ class Legacy_ActionSearchArgs
     {
         $this->setKeywords($words);
     }
-    
+
     public function setKeywords($words)
     {
         foreach (explode(' ', $words) as $word) {
@@ -46,24 +46,32 @@ class Legacy_ActionSearchArgs
     {
         $this->mRecords[] =new Legacy_ActionSearchRecord($moduleName, $url, $title, $desc);
     }
-    
+
     public function &getRecords()
     {
         return $this->mRecords;
     }
-    
+
     /**
      * @return bool
      */
     public function hasRecord()
     {
-        return count($this->mRecords) > 0;
+        // PHP >= 7.1
+        if (is_iterable($this->mRecords)) {
+            return count($this->mRecords) > 0;
+        }
+        // PHP >= 7.3
+        // if(is_countable($searchdata)) {
+        //     return count($this->mRecords) > 0;
+        // }
     }
+
 }
 
 /**
  * An item on one search record. This is a class as a structure.
- * 
+ *
  * @todo we may change it to Array.
  */
 class Legacy_ActionSearchRecord
@@ -91,7 +99,7 @@ class Legacy_ActionSearchRecord
  * @internal
  *  Execute action searching. Now, it returns all of modules' results whether
  * the current user can access to.
- * 
+ *
  * @todo We should return the result by the current user's permission.
  */
 class Legacy_ActSearchAction extends Legacy_Action
@@ -100,7 +108,7 @@ class Legacy_ActSearchAction extends Legacy_Action
     public $mModuleRecords = null;
     public $mRecords = null;
     public $mActionForm = null;
-    
+
     public $mSearchAction = null;
 
     public function Legacy_ActSearchAction($flag)
@@ -111,7 +119,7 @@ class Legacy_ActSearchAction extends Legacy_Action
     public function __construct($flag)
     {
         parent::__construct($flag);
-        
+
         $this->mSearchAction =new XCube_Delegate();
         $this->mSearchAction->add([&$this, 'defaultSearch']);
         $this->mSearchAction->register('Legacy_ActSearchAction.SearchAction');
@@ -126,20 +134,20 @@ class Legacy_ActSearchAction extends Legacy_Action
         $mod = $db->prefix('modules');
         $perm = $db->prefix('group_permission');
         $groups = implode(',', $xoopsUser->getGroups());
-                         
+
         $sql = "SELECT DISTINCT ${mod}.weight, ${mod}.mid FROM ${mod},${perm} " .
                "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
                "ORDER BY ${mod}.weight, ${mod}.mid";
 
         $result=$db->query($sql);
-        
+
         $handler =& xoops_gethandler('module');
         while ($row = $db->fetchArray($result)) {
             $module =& $handler->get($row['mid']);
             $adapter =new Legacy_ModuleAdapter($module); // FIXMED
 
             $this->mModules[] =& $adapter;
-            
+
             unset($module);
             unset($adapter);
         }
@@ -150,7 +158,7 @@ class Legacy_ActSearchAction extends Legacy_Action
         $permHandler =& xoops_gethandler('groupperm');
         return $permHandler->checkRight('module_admin', -1, $xoopsUser->getGroups());
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $this->_processActionForm();
@@ -172,19 +180,19 @@ class Legacy_ActSearchAction extends Legacy_Action
             return LEGACY_FRAME_VIEW_ERROR;
         }
     }
-    
+
     public function defaultSearch(&$searchArgs)
     {
         foreach (array_keys($this->mModules) as $key) {
             $this->mModules[$key]->doActionSearch($searchArgs);
         }
     }
-    
+
     public function execute(&$controller, &$xoopsUser)
     {
         return $this->getDefaultView($controller, $xoopsUser);
     }
-    
+
     public function _processActionForm()
     {
         $this->mActionForm =new Legacy_ActionSearchForm();
@@ -203,7 +211,7 @@ class Legacy_ActSearchAction extends Legacy_Action
         $render->setTemplateName('legacy_admin_actionsearch_input.html');
         $render->setAttribute('actionForm', $this->mActionForm);
     }
-    
+
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('legacy_admin_actionsearch_error.html');
