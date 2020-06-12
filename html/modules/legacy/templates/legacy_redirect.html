@@ -3,9 +3,9 @@
 <!-- ===========================
 XOOPSCube Theme : XCL Admin Flex Grid
 Distribution : XCL 2.3 Alpha
-Version : 0.0.5
+Version : 0.7.0
 Author : Nuno Luciano aka Gigamaster
-Date : 2019-11-11
+Date : 2020-06-11
 URL : https://github.com/xoopscube/xcl/
 =========================== -->
 <head>
@@ -13,7 +13,7 @@ URL : https://github.com/xoopscube/xcl/
     <meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>">
 
     <{if !class_exists('AdelieDebug_Preload')}>
-    <meta http-equiv="Refresh" content="4; url=<{$url}>" />
+    <meta http-equiv="Refresh" content="2; url=<{$url}>" />
     <{/if}>
 
     <title><{$xoops_sitename}></title>
@@ -47,6 +47,7 @@ URL : https://github.com/xoopscube/xcl/
 
     .wrapper-redirect > * {
     margin          : 1em auto;
+    text-align      : center;
     }
     table {
     width           : 100%;
@@ -72,19 +73,16 @@ URL : https://github.com/xoopscube/xcl/
         transition  : 0.5s;
     }
     .cube-loading .vcenter {
-        transform: rotate(-45deg);
+        margin      : 1em auto;
+        position    : absolute;
+        transform   : rotate(-45deg);
+        top         : 25%;
+        left        : 27%;
     }
     .cube-loading i {
         position    : relative;
         transition  : 0.2s;
         top         : 0;
-    }
-    .cube-loading:hover i {
-        animation: down 1s linear infinite;
-    }
-    @keyframes down {
-        50% {	top: 10px; }
-        100% {	top: 0; }
     }
 
     .cube-loading .cube-line1,
@@ -174,6 +172,7 @@ URL : https://github.com/xoopscube/xcl/
 
     .cube-loading:hover{
     background  : linear-gradient(to right, rgba(31, 27, 21, 0.47), rgba(115, 127, 128, 0.15),  rgba(15, 99, 127, 0.47));
+    border:1px solid rgba(21, 142, 215, 0.15);
     transition  : all 0.3s ease-in-out 0s;
     }
 
@@ -185,14 +184,14 @@ URL : https://github.com/xoopscube/xcl/
 
     <div class="wrapper-redirect">
 
-    <div class="cube-loading">
+    <div class="cube-loading"><i class="vcenter">Loading</i>
         <div class="cube-line1"></div>
         <div class="cube-line2"></div>
         <div class="cube-line3"></div>
         <div class="cube-line4"></div>
     </div>
 
-    <h2>Redirect</h2>
+    <h2></h2>
     <h4><{$message}></h4>
 
     <p><{$lang_ifnotreload}></p>
