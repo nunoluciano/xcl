@@ -202,8 +202,7 @@ EOD;
 	}
 }
 
-if (!is_numeric($mydirname{
-	0})) {
+if (!is_numeric($mydirname[0])) {
 	// If you want to name the directory from 0-9, make a site preload.
 	eval('class ' . ucfirst($mydirname) . '_PicoPreload extends PicoPreloadBase { var $mydirname = \'' . $mydirname . '\' ; }');
 }

@@ -36,7 +36,7 @@ class Legacy_BlockInformation
 
     public function Legacy_BlockInformation($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
     {
-        self::__construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options);
+        $this->__construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options);
     }
 
     public function __construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
@@ -128,7 +128,7 @@ class Legacy_BlockInfoCollection
 
     public function funcExists($info)
     {
-        return (in_array($info->mShowFunc, $this->mShowFuncs) && in_array($info->mFuncFile, $this->mFuncFiles));
+        return (in_array($info->mShowFunc, $this->mShowFuncs, true) && in_array($info->mFuncFile, $this->mFuncFiles, true));
     }
 
     /**
@@ -192,7 +192,7 @@ class Legacy_PreferenceInformation
 
     public function Legacy_PreferenceInformation($name, $title, $description, $formType, $valueType, $default, $order = 0)
     {
-        self::__construct($name, $title, $description, $formType, $valueType, $default, $order);
+        $this->__construct($name, $title, $description, $formType, $valueType, $default, $order);
     }
 
     public function __construct($name, $title, $description, $formType, $valueType, $default, $order = 0)
@@ -272,7 +272,7 @@ class Legacy_PreferenceInfoCollection
 
     public function Legacy_PreferenceInfoCollection()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -372,7 +372,7 @@ class Legacy_PreferenceInfoCollection
      * @todo need delete notifications' data
      * @param $collection
      */
-    public function update(&$collection)
+    public function update($collection)
     {
         //
         // Preferences
@@ -443,7 +443,7 @@ class Legacy_PreferenceOptionInformation
 
     public function Legacy_PreferenceOptionInformation($name, $value)
     {
-        self::__construct($name, $value);
+        $this->__construct($name, $value);
     }
 
     public function __construct($name, $value)
@@ -466,13 +466,13 @@ class Legacy_PreferenceOptionInfoCollection
     {
     }
 
-    public function add(&$option)
+    public function add($option)
     {
         $this->mOptions[] = $option;
         return true;
     }
 
-    public function isEqual(&$collection)
+    public function isEqual($collection)
     {
         if (count($this->mOptions) != count($collection->mOptions)) {
             return false;
@@ -498,7 +498,7 @@ class Legacy_AbstractModinfoReader
 {
     public function Legacy_AbstractModinfoReader()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -528,11 +528,11 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
     /**
      * @protected
      */
-    public $_mDirname = null;
+    public $_mDirname;
 
     public function Legacy_ModinfoX2FileReader($dirname)
     {
-        self::__construct($dirname);
+        $this->__construct($dirname);
     }
 
     public function __construct($dirname)
@@ -544,7 +544,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
      * @private
      * @param $funcNum
      * @param $arr
-     * @return \Legacy_BlockInformation
+     * @return Legacy_BlockInformation
      */
     public function &_createBlockInformation($funcNum, $arr)
     {
@@ -654,7 +654,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
         return $info;
     }
 
-    public function _loadCommentPreferenceInfomations(&$modversion, &$collection)
+    public function _loadCommentPreferenceInfomations($modversion, $collection)
     {
         if (isset($modversion['hasComments']) && true == $modversion['hasComments']) {
             require_once XOOPS_ROOT_PATH . '/include/comment_constants.php';
@@ -686,7 +686,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
         }
     }
 
-    public function _loadNotificationPreferenceInfomations(&$modversion, &$collection)
+    public function _loadNotificationPreferenceInfomations($modversion, $collection)
     {
         if (isset($modversion['hasNotification']) && true == $modversion['hasNotification']) {
             require_once XOOPS_ROOT_PATH . '/include/notification_constants.php';
@@ -709,15 +709,13 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
             ];
             $info =& $this->_createPreferenceInformation($notifyEnable);
             $collection->add($info);
-            unset($info);
+
 
             //
             // FIXME: doesn't work when update module... can't read back the
             //        array of options properly...  " changing to &quot;
             //
-
-            unset($t_options);
-
+            unset($info, $t_options);
             //
             // Get the module object to get mid.
             //
@@ -823,11 +821,11 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
     /**
      * @protected
      */
-    public $_mDirname = null;
+    public $_mDirname;
 
     public function Legacy_ModinfoX2DBReader($dirname)
     {
-        self::__construct($dirname);
+        $this->__construct($dirname);
     }
 
     public function __construct($dirname)
@@ -863,7 +861,7 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
         return $collection;
     }
 
-    public function &_createPreferenceInformation(&$config)
+    public function &_createPreferenceInformation($config)
     {
         $info =new Legacy_PreferenceInformation($config->get('conf_name'), $config->get('conf_title'), $config->get('conf_desc'), $config->get('conf_formtype'), $config->get('conf_valuetype'), $config->get('conf_value'));
 

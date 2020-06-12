@@ -35,7 +35,7 @@ class PicoFormProcessBySmartyBase
     public $ignore_field_names = ['cancel']; // public
     public $cancel_field_name  = 'cancel'; // public
 
-    public function __construct()
+    public function PicoFormProcessBySmartyBase()
     {
         return $this->__construct();
     }

@@ -9,7 +9,7 @@ foreach ($_POST as $key => $value) {
     }
 }
 if (empty($available_themes)) {
-    $available_themes = ['xcl_default', 'xcly_default', 'xcl_flex_grid']; // !Todo Theme boilerplate
+    $available_themes = ['xcl_default', 'xcl_default', 'xcl_flex_grid']; // !Todo Theme boilerplate
 }
 
 $default_theme = 'xcl_default';
