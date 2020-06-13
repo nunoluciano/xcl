@@ -26,7 +26,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
 
     // configurations
     define($constpref . '_USE_WRAPSMODE', 'enable wraps mode');
-    define($constpref . '_ERR_DOCUMENT_404', 'Redirecting to custom psge for Error:404 ');
+    define($constpref . '_ERR_DOCUMENT_404', 'Redirect to custom page for Error:404 ');
     define($constpref . '_ERR_DOCUMENT_404DSC', 'The path of the page to dislay when the content could not be found on the server.<br/>Repalaces header "xoops_root_path" by "' . XOOPS_ROOT_PATH . '" and "xoops_trust_path" by "' . XOOPS_TRUST_PATH . '"');
     define($constpref . '_USE_REWRITE', 'enable mod_rewrite mode');
     define($constpref . '_USE_REWRITEDSC', 'Rename .htaccess.rewrite_wraps(with wraps) or htaccess.rewrite_normal(without wraps) to .htaccess under XOOPS_ROOT_PATH/modules/(dirname)/');

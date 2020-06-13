@@ -1,0 +1,20 @@
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_MQ'</font> <i>(length=15)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_'</font> <i>(length=13)</i>
+</pre>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_MQ'</font> <i>(length=15)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_'</font> <i>(length=13)</i>
+</pre>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_Mg'</font> <i>(length=15)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_'</font> <i>(length=13)</i>
+</pre>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_MQ'</font> <i>(length=15)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>D:\local\sites\xdev10\app\public\xcl\xoops_trust_path\modules\xelfinder\connector.php:518:</small><small>string</small> <font color='#cc0000'>'xe_xelfinder_'</font> <i>(length=13)</i>
+</pre>

@@ -17,40 +17,6 @@
      * Output svg with custom class="svg-ui-icon"
      * and cache all icons or make a single sprite
      */
-/*     $('img.svg').each(function(){
-
-        var $img      = $(this);
-        var imgID     = $img.attr('id');
-        var imgClass  = $img.attr('class');
-        var imgURL    = $img.attr('src');
-
-        $.get(imgURL, function(data) {
-
-          // Find image with class"svg"
-          var $svg  = $(data).find('svg');
-
-          if(typeof imgID !== 'undefined') {
-              $svg  = $svg.attr('id', imgID);
-          }
-
-          if(typeof imgClass !== 'undefined') {
-              // SVG inline with ClassName='svg-ui-icon'
-              $svg  = $svg.attr('class', imgClass+'-ui-icon');
-          }
-
-          // Remove the element SVG unused attributes
-          $svg = $svg.removeAttr('xmlns:a');
-          if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-              $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-          }
-
-          $img.replaceWith($svg);
-
-        }, 'xml');
-
-      }); */
-
-
 
       $('img.svg').each((i, e) => {
 
@@ -63,19 +29,19 @@
         const imgURL = $img.attr('src');
 
         $.get(imgURL, (data) => {
-            // Get the SVG tag, ignore the rest
+            // Find image with class"svg"
             let $svg = $(data).find('svg');
 
-            // Add replaced image's ID to the new SVG
+            // Add image's ID
             if (typeof imgID !== 'undefined') {
                 $svg = $svg.attr('id', imgID);
             }
-            // Add replaced image's classes to the new SVG
+            // Add classes to the new inline SVG
             if (typeof imgClass !== 'undefined') {
                 $svg = $svg.attr('class', `${imgClass} -ui-icon`);
             }
 
-            // Remove any invalid XML tags as per http://validator.w3.org
+            // Remove XML tags as per http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
 
             // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
@@ -83,7 +49,7 @@
                 $svg.attr(`viewBox 0 0  ${$svg.attr('height')} ${$svg.attr('width')}`);
             }
 
-            // Replace image with new SVG
+            // Replace with inline SVG
             $img.replaceWith($svg);
         }, 'xml');
     });

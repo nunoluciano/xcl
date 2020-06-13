@@ -301,71 +301,71 @@ echo "
 			<th>"._MYTPLSADMIN_TH_NAME."</th>
 			<th>"._MYTPLSADMIN_TH_TYPE."</th>
 			<th><input type='checkbox' title="._MYTPLSADMIN_TITLE_CHECKALL." onclick=\"with(document.MainForm){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].name.indexOf('basecheck')>=0){elements[i].checked=this.checked;}}}\" />"._MYTPLSADMIN_TH_FILE."</th>
-			$tplsets_th4disp
+            $tplsets_th4disp
         </tr>
     </thead>\n" ;
 
-// STYLE for distinguishing fingerprints
-$fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', ' fingerprint4', ' fingerprint5', ' fingerprint6', ' fingerprint7'];
+    // STYLE for distinguishing fingerprints
+    $fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', ' fingerprint4', ' fingerprint5', ' fingerprint6', ' fingerprint7'];
 
-// template ROWS
-while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
-    $evenodd = 'even' == @$evenodd ? 'odd' : 'even' ;
-    $fingerprints = [];
+    // template ROWS
+    while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
+        $evenodd = 'even' == @$evenodd ? 'odd' : 'even' ;
+        $fingerprints = [];
 
-    // information about the template
-    echo "<tbody>\n
-		<tr class='$evenodd'>
-			<td>
-				<dl>
-					<dt>".htmlspecialchars($tpl_file, ENT_QUOTES)."</dt>
-					<dd>".htmlspecialchars($tpl_desc, ENT_QUOTES)."</dd>
-				</dl>
-			</td>
-			<td>".$type." (".$count.")</td>\n" ;
+        // information about the template
+        echo "<tr class='$evenodd'>
+                <td>
+                    <dl>
+                        <dt>".htmlspecialchars($tpl_file, ENT_QUOTES)."</dt>
+                        <dd>".htmlspecialchars($tpl_desc, ENT_QUOTES)."</dd>
+                    </dl>
+                </td>
+                <td>".$type." (".$count.")</td>\n" ;
 
-    // the base file template column
-    $basefilepath = tplsadmin_get_basefilepath($target_dirname, $type, $tpl_file) ;
+            // the base file template column
+            $basefilepath = tplsadmin_get_basefilepath($target_dirname, $type, $tpl_file) ;
 
-    if (file_exists($basefilepath)) {
-        $fingerprint = tplsadmin_get_fingerprint(file($basefilepath)) ;
-        $fingerprints[ $fingerprint ] = '' ;
-        echo '<td>' . formatTimestamp(filemtime($basefilepath), 'm') . '<br>' . substr($fingerprint, 0, 16) . "<br><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
-        $fingerprint_class_count = 0 ;
-    } else {
-        echo '<td><br></td>';
-        $fingerprint_class_count = -1 ;
-    }
-
-    // db template columns
-    foreach ($tplsets as $tplset) {
-        $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
-
-        // query for templates in db
-        $drs = $db->query('SELECT * FROM ' . $db->prefix('tplfile') . ' f NATURAL LEFT JOIN ' . $db->prefix('tplsource') . " s WHERE tpl_file='" . addslashes($tpl_file) . "' AND tpl_tplset='" . addslashes($tplset) . "'") ;
-        $numrows = $db->getRowsNum($drs) ;
-        $tpl = $db->fetchArray($drs) ;
-        if (empty($tpl['tpl_id'])) {
-            echo '<td>($numrows)</td>\n' ;
-        } else {
-            $fingerprint = tplsadmin_get_fingerprint(explode("\n", $tpl['tpl_source'])) ;
-            if (isset($fingerprints[ $fingerprint ])) {
-                $class = $fingerprints[ $fingerprint ] ;
+            if (file_exists($basefilepath)) {
+                $fingerprint = tplsadmin_get_fingerprint(file($basefilepath)) ;
+                $fingerprints[ $fingerprint ] = '' ;
+                echo '<td>' . formatTimestamp(filemtime($basefilepath), 'm') .
+                '<br>' . substr($fingerprint, 0, 16) . "<br><input type='checkbox' name='basecheck[$tpl_file]' value='1' /></td>\n" ;
+                $fingerprint_class_count = 0 ;
             } else {
-                //$fingerprint_class_count ++ ;
-                $class = $fingerprint_classes[++$fingerprint_class_count] ;
-                $fingerprints[ $fingerprint ] = $class ;
+                echo '<td><br>123</td>';
+                $fingerprint_class_count = -1 ;
             }
-            echo "
-            <td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br>'.substr($fingerprint, 0, 16)."<br>
-            <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp; 
-            <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."'>"._EDIT."</a> ($numrows)
-            </td>\n" ;
-        }
-    }
 
-    echo "</tr></tbody>\n" ;
-}
+            // db template columns
+            foreach ($tplsets as $tplset) {
+                $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
+
+                // query for templates in db
+                $drs = $db->query('SELECT * FROM ' . $db->prefix('tplfile') . ' f NATURAL LEFT JOIN ' . $db->prefix('tplsource') . " s WHERE tpl_file='" . addslashes($tpl_file) . "' AND tpl_tplset='" . addslashes($tplset) . "'") ;
+                $numrows = $db->getRowsNum($drs) ;
+                $tpl = $db->fetchArray($drs) ;
+                if (empty($tpl['tpl_id'])) {
+                    echo '<td>($numrows)</td>' ;
+                } else {
+                    $fingerprint = tplsadmin_get_fingerprint(explode("\n", $tpl['tpl_source'])) ;
+                    if (isset($fingerprints[ $fingerprint ])) {
+                        $class = $fingerprints[ $fingerprint ] ;
+                    } else {
+                        //$fingerprint_class_count ++ ;
+                        $class = $fingerprint_classes[++$fingerprint_class_count] ;
+                        $fingerprints[ $fingerprint ] = $class ;
+                    }
+                    echo "
+                    <td class='{$class}'>".formatTimestamp($tpl['tpl_lastmodified'], 'm').'<br>'.substr($fingerprint, 0, 16)."<br>
+                    <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1' /> &nbsp;
+                    <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=".htmlspecialchars($tpl['tpl_file'], ENT_QUOTES)."&amp;tpl_tplset=".htmlspecialchars($tpl['tpl_tplset'], ENT_QUOTES)."&amp;dirname=".htmlspecialchars($target_dirname, ENT_QUOTES)."'>"._EDIT."</a> ($numrows)
+                    </td>\n" ;
+                }
+            }
+
+        echo "</tr>\n" ;
+    }
 
 // command submit ROW
 echo "<tfoot>
@@ -411,3 +411,4 @@ echo "</table></form>" ;
 // end of table & form
 
 xoops_cp_footer() ;
+?>

@@ -45,7 +45,7 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract
         }
 
         // auto-register
-        if (!empty($this->mod_config['wraps_auto_register']) && '/' == @$cat_data['cat_vpath']{0}) {
+        if (!empty($this->mod_config['wraps_auto_register']) && '/' == @$cat_data['cat_vpath'][0]) {
             $register_class = empty($this->mod_config['auto_register_class']) ? 'PicoAutoRegisterWraps' : $this->mod_config['auto_register_class'];
             require_once __DIR__ . '/' . $register_class . '.class.php';
             $register_obj  = new $register_class($this->mydirname, $this->mod_config);
