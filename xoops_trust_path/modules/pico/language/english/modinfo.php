@@ -11,17 +11,17 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_NAME', 'pico');
 
     // A brief description of this module
-    define($constpref . '_DESC', 'The module manages content publication, versioning with revision history, diff and granular permissions.');
+    define($constpref . '_DESC', 'Content management with CKEditor, versioning with revision history, diff and granular permissions.');
 
     // admin menus
-    define($constpref . '_ADMENU_CONTENTSADMIN', 'Contents list');
-    define($constpref . '_ADMENU_CATEGORYACCESS', 'Permissions of Categories');
-    define($constpref . '_ADMENU_IMPORT', 'Import/Sync');
+    define($constpref . '_ADMENU_CONTENTSADMIN', 'Contents');
+    define($constpref . '_ADMENU_CATEGORYACCESS', 'Permissions');
+    define($constpref . '_ADMENU_IMPORT', 'Import-Sync');
     define($constpref . '_ADMENU_TAGS', 'Tags');
     define($constpref . '_ADMENU_EXTRAS', 'Extra');
-    define($constpref . '_ADMENU_MYLANGADMIN', 'Languages');
+    define($constpref . '_ADMENU_MYLANGADMIN', 'Language');
     define($constpref . '_ADMENU_MYTPLSADMIN', 'Templates');
-    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks/Permissions');
+    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks-Permissions');
     define($constpref . '_ADMENU_MYPREFERENCES', 'Preferences');
 
     // configurations

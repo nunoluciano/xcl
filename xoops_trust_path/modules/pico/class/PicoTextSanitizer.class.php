@@ -6,16 +6,16 @@ class PicoTextSanitizer extends MyTextSanitizer
 {
     public $nbsp = 0;
 
-    public function __construct()
+/*    public function __construct()
     {
         parent::__construct();
-    }
+    }*/
 
     public static function &sGetInstance()
     {
         static $instance;
         if (!isset($instance)) {
-            $instance = new PicoTextSanitizer();
+            $instance = new self();
         }
         return $instance;
     }
@@ -28,7 +28,7 @@ class PicoTextSanitizer extends MyTextSanitizer
 
     // override
     // a fix for original bad implementation
-    public function &htmlSpecialChars($text, $forEdit = false)
+    public function &htmlSpecialChars($text, $forEdit = false): string
     {
         $ret = htmlspecialchars($text, ENT_QUOTES);
         return $ret;
@@ -177,7 +177,7 @@ class PicoTextSanitizer extends MyTextSanitizer
         return $text;
     }
 
-    public function myCodeSanitizer($matches)
+    public function myCodeSanitizer($matches): string
     {
         return '<div class="xoopsCode"><pre><code>' . $this->xoopsCodeDecodeSafe(base64_decode($matches[1]), 0) . '</code></pre></div>';
     }
