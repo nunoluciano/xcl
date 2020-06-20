@@ -63,7 +63,7 @@ class XoopsTpl extends Smarty
         global $xoopsConfig;
         $this->Smarty();
         $this->compile_id = XOOPS_URL;
-        if (1 == $xoopsConfig['theme_fromfile']) {
+        if (1 === $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
             $this->compile_check = true;
         } else {
@@ -102,19 +102,19 @@ class XoopsTpl extends Smarty
 
         // Delegate 'XoopsTpl.New'
         //  Delegate may define additional initialization code for XoopTpl Instance;
-        //  varArgs : 
+        //  varArgs :
         //      'xoopsTpl'     [I/O] : $this
         //
         XCube_DelegateUtils::call('XoopsTpl.New',  new XCube_Ref($this));
     }
     public function XoopsTpl()
     {
-        return self::__construct();
+        return $this->__construct();
     }
 
     /**
      * Set the directory for templates
-     * 
+     *
      * @param   string  $dirname    Directory path without a trailing slash
      **/
     public function xoops_setTemplateDir($dirname)
@@ -124,7 +124,7 @@ class XoopsTpl extends Smarty
 
     /**
      * Get the active template directory
-     * 
+     *
      * @return  string
      **/
     public function xoops_getTemplateDir()
@@ -134,7 +134,7 @@ class XoopsTpl extends Smarty
 
     /**
      * Set debugging mode
-     * 
+     *
      * @param bool $flag
      **/
     public function xoops_setDebugging($flag=false)
@@ -144,7 +144,7 @@ class XoopsTpl extends Smarty
 
     /**
      * Set caching
-     * 
+     *
      * @param int $num
      **/
     public function xoops_setCaching($num=0)
@@ -154,7 +154,7 @@ class XoopsTpl extends Smarty
 
     /**
      * Set cache lifetime
-     * 
+     *
      * @param int $num Cache lifetime
      **/
     public function xoops_setCacheTime($num=0)
@@ -169,7 +169,7 @@ class XoopsTpl extends Smarty
 
     /**
      * Set directory for compiled template files
-     * 
+     *
      * @param   string  $dirname    Full directory path without a trailing slash
      **/
     public function xoops_setCompileDir($dirname)
@@ -179,7 +179,7 @@ class XoopsTpl extends Smarty
 
     /**
      * Set the directory for cached template files
-     * 
+     *
      * @param   string  $dirname    Full directory path without a trailing slash
      **/
     public function xoops_setCacheDir($dirname)
@@ -189,11 +189,11 @@ class XoopsTpl extends Smarty
 
     /**
      * Render output from template data
-     * 
+     *
      * @deprecated
      *
      * @param   string  $data
-     * @return  string  Rendered output  
+     * @return  string  Rendered output
      **/
     public function xoops_fetchFromData(&$data)
     {
@@ -208,24 +208,24 @@ class XoopsTpl extends Smarty
     }
 
     /**
-     * 
+     *
      **/
     public function xoops_canUpdateFromFile()
     {
         return $this->_canUpdateFromFile;
     }
-    
+
     public function &fetchBlock($template, $bid)
     {
         $ret = $this->fetch('db:'.$template, $bid);
         return $ret;
     }
-    
+
     public function isBlockCached($template, $bid)
     {
         return $this->is_cached('db:'.$template, 'blk_'.$bid);
     }
-    
+
     public function isModuleCached($templateName, $dirname)
     {
         if (!$templateName) {
@@ -243,7 +243,7 @@ class XoopsTpl extends Smarty
 
         return $this->fetch('db:'.$templateName, $this->getModuleCachedTemplateId($dirname));
     }
-    
+
     public function getModuleCachedTemplateId($dirname)
     {
         return 'mod_'.$dirname.'|'.md5(str_replace(XOOPS_URL, '', $GLOBALS['xoopsRequestUri']));
@@ -270,7 +270,7 @@ class XoopsTpl extends Smarty
 
 /**
  * function to update compiled template file in templates_c folder
- * 
+ *
  * @param   string $tpl_id
  * @param bool     $clear_old
  * @return  bool
@@ -278,14 +278,14 @@ class XoopsTpl extends Smarty
 function xoops_template_touch($tpl_id, $clear_old = true)
 {
     $result = null;
-    
-    // RaiseEvent 'Legacy.XoopsTpl.TemplateTouch' 
+
+    // RaiseEvent 'Legacy.XoopsTpl.TemplateTouch'
     //  Delegate may define new template touch logic (with XC21, only for clear cache & compiled template)
-    //  varArgs : 
+    //  varArgs :
     //      'xoopsTpl'     [I/O] : $this
     //
     XCube_DelegateUtils::call('Legacy.XoopsTpl.TemplateTouch', $tpl_id, $clear_old, new XCube_Ref($result));
-    
+
     if (null === $result) {
         $tpl = new XoopsTpl();
         $tpl->force_compile = true;
@@ -308,7 +308,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
 
 /**
  * Smarty default template handler function
- * 
+ *
  * @deprecated
  *
  * @param $resource_type
@@ -320,7 +320,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
  **/
 function xoops_template_create($resource_type, $resource_name, &$template_source, &$template_timestamp, &$smarty_obj)
 {
-    if ('db' == $resource_type) {
+    if ('db' === $resource_type) {
         $file_handler =& xoops_gethandler('tplfile');
         $tpl =& $file_handler->find('default', null, null, null, $resource_name, true);
         if (count($tpl) > 0 && is_object($tpl[0])) {
@@ -348,9 +348,9 @@ function xoops_template_clear_module_cache($mid)
     if ($count > 0) {
         $xoopsTpl = new XoopsTpl();
         $xoopsTpl->xoops_setCaching(2);
-        for ($i = 0; $i < $count; $i++) {
-            if ('' != $block_arr[$i]->getVar('template')) {
-                $xoopsTpl->clear_cache('db:'.$block_arr[$i]->getVar('template'), 'blk_'.$block_arr[$i]->getVar('bid'));
+        foreach ($block_arr as $iValue) {
+            if ('' !== $iValue->getVar('template')) {
+                $xoopsTpl->clear_cache('db:'. $iValue->getVar('template'), 'blk_'. $iValue->getVar('bid'));
             }
         }
     }

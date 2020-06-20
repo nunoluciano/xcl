@@ -327,6 +327,7 @@
 	.ui-module-date svg {
 
 		/* margin		: var(  --ui-space-600			); */
+        color: var(--ui-color-green) !important;
 
 	}
 
