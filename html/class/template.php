@@ -63,7 +63,7 @@ class XoopsTpl extends Smarty
         global $xoopsConfig;
         $this->Smarty();
         $this->compile_id = XOOPS_URL;
-        if (1 === $xoopsConfig['theme_fromfile']) {
+        if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
             $this->compile_check = true;
         } else {
@@ -286,7 +286,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
     //
     XCube_DelegateUtils::call('Legacy.XoopsTpl.TemplateTouch', $tpl_id, $clear_old, new XCube_Ref($result));
 
-    if (null === $result) {
+    if (null == $result) {
         $tpl = new XoopsTpl();
         $tpl->force_compile = true;
         $tplfile_handler =& xoops_gethandler('tplfile');
