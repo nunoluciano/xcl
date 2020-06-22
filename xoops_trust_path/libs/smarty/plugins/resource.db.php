@@ -91,9 +91,6 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
         $tplset = $xoopsConfig['template_set'] ?? 'default';
         $theme = $xoopsConfig['theme_set'] ?? 'default';
 
-
-
-
         if (($_pos = strpos($theme, '_')) && substr($theme, $_pos) !== '_default') {
             $theme_default = XOOPS_THEME_PATH . '/' . substr($theme, 0, $_pos) . '_default/templates/';
             is_dir($theme_default) || $theme_default = '';
@@ -202,7 +199,7 @@ class Legacy_ResourcedbUtils
 {
     public static function getModuleTemplatePath(XoopsTplfile $tplObj)
     {
-        $block = ($tplObj->getVar('tpl_type')==='block') ? '/blocks' : null;
+        $block = ($tplObj->getVar('tpl_type')=='block') ? '/blocks' : null;
         $dirname = $tplObj->getVar('tpl_module');
         $modulePath = $dirname.'/templates'.$block;
 
