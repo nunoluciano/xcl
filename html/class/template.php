@@ -320,7 +320,7 @@ function xoops_template_touch($tpl_id, $clear_old = true)
  **/
 function xoops_template_create($resource_type, $resource_name, &$template_source, &$template_timestamp, &$smarty_obj)
 {
-    if ('db' === $resource_type) {
+    if ('db' == $resource_type) {
         $file_handler =& xoops_gethandler('tplfile');
         $tpl =& $file_handler->find('default', null, null, null, $resource_name, true);
         if (count($tpl) > 0 && is_object($tpl[0])) {
