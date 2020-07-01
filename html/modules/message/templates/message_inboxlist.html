@@ -37,16 +37,31 @@
 
 <form method="post" action="index.php?action=deleteall">
 
-<table class="outer">
-<tr>
-<th width="36"><{$smarty.const._MD_MESSAGE_TEMPLATE22}></th>
-<th><{$smarty.const._MD_MESSAGE_TEMPLATE3}></th>
-<th><{$smarty.const._MD_MESSAGE_TEMPLATE12}></th>
-<th><{$smarty.const._MD_MESSAGE_TEMPLATE10}></th>
-<th><{$smarty.const._DELETE}></th>
+<table class="table outer">
+<tr class="thead-dark">
+    <th><{$smarty.const._DELETE}></th> delete
+
+
+<th width="36"><{$smarty.const._MD_MESSAGE_TEMPLATE22}></th>status
+
+    <th><{$smarty.const._MD_MESSAGE_TEMPLATE12}></th>
+
+<th><{$smarty.const._MD_MESSAGE_TEMPLATE3}></th> subject
+
+<th><{$smarty.const._MD_MESSAGE_TEMPLATE10}></th> date
+
 </tr>
+
+
 <{foreach item=val from=$ListData}>
 <tr>
+
+    <td class="odd">
+    <{if $val.is_read==1}>
+    <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>">
+    <{/if}>
+</td>
+
 <td class="head">
 <{if $val.is_read==0}>
 <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE16}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE16}>" />
@@ -56,21 +71,22 @@
 <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_lock.png" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" title="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>" />
 <{/if}>
 </td>
+    <td class="odd"><img src="<{$val.from_uid|xoops_user_avatarize}>" width="32"> <{$val.fromname}></td>
+
 <td class="even"><a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>"><{$val.title}></a></td>
-<td class="odd"><{$val.fromname}></td>
+
 <td class="even"><{$val.utime|xoops_formattimestamp:l}></td>
-<td class="odd">
-    <{if $val.is_read==1}>
-    <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>">
-    <{/if}>
-</td>
+
 </tr>
 <{/foreach}>
+
+
 <tr>
     <td colspan="5" class="foot">
-    <input type="submit" name="subbtn" value="<{$smarty.const._DELETE}>">
+        <button type="submit" class="btn btn-outline-danger btn-sm" name="subbtn" value="<{$smarty.const._DELETE}>"><{$smarty.const._DELETE}></button>
 </td>
 </tr>
+
 </table>
 <input type="hidden" name="inout" value="in" />
 </form>

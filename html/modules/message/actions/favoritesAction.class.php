@@ -7,14 +7,14 @@ class favoritesAction extends AbstractAction
 {
     private $mService;
     private $favorites;
-  
+
     public function __construct()
     {
         parent::__construct();
         $this->mService = $this->root->mServiceManager->getService('UserSearch');
         $this->setUrl('index.php?action=favorites');
     }
-  
+
     private function addFavorites()
     {
         $ret = [];
@@ -28,13 +28,13 @@ class favoritesAction extends AbstractAction
         foreach ($adduid as $fuid) {
             $ret[] = $client->call('addFavorites', ['mid' => $mid, 'fuid' => $fuid, 'weight' => 0]);
         }
-        if (in_array(false, $ret)) {
+        if (in_array(false, $ret, true)) {
             $this->setErr(_MD_MESSAGE_FAVORITES1);
         } else {
             $this->setErr(_MD_MESSAGE_FAVORITES2);
         }
     }
-  
+
     private function edtFavorites()
     {
         $weight = $this->root->mContext->mRequest->getRequest('weight');
@@ -45,15 +45,15 @@ class favoritesAction extends AbstractAction
         foreach ($weight as $id => $w) {
             $ret[] = $client->call('edtFavorites', ['id' => $id, 'weight' => $w]);
         }
-        if (in_array(false, $ret)) {
+        if (in_array(false, $ret, true)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
             return false;
-        } else {
-            $this->setErr(_MD_MESSAGE_FAVORITES4);
         }
+
+        $this->setErr(_MD_MESSAGE_FAVORITES4);
         return true;
     }
-  
+
     private function delFavorites()
     {
         $delid = $this->root->mContext->mRequest->getRequest('delid');
@@ -64,20 +64,20 @@ class favoritesAction extends AbstractAction
         foreach ($delid as $id) {
             $ret[] = $client->call('delFavorites', ['id' => $id]);
         }
-        if (in_array(false, $ret)) {
+        if (in_array(false, $ret, true)) {
             $this->setErr(_MD_MESSAGE_FAVORITES3);
         } else {
             $this->setErr(_MD_MESSAGE_FAVORITES5);
         }
     }
-  
+
     private function getFavorites()
     {
         $mid = $this->root->mContext->mXoopsModule->get('mid');
         $client = $this->root->mServiceManager->createClient($this->mService);
         $this->favorites = $client->call('getFavoritesUsers', ['mid' => $mid]);
     }
-  
+
     public function execute()
     {
         if (!$this->chk_use()) {
@@ -88,7 +88,7 @@ class favoritesAction extends AbstractAction
                 $this->setErr('Service Not loaded.');
                 return;
             }
-      
+
             $this->root->mLanguageManager->loadModuleMessageCatalog('usersearch');
             $cmd = $this->root->mContext->mRequest->getRequest('cmd');
             if ('' == $cmd) {
@@ -107,7 +107,7 @@ class favoritesAction extends AbstractAction
             }
         }
     }
-  
+
     public function executeView(&$render)
     {
         $render->setTemplateName('message_favorites.html');
