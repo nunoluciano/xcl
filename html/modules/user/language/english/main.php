@@ -30,7 +30,7 @@ define('_MD_USER_LANG_AVATAR_LIST', 'avatar list');
 define('_MD_USER_LANG_AVATAR_MAXFILESIZE', 'Max file size');
 define('_MD_USER_LANG_AVATAR_WIDTH', 'Width');
 define('_MD_USER_LANG_AVATAR_WIDTH_HIGHT', 'avatar width hight');
-define('_MD_USER_LANG_BIO', 'Extra Info');
+define('_MD_USER_LANG_BIO', 'Resume');
 define('_MD_USER_LANG_DELACCOUNT', 'Delete Account');
 define('_MD_USER_LANG_DELETE', 'Delete');
 define('_MD_USER_LANG_DISCLAIMER', 'Disclaimer');

@@ -6,7 +6,7 @@ define('_MB_LEGACY_EACNT', 'Edit Account');
 define('_MB_LEGACY_NOTIF', 'Notifications');
 define('_MB_LEGACY_INBOX', 'Inbox');
 define('_MB_LEGACY_LOUT', 'Logout');
-define('_MB_LEGACY_ADMENU', 'Administration Menu');
+define('_MB_LEGACY_ADMENU', 'Administration');
 
 define('_MB_LEGACY_SEARCH', 'Search');
 define('_MB_LEGACY_ADVS', 'Advanced Search');

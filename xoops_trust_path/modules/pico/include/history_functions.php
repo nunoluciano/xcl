@@ -17,7 +17,9 @@ function pico_get_content_history_profile($mydirname, $content_history_id, $cont
             . $db->prefix($mydirname . '_content_histories') . ' oh LEFT JOIN '
             . $db->prefix('users') . ' up ON oh.poster_uid=up.uid LEFT JOIN '
             . $db->prefix('users') . " mp ON oh.modifier_uid=mp.uid WHERE oh.content_history_id=$content_history_id"));
-		if (empty($history_row['content_id'])) die('Invalid content_history_id');
+		if (empty($history_row['content_id'])) {
+            die('Invalid content_history_id');
+        }
 		$content_id = (int)$history_row['content_id'];
 	}
 
@@ -62,16 +64,18 @@ function pico_get_content_histories4assign($mydirname, $content_id)
            . $db->prefix('users') . ' up ON oh.poster_uid=up.uid LEFT JOIN '
            . $db->prefix('users') . " um ON oh.modifier_uid=um.uid WHERE oh.content_id=$content_id ORDER BY oh.content_history_id DESC";
 	$result = $db->query($sql);
-	if ($result) while ($row = $db->fetchArray($result)) {
-		$row4assign = [
-            'id' => (int)$row['content_history_id'],
-            'created_time_formatted' => formatTimestamp($row['created_time'], 'm'),
-            'modified_time_formatted' => formatTimestamp($row['modified_time'], 'm'),
-            'poster_uname' => $row['poster_uid'] ? $myts->makeTboxData4Show($row['poster_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
-            'modifier_uname' => $row['modifier_uid'] ? $myts->makeTboxData4Show($row['modifier_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
-        ];
-		$ret[] = $row4assign + $row;
-	}
+	if ($result) {
+        while ($row = $db->fetchArray($result)) {
+            $row4assign = [
+                'id' => (int)$row['content_history_id'],
+                'created_time_formatted' => formatTimestamp($row['created_time'], 'm'),
+                'modified_time_formatted' => formatTimestamp($row['modified_time'], 'm'),
+                'poster_uname' => $row['poster_uid'] ? $myts->makeTboxData4Show($row['poster_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
+                'modifier_uname' => $row['modifier_uid'] ? $myts->makeTboxData4Show($row['modifier_uname']) : _MD_PICO_REGISTERED_AUTOMATICALLY,
+            ];
+            $ret[] = $row4assign + $row;
+        }
+    }
 
 	foreach (array_keys($ret) as $i) {
 		if (empty($ret[$i + 1])) {

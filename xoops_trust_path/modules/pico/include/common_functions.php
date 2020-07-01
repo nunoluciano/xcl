@@ -84,7 +84,7 @@ function pico_make_content_link4html($mod_config, $content_row, $mydirname = nul
 function pico_common_make_content_link4html($mod_config, $content_row, $mydirname = null)
 {
 	if (!empty($mod_config['use_wraps_mode'])) {
-		// wraps mode 
+		// wraps mode
 		if (!is_array($content_row) && !empty($mydirname)) {
 			// specify content by content_id instead of content_row
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -107,7 +107,9 @@ function pico_common_make_content_link4html($mod_config, $content_row, $mydirnam
 function pico_common_make_category_link4html($mod_config, $cat_row, $mydirname = null)
 {
 	if (!empty($mod_config['use_wraps_mode'])) {
-		if (empty($cat_row) || is_array($cat_row) && 0 == $cat_row['cat_id']) return '';
+		if (empty($cat_row) || is_array($cat_row) && 0 == $cat_row['cat_id']) {
+            return '';
+        }
 		if (!is_array($cat_row) && !empty($mydirname)) {
 			// specify category by cat_id instead of cat_row
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -123,8 +125,12 @@ function pico_common_make_category_link4html($mod_config, $cat_row, $mydirname =
 	} else {
 		// normal mode
 		$cat_id = is_array($cat_row) ? (int)$cat_row['cat_id'] : (int)$cat_row;
-		if ($cat_id) return empty($mod_config['use_rewrite']) ? 'index.php?cat_id=' . $cat_id : substr(sprintf(_MD_PICO_AUTOCATNAME4SPRINTF, $cat_id), 1);
-		else return '';
+		if ($cat_id) {
+            return empty($mod_config['use_rewrite']) ? 'index.php?cat_id=' . $cat_id : substr(sprintf(_MD_PICO_AUTOCATNAME4SPRINTF, $cat_id), 1);
+        }
+		else {
+            return '';
+        }
 	}
 }
 
@@ -132,11 +138,15 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 {
 	static $submenus_cache;
 
-	if (!empty($submenus_cache[$caller][$mydirname])) return $submenus_cache[$caller][$mydirname];
+	if (!empty($submenus_cache[$caller][$mydirname])) {
+        return $submenus_cache[$caller][$mydirname];
+    }
 
 	$module_handler = &xoops_gethandler('module');
 	$module = &$module_handler->getByDirname($mydirname);
-	if (!is_object($module)) return [];
+	if (!is_object($module)) {
+        return [];
+    }
 	$config_handler = &xoops_gethandler('config');
 	$mod_config = &$config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
@@ -149,27 +159,31 @@ function pico_common_get_submenu($mydirname, $caller = 'xoops_version')
 	// categories query
 	$sql = 'SELECT cat_id,pid,cat_title,cat_vpath FROM ' . $db->prefix($mydirname . '_categories') . " WHERE ($whr_read) ORDER BY cat_order_in_tree";
 	$crs = $db->query($sql);
-	if ($crs) while ($cat_row = $db->fetchArray($crs)) {
-		$cat_id = (int)$cat_row['cat_id'];
-		$categories[$cat_id] = [
-			'name' => $myts->makeTboxData4Show($cat_row['cat_title'], 1, 1),
-			'url' => pico_common_make_category_link4html($mod_config, $cat_row),
-			'is_category' => true,
-			'pid' => $cat_row['pid'],
-        ];
-	}
+	if ($crs) {
+        while ($cat_row = $db->fetchArray($crs)) {
+            $cat_id = (int)$cat_row['cat_id'];
+            $categories[$cat_id] = [
+                'name' => $myts->makeTboxData4Show($cat_row['cat_title'], 1, 1),
+                'url' => pico_common_make_category_link4html($mod_config, $cat_row),
+                'is_category' => true,
+                'pid' => $cat_row['pid'],
+            ];
+        }
+    }
 
 	if (!('sitemap_plugin' == $caller && !@$mod_config['sitemap_showcontents']) && !('xoops_version' == $caller && !@$mod_config['submenu_showcontents'])) {
 		// contents query
 		$ors = $db->query('SELECT cat_id,content_id,vpath,subject FROM ' . $db->prefix($mydirname . '_contents') . " WHERE show_in_menu AND visible AND created_time <= UNIX_TIMESTAMP() AND expiring_time > UNIX_TIMESTAMP() AND $whr_read ORDER BY weight,content_id");
-		if ($ors) while ($content_row = $db->fetchArray($ors)) {
-			$cat_id = (int)$content_row['cat_id'];
-			$categories[$cat_id]['sub'][] = [
-				'name' => $myts->makeTboxData4Show($content_row['subject'], 1, 1),
-				'url' => pico_common_make_content_link4html($mod_config, $content_row),
-				'is_category' => false,
-            ];
-		}
+		if ($ors) {
+            while ($content_row = $db->fetchArray($ors)) {
+                $cat_id = (int)$content_row['cat_id'];
+                $categories[$cat_id]['sub'][] = [
+                    'name' => $myts->makeTboxData4Show($content_row['subject'], 1, 1),
+                    'url' => pico_common_make_content_link4html($mod_config, $content_row),
+                    'is_category' => false,
+                ];
+            }
+        }
 	}
 
 	// restruct categories
@@ -183,7 +197,9 @@ function pico_common_restruct_categories($categories, $parent)
 	$ret = [];
 	foreach ($categories as $cat_id => $category) {
 		if ($category['pid'] == $parent) {
-			if (empty($category['sub'])) $category['sub'] = [];
+			if (empty($category['sub'])) {
+                $category['sub'] = [];
+            }
 			$ret[] = [
 				'name' => $category['name'],
 				'url' => $category['url'],
@@ -261,7 +277,7 @@ function pico_common_unserialize($serialized_data)
 	if (empty($serialized_data)) return [];
 
 	$ret = [];
-	if ('array' == substr(trim($serialized_data), 0, 5)) {
+	if (strpos(trim($serialized_data), 'array') === 0) {
 		// assume this is a string made from var_export( $var , true ) ;
 		@eval('$ret=' . $serialized_data . ';');
 	} else {
@@ -269,7 +285,9 @@ function pico_common_unserialize($serialized_data)
 		$ret = @unserialize($serialized_data);
 	}
 
-	if (!is_array($ret)) $ret = [];
+	if (!is_array($ret)) {
+        $ret = [];
+    }
 
 	return $ret;
 }

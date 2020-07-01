@@ -43,14 +43,14 @@ define('_MD_PICO_SUBCATEGORIES', 'Subcategories');
 define('_MD_PICO_CONTENT', 'Content');
 define('_MD_PICO_CONTENTS', 'Contents');
 
-define('_MD_PICO_LINK_MAKECATEGORY', 'Create a category');
-define('_MD_PICO_LINK_MAKESUBCATEGORY', 'Create a subcategory');
-define('_MD_PICO_LINK_MAKECONTENT', 'Create new content');
-define('_MD_PICO_LINK_EDITCATEGORY', 'Edit the category');
-define('_MD_PICO_LINK_EDITCONTENT', 'Edit the content');
+define('_MD_PICO_LINK_MAKECATEGORY', 'New category');
+define('_MD_PICO_LINK_MAKESUBCATEGORY', 'New subcategory');
+define('_MD_PICO_LINK_MAKECONTENT', 'New content');
+define('_MD_PICO_LINK_EDITCATEGORY', 'Edit category');
+define('_MD_PICO_LINK_EDITCONTENT', 'Edit content');
 define('_MD_PICO_LINK_CATEGORYPERMISSIONS', 'Permissions');
 define('_MD_PICO_LINK_BATCHCONTENTS', 'Batch');
-define('_MD_PICO_LINK_PUBLICCATEGORYINDEX', 'Public index of the category');
+define('_MD_PICO_LINK_PUBLICCATEGORYINDEX', 'Public index');
 
 define('_MD_PICO_LINK_PRINTERFRIENDLY', 'Printer-friendly');
 define('_MD_PICO_LINK_TELLAFRIEND', 'Tell a friend');
