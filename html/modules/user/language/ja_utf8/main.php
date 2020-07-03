@@ -27,7 +27,7 @@ define('_MD_USER_LANG_AVATAR_ID', 'ID');
 define('_MD_USER_LANG_AVATAR_LIST', '使用可能アバター一覧');
 define('_MD_USER_LANG_AVATAR_MAXFILESIZE', '最大ファイルサイズ');
 define('_MD_USER_LANG_AVATAR_WIDTH', '幅');
-define('_MD_USER_LANG_AVATAR_WIDTH_HIGHT', '幅 x 高さ');
+define('_MD_USER_LANG_AVATAR_WIDTH_HEIGHT', '幅 x 高さ');
 define('_MD_USER_LANG_BIO', 'その他');
 define('_MD_USER_LANG_DELACCOUNT', 'アカウントを削除する');
 define('_MD_USER_LANG_DELETE', '削除');

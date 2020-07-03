@@ -5,6 +5,177 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+
+[unreleased] 2020-07-03
+
+### Added  
+
+- User templates  
+- inc user nav left  
+- inc user nav tabs  
+- inc user tab  
+- inc user tab home  
+- inc user tab pref  
+- inc user tab profile  
+
+### Changed  
+
+- user avatar edit  
+- user edit (user profile)  
+- user info (public profile)  
+- USER_LANG_AVATAR_WIDTH_HEIGHT (en, jp)  
+- XCL Theme Bootstrap 4.5 (css)  
+- xcl-bootstrap-default manifesto  
+
+###  Fixed  
+
+- strict warnings in php 7.4 @nbuy   
+
+### Removed  
+
+- HTML tags and css
+
+### Update  
+
+- XCL Boostrap default  
+
+
+[unreleased] 2020-07-01
+
+### Added 
+
+- [WIP] XCL front-end templates  
+- breadcrumbs to templates  
+- favicon.svg with prefers-color-scheme
+- function xoopsPrintag to xoops.js   
+- Printer-friendly of any HTML element  
+- Legacy templates (notification, forms)  
+- Render templates (forms)  
+- User templates (forms)  
+- Pico templates (menu tree)     
+- Message current tab active (javascript, smarty)  
+- Message template (user avatar)  
+- Message settings info of purge schedule  
+- Message settings info of purge type   
+- Profile templates (tabs, timeline, private data)  
+- Responsive Tabs navigation   
+- Responsive Menu options  
+- Smarty comments    
+
+### Changed  
+
+- D3Forum refactor code   
+- Message language 'Blacklist User'   
+- Message language 'Forward to Email' 
+- Message titles truncate character length 50(...)      
+- Pico refactor code
+- User refactor code (form fields)
+- User Profile fields (private data)  
+- Fields : resume, interest, location, occupation
+- Cube settings  
+- English localisation   
+
+###  Fixed
+
+- Deprecated functions @gigamaster  
+- module message typo english  
+- Wizard Installer style
+
+### Removed 
+
+- D3 modules CSS classes  
+- CSS maps  
+- Javascript maps  
+- HTML comments  
+- Message icons gif
+
+### Update
+
+- xElFinder
+
+
+[unreleased] 2020-06-25
+
+### Added
+
+- [WIP] Front-End User Interface
+- Forms
+- Notifications
+- Pico
+- Private Message
+- User Profile
+- User fields (private)
+
+### Changed
+
+- D3Forum refactor code
+- Pico refactor code
+- User refactor code (form fields)
+- User Profile (private bio-data)
+- Fields : resume, interest, location, occupation
+- Cube default settings
+- English translation (D3Forum, Pico, User) 
+
+### Fixed
+
+- D3Forum deprecated function @gigamaster 
+- Cache settings
+- Template cache (bug of refactor code) 
+- Resource template (bug of refactor code)
+- Wizard Installer style
+
+### Removed  
+
+- Bootstrap 4.5 default map, css and js  
+- Legacy CSS classes  
+- HTML tags (not used by templates)
+
+### Update  
+
+- Module Message 2.4.0 @gigamaster  
+- xElFinder @Naoki Sawada
+
+
+[unreleased] 2020-06-19
+
+### Added 
+
+- Bootstrap 4.5
+- Theme XCL Bootstrap Default
+- Theme D3Forum Templates
+- resource.db.php @gigamaster  
+(add dirname to theme path /templates/module-name)
+
+### Changed 
+
+- D3Forum refactor code
+- D3Forum english catalog
+- [WIP] D3Forum templates  
+✅ custom layout   
+✅ top  breadcrumbs  
+✅ topics and posts table  
+✅ post within a card  
+✅ card header, body, footer  
+✅ card footer with child nav (flex wrap)  
+✅ pagination  
+✅ external comments  
+✅ inline SVG icons  
+✅ modify post forms  
+✅ advanced research  
+
+###  Fixed
+
+- D3Forum deprecated function @gigamaster
+- D3Forum includes
+- D3Forum lists
+- D3Forum usort 
+
+### Removed 
+
+- D3 CSS classes
+- HTML4 tags 
+
+
 [unreleased] 2020-06-10
 
 ### Added 
