@@ -20,7 +20,7 @@ class PicoTextSanitizer extends MyTextSanitizer
         return $instance;
     }
 
-    public function &getInstance()
+    public static function &getInstance()
     {
         $instance = &self::sGetInstance();
         return $instance;

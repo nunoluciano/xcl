@@ -337,7 +337,7 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
         return $token;
     }
 
-    public function &fetch($name, $serial_number)
+    public function &fetch($name, $serial_number=null)
     {
         $ret = null;
         if (isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$name][$serial_number])) {
@@ -356,7 +356,7 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
         unset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$token->_name_][$token->getSerialNumber()]);
     }
 
-    public function isRegistered($name, $serial_number)
+    public function isRegistered($name, $serial_number=null)
     {
         return isset($_SESSION[XOOPS_TOKEN_MULTI_SESSION_STRING][$this->_prefix.$name][$serial_number]);
     }

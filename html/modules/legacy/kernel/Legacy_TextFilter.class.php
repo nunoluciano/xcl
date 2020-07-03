@@ -111,7 +111,7 @@ class Legacy_TextFilter extends XCube_TextFilter
         $this->mXCodePre->register('MyTextSanitizer.XoopsCodePre');
     }
 
-    public function getInstance(&$instance)
+    public static function getInstance(&$instance)
     {
         if (empty($instance)) {
             $instance = new Legacy_TextFilter();

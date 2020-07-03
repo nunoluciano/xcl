@@ -508,7 +508,7 @@ class MyTextSanitizer
         return $ret;
     }
 
-    public function &getInstance()
+    public static function &getInstance()
     {
         $ret = self::sGetInstance();
         return $ret;

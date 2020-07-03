@@ -19,7 +19,9 @@ class SetupAltsysLangMgr extends XCube_ActionFilter
         $this->mController->mCreateLanguageManager->add('SetupAltsysLangMgr::createLanguageManager');
     }
 
-    public function createLanguageManager(&$langManager, $languageName)
+    
+    public static function createLanguageManager(&$langManager, $languageName)
+
     {
         $langManager = new AltsysLangMgr_LanguageManager();
     }
