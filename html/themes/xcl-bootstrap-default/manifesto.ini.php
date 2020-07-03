@@ -2,7 +2,7 @@
 /**
 
 [Manifesto]
-Name="XCL Bootstrap Default"
+Name="XCL-BS45"
 Depends=Legacy_RenderSystem,legacy
 Url="https://github.com/xoopscube/xcl"
 Version="1.0.0"

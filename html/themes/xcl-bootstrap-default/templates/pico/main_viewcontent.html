@@ -105,7 +105,7 @@
             <{if $content.can_vote}>
             <form action="<{$mod_url}>/index.php" method="get" name="pico_vote_best" id="pico_vote_best">
                 <input type="hidden" name="page" value="vote_to_content">
-                <input type="hidden" name="ontent_id" value="<{$content.id}>">
+                <input type="hidden" name="content_id" value="<{$content.id}>">
                 <input type="hidden" name="point" value="10">
 
                 <button class="btn btn-outline-success btn-sm" type="submit" value="<{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}>"><{$smarty.const._MD_PICO_VOTEPOINTDSCBEST}></button>

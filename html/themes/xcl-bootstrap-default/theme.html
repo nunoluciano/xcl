@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="<{$xoops_langcode}>">
+<!-- ===========================
+    XOOPSCUBE Theme : XCL Bootstrap Default
+    Distribution : XCL 2.3.0
+    Version : 1.0.0
+    Author : Nuno Luciano aka Gigamaster
+    Date : 2020-05-27
+    URL : https://github.com/xoopscube/xcl/
+=========================== -->
+<head>
+
+    <{include file="$xoops_theme/inc_head_meta.html"}>
+
+</head>
+
+<body>
+
+<{* ------- Select the header nav component to include by removing the "*" from the Smarty tag ------- *}>
+
+<{ include file="$xoops_theme/inc_header_nav_offcanvas.html" }>
+<{* include file="$xoops_theme/inc_header_nav_socialinks.html" *}>
+<{* include file="$xoops_theme/inc_header_nav_usermenu.html" *}>
+
+
+<main role="main">
+
+    <{if ! $xoops_modulename}>
+
+    <{include file="$xoops_theme/inc_hero_carousel.html"}>
+
+    <{/if}>
+
+    <{* ------- Wrap module content with column of blocks left or right. *}>
+
+    <div class="container layout-column">
+
+        <{ include file="$xoops_theme/inc_block_right.html" }>
+
+        <{* include file="$xoops_theme/inc_block_left.html" *}>
+
+    </div>
+    <{* ------- content and block-left or block-right *}>
+
+</main>
+
+
+<section class="container-fluid bg-dark" name="center-blocks">
+    <{include file="$xoops_theme/inc_block_center.html"}>
+</section>
+
+
+
+    <{include file="$xoops_theme/inc_footer.html"}>
+
+
+
+<script src="<{$xoops_url}>/common/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>$(function () {'use strict'
+$('[data-toggle="offcanvas"]').on('click', function () {
+        $('.offcanvas-collapse').toggleClass('open')
+    }),
+        $(() => {$('[data-toggle="popover"]').popover()})
+})</script>
+
+</body>
+</html>
