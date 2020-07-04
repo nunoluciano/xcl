@@ -18,7 +18,7 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 
     public function Legacy_AbstractThemeRenderTarget()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -53,7 +53,7 @@ class Legacy_ThemeRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
     public function Legacy_ThemeRenderTarget()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -67,7 +67,7 @@ class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
     public function Legacy_DialogRenderTarget()
     {
-        self::__construct();
+        $this->__construct();
     }
 
     public function __construct()
@@ -75,7 +75,7 @@ class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
         parent::__construct();
         $this->setAttribute('isFileTheme', false);
     }
-    
+
     public function getTemplateName()
     {
         return 'legacy_render_dialog.html';
