@@ -65,10 +65,12 @@ class XoopsTpl extends Smarty
         $this->compile_id = XOOPS_URL;
         if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
-            $this->compile_check = true;
+            $this->compile_check = false;
+            $this->force_compile = true;
         } else {
             $this->_canUpdateFromFile = false;
             $this->compile_check = false;
+            $this->force_compile = false;
         }
         $this->left_delimiter =  '<{';
         $this->right_delimiter =  '}>';
@@ -87,7 +89,9 @@ class XoopsTpl extends Smarty
                 'xoops_langcode'   => _LANGCODE,
                 'xoops_charset'    => _CHARSET,
                 'xoops_version'    => XOOPS_VERSION,
-                'xoops_upload_url' => XOOPS_UPLOAD_URL
+                'xoops_upload_url' => XOOPS_UPLOAD_URL,
+                'xcl_ui_path'      => XCL_UI_PATH,
+                'xcl_ui_url'       => XCL_UI_URL
             ]
         );
 
@@ -301,9 +305,9 @@ function xoops_template_touch($tpl_id, $clear_old = true)
             return true;
         }
         return false;
-    } else {
-        return $result;
     }
+
+    return $result;
 }
 
 /**
@@ -328,30 +332,32 @@ function xoops_template_create($resource_type, $resource_name, &$template_source
             $template_timestamp = $tpl[0]->getLastModified();
             return true;
         }
-    } else {
     }
+//    else {
+//    }
     return false;
 }
 
-/**
- * Clear the module cache
- *
- * @param int $mid Module ID
- * @return void
- * @deprecated
- *
- */
-function xoops_template_clear_module_cache($mid)
-{
-    $block_arr =& XoopsBlock::sGetByModule($mid);
-    $count = count($block_arr);
-    if ($count > 0) {
-        $xoopsTpl = new XoopsTpl();
-        $xoopsTpl->xoops_setCaching(2);
-        foreach ($block_arr as $iValue) {
-            if ('' !== $iValue->getVar('template')) {
-                $xoopsTpl->clear_cache('db:'. $iValue->getVar('template'), 'blk_'. $iValue->getVar('bid'));
+    /**
+     * Clear the module cache
+     *
+     * @param int $mid Module ID
+     * @return void
+     * @deprecated
+     *
+     */
+    function xoops_template_clear_module_cache($mid)
+    {
+        $block_arr =& XoopsBlock::sGetByModule($mid);
+        $count = count($block_arr);
+        if ($count > 0) {
+            $xoopsTpl = new XoopsTpl();
+            $xoopsTpl->xoops_setCaching(2);
+            foreach ($block_arr as $iValue) {
+                if ('' !== $iValue->getVar('template')) {
+                    $xoopsTpl->clear_cache('db:'. $iValue->getVar('template'), 'blk_'. $iValue->getVar('bid'));
+                }
             }
         }
     }
-}
+

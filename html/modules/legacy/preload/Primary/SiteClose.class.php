@@ -20,7 +20,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
     public function preBlockFilter()
     {
         if (1 == $this->mRoot->mContext->getXoopsConfig('closesite')) {
-            
+
             $this->mController->mSetupUser->add('Legacy_SiteClose::callbackSetupUser', XCUBE_DELEGATE_PRIORITY_FINAL);
             $this->mRoot->mDelegateManager->add('Site.CheckLogin.Success', [&$this, 'callbackCheckLoginSuccess']);
         }
@@ -38,7 +38,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
     {
         $accessAllowFlag = false;
         $xoopsConfig = $controller->mRoot->mContext->getXoopsConfig();
-        
+
         if (!empty($_POST['xoops_login'])) {
             $controller->checkLogin();
             return;
@@ -47,7 +47,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
             return;
         } elseif (is_object($context->mXoopsUser)) {
             foreach ($context->mXoopsUser->getGroups() as $group) {
-                if (in_array($group, $xoopsConfig['closesite_okgrp']) || XOOPS_GROUP_ADMIN == $group) {
+                if (in_array($group, $xoopsConfig['closesite_okgrp'], true) || XOOPS_GROUP_ADMIN == $group) {
                     $accessAllowFlag = true;
                     break;
                 }
@@ -69,15 +69,15 @@ class Legacy_SiteClose extends XCube_ActionFilter
                     'lang_siteclosemsg' => $xoopsConfig['closesite_text']
                 ]
             );
-                                       
+
             $xoopsTpl->compile_check = true;
-            
+
             // @todo filebase template with absolute file path
             $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_site_closed.html');
             exit();
         }
     }
-    
+
     /**
      * When the user logs in successfully, checks whether the user belongs to
      * the special group which is allowed to login. This function is called
@@ -99,7 +99,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
             $accessAllowed = false;
 
             foreach ($xoopsUser->getGroups() as $group) {
-                if (in_array($group, $this->mRoot->mContext->getXoopsConfig('closesite_okgrp')) || (XOOPS_GROUP_ADMIN == $group)) {
+                if (in_array($group, $this->mRoot->mContext->getXoopsConfig('closesite_okgrp'), true) || (XOOPS_GROUP_ADMIN === $group)) {
                     $accessAllowed = true;
                     break;
                 }

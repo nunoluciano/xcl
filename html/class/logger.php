@@ -32,7 +32,7 @@
 /**
  * Collects information for a page request
  *
- * <b>Singelton:</b> There can be only one instance of this class and it must
+ * <b>Singleton:</b> There can be only one instance of this class and it must
  * be accessed through the {@link instance()} method!
  *
  * records information about database queries, blocks, and execution time

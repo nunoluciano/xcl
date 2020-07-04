@@ -23,19 +23,19 @@
 function b_legacy_themes_show($options)
 {
     global $xoopsConfig;
-    
+
     if (0 === count($xoopsConfig['theme_set_allowed'])) {
         return null;
     }
-    
+
     $block = [];
     if ('POST' === xoops_getenv('REQUEST_METHOD')) {
         $block['isEnableChanger'] = 0;
         return $block;
     }
-    
+
     $block['isEnableChanger'] = 1;
-    
+
     $theme_options = [];
     $handler =& xoops_getmodulehandler('theme', 'legacy');
     foreach ($xoopsConfig['theme_set_allowed'] as $name) {
@@ -44,7 +44,7 @@ function b_legacy_themes_show($options)
             $theme_option['name'] = $name;
             $theme_option['screenshot'] = $theme->getShow('screenshot');
             $theme_option['screenshotUrl'] = XOOPS_THEME_URL . '/' . $name . '/' . $theme->getShow('screenshot');
-            if ($name == $xoopsConfig['theme_set']) {
+            if ($name === $xoopsConfig['theme_set']) {
                 $theme_option['selected'] = 'selected="selected"';
                 $block['theme_selected_screenshot'] = $theme->getShow('screenshot');
             } else {
@@ -53,7 +53,7 @@ function b_legacy_themes_show($options)
             $theme_options[] = $theme_option;
         }
     }
-    
+
     $block['count'] = count($xoopsConfig['theme_set_allowed']);
     $block['mode'] = $options[0];
     $block['width'] = $options[1];
@@ -68,13 +68,13 @@ function b_legacy_themes_edit($options)
     if (1 == $options[0]) {
         $chk = ' checked="checked"';
     }
-    $form .= '<label><input type="radio" name="options[0]" value="1"'.$chk.'><span>'._YES.'</span></label>';
+    $form .= '<input type="radio" name="options[0]" id="display-yes" value="1"'.$chk.'><label for="display-yes">'._YES.'</label>';
     $chk = '';
     if (0 == $options[0]) {
         $chk = ' checked="checked"';
     }
-    $form .= '<label><input type="radio" name="options[0]" value="0"'.$chk.'><span>'._NO.'</span></label></div>';
-    $form .= '<div><label><span>'._MB_LEGACY_LANG_THWIDTH.'</span>&nbsp;&nbsp;';
-    $form .= '<input type="text" name="options[1]" size="3" value="'.$options[1].'"></label></div>';
+    $form .= '<input type="radio" name="options[0]" id="display-no" value="0"'.$chk.'><label for="display-no">'._NO.'</label></div>';
+    $form .= '<div><label for="screenshot">'._MB_LEGACY_LANG_THWIDTH.' </label>';
+    $form .= '<input type="text" name="options[1]" id="screenshot" size="3" value="'.$options[1].'"></div>';
     return $form;
 }

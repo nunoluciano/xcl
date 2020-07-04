@@ -1,7 +1,7 @@
 <?php
 /*
  * Smarty plugin
- * ------------------------------------------------------------- 
+ * -------------------------------------------------------------
  * File:     resource.db.php
  * Type:     resource
  * Name:     db
@@ -56,17 +56,18 @@ function smarty_resource_db_tplinfo($tpl_name)
         return $cache[$tpl_name];
     }
     $tplset = $xoopsConfig['template_set'];
-    $theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
-    
+    //$theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
+    $theme = $xoopsConfig['theme_set'] ?? 'default';
+
     $tplfile_handler =& xoops_gethandler('tplfile');
     // If we're not using the "default" template set, then get the templates from the DB
-    if ('default' != $tplset) {
+    if ('default' !== $tplset) {
         $tplobj = $tplfile_handler->find($tplset, null, null, null, $tpl_name, true);
         if (count($tplobj)) {
             return $cache[$tpl_name] = $tplobj[0];
         }
     }
-    // If we'using the default tplset, get the template from the filesystem
+    // If we are using the default tplset, get the template from the filesystem
     $tplobj = $tplfile_handler->find('default', null, null, null, $tpl_name, true);
 
     if (!count($tplobj)) {
@@ -76,7 +77,8 @@ function smarty_resource_db_tplinfo($tpl_name)
     $module = $tplobj->getVar('tpl_module', 'n');
     $type = $tplobj->getVar('tpl_type', 'n');
     $blockpath = ('block' == $type) ? 'blocks/' : '';
-    // First, check for an overloaded version within the theme folder
+    // First, check for an overloaded version within the theme folder @gigamaster modified theme folder structure
+    //$filepath = XOOPS_THEME_PATH . "/$theme/templates/$module/$blockpath$tpl_name";
     $filepath = XOOPS_THEME_PATH . "/$theme/modules/$module/$blockpath$tpl_name";
     if (!file_exists($filepath)) {
         // If no custom version exists, get the tpl from its default location

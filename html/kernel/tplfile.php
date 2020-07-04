@@ -56,7 +56,7 @@ class XoopsTplfile extends XoopsObject
     }
     public function XoopsTplfile()
     {
-        return self::__construct();
+        return $this->__construct();
     }
 
     public function &getSource()
@@ -72,8 +72,8 @@ class XoopsTplfile extends XoopsObject
 }
 
 /**
-* XOOPS template file handler class.  
-* This class is responsible for providing data access mechanisms to the data source 
+* XOOPS template file handler class.
+* This class is responsible for providing data access mechanisms to the data source
 * of XOOPS template file class objects.
 *
 *
@@ -115,7 +115,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     public function loadSource(&$tplfile)
     {
-        if ('xoopstplfile' != strtolower(get_class($tplfile))) {
+        if ('xoopstplfile' !== strtolower(get_class($tplfile))) {
             return false;
         }
         if (!$tplfile->getVar('tpl_source')) {
@@ -131,7 +131,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     public function insert(&$tplfile)
     {
-        if ('xoopstplfile' != strtolower(get_class($tplfile))) {
+        if ('xoopstplfile' !== strtolower(get_class($tplfile))) {
             return false;
         }
         if (!$tplfile->isDirty()) {
@@ -152,7 +152,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             if (empty($tpl_id)) {
                 $tpl_id = $this->db->getInsertId();
             }
-            if (isset($tpl_source) && '' != $tpl_source) {
+            if (isset($tpl_source) && '' !== $tpl_source) {
                 $sql = sprintf('INSERT INTO %s (tpl_id, tpl_source) VALUES (%u, %s)', $this->db->prefix('tplsource'), $tpl_id, $this->db->quoteString($tpl_source));
                 if (!$result = $this->db->query($sql)) {
                     $this->db->query(sprintf('DELETE FROM %s WHERE tpl_id = %u', $this->db->prefix('tplfile'), $tpl_id));
@@ -165,7 +165,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             if (!$result = $this->db->query($sql)) {
                 return false;
             }
-            if (isset($tpl_source) && '' != $tpl_source) {
+            if (isset($tpl_source) && '' !== $tpl_source) {
                 $sql = sprintf('UPDATE %s SET tpl_source = %s WHERE tpl_id = %u', $this->db->prefix('tplsource'), $this->db->quoteString($tpl_source), $tpl_id);
                 if (!$result = $this->db->query($sql)) {
                     return false;
@@ -177,7 +177,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     public function forceUpdate(&$tplfile)
     {
-        if ('xoopstplfile' != strtolower(get_class($tplfile))) {
+        if ('xoopstplfile' !== strtolower(get_class($tplfile))) {
             return false;
         }
         if (!$tplfile->isDirty()) {
@@ -208,7 +208,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     public function delete(&$tplfile)
     {
-        if ('xoopstplfile' != strtolower(get_class($tplfile))) {
+        if ('xoopstplfile' !== strtolower(get_class($tplfile))) {
             return false;
         }
         $id = $tplfile->getVar('tpl_id');
@@ -240,7 +240,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
         $sql = sprintf('DELETE FROM %s', $this->db->prefix('tplfile'));
         $sql .= ' ' . $criteria->renderWhere();
-        
+
         return $this->db->query($sql);
     }
 
@@ -297,7 +297,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            if ('' != $myrow['tpl_module']) {
+            if ('' !== $myrow['tpl_module']) {
                 $ret[$myrow['tpl_module']] = $myrow['count'];
             }
         }
@@ -338,9 +338,6 @@ class XoopsTplfileHandler extends XoopsObjectHandler
     {
         $criteria = new CriteriaCompo(new Criteria('tpl_file', addslashes(trim($tplname))));
         $criteria->add(new Criteria('tpl_tplset', addslashes(trim($tplset_name))));
-        if ($this->getCount($criteria) > 0) {
-            return true;
-        }
-        return false;
+        return $this->getCount($criteria) > 0;
     }
 }

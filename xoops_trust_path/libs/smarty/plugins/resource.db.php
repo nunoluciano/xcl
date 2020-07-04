@@ -21,7 +21,8 @@ function smarty_resource_db_systemTpl($tpl_name)
         $systemTemplates = explode(',', $root->getSiteConfig('Legacy_RenderSystem', 'SystemTemplate', ''));
         $prefix = $root->getSiteConfig('Legacy_RenderSystem', 'SystemTemplatePrefix', 'legacy');
         // correction for PHP < 5.2.3
-        $patterns = preg_replace_callback('/^\s*([^\s]*)\s*$/', array('Legacy_ResourcedbUtils', 'makeRegexByMatched'), $systemTemplates);        //$patterns = preg_replace_callback('/^\s*([^\s]*)\s*$/', 'Legacy_ResourcedbUtils::makeRegexByMatched', $systemTemplates);
+        $patterns = preg_replace_callback('/^\s*([^\s]*)\s*$/', array('Legacy_ResourcedbUtils', 'makeRegexByMatched'), $systemTemplates);
+        //$patterns = preg_replace_callback('/^\s*([^\s]*)\s*$/', 'Legacy_ResourcedbUtils::makeRegexByMatched', $systemTemplates);
 
         $replacements = preg_replace('/^\s*system_([^\s]*)\s*/', $prefix.'_\1', $systemTemplates);
     }
@@ -121,7 +122,8 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
     }
 
     //@gigamaster add dirname to theme path /templates / module-name
-
+    //$theme         = XOOPS_THEME_PATH /   $theme      / templates /
+    //$theme_default = XOOPS_THEME_PATH / theme_default / templates /
     foreach ($entries as $entry) {
         switch ($entry) {
             case 'THEME':
@@ -149,7 +151,7 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
             case 'THEMEDEFAULT':
                 // check templates under themes/(theme prefix)_default/templates/ (file template)
                 if ($theme_default) {
-                    $filepath = $theme_default . $tpl_name ;
+                    $filepath = $theme_default . $dirname. '/' . $tpl_name ;
                     if (is_file($filepath)) {
                         return $cache[$tpl_name] = $filepath ;
                     }
@@ -199,7 +201,7 @@ class Legacy_ResourcedbUtils
 {
     public static function getModuleTemplatePath(XoopsTplfile $tplObj)
     {
-        $block = ($tplObj->getVar('tpl_type')=='block') ? '/blocks' : null;
+        $block = ($tplObj->getVar('tpl_type') == 'block') ? '/blocks' : null;
         $dirname = $tplObj->getVar('tpl_module');
         $modulePath = $dirname.'/templates'.$block;
 

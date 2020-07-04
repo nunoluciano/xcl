@@ -10,19 +10,19 @@ class LegacyTheme
     public $mFileName=null;
     public $ScreenShot=null;
     public $mManifesto=null;
-    
+
     public function __construct($dirName, $manifesto=null)
     {
         $this->mDirName=$dirName;
-        if (null != $manifesto) {
+        if (null !== $manifesto) {
             $this->initializeByManifesto($manifesto);
         }
     }
-    
+
     public function initializeByManifesto($manifesto)
     {
         //
-        // TODO We must check url to guard against that an attacker triggers javascript with wrong theme.
+        // Manifesto sanitized to prevent that an attacker triggers javascript with a fake theme.
         //
         $this->mManifesto=$manifesto;
         $this->ScreenShot=$manifesto['Theme']['ScreenShot'];
@@ -39,7 +39,7 @@ class LegacyThemeHandler
 
         if ($handler=opendir(XOOPS_THEME_PATH)) {
             while (false !== ($dir=readdir($handler))) {
-                if ('.' == $dir || '..' == $dir) {
+                if ('.' === $dir || '..' === $dir) {
                     continue;
                 }
 
@@ -50,12 +50,13 @@ class LegacyThemeHandler
                         $iniHandler = new XCube_IniHandler($mnfFile, true);
                         $manifesto = $iniHandler->getAllConfig();
                     }
-                    
+
                     if (count($manifesto) > 0) {
                         //
                         // If this system can use this theme, add this to list.
                         //
-                        if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && 'Legacy_RenderSystem' == $manifesto['Manifesto']['Depends']) {
+                        // @gigamaster merged isset and applied strict ( === )
+                        if (isset($manifesto['Manifesto'], $manifesto['Manifesto']['Depends']) && 'Legacy_RenderSystem' === $manifesto['Manifesto']['Depends']) {
                             $this->_mThemeList[]=new LegacyTheme($dir, $manifesto);
                         }
                     } else {
