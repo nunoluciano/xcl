@@ -84,14 +84,18 @@ class XoopsTpl extends Smarty
 
         $this->assign(
             [
-                'xoops_url'        => XOOPS_URL,
-                'xoops_rootpath'   => XOOPS_ROOT_PATH,
-                'xoops_langcode'   => _LANGCODE,
-                'xoops_charset'    => _CHARSET,
-                'xoops_version'    => XOOPS_VERSION,
-                'xoops_upload_url' => XOOPS_UPLOAD_URL,
-                'xcl_ui_path'      => XCL_UI_PATH,
-                'xcl_ui_url'       => XCL_UI_URL
+                'xoops_url'         => XOOPS_URL,
+                'xoops_rootpath'    => XOOPS_ROOT_PATH,
+                'xoops_langcode'    => _LANGCODE,
+                'xoops_charset'     => _CHARSET,
+                'xoops_version'     => XOOPS_VERSION,
+                'xoops_upload_url'  => XOOPS_UPLOAD_URL
+//                'xcl_ui_path'       => XCL_UI_PATH,
+//                'xcl_ui_url'        => XCL_UI_URL,
+//                'bs4_path'          => XCL_UI_BS4_PATH,
+//                'bs4_url'           => XCL_UI_BS4_URL,
+//                'fdn_path'          => XCL_UI_FDN_PATH,
+//                'fdn_url'           => XCL_UI_FDN_URL
             ]
         );
 
