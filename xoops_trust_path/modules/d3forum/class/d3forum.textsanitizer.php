@@ -20,11 +20,11 @@ class D3forumTextSanitizer extends MyTextSanitizer
         return $instance;
     }
 
-    public function &getInstance()
-    {
-        $instance =& self::sGetInstance();
-        return $instance;
-    }
+//    public function &getInstance()
+//    {
+//        $instance =& self::sGetInstance();
+//        return $instance;
+//    }
 
     // override
     // a fix for original bad implementation
@@ -89,9 +89,9 @@ class D3forumTextSanitizer extends MyTextSanitizer
         $text = $this->makeTboxData4Show($text);
         if (preg_match('#^https?\://#', $text)) {
             return $text;
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     // override
@@ -183,7 +183,7 @@ class D3forumTextSanitizer extends MyTextSanitizer
     // override
     public function codeConv($text, $xcode = 1, $image = 1)
     {
-        if (0 != $xcode && !defined('XOOPS_CUBE_LEGACY')) {
+        if (0 !== $xcode && !defined('XOOPS_CUBE_LEGACY')) {
             // bug fix
             $text = preg_replace_callback("/\[code](.*)\[\/code\]/sU", [$this, 'myCodeSanitizer'], $text);
         } else {
@@ -222,5 +222,3 @@ class D3forumTextSanitizer extends MyTextSanitizer
         return preg_replace($patterns, $replacements, $text);
     }
 }
-
-?>
