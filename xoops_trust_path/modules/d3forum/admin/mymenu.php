@@ -20,9 +20,11 @@ if (!is_object($xoopsModule)) {
 
 // language files (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
+
 if (!file_exists($langmanpath)) {
     die('install the latest altsys');
 }
+
 require_once($langmanpath);
 
 $langman =& D3LanguageManager::getInstance();

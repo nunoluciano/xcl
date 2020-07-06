@@ -1,12 +1,12 @@
 <?php
 
-require_once XOOPS_TRUST_PATH . '/modules/d3pipes/joints/D3pipesBlockAbstract.class.php' ;
+require_once XOOPS_TRUST_PATH . '/modules/d3pipes/joints/D3pipesBlockAbstract.class.php';
 
 class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
 {
 
     public $target_dirname = '';
-    public $trustdirname   = 'd3forum';
+    public $trustdirname = 'd3forum';
 
     public function init()
     {
@@ -22,27 +22,27 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
         $this->func_file = XOOPS_ROOT_PATH . '/modules/' . $this->target_dirname . '/blocks/blocks.php';
         if (isset($params[4]) && (int)$params[4] > 0) {
             //posts
-            $this->func_name     = 'b_d3forum_list_posts_show';
+            $this->func_name = 'b_d3forum_list_posts_show';
             $this->block_options = [
                 'disable_renderer' => true,
-                0                  => $this->target_dirname, // mydirname of pico
-                1                  => empty($params[2]) ? 10 : (int)$params[2], // max_entries
-                2                  => 'time', // order by
-                3                  => preg_replace('/[^0-9,]/', '', @$params[1]), // category limitation
-                5                  => preg_replace('/[^0-9,]/', '', @$params[3]), // forum limitation
+                0 => $this->target_dirname, // mydirname of pico
+                1 => empty($params[2]) ? 10 : (int)$params[2], // max_entries
+                2 => 'time', // order by
+                3 => preg_replace('/[^0-9,]/', '', @$params[1]), // category limitation
+                5 => preg_replace('/[^0-9,]/', '', @$params[3]), // forum limitation
             ];
         } else {
             //topics
-            $this->func_name     = 'b_d3forum_list_topics_show';
+            $this->func_name = 'b_d3forum_list_topics_show';
             $this->block_options = [
                 'disable_renderer' => true,
-                0                  => $this->target_dirname, // mydirname of pico
-                1                  => empty($params[2]) ? 10 : (int)$params[2], // max_entries
-                2                  => false, // show_fullsize
-                3                  => 'time', // order by
-                4                  => false, // is_markup
-                5                  => preg_replace('/[^0-9,]/', '', @$params[1]), // category limitation
-                7                  => preg_replace('/[^0-9,]/', '', @$params[3]), // forum limitation
+                0 => $this->target_dirname, // mydirname of pico
+                1 => empty($params[2]) ? 10 : (int)$params[2], // max_entries
+                2 => false, // show_fullsize
+                3 => 'time', // order by
+                4 => false, // is_markup
+                5 => preg_replace('/[^0-9,]/', '', @$params[1]), // category limitation
+                7 => preg_replace('/[^0-9,]/', '', @$params[3]), // forum limitation
             ];
         }
         return true;
@@ -55,27 +55,27 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
         $entries = [];
         if (!empty($data['topics'])) {
             foreach ($data['topics'] as $topic) {
-                $entry                = [
-                    'pubtime'     => $topic['last_post_time'], // timestamp
-                    'link'        => $data['mod_url'] . '/index.php?topic_id=' . $topic['id'] . '#post_id' . $topic['last_post_id'],
+                $entry = [
+                    'pubtime' => $topic['last_post_time'], // timestamp
+                    'link' => $data['mod_url'] . '/index.php?topic_id=' . $topic['id'] . '#post_id' . $topic['last_post_id'],
                     //'headline' => $topic['title'] ,
-                    'headline'    => '[' . $topic['forum_title'] . '] ' . $topic['title'],
+                    'headline' => '[' . $topic['forum_title'] . '] ' . $topic['title'],
                     'description' => $topic['post_text'],
                 ];
                 $entry['fingerprint'] = $entry['link'];
-                $entries[]            = $entry;
+                $entries[] = $entry;
             }
         } elseif (!empty($data['posts'])) {
             foreach ($data['posts'] as $post) {
-                $entry                = [
-                    'pubtime'     => $post['post_time'], // timestamp
-                    'link'        => $data['mod_url'] . '/index.php?post_id=' . $post['id'],
+                $entry = [
+                    'pubtime' => $post['post_time'], // timestamp
+                    'link' => $data['mod_url'] . '/index.php?post_id=' . $post['id'],
                     //'headline' => $post['subject'] ,
-                    'headline'    => '[' . $post['forum_title'] . '] ' . $post['subject'],
+                    'headline' => '[' . $post['forum_title'] . '] ' . $post['subject'],
                     'description' => $post['post_text'],
                 ];
                 $entry['fingerprint'] = $entry['link'];
-                $entries[]            = $entry;
+                $entries[] = $entry;
             }
         }
 
@@ -84,12 +84,12 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
 
     public function renderOptions($index, $current_value = null)
     {
-        $index   = (int)$index;
+        $index = (int)$index;
         $options = explode('|', $current_value);
 
         // options[0]  (dirname)
         $dirnames = $this->getValidDirnames();
-        $ret_0    = '<select name="joint_options[' . $index . '][0]">';
+        $ret_0 = '<select name="joint_options[' . $index . '][0]">';
         foreach ($dirnames as $dirname) {
             $ret_0 .= '<option value="' . $dirname . '" ' . ($dirname == @$options[0] ? 'selected="selected"' : '') . '>' . $dirname . '</option>';
         }
@@ -97,24 +97,24 @@ class D3pipesBlockD3forumrevSubstance extends D3pipesBlockAbstract
 
         // options[1]  (cat_ids)
         $options[1] = preg_replace('/[^0-9,]/', '', @$options[1]);
-        $ret_1      = _MD_D3PIPES_N4J_CID . '<input type="text" name="joint_options[' . $index . '][1]" value="' . $options[1] . '" size="8">';
+        $ret_1 = _MD_D3PIPES_N4J_CID . '<input type="text" name="joint_options[' . $index . '][1]" value="' . $options[1] . '" size="8">';
 
         // options[2]  (max_entries)
         $options[2] = empty($options[2]) ? 10 : (int)$options[2];
-        $ret_2      = _MD_D3PIPES_N4J_MAXENTRIES . '<input type="text" name="joint_options[' . $index . '][2]" value="' . $options[2] . '" size="2" style="text-align:right;">';
+        $ret_2 = _MD_D3PIPES_N4J_MAXENTRIES . '<input type="text" name="joint_options[' . $index . '][2]" value="' . $options[2] . '" size="2" style="text-align:right;">';
 
         // options[3]  (forum_ids)
         $options[3] = preg_replace('/[^0-9,]/', '', @$options[3]);
-        $ret_3      = 'forum_id<input type="text" name="joint_options[' . $index . '][3]" value="' . $options[3] . '" size="8">';
+        $ret_3 = 'forum_id<input type="text" name="joint_options[' . $index . '][3]" value="' . $options[3] . '" size="8">';
 
         // options[4]  (show topics or posts)
         $options[4] = empty($options[4]) ? 0 : (int)$options[4];
         if ($options[4] > 0) {
             $topics_checked = '';
-            $posts_checked  = 'checked="checked"';
+            $posts_checked = 'checked="checked"';
         } else {
             $topics_checked = 'checked="checked"';
-            $posts_checked  = '';
+            $posts_checked = '';
         }
 
         $ret_4 = 'Topics/Posts:<input type="radio" name="joint_options[' . $index . '][4]" value="0" ' . $topics_checked . '><label for="o40">Topics</label>

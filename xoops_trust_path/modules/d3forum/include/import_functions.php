@@ -151,7 +151,7 @@ function d3forum_import_getimportablemodules( $mydirname )
 		if( file_exists( $dirpath.'/mytrustdirname.php' ) ) {
 			include $dirpath.'/mytrustdirname.php' ;
 		}
-		if('d3forum' === $mytrustdirname && $dirname != $mydirname ) {
+		if('d3forum' === $mytrustdirname && $dirname !== $mydirname ) {
 			// d3forum
 			$ret[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		} else if('xhnewbb' === $dirname) {
@@ -303,7 +303,9 @@ function d3forum_import_from_newbb1( $mydirname , $import_mid )
 	while( list( $cat_id ) = $db->fetchRow( $crs ) ) {
 		foreach( $group_ids as $groupid ) {
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($cat_id,null,$groupid,1,1,1,1,0,0)" ) ;
-			if( ! $irs ) d3forum_import_errordie() ;
+			if( ! $irs ) {
+                d3forum_import_errordie();
+            }
 		}
 	}
 
@@ -551,7 +553,7 @@ function d3forum_comimport_as_topics( $mydirname , $mid , $forum_id )
 
 	// get exparams (consider it as "static" like "page=article&")
 	$ers = $db->query('SELECT distinct com_exparams FROM ' . $db->prefix('xoopscomments') . " WHERE com_modid=$mid AND LENGTH(`com_exparams`) > 5 LIMIT 1" ) ;
-	list( $exparam ) = $db->fetchRow( $ers ) ;
+	[$exparam] = $db->fetchRow($ers);
 	if( empty( $exparam ) ) {
         $exparam = '';
     }
