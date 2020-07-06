@@ -6,6 +6,43 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
 
+[unreleased] 2020-07-05
+
+### Added  
+
+- Pico Publication Workflow :  
+  - Content Expired
+  - Content invisible
+  - Waiting approval
+  - Waiting release
+- Template with category description
+- Template with section 'waiting content' 
+- Add 'htmlspecialchars_decode' to waiting content
+- Add 'preview waiting content' to 'viewcontent'  
+
+### Changed  
+
+- Ajax load Modules Help section or article 'id'  
+- Modules Help semantic structure (section, article)  
+- D3forum /class /main refactor code 
+- PHP Null Coalesce Operator
+- PHP stripos() function
+
+###  Fixed  
+
+- D3forum bugfix static  
+- Pico template smarty top description 
+
+
+### Removed  
+
+- Pico template 'switch_to_fckeditor'    
+
+### Update  
+
+-  xelFinder 2.57 @nao-pon
+Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"  
+
 [unreleased] 2020-07-03
 
 ### Added  
@@ -37,7 +74,7 @@ All notable changes to this project will be documented in this file.
 
 ### Update  
 
-- XCL Boostrap default  
+- XCL Bootstrap default  
 
 
 [unreleased] 2020-07-01
@@ -55,8 +92,8 @@ All notable changes to this project will be documented in this file.
 - Pico templates (menu tree)     
 - Message current tab active (javascript, smarty)  
 - Message template (user avatar)  
-- Message settings info of purge schedule  
-- Message settings info of purge type   
+- Message settings info of purge schedule :speech_balloon:  
+- Message settings info of purge type :speech_balloon:   
 - Profile templates (tabs, timeline, private data)  
 - Responsive Tabs navigation   
 - Responsive Menu options  
