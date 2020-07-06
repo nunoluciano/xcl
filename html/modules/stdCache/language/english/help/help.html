@@ -1,50 +1,60 @@
-<p>
-	<a href ="#help-description" class="ui-btn">Cache Module</a>
-	<a href ="#help-features" class="ui-btn">Features</a>
-	<a href ="#help-policy" class="ui-btn">Group Policy</a>
-	<a href ="#help-block" class="ui-btn">Clear Cache</a>
-</p>
+<section id="help-stdcache">
+
+    <nav id="help-menu">
+        <a href ="#help-description" class="ui-btn">Cache Module</a>
+        <a href ="#help-features" class="ui-btn">Features</a>
+        <a href ="#help-policy" class="ui-btn">Group Policy</a>
+        <a href ="#help-block" class="ui-btn">Clear Cache</a>
+    </nav>
 
 <hr>
-<a name="help-description"></a>
-<h3>Standard Cache Management</h3>
-<p>This module manages the Standard Cache Policy of XCL Web Application Platform.
-<p>The standard policy cache files for every users group except the webmaster group.
+
+    <article name="help-description">
+        <h3>Standard Cache Management</h3>
+        <p>This module manages the Standard Cache Policy of XCL Web Application Platform.
+        <p>The standard policy cache files for every users group except the webmaster group.
+    </article>
 
 <hr>
-<a name="help-features"></a>
-<h3>Features</h3>
-<p>XCL introduced a new Cache Policy concept called Standard Cache.
-<p>Its purpose is to reduce the time it takes to perform certain scenarios
-<p>caching files of modules and blocks.
-<p>The cache feature saves the content to files, if setting cache active.
-<p>And, if cache files are available, XCL prevents the extra logic SQL of blocks and modules.
-<p>This is a useful and powerful feature to speed up a web page load for all site visitors.
+
+    <article name="help-features">
+        <h3>Features</h3>
+        <p>XCL introduced a new Cache Policy concept called Standard Cache.
+        <p>Its purpose is to reduce the time it takes to perform certain scenarios
+        <p>caching files of modules and blocks.
+        <p>The cache feature saves the content to files, if setting cache active.
+        <p>And, if cache files are available, XCL prevents the extra logic SQL of blocks and modules.
+        <p>This is a useful and powerful feature to speed up a web page load for all site visitors.
+    </article>
 
 <hr>
-<a name="help-policy"></a>
-<h3>Understanding Group Policy Caching</h3>
 
-<p>For security reasons, the Standard Cache Policy should prevent the caching of files for administrators' access.</p>
-<p>Otherwise, the files cached could be accessed by anonymous users.</p>
-<p>Also, to prevent the cache to grow larger with too many files in your server,</p>
-<p>the cache of modules can be enable or disable from General Settings.</p>
+    <article name="help-policy">
+        <h3>Understanding Group Policy Caching</h3>
 
-<h5>Best practices for cache control settings</h5>
-<p>Set the time that the module or block should keep the files in cache.</p>
-<p>Therefore, the Standard Cache Policy can cache many files, so it features a "cache clear block".</p>
+        <p>For security reasons, the Standard Cache Policy should prevent the caching of files for administrators' access.</p>
+        <p>Otherwise, the files cached could be accessed by anonymous users.</p>
+        <p>Also, to prevent the cache to grow larger with too many files in your server,</p>
+        <p>the cache of modules can be enable or disable from General Settings.</p>
 
+        <h5>Best practices for cache control settings</h5>
+        <p>Set the time that the module or block should keep the files in cache.</p>
+        <p>Therefore, the Standard Cache Policy can cache many files, so it features a "cache clear block".</p>
+    </article>
 
 <hr>
-<a name="help-block"></a>
-<h3>The cache clear block</h3>
-<p>This block is not visible and can delete all of cached files, including
-    extra cache files, with interval timer.</p>
 
-<h6>Options</h6>
-<p><img src="<{'cacheclear_block_option.png'|helpimage}>" /></p>
+    <article name="help-block">
+        <h3>The cache clear block</h3>
+        <p>This block is not visible and can delete all of cached files, including
+            extra cache files, with interval timer.</p>
+        <h5>Options</h5>
+        <p><img src="<{'cacheclear_block_option.png'|helpimage}>" /></p>
 
-  <dl>
-    <dt>Interval timer (min)</dt>
-    <dd>Specify the interval.</dd>
-  </dl>
+          <dl>
+            <dt>Interval timer (min)</dt>
+            <dd>Specify the interval.</dd>
+      </dl>
+    </article>
+
+</section>

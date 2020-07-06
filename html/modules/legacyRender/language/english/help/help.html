@@ -1,69 +1,79 @@
-<p>
-	<a href ="#help-description" class="ui-btn">Renderer</a>
-	<a href ="#help-theme" class="ui-btn">Themes</a>
-	<a href ="#help-template" class="ui-btn">Template</a>
-	<a href ="#help-theme" class="ui-btn">Themes</a>
-	<a href ="#help-development" class="ui-btn">Contribution</a>
-</p>
+<section id="help-render">
+
+    <nav id="help-menu">
+        <a href ="#help-description" class="ui-btn">Renderer</a>
+        <a href ="#help-theme" class="ui-btn">Themes</a>
+        <a href ="#help-template" class="ui-btn">Template</a>
+        <a href ="#help-theme" class="ui-btn">Themes</a>
+        <a href ="#help-development" class="ui-btn">Contribution</a>
+    </nav>
 
 <hr>
-<a name="help-description"></a>
-<h3>Outline</h3>
-<ul>
-  <li>This rendering engine (renderer) is ensures compatibility with legacy themes of XOOPS 2/XOOPS-JP2.
-  <li>It has neither override nor the fall-back mechanism.
-	<li>Smarty is used for rendering and the cache management.
-	<li>The renderer uses package.ini.php for specs and details.
-</ul>
+
+    <article name="help-description">
+    <h3>Outline</h3>
+    <ul>
+      <li>This rendering engine (renderer) is ensures compatibility with legacy themes of XOOPS 2/XOOPS-JP2.
+      <li>It has neither override nor the fall-back mechanism.
+        <li>Smarty is used for rendering and the cache management.
+        <li>The renderer uses package.ini.php for specs and details.
+    </ul>
+    </article>
 
 <hr>
-<a name="help-theme"></a>
-<h3>Additional Themes</h3>
-<p>Themes can be installed from Xupdate Store or from theme-developers' websites etc.
 
-<h4>Uploading Themes</h4>
-<p>Distributed themes are mostly compressed.
-	To use a theme, the uncompressed files must be upload into the /themes directory of your site.
-<p>The Theme folder must include theme.html and manifesto.ini.php.
-	First download the theme and expand it on your local machine. Then upload the entire folder.
+    <article> name="help-theme">
+    <h3>Additional Themes</h3>
+    <p>Themes can be installed from Xupdate Store or from theme-developers' websites etc.
 
-<h4>Theme Selection</h4>
-<p>Theme Management allows you to simple click the "Select" button next to the theme
-		that you want to use as the default theme or main theme of your site.
-<p>Any theme that is "checked" in the "Control" column, will be available in the Theme Selection Block.
-	If you allow users to see this Block, they will then be able to select their favorite theme.
+    <h4>Uploading Themes</h4>
+    <p>Distributed themes are mostly compressed.
+        To use a theme, the uncompressed files must be upload into the /themes directory of your site.
+    <p>The Theme folder must include theme.html and manifesto.ini.php.
+        First download the theme and expand it on your local machine. Then upload the entire folder.
 
-<h4>Uninstall a Theme</h4>
-<p>The render system manages themes without using the database.
-	So, to delete a theme, simply delete it's directory from the "theme" directory.
+    <h4>Theme Selection</h4>
+    <p>Theme Management allows you to simple click the "Select" button next to the theme
+            that you want to use as the default theme or main theme of your site.
+    <p>Any theme that is "checked" in the "Control" column, will be available in the Theme Selection Block.
+        If you allow users to see this Block, they will then be able to select their favorite theme.
 
-<hr>
-<a name="help-template"></a>
-<h3>Template Management</h3>
-<p>The list of Template Sets is displayed in Template Management.
-<p>XCL comes with a default Template Set.
-	By default, when modules are installed, their templates become part of this default set.
-<p>The default Template Set cannot be deleted nor modified.
-	To customize the templates in your site, first 'Clone' the default template set.
-<p>The 'Clone' button is on the right, in the Control column.
-<p>Once you have a new Template Set, you should first make it the Active set
-	by clicking the "Select" button in the Control column.
-<p>The actual template files can now be edited in the Template File Management section.
-<p>If you have a template set in tar.gz format, you can also upload this to your site through the admin interface.
-<p>Simply click on the "Upload a Template Set" link in Template Management.
-
-
-<h4>Template File Management</h4>
-<ul>
-  <li>The list of template files is displayed, and each file can be edited by clicking the edit icon ( a pencil )
-		in the rightmost column.</li>
-</ul>
+    <h4>Uninstall a Theme</h4>
+    <p>The render system manages themes without using the database.
+        So, to delete a theme, simply delete it's directory from the "theme" directory.
+    </article>
 
 <hr>
-<a name="help-development"></a>
-<h4>TODO</h4>
-<ul>
-  <li>Components related to "Theme selection".</li>
-  <li>The action filter that guarantees "Theme selection block" and operation is shifted.</li>
-  <li>Theme options, designer's license presentation and README mark.</li>
-</ul>
+
+    <article name="help-template">
+    <h3>Template Management</h3>
+    <p>The list of Template Sets is displayed in Template Management.
+    <p>XCL comes with a default Template Set.
+        By default, when modules are installed, their templates become part of this default set.
+    <p>The default Template Set cannot be deleted nor modified.
+        To customize the templates in your site, first 'Clone' the default template set.
+    <p>The 'Clone' button is on the right, in the Control column.
+    <p>Once you have a new Template Set, you should first make it the Active set
+        by clicking the "Select" button in the Control column.
+    <p>The actual template files can now be edited in the Template File Management article.
+    <p>If you have a template set in tar.gz format, you can also upload this to your site through the admin interface.
+    <p>Simply click on the "Upload a Template Set" link in Template Management.
+    <h4>Template File Management</h4>
+    <ul>
+      <li>The list of template files is displayed, and each file can be edited by clicking the edit icon ( a pencil )
+            in the rightmost column.</li>
+    </ul>
+    </article>
+
+<hr>
+
+    <article name="help-development">
+        <h4>TODO</h4>
+        <ul>
+          <li>Components related to "Theme selection".</li>
+          <li>The action filter that guarantees "Theme selection block" and operation is shifted.</li>
+          <li>Theme options, designer's license presentation and README mark.</li>
+        </ul>
+    </article>
+
+</section>
