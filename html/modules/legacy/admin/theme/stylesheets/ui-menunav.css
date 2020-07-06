@@ -20,13 +20,17 @@ URL : https://github.com/xoopscube/xcl/
 
     background      : var(  --ui-color-600   );
 
+
+
     /* border-radius   : var(  --ui-border-radius      ); */
     border-bottom-left-radius: var(  --ui-border-radius      );;
     border-bottom-right-radius: var(  --ui-border-radius      );;
 
     /* box-shadow   : 0 4px 8px rgba(159, 162, 177, 0.8); */
 
-    display         : inline-flex;
+        display: flex;
+        flex-wrap: wrap;
+
     overflow        : hidden;
     max-width       : 100%;
 

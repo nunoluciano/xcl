@@ -3,12 +3,12 @@
 
 if(!function_exists('error_get_last')) {
 	function error_get_last() {
-		return [
+		return array(
 				'type' => 0,
 				'message' => $GLOBALS[php_errormsg],
 				'file' => 'unknonw',
 				'line' => 0,
-        ];
+		);
 	}
 }
 
@@ -17,13 +17,13 @@ if (! extension_loaded('json')) {
 	require_once 'Services/JSON.php';
 	if (!function_exists('json_decode')){
 		function json_decode($content, $assoc=false) {
-			$json = $assoc?new Services_JSON(SERVICES_JSON_LOOSE_TYPE): new Services_JSON();
+			$json = $assoc?new Services_JSON(SERVICES_JSON_LOOSE_TYPE):new Services_JSON;
 			return $json->decode($content);
 		}
 	}
 	if (!function_exists('json_encode')){
 		function json_encode($content){
-			$json = new Services_JSON();
+			$json = new Services_JSON;
 			return $json->encode($content);
 		}
 	}
@@ -44,7 +44,7 @@ if (!function_exists('sys_get_temp_dir')) {
 			return realpath( $_ENV['TEMP']);
 		}
 	
-		$tempfile = tempnam(uniqid(mt_rand(), TRUE), '');
+		$tempfile = tempnam(uniqid(rand(),TRUE),'');
 		if (file_exists($tempfile)) {
 			unlink($tempfile);
 			return realpath(dirname($tempfile));
@@ -57,16 +57,11 @@ if (!function_exists('sys_get_temp_dir')) {
  *
  * PHP versions 4 and 5
  *
- * @param        $input
- * @param string $delimiter
- * @param string $enclosure
- * @param string $escape
- * @return array|bool
  * @category  PHP
  * @package   PHP_Compat
- * @license   LGPL - https:///www.gnu.org/licenses/lgpl.html
+ * @license   LGPL - http://www.gnu.org/licenses/lgpl.html
  * @copyright 2004-2009 Aidan Lister <aidan@php.net>, Arpad Ray <arpad@php.net>
- * @link      https:///php.net/function.str_getcsv
+ * @link      http://php.net/function.str_getcsv
  * @author    HM2K <hm2k@php.net>
  * @version   $CVS: 1.0 $
  * @since     5.3.0
@@ -76,8 +71,8 @@ function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $esca
 	$fh = tmpfile();
 	fwrite($fh, $input);
 	rewind($fh);
-	$data = [];
-	while (FALSE !== ($row = php_compat_fgetcsv_wrap($fh, 1000, $delimiter, $enclosure, $escape))) {
+	$data = array();
+	while (($row = php_compat_fgetcsv_wrap($fh, 1000, $delimiter, $enclosure, $escape)) !== FALSE) {
 		$data[] = $row;
 	}
 	fclose($fh);
@@ -86,13 +81,7 @@ function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $esca
 /**
  * Wraps fgetcsv() for the correct PHP version
  *
- * @link https:///php.net/function.fgetcsv
- * @param        $fh
- * @param        $length
- * @param string $delimiter
- * @param string $enclosure
- * @param string $escape
- * @return array|false|null
+ * @link http://php.net/function.fgetcsv
  */
 function php_compat_fgetcsv_wrap($fh, $length, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 	// The escape parameter was added
@@ -107,17 +96,12 @@ function php_compat_fgetcsv_wrap($fh, $length, $delimiter = ',', $enclosure = '"
 	}
 }
 if (!function_exists('str_getcsv')) {
-    /**
-     * Backwards compatbility for str_getcsv()
-     *
-     * @link https:///php.net/function.fgetcsv
-     * @param        $input
-     * @param string $delimiter
-     * @param string $enclosure
-     * @param string $escape
-     * @return array|bool
-     */
-    function str_getcsv($input, $delimiter = ',', $enclosure = '"', $escape = '\\') {
+	/**
+	 * Backwards compatbility for str_getcsv()
+	 *
+	 * @link http://php.net/function.fgetcsv
+	 */
+	function str_getcsv($input, $delimiter = ',', $enclosure = '"', $escape = '\\') {
 		return php_compat_str_getcsv($input, $delimiter, $enclosure, $escape);
 	}
 }
@@ -127,7 +111,7 @@ if (! function_exists('array_replace_recursive')) {
 		foreach ($array1 as $key => $value) {
 			// create new key in $array, if it is empty or not an array
 			if (!isset($array[$key]) || (isset($array[$key]) && !is_array($array[$key]))) {
-				$array[$key] = [];
+				$array[$key] = array();
 			}
 			// overwrite the value in the base array
 			if (is_array($value)) {

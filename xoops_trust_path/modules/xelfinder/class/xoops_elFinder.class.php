@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on 2012/01/20 by nao-pon https://xoops.hypweb.net/
+ * Created on 2012/01/20 by nao-pon http://xoops.hypweb.net/
  * $Id: xoops_elFinder.class.php,v 1.1 2012/01/20 13:32:02 nao-pon Exp $
  */
 
@@ -31,15 +31,15 @@ class xoops_elFinder {
 	**/
 	protected $file = '';
 	
-	protected $defaultVolumeOptions = [
+	protected $defaultVolumeOptions = array(
 			'dateFormat' => 'y/m/d H:i',
 			'mimeDetect' => 'auto',
 			'tmbSize'	 => 48,
 			'tmbCrop'	 => true,
-			'defaults' => ['read' => true, 'write' => false, 'hidden' => false, 'locked' => false]
-    ];
+			'defaults' => array('read' => true, 'write' => false, 'hidden' => false, 'locked' => false)
+	);
 	
-	protected $writeCmds = [
+	protected $writeCmds = array(
 		'archive',
 		'chmod',
 		'cut',
@@ -56,9 +56,9 @@ class xoops_elFinder {
 		'resize',
 		'rm',
 		'upload'
-    ];
+	);
 	
-	public function __construct($mydirname, $opt = []) {
+	public function __construct($mydirname, $opt = array()) {
 		global $xoopsUser, $xoopsModule;
 		
 		if (!is_object($xoopsModule)) {
@@ -73,11 +73,11 @@ class xoops_elFinder {
 		$this->mydirname = $mydirname;
 		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
 		$this->defaultVolumeOptions = array_merge($this->defaultVolumeOptions, $opt);
-		$this->base64encodeSessionData = ((!defined('_CHARSET') || _CHARSET !== 'UTF-8') && 'blob' !== substr($this->getSessionTableType(), -4));
-		$https = (isset($_SERVER['HTTPS']) && 'off' !== strtolower($_SERVER['HTTPS']));
+		$this->base64encodeSessionData = ((!defined('_CHARSET') || _CHARSET !== 'UTF-8') && substr($this->getSessionTableType(), -4) !== 'blob');
+		$https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
 		$this->myOrigin = ($https? 'https://' : 'http://')
 			.$_SERVER['SERVER_NAME'] // host
-			.(((! $https && 80 == $_SERVER['SERVER_PORT']) || ($https && 443 == $_SERVER['SERVER_PORT'])) ? '' : (':' . $_SERVER['SERVER_PORT']));  // port
+			.(((! $https && $_SERVER['SERVER_PORT'] == 80) || ($https && $_SERVER['SERVER_PORT'] == 443)) ? '' : (':' . $_SERVER['SERVER_PORT']));  // port
 		$this->tokeDataPrefix = XOOPS_MODULE_PATH.'/'.$mydirname.'/cache/tokendata_';
 	}
 	
@@ -86,12 +86,13 @@ class xoops_elFinder {
 	}
 	
 	public function getUserRoll() {
-		return [
+		$res = array(
 			'isAdmin'        => (bool)$this->isAdmin,
 			'uid'            => (int)$this->uid,
 			'mygids'         => (array)$this->mygids,
 			'inSpecialGroup' => (bool)$this->inSpecialGroup
-        ];
+		);
+		return $res;
 	}
 	
 	public function getUid() {
@@ -102,7 +103,7 @@ class xoops_elFinder {
 		$uname = '';
 		if ($this->uid) {
 			$uname = $this->xoopsUser->getVar('uname', $mode);
-			if ('UTF-8' !== strtoupper(_CHARSET)) {
+			if (strtoupper(_CHARSET) !== 'UTF-8') {
 				$uname = mb_convert_encoding($uname, 'UTF-8', _CHARSET);
 			}
 		}
@@ -118,18 +119,18 @@ class xoops_elFinder {
 			header('Pragma: no-cache');
 			if (isset($_GET['status'])) {
 				$uname = $this->getUname();
-				echo json_encode(['uname' => $uname]);
+				echo json_encode(array('uname' => $uname));
 			} else {
 				$config_handler = xoops_getHandler('config');
 				$xoopsConfig = $config_handler->getConfigsByCat(XOOPS_CONF);
 				$session->start();
-				$data = ['uname' => ''];
+				$data = array('uname' => '');
 				if (isset($_GET['logout'])) {
-					$session->set('netvolume', []);
+					$session->set('netvolume', array());
 					$this->destroySessionVar();
 					$this->setXoopsUser();
 				} else {
-					$data = [];
+					$data = array();
 					if ($this->login($session, $xoopsConfig)) {
 						$data['uname'] = $this->getUname();
 					} else {
@@ -191,7 +192,7 @@ class xoops_elFinder {
 	}
 	
 	public function getNetmountData() {
-		$data = [];
+		$data = array();
 		if ($this->uid) {
 			$table = $this->db->prefix($this->mydirname.'_userdat');
 			$sql = 'SELECT `data` FROM `'.$table.'` WHERE `key`=\'netVolumes\' AND `uid`='.$this->uid.' LIMIT 1';
@@ -200,7 +201,7 @@ class xoops_elFinder {
 					list($data) = $this->db->fetchRow($res);
 					$data = @unserialize($data);
 					if (! $data && ! is_array($data)) {
-						$data = [];
+						$data = array();
 						$sql = 'DELETE FROM `'.$table.'` WHERE `key`=\'netVolumes\' AND `uid`='.$this->uid;
 						$this->db->queryF($sql);
 					}
@@ -211,7 +212,7 @@ class xoops_elFinder {
 	}
 	
 	public function getDisablesCmds($useAdmin = true) {
-		$disabledCmds = [];
+		$disabledCmds = array();
 		if (!$useAdmin || !$this->isAdmin) {
 			if (!empty($this->config['disable_writes_' . (is_object($this->xoopsUser)? 'user' : 'guest')])) {
 				$disabledCmds = $this->writeCmds;
@@ -220,7 +221,7 @@ class xoops_elFinder {
 				$_parts = array_map('trim', explode(':', $this->config['disabled_cmds_by_gids']));
 				foreach($_parts as $_part) {
 					list($_gid, $_cmds) = explode('=', $_part, 2);
-					$_gid = (int)$_gid;
+					$_gid = intval($_gid);
 					$_cmds = trim($_cmds);
 					if (! $_gid || ! $_cmds) continue;
 					if (in_array($_gid, $this->mygids)) {
@@ -234,29 +235,29 @@ class xoops_elFinder {
 		return $disabledCmds;
 	}
 	
-	public function getRootVolumeConfigs($config, $extras = []) {
-		$pluginPath = dirname(__DIR__) . '/plugins/';
+	public function getRootVolumeConfigs($config, $extras = array()) {
+		$pluginPath = dirname(dirname(__FILE__)) . '/plugins/';
 		$configs = explode("\n", $config);
-		$files = [];
+		$files = array();
 		
-		$ids = [];
+		$ids = array();
 		foreach($configs as $_conf) {
 			$_conf = trim($_conf);
-			if (! $_conf || '#' === $_conf[0]) continue;
+			if (! $_conf || $_conf[0] === '#') continue;
 			$_confs = explode(':', $_conf, 5);
 			$_confs = array_map('trim', $_confs);
 			list($mydirname, $plugin, $path, $title, $options) = array_pad($_confs, 5, '');
 			
 			if (! $this->moduleCheckRight($mydirname)) continue;
 			
-			$extOptions = [];
-			$extOptKeys = [
+			$extOptions = array();
+			$extOptKeys = array(
 				'uploadmaxsize' => 'uploadMaxSize',
 				'id'            => 'id',
 				'encoding'      => 'encoding',
 				'locale'        => 'locale',
-				'chmod'         => ['statOwner', 'allowChmodReadOnly']
-            ];
+				'chmod'         => array('statOwner', 'allowChmodReadOnly')
+			);
 			$defaults = null;
 			if ($options) {
 				$options = str_getcsv($options, '|');
@@ -264,28 +265,28 @@ class xoops_elFinder {
 					$options = $options[0];
 				}
 				foreach($options as $_op) {
-					if (0 === strpos($_op, 'gid=')) {
+					if (strpos($_op, 'gid=') === 0) {
 						$_gids = array_map('intval', explode(',', substr($_op, 4)));
 						if ($_gids && $this->mygids) {
 							if (! array_intersect($this->mygids, $_gids)) {
 								continue 2;
 							}
 						}
-					} else if (0 === strpos($_op, 'defaults=')) {
+					} else if (strpos($_op, 'defaults=') === 0) {
 						list(,$_tmp) = explode('=', $_op, 2);
 						$defaults = $this->defaultVolumeOptions['defaults'];
 						$_tmp = strtolower($_tmp);
 						foreach($defaults as $_p) {
-							if (false !== strpos($_tmp, $_p[0])) {
+							if (strpos($_tmp, $_p[0]) !== false) {
 								$defaults[$_p] = true;
 							}
 						}
-					} else if (0 === strpos($_op, 'plugin.')) {
+					} else if (strpos($_op, 'plugin.') === 0) {
 						list($_p, $_tmp) = explode('=', substr($_op, 7), 2);
 						if (! isset($extOptions['plugin'])) {
-							$extOptions['plugin'] = [];
+							$extOptions['plugin'] = array();
 						}
-						$_opts = [];
+						$_opts = array();
 						$_p = trim($_p);
 						$_parts = str_getcsv($_tmp);
 						if ($_parts) {
@@ -305,11 +306,11 @@ class xoops_elFinder {
 									default:
 										$_fc = $_v[0];
 										$_lc = substr($_v, -1);
-										if ('`' === $_fc && '`' === $_lc) {
+										if ($_fc === '`' && $_lc === '`') {
 											try {
 												eval('$_v = '. trim($_v, '`') . ' ;');
 											} catch (Exception $e) { continue 2; }
-										} else if ('(' === $_fc && ')' === $_lc) {
+										} else if ($_fc === '(' && $_lc === ')') {
 											try {
 												eval('$_v = array'. $_v . ' ;');
 												if (! is_array($_v)) {
@@ -339,7 +340,7 @@ class xoops_elFinder {
 								$extOptions[$extOptKeys[$lKey]] = trim($value);
 							}
 						}
-						if ('ext' === substr($key, 0, 3)) {
+						if (substr($key, 0, 3) === 'ext') {
 							$extOptions[$key] = trim($value);
 						}
 					}
@@ -349,12 +350,12 @@ class xoops_elFinder {
 				$extOptions['defaults'] = $defaults;
 			}
 			
-			if ('' === $title) $title = $mydirname;
+			if ($title === '') $title = $mydirname;
 			$path = trim($path, '/');
-			$path = ('' === $path)? '/' : '/' . $path . '/';
+			$path = ($path === '')? '/' : '/' . $path . '/';
 			$src = $pluginPath . $plugin . '/volume.php';
 			if (is_file($src)) {
-				$extra = isset($extras[$mydirname.':'.$plugin])? $extras[$mydirname.':'.$plugin] : [];
+				$extra = isset($extras[$mydirname.':'.$plugin])? $extras[$mydirname.':'.$plugin] : array();
 				
 				//reset value
 				$isAdmin = $this->isAdmin;
@@ -369,7 +370,7 @@ class xoops_elFinder {
 	}
 	
 	public function buildRootVolumes($configs) {
-		$roots = [];
+		$roots = array();
 		$disabledCmds = $configs['disabledCmds'];
 		unset($configs['disabledCmds']);
 		foreach($configs as $config) {
@@ -380,18 +381,18 @@ class xoops_elFinder {
 				continue;
 			}
 			
-			$volumeOptions = [];
+			$volumeOptions = array();
 			if (@include $src) {
 				if ($volumeOptions) {
-					!isset($volumeOptions['disabled']) && ($volumeOptions['disabled'] = []);
+					!isset($volumeOptions['disabled']) && ($volumeOptions['disabled'] = array());
 					!isset($volumeOptions['id']) && ($volumeOptions['id'] = '_' . $mydirname);
 					if (!empty($volumeOptions['readonly'])) {
-						$volumeOptions['disabled'] = array_merge($this->writeCmds, is_array($volumeOptions['disabled'])? $volumeOptions['disabled'] : []);
+						$volumeOptions['disabled'] = array_merge($this->writeCmds, is_array($volumeOptions['disabled'])? $volumeOptions['disabled'] : array());
 					}
 					$volumeOptions = array_replace_recursive($this->defaultVolumeOptions, $volumeOptions, $extra, $extOptions);
 					if ($disabledCmds) {
 						if (!isset($volumeOptions['disabled']) || !is_array($volumeOptions['disabled'])) {
-							$volumeOptions['disabled'] = [];
+							$volumeOptions['disabled'] = array();
 						}
 						$volumeOptions['disabled'] = array_merge($volumeOptions['disabled'], $disabledCmds);
 					}
@@ -413,13 +414,13 @@ class xoops_elFinder {
 	public function getAutoSyncSec() {
 		if (isset($this->config['autosync_sec_admin'])) {
 			if ($this->isAdmin) {
-				return (int)$this->config['autosync_sec_admin'];
+				return intval($this->config['autosync_sec_admin']);
 			} else if ($this->inSpecialGroup) {
-				return (int)$this->config['autosync_sec_spgroups'];
+				return intval($this->config['autosync_sec_spgroups']);
 			} else if ($this->uid > 0) {
-				return (int)$this->config['autosync_sec_user'];
+				return intval($this->config['autosync_sec_user']);
 			} else {
-				return (int)$this->config['autosync_sec_guest'];
+				return intval($this->config['autosync_sec_guest']);
 			}
 		}
 		return 0;
@@ -430,7 +431,7 @@ class xoops_elFinder {
 	
 		$ret = false;
 	
-		if (null === $module_handler) {
+		if (is_null($module_handler)) {
 			$module_handler = xoops_getHandler('module');
 		}
 	
@@ -443,8 +444,8 @@ class xoops_elFinder {
 	}
 	
 	private function getAdminGroups($dirname = '') {
-		$aGroups = [];
-		if ('' === $dirname) {
+		$aGroups = array();
+		if ($dirname === '') {
 			$dirname = $this->mydirname;
 			$module_handler = xoops_getHandler('module');
 			$XoopsModule = $module_handler->getByDirname($dirname);
@@ -467,7 +468,7 @@ class xoops_elFinder {
 	
 	public function setConfig($config) {
 		$this->config = $config;
-		$this->inSpecialGroup = (array_intersect($this->mygids, ( isset($config['special_groups'])? $config['special_groups'] : [])));
+		$this->inSpecialGroup = (array_intersect($this->mygids, ( isset($config['special_groups'])? $config['special_groups'] : array() )));
 	}
 	
 	public function setLogfile($path = '') {
@@ -485,7 +486,7 @@ class xoops_elFinder {
 		if (strlen(serialize($_SESSION)) > 64000) {
 			// expand session table size, change type to "MEDIUMBLOB"
 			$stype = $this->getSessionTableType();
-			if ('mediumblob' !== $stype && 'longblob' !== $stype) {
+			if ($stype !== 'mediumblob' && $stype !== 'longblob') {
 				$this->db->queryF('ALTER TABLE `'.$this->db->prefix('session').'` CHANGE `sess_data` `sess_data` MEDIUMBLOB NOT NULL');
 			}
 		}
@@ -503,7 +504,8 @@ class xoops_elFinder {
 	}
 	
 	public function saveNetmoutData($session) {
-		if ($uid = $this->getUserRoll()['uid']) {
+		$userRoll = $this->getUserRoll();
+		if ($uid = $userRoll['uid']) {
 			$table = $this->db->prefix($this->mydirname.'_userdat');
 			$netVolumes = $this->db->quoteString(serialize($session->get('netvolume', array())));
 			$sql = 'SELECT `id` FROM `'.$table.'` WHERE `key`=\'netVolumes\' AND `uid`='.$uid;
@@ -531,19 +533,17 @@ class xoops_elFinder {
 	}
 
 	public function editorPreCallback($cmd, &$args, $elfinder, $volume) {
-		if ('ZohoOffice' === $args['name']) {
-			if (! empty($args['method']) && 'init' === $args['method']) {
-				$token = $this->setTokenData(
-                    [
-                        'require' => [
+		if ($args['name'] === 'ZohoOffice') {
+			if (! empty($args['method']) && $args['method'] === 'init') {
+				$token = $this->setTokenData(array(
+					'require' => array(
 						'cmd' => 'editor',
 						'id' => $args['args']['target'],
 						'name' => 'ZohoOffice',
 						'method' => 'save'
-                        ],
-                        'uid' => $this->uid
-                    ]
-                );
+					),
+					'uid' => $this->uid
+				));
 				$cdata = empty($args['args']['cdata']) ? '' : $args['args']['cdata'];
 				$args['args']['cdata'] = $cdata . '&' . _MD_XELFINDER_PROXY_TOKEN_KEY . '=' . $token;
 			}
@@ -595,13 +595,13 @@ IP: ${_SERVER['REMOTE_ADDR']}
 CMD: $cmd
 DATE: $date
 EOD;
-				$msg = [];
+				$msg = array();
 				
 				foreach ($result['added'] as $file) {
 					
 					$url = 'unknown';
 					if (!empty($file['url'])) {
-						$url = (1 != $file['url'])? $file['url'] : 'ondemand';
+						$url = ($file['url'] !=  1)? $file['url'] : 'ondemand';
 					} else {
 						$url = $self . '?cmd=file&target='.$file['hash'];
 					}
@@ -623,8 +623,8 @@ EOD;
 				$sitename = $xoopsConfig['sitename'];
 				$modname = $this->xoopsModule->getVar('name');
 				$subject = '[' . $modname . '] Cmd: "'.$cmd.'" Report';
-				$message = implode($sep, $msg);
-				if ('UTF-8' !== strtoupper(_CHARSET)) {
+				$message = join($sep, $msg);
+				if (strtoupper(_CHARSET) !== 'UTF-8') {
 					ini_set('default_charset', _CHARSET);
 					if (version_compare(PHP_VERSION, '5.6', '<')) {
 						ini_set('mbstring.internal_encoding', _CHARSET);
@@ -643,7 +643,7 @@ EOD;
 				$xoopsMailer->send();
 				$xoopsMailer->reset();
 			
-				if ('UTF-8' !== strtoupper(_CHARSET)) {
+				if (strtoupper(_CHARSET) !== 'UTF-8') {
 					ini_set('default_charset', 'UTF-8');
 					if (version_compare(PHP_VERSION, '5.6', '<')) {
 						ini_set('mbstring.internal_encoding', 'UTF-8');
@@ -660,7 +660,7 @@ EOD;
 			if (($target = $result['changed'][0]['phash'])
 					&& ($volume = $elfinder->getVolume($target))){
 				if ($parents = $volume->parents($target, true)) {
-					$exist = [];
+					$exist = array();
 					foreach($result['changed'] as $changed) {
 						$exist[$changed['hash']] = true;
 					}
@@ -740,17 +740,17 @@ EOD;
 	 * @param string $src
 	 * @param object $elfinder
 	 * @param object $volume
-	 * @return bool
+	 * @return boolean
 	 */
 	public function autoRotateOnUpLoadPreSave(&$path, &$name, $src, $elfinder, $volume) {
 		if (! class_exists('HypCommonFunc') || version_compare(HypCommonFunc::get_version(), '20150515', '<')) {
 			return false;
 		}
 		$srcImgInfo = @getimagesize($src);
-		if (false === $srcImgInfo) {
+		if ($srcImgInfo === false) {
 			return false;
 		}
-		if (! in_array($srcImgInfo[2], [IMAGETYPE_JPEG, IMAGETYPE_JPEG2000])) {
+		if (! in_array($srcImgInfo[2], array(IMAGETYPE_JPEG, IMAGETYPE_JPEG2000))) {
 			return false;
 		}
 		$ret = HypCommonFunc::rotateImage($src, 0, 95, $srcImgInfo);
@@ -781,7 +781,7 @@ EOD;
 	 * @return string
 	 */
 	public static function getUnameByUid($uid){
-		static $unames = [];
+		static $unames = array();
 		static $db = null;
 	
 		$uid = (int)$uid;
@@ -789,15 +789,15 @@ EOD;
 			return $unames[$uid];
 		}
 		
-		if (null === $db) {
+		if (is_null($db)) {
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
 		}
 		
-		if (0 === $uid) {
+		if ($uid === 0) {
 			$config_handler = xoops_getHandler('config');
 			$xoopsConfig = $config_handler->getConfigsByCat(XOOPS_CONF);
 			$uname = $xoopsConfig['anonymous'];
-			if ('utf8' === self::$dbCharset && 'UTF-8' !== strtoupper(_CHARSET)) {
+			if (self::$dbCharset === 'utf8' && strtoupper(_CHARSET) !== 'UTF-8') {
 				$uname = mb_convert_encoding($uname, 'UTF-8', _CHARSET);
 			}
 		} else {
@@ -805,11 +805,11 @@ EOD;
 			if ($result = $db->query($query)) {
 				list($uname) = $db->fetchRow($result);
 			}
-			if ('' === (string)$uname) {
+			if ((string)$uname === '') {
 				return self::getUnameByUid(0);
 			}
 		}
-		if ('utf8' !== self::$dbCharset && 'UTF-8' !== strtoupper(_CHARSET)) {
+		if (self::$dbCharset !== 'utf8' && strtoupper(_CHARSET) !== 'UTF-8') {
 			$uname = mb_convert_encoding($uname, 'UTF-8', _CHARSET);
 		}
 		return $unames[$uid] = $uname;
@@ -823,9 +823,9 @@ EOD;
 	 */
 	public static function dbSetCharset($charset = 'utf8') {
 		static $link = null;
-		if (null === $link) {
+		if (is_null($link)) {
 			$db = XoopsDatabaseFactory::getDatabaseConnection();
-			$link = (is_object($db->conn) && 'mysqli' === get_class($db->conn))? $db->conn : false;
+			$link = (is_object($db->conn) && get_class($db->conn) === 'mysqli')? $db->conn : false;
 		}
 		self::$dbCharset = $charset;
 		if ($link) {
@@ -842,11 +842,11 @@ EOD;
 	 * @return  array
 	 */
 	public static function getAdminGroupIds($dirname) {
-		static $res = [];
+		static $res = array();
 		if (isset($res[$dirname])) {
 			return $res[$dirname];
 		}
-		$ids = [XOOPS_GROUP_ADMIN];
+		$ids = array(XOOPS_GROUP_ADMIN);
 		$module_handler = xoops_getHandler('module');
 		$XoopsModule = $module_handler->getByDirname($dirname);
 		if ($XoopsModule) {
@@ -876,7 +876,7 @@ EOD;
 	protected function login($session, $xoopsConfig) {
 		$uname = isset($_POST['uname'])? $_POST['uname'] : '';
 		$pass = isset($_POST['pass'])? $_POST['pass'] : '';
-		if ('UTF-8' !== strtoupper(_CHARSET)) {
+		if (strtoupper(_CHARSET) !== 'UTF-8') {
 			$uname = mb_convert_encoding($uname, _CHARSET, 'UTF-8');
 		}
 
@@ -889,7 +889,7 @@ EOD;
 				return false;
 			}
 			$groups = $user->getGroups();
-			if (1 == $xoopsConfig['closesite']) {
+			if ($xoopsConfig['closesite'] == 1) {
 				$allowed = false;
 				foreach ($groups as $group) {
 					if (in_array($group, $xoopsConfig['closesite_okgrp']) || XOOPS_GROUP_ADMIN == $group) {
@@ -929,15 +929,15 @@ EOD;
 		if (is_object($user)) {
 			$this->xoopsUser = $user;
 			$this->isAdmin = (is_object($user) && $user->isAdmin($this->xoopsModule->getVar('mid')));
-			$this->mygids = is_object($user)? $user->getGroups() : [XOOPS_GROUP_ANONYMOUS];
-			$this->uid = is_object($user)? (int)$user->getVar('uid') : 0;
+			$this->mygids = is_object($user)? $user->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+			$this->uid = is_object($user)? intval($user->getVar('uid')) : 0;
 			if ($this->config) {
-				$this->inSpecialGroup = (array_intersect($this->mygids, ( isset($this->config['special_groups'])? $this->config['special_groups'] : [])));
+				$this->inSpecialGroup = (array_intersect($this->mygids, ( isset($this->config['special_groups'])? $this->config['special_groups'] : array() )));
 			}
 		} else {
 			$this->xoopsUser = null;
 			$this->isAdmin = false;
-			$this->mygids = [XOOPS_GROUP_ANONYMOUS];
+			$this->mygids = array(XOOPS_GROUP_ANONYMOUS);
 			$this->uid = 0;
 			$this->inSpecialGroup = false;
 		}

@@ -113,7 +113,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 
     public function Legacy_ActSearchAction($flag)
     {
-        self::__construct($flag);
+        $this->__construct($flag);
     }
 
     public function __construct($flag)
@@ -148,8 +148,7 @@ class Legacy_ActSearchAction extends Legacy_Action
 
             $this->mModules[] =& $adapter;
 
-            unset($module);
-            unset($adapter);
+            unset($module, $adapter);
         }
     }
 
@@ -176,9 +175,9 @@ class Legacy_ActSearchAction extends Legacy_Action
         if ($searchArgs->hasRecord()) {
             $this->mRecords =& $searchArgs->getRecords();
             return LEGACY_FRAME_VIEW_SUCCESS;
-        } else {
-            return LEGACY_FRAME_VIEW_ERROR;
         }
+
+        return LEGACY_FRAME_VIEW_ERROR;
     }
 
     public function defaultSearch(&$searchArgs)

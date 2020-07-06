@@ -102,5 +102,3 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract
     }
 
 }
-
-?>

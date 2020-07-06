@@ -9,9 +9,9 @@ class D3forumAntispamDefaultmobilesmart extends D3forumAntispamDefault
     {
         if ($this->isMobile()) {
             return true;
-        } else {
-            return parent::checkValidate();
         }
+
+        return parent::checkValidate();
     }
 
     public function isMobile()
@@ -20,14 +20,14 @@ class D3forumAntispamDefaultmobilesmart extends D3forumAntispamDefault
             // WizMobile (gusagi)
             $user =& Wizin_User::getSingleton();
             return $user->bIsMobile;
-        } elseif (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2) {
+        }
+
+        if (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2) {
             // hyp_common ktai-renderer (nao-pon)
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 }
-
-?>

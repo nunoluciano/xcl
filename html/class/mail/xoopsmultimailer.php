@@ -227,7 +227,7 @@ class xoopsmultimailer extends PHPMailer
     {
         // Patch for XOOPS Cube Legacy 2008/09/21
         $ext = substr($lang_path, -1, 1);
-        if ('/' != $ext && file_exists($lang_path)) {
+        if ('/' !== $ext && file_exists($lang_path)) {
             include($lang_path);
             $this->language = $PHPMAILER_LANG;
             return true;

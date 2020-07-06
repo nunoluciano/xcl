@@ -6,13 +6,19 @@ require_once dirname(__DIR__) . '/class/gtickets.php' ;
 $forum_id = (int)@$_GET['forum_id'];
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) {
+    die(_MD_D3FORUM_ERR_READFORUM);
+}
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) {
+    die(_MD_D3FORUM_ERR_READCATEGORY);
+}
 
 // special permission check for forummanager
-if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATEFORUM ) ;
+if( ! $isadminormod ) {
+    die(_MD_D3FORUM_ERR_MODERATEFORUM);
+}
 
 
 // get all of d3forum module instances
@@ -27,7 +33,7 @@ foreach( $modules as $module ) {
 	if( file_exists( $dirpath.'/mytrustdirname.php' ) ) {
 		include $dirpath.'/mytrustdirname.php' ;
 	}
-	if('d3forum' == $mytrustdirname && $dirname != $mydirname ) {
+	if('d3forum' == $mytrustdirname && $dirname !== $mydirname ) {
 		// d3forum
 		$exportable_modules[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		$dist_category_permissions = d3forum_get_category_permissions_of_current_user( $dirname ) ;
@@ -81,11 +87,22 @@ if( ! empty( $_POST['forumman_export_copy'] ) || ! empty( $_POST['forumman_expor
 
 include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 $options4html = '' ;
-$forum_configs = @unserialize( $forum_row['forum_options'] ) ;
-if( is_array( $forum_configs ) ) foreach( $forum_configs as $key => $val ) {
-	if( isset( $d3forum_configs_can_be_override[ $key ] ) ) {
-		$options4html .= htmlspecialchars( $key , ENT_QUOTES ) . ':' . htmlspecialchars( $val , ENT_QUOTES ) . "\n" ;
-	}
+
+/* unserialize approach which supports older versions of PHP */
+if (PHP_VERSION_ID >= 70000) {
+    /* to forbid classes unserializing at all use this: array('allowed_classes' => false) */
+    $forum_configs = unserialize($forum_row, array('allowed_classes' => ['forum_options'] )) ;
+} else {
+    /* previous version */
+    $forum_configs = unserialize( $forum_row['forum_options'] ) ;
+}
+
+if( is_array( $forum_configs ) ) {
+    foreach ($forum_configs as $key => $val) {
+        if (isset($d3forum_configs_can_be_override[$key])) {
+            $options4html .= htmlspecialchars($key, ENT_QUOTES) . ':' . htmlspecialchars($val, ENT_QUOTES) . "\n";
+        }
+    }
 }
 
 $forum4assign = [
@@ -123,5 +140,3 @@ $xoopsTpl->assign([
 ) ;
 
 include XOOPS_ROOT_PATH.'/footer.php';
-
-?>

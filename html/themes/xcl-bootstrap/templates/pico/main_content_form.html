@@ -6,15 +6,33 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
-<h1 class="pico_title"><{$formtitle}>: <{$content.subject}></h1>
+<h2 class="pico_title"><{$formtitle}>: <{$content.subject}>
 
-<{if $preview}>
-	<{foreach from=$preview.errors item="error_message"}><p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.backgroundColor='#FFFFCC';"><em class="pico_notice"><{$error_message}></em></p><{/foreach}>
-	<h2 class="pico_title"><{$smarty.const._PREVIEW}></h2>
-	<div class="pico_body pico_preview" id="<{$mydirname}>_body">
-	<{$preview.body}>
-	</div>
-<{/if}>
+    <{if ! $content.approval}>
+    <strong style="color:#F44336;"><{$smarty.const._MD_PICO_WAITINGAPPROVAL}></strong>
+    <{/if}>
+    <{if ! $content.visible}>
+    <strong style="color:#3F51B5;"><{$smarty.const._MD_PICO_INVISIBLE}></strong>
+    <{/if}>
+    <{if $content.created_time >= time()}>
+    <strong style="color:#2196F3;"><{$smarty.const._MD_PICO_WAITINGRELEASE}></strong>
+    <{/if}>
+    <{if $content.expiring_time < time()}>
+    <strong style="color:#607D8B;"><{$smarty.const._MD_PICO_EXPIRED}></strong>
+    <{/if}>
+</h2>
+
+    <{if $preview}>
+        <{foreach from=$preview.errors item="error_message"}>
+        <p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.backgroundColor='#FFFFCC';">
+            <em class="pico_notice"><{$error_message}></em></p>
+        <{/foreach}>
+        <h2 class="pico_title"><{$smarty.const._PREVIEW}></h2>
+        <div class="pico_body pico_preview" id="<{$mydirname}>_body">
+        <{$preview.body}>
+        </div>
+    <{/if}>
+
 
 <form name="contentform" id="contentform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:"url"}>" method="post" onsubmit="return xoopsFormValidate_contentform();" enctype="multipart/form-data">
 	<{$gticket_hidden}>
@@ -23,7 +41,7 @@
 
 	<table class="outer pico_form_table">
 
-		<!-- category -->
+		<{* ------- category *}>
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="cat_id"><{$smarty.const._MD_PICO_CATEGORY}></label></th>
 			<td class="even">
@@ -33,7 +51,7 @@
 			</td>
 		</tr>
 
-		<!-- vpath -->
+		<{* ------- vpath *}>
 		<{if $mod_config.use_wraps_mode || strstr($content.filters,"wraps")}>
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="vpath"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label></th>
@@ -49,7 +67,7 @@
 		</tr>
 		<{/if}>
 
-		<!-- subject -->
+		<{* ------- subject *}>
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="subject"><{$smarty.const._MD_PICO_TH_SUBJECT}></label></th>
 			<td class="even">
@@ -57,8 +75,9 @@
 			</td>
 		</tr>
 
-<{*
-		<!-- extra fields sample (TEXTBOX) -->
+
+<{* ------- extra fields sample (TEXTBOX)
+
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="pronunciation">pronunciation</label></th>
 			<td class="even">
@@ -97,18 +116,34 @@
 				<{/if}>
 			</td>
 		</tr>
-*}>
+extra fields ------- *}>
 
-		<!-- subject reference for a waiting content -->
-		<{if $content.subject_waiting && $page != 'makecontent'}>
-		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
-			<th class="head pico_waiting"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></th>
-			<td class="even pico_waiting"><{$content.subject_waiting}></td>
-		</tr>
-		<{/if}>
 
-		<{if $mod_config.allow_each_htmlheader || $content.htmlheader}>
-			<!-- html header -->
+            <{* ------- subject reference for a waiting content *}>
+
+            <{if $content.subject_waiting && $page != 'makecontent'}>
+            <tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+                <th class="head pico_waiting">
+                    <span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></span>
+                </th>
+
+                <td class="even pico_waiting"><{$content.subject_waiting|htmlspecialchars_decode}></td>
+            </tr>
+            <{/if}>
+
+            <{* -------  body reference for a waiting content *}>
+
+            <{if $content.body_waiting && $page != 'makecontent'}>
+            <tr valign="top" align="<{$smarty.const._ALIGN_START}>">
+                <th class="head pico_waiting"><span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span></th>
+                <td class="card card-body my-4 pico_waiting">12345- <{$content.body_waiting|htmlspecialchars_decode|nl2br}></td>
+            </tr>
+            <{/if}>
+
+
+        <{* ------- html header *}>
+        <{if $mod_config.allow_each_htmlheader || $content.htmlheader}>
+
 			<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 				<th class="head"><label for="htmlheader"><{$smarty.const._MD_PICO_TH_HTMLHEADER}></label></th>
 				<td class="even">
@@ -121,7 +156,7 @@
 				</td>
 			</tr>
 
-			<!-- html header reference for a waiting content -->
+        <{* ------- html header reference for a waiting content *}>
 			<{if $content.htmlheader_waiting && $page != 'makecontent'}>
 			<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 				<th class="head pico_waiting"><{$smarty.const._MD_PICO_TH_HTMLHEADER_WAITING}></th>
@@ -130,12 +165,16 @@
 			<{/if}>
 		<{/if}>
 
-		<!-- body -->
+
+        <{* ------- body *}>
 		<{if $smarty.const.LEGACY_BASE_VERSION|version_compare:'2.2':'>=' }>
 			<{assign var=xcl22 value=1}>
 		<{/if}>
+
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
-			<th class="head"><label for="body"><{$smarty.const._MD_PICO_TH_BODY}></label><{if $mod_config.body_editor != "common_fckeditor" && !$xcl22}><input type="submit" class="formButton" name="contentman_preview"  id="contentman_swith_to_fckeditor" value="fckeditor" onclick="xoopsGetElementById('body_editor').value='common_fckeditor'"><{/if}></th>
+			<th class="head">
+                <label for="body"><{$smarty.const._MD_PICO_TH_BODY}></label>
+            </th>
 			<td class="even">
 				<{if $body_wysiwyg && ! $content.filter_infos.eval.enabled}>
 					<{$body_wysiwyg}>
@@ -173,15 +212,10 @@
 			</td>
 		</tr>
 
-		<!-- body reference for a waiting content -->
-		<{if $content.body_waiting && $page != 'makecontent'}>
-		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
-			<th class="head pico_waiting"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></th>
-			<td class="even pico_waiting"><{$content.body_waiting|nl2br}></td>
-		</tr>
-		<{/if}>
 
-		<!-- filters -->
+
+        <{* ------- filters *}>
+
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="filters"><{$smarty.const._MD_PICO_TH_FILTERS}></label></th>
 			<td class="even">
@@ -200,7 +234,8 @@
 			</td>
 		</tr>
 
-		<!-- tags -->
+        <{* ------- tags *}>
+
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="tags"><{$smarty.const._MD_PICO_TH_TAGS}></label></th>
 			<td class="even">
@@ -209,7 +244,8 @@
 			</td>
 		</tr>
 
-		<!-- weight -->
+        <{* ------- weight *}>
+
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="weight"><{$smarty.const._MD_PICO_TH_WEIGHT}></label></th>
 			<td class="even">
@@ -224,27 +260,27 @@
 
 			<td class="even">
 
-				<!-- visible -->
+                <{* ------- visible *}>
 				<input type="checkbox" name="visible" id="visible" value="1" <{if $content.visible}>checked="checked"<{/if}>>
 				<label for="visible"><{$smarty.const._MD_PICO_LABEL_VISIBLE}></label>
 				<br>
 
-				<!-- show in navi -->
+                <{* ------- show in navi *}>
 				<input type="checkbox" name="show_in_navi" id="show_in_navi" value="1" <{if $content.show_in_navi}>checked="checked"<{/if}>>
 				<label for="show_in_navi"><{$smarty.const._MD_PICO_LABEL_SHOWINNAVI}></label>
 				<br>
 
-				<!-- show in menu -->
+                <{* ------- show in menu *}>
 				<input type="checkbox" name="show_in_menu" id="show_in_menu" value="1" <{if $content.show_in_menu}>checked="checked"<{/if}>>
 				<label for="show_in_menu"><{$smarty.const._MD_PICO_LABEL_SHOWINMENU}></label>
 				<br>
 
-				<!-- allow comment -->
+                <{* ------- allow comment *}>
 				<input type="checkbox" name="allow_comment" id="allow_comment" value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
 				<label for="allow_comment"><{$smarty.const._MD_PICO_LABEL_ALLOWCOMMENT}></label>
 				<br>
 
-				<!-- use body cache -->
+                <{* ------- use body cache *}>
 				<input type="checkbox" name="use_cache" id="use_cache" value="1" <{if $content.use_cache}>checked="checked"<{/if}>>
 				<label for="use_cache"><{$smarty.const._MD_PICO_LABEL_USECACHE}></label>
 				<br>
@@ -252,7 +288,7 @@
 				<br>
 
 				<{if $category.isadminormod}>
-				<!-- locked -->
+                <{* ------- locked *}>
 				<input type="checkbox" name="locked" id="locked" value="1" <{if $content.locked}>checked="checked"<{/if}>>
 				<label for="locked"><{$smarty.const._MD_PICO_LABEL_LOCKED}></label>
 				<br>
@@ -335,26 +371,29 @@
 	</p>
 </form>
 
-<!-- Start Form Vaidation JavaScript //-->
-<script type="text/javascript">
-<!--//
-function xoopsFormValidate_contentform() {
-	myform = window.document.contentform;
-	if ( myform.subject.value == "" ) {
-		window.alert("<{$smarty.const._MD_PICO_TH_SUBJECT|string_format:$smarty.const._FORM_ENTER}>");
-		myform.subject.focus();
-		myform.subject.style.backgroundColor='#FFFFCC';
-		return false;
-	}
-	return true;
-}
-//-->
-</script>
-<!-- End Form Vaidation JavaScript //-->
+
+    <{* ------- Start Form Vaidation JavaScript /*}>
+
+    <script type="text/javascript">
+    <!--//
+    function xoopsFormValidate_contentform() {
+        myform = window.document.contentform;
+        if ( myform.subject.value == "" ) {
+            window.alert("<{$smarty.const._MD_PICO_TH_SUBJECT|string_format:$smarty.const._FORM_ENTER}>");
+            myform.subject.focus();
+            myform.subject.style.backgroundColor='#FFFFCC';
+            return false;
+        }
+        return true;
+    }
+    //-->
+    </script>
+    <{* ------- End Form Vaidation JavaScript *}>
+
 
 <{if $page != 'makecontent'}>
 
-<h2 class="pico_title"><{$smarty.const._MD_PICO_HISTORY}></h2>
+<h3 class="pico_title"><{$smarty.const._MD_PICO_HISTORY}></h3>
 <ul class="pico_content_history_list">
 	<{foreach from=$content_histories item="history"}>
 		<li>

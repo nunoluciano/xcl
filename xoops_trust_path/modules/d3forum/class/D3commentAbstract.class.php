@@ -67,13 +67,17 @@ class D3commentAbstract
     {
         if ($this->forum_id) {
             return $this->forum_id;
-        } elseif (!empty($params['forum_id'])) {
-            return (int)$params['forum_id'];
-        } elseif (!empty($this->mod_config['comment_forum_id'])) {
-            return $this->mod_config['comment_forum_id'];
-        } else {
-            return 1;
         }
+
+        if (!empty($params['forum_id'])) {
+            return (int)$params['forum_id'];
+        }
+
+        if (!empty($this->mod_config['comment_forum_id'])) {
+            return $this->mod_config['comment_forum_id'];
+        }
+
+        return 1;
     }
 
 
@@ -83,11 +87,13 @@ class D3commentAbstract
     {
         if (!empty($params['view'])) {
             return $params['view'];
-        } elseif (!empty($this->mod_config['comment_view'])) {
-            return $this->mod_config['comment_view'];
-        } else {
-            return 'listposts';
         }
+
+        if (!empty($this->mod_config['comment_view'])) {
+            return $this->mod_config['comment_view'];
+        }
+
+        return 'listposts';
     }
 
 
@@ -97,11 +103,13 @@ class D3commentAbstract
     {
         if (!empty($params['order'])) {
             return strtolower($params['order']);
-        } elseif (!empty($this->mod_config['comment_order'])) {
-            return $this->mod_config['comment_order'];
-        } else {
-            return 'desc';
         }
+
+        if (!empty($this->mod_config['comment_order'])) {
+            return $this->mod_config['comment_order'];
+        }
+
+        return 'desc';
     }
 
 
@@ -111,11 +119,13 @@ class D3commentAbstract
     {
         if (!empty($params['posts_num'])) {
             return $params['posts_num'];
-        } elseif (!empty($this->mod_config['comment_posts_num'])) {
-            return $this->mod_config['comment_posts_num'];
-        } else {
-            return 10;
         }
+
+        if (!empty($this->mod_config['comment_posts_num'])) {
+            return $this->mod_config['comment_posts_num'];
+        }
+
+        return 10;
     }
 
 
@@ -357,5 +367,3 @@ class D3commentAbstract
     }
 
 }
-
-?>

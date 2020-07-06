@@ -9,13 +9,19 @@ $topic_id = (int)@$_GET['topic_id'];
 include dirname(__DIR__) . '/include/process_this_topic.inc.php' ;
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
-if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) die( _MD_D3FORUM_ERR_READFORUM ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_forum.inc.php' ) {
+    die(_MD_D3FORUM_ERR_READFORUM);
+}
 
 // get&check this category ($category4assign, $category_row), override options
-if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+if( ! include dirname(__DIR__) . '/include/process_this_category.inc.php' ) {
+    die(_MD_D3FORUM_ERR_READCATEGORY);
+}
 
 // special permission check for topicmanager
-if( ! $isadminormod ) die( _MD_D3FORUM_ERR_MODERATEFORUM ) ;
+if( ! $isadminormod ) {
+    die(_MD_D3FORUM_ERR_MODERATEFORUM);
+}
 
 
 // get all of d3forum module instances
@@ -30,7 +36,7 @@ foreach( $modules as $module ) {
 	if( file_exists( $dirpath.'/mytrustdirname.php' ) ) {
 		include $dirpath.'/mytrustdirname.php' ;
 	}
-	if('d3forum' == $mytrustdirname && $dirname != $mydirname ) {
+	if('d3forum' === $mytrustdirname && $dirname !== $mydirname ) {
 		// d3forum
 		$exportable_modules[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		$dist_forum_permissions = d3forum_get_forum_permissions_of_current_user( $dirname ) ;
@@ -83,7 +89,9 @@ if( ! empty( $_POST['topicman_export_copy'] ) || ! empty( $_POST['topicman_expor
 // get target forums
 $jump_box_forums = [];
 foreach( $forum_permissions as $forum_id => $perms ) {
-	if( $perms['is_moderator'] ) $jump_box_forums[] = $forum_id ;
+	if( $perms['is_moderator'] ) {
+        $jump_box_forums[] = $forum_id;
+    }
 }
 $whr4forum_jump_box = empty( $jump_box_forums ) ? '0' : 'f.forum_id IN ('.implode(',',$jump_box_forums).')' ;
 
@@ -115,5 +123,3 @@ $xoopsTpl->assign([
 ) ;
 
 include XOOPS_ROOT_PATH.'/footer.php';
-
-?>

@@ -53,6 +53,7 @@
         //     worker.onmessage = (event) => { code.innerHTML = event.data; }
         //     worker.postMessage(code.textContent);
         //   });
+
     /** ---------- ---------- ---------- ---------- ---------- Reusable Toogle
      * Hoow To Use
      * - Call it from any clickcable element with the className to display:
@@ -65,7 +66,6 @@
     function slideToggle(className, obj) {
         $(className).slideToggle(500,"easeInOutCubic", obj.checked );
     }
-
 
 
     /** ---------- ---------- ---------- ---------- ---------- Navigation elements
@@ -141,7 +141,6 @@
         });
 
     }
-
 
     /** ---------- ---------- ---------- ---------- ---------- Toggle Card SVG on Change
      *

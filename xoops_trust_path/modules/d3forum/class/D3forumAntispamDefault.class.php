@@ -48,7 +48,7 @@ class D3forumAntispamDefault extends D3forumAntispamAbstract
         $user_md5 = trim(@$_POST['antispam_md5']);
 
         // 2-3 hour margin
-        if ($user_md5 != $this->getMd5() && $user_md5 != $this->getMd5(time() - 3600) && $user_md5 != $this->getMd5(time() - 7200)) {
+        if ($user_md5 !== $this->getMd5() && $user_md5 !== $this->getMd5(time() - 3600) && $user_md5 !== $this->getMd5(time() - 7200)) {
             $this->errors[] = _MD_D3FORUM_ERR_TURNJAVASCRIPTON;
             return false;
         }
@@ -56,5 +56,3 @@ class D3forumAntispamDefault extends D3forumAntispamAbstract
     }
 
 }
-
-?>

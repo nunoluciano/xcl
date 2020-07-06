@@ -38,7 +38,7 @@ public function __construct ($params )
 		return ;
 	}
 
-	$this->d3comObj = new $params['classname']( $params['forum_dirname'] , 
+	$this->d3comObj = new $params['classname']( $params['forum_dirname'] ,
 			$params['external_dirname'] , $params['external_trustdirname'] ) ;
 }
 
@@ -53,7 +53,5 @@ public static function & getInstance( $params )
 	return $instance[$external_dirname] ;
 }
 
-} // end class D3commentObj 
+} // end class D3commentObj
 }
-
-?>

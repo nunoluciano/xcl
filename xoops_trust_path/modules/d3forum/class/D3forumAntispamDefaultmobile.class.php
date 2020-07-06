@@ -9,11 +9,9 @@ class D3forumAntispamDefaultmobile extends D3forumAntispamDefault
     {
         if ($this->isMobile()) {
             return true;
-        } else {
-            return parent::checkValidate();
         }
+
+        return parent::checkValidate();
     }
 
 }
-
-?>

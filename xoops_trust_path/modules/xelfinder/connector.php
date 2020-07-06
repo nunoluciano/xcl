@@ -3,7 +3,7 @@
 try {
 	//debug($_REQUEST);
 	// for keep alive
-	if (! empty($_GET['keepalive']) && 'OPTIONS' !== $_SERVER['REQUEST_METHOD']) exit(0);
+	if (! empty($_GET['keepalive']) && $_SERVER['REQUEST_METHOD'] !== 'OPTIONS') exit(0);
 
 	@ set_time_limit(120); // just in case it too long, not recommended for production
 
@@ -24,14 +24,14 @@ try {
 	// Add PEAR Dirctory into include path
 	$incPath = get_include_path();
 	$addPath = XOOPS_TRUST_PATH . '/PEAR';
-	if (FALSE === strpos($incPath, $addPath)) {
+	if (strpos($incPath, $addPath) === FALSE) {
 		//set_include_path( $incPath . PATH_SEPARATOR . $addPath );
 		set_include_path( $addPath . PATH_SEPARATOR . $incPath );
 	}
 	define('ELFINDER_DROPBOX_USE_CURL_PUT', true);
 
 	// load compat functions
-	require_once __DIR__ . '/include/compat.php';
+	require_once dirname(__FILE__) . '/include/compat.php';
 
 	$php54 = version_compare(PHP_VERSION, '5.4', '>=');
 	$php55 = version_compare(PHP_VERSION, '5.5', '>=');
@@ -46,10 +46,10 @@ try {
 		$_ps = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 		if (! isset($_GET['cmd'])) {
 			$_cmd = $_ps[0];
-			if ('netmount' === $_cmd) {
+			if ($_cmd === 'netmount') {
 				$_GET['cmd'] = $_cmd;
 				$_i = 1;
-				foreach(['protocol', 'host'] as $_k) {
+				foreach(array('protocol', 'host') as $_k) {
 					if (isset($_ps[$_i])) {
 						if (! isset($_GET[$_k])) {
 							$_GET[$_k] = $_ps[$_i];
@@ -100,7 +100,7 @@ try {
 	define('_MD_XELFINDER_PROXY_TOKEN_KEY', $mydirname.'_ptoken');
 
 	// load xoops_elFinder
-	require_once __DIR__ . '/class/xoops_elFinder.class.php';
+	require_once dirname(__FILE__).'/class/xoops_elFinder.class.php';
 	$xoops_elFinder = new xoops_elFinder($mydirname);
 	$xoops_elFinder->setConfig($config);
 	$xoops_elFinder->setLogfile($debug? XOOPS_TRUST_PATH . '/cache/elfinder.log.txt' : '');
@@ -121,8 +121,8 @@ try {
 	|| $_SESSION['XELFINDER_CTOKEN'] !== $_REQUEST['ctoken']) {
 		if (($origin && isset($allowOrigins[$origin]))
 			|| isset($_GET['logout'])
-			|| (isset($_GET['cmd']) && ('callback' === $_GET['cmd'] || 'netmount' === $_GET['cmd']))
-			|| (isset($_REQUEST['cmd']) && 'file' === $_REQUEST['cmd'])
+			|| (isset($_GET['cmd']) && ($_GET['cmd'] === 'callback' || $_GET['cmd'] === 'netmount'))
+			|| (isset($_REQUEST['cmd']) && $_REQUEST['cmd'] === 'file')
 			|| !empty($_REQUEST[_MD_XELFINDER_PROXY_TOKEN_KEY])
 		) {
 			if ($origin && $_REQUEST['ctoken'] && ! isset($_SESSION['XELFINDER_CTOKEN'])) {
@@ -130,7 +130,7 @@ try {
 			}
 		} else {
 			header('HTTP', true, 403);
-			exit(json_encode(['error' => 'errPleaseReload']));
+			exit(json_encode(array('error' => 'errPleaseReload')));
 		}
 	}
 
@@ -140,9 +140,9 @@ try {
 	} else {
 		if (($origin && !isset($allowOrigins[$origin]))
 		 || (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])
-		 		 && !in_array(strtoupper($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']), ['POST', 'GET', 'OPTIOINS']))
+		 		 && !in_array(strtoupper($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']), array('POST', 'GET', 'OPTIOINS')))
 		) {
-			exit(json_encode(['error' => 'errAccess']));
+			exit(json_encode(array('error' => 'errAccess')));
 		}
 		define('_MD_XELFINDER_SITEURL', empty($_REQUEST['xoopsUrl'])? XOOPS_URL : $_REQUEST['xoopsUrl']);
 		define('_MD_XELFINDER_MODULE_URL', str_replace(XOOPS_URL, _MD_XELFINDER_SITEURL, XOOPS_MODULE_URL));
@@ -161,16 +161,16 @@ try {
 			header('Access-Control-Expose-Headers: Content-Length');
 		}
 
-		if ('OPTIONS' === $_SERVER['REQUEST_METHOD'] || ! empty($_GET['keepalive'])) exit(0);
+		if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS' || ! empty($_GET['keepalive'])) exit(0);
 	}
 
 	define('ELFINDER_IMG_PARENT_URL', XOOPS_URL . '/common/elfinder/');
 
-	require __DIR__ . '/class/xelFinder.class.php';
-	require __DIR__ . '/class/xelFinderVolumeFTP.class.php';
+	require dirname(__FILE__) . '/class/xelFinder.class.php';
+	require dirname(__FILE__) . '/class/xelFinderVolumeFTP.class.php';
 
-	$extras = [];
-	if ('UTF-8' !== strtoupper(_CHARSET)) {
+	$extras = array();
+	if (strtoupper(_CHARSET) !== 'UTF-8') {
 		mb_convert_variables('UTF-8', _CHARSET, $config);
 	}
 	$config_MD5 = md5(json_encode($config));
@@ -222,20 +222,18 @@ try {
 	$xoops_elFinder->setLogfile($debug? XOOPS_TRUST_PATH . '/cache/elfinder.log.txt' : '');*/
 
 	// Access control
-	require_once __DIR__ . '/class/xelFinderAccess.class.php';
+	require_once dirname(__FILE__).'/class/xelFinderAccess.class.php';
 	// custom session handler
 	require_once _MD_ELFINDER_LIB_PATH . '/php/elFinderSession.php';
 	
 	// make sesstion handler
-	$session = new elFinderSession(
-        [
+	$session = new elFinderSession(array(
 		'base64encode' => $xoops_elFinder->base64encodeSessionData,
-		'keys' => [
+		'keys' => array(
 			'default'   => 'xel_'.$mydirname.'_Caches',
 			'netvolume' => _MD_XELFINDER_NETVOLUME_SESSION_KEY
-        ]
-        ]
-    );
+		)
+	));
 	
 	// for XOOPS uid of current session
 	$uidSessionKey = 'xel_'.$mydirname.'_Uid';
@@ -248,7 +246,7 @@ try {
 	$isAdmin = $userRoll['isAdmin'];
 
 	// set netmount data to session
-	$netVolumeData = [];
+	$netVolumeData = array();
 	if ($userRoll['uid'] && $userRoll['uid'] !== $session->get($uidSessionKey)) {
 		$sessNetVols = $session->get('netvolume', $netVolumeData);
 		$netVolumeData = array_merge($xoops_elFinder->getNetmountData(), $sessNetVols);
@@ -272,8 +270,8 @@ try {
 		$inSpecialGroup = $userRoll['inSpecialGroup'];
 		
 		// set umask
-		foreach(['default', 'users_dir', 'guest_dir', 'group_dir'] as $_key) {
-			$config[$_key.'_umask'] = strval(dechex(0xfff - intval(strval($config[$_key . '_item_perm']), 16)));
+		foreach(array('default', 'users_dir', 'guest_dir', 'group_dir') as $_key) {
+			$config[$_key.'_umask'] = strval(dechex(0xfff - intval(strval($config[$_key.'_item_perm']), 16)));
 		}
 		
 		// set uploadAllow
@@ -296,8 +294,8 @@ try {
 		}
 		
 		$config['uploadAllow'] = trim($config['uploadAllow']);
-		if (! $config['uploadAllow'] || 'none' === $config['uploadAllow']) {
-			$config['uploadAllow'] = [];
+		if (! $config['uploadAllow'] || $config['uploadAllow'] === 'none') {
+			$config['uploadAllow'] = array();
 		} else {
 			$config['uploadAllow'] = explode(' ', $config['uploadAllow']);
 			$config['uploadAllow'] = array_map('trim', $config['uploadAllow']);
@@ -313,55 +311,54 @@ try {
 		}
 		
 		if (! isset($extras[$mydirname.':xelfinder_db'])) {
-			$extras[$mydirname.':xelfinder_db'] = [];
+			$extras[$mydirname.':xelfinder_db'] = array();
 		}
 		foreach (
-				['default_umask', 'use_users_dir', 'users_dir_perm', 'users_dir_umask', 'use_guest_dir', 'guest_dir_perm', 'guest_dir_umask',
-						'use_group_dir', 'group_dir_parent', 'group_dir_perm', 'group_dir_umask', 'uploadAllow', 'uploadMaxSize', 'URL', 'unzip_lang_value'
-				]
+				array('default_umask', 'use_users_dir', 'users_dir_perm', 'users_dir_umask', 'use_guest_dir', 'guest_dir_perm', 'guest_dir_umask',
+						'use_group_dir', 'group_dir_parent', 'group_dir_perm', 'group_dir_umask', 'uploadAllow', 'uploadMaxSize', 'URL', 'unzip_lang_value')
 				as $_extra
 		) {
 			$extras[$mydirname.':xelfinder_db'][$_extra] = empty($config[$_extra])? '' : $config[$_extra];
 		}
 		if (! empty($config['autoResize'])) {
-			$extras[$mydirname.':xelfinder_db']['plugin']['AutoResize'] = [
+			$extras[$mydirname.':xelfinder_db']['plugin']['AutoResize'] = array(
 				'enable' => true,
 				'maxHeight' => $config['autoResize'],
 				'maxWidth' => $config['autoResize']
-			];
+			);
 		}
 		
 		$rootConfig = $xoops_elFinder->getRootVolumeConfigs($config['volume_setting'], $extras);
 		
 		// Add net(FTP) volume
 		if ($isAdmin && !empty($config['ftp_host']) && !empty($config['ftp_port']) && !empty($config['ftp_user']) && !empty($config['ftp_pass'])) {
-			$ftp = [
-                'driver'  => 'FTPx',
-                'id'      => 'ad',
-                'alias'   => $config['ftp_name'],
-                'host'    => $config['ftp_host'],
-                'port'    => $config['ftp_port'],
-                'path'    => $config['ftp_path'],
-                'user'    => $config['ftp_user'],
-                'pass'    => $config['ftp_pass'],
-                'disabled'=> !empty($config['ftp_search'])? [] : ['search'],
-                'statOwner' => true,
-                'allowChmodReadOnly' => true,
-                'is_local'=> true,
-                'tmpPath' => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache',
-                'utf8fix' => true,
-                'defaults' => ['read' => true, 'write' => true, 'hidden' => false, 'locked' => false],
-                'attributes' => [
-                    [
+			$ftp = array(
+				'driver'  => 'FTPx',
+				'id'      => 'ad',
+				'alias'   => $config['ftp_name'],
+				'host'    => $config['ftp_host'],
+				'port'    => $config['ftp_port'],
+				'path'    => $config['ftp_path'],
+				'user'    => $config['ftp_user'],
+				'pass'    => $config['ftp_pass'],
+				'disabled'=> !empty($config['ftp_search'])? array() : array('search'),
+				'statOwner' => true,
+				'allowChmodReadOnly' => true,
+				'is_local'=> true,
+				'tmpPath' => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache',
+				'utf8fix' => true,
+				'defaults' => array('read' => true, 'write' => true, 'hidden' => false, 'locked' => false),
+				'attributes' => array(
+					array(
 						'pattern' => '~/\.~',
 						'read' => false,
 						'write' => false,
 						'hidden' => true,
 						'locked' => false
-                    ],
-                ]
-            ];
-			$rootConfig[] = ['raw' => $ftp];
+					),
+				)
+			);
+			$rootConfig[] = array('raw' => $ftp);
 		}
 		if (defined('ELFINDER_DROPBOX_APPKEY') && $config['dropbox_path'] && $config['dropbox_acc_token']) {
 			if ($config['dropbox_acc_seckey']) {
@@ -371,7 +368,7 @@ try {
 			}
 			if (empty($config['dropbox_acc_seckey']) || $token2) {
 				$dropbox_access = null;
-				$dropboxIsInGroup = (array_intersect($memberGroups, ( isset($config['dropbox_writable_groups'])? $config['dropbox_writable_groups'] : [] )));
+				$dropboxIsInGroup = (array_intersect($memberGroups, ( isset($config['dropbox_writable_groups'])? $config['dropbox_writable_groups'] : array() )));
 				if (!$isAdmin) {
 					$dropbox_access = new xelFinderAccess();
 					if (isset($config['dropbox_hidden_ext']))
@@ -381,24 +378,24 @@ try {
 					if (isset($config['dropbox_unlock_ext']))
 						$dropbox_access->setUnlockExtention($dropboxIsInGroup? $config['dropbox_unlock_ext'] : '');
 				}
-				$dropbox = [
-                    'driver'        => 'Dropbox2',
-                    'id'            => 'sh',
-                    'app_key'       => ELFINDER_DROPBOX_APPKEY,
-                    'app_secret'    => ELFINDER_DROPBOX_APPSECRET,
-                    'alias'         => trim($config['dropbox_name']),
-                    'access_token'  => trim($config['dropbox_acc_token']),
-                    'path'          => '/'.trim($config['dropbox_path'], ' /'),
-                    'defaults'      => ['read' => true, 'write' => ($dropboxIsInGroup? true : false), 'hidden' => false, 'locked' => false],
-                    'accessControl' => is_object($dropbox_access)? [$dropbox_access, 'access'] : null,
-                    'uploadDeny'    => (!$isAdmin && !empty($config['dropbox_upload_mime']))? ['all'] : [],
-                    'uploadAllow'   => (!$isAdmin && !empty($config['dropbox_upload_mime']))? array_map('trim', explode(',', $config['dropbox_upload_mime'])) : [],
-                    'uploadOrder'   => ['deny', 'allow'],
-                    'tmpPath'       => XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache',
-                    'tmbPath'       => XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb',
-                    'tmbURL'        => _MD_XELFINDER_MODULE_URL.'/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb',
-                ];
-				$rootConfig[] = ['raw' => $dropbox];
+				$dropbox = array(
+					'driver'        => 'Dropbox2',
+					'id'            => 'sh',
+					'app_key'       => ELFINDER_DROPBOX_APPKEY,
+					'app_secret'    => ELFINDER_DROPBOX_APPSECRET,
+					'alias'         => trim($config['dropbox_name']),
+					'access_token'  => trim($config['dropbox_acc_token']),
+					'path'          => '/'.trim($config['dropbox_path'], ' /'),
+					'defaults'      => array('read' => true, 'write' => ($dropboxIsInGroup? true : false), 'hidden' => false, 'locked' => false),
+					'accessControl' => is_object($dropbox_access)? array($dropbox_access, 'access') : null,
+					'uploadDeny'    => (!$isAdmin && !empty($config['dropbox_upload_mime']))? array('all') : array(),
+					'uploadAllow'   => (!$isAdmin && !empty($config['dropbox_upload_mime']))? array_map('trim', explode(',', $config['dropbox_upload_mime'])) : array(),
+					'uploadOrder'   => array('deny', 'allow'),
+					'tmpPath'       => XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache',
+					'tmbPath'       => XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb',
+					'tmbURL'        => _MD_XELFINDER_MODULE_URL.'/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb',
+				);
+				$rootConfig[] = array('raw' => $dropbox);
 			}
 		}
 		
@@ -418,74 +415,74 @@ try {
 	}
 	//var_dump($rootVolumes);exit;
 
-	$optionsNetVolumes = [
-		'*' => [
+	$optionsNetVolumes = array(
+		'*' => array(
 			'tmpPath' => XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache',
 			'tmbPath' => XOOPS_MODULE_PATH.'/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb',
 			'tmbURL'  => _MD_XELFINDER_MODULE_URL.'/'._MD_ELFINDER_MYDIRNAME.'/cache/tmb',
 			'tsPlSleep' => 15,
 			'syncMinMs' => 30000,
-			'plugin' => [
-                'AutoResize' => [
+			'plugin' => array(
+				'AutoResize' => array(
 					'enable' => false
-                ],
-                'Watermark' => [
+				),
+				'Watermark' => array(
 					'enable' => false
-                ],
-                'Normalizer' => [
+				),
+				'Normalizer' => array(
 					'enable' => false
-                ],
-                'Sanitizer' => [
+				),
+				'Sanitizer' => array(
 					'enable' => false
-                ]
-            ]
-        ]
-    ];
+				)
+			)
+		)
+	);
 
 	// End for XOOPS
 	//////////////////////////////////////////////////////
 
-	$opts = [
+	$opts = array(
 		'isAdmin' => $isAdmin, // for class xelFinder
 		'locale' => 'ja_JP.UTF-8',
 		'optionsNetVolumes' => $optionsNetVolumes,
 		'session' => $session,
-		'bind'   => [
-			//'*' => [$xoops_elFinder, 'log'],
-			'netmount.pre' => [$xoops_elFinder, 'netmountPreCallback'],
-			'netmount rename' => [$xoops_elFinder, 'netmountCallback'],
-			'mkdir mkfile put upload extract' => [$xoops_elFinder, 'notifyMail'],
-			'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre' => [
+		'bind'   => array(
+			//'*' => array($xoops_elFinder, 'log'),
+			'netmount.pre' => array($xoops_elFinder, 'netmountPreCallback'),
+			'netmount rename' => array($xoops_elFinder, 'netmountCallback'),
+			'mkdir mkfile put upload extract' => array($xoops_elFinder, 'notifyMail'),
+			'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre' => array(
 				'Plugin.Sanitizer.cmdPreprocess',
 				'Plugin.Normalizer.cmdPreprocess'
-			],
-			'upload.presave' => [
+			),
+			'upload.presave' => array(
 				'Plugin.Sanitizer.onUpLoadPreSave',
 				'Plugin.Normalizer.onUpLoadPreSave',
-				[$xoops_elFinder, 'autoRotateOnUpLoadPreSave'],
+				array($xoops_elFinder, 'autoRotateOnUpLoadPreSave'),
 				'Plugin.AutoResize.onUpLoadPreSave',
 				'Plugin.Watermark.onUpLoadPreSave'
-			],
-			'editor.pre' => [$xoops_elFinder, 'editorPreCallback'],
-		],
-		'plugin' => [
-			//'Sanitizer' => [
+			),
+			'editor.pre' => array($xoops_elFinder, 'editorPreCallback'),
+		),
+		'plugin' => array(
+			//'Sanitizer' => array(
 			//	'enable' => true,
-			//],
-			'AutoResize' => [
+			//),
+			'AutoResize' => array(
 				'enable' => false
-			],
-			'Watermark' => [
+			),
+			'Watermark' => array(
 				'enable' => false
-			],
-		],
+			),
+		),
 		'debug' => $debug,
 		'uploadTempPath' => XOOPS_TRUST_PATH . '/cache',
 		'commonTempPath' => XOOPS_TRUST_PATH . '/cache',
 		'tmpLinkPath' => XOOPS_MODULE_PATH . '/'.$mydirname.'/cache',
 		'roots' => $rootVolumes,
 		'callbackWindowURL' => !empty($_REQUEST['myUrl'])? ($_REQUEST['myUrl'] . 'connector.php?cmd=callback') : ''
-	];
+	);
 
 	// clear output buffer
 	while( ob_get_level() ) {
@@ -497,16 +494,16 @@ try {
 	
 	// check netVolumeData
 	if ($netVolumeData) {
-		if (count($netVolumeData) !== count($session->get('netvolume', []))) {
+		if (count($netVolumeData) !== count($session->get('netvolume', array()))) {
 			// save user data if found invalid netvolume data
-			$_result = ['sync' => true]; //dummy data
+			$_result = array('sync' => true); //dummy data
 			$xoops_elFinder->netmountCallback(null, $_result, null, $elfinder);
 		}
 	}
 	
 	$connector->run();
 } catch (Exception $e) {
-	exit(json_encode(['error' => $e->getMessage()]));
+	exit(json_encode(array('error' => $e->getMessage())));
 }
 
 
@@ -518,6 +515,6 @@ function debug() {
 		var_dump($arg);
 	}
 	$str = ob_get_clean();
-	file_put_contents(__DIR__ . '/debug.txt', $str . "\n", FILE_APPEND);
+	file_put_contents(dirname(__FILE__) . '/debug.txt', $str . "\n", FILE_APPEND);
 }
 

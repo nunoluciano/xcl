@@ -63,11 +63,11 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	}
 	
 	private function getDirTs($cid, $cname, $childens) {
-		$mytstamp = [];
+		$mytstamp = array();
 		$uid = $this->d3dConf->uid;
 		$req_uid = ($cid > 10000)? 0 : $uid;
 		$childens[] = $cname;
-		$params = $cid? ['categories' => $childens] : [];
+		$params = $cid? array('categories' => $childens) : array();
 		$this->d3dConf->func->get_blist_tstamp($req_uid, $uid, 1, false, $mytstamp, $params);
 		if ($mytstamp) {
 			return array_shift($mytstamp);
@@ -76,7 +76,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	}
 	
 	protected function strToUTF8($str) {
-		if ('UTF-8' !== strtoupper(_CHARSET)) {
+		if (strtoupper(_CHARSET) !== 'UTF-8') {
 			$str = mb_convert_encoding($str, 'UTF-8', _CHARSET);
 		}
 		return $str;
@@ -119,26 +119,25 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		$uid = $this->d3dConf->uid;
 		$cat = $func->get_categories($uid, $uid);
 		
-		$this->catTree = [];
+		$this->catTree = array();
 		
-		$this->catTree['root'] = ['subcats' => []];
+		$this->catTree['root'] = array( 'subcats' => array() );
 		$pcid = 'root';
 		foreach($cat as $_cat) {
 			if ( 100 <= $_cat['blogtype'] || ($_cat['subcat'] && ! $_cat['num']) ) {
 				continue;
 			}
-			$this->catTree[$_cat['cid']] = [
-                'subcats' => [],
-                'num'     => $_cat['num'],
-                'name'    => $_cat['cname'],
-                'pcid'    => (($_cat['subcat'] && $pcid)? $pcid : 'root')
-            ];
+			$this->catTree[$_cat['cid']] = array(
+								'subcats' => array(),
+								'num'     => $_cat['num'],
+								'name'    => $_cat['cname'],
+								'pcid'    => (($_cat['subcat'] && $pcid)? $pcid : 'root') );
 			if ($_cat['subcat']) {
-				if ('root' !== $pcid) {
+				if ($pcid !== 'root') {
 					$this->catTree[$pcid]['subcats'][$_cat['cid']] = $_cat['cname'];
 				}
 			} else {
-				if ('root' !== $pcid && !$this->catTree[$pcid]['subcats'] && !$this->catTree[$pcid]['num']) {
+				if ($pcid !== 'root' && ! $this->catTree[$pcid]['subcats'] && ! $this->catTree[$pcid]['num']) {
 					// no entry
 					unset($this->catTree[$this->catTree[$pcid]['pcid']]['subcats'][$pcid], $this->catTree[$pcid]);
 				}
@@ -146,24 +145,22 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$this->catTree['root']['subcats'][$pcid] = $_cat['cname'];
 			}
 		}
-		if (! isset($this->options['extAnother']) || 'off' !== strtolower($this->options['extAnother'])) {
+		if (! isset($this->options['extAnother']) || strtolower($this->options['extAnother']) !== 'off') {
 			if (! isset($this->catTree[0])) {
-				$this->catTree[0] = [
-                    'subcats' => [],
-                    'name'    => _MD_NOCNAME,
-                    'pcid'    => 'root'
-                ];
+				$this->catTree[0] = array(
+						'subcats' => array(),
+						'name'    => _MD_NOCNAME,
+						'pcid'    => 'root' );
 				$this->catTree['root']['subcats'][0] = $this->strToUTF8(_MD_NOCNAME);
 			}
 			$this->catTree[0]['name'] = $this->strToUTF8($this->catTree[0]['name']);
-			$this->catTree[-1] = [
-                'subcats' => [],
-                'name'    => 'Another',
-                'pcid'    => 0
-            ];
+			$this->catTree[-1] = array(
+					'subcats' => array(),
+					'name'    => 'Another',
+					'pcid'    => 0 );
 			$this->catTree[0]['subcats'][-1] = 'Another';
 		}
-		if (null === $this->options['syncChkAsTs']) {
+		if (is_null($this->options['syncChkAsTs'])) {
 			$this->options['syncChkAsTs'] = true;
 		}
 		return true;
@@ -193,7 +190,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function updateCache($path, $stat) {
 		$stat = parent::updateCache($path, $stat);
-		if ($stat && 'directory' !== $stat['mime']) $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath']) . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
+		if ($stat && $stat['mime'] !== 'directory') $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath'])  . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
 		return $this->cache[$path] = $stat;
 	}
 
@@ -205,15 +202,15 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry Levashov
 	 **/
 	protected function cacheDir($path) {
-		$this->dirsCache[$path] = [];
+		$this->dirsCache[$path] = array();
 
-		if ('_' === $path) {
+		if ($path === '_') {
 			$cid = 'root';
 		} else {
 			list($cid) = explode('_', substr($path, 1), 2);
 		}
 
-		$row_def = [
+		$row_def = array(
 			'size' => 0,
 			'ts' => 0,
 			'mime' => '',
@@ -223,10 +220,10 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			'locked' => true,
 			'hidden' => false,
 			'url'    => null
-        ];
+		);
 
-		$_mtime = [];
-		$_size = [];
+		$_mtime = array();
+		$_size = array();
 		$uid = $this->d3dConf->uid;
 		
 		if (! empty($this->catTree[$cid]['subcats'])) {
@@ -237,7 +234,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$row['ts'] = $this->getDirTs($ccid, $cname, $this->catTree[$ccid]['subcats']);
 				$row['mime'] = 'directory';
 				$row['dirs'] = (! empty($this->catTree[$ccid]['subcats']))? 1 : 0;
-				if ('root' === $this->catTree[$ccid]['pcid']) {
+				if ($this->catTree[$ccid]['pcid'] === 'root') {
 					$row['phash'] = $this->encode('_');
 				} else {
 					$row['phash'] = $this->encode('_'.$this->catTree[$ccid]['pcid'].'_');
@@ -249,20 +246,20 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			}
 		}
 
-		if ('root' !== $cid) {
+		if ($cid !== 'root') {
 			// photos
 			if ($cid >= 10000) {		// all images of common categories
-				$arr_uids = [];
-				$cids = [$cid];
-			} elseif (-1 == $cid) {		// all images of other personnel
-				$arr_uids = [];
-				$cids = [];
+				$arr_uids = array();
+				$cids = array($cid);
+			} elseif ($cid == -1) {		// all images of other personnel
+				$arr_uids = array();
+				$cids = array();
 			} else {			// self personal categories' images
-				$arr_uids = [$uid];
-				$cids = [$cid];
+				$arr_uids = array($uid);
+				$cids = array($cid);
 			}
 			
-			list($photos) = $this->d3dConf->func->get_photolist($arr_uids, $uid, 0, 0, ['cids' => $cids, 'enc' => 'UTF-8']);
+			list($photos) = $this->d3dConf->func->get_photolist($arr_uids, $uid, 0, 0, array('cids' => $cids, 'enc' => 'UTF-8'));
 			if ($photos) {
 				foreach($photos as $photo) {
 					$realpath = realpath($this->options['filePath'].$photo['pname']);
@@ -286,7 +283,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function getParents($path) {
-		$parents = [];
+		$parents = array();
 
 		while ($path) {
 			if ($file = $this->stat($path)) {
@@ -336,7 +333,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _basename($path) {
-		if ('_' === $path) {
+		if ($path === '_') {
 			return '';
 		} else {
 			list($cid, $name) = explode('_', substr($path, 1), 2);
@@ -353,7 +350,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _joinPath($dir, $name) {
-		if ('_' === $dir) {
+		if ($dir === '_') {
 			return -1;
 		} else {
 			return $dir . $name;
@@ -404,7 +401,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _path($path) {
-		if (false == ($file = $this->stat($path))) {
+		if (($file = $this->stat($path)) == false) {
 			return '';
 		}
 
@@ -453,7 +450,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _stat($path) {
-		if ('_' === $path) {
+		if ($path === '_') {
 			$pid = 0;
 			$cid = 'root';
 			$name = '';
@@ -461,7 +458,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			list($cid, $pid) = explode('_', substr($path, 1), 2);
 			list($pid) = explode('.', $pid);
 		}
-		$stat_def = [
+		$stat_def = array(
 			'size' => 0,
 			'ts' => 0,
 			'mime' => '',
@@ -471,10 +468,10 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			'locked' => true,
 			'hidden' => false,
 			'url'    => null
-        ];
+		);
 		
 		$uid = $this->d3dConf->uid;
-		if ('root' === $cid) {
+		if ($cid === 'root') {
 			$stat['name'] = (! empty($this->options['alias'])? $this->options['alias'] : 'untitle');
 			$stat['mime'] = 'directory';
 			$stat['dirs'] = true;
@@ -488,16 +485,16 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$stat['ts'] = $this->getDirTs($cid, $stat['name'], $this->catTree[$cid]['subcats']);;
 				$stat['mime'] = 'directory';
 				$stat['dirs'] = (! empty($this->catTree[$cid]['subcats']))? 1 : 0;
-				if ('root' === $this->catTree[$cid]['pcid']) {
+				if ($this->catTree[$cid]['pcid'] === 'root') {
 					$stat['phash'] = $this->encode('_');
 				} else {
 					$stat['phash'] = $this->encode('_'.$this->catTree[$cid]['pcid'].'_');
 				}
 				return $stat;
 			}
-		} elseif ('root' !== $cid) {
+		} elseif ($cid !== 'root') {
 			// photos
-			list($photos) = $this->d3dConf->func->get_photolist([], $uid, 1, 0, ['pid' => $pid, 'enc' => 'UTF-8']);
+			list($photos) = $this->d3dConf->func->get_photolist(array(), $uid, 1, 0, array('pid' => $pid, 'enc' => 'UTF-8'));
 			
 			if ($photos) {
 				$realpath = realpath($this->options['filePath'].$photos[0]['pname']);
@@ -507,7 +504,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			}
 		}
 
-		return [];
+		return array();
 	}
 
 	/**
@@ -532,7 +529,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function _dimensions($path, $mime) {
 		clearstatcache();
-		return 0 === strpos($mime, 'image') && false !== ($s = @getimagesize($this->readlink($path)))
+		return strpos($mime, 'image') === 0 && ($s = @getimagesize($this->readlink($path))) !== false 
 			? $s[0].'x'.$s[1] 
 			: false;
 	}
@@ -547,7 +544,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function readlink($path) {
-		if ('_' !== $path) {
+		if ($path !== '_') {
 			list(, $name) = explode('_', substr($path, 1), 2);
 			if ($name) {
 				return realpath($this->options['filePath'] . $name);
@@ -570,14 +567,14 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return $this->dirsCache[$path];
 	}
 
-    /**
-     * Open file and return file pointer
-     *
-     * @param string $path file path
-     * @param string $mode
-     * @return resource|false
-     * @author Dmitry (dio) Levashov
-     */
+	/**
+	 * Open file and return file pointer
+	 *
+	 * @param  string  $path  file path
+	 * @param  bool    $write open file for writing
+	 * @return resource|false
+	 * @author Dmitry (dio) Levashov
+	 **/
 	protected function _fopen($path, $mode='rb') {
 		if ($local = $this->readlink($path)) {
 			return @fopen($local, $mode);
@@ -585,14 +582,13 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return false;
 	}
 
-    /**
-     * Close opened file
-     *
-     * @param resource $fp file pointer
-     * @param string   $path
-     * @return void
-     * @author Dmitry (dio) Levashov
-     */
+	/**
+	 * Close opened file
+	 *
+	 * @param  resource  $fp  file pointer
+	 * @return bool
+	 * @author Dmitry (dio) Levashov
+	 **/
 	protected function _fclose($fp, $path='') {
 		@fclose($fp);
 	}
@@ -623,15 +619,14 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return false;
 	}
 
-    /**
-     * Create symlink. FTP driver does not support symlinks.
-     *
-     * @param string $target link target
-     * @param string $path   symlink path
-     * @param        $name
-     * @return bool
-     * @author Dmitry (dio) Levashov
-     */
+	/**
+	 * Create symlink. FTP driver does not support symlinks.
+	 *
+	 * @param  string  $target  link target
+	 * @param  string  $path    symlink path
+	 * @return bool
+	 * @author Dmitry (dio) Levashov
+	 **/
 	protected function _symlink($target, $path, $name) {
 		return false;
 	}
@@ -650,16 +645,16 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return $res;
 	}
 
-    /**
-     * Move file into another parent dir.
-     * Return new file path or false.
-     *
-     * @param string $source source file path
-     * @param        $targetDir
-     * @param string $name   file name
-     * @return string|bool
-     * @author Dmitry (dio) Levashov
-     */
+	/**
+	 * Move file into another parent dir.
+	 * Return new file path or false.
+	 *
+	 * @param  string  $source  source file path
+	 * @param  string  $target  target dir path
+	 * @param  string  $name    file name
+	 * @return string|bool
+	 * @author Dmitry (dio) Levashov
+	 **/
 	protected function _move($source, $targetDir, $name) {
 		return false;
 	}
@@ -732,23 +727,21 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		return false;
 	}
 
-    /**
-     * Detect available archivers
-     *
-     * @return array
-     */
+	/**
+	 * Detect available archivers
+	 *
+	 * @return void
+	 **/
 	protected function _checkArchivers() {
 		// die('Not yet implemented. (_checkArchivers)');
-		return [];
+		return array();
 	}
 
-    /**
-     * chmod implementation
-     *
-     * @param $path
-     * @param $mode
-     * @return bool
-     */
+	/**
+	 * chmod implementation
+	 *
+	 * @return bool
+	 **/
 	protected function _chmod($path, $mode) {
 		return false;
 	}

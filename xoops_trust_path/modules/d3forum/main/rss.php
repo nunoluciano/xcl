@@ -77,16 +77,24 @@ if (!isset($outputs['data'])) {
 	}
 
 	$title = htmlspecialchars($xoopsConfig['sitename']). ' - ' . htmlspecialchars($xoopsModule->getVar('name'));
-	if ($cat_title && ($cat || $forum)) $title .= ' - ' . htmlspecialchars($cat_title, ENT_COMPAT, _CHARSET) ;
-	if ($forum_title) $title .= ' - [ ' . htmlspecialchars($forum_title, ENT_COMPAT, _CHARSET) . ' ]';
+	if ($cat_title && ($cat || $forum)) {
+        $title .= ' - ' . htmlspecialchars($cat_title, ENT_COMPAT, _CHARSET);
+    }
+	if ($forum_title) {
+        $title .= ' - [ ' . htmlspecialchars($forum_title, ENT_COMPAT, _CHARSET) . ' ]';
+    }
 	$top_link = ($forum)? 'index.php?forum_id='.$forum : '';
 	$top_link = ($cat)? 'index.php?cat_id='.$cat : $top_link;
 	$top_link = XOOPS_URL.'/modules/'.$mydirname.'/'.$top_link;
 
 	foreach($data as $key => $item) {
 		$subtitles = [];
-		if ((!$cat || count($cat_ids) > 1) && !$forum) $subtitles[] = $item['cat_title'];
-		if (!$forum) $subtitles[] = $item['forum_title'];
+		if ((!$cat || count($cat_ids) > 1) && !$forum) {
+            $subtitles[] = $item['cat_title'];
+        }
+		if (!$forum) {
+            $subtitles[] = $item['forum_title'];
+        }
 		$data[$key]['subject'] = htmlspecialchars(($subtitles? '[' . implode(':', $subtitles) . '] ' : '') . $item['subject'], ENT_COMPAT, _CHARSET);
 		$data[$key]['context'] = htmlspecialchars(d3forum_make_context(strip_tags($item['description'])), ENT_COMPAT, _CHARSET);
 		$data[$key]['cat_title'] = htmlspecialchars($item['cat_title'], ENT_COMPAT, _CHARSET);
@@ -100,7 +108,7 @@ if (!isset($outputs['data'])) {
 		'b_time' => $b_time,
 		'data' => $data
     ];
-	
+
 	if (is_writable($c_file)) {
 		file_put_contents($c_file, serialize($outputs));
 	}

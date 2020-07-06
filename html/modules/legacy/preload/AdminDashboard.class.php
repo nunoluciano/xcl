@@ -135,7 +135,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         * Note! Switch from RenderSystem to AdminRenderSystem
         * Ref. Legacy/kernel/Legacy_AdminControllerStrategy
         */
-        if ($root->mController->_mStrategy && get_class($root->mController->_mStrategy) == 'Legacy_AdminControllerStrategy') {
+        if ($root->mController->_mStrategy && get_class($root->mController->_mStrategy) === 'Legacy_AdminControllerStrategy') {
             $this->mController->_mStrategy->mSetupBlock->add( [$this, 'AdminSetupBlock'] );
         }
 
@@ -267,7 +267,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
                 $db = &$root->mController->getDB();
                 $result = $db->query("SELECT VERSION()");
-                list($mysqlversion) = $db->fetchRow($result);
+                [$mysqlversion] = $db->fetchRow($result);
 
             $systemconfig['mysqlversion'] = $mysqlversion;
             $systemconfig['os'] = substr(php_uname(), 0, 7);
@@ -372,8 +372,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
             ob_start();
             phpinfo(INFO_GENERAL | INFO_CONFIGURATION | INFO_MODULES);
-            $phpinfo = ob_get_contents();
-            ob_end_clean();
+            $phpinfo = ob_get_clean();
 
             preg_match_all('#<body[^>]*>(.*)</body>#siU', $phpinfo, $output);
             $output = preg_replace('#<table#', '<table class="outer""', $output[1][0]);
@@ -384,8 +383,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $output = preg_replace('#class="h"#', 'class="odd"', $output);
             $output = preg_replace('#class="v"#', 'class="even"', $output);
             $output = preg_replace('#class="p"#', 'class="odd"', $output);
-            $output = str_replace('<div class="center">', '', $output);
-            $output = str_replace('</div>', '', $output);
+            $output = str_replace(array('<div class="center">', '</div>'), '', $output);
 
             $attributes = [];
             $attributes['dummy_content'] = $output;
@@ -432,15 +430,15 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $file = $prefix . $file;
         }
 
-        if ($infoArr['theme'] != null && $infoArr['dirname'] != null) {
+        if ($infoArr['theme'] !== null && $infoArr['dirname'] != null) {
             return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $file;
         }
 
-        if ($infoArr['theme'] != null) {
+        if ($infoArr['theme'] !== null) {
             return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/' . $file;
         }
 
-        if ($infoArr['dirname'] != null) {
+        if ($infoArr['dirname'] !== null) {
             return XOOPS_MODULE_PATH . '/' . $infoArr['dirname'] . '/admin/templates/' . $file;
         }
 

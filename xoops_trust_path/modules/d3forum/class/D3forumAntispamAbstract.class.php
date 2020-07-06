@@ -35,12 +35,14 @@ class D3forumAntispamAbstract
             // WizMobile (gusagi)
             $user =& Wizin_User::getSingleton();
             return $user->bIsMobile;
-        } elseif (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2) {
+        }
+
+        if (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2) {
             // hyp_common ktai-renderer (nao-pon)
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     public function setVar($key, $val)
@@ -59,7 +61,4 @@ class D3forumAntispamAbstract
         }
         return null;
     }
-
 }
-
-?>

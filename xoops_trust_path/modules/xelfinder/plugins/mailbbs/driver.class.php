@@ -10,7 +10,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 
 	protected $mydirname = '';
 
-	protected $enabledFiles = [];
+	protected $enabledFiles = array();
 
 	protected function set_mailbbs_enabledFiles() {
 
@@ -20,12 +20,12 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 		$logfile = XOOPS_MODULE_PATH.'/'.$this->mydirname.'/'.$log;
 		$logs = file($logfile);
 
-		$ret = [];
+		$ret = array();
 		foreach ($logs as $log) {
 			$data = array_pad(explode('<>', $log), 8, '');
-			if ((int)$data[7] || !$data[5]) continue; // 未承認 or ファイルなし
+			if (intval($data[7]) || ! $data[5]) continue; // 未承認 or ファイルなし
 			$ext = strtolower(substr($data[5], strrpos($data[5], '.')));
-			if ('.jpeg' === $ext) {
+			if ($ext === '.jpeg') {
 				$ext = '.jpg';
 			}
 			$ret[$data[5]] = mb_convert_encoding($data[2].$ext, 'UTF-8', _CHARSET);
@@ -91,7 +91,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _scandir($path) {
-		$files = [];
+		$files = array();
 		if ($path === $this->root) {
 			foreach ($this->enabledFiles as $file => $name) {
 				$files[] = $path.'/'.$file;
@@ -127,7 +127,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 			$file_enc = rawurlencode($file);
 			$stat['name'] = $this->enabledFiles[$file];
 			$stat['url'] = $this->options['URL'] . $file_enc;
-			if ('directory' !== $stat['mime']) {
+			if ($stat['mime'] !== 'directory') {
 				$stat['_localpath'] = dirname(str_replace(XOOPS_ROOT_PATH, 'R', $path )) . DIRECTORY_SEPARATOR . $file_enc;
 			} else {
 				$stat['url']  = null;
@@ -157,7 +157,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 * @author Dmitry (dio) Levashov, Naoki Sawada
 	 **/
 	protected function doSearch($path, $q, $mimes) {
-		$result = [];
+		$result = array();
 		$encode = defined('_CHARSET')? _CHARSET : 'auto';
 	
 		foreach($this->_scandir($path) as $p) {
@@ -173,9 +173,9 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 				
 			$name = $stat['name'];
 	
-			if (false !== $this->stripos($name, $q) || false !== $this->stripos(basename($stat['_localpath']), $q)) {
+			if ($this->stripos($name, $q) !== false || $this->stripos(basename($stat['_localpath']), $q) !== false) {
 				$_path = mb_convert_encoding($this->_path($p), 'UTF-8', $encode);
-				if (false !== preg_match('//u', $_path)) { // UTF-8 check for json_encode()
+				if (preg_match('//u', $_path) !== false) { // UTF-8 check for json_encode()
 					$stat['path'] = $_path;
 				}
 	

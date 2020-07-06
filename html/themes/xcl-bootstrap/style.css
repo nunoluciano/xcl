@@ -14,8 +14,8 @@
         background  : #0a0a0a;
         color       : #00CCFF;
         font-size   : 12px;
-        /*display     : block;*/
-        display   : none;
+        display     : block;
+        /*display   : none;*/
     }
 
 /* ---------- ---------- ---------- Body nav off-canvas */

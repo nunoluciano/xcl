@@ -32,9 +32,9 @@ class D3commentUserinfo extends D3commentAbstract
         $user         =& $user_handler->get($link_id);
         if (is_object($user)) {
             return ['module_name' => '', 'subject' => $user->getVar('uname'), 'uri' => XOOPS_URL . '/userinfo.php?uid=' . $link_id, 'summary' => ''];
-        } else {
-            return 'invalid uid';
         }
+
+        return 'invalid uid';
         // all values should be HTML escaped.
     }
 
@@ -57,14 +57,10 @@ class D3commentUserinfo extends D3commentAbstract
         }
     }
 
-
     // callback on newtopic/edit/reply/delete
     // abstract
     public function onUpdate($mode, $link_id, $forum_id, $topic_id, $post_id = 0)
     {
         return true;
     }
-
 }
-
-?>
