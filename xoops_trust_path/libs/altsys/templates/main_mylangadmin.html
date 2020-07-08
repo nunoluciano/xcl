@@ -1,6 +1,8 @@
-<h2><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h2>
-
 <div class="ui-dev-mode"><{$smarty.template}></div>
+
+<hr>
+
+<h2><{$smarty.const._MYLANGADMIN_H3_MODULE}> : <{$target_mname}> : <{$target_lang|escape}> : <{$target_file|escape}></h2>
 
 <div class="ui-card-full">
 	<form name="SelectLangFile" action="index.php" method="get">
@@ -71,7 +73,7 @@
 	<tfoot>
 		<tr>
 			<td colspan="3">
-			<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>">  
+			<input type="submit" name="do_update" value="<{$smarty.const._MYLANGADMIN_BTN_UPDATE}>">
 			<input type="reset" value="<{$smarty.const._MYLANGADMIN_BTN_RESET}>">
 			<{$gticket_hidden}>
 			</td>

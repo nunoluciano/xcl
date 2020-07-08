@@ -141,9 +141,9 @@ class MyBlocksAdmin
         // can delete if it is a cloned block
         if ('D' == $block->getVar('block_type') || 'C' == $block->getVar('block_type')) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 
@@ -156,13 +156,13 @@ class MyBlocksAdmin
         // can clone link if it is marked as cloneable block
         if ('D' == $block->getVar('block_type') || 'C' == $block->getVar('block_type')) {
             return 2;
-        } else {
-            // $modversion['blocks'][n]['can_clone']
-            foreach ($this->block_configs as $bconf) {
-                if ($block->getVar('show_func') == @$bconf['show_func'] && $block->getVar('func_file') == @$bconf['file'] && (empty($bconf['template']) || $block->getVar('template') == @$bconf['template'])) {
-                    if (!empty($bconf['can_clone'])) {
-                        return 2;
-                    }
+        }
+
+// $modversion['blocks'][n]['can_clone']
+        foreach ($this->block_configs as $bconf) {
+            if ($block->getVar('show_func') == @$bconf['show_func'] && $block->getVar('func_file') == @$bconf['file'] && (empty($bconf['template']) || $block->getVar('template') == @$bconf['template'])) {
+                if (!empty($bconf['can_clone'])) {
+                    return 2;
                 }
             }
         }
@@ -352,7 +352,7 @@ class MyBlocksAdmin
 				<div title='Block-Right'>
 					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";' />
 				</div>
-		
+
 				<div style='width:45px;' title='Block-Extra'>
 					<input type='text' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid' />
 				</div>
@@ -442,9 +442,9 @@ class MyBlocksAdmin
 
         if (empty($modversion['blocks'])) {
             return [];
-        } else {
-            return $modversion['blocks'];
         }
+
+        return $modversion['blocks'];
     }
 
 
@@ -877,7 +877,7 @@ class MyBlocksAdmin
                 break;
         }
 
-        $is_custom = in_array($block->getVar('block_type'), ['C', 'E']) ? true : false;
+        $is_custom = in_array($block->getVar('block_type'), ['C', 'E']);
         $block_template = $block->getVar('template', 'n');
         $block_template_tplset = '';
 
@@ -1007,7 +1007,7 @@ class MyBlocksAdmin
             'P' => _MD_A_MYBLOCKSADMIN_CTYPE_PHP,
         ];
 
-        return isset($ctypes[$bctype]) ? $ctypes[$bctype] : _MD_A_MYBLOCKSADMIN_CTYPE_SMILE;
+        return $ctypes[$bctype] ?? _MD_A_MYBLOCKSADMIN_CTYPE_SMILE;
     }
 
 

@@ -28,13 +28,13 @@ $modversion['templates'] = [];
 
 // Blocks
 $modversion['blocks'][1] = [
-    'file'            => 'blocks.php',
-    'name'            => _MI_ALTSYS_BNAME_ADMIN_MENU,
-    'description'    => '',
-    'show_func'        => 'b_altsys_admin_menu_show',
-    'edit_func'        => 'b_altsys_admin_menu_edit',
-    'options'        => (string)$mydirname,
-    'template'        => '', // use "module" template instead
+    'file' => 'blocks.php',
+    'name' => _MI_ALTSYS_BNAME_ADMIN_MENU,
+    'description' => '',
+    'show_func' => 'b_altsys_admin_menu_show',
+    'edit_func' => 'b_altsys_admin_menu_edit',
+    'options' => (string)$mydirname,
+    'template' => '', // use "module" template instead
 ];
 
 // Menu
@@ -68,33 +68,33 @@ $modversion['hasComments'] = 0;
 ); */
 
 $modversion['config'][] = [
-    'name'            => 'admin_in_theme',
-    'title'            => '_MI_ALTSYS_ADMIN_IN_THEME',
-    'description'    => '_MI_ALTSYS_ADMIN_IN_THEMEDSC',
-    'formtype'        => 'textbox',
-    'valuetype'        => 'text',
-    'default'        => 'default',
-    'options'        => []
+    'name' => 'admin_in_theme',
+    'title' => '_MI_ALTSYS_ADMIN_IN_THEME',
+    'description' => '_MI_ALTSYS_ADMIN_IN_THEMEDSC',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 'default',
+    'options' => []
 ];
 
 $modversion['config'][] = [
-    'name'            => 'enable_force_clone',
-    'title'            => '_MI_ALTSYS_ENABLEFORCECLONE',
-    'description'    => '_MI_ALTSYS_ENABLEFORCECLONEDSC',
-    'formtype'        => 'yesno',
-    'valuetype'        => 'int',
-    'default'        => 1,
-    'options'        => []
+    'name' => 'enable_force_clone',
+    'title' => '_MI_ALTSYS_ENABLEFORCECLONE',
+    'description' => '_MI_ALTSYS_ENABLEFORCECLONEDSC',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1,
+    'options' => []
 ];
 
 $modversion['config'][] = [
-    'name'            => 'images_dir',
-    'title'            => '_MI_ALTSYS_IMAGES_DIR',
-    'description'    => '_MI_ALTSYS_IMAGES_DIRDSC',
-    'formtype'        => 'textbox',
-    'valuetype'        => 'text',
-    'default'        => 'images',
-    'options'        => []
+    'name' => 'images_dir',
+    'title' => '_MI_ALTSYS_IMAGES_DIR',
+    'description' => '_MI_ALTSYS_IMAGES_DIRDSC',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 'images',
+    'options' => []
 ];
 
 // Notification

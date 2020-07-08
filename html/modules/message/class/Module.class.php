@@ -6,6 +6,7 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
+
 class Message_Module extends Legacy_ModuleAdapter
 {
     public function __construct($xoopsModule)
@@ -20,7 +21,7 @@ class Message_Module extends Legacy_ModuleAdapter
 
     public function getAdminIndex()
     {
-    $root = XCube_Root::getSingleton();
+        $root = XCube_Root::getSingleton();
         return $root->mController->getPreferenceEditUrl($this->mXoopsModule);
     }
 
@@ -31,9 +32,9 @@ class Message_Module extends Legacy_ModuleAdapter
         }
         $root = XCube_Root::getSingleton();
         $this->mAdminMenu[] = [
-      'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
-      'title' => _PREFERENCES,
-      'show' => true
+            'link' => $root->mController->getPreferenceEditUrl($this->mXoopsModule),
+            'title' => _PREFERENCES,
+            'show' => true
         ];
         $this->_mAdminMenuLoadedFlag = true;
         return $this->mAdminMenu;

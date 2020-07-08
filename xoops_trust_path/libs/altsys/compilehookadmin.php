@@ -95,9 +95,9 @@ if (! empty($_POST['clearcache']) || ! empty($_POST['cleartplsvars'])) {
         }
         redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 1, _TPLSADMIN_MSG_CLEARCACHE) ;
         exit ;
-    } else {
-        die('XOOPS_COMPILE_PATH cannot be opened') ;
     }
+
+    die('XOOPS_COMPILE_PATH cannot be opened') ;
 }
 
 // append hooking commands
@@ -173,13 +173,13 @@ foreach ($compile_hooks as $command => $compile_hook) {
             if ($file_count > 0) {
                 redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, sprintf($compile_hook['success_msg'], $file_count)) ;
                 exit ;
-            } else {
-                redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, _TPLSADMIN_MSG_CREATECOMPILECACHEFIRST) ;
-                exit ;
             }
-        } else {
-            die('XOOPS_COMPILE_PATH cannot be opened') ;
+
+            redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, _TPLSADMIN_MSG_CREATECOMPILECACHEFIRST) ;
+            exit ;
         }
+
+        die('XOOPS_COMPILE_PATH cannot be opened') ;
     }
 }
 
@@ -228,6 +228,7 @@ $breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
 $breadcrumbsObj->appendPath(XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=compilehookadmin', _MI_ALTSYS_MENU_COMPILEHOOKADMIN) ;
 
 echo "
+<hr>
 <h2>"._MI_ALTSYS_MENU_COMPILEHOOKADMIN."</h2>
 <div class='ui-card-full'>
 	<style>
@@ -241,86 +242,41 @@ echo "
 
 foreach ($compile_hooks as $command => $compile_hook) {
     echo "
-		<p>
-			<dl>
-				<dt>
-					{$compile_hook['dt']}
-					<input type='submit' name='$command' id='$command' value='"._GO."' onclick='return confirm(\"{$compile_hook['conf_msg']}\");' />
-				</dt>
-				<dd>
-					{$compile_hook['dd']}
-				</dd>
-			</dl>
-		</p>
+		<h4>{$compile_hook['dt']}</h4>
+		<p>{$compile_hook['dd']}</p>
+		<p><input type='submit' name='$command' id='$command' value='"._GO."' onclick='return confirm(\"{$compile_hook['conf_msg']}\");'></p>
+
 	\n" ;
 }
 
 echo "
-		<p style='margin:10px;'>
-			"._TPLSADMIN_NUMCAP_COMPILEDCACHES.": <strong>$compiledcache_num</strong>
-			<input type='submit' name='clearcache' value='"._DELETE."' onclick='return confirm(\""._TPLSADMIN_CNF_DELETEOK."\");' />
-
-		</p>
-		<p style='margin:10px;'>
-			"._TPLSADMIN_NUMCAP_TPLSVARS.": <strong>$tplsvars_num</strong>
-			<input type='submit' name='cleartplsvars' value='"._DELETE."' onclick='return confirm(\""._TPLSADMIN_CNF_DELETEOK."\");' />
-
-		</p>
+		<p>"._TPLSADMIN_NUMCAP_COMPILEDCACHES.": <strong>$compiledcache_num</strong></p>
+		<p><input type='submit' name='clearcache' value='"._DELETE."' onclick='return confirm(\""._TPLSADMIN_CNF_DELETEOK."\");'></p>
+		<p>"._TPLSADMIN_NUMCAP_TPLSVARS.": <strong>$tplsvars_num</strong></p>
+		<p><input type='submit' name='cleartplsvars' value='"._DELETE."' onclick='return confirm(\""._TPLSADMIN_CNF_DELETEOK."\");'></p>
 		".$xoopsGTicket->getTicketHtml(__LINE__)."
 	</form>
 
-	<form action='?mode=admin&amp;lib=altsys&amp;page=get_tplsvarsinfo' method='post' class='odd' style='margin: 40px;' target='_blank'>
-		<p>
-			<dl>
-				<dt>
-					"._TPLSADMIN_DT_GETTPLSVARSINFO_DW."
-				</dt>
-				<dd>
-					"._TPLSADMIN_DD_GETTPLSVARSINFO_DW."
-					<br>
-					<input type='submit' name='as_dw_extension_zip' value='zip' />
-					<input type='submit' name='as_dw_extension_tgz' value='tar.gz' />
-				</dd>
-			</dl>
-		</p>
+	<form action='?mode=admin&amp;lib=altsys&amp;page=get_tplsvarsinfo' method='post' class='odd' target='_blank'>
+		<h4>"._TPLSADMIN_DT_GETTPLSVARSINFO_DW."</h4>
+		<p>"._TPLSADMIN_DD_GETTPLSVARSINFO_DW."</p>
+		<p><input type='submit' name='as_dw_extension_zip' value='zip'> <input type='submit' name='as_dw_extension_tgz' value='tar.gz'></p>
 	</form>
 
 	<form action='?mode=admin&amp;lib=altsys&amp;page=get_templates' method='post' class='odd' style='margin: 40px;' target='_blank'>
-		<p>
-			<dl>
-				<dt>
-					"._TPLSADMIN_DT_GETTEMPLATES."
-				</dt>
-				<dd>
-					"._TPLSADMIN_DD_GETTEMPLATES."
-					<br>
-					<select name='tplset'>$tplset_options</select>
-					<input type='submit' name='download_zip' value='zip' />
-					<input type='submit' name='download_tgz' value='tar.gz' />
-				</dd>
-			</dl>
-		</p>
+		<h4>"._TPLSADMIN_DT_GETTEMPLATES."</h4>
+		<p>"._TPLSADMIN_DD_GETTEMPLATES."</p>
+		<p><select name='tplset'>$tplset_options</select> <input type='submit' name='download_zip' value='zip'> <input type='submit' name='download_tgz' value='tar.gz'></p>
 	</form>
 
 	<form action='?mode=admin&amp;lib=altsys&amp;page=put_templates' method='post' enctype='multipart/form-data' class='odd' style='margin: 40px;'>
-		<p>
-			<dl>
-				<dt>
-					"._TPLSADMIN_DT_PUTTEMPLATES."
-				</dt>
-				<dd>
-					"._TPLSADMIN_DD_PUTTEMPLATES."
-					<br>
-					<select name='tplset'>$tplset_options</select>
-					<input type='file' name='tplset_archive' size='60' />
-					<input type='submit' value='"._SUBMIT."' />
-				</dd>
-			</dl>
-		</p>
+		<h4>"._TPLSADMIN_DT_PUTTEMPLATES."</h4>
+		<p>"._TPLSADMIN_DD_PUTTEMPLATES."</p>
+		<p><select name='tplset'>$tplset_options</select> <input type='file' name='tplset_archive' size='60'> <input type='submit' value='"._SUBMIT."'></p>
     </form>\n
     </div>" ;
 
 
 xoops_cp_footer() ;
 
-?>
+

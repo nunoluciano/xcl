@@ -45,7 +45,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
 
     public function hasPermission(&$controller, &$xoopsUser)
     {
-        if (1 != $this->mConfig['enable_search']) {
+        if (1 !== $this->mConfig['enable_search']) {
             $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_LEGACY_ERROR_SEARCH_NOT_ENABLED);
             return false;
         }

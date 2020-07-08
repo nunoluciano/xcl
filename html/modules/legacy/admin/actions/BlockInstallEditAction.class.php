@@ -24,14 +24,14 @@ class Legacy_BlockInstallEditAction extends Legacy_BlockEditAction
         $this->mActionForm =new Legacy_BlockInstallEditForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _isEditable()
     {
         if (is_object($this->mObject)) {
-            return (0 == $this->mObject->get('visible'));
-        } else {
-            return false;
+            return (0 === $this->mObject->get('visible'));
         }
+
+        return false;
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
@@ -39,7 +39,7 @@ class Legacy_BlockInstallEditAction extends Legacy_BlockEditAction
         parent::executeViewInput($controller, $xoopsUser, $render);
         $render->setTemplateName('blockinstall_edit.html');
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BlockInstallList');
@@ -49,7 +49,7 @@ class Legacy_BlockInstallEditAction extends Legacy_BlockEditAction
     {
         $controller->executeRedirect('./index.php?action=BlockInstallList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=BlockInstallList');

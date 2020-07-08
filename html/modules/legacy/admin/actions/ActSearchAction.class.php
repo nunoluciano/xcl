@@ -20,7 +20,7 @@ class Legacy_ActionSearchArgs
     public $mRecords;
 
     public function Legacy_ActionSearchArgs($words) {
-        self::__construct($words);
+        $this->__construct($words);
     }
 
     public function __construct($words)
@@ -31,7 +31,7 @@ class Legacy_ActionSearchArgs
     public function setKeywords($words)
     {
         foreach (explode(' ', $words) as $word) {
-            if (strlen($word) > 0) {
+            if ($word !== '') {
                 $this->mKeywords[] = $word;
             }
         }
@@ -83,7 +83,7 @@ class Legacy_ActionSearchRecord
 
     public function Legacy_ActionSearchRecord($moduleName, $url, $title, $desc=null)
     {
-        self::__construct($moduleName, $url, $title, $desc);
+        $this->__construct($moduleName, $url, $title, $desc);
     }
 
     public function __construct($moduleName, $url, $title, $desc=null)

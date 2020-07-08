@@ -1,19 +1,19 @@
 <?php
 
 define('_TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT', '%d template caches have been enclosed by tplsadmin comments') ;
-define('_TPLSADMIN_DT_ENCLOSEBYCOMMENT', 'Implant comments') ;
-define('_TPLSADMIN_DD_ENCLOSEBYCOMMENT', 'Two HTML comments will be implanted in the begging/ending point of each templates. Since this rarely breaks its design, it is recommended to professionals can read HTML itself') ;
+define('_TPLSADMIN_DT_ENCLOSEBYCOMMENT', 'Insert comments') ;
+define('_TPLSADMIN_DD_ENCLOSEBYCOMMENT', 'Two HTML comments will be inserted in the begging/ending point of each template. Since this rarely breaks its design, it is recommended to help professionals identify the components.') ;
 define('_TPLSADMIN_CNF_ENCLOSEBYCOMMENT', 'Compiled template caches will be enclosed by tplsadmin comments. Are you OK?') ;
 
 
 define('_TPLSADMIN_FMT_MSG_ENCLOSEBYBORDEREDDIV', '%d template caches have been enclosed by div tags') ;
-define('_TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV', 'Implant div tags') ;
-define('_TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV', 'Each templates will be enclosed by black-bordered div tags. A link for editing controller of tplsadmin will be implanted into each templates. Though this often cause destructions in designing, you can edit each templates the most instictively and easily.') ;
+define('_TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV', 'Insert div tags') ;
+define('_TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV', 'Each template will be enclosed by black-bordered div tags. A link for editing controller of tplsadmin will be added into each templates. Though this can often break the design, you can easily edit each template instantly.') ;
 define('_TPLSADMIN_CNF_ENCLOSEBYBORDEREDDIV', 'Compiled template caches will be enclosed by div tags. Are you OK?') ;
 
-define('_TPLSADMIN_FMT_MSG_HOOKSAVEVARS', '%d template caches have been implanted hooking logics to collect template varibles') ;
-define('_TPLSADMIN_DT_HOOKSAVEVARS', 'Implant logics to collect template variables') ;
-define('_TPLSADMIN_DD_HOOKSAVEVARS', 'The first step of getting the informations of template variables in your site. The template vars infos will be collected when public sides of your site is displayed. If all templates you want to edit are displayed, get template vars info by underlying buttons.') ;
+define('_TPLSADMIN_FMT_MSG_HOOKSAVEVARS', '%d template caches have been modified hooking logic to collect template variables') ;
+define('_TPLSADMIN_DT_HOOKSAVEVARS', 'Insert logic to collect template variables') ;
+define('_TPLSADMIN_DD_HOOKSAVEVARS', 'The first step of getting the information of templates variables in your site. The template vars infos will be collected when the front-end is displayed. If all templates you want to edit are displayed, get template vars info by underlying buttons.') ;
 define('_TPLSADMIN_CNF_HOOKSAVEVARS', 'Compiled template caches will be implanted the logics to collect template variables. Are you OK?') ;
 
 define('_TPLSADMIN_FMT_MSG_REMOVEHOOKS', '%d template caches have been normalized') ;
