@@ -13,10 +13,17 @@
 
     <div class="tips">
         <p><{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}></p>
+        <div class="ui-flex-row">
+            <div class="ui-flex-column-2">
         <p><input class="switch" type="checkbox" id="block-search" onclick="slideToggle('.block-search', this)" value="0">
-            <label for="block-search"> Display block search</label></p>
-        <p><input class="switch" type="checkbox" id="block-filter" onclick="slideToggle('.block-filter', this)" value="0">
+            <label for="block-search"> Display block search</label>
+         <input class="switch" type="checkbox" id="block-filter" onclick="slideToggle('.block-filter', this)" value="0">
             <label for="block-filter"> Display block filter</label></p>
+            </div>
+            <div class="ui-flex-column">
+                <p><a class="ui-btn ui-btn-small" href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a>
+                    <a class="ui-btn ui-btn-small" href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a></p></div>
+        </div>
     </div>
 
     <{if $actionForm->hasError()}>

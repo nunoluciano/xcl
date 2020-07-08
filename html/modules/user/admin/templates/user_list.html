@@ -14,9 +14,11 @@
 <div class="tips">
     <p><{$smarty.const._AD_USER_TIPS_USER_ADMIN}></p>
     <p><input class="switch" type="checkbox" id="user-search" onclick="slideToggle('.user-search', this)" value="0">
-        <label for="user-search"> Display user search</label></p>
-    <p><input class="switch" type="checkbox" id="user-filter" onclick="slideToggle('.user-filter', this)" value="0">
+        <label for="user-search"> Display user search</label>
+     <input class="switch" type="checkbox" id="user-filter" onclick="slideToggle('.user-filter', this)" value="0">
         <label for="user-filter"> Display user filter</label></p>
+
+    <p><a class="ui-btn ui-btn small" href="<{$smarty.const.XOOPS_URL}>/modules/profile/admin/index.php?action=DefinitionsList"><{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}></a></p>
 </div>
 
 

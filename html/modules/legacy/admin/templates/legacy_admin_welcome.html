@@ -11,6 +11,168 @@
 
 <hr>
 
+<style>
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+
+<style>
+    .loader22 {
+        display: block;
+        width: 100%;
+        height: 20px;
+        text-align: center;
+        background: url("<{'design/ajax-loader-2.gif'|theme}>") center center no-repeat;
+    }
+</style>
+
+
+<hr>
+<p>
+
+    <script>
+
+        function openDialog() {
+            var controllerUrl = '/Food/CreateFood';
+            $('#createdialog')
+                .html('<div class="loading"><div>loading...</div></div>')
+                .load(controllerUrl)
+                .dialog({
+                    title: 'Create Food',
+                    modal: true,
+                    width: 'auto',
+                    close: clear
+                });
+        }
+    </script>
+
+
+    <details>
+        <summary>Epcot Center</summary>
+<p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+</details>
+
+
+
+<div id="dialog-help" title="Basic dialog" class="display:none">
+                <div id="help-description"></div>
+            </div>
+
+            <p><button id="open-help" class="ui-btn-warning">Open Ajax Help</button>
+
+                <button id="open-help"
+                        data-url="./modules/legacy/admin/index.php?action=Help&dirname=legacy"
+                        data-help="article#help-intro"
+                        class="ui-btn-warning" >Open Ajax Help</button>
+            </p>
+
+
+
+<hr>
+
+<div class="dialogBox" style="border:1px solid gray;">
+    <a href="./modules/legacy/admin/index.php?action=Help&dirname=legacy article#help-intro" class="exampleLink">Test</a>
+    <!-- TODO: Change above href -->
+    <!-- NOTE: Must be a local url, not cross domain -->
+</div>
+
+<script type="text/javascript">
+    var $modalDialog = $('<div class="ui-widget-shadow"></div>', {
+        'class': 'exampleModal',
+        'id': 'exampleModal1'
+    })
+        .appendTo('body')
+        .dialog({
+            resizable: false,
+            autoOpen: false,
+            height: 300,
+            width: 350,
+            show: 'fold',
+            // buttons: {
+            //     "Close": function () {
+            //         $modalDialog.dialog("close");
+            //     }
+            //},
+            modal: true
+        });
+
+    $(function () {
+        $('a.exampleLink').on('click', function (e) {
+            e.preventDefault();
+            // TODO: Undo comments, below
+            var url = $('a.exampleLink:first').attr('href');
+            $modalDialog.load(url);
+            $modalDialog.html('<div class="loading"> <p class="loader22"></p><hr><p>Loading</p></div>').dialog("open");
+        });
+    });
+</script>
+
+
+
+<hr>
+
+
+<button class="btn" onClick="openDialog5('Introduction','./modules/legacy/admin/index.php?action=Help&dirname=legacy article#help-intro')">help-intro</button>
+
+<script type="text/javascript">
+    function openDialog5(title,url) {
+        $('.opened-dialogs5').dialog("close");
+
+        $('<div class="opened-dialogs5">').html('<div class="loading"> <p class="loader22"></p><hr><span class="loader>"></span> </div>').dialog({
+            title: title,
+            maxWidth:600,
+            maxHeight: 400,
+            width: 400,
+            height: 400,
+            show: {
+                effect: "blind",
+                duration: 300
+            },
+            hide: {
+                effect: "clip",
+                duration: 300
+            },
+            open: function () {
+                $(this).load(url);
+
+            },
+            close: function(event, ui) {
+                $(this).remove();
+            }
+
+        });
+
+        return false;
+    }
+</script>
+
+
+<hr>
+
+
+<div class="ui-flex-column">
+    <h4>Ajax Help</h4>
+    <p>This jQuery-ui dialog is using the module file Help to display information.</p>
+</div>
+
+
+
+
+
+
+
 <div id="ui-component">
     <div class="ui-flex-row">
         <script>

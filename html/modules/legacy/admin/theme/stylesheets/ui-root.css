@@ -417,7 +417,7 @@
 
     --ui-notif-margin        : var(	--ui-space-600      ) 0;
     --ui-notif-padding       : var(	--ui-space-600      ) var(	--ui-space-800      );
-    --ui-notif-max-width     : 85%;
+    --ui-notif-max-width     : 100%;
 
 
 /*	-------------------- -------------------- -------------------- SCREEN-MODE */

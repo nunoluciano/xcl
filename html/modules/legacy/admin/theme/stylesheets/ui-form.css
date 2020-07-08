@@ -99,6 +99,8 @@
 
         transition      : 0.2s ease-in;
 
+        width: min-content;
+
     }
 
     input[type="submit"]:hover,

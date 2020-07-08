@@ -13,9 +13,14 @@
 
 	<div class="tips">
         <p><{$smarty.const._AD_LEGACY_TIPS_MOD}></p>
-        <!-- toggle display -->
-        <p><input class="switch" type="checkbox" id="module-filter" onclick="slideToggle('.module-filter', this)" value="0">
-            <label for="module-filter"> Display module filter</label></p>
+        <div class="ui-flex-row">
+            <div class="ui-flex-column">
+                <!-- toggle display -->
+                <p><input class="switch" type="checkbox" id="module-filter" onclick="slideToggle('.module-filter', this)" value="0">
+                    <label for="module-filter"> Display module filter</label></p></div>
+            <div class="ui-flex-column"><a class="ui-btn ui-btn-small" href="index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></div>
+        </div>
+
     </div>
 
 	<{if $actionForm->hasError()}>
