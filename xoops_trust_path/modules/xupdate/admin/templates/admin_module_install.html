@@ -1,48 +1,50 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div id="xupdate">
-	<{* <p>"Finish Download"|t}></p> *}>
-
-	<{include file="admin_menunavi.html"}>
-	<{include file="admin_navi.html"}>
 
 
-	<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
+    <{include file="admin_navi.html"}>
 
-	<div class="ui-dev-mode"><{$smarty.template}></div>
+    <{include file="admin_menunavi.html"}>
 
-	<{include file="admin_tips.html"}>
+    <hr>
+    <h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
+    <{* <p>"Finish Download"|t}></p> *}>
 
-<div class="ui-card-full"></div>
-	<div id="xupdate_content">
-	<{$xupdate_content}>
-	</div>
+    <{include file="admin_tips.html"}>
 
-	<{if $xupdate_nextlink}>
-	<div class="toptab">
-		<div id="xupdate_addModule" class="ui-btn">
-		<{$xupdate_nextlink}>
-		</div>
-	</div>
+    <div class="ui-card-full"></div>
+    <div id="xupdate_content">
+        <{$xupdate_content}>
+    </div>
 
-	<div style="clear:both;"></div>
+    <{if $xupdate_nextlink}>
+    <div class="toptab">
+        <div id="xupdate_addModule" class="ui-btn">
+            <{$xupdate_nextlink}>
+        </div>
+    </div>
 
-	<{if $xupdate_moduleUpdate}>
-		<script type="text/javascript">
-		jQuery(function($){
-			var next_link_url = $('#xupdate_addModule>a').attr('href');
-			if (next_link_url) {
-				if (confirm("<{$xupdate_moduleUpdate}>")) {
-					document.location.href = next_link_url;
-				}
-			}
-		});
-		</script>
-	<{/if}>
+    <div style="clear:both;"></div>
 
-	<{/if}>
+    <{if $xupdate_moduleUpdate}>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var next_link_url = $('#xupdate_addModule>a').attr('href');
+            if (next_link_url) {
+                if (confirm("<{$xupdate_moduleUpdate}>")) {
+                    document.location.href = next_link_url;
+                }
+            }
+        });
+    </script>
+    <{/if}>
 
-	<div id="xupdate_message">
-	<{$xupdate_message}>
-	</div>
+    <{/if}>
+
+    <div id="xupdate_message">
+        <{$xupdate_message}>
+    </div>
 
 </div><!-- ui-card-full -->
 

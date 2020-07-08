@@ -1,35 +1,37 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div id="xupdate">
-	<{* <p>"Finish Download"|t}></p> *}>
-
-	<{include file="admin_menunavi.html"}>
-	<{include file="admin_navi.html"}>
 
 
 
-	<h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
+    <{include file="admin_navi.html"}>
 
-	<div class="ui-dev-mode"><{$smarty.template}></div>
-	
-	<{include file="admin_tips.html"}>
+    <{include file="admin_menunavi.html"}>
 
-<div class="ui-card-full">
-	<div id="xupdate_content">
-	<{$xupdate_content}>
-	</div>
+    <hr>
+    <h2 class="admintitle"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></h2>
+    <{* <p>"Finish Download"|t}></p> *}>
 
-	<{if $xupdate_nextlink}>
-		<div class="toptab">
-			<div class="ui-btn">
-				<{$xupdate_nextlink}>
-			</div>
-		</div>
-	<div style="clear:both;"></div>
-	<{/if}>
+    <{include file="admin_tips.html"}>
 
-	<div id="xupdate_message">
-	<{$xupdate_message}>
-	</div>
+    <div class="ui-card-full">
+        <div id="xupdate_content">
+            <{$xupdate_content}>
+        </div>
 
-</div><!-- ui-card-full -->
+        <{if $xupdate_nextlink}>
+        <div class="toptab">
+            <div class="ui-btn">
+                <{$xupdate_nextlink}>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <{/if}>
+
+        <div id="xupdate_message">
+            <{$xupdate_message}>
+        </div>
+
+    </div><!-- ui-card-full -->
 
 </div>
