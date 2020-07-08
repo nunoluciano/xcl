@@ -34,6 +34,8 @@ if ('showmod' === $op) {
         die('no configs');
     }
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+
+    // Form Preferences
     $form = new XoopsThemeForm(_MD_A_MYPREFERENCES_FORMTITLE, 'pref_form', 'index.php?mode=admin&lib=altsys&page=mypreferences&op=save');
     $module_handler =& xoops_gethandler('module');
     $module =& $module_handler->get($mod);
@@ -175,7 +177,9 @@ if ('showmod' === $op) {
     if ($breadcrumbsObj->hasPaths()) {
         $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mypreferences', _PREFERENCES);
     }
-    echo "<h3 style='text-align:" . _GLOBAL_LEFT . ";'>" . $module->getvar('name') . ' &nbsp; ' . _PREFERENCES . "</h3>\n";
+
+    // Page Title Module Name
+    echo "<hr><h3 style='text-align:" . _GLOBAL_LEFT . ";'>" . $module->getvar('name') . ' &nbsp; ' . _PREFERENCES . "</h3>\n";
 
     $form->display();
 

@@ -226,7 +226,7 @@ class MyBlocksAdmin
         $module_options = '';
         foreach ($module_list as $mid => $mname) {
             $mname = htmlspecialchars($mname);
-            if (in_array($mid, $selected_mids)) {
+            if (in_array($mid, $selected_mids, true)) {
                 $module_options .= "<option value='$mid' selected='selected'>$mname</option>\n";
             } else {
                 $module_options .= "<option value='$mid'>$mname</option>\n";
@@ -521,11 +521,11 @@ class MyBlocksAdmin
             $block->setVar('name', $name);
         }
         $msg = _MD_A_MYBLOCKSADMIN_DBUPDATED;
-        if (false != $block->store()) {
+        if (false !== $block->store()) {
             include_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl = new XoopsTpl();
             $xoopsTpl->xoops_setCaching(2);
-            if ('' != $block->getVar('template')) {
+            if ('' !== $block->getVar('template')) {
                 if ($xoopsTpl->is_cached('db:' . $block->getVar('template'))) {
                     if (!$xoopsTpl->clear_cache('db:' . $block->getVar('template'))) {
                         $msg = 'Unable to clear cache for block ID' . $bid;
@@ -944,7 +944,7 @@ class MyBlocksAdmin
             'op' => $next_op,
             'form_title' => $form_title,
             'submit_button' => $button_value,
-            'common_fck_installed' => $this->checkFck(),
+//            'common_fck_installed' => $this->checkFck(),
             'gticket_hidden' => $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'myblocksadmin'),
             ]
         );
@@ -957,10 +957,10 @@ class MyBlocksAdmin
         return;
     }
 
-    public function checkFck()
-    {
-        return file_exists(XOOPS_ROOT_PATH . '/common/fckeditor/fckeditor.js');
-    }
+//    public function checkFck()
+//    {
+//        return file_exists(XOOPS_ROOT_PATH . '/common/fckeditor/fckeditor.js');
+//    }
 
     public function previewContent($block_data)
     {

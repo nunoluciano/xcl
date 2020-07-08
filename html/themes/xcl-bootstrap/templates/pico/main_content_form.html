@@ -6,7 +6,7 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
-<h2 class="pico_title"><{$formtitle}>: <{$content.subject}>
+<h2 class="pico_title"><{$formtitle}>: <{$content.subject}></h2>
 
     <{if ! $content.approval}>
     <strong style="color:#F44336;"><{$smarty.const._MD_PICO_WAITINGAPPROVAL}></strong>
@@ -20,7 +20,7 @@
     <{if $content.expiring_time < time()}>
     <strong style="color:#607D8B;"><{$smarty.const._MD_PICO_EXPIRED}></strong>
     <{/if}>
-</h2>
+
 
     <{if $preview}>
         <{foreach from=$preview.errors item="error_message"}>
@@ -36,6 +36,7 @@
 
 <form name="contentform" id="contentform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:"url"}>" method="post" onsubmit="return xoopsFormValidate_contentform();" enctype="multipart/form-data">
 	<{$gticket_hidden}>
+
 	<input type="hidden" name="content_id" value="<{$content.id}>">
 	<input type="hidden" name="body_editor" id="body_editor" value="">
 
@@ -136,7 +137,7 @@ extra fields ------- *}>
             <{if $content.body_waiting && $page != 'makecontent'}>
             <tr valign="top" align="<{$smarty.const._ALIGN_START}>">
                 <th class="head pico_waiting"><span class="badge badge-warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span></th>
-                <td class="card card-body my-4 pico_waiting">12345- <{$content.body_waiting|htmlspecialchars_decode|nl2br}></td>
+                <td class="card card-body my-4 pico_waiting"><{$content.body_waiting|htmlspecialchars_decode|nl2br}></td>
             </tr>
             <{/if}>
 
@@ -301,11 +302,13 @@ extra fields ------- *}>
 			<th class="head"><{$smarty.const._MD_PICO_CREATED}></th>
 			<td class="even">
 				<{$content_base.poster_uname}>(<{$content_base.poster_uid}>)
+
 				<{if $category.isadminormod && $page == 'contentmanager'}>
 					<input type="text" name="poster_uid" id="poster_uid" size="4" value="<{$content.poster_uid}>">
 				<{/if}>
 				<br>
 				<{$content_base.created_time_formatted}>
+
 				<{if $category.isadminormod}>
 					<{if $content.specify_created_time}>
 						<{assign var="specify_created_time_checked" value="checked='checked'"}>
@@ -315,17 +318,21 @@ extra fields ------- *}>
 					<input type="checkbox" name="specify_created_time" id="specify_created_time" value="1" onclick="if(this.checked){xoopsGetElementById('created_time').style.display='inline';}else{xoopsGetElementById('created_time').style.display='none'}" <{$specify_created_time_checked}>><label for="specify_created_time" ><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}></label>
 					<input type="text" name="created_time" id="created_time" size="24" value="<{$content.created_time_formatted|escape}>" style="<{$created_time_style}>">
 				<{/if}>
+
 			</td>
 		</tr>
 
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><{$smarty.const._MD_PICO_MODIFIED}></th>
 			<td class="even">
+
 				<{$content_base.modifier_uname}>(<{$content_base.modifier_uid}>)
+
 				<{if $category.isadminormod && $page == 'contentmanager'}>
 					<input type="text" name="modifier_uid" id="modifier_uid" size="4" value="<{$content.modifier_uid}>">
 				<{/if}>
 				<br>
+
 				<{$content_base.modified_time_formatted}>
 				<{if $category.isadminormod}>
 					<{if $content.specify_modified_time}>
@@ -344,6 +351,7 @@ extra fields ------- *}>
 			<th class="head"><{$smarty.const._MD_PICO_EXPIRING}></th>
 			<td class="even">
 				<{$content_base.expiring_time_formatted}>
+
 					<{if $content.specify_expiring_time}>
 						<{assign var="specify_expiring_time_checked" value="checked='checked'"}>
 					<{else}>
@@ -358,17 +366,23 @@ extra fields ------- *}>
 	</table>
 
 	<p class="pico_submit">
+
 		<input type="submit" class="formButton" name="contentman_preview"  id="contentman_preview" value="<{$smarty.const._PREVIEW}>">
+
+
 		<input type="submit" class="formButton" name="contentman_post"  id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>">
+
 		<{if ! $content.approval && $category.isadminormod && $page != 'makecontent'}>
 			<input type="submit" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">
 		<{elseif $page == 'contentmanager'}>
 			<input type="submit" class="formButton" name="contentman_post"  id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
 		<{/if}>
+
 		<{if $page == 'contentmanager' && $category.can_delete}>
 			<input type="submit" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
 		<{/if}>
 	</p>
+
 </form>
 
 
@@ -394,6 +408,7 @@ extra fields ------- *}>
 <{if $page != 'makecontent'}>
 
 <h3 class="pico_title"><{$smarty.const._MD_PICO_HISTORY}></h3>
+
 <ul class="pico_content_history_list">
 	<{foreach from=$content_histories item="history"}>
 		<li>

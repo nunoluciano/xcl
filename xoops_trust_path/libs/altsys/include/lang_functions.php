@@ -85,7 +85,8 @@ function altsys_mylangadmin_errordie($target_mname, $message4disp)
     $breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
     $breadcrumbsObj->appendPath(XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mylangadmin', _MI_ALTSYS_MENU_MYLANGADMIN) ;
     $breadcrumbsObj->appendPath('', $target_mname) ;
-    echo '<h3>' . _MYLANGADMIN_H3_MODULE . ' : ' . $target_mname . '</h3>' ;
+    // Title Module Name
+    echo '<hr><h3>' . _MYLANGADMIN_H3_MODULE . ' : ' . $target_mname . '</h3>' ;
     echo '<p>'.$message4disp.'</p>' ;
     xoops_cp_footer() ;
     exit ;
