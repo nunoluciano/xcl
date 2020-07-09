@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Updater.class.php,v 1.3 2008/10/26 04:00:40 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -29,13 +29,13 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
             $this->auto_update_session_blob();
         }
     }
-    
+
     public function auto_update_session_blob()
     {
         $root = XCube_Root::getSingleton();
         $db = $root->mController->getDB();
         $table = $db->prefix('session');
-    
+
         $sql = 'SHOW COLUMNS FROM `'. $table .'` WHERE Field = \'sess_data\'';
         if ($res = $db->query($sql)) {
             $row = $db->fetchArray($res);
@@ -51,58 +51,58 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
             }
         }
     }
-    
+
     public function update200()
     {
         $this->mLog->addReport(_AD_LEGACY_MESSAGE_UPDATE_STARTED);
-    
+
         // Update database table index.
         $this->_extendConfigTitleSize();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-    
+
         // Normal update process.
         $this->_updateModuleTemplates();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_updateBlocks();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_updatePreferences();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->saveXoopsModule($this->_mTargetXoopsModule);
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_processScript();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_processReport();
-        
+
         return true;
     }
-    
+
     public function update106()
     {
         $this->mLog->addReport(_AD_LEGACY_MESSAGE_UPDATE_STARTED);
-        
+
         // Update database table index.
         $this->_setUniqueToGroupUserLink();
         $this->_recoverXoopsGroupPermission();
@@ -110,43 +110,43 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
             $this->_processReport();
             return false;
         }
-        
+
         // Normal update process.
         $this->_updateModuleTemplates();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_updateBlocks();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_updatePreferences();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->saveXoopsModule($this->_mTargetXoopsModule);
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_processScript();
         if (!$this->_mForceMode && $this->mLog->hasError()) {
             $this->_processReport();
             return false;
         }
-        
+
         $this->_processReport();
-        
+
         return true;
     }
-    
+
     /**
      * @brief extend config_title and config_desc size in config table.
      * @author kilica
@@ -156,7 +156,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
         $table = $db->prefix('config');
-    
+
         $sql = 'ALTER TABLE `'. $table .'` MODIFY `conf_title` varchar(255) NOT NULL default "", MODIFY `conf_desc` varchar(255) NOT NULL default ""';
 
         if ($db->query($sql)) {
@@ -171,7 +171,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
         $table = $db->prefix('groups_users_link');
-        
+
         // Delete duplicate data.
         $sql = 'SELECT `uid`,`groupid`,COUNT(*) AS c FROM `' . $table . '` GROUP BY `uid`,`groupid` HAVING `c` > 1';
         if ($res = $db->query($sql)) {
@@ -183,7 +183,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
                 }
             }
         }
-        
+
         // Set unique key.
         $sql = 'ALTER TABLE `' . $table . '` DROP INDEX `groupid_uid`';
         $db->query($sql); // ignore sql errors
@@ -203,7 +203,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
     {
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
-        
+
         $permTable = $db->prefix('group_permission');
         $groupTable = $db->prefix('groups');
         $sql = sprintf(
@@ -213,14 +213,14 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         if (!$result) {
             return false;
         }
-        
+
         $gids = [];
         while ($myrow = $db->fetchArray($result)) {
             $gids[] = $myrow['gperm_groupid'];
         }
-        
+
         $db->freeRecordSet($result);
-        
+
         // remove all invalid group id entries
         if (0 != count($gids)) {
             $sql = sprintf('DELETE FROM `%s` WHERE `gperm_groupid` IN (%s) AND `gperm_modid`=1',
@@ -230,7 +230,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
                 return false;
             }
         }
-        
+
         return true;
     }
 }

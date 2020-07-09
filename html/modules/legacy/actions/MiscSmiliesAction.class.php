@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: MiscSmiliesAction.class.php,v 1.3 2008/09/25 15:12:11 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -47,7 +47,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
         }
         return parent::getDefaultView($controller, $xoopsUser);
     }
-    
+
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         //
@@ -56,7 +56,7 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
         $root->mContext->setAttribute('legacy_pagetitle', _MD_LEGACY_LANG_ALL_SMILEY_LIST);
-        
+
         $render->setTemplateName('legacy_misc_smilies.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);

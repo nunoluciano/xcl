@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: columnside.php,v 1.3 2008/09/25 15:11:23 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -37,7 +37,7 @@ class LegacyColumnsideObject extends XoopsSimpleObject
 class LegacyColumnsideHandler extends XoopsObjectHandler
 {
     public $_mResults = [];
-    
+
     public function LegacyColumnsideHandler(&$db)
     {
         self::__construct($db);
@@ -52,45 +52,45 @@ class LegacyColumnsideHandler extends XoopsObjectHandler
                 4 => _AD_LEGACY_LANG_CENTER_BLOCK_RIGHT,
                 5 => _AD_LEGACY_LANG_CENTER_BLOCK_CENTER
         ];
-            
+
         foreach ($t_arr as $id => $name) {
             $this->_mResults[$id] =& $this->create();
             $this->_mResults[$id]->setVar('id', $id);
             $this->_mResults[$id]->setVar('name', $name);
         }
     }
-    
+
     public function &create()
     {
         $ret =new LegacyColumnsideObject();
         return $ret;
     }
-    
+
     public function &get($id)
     {
         if (isset($this->_mResults[$id])) {
             return $this->_mResults[$id];
         }
-        
+
         $ret = null;
         return $ret;
     }
-    
+
     public function &getObjects($criteria = null, $id_as_key = false)
     {
         if ($id_as_key) {
             return $this->_mResults;
         } else {
             $ret = [];
-        
+
             foreach (array_keys($this->_mResults) as $key) {
                 $ret[] =& $this->_mResults[$key];
             }
-            
+
             return $ret;
         }
     }
-    
+
     public function insert(&$obj)
     {
         return false;

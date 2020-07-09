@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: MiscSslloginAction.class.php,v 1.5 2008/09/25 15:12:07 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -23,24 +23,24 @@ class Legacy_MiscSslloginAction extends Legacy_Action
     {
         return LEGACY_FRAME_VIEW_INDEX;
     }
-    
+
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         //
         // Because this action's template uses USER message catalog, load it.
         //
         $root =& $controller->mRoot;
-    
+
         $config_handler =& xoops_gethandler('config');
         $moduleConfigUser =& $config_handler->getConfigsByDirname('user');
-    
+
         if (1 === $moduleConfigUser['use_ssl'] && ! empty($_POST[$moduleConfigUser['sslpost_name']])) {
             session_id($_POST[$moduleConfigUser['sslpost_name']]);
             //if (!isset($_SESSION)) {
             //    session_id($_POST[$moduleConfigUser['sslpost_name']]);
             //  }
         }
-    
+
         $render->setTemplateName('legacy_misc_ssllogin.html');
         $render->setAttribute('message', XCube_Utils::formatString(_MD_LEGACY_MESSAGE_LOGIN_SUCCESS, $xoopsUser->get('uname')));
     }

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SmilesFilterForm.class.php,v 1.3 2008/09/25 15:12:40 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -41,11 +41,11 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
     public function fetch()
     {
         parent::fetch();
-    
+
         if (isset($_REQUEST['target'])) {
             $this->mNavi->addExtra('target', xoops_getrequest('target'));
         }
-        
+
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());
     }
 }

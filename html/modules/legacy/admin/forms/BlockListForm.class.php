@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: BlockListForm.class.php,v 1.5 2008/09/25 15:11:11 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -36,7 +36,7 @@ class Legacy_BlockListForm extends XCube_ActionForm
             return null;
         }
     }
-    
+
     /**
      * For displaying the confirm-page, don't show CSRF error.
      * Always return null.
@@ -45,7 +45,7 @@ class Legacy_BlockListForm extends XCube_ActionForm
     {
         return null;
     }
-    
+
     public function prepare()
     {
         //
@@ -74,14 +74,14 @@ class Legacy_BlockListForm extends XCube_ActionForm
         $this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addVar('min', '0');
         $this->mFieldProperties['weight']->addVar('max', '65535');
-    
+
         $this->mFieldProperties['side'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['side']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['side']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_SIDE);
         $this->mFieldProperties['side']->addMessage('objectExist', _AD_LEGACY_ERROR_OBJECTEXIST, _AD_LEGACY_LANG_SIDE);
         $this->mFieldProperties['side']->addVar('handler', 'columnside');
         $this->mFieldProperties['side']->addVar('module', 'legacy');
-    
+
         $this->mFieldProperties['bcachetime'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['bcachetime']->setDependsByArray(['required', 'objectExist']);
         $this->mFieldProperties['bcachetime']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_BCACHETIME);

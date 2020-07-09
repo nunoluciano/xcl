@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SmilesListAction.class.php,v 1.3 2008/09/25 15:11:50 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -91,7 +91,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $codeArr = $this->mActionForm->get('code');
@@ -159,7 +159,7 @@ class Legacy_SmilesListAction extends Legacy_AbstractListAction
         $render->setTemplateName('smiles_list_confirm.html');
         $render->setAttribute('smilesObjects', $this->mSmilesObjects);
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // To support a template writer, this send the list of mid that
         // actionForm kept.

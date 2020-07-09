@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImageDeleteAction.class.php,v 1.3 2008/09/25 15:11:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -37,7 +37,7 @@ class Legacy_ImageDeleteAction extends Legacy_AbstractDeleteAction
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $this->mObject->loadImagecategory();
-        
+
         $render->setTemplateName('image_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
@@ -52,7 +52,7 @@ class Legacy_ImageDeleteAction extends Legacy_AbstractDeleteAction
     {
         $controller->executeRedirect('./index.php?action=ImageList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImageList&imgcat_id=' . $this->mObject->get('imgcat_id'));

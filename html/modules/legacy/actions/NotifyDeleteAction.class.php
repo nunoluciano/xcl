@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: NotifyDeleteAction.class.php,v 1.4 2008/09/25 15:12:11 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -25,14 +25,14 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
 {
     public $mModules = [];
     public $mActionForm = null;
-    
+
     public $mErrorMessage = null;
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $controller->mRoot->mLanguageManager->loadPageTypeMessageCatalog('notification');
         $controller->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
-        
+
         $this->mActionForm =new Legacy_NotifyDeleteForm();
         $this->mActionForm->prepare();
     }
@@ -53,7 +53,7 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
     {
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         //
         // If input values are error, the action form returns fatal error flag.
         // If it's not fatal, display confirm form.
@@ -73,10 +73,10 @@ class Legacy_NotifyDeleteAction extends Legacy_Action
                 $successFlag = $successFlag & $handler->delete($t_notify);
             }
         }
-        
+
         return $successFlag ? LEGACY_FRAME_VIEW_SUCCESS : LEGACY_FRAME_VIEW_ERROR;
     }
-        
+
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('legacy_notification_delete.html');

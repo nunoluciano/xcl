@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: CustomBlockDeleteAction.class.php,v 1.3 2008/09/25 15:11:54 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -33,7 +33,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
         $this->mActionForm =new Legacy_CustomBlockDeleteForm();
         $this->mActionForm->prepare();
     }
-    
+
     public function _isDeletable()
     {
         if (is_object($this->mObject)) {
@@ -42,13 +42,13 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
             return false;
         }
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         if (!$this->_isDeletable()) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        
+
         return parent::getDefaultView($controller, $xoopsUser);
     }
 
@@ -57,7 +57,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
         if (!$this->_isDeletable()) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
-        
+
         return parent::execute($controller, $xoopsUser);
     }
 
@@ -65,14 +65,14 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
     {
         $render->setTemplateName('customblock_delete.html');
         $render->setAttribute('actionForm', $this->mActionForm);
-        
+
         //
         // lazy loading
         //
         $this->mObject->loadModule();
         $this->mObject->loadColumn();
         $this->mObject->loadCachetime();
-        
+
         $render->setAttribute('object', $this->mObject);
     }
 

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ThemeSelectForm.class.php,v 1.4 2008/09/25 15:11:20 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -42,23 +42,23 @@ class Legacy_ThemeSelectForm extends XCube_ActionForm
         foreach ($this->get('choose') as $dirname => $dmy) {
             return $dirname;
         }
-        
+
         return null;
     }
-    
+
     public function getSelectableTheme()
     {
         $ret = [];
-        
+
         foreach ($this->get('select') as $themeName => $isSelect) {
             if (1 === $isSelect) {
                 $ret[] = $themeName;
             }
         }
-        
+
         return $ret;
     }
-    
+
     public function load(&$themeArr)
     {
         foreach ($themeArr as $themeName) {

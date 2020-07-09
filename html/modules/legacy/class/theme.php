@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: theme.php,v 1.4 2008/09/25 15:11:21 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -38,7 +38,7 @@ class LegacyThemeObject extends XoopsSimpleObject
         $this->initVar('author', XOBJ_DTYPE_STRING, '', true, 64);
         $this->initVar('url', XOBJ_DTYPE_STRING, '', true, 255);
         $this->initVar('license', XOBJ_DTYPE_STRING, '', true, 255);
-        
+
         // For TYPO
         $this->initVar('licence', XOBJ_DTYPE_STRING, '', true, 255);
         $initVars = $this->mVars;
@@ -48,12 +48,12 @@ class LegacyThemeObject extends XoopsSimpleObject
 class LegacyThemeHandler extends XoopsObjectHandler
 {
     public $_mResults = [];
-    
+
     /**
      * @var XCube_Delegate
      */
     public $mGetInstalledThemes = null;
-    
+
     public function LegacyThemeHandler(&$db)
     {
         self::__construct($db);
@@ -64,33 +64,33 @@ class LegacyThemeHandler extends XoopsObjectHandler
         $this->mGetInstalledThemes =new XCube_Delegate();
         $this->mGetInstalledThemes->register('LegacyThemeHandler.GetInstalledThemes');
     }
-    
+
     public function &create()
     {
         $ret =new LegacyThemeObject();
         return $ret;
     }
-    
+
     public function &get($name)
     {
         $ret = null;
         $this->_makeCache();
-        
+
         foreach (array_keys($this->_mResults) as $key) {
             if ($this->_mResults[$key]->get('dirname') == $name) {
                 return $this->_mResults[$key];
             }
         }
-        
+
         return $ret;
     }
-    
+
     public function &getObjects($criteria = null, $id_as_key = false)
     {
         $this->_makeCache();
         return $this->_mResults;
     }
-    
+
     /**
      * Create cache at $this->mResult by Delegate, if cache is empty.
      */
@@ -99,7 +99,7 @@ class LegacyThemeHandler extends XoopsObjectHandler
         if (0 === count($this->_mResults)) {
             $t_themeArr = [];
             $this->mGetInstalledThemes->call(new XCube_Ref($t_themeArr));
-            
+
             foreach ($t_themeArr as $theme) {
                 $obj =& $this->create();
                 $obj->assignVars(
@@ -121,7 +121,7 @@ class LegacyThemeHandler extends XoopsObjectHandler
             }
         }
     }
-    
+
     public function insert(&$obj, $force = false)
     {
         return false;

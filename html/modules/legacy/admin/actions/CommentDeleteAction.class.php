@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: CommentDeleteAction.class.php,v 1.4 2008/09/25 15:11:33 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -74,7 +74,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
     {
         $controller->executeRedirect('./index.php?action=CommentList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=CommentList');
@@ -95,32 +95,32 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
             $user =& $handler->getUser($comment->get('com_uid'));
             if (is_object($user)) {
                 $count = $user->get('posts');
-            
+
                 if ($count > 0) {
                     $handler->updateUserByField($user, 'posts', $count - 1);
                 }
             }
         }
-        
+
         //
         // callback
         //
         $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
-        
+
         if (false == $comment_config) {
             return;
         }
-        
+
         $function = $comment_config['callback']['update'];
-        
+
         if (function_exists($function)) {
             $criteria = new CriteriaCompo(new Criteria('com_modid', $comment->get('com_modid')));
             $criteria->add(new Criteria('com_itemid', $comment->get('com_itemid')));
             $criteria->add(new Criteria('com_status', XOOPS_COMMENT_ACTIVE));
-            
+
             $handler =& xoops_gethandler('comment');
             $commentCount = $handler->getCount($criteria);
-            
+
             call_user_func($function, $comment->get('com_id'), $commentCount);
         }
     }

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SmilesEditAction.class.php,v 1.3 2008/09/25 15:11:51 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -33,8 +33,8 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
         $this->mActionForm =new Legacy_SmilesAdminEditForm();
         $this->mActionForm->prepare();
     }
-    
-    
+
+
     public function _doExecute()
     {
         if (null !== $this->mActionForm->mFormFile) {
@@ -69,7 +69,7 @@ class Legacy_SmilesEditAction extends Legacy_AbstractEditAction
     {
         $controller->executeRedirect('./index.php?action=SmilesList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=SmilesList');

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImagecategoryAdminNewForm.class.php,v 1.4 2008/09/25 15:10:54 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -26,12 +26,12 @@ class Legacy_ImagecategoryAdminNewForm extends Legacy_ImagecategoryAdminEditForm
     public function prepare()
     {
         parent::prepare();
-        
+
         //
         // Set form properties
         //
         $this->mFormProperties['imgcat_storetype'] =new XCube_StringProperty('imgcat_storetype');
-    
+
         //
         // Set field properties
         //
@@ -41,7 +41,7 @@ class Legacy_ImagecategoryAdminNewForm extends Legacy_ImagecategoryAdminEditForm
         $this->mFieldProperties['imgcat_storetype']->addMessage('mask', _MD_LEGACY_ERROR_MASK, _AD_LEGACY_LANG_IMGCAT_STORETYPE);
         $this->mFieldProperties['imgcat_storetype']->addVar('mask', '/^(file|db)$/');
     }
-    
+
     public function load(&$obj)
     {
         parent::load($obj);

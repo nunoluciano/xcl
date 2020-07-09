@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImagecategoryEditAction.class.php,v 1.3 2008/09/25 15:11:46 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -40,7 +40,7 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
     {
         $this->mActionForm = $this->mObject->isNew() ? new Legacy_ImagecategoryAdminNewForm()
                                                      : new Legacy_ImagecategoryAdminEditForm();
-        
+
         $this->mActionForm->prepare();
     }
 
@@ -49,7 +49,7 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
         $render->setTemplateName('imagecategory_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
         $render->setAttribute('object', $this->mObject);
-        
+
         $handler =& xoops_gethandler('group');
         $groupArr =& $handler->getObjects();
         $render->setAttribute('groupArr', $groupArr);
@@ -64,7 +64,7 @@ class Legacy_ImagecategoryEditAction extends Legacy_AbstractEditAction
     {
         $controller->executeRedirect('./index.php?action=ImagecategoryList', 1, _MD_LEGACY_ERROR_DBUPDATE_FAILED);
     }
-    
+
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {
         $controller->executeForward('./index.php?action=ImagecategoryList');

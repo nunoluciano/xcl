@@ -2,7 +2,7 @@
 /**
  * @package ShadeSoap
  * @version $Id: NusoapServer.class.php,v 1.3 2007/12/15 12:16:57 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://www.gnu.org/licenses/lgpl.txt GNU LESSER GENERAL PUBLIC LICENSE Version 2.1
  */
  // TODO prevent path disclosure, gigamaster
@@ -10,7 +10,7 @@
 
 // if (!XC_CLASS_EXISTS('soap_server')) exit();
 
-if (version_compare(PHP_VERSION, '5.0', '>=')) {
+if (PHP_VERSION_ID >= 50000) {
     if (!class_exists('soap_server', false)) {
         exit();
     }
@@ -111,14 +111,14 @@ class ShadeSoap_NusoapServer extends soap_server
             $instance = new $class ();
             $call_arg = [&$instance, $method];
         }
-        
+
         //
         // Insert CUBE CODE
         //
         $root =& XCube_Root::getSingleton();
         // $root->mContext->mUser->setService(true);
         $retValue = call_user_func_array($call_arg, [$root->mContext->mUser, $this->methodparams]);
-        
+
         if (is_array($retValue)) {
             $retValue = $this->_encodeUTF8($retValue, $root->mLanguageManager);
         } else {
@@ -131,7 +131,7 @@ class ShadeSoap_NusoapServer extends soap_server
         $this->appendDebug($this->varDump($this->methodreturn));
         $this->debug("in invoke_method, called method $this->methodname, received $this->methodreturn of type ".gettype($this->methodreturn));
     }
-    
+
     public function _encodeUTF8($arr, &$languageManager)
     {
         foreach (array_keys($arr) as $key) {
@@ -141,7 +141,7 @@ class ShadeSoap_NusoapServer extends soap_server
                 $arr[$key] = $languageManager->encodeUTF8($arr[$key]);
             }
         }
-        
+
         return $arr;
     }
 }

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImageListAction.class.php,v 1.6 2008/09/25 14:31:45 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -21,15 +21,15 @@ require_once XOOPS_MODULE_PATH . '/legacy/forms/ImageFilterForm.class.php';
 class Legacy_ImageListAction extends Legacy_AbstractListAction
 {
     public $mImgcatId = null;
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $controller->setDialogMode(true);
-        
+
         $root =& $controller->mRoot;
         $root->mLanguageManager->loadModuleMessageCatalog('legacy');
     }
-    
+
     public function &_getHandler()
     {
         $handler =& xoops_getmodulehandler('image', 'legacy');
@@ -46,7 +46,7 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
     {
         return XOOPS_URL . '/imagemanager.php?op=list';
     }
-    
+
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $result = parent::getDefaultView($controller, $xoopsUser);
@@ -55,34 +55,34 @@ class Legacy_ImageListAction extends Legacy_AbstractListAction
             $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
             $this->mCategory =& $handler->get($this->mImgcatId);
         }
-        
+
         return $result;
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('legacy_image_list.html');
-        
+
         foreach (array_keys($this->mObjects) as $key) {
             $this->mObjects[$key]->loadImagecategory();
         }
-        
+
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
-        
+
         $render->setAttribute('imgcatId', $this->mImgcatId);
-        
+
         $handler =& xoops_getmodulehandler('imagecategory', 'legacy');
-        
+
         if (is_object($xoopsUser)) {
             $groups = $xoopsUser->getGroups();
         } else {
             $groups = [XOOPS_GROUP_ANONYMOUS];
         }
         $categoryArr =& $handler->getObjectsWithReadPerm($groups, 1);
-        
+
         $render->setAttribute('categoryArr', $categoryArr);
-        
+
         //
         // If current category object exists, check the permission of uploading.
         //

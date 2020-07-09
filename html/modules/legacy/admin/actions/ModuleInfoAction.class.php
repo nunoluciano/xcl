@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ModuleInfoAction.class.php,v 1.3 2008/09/25 15:11:48 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -55,7 +55,7 @@ class Legacy_ModuleInfoAction extends Legacy_Action
 
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$renderer)
     {
         $renderer->setTemplateName('module_information.html');

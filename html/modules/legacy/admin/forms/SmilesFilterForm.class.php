@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SmilesFilterForm.class.php,v 1.3 2008/09/25 15:11:11 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -32,7 +32,7 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
         SMILES_SORT_KEY_EMOTION => 'emotion',
         SMILES_SORT_KEY_DISPLAY => 'display'
     ];
-    
+
     public $mKeyword = '';
     public $mOptionField = '';
 
@@ -44,7 +44,7 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
     public function fetch()
     {
         parent::fetch();
-    
+
         $root =& XCube_Root::getSingleton();
         $code = $root->mContext->mRequest->getRequest('code');
         $smile_url = $root->mContext->mRequest->getRequest('smile_url');
@@ -57,17 +57,17 @@ class Legacy_SmilesFilterForm extends Legacy_AbstractFilterForm
             $this->mNavi->addExtra('code', xoops_getrequest('code'));
             $this->_mCriteria->add(new Criteria('code', xoops_getrequest('code')));
         }
-    
+
         if (isset($_REQUEST['smile_url'])) {
             $this->mNavi->addExtra('smile_url', xoops_getrequest('smile_url'));
             $this->_mCriteria->add(new Criteria('smile_url', xoops_getrequest('smile_url')));
         }
-    
+
         if (isset($_REQUEST['emotion'])) {
             $this->mNavi->addExtra('emotion', xoops_getrequest('emotion'));
             $this->_mCriteria->add(new Criteria('emotion', xoops_getrequest('emotion')));
         }
-    
+
         if (isset($_REQUEST['display'])) {
             $this->mNavi->addExtra('display', xoops_getrequest('display'));
             $this->_mCriteria->add(new Criteria('display', xoops_getrequest('display')));

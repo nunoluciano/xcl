@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_HttpContext.class.php,v 1.4 2008/09/25 15:12:00 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -34,7 +34,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @brief [READ ONLY] Legacy_AbstractModule - The current module instance.
      */
     public $mModule = null;
-    
+
     /**
      * @public
      * @brief [READ ONLY] XoopsModule - The current Xoops Module object.
@@ -42,7 +42,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     This is a shortcut to mModule->mXoopsModule.
      */
     public $mXoopsModule = null;
-    
+
     /**
      * @public
      * @brief [READ ONLY] Map Array - std::map<string, mixed>
@@ -50,12 +50,12 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     This is string collection which indicates site configurations by a site owner.
      *     Those configuration informations are loaded by the controller, and set. This
      *     configuration and the site configuration of XCube_Root are different.
-     * 
+     *
      *     The array for Xoops, which is configured in the preference of the base. This
      *     property and $xoopsConfig (X2) is the same.
      */
     public $mXoopsConfig = [];
-    
+
     /**
      * @public
      * @var [READ ONLY] Map Array - std::map<string, mixed> - The array for Xoops Module Config.
@@ -63,7 +63,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     This is a short cut to mModule->mConfig.
      */
     public $mModuleConfig = [];
-    
+
     /**
      * @public
      * @internal
@@ -72,7 +72,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     This member is used for only Legacy_Controller.
      */
     public $mBaseRenderSystemName = '';
-    
+
     /**
      * @public
      * @brief Gets a value of XoopsConfig by $id.
@@ -87,7 +87,7 @@ class Legacy_HttpContext extends XCube_HttpContext
 
         return $this->mXoopsConfig;
     }
-    
+
     /**
      * @public
      * @brief Sets the name of the current theme.

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImageFilterForm.class.php,v 1.4 2008/09/25 15:11:10 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -38,7 +38,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         IMAGE_SORT_KEY_IMAGE_WEIGHT => 'image_weight',
         IMAGE_SORT_KEY_IMGCAT_ID => 'imgcat_id'
     ];
-    
+
     public $mKeyword = '';
     public $mOptionField = '';
     public $mOptionField2 = '';
@@ -47,7 +47,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
     {
         return IMAGE_SORT_KEY_DEFAULT;
     }
-    
+
     public function fetch()
     {
         parent::fetch();
@@ -58,12 +58,12 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         $option_field = $root->mContext->mRequest->getRequest('option_field');
         $option_field2 = $root->mContext->mRequest->getRequest('option_field2');
         $search = $root->mContext->mRequest->getRequest('search');
-    
+
         if (isset($_REQUEST['image_display'])) {
             $this->mNavi->addExtra('image_display', xoops_getrequest('image_display'));
             $this->_mCriteria->add(new Criteria('image_display', xoops_getrequest('image_display')));
         }
-    
+
         if (isset($_REQUEST['imgcat_id'])) {
             $this->mNavi->addExtra('imgcat_id', xoops_getrequest('imgcat_id'));
             $this->_mCriteria->add(new Criteria('imgcat_id', xoops_getrequest('imgcat_id')));
@@ -105,7 +105,7 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
             $this->mNavi->addExtra('search', $this->mKeyword);
             $this->_mCriteria->add(new Criteria('image_nicename', '%' . $this->mKeyword . '%', 'LIKE'));
         }
-        
+
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());
         /*
         if (abs($this->mSort) != IMAGE_SORT_KEY_IMAGE_WEIGHT) {

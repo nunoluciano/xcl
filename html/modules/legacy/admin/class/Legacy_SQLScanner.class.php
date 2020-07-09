@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_SQLScanner.class.php,v 1.3 2008/09/25 15:12:41 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -18,32 +18,32 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
 {
     public $mDB_PREFIX = '';
     public $mDirname = '';
-    
+
     public function setDB_PREFIX($prefix)
     {
         $this->mDB_PREFIX = $prefix;
     }
-    
+
     public function setDirname($dirname)
     {
         $this->mDirname = $dirname;
     }
-    
+
     public function &getOperations()
     {
         $t_lines = [];
         $t_tokens = [];
         $depth = 0;
-        
+
         foreach (array_keys($this->mTokens) as $key) {
             if (EASYLEX_SQL_OPEN_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth++;
             } elseif (EASYLEX_SQL_CLOSE_PARENTHESIS == $this->mTokens[$key]->mType) {
                 $depth--;
             }
-            
+
             $t_tokens[] =& $this->mTokens[$key];
-            
+
             if (count($t_tokens) > 1 && 0 == $depth) {
                 if (EASYLEX_SQL_SEMICOLON == $this->mTokens[$key]->mType) {
                     $t_lines[] =& $t_tokens;
@@ -58,24 +58,24 @@ class Legacy_SQLScanner extends EasyLex_SQLScanner
                 }
             }
         }
-        
+
         if (count($t_tokens) > 0) {
             $t_lines[] =& $t_tokens;
             unset($t_tokens);
         }
-        
+
         //
         // Prepare array for str_replace()
         //
         $t_search = ['{prefix}', '{dirname}', '{Dirname}', '{_dirname_}'];
         $t_replace = [$this->mDB_PREFIX, strtolower($this->mDirname), ucfirst(strtolower($this->mDirname)), $this->mDirname];
-        
+
         foreach (array_keys($t_lines) as $idx) {
             foreach (array_keys($t_lines[$idx]) as $op_idx) {
                 $t_lines[$idx][$op_idx]->mValue = str_replace($t_search, $t_replace, $t_lines[$idx][$op_idx]->mValue);
             }
         }
-        
+
         return $t_lines;
     }
 }

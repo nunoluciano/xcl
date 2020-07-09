@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: group_permission.php,v 1.3 2008/09/25 15:11:29 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -40,7 +40,7 @@ class LegacyGroup_permissionHandler extends XoopsObjectGenericHandler
     public $mTable = 'group_permission';
     public $mPrimary = 'gperm_id';
     public $mClass = 'LegacyGroup_permissionObject';
-    
+
     /**
      * Gets array of roles by array of group ID.
      * @param int $mid
@@ -50,26 +50,26 @@ class LegacyGroup_permissionHandler extends XoopsObjectGenericHandler
     public function getRolesByModule($mid, $groups)
     {
         $retRoles = [];
-        
+
         $sql = 'SELECT gperm_name FROM ' . $this->mTable . ' WHERE gperm_modid=' . (int)$mid . ' AND gperm_itemid=0 AND ';
         $groupSql = [];
-        
+
         foreach ($groups as $gid) {
             $groupSql[] = 'gperm_groupid=' . (int)$gid;
         }
-        
+
         $sql .= '(' . implode(' OR ', $groupSql) . ')';
-        
+
         $result = $this->db->query($sql);
-        
+
         if (!$result) {
             return $retRoles;
         }
-        
+
         while ($row = $this->db->fetchArray($result)) {
             $retRoles[] = $row['gperm_name'];
         }
-        
+
         return $retRoles;
     }
 }

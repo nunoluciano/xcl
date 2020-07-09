@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: InstallerChecker.class.php,v 1.4 2008/09/25 15:12:43 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -29,7 +29,7 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
             $root =& XCube_Root::getSingleton();
             $root->mLanguageManager->loadModuleMessageCatalog('legacy');
             $xoopsConfig = $root->mContext->mXoopsConfig;
-            
+
             require_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl =new XoopsTpl();
             $xoopsTpl->assign(
@@ -41,9 +41,9 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
                     'lang_message_warning' => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . '/install')
                 ]
             );
-                                       
+
             $xoopsTpl->compile_check = true;
-            
+
             // @todo filebase template with absolute file path
             $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_install_completed.html');
             exit();

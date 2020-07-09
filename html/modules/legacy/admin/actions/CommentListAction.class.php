@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: CommentListAction.class.php,v 1.3 2008/09/25 15:11:46 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -65,11 +65,11 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             $this->mObjects[$key]->loadUser();
             $this->mObjects[$key]->loadStatus();
         }
-        
+
         $moduleArr = [];
         $handler =& xoops_getmodulehandler('comment');
         $modIds = $handler->getModuleIds();
-        
+
         $moduleHandler =& xoops_gethandler('module');
         foreach ($modIds as $mid) {
             $module =& $moduleHandler->get($mid);
@@ -78,11 +78,11 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             }
             unset($module);
         }
-        
+
         $statusArr = [];
         $statusHandler =& xoops_getmodulehandler('commentstatus');
         $statusArr =& $statusHandler->getObjects();
-        
+
         $render->setTemplateName('comment_list.html');
         $render->setAttribute('objects', $this->mObjects);
         $render->setAttribute('pageNavi', $this->mFilter->mNavi);
@@ -117,7 +117,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
             return $this->_processSave($controller, $xoopsUser);
         }
     }
-    
+
     public function _processConfirm(&$controller, &$xoopsUser)
     {
         $statusArr = $this->mActionForm->get('status');
@@ -217,7 +217,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                             $not_module =& $module_handler->get($not_modid);
                             $com_config =& $not_module->getInfo('comments');
                             $comment_url = $com_config['pageName'] . '?';
-                //Umm....not use com_exparams(--;;Fix Me!)	
+                //Umm....not use com_exparams(--;;Fix Me!)
                           //$extra_params = $comment->getVar('com_exparams');
                            //$comment_url .= $extra_params;
                           $comment_url .= $com_config['itemName'];
@@ -288,7 +288,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                 // callback
                 //
                 $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
-        
+
                             if ($comment_config) {
                                 $function = $comment_config['callback']['update'];
                                 if (function_exists($function)) {

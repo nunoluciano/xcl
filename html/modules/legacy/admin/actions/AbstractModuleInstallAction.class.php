@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: AbstractModuleInstallAction.class.php,v 1.3 2008/09/25 15:11:35 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -23,14 +23,14 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
      */
     public $mModuleObject = null;
     public $mLog = null;
-    
+
     public $mActionForm = null;
-    
+
     public function prepare(&$controller, &$xoopsUser)
     {
         $this->_setupActionForm();
     }
-    
+
     public function _setupActionForm()
     {
     }
@@ -49,10 +49,10 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
         }
 
         $this->mActionForm->load($this->mModuleObject);
-        
+
         $this->mModuleObject->loadAdminMenu();
         $this->mModuleObject->loadInfo($dirname);
-        
+
         return LEGACY_FRAME_VIEW_INDEX;
     }
 
@@ -61,13 +61,13 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
         if (isset($_REQUEST['_form_control_cancel'])) {
             return LEGACY_FRAME_VIEW_CANCEL;
         }
-        
+
         $this->mActionForm->fetch();
         $this->mActionForm->validate();
-        
+
         $installer =& $this->_getInstaller($this->mActionForm->get('dirname'));
         $this->mModuleObject =& $installer->loadModuleObject($this->mActionForm->get('dirname'));
-        
+
         if ($installer->hasAgree()) {
             $this->_loadAgreement();
         }
@@ -83,7 +83,7 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
                 return LEGACY_FRAME_VIEW_INDEX;
             }
         }
-        
+
         if (!is_object($this->mModuleObject)) {
             return LEGACY_FRAME_VIEW_ERROR;
         }
@@ -92,7 +92,7 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
         $installer->execute($this->mActionForm->get('dirname'));
 
         $this->mLog =& $installer->getLog();
-        
+
         return LEGACY_FRAME_VIEW_SUCCESS;
     }
 
@@ -103,7 +103,7 @@ class Legacy_AbstractModuleInstallAction extends Legacy_Action
     public function &_getInstaller($dirname)
     {
     }
-    
+
     public function _loadAgreement()
     {
     }

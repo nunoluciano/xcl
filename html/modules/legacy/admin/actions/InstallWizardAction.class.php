@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: InstallWizardAction.class.php,v 1.4 2008/09/25 15:11:48 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -31,7 +31,7 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
         $installer =new Legacy_ModuleInstaller($dirname);
         return $installer;
     }
-    
+
     public function _setupActionForm()
     {
         $this->mActionForm =new Legacy_InstallWizardForm();
@@ -41,7 +41,7 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
     public function _loadAgreement()
     {
         $root =& XCube_Root::getSingleton();
-        
+
         $this->mLicence = $this->mModuleObject->modinfo['installer']['licence']['title'];
 
         $file = $this->mModuleObject->modinfo['installer']['licence']['file'];
@@ -60,7 +60,7 @@ class Legacy_InstallWizardAction extends Legacy_AbstractModuleInstallAction
 
         $this->mLicenceText = file_get_contents($path);
     }
-    
+
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
         $render->setTemplateName('module_install_success.html');

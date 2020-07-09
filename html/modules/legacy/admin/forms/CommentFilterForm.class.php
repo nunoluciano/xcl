@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: CommentFilterForm.class.php,v 1.3 2008/09/25 15:10:34 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -70,11 +70,11 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
     {
         return COMMENT_SORT_KEY_DEFAULT;
     }
-    
+
     public function fetch()
     {
         parent::fetch();
-    
+
         $root =& XCube_Root::getSingleton();
         $com_modid = $root->mContext->mRequest->getRequest('com_modid');
         $dirname = $root->mContext->mRequest->getRequest('dirname');
@@ -97,22 +97,22 @@ class Legacy_CommentFilterForm extends Legacy_AbstractFilterForm
                 $this->_mCriteria->add(new Criteria('com_modid', $module->get('mid')));
             }
         }
-    
+
         if (isset($_REQUEST['com_icon'])) {
             $this->mNavi->addExtra('com_icon', xoops_getrequest('com_icon'));
             $this->_mCriteria->add(new Criteria('com_icon', xoops_getrequest('com_icon')));
         }
-    
+
         if (isset($_REQUEST['com_uid'])) {
             $this->mNavi->addExtra('com_uid', xoops_getrequest('com_uid'));
             $this->_mCriteria->add(new Criteria('com_uid', xoops_getrequest('com_uid')));
         }
-    
+
         if (isset($_REQUEST['com_ip'])) {
             $this->mNavi->addExtra('com_ip', xoops_getrequest('com_ip'));
             $this->_mCriteria->add(new Criteria('com_ip', xoops_getrequest('com_ip')));
         }
-    
+
         if (xoops_getrequest('com_status') > 0) {
             $this->mNavi->addExtra('com_status', xoops_getrequest('com_status'));
             $this->_mCriteria->add(new Criteria('com_status', xoops_getrequest('com_status')));

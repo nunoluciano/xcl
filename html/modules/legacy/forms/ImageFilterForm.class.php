@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImageFilterForm.class.php,v 1.3 2008/09/25 15:12:39 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -49,14 +49,14 @@ class Legacy_ImageFilterForm extends Legacy_AbstractFilterForm
         parent::fetch();
 
         $this->mNavi->addExtra('target', xoops_getrequest('target'));
-    
+
         if (isset($_REQUEST['imgcat_id'])) {
             $this->mNavi->addExtra('imgcat_id', xoops_getrequest('imgcat_id'));
             $this->_mCriteria->add(new Criteria('imgcat_id', [XOBJ_DTYPE_INT, xoops_getrequest('imgcat_id')]));
         } else {
             $this->_mCriteria->add(new Criteria('imgcat_id', 0));
         }
-        
+
         $this->_mCriteria->add(new Criteria('image_display', 1));
 
         $this->_mCriteria->addSort($this->getSort(), $this->getOrder());

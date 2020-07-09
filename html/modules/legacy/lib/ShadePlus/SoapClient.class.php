@@ -2,7 +2,7 @@
 /**
  * @package ShadePlus
  * @version $Id: SoapClient.class.php,v 1.3 2008/10/12 04:31:22 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *
  */
@@ -16,31 +16,31 @@ if (!XC_CLASS_EXISTS('XCube_AbstractServiceClient')) {
 class ShadePlus_SoapClient extends XCube_AbstractServiceClient
 {
     public $mClient = null;
-    
+
     public function __construct(&$service)
     {
         parent::__construct($service);
         $this->mClient =new soap_client($service, true);
         $this->mClient->decodeUTF8(false);
     }
-    
+
     public function call($operation, $args)
     {
         $root =& XCube_Root::getSingleton();
-        
+
         $args = $this->_encodeUTF8($args, $root->mLanguageManager);
-        
+
         $retValue = $this->mClient->call($operation, $args);
-        
+
         if (is_array($retValue)) {
             $retValue = $this->_decodeUTF8($retValue, $root->mLanguageManager);
         } else {
             $retValue = $root->mLanguageManager->decodeUTF8($retValue);
         }
-        
+
         return $retValue;
     }
-    
+
     public function _encodeUTF8($arr, &$languageManager)
     {
         foreach (array_keys($arr) as $key) {
@@ -50,7 +50,7 @@ class ShadePlus_SoapClient extends XCube_AbstractServiceClient
                 $arr[$key] = $languageManager->encodeUTF8($arr[$key]);
             }
         }
-        
+
         return $arr;
     }
 
@@ -63,7 +63,7 @@ class ShadePlus_SoapClient extends XCube_AbstractServiceClient
                 $arr[$key] = $languageManager->decodeUTF8($arr[$key]);
             }
         }
-        
+
         return $arr;
     }
 }
