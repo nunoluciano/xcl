@@ -1,33 +1,21 @@
 <?php
-// $Id: comment_new.php,v 1.2 2008/03/14 16:28:37 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.xoops.org/ https://jp.xoops.org/  https://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (https://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Comment new
+ *  *
+ *  * form render buffer using Legacy_RenderSystem
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage comment
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.2 2008/03/14 16:28:37 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 //
 // Guard directly access.
@@ -134,7 +122,7 @@ if ($com_itemid > 0)
     $subjectIcons =& $handler->getObjects();
 
     //
-    // Render comment-form to render buffer with using Legacy_RenderSystem.
+    // Render comment-form to render buffer using Legacy_RenderSystem.
     //
     $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
     $renderTarget =& $renderSystem->createRenderTarget('main');
@@ -147,7 +135,7 @@ if ($com_itemid > 0)
     $renderTarget->setAttribute('com_order', $com_order);
 
     $extraParams = [];
-    if ('system' != $xoopsModule->get('dirname'))
+    if ('system' !== $xoopsModule->get('dirname'))
     {
         $comment_config = $xoopsModule->getInfo('comments');
         if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {

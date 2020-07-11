@@ -1,7 +1,7 @@
 <?php
 // $Id: admin.php,v 1.1 2007/05/15 02:34:43 minahito Exp $
 //%%%%%%	File Name  admin.php 	%%%%%
-define('_AD_NORIGHT', "You don't have the right to access this area");
+define('_AD_NORIGHT', "You don't have the required permissions to access this area");
 define('_AD_ACTION', 'Action');
 define('_AD_EDIT', 'Edit');
 define('_AD_DELETE', 'Delete');

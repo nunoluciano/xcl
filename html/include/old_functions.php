@@ -1,4 +1,20 @@
 <?php
+/**
+ * *
+ *  * Old theme functions
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage core
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:18 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
+
 // #################### Block functions from here ##################
 
 /*
@@ -27,7 +43,6 @@ function make_sidebar($side)
         $block_arr =& $xoopsblock->getAllBlocksByGroup(XOOPS_GROUP_ANONYMOUS, true, $side, XOOPS_BLOCK_VISIBLE);
     }
 
-    $block_count = count($block_arr);
     if (!isset($GLOBALS['xoopsTpl']) || !is_object($GLOBALS['xoopsTpl'])) {
         include_once XOOPS_ROOT_PATH.'/class/template.php';
         $xoopsTpl = new XoopsTpl();
@@ -35,19 +50,19 @@ function make_sidebar($side)
         $xoopsTpl =& $GLOBALS['xoopsTpl'];
     }
     $xoopsLogger =& XoopsLogger::instance();
-    for ($i = 0; $i < $block_count; $i++) {
-        $bcachetime = (int)$block_arr[$i]->getVar('bcachetime');
+    foreach ($block_arr as $iValue) {
+        $bcachetime = (int)$iValue->getVar('bcachetime');
         if (empty($bcachetime)) {
             $xoopsTpl->xoops_setCaching(0);
         } else {
             $xoopsTpl->xoops_setCaching(2);
             $xoopsTpl->xoops_setCacheTime($bcachetime);
         }
-        $btpl = $block_arr[$i]->getVar('template');
-        if ('' != $btpl) {
+        $btpl = $iValue->getVar('template');
+        if ('' !== $btpl) {
             if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
-                $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
-                $bresult =& $block_arr[$i]->buildBlock();
+                $xoopsLogger->addBlock($iValue->getVar('name'));
+                $bresult =& $iValue->buildBlock();
                 if (!$bresult) {
                     continue;
                 }
@@ -55,14 +70,14 @@ function make_sidebar($side)
                 $bcontent =& $xoopsTpl->fetch('db:'.$btpl);
                 $xoopsTpl->clear_assign('block');
             } else {
-                $xoopsLogger->addBlock($block_arr[$i]->getVar('name'), true, $bcachetime);
+                $xoopsLogger->addBlock($iValue->getVar('name'), true, $bcachetime);
                 $bcontent =& $xoopsTpl->fetch('db:'.$btpl);
             }
         } else {
-            $bid = $block_arr[$i]->getVar('bid');
+            $bid = $iValue->getVar('bid');
             if (empty($bcachetime) || !$xoopsTpl->is_cached('db:system_dummy.html', 'blk_'.$bid)) {
-                $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
-                $bresult =& $block_arr[$i]->buildBlock();
+                $xoopsLogger->addBlock($iValue->getVar('name'));
+                $bresult =& $iValue->buildBlock();
                 if (!$bresult) {
                     continue;
                 }
@@ -70,19 +85,19 @@ function make_sidebar($side)
                 $bcontent =& $xoopsTpl->fetch('db:system_dummy.html', 'blk_'.$bid);
                 $xoopsTpl->clear_assign('block');
             } else {
-                $xoopsLogger->addBlock($block_arr[$i]->getVar('name'), true, $bcachetime);
+                $xoopsLogger->addBlock($iValue->getVar('name'), true, $bcachetime);
                 $bcontent =& $xoopsTpl->fetch('db:system_dummy.html', 'blk_'.$bid);
             }
         }
-        switch ($block_arr[$i]->getVar('side')) {
+        switch ($iValue->getVar('side')) {
         case XOOPS_SIDEBLOCK_LEFT:
-            themesidebox($block_arr[$i]->getVar('title'), $bcontent);
+            themesidebox($iValue->getVar('title'), $bcontent);
             break;
         case XOOPS_SIDEBLOCK_RIGHT:
             if (function_exists('themesidebox_right')) {
-                themesidebox_right($block_arr[$i]->getVar('title'), $bcontent);
+                themesidebox_right($iValue->getVar('title'), $bcontent);
             } else {
-                themesidebox($block_arr[$i]->getVar('title'), $bcontent);
+                themesidebox($iValue->getVar('title'), $bcontent);
             }
             break;
         }
@@ -111,21 +126,20 @@ function make_cblock()
         } else {
             $block_arr =& $xoopsblock->getAllBlocksByGroup(XOOPS_GROUP_ANONYMOUS, true, XOOPS_CENTERBLOCK_ALL, XOOPS_BLOCK_VISIBLE);
         }
-        $block_count = count($block_arr);
         $xoopsLogger =& XoopsLogger::instance();
-        for ($i = 0; $i < $block_count; $i++) {
-            $bcachetime = (int)$block_arr[$i]->getVar('bcachetime');
+        foreach ($block_arr as $iValue) {
+            $bcachetime = (int)$iValue->getVar('bcachetime');
             if (empty($bcachetime)) {
                 $xoopsTpl->xoops_setCaching(0);
             } else {
                 $xoopsTpl->xoops_setCaching(2);
                 $xoopsTpl->xoops_setCacheTime($bcachetime);
             }
-            $btpl = $block_arr[$i]->getVar('template');
-            if ('' != $btpl) {
+            $btpl = $iValue->getVar('template');
+            if ('' !== $btpl) {
                 if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
-                    $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
-                    $bresult =& $block_arr[$i]->buildBlock();
+                    $xoopsLogger->addBlock($iValue->getVar('name'));
+                    $bresult =& $iValue->buildBlock();
                     if (!$bresult) {
                         continue;
                     }
@@ -133,14 +147,14 @@ function make_cblock()
                     $bcontent =& $xoopsTpl->fetch('db:'.$btpl);
                     $xoopsTpl->clear_assign('block');
                 } else {
-                    $xoopsLogger->addBlock($block_arr[$i]->getVar('name'), true, $bcachetime);
+                    $xoopsLogger->addBlock($iValue->getVar('name'), true, $bcachetime);
                     $bcontent =& $xoopsTpl->fetch('db:'.$btpl);
                 }
             } else {
-                $bid = $block_arr[$i]->getVar('bid');
+                $bid = $iValue->getVar('bid');
                 if (empty($bcachetime) || !$xoopsTpl->is_cached('db:system_dummy.html', 'blk_'.$bid)) {
-                    $xoopsLogger->addBlock($block_arr[$i]->getVar('name'));
-                    $bresult =& $block_arr[$i]->buildBlock();
+                    $xoopsLogger->addBlock($iValue->getVar('name'));
+                    $bresult =& $iValue->buildBlock();
                     if (!$bresult) {
                         continue;
                     }
@@ -148,28 +162,28 @@ function make_cblock()
                     $bcontent =& $xoopsTpl->fetch('db:system_dummy.html', 'blk_'.$bid);
                     $xoopsTpl->clear_assign('block');
                 } else {
-                    $xoopsLogger->addBlock($block_arr[$i]->getVar('name'), true, $bcachetime);
+                    $xoopsLogger->addBlock($iValue->getVar('name'), true, $bcachetime);
                     $bcontent =& $xoopsTpl->fetch('db:system_dummy.html', 'blk_'.$bid);
                 }
             }
-            $title = $block_arr[$i]->getVar('title');
-            switch ($block_arr[$i]->getVar('side')) {
+            $title = $iValue->getVar('title');
+            switch ($iValue->getVar('side')) {
             case XOOPS_CENTERBLOCK_CENTER:
-                if ('' != $title) {
+                if ('' !== $title) {
                     $cc_block .= '<tr valign="top"><td colspan="2"><b>'.$title.'</b><hr />'.$bcontent.'<br><br></td></tr>'."\n";
                 } else {
                     $cc_block .= '<tr><td colspan="2">'.$bcontent.'<br><br></td></tr>'."\n";
                 }
                 break;
             case XOOPS_CENTERBLOCK_LEFT:
-                if ('' != $title) {
+                if ('' !== $title) {
                     $cl_block .= '<p><b>'.$title.'</b><hr />'.$bcontent.'</p>'."\n";
                 } else {
                     $cl_block .= '<p>'.$bcontent.'</p>'."\n";
                 }
                 break;
             case XOOPS_CENTERBLOCK_RIGHT:
-                if ('' != $title) {
+                if ('' !== $title) {
                     $cr_block .= '<p><b>'.$title.'</b><hr />'.$bcontent.'</p>'."\n";
                 } else {
                     $cr_block .= '<p>'.$bcontent.'</p>'."\n";

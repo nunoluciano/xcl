@@ -1,33 +1,19 @@
 <?php
-// $Id: comment_view.php,v 1.1 2007/05/15 02:34:19 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.xoops.org/ https://jp.xoops.org/  https://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (https://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Comment view
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage comment
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:19 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 //
 // Kick direct access
@@ -38,7 +24,7 @@ if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
 
 require_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
-if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
+if (XOOPS_COMMENT_APPROVENONE !== $xoopsModuleConfig['com_rule']) {
     $gperm_handler = & xoops_gethandler('groupperm');
     $groups = ($xoopsUser) ? $xoopsUser -> getGroups() : XOOPS_GROUP_ANONYMOUS;
     $xoopsTpl->assign('xoops_iscommentadmin', $gperm_handler->checkRight('system_admin', LEGACY_SYSTEM_COMMENT, $groups));
@@ -46,7 +32,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
     $t_root =& XCube_Root::getSingleton();
     $t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');
     $comment_config = $xoopsModule->getInfo('comments');
-    $com_itemid = ('' != trim($comment_config['itemName']) && isset($_GET[$comment_config['itemName']])) ? (int)$_GET[$comment_config['itemName']] : 0;
+    $com_itemid = ('' !== trim($comment_config['itemName']) && isset($_GET[$comment_config['itemName']])) ? (int)$_GET[$comment_config['itemName']] : 0;
 
     if ($com_itemid > 0) {
         $com_mode = isset($_GET['com_mode']) ? htmlspecialchars(trim($_GET['com_mode']), ENT_QUOTES) : '';
@@ -67,7 +53,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         } else {
             $com_order = (int)$_GET['com_order'];
         }
-        if (XOOPS_COMMENT_OLD1ST != $com_order) {
+        if (XOOPS_COMMENT_OLD1ST !== $com_order) {
             $xoopsTpl->assign(['comment_order' => XOOPS_COMMENT_NEW1ST, 'order_other' => XOOPS_COMMENT_OLD1ST]);
             $com_dborder = 'DESC';
         } else {
@@ -93,7 +79,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         } elseif ('thread' == $com_mode) {
             // RMV-FIX... added extraParam stuff here
             $comment_url = $comment_config['pageName'] . '?';
-            
+
             //
             // Parse extra parameters from the request.
             //
@@ -114,7 +100,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
             if (!empty($com_id) && !empty($com_rootid) && ($com_id != $com_rootid)) {
                 // Show specific thread tree
                 $comments =& $comment_handler->getThread($com_rootid, $com_id);
-                if (false != $comments) {
+                if (false !== $comments) {
                     require_once XOOPS_ROOT_PATH.'/class/commentrenderer.php';
                     $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
                     $renderer->setComments($comments);
@@ -127,7 +113,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                 if ($c_count> 0) {
                     for ($i = 0; $i < $c_count; $i++) {
                         $comments =& $comment_handler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));
-                        if (false != $comments) {
+                        if (false !== $comments) {
                             require_once XOOPS_ROOT_PATH.'/class/commentrenderer.php';
                             $renderer =& XoopsCommentRenderer::instance($xoopsTpl);
                             $renderer->setComments($comments);
@@ -151,35 +137,35 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                 }
             }
         }
-        
+
         $renderSystem =& $t_root->getRenderSystem($t_root->mContext->mBaseRenderSystemName);
         $renderTarget =& $renderSystem->createRenderTarget('main');
 
         $renderTarget->setTemplateName('legacy_comment_navi.html');
         $renderTarget->setAttribute('pageName', $comment_config['pageName']);
-        
+
         $modeOptions = ['nest' => _NESTED, 'flat' => _FLAT, 'thread' => _THREADED];
         $renderTarget->setAttribute('modeOptions', $modeOptions);
         $renderTarget->setAttribute('com_mode', $com_mode);
-        
+
         $orderOptions = [0 => _OLDESTFIRST, 1 => _NEWESTFIRST];
         $renderTarget->setAttribute('orderOptions', $orderOptions);
         $renderTarget->setAttribute('com_order', $com_order);
-        
+
         $renderTarget->setAttribute('itemName', $comment_config['itemName']);
         $renderTarget->setAttribute('com_itemid', $com_itemid);
         $renderTarget->setAttribute('com_anonpost', $xoopsModuleConfig['com_anonpost']);
-        
+
         $postcomment_link = '';
         if (!empty($xoopsModuleConfig['com_anonpost']) || is_object($xoopsUser)) {
             $postcomment_link = 'comment_new.php?com_itemid=' . $com_itemid . '&com_order=' . $com_order . '&com_mode=' . $com_mode;
         }
-        
+
         //
         // Parse extra parameters from the request.
         // TODO The following lines are *CODE CLONE*
         // $link_extra is raw data and not sanitized.
-        // 
+        //
         $link_extra = '';
         $fetchParams = [];
         if (isset($comment_config['extraParams']) && is_array($comment_config['extraParams'])) {
@@ -193,7 +179,7 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
                     $fetchParams[$extra_key] = xoops_getrequest($extra_key);
                 }
             }
-            
+
             //
             // Composite link_extra
             //
@@ -205,12 +191,12 @@ if (XOOPS_COMMENT_APPROVENONE != $xoopsModuleConfig['com_rule']) {
         $renderTarget->setAttribute('extraParams', $fetchParams);
         $renderTarget->setAttribute('link_extra', $link_extra);
         $renderTarget->setAttribute('postcomment_link', $postcomment_link);
-        
+
         $renderSystem->render($renderTarget);
-        
+
         //
         // TODO We change raw string data, we must change template for guarding XSS.
-        //		
+        //
         $xoopsTpl->assign(
             ['commentsnav' => $renderTarget->getResult(), 'editcomment_link' => 'comment_edit.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . htmlspecialchars($link_extra, ENT_QUOTES), 'deletecomment_link' => 'comment_delete.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . $link_extra, 'replycomment_link' => 'comment_reply.php?com_itemid=' . $com_itemid . '&amp;com_order=' . $com_order . '&amp;com_mode=' . $com_mode . '' . $link_extra]
         );

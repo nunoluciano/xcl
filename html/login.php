@@ -1,6 +1,20 @@
 <?php
-// This script displays a login screen in a popupbox when SSL is enabled in the preferences.
-// You should use this script only when your server supports SSL. Place this file under your SSL directory
+/**
+ * *
+ *  * Login screen popup for SSL enabled in the preferences
+ *  *
+ *  * You should use this script only when your server supports SSL. Place this file under your SSL directory
+ *  *
+ *  * @package    Legacy
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:30 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 // path to your xoops main directory
 $path = './';
@@ -29,7 +43,7 @@ $style = getcss($xoopsConfig['theme_set']);
 if ('' == $style) {
     $style = xoops_getcss($xoopsConfig['theme_set']);
 }
-if ('' != $style) {
+if ('' !== $style) {
     $header .= '<link rel="stylesheet" type="text/css" media="all" href="'.$style.'" />';
 }
 $header .= '
@@ -50,7 +64,7 @@ if ('dologin' == $op) {
         if (1 == $xoopsConfig['closesite']) {
             $allowed = false;
             foreach ($user->getGroups() as $group) {
-                if (in_array($group, $xoopsConfig['closesite_okgrp']) || XOOPS_GROUP_ADMIN == $group) {
+                if (in_array($group, $xoopsConfig['closesite_okgrp'], true) || XOOPS_GROUP_ADMIN == $group) {
                     $allowed = true;
                     break;
                 }
@@ -62,6 +76,7 @@ if ('dologin' == $op) {
         }
         $user->setVar('last_login', time());
         if (!$member_handler->insertUser($user)) {
+            //EMPTY
         }
         require_once XOOPS_ROOT_PATH . '/include/session.php';
 

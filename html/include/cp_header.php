@@ -24,9 +24,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
     if (!file_exists('../../../mainfile.php')) {
         if (!file_exists('../../mainfile.php')) {
             exit();
-        } else {
-            require_once '../../mainfile.php';
         }
+
+        require_once '../../mainfile.php';
     } else {
         require_once '../../../mainfile.php';
     }

@@ -1,40 +1,26 @@
 <?php
-// $Id: comment_post.php,v 1.1 2007/05/15 02:34:19 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.xoops.org/ https://jp.xoops.org/  https://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (https://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Comment post
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage comment
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:19 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
     exit();
 }
 
 $t_root =& XCube_Root::getSingleton();
-$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< @todo Is this must?
+$t_root->mLanguageManager->loadPageTypeMessageCatalog('comment');    ///< @todo Is this required?
 
 include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 
@@ -84,12 +70,6 @@ if (!empty($_POST)) {
         $op = 'delete';
     }
 
-    //    if ($op == 'preview' || $op == 'post') {
-    //        if (!xoops_token_validate()) {
-    //            $op = '';
-    //        }
-    //    }
-
     $com_mode = isset($_POST['com_mode']) ? htmlspecialchars(trim($_POST['com_mode']), ENT_QUOTES) : 'flat';
     $com_order = isset($_POST['com_order']) ? (int)$_POST['com_order'] : XOOPS_COMMENT_OLD1ST;
     $com_itemid = isset($_POST['com_itemid']) ? (int)$_POST['com_itemid'] : 0;
@@ -130,7 +110,7 @@ case 'preview':
     }
     $p_comment =& $myts->previewTarea($_POST['com_text'], $dohtml, $dosmiley, $doxcode, $doimage, $dobr);
     $com_text = $myts->htmlSpecialChars($myts->stripSlashesGPC($_POST['com_text']));
-    if ('system' != $xoopsModule->getVar('dirname')) {
+    if ('system' !== $xoopsModule->getVar('dirname')) {
         include XOOPS_ROOT_PATH.'/header.php';
         themecenterposts($com_title, $p_comment);
         include XOOPS_ROOT_PATH.'/include/comment_form.php';
@@ -179,7 +159,7 @@ case 'post':
                 }
             } else {
                 $dohtml = 0;
-                if ($comment->getVar('com_uid') != $xoopsUser->getVar('uid')) {
+                if ($comment->getVar('com_uid') !== $xoopsUser->getVar('uid')) {
                     $accesserror = true;
                 }
             }
@@ -187,7 +167,7 @@ case 'post':
             $dohtml = 0;
             $accesserror = true;
         }
-        if (false != $accesserror) {
+        if (false !== $accesserror) {
             redirect_header($redirect_page.'='.$com_itemid.'&amp;com_id='.$com_id.'&amp;com_mode='.$com_mode.'&amp;com_order='.$com_order, 1, _NOPERM);
             exit();
         }
@@ -234,7 +214,7 @@ case 'post':
         } else {
             $dohtml = 0;
             $uid = 0;
-            if (1 != $xoopsModuleConfig['com_anonpost']) {
+            if (1 !== $xoopsModuleConfig['com_anonpost']) {
                 redirect_header($redirect_page.'='.$com_itemid.'&amp;com_id='.$com_id.'&amp;com_mode='.$com_mode.'&amp;com_order='.$com_order, 1, _NOPERM);
                 exit();
             }
@@ -275,7 +255,7 @@ case 'post':
     if (!empty($extra_params)) {
         $comment->setVar('com_exparams', str_replace('&amp;', '&', $extra_params));
     }
-    if (false != $comment_handler->insert($comment)) {
+    if (false !== $comment_handler->insert($comment)) {
         $newcid = $comment->getVar('com_id');
 
         // set own id as root id if this is a top comment
@@ -290,7 +270,7 @@ case 'post':
         }
 
         // call custom approve function if any
-        if (false != $call_approvefunc && isset($comment_config['callback']['approve']) && '' != trim($comment_config['callback']['approve'])) {
+        if (false !== $call_approvefunc && isset($comment_config['callback']['approve']) && '' !== trim($comment_config['callback']['approve'])) {
             $skip = false;
             if (!function_exists($comment_config['callback']['approve'])) {
                 if (isset($comment_config['callbackFile'])) {
@@ -311,12 +291,12 @@ case 'post':
         }
 
         // call custom update function if any
-        if (false != $call_updatefunc && isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
+        if (false !== $call_updatefunc && isset($comment_config['callback']['update']) && '' != trim($comment_config['callback']['update'])) {
             $skip = false;
             if (!function_exists($comment_config['callback']['update'])) {
                 if (isset($comment_config['callbackFile'])) {
                     $callbackfile = trim($comment_config['callbackFile']);
-                    if ('' != $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
+                    if ('' !== $callbackfile && file_exists(XOOPS_ROOT_PATH . '/modules/' . $moddir . '/' . $callbackfile)) {
                         include_once XOOPS_ROOT_PATH.'/modules/'.$moddir.'/'.$callbackfile;
                     }
                     if (!function_exists($comment_config['callback']['update'])) {
@@ -338,7 +318,7 @@ case 'post':
 
         // increment user post if needed
         $uid = $comment->getVar('com_uid');
-        if ($uid > 0 && false != $add_userpost) {
+        if ($uid > 0 && false !== $add_userpost) {
             $member_handler =& xoops_gethandler('member');
             $poster =& $member_handler->getUser($uid);
             if (is_object($poster)) {

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_pagenavi.php,v 1.2 2007/06/24 07:26:21 nobunobu Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://www.gnu.org/licenses/gpl.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -20,7 +20,7 @@
  *           like 2.0 style
  * Input:    pagenavi =
  *           offset =
- * 
+ *
  * Examples: {xoops_pagenavi2 pagenavi=$pagenavi}
  * -------------------------------------------------------------
  */
@@ -30,19 +30,19 @@ function smarty_function_flvplayer($params, &$smarty)
 
     if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
         $navi =& $params['pagenavi'];
-        
+
         $perPage = $navi->getPerpage();
 
         $total = $navi->getTotalItems();
         $totalPages = $navi->getTotalPages();
-        
+
         if ($totalPages == 0) {
             return;
         }
-        
+
         $url = $navi->renderURLForPage();
         $current = $navi->getStart();
-        
+
         $offset = isset($params['offset']) ? intval($params['offset']) : 4;
 
         //
@@ -71,7 +71,7 @@ function smarty_function_flvplayer($params, &$smarty)
             }
             $counter++;
         }
-    
+
         //
         // check next
         //

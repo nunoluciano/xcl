@@ -1,29 +1,18 @@
 <?php
-// $Id: mainfile.dist.php,v 1.2 2007/09/22 06:43:42 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
+/**
+ * *
+ *  * Default settings for install
+ *  *
+ *  * @package    Legacy
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     define('XOOPS_MAINFILE_INCLUDED', 1);
@@ -32,7 +21,7 @@ if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     // Physical path to your main XOOPS directory WITHOUT trailing slash
     // Example: define('XOOPS_ROOT_PATH', '/path/to/xoops/directory');
     define('XOOPS_ROOT_PATH', '');
-	
+
     // XOOPS Trusted Path
     // This is option. If you need this path, input value. The trusted path
     // should be a safety directory which web browsers can't access directly.
@@ -79,12 +68,12 @@ if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     define('XOOPS_GROUP_USERS', '2');
     define('XOOPS_GROUP_ANONYMOUS', '3');
 
-    // You can select two special module process excuting mode with defining following constants
+    // You can select two special module process executing mode by defining following constants
     //
     //  define('_LEGACY_PREVENT_LOAD_CORE_', 1);
     //    Module process will not load any XOOPS Cube classes.
     //    You cannot use any XOOPS Cube functions and classes.
-    //    (eg. It'll be used for reffering only MySQL Database definition.)
+    //    (eg. It'll be used for referring only MySQL Database definition.)
     //
     //  define('_LEGACY_PREVENT_EXEC_COMMON_', 1);
     //    Module process will load XOOPS Cube Root class and initialize Controller class.
@@ -93,7 +82,7 @@ if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     //       $root=&XCube_Root::getSingleton();
     //       $root->mController->executeCommonSubset();
     //    after including mainfile.php.
-    //    It is synonym of $xoopsOption['nocommon']=1; 
+    //    It is synonym of $xoopsOption['nocommon']=1;
     //    But $xoopsOption['nocommon'] is deprecated.
     //
     if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {

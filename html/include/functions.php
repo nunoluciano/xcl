@@ -1,30 +1,19 @@
 <?php
-// $Id: functions.php,v 1.6 2008/10/03 03:23:27 mumincacao Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-
+/**
+ * *
+ *  * Xoops functions
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage core
+ *  * @author     Original Authors: Mumincacao
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.6 2008/10/03 03:23:27 mumincacao, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 // ################## Various functions from here ################
 
 /**
@@ -176,7 +165,7 @@ function xoops_getUserTimestamp($time, $timeoffset='')
     if ('' === $timeoffset) {
         if ($xoopsUser) {
             static $offset;
-            $timeoffset = isset($offset)?$offset:$offset = $xoopsUser->getVar('timezone_offset', 'n');
+            $timeoffset = $offset ?? $offset = $xoopsUser->getVar('timezone_offset', 'n');
         } else {
             $timeoffset = $xoopsConfig['default_TZ'];
         }
@@ -331,15 +320,15 @@ function checkEmail($email, $antispam = false)
         $email = str_replace('@', ' at ', $email);
         $email = str_replace('.', ' dot ', $email);
         return $email;
-    } else {
-        return true;
     }
+
+    return true;
 }
 
 function formatURL($url)
 {
     $url = trim($url);
-    if ('' != $url) {
+    if ('' !== $url) {
         if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url))) {
             $url = 'https://'.$url;
         }
@@ -363,7 +352,7 @@ function xoops_getbanner()
     global $xoopsConfig;
     $db =& Database::getInstance();
     $bresult = $db->query('SELECT COUNT(*) FROM ' . $db->prefix('banner'));
-    list($numrows) = $db->fetchRow($bresult);
+    [$numrows] = $db->fetchRow($bresult);
     if ($numrows > 1) {
         $numrows = $numrows-1;
         mt_srand((double)microtime()*1000000);
@@ -373,7 +362,7 @@ function xoops_getbanner()
     }
     if ($numrows > 0) {
         $bresult = $db->query('SELECT * FROM ' . $db->prefix('banner'), 1, $bannum);
-        list($bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode) = $db->fetchRow($bresult);
+        [$bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode] = $db->fetchRow($bresult);
         if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
             // EMPTY
         } else {
@@ -496,7 +485,7 @@ function xoops_getenv($key)
     $ret = null;
 
         if (isset($_SERVER[$key]) || isset($_ENV[$key])) {
-            $ret = isset($_SERVER[$key]) ? $_SERVER[$key] : $_ENV[$key];
+            $ret = $_SERVER[$key] ?? $_ENV[$key];
         }
 
 
@@ -543,8 +532,6 @@ function xoops_getcss($theme = '')
         $str_css = '/styleMAC.css';
     } elseif (preg_match('/MSIE ([0-9]\.[0-9]{1,2})/i', $uagent)) {
         $str_css = '/style.css';
-    } else {
-        $str_css = '/styleNN.css';
     }
     if (is_dir($path = XOOPS_THEME_PATH.'/'.$theme)) {
         if (file_exists($path.$str_css)) {
@@ -638,9 +625,8 @@ function &xoops_getmodulehandler($name = null, $module_dir = null, $optional = f
         return $mhdr[$name];
     }
         //
-        // Cube Style
+        // Cube Style load class
         //
-
         if (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/handler/' . ($ucname = ucfirst($name)) . '.class.php')) {
             include_once $hnd_file;
         } elseif (file_exists($hnd_file = XOOPS_ROOT_PATH . '/modules/'.$module_dir.'/class/'.$name.'.php')) {
@@ -669,7 +655,7 @@ function xoops_getrank($rank_id =0, $posts = 0)
     $db =& Database::getInstance();
     $myts =& MyTextSanitizer::sGetInstance();
     $rank_id = (int)$rank_id;
-    if (0 != $rank_id) {
+    if (0 !== $rank_id) {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_id = '.$rank_id;
     } else {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_min <= '.$posts.' AND rank_max >= '.$posts.' AND rank_special = 0';
@@ -698,13 +684,13 @@ function xoops_substr($str, $start, $length, $trimmarker = '...')
     }
     if (function_exists('mb_internal_encoding') && @mb_internal_encoding(_CHARSET)) {
         $str2 = mb_strcut($str, $start, $length - strlen($trimmarker));
-        return $str2 . (mb_strlen($str)!=mb_strlen($str2) ? $trimmarker : '');
+        return $str2 . (mb_strlen($str)!==mb_strlen($str2) ? $trimmarker : '');
     }
     // phppp patch
     $DEP_CHAR=127;
     $pos_st=0;
     $action = false;
-    for ($pos_i = 0; $pos_i < strlen($str); $pos_i++) {
+    for ($pos_i = 0, $pos_iMax = strlen($str); $pos_i < $pos_iMax; $pos_i++) {
         //@gigamaster changed to array
         if (ord($str[$pos_i]) > 127) {
             $pos_i++;
@@ -845,17 +831,3 @@ if (!function_exists('htmlspecialchars_decode')) {
         return strtr($text, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
     }
 }
-
-/*if (!function_exists('session_regenerate_id')) { // @ToDo this compatible function should be moved to other file.
-    // session_regenerate_id compatible function for PHP Version< PHP4.3.2
-    function session_regenerate_id()
-    {
-        mt_srand(microtime() * 100000);
-        $random = md5(XOOPS_SALT . uniqid(mt_rand(), true));
-        if (session_id($random)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}*/

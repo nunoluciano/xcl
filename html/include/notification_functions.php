@@ -1,39 +1,24 @@
 <?php
-// $Id: notification_functions.php,v 1.1 2007/05/15 02:34:18 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.xoops.org/ https://jp.xoops.org/  https://www.myweb.ne.jp/  //
-// Project: The XOOPS Project (https://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Notification
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage core
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:18 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 // RMV-NOTIFY
 
 // FIXME: Do some caching, so we don't retrieve the same category / event
 // info many times.
-
 
 /**
  * Determine if notification is enabled for the selected module.
@@ -92,12 +77,12 @@ function &notificationCategoryInfo($category_name = null, $module_id = null)
         $module_handler =& xoops_gethandler('module');
         $module =& $module_handler->get($module_id);
     }
-    
+
     if (!is_object($module)) {
         $ret = false;
         return $ret;
     }
-    
+
     $not_config =& $module->getInfo('notification');
     if (null == $category_name) {
         return $not_config['category'];
@@ -107,7 +92,7 @@ function &notificationCategoryInfo($category_name = null, $module_id = null)
             return $category;
         }
     }
-    
+
     $ret = false;
     return $ret;
 }
@@ -142,7 +127,7 @@ function &notificationCommentCategoryInfo($module_id=null)
             }
         }
     }
-    
+
     $ret = false;
     return $ret;
 }
@@ -168,12 +153,12 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
         $module_handler =& xoops_gethandler('module');
         $module =& $module_handler->get($module_id);
     }
-    
+
     if (!is_object($module)) {
         $ret = false;
         return $ret;
     }
-    
+
     $not_config =& $module->getInfo('notification');
     $config_handler =& xoops_gethandler('config');
     $mod_config = $config_handler->getConfigsByCat(0, $module_id);
@@ -186,7 +171,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
     $override_comment = false;
     $override_commentsubmit = false;
     $override_bookmark = false;
-    
+
     foreach ($not_config['event'] as $event) {
         if ($event['category'] == $category_name) {
             $event['mail_template_dir'] = XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/mail_template/';
@@ -204,7 +189,7 @@ function &notificationEvents($category_name, $enabled_only, $module_id=null)
             }
         }
     }
-    
+
 
     $root =& XCube_Root::getSingleton();
     $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
@@ -291,9 +276,9 @@ function notificationEventEnabled(&$category, &$event, &$module)
 {
     $config_handler =& xoops_gethandler('config');
     $mod_config = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
-    
+
     $option_name = notificationGenerateConfig($category, $event, 'option_name');
-    if (is_array($mod_config['notification_events']) && in_array($option_name, $mod_config['notification_events'])) {
+    if (is_array($mod_config['notification_events']) && in_array($option_name, $mod_config['notification_events'], true)) {
         return true;
     }
     $notification_handler =& xoops_gethandler('notification');
@@ -321,7 +306,7 @@ function &notificationEventInfo($category_name, $event_name, $module_id=null)
             }
         }
     }
-    
+
     $ret = false;
     return $ret;
 }
@@ -357,7 +342,7 @@ function &notificationSubscribableCategoryInfo($module_id=null)
                 $subscribe_from = [$subscribe_from];
             }
         }
-        if (!in_array($script_name, $subscribe_from)) {
+        if (!in_array($script_name, $subscribe_from, true)) {
             continue;
         }
 
@@ -370,7 +355,7 @@ function &notificationSubscribableCategoryInfo($module_id=null)
             $sub_categories[] = $category;
         } else {
             $item_name = $category['item_name'];
-            $id = ('' != $item_name && isset($_GET[$item_name])) ? (int)$_GET[$item_name] : 0;
+            $id = ('' !== $item_name && isset($_GET[$item_name])) ? (int)$_GET[$item_name] : 0;
             if ($id > 0) {
                 $category['item_id'] = $id;
                 $sub_categories[] = $category;
