@@ -18,7 +18,7 @@
     <p><select name="timezone">
             <?php $timezones = $this->v('timezones'); ?>
             <?php foreach ($this->v('timediffs') as $timediff => $text) : ?>
-                <?php if ($timediff === $this->v('current_timediff')) : ?>
+                <?php if ($timediff == $this->v('current_timediff')) : ?>
                     <option value="<?php echo $timezones[$timediff] ?>" selected="selected"><?php echo $text ?></option>
                 <?php else : ?>
                     <option value="<?php echo $timezones[$timediff] ?>"><?php echo $text ?></option>

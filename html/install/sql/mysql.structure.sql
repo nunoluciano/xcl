@@ -366,6 +366,7 @@ CREATE TABLE modules (
   KEY trust_dirname (trust_dirname),
   KEY name (name(15))
 ) ENGINE=InnoDB AUTO_INCREMENT=2 ;
+
 # mid=1 is reserved for old XOOPS system module
 # --------------------------------------------------------
 

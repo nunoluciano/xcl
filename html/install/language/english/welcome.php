@@ -41,7 +41,7 @@ $content =
 </div>
     <h3>Checklist for Installation</h3>
     <p><input type="checkbox" required=""> Set up Web Server, PHP7 and SQL Database.
-    </p><p><input type="checkbox" required=""> Database using <em>utf8mb4_unicode_ci</em> collation, user and password.
+    </p><p><input type="checkbox" required=""> Database using <em>utf8mb4_general_ci</em> collation, user and password.
     </p><p>Make the directories  and file writabale :
     </p><p><input type="checkbox" required=""> html/uploads/
     </p><p><input type="checkbox" required=""> xoops_trust_path/cache/
