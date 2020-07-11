@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: modifier.xoops_html_purifier.php,v 1.0 2010/03/25 15:12:36 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -15,7 +15,7 @@
  * Name:	 xoops_html_purifier
  * Purpose:  Purify dirty html code(XSS contains).
  * Input:	 html : html text
- *		 	 encoding : 
+ *		 	 encoding :
  *		 	 doctype : HTML 4.01 Strict
  *					   HTML 4.01 Transitional
  *					   XHTML 1.0 Strict
