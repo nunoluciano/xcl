@@ -5,6 +5,50 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+[unreleased] 2020-07-11
+
+### Added  
+
+- Branch SQL InnoDB utf8mb4   
+- Wizard Installer 2nd step design
+
+### Changed  
+
+- Altsys and blocks admin actions refactor code  
+- Altsys admin page layout  
+- class refactor code 
+- D3forum refactoring PSR2 
+- include refactor code  
+- Legacy refactor code   
+- SQL refactor InnoDB utf8mb4  
+- Smarty comment  
+- X-elFnder v.2.57 refactor code (speedup, PSR2)  
+- XOOPSCube (c) 2005-2020  
+- X-Update Store templates  
+- [WIP] UI Admin templates  
+- [WIP] Help ajax load, struture and semantics  
+
+
+###  Fixed  
+
+- function getcss  
+- installer database (utf8mb4)    
+- installer timezone  
+- Help semantic structure (section, article) 
+- PHP Null Coalesce Operator  
+- PHP stripos() function  
+- Pico MySQL 5.6 innoDB max key length for utf8mb4  
+- Wizard Installer 2nd step  
+
+### Removed  
+
+- deprecated code comments   
+
+### Update  
+
+-  xelFinder 2.57 settings for XCL  
+
+
 
 [unreleased] 2020-07-05
 
