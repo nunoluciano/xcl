@@ -10,7 +10,7 @@
 
 // if (!XC_CLASS_EXISTS('soap_server')) exit();
 
-if (PHP_VERSION_ID >= 50000) {
+if (version_compare(PHP_VERSION, '5.0', '>=')) {
     if (!class_exists('soap_server', false)) {
         exit();
     }

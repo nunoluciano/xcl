@@ -1,30 +1,62 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html lang="<{$xoops_langcode}>">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
 <meta http-equiv="content-language" content="<{$xoops_langcode}>" />
 <title><{$xoops_sitename}></title>
 
-<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css">
+
 
 <!-- !TODO : Fix this to default package stylesheet ! -->
 
-<link rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
+<!-- <link rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css" media="all"> -->
 
+<!-- <link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css"> -->
 <style>
+
+html,
 body {
-	margin : 2em;
-	transition			: background 500ms ease-in-out, color 200ms ease;
+	background: #232831;
+	color: #C0CCDA;
+	font-family: 'Avenir', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 1.5rem;
+	/* padding					: var(  --ui-space-no					); */
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+body {
+	margin : 2em auto;
+    transition			: background 500ms ease-in-out, color 200ms ease;
 }
 
+a {
+	color: #face74;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover,
+svg:hover {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
 .wrapper-require {
-	align-content		: center;
-	display					: flex;
+	align-content   : center;
+	display         : flex;
 	flex-direction	: column;
-  justify-content	: center;
-	min-height			: 100vh;
+    justify-content	: center;height: 100%;
+    min-height      : 100vh;
+    background      : linear-gradient(130deg, hsl(216, 17%, 17%), hsl(220, 16%, 15%));
+	border          : 1px solid hsla(210, 15%, 20%, 1);
+	border-radius   : 20px;
+	box-shadow      : 20px 20px 30px #1a1e25, -20px -20px 30px hsl(219, 16%, 21%);
+    margin          :0 auto;
+    padding         :1em 5em;
+    width           : fit-content;
 }
-
 .wrapper-require > * {
 	margin					: 1em auto;
 }
@@ -36,13 +68,169 @@ table {
 td {
 	padding: 1em 2em;
 }
+h2,
+input[type='submit'],
+tfoot {text-align: center;text-transform: uppercase;}
 .icon-package {
 margin-right			: 1em; /* Space icon -> text */
 vertical-align		: middle; /* Align icon and text */
 width							: 1.5em; /* Size icon to text */
 }
 
-</style>
+/* -------------------- -------------------- -------------------- -------------------- FORM CHECKBOX & RADIO  */
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+input[type='checkbox'],
+input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: hsl(210, 15%, 15%);
+    border: 1px solid hsla(210, 15%, 40%, 0.7);
+    box-shadow: 5px 10px 10px hsl(218, 17%, 10%), -5px -10px 10px hsl(219, 16%, 24%);
+    cursor: pointer;
+    height: 20px;
+    margin: 0 1em 0 0;
+    outline: none;
+    padding: 0;
+    position: relative;
+    transition: background .3s ease, border-color .3s ease;
+    vertical-align: -5px;
+}
+input[type='checkbox']:after,
+input[type='radio']:after {
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .2s ease, -webkit-transform .3s ease, -webkit-filter .3s ease;
+    transition: transform .3s ease, opacity .2s ease, filter .3s ease;
+    transition: transform .3s ease, opacity .2s ease, filter .3s ease, -webkit-transform .3s ease, -webkit-filter .3s ease;
+}
+input[type='checkbox']:checked,
+input[type='radio']:checked {
+    animation: pulse 1s;
+    background: hsl(219, 15%, 18%);
+    border: 1px solid #6c757d;
+}
+input[type='checkbox']:checked:after,
+input[type='radio']:checked:after {
+    filter: drop-shadow(0 1px 2px rgba(21, 25, 27, 0.25));
+    transition: opacity 0.3s ease, -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2),
+    -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
+}
+input[type='checkbox']:disabled,
+input[type='radio']:disabled {
+    background: hsl(219, 15%, 24%);
+    cursor: not-allowed;
+    opacity: .9;
+}
+input[type='checkbox']:disabled:checked,
+input[type='radio']:disabled:checked {
+    background: hsl(219, 15%, 24%);
+    border: 1px solid hsl(216, 15%, 64%);
+}
+input[type='checkbox']:hover:not(:checked):not(:disabled),
+input[type='radio']:hover:not(:checked):not(:disabled) {
+    border: 1px solid #face74;
+}
+input[type='checkbox']:not(.switch),
+input[type='radio']:not(.switch) {
+    width: 20px;
+}
+input[type='checkbox']:not(.switch):after,
+input[type='radio']:not(.switch):after {
+    opacity: 0;
+}
+input[type='checkbox']:not(.switch):checked:after,
+input[type='radio']:not(.switch):checked:after {
+    opacity: 1;
+}
+input[type='checkbox']:not(.switch) {
+    border-radius: 6px;
+}
+input[type='checkbox']:not(.switch):after {
+    border: 2px solid #face74;
+    border-left: 0;
+    border-top: 0;
+    height: 9px;
+    left: 7px;
+    top: 4px;
+    transform: rotate(20deg);
+    width: 5px;
+}
+input[type='checkbox']:not(.switch):checked:after {
+    transform: rotate(43deg);
+}
+input[type='checkbox'].switch {
+    border-radius: 11px;
+    width: 38px;
+}
+input[type='checkbox'].switch:after {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    height: 18px;
+    left: 1px;
+    top: 0;
+    width: 18px;
+}
+input[type='checkbox'].switch:checked:after {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(17px);
+}
+input[type='checkbox'].switch:disabled:not(:checked):after {
+    opacity: .6;
+}
+input[type='radio'] {
+    border-radius: 50%;
+}
+input[type='radio']:after {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    height: 17px;
+    opacity: 0;
+    transform: scale(0.7);
+    width: 17px;
+}
+input[type='radio']:checked:after {
+    background: #face74;
+    transform: scale(0.5);
+}
+    @keyframes pulse {
+        from {
+            box-shadow: 0 0 0 0 #face74;
+        }
+    }
+}
+input[type='submit'] {
+    border: 1px solid hsl(219, 17%, 21%);
+    border-radius: .74em;
+    background: linear-gradient(145deg, #252b34, #20242c);
+    box-shadow: 10px 10px 20px #1a1e25,
+                -10px -10px 20px #2c323d;
+    padding: .5em;
+    color: #face74;
+    height: 42px;
+    width: 232px;
+    vertical-align: -0.125em;
+}
+input[type='submit']:hover {
+    border: 1px solid #232831;
+    background: #333b49;
+    color: #fff;
+}
+
+.error,
+.req {
+color: #ff6633;
+	border: 1px solid #ff6633;
+	background: url(img/icon-alert.svg) no-repeat 1em 1.5em;
+    background-size: 30px 30px;
+    padding : .74em 1.27em
+}
+</style> 
 </head>
 <body>
 
@@ -81,7 +269,7 @@ width							: 1.5em; /* Size icon to text */
 					<input type="hidden" name="disabled_modules[]" value="<{$module}>"/></td>
 				<td><b><{$module}></b></td>
 				<td><{$smarty.const._SYS_MODULE_DISABLED}></td>
-				<td>
+				<td class="req">
 					<a href="<{$xoops_url}>/index.php?cube_module_uninstall=<{$module}>">
 					<svg xmlns="http://www.w3.org/2000/svg"
 					width="24px" height="24px" viewBox="0 0 24 24" class="icon-package">
@@ -93,7 +281,7 @@ width							: 1.5em; /* Size icon to text */
 		<{/foreach}>
 		<{foreach item=module from=$option}>
 			<tr>
-				<td><input type="checkbox" name="option_modules[]" value="<{$module.dirname}>" <{$module.checked}> /></td>
+				<td><input type="checkbox" name="option_modules[]" value="<{$module.dirname}>" <{$module.checked}>></td>
 				<td><{$module.dirname}></td>
 				<td colspan="2"><{$module.desc}></td>
 			</tr>
@@ -104,7 +292,7 @@ width							: 1.5em; /* Size icon to text */
 			<tr>
 				<td colspan="4">
          <input type="hidden" name="cube_module_install" value="1"/>
-         <input type="submit" value="<{$smarty.const._INSTALL}>" />
+         <p><input type="submit" value="<{$smarty.const._INSTALL}>"></p>
 				</td>
 			</tr>
 		</tfoot>
