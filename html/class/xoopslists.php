@@ -1,33 +1,19 @@
 <?php
-// $Id: xoopslists.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: The XOOPS Project                                                 //
-// URL: https://www.xoops.org/                                                //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Lists
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:21 Minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 
 if (!defined('XOOPS_LISTS_INCLUDED')) {
@@ -169,11 +155,9 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
             $filelist = [];
             if ($handle = opendir($dirname)) {
                 while (false !== ($file = readdir($handle))) {
-                    if ((!preg_match("/^[\.]{1,2}$/", $file) && preg_match("/(\.htm|\.html|\.xhtml)$/i", $file) && !is_dir($file))) {
-                        if ('cvs' != strtolower($file) && !is_dir($file)) {
-                            $file = $prefix.$file;
-                            $filelist[$file] = $prefix.$file;
-                        }
+                    if ((!preg_match("/^[\.]{1,2}$/", $file) && preg_match("/(\.htm|\.html|\.xhtml)$/i", $file) && !is_dir($file)) && 'cvs' != strtolower($file) && !is_dir($file)) {
+                        $file = $prefix.$file;
+                        $filelist[$file] = $prefix.$file;
                     }
                 }
                 closedir($handle);
@@ -190,7 +174,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
         public static function &getAvatarsList($avatar_dir= '')
         {
             $avatars = [];
-            if ('' != $avatar_dir) {
+            if ('' !== $avatar_dir) {
                 $avatars =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/avatar/' . $avatar_dir . '/', $avatar_dir . '/');
             } else {
                 $avatars =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/avatar/');
@@ -223,7 +207,7 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
         public static function &getSubjectsList($sub_dir= '')
         {
             $subjects = [];
-            if ('' != $sub_dir) {
+            if ('' !== $sub_dir) {
                 $subjects =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/subject/' . $sub_dir, $sub_dir . '/');
             } else {
                 $subjects =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/images/subject/');

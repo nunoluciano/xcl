@@ -1,77 +1,47 @@
 <?php
-// $Id: formcheckbox.php,v 1.1 2007/05/15 02:34:42 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Form checkbox
+ *  *
+ *  * @package    kernel
+ *  * @subpackage form
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-/**
- * @package     kernel
- * @subpackage  form
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
-/**
- * One or more Checkbox(es)
- * 
- * @package     kernel
- * @subpackage  form
- * 
- * @author	Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
 class XoopsFormCheckBox extends XoopsFormElement
 {
 
     /**
      * Availlable options
-     * @var array   
+     * @var array
      * @access	private
      */
     public $_options = [];
 
     /**
      * pre-selected values in array
-     * @var	array   
+     * @var	array
      * @access	private
      */
     public $_value = [];
 
     /**
      * Constructor
-     * 
+     *
      * @param	string  $caption
      * @param	string  $name
-     * @param	mixed   $value  Either one value as a string or an array of them.   
+     * @param	mixed   $value  Either one value as a string or an array of them.
      */
     public function __construct($caption, $name, $value = null)
     {
@@ -88,7 +58,7 @@ class XoopsFormCheckBox extends XoopsFormElement
 
     /**
      * Get the "value"
-     * 
+     *
      * @return	array
      */
     public function getValue()
@@ -98,7 +68,7 @@ class XoopsFormCheckBox extends XoopsFormElement
 
     /**
      * Set the "value"
-     * 
+     *
      * @param	array
      */
     public function setValue($value)
@@ -115,9 +85,9 @@ class XoopsFormCheckBox extends XoopsFormElement
 
     /**
      * Add an option
-     * 
-     * @param	string  $value  
-     * @param	string  $name   
+     *
+     * @param	string  $value
+     * @param	string  $name
      */
     public function addOption($value, $name= '')
     {
@@ -130,7 +100,7 @@ class XoopsFormCheckBox extends XoopsFormElement
 
     /**
      * Add multiple Options at once
-     * 
+     *
      * @param	array   $options    Associative array of value->name pairs
      */
     public function addOptionArray($options)
@@ -144,7 +114,7 @@ class XoopsFormCheckBox extends XoopsFormElement
 
     /**
      * Get an array with all the options
-     * 
+     *
      * @return	array   Associative array of value->name pairs
      */
     public function getOptions()
@@ -154,27 +124,27 @@ class XoopsFormCheckBox extends XoopsFormElement
 
     /**
      * prepare HTML for output
-     * 
+     *
      * @return	string
      */
     public function render()
     {
         $root =& XCube_Root::getSingleton();
         $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-        
+
         $renderTarget =& $renderSystem->createRenderTarget('main');
-    
+
         if (count($this->getOptions()) > 1 && '[]' != substr($this->getName(), -2, 2)) {
             $newname = $this->getName() . '[]';
             $this->setName($newname);
         }
-        
+
         $renderTarget->setAttribute('legacy_module', 'legacy');
         $renderTarget->setTemplateName('legacy_xoopsform_checkbox.html');
         $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
-        
+
         return $renderTarget->getResult();
     }
 }

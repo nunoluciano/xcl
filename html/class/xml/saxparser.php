@@ -1,16 +1,26 @@
 <?php
-// $Id: saxparser.php,v 1.1 2007/05/15 02:35:35 minahito Exp $
+/**
+ * *
+ *  * Provides basic functionality to read and parse XML documents
+ *  *
+ *  * @package    kernel
+ *  * @subpackage xml
+ *  * @author     Original Author: Ken Egervari
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 /*******************************************************************************
-    Location: <b>xml/SaxParser.class</b><br>
-     <br>
+
     Provides basic functionality to read and parse XML documents.  Subclasses
     must implement all the their custom handlers by using add* function methods.
     They may also use the handle*() methods to parse a specific XML begin and end
-    tags, but this is not recommended as it is more difficult.<br>
-    <br>
-    Copyright &copy; 2001 eXtremePHP.  All rights reserved.<br>
-    <br>
-    @author Ken Egervari<br>
+    tags, but this is not recommended as it is more difficult.
+
 *******************************************************************************/
 
 class SaxParser
@@ -188,7 +198,7 @@ class SaxParser
      * <b>functionName( $attributes )</b>
      * @param $tagHandler
      * @return void
-*/
+    */
     public function addTagHandler(&$tagHandler)
     {
         $name = $tagHandler->getName();
@@ -207,14 +217,14 @@ class SaxParser
     ---------------------------------------------------------------------------*/
 
     /****************************************************************************
-        * Callback function that executes whenever a the start of a tag
-        * occurs when being parsed.
-     * @param int    $parser          .  The handle to the parser.
-   * @param string $tagName         .  The name of the tag currently being parsed.
-     * @param attay  $attributesArray .  The list of attributes associated with
-        * the tag.
-        * @private
-        * @returns void
+    * Callback function that executes whenever a the start of a tag
+    * occurs when being parsed.
+    * @param int    $parser          .  The handle to the parser.
+    * @param string $tagName         .  The name of the tag currently being parsed.
+    * @param attay  $attributesArray .  The list of attributes associated with
+    * the tag.
+    * @private
+    * @returns void
     ****************************************************************************/
     public function handleBeginElement($parser, $tagName, $attributesArray)
     {
@@ -228,12 +238,12 @@ class SaxParser
     }
 
     /****************************************************************************
-        * Callback function that executes whenever the end of a tag
-        * occurs when being parsed.
-     * @param int    $parser  .  The handle to the parser.
-     * @param string $tagName .  The name of the tag currently being parsed.
-        * @private
-        * @returns void
+    * Callback function that executes whenever the end of a tag
+    * occurs when being parsed.
+    * @param int    $parser  .  The handle to the parser.
+    * @param string $tagName .  The name of the tag currently being parsed.
+    * @private
+    * @returns void
     ****************************************************************************/
     public function handleEndElement($parser, $tagName)
     {
@@ -247,11 +257,11 @@ class SaxParser
     }
 
     /****************************************************************************
-        * Callback function that executes whenever character data is encountered
-        * while being parsed.
-     * @param int    $parser .  The handle to the parser.
-     * @param string $data   .  Character data inside the tag
-        * @returns void
+    * Callback function that executes whenever character data is encountered
+    * while being parsed.
+    * @param int    $parser .  The handle to the parser.
+    * @param string $data   .  Character data inside the tag
+    * @returns void
     ****************************************************************************/
     public function handleCharacterData($parser, $data)
     {
@@ -268,19 +278,19 @@ class SaxParser
      * @param     $target
      * @param     $data
      * @return void
-*/
+    */
     public function handleProcessingInstruction($parser, &$target, &$data)
     {
         //        if($target == 'php') {
-//            eval($data);
-//        }
+    //            eval($data);
+    //        }
     }
 
     /****************************************************************************
      * @param int $parser .  The handle to the parser.
      * @param     $data
      * @return void
-*/
+    */
     public function handleDefault($parser, $data)
     {
     }
@@ -293,7 +303,7 @@ class SaxParser
      * @param     $publicId
      * @param     $notationName
      * @return void
-*/
+    */
     public function handleUnparsedEntityDecl($parser, $entityName, $base, $systemId, $publicId, $notationName)
     {
     }
@@ -305,7 +315,7 @@ class SaxParser
      * @param     $systemId
      * @param     $publicId
      * @return void
-*/
+    */
     public function handleNotationDecl($parser, $notationName, $base, $systemId, $publicId)
     {
     }
@@ -317,7 +327,7 @@ class SaxParser
      * @param     $systemId
      * @param     $publicId
      * @return void
-*/
+    */
     public function handleExternalEntityRef($parser, $openEntityNames, $base, $systemId, $publicId)
     {
     }
@@ -329,7 +339,7 @@ class SaxParser
      * @param $parser
      * @param $tagName
      * @param $attributesArray
-*/
+    */
     public function handleBeginElementDefault($parser, $tagName, $attributesArray)
     {
     }
@@ -340,7 +350,7 @@ class SaxParser
      * @abstract
      * @param $parser
      * @param $tagName
-*/
+    */
     public function handleEndElementDefault($parser, $tagName)
     {
     }
@@ -351,7 +361,7 @@ class SaxParser
      * @abstract
      * @param $parser
      * @param $data
-*/
+    */
     public function handleCharacterDataDefault($parser, $data)
     {
     }

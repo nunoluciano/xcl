@@ -1,51 +1,31 @@
 <?php
-// $Id: module.errorhandler.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author of File: Goghs (https://www.eqiao.com/)                             //
-################################################################################
+/**
+ * *
+ *  * Error Handler class
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Goghs
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if (!defined('XOOPS_C_ERRORHANDLER_INCLUDED')) {
     define('XOOPS_C_ERRORHANDLER_INCLUDED', 1);
 
-    /**
-     * Error Handler class
-     *
-     * @package     kernel
-     * @subpackage  core
-     *
-     * @author      Goghs (https://www.eqiao.com/)
-     * @copyright   (c) 2000-2003 The Xoops Project - www.xoops.org
-     */
+
     class ErrorHandler
     {
         /**
          * Show an error message
          *
-         * @param   string $e_code Errorcode
-         * @param int      $pages  How many pages should the link take you back?
+         * @param string $e_code Errorcode
+         * @param int   $pages  How many pages should the link take you back?
          *
          * @global  $xoopsConfig
          **/

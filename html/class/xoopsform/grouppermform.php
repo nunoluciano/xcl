@@ -1,47 +1,26 @@
 <?php
-// $Id: grouppermform.php,v 1.2 2007/11/27 12:38:05 nobunobu Exp $
-// ------------------------------------------------------------------------ //
-// XOOPS - PHP Content Management System                      //
-// Copyright (c) 2000-2003 XOOPS.org                           //
-// <https://www.xoops.org/>                             //
-// ------------------------------------------------------------------------ //
-// This program is free software; you can redistribute it and/or modify     //
-// it under the terms of the GNU General Public License as published by     //
-// the Free Software Foundation; either version 2 of the License, or        //
-// (at your option) any later version.                                      //
-// //
-// You may not change or alter any portion of this comment or credits       //
-// of supporting developers from this source code or any supporting         //
-// source code which is considered copyrighted (c) material of the          //
-// original comment or credit authors.                                      //
-// //
-// This program is distributed in the hope that it will be useful,          //
-// but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-// GNU General Public License for more details.                             //
-// //
-// You should have received a copy of the GNU General Public License        //
-// along with this program; if not, write to the Free Software              //
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-// ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Renders a form for setting module specific group permissions
+ *  *
+ *  * @package    kernel
+ *  * @subpackage form
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 
-/**
- * Renders a form for setting module specific group permissions
- *
- * @author Kazumi Ono <onokazu@myweb.ne.jp>
- * @copyright copyright (c) 2000-2003 XOOPS.org
- * @package kernel
- * @subpackage form
- */
+
 class XoopsGroupPermForm extends XoopsForm
 {
     /**
@@ -84,7 +63,7 @@ class XoopsGroupPermForm extends XoopsForm
         $this->_permName = $permname;
         $this->_permDesc = $permdesc;
         $this->addElement(new XoopsFormHidden('modid', $this->_modid));
-        if ('' != $url) {
+        if ('' !== $url) {
             $this->addElement(new XoopsFormHidden('redirect_url', $url));
         }
     }
@@ -117,10 +96,10 @@ class XoopsGroupPermForm extends XoopsForm
         if (!empty($this->_itemTree[$itemId]['children'])) {
             $first_child = $this->_itemTree[$itemId]['children'];
             foreach ($first_child as $fcid) {
-                array_push($childIds, $fcid);
+                $childIds[] = $fcid;
                 if (!empty($this->_itemTree[$fcid]['children'])) {
                     foreach ($this->_itemTree[$fcid]['children'] as $_fcid) {
-                        array_push($childIds, $_fcid);
+                        $childIds[] = $_fcid;
                         $this->_loadAllChildItemIds($_fcid, $childIds);
                     }
                 }
@@ -175,11 +154,6 @@ class XoopsGroupPermForm extends XoopsForm
 
 /**
  * Renders checkbox options for a group permission form
- *
- * @author Kazumi Ono <onokazu@myweb.ne.jp>
- * @copyright copyright (c) 2000-2003 XOOPS.org
- * @package kernel
- * @subpackage form
  */
 class XoopsGroupFormCheckBox extends XoopsFormElement
 {
@@ -323,7 +297,7 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
             $tree .= "var ele = xoopsGetElementById('" . $child_ele . "'); if(this.checked != true) {ele.checked = false;}";
         }
         $tree .= '" value="1"';
-        if (in_array($option['id'], $this->_value)) {
+        if (in_array($option['id'], $this->_value, true)) {
             $tree .= ' checked="checked"';
         }
         $tree .= ' />'
@@ -336,7 +310,7 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
                  . htmlspecialchars($option['name']) . "\" /><br>\n";
         if (isset($option['children'])) {
             foreach ($option['children'] as $child) {
-                array_push($parentIds, $option['id']);
+                $parentIds[] = $option['id'];
                 $this->_renderOptionTree($tree, $this->_optionTree[$child], $prefix . '&nbsp;-', $parentIds);
             }
         }

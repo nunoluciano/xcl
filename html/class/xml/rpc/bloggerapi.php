@@ -1,33 +1,19 @@
 <?php
-// $Id: bloggerapi.php,v 1.1 2007/05/15 02:34:53 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Blogger API
+ *  *
+ *  * @package    kernel
+ *  * @subpackage xml
+ *  * @author     Original Authors : Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -50,45 +36,43 @@ class BloggerApi extends XoopsXmlRpcApi
     {
         if (!$this->_checkUser($this->params[2], $this->params[3])) {
             $this->response->add(new XoopsXmlRpcFault(104));
+        } else if (!$fields =& $this->_getPostFields(null, $this->params[1])) {
+            $this->response->add(new XoopsXmlRpcFault(106));
         } else {
-            if (!$fields =& $this->_getPostFields(null, $this->params[1])) {
-                $this->response->add(new XoopsXmlRpcFault(106));
-            } else {
-                $missing = [];
-                $post = [];
-                foreach ($fields as $tag => $detail) {
-                    $maptag = $this->_getXoopsTagMap($tag);
-                    $data = $this->_getTagCdata($this->params[4], $maptag, true);
-                    if ('' == trim($data)) {
-                        if ($detail['required']) {
-                            $missing[] = $maptag;
-                        }
-                    } else {
-                        $post[$tag] = $data;
+            $missing = [];
+            $post = [];
+            foreach ($fields as $tag => $detail) {
+                $maptag = $this->_getXoopsTagMap($tag);
+                $data = $this->_getTagCdata($this->params[4], $maptag, true);
+                if ('' == trim($data)) {
+                    if ($detail['required']) {
+                        $missing[] = $maptag;
                     }
-                }
-                if (count($missing) > 0) {
-                    $msg = '';
-                    foreach ($missing as $m) {
-                        $msg .= '<'.$m.'> ';
-                    }
-                    $this->response->add(new XoopsXmlRpcFault(109, $msg));
                 } else {
-                    $newparams = [];
-                    // Xoops Api ignores App key
-                    $newparams[0] = $this->params[1];
-                    $newparams[1] = $this->params[2];
-                    $newparams[2] = $this->params[3];
-                    foreach ($post as $key => $value) {
-                        $newparams[3][$key] =& $value;
-                        unset($value);
-                    }
-                    $newparams[3]['xoops_text'] =& $this->params[4];
-                    $newparams[4] = $this->params[5];
-                    $xoopsapi =& $this->_getXoopsApi($newparams);
-                    $xoopsapi->_setUser($this->user, $this->isadmin);
-                    $xoopsapi->newPost();
+                    $post[$tag] = $data;
                 }
+            }
+            if (count($missing) > 0) {
+                $msg = '';
+                foreach ($missing as $m) {
+                    $msg .= '<'.$m.'> ';
+                }
+                $this->response->add(new XoopsXmlRpcFault(109, $msg));
+            } else {
+                $newparams = [];
+                // Xoops Api ignores App key
+                $newparams[0] = $this->params[1];
+                $newparams[1] = $this->params[2];
+                $newparams[2] = $this->params[3];
+                foreach ($post as $key => $value) {
+                    $newparams[3][$key] =& $value;
+                    unset($value);
+                }
+                $newparams[3]['xoops_text'] =& $this->params[4];
+                $newparams[4] = $this->params[5];
+                $xoopsapi =& $this->_getXoopsApi($newparams);
+                $xoopsapi->_setUser($this->user, $this->isadmin);
+                $xoopsapi->newPost();
             }
         }
     }
@@ -97,43 +81,42 @@ class BloggerApi extends XoopsXmlRpcApi
     {
         if (!$this->_checkUser($this->params[2], $this->params[3])) {
             $this->response->add(new XoopsXmlRpcFault(104));
+        } else if (!$fields =& $this->_getPostFields($this->params[1])) {
+            // empty
         } else {
-            if (!$fields =& $this->_getPostFields($this->params[1])) {
-            } else {
-                $missing = [];
-                $post = [];
-                foreach ($fields as $tag => $detail) {
-                    $data = $this->_getTagCdata($this->params[4], $tag, true);
-                    if ('' == trim($data)) {
-                        if ($detail['required']) {
-                            $missing[] = $tag;
-                        }
-                    } else {
-                        $post[$tag] = $data;
+            $missing = [];
+            $post = [];
+            foreach ($fields as $tag => $detail) {
+                $data = $this->_getTagCdata($this->params[4], $tag, true);
+                if ('' == trim($data)) {
+                    if ($detail['required']) {
+                        $missing[] = $tag;
                     }
-                }
-                if (count($missing) > 0) {
-                    $msg = '';
-                    foreach ($missing as $m) {
-                        $msg .= '<'.$m.'> ';
-                    }
-                    $this->response->add(new XoopsXmlRpcFault(109, $msg));
                 } else {
-                    $newparams = [];
-                    // XOOPS API ignores App key (index 0 of params)
-                    $newparams[0] = $this->params[1];
-                    $newparams[1] = $this->params[2];
-                    $newparams[2] = $this->params[3];
-                    foreach ($post as $key => $value) {
-                        $newparams[3][$key] =& $value;
-                        unset($value);
-                    }
-                    $newparams[3]['xoops_text'] =& $this->params[4];
-                    $newparams[4] = $this->params[5];
-                    $xoopsapi =& $this->_getXoopsApi($newparams);
-                    $xoopsapi->_setUser($this->user, $this->isadmin);
-                    $xoopsapi->editPost();
+                    $post[$tag] = $data;
                 }
+            }
+            if (count($missing) > 0) {
+                $msg = '';
+                foreach ($missing as $m) {
+                    $msg .= '<'.$m.'> ';
+                }
+                $this->response->add(new XoopsXmlRpcFault(109, $msg));
+            } else {
+                $newparams = [];
+                // XOOPS API ignores App key (index 0 of params)
+                $newparams[0] = $this->params[1];
+                $newparams[1] = $this->params[2];
+                $newparams[2] = $this->params[3];
+                foreach ($post as $key => $value) {
+                    $newparams[3][$key] =& $value;
+                    unset($value);
+                }
+                $newparams[3]['xoops_text'] =& $this->params[4];
+                $newparams[4] = $this->params[5];
+                $xoopsapi =& $this->_getXoopsApi($newparams);
+                $xoopsapi->_setUser($this->user, $this->isadmin);
+                $xoopsapi->editPost();
             }
         }
     }
@@ -205,10 +188,10 @@ class BloggerApi extends XoopsXmlRpcApi
                 if (0 == $count) {
                     $this->response->add(new XoopsXmlRpcFault(106, 'Found 0 Entries'));
                 } else {
-                    for ($i = 0; $i < $count; $i++) {
+                    foreach ($ret as $iValue) {
                         $struct = new XoopsXmlRpcStruct();
                         $content = '';
-                        foreach ($ret[$i] as $key => $value) {
+                        foreach ($iValue as $key => $value) {
                             $maptag = $this->_getXoopsTagMap($key);
                             switch ($maptag) {
                             case 'userid':

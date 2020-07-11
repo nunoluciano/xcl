@@ -1,4 +1,22 @@
 <?php
+/**
+ * *
+ *  * Get a reference to the only instance of database class and connects to DB
+ *  *
+ *  * if the class has not been instantiated yet, this will also take care of that
+ *  *
+ *  * @package    kernel
+ *  * @subpackage database
+ *  * @author     Original Author : Kazumi Ono
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
+
 class XoopsDatabaseFactory
 {
     public function __construct()
@@ -6,11 +24,6 @@ class XoopsDatabaseFactory
     }
 
     /**
-     * Get a reference to the only instance of database class and connects to DB
-     *
-     * if the class has not been instantiated yet, this will also take
-     * care of that
-     *
      * @static
      * @staticvar   object  The only instance of database class
      * @return      object  Reference to the only instance of database class

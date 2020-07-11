@@ -1,89 +1,58 @@
 <?php
-// $Id: formselect.php,v 1.1 2007/05/15 02:34:42 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Form select field
+ *  *
+ *  * @package    kernel
+ *  * @subpackage form
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-/**
- * @package     kernel
- * @subpackage  form
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
-
-/**
- * A select field
- * 
- * @package     kernel
- * @subpackage  form
- * 
- * @author	    Kazumi Ono	<onokazu@xoops.org>
- * @copyright	copyright (c) 2000-2003 XOOPS.org
- */
 class XoopsFormSelect extends XoopsFormElement
 {
 
     /**
      * Options
-     * @var array   
+     * @var array
      * @access	private
      */
     public $_options = [];
 
     /**
      * Allow multiple selections?
-     * @var	bool    
+     * @var	bool
      * @access	private
      */
     public $_multiple = false;
 
     /**
      * Number of rows. "1" makes a dropdown list.
-     * @var	int 
+     * @var	int
      * @access	private
      */
     public $_size;
 
     /**
      * Pre-selcted values
-     * @var	array   
+     * @var	array
      * @access	private
      */
     public $_value = [];
 
     /**
      * Constructor
-     * 
+     *
      * @param	string	$caption	Caption
      * @param	string	$name       "name" attribute
      * @param	mixed	$value	    Pre-selected value (or array of them).
@@ -102,12 +71,12 @@ class XoopsFormSelect extends XoopsFormElement
     }
     public function XoopsFormSelect($caption, $name, $value=null, $size=1, $multiple=false)
     {
-        return self::__construct($caption, $name, $value, $size, $multiple);
+        return $this->__construct($caption, $name, $value, $size, $multiple);
     }
 
     /**
      * Are multiple selections allowed?
-     * 
+     *
      * @return	bool
      */
     public function isMultiple()
@@ -117,7 +86,7 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Get the size
-     * 
+     *
      * @return	int
      */
     public function getSize()
@@ -127,7 +96,7 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Get an array of pre-selected values
-     * 
+     *
      * @return	array
      */
     public function getValue()
@@ -137,7 +106,7 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Set pre-selected values
-     * 
+     *
      * @param mixed $value
      */
     public function setValue($value)
@@ -153,7 +122,7 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Add an option
-     * 
+     *
      * @param	string  $value  "value" attribute
      * @param	string  $name   "name" attribute
      */
@@ -168,7 +137,7 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Add multiple options
-     * 
+     *
      * @param	array   $options    Associative array of value->name pairs
      */
     public function addOptionArray($options)
@@ -182,7 +151,7 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Get all options
-     * 
+     *
      * @return	array   Associative array of value->name pairs
      */
     public function getOptions()
@@ -192,22 +161,22 @@ class XoopsFormSelect extends XoopsFormElement
 
     /**
      * Prepare HTML for output
-     * 
+     *
      * @return	string  HTML
      */
     public function render()
     {
         $root =& XCube_Root::getSingleton();
         $renderSystem =& $root->getRenderSystem(XOOPSFORM_DEPENDENCE_RENDER_SYSTEM);
-        
+
         $renderTarget =& $renderSystem->createRenderTarget('main');
-    
+
         $renderTarget->setAttribute('legacy_module', 'legacy');
         $renderTarget->setTemplateName('legacy_xoopsform_select.html');
         $renderTarget->setAttribute('element', $this);
 
         $renderSystem->render($renderTarget);
-    
+
         return $renderTarget->getResult();
     }
 }

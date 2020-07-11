@@ -1,12 +1,20 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: token.php,v 1.3 2008/09/25 15:12:42 kilica Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * *
+ *  * Token instance
+ *  *
+ *  * @package    Legacy
+ *  * @subpackage core
+ *  * @author     Original Authors: kilica
+ *  * @author     Other Authors
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
  */
+
 
 define('XOOPS_TOKEN_TIMEOUT', 0);
 define('XOOPS_TOKEN_PREFIX', 'XOOPS_TOKEN_');
@@ -163,7 +171,7 @@ class XoopsToken
     }
 
     /**
-     * If $token equals this token's string, true is returened.
+     * If $token equals this token's string, true is returned.
      *
      * @param null $token
      * @return  bool
@@ -189,7 +197,7 @@ class XoopsTokenHandler
     public $_prefix = '';
 
     /**
-     * Create XoopsToken instance, regist(keep to server), and returns it.
+     * Create XoopsToken instance, register (keep to server), and returns it.
      *
      * @access public
      * @param this $name    token's name string.
@@ -365,10 +373,8 @@ class XoopsMultiTokenHandler extends XoopsTokenHandler
     {
         $serial_number = $this->getRequestNumber($name);
 
-        if (null != $serial_number) {
-            if ($token =& $this->fetch($name, $serial_number)) {
-                return $this->validate($token, $clearIfValid);
-            }
+        if ((null !== $serial_number) && $token =& $this->fetch($name, $serial_number)) {
+            return $this->validate($token, $clearIfValid);
         }
         return false;
     }

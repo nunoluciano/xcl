@@ -1,33 +1,20 @@
 <?php
-// $Id: xoopstopic.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Xoops Topic
+ *  *
+ *  * @package    class
+ *  * @subpackage core
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -50,7 +37,7 @@ class XoopsTopic
         $this->table = $table;
         if (is_array($topicid)) {
             $this->makeTopic($topicid);
-        } elseif (0 != $topicid) {
+        } elseif (0 !== $topicid) {
             $this->getTopic((int)$topicid);
         } else {
             $this->topic_id = $topicid;
@@ -58,7 +45,7 @@ class XoopsTopic
     }
     public function XoopsTopic($table, $topicid=0)
     {
-        return self::__construct($table, $topicid);
+        return $this->__construct($table, $topicid);
     }
 
     public function setTopicTitle($value)
@@ -101,10 +88,10 @@ class XoopsTopic
         $myts =& MyTextSanitizer::sGetInstance();
         $title = '';
         $imgurl = '';
-        if (isset($this->topic_title) && '' != $this->topic_title) {
+        if (isset($this->topic_title) && '' !== $this->topic_title) {
             $title = $myts->makeTboxData4Save($this->topic_title);
         }
-        if (isset($this->topic_imgurl) && '' != $this->topic_imgurl) {
+        if (isset($this->topic_imgurl) && '' !== $this->topic_imgurl) {
             $imgurl = $myts->makeTboxData4Save($this->topic_imgurl);
         }
         if (!isset($this->topic_pid) || !is_numeric($this->topic_pid)) {
@@ -117,7 +104,7 @@ class XoopsTopic
             $sql = sprintf("UPDATE %s SET topic_pid = %u, topic_imgurl = '%s', topic_title = '%s' WHERE topic_id = %u", $this->table, $this->topic_pid, $imgurl, $title, $this->topic_id);
         }
         if (!$result = $this->db->query($sql)) {
-            ErrorHandler::show('0022');
+            (new ErrorHandler)->show('0022');
         }
         if (true == $this->use_permission) {
             if (empty($this->topic_id)) {
@@ -131,7 +118,7 @@ class XoopsTopic
                     $add = true;
                     // only grant this permission when the group has this permission in all parent topics of the created topic
                     foreach ($parent_topics as $p_topic) {
-                        if (!in_array($p_topic, $moderate_topics)) {
+                        if (!in_array($p_topic, $moderate_topics, true)) {
                             $add = false;
                             continue;
                         }
@@ -151,7 +138,7 @@ class XoopsTopic
                     $submit_topics = XoopsPerms::getPermitted($this->mid, 'SubmitInTopic', $s_g);
                     $add = true;
                     foreach ($parent_topics as $p_topic) {
-                        if (!in_array($p_topic, $submit_topics)) {
+                        if (!in_array($p_topic, $submit_topics, true)) {
                             $add = false;
                             continue;
                         }
@@ -171,7 +158,7 @@ class XoopsTopic
                     $read_topics = XoopsPerms::getPermitted($this->mid, 'ReadInTopic', $r_g);
                     $add = true;
                     foreach ($parent_topics as $p_topic) {
-                        if (!in_array($p_topic, $read_topics)) {
+                        if (!in_array($p_topic, $read_topics, true)) {
                             $add = false;
                             continue;
                         }
@@ -295,7 +282,7 @@ class XoopsTopic
     public function makeTopicSelBox($none=0, $seltopic=-1, $selname= '', $onchange= '')
     {
         $xt = new XoopsTree($this->table, 'topic_id', 'topic_pid');
-        if (-1 != $seltopic) {
+        if (-1 !== $seltopic) {
             $xt->makeMySelBox('topic_title', 'topic_title', $seltopic, $none, $selname, $onchange);
         } elseif (!empty($this->topic_id)) {
             $xt->makeMySelBox('topic_title', 'topic_title', $this->topic_id, $none, $selname, $onchange);
@@ -335,10 +322,6 @@ class XoopsTopic
         $sql = 'SELECT COUNT(*) from ' . $this->table . ' WHERE topic_pid = ' . (int)$pid . " AND topic_title = '" . trim($title) . "'";
         $rs = $this->db->query($sql);
         list($count) = $this->db->fetchRow($rs);
-        if ($count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $count > 0;
     }
 }

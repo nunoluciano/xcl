@@ -1,5 +1,19 @@
 <?php
-// $Id: xoopsformloader.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
+/**
+ * *
+ *  * Form Loader
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -34,4 +48,3 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsform/formhiddentoken.php';
 include_once XOOPS_ROOT_PATH . '/class/xoopsform/formtoken.php';
 include_once XOOPS_ROOT_PATH . '/class/xoopsform/formbreak.php';
 //include_once XOOPS_ROOT_PATH."/class/xoopsform/grouppermform.php";
-;

@@ -1,33 +1,20 @@
 <?php
-// $Id: xoopscomments.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Xoops Comments
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -36,6 +23,7 @@ require_once XOOPS_ROOT_PATH.'/class/xoopsobject.php';
 
 $root =& XCube_Root::getSingleton();
 $root->mLanguageManager->loadPageTypeMessageCatalog('comment');
+
 
 class XoopsComments extends XoopsObject
 {
@@ -101,7 +89,7 @@ class XoopsComments extends XoopsObject
         if (empty($comment_id)) {
             $comment_id = $this->db->getInsertId();
         }
-        if (false != $isnew) {
+        if (false !== $isnew) {
             $sql = sprintf('UPDATE %s SET posts = posts+1 WHERE uid = %u', $this->db->prefix('users'), $user_id);
             if (!$result = $this->db->query($sql)) {
                 echo 'Could not update user posts.';
@@ -124,12 +112,12 @@ class XoopsComments extends XoopsObject
         $arr = $mytree->getAllChild($this->getVar('comment_id'), 'comment_id');
         $size = count($arr);
         if ($size > 0) {
-            for ($i = 0; $i < $size; $i++) {
-                $sql = sprintf('DELETE FROM %s WHERE comment_bid = %u', $this->ctable, $arr[$i]['comment_id']);
+            foreach ($arr as $iValue) {
+                $sql = sprintf('DELETE FROM %s WHERE comment_bid = %u', $this->ctable, $iValue['comment_id']);
                 if (!$result = $this->db->query($sql)) {
                     echo 'Could not delete comment.';
                 }
-                $sql = sprintf('UPDATE %s SET posts = posts-1 WHERE uid = %u', $this->db->prefix('users'), $arr[$i]['user_id']);
+                $sql = sprintf('UPDATE %s SET posts = posts-1 WHERE uid = %u', $this->db->prefix('users'), $iValue['user_id']);
                 if (!$result = $this->db->query($sql)) {
                     echo 'Could not update user posts.';
                 }
@@ -194,7 +182,7 @@ class XoopsComments extends XoopsObject
             echo " selected='selected'";
         }
         echo '>' . _THREADED . "</option></select><select name='order'><option value='0'";
-        if (1 != $order) {
+        if (1 !== $order) {
             echo " selected='selected'";
         }
         echo '>' . _OLDESTFIRST . "</option><option value='1'";
@@ -223,7 +211,7 @@ class XoopsComments extends XoopsObject
         $reply_image = '';
         $delete_image = '';
         $post_date = formatTimestamp($this->getVar('date'), 'm');
-        if (0 != $this->getVar('user_id')) {
+        if (0 !== $this->getVar('user_id')) {
             $poster = new XoopsUser($this->getVar('user_id'));
             if (!$poster->isActive()) {
                 $poster = 0;
@@ -231,7 +219,7 @@ class XoopsComments extends XoopsObject
         } else {
             $poster = 0;
         }
-        if (null != $this->getVar('icon') && '' != $this->getVar('icon')) {
+        if (null !== $this->getVar('icon') && '' !== $this->getVar('icon')) {
             $subject_image = "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . '/images/subject/' . $this->getVar('icon') . "' alt='' />";
         } else {
             $subject_image =  "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . "/images/icons/no_posticon.gif' alt='' />";
@@ -263,7 +251,7 @@ class XoopsComments extends XoopsObject
             $user_from = _CM_FROM;
             $user_from .= $poster->getVar('user_from');
             $rank = $poster->rank();
-            if ('' != $rank['image']) {
+            if ('' !== $rank['image']) {
                 $rank['image'] = "<img src='".XOOPS_UPLOAD_URL . '/' . $rank['image'] . "' alt='' />";
             }
             $avatar_image = "<img src='".XOOPS_UPLOAD_URL . '/' . $poster->getVar('user_avatar') . "' alt='' />";
@@ -284,27 +272,27 @@ class XoopsComments extends XoopsObject
                 $email_image = '';
             }
             $posterurl = $poster->getVar('url');
-            if ('' != $posterurl) {
+            if ('' !== $posterurl) {
                 $www_image = "<a href='$posterurl' rel='external'><img src='".XOOPS_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' /></a>";
             } else {
                 $www_image = '';
             }
-            if ('' != $poster->getVar('user_icq')) {
+            if ('' !== $poster->getVar('user_icq')) {
                 $icq_image = "<a href='https://wwp.icq.com/scripts/search.dll?to=".$poster->getVar('user_icq', 'E') . "'><img src='" . XOOPS_URL . "/images/icons/icq_add.gif' alt='" . _ADD . "' /></a>";
             } else {
                 $icq_image = '';
             }
-            if ('' != $poster->getVar('user_aim')) {
+            if ('' !== $poster->getVar('user_aim')) {
                 $aim_image = "<a href='aim:goim?screenname=".$poster->getVar('user_aim', 'E') . '&amp;message=Hi+' . $poster->getVar('user_aim') . "+Are+you+there?'><img src='" . XOOPS_URL . "/images/icons/aim.gif' alt='aim' /></a>";
             } else {
                 $aim_image = '';
             }
-            if ('' != $poster->getVar('user_yim')) {
+            if ('' !== $poster->getVar('user_yim')) {
                 $yim_image = "<a href='https://edit.yahoo.com/config/send_webmesg?.target=".$poster->getVar('user_yim', 'E') . "&amp;.src=pg'><img src='" . XOOPS_URL . "/images/icons/yim.gif' alt='yim' /></a>";
             } else {
                 $yim_image = '';
             }
-            if ('' != $poster->getVar('user_msnm')) {
+            if ('' !== $poster->getVar('user_msnm')) {
                 $msnm_image = "<a href='".XOOPS_URL . '/userinfo.php?uid=' . $poster->getVar('uid') . "'><img src='" . XOOPS_URL . "/images/icons/msnm.gif' alt='msnm' /></a>";
             } else {
                 $msnm_image = '';
@@ -334,7 +322,7 @@ class XoopsComments extends XoopsObject
         }
         $prefix = str_replace('.', '&nbsp;&nbsp;&nbsp;&nbsp;', $this->getVar('prefix'));
         $date = formatTimestamp($this->getVar('date'), 'm');
-        if ('' != $this->getVar('icon')) {
+        if ('' !== $this->getVar('icon')) {
             $icon = 'subject/' . $this->getVar('icon', 'E');
         } else {
             $icon = 'icons/no_posticon.gif';

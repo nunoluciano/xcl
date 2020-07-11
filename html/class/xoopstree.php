@@ -1,33 +1,19 @@
 <?php
-// $Id: xoopstree.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Xoops Tree
+ *  *
+ *  * @package    class
+ *  * @subpackage core
+ *  * @author     Original Authors: Minahito
+ *  * @author     Other Authors : Kazumi Ono (aka onokazu)
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 class XoopsTree
 {
@@ -49,7 +35,7 @@ class XoopsTree
     }
     public function XoopsTree($table_name, $id_name, $pid_name)
     {
-        return self::__construct($table_name, $id_name, $pid_name);
+        return $this->__construct($table_name, $id_name, $pid_name);
     }
 
 
@@ -58,7 +44,7 @@ class XoopsTree
     {
         $arr = [];
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
-        if ('' != $order) {
+        if ('' !== $order) {
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
@@ -67,7 +53,7 @@ class XoopsTree
             return $arr;
         }
         while ($myrow=$this->db->fetchArray($result)) {
-            array_push($arr, $myrow);
+            $arr[] = $myrow;
         }
         return $arr;
     }
@@ -82,7 +68,7 @@ class XoopsTree
             return $idarray;
         }
         while (list($id) = $this->db->fetchRow($result)) {
-            array_push($idarray, $id);
+            $idarray[] = $id;
         }
         return $idarray;
     }
@@ -91,7 +77,7 @@ class XoopsTree
     public function getAllChildId($sel_id, $order= '', $idarray = [])
     {
         $sql = 'SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
-        if ('' != $order) {
+        if ('' !== $order) {
             $sql .= " ORDER BY $order";
         }
         $result=$this->db->query($sql);
@@ -100,7 +86,7 @@ class XoopsTree
             return $idarray;
         }
         while (list($r_id) = $this->db->fetchRow($result)) {
-            array_push($idarray, $r_id);
+            $idarray[] = $r_id;
             $idarray = $this->getAllChildId($r_id, $order, $idarray);
         }
         return $idarray;
@@ -110,15 +96,15 @@ class XoopsTree
     public function getAllParentId($sel_id, $order= '', $idarray = [])
     {
         $sql = 'SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '';
-        if ('' != $order) {
+        if ('' !== $order) {
             $sql .= " ORDER BY $order";
         }
         $result=$this->db->query($sql);
-        list($r_id) = $this->db->fetchRow($result);
+        [$r_id] = $this->db->fetchRow($result);
         if (0 == $r_id) {
             return $idarray;
         }
-        array_push($idarray, $r_id);
+        $idarray[] = $r_id;
         $idarray = $this->getAllParentId($r_id, $order, $idarray);
         return $idarray;
     }
@@ -131,7 +117,7 @@ class XoopsTree
         if (0 == $this->db->getRowsNum($result)) {
             return $path;
         }
-        list($parentid, $name) = $this->db->fetchRow($result);
+        [$parentid, $name] = $this->db->fetchRow($result);
         $myts =& MyTextSanitizer::sGetInstance();
         $name = $myts->makeTboxData4Show($name);
         $path = '/' . $name . $path . '';
@@ -152,12 +138,12 @@ class XoopsTree
         }
         $myts =& MyTextSanitizer::sGetInstance();
         echo "<select name='".$sel_name."'";
-        if ('' != $onchange) {
+        if ('' !== $onchange) {
             echo " onchange='".$onchange."'";
         }
         echo ">\n";
         $sql = 'SELECT ' . $this->id . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=0';
-        if ('' != $order) {
+        if ('' !== $order) {
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
@@ -212,7 +198,7 @@ class XoopsTree
         if (0 == $this->db->getRowsNum($result)) {
             return $path;
         }
-        list($parentid) = $this->db->fetchRow($result);
+        [$parentid] = $this->db->fetchRow($result);
         $path = '/' . $sel_id . $path . '';
         if (0 == $parentid) {
             return $path;
@@ -224,7 +210,7 @@ class XoopsTree
     public function getAllChild($sel_id=0, $order= '', $parray = [])
     {
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
-        if ('' != $order) {
+        if ('' !== $order) {
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
@@ -233,7 +219,7 @@ class XoopsTree
             return $parray;
         }
         while ($row = $this->db->fetchArray($result)) {
-            array_push($parray, $row);
+            $parray[] = $row;
             $parray=$this->getAllChild($row[$this->id], $order, $parray);
         }
         return $parray;
@@ -242,7 +228,7 @@ class XoopsTree
     public function getChildTreeArray($sel_id=0, $order= '', $parray = [], $r_prefix= '')
     {
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
-        if ('' != $order) {
+        if ('' !== $order) {
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
@@ -252,7 +238,7 @@ class XoopsTree
         }
         while ($row = $this->db->fetchArray($result)) {
             $row['prefix'] = $r_prefix . '.';
-            array_push($parray, $row);
+            $parray[] = $row;
             $parray = $this->getChildTreeArray($row[$this->id], $order, $parray, $row['prefix']);
         }
         return $parray;

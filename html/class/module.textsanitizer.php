@@ -1,46 +1,22 @@
 <?php
-// $Id: module.textsanitizer.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (https://www.myweb.ne.jp/, https://jp.xoops.org/)        //
-//         Goghs Cheng (https://www.eqiao.com, https://www.devbeez.com/)       //
-// Project: The XOOPS Project (https://www.xoops.org/)                        //
-// ------------------------------------------------------------------------- //
-
 /**
- * Class to "clean up" text for various uses
- *
- * <b>Singleton</b>
- *
- * @package     kernel
- * @subpackage  core
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @author      Goghs Cheng
- * @copyright   (c) 2000-2003 The Xoops Project - www.xoops.org
+ * *
+ *  * Class to "clean up" text for various uses
+ *  *
+ *  * Singleton
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
  */
+
 class MyTextSanitizer
 {
     /**
@@ -65,7 +41,7 @@ class MyTextSanitizer
      */
     public $mXoopsCodePostFilter = null;
 
-    /*
+    /**
     * Constructor of this class
     *
     * Gets allowed html tags from admin config settings
@@ -74,7 +50,7 @@ class MyTextSanitizer
     *
     * @access   private
     *
-    * @todo Sofar, this does nuttin' ;-)
+    * @todo So far, this does nuttin' ;-)
     */
     public function __construct()
     {
@@ -178,9 +154,9 @@ class MyTextSanitizer
     {
         if ($this->checkUrlString($matches[2])) {
             return $matches[0];
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**
@@ -282,17 +258,17 @@ class MyTextSanitizer
     public function _ToShowTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1)
     {
         $text = $this->codePreConv($text, $xcode);
-        if (1 != $html) {
+        if (1 !== $html) {
             $text = $this->htmlSpecialChars($text);
         }
         $text = $this->makeClickable($text);
-        if (0 != $smiley) {
+        if (0 !== $smiley) {
             $text = $this->smiley($text);
         }
-        if (0 != $xcode) {
+        if (0 !== $xcode) {
             $text = $this->xoopsCodeDecode($text, $image);
         }
-        if (0 != $br) {
+        if (0 !== $br) {
             $text = $this->nl2Br($text);
         }
         $text = $this->codeConv($text, $xcode, $image);
@@ -376,7 +352,7 @@ class MyTextSanitizer
      */
     public function codePreConv($text, $xcode = 1)
     {
-        if (0 != $xcode) {
+        if (0 !== $xcode) {
             $text = $this->mTextFilter->preConvertXCode($text, $xcode);
         }
         return $text;
@@ -384,7 +360,7 @@ class MyTextSanitizer
 
     public function codeConv($text, $xcode = 1, $image = 1)
     {
-        if (0 != $xcode) {
+        if (0 !== $xcode) {
             $text = $this->mTextFilter->postConvertXCode($text, $xcode);
         }
         return $text;

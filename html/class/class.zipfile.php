@@ -1,34 +1,20 @@
 <?php
-// $Id: class.zipfile.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-/*
-    package::i.tools
-
-    php-downloader	v1.0	-	www.ipunkt.biz
-
-    (c)	2002 - www.ipunkt.biz (rok)
-
- * Zip file creation class.
- * Makes zip files.
- *
- * Based on :
- *
- *  https://www.zend.com/codex.php?id=535&single=1
- *  By Eric Mueller <eric@themepark.com>
- *
- *  https://www.zend.com/codex.php?id=470&single=1
- *  by Denis125 <webmaster@atlant.ru>
- *
- *  a patch from Peter Listiak <mlady@users.sourceforge.net> for last modified
- *  date and time of the compressed file
- *
- * Official ZIP file format: https://www.pkware.com/appnote.txt
- *
- * @copyright	(c)	2002 - www.ipunkt.biz (rok)
- * @access  public
- * 
- * @package     kernel
- * @subpackage  core
+/**
+ * *
+ *  * Zip file creation class, PHP downloader
+ *  *
+ *  * @package    class
+ *  * @subpackage core
+ *  * @author     Original Authors: Eric Mueller, Denis125 <webmaster@atlant.ru>
+ *  * @author     Other Authors : Peter Listiak <mlady@users.sourceforge.net>
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
  */
+
 class zipfile
 {
     /**

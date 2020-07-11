@@ -1,37 +1,21 @@
 <?php
-// $Id: uploader.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * *
+ *  * Upload Media files
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 /**
- * Upload Media files
- *
  * Example of usage:
  * <code>
  * include_once 'uploader.php';
@@ -52,12 +36,6 @@
  *   echo $uploader->getErrors();
  * }
  * </code>
- *
- * @package        kernel
- * @subpackage    core
- *
- * @author        Kazumi Ono     <onokazu@xoops.org>
- * @copyright    (c) 2000-2003 The Xoops Project - www.xoops.org
  */
 
 define('XCUBE_IMAGETYPE_ENUM_GIF', 1);
@@ -155,7 +133,9 @@ class XoopsMediaUploader
         if (!isset($_FILES[$media_name])) {
             $this->setErrors('File not found');
             return false;
-        } elseif (is_array($_FILES[$media_name]['name']) && isset($index)) {
+        }
+
+        if (is_array($_FILES[$media_name]['name']) && isset($index)) {
             $index = (int)$index;
             $this->mediaName = $_FILES[$media_name]['name'][$index];
             $this->mediaType = $_FILES[$media_name]['type'][$index];
@@ -190,7 +170,7 @@ class XoopsMediaUploader
             $this->setErrors('Filename Is Empty');
             return false;
         }
-        if ('none' == $this->mediaTmpName || !is_uploaded_file($this->mediaTmpName)) {
+        if ('none' === $this->mediaTmpName || !is_uploaded_file($this->mediaTmpName)) {
             $this->setErrors('No file uploaded');
             return false;
         }
@@ -332,7 +312,7 @@ class XoopsMediaUploader
         if (isset($this->targetFileName)) {
             $this->savedFileName = $this->targetFileName;
         } elseif (isset($this->prefix)) {
-            $this->savedFileName = uniqid($this->prefix).'.'.strtolower($this->ext);
+            $this->savedFileName = uniqid($this->prefix, true).'.'.strtolower($this->ext);
         } else {
             $this->savedFileName = strtolower($this->mediaName);
         }
@@ -351,10 +331,7 @@ class XoopsMediaUploader
      **/
     public function checkMaxFileSize()
     {
-        if ($this->mediaSize > $this->maxFileSize) {
-            return false;
-        }
-        return true;
+        return !($this->mediaSize > $this->maxFileSize);
     }
 
     /**
@@ -413,7 +390,7 @@ class XoopsMediaUploader
             // allowed file extension values, it is safe to use
             // $this->mediaType for the allowed mime type check as was in
             // <= 2.0.9.2
-            if (!empty($this->allowedMimeTypes)&& !in_array($this->mediaType, $this->allowedMimeTypes)) {
+            if (!empty($this->allowedMimeTypes)&& !in_array($this->mediaType, $this->allowedMimeTypes, true)) {
                 $this->setErrors('Unexpected MIME Type');
                 return false;
             }
@@ -423,7 +400,7 @@ class XoopsMediaUploader
             if (empty($this->mediaRealType) && !$this->allowUnknownTypes) {
                 return false;
             }
-            if (!empty($this->allowedMimeTypes)&& !in_array($this->mediaRealType, $this->allowedMimeTypes)) {
+            if (!empty($this->allowedMimeTypes)&& !in_array($this->mediaRealType, $this->allowedMimeTypes, true)) {
                 $this->setErrors('Unexpected MIME Type');
                 return false;
             }
@@ -459,7 +436,7 @@ class XoopsMediaUploader
             return false;
         }
 
-        return (empty($this->allowedMimeTypes) || in_array($this->mediaRealType, $this->allowedMimeTypes));
+        return (empty($this->allowedMimeTypes) || in_array($this->mediaRealType, $this->allowedMimeTypes, true));
     }
 
     /**
@@ -483,15 +460,15 @@ class XoopsMediaUploader
     {
         if (!$ashtml) {
             return $this->errors;
-        } else {
-            $ret = '';
-            if (count($this->errors) > 0) {
-                $ret = '<h4>Errors Returned While Uploading</h4>';
-                foreach ($this->errors as $error) {
-                    $ret .= $error.'<br>';
-                }
-            }
-            return $ret;
         }
+
+        $ret = '';
+        if (count($this->errors) > 0) {
+            $ret = '<h4>Errors Returned While Uploading</h4>';
+            foreach ($this->errors as $error) {
+                $ret .= $error.'<br>';
+            }
+        }
+        return $ret;
     }
 }

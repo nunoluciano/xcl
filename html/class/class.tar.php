@@ -1,80 +1,20 @@
 <?php
-// $Id: class.tar.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-/*
-    package::i.tools
+/**
+ * *
+ *  * tar Class
+ *  *
+ *  * @package    class
+ *  * @subpackage core
+ *  * @author     Original Authors: Josh Barger <joshb@npt.com>
+ *  * @author     Other Authors : onokazu
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
-    php-downloader	v1.0	-	www.ipunkt.biz
-
-    (c)	2002 - www.ipunkt.biz (rok)
-*/
-
-/*
-=======================================================================
-Name:
-    tar Class
-
-Author:
-    Josh Barger <joshb@npt.com>
-
-Description:
-    This class reads and writes Tape-Archive (TAR) Files and Gzip
-    compressed TAR files, which are mainly used on UNIX systems.
-    This class works on both windows AND unix systems, and does
-    NOT rely on external applications!! Woohoo!
-
-Usage:
-    Copyright (C) 2002  Josh Barger
-
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
-
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details at:
-        https://www.gnu.org/copyleft/lesser.html
-
-    If you use this script in your application/website, please
-    send me an e-mail letting me know about it :)
-
-Bugs:
-    Please report any bugs you might find to my e-mail address
-    at joshb@npt.com.  If you have already created a fix/patch
-    for the bug, please do send it to me so I can incorporate it into my release.
-
-Version History:
-    1.0	04/10/2002	- InitialRelease
-
-    2.0	04/11/2002	- Merged both tarReader and tarWriter
-                  classes into one
-                - Added support for gzipped tar files
-                  Remember to name for .tar.gz or .tgz
-                  if you use gzip compression!
-                  :: THIS REQUIRES ZLIB EXTENSION ::
-                - Added additional comments to
-                  functions to help users
-                - Added ability to remove files and
-                  directories from archive
-    2.1	04/12/2002	- Fixed serious bug in generating tar
-                - Created another example file
-                - Added check to make sure ZLIB is
-                  installed before running GZIP
-                  compression on TAR
-    2.2	05/07/2002	- Added automatic detection of Gzipped
-                  tar files (Thanks go to Jidgen Falch
-                  for the idea)
-                - Changed "private" functions to have
-                  special function names beginning with
-                  two underscores
-=======================================================================
-XOOPS changes onokazu <webmaster@xoops.org>
-
-    12/25/2002 - Added flag to addFile() function for binary files
-
-=======================================================================
-*/
 
 /**
  * tar Class
@@ -83,12 +23,6 @@ XOOPS changes onokazu <webmaster@xoops.org>
  * compressed TAR files, which are mainly used on UNIX systems.
  * This class works on both windows AND unix systems, and does
  * NOT rely on external applications!! Woohoo!
- *
- * @author	Josh Barger <joshb@npt.com>
- * @copyright	Copyright (C) 2002  Josh Barger
- *
- * @package     kernel
- * @subpackage  core
  */
 class tar
 {

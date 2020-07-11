@@ -1,19 +1,22 @@
 <?php
-// $Id: mimetypes.inc.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
 /**
-* Extension to mimetype lookup table
-*
-* This file is provided as an helper for objects who need to perform filename to mimetype translations.
-* Common types have been provided, but feel free to add your own one if you need it.
-* <br><br>
-* See the enclosed file LICENSE for licensing information.
-* If you did not receive this file, get it at https://www.fsf.org/copyleft/gpl.html
-*
-* @copyright    The Xoops project https://www.xoops.org/
-* @license      https://www.fsf.org/copyleft/gpl.html GNU public license
-* @author       Skalpa Keo <skalpa@xoops.org>
-* @since        2.0.9.3
-*/
+ * *
+ *  * Extension to mimetype lookup table
+ *  *
+ *  * This file is provided as an helper for objects who need to perform filename to mimetype translations.
+ *  * Common types have been provided, but feel free to add your own one if you need it.
+ *  *
+ *  * @package    kernel
+ *  * @subpackage core
+ *  * @author     Original Authors: Skalpa Keo
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
+ */
 
 return [
     'hqx'   => 'application/mac-binhex40',

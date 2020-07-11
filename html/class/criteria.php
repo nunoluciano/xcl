@@ -1,47 +1,20 @@
 <?php
-// $Id: criteria.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-// Modified by: Nathan Dial                                                  //
-// Date: 20 March 2003                                                       //
-// Desc: added experimental LDAP filter generation code                      //
-//       also refactored to remove about 20 lines of redundant code.         //
-// ------------------------------------------------------------------------- //
-
 /**
- *
- *
- * @package     kernel
- * @subpackage  database
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
+ * *
+ *  * A criteria (grammar?) for a database query.
+ *  *
+ *  * Abstract base class should never be instantiated directly.
+ *  *
+ *  * @package    kernel
+ *  * @subpackage database
+ *  * @author     Original Authors: Kazumi Ono (aka onokazu)
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
  */
 
 define('XOOPS_CRITERIA_ASC', 'ASC');
@@ -50,19 +23,7 @@ define('XOOPS_CRITERIA_STARTWITH', 1);
 define('XOOPS_CRITERIA_ENDWITH', 2);
 define('XOOPS_CRITERIA_CONTAIN', 3);
 
-/**
- * A criteria (grammar?) for a database query.
- *
- * Abstract base class should never be instantiated directly.
- *
- * @abstract
- *
- * @package     kernel
- * @subpackage  database
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
- */
+
 class CriteriaElement
 {
     /**
@@ -202,9 +163,9 @@ class CriteriaElement
     {
         if (isset($this->sort[0])) {
             return $this->sort[0];
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**
@@ -219,11 +180,7 @@ class CriteriaElement
 
         for ($i = 0; $i < $max; $i++) {
             $ret[$i]['sort'] = $this->sort[$i];
-            if (isset($this->order[$i])) {
-                $ret[$i]['order'] = $this->order[$i];
-            } else {
-                $ret[$i]['order'] = 'ASC';
-            }
+            $ret[$i]['order'] = $this->order[$i] ?? 'ASC';
         }
 
         return $ret;
@@ -249,9 +206,9 @@ class CriteriaElement
     {
         if (isset($this->order[0])) {
             return $this->order[0];
-        } else {
-            return 'ASC';
         }
+
+        return 'ASC';
     }
 
     /**
@@ -307,13 +264,8 @@ class CriteriaElement
 }
 
 /**
- * Collection of multiple {@link CriteriaElement}s
- *
- * @package     kernel
- * @subpackage  database
- *
- * @author      Kazumi Ono  <onokazu@xoops.org>
- * @copyright   copyright (c) 2000-2003 XOOPS.org
+ * Collection of multiple
+ * {@link CriteriaElement}s
  */
 class CriteriaCompo extends CriteriaElement
 {
@@ -409,7 +361,7 @@ class CriteriaCompo extends CriteriaElement
     public function renderWhere()
     {
         $ret = $this->render();
-        $ret = ('' != $ret) ? 'WHERE ' . $ret : $ret;
+        $ret = ('' !== $ret) ? 'WHERE ' . $ret : $ret;
         return $ret;
     }
 
@@ -483,7 +435,7 @@ class Criteria extends CriteriaElement
         //
         // Recive DTYPE. This is a prolongation of criterion life operation.
         //
-        if (is_array($value) && 2 == count($value) && 'IN' != $operator && 'NOT IN' != $operator) {
+        if (is_array($value) && 2 == count($value) && 'IN' !== $operator && 'NOT IN' !== $operator) {
             $this->dtype = (int)$value[0];
             $this->value = $value[1];
         } else {
@@ -542,8 +494,7 @@ class Criteria extends CriteriaElement
      */
     public function renderLdap()
     {
-        $clause = '(' . $this->column . $this->operator . $this->value . ')';
-        return $clause;
+        return '(' . $this->column . $this->operator . $this->value . ')';
     }
 
     /**

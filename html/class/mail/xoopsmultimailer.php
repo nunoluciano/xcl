@@ -1,43 +1,18 @@
 <?php
-// $Id: xoopsmultimailer.php,v 1.4 2008/09/21 06:45:39 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Jochen Buennagel (job@buennagel.com)                               //
-// URL:  https://www.xoops.org                        //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
 /**
- * @package   class
- * @subpackage  mail
- *
- * @filesource
- *
- * @author    Jochen Buennagel <jb@buennagel.com>
- * @copyright copyright (c) 2000-2003 The XOOPS Project (https://www.xoops.org)
- *
- * @version   $Revision: 1.4 $ - $Date: 2008/09/21 06:45:39 $
+ * *
+ *  * send email through PHP's "mail()" function
+ *  *
+ *  * @package    class
+ *  * @subpackage mail
+ *  * @author     Original Author: Jochen Buennagel
+ *  * @author     Other Authors : Minahito
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ * *
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -60,12 +35,6 @@ require_once(XOOPS_ROOT_PATH . '/class/mail/phpmailer/class.phpmailer.php');
  *
  * @todo    Make a page in the admin panel for setting mailer preferences.
  *
- * @package   class
- * @subpackage  mail
- *
- * @author    Jochen Buennagel  <job@buennagel.com>
- * @copyright (c) 2000-2003 The Xoops Project - www.xoops.org
- * @version   $Revision: 1.4 $ - changed by $Author: minahito $ on $Date: 2008/09/21 06:45:39 $
  */
 class xoopsmultimailer extends PHPMailer
 {
