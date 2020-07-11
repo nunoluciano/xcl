@@ -528,6 +528,7 @@ function xoops_getcss($theme = '')
     }
     $uagent = xoops_getenv('HTTP_USER_AGENT');
     //@gigamaster changed for stripos to save memory
+    $str_css = '/style.css';
     if (stripos($uagent, 'mac') !== false) {
         $str_css = '/styleMAC.css';
     } elseif (preg_match('/MSIE ([0-9]\.[0-9]{1,2})/i', $uagent)) {
