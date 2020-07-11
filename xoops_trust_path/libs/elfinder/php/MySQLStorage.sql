@@ -16,10 +16,10 @@ CREATE TABLE IF NOT EXISTS `elfinder_file` (
   PRIMARY KEY (`id`),
   UNIQUE KEY  `parent_name` (`parent_id`, `name`),
   KEY         `parent_id`   (`parent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB ;
 
 INSERT INTO `elfinder_file`
-(`id`, `parent_id`, `name`, `content`, `size`, `mtime`, `mime`,  `read`, `write`, `locked`, `hidden`, `width`, `height`) VALUES 
+(`id`, `parent_id`, `name`, `content`, `size`, `mtime`, `mime`,  `read`, `write`, `locked`, `hidden`, `width`, `height`) VALUES
 ('1' ,         '0', 'DATABASE',    '',    '0',     '0','directory', '1',     '1',      '0',      '0',      '0',     '0');
 
 DROP TABLE IF EXISTS `elfinder_trash`;
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `elfinder_trash` (
   PRIMARY KEY (`id`),
   UNIQUE KEY  `parent_name` (`parent_id`, `name`),
   KEY         `parent_id`   (`parent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB ;
 
 INSERT INTO `elfinder_trash`
-(`id`, `parent_id`, `name`, `content`, `size`, `mtime`, `mime`,  `read`, `write`, `locked`, `hidden`, `width`, `height`) VALUES 
+(`id`, `parent_id`, `name`, `content`, `size`, `mtime`, `mime`,  `read`, `write`, `locked`, `hidden`, `width`, `height`) VALUES
 ('1' ,         '0', 'DB Trash',    '',    '0',     '0','directory', '1',     '1',      '0',      '0',      '0',     '0');

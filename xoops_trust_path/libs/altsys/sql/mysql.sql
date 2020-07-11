@@ -7,5 +7,5 @@ CREATE TABLE language_constants (
   name varchar(255) NOT NULL default '',
   value text,
   PRIMARY KEY (mid,language,name)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB ;
 

@@ -29,13 +29,9 @@ if (!function_exists('pico_oninstall_base')) {
 		if (file_exists($sql_file_path)) {
 			$ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path) . '</b>.<br> Creating tables...';
 
-			if (file_exists(XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php')) {
-				include_once XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php';
-				$sqlutil = new OldSqlUtility();
-			} else {
-				include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
-				$sqlutil = new SqlUtility();
-			}
+            // Default SQL utility
+            include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
+            $sqlutil = new SqlUtility();
 
 			$sql_query = trim(file_get_contents($sql_file_path));
 			$sqlutil->splitMySqlFile($pieces, $sql_query);
@@ -48,14 +44,14 @@ if (!function_exists('pico_oninstall_base')) {
 				}
 				if (!$db->query($prefixed_query[0])) {
 					$ret[] = '<b>' . htmlspecialchars($db->error()) . '</b><br>';
-					//var_dump( $db->error() ) ;
+					var_dump( $db->error() ) ;
 					return false;
 				} else {
 					if (!in_array($prefixed_query[4], $created_tables)) {
 						$ret[] = 'Table <b>' . htmlspecialchars($prefix_mod . '_' . $prefixed_query[4]) . '</b> created.<br>';
 						$created_tables[] = $prefixed_query[4];
 					} else {
-						$ret[] = 'Data inserted to table <b>' . htmlspecialchars($prefix_mod . '_' . $prefixed_query[4]) . '</b>.</br />';
+						$ret[] = 'Data inserted to table <b>' . htmlspecialchars($prefix_mod . '_' . $prefixed_query[4]) . '</b>.</br>';
 					}
 				}
 			}

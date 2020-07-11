@@ -80,7 +80,7 @@ class MessageForm extends XCube_ActionForm
         return '';
     }
 
-    public function update($obj)
+    public function update(&$obj)
     {
         $root = XCube_Root::getSingleton();
         $obj->set('uid', $this->fuid);
