@@ -3,7 +3,7 @@
  *
  * @package XCube
  * @version $Id: XCube_LanguageManager.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *
  */
@@ -13,14 +13,14 @@
  * components, this class loads files, or checks the existence of the specified
  * resource, or composes filepath to access real files. And, it manages some
  * locale informations.
- * 
- * Rules about language are different at each bases. So it's important that a 
+ *
+ * Rules about language are different at each bases. So it's important that a
  * base defines the sub class of this class if it can't use this class directly.
- * 
+ *
  * And, XCube or bases have to make each languages possible to have its sub
  * class. By that, languages become able to implement their logic to solve
  * problems.
- * 
+ *
  * This class calls sub directories of each languages 'section'. 'section' is
  * used to load image files and etc.
  */
@@ -31,7 +31,7 @@ class XCube_LanguageManager
      * @var string
      */
     public $mLanguageName;
-    
+
     /**
      * @access protected
      * @var string

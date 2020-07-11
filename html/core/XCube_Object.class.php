@@ -3,7 +3,7 @@
  *
  * @param $definition
  * @return array
- * @copyright Copyright 2005-2007 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license   https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  * @package   XCube
  * @version   $Id: XCube_Object.class.php,v 1.3 2008/10/12 04:30:27 minahito Exp $
