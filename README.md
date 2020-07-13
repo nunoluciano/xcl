@@ -1,104 +1,134 @@
-# XCL — Web Application Platform
+  
+  
+[![Project Status: WIP – User Interface and SQL InnoDB utf8mb4 in progress.](https://www.repostatus.org/badges/latest/wip.svg)](https://github.com/xoopscube/xcl) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl) [![License](https://poser.pugx.org/phpunit/phpunit/license)](https://github.com/xoopscube/xcl/blob/master/BSD_license.txt)  
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://www.repostatus.org/#active)  
+## /////////////////////// XCL — Web Application Platform  
+
+[WIP] – XCL 2.3.0 alpha : User Interface and SQL InnoDB utf8mb4 in progress !   
+
+
+##### :computer: The Minimum Requirements  
+
+ :white_square_button: Apache, Nginx, etc.  
+ :white_square_button: PHP 7.2.x  
+ :white_square_button: MySQL 5.6, MariaDB  
+ :white_square_button: InnoDB utf8 / utf8mb4  
  
 
-## :computer: The Requirements  
+## /////////////////////// Table of Contents
 
-✅ Tested PHP 7.1.x to 7.4.x 
-✅ Tested MySQL 5.6.x to MySQL 8.x.x 
-✅ Tested Engine = InnoDB 
+#### <details><summary>Click to expand</summary>
 
-Whether you plan to create your own personal or corporate community web site with news, forums, blog, photo album or gallery, portfolio, etc. You need a reliable Web Host running Apache, MySQL and PHP. **XCL** will run smoothly on a LAMP environment. In most cases your site will be hosted on the popular open source web platform consisting of Linux, Apache, MySQL, and PHP. Though XOOPS Cube can run on any other Operating System (OS) as well.  
-
-
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />  
-
-## :information_source: The App
-
-**The XCL** is a simple, secure and scalable web application platform. The modular architecture is built in PHP with Cube core, SQL and a smarty theming system. The graphical user interface empowers everyone to create dynamic and content rich apps with HTML, CSS and Javascript - from the best looking blogs, forums, portfolios, intranet and business websites to the much safer desktop applications on Linux, Mac or Windows.
+- [Introduction](#introduction)
+- [Supported Platforms](#introduction)
+- [Usage](#wizard-installer)
+- [Features](#xcl-features)
+- [API](#api)  
+- [License](#license)
+- [Contributing](#contributing)
+- [Big Thanks](#big-thanks)
 
 
-**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform. 
+</details>
+  
+
+  
+  
+### /////////////////////// Overview
+
+#### Introduction  
+
+**XOOPSCube** is a web application platform and **XCL** is a user-friendly package with modules ready-to-use. Wether you plan to create your own personal or corporate community website with news, forums, blog, photo album or gallery, portfolio, etc. **XCL** will run smoothly on any AMP environment – the most popular open-source cross-platform web server solution stack consisting of Apache, MySQL, and PHP available for Linux, MacOS and Windows.  
+
+#### Wizard Installer  
+
+Clone or download XCL and unzip in your web server's public directory.  
+Launch your browser and follow the Wizard to complete the installation.  
+ 
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="XCL Web App Wizard Installer" title="XCL Web App Wizard Installer" />
+
+#### Web App Module Management  
+
+X-Update Store provides a simple click-and-run solution to get all the necessary protection and functionality at the right time. 
+Get and deploy themes, preloads (i.e. plugins), and modules updates.  
+ 
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />   
 
 
-**The XOOPS Cube Project** is friendly managed, developed and supported by a volunteer group with a multidisciplinary focus to provide a variety of different perspectives and ideas to consider in further development and design. XCL Team Core values are integrity, innovation, passion and respect. When you know who you are, you know what to do, you know what story to tell and the stories that you want to hear. We share the essential knowledge and understanding of the “spirit of open source” necessary to create tools that encourage creativity.
+### /////////////////////// The Features
 
-## :ballot_box_with_check: The Features
+#### XCL features  
 
-Below is a list of some of XOOPS Cube Legacy features.
+Below is a list of some key elements:   
 
 * Easy Wizard installation
 * Modular architecture
-* Module API for unlimited expandability
-* Simple core to build up a custom cms
-* Debug function for easy development
-* User and Group-based permission system
-* Intuitive Interface for management
-* Smarty Template engine
-* Caching mechanism
+* Essential third-party modules (Blog, Forum, Photo, Wordpress, Wiki)
+* Private Message and notification
+* Must-have built-in advanced search 
+* Extensions (preloads to customize functionality)
+* Simple Cube Core to build up a custom cms
+* Debug function for easy development 
+* User and Group-based granular permission system
+* Translation support and user-interface for localization  
+* CMS with custom headers and style changes as needed
+* Smarty Template engine and caching mechanism
 * Themes and Templates management
 * Embedded WYSIWYG HTML Editor
-* Filemanger with remote drives (Dropbox, One Drive, Google Drive,...)
-* Free choice of PHP, JS, CSS frameworks
-* Abundant third-party modules and extensions (preloads to customize functionality)
+* File-manger with remote drives (Dropbox, One Drive, Google Drive,...)
+* Free choice of CSS, Javascript and PHP frameworks  
 
 
-#### :floppy_disk: The Software
+### ///////////////////////  The Documentation
 
+#### API  
 
-## 📦 The Packages
-
-Download the source code of XCL available on [Github](https://github.com/xoopscube/xcl).
-
-:construction: A new XCL package is coming out in may 2020.
-
-:memo: The Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads) area.
-
-
-***
-
-
-## :game_die: The Installation
-
-XOOPS Cube Legacy Installation Guide
-
-http://xoopscube.sourceforge.net/documentation/
-
-
-## :blue_book: The Documentation
-
-
-XOOPS Cube Legacy API documentation generated by Apigen 2.7.0
+**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform. 
+Still, the XOOPS Cube Legacy API documentation generated by Apigen 2.7.0
 
 http://xoopscube.org/documentation/api
 
 
-## :copyright: The License
+### ///////////////////////  The License
 
 #### :page_with_curl: XOOPS Cube  
 
-XOOPS Cube was started from scratch and the **Cube Core** source code is released under the BSD licence.
+XOOPS Cube was started from scratch and the **Cube Core** source code is released under the [BSD licence](https://github.com/xoopscube/xcl/blob/master/BSD_license.txt).
 
  
 #### :page_with_curl: Legacy Package  
 
-The Legacy Package source code which is one set of base modules to ensure backwards compatibility is released under a GPL licence.
+The Legacy Package source code which is one set of base modules to ensure backwards compatibility is released under a [GPL licence](https://raw.githubusercontent.com/xoopscube/xcl/master/GPL_V2.txt).
 
 
 ***
 
 
-## :bust_in_silhouette: The Contributors
+### /////////////////////// The Contributors
+
+#### Contributing
 
 10key, Aaki, Argon, Asunta, Bandit-x, Beduino, Bindi, Bluemooninc, Domifara, Fugafuga, Gara, Gigamaster, GIJOE, Gusagi, Halt, Hamanaka, Hiroki, Hypweb (Nao-pon), Hxrr, JardaR, Jidaikobo, Kilica, Leco, Lumbago, Marijuana, Marine, Mat, Matchan, Metal, Mikhail Miguel, Minahito, Moegiiro, Mumincacao, Masarap, Naao, Nao-pon, Neko88, Nobunobu, Nor, Nbuy (Nobu, OhYear, Ohwada, Okuhiki, Onokazu, Orrisroot, Otneg, Plusangel, Pcboy, Roger, RyujiAMANO, Sacchan,  Sak-Axyz, Salamander, Shige-p, Shiraga, Slayer_cg, Sohgo, Sow, Suin, Toemon, Tokitam, Tohokuaiki, Tom_g3x, Tomoro, Wanderer, Wanikoo.
 
 
-***
+-----
+#### Big Thanks   
+[JetBrains](https://www.jetbrains.com/) is an active participant in the [Open Source community](https://www.jetbrains.com/opensource/).  
+Big thanks to the JetBrains Team for supporting XOOPSCube Project ^_^/  
+
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/logo/jetbrains-logo-variant-3-256.png" alt="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" title="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" />
+
+-----  
 
 
-## :clipboard: The Contribution
+#### Contribution
 
 The XOOPS Cube project is community driven. We encourage everyone in the community to contribute their knowledge and expertise.
-Everyone benefits from every [enhancement request](https://github.com/xoopscube/xl/issues),  [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls). 
-You can influence what happens to Open Source and the direction for **XCL** future growth.
+Everyone benefits from every [enhancement request](https://github.com/xoopscube/xl/issues),  [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls).
+
+-----
+
+**The XOOPS Cube Project** and distributions have been developed and supported by a volunteer group with a multidisciplinary focus providing a variety of different perspectives and ideas to consider in further development and design. The Core values are integrity, innovation, passion and respect.  
+
+_When you know who you are, you know what to do, you know what story to tell, and the stories that you want to hear. We share the essential knowledge and understanding of “open source” necessary to create tools that encourage creativity and free speech._
+                           
