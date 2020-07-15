@@ -11,10 +11,10 @@
 
 ##### :computer: The Minimum Requirements  
 
-         :diamonds: Apache, Nginx, etc.  
-         :diamonds: PHP 7.2.x  
-         :diamonds: MySQL 5.6, MariaDB  
-         :diamonds: InnoDB utf8 / utf8mb4  
+          Apache, Nginx, etc.  
+          PHP 7.2.x  
+          MySQL 5.6, MariaDB  
+          InnoDB utf8 / utf8mb4  
  
    
   
