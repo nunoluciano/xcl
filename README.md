@@ -125,10 +125,11 @@ The Legacy Package source code which is one set of base modules to ensure backwa
 
 ### Big Thanks   
 
-[JetBrains](https://www.jetbrains.com/) is an active participant in the [Open Source community](https://www.jetbrains.com/opensource/).  
-Big thanks to the JetBrains Team for supporting XOOPSCube Project ^_^/  
 
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/logo/jetbrains-logo-variant-3-256.png" alt="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" title="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" />
+<p align=center>[JetBrains](https://www.jetbrains.com/) is an active participant in the [Open Source community](https://www.jetbrains.com/opensource/).  
+Big thanks to the JetBrains Team for supporting XOOPSCube Project ^_^/  </p>
+
+<p align=center><img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/logo/jetbrains-logo-variant-3-256.png" alt="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" title="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" /></p>
 
 -----  
 
@@ -137,9 +138,20 @@ Big thanks to the JetBrains Team for supporting XOOPSCube Project ^_^/
 The XOOPS Cube project is community driven. We encourage everyone in the community to contribute their knowledge and expertise.
 Everyone benefits from every [enhancement request](https://github.com/xoopscube/xl/issues),  [bug report](https://github.com/xoopscube/xcl/issues) and [patch](https://github.com/xoopscube/xcl/pulls).
 
------
+
 
 **The XOOPS Cube Project** and distributions have been developed and supported by a volunteer group with a multidisciplinary focus providing a variety of different perspectives and ideas to consider in further development and design. The Core values are integrity, innovation, passion and respect.  
-
-_When you know who you are, you know what to do, you know what story to tell, and the stories that you want to hear. We share the essential knowledge and understanding of “open source” necessary to create tools that encourage creativity and free speech._
+  
+    
+      
+      —///////////////////////— 
+      
+_When you know who you are, you know what to do, you know what story to tell, and the stories that you want to hear and see. We share the essential knowledge and understanding of “open source” necessary to create tools that encourage creativity and free speech._
                            
+                           
+>"Learn everything you can.  
+Try everything that comes along.  
+Look at everything there is to see.  
+Search, experiment, make mistakes, fail, stand up.  
+Turn religious, turn conservative, turn radical.  
+And then forget all about it and find your way to create."  
