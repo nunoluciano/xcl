@@ -10,6 +10,8 @@
 
 
 ##### :computer: The Minimum Requirements  
+  
+  
 
           Apache, Nginx, etc.  
           PHP 7.2.x  
@@ -21,6 +23,8 @@
     
     
 ## /////////////////////// — Table of Contents
+  
+  
 
 <details><summary>Click to expand</summary>
 
@@ -33,14 +37,16 @@
 - [License](#open-source-licenses)
 - [Contributing](#contributing)
 - [Big Thanks](#big-thanks)
-
+  
 
 </details>
   
-
-         [WIP] – XCL 2.3.0 alpha : User Interface and SQL InnoDB utf8mb4 in progress !    
-    
   
+
+         [WIP] Master  – XCL 2.3.0 alpha : User Interface and SQL InnoDB utf8mb4 in progress !    
+    	 [WIP] Develop – XCL 2.3.0 alpha Smarty 3 !
+   
+
 ## /////////////////////// — Overview
 
 
