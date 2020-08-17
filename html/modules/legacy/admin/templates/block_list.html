@@ -4,8 +4,10 @@
 &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
 </div>
 
+<{assign var="adminHelp" value="$legacy_module&file=block.html div.help"}>
+<{include file="./components/admin-help.html" }>
 
-<{ include file="./components/block-overview.html" }>
+<{include file="./components/block-overview.html" }>
 
     <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h2>
 
@@ -38,12 +40,12 @@
 
 <{*  display block search *}>
 <div class="block-search" style="display: none">
-    <{ include file="./components/block-search.html" }>
+    <{include file="./components/block-search.html" }>
 </div>
 
 <{*  display block filer *}>
 <div class="block-filter" style="display: none">
-    <{ include file="./components/block-filter.html" }>
+    <{include file="./components/block-filter.html" }>
 </div>
 
     <form id="blockform" name="blockform" method="post" action="./index.php?action=BlockList">
@@ -55,7 +57,7 @@
 
         <{foreach item=obj from=$objects}>
 
-        <{ include file="./components/block-card.html" }>
+        <{include file="./components/block-card.html" }>
 
         <{/foreach}>
 
@@ -68,4 +70,4 @@
 
     </form>
 
-<{ include file="./components/pagenavi.html" }>
+<{include file="./components/pagenavi.html" }>

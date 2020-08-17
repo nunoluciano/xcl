@@ -41,16 +41,14 @@ class LegacyNon_installation_moduleHandler extends XoopsObjectHandler
      */
     public function _setupObjects()
     {
-        if (0 == count($this->_mXoopsModules)) {
-            if ($handler = opendir(XOOPS_MODULE_PATH)) {
-                while (false !== ($dir = readdir($handler))) {
-                    if (!in_array($dir, $this->_mExclusions) && is_dir(XOOPS_MODULE_PATH . '/' . $dir)) {
-                        $module =& $this->get($dir);
-                        if (false !== $module) {
-                            $this->_mXoopsModules[] =& $module;
-                        }
-                        unset($module);
+        if ((count ($this -> _mXoopsModules) == 0) && $handler = opendir (XOOPS_MODULE_PATH)) {
+            while (($dir = readdir($handler)) !== false) {
+                if (!in_array ($dir, $this -> _mExclusions, true) && is_dir(XOOPS_MODULE_PATH . '/' . $dir)) {
+                    $module =& $this->get($dir);
+                    if ($module !== false) {
+                        $this->_mXoopsModules[] =& $module;
                     }
+                    unset($module);
                 }
             }
         }

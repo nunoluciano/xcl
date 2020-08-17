@@ -16,7 +16,7 @@ if (!defined('XOOPS_TRUST_PATH')) {
     exit();
 }
 
-define('LEGACY_MODULE_VERSION', '2.2');
+define('LEGACY_MODULE_VERSION', '2.3');
 
 define('LEGACY_CONTROLLER_STATE_PUBLIC', 1);
 define('LEGACY_CONTROLLER_STATE_ADMIN', 2);
@@ -35,12 +35,12 @@ require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_TextFilter.class.p
 require_once XOOPS_ROOT_PATH . '/modules/legacy/class/Legacy_Debugger.class.php';
 
 /**
- * This class is a virtual controller that has the compatibility with XOOPS 2.0.x.
+ * This class is a virtual controller that ensures compatibility with XOOPS 2.0.x.
  *
  * [NOTICE]
  * XOOPS 2.0.x can switch to public mode and control panel mode. This controller
- * emulates its process with using STATE. But, we may lose flexible setup by this
- * implement. Now, we are investigating the influence.
+ * emulates its process by using STATE. But, we may lose flexible setup with this
+ * implementation. Now, we are investigating the influence.
  *
  * [TODO]
  * XCube_Controller keeps a process that set up instances of some legacy classes,
@@ -152,16 +152,16 @@ class Legacy_Controller extends XCube_Controller
 
         $adminStateFlag = false;
         if (count($urlInfo) >= 3) {
-            if ('modules' == strtolower($urlInfo[0])) {
-                if ('admin' == strtolower($urlInfo[2])) {
+            if ('modules' === strtolower($urlInfo[0])) {
+                if ('admin' === strtolower($urlInfo[2])) {
                     $adminStateFlag = true;
-                } elseif ('legacy' == $urlInfo[1] && 'include' == $urlInfo[2]) {
+                } elseif ('legacy' === $urlInfo[1] && 'include' === $urlInfo[2]) {
                     $adminStateFlag = true;
-                } elseif ('system' == $urlInfo[1] && 'admin.php' == substr($urlInfo[2], 0, 9)) {
+                } elseif ('system' === $urlInfo[1] && strpos($urlInfo[2], 'admin.php') === 0) {
                     $adminStateFlag = true;
                 }
             }
-        } elseif ('admin.php' == substr($urlInfo[0], 0, 9)) {
+        } elseif (strpos($urlInfo[0], 'admin.php') === 0) {
             $adminStateFlag = true;
         }
 
@@ -269,7 +269,7 @@ class Legacy_Controller extends XCube_Controller
         $arr[5] += 1900;
         $arr[4]++;
         $iTztime = gmmktime($arr[2], $arr[1], $arr[0], $arr[4], $arr[3], $arr[5]);
-        $offset = floatval(($iTztime - $iTime) / (60 * 60));
+        $offset = (float)(($iTztime - $iTime) / (60 * 60));
         $zonelist =
         [
             'Kwajalein' => -12.00,
@@ -308,7 +308,7 @@ class Legacy_Controller extends XCube_Controller
             'Pacific/Tongatapu' => 13.00
         ];
         $index = array_keys($zonelist, $offset);
-        if (1 != count($index)) {
+        if (1 !== count($index)) {
             return false;
         }
         return $index[0];
@@ -456,7 +456,7 @@ class Legacy_Controller extends XCube_Controller
     {
         $ret = [];
         $rootPathInfo = @parse_url(XOOPS_URL);
-        $rootPath = (isset($rootPathInfo['path']) ? $rootPathInfo['path'] : '') . '/';
+        $rootPath = ($rootPathInfo['path'] ?? '') . '/';
         $php_info = xoops_getenv('PATH_INFO');
         $requestPathInfo = @parse_url(!empty($php_info) ? substr(xoops_getenv('PHP_SELF'), 0, - strlen(xoops_getenv('PATH_INFO'))) : xoops_getenv('PHP_SELF'));
 
@@ -481,11 +481,11 @@ class Legacy_Controller extends XCube_Controller
             $urlInfo = $this->_parseUrl();
 
             if (count($urlInfo) >= 2) {
-                if ('modules' == strtolower($urlInfo[0])) {
+                if ('modules' === strtolower($urlInfo[0])) {
                     $dirname = $urlInfo[1];
                 }
             }
-            if ('admin.php' == substr($urlInfo[0], 0, 9)) {
+            if ('admin.php' === substr($urlInfo[0], 0, 9)) {
                 $dirname = 'legacy';
             }
         }
@@ -500,14 +500,14 @@ class Legacy_Controller extends XCube_Controller
 
         $this->_mStrategy->setupModuleContext($this->mRoot->mContext, $dirname);
 
-        if (null != $this->mRoot->mContext->mModule) {
+        if (null !== $this->mRoot->mContext->mModule) {
             $this->mRoot->mContext->setAttribute('legacy_pagetitle', $this->mRoot->mContext->mModule->mXoopsModule->get('name'));
         }
     }
 
     public function _processModule()
     {
-        if (null != $this->mRoot->mContext->mModule) {
+        if (null !== $this->mRoot->mContext->mModule) {
             $module =& $this->mRoot->mContext->mModule;
             if (!$module->isActive()) {
                 /**
@@ -521,7 +521,7 @@ class Legacy_Controller extends XCube_Controller
 
             if (!$this->_mStrategy->enableAccess()) {
                 XCube_DelegateUtils::call('Legacy.Event.Exception.ModuleSecurity', $module);
-                $this->executeRedirect(XOOPS_URL . '/user.php', 1, _NOPERM);    // TODO Depens on const message catalog.
+                $this->executeRedirect(XOOPS_URL . '/user.php', 1, _NOPERM);    // TODO Depends on const message catalog.
                 die();
             }
 
@@ -568,7 +568,7 @@ class Legacy_Controller extends XCube_Controller
             }
         }
 
-        // What is this!? But, old system depends this setting. We have to confirm it and modify!
+        // What is this!? But, old system depends on this setting. We have to confirm it and modify!
         $GLOBALS['xoopsRequestUri'] = xoops_getenv('REQUEST_URI');
     }
 
@@ -606,10 +606,10 @@ class Legacy_Controller extends XCube_Controller
         require_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
         if (true == $this->mRoot->getSiteConfig('Legacy', 'AllowDBProxy')) {
-            if ('POST' != xoops_getenv('REQUEST_METHOD') || !xoops_refcheck(XOOPS_DB_CHKREF)) {
+            if ('POST' !== xoops_getenv('REQUEST_METHOD') || !xoops_refcheck(XOOPS_DB_CHKREF)) {
                 define('XOOPS_DB_PROXY', 1);
             }
-        } elseif ('POST' != xoops_getenv('REQUEST_METHOD')) {
+        } elseif ('POST' !== xoops_getenv('REQUEST_METHOD')) {
             define('XOOPS_DB_PROXY', 1);
         }
 
@@ -824,7 +824,7 @@ class Legacy_Controller extends XCube_Controller
     public function executeHeader()
     {
         //
-        // TODO Now, I done for working admin panel.
+        // TODO Now, It's done for working admin panel.
         //
         parent::executeHeader();
 
@@ -844,7 +844,7 @@ class Legacy_Controller extends XCube_Controller
         //
         // cache check
         //
-        if (null != $this->mRoot->mContext->mModule && $this->isEnableCacheFeature()) {
+        if (null !== $this->mRoot->mContext->mModule && $this->isEnableCacheFeature()) {
             $cacheInfo =& $this->mRoot->mContext->mModule->createCacheInfo();
 
             $this->mSetModuleCachePolicy->call($cacheInfo);
@@ -879,7 +879,7 @@ class Legacy_Controller extends XCube_Controller
 
     public function executeView()
     {
-        if (null != $this->mRoot->mContext->mModule) {
+        if (null !== $this->mRoot->mContext->mModule) {
             $renderSystem =& $this->mRoot->getRenderSystem($this->mRoot->mContext->mModule->getRenderSystemName());
             $renderTarget =& $this->mRoot->mContext->mModule->getRenderTarget();
 
@@ -955,7 +955,7 @@ class Legacy_Controller extends XCube_Controller
         //
         $isAdmin=false;
         if (is_object($this->mRoot->mContext->mXoopsUser)) {
-            if (null != $this->mRoot->mContext->mModule && $this->mRoot->mContext->mModule->isActive()) {
+            if (null !== $this->mRoot->mContext->mModule && $this->mRoot->mContext->mModule->isActive()) {
                 // @todo I depend on Legacy Module Controller.
                 $mid = $this->mRoot->mContext->mXoopsModule->getVar('mid');
             } else {
@@ -1108,7 +1108,7 @@ class Legacy_Controller extends XCube_Controller
      */
     public function setStrategy(&$strategy)
     {
-        if ($strategy->mStatusFlag != $this->_mStrategy->mStatusFlag) {
+        if ($strategy->mStatusFlag !== $this->_mStrategy->mStatusFlag) {
             $this->_mStrategy =& $strategy;
 
             //
@@ -1163,7 +1163,7 @@ class Legacy_Controller extends XCube_Controller
      * @param string $url		   redirect URL. Don't use user's variables or request.
      * @param int	 $time		   waiting time (sec)
      * @param string $message	   This string doesn't include tags.
-     * @param bool	 $addRedirect  A value indicationg whether this method adds URL automatically for user.php.
+     * @param bool	 $addRedirect  A value indication whether this method adds URL automatically for user.php.
      *
      * @todo We'll change this function to delegate.
      * @remark This method encode $url and $message directly without its template, to share the template with old function.
@@ -1184,7 +1184,7 @@ class Legacy_Controller extends XCube_Controller
             foreach (array_keys($message) as $key) {
                 $message[$key] = htmlspecialchars($message[$key], ENT_QUOTES);
             }
-            $displayMessage = implode('<br/>', $message);
+            $displayMessage = implode('<br>', $message);
         } else {
             $displayMessage = $message;
         }
@@ -1192,18 +1192,18 @@ class Legacy_Controller extends XCube_Controller
         $url = htmlspecialchars($url, ENT_QUOTES);
 
         // XOOPS2 Compatibility
-        if ($addRedirect && strstr($url, 'user.php')) {
+        if ($addRedirect && strpos($url, 'user.php') !== false) {
             $this->_mNotifyRedirectToUser->call(new XCube_Ref($url));
         }
 
-        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' != $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if (0 === strpos($url, XOOPS_URL)) {
-                if (!strstr($url, '?')) {
+        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
+            if (strpos($url, XOOPS_URL) === 0) {
+                if (strpos($url, '?') === false) {
                     $connector = '?';
                 } else {
                     $connector = '&amp;';
                 }
-                if (strstr($url, '#')) {
+                if (strpos($url, '#') !== false) {
                     $urlArray = explode('#', $url);
                     $url = $urlArray[0] . $connector . SID;
                     if (! empty($urlArray[1])) {

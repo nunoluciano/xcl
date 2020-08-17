@@ -3,8 +3,11 @@
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
 </div>
 
+<{assign var="adminHelp" value="$legacy_module article#help-intro"}>
+<{include file="./components/admin-help.html" }>
 
-<{ include file="./components/module-overview.html" }>
+<{include file="./components/module-overview.html" }>
+
 
 
 <h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></h2>
@@ -35,7 +38,7 @@
 
 <{*  display module filer *}>
 <div class="module-filter" style="display: none">
-<{ include file="./components/module-filter.html" }>
+<{include file="./components/module-filter.html" }>
 </div>
 
 <{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
@@ -43,14 +46,14 @@
 
 <{foreach item=module from=$moduleObjects}>
 
-<{ include file="./components/module-card.html" }>
+<{include file="./components/module-card.html" }>
 
 <{/foreach}>
 
 </div><{* /ui-grid-blocks *}>
 
   <div class="foot">
-    <input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+    <input class="button-update" type="submit" value="<{$smarty.const._SUBMIT}>">
   </div>
 
 </form>

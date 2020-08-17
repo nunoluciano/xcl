@@ -35,16 +35,16 @@ $group_list =& $member_handler->getGroupList();
 if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
     $gperm_handler = xoops_gethandler('groupperm');
     foreach ($_POST['perms'] as $perm_name => $perm_data) {
-        if (false != $gperm_handler->deleteByModule($modid, $perm_name)) {
+        if (false !== $gperm_handler->deleteByModule($modid, $perm_name)) {
             if (isset($perm_data['groups']) && is_array($perm_data['groups'])) {
                 foreach ($perm_data['groups'] as $group_id => $item_ids) {
                     foreach ($item_ids as $item_id => $selected) {
                         if (1 == $selected) {
                             // make sure that all parent ids are selected as well
-                            if ('' != $perm_data['parents'][$item_id]) {
+                            if ('' !== $perm_data['parents'][$item_id]) {
                                 $parent_ids = explode(':', $perm_data['parents'][$item_id]);
                                 foreach ($parent_ids as $pid) {
-                                    if (0 != $pid && !in_array($pid, array_keys($item_ids))) {
+                                    if (0 !== $pid && !array_key_exists($pid, $item_ids)) {
                                         // one of the parent items were not selected, so skip this item
                                         $msg[] = sprintf(_MD_AM_PERMADDNG, '<b>'.$perm_name.'</b>', '<b>'.$perm_data['itemname'][$item_id].'</b>', '<b>'.$group_list[$group_id].'</b>').' ('._MD_AM_PERMADDNGP.')';
                                         continue 2;
@@ -74,7 +74,7 @@ if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
 
 $backlink = XOOPS_URL.'/admin.php';
 if ($module->getVar('hasadmin')) {
-    $adminindex = isset($_POST['redirect_url']) ? $_POST['redirect_url'] : $module->getInfo('adminindex');
+    $adminindex = $_POST['redirect_url'] ?? $module->getInfo('adminindex');
     if ($adminindex) {
         $backlink = XOOPS_URL.'/modules/'.$module->getVar('dirname').'/'.$adminindex;
     }

@@ -87,7 +87,7 @@ abstract class AbstractAction
     protected function getMailer()
     {
         $classname = 'XoopsMailer';
-        if (_USE_XOOPSMAILER === true) {
+        if (_USE_XOOPSMAILER == true) {
             require_once XOOPS_ROOT_PATH.'/class/xoopsmailer.php';
             if (is_file(XOOPS_ROOT_PATH.'/language/'.$this->root->mLanguageManager->mLanguageName.'/xoopsmailerlocal.php')) {
                 require_once XOOPS_ROOT_PATH.'/language/'.$this->root->mLanguageManager->mLanguageName.'/xoopsmailerlocal.php';

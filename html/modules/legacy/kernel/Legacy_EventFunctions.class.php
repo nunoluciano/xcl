@@ -123,7 +123,7 @@ class Legacy_EventFunction
     }
 
     /**
-     * This functions is add to 'Legacyfunction.Notifications.Select'.
+     * This functions is added to 'Legacyfunction.Notifications.Select'.
      *
      * @param XCube_RenderBuffer $render
      */
@@ -160,7 +160,7 @@ class Legacy_EventFunction
                         if (!empty($event['invisible'])) {
                             continue;
                         }
-                        $subscribed = in_array($event['name'], $subscribed_events) ? 1 : 0;
+                        $subscribed = in_array ($event[ 'name' ], $subscribed_events, true) ? 1 : 0;
                         $section['events'][$event['name']] = ['name' => $event['name'], 'title' => $event['title'], 'caption' => $event['caption'], 'description' => $event['description'], 'subscribed' =>$subscribed];
                         $event_count ++;
                     }

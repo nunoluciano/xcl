@@ -35,7 +35,7 @@ function xoops_header($closehead = true)
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-    if (null !== $renderSystem) {
+    if ($renderSystem !== null) {
         $renderSystem->showXoopsHeader($closehead);
     }
 }
@@ -47,7 +47,7 @@ function xoops_footer()
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-    if (null !== $renderSystem) {
+    if ($renderSystem !== null) {
         $renderSystem->showXoopsFooter();
     }
 }
@@ -147,13 +147,13 @@ function xoops_confirm_validate()
 function xoops_refcheck($docheck=1)
 {
     $ref = xoops_getenv('HTTP_REFERER');
-    if (0 === $docheck) {
+    if ($docheck === 0) {
         return true;
     }
-    if ('' === $ref) {
+    if ($ref === '') {
         return false;
     }
-    if (0 !== strpos($ref, XOOPS_URL)) {
+    if (strpos($ref, XOOPS_URL) !== 0) {
         return false;
     }
     return true;
@@ -162,7 +162,7 @@ function xoops_refcheck($docheck=1)
 function xoops_getUserTimestamp($time, $timeoffset='')
 {
     global $xoopsConfig, $xoopsUser;
-    if ('' === $timeoffset) {
+    if ($timeoffset === '') {
         if ($xoopsUser) {
             static $offset;
             $timeoffset = $offset ?? $offset = $xoopsUser->getVar('timezone_offset', 'n');
@@ -188,7 +188,7 @@ function formatTimestamp($time, $format='l', $timeoffset='')
  */
 function formatTimestampGMT($time, $format='l', $timeoffset='')
 {
-    if ('' === $timeoffset) {
+    if ($timeoffset === '') {
         global $xoopsUser;
         if ($xoopsUser) {
             $timeoffset = $xoopsUser->getVar('timezone_offset', 'n');
@@ -220,7 +220,7 @@ function _formatTimeStamp($time, $format='l')
         $datestring = _DATESTRING;
         break;
     default:
-        if ('' !== $format) {
+        if ($format !== '') {
             $datestring = $format;
         } else {
             $datestring = _DATESTRING;
@@ -250,7 +250,7 @@ function xoops_makepass()
     $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
     mt_srand((double)microtime() * 1000000);
     for ($count = 1; $count <= 4; $count++) {
-        if (1 === mt_rand() % 10) {
+        if (mt_rand() % 10 === 1) {
             $makepass .= sprintf('%0.0f', (mt_rand() % 50) + 1);
         } else {
             $makepass .= sprintf('%s', $syllables[mt_rand() % 62]);
@@ -264,6 +264,7 @@ function xoops_makepass()
  */
 function OpenWaitBox()
 {
+    $GLOBALS['xoopsLogger']->addDeprecated('Function ' . __FUNCTION__ . '() is deprecated');
     echo '<div id="waitDiv" style="position:absolute;left:40%;top:50%;visibility:hidden;text-align: center;">
     <table cellpadding="6" border="2" class="bg2">
       <tr>
@@ -328,7 +329,7 @@ function checkEmail($email, $antispam = false)
 function formatURL($url)
 {
     $url = trim($url);
-    if ('' !== $url) {
+    if ($url !== '') {
         if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url))) {
             $url = 'https://'.$url;
         }
@@ -356,7 +357,10 @@ function xoops_getbanner()
     if ($numrows > 1) {
         $numrows = $numrows-1;
         mt_srand((double)microtime()*1000000);
-        $bannum = mt_rand(0, $numrows);
+        try {
+            $bannum = random_int (0, $numrows);
+        } catch (Exception $e) {
+        }
     } else {
         $bannum = 0;
     }
@@ -369,7 +373,7 @@ function xoops_getbanner()
             $db->queryF(sprintf('UPDATE %s SET impmade = impmade+1 WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         /* Check if this impression is the last one and print the banner */
-        if (0 !== $imptotal && $imptotal == $impmade) {
+        if ($imptotal !== 0 && $imptotal == $impmade) {
             $newid = $db->genId($db->prefix('bannerfinish') . '_bid_seq');
             $sql = sprintf('INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)', $db->prefix('bannerfinish'), $newid, $cid, $impmade, $clicks, $date, time());
             $db->queryF($sql);
@@ -379,19 +383,13 @@ function xoops_getbanner()
             $bannerobject = $htmlcode;
         } else {
             $bannerobject = '<div><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="external">';
-            if (stristr($imageurl, '.swf')) {
-                $bannerobject = $bannerobject
-                    .'<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="468" height="60">'
-                    .'<param name="movie" value="'.$imageurl.'"></param>'
-                    .'<param name="quality" value="high"></param>'
-                    .'<embed src="'.$imageurl.'" quality="high" pluginspage="https://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"; type="application/x-shockwave-flash" width="468" height="60">'
-                    .'</embed>'
-                    .'</object>';
+            if (stripos ($imageurl, '.swf') !== false) {
+                $bannerobject .= '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="468" height="60">' . '<param name="movie" value="' . $imageurl . '"></param>' . '<param name="quality" value="high"></param>' . '<embed src="' . $imageurl . '" quality="high" pluginspage="https://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"; type="application/x-shockwave-flash" width="468" height="60">' . '</embed>' . '</object>';
             } else {
-                $bannerobject = $bannerobject.'<img src="'.$imageurl.'" alt="" />';
+                $bannerobject .= '<img src="' . $imageurl . '" alt="" />';
             }
 
-            $bannerobject = $bannerobject.'</a></div>';
+            $bannerobject .= '</a></div>';
         }
         return $bannerobject;
     }
@@ -422,8 +420,8 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
                 $url .= '&amp;xoops_redirect='.urlencode($xoopsRequestUri);
             }
         }
-        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' != $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if (0 === strpos($url, XOOPS_URL)) {
+        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
+            if (strpos($url, XOOPS_URL) === 0) {
                 //@gigamaster changed this to save memory
                 if (strpos($url, '?') === false) {
                     $connector = '?';
@@ -444,7 +442,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
         }
         $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         $xoopsTpl->assign('url', $url);
-        $message = '' !== trim($message) ? $message : _TAKINGBACK;
+        $message = trim($message) !== '' ? $message : _TAKINGBACK;
         $xoopsTpl->assign('message', $message);
         $xoopsTpl->assign('lang_ifnotreload', sprintf(_IFNOTRELOAD, $url));
         $GLOBALS['xoopsModuleUpdate'] = 1;
@@ -523,17 +521,17 @@ function getcss($theme = '')
  */
 function xoops_getcss($theme = '')
 {
-    if ('' === $theme) {
+    if ($theme === '') {
         $theme = $GLOBALS['xoopsConfig']['theme_set'];
     }
     $uagent = xoops_getenv('HTTP_USER_AGENT');
     //@gigamaster changed for stripos to save memory
     $str_css = '/style.css';
-    if (stripos($uagent, 'mac') !== false) {
+/*    if (stripos($uagent, 'mac') !== false) {
         $str_css = '/styleMAC.css';
     } elseif (preg_match('/MSIE ([0-9]\.[0-9]{1,2})/i', $uagent)) {
         $str_css = '/style.css';
-    }
+    }*/
     if (is_dir($path = XOOPS_THEME_PATH.'/'.$theme)) {
         if (file_exists($path.$str_css)) {
             return XOOPS_THEME_URL.'/'.$theme.$str_css;
@@ -588,12 +586,14 @@ function &xoops_gethandler($name, $optional = false)
 
     // internal Class handler exist
         if (XC_CLASS_EXISTS($class = 'Xoops'.ucfirst($name).'Handler')) {
-            $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
+            $handler = new $class($GLOBALS[ 'xoopsDB' ]);
+            $handlers[ $name ] = $handler;
             return $handler;
         }
     include_once XOOPS_ROOT_PATH.'/kernel/'.$name.'.php';
     if (XC_CLASS_EXISTS($class)) {
-        $handlers[$name] = $handler = new $class($GLOBALS['xoopsDB']);
+        $handler = new $class($GLOBALS[ 'xoopsDB' ]);
+        $handlers[ $name ] = $handler;
         return $handler;
     }
 
@@ -656,7 +656,7 @@ function xoops_getrank($rank_id =0, $posts = 0)
     $db =& Database::getInstance();
     $myts =& MyTextSanitizer::sGetInstance();
     $rank_id = (int)$rank_id;
-    if (0 !== $rank_id) {
+    if ($rank_id !== 0) {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_id = '.$rank_id;
     } else {
         $sql = 'SELECT rank_title AS title, rank_image AS image, rank_id AS id FROM '.$db->prefix('ranks').' WHERE rank_min <= '.$posts.' AND rank_max >= '.$posts.' AND rank_special = 0';
@@ -752,10 +752,10 @@ function xoops_comment_delete($module_id, $item_id)
             $deleted_num = [];
             //@gigamaster changed foreach
             foreach ($comments as $i => $iValue) {
-                if (false !== $comment_handler->delete($comments[$i])) {
+                if ($comment_handler->delete($comments[$i]) !== false) {
                     // store poster ID and deleted post number into array for later use
                     $poster_id = $iValue->getVar('com_uid', 'n');
-                    if (0 !== $poster_id) {
+                    if ($poster_id !== 0) {
                         $deleted_num[$poster_id] = !isset($deleted_num[$poster_id]) ? 1 : ($deleted_num[$poster_id] + 1);
                     }
                 }

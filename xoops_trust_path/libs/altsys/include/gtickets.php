@@ -141,11 +141,9 @@ if (! class_exists('XoopsGTicket')) {
                     // store the other valid stubs into session
                     $_SESSION['XOOPS_G_STUBS'][] = $stub ;
                 }
-            } else {
-                if (md5($stub['token'] . XOOPS_DB_PREFIX) === $ticket) {
-                    // not CSRF but Time-Out
-                    $timeout_flag = true ;
-                }
+            } else if (md5($stub['token'] . XOOPS_DB_PREFIX) === $ticket) {
+                // not CSRF but Time-Out
+                $timeout_flag = true ;
             }
         }
 
@@ -168,7 +166,7 @@ if (! class_exists('XoopsGTicket')) {
             if (@$found_stub['area'] == $area) {
                 $area_check = true ;
             }
-            if (! empty($found_stub['referer']) && strstr(@$_SERVER['HTTP_REFERER'], $found_stub['referer'])) {
+            if (! empty($found_stub['referer']) && strpos (@$_SERVER[ 'HTTP_REFERER' ], $found_stub[ 'referer' ]) !== false) {
                 $referer_check = true ;
             }
 
@@ -208,7 +206,7 @@ if (! class_exists('XoopsGTicket')) {
         $table = '<table>' ;
         $form = '<form action="?'.htmlspecialchars(@$_SERVER['QUERY_STRING'], ENT_QUOTES).'" method="post" >' ;
         foreach ($_POST as $key => $val) {
-            if ('XOOPS_G_TICKET' == $key) {
+            if ('XOOPS_G_TICKET' === $key) {
                 continue ;
             }
             if (is_array($val)) {
@@ -259,9 +257,9 @@ if (! class_exists('XoopsGTicket')) {
     {
         if (! empty($_SESSION['XOOPS_G_STUBS'])) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 
@@ -302,17 +300,14 @@ function admin_refcheck($chkref = '')
 {
     if (empty($_SERVER['HTTP_REFERER'])) {
         return true ;
-    } else {
-        $ref = $_SERVER['HTTP_REFERER'];
     }
+
+    $ref = $_SERVER['HTTP_REFERER'];
     $cr = XOOPS_URL;
-    if ('' != $chkref) {
+    if ($chkref !== '') {
         $cr .= $chkref;
     }
-    if (0 !== strpos($ref, $cr)) {
-        return false;
-    }
-    return true;
+    return !(strpos ($ref, $cr) !== 0);
 }
 }
-?>
+

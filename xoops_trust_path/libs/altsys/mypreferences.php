@@ -215,9 +215,9 @@ if ($op === 'save') {
         for ($i = 0; $i < $count; $i++) {
             $config =& $config_handler->getConfig($conf_ids[$i]);
             $new_value =& $_POST[$config->getVar('conf_name')];
-            if (is_array($new_value) || $new_value != $config->getVar('conf_value')) {
+            if (is_array($new_value) || $new_value !== $config->getVar('conf_value')) {
                 // if language has been changed
-                if (!$lang_updated && XOOPS_CONF == $config->getVar('conf_catid') && 'language' == $config->getVar('conf_name')) {
+                if (!$lang_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'language') {
                     // regenerate admin menu file
                     $xoopsConfig['language'] = $_POST[$config->getVar('conf_name')];
                     xoops_module_write_admin_menu(xoops_module_get_admin_menu());
@@ -225,14 +225,14 @@ if ($op === 'save') {
                 }
 
                 // if default theme has been changed
-                if (!$theme_updated && XOOPS_CONF == $config->getVar('conf_catid') && 'theme_set' == $config->getVar('conf_name')) {
+                if (!$theme_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'theme_set') {
                     $member_handler =& xoops_gethandler('member');
                     $member_handler->updateUsersByField('theme', $_POST[$config->getVar('conf_name')]);
                     $theme_updated = true;
                 }
 
                 // if default template set has been changed
-                if (!$tpl_updated && XOOPS_CONF == $config->getVar('conf_catid') && 'template_set' == $config->getVar('conf_name')) {
+                if (!$tpl_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'template_set') {
                     // clear cached/compiled files and regenerate them if default theme has been changed
                     if ($xoopsConfig['template_set'] !== $_POST[$config->getVar('conf_name')]) {
                         $newtplset = $_POST[$config->getVar('conf_name')];
@@ -267,7 +267,7 @@ if ($op === 'save') {
                 }
 
                 // add read permission for the start module to all groups
-                if (!$startmod_updated && '--' !== $new_value && XOOPS_CONF == $config->getVar('conf_catid') && 'startpage' == $config->getVar('conf_name')) {
+                if (!$startmod_updated && $new_value !== '--' && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'startpage') {
                     $member_handler =& xoops_gethandler('member');
                     $groups =& $member_handler->getGroupList();
                     $moduleperm_handler =& xoops_gethandler('groupperm');

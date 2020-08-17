@@ -47,6 +47,9 @@
       <td class="legacy_list_text">
         <p class="legacy_list_description"><{$theme->getShow('description') != null}></p>
         <ul>
+        <{if $theme->get('themeoptions') != null}>
+            <li><a href="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('themeoptions')}>">Theme Options - Custom Parameters</a></li>
+          <{/if}>
           <li><{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$theme->getShow('version')}></li>
           <li><{$smarty.const._AD_LEGACY_LANG_RENDER}> : <{$theme->getShow('render_system')}></li>
           <li><{$smarty.const._AD_LEGACY_LANG_FORMAT}> : <{$theme->getShow('format')}></li>

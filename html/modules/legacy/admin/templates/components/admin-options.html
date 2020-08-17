@@ -17,42 +17,48 @@
 		<div class="slimscrollright">
 
 		<div class="right-panel-title"> Control Panel
-				<span class="theme-options theme-options-toogle">
-						<svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M512 0Q373 0 255 68.5T68.5 255 0 512t68.5 257T255 955.5t257 68.5 257-68.5T955.5 769t68.5-257-68.5-257T769 68.5 512 0zm0 961q-73 0-141.5-22.5T247 874t-96.5-97-64-123.5T64 512q0-91 35.5-174T195 195t143-95.5T512 64t174 35.5T829 195t95.5 143T960 512t-35.5 174T829 829.5t-143 96T512 961zm181-630q-9-9-22.5-9t-22.5 9L512 467 376 331q-9-9-22.5-9t-22.5 9-9 22.5 9 22.5l136 136-136 136q-6 6-8.5 14t0 16.5T331 693q9 9 22.5 9t22.5-9l136-136 136 136q9 9 22.5 9t22.5-9q6-6 8.5-14.5t0-16.5-8.5-14L557 512l136-136q9-9 9-22.5t-9-22.5z" fill="currentColor"></path>
-						</svg>
-				</span>
+            <span class="theme-options theme-options-toogle">
+                <svg xmlns="https://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M512 0Q373 0 255 68.5T68.5 255 0 512t68.5 257T255 955.5t257 68.5 257-68.5T955.5 769t68.5-257-68.5-257T769 68.5 512 0zm0 961q-73 0-141.5-22.5T247 874t-96.5-97-64-123.5T64 512q0-91 35.5-174T195 195t143-95.5T512 64t174 35.5T829 195t95.5 143T960 512t-35.5 174T829 829.5t-143 96T512 961zm181-630q-9-9-22.5-9t-22.5 9L512 467 376 331q-9-9-22.5-9t-22.5 9-9 22.5 9 22.5l136 136-136 136q-6 6-8.5 14t0 16.5T331 693q9 9 22.5 9t22.5-9l136-136 136 136q9 9 22.5 9t22.5-9q6-6 8.5-14.5t0-16.5-8.5-14L557 512l136-136q9-9 9-22.5t-9-22.5z" fill="currentColor"></path>
+                </svg>
+            </span>
 		</div>
 
 		<div class="right-panel-block">
-			<div><p>
-				<a href="<{$xoops_url}>/"  title="<{$smarty.const._YOURHOME}>" class="ui-btn ui-btn-small">
-					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
-							<path d="M12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8s8 3.6 8 8s-3.6 8-8 8m0-18C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-1 12h2v3h3v-5h2l-6-5l-6 5h2v5h3v-3" fill="currentColor"></path>
-					</svg>
-				</a>
-				<a href="<{$xoops_url}>/edituser.php" title="Account Setting" class="ui-btn ui-btn-small">
+
+            <ul style="width: calc(100% - 30px); margin:0">
+                <li>
+                <a href="<{$xoops_url}>/"  title="<{$smarty.const._YOURHOME}>" class="ui-btn ui-btn-small" style="width: 100%; text-align:left; margin: 0">
+                    <svg class="svg-ui-icon" xmlns="http://www.w3.org/2000/svg"  class="svg-ui-icon" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8h5z" fill="currentColor"/></svg> <{$smarty.const._YOURHOME}>
+                </a>
+                <li>
+				<a href="<{$xoops_url}>/edituser.php" title="Account Setting" class="ui-btn ui-btn-small" style="width: 100%; text-align:left; margin: 0">
 					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
 							<path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z" fill="currentColor"></path>
-					</svg>
-				</a>
-				<a href="<{$xoops_url}>/viewpmsg.php" title="Inbox" class="ui-btn ui-btn-small">
+					</svg> Account
+                </a>
+                <li>
+				<a href="<{$xoops_url}>/viewpmsg.php" title="Inbox" class="ui-btn ui-btn-small" style="width: 100%; text-align:left; margin: 0">
 					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
 							<path d="M2 6v14h18v2H2c-1.105 0-2-.89-2-2V6h2m22-2c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4m-2 0l-8 5l-8-5h16m0 12H6V6l8 5l8-5v10z" fill="currentColor"></path>
-					</svg>
-				</a>
-				<a href="<{$xoops_url}>/notifications.php" title="Notifications" class="ui-btn ui-btn-small">
+					</svg> Inbox
+                </a>
+                <li>
+				<a href="<{$xoops_url}>/notifications.php" title="Notifications" class="ui-btn ui-btn-small" style="width: 100%; text-align:left; margin: 0">
 					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
 							<path d="M16 17H7v-6.5C7 8 9 6 11.5 6S16 8 16 10.5m2 5.5v-5.5c0-3.07-2.14-5.64-5-6.32V3.5A1.5 1.5 0 0 0 11.5 2A1.5 1.5 0 0 0 10 3.5v.68c-2.87.68-5 3.25-5 6.32V16l-2 2v1h17v-1m-8.5 4a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z" fill="currentColor"></path>
-					</svg>
+					</svg> Notifications
 				</a>
-
-				<a href="<{$xoops_url}>/user.php?op=logout" title="<{$smarty.const._LOGOUT}>" class="ui-btn ui-btn-small">
+                <li>
+				<a href="<{$xoops_url}>/user.php?op=logout" title="<{$smarty.const._LOGOUT}>" class="ui-btn ui-btn-small" style="width: 100%; text-align:left; margin: 0">
 					<svg role="img" xmlns="https://www.w3.org/2000/svg" aria-hidden=”true” viewBox="0 0 24 24" class="svg-ui-icon">
 							<path d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L15.5 7l5 5l-5 5l-1.42-1.41M19 3a2 2 0 0 1 2 2v4.67l-2-2V5H5v14h14v-2.67l2-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h14z" fill="currentColor"></path>
-					</svg>
+					</svg> <{$smarty.const._LOGOUT}>
 				</a>
-			</p>
-		</div>
+			</li></ul>
+
+            <h5>Module :: <{$xoops_dirname}></h5>
+
 
 			<ul id="themecolors" class="theme-color-scheme">
 					<li class="d-block m-t-30"><b>Theme Selection</b></li>
@@ -78,15 +84,17 @@
 			</div>
 
 			<h5>Theme Options</h5>
-			<p>
-				<label>Yes </label>
-				<input name="closesite" id="legacy_xoopsform_closesite_1" type="radio" value="1">
+			<ul>
+				<li>
+                    <label>Yes </label><input name="closesite" id="legacy_xoopsform_closesite_1" type="radio" value="1">
 				<label>No </label>
 				<input name="closesite" id="legacy_xoopsform_closesite_0" type="radio" value="0" checked>
-				<label>value-1</label>
+				<li><label>value-1</label>
 				<input name="checkbox1" id="checkbox1" type="checkbox"  class="switch" value="1">
-				<label>checked</label>
-				<input name="checkbox2" id="checkbox2" type="checkbox"  class="switch" checked>
+				<li><label>checked</label>
+                <input name="checkbox2" id="checkbox2" type="checkbox"  class="switch" checked>
+            </li>
+        </ul>
 
 	<style>
 	.ui-pattern-list {

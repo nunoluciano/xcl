@@ -224,7 +224,7 @@
         border-bottom-left-radius : 2px;
         box-shadow      : -5px 0px 5px 1px rgba(0,0,0,0.27);
 
-        color           : #fff;
+        color           : #abc;
         line-height     : 30px;
         position        : fixed;
         top             : 30%;
@@ -251,10 +251,7 @@
     }
 
     /* -------------------- -------------------- -------------------- -------------------- XCL CUBE
-    * Quintessential Responsive 3D CSS Cube
-    * https://github.com/zachstronaut/quintessential-css-cube/
-    * 2015-03-04 Release MIT License @zacharyjohnson
-    */
+    * Quintessential Responsive 3D CSS Cube, MIT License @zacharyjohnson https://github.com/zachstronaut/quintessential-css-cube/ */
     .qube-perspective{-webkit-perspective:900px;-moz-perspective:900px;perspective:900px}
     .qube-preserve3d{-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;transform-style:preserve-3d}
     .qube{position:relative;margin:0;padding:0;list-style:none;width:100%;height:100%;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;transform-style:preserve-3d}
@@ -317,7 +314,7 @@
 
     .right-sidebar {
         position        : fixed;
-        right           : -270px;
+        right           : -274px;
         width           : 270px;
         display         : none;
         z-index         : 1100;
@@ -348,7 +345,7 @@
         color           : #ffffff;
     }
     .right-sidebar .right-panel-block {
-        padding         : 20px;
+        padding         : 15px;
     }
     .right-sidebar .right-panel-block ul {
         margin          : 0px;
@@ -361,25 +358,25 @@
 
     .right-panel-show {
         right           : 0px;
-        width           : 270px;
+        width           : 274px;
         display         : block;
     }
 
-    .chatonline img {
+    .chatline img {
         margin-right    : 10px;
         float           : left;
         width           : 30px;
     }
 
-    .chatonline li a {
+    .chatline li a {
         padding         : 13px 0;
         float           : left;
         width           : 100%;
     }
-    .chatonline li a span {
+    .chatline li a span {
         color           : #747d8a;
     }
-    .chatonline li a span small {
+    .chatline li a span small {
         display         : block;
         font-size       : 10px;
     }

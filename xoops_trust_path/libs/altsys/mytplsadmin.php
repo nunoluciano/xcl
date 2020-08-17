@@ -49,7 +49,7 @@ if (!empty($target_module) && is_object($target_module)) {
     $target_dirname4sql = addslashes($target_dirname);
     $target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0);
     //$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
-} elseif ('_custom' == @$_GET['dirname']) {
+} elseif (@$_GET['dirname'] === '_custom') {
     // custom template
     $target_mid = 0;
     $target_dirname = '_custom';
@@ -166,7 +166,7 @@ if (is_array(@$_POST['del_do'])) {
             }
 
             $tplset_from = $myts->stripSlashesGPC($tplset_from_tmp);
-            if ('default' == $tplset_from && '_custom' != $target_dirname) {
+            if ($tplset_from === 'default' && $target_dirname !== '_custom') {
                 tplsadmin_die(_MYTPLSADMIN_ERR_CANTREMOVEDEFAULT, $target_dirname);
             }
             if (empty($_POST["{$tplset_from}_check"])) {
@@ -287,7 +287,7 @@ echo "<hr>
         <h2>" . _MYTPLSADMIN_H3_MODULE . " : $target_mname</h2>\n";
 
 // link to create a new custom template
-if ('_custom' == $target_dirname) {
+if ($target_dirname === '_custom') {
     echo "<a href='index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default'>" . _MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE . "</a>\n";
 }
 
@@ -310,7 +310,7 @@ $fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', '
 
 // template ROWS
 while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
-    $evenodd = 'even' == @$evenodd ? 'odd' : 'even';
+    $evenodd = @$evenodd === 'even' ? 'odd' : 'even';
     $fingerprints = [];
 
     // information about the template
@@ -403,12 +403,11 @@ foreach ($tplsets as $tplset) {
 		</td>\n";
 }
 
-echo "</tr>
-    </tfoot>\n";
+echo '</tr></tfoot>';
 
 
-echo "</table></form>";
+echo '</table></form>';
 // end of table & form
 
 xoops_cp_footer();
-?>
+

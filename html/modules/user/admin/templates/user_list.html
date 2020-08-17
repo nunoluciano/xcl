@@ -3,9 +3,12 @@
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a></span>
 </div>
 
+<{assign var="adminHelp" value="$legacy_module article#help-overview"}>
+<{include file="./components/admin-help.html" }>
 
-<{ include file="./components/user-overview.html" }>
+<{include file="./components/user-overview.html"}>
 
+<{include file="./components/admin-help.html"}>
 
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_LIST}></h2>
 
@@ -18,7 +21,14 @@
      <input class="switch" type="checkbox" id="user-filter" onclick="slideToggle('.user-filter', this)" value="0">
         <label for="user-filter"> Display user filter</label></p>
 
-    <p><a class="ui-btn ui-btn small" href="<{$smarty.const.XOOPS_URL}>/modules/profile/admin/index.php?action=DefinitionsList"><{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}></a></p>
+        <p>
+            <a class="ui-btn ui-btn small" href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a>
+
+            <a class="ui-btn ui-btn small" href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
+
+            <a class="ui-btn ui-btn small" href="<{$smarty.const.XOOPS_URL}>/modules/profile/admin/index.php?action=DefinitionsList">
+            <{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}></a>
+        </p>
 </div>
 
 
@@ -38,28 +48,30 @@
   <{xoops_token form=$actionForm}>
 
     <div class="user-search" style="display: none">
-	<{ include file="./components/user-search.html" }>
+	<{include file="./components/user-search.html"}>
     </div>
     <div class="user-filter" style="display: none">
-	<{ include file="./components/user-filter.html" }>
+	<{include file="./components/user-filter.html"}>
     </div>
 
 	<hr>
 
 	<{* ---------- ---------- ---------- ---------- ---------- UI-GRID-BLOCKS *}>
 	<div class="ui-grid-blocks">
-  <{foreach item=user from=$objects}>
 
-	<{ include file="./components/user-card.html" }>
+    <{foreach item=user from=$objects}>
 
-  <{/foreach}>
-	</div><{* /ui-grid-blocks *}>
+	<{include file="./components/user-card.html"}>
+
+    <{/foreach}>
+    </div>
+    <{* /ui-grid-blocks *}>
 
 		<div class="foot">
 			<input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton">
-		<tdiv>
+		</div>
 
 </form>
 
-<{ include file="./components/pagenavi.html" }>
+<{include file="./components/pagenavi.html"}>
 

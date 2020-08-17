@@ -23,10 +23,10 @@ function b_legacy_notification_show()
 {
     global $xoopsConfig, $xoopsUser, $xoopsModule;
     include_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
-    
+
     $root =& XCube_Root::getSingleton();
     $root->mLanguageManager->loadPageTypeMessageCatalog('notification');
-    
+
     // Notification must be enabled, and user must be logged in
     if (empty($xoopsUser) || !notificationEnabled('block')) {
         return false; // do not display block
@@ -50,7 +50,7 @@ function b_legacy_notification_show()
             if (!empty($event['admin_only']) && !$xoopsUser->isAdmin($xoopsModule->getVar('mid'))) {
                 continue;
             }
-            $subscribed = in_array($event['name'], $subscribed_events) ? 1 : 0;
+            $subscribed = in_array($event['name'], $subscribed_events, true) ? 1 : 0;
             $section['events'][$event['name']] = ['name' => $event['name'], 'title' => $event['title'], 'caption' => $event['caption'], 'description' => $event['description'], 'subscribed' =>$subscribed];
         }
         $block['categories'][$category['name']] = $section;

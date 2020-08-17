@@ -5,22 +5,22 @@ define('_LEGACY_PREVENT_LOAD_CORE_', 1) ;
 
 include '../../mainfile.php' ;
 
-if (defined('XOOPS_TRUST_PATH') && XOOPS_TRUST_PATH != '' && file_exists(XOOPS_TRUST_PATH.'/libs/altsys')) {
+if (defined('XOOPS_TRUST_PATH') && XOOPS_TRUST_PATH !== '' && file_exists(XOOPS_TRUST_PATH.'/libs/altsys')) {
     die('No problem with your XOOPS_TRUST_PATH') ;
 }
 
 
 // show the hint if password mathes
 $hint = '' ;
-if (XOOPS_DB_PASS == @$_POST['dbpassword']) {
+if (@$_POST['dbpassword'] == XOOPS_DB_PASS) {
     // find XOOPS_TRUST_PATH
     $xoops_trust_path = '' ;
-    $base_dirs = [XOOPS_ROOT_PATH, dirname(XOOPS_ROOT_PATH), dirname(dirname(XOOPS_ROOT_PATH))];
+    $base_dirs = [XOOPS_ROOT_PATH, dirname(XOOPS_ROOT_PATH), dirname (XOOPS_ROOT_PATH, 2)];
     foreach ($base_dirs as $base_dir) {
         $dh = @opendir($base_dir) ;
         if (! empty($dh)) {
-            while (false !== ($file = readdir($dh))) {
-                if ('.' == substr($file, 0, 1)) {
+            while (($file = readdir($dh)) !== false) {
+                if ($file[ 0 ] === '.') {
                     continue ;
                 }
                 $fullpath = $base_dir . '/' . $file ;

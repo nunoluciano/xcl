@@ -22,8 +22,8 @@ $adminmenu4altsys = [
         'title' => constant($constpref.'_ADMENU_MYBLOCKSADMIN') ,
         'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ,
     ],
-    [
-        'title' => _PREFERENCES ,
-        'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences' ,
-    ],
+    // [
+    //     'title' => _PREFERENCES ,
+    //     'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences' ,
+    // ],
 ];

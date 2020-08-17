@@ -34,6 +34,7 @@ class LegacyThemeObject extends XoopsSimpleObject
         $this->initVar('description', XOBJ_DTYPE_STRING, '', false, 255);
         $this->initVar('format', XOBJ_DTYPE_STRING, '', true, 255);
         $this->initVar('render_system', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('themeoptions', XOBJ_DTYPE_STRING, '', true, 255);
         $this->initVar('version', XOBJ_DTYPE_STRING, '', true, 32);
         $this->initVar('author', XOBJ_DTYPE_STRING, '', true, 64);
         $this->initVar('url', XOBJ_DTYPE_STRING, '', true, 255);
@@ -110,6 +111,7 @@ class LegacyThemeHandler extends XoopsObjectHandler
                         'description'   => $theme->mDescription,
                         'format'        => $theme->mFormat,
                         'render_system' => $theme->mRenderSystemName,
+                        'themeoptions'  => $theme->mThemeOptions,
                         'version'       => $theme->mVersion,
                         'author'        => $theme->mAuthor,
                         'url'           => $theme->mUrl,

@@ -64,7 +64,7 @@
 
 	.ui-block-online-title {
 
-		font-size				: var(  --ui-size-500				);
+		font-size				: var(  --ui-size-400				);
 		margin-bottom		: var(	--ui-space-600			);
 
 	}
@@ -222,13 +222,14 @@
 		display         : flex;
 		flex-direction  : column;
 		margin-bottom   : 1.5rem;
-        min-width				: 295px;
-        max-width: 310px;
+        min-width       : 295px;
+        max-width       : 310px;
 
 		/* Avoid Grid Break Margin Issues */
 		-webkit-column-break-inside: avoid;
 		page-break-inside: avoid;
-		break-inside: avoid;
+        break-inside: avoid;
+
 
 		transition 			: var(  --ui-shadow-transition  );
 
@@ -268,11 +269,11 @@
     }
 	.ui-card-block-content {
 
-		align-items			: center;
+		align-items     : center;
 
 		background      : var(  --ui-card-block-content-bg			);
 
-		border				  : var(  --ui-card-block-content-border	);
+		border          : var(  --ui-card-block-content-border	);
 
 		/* display         : flex; */
 		flex-direction	: column;
@@ -284,28 +285,41 @@
 
     .ui-card-block-image {
         margin : 0 auto;
+        text-align      : center;
     }
+
+    .user-avatar,
+    img.ui-avatar-card {
+        border-color    : var(  --ui-color-200      );
+        border-radius   : 50%;
+        border-style    : var(  --ui-border-style   );
+        border-width    : 5px;
+        height          : 128px;
+        margin          : 1em auto;
+        text-align      : center;
+    }
+
 	.ui-card-block-item {
 
-		align-items			: center;
-		display					: flex;
+		align-items     : center;
+		display         : flex;
 		justify-content	: space-between;
-		padding         : var(  --ui-card-block-item-padding				);
-		width						: var(  --ui-card-block-item-width					);
+		padding         : var(  --ui-card-block-item-padding );
+		width           : var(  --ui-card-block-item-width   );
 	}
 
 	/* input[size=] width depend using fonts,
 	   then setting by style for compatibility */
 	.ui-card-block-item input[size="20"] {
         /* width: 12em; */
-        width: 74%;
+        width           : 74%;
 	}
 
 	.ui-card-block-item.pad-left {
-		padding-left: 2em;
+		padding-left    : 2em;
 	}
 	.ui-card-block-item.pad-center {
-		justify-content: space-around;
+		justify-content : space-around;
 	}
 
 
@@ -317,8 +331,8 @@
 	.ui-module-version,
 	.ui-module-date {
 
-		align-items			: center;
-		display					: flex;
+		align-items     : center;
+		display         : flex;
 
 	}
 
@@ -335,30 +349,31 @@
 
 	.ui-block-side {
 
-		display					: flex;
+		display         : flex;
 		justify-content	: space-evenly;
-		align-items			: center;
-		/* max-width				: 420px; */flex-basis: 100%
+		align-items     : center;
+        /* max-width    : 420px; */
+        flex-basis: 100%
 
 	}
 
 	.block-extra-side {
 
-		max-width				: 35px;
+		max-width       : 35px;
 
 	}
 
 	.ui-block-cache,
 	.ui-block-date {
 
-		display					: flex;
+		display         : flex;
 		justify-content	: center;
-		padding					:  var(  --ui-space-600			) 0;
+		padding         :  var(  --ui-space-600 ) 0;
 
 	}
 
 	.ui-block-date svg {
 
-		margin-right		: var(  --ui-space-600			);
+		margin-right    : var(  --ui-space-600  );
 
 	}

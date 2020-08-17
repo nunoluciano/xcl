@@ -71,9 +71,15 @@ class Legacy_SiteClose extends XCube_ActionFilter
             );
 
             $xoopsTpl->compile_check = true;
+            $xclTplClose = XOOPS_ROOT_PATH . '/themes/' . $xoopsConfig['theme_set'] . '/templates/legacy/legacy_site_closed.html';
+            // Theme filebase template with absolute file path
+            if (file_exists($xclTplClose)) {
+                $xoopsTpl->display($xclTplClose);
+            }
+		    else {
+                $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_site_closed.html');
+                }
 
-            // @todo filebase template with absolute file path
-            $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/legacy/templates/legacy_site_closed.html');
             exit();
         }
     }

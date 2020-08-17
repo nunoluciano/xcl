@@ -47,20 +47,19 @@
 
 		<{* ---------- ---------- ---------- ---------- ---------- Module Header *}>
 
-		<{ $xoops_module_header }>
+		<{$xoops_module_header}>
 
 
 		<{* ---------- ---------- ---------- ---------- ---------- Admin Style *}>
 
 		<!-- !TODO Check This -->
-        <{stylesheet file=style.css static=true}>
+        <{stylesheet file='style.css' static='true'}>
 
         <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
 
 
         <{* ---------- ---------- ---------- ---------- ---------- Javascript plugin *}>
 
-<!--        <script src='<{$xoops_url}>/common/js/jquery-migrate.min.js'></script>-->
         <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/js/prismjs/prism.css">
         <script src='<{$xoops_url}>/common/js/prismjs/prism.js' defer></script>
 
@@ -80,7 +79,7 @@
 
 	<header class="header">
 
-        <{ include file="../templates/components/admin-nav-header.html" }>
+        <{include file="../templates/components/admin-nav-header.html"}>
 
 	</header>
 
@@ -107,8 +106,8 @@
 
 			<{$xoops_lblocks.sidemenu.content}>
 
-			<{foreach name=lblock item=block from=$xoops_lblocks}>
-			<{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'  }>
+			<{foreach name='lblock' item='block' from=$xoops_lblocks}>
+			<{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'}>
 			<{$block.content}>
 			<{/if}>
 			<{/foreach}>
@@ -128,9 +127,9 @@
 
 	<{* ---------- ---------- ---------- ---------- ---------- Block Online Info *}>
 
-	<{if $xoops_dirname == "legacy" && $currentModule->mXoopsModule->getVar('dirname') == "legacy" }>
+	<{if $xoops_dirname == "legacy" && $currentModule->mXoopsModule->getVar('dirname') == "legacy"}>
 
-	<{foreach name=lblock item=block from=$xoops_lblocks}>
+	<{foreach name='lblock' item='block' from=$xoops_lblocks}>
         <{if $block.name =='onlineinfo' && $block.name !='sidemenu'}>
         <{$block.content}>
         <{/if}>

@@ -6,7 +6,7 @@
 		<{* ---------- ---------- ---------- ---------- ---------- Online Welcome *}>
 
 		<div class="ui-block-online-welcome">
-			<div class="ui-block-online-title">Welcome, <strong><{$uid|xoops_user:"name"}></strong></div>
+			<div class="ui-block-online-title">Welcome, <{$uid|xoops_user:"name"}></div>
 			<div class="ui-block-online-text">
 				Gambatte kudasai. Have fun today!<br>
 				<{$contents.online_total}><br>
@@ -40,11 +40,38 @@
 				</div>
 			</div>
 
-			<{* ---------- ---------- ---------- ---------- ---------- Online Info *}>
-			<{* TODO : Ajax popup modal *}>
-
+			<{* ---------- ---------- ---------- Online Info - Ajax popup modal*}>
+            <script>
+                $( function() {
+                    $( "#dialog-online" ).dialog({
+                        // position: { my: "center center", at: "right top", of: null,collision: "fit" },
+                        position: {my: "right center", at: "right bottom", collision: "flipfit" },
+                        autoOpen: false,
+                        maxWidth:600,
+                        maxHeight: 400,
+                        width: 400,
+                        height: 400,
+                        show: {
+                            effect: "blind",
+                            duration: 300
+                        },
+                        closeOnEscape: true,
+                        hide: {
+                            effect: "clip",
+                            duration: 300
+                        },
+                    });
+                    // Open Help
+                    $( "#open-online" ).on( "click", function() {
+                        $( "#dialog-online" ).dialog( "open" );
+                        $('#online-users').load('<{$xoops_url}>/misc.php?type=online #online-users', function() {
+                            console.log('Load was performed.');
+                        })
+                    });
+                });
+            </script>
 			<div class="ui-block-online-stats-info">
-				<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);">
+				<a id="open-online" href="#">
 				<div class="ui-block-online-stats-title">
 					<{$smarty.const._MB_LEGACY_ONLINEINFO}>?
 				</div>
@@ -52,7 +79,9 @@
 					<img src="<{"icons/icon-user-online.svg"|theme}>" class="svg"> <{$smarty.const._MB_USER_MORE}></div>
 				</a>
 			</div>
-
+                    <div class="display:none ui-widget-shadow " id="dialog-online" title="<{$smarty.const._MB_LEGACY_ONLINEINFO}>">
+                        <div id="online-users"></div>
+                    </div>
 		</div><{* ui-block-online-stats *}>
 
 	</div><{* ui-block-online-content- *}>

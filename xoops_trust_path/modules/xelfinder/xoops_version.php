@@ -69,7 +69,7 @@ $modversion['config'] = [
 	'description'	=> $constpref.'_MANAGER_TITLE_DESC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'string' ,
-	'default'		=> 'File Manager - X-elFinder (elFinder 2.1 for XOOPS)'
+	'default'		=> 'File Manager - X-elFinder'
     ],
     [
 	'name'			=> 'volume_setting' ,
@@ -360,7 +360,7 @@ mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS
 	'description'	=> $constpref.'_JQUERY_DESC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'string' ,
-	'default'		=> ''
+	'default'		=> XOOPS_URL.'/common/js/jquery.min.js'
     ],
     [
 	'name'			=> 'jquery_ui' ,
@@ -368,7 +368,7 @@ mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS
 	'description'	=> $constpref.'_JQUERY_UI_DESC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'string' ,
-	'default'		=> ''
+	'default'		=> XOOPS_URL.'/common/js/jquery-ui.min.js'
     ],
     [
 	'name'			=> 'jquery_ui_css' ,
@@ -376,7 +376,7 @@ mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS
 	'description'	=> $constpref.'_JQUERY_UI_CSS_DESC' ,
 	'formtype'		=> 'textbox' ,
 	'valuetype'		=> 'string' ,
-	'default'		=> ''
+	'default'		=> XOOPS_URL.'/common/js/jquery-ui.min.css'
     ],
     [
 	'name'			=> 'jquery_ui_theme' ,
@@ -384,7 +384,7 @@ mailbbs:mailbbs:modules/mailbbs/imgs:MailBBS
 	'description'	=> $constpref.'_JQUERY_UI_THEME_DESC' ,
 	'formtype'		=> 'select' ,
 	'valuetype'		=> 'string' ,
-	'default'		=> 'smoothness' ,
+	'default'		=> 'dark-hive' ,
 	'options'		=> ['black-tie' =>'black-tie', 'blitzer' =>'blitzer', 'cupertino' =>'cupertino', 'dark-hive' =>'dark-hive', 'dot-luv' =>'dot-luv', 'eggplant' =>'eggplant', 'excite-bike' =>'excite-bike', 'flick' =>'flick', 'hot-sneaks' =>'hot-sneaks', 'humanity' =>'humanity', 'le-frog' =>'le-frog', 'mint-choc' =>'mint-choc', 'overcast' =>'overcast', 'pepper-grinder', 'redmond' =>'redmond', 'smoothness' =>'smoothness', 'south-street' =>'south-street', 'start' =>'start', 'sunny' =>'sunny', 'swanky-purse' =>'swanky-purse', 'trontastic' =>'trontastic', 'ui-darkness' =>'ui-darkness', 'ui-lightness' =>'ui-lightness', 'vader' =>'vader']
     ],
     [

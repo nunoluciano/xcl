@@ -1,16 +1,15 @@
 <?php
-
-// send header
-if (!headers_sent()) {
+header("Content-type: text/css", true); // set header to avoid header:text/html error
+// header sent checking session active
+if (!headers_sent() && session_status()!=PHP_SESSION_ACTIVE){ 
 	$cache_limit = 3600;
 
 	session_cache_limiter('public');
 	header('Expires: ' . date('r', (int)(time() / $cache_limit) * $cache_limit + $cache_limit));
 	header("Cache-Control: public, max-age=$cache_limit");
 	header('Last-Modified: ' . date('r', (int)(time() / $cache_limit) * $cache_limit));
-	header('Content-Type: text/css');
+    header('Content-type: text/css', true);
 }
-
 if (is_object($xoopsUser)) {
 	$xoops_isuser = true;
 	$xoops_userid = $xoopsUser->getVar('uid');
@@ -41,4 +40,5 @@ $tpl->assign(
     ]
 );
 $tpl->display('db:' . $mydirname . '_main.css');
+
 exit;

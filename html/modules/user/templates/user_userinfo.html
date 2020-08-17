@@ -6,15 +6,13 @@
 <{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
 | <a href="<{$xoops_url}>/user.php?op=delete"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
 <{elseif $xoops_isadmin == true}>
-    | <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> - 
+    | <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a> -
     | <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></a> -
     | <a href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_DELACCOUNT}></a>
 <{/if}>
 </div>
 
-<table width="100%" border="0" cellspacing="5">
-  <tr valign="top">
-    <td width="50%">
+
 
     <table class="outer" cellpadding="4" cellspacing="1" width="100%">
       <tr>
@@ -104,8 +102,10 @@
       </tr>
      <{/if}>
     </table>
-    </td>
-    <td width="50%">
+
+ <hr>
+
+
     <table class="outer" cellpadding="4" cellspacing="1" width="100%">
       <tr valign="top">
         <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_STATISTICS}></th>
@@ -132,7 +132,9 @@
         <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></td>
       </tr>
     </table>
-    <br>
+
+    <hr>
+
     <table class="outer" cellpadding="4" cellspacing="1" width="100%">
       <tr valign="top">
         <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_USER_SIG}></th>
@@ -141,9 +143,8 @@
         <td class="<{cycle values='odd,even'}>"><{$thisUser->getShow('user_sig')}></td>
       </tr>
     </table>
-    </td>
-  </tr>
-</table>
+
+
 
 <!-- start module search results loop -->
 <{foreach item=module from=$searchResults}>

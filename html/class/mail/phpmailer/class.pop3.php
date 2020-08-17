@@ -172,7 +172,7 @@ class POP3
             $this->port = (integer)$port;
         }
         // If no timeout value provided, use default
-        if (false === $timeout) {
+        if ($timeout === false) {
             $this->tval = $this->POP3_TIMEOUT;
         } else {
             $this->tval = (integer)$timeout;
@@ -215,7 +215,7 @@ class POP3
         //Rather than suppress it with @fsockopen, capture it cleanly instead
         set_error_handler([$this, 'catchWarning']);
 
-        if (false === $port) {
+        if ($port === false) {
             $port = $this->POP3_PORT;
         }
 

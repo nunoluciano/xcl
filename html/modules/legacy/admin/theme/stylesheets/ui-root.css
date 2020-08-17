@@ -277,7 +277,7 @@
     --ui-card-block-content-padding	: 0;
 
     /* CARD BLOCK ITEM    */
-    --ui-card-block-item-padding    : var(  --ui-space-400      ) 0.75em ;
+    --ui-card-block-item-padding    : 0.5em 1em;
     --ui-card-block-item-width      : 100%;
 
 
@@ -471,10 +471,8 @@
 
 
 /*	-------------------- -------------------- -------------------- SPACE : relative margin and padding */
-    /* Exmple :
-            '--ui-size-100' = 15px * (ui-size-scale-ratio 1.5) = 10px
-            'ui-space-unit' =
-            'ui-space-unit' = 16px x 'ui-space-400' = 8px of space
+    /* Exmple : margin : var(--sp4); // = --sp-unit x 'value' = space
+            '--sp4' = 15px * 0.5 = 7.5px'
     */
 
     --ui-space-unit : 16px;
@@ -488,6 +486,24 @@
     --ui-space-600  : calc(var(--ui-space-unit) * 1.25);
     --ui-space-700  : calc(var(--ui-space-unit) * 2);
     --ui-space-800  : calc(var(--ui-space-unit) * 3.25);
+
+
+/*	-------------------- -------------------- -------------------- TEXT typography scalable */
+    /* Exmple :
+            'ui-size-100' = 15px / 1.5 = 10px
+            'ui-size-200' = 10px x 'ui-size-scale-ratio' = 15px
+            'ui-size-300' = 15px x 'ui-size-scale-ratio' = 22,5px
+    */
+    --ui-size-scale-ratio	: 1.5;
+
+    --ui-size-100       : calc((1em / var(--ui-size-scale-ratio)) );
+    --ui-size-200       : calc(var(--ui-size-100) * var(--ui-size-scale-ratio));
+    --ui-size-300       : calc(var(--ui-size-200) * var(--ui-size-scale-ratio));
+    --ui-size-400       : calc(var(--ui-size-300) * var(--ui-size-scale-ratio));
+    --ui-size-500       : calc(var(--ui-size-400) * var(--ui-size-scale-ratio));
+    --ui-size-600       : calc(var(--ui-size-500) * var(--ui-size-scale-ratio));
+    --ui-size-700       : calc(var(--ui-size-600) * var(--ui-size-scale-ratio));
+    --ui-size-800       : calc(var(--ui-size-700) * var(--ui-size-scale-ratio));
 
 
 /*	-------------------- -------------------- -------------------- TABLE */
@@ -524,24 +540,6 @@
     --ui-tab-hover-text     : var(  --ui-color-700  );
 
     --ui-tab-padding        : var(  --ui-space-500  );
-
-
-/*	-------------------- -------------------- -------------------- TEXT typography scalable */
-    /* Exmple :
-            'ui-size-100' = 15px / 1.5 = 10px
-            'ui-size-200' = 10px x 'ui-size-scale-ratio' = 15px
-            'ui-size-300' = 15px x 'ui-size-scale-ratio' = 22,5px
-    */
-        --ui-size-scale-ratio	: 1.5;
-
-        --ui-size-100       : calc((1em / var(--ui-size-scale-ratio)) );
-        --ui-size-200       : calc(var(--ui-size-100) * var(--ui-size-scale-ratio));
-        --ui-size-300       : calc(var(--ui-size-200) * var(--ui-size-scale-ratio));
-        --ui-size-400       : calc(var(--ui-size-300) * var(--ui-size-scale-ratio));
-        --ui-size-500       : calc(var(--ui-size-400) * var(--ui-size-scale-ratio));
-        --ui-size-600       : calc(var(--ui-size-500) * var(--ui-size-scale-ratio));
-        --ui-size-700       : calc(var(--ui-size-600) * var(--ui-size-scale-ratio));
-        --ui-size-800       : calc(var(--ui-size-700) * var(--ui-size-scale-ratio));
 
 
     /*	-------------------- -------------------- -------------------- @UTILS LEGACY */

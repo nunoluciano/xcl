@@ -148,7 +148,7 @@ class XCube_ActionForm
     public function getToken()
     {
         if (null === $this->_mToken) {
-            mt_srand(microtime() * 100000);
+            mt_srand(microtime(true) * 100000);
             $root=&XCube_Root::getSingleton();
             $salt = $root->getSiteConfig('Cube', 'Salt');
             $this->_mToken = md5($salt . uniqid(mt_rand(), true));
@@ -190,10 +190,10 @@ class XCube_ActionForm
     public function set()
     {
         if (isset($this->mFormProperties[func_get_arg(0)])) {
-            if (2 === func_num_args()) {
+            if (func_num_args() === 2) {
                 $value = func_get_arg(1);
                 $this->mFormProperties[func_get_arg(0)]->setValue($value);
-            } elseif (3 === func_num_args()) {
+            } elseif (func_num_args() === 3) {
                 $index = func_get_arg(1);
                 $value = func_get_arg(2);
                 $this->mFormProperties[func_get_arg(0)]->setValue($index, $value);
@@ -207,9 +207,9 @@ class XCube_ActionForm
     public function setVar()
     {
         if (isset($this->mFormProperties[func_get_arg(0)])) {
-            if (2 === func_num_args()) {
+            if (func_num_args() === 2) {
                 $this->mFormProperties[func_get_arg(0)]->setValue(func_get_arg(1));
-            } elseif (3 === func_num_args()) {
+            } elseif (func_num_args() === 3) {
                 $this->mFormProperties[func_get_arg(0)]->setValue(func_get_arg(1), func_get_arg(2));
             }
         }

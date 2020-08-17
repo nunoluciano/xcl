@@ -16,7 +16,7 @@
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <strong><{$activeUserTotal}></strong></h3>
-			<p class="ui-card-small-subtitle"><a href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a></p>
+			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a></p> -->
 		</div>
 	</div>
 
@@ -26,7 +26,7 @@
 		</div>
 		<div class="ui-card-small-info">
 			<h3 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong></h3>
-			<p class="ui-card-small-subtitle"><a href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></p>
+			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></p> -->
 		</div>
 	</div>
 
@@ -35,7 +35,8 @@
       <img src="<{"icons/icon-profile.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}>">
 		</div>
 		<div class="ui-card-small-info">
-            <h3 class="ui-card-small-title"><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=user"><{$smarty.const._HELP}></a></h3>
+            <h3 class="ui-card-small-title"><a href="#" id="open-help"><{$smarty.const._HELP}></a></h3>
+            <{* $xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=user *}>
 		</div>
 	</div>
 
