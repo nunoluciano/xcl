@@ -1,0 +1,76 @@
+.breadcrumb {
+    background: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(130deg, rgb(30, 36, 48), rgb(35, 35, 45));
+    border:  1px solid #263849;
+    border-radius: 7px;
+	margin: 0 0 2em;
+    padding: .25em;
+    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+    6px 6px 15px 3px rgba(45, 50, 60, 1),
+    inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
+    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+    -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+    max-width: max-content;
+}
+
+.breadcrumb ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.breadcrumb li {
+    display: inline-block;
+    margin-right: 2px;
+}
+
+/* .breadcrumb li:before {
+	content: "\2000";
+	position: absolute;
+} */
+
+.breadcrumb li:not(:last-child):after {
+	content: "";
+	display: inline-block;
+}
+
+.breadcrumb li a {
+    display: inline-block;
+    border: 1px solid rgb(44, 50, 60);
+    border-radius: 5px;
+    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    box-shadow: inset 0px 5px 10px 0px hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
+    padding: .5em 1.25em;
+    transition: all .3s;
+}
+
+.breadcrumb a:focus,
+.breadcrumb a:hover {
+	/* outline: 1px solid; */
+	/* outline-offset: 1px; */
+    text-decoration: none;
+    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+    5px 5px 10px 3px rgb(45, 50, 60),
+    inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
+    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+    -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+}
+
+li.breadcrumb-item:last-child {
+	/* outline: 1px solid; */
+    /* outline-offset: 1px; */
+    color:#face74;
+    text-decoration: none;
+    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+    5px 5px 10px 3px rgb(45, 50, 60),
+    inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
+    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+    -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+    padding:0.5em 1em
+}
+
+.breadcrumb [aria-current],
+.breadcrumb [aria-current]:hover,
+.breadcrumb [aria-current]:focus {
+	color:#face74;
+}

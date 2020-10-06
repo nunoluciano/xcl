@@ -1,0 +1,69 @@
+<style>
+    ul#mainmenu {
+        display: block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul#mainmenu li {
+        text-decoration: none;
+        margin-bottom: 0.25em;
+    }
+
+    ul#mainmenu li a {
+        color:#abc;
+        display: block;
+        border: 1px solid rgb(44, 50, 60);
+        border-radius: 7px;
+        background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+        box-shadow: inset 0px 5px 10px 0px hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
+        padding: .5em 1.25em;
+        transition: all .3s;
+    }
+    ul#mainmenu li a.menuSub {
+        padding-left:2.5em
+    }
+
+    <{if $xoops_dirname}>body.<{$xoops_dirname}> ul#mainmenu li a.<{$xoops_dirname}>,<{/if}>
+    ul#mainmenu li a:active,
+    ul#mainmenu li a:focus,
+    ul#mainmenu li a:hover {
+        color: #face74;
+        text-decoration: none;
+        border: 1px solid rgb(44, 51, 63);
+        /* border-radius: 5px; */
+        background: linear-gradient(145deg, #252b34, #20242c);
+        box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4), 5px 5px 10px 3px rgb(45, 50, 60), inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4), inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4), -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+        padding: .5em 1.25em;
+    }
+
+</style>
+
+    <{* Dev-Mode Toggle *}>
+    <div class="ui-dev-mode"><{$smarty.template}></div>
+
+    <div class="card shadow-in">
+
+        <ul id="mainmenu" >
+            <li><a class="menuTop" href="<{$xoops_url}>/">
+                    <{$smarty.const._MB_LEGACY_HOME}>
+                </a>
+            </li>
+            <{foreach item=module from=$block.modules}>
+                <li>
+                    <a class="<{$module.directory}> menuMain"
+                        href="<{$xoops_url}>/modules/<{$module.directory}>/">
+                        <{$module.name}>
+                    </a>
+                </li>
+                <{foreach item=sublink from=$module.sublinks}>
+                    <li><a class="menuSub" href="<{$sublink.url}>">
+                            <{$sublink.name}>
+                        </a>
+                    </li>
+                    <{/foreach}>
+            <{/foreach}>
+        </ul>
+
+    </div>

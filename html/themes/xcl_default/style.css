@@ -20,6 +20,6 @@
 @import "./css/notification.css";/*  Notifications      */
 @import "./css/svg.css";         /*  SVG settings      */
 @import "./css/table.css";       /*  Tables           */
-/*	@import "./css/scrollbar.css";   /*  Scrollbar   */
+@import "./css/tab.css";         /*  Tabs            */
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

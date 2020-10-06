@@ -1,0 +1,105 @@
+a.btn {
+    border          : 1px solid hsl(219, 17%, 21%);
+    border-radius   : 5px;
+    background      : linear-gradient(145deg, #252b34, #20242c);
+    box-shadow      : 5px 5px 10px #1a1e25, -5px -5px 10px #2c323d;
+    color           : inherit;
+    display         : block;
+    margin          : 1em .5em;
+    padding         : .5em 1em;
+    transition: all 0.2s ease;
+    width           : max-content;
+
+}
+
+a.btn:hover{
+    color           : #face74;
+    background      : linear-gradient(145deg, #252b34, #20242c);
+ box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+ 5px 5px 10px 3px rgb(45, 50, 60),
+ inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
+ inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+ -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+ box-shadow: 5px 5px 12px 0px rgba(15,15,16,.7),
+ -5px -5px 12px 0px rgba(40,40,40,.7),
+ inset 6px 6px 16px 0px rgba(15,15,16,.7),
+ inset -6px -6px 16px 0px rgba(40,40,40,.7);
+
+
+}
+.badge,
+.btn-back,
+.btn-next,
+.btn-reload,
+.btn-back-label,
+.btn-next-label {
+    background-color: rgba(10, 15, 20, 0.2);
+	border          : 1px solid hsl(219, 17%, 21%);
+	border-radius   : 7px;
+	/* background      : linear-gradient(145deg, #252b34, #20242c);
+	box-shadow      : 5px 5px 10px #1a1e25, -5px -5px 10px #2c323d; */
+    display: inline-block;
+	padding         : .25em .74em;
+	pointer-events  : none; /*CSS Trick To Trigger Parent only when Hover Child */
+}
+
+.btn-back svg,
+.btn-next svg,
+.btn-reload svg {
+	color           : #face74;
+	height          : 32px;
+	width           : 32px;
+	pointer-events  : auto; /*CSS Trick To Trigger Parent only when Hover Child */
+	vertical-align  : -0.125em;
+}
+
+.btn-back svg:hover,
+.btn-next svg:hover,
+.btn-reload svg:hover {
+    color           : #fff;
+    box-shadow: 0 0 5px #face74, 0 0 20px #face74;
+}
+
+.btn-reload:hover,
+.btn-next:hover,
+.btn-back:hover {
+	/*border          : 1px solid #232831;*/
+    border          : 1px solid #face74;
+	background      : #333b49;
+	color           : #fff;
+}
+
+/* LABEL BORDERED TRIANGLE WITH PSEUDO :AFTER */
+.btn-back-label,
+.btn-next-label {
+	border-radius   : 7px;
+	font-size       : 0.9em;
+	line-height     : 24px;
+	padding         : 1em;
+	margin          : 0 1em;
+	position        : relative;
+}
+
+.btn-back-label::after,
+.btn-next-label::after {
+	border-top      : 1px solid hsl(219, 17%, 23%);
+	border-left     : 1px solid hsl(219, 17%, 23%);
+	content         : '';
+	height          : 14px;
+	position        : absolute;
+	top             : 40%;
+	width           : 14px;
+}
+
+/* LABEL TRIANGLE Transform:rotate */
+.btn-back-label::after {
+	background      : #242932;
+	left            : -7px;
+	transform       : rotate(-45deg);
+}
+
+.btn-next-label::after {
+	background      : #20252d;
+	right           : -7px;
+	transform       : rotate(135deg);
+}

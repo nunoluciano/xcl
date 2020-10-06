@@ -1,0 +1,16 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<div class="resultMsg">
+  <{if $title}>
+    <h4><{$title}></h4>
+  <{/if}>
+  <{if is_array($message)}>
+    <{foreach item=msg from=$message}>
+      <{$msg}><br/>
+    <{/foreach}>
+  <{else}>
+    <{$message}>
+  <{/if}>
+</div>

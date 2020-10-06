@@ -1,0 +1,20 @@
+<{* ---------- Include Vendor Scripts *}>
+<script defer src="<{$xoops_url}>/common/js/ui-scroller.js"></script>
+<script defer src="<{$xoops_url}>/common/js/prismjs/prism.js"></script>
+<script>
+    var btn = $('#navtop');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
+
+</script>

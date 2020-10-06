@@ -1,0 +1,27 @@
+@media screen and (max-width: 64em) {
+    section, article {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 52em) {
+    section, article {
+        padding: 0.25em;
+    }
+    /* ui-tab notification text */
+    .hide-text {
+        display:initial;
+        }
+}
+
+@media screen and (max-width: 40em) {
+    main {
+        margin: 0em auto;
+    }
+    section, article {
+        padding: 0;
+    }
+    .hide-text {
+      display:none;
+        }
+}

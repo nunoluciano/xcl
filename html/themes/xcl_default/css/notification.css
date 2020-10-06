@@ -1,0 +1,61 @@
+/*
+ * *
+ *  * Short description for class
+ *  *
+ *  * Long description for class (if any)...
+ *  *
+ *  * @package    XCL230
+ *  * @author     Original Author <author@example.com>
+ *  * @author     Other Authors <another@example.com>
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ *  * *
+ *
+ */
+
+/* -------------------- -------------------- -------------------- -------------------- NOTIFICATION */
+
+.confirmInfo,
+.confirmError,
+.confirmMsg,
+.confirmOk {
+
+	border: 1px solid #232831;
+	border-radius: 7px;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.30), 0 5px 10px rgba(0, 0, 0, 0.25);
+	background: #232831;
+
+	background: linear-gradient(145deg, #252b34, #20242c);
+	box-shadow: 10px 10px 20px #1a1e25,
+	-10px -10px 20px #2c323d;
+
+	margin: 3em 1em;
+	padding: 2em 4em;
+}
+
+.confirmInfo {
+	color: #6B94C5;
+	border: 1px solid #6B94C5;
+	background: url(img/icon-info.svg) no-repeat 1em 1.5em;
+	background-size: 30px 30px;
+
+}
+
+.confirmError,
+.confirmMsg {
+	color: #ff6633;
+	border: 1px solid #ff6633;
+	background: url(img/icon-alert.svg) no-repeat 1em 1.5em;
+	background-size: 30px 30px;
+
+}
+
+.confirmOk {
+	color: #00cc00;
+	border: 1px solid #00cc00;
+	background: url(img/yes.svg) no-repeat 1em 1.5em;
+	background-size: 30px 30px;
+}

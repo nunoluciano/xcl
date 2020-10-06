@@ -1,0 +1,98 @@
+<main>
+    <section layout="column sm-p-0 sm-m-0" id="top">
+
+        <!-- Row Header -->
+        <div layout="rows-justify">
+            <div self="size-1of3 md-half sm-full">
+                <a href="<{$xoops_url}>/">
+                    <img src="<{$xoops_url}>/images/logo.png" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}> - <{$xoops_slogan}>">
+                </a>
+            </div>
+            <div self="size-1of3 md-half sm-full">
+                <form action="<{$xoops_url}>/search.php" method="get" class="search" role="search">
+                    <!-- Label and button -->
+                    <label><input type="search" name="query" class="headerSearchField"></label>
+                    <input type="hidden" name="action" value="results">
+                    <button name="submit" type="submit" value="search" accesskey="F">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Row Content -->
+        <div layout="lg-column" self="size-x1">
+
+            <{if $xoops_showlblock==1}>
+            <div self="size-x1 p-4 sm-p-0">
+                <{include file="$xoops_theme/component/block_left.html"}>
+            </div>
+            <{/if}>
+
+            <{if !empty($xoops_contents)}>
+            <div self="size-x3 sm-first p-4 sm-p-0" data-tooltip="(first on small screen)">
+                <{include file="$xoops_theme/component/module_content.html"}>
+            </div>
+            <{else}>
+            <div self="size-x3 sm-first p-4 sm-p-0" data-tooltip="(first on small screen)">
+                <h1>h1</h1>
+                <h2>h2</h2>
+            </div>
+
+            <{/if}>
+
+            <{if $xoops_showrblock==1}>
+            <div self="size-x1 p-4 sm-p-0">
+                <{include file="$xoops_theme/component/block_right.html"}>
+            </div>
+            <{/if}>
+        </div>
+
+        <{if $xoops_showcblock==1}>
+        <!-- Row Center Blocks -->
+
+        <div class="full-width">
+            <div layout="row center m-0 p-0" self="center size-xlarge">
+
+
+            <{if $xoops_clblocks}>
+            <div self="size-x1">
+                <hr class="break-row">
+                <{include file="$xoops_theme/component/block_center_left.html"}>
+            </div>
+            <{/if}>
+
+            <{if $xoops_ccblocks}>
+            <div self="size-x1 sm-first" data-tooltip="(first on small screen)">
+                <hr class="break-row">
+                <{include file="$xoops_theme/component/block_center_center.html"}>
+            </div>
+            <{/if}>
+
+            <{if $xoops_crblocks}>
+            <div self="size-x1">
+                <hr class="break-row">
+                <{include file="$xoops_theme/component/block_center_right.html"}>
+            </div>
+            <{/if}>
+</div>
+        </div>
+        <{/if}>
+
+        <hr class="break-row">
+
+        <!-- Row Footer -->
+        <div layout="rows-justify">
+
+            <div self="sm-full">
+                <{include file="$xoops_theme/component/footer_credits.html"}>
+            </div>
+
+            <div self="right sm-full"><a id="navtop" aria-label="Scroll to Top"></a></div>
+
+            <div self="sm-full">
+                <{include file="$xoops_theme/component/footer_links.html"}>
+            </div>
+
+        </div>
+
+    </section>
+</main>

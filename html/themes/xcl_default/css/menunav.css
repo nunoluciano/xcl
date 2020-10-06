@@ -1,0 +1,67 @@
+/*
+ * *
+ *  * Short description for class
+ *  *
+ *  * Long description for class (if any)...
+ *  *
+ *  * @package    XCL230
+ *  * @author     Original Author <author@example.com>
+ *  * @author     Other Authors <another@example.com>
+ *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_230@
+ *  * @link       https://github.com/xoopscube/xcl
+ *  * *
+ *
+ */
+/* -------------------- -------------------- -------------------- -------------------- NAV */
+
+
+ul#usermenu {
+    display         : block;
+    list-style-type : none;
+    margin          : 0;
+    padding         : 0;
+}
+
+ul#usermenu li {
+    text-decoration : none;
+    margin-bottom   : 0.25em;
+}
+
+ul#usermenu li a {
+    color           : #abc;
+    display         : block;
+    border          : 1px solid rgb(44, 50, 60);
+    border-radius   : 7px;
+    background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    box-shadow      : inset 0px 5px 10px 0px hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
+    padding         : .5em 1.25em;
+    transition      : all .3s;
+}
+
+ul#usermenu li:hover > a {
+    color           : #face74;
+
+}
+
+    ul#usermenu li a:active,
+    ul#usermenu li a:focus,
+    ul#usermenu li a:hover {
+        background  : linear-gradient(145deg, #252b34, #20242c);
+        box-shadow  : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4), 5px 5px 10px 3px rgb(45, 50, 60),
+                      inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
+                      inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4), -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+        border      : 1px solid rgb(44, 51, 63);
+        color       : #face74;
+        padding     : .5em 1.25em;
+        text-decoration: none;
+    }
+    .userMenuTop,
+    .userMenuEdit,
+    .userMenuComments,
+    .userMenuLogout,
+    .userMenuEmail,
+    .userMenuAdmin {
+    }

@@ -1,1 +1,100 @@
- <script>history.go(-1);</script>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-style-type" content="text/css">
+    <meta http-equiv="content-script-type" content="text/javascript">
+    <meta http-equiv="content-language" content="en">
+
+    <meta name="robots" content="index,follow">
+    <meta name="keywords" content="application, css, code, components, delegate, design, deploy, development, extension, frameworks, free, flex, grid, html, interface, internet, javascript, libraries, metro, modular architecture, module, object, plugin, query, soap, sql, theme, templates, ui, update, ux, website, wizard, wysiwyg">
+    <meta name="rating" content="general">
+    <meta name="author" content="Nuno Luciano aka gigamaster">
+    <meta name="copyright" content="Copyright &copy; 2005-2020">
+    <meta name="generator" content="XOOPS Cube">
+    <title>
+        XCL Default Theme - Flex Layout
+    </title>
+    <!-- Theme color -->
+    <meta name="theme-color" content="#232831">
+    <link rel="stylesheet" media="screen" href="style.css">
+</head>
+
+<h2>Default layout</h2>
+
+<main>
+    <section layout="column">
+        <!-- A -->
+        <div layout="rows-justify">
+            <div self="size-1of3 md-half sm-full">A1- </div>
+            <div self="size-1of3 md-half sm-full">A2- </div>
+        </div>
+        <!-- B -->
+        <div layout="lg-column" self="size-x1">
+            <div self="size-x1">B1: layout="lg-column" self="size-x1"</div>
+            <div self="size-x3 sm-first">
+                B2: size-x3 sm-first (first on small screen)
+            </div>
+            <div self="size-x1">B3: self="size-x1"</div>
+        </div>
+        <!-- C -->
+        <div layout="lg-column" self="size-x1">
+            <div self="size-x1">C1: layout="lg-column" self="size-x1"</div>
+            <div self="size-x1 sm-first">
+                C2: size-x1 sm-first (first on small screen)
+            </div>
+            <div self="size-x1">C3: self="size-x1"</div>
+        </div>
+        <!-- D -->
+        <div layout="rows-justify">
+            <div self="sm-full">C1:layout="rows-justify" self="sm-full" </div>
+            <div self="right sm-full">C2: self="right sm-full"</div>
+            <div self="sm-full">C3:self="sm-full"</div>
+        </div>
+    </section>
+</main>
+
+<hr>
+
+<div class="ui-tab-wrap">
+    <input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked="">
+    <label for="ui-tab1">About</label>
+
+    <input type="radio" id="ui-tab2" name="ui-tabGroup1" class="ui-tab">
+    <label for="ui-tab2">License</label>
+
+    <input type="radio" id="ui-tab3" name="ui-tabGroup1" class="ui-tab">
+    <label for="ui-tab3">Requirements</label>
+
+    <div class="ui-tab-content">
+        <p><b>XCL</b> is a <strong>Web Application Platform</strong> with a modular architecture
+            making XCL an ideal tool for developing small to large dynamic community websites,
+            intra company portals, corporate portals, weblogs and much more.
+        </p>
+    </div>
+
+    <div class="ui-tab-content">
+        <p>
+            The Cube Core is released under the terms of the <a href="https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt" target="_blank" rel="external">New BSD License</a> and is free to use and modify.
+            It is free to redistribute as long as you abide by the distribution terms of the New BSD License.
+        </p>
+        <p>
+            The XOOPS Cube Legacy modules are released under the terms of the <a href="https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a> and is free to use and modify.
+            It is free to redistribute as long as you abide by the distribution terms of the GPL.
+        </p>
+    </div>
+
+    <div class="ui-tab-content">
+        <p>
+        </p><ul>
+        <li><a href="https://www.apache.org/" target="_blank" rel="external">Apache</a>, <a href="https://www.nginx.com/" target="_blank" rel="external">Nginx</a> or any other Web Server.</li>
+        <li><a href="https://www.php.net/" target="_blank" rel="external">PHP7</a> and higher</li>
+        <li><a href="https://www.mysql.com/" target="_blank" rel="external">MySQL</a> or <a href="https://mariadb.org/" target="_blank" rel="external">MariaDB</a> Database 5.5.x and higher</li>
+    </ul>
+        <p></p>
+    </div>
+</div>
+
+<hr>
+</html>

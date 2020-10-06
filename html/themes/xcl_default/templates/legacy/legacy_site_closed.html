@@ -1,0 +1,92 @@
+<{php}>
+ob_start();
+header('HTTP/1.1 503 Service Temporarily Unavailable');
+header('Status: 503 Service Temporarily Unavailable');
+header('Retry-After: 3600');
+header('X-Powered-By: XOOPSCube XCL');
+ob_end_clean();
+ob_end_flush();
+<{/php}>
+<!doctype html>
+<html class="no-js" lang="<{$xoops_langcode}>">
+<head>
+    <meta charset="<{$xoops_charset}>">
+    <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
+    <meta http-equiv="content-style-type" content="text/css">
+    <meta http-equiv="content-script-type" content="text/javascript">
+    <meta http-equiv="content-language" content="<{$xoops_langcode}>">
+    <meta name="generator" content="XOOPS Cube">
+
+    <title><{$xoops_sitename}></title>
+
+    <!-- XCL-Style -->
+    <link rel="stylesheet" media="screen" href="<{$xoops_url}>/common/css/xcl-style.css">
+    <!-- XCL-Theme -->
+    <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>">
+
+    <style>
+        body {
+            max-width: 1024px;
+            margin:2em auto;
+        }
+    </style>
+</head>
+<body>
+
+
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<div align="center">
+    <a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.png" alt="<{$xoops_sitename}>" title="<{$xoops_sitename}>" /></a>
+</div>
+
+<hr>
+
+<!-- <div id="siteclosemsg"><{$lang_siteclosemsg}></div> -->
+
+<{if $xoops_isuser}>
+
+    <div align="center">
+        <a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a>
+    </div>
+
+    <{else}>
+
+    <form action="<{$xoops_url}>/user.php" method="post">
+
+
+        <div layout="column center-center py-4" class="shadow-in">
+
+            <div>
+                <h3><{$lang_login}></h3>
+            </div>
+
+            <div>
+                <{$lang_username}><br>
+                <input type="text" name="uname" size="14" value="" />
+            </div>
+
+            <div>
+                <{$lang_password}><br>
+                <input type="password" name="pass" size="14" />
+            </div>
+
+            <div>
+                <input type="hidden" name="xoops_login" value="1">
+                <input type="submit" value="<{$lang_login}>">
+            </div>
+
+
+        </div>
+
+    </form>
+<{/if}>
+
+<hr>
+
+  <div align="center"><{$xoops_sitename}></div>
+
+</body>
+</html>
