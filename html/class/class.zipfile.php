@@ -7,7 +7,7 @@
  *  * @subpackage core
  *  * @author     Original Authors: Eric Mueller, Denis125 <webmaster@atlant.ru>
  *  * @author     Other Authors : Peter Listiak <mlady@users.sourceforge.net>
- *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @copyright  2005-2021 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@

@@ -5,169 +5,207 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+[unreleased] 2021-02-21
+
+### Added
+
+✅ Default Theme Neumorphism (WIP)
+✅ XCLayout Helper samples
+✅ Modules Templates (D3Forum, Pico)
+✅ Templates Blocks (Users, Online, Themes)
+✅ Default SVG inline icons
+
+### Changed
+
+✅ Copyright 2021
+✅ English constant (User)
+✅ Javascript popup centered
+✅ XCL Default Theme Neumorphism
+✅ XCLayout Helper Flexbox
+
+###  Fixed
+
+✅ Admin Theme typos
+✅ Admin SVG icons (bold, linear)
+✅ Help load with ajax (modal)
+✅ Templates accessibility
+✅ Debugger nav (Graph)
+✅ SQL InnoDB utf8mb4
+
+### Removed
+
+- Extra tags from default templates
+- CSS classes from Bootstrap 4
+- Xoops.css
+
+### Update
+
+- Icon Bundle
+- Settings
+
 [unreleased] 2020-07-11
 
-### Added  
+### Added
 
-- Branch SQL InnoDB utf8mb4   
+- Branch SQL InnoDB utf8mb4
 - Wizard Installer 2nd step design
 
-### Changed  
+### Changed
 
-- Altsys and blocks admin actions refactor code  
-- Altsys admin page layout  
-- class refactor code 
-- D3forum refactoring PSR2 
-- include refactor code  
-- Legacy refactor code   
-- SQL refactor InnoDB utf8mb4  
-- Smarty comment  
-- X-elFnder v.2.57 refactor code (speedup, PSR2)  
-- XOOPSCube (c) 2005-2020  
-- X-Update Store templates  
-- [WIP] UI Admin templates  
-- [WIP] Help ajax load, struture and semantics  
+- Altsys and blocks admin actions refactor code
+- Altsys admin page layout
+- class refactor code
+- D3forum refactoring PSR2
+- include refactor code
+- Legacy refactor code
+- SQL refactor InnoDB utf8mb4
+- Smarty comment
+- X-elFnder v.2.57 refactor code (speedup, PSR2)
+- XOOPSCube (c) 2005-2020
+- X-Update Store templates
+- [WIP] UI Admin templates
+- [WIP] Help ajax load, struture and semantics
 
 
-###  Fixed  
+###  Fixed
 
-- function getcss  
-- installer database (utf8mb4)    
-- installer timezone  
-- Help semantic structure (section, article) 
-- PHP Null Coalesce Operator  
-- PHP stripos() function  
-- Pico MySQL 5.6 innoDB max key length for utf8mb4  
-- Wizard Installer 2nd step  
+- function getcss
+- installer database (utf8mb4)
+- installer timezone
+- Help semantic structure (section, article)
+- PHP Null Coalesce Operator
+- PHP stripos() function
+- Pico MySQL 5.6 innoDB max key length for utf8mb4
+- Wizard Installer 2nd step
 
-### Removed  
+### Removed
 
-- deprecated code comments   
+- deprecated code comments
 
-### Update  
+### Update
 
--  xelFinder 2.57 settings for XCL  
+-  xelFinder 2.57 settings for XCL
 
 
 
 [unreleased] 2020-07-05
 
-### Added  
+### Added
 
-- Pico Publication Workflow :  
+- Pico Publication Workflow :
   - Content Expired
   - Content invisible
   - Waiting approval
   - Waiting release
 - Template with category description
-- Template with section 'waiting content' 
+- Template with section 'waiting content'
 - Add 'htmlspecialchars_decode' to waiting content
-- Add 'preview waiting content' to 'viewcontent'  
+- Add 'preview waiting content' to 'viewcontent'
 
-### Changed  
+### Changed
 
-- Ajax load Modules Help section or article 'id'  
-- Modules Help semantic structure (section, article)  
-- D3forum /class /main refactor code 
+- Ajax load Modules Help section or article 'id'
+- Modules Help semantic structure (section, article)
+- D3forum /class /main refactor code
 - PHP Null Coalesce Operator
 - PHP stripos() function
 
-###  Fixed  
+###  Fixed
 
-- D3forum bugfix static  
-- Pico template smarty top description 
+- D3forum bugfix static
+- Pico template smarty top description
 
 
-### Removed  
+### Removed
 
-- Pico template 'switch_to_fckeditor'    
+- Pico template 'switch_to_fckeditor'
 
-### Update  
+### Update
 
 -  xelFinder 2.57 @nao-pon
-Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"  
+Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 [unreleased] 2020-07-03
 
-### Added  
+### Added
 
-- User templates  
-- inc user nav left  
-- inc user nav tabs  
-- inc user tab  
-- inc user tab home  
-- inc user tab pref  
-- inc user tab profile  
+- User templates
+- inc user nav left
+- inc user nav tabs
+- inc user tab
+- inc user tab home
+- inc user tab pref
+- inc user tab profile
 
-### Changed  
+### Changed
 
-- user avatar edit  
-- user edit (user profile)  
-- user info (public profile)  
-- USER_LANG_AVATAR_WIDTH_HEIGHT (en, jp)  
-- XCL Theme Bootstrap 4.5 (css)  
-- xcl-bootstrap-default manifesto  
+- user avatar edit
+- user edit (user profile)
+- user info (public profile)
+- USER_LANG_AVATAR_WIDTH_HEIGHT (en, jp)
+- XCL Theme Bootstrap 4.5 (css)
+- xcl-bootstrap-default manifesto
 
-###  Fixed  
+###  Fixed
 
-- strict warnings in php 7.4 @nbuy   
+- strict warnings in php 7.4 @nbuy
 
-### Removed  
+### Removed
 
 - HTML tags and css
 
-### Update  
+### Update
 
-- XCL Bootstrap default  
+- XCL Bootstrap default
 
 
 [unreleased] 2020-07-01
 
-### Added 
+### Added
 
-- [WIP] XCL front-end templates  
-- breadcrumbs to templates  
+- [WIP] XCL front-end templates
+- breadcrumbs to templates
 - favicon.svg with prefers-color-scheme
-- function xoopsPrintag to xoops.js   
-- Printer-friendly of any HTML element  
-- Legacy templates (notification, forms)  
-- Render templates (forms)  
-- User templates (forms)  
-- Pico templates (menu tree)     
-- Message current tab active (javascript, smarty)  
-- Message template (user avatar)  
-- Message settings info of purge schedule :speech_balloon:  
-- Message settings info of purge type :speech_balloon:   
-- Profile templates (tabs, timeline, private data)  
-- Responsive Tabs navigation   
-- Responsive Menu options  
-- Smarty comments    
+- function xoopsPrintag to xoops.js
+- Printer-friendly of any HTML element
+- Legacy templates (notification, forms)
+- Render templates (forms)
+- User templates (forms)
+- Pico templates (menu tree)
+- Message current tab active (javascript, smarty)
+- Message template (user avatar)
+- Message settings info of purge schedule :speech_balloon:
+- Message settings info of purge type :speech_balloon:
+- Profile templates (tabs, timeline, private data)
+- Responsive Tabs navigation
+- Responsive Menu options
+- Smarty comments
 
-### Changed  
+### Changed
 
-- D3Forum refactor code   
-- Message language 'Blacklist User'   
-- Message language 'Forward to Email' 
-- Message titles truncate character length 50(...)      
+- D3Forum refactor code
+- Message language 'Blacklist User'
+- Message language 'Forward to Email'
+- Message titles truncate character length 50(...)
 - Pico refactor code
 - User refactor code (form fields)
-- User Profile fields (private data)  
+- User Profile fields (private data)
 - Fields : resume, interest, location, occupation
-- Cube settings  
-- English localisation   
+- Cube settings
+- English localisation
 
 ###  Fixed
 
-- Deprecated functions @gigamaster  
-- module message typo english  
+- Deprecated functions @gigamaster
+- module message typo english
 - Wizard Installer style
 
-### Removed 
+### Removed
 
-- D3 modules CSS classes  
-- CSS maps  
-- Javascript maps  
-- HTML comments  
+- D3 modules CSS classes
+- CSS maps
+- Javascript maps
+- HTML comments
 - Message icons gif
 
 ### Update
@@ -195,71 +233,71 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - User Profile (private bio-data)
 - Fields : resume, interest, location, occupation
 - Cube default settings
-- English translation (D3Forum, Pico, User) 
+- English translation (D3Forum, Pico, User)
 
 ### Fixed
 
-- D3Forum deprecated function @gigamaster 
+- D3Forum deprecated function @gigamaster
 - Cache settings
-- Template cache (bug of refactor code) 
+- Template cache (bug of refactor code)
 - Resource template (bug of refactor code)
 - Wizard Installer style
 
-### Removed  
+### Removed
 
-- Bootstrap 4.5 default map, css and js  
-- Legacy CSS classes  
+- Bootstrap 4.5 default map, css and js
+- Legacy CSS classes
 - HTML tags (not used by templates)
 
-### Update  
+### Update
 
-- Module Message 2.4.0 @gigamaster  
+- Module Message 2.4.0 @gigamaster
 - xElFinder @Naoki Sawada
 
 
 [unreleased] 2020-06-19
 
-### Added 
+### Added
 
 - Bootstrap 4.5
 - Theme XCL Bootstrap Default
 - Theme D3Forum Templates
-- resource.db.php @gigamaster  
+- resource.db.php @gigamaster
 (add dirname to theme path /templates/module-name)
 
-### Changed 
+### Changed
 
 - D3Forum refactor code
 - D3Forum english catalog
-- [WIP] D3Forum templates  
-✅ custom layout   
-✅ top  breadcrumbs  
-✅ topics and posts table  
-✅ post within a card  
-✅ card header, body, footer  
-✅ card footer with child nav (flex wrap)  
-✅ pagination  
-✅ external comments  
-✅ inline SVG icons  
-✅ modify post forms  
-✅ advanced research  
+- [WIP] D3Forum templates
+✅ custom layout
+✅ top  breadcrumbs
+✅ topics and posts table
+✅ post within a card
+✅ card header, body, footer
+✅ card footer with child nav (flex wrap)
+✅ pagination
+✅ external comments
+✅ inline SVG icons
+✅ modify post forms
+✅ advanced research
 
 ###  Fixed
 
 - D3Forum deprecated function @gigamaster
 - D3Forum includes
 - D3Forum lists
-- D3Forum usort 
+- D3Forum usort
 
-### Removed 
+### Removed
 
 - D3 CSS classes
-- HTML4 tags 
+- HTML4 tags
 
 
 [unreleased] 2020-06-10
 
-### Added 
+### Added
 
 - Admin nav component
 - Copy code sample with clipboardjs
@@ -267,16 +305,16 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - [WIP] Toggle filter search and sort
 - [WIP] Components templates tree
 - [WIP] Dashboard XCL desktop modal
-- [WIP] Set of icons (inline SVG) 
+- [WIP] Set of icons (inline SVG)
 
-### Changed 
+### Changed
 
 - Altsys refactor code
 - XCube refactor code
 - Refactoring to save memory
 - PrismJS import local script
 - Help files semantic structure
-- Help ajax load section or article 
+- Help ajax load section or article
 
 ###  Fixed
 
@@ -285,9 +323,9 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Declaration of Render TplsetUploadAction
 - Typos in dashboard and D3 modules
 - UI-btn inherent and default styles
-- [WIP] CSS variables 
+- [WIP] CSS variables
 
-### Removed 
+### Removed
 
 - buttons fx anim
 - CDN library loading javascript
@@ -307,13 +345,13 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Dashboard style guide
 - [WIP] Icons for buttons
 - Inline SVG icons for buttons
-- Inline SVG background-color 
+- Inline SVG background-color
 - PrismJS + plugins
 - PrismJS custom CSS
 
 ### Changed
 
-- Code refactoring 
+- Code refactoring
 - Components inherit default values
 - Delegate and extend Admin UI
 - [WIP] Button color
@@ -346,7 +384,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Cleanup css
 - Cleanup javascript
 - Cleanup guide templates
-- Cleanup SVG (inline) 
+- Cleanup SVG (inline)
 - CSS custom properties
 - Screen mode (mobile)
 
@@ -398,7 +436,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Cleanup css
 - Cleanup javascript
 - Darkmode from admin script
-- SVG Render from admin script 
+- SVG Render from admin script
 - CSS custom properties
 
 
@@ -435,7 +473,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - Cleanup code refactoring
 - Useless japanese files (fail to pass test)
-- Unused phpmailer language files 
+- Unused phpmailer language files
 - Theme Grid Flex Boilerplate
 - Theme Legacy_default
 
@@ -473,7 +511,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 ### Fixed
 
-- PHP74 AdminDashboard function static 
+- PHP74 AdminDashboard function static
 - is writable upload Dir
 - PSR12 Missing parameter list
 - PSR12 Missing visibility
@@ -531,30 +569,30 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - HTML5 Web Storage ( local storage )
 - @media ( prefers-color-scheme: dark )
 - @media ( prefers-reduced-motion: reduce )
-- Select color-mode Light or Dark 
+- Select color-mode Light or Dark
 - Script fallback to local
 - UI-root components custom properties
 
 ### Changed
 
-- Accessible Rich Internet Applications ( ARIA ) 
-- Cards ( clean-up components html and css ) 
-- Components ( Admin Templates ) 
-- Custom Properties (alphabetical order ) 
-- HTML5 Layout ( simple and scalable ) 
-- Legacy Render System ( header script ) 
-- Media Queries ( @media rule )  
-- SVG Icons ( simple vertical-align & scalable ) 
-- Tables structure ( thead, tbody, tfoot )  
-- UI root consistency :  
-  replaced reference of fabric industry ( xs, md, xl... )  
+- Accessible Rich Internet Applications ( ARIA )
+- Cards ( clean-up components html and css )
+- Components ( Admin Templates )
+- Custom Properties (alphabetical order )
+- HTML5 Layout ( simple and scalable )
+- Legacy Render System ( header script )
+- Media Queries ( @media rule )
+- SVG Icons ( simple vertical-align & scalable )
+- Tables structure ( thead, tbody, tfoot )
+- UI root consistency :
+  replaced reference of fabric industry ( xs, md, xl... )
   with #xoopscube order/weight numeric values
 
 ### Fixed
 
 - Altsys ( UI-Components )
 - D3 Modules Templates
-- .editorconfig [**.css] 
+- .editorconfig [**.css]
   ( indent_style = tab
   indent_size = 2 )
 - Javascript ( jQuery and Vanilla )
@@ -573,7 +611,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Admin Theme
 - Altsys
 - D3 Modules
-- HTML Purifier HTML5 attributes 
+- HTML Purifier HTML5 attributes
 - Standards Compliant HTML Filtering
 
 
@@ -677,7 +715,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 ### Removed
 
 - CKEditor4Utilities mysql_set_charset
-- Legacy_Controller magic_quotes 
+- Legacy_Controller magic_quotes
 - Protector patches
 - Protector Myysql_query
 
@@ -692,11 +730,11 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - Accessibility Help #145
 - Accessibility Checker #145
-- Ajax Data Loading 
+- Ajax Data Loading
 - Build-config #146
 - Code Snippets
 - Content Templates
-- Toolbar Editor 
+- Toolbar Editor
 - oEmbed Media #147
 
 ### Changed
@@ -714,7 +752,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - SVG icons and graphics
 - Site_default.ini required and recommended modules
 - X-Update version
-- X-Update stores urls 
+- X-Update stores urls
 
 ### Fixed
 
@@ -747,14 +785,14 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Protector MEMO_ja
 - Protector README_PL.txt
 - Protector TODO
-- Protector version.txt 
+- Protector version.txt
 
 ### Update
 
 - Ckeditor v.4.13.0 #144
 - Skin Moono Dark
-- Default Theme 
-- Default Session  
+- Default Theme
+- Default Session
 - Default General Settings #149
 - D3Forum Preferences #150
 - Render Preferences #150

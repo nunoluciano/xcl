@@ -7,7 +7,7 @@
  *  * @subpackage core
  *  * @author     Original Authors: Mumincacao
  *  * @author     Other Authors : Kazumi Ono (aka onokazu)
- *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @copyright  2005-2021 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    v 1.6 2008/10/03 03:23:27 mumincacao, Release: @package_230@

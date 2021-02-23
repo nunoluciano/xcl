@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Updater.class.php,v 1.3 2008/10/26 04:00:40 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */

@@ -3,7 +3,7 @@
  *
  * @package XCube
  * @version $Id: XCube_Validator.class.php,v 1.7 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *
  */

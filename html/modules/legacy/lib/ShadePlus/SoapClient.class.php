@@ -2,7 +2,7 @@
 /**
  * @package ShadePlus
  * @version $Id: SoapClient.class.php,v 1.3 2008/10/12 04:31:22 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *
  */

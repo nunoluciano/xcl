@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_dhtmltarea.php,v 1.3 2010/02/22 15:12:36 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  * [ToDo]
