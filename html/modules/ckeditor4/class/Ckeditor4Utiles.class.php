@@ -87,6 +87,7 @@ class Ckeditor4_Utils
 		$params['id'] = isset($params['id']) ? trim($params['id']) : self::DHTMLTAREA_DEFID_PREFIX . $params['name'];
 		$params['editor'] = isset($params['editor']) ? trim($params['editor']) : 'bbcode';
 		$params['toolbar'] = isset($params['toolbar']) ? trim($params['toolbar']) : null;
+        $params['uiColor'] = isset($params['uiColor']) ? trim($params['uiColor']) : '';
 		$params['style'] = isset($params['style']) ? trim($params['style']) : '';
 		$params['allowhtml'] = !empty($params['allowhtml']);
 		$params['switcher'] = isset($params['switcher']) ? trim($params['switcher']) : null;
@@ -220,6 +221,12 @@ class Ckeditor4_Utils
 				$config['toolbar'] = $params['toolbar'];
 			}
 
+
+            if (!is_null($params['uiColor'])) {
+				$config['uiColor'] = $params['uiColor'];
+			 }
+
+
 			$config['xoopscodeXoopsUrl'] = XOOPS_URL . '/';
 
 			if ($finder) {
@@ -317,6 +324,10 @@ EOD;
 			}
 
 			$config['customConfig'] = trim($conf['customConfig']);
+
+           $config['uiColor'] =  trim($conf['uiColor']);
+
+
 			if ($conf['allowedContent']) $config['allowedContent'] = true;
 			$config['autoParagraph'] = (bool) $conf['autoParagraph'];
 

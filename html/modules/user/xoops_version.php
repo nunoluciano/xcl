@@ -26,7 +26,7 @@
 //  ------------------------------------------------------------------------ //
 
 $modversion['name'] = _MI_USER_NAME;
-$modversion['version'] = '2.3.0';
+$modversion['version'] = '2.31';
 $modversion['description'] = _MI_USER_NAME_DESC;
 $modversion['author'] = 'XOOPS Cube Project';
 $modversion['credits'] = 'XOOPS Cube Project';
@@ -108,7 +108,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_MINUNAME',
     'formtype'  => 'textbox',
     'valuetype' => 'int',
-    'default'   =>3
+    'default'   =>4
 ];
 
 $modversion['config'][]= [

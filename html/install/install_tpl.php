@@ -12,11 +12,9 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo _INSTALL_CHARSET ?>">
 
-    <title>XOOPS Cube Install Wizard</title>
+    <title>XCL Install Wizard</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link type="text/css" rel="stylesheet" media="all" href="../xoops.css">
 
     <link type="text/css" rel="stylesheet" media="all" href="style.css">
 

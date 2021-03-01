@@ -2,178 +2,216 @@
 /* 	Toggle comment of display block - none */
 
 .ui-dev-mode {
-    background  : #0a0a0a;
-    color       : #00CCFF;
-    font-size   : 12px;
-    display     : block;
-    /* display   : none; */
+    background          : #0a0a0a;
+    color               : #00CCFF;
+    font-size           : 12px;
+    /*display             : block;*/
+    display             : none;
 }
 
 /* -------------------- -------------------- -------------------- FONT-FAMILY */
 /* 	Set the default font-family of Operating Systems */
 @font-face {
-	font-family: system;
-	font-style: normal;
-	font-weight: 300;
-	src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
-	local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
-	local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+	font-family         : system;
+	font-style          : normal;
+	font-weight         : 300;
+	src                 : local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 }
 /* -------------------- -------------------- -------------------- HTML BODY */
 * {
-    box-sizing: border-box;
+    box-sizing          : border-box;
 }
+
+/* Note:
+scrollbar-width and scrollbar-color are part of CSS Working Group’s
+Scrollbars Module Level 1 draft and are currently only supported in Firefox
+*/
+
+/* Draggable handle found at the bottom of some elements (like Textarea) */
+::-webkit-resizer {
+    border-width        : 8px;
+    border-style        : solid;
+    border-color        : transparent #353d48 #252b34 transparent;
+}
+/* width */
+::-webkit-scrollbar {
+    width               : 8px;
+    height              : auto
+}
+
+::-webkit-scrollbar-button {
+    display             : none
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background          : linear-gradient(145deg, #252b34, #3d4752);
+    min-height          : 80px;
+    border-radius       : 0
+}
+/* Handle on hover */
+
+/* Track */
+::-webkit-scrollbar-track {
+    border              : 1px solid hsl(220, 15%, 25%);
+    border-radius       : 10px;
+    background          : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    box-shadow          : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+    5px 5px 10px 3px rgb(45, 50, 60),
+    inset -5px -5px 8px 0 rgba(47,65, 74, 0.4),
+    inset -1px -2px 2px 0 rgba(45, 50, 60, 0.4),
+    -5px -5px 8px 3px rgba(45, 50, 60, 0.5);
+}
+/*  ::-webkit-scrollbar-track-piece
+the track not covered by the scrollbar-thumb or handle */
+/* ::-webkit-scrollbar-corner
+bottom-right corner where the horizontal and vertical scrollbars meet */
+
 html,
 body {
-	background      : #232831;
-	color           : #abc;
-	font-family     : "system";
-	font-size       : 15px;
-	font-weight     : 300;
-	line-height     : 1.5rem;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
+	background          : #232831;
+	color               : #abc;
+    font-family         : "system", sans-serif;
+	font-size           : 15px;
+	font-weight         : 300;
+    overflow-x          : hidden;
+	text-rendering      : optimizeLegibility;
 }
-.content {
-    /* margin:0 1.25em */
-}
-.carbon {
-/*     background:
-    radial-gradient(black 15%, transparent 16%) 0 0,
-    radial-gradient(black 15%, transparent 16%) 8px 8px,
-    radial-gradient(rgba(33, 46, 61, 0.1) 15%, transparent 20%) 0 1px,
-    radial-gradient(rgba(29, 50, 105, 0.1) 15%, transparent 20%) 8px 9px;
-    background-color:#232831d3;
-    background-size:16px 16px; */
-    background-color: #202530;
-    background-image: url("https://www.transparenttextures.com/patterns/subtle-carbon.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
-
-.carbon-dark {
-background:
-linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-background-color: #131313;
-background-size: 20px 20px;
-}
-
-.carbon {
-
-        /* width: 100%;
-        height: 100%; */
-
-    }
-    main {
-    /* width: inherit;
-    height: inherit; */
-    /* background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.35)), color-stop(100%,rgba(255,255,255,0)));
-    background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0) 100%);
-    background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0) 100%);
-    background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0) 100%);
-    background: radial-gradient(ellipse at center,  rgba(255,255,255,0.35) 0%,rgba(255,255,255,0) 100%); */
-    }
-
-
 
 /* ------------------------------------------ HTML Elements */
 
 a {
-	color: #fff;
-	text-shadow: 1px 1px 1px rgba(5,2,7,0.99);
-    text-decoration: none;
+	color               : #fff;
+	/*text-shadow         : 1px 1px 1px rgba(5,2,7,0.99);*/
+    text-decoration     : none;
+    transition          : all 0.5s ease;
 }
 
 a:link,
 a:visited {
-	color	: hsl(200, 100%, 94%);
-    text-decoration : none;
-
+	color               : hsl(200, 100%, 94%);
 }
 
 a:active,
 a:focus,
 a:hover{
-	color: #face74;
-    text-decoration: none;
-
+	color               : #face74;
+    text-decoration     : none;
 }
+
 
 a.admin:hover:after {
-    content: "⬢";
-    padding-left:1em
+    content             : "⬢";
+    padding-left        : 1em
 }
 
-h3 {
-    margin: 1.5em 0;
+h1 {font-size           : 32px }
+h2 {font-size           : 24px }
+h3 {font-size           : 20px }
+h4 {font-size           : 18px }
+h1, h2, h3, h4 {
+    margin              : 1.25rem 0;
+    font-weight         : lighter;
+}
+
+fieldset legend {
+    background-color    : rgba(10, 15, 20, 0.2);
+    padding             : 0.5rem 1rem;
+    border              : 1px solid rgba(10, 15, 20, 0.4);
+    color               : #ddd;
 }
 
 
 hr {
-    border          : 0;
-    border-top      : 1px solid hsl(219, 17%, 21%);
-    margin          : 3em 0;
-    height          : 5px;
-
-    background-image : linear-gradient(90deg, transparent, hsl(219, 17%, 12%), transparent);
+    background-image    : linear-gradient(90deg, transparent, hsl(219, 17%, 12%), transparent);
+    border              : 0;
+    border-top          : 1px solid hsl(219, 17%, 21%);
+    height              : 5px;
+    margin              : 2.5em 0;
 }
 
 img {
-    border          : 0;
-    min-width       : 0;
-    max-width       : 100%;
-    object-fit      : contain;
+    border              : 0;
+    min-width           : 0;
+    max-width           : 100%;
+}
+
+pre,code,kbd {
+    /* word-break: break-all; /* webkit */
+    word-wrap           : break-word;
+    white-space         : pre;
+    white-space         : -moz-pre-wrap; /* fennec */
+    white-space         : pre-wrap;
+    white-space         : pre\9; /* IE7+ */
+    word-break          : keep-all;
 }
 
 
-/*  ------------------------------------------ UI-Components */
-
-.flex-grid3x3 {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+/*  ------------------------------------------ Colors */
+blockquote,
+.bg-color {
+    background-color    : rgba(10, 15, 20, 0.2);
+    border-radius       : 10px;
+    padding             : .75em 1.25em;
 }
 
-/* Ration simplifier 100% - 32% * 3 blocks */
-.flex-grid3x3 > .block3x3 {
-	border: 1px solid #def;
-	padding-bottom: 18%; /* 32:18 aspect ratio (i.e. 16:9) */
-	margin-bottom: 2%; /* (100-32*3)/2 */
-	width: 32%; /* 32*3 blocks */
+.bg-color2 {
+    background          : rgb(25, 31, 39);
+    border-color        : rgba(0,0,0,0.25);
 }
 
+.bg-color3 {
+    background          : rgb(27, 33, 41);
+    border-color        : rgba(0,0,0,0.25);
+}
+
+.blue {
+    background-color    : #1289ff;
+    border              : 1px solid #1289ff;
+}
+.cyan {
+    color               : #FFF;
+    background          : #22b9ff;
+    border              : 1px solid #22b9ff;
+}
+.green {
+    color               : #FFF;
+    background          : #63b265;
+    border              : 1px solid #63b265;
+}
+.red {
+    color               : #FFF;
+    background          : #c84448;
+    border              : 1px solid #c84448;
+}
+
+.text-small {font-size : 0.85em }
+.text-large {font-size : 2.85em }
+.text-tile {font-size  : 4.5em }
 
 /*  ------------------------------------------ UI-Shadows */
 
 .shadow-in {
-    border: 1px solid hsl(220, 15%, 25%);
-    border-radius: 10px;
-    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
-    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+    border              : 1px solid hsl(220, 15%, 25%);
+    border-radius       : 10px;
+    background          : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    box-shadow          : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
     5px 5px 10px 3px rgb(45, 50, 60),
-    inset -5px -5px 8px 0px rgba(47,65, 74, 0.4),
-    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+    inset -5px -5px 8px 0 rgba(47,65, 74, 0.4),
+    inset -1px -2px 2px 0 rgba(45, 50, 60, 0.4),
     -5px -5px 8px 3px rgba(45, 50, 60, 0.5);
-    padding: .25em;
+    padding             : .25em;
 }
 
 .shadow-out {
-    display: inline-block;
-    border: 1px solid rgb(44, 50, 60);
-    border-radius: 15px;
-    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
-    box-shadow: inset 0px 5px 10px 0px hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
-    padding: 1.25em;
-    transition: all .3s;
+    display             : inline-block;
+    border              : 1px solid rgb(44, 50, 60);
+    border-radius       : 15px;
+    background          : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    box-shadow          : inset 0 5px 10px 0 hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
+    padding             : 1.25em;
+    transition          : all .3s;
 }
 
 [class*="shadow"] {
-    transition: all 0.2s ease;
+    transition          : all 0.2s ease;
 }
-
-

@@ -29,6 +29,7 @@ label {
 
 
 button,
+input[type='reset'],
 input[type='submit']{
     border          : 1px solid hsl(219, 17%, 21%);
     border-radius   : 5px;
@@ -41,16 +42,19 @@ input[type='submit']{
 
     /* box-shadow: 5px 2px 15px rgba(45, 50, 60, 1), -1px -3px 6px rgba(55, 65, 75, 0.6); */
 }
-
 select,
 input[type='email'],
-input[type='text'],
+input[type='number'],
+input[type="number" i],
 input[type='password'],
-input[type='search'] {
-	color           : inherit;
+input[type='search'],
+input[type='text']
+ {
+	color           : #abc!important;
+	background 		: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%))!important;
+	/*background-color: #232831;*/
 	border          : 1px solid hsla(210, 15%, 20%, 1);
 	border-radius   : 5px;
-	background      : #232831;
     box-shadow      : inset 10px 10px 20px hsl(218, 17%, 12%),
                       inset -10px -10px 20px rgb(45, 51, 62);
     box-shadow      : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.2), 5px 5px 10px 0px rgba(45, 50, 60, 1),
@@ -58,16 +62,26 @@ input[type='search'] {
                       inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4), -6px -6px 15px 3px rgba(45, 50, 60, 0.6);
     padding         : .5em 1em;
     margin          : .5em 0;
-    max-width       : 95%;
-    transition       : 0.4s;
+    max-width       : 100%;
+    transition      : 0.4s;
 
+}
+/* Upload file */
+.btn-wrap-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.btn-wrap-upload input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
 
 .headerSearchField {
-
 }
-
-
 
 .data {
 	font-style      : italic;
@@ -90,16 +104,43 @@ textarea {
 }
 
 select option {
-	padding         : 1em 2em;
+	padding         : 1em .5em!important;
 }
+
+select option {
+	/*margin: 10px;*/
+	background: #232831!important;
+	/*color: #fff;*/
+	/*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);*/
+}
+
+select option[value="1"] {
+	background: rgb(25, 31, 39);
+}
+
+select option[value="2"] {
+	background: rgb(27, 33, 41);
+}
+
 button:hover,
 input:hover,
 textarea:hover,
 select:hover,
 select option:hover {
-    border: 1px solid #face74;
+    border: 1px solid #face74 !important;
 }
+
+/* -------------------- -------------------- -------------------- -------------------- FORM Autocomplete styles  */
 /* Change Autocomplete styles in Chrome*/
+
+input:-internal-autofill-selected {
+	appearance: menulist-button;
+	background-color: #232831 !important;
+	background-image: none !important;
+	color: -internal-light-dark(black, white) !important;
+}
+input:focus,
+textarea:focus,
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -109,24 +150,28 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  /* border: 1px solid green; */
-  -webkit-text-fill-color: #face74;
-  /* -webkit-box-shadow: 0 0 0px 1000px #000 inset; */
-  transition: background-color 5000s ease-in-out 0s;
-  outline: none;
+	border: 1px solid #face74 !important;
+	border-radius:.25rem;
+	background-color: #232831 !important;
+	-webkit-text-fill-color: #face74;
+	-webkit-box-shadow: 0 0 0 1000px #232831 inset;
+	transition: background-color 5000s ease-in-out 1s;
+	outline: #face74 !important;
 }
 
-/* @-webkit-keyframes autofill {
-    to {
-        color: #666;
+ @-webkit-keyframes autofill {
+	 0%,100% {
+        color: #152728;
         background: transparent;
     }
 }
 
 input:-webkit-autofill {
+	-webkit-animation-delay: 2s; /* Safari support - any positive time runs instantly */
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
-} */
+}
+
 /* -------------------- -------------------- -------------------- -------------------- FORM CHECKBOX & RADIO  */
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
@@ -158,7 +203,6 @@ input:-webkit-autofill {
 
 	input[type='checkbox']:after,
 	input[type='radio']:after {
-
 		content: '';
 		display: block;
 		left: 0;
@@ -171,16 +215,13 @@ input:-webkit-autofill {
 
 	input[type='checkbox']:checked,
 	input[type='radio']:checked {
-
 		animation: pulse 1s;
 		background: hsl(219, 15%, 18%);
 		border: 1px solid #6c757d;
-
 	}
 
 	input[type='checkbox']:checked:after,
 	input[type='radio']:checked:after {
-
 		filter: drop-shadow(0 1px 2px rgba(21, 25, 27, 0.25));
 		transition: opacity 0.3s ease, -webkit-filter 0.3s ease, -webkit-transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
 		transition: opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
@@ -190,57 +231,42 @@ input:-webkit-autofill {
 
 	input[type='checkbox']:disabled,
 	input[type='radio']:disabled {
-
 		background: hsl(219, 15%, 24%);
 		cursor: not-allowed;
 		opacity: .9;
-
 	}
 
 	input[type='checkbox']:disabled:checked,
 	input[type='radio']:disabled:checked {
-
 		background: hsl(219, 15%, 24%);
 		border: 1px solid hsl(216, 15%, 64%);
-
 	}
 
 	input[type='checkbox']:hover:not(:checked):not(:disabled),
 	input[type='radio']:hover:not(:checked):not(:disabled) {
-
 		border: 1px solid #face74;
-
 	}
 
 	input[type='checkbox']:not(.switch),
 	input[type='radio']:not(.switch) {
-
 		width: 20px;
-
 	}
 
 	input[type='checkbox']:not(.switch):after,
 	input[type='radio']:not(.switch):after {
-
 		opacity: 0;
-
 	}
 
 	input[type='checkbox']:not(.switch):checked:after,
 	input[type='radio']:not(.switch):checked:after {
-
 		opacity: 1;
-
 	}
 
 	input[type='checkbox']:not(.switch) {
-
 		border-radius: 5px;
-
 	}
 
 	input[type='checkbox']:not(.switch):after {
-
 		border: 2px solid #face74;
 		border-left: 0;
 		border-top: 0;
@@ -249,69 +275,52 @@ input:-webkit-autofill {
 		top: 4px;
 		transform: rotate(20deg);
 		width: 5px;
-
 	}
 
 	input[type='checkbox']:not(.switch):checked:after {
-
 		transform: rotate(43deg);
-
 	}
 
 	input[type='checkbox'].switch {
-
 		border-radius: 11px;
 		width: 38px;
-
 	}
 
 	input[type='checkbox'].switch:after {
-
         background: #6c757d;
 		border-radius: 50%;
 		height: 18px;
 		left: 1px;
 		top: 0;
 		width: 18px;
-
 	}
 
 	input[type='checkbox'].switch:checked:after {
-
 		background: rgba(255, 255, 255, 0.9);
 		transform: translateX(17px);
         box-shadow: 0 0 5px #face74, 0 0 20px #face74;
-
 	}
 
 	input[type='checkbox'].switch:disabled:not(:checked):after {
-
 		opacity: .6;
-
 	}
 
 	input[type='radio'] {
-
 		border-radius: 50%;
-
 	}
 
 	input[type='radio']:after {
-
 		background: rgba(255, 255, 255, 0.9);
 		border-radius: 50%;
 		height: 17px;
 		opacity: 0;
 		transform: scale(0.7);
 		width: 17px;
-
 	}
 
 	input[type='radio']:checked:after {
-
 		background: #face74;
 		transform: scale(0.5);
-
 	}
 
 	@keyframes pulse {

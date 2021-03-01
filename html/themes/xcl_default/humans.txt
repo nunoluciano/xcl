@@ -8,9 +8,8 @@
 
 # THANKS
 
-    Rob Larsen		HTML5 Boilerplate
-    Alexandre D.	Prefetch
-    Team Modernizr
+    <name>	--	 <role> -- 			<twitter>
+    <name>	--	 <role> -- 			<twitter>
 
 # TECHNOLOGY COLOPHON
 

@@ -407,11 +407,6 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
     if (!defined('XOOPS_CPFUNC_LOADED')) {
         require_once XOOPS_ROOT_PATH.'/class/template.php';
         $xoopsTpl = new XoopsTpl();
-        $xoopsTpl->assign('xoops_sitename', htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
-        $xoopsTpl->assign('sitename', htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
-        $xoopsTpl->assign('langcode', _LANGCODE);
-        $xoopsTpl->assign('charset', _CHARSET);
-        $xoopsTpl->assign('time', $time);
         //@gigamaster changed this to save memory
         if ($addredirect && strpos($url, 'user.php') !== false) {
             if (strpos($url, '?') === false) {
@@ -441,41 +436,213 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
             }
         }
         $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
-        $xoopsTpl->assign('url', $url);
         $message = trim($message) !== '' ? $message : _TAKINGBACK;
-        $xoopsTpl->assign('message', $message);
-        $xoopsTpl->assign('lang_ifnotreload', sprintf(_IFNOTRELOAD, $url));
+        $xoopsTpl->assign(
+            [
+                'xoops_sitename'   =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+                'sitename'         =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+                'langcode'         =>_LANGCODE,
+                'charset'          =>_CHARSET,
+                'time'             =>$time,
+                'url'              =>$url,
+                'message'          =>$message,
+                'lang_ifnotreload' =>sprintf(_IFNOTRELOAD, $url)
+            ]
+        );
         $GLOBALS['xoopsModuleUpdate'] = 1;
         $xoopsTpl->display('db:system_redirect.html');
         exit();
     }
     //@gigamaster split workflow
     $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
-    echo '
-    <html>
-    <head>
-    <title>'.htmlspecialchars($xoopsConfig['sitename']).'</title>
-    <meta http-equiv="Content-Type" content="text/html; charset='._CHARSET.'" />
-    <meta http-equiv="Refresh" content="'.$time.'; url='.$url.'" />
-    <style type="text/css">
-            body {background-color : #fcfcfc; font-size: 12px; font-family: Trebuchet MS,Verdana, Arial, Helvetica, sans-serif; margin: 0px;}
-            .redirect {width: 70%; margin: 110px; text-align: center; padding: 15px; border: #e0e0e0 1px solid; color: #666666; background-color: #f6f6f6;}
-            .redirect a:link {color: #666666; text-decoration: none; font-weight: bold;}
-            .redirect a:visited {color: #666666; text-decoration: none; font-weight: bold;}
-            .redirect a:hover {color: #999999; text-decoration: underline; font-weight: bold;}
-    </style>
-    </head>
-    <body>
-    <div align="center">
-    <div class="redirect">
-      <span style="font-size: 16px; font-weight: bold;">'.$message.'</span>
-      <hr style="height: 3px; border: 3px #E18A00 solid; width: 95%;" />
-      <p>'.sprintf(_IFNOTRELOAD, $url).'</p>
-    </div>
-    </div>
-    </body>
-    </html>';
-    exit();
+    //File from module templates for ease of customization
+    $file = XOOPS_ROOT_PATH.'/modules/legacy/templates/legacy_redirect_function.html';
+    if (file_exists($file)) {
+        include $file;
+        die();
+    } else {
+
+        echo '
+            <!DOCTYPE html>
+            <head>
+            <title>' . htmlspecialchars($xoopsConfig['sitename']) . '</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=' . _CHARSET . '">
+            <meta>
+            <link rel="stylesheet" href="' . XOOPS_URL . '/modules/legacy/admin/theme/style.css">
+            <style>
+
+            body {
+                background      : rgb(35, 40, 47);
+                color           : azure;
+                margin          : 0;
+                transition      : background 500ms ease-in-out, color 200ms ease;
+                }
+
+                a, a:visited {
+                color           : orange;
+                }
+                a:hover {
+                color           : #fff;
+                }
+
+                .wrapper-redirect {
+                align-content   : center;
+                display         : flex;
+                flex-direction  : column;
+                justify-content : center;
+                min-height      : 100vh;
+                }
+
+                .wrapper-redirect > * {
+                margin          : 1em auto;
+                text-align      : center;
+                }
+                table {
+                width           : 100%;
+                border-spacing  : 1px;
+                border-collapse : separate;
+                }
+                td {
+                padding         : 1em 2em;
+                }
+                .icon-package {
+                margin-right    : 1em;	   /* Space icon -> text  */
+                vertical-align  : middle; /* Align icon and text */
+                width           : 1.5em; /* Size icon to text   */
+                }
+
+                .cube-loading {
+                    position    : relative;
+                    width       : 227px;
+                    height      : 227px;
+                    line-height : 50px;
+                    margin      : 0 auto;
+                    cursor      : pointer;
+                    transition  : 0.5s;
+                }
+                .cube-loading .vcenter {
+                    margin      : 1em auto;
+                    position    : absolute;
+                    transform   : rotate(-45deg);
+                    top         : 25%;
+                    left        : 27%;
+                }
+                .cube-loading i {
+                    position    : relative;
+                    transition  : 0.2s;
+                    top         : 0;
+                }
+
+                .cube-loading .cube-line1,
+                .cube-loading .cube-line2,
+                .cube-loading .cube-line3,
+                .cube-loading .cube-line4 {
+                    margin      : 0 auto;
+                    line-height : 50px;
+                    position    : absolute;
+                    content     : "";
+                }
+                .cube-loading .cube-line1 {
+                    top         : 0px;
+                    left        : 0px;
+                    right       : auto;
+                    width       : 227px;
+                    height      : 1px;
+                    z-index     : -1;
+                    animation   : impulse1 2s linear infinite;
+                }
+                .cube-loading .cube-line2 {
+                    top         : 0px;
+                    left        : 0px;
+                    right       : auto;
+                    width       : 1px;
+                    height      : 227px;
+                    z-index     : -1;
+                    animation   : impulse2 2s linear infinite;
+                }
+                .cube-loading .cube-line3 {
+                    top         : 0px;
+                    left        : auto;
+                    right       : 0;
+                    width       : 0px;
+                    height      : 227px;
+                    z-index     : -1;
+                    animation   : impulse2 2s 0.3s linear infinite;
+                }
+                .cube-loading .cube-line4	{
+                    bottom      : 0px;
+                    left        : 0px;
+                    right       : auto;
+                    width       : 227px;
+                    height      : 0px;
+                    z-index     : -1;
+                    animation   : impulse1 2s 0.3s linear infinite;
+                }
+                @keyframes impulse1 {
+                    0% {    width: 0px;	height: 1px; }
+                    10% {   width: 227px;	left: 0;	right: auto; }
+                    15% {   width: 227px;	right: 0;	left: auto; }
+                    20% {   width: 0px; }
+                    100% {  width: 0px;	right: 0;	left: auto; }
+                    }
+                    @keyframes impulse2 {
+                    0% {    height: 0px; width: 1px; }
+                    10% {   height: 227px; top: 0;	bottom: auto; }
+                    15% {   height: 227px;	bottom: 0;	top: auto; }
+                    20% {   height: 0px; }
+                    100% {  height: 0px; bottom: 0;	top: auto; }
+                    }
+
+                .cube-loading {
+                transform       : rotate(45deg);
+                margin-bottom   : 50px;
+                }
+                .cube-line1 {
+                    background  : linear-gradient(to right, transparent, #006eff, transparent);
+                }
+                .cube-line2 {
+                    background  : linear-gradient(transparent, #006eff, transparent);
+                }
+                .cube-line3 {
+                    background  : linear-gradient(transparent, rgb(250, 205, 115), transparent);
+                }
+                .cube-line4 {
+                    background  : linear-gradient(to right, transparent, #ffe000, transparent);
+                }
+
+                .cube-loading {
+                background  : rgba(35, 40, 47, 0.5);
+                box-shadow  : 3px 9px 16px rgb(0,0,0,0.4), -3px -3px 10px rgba(255,255,255, 0.05), inset 14px 14px 26px rgb(0,0,0,0.4), inset -3px -3px 15px rgba(255,255,255, 0.05);
+                background  : transparent;
+                overflow    :hidden;
+                transition  : all 0.3s ease-in-out 0s;
+                }
+
+                .cube-loading:hover{
+                background  : linear-gradient(to right, rgba(31, 27, 21, 0.47), rgba(115, 127, 128, 0.15),  rgba(15, 99, 127, 0.47));
+                border:1px solid rgba(21, 142, 215, 0.15);
+                transition  : all 0.3s ease-in-out 0s;
+                }
+
+                </style>
+
+            </head>
+            <body>
+            <div class="wrapper-redirect">
+            <div class="cube-loading"><i class="vcenter">Loading</i>
+                <div class="cube-line1"></div>
+                <div class="cube-line2"></div>
+                <div class="cube-line3"></div>
+                <div class="cube-line4"></div>
+            </div>
+            <br>
+            <h4>' . $message . '</h4>
+            <p>' . sprintf(_IFNOTRELOAD, $url) . '</p>
+            </div>
+            </body>
+            </html>';
+        exit();
+    }
 }
 
 function xoops_getenv($key)

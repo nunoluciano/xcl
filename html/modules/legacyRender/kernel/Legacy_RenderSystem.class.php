@@ -553,7 +553,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		<script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script>
 		';
         $themecss = getcss($xoopsConfig['theme_set']);
-        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css">';
+        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/theme/xcl_default/style.css">';
         if ($themecss) {
             echo '<link rel="stylesheet" type="text/css" media="all" href="'.$themecss.'">';
             //echo '<style type="text/css" media="all"><!-- @import url('.$themecss.'); --></style>';

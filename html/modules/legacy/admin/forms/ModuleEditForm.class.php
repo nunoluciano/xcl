@@ -35,16 +35,16 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
     
         $this->mFieldProperties['name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['name']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_NAME, '255');
-        $this->mFieldProperties['name']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_NAME, '255');
-        $this->mFieldProperties['name']->addVar('maxlength', '255');
+        $this->mFieldProperties['name']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_NAME, '191');
+        $this->mFieldProperties['name']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_NAME, '191');
+        $this->mFieldProperties['name']->addVar('maxlength', '191');
     
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['weight']->setDependsByArray(['required', 'intRange']);
         $this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addVar('min', '0');
-        $this->mFieldProperties['weight']->addVar('max', '255');
+        $this->mFieldProperties['weight']->addVar('max', '191');
     
         $this->mFieldProperties['read_groupid'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['read_groupid']->setDependsByArray(['objectExist']);

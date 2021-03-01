@@ -52,7 +52,7 @@ class XoopsPrivmessage extends XoopsObject
         parent::__construct();
         $this->initVar('msg_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('msg_image', XOBJ_DTYPE_OTHER, 'icon1.gif', false, 100);
-        $this->initVar('subject', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('subject', XOBJ_DTYPE_TXTBOX, null, true, 191);
         $this->initVar('from_userid', XOBJ_DTYPE_INT, null, true);
         $this->initVar('to_userid', XOBJ_DTYPE_INT, null, true);
         $this->initVar('msg_time', XOBJ_DTYPE_OTHER, time(), false);

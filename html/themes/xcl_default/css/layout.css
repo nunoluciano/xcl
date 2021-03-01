@@ -5,60 +5,59 @@ main {
     /* background: hsl(219, 15%, 18%); */
     /*border-bottom-right-radius: 20px;*/
     /*border-top-right-radius: 20px;*/
-    flex: 0 0 100%;
-    padding: 1em;
-    margin-left: auto;
-	margin-right: auto;
-
+    display         : flex;
+    flex            : 0 0 100%;
+    height          : 100%;
+    padding         : 1em;
+    margin          : 1em auto 4em;
+    max-width       : 1242px;
 }
 
-.maincontents {
-    background: hsl(219, 15%, 18%);
-    padding: 0 2em;
+/* Select and style every element with css class="content" where the parent is a <div> element */
+main div > .content {
+    /* margin:0 1.25em */
 }
-
-
-
-main {
-    /* background: linear-gradient(130deg, rgb(35, 40, 50), rgb(35, 35, 45));
-    border: 1px solid hsla(210, 15%, 20%, 1);
-    border-radius: 20px;
-    box-shadow: 10px 10px 15px 5px rgba(25, 30, 35, 0.5),
+/* Select and style the first <p> element that are placed immediately after <div> elements:*/
+main div + p {
+    /* margin:0 1.25em */
+}
+/* Page effect shadow out */
+main.shadow-neumorphic {
+    background      : linear-gradient(130deg, rgb(35, 40, 50), rgb(35, 35, 45));
+    border          : 1px solid hsla(210, 15%, 20%, 1);
+    border-radius   : 20px;
+    box-shadow      : 10px 10px 15px 5px rgba(25, 30, 35, 0.5),
     -10px -10px 15px 5px rgba(45, 50, 55, 0.5),
-    -1px -1px 10px 1px rgba(55, 65, 75, 0.74); */
-    display: flex;
-    height: 100%;
-    margin: 1em auto 4em;
-    max-width: 1242px;
+    -1px -1px 10px 1px rgba(55, 65, 75, 0.74);
+}
 
-/*     box-shadow: 6px 6px 15px 3px rgba(45, 50, 60, 1),1px 1px 5px 1px rgba(45, 50, 60, 0.8),
+/* Page effect shadow out light */
+main.shadow-light {
+    box-shadow      : 6px 6px 15px 3px rgba(45, 50, 60, 1),1px 1px 5px 1px rgba(45, 50, 60, 0.8),
     -6px -6px 15px 3px rgba(55, 65, 75, 0.6),
-    -1px -1px 2px 1px rgba(55, 65, 75, 0.6); */
+    -1px -1px 2px 1px rgba(55, 65, 75, 0.6);
 }
 
 section {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left     : auto;
+    margin-right    : auto;
+}
+
+section.full-width {
+    background-color: rgba(10, 15, 20, 0.2);
+    width           : 100vw;
+    position        : relative;
+    left            : 50%;
+    right           : 50%;
+    margin-left     : -50vw;
+    margin-right    : -50vw;
+    overflow-x      : hidden;
 }
 
 footer {
-    align-items: center;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 1em;
+    align-items     : center;
+    display         : flex;
+    flex-wrap       : nowrap;
+    justify-content : space-between;
+    padding         : 1em;
 }
-
-.full-width {
-    /* left: 50%;
-    overflow-x: hidden;
-	margin-left: -50vw;
-	margin-right: -50vw;
-	max-width: 100vw;
-	position: relative;
-	right: 50%;
-    width: 100vw;
-    padding:0;
-    border: none;
-    background: rgba(0,0,0,.5); */
-  }

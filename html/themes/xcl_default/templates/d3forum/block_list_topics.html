@@ -14,9 +14,12 @@
 </tr>
 </thead>
 <{foreach item=topic from=$block.topics}>
+
+
 <{strip}>
 <tr class="<{cycle values="even,odd"}>">
-	<td><a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+	<td><div style='background:<{cycle name=topicolor values="#ccdb38,#a676b8,#fe7e17"}>;height:20px;width:10px;'>C</div>
+        <a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
 	<td>
 	<{if $block.current_topic_id == $topic.id}>
     <span class="d3f_currenttopic">

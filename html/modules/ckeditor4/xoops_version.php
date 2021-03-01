@@ -11,7 +11,7 @@ if (!defined('XOOPS_ROOT_PATH')) exit();
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_CKEDITOR4_LANG_CKEDITOR4;
-$modversion['version'] = 2.30;
+$modversion['version'] = 2.31;
 $modversion['description'] = 'v4.14.0 [ 04-03-2020 ] '._MI_CKEDITOR4_DESC_CKEDITOR4;
 $modversion['author'] = "nao-pon https://xoops.hypweb.net/";
 $modversion['credits'] = "Naoki Sawada aka nao-pon";
@@ -67,6 +67,15 @@ $modversion['config'][] = array(
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
 		'default'		=> 'Full'
+)
+
+;$modversion['config'][] = array(
+        'name'			=> 'uiColor' ,
+        'title'			=> '_MI_CKEDITOR4_TOOLBAR_UI_COLOR',
+        'description'	=> '_MI_CKEDITOR4_TOOLBAR_UI_COLOR_DESC',
+        'formtype'		=> 'textbox' ,
+        'valuetype'		=> 'string' ,
+        'default'		=> '#405060'
 ) ;
 
 $modversion['config'][] = array(

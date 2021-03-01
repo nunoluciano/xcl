@@ -53,9 +53,9 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['com_title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addVar('maxlength', '255');
+        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addVar('maxlength', '191');
 
         $this->mFieldProperties['com_text'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_text']->setDependsByArray(['required']);

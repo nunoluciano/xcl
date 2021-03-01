@@ -14,8 +14,9 @@ require_once XOOPS_MODULE_PATH . '/legacy/class/ActionFrame.class.php';
 
 $root =& XCube_Root::getSingleton();
 
-$actionName = isset($_GET['action']) ? trim($_GET['action']) : 'ModuleList';
-
+// $actionName = isset($_GET['action']) ? trim($_GET['action']) : 'ModuleList';
+// redirect to preference
+$actionName = isset($_GET['action']) ? trim($_GET['action']) : 'PreferenceList';
 $moduleRunner =new Legacy_ActionFrame(true);
 $moduleRunner->setActionName($actionName);
 

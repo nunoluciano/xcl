@@ -2,7 +2,7 @@
 // $Id: xoops_version.php,v 1.11 2008/10/12 03:55:38 minahito Exp $
 
 $modversion['name'] = _MI_STDCACHE_NAME;
-$modversion['version'] = '2.3.0';
+$modversion['version'] = '2.31';
 $modversion['description'] = _MI_STDCACHE_NAME_DESC;
 $modversion['author'] = 'XOOPS Cube Project';
 $modversion['credits'] = 'XOOPS Cube Project';

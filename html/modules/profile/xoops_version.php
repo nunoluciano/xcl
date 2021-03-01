@@ -15,8 +15,8 @@ $mydirpath = basename(__DIR__) ;
 // Define a basic manifesto.
 //
 $modversion['name'] = _MI_PROFILE_LANG_PROFILE;
-$modversion['version'] = '2.3.0';
-$modversion['detailed_version'] = '2.30.0' ;
+$modversion['version'] = '2.31';
+$modversion['detailed_version'] = '2.31.1' ;
 $modversion['description'] = _MI_PROFILE_DESC_PROFILE;
 $modversion['author'] = 'kilica and Y.Sakai';
 $modversion['credits'] = 'XOOPSCube Project';

@@ -103,8 +103,7 @@ class SimpleWizard
         if ($fname && file_exists($this->_template_path . '/' . $fname)) {
             ob_start();
             include $this->_template_path . '/' . $fname;
-            $this->setContent(ob_get_contents());
-            ob_end_clean();
+            $this->setContent(ob_get_clean());
         }
         $content = $this->_content;
         if (!empty($this->_title)) {

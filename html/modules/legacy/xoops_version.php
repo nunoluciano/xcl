@@ -9,7 +9,8 @@
  */
 
 $modversion['name'] = _MI_LEGACY_NAME;
-$modversion['version'] = '2.3.0';
+$modversion['version'] = '2.31';
+$modversion['detailed_version'] = '2.31.0' ;
 $modversion['description'] = _MI_LEGACY_NAME_DESC;
 $modversion['author'] = '';
 $modversion['credits'] = 'XOOPS Cube Project';
@@ -132,6 +133,8 @@ $modversion['templates'][48]['file'] = 'legacy_inc_tag_select.html';
 $modversion['templates'][48]['description'] = 'legacy_tag_select default template';
 $modversion['templates'][49]['file'] = 'legacy_inc_tag_cloud.html';
 $modversion['templates'][49]['description'] = 'legacy_tag_cloud default template';
+$modversion['templates'][50]['file'] = 'legacy_redirect_function.html';
+$modversion['templates'][50]['description'] = 'Replace direct Xoops2 system';
 
 // Menu
 $modversion['hasMain'] = 0;
@@ -204,6 +207,8 @@ $modversion['blocks'][8]['file'] = 'legacy_themes.php';
 $modversion['blocks'][8]['name'] = _MI_LEGACY_BLOCK_THEMES_NAME;
 $modversion['blocks'][8]['description'] = _MI_LEGACY_BLOCK_THEMES_DESC;
 $modversion['blocks'][8]['show_func'] = 'b_legacy_themes_show';
-$modversion['blocks'][8]['options'] = '0|80';
+$modversion['blocks'][8]['options'] = '0|120';
 $modversion['blocks'][8]['edit_func'] = 'b_legacy_themes_edit';
 $modversion['blocks'][8]['template'] = 'legacy_block_themes.html';
+$modversion['blocks'][8]['visible_any'] = true;
+$modversion['blocks'][8]['show_all_module'] = true;

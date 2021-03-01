@@ -22,3 +22,15 @@
 }());
 
 // Place any jQuery/helper plugins in here.
+/** ---------- ---------- ---------- ---------- ---------- Reusable Toogle
+ * Hoow To Use
+ * - Call it from any clickcable element with the className to display:
+ * onclick="slideToggle('.className', this)"
+ * - Set the className display to :none
+ * <div class="className" style="display:none">
+ * </div>
+ * Customize : ( time, "effect", )
+ */
+function slideToggle(className, obj) {
+  $(className).slideToggle(500,"easeInOutCubic", obj.checked );
+}

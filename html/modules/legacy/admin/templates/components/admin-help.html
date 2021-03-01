@@ -1,0 +1,116 @@
+<!--
+  ~ /**
+  ~  * Ajax load Help
+  ~  *
+  ~  * Load Help files id #article into a jQuery dialog/modal
+  ~  *
+  ~  * @package    XCL230
+  ~  * @author     Original Author Nuno Luciano ( @gigamaster )
+  ~  * @copyright  2005-2020 The XOOPSCube Project
+  ~  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+  ~  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+  ~  * @version    Release: 2020-05-27 @package_230@
+  ~  * @link       https://github.com/xoopscube/xcl
+  ~  * *
+  ~  */
+  -->
+<script>
+    $( function() {
+        $( "#dialog-help" ).dialog({
+            autoOpen: false,
+            maxWidth:600,
+            maxHeight: 400,
+            width: 400,
+            height: 400,
+            buttons: [
+                    {
+                    text: "Ok",
+                    icon: "ui-icon-check",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                    // Uncommenting the following line would hide the text,
+                    // resulting in the label being used as a tooltip
+                    //showText: false
+                    }
+                ],
+            show: {
+                effect: "blind",
+                duration: 300
+            },
+            hide: {
+                effect: "clip",
+                duration: 300
+            }
+        });
+        // Open Help
+        // Module directory name = $legacy_module or $xoops_dirname it's better for D3modules
+        // Help article of module = $adminHelp ( assigned in parent template )
+        // Help&dirname=legacy&file=block.html
+        $( "#open-help" ).on( "click", function() {
+            event.preventDefault();
+
+            $( "#dialog-help" ).dialog( "open" );
+
+            $('#help-data').delay(3200).html('<div class="xcl-progress-loading"></div>');
+            setTimeout(function() {
+            $('#help-data').delay(3200).load('<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=<{$adminHelp}>', function() {
+                console.log('Load was performed.');
+            })}, 2500);
+        });
+    });
+</script>
+<style>
+#help-data {display:block;}
+ .xcl-progress-loading {
+  width: 70%;
+  margin:25% auto;
+  height: 1.5em;
+  border-radius: .5em;
+  border: .125em solid;
+  color: rgba(25, 100, 190, 0.74)
+}
+.xcl-progress-loading {
+  -webkit-filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
+}
+.xcl-progress-loading:before, .xcl-progress-loading:after {
+  content: '';
+  top: .2em;
+  left: .2em;
+  right: .2em;
+  bottom: .2em;
+  border-radius: .25em;
+  display: block;
+  position: absolute;
+  overflow: hidden;
+}
+.xcl-progress-loading:after {
+  right: 100%;
+  -webkit-animation: xcLoaderBarInfine 10s infinite linear, xcLoaderBarScroll 3s infinite linear;
+          animation: xcLoaderBarInfine 10s infinite linear, xcLoaderBarScroll 3s infinite linear;
+  box-shadow: inset 0 0.5em 0.5em rgba(25, 100, 190, 0.25), inset 0 -0.5em 0.5em rgba(8, 30, 63, 0.5);
+  background-image: repeating-linear-gradient(45deg, rgb(8, 55, 86) 0px, rgb(8, 55, 86) 4px, rgb(19, 109, 151) 5px, rgb(19, 109, 151) 9px);
+  background-size: 27px 13px;
+}
+@keyframes xcLoaderBarInfine {
+  from {
+    background-position: 274px 0;
+  }
+  to {
+    background-position: -274px 0;
+  }
+}
+@keyframes xcLoaderBarScroll {
+  to {
+    right: 2%;
+  }
+}
+</style>
+
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<div class="display:none" id="dialog-help" title="� <{$xoops_dirname}>">
+    <div id="help-data">
+    </div>
+</div>

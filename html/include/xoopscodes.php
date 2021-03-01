@@ -93,11 +93,10 @@ function xoopsSmilies($textarea_id)
             }
         }
     } else {
-        $count = count($smiles);
-        for ($i = 0; $i < $count; $i++) {
-            if (1 == $smiles[$i]['display']) {
+        foreach ($smiles as $iValue) {
+            if (1 == $iValue['display']) {
                 //hack bis
-                echo "<img src='".XOOPS_UPLOAD_URL . '/' . htmlspecialchars($smiles[$i]['smile_url']) . "' border='0' onmouseover='style.cursor=\"hand\"' alt='' onclick='xoopsCodeSmilie(\"" . $textarea_id . '", " ' . $smiles[$i]['code'] . " \");' />";
+                echo "<img src='".XOOPS_UPLOAD_URL . '/' . htmlspecialchars($iValue['smile_url']) . "' border='0' onmouseover='style.cursor=\"hand\"' alt='' onclick='xoopsCodeSmilie(\"" . $textarea_id . '", " ' . $iValue['code'] . " \");' />";
             //fin du hack
             }
         }

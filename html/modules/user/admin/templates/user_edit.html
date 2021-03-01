@@ -1,11 +1,12 @@
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
+  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+  &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
   &raquo;&raquo;
   <{if $actionForm->get('uid')}>
-    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_EDIT}></span>
+  <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_EDIT}></span>
   <{else}>
-    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_NEW}></span>
+  <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_NEW}></span>
   <{/if}>
 </div>
 

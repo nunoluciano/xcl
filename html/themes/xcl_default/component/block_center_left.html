@@ -2,12 +2,12 @@
 
 <{foreach item=block from=$xoops_clblocks}>
 
-<div class="block-center-left">
-	<h3>
+<div class="block-center-left" self="p-2">
+	<h3 class="bg-color">
 		<{if $xoops_isadmin}>
 		<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockEdit&amp;bid=<{$block.id}>" class="admin"><{$block.title}></a>
 		<{else}>
-		<{$block.title}>
+        <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
 		<{/if}>
 	</h3>
 	<div><{$block.content}></div>

@@ -29,7 +29,7 @@ define('_MB_LEGACY_DISPLAYC', 'Display %s comments');
 
 define('_MB_LEGACY_LANG_NUMTHEME', '%s themes');
 define('_MB_LEGACY_LANG_THSHOW', 'Display screenshot image');
-define('_MB_LEGACY_LANG_THWIDTH', 'Screenshot image width');
+define('_MB_LEGACY_LANG_THWIDTH', 'Screenshot image width (px or %)');
 
 define('_MB_LEGACY_LANG_RECOMMENDSITE', 'Recommend this Site to a Friend');
 

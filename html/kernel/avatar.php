@@ -184,7 +184,7 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 
@@ -199,7 +199,8 @@ class XoopsAvatarHandler extends XoopsObjectHandler
         $this->db->query($sql);
         $sql = sprintf('INSERT INTO %s (avatar_id, user_id) VALUES (%u, %u)', $this->db->prefix('avatar_user_link'), $avatar_id, $user_id);
         if (!$result =& $this->db->query($sql)) {
-            return false;
+            $avatar_id = XOOPS_UPLOAD_URL . "/modules/user/images/no_avatar.gif";
+            return $avatar_id ;
         }
         return true;
     }

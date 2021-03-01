@@ -1,30 +1,61 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
+<style>
+    .cat-plus {
+         filter: invert(33%) sepia(97%) saturate(2738%) hue-rotate(199deg) brightness(100%) contrast(109%);
+         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg class='i-plus-square-fill' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'/%3e%3c/svg%3e");
+         }
+    .cat-minus {
+        color:#fff;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg class='i-dash-square-fill' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2 7.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4z'/%3e%3c/svg%3e");
+    }
+    .cat-minus, .cat-plus {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border: 0;
+        width: 40px;height: 32px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: all 0.3s ease-in;
+    }
+
+</style>
+<script>
+$(document).ready(function(){
+    $('.cat-tree').click(function() {
+            var linkId = $(this).attr('data-cat-id');
+            $('#' + linkId).slideToggle(400);
+            $(this).toggleClass( "cat-minus", "cat-plus" );
+        });
+    });
+</script>
+
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
 
-<div layout="column" class="pico_container pico_menu" id="<{$mydirname}>_container">
+<div layout="column" class="pico_container pico_menu" id="<{$mydirname}>_container" style="position: relative;">
 
 
     <{* ------- top message *}>
-
-    <h5><{$mod_config.top_message}></h5>
-
+        <{if "" != $mod_config.top_message}>
+            <div class="bg-color"><{$mod_config.top_message}></div>
+        <{/if}>
 
             <{* ------- top controller *}>
             <{if $xoops_isadmin}>
             <div layout="row" self="size-x1">
-                    <a class="btn btn-outline-secondary" href="<{$mod_url}>/admin/index.php?page=category_access" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
+                    <a class="btn" href="<{$mod_url}>/admin/index.php?page=category_access" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
                         <svg class="i-unlock mr-2" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
                         </svg> <{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>
-                    <a class="btn btn-outline-secondary" href="<{$mod_url}>/admin/index.php?page=contents" title="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
+                    <a class="btn" href="<{$mod_url}>/admin/index.php?page=contents" title="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
                         <svg class="i-collection mr-2" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M14.5 13.5h-13A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5zm-13 1A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5h-13zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
                         </svg> <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></a>
-                    <a class="btn btn-outline-secondary" href="<{$mod_url}>/index.php?page=makecategory" title="<{$smarty.const._MD_PICO_LINK_MAKECATEGORY}>">
+                    <a class="btn" href="<{$mod_url}>/index.php?page=makecategory" title="<{$smarty.const._MD_PICO_LINK_MAKECATEGORY}>">
                     <svg class="i-folder-plus mr-2" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
                         <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
@@ -34,82 +65,83 @@
             <{/if}>
 
 
-
-
-
         <{* ------- start categories list *}>
-        <ul layout="column my-2">
+
+        <ul class="list-group" layout="column my-2">
 
 
         <{foreach item=category from=$categories}>
 
                 <{* ------- category-header *}>
-                <li layout="rows-justify" class="p-0 my-1">
+                <li class="list-group-item">
 
 
-                    <{* ------- auto-set heading tag 1 to 5 *}>
-                        <div self="size-1of3 md-half sm-full" class="level<{$category.depth_in_tree|min:5}>">
-                            <h5>
-                            <span class="btn btn-sm cat-tree cat-plus cat-plus-anim" data-toggle="collapse" href="#ct-<{$category.id}>" role="button" aria-expanded="false" aria-controls="collapseExample" title="View Content">
-                            </span> <a href="<{$mod_url}>/<{$category.link}>"><{$category.title}></a></h5>
-                        </div>
+                    <{* ------- auto-set level (css + depth 1 to 5 + heading *}>
+                    <div class="level<{$category.depth_in_tree|min:5}>" layout="rows-justify my-1 p-0">
+
+                            <h4 class="title-<{$category.id}>" self="size-x1 left md-half sm-full">
+                            <span class="btn cat-tree cat-plus" data-cat-id="cat<{$category.id}>" role="button" title="View Content" self="mr-2">
+                            </span> <a href="<{$mod_url}>/<{$category.link}>"><{$category.title}></a></h4>
 
 
                         <{* ------- controllers *}>
                         <div self="center md-half sm-full">
 
+                            <{if $category.isadminormod}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>">
+                                <svg class="i-edit-title" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 32 32">
+                                    <path d="M2 26h28v2H2z" fill="currentColor"/>
+                                    <path d="M25.4 9c.8-.8.8-2 0-2.8l-3.6-3.6c-.8-.8-2-.8-2.8 0l-15 15V24h6.4l15-15zm-5-5L24 7.6l-3 3L17.4 7l3-3zM6 22v-3.6l10-10l3.6 3.6l-10 10H6z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <{/if}>
+
+                            <{if $category.can_post}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mm" title="<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>">
+                                <svg class="i-file-new" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.5 20a.5.5 0 0 1-.5.5h-5.732A6.518 6.518 0 0 1 11.19 22H18a2 2 0 0 0 2-2V9.828a2 2 0 0 0-.586-1.414l-5.829-5.828a.491.491 0 0 0-.049-.04a.63.63 0 0 1-.036-.03a2.072 2.072 0 0 0-.219-.18a.652.652 0 0 0-.08-.044l-.048-.024l-.05-.029c-.054-.031-.109-.063-.166-.087a1.977 1.977 0 0 0-.624-.138c-.02-.001-.04-.004-.059-.007A.605.605 0 0 0 12.172 2H6a2 2 0 0 0-2 2v7.498a6.451 6.451 0 0 1 1.5-.422V4a.5.5 0 0 1 .5-.5h6V8a2 2 0 0 0 2 2h4.5v10zm-5-15.379L17.378 8.5H14a.5.5 0 0 1-.5-.5V4.621z" fill="currentColor"/>
+                                    <path d="M12 17.5a5.5 5.5 0 1 0-11 0a5.5 5.5 0 0 0 11 0zM7 18l.001 2.503a.5.5 0 1 1-1 0V18H3.496a.5.5 0 0 1 0-1H6v-2.5a.5.5 0 1 1 1 0V17h2.497a.5.5 0 0 1 0 1H7z" fill="currentColor"/>
+                                </svg>
+                                </a>
+                            <{/if}>
+
                             <{if $category.isadminormod && $category.private_contents_counter}>
-                            <a class="text-danger mr-0" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
-                                <svg class="bi bi-shield-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <a self="mr-2" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
+                                <svg class="i-shield-lock-fill" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M5.187 1.025C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815zm3.328 6.884a1.5 1.5 0 1 0-1.06-.011.5.5 0 0 0-.044.136l-.333 2a.5.5 0 0 0 .493.582h.835a.5.5 0 0 0 .493-.585l-.347-2a.5.5 0 0 0-.037-.122z"/>
                                 </svg> <{$category.private_contents_counter|string_format:$smarty.const._MD_PICO_FMT_PRIVATECOUNT}>
                             </a>
                             <{/if}>
 
-                            <{if $category.isadminormod}>
-                            <a class="px-1 mr-1" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>">
-                                <svg class="bi bi-pencil" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-                                    <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                            <{if $category.can_makesubcategory}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>">
+                                <svg class="i-folder-plus" width="24px" height="24px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M26 20h-2v4h-4v2h4v4h2v-4h4v-2h-4z" fill="currentColor"/>
+                                    <path d="M28 8H16l-3.4-3.4c-.4-.4-.9-.6-1.4-.6H4c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h14v-2H4V6h7.2l3.4 3.4l.6.6H28v8h2v-8c0-1.1-.9-2-2-2z" fill="currentColor"/>
                                 </svg>
                             </a>
                             <{/if}>
 
-                            <{if $category.can_makesubcategory}>
-                            <a class="px-1 mr-1" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>">
-                                <svg class="bi bi-folder-plus" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
-                                    <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
-                                    <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
-                                </svg></a>
-                            <{/if}>
-
                             <{if $xoops_isadmin}>
-                            <a class="px-1 mr-1" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
-                            <svg class="bi bi-unlock" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
-                            </svg></a>
+                            <a self="mr-2" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
+                                <svg class="'i-permissions" width="24px" height="24px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" >
+                                    <path d="M16 30l-6.176-3.293A10.982 10.982 0 0 1 4 17V4a2.002 2.002 0 0 1 2-2h20a2.002 2.002 0 0 1 2 2v13a10.982 10.982 0 0 1-5.824 9.707zM6 4v13a8.985 8.985 0 0 0 4.766 7.942L16 27.733l5.234-2.79A8.985 8.985 0 0 0 26 17V4z" fill="currentColor"/>
+                                    <path d="M16 25.277V6h8v10.805a7 7 0 0 1-3.7 6.173z" fill="currentColor"/>
+                                </svg>
+                            </a>
                             <{/if}>
 
-                            <{if $category.can_post}>
-                            <a class="px-1 mr-1" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mm" title="<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>">
-                                <svg class="bi bi-file-earmark-plus" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
-                                    <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
-                                    <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
-                                </svg></a>
-                            <{/if}>
-
-
-                            <!-- RSS -->
-                            <a class="ml-1" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 16 16">
+                            <{* ----- RSS *}>
+                            <a self="mr-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
+                            <svg class="i-rss" width="1.25em" height="1.25em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                             <g fill="darkorange">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
                             </svg></a>
 
                         </div>
                         <{* ------- /controllers *}>
+
+                    </div><{* ------- /auto-set level *}>
 
 
                 </li>
@@ -118,14 +150,15 @@
 
 
                 <{* ------- collapse category contents *}>
-                <div layout="column" self="size-x1" id="ct-<{$category.id}>">
 
+                <div class="collapse" id="cat<{$category.id}>">
+<!--                    layout="column" self="size-x1"-->
                     <{foreach item=content from=$category.contents}>
 
-                    <li layout="rows-justify" self="size-x1">
+                    <li class="list-group-item" layout="rows-justify py-2" self="size-x1">
 
                         <a class="ml-4" href="<{$mod_url}>/<{$content.link}>" title="<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}>">
-                        <svg class="bi bi-file-earmark mr-2" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="i-file-earmark" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
                         <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
                         </svg> <{$content.subject}></a>
@@ -160,5 +193,5 @@
     <hr class="notification">
     <{include file='db:system_notification_select.html'}>
 
-</div>
+</div><{* -----/layout="column" *}>
 <!-- end module contents -->

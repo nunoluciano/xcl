@@ -68,12 +68,12 @@ function b_legacy_themes_edit($options)
     if (1 == $options[0]) {
         $chk = ' checked="checked"';
     }
-    $form .= '<input type="radio" name="options[0]" id="display-yes" value="1"'.$chk.'><label for="display-yes">'._YES.'</label>';
+    $form .= '<input type="radio" name="options[0]" id="display-yes" value="1" '.$chk.'><label for="display-yes">'._YES.'</label>';
     $chk = '';
     if (0 == $options[0]) {
         $chk = ' checked="checked"';
     }
-    $form .= '<input type="radio" name="options[0]" id="display-no" value="0"'.$chk.'><label for="display-no">'._NO.'</label></div>';
+    $form .= '<input type="radio" name="options[0]" id="display-no" value="0" '.$chk.'><label for="display-no">'._NO.'</label></div>';
     $form .= '<div><label for="screenshot">'._MB_LEGACY_LANG_THWIDTH.' </label>';
     $form .= '<input type="text" name="options[1]" id="screenshot" size="3" value="'.$options[1].'"></div>';
     return $form;

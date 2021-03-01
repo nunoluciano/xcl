@@ -1,6 +1,8 @@
 <div class="adminnavi" aria-label="breadcrumb">
+  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+
   <{if $module != null}>
-    <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/<{$module->getInfo('adminindex')|xoops_escape}>"><{$module->getVar('name')}></a>
+  &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/<{$module->getInfo('adminindex')|xoops_escape}>"><{$module->getVar('name')}></a>
     <{if $category != null}>
       &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
       &raquo;&raquo; <{$category->getName()|xoops_escape}>
@@ -242,14 +244,14 @@
 
 
           <{elseif $conf_formtype == 'password'}>
-            <{xoops_input type=password name=$rconf_name size=50 maxlength=255 value=$actionForm->get($rconf_name)}>
+            <{xoops_input type=password name=$rconf_name size=50 maxlength=191 value=$actionForm->get($rconf_name)}>
 
 
           <{elseif $conf_formtype == 'textbox'}>
-            <{xoops_input type=text name=$rconf_name size=50 maxlength=255 value=$actionForm->get($rconf_name)}>
+            <{xoops_input type=text name=$rconf_name size=50 maxlength=191 value=$actionForm->get($rconf_name)}>
 
           <{elseif $conf_formtype == 'text'}> <{* deprecated *}>
-            <{xoops_input type=text name=$rconf_name size=50 maxlength=255 value=$actionForm->get($rconf_name)}>
+            <{xoops_input type=text name=$rconf_name size=50 maxlength=191 value=$actionForm->get($rconf_name)}>
 
           <{/if}>
         </td>

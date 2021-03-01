@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: BackendAction.class.php,v 1.4 2008/09/25 14:31:58 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */

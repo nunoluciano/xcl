@@ -3,10 +3,6 @@ function xoopsGetElementById(id){
         return (document.getElementById(id));
     } else if (document.all) {
         return (document.all[id]);
-    } else {
-        if ((navigator.appname.indexOf("Netscape") !== -1) && parseInt(navigator.appversion === 4)) {
-            return (document.layers[id]);
-        }
     }
 }
 
@@ -53,16 +49,43 @@ function xoopsPrintag(tagid) {
 }
 
 
-function openWithSelfMain(url, name, width, height, returnwindow) {
-    var options = "width=" + width + ",height=" + height + ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no";
-    new_window = window.open(url, name, options);
-    window.self.name = "main";
-    new_window.document.clear();
-    new_window.focus();
-    if (returnwindow != null) {
-        return new_window;
+/*
+    Usage Example:
+    openWithSelfMain('https://github.com/xoopscube','XOOPS Cube','900','500');
+    Location = null is useless because modern browsers now prevent, by default, hiding the address bar for security reasons (phishing)
+*/
+function openWithSelfMain(url, title, w, h) {
+    // Fixes dual-screen position                         Most browsers      Firefox
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+    var newWindow = window.open(url, title,
+        'scrollbars=yes, ' +
+        'width=' + w + ', ' +
+        'height=' + h + ', ' +
+        'top=' + top + ', ' +
+        'left=' + left + ',' +
+        'titlebar=no,toolbar=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no');
+
+    // Puts focus on the newWindow
+    if (window.focus) {
+        newWindow.focus();
     }
 }
+
+
+
+
+
+
+
+
+
 
 function setElementColor(id, color){
     xoopsGetElementById(id).style.color = "#" + color;

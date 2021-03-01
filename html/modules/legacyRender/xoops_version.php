@@ -5,7 +5,7 @@
  */
 
 $modversion['name'] = _MI_LEGACYRENDER_NAME;
-$modversion['version'] = '2.3.0';
+$modversion['version'] = '2.31';
 $modversion['description'] = _MI_LEGACYRENDER_NAME_DESC;
 $modversion['author'] = 'XOOPS Cube Project';
 $modversion['credits'] = 'The XOOPS Cube Project';
@@ -50,7 +50,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_DESCRIPTION_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'XCL is a modular architecture and extensible web application written in PHP.'
+    'default'     => 'XCL is a modular architecture and extensible web application platform written in PHP.'
 ];
 
 $modversion['config'][]= [
@@ -88,7 +88,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_COPYRIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'Copyright &copy; 2001-2020'
+    'default'     => 'Copyright &copy; 2001-2021'
 ];
 
 
@@ -147,7 +147,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FOOTER_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'Powered by XCL 2.3.0 &copy; 2001-2020 <a href="https://github.com/xoopscube/xcl" rel="external">The XOOPSCube Project</a>'
+    'default'     => 'Powered by XCL 2.3.1 &copy; 2005-2021 <a href="https://github.com/xoopscube/xcl" rel="external">The XOOPSCube Project</a>'
 ];
 
 $modversion['config'][]= [

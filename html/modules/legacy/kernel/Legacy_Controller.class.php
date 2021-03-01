@@ -16,7 +16,7 @@ if (!defined('XOOPS_TRUST_PATH')) {
     exit();
 }
 
-define('LEGACY_MODULE_VERSION', '2.3');
+define('LEGACY_MODULE_VERSION', '2.3.1');
 
 define('LEGACY_CONTROLLER_STATE_PUBLIC', 1);
 define('LEGACY_CONTROLLER_STATE_ADMIN', 2);

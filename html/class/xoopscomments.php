@@ -7,7 +7,7 @@
  *  * @subpackage core
  *  * @author     Original Authors: Kazumi Ono (aka onokazu)
  *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
+ *  * @copyright  2000-2021 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    Release: @package_230@
@@ -39,7 +39,7 @@ class XoopsComments extends XoopsObject
         $this->initVar('item_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('order', XOBJ_DTYPE_INT, null, false);
         $this->initVar('mode', XOBJ_DTYPE_OTHER, null, false);
-        $this->initVar('subject', XOBJ_DTYPE_TXTBOX, null, false, 255);
+        $this->initVar('subject', XOBJ_DTYPE_TXTBOX, null, false, 191);
         $this->initVar('comment', XOBJ_DTYPE_TXTAREA, null, false, null);
         $this->initVar('ip', XOBJ_DTYPE_OTHER, null, false);
         $this->initVar('pid', XOBJ_DTYPE_INT, 0, false);

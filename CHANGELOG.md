@@ -9,33 +9,63 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-✅ Default Theme Neumorphism (WIP)
-✅ XCLayout Helper samples
-✅ Modules Templates (D3Forum, Pico)
+✅ CKEditor Setting Editor UI Color
+✅ Default Theme Neumorphism (WIP) #232
+✅ Theme built with XCLayout Helper #229
+✅ Templates breadcrumbs #220
+✅ Templates (D3Forum, Pico) #218
 ✅ Templates Blocks (Users, Online, Themes)
-✅ Default SVG inline icons
+✅ Template Refirect Functions [50 legacy] #223
+✅ SVG inline icons
+✅ Smarty constants to Pico menu (En,Ja)
+✅ Smarty breadcrumbs to D3 modules
+✅ Render blocks admin to D3 modules
+✅ Render preferences to D3 modules
+✅ URL Rewriting - XCL Cool URI #234
 
 ### Changed
 
 ✅ Copyright 2021
 ✅ English constant (User)
+✅ Form input number (max 100)
 ✅ Javascript popup centered
+✅ Render Preferences of D3 modules
+✅ SQL utf8mb4 varchar 255 to 191
+✅ UI Avatar #217
+✅ UI Backend breadcrumbs #220
+✅ UI Frontend breadcrumbs #220
 ✅ XCL Default Theme Neumorphism
 ✅ XCLayout Helper Flexbox
 
 ###  Fixed
 
+✅ Altsys fix stric check (blocks permissions)
 ✅ Admin Theme typos
 ✅ Admin SVG icons (bold, linear)
-✅ Help load with ajax (modal)
-✅ Templates accessibility
+✅ CSS excludes ckeditor (breaks layout with raw javascript)
 ✅ Debugger nav (Graph)
-✅ SQL InnoDB utf8mb4
+✅ D3Forum category configs unserialize
+✅ Fix d3forum_wysiwyg_body
+✅ Help load with ajax (modal)
+✅ Modules icons (SVG with custom dirname)
+✅ Module filter (smarty single quote)
+✅ Module list (form removed from component)
+✅ Module Pico frontend overridable options
+✅ Protector advisory protocol check
+✅ Protector apache_get_version
+✅ Protector breadcrumbs and nav #220
+✅ User avatar (check if empty) #217
+✅ SQL InnoDB utf8mb4 varchar 255 to 191
+✅ Switch 'diff from file'
+✅ Templates (inc) #233
+✅ XCLayout Helper fix margin negative
+✅ XCLayout Helper fix spacing
 
 ### Removed
 
+- Protector deprecated mymenu inline
 - Extra tags from default templates
-- CSS classes from Bootstrap 4
+- CSS classes of Bootstrap 4
 - Xoops.css
 
 ### Update
