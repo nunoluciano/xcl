@@ -25,7 +25,7 @@ altsys_include_language_file('mypreferences');
 
 $op = empty($_GET['op']) ? 'showmod' : preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['op']);
 
-if ('showmod' === $op) {
+if ('showmod' == $op) {
     $config_handler =& xoops_gethandler('config');
     $mod = $xoopsModule->mid();
     $config =& $config_handler->getConfigs(new Criteria('conf_modid', $mod));
@@ -89,7 +89,7 @@ if ('showmod' === $op) {
                 break;
             case 'select':
             case 'radio':
-                if ('select' === $config[$i]->getVar('conf_formtype')) {
+                if ('select' == $config[$i]->getVar('conf_formtype')) {
                     $ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput());
                     $addBr = '';
                 } else {
@@ -106,7 +106,7 @@ if ('showmod' === $op) {
                 break;
             case 'select_multi':
             case 'checkbox':
-                if ('select_multi' === $config[$i]->getVar('conf_formtype')) {
+                if ('select_multi' == $config[$i]->getVar('conf_formtype')) {
                     $ele = new XoopsFormSelect($title, $config[$i]->getVar('conf_name'), $config[$i]->getConfValueForOutput(), 5, true);
                     $addBr = '';
                 } else {
@@ -148,12 +148,12 @@ if ('showmod' === $op) {
                 break;
             case 'password':
                 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
-                $ele = new XoopsFormPassword($title, $config[$i]->getVar('conf_name'), 50, 255, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
+                $ele = new XoopsFormPassword($title, $config[$i]->getVar('conf_name'), 50, 191, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
                 break;
             case 'textbox':
             default:
                 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
-                $ele = new XoopsFormText($title, $config[$i]->getVar('conf_name'), 50, 255, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
+                $ele = new XoopsFormText($title, $config[$i]->getVar('conf_name'), 50, 191, $myts->htmlspecialchars($config[$i]->getConfValueForOutput()));
                 break;
         }
         $hidden = new XoopsFormHidden('conf_ids[]', $config[$i]->getVar('conf_id'));
@@ -187,7 +187,7 @@ if ('showmod' === $op) {
     exit();
 }
 
-if ($op === 'save') {
+if ($op == 'save') {
 
     if (!$xoopsGTicket->check(true, 'mypreferences')) {
         redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
@@ -217,7 +217,7 @@ if ($op === 'save') {
             $new_value =& $_POST[$config->getVar('conf_name')];
             if (is_array($new_value) || $new_value !== $config->getVar('conf_value')) {
                 // if language has been changed
-                if (!$lang_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'language') {
+                if (!$lang_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') == 'language') {
                     // regenerate admin menu file
                     $xoopsConfig['language'] = $_POST[$config->getVar('conf_name')];
                     xoops_module_write_admin_menu(xoops_module_get_admin_menu());
@@ -225,14 +225,14 @@ if ($op === 'save') {
                 }
 
                 // if default theme has been changed
-                if (!$theme_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'theme_set') {
+                if (!$theme_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') == 'theme_set') {
                     $member_handler =& xoops_gethandler('member');
                     $member_handler->updateUsersByField('theme', $_POST[$config->getVar('conf_name')]);
                     $theme_updated = true;
                 }
 
                 // if default template set has been changed
-                if (!$tpl_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'template_set') {
+                if (!$tpl_updated && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') == 'template_set') {
                     // clear cached/compiled files and regenerate them if default theme has been changed
                     if ($xoopsConfig['template_set'] !== $_POST[$config->getVar('conf_name')]) {
                         $newtplset = $_POST[$config->getVar('conf_name')];
@@ -267,7 +267,7 @@ if ($op === 'save') {
                 }
 
                 // add read permission for the start module to all groups
-                if (!$startmod_updated && $new_value !== '--' && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') === 'startpage') {
+                if (!$startmod_updated && $new_value !== '--' && $config->getVar('conf_catid') == XOOPS_CONF && $config->getVar('conf_name') == 'startpage') {
                     $member_handler =& xoops_gethandler('member');
                     $groups =& $member_handler->getGroupList();
                     $moduleperm_handler =& xoops_gethandler('groupperm');

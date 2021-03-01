@@ -8,40 +8,40 @@ function pico_main_make_treeinformations($data)
 	$previous_depth = -1;
 	$path_to_i = [];
 
-	for ($i = 0; $i < count($data); $i++) {
-		$unique_path = $data[$i]['unique_path'];
-		$path_to_i[$unique_path] = $i;
-		$parent_path = substr($unique_path, 0, strrpos($unique_path, '.'));
-		if ($parent_path && isset($path_to_i[$parent_path])) {
-			$data[$path_to_i[$parent_path]]['f1s'][$data[$i]['id']] = strrchr($data[$i]['unique_path'], '.');
-		}
+    foreach ($data as $i => $iValue) {
+        $unique_path = $data[$i]['unique_path'];
+        $path_to_i[$unique_path] = $i;
+        $parent_path = substr($unique_path, 0, strrpos($unique_path, '.'));
+        if ($parent_path && isset($path_to_i[$parent_path])) {
+            $data[$path_to_i[$parent_path]]['f1s'][$iValue['id']] = strrchr($iValue['unique_path'], '.');
+        }
 
-		$depth_diff = $data[$i]['depth_in_tree'] - @$previous_depth;
-		$previous_depth = $data[$i]['depth_in_tree'];
-		$data[$i]['ul_in'] = '';
-		$data[$i]['ul_out'] = '';
-		if ($depth_diff > 0) {
-			if ($i > 0) {
-				$data[$i - 1]['first_child_id'] = $data[$i]['id'];
-			}
-			for ($j = 0; $j < $depth_diff; $j++) {
-				$data[$i]['ul_in'] .= '<ul><li>';
-			}
-		} else if ($depth_diff < 0) {
-			for ($j = 0; $j < -$depth_diff; $j++) {
-				$data[$i - 1]['ul_out'] .= '</li></ul>';
-			}
-			$data[$i - 1]['ul_out'] .= '</li>';
-			$data[$i]['ul_in'] = '<li>';
-		} else {
-			$data[$i - 1]['ul_out'] .= '</li>';
-			$data[$i]['ul_in'] = '<li>';
-		}
-		if ($i > 0) {
-			$data[$i - 1]['next_id'] = $data[$i]['id'];
-			$data[$i]['prev_id'] = $data[$i - 1]['id'];
-		}
-	}
+        $depth_diff = $iValue['depth_in_tree'] - @$previous_depth;
+        $previous_depth = $data[$i]['depth_in_tree'];
+        $data[$i]['ul_in'] = '';
+        $data[$i]['ul_out'] = '';
+        if ($depth_diff > 0) {
+            if ($i > 0) {
+                $data[$i - 1]['first_child_id'] = $data[$i]['id'];
+            }
+            for ($j = 0; $j < $depth_diff; $j++) {
+                $data[$i]['ul_in'] .= '<ul><li>';
+            }
+        } else if ($depth_diff < 0) {
+            for ($j = 0; $j < -$depth_diff; $j++) {
+                $data[$i - 1]['ul_out'] .= '</li></ul>';
+            }
+            $data[$i - 1]['ul_out'] .= '</li>';
+            $data[$i]['ul_in'] = '<li>';
+        } else {
+            $data[$i - 1]['ul_out'] .= '</li>';
+            $data[$i]['ul_in'] = '<li>';
+        }
+        if ($i > 0) {
+            $data[$i - 1]['next_id'] = $data[$i]['id'];
+            $data[$i]['prev_id'] = $data[$i - 1]['id'];
+        }
+    }
     $data[count($data) - 1]['ul_out'] = str_repeat('</li></ul>', $previous_depth + 1);
 
 	return $data;
@@ -62,8 +62,12 @@ function pico_main_get_category_permissions_of_current_user($mydirname, $uid = n
 	if (is_object($user)) {
 		$uid = (int)$user->getVar('uid');
 		$groups = $user->getGroups();
-		if (!empty($groups)) $whr = "`uid`=$uid || `groupid` IN (" . implode(',', $groups) . ')';
-		else $whr = "`uid`=$uid";
+		if (!empty($groups)) {
+            $whr = "`uid`=$uid || `groupid` IN (" . implode(',', $groups) . ')';
+        }
+		else {
+            $whr = "`uid`=$uid";
+        }
 	} else {
 		$whr = '`groupid`=' . (int)XOOPS_GROUP_ANONYMOUS;
 	}
@@ -202,7 +206,7 @@ function pico_main_get_top_content_id_from_cat_id($mydirname, $cat_id)
 {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	list($content_id) = $db->fetchRow($db->query('SELECT o.content_id FROM ' . $db->prefix($mydirname . '_contents') . ' o WHERE o.cat_id=' . (int)$cat_id . ' AND o.visible AND o.created_time <= UNIX_TIMESTAMP() AND o.expiring_time > UNIX_TIMESTAMP() ORDER BY o.weight,o.content_id LIMIT 1'));
+	[$content_id] = $db->fetchRow($db->query('SELECT o.content_id FROM ' . $db->prefix($mydirname . '_contents') . ' o WHERE o.cat_id=' . (int)$cat_id . ' AND o.visible AND o.created_time <= UNIX_TIMESTAMP() AND o.expiring_time > UNIX_TIMESTAMP() ORDER BY o.weight,o.content_id LIMIT 1'));
 
 	return (int)$content_id;
 }
@@ -235,9 +239,13 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 			require_once dirname(__DIR__) . '/filters/pico_' . $name . '.php';
 
 			// check the filter is secure or not
-			if (!$isadminormod && defined($constpref . 'ISINSECURE')) continue;
+			if (!$isadminormod && defined($constpref . 'ISINSECURE')) {
+                continue;
+            }
 			// prohibited
-			if (in_array($name, $filters_prohibited)) continue;
+			if (in_array($name, $filters_prohibited)) {
+                continue;
+            }
 
 			$filters[$name] = [
 				'title' => defined($constpref . 'TITLE') ? constant($constpref . 'TITLE') : $name,
@@ -288,7 +296,7 @@ function pico_main_get_filter_infos($filters_separated_pipe, $isadminormod = fal
 // for usort() in pico_main_get_filter_infos()
 function pico_main_filter_cmp($a, $b)
 {
-	if ($a['enabled'] != $b['enabled']) {
+	if ($a['enabled'] !== $b['enabled']) {
 		return $a['enabled'] ? -1 : 1;
 	} else {
 		return $a['weight'] > $b['weight'] ? 1 : -1;
@@ -336,7 +344,9 @@ function pico_main_render_moduleheader($mydirname, $mod_config, $appendix_header
 function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/')
 {
 	$full_dir_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path;
-	if (!is_dir($full_dir_path)) return [];
+	if (!is_dir($full_dir_path)) {
+        return [];
+    }
 
 	$dir_path4key = substr($dir_path, 0, -1);
 	$full_dir_path4disp = htmlspecialchars('XOOPS_TRUST_PATH' . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path4key, ENT_QUOTES);
@@ -350,7 +360,9 @@ function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/'
 	$dir_tmps = [];
 	$dh = opendir($full_dir_path);
 	while (false !== ($file = readdir($dh))) {
-		if ('.' == substr($file, 0, 1)) continue;
+		if ('.' == substr($file, 0, 1)) {
+            continue;
+        }
 		if (is_dir($full_dir_path . $file)) {
 			$dir_tmps[] = $file;
 		}
@@ -369,7 +381,9 @@ function pico_main_get_wraps_directories_recursively($mydirname, $dir_path = '/'
 function pico_main_get_wraps_files_recursively($mydirname, $dir_path = '/')
 {
 	$full_dir_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path;
-	if (!is_dir($full_dir_path)) return [];
+	if (!is_dir($full_dir_path)) {
+        return [];
+    }
 
 	$ret = [];
 	$db = XoopsDatabaseFactory::getDatabaseConnection();

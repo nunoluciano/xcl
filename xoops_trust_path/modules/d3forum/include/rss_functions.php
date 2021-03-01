@@ -127,7 +127,7 @@ function d3forum_whatsnew_base($mydirname, $limit = 0, $offset = 0)
 }
 
 if (!function_exists('d3forum_make_context')) {
-    function d3forum_make_context($text, $words = [], $l = 255)
+    function d3forum_make_context($text, $words = [], $l = 191)
     {
         static $strcut = '';
         if (!$strcut) {

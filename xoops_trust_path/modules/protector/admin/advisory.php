@@ -31,7 +31,7 @@ $relative_path = str_repeat('../', count($root_paths) - $i) . implode('/', array
     // Check the type of server
     // Perform access control Apache | NginX
 
-    if (stristr($_SERVER["SERVER_SOFTWARE"], 'nginx')) {
+    if (false !== stripos($_SERVER["SERVER_SOFTWARE"], 'nginx')) {
 
 
         // header("X-Accel-Redirect: ../data/server_nginx.html");
@@ -48,14 +48,19 @@ $relative_path = str_repeat('../', count($root_paths) - $i) . implode('/', array
         echo '</pre></div>';
 
         }
-        else if (stristr($_SERVER["SERVER_SOFTWARE"], 'apache')) {
-
-        // header("X-Sendfile: ../data/server_apache.html");
-            if(function_exists(apache_get_version)) {
+        else if (false !== stripos($_SERVER["SERVER_SOFTWARE"], 'apache')) {
+            if(!function_exists('apache_get_version')){
+                function apache_get_version(){
+                    if(!isset($_SERVER['SERVER_SOFTWARE']) || '' === $_SERVER['SERVER_SOFTWARE']){
+                        return false;
+                    }
+                    return $_SERVER["SERVER_SOFTWARE"];
+                }
+            }
+        // Check if the function exists. If not, the custom function
+        // returns whatever string is stored in the SERVER_SOFTWARE superglobal variable.
                 echo '<h3>Apache</h3>'
                 .'<p>'. apache_get_version() .'</p>';
-            }
-
         }
 
         else if(isset($_SERVER['SERVER_SOFTWARE'])){
@@ -68,6 +73,7 @@ $relative_path = str_repeat('../', count($root_paths) - $i) . implode('/', array
         "</pre></div>\n" ;
 
     }
+$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === 0 ? 'https://' : 'http://';
 
     // server environment information
     echo '<p>The entries in this table are created by the web server. There is no guarantee that every web server will provide any of these.
@@ -84,7 +90,7 @@ $relative_path = str_repeat('../', count($root_paths) - $i) . implode('/', array
     <tr><td width="25%">Server Software</td><td><strong>'. $_SERVER['SERVER_SOFTWARE'] .'</strong> <code title="php sapi name">'. php_sapi_name() .'</code>
     <code title="GATEWAY_INTERFACE">'. $_SERVER['GATEWAY_INTERFACE'] .'</code>
     <code title="SERVER_PROTOCOL">'. $_SERVER['SERVER_PROTOCOL'] .'</code>
-    <code>HTTPS/'. $_SERVER['HTTPS'] .'</code></td></tr>
+    <strong>Protocol:</strong><code title="Protocol http or https">'. $protocol .'</code></td></tr>
     <tr><td>Server Address : <b>'. $_SERVER['SERVER_ADDR'] .'</b></td><td>Server Name : <b>'. $_SERVER['SERVER_NAME'] .'</b></td></tr>
     <tr><td>HTTP_ACCEPT</td><td>'. $_SERVER['HTTP_ACCEPT'] .' <code>'. $_SERVER['HTTP_ACCEPT_LANGUAGE'] .'</code> <code title="HTTP_ACCEPT_ENCODING">'. $_SERVER['HTTP_ACCEPT_ENCODING'] .'</code></td></tr>
     <tr><td>DOCUMENT_ROOT</td><td>'. $_SERVER['DOCUMENT_ROOT'] .'</td></tr>

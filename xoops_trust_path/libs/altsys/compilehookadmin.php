@@ -133,10 +133,14 @@ foreach ($compile_hooks as $command => $compile_hook) {
                 $file_bodies = file($file_path) ;
 
                 // remove lines inserted by compilehookadmin
-                if (strstr($file_bodies[0], 'altsys')) {
+                // saves memory
+                // if (strstr($file_bodies[0], 'altsys')) {
+                if (false !== strpos($file_bodies[0], 'altsys')) {
                     array_shift($file_bodies) ;
                 }
-                if (strstr($file_bodies[count($file_bodies)-1], 'altsys')) {
+                // saves memory
+                // if (strstr($file_bodies[count($file_bodies)-1], 'altsys')) {
+                if (false !== strpos($file_bodies[count($file_bodies) - 1], 'altsys')) {
                     array_pop($file_bodies) ;
                     $file_bodies[count($file_bodies)-1] = rtrim($file_bodies[count($file_bodies)-1]) ;
                 }

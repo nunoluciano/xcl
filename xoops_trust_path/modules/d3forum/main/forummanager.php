@@ -25,6 +25,7 @@ if( ! $isadminormod ) {
 $module_handler =& xoops_gethandler( 'module' ) ;
 $modules =& $module_handler->getObjects() ;
 $exportable_modules = [0 => '----'];
+$exportable_module_categories = [];
 foreach( $modules as $module ) {
 	$mid = $module->getVar('mid') ;
 	$dirname = $module->getVar('dirname') ;
@@ -37,7 +38,7 @@ foreach( $modules as $module ) {
 		// d3forum
 		$exportable_modules[$mid] = 'd3forum:'.$module->getVar('name')."($dirname)" ;
 		$dist_category_permissions = d3forum_get_category_permissions_of_current_user( $dirname ) ;
-		$exportable_module_categories[$mid] = d3forum_make_cat_jumpbox_options($dirname , '1' , 'c.`cat_id` IN (' . implode(',', array_keys($dist_category_permissions ) ) . ')' , 0 ) ;
+		$exportable_module_categories[$mid] = d3forum_make_cat_jumpbox_options($dirname , '1' , 'c.`cat_id` IN (' . implode(',', array_keys($dist_category_permissions ) ) . ')' , 0 );
 	}
 }
 
@@ -89,12 +90,15 @@ include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 $options4html = '' ;
 
 /* unserialize approach which supports older versions of PHP */
-if (PHP_VERSION_ID >= 70000) {
-    /* to forbid classes unserializing at all use this: array('allowed_classes' => false) */
-    $forum_configs = unserialize($forum_row, array('allowed_classes' => ['forum_options'] )) ;
-} else {
-    /* previous version */
-    $forum_configs = unserialize( $forum_row['forum_options'] ) ;
+/* to forbid classes unserializing at all use this: array('allowed_classes' => false) */
+if (is_object($forum_configs) && PHP_VERSION_ID >= 70000) {
+    if ($forum_configs->num_rows > 0) {
+        $forum_row = $forum_configs->fetch_assoc();
+        $forum_configs = unserialize($forum_row, array('allowed_classes' => ['forum_options']));
+    } else {
+        /* previous version */
+        $forum_configs = unserialize($forum_row['forum_options']);
+    }
 }
 
 if( is_array( $forum_configs ) ) {

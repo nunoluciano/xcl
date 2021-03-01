@@ -26,14 +26,18 @@ function b_sitemap_pico($mydirname)
 function b_sitemap_pico_crawl_submenu($submenus, $depth = 2)
 {
 	$ret = [];
-	if ($depth > 4) $depth = 4;
+	if ($depth > 4) {
+        $depth = 4;
+    }
 	foreach ($submenus as $subsubmenu) {
 		$ret[] = [
 			'title' => $subsubmenu['name'],
 			'url' => $subsubmenu['url'],
 			'image' => $depth,
         ];
-		if (!empty($subsubmenu['sub'])) $ret = array_merge($ret, b_sitemap_pico_crawl_submenu($subsubmenu['sub'], $depth + 1));
+		if (!empty($subsubmenu['sub'])) {
+            $ret = array_merge($ret, b_sitemap_pico_crawl_submenu($subsubmenu['sub'], $depth + 1));
+        }
 	}
 	return $ret;
 }

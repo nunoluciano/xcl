@@ -17,7 +17,9 @@ function d3forum_oninstall_base( $module , $mydirname )
 		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success' , 'd3forum_message_append_oninstall' ) ;
 		$ret = [];
 	} else {
-		if( ! is_array( $ret ) ) $ret = [];
+		if( ! is_array( $ret ) ) {
+			$ret = [];
+		}
 	}
 
 	$db =& Database::getInstance() ;

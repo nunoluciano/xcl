@@ -1,23 +1,24 @@
 <?php
+
 class altsysUtils
 {
     public static function getDelegateCallbackClassNames($name, $doRegist = true)
     {
         $names = [];
-        
+
         if (! class_exists('XCube_Delegate')) {
             return $names;
         }
-        
+
         if ($doRegist) {
             $delegate = new XCube_Delegate();
             $delegate->register($name);
         }
         $m = XCube_Root::getSingleton()->mDelegateManager;
         if ($m) {
-            $delgates = $m->getDelegates();
-            if (isset($delgates[$name])) {
-                $d_target = $delgates[$name];
+            $delegates = $m->getDelegates();
+            if (isset($delegates[$name])) {
+                $d_target = $delegates[$name];
                 $keys = array_keys($d_target);
                 $callbacks = $d_target[$keys[0]]->_mCallbacks;
                 foreach (array_keys($callbacks) as $priority) {
@@ -32,7 +33,7 @@ class altsysUtils
         }
         return $names;
     }
-    
+
     public static function isInstalledXclHtmleditor()
     {
         if (defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>=')) {
@@ -46,12 +47,12 @@ class altsysUtils
         }
         return false;
     }
-    
+
     public static function htmlspecialchars($str, $flags = ENT_COMPAT, $encoding = null, $double_encode = true)
     {
         static $php523 = null;
         if (null === $php523) {
-            $php523 = version_compare(PHP_VERSION, '5.2.3', '>=');
+            $php523 = PHP_VERSION_ID >= 50203;
         }
         if (null === $encoding) {
             $encoding = (defined('_CHARSET'))? _CHARSET : '';

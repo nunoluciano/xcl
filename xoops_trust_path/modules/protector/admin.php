@@ -46,7 +46,6 @@ if (file_exists("$mydirpath/language/$language/main.php")) {
 }
 
 
-
 if (! empty($_GET['lib'])) {
     // common libs (eg. altsys)
     $lib = preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['lib']) ;

@@ -7,16 +7,10 @@ if ('mymenu' === preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page'])) {
     exit;
 }
 
-// Skip for ORETEKI XOOPS
-if (defined('XOOPS_ORETEKI')) {
-    return;
-}
-
 global $xoopsModule;
 if (!is_object($xoopsModule)) {
     die('$xoopsModule is not set');
 }
-
 
 // language files (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
@@ -28,6 +22,18 @@ $langman = &D3LanguageManager::getInstance();
 $langman->read('modinfo.php', $mydirname, $mytrustdirname);
 
 include dirname(__DIR__) . '/admin_menu.php';
+
+// Block Admin
+if (file_exists(XOOPS_TRUST_PATH.'/libs/altsys/myblocksadmin.php')) {
+    $title = defined('_MD_A_MYMENU_MYBLOCKSADMIN') ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin' ;
+    $adminmenu[] = ['title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin'];
+}
+
+// Preferences
+$config_handler =& xoops_gethandler('config');
+if (count($config_handler->getConfigs(new Criteria('conf_modid', $xoopsModule->mid()))) > 0) {
+    $adminmenu[] = ['title' => _PREFERENCES, 'link' => XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $xoopsModule->mid()];
+}
 
 $adminmenu = array_merge($adminmenu, $adminmenu4altsys);
 
@@ -62,12 +68,17 @@ foreach (array_keys($adminmenu) as $i) {
 	}
 }
 
+// Returns module dir name with the first character capitalized
+// Assign to template for Admin Breadcrumbs
+$dirname = ucfirst($mydirname);
+
 // display
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
 $tpl = new D3Tpl();
 $tpl->assign(
     [
 	'adminmenu' => $adminmenu,
+    'dirname' => $dirname,
     ]
 );
 $tpl->display('db:altsys_inc_mymenu.html');

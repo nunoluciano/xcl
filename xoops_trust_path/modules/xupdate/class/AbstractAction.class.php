@@ -11,7 +11,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 // Set include_path
 if (!defined('PATH_SEPARATOR')) {
-    define('PATH_SEPARATOR', ('WIN' !== strtoupper(substr(PHP_OS, 0, 3)))? ':' : ';');
+    define('PATH_SEPARATOR', (0 !== stripos(PHP_OS, 'WIN'))? ':' : ';');
 }
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__DIR__) . '/PEAR');
 

@@ -65,11 +65,8 @@ function altsys_get_core_type()
 {
     static $result = null;
 
-    if (empty($result)) {
-        if (defined('XOOPS_CUBE_LEGACY')) {
-            $result = ALTSYS_CORE_TYPE_XCL21;
-        }
-
+    if (empty($result) && defined('XOOPS_CUBE_LEGACY')) {
+        $result = ALTSYS_CORE_TYPE_XCL21;
     }
 
     return $result;

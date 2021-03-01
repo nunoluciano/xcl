@@ -10,7 +10,7 @@ $constpref = '_MI_'.strtoupper($mydirname);
 
 $modversion['name'] = constant($constpref.'_NAME');
 $modversion['description'] = constant($constpref.'_DESC');
-$modversion['version'] = '2.3.0';
+$modversion['version'] = '2.31';
 $modversion['detailed_version'] = '2.3.0.0';
 $modversion['credits'] = 'PEAK Corp. version 3.54';
 $modversion['author'] = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';
@@ -30,7 +30,7 @@ $modversion['tables'] = [];
 
 // Admin things
 $modversion['hasAdmin'] = 1;
-$modversion['adminindex'] = 'admin/index.php';
+$modversion['adminindex'] = 'admin/advisory.php';
 $modversion['adminmenu'] = 'admin/admin_menu.php';
 
 // Templates

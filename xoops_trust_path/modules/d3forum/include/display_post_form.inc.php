@@ -60,6 +60,11 @@ if (d3forum_common_is_necessary_antispam($xoopsUser, $xoopsModuleConfig)) {
 
 // WYSIWYG (some editor needs global scope ... orz)
 $d3forum_wysiwygs = ['name' => 'message', 'value' => d3forum_common_unhtmlspecialchars($message4html)];
+
+// !Fix Undefined variable by adding global,
+// although this isn't a particularly elegant approach
+global $d3forum_wysiwyg_body, $d3forum_wysiwyg_header;
+
 include dirname(__DIR__) . '/include/wysiwyg_editors.inc.php';
 
 // naao from

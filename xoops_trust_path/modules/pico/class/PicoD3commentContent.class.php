@@ -38,7 +38,7 @@ class PicoD3commentContent extends D3commentAbstract
         }
 
         // dare to convert it irregularly
-        $summary = str_replace('&amp;', '&', htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 255), ENT_QUOTES));
+        $summary = str_replace('&amp;', '&', htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 191), ENT_QUOTES));
 
         return [
             'dirname' => $mydirname,

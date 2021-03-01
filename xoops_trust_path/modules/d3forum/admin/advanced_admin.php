@@ -95,8 +95,10 @@ if (!empty($_POST['do_import']) && !empty($_POST['import_mid'])) {
     }
 
     $import_mid = (int)@$_POST['import_mid'];
-    if (empty($importable_modules[$import_mid])) die(_MD_A_D3FORUM_ERR_INVALIDMID);
-    list($fromtype,) = explode(':', $importable_modules[$import_mid]);
+    if (empty($importable_modules[$import_mid])) {
+        die(_MD_A_D3FORUM_ERR_INVALIDMID);
+    }
+    [$fromtype,] = explode(':', $importable_modules[$import_mid]);
     switch ($fromtype) {
         case 'cbb3' :
             d3forum_import_from_cbb3($mydirname, $import_mid);

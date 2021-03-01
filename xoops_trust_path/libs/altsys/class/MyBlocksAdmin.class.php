@@ -201,10 +201,10 @@ class MyBlocksAdmin
 
         // get selected targets
         if (is_array(@$block_data['bmodule'])) {
-            // bmodule origined from request (preview etc.)
+            // bmodule originated from request (preview etc.)
             $selected_mids = $block_data['bmodule'];
         } else {
-            // origined from the table of `block_module_link`
+            // originated from the table of `block_module_link`
             $result = $this->db->query('SELECT module_id FROM ' . $this->db->prefix('block_module_link') . " WHERE block_id='$bid'");
             $selected_mids = [];
             while (list($selected_mid) = $this->db->fetchRow($result)) {
@@ -250,10 +250,10 @@ class MyBlocksAdmin
 
         // get selected targets
         if (is_array(@$block_data['bgroup'])) {
-            // bgroup origined from request (preview etc.)
+            // bgroup originated from request (preview etc.)
             $selected_gids = $block_data['bgroup'];
         } else {
-            // origined from the table of `group_perm`
+            // originated from the table of `group_perm`
             $result = $this->db->query('SELECT gperm_groupid FROM ' . $this->db->prefix('group_permission') . " WHERE gperm_itemid='$bid' AND gperm_name='block_read'");
             $selected_gids = [];
             while (list($selected_gid) = $this->db->fetchRow($result)) {
@@ -273,6 +273,7 @@ class MyBlocksAdmin
         foreach ($groups as $group) {
             $gid = $group->getVar('groupid');
             $gname = $group->getVar('name', 's');
+            // NOte: do not apply here a strict third parameter !
             if (in_array($gid, $selected_gids)) {
                 $group_options .= "<option value='$gid' selected='selected'>$gname</option>\n";
             } else {
@@ -778,7 +779,7 @@ class MyBlocksAdmin
         $func_num = 256;
         do {
             $func_num--;
-            list($count) = $this->db->fetchRow($this->db->query('SELECT COUNT(*) FROM ' . $this->db->prefix('newblocks') . ' WHERE mid=' . (int)$mid . ' AND func_num=' . $func_num));
+            [$count] = $this->db->fetchRow($this->db->query('SELECT COUNT(*) FROM ' . $this->db->prefix('newblocks') . ' WHERE mid=' . (int)$mid . ' AND func_num=' . $func_num));
         } while ($count > 0);
 
         return $func_num > 128 ? $func_num : 255;

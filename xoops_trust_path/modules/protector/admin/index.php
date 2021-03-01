@@ -33,7 +33,7 @@ if (!empty($_POST['action'])) {
         $lines = empty($_POST['bad_ips']) ? [] : explode("\n", trim($_POST['bad_ips']));
         $bad_ips = [];
         foreach ($lines as $line) {
-            @list($bad_ip, $jailed_time) = explode('-', $line, 2);
+            @[$bad_ip, $jailed_time] = explode('-', $line, 2);
             $bad_ips[ trim($bad_ip) ] = empty($jailed_time) ? 0x7fffffff : (int)$jailed_time;
         }
         if (!$protector->write_file_badips($bad_ips)) {
@@ -218,7 +218,7 @@ while (list($lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname) = 
     // make agents shorter
     if (preg_match('/MSIE\s+([0-9.]+)/', $agent, $regs)) {
         $agent_short = 'IE '.$regs[1];
-    } elseif (false !== stristr($agent, 'Gecko')) {
+    } elseif (false !== stripos($agent, 'Gecko')) {
         $agent_short = strrchr($agent, ' ');
     } else {
         $agent_short = substr($agent, 0, strpos($agent, ' '));

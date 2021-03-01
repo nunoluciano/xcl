@@ -18,12 +18,14 @@ $adminmenu = [
 ];
 
 $adminmenu4altsys = [
-    [
+/*    [
         'title' => constant($constpref.'_ADMENU_MYBLOCKSADMIN') ,
         'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ,
-    ],
+    ],*/
     // [
     //     'title' => _PREFERENCES ,
     //     'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences' ,
     // ],
 ];
+//http://xoopscube.test/stage/html/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=9
+//http://xoopscube.test/stage/html/modules/legacy/admin/index.php?action=Help&dirname=protector

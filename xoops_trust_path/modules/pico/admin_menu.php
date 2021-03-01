@@ -34,10 +34,10 @@ $adminmenu4altsys = [
 		'title' => constant($constpref . '_ADMENU_MYTPLSADMIN'),
 		'link' => 'admin/index.php?mode=admin&lib=altsys&page=mytplsadmin',
     ],
-    [
-		'title' => constant($constpref . '_ADMENU_MYBLOCKSADMIN'),
-		'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin',
-    ],
+//    [
+//		'title' => constant($constpref . '_ADMENU_MYBLOCKSADMIN'),
+//		'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin',
+//    ],
     // [
 	// 	'title' => constant($constpref . '_ADMENU_MYPREFERENCES'),
 	// 	'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences',

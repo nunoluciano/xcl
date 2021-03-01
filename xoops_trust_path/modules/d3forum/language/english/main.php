@@ -52,7 +52,7 @@ define('_MD_D3FORUM_MSG_CONFIRMOK','Are you sure?');
 define('_MD_D3FORUM_MSG_CONFIRMDELETE','Are you sure to delete it?');
 define('_MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE','All data of this record will be also deleted. Are you sure to delete it?');
 define('_MD_D3FORUM_POSTASNEWTOPIC','Open a new topic');
-define('_MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM','You can start a new topic');
+define('_MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM','Start a new topic');
 define('_MD_D3FORUM_POSTASSAMETOPIC','Post to this topic');
 define('_MD_D3FORUM_REPLYTHISPOST','Reply to this post');
 define('_MD_D3FORUM_LINK_ALLRSS','RSS of all categories');
@@ -112,7 +112,7 @@ define('_MD_D3FORUM_CONTROLLER_FORUM','Forum controller');
 define('_MD_D3FORUM_CONTROLLER_TOPIC','Topic controller');
 define('_MD_D3FORUM_LINK_POSTORDERTREEASC','Tree order');
 define('_MD_D3FORUM_LINK_POSTORDERTREEDESC','Tree order reversal');
-define('_MD_D3FORUM_LINK_POSTORDERTIMEASC','oldest first');
+define('_MD_D3FORUM_LINK_POSTORDERTIMEASC','Oldest first');
 define('_MD_D3FORUM_LINK_POSTORDERTIMEDESC','Newest first');
 
 // D3forumMessageValidator.class.php
@@ -167,7 +167,7 @@ define('_MD_D3FORUM_FMT_SEARCHHITS','hits %s items');
 // module top (done)
 define('_MD_D3FORUM_TOTALTOPICSCOUNT','Total topics');
 define('_MD_D3FORUM_TOTALPOSTSCOUNT','Total posts');
-define('_MD_D3FORUM_TIMENOW','The time now is');
+define('_MD_D3FORUM_TIMENOW','Local time');
 define('_MD_D3FORUM_LASTVISIT','You last visited');
 
 // topic attributes (done)
@@ -321,7 +321,7 @@ define('_MD_D3FORUM_TH_CATEGORYPARENT','Parent category');
 define('_MD_D3FORUM_TH_CATEGORYDESC','Category desc');
 define('_MD_D3FORUM_TH_CATEGORYOPTIONS','Category options');
 define('_MD_D3FORUM_ONOFF','ON/OFF');
-define('_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS','If you override preferences, write a line like:<br>(option name):(option value)<br>eg)<br>show_breadcrumbs:1 <br><br>Overridable options and current values:');
+define('_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS','Override preferences by line eg. <em>option name:option value</em> (1=on, 0=off))<br><strong>show_breadcrumbs:1</strong><br><br>Overridable options and current values:');
 
 define('_MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY','(under this category)');
 define('_MD_D3FORUM_SUFFIX_UNDERTHISFORUM','(under this forum)');

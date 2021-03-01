@@ -47,14 +47,7 @@ if( isset( $_POST['categoryman_delete'] ) && 0 === count($children )) {
 include dirname(__DIR__) . '/include/constant_can_override.inc.php' ;
 $options4html = '' ;
 
-/* unserialize approach which supports older versions of PHP */
-if (PHP_VERSION_ID >= 70000) {
-    /* to forbid classes unserializing at all use this: array('allowed_classes' => false) */
-    $category_configs = unserialize($cat_row, array('allowed_classes' => ['cat_options']));
-} else {
-    /* previous version */
-    $category_configs = unserialize($cat_row['cat_options']);
-}
+$category_configs = unserialize($cat_row['cat_options']);
 
 if( is_array( $category_configs ) ) {
     foreach ($category_configs as $key => $val) {
@@ -72,7 +65,6 @@ $category4assign = [
     'options' => $options4html,
     'option_desc' => d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override ),
 ];
-
 
 // dare to set 'template_main' after header.php (for disabling cache)
 include XOOPS_ROOT_PATH . '/header.php';

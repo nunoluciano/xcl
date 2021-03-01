@@ -90,6 +90,7 @@
 </thead>
 
 <{foreach item=topic from=$topics}>
+
 <{if $topic.sticky}>
 	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_sticky`$topic.bit_new`.gif"}>
 	<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
@@ -100,12 +101,15 @@
 	<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_`$topic.bit_new``$topic.bit_hot`.gif"}>
 	<{assign var="topic_icon_alt" value=""}>
 <{/if}>
+
 <!-- start forum topic -->
 <tr class="<{cycle values="even,odd"}>">
 	<td class="d3f_mainicon"><img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>"></td>
-	<td class="d3f_topictitle"><{if $topic.locked}>
+	<td class="d3f_topictitle">
+    {if $topic.locked}>
 		<img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
 	<{/if}>
+
 	<{if $mod_config.use_solved && ! $topic.solved}>
 		<{if $forum.isadminormod}>
 			<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
@@ -113,30 +117,44 @@
 			<img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>">
 		<{/if}>
 	<{/if}>
+
 	<{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
 		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
 	<{/if}>
-	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>"><{$topic.title}></a><{$topic.topic_page_jump}></td>
+
+	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>"><{$topic.title}></a>
+        <{$topic.topic_page_jump}>
+    </td>
 	<td><{$topic.replies}></td>
 	<td><{$topic.views}></td>
+
 	<{if $mod_config.use_vote}>
 	<td><{$topic.votes_count}></td>
 	<td><{$topic.votes_avg|string_format:"%.2f"}></td>
 	<{/if}>
+
 	<td class="d3f_posters"><{$topic.first_post_time_formatted}><br>
 	<{if $topic.first_post_gname}>
 		<{$topic.first_post_gname}>
 	<{else}>
 		<{$topic.first_post_uname}>
 	<{/if}>
- <a href="<{$mod_url}>/index.php?post_id=<{$topic.first_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$topic.first_post_icon}>.gif" alt="<{$topic.first_post_subject}>"></a></td>
+
+     <a href="<{$mod_url}>/index.php?post_id=<{$topic.first_post_id}>">
+         <img src="<{$mod_imageurl}>/posticon<{$topic.first_post_icon}>.gif" alt="<{$topic.first_post_subject}>">
+     </a>
+    </td>
 	<td class="d3f_posters"><{if $topic.replies>0}><{$topic.last_post_time_formatted}><br>
 	<{if $topic.last_post_gname}>
 		<{$topic.last_post_gname}>
 	<{else}>
 		<{$topic.last_post_uname}>
 	<{/if}>
- <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>"><img src="<{$mod_imageurl}>/posticon<{$topic.last_post_icon}>.gif" alt="<{$topic.last_post_subject}>"></a><{/if}></td>
+     <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>">
+         <img src="<{$mod_imageurl}>/posticon<{$topic.last_post_icon}>.gif" alt="<{$topic.last_post_subject}>">
+     </a>
+        <{/if}>
+    </td>
 </tr>
 <{/foreach}>
 <!-- end forum topic -->

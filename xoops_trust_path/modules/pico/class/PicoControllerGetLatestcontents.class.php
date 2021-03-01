@@ -44,7 +44,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract
             $content_data = $contentObj->getData();
             if ($content_data['can_read']) {
                 $this->assign['contents'][] = [
-                        'body4rss' => htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 255), ENT_QUOTES),
+                        'body4rss' => htmlspecialchars(xoops_substr(strip_tags($content_data['body_cached']), 0, 191), ENT_QUOTES),
                         'created_time4rss' => date('r', $content_data['created_time']),
                         'modified_time4rss' => date('r', $content_data['modified_time']),
                     ] + $contentObj->getData4html();

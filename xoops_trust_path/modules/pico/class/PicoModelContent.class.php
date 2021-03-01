@@ -205,16 +205,16 @@ class PicoContent
                         'link'           => pico_common_make_content_link4html($mod_config, $this->data),
                         'poster_uname'   => $poster_uname,
                         'modifier_uname' => $modifier_uname,
-                        'votes_avg'      => $this->data['votes_count'] ? $this->data['votes_sum'] / floatval($this->data['votes_count']) : 0,
+                        'votes_avg'      => $this->data['votes_count'] ? $this->data['votes_sum'] / (float)$this->data['votes_count'] : 0,
                         'subject'        => $myts->makeTboxData4Show($this->data['subject'], 1, 1),
                         'body'           => $this->data['body_cached'],
                         'tags_array'     => $this->data['tags'] ? explode(' ', htmlspecialchars($this->data['tags'], ENT_QUOTES)) : [],
                         'cat_title'      => $myts->makeTboxData4Show($cat_data['cat_title'], 1, 1),
-                        'can_vote'       => (is_object($GLOBALS['xoopsUser']) || $mod_config['guest_vote_interval']) ? true : false,
+                        'can_vote'       => is_object($GLOBALS['xoopsUser']) || $mod_config['guest_vote_interval'],
                     ] + $this->data;
 
         // process body
-        if ($this->data['last_cached_time'] < $this->data['modified_time'] || $process_body && !$this->data['use_cache']) {
+        if ($this->data['last_cached_time'] < $this->data['modified_time'] || ($process_body && !$this->data['use_cache'])) {
             if (is_object(@$GLOBALS['xoopsTpl'])) {
                 $ret4html['body'] = $this->filterBody($ret4html);
             } else {

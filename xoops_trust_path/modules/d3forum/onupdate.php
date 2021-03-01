@@ -30,27 +30,27 @@ function d3forum_onupdate_base( $module , $mydirname )
 	// configs (Though I know it is not a recommended way...)
 	$check_sql = 'SHOW COLUMNS FROM ' . $db->prefix('config') . " LIKE 'conf_title'" ;
 	if( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && 'varchar(30)' == @$myrow['Type']) {
-		$db->queryF('ALTER TABLE ' . $db->prefix('config') . " MODIFY `conf_title` varchar(255) NOT NULL default '', MODIFY `conf_desc` varchar(255) NOT NULL default ''" ) ;
+		$db->queryF('ALTER TABLE ' . $db->prefix('config') . " MODIFY `conf_title` varchar(191) NOT NULL default '', MODIFY `conf_desc` varchar(191) NOT NULL default ''" ) ;
 	}
 
 	// 0.1x -> 0.2x
 	$check_sql = 'SELECT cat_unique_path FROM ' . $db->prefix($mydirname . '_categories') ;
 	if( ! $db->query( $check_sql ) ) {
 		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_categories') . " ADD cat_unique_path text NOT NULL default '' AFTER cat_path_in_tree" ) ;
-		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_forums') . " ADD forum_external_link_format varchar(255) NOT NULL default '' AFTER cat_id" ) ;
+		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_forums') . " ADD forum_external_link_format varchar(191) NOT NULL default '' AFTER cat_id" ) ;
 		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_topics') . ' ADD topic_external_link_id int(10) unsigned NOT NULL default 0 AFTER forum_id, ADD KEY (`topic_external_link_id`)') ;
 		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_posts') . " ADD path_in_tree text NOT NULL default '' AFTER order_in_tree , ADD unique_path text NOT NULL default '' AFTER order_in_tree" ) ;
 	}
 
 	// 0.3x -> 0.4x
 	$check_sql = 'SELECT subject_waiting FROM ' . $db->prefix($mydirname . '_posts') ;	if( ! $db->query($check_sql ) ) {
-		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_posts') . " ADD subject_waiting varchar(255) NOT NULL default '' AFTER `subject`, ADD post_text_waiting text NOT NULL AFTER `post_text`, ADD uid_hidden mediumint(8) unsigned NOT NULL default 0 AFTER `uid`, DROP hide_uid" ) ;
+		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_posts') . " ADD subject_waiting varchar(191) NOT NULL default '' AFTER `subject`, ADD post_text_waiting text NOT NULL AFTER `post_text`, ADD uid_hidden mediumint(8) unsigned NOT NULL default 0 AFTER `uid`, DROP hide_uid" ) ;
 	}
 
 	// 0.4x/0.6x -> 0.7x
 	$check_sql = 'SHOW COLUMNS FROM ' . $db->prefix($mydirname . '_topics') . " LIKE 'topic_external_link_id'" ;
 	if( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && 'int' == substr(@$myrow['Type'] , 0 , 3 )) {
-		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_topics') . " MODIFY topic_external_link_id varchar(255) NOT NULL default ''" ) ;
+		$db->queryF('ALTER TABLE ' . $db->prefix($mydirname . '_topics') . " MODIFY topic_external_link_id varchar(191) NOT NULL default ''" ) ;
 	}
 	$check_sql = 'SELECT COUNT(*) FROM ' . $db->prefix($mydirname . '_post_histories') ;
 	if( ! $db->query( $check_sql ) ) {

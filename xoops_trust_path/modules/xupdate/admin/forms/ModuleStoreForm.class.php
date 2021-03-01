@@ -44,8 +44,8 @@ class Xupdate_Admin_ModuleStoreForm extends XCube_ActionForm
         // set fields
         $this->mFieldProperties['dirname']=new XCube_FieldProperty($this);
         $this->mFieldProperties['dirname']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['dirname']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME, '255');
-        $this->mFieldProperties['dirname']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '255');
-        $this->mFieldProperties['dirname']->addVar('maxlength', 255);
+        $this->mFieldProperties['dirname']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME, '191');
+        $this->mFieldProperties['dirname']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '191');
+        $this->mFieldProperties['dirname']->addVar('maxlength', 191);
     }
 }

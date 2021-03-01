@@ -22,15 +22,16 @@ $adminmenu = array_merge($adminmenu, $adminmenu4altsys);
 $mymenu_uri = empty($mymenu_fake_uri) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
 $mymenu_link = substr(strstr($mymenu_uri, '/admin/'), 1);
 
+
 // xoops_breadcrumbs
-// $GLOBALS['altsysXoopsBreadcrumbs'] = array( array( 'url' => XOOPS_URL.'/modules/altsys/admin/index.php' , 'name' => $xoopsModule->getVar('name') ) ) ;
+//$GLOBALS['dirname'] = array( array( 'url' => XOOPS_URL.'/modules/altsys/admin/index.php' , 'name' => $xoopsModule->getVar('name') ) ) ;
 
 // highlight
 foreach (array_keys($adminmenu) as $i) {
     if ($mymenu_link == $adminmenu[$i]['link']) {
         $adminmenu[$i]['selected'] = true;
         $adminmenu_hilighted = true;
-//		$GLOBALS['altsysXoopsBreadcrumbs'][] = array( 'url' => XOOPS_URL."/modules/altsys/".htmlspecialchars($adminmenu[$i]['link'],ENT_QUOTES) , 'name' => htmlspecialchars( $adminmenu[$i]['title'] , ENT_QUOTES ) ) ;
+       // $mydirname['dirname'][] = array( 'url' => XOOPS_URL."/modules/altsys/".htmlspecialchars($adminmenu[$i]['link'],ENT_QUOTES) , 'name' => htmlspecialchars( $adminmenu[$i]['title'] , ENT_QUOTES ) ) ;
     } else {
         $adminmenu[$i]['selected'] = false;
     }
@@ -49,8 +50,13 @@ if (empty($adminmenu_hilighted)) {
 foreach (array_keys($adminmenu) as $i) {
     if (stripos($adminmenu[$i]['link'], XOOPS_URL) === false) {
         $adminmenu[$i]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[$i]['link'];
+       // $adminmenu[$i]['name'] = XOOPS_URL . "/modules/$mydirname/index.php";
     }
 }
+
+// Returns module dir name with the first character capitalized
+// Assign to template for Admin Breadcrumbs
+$dirname = ucfirst($mydirname);
 
 // display
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
@@ -58,8 +64,10 @@ $tpl = new D3Tpl();
 $tpl->assign(
     [
         'adminmenu' => $adminmenu,
+        'dirname' => $dirname,
     ]
 );
+
 $tpl->display('db:altsys_inc_mymenu.html');
 
 // submenu

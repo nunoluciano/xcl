@@ -50,7 +50,7 @@ class d3utilities
             case 'char' :
             case 'varchar' :
             case 'string' :
-                $length = empty($col['length']) ? 255 : (int)$col['length'];
+                $length = empty($col['length']) ? 191 : (int)$col['length'];
                 return "`{$col['name']}`='".addslashes(xoops_substr($value, 0, $length))."'" ;
             case 'int' :
             case 'integer' :
@@ -224,7 +224,7 @@ class d3utilities
                 case 'text' :
                 default :
                     $size = empty($col['edit_size']) ? 32 : (int)$col['edit_size'];
-                    $length = empty($col['length']) ? 255 : (int)$col['length'];
+                    $length = empty($col['length']) ? 191 : (int)$col['length'];
                     $lines[ $col['name'] ] = "<input type='text' name='{$col['name']}' size='$size' maxlength='$length' value='".htmlspecialchars($col['default_value'], ENT_QUOTES)."' />" ;
                     break ;
                 case false :

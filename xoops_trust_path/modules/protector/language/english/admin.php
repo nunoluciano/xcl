@@ -1,9 +1,8 @@
 <?php
-
-// mymenu
-define('_MD_A_MYMENU_MYTPLSADMIN', '');
-define('_MD_A_MYMENU_MYBLOCKSADMIN', 'Permissions');
-define('_MD_A_MYMENU_MYPREFERENCES', 'Preferences');
+// Altsys admin menu and breadcrumbs
+define('_MD_A_MYMENU_MYTPLSADMIN','Templates');
+define('_MD_A_MYMENU_MYBLOCKSADMIN','Blocks/Permissions');
+define('_MD_A_MYMENU_MYPREFERENCES','Preferences');
 
 // index.php
 define('_AM_TH_DATETIME', 'Time');
@@ -13,9 +12,9 @@ define('_AM_TH_AGENT', 'AGENT');
 define('_AM_TH_TYPE', 'Type');
 define('_AM_TH_DESCRIPTION', 'Description');
 
-define('_AM_TH_BADIPS', 'Bad IPs<br><br><span style="font-weight:normal;">Write each IP a line<br>blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.</span>');
+define('_AM_TH_BADIPS', 'Bad IPs<br><br>Write each IP address in a different line.<br>Blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.');
 
-define('_AM_TH_GROUP1IPS', 'Allowed IPs for Group=1<br><br><span style="font-weight:normal;">Write each IP a line.<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.<br>192.168. means 192.168.*<br>blank means all IPs are allowed</span>');
+define('_AM_TH_GROUP1IPS', 'Allowed IPs for Group=1<br><br>Write each IP address in a different line.<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.<br>192.168. means 192.168.*<br>Blank means all IPs are allowed</span>');
 
 define('_AM_LABEL_COMPACTLOG', 'Compact log');
 define('_AM_BUTTON_COMPACTLOG', 'Compact it!');

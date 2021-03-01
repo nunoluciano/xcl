@@ -34,7 +34,7 @@
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="vpath"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label></th>
 			<td class="even">
-				<input type="text" name="vpath" id="vpath" size="70" maxlength="255" value="<{$content.vpath}>" class="pico_ascii_only">
+				<input type="text" name="vpath" id="vpath" size="70" maxlength="191" value="<{$content.vpath}>" class="pico_ascii_only">
 				<{if $xoops_isadmin}>
 					<br>
 					<select name="wraps_target" onchange="xoopsGetElementById('vpath').value=this.value;">
@@ -49,7 +49,7 @@
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="subject"><{$smarty.const._MD_PICO_TH_SUBJECT}></label></th>
 			<td class="even">
-				<input type="text" name="subject" id="subject" size="80" maxlength="255" value="<{$content.subject}>">
+				<input type="text" name="subject" id="subject" size="80" maxlength="191" value="<{$content.subject}>">
 			</td>
 		</tr>
 
@@ -58,7 +58,7 @@
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="pronunciation">pronunciation</label></th>
 			<td class="even">
-				<input type="text" name="ef_pronunciation" id="pronunciation" size="80" maxlength="255" value="<{$content.ef.pronunciation|escape}>">
+				<input type="text" name="ef_pronunciation" id="pronunciation" size="80" maxlength="191" value="<{$content.ef.pronunciation|escape}>">
 			</td>
 		</tr>
 
@@ -200,7 +200,7 @@
 		<tr valign="top" align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="tags"><{$smarty.const._MD_PICO_TH_TAGS}></label></th>
 			<td class="even">
-				<input type="text" name="tags" id="tags" size="60" maxlength="255" value="<{$content.tags}>">
+				<input type="text" name="tags" id="tags" size="60" maxlength="191" value="<{$content.tags}>">
 				<{$smarty.const._MD_PICO_TH_TAGSDSC}>
 			</td>
 		</tr>

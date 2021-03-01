@@ -13,9 +13,13 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 
 // language file
 altsys_include_language_file('myblocksadmin');
+altsys_get_core_type ( ALTSYS_CORE_TYPE_XCL21 );
+        include_once __DIR__ .'/class/MyBlocksAdminForXCL21.class.php' ;
+        $myba =& MyBlocksAdminForXCL21::getInstance() ;
+
 
 // fork by core types
-switch (altsys_get_core_type()) {
+/*switch (altsys_get_core_type()) {
 
         case ALTSYS_CORE_TYPE_XCL21 :
             include_once __DIR__ .'/class/MyBlocksAdminForXCL21.class.php' ;
@@ -26,7 +30,7 @@ switch (altsys_get_core_type()) {
         include_once __DIR__ . '/class/MyBlocksAdmin.class.php';
         $myba = &MyBlocksAdmin::getInstance();
         break;
-}
+}*/
 // permission
 $myba->checkPermission();
 
