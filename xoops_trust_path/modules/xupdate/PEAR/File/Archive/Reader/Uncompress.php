@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Recursively uncompress every file it finds
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -89,7 +88,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
      */
     public $currentFileNotDisplayed = false;
 
-    public function __construct(
+    function File_Archive_Reader_Uncompress(
                         &$innerReader, $uncompressionLevel = -1)
     {
         parent::File_Archive_Reader_Relay($innerReader);
@@ -131,7 +130,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
         while (($extension = array_pop($extensions)) !== null) {
             $nbUncompressions++;
             unset($next);
-            $next = File_Archive::readArchive($extension, $reader, $nbUncompressions == 1);
+            $next = (new File_Archive)->readArchive($extension, $reader, $nbUncompressions == 1);
             if ($next === false) {
                 $extensions = array();
             } else {
@@ -168,7 +167,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
                 }
 
                 $error = $this->source->select($selection, false);
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
                 if (!$error) {
@@ -223,7 +222,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
         $error = $this->next();
         if ($error === false) {
             return PEAR::raiseError("No directory $baseDir in inner reader");
-        } elseif (PEAR::isError($error)) {
+        } else if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -237,7 +236,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
     {
         if ($close) {
             $error = $this->close();
-            if (PEAR::isError($close)) {
+            if ((new PEAR)->isError($close)) {
                 return $error;
             }
         }
@@ -292,7 +291,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
     {
         //The reader needs to be open so that the base dir is found
         $error = $this->next();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -306,7 +305,7 @@ class File_Archive_Reader_Uncompress extends File_Archive_Reader_Relay
     {
         //The reader needs to be open so that the base dir is found
         $error = $this->next();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 

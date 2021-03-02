@@ -1,6 +1,10 @@
 <?php
 
-// Xupdate_ftp excutr function
+/* *
+ * PHP version 7 (Nuno Luciano aka gigamaster)
+ * Xupdate_ftp excute function 
+ * */
+
 require_once XUPDATE_TRUST_PATH .'/include/FtpCommonFunc.class.php';
 
 class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
@@ -27,10 +31,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             if (@ copy($this->Xupdate->params['temp_path'].'/'.$this->download_file, $exploredDirPath.'/'.$this->download_file)) {
                 $this->exploredPreloadPath = $exploredDirPath;
                 return true;
-            } else {
-                $this->_set_error_log('copy error in: '.$exploredDirPath);
-                return false;
             }
+
+            $this->_set_error_log('copy error in: '.$exploredDirPath);
+            return false;
         }
         
         if (2 === $this->retry_phase) {
@@ -108,9 +112,9 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             $this->_set_error_log('unzip: '.$o);
             $this->_set_error_log('unzip error: '.$e);
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     /**
@@ -128,9 +132,9 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
             $this->_set_error_log('tar: '.$o);
             $this->_set_error_log('tar error: '.$e);
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     /**
@@ -227,12 +231,12 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
     {
         require_once 'File/Archive.php';
         
-        $source = File_Archive::read($downloadFilePath . '/');
+        $source = (new File_Archive)->read($downloadFilePath . '/');
         $className = 'File_Archive_Reader';
         $ret = true;
         if ($source instanceof $className) {
-            $writer = File_Archive::appender($exploredDirPath);
-            if (PEAR::isError($writer)) {
+            $writer = (new File_Archive)->appender($exploredDirPath);
+            if ((new PEAR)->isError($writer)) {
                 $source->close();
                 //$this->message = $writer->getMessage()
                 return false;
@@ -266,21 +270,21 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc
                 }
     
                 $error = $writer->newFile($inner, $stat);
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     //$this->message = $error->getMessage();
                     $ret = false;
                     break;
                 }
     
                 $error = $source->sendData($writer);
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     //$this->message = $error->getMessage();
                     $ret = false;
                     break;
                 }
             }//end loop
         } else {
-            if (PEAR::isError($source)) {
+            if ((new PEAR)->isError($source)) {
                 //$this->message = $source->getMessage();
             }
             return false;

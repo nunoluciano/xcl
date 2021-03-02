@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Writer to files
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -86,7 +85,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
                     $pathname,
                     0, strrpos($pathname, "/"));
         $error = $this->mkdirr($next_pathname);
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
         if (!@mkdir($pathname)) {
@@ -127,7 +126,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
     public function openFileRemoveBlock($filename, $pos, $blocks)
     {
         $error = $this->openFile($filename, $pos);
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -156,7 +155,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
                 $keep = !$keep;
             }
             if ($keep) {
-                while (!feof($this->handle)) {
+                while(!feof($this->handle)) {
                     fwrite($this->handle, fread($read, 8196));
                 }
             }
@@ -179,14 +178,14 @@ class File_Archive_Writer_Files extends File_Archive_Writer
 
         if (substr($this->filename, -1) == '/') {
             $error = $this->mkdirr(substr($this->filename, 0, -1));
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         } else {
             $pos = strrpos($this->filename, "/");
             if ($pos !== false) {
                 $error = $this->mkdirr(substr($this->filename, 0, $pos));
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
             }
@@ -213,7 +212,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
         $pos = strrpos($complete, "/");
         if ($pos !== false) {
             $error = $this->mkdirr(substr($complete, 0, $pos));
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }

@@ -5,6 +5,7 @@
  * ZIP archive writer
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -68,7 +69,7 @@ class File_Archive_Writer_Zip extends File_Archive_Writer_MemoryArchive
                     $filename, $innerWriter, $stat, $autoClose
                 );
 
-        $this->compressionLevel = File_Archive::getOption('zipCompressionLevel', 9);
+        $this->compressionLevel = (new File_Archive)->getOption('zipCompressionLevel', 9);
     }
 
     /**
@@ -173,7 +174,7 @@ class File_Archive_Writer_Zip extends File_Archive_Writer_MemoryArchive
                    $data;
 
         $error = $this->innerWriter->writeData($zipData);
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -191,7 +192,7 @@ class File_Archive_Writer_Zip extends File_Archive_Writer_MemoryArchive
     public function appendFile($filename, $dataFilename)
     {
         //Try to read from the cache
-        $cache = File_Archive::getOption('cache', null);
+        $cache = (new File_Archive)->getOption('cache', null);
         if ($cache !== null && $this->compressionLevel > 0) {
             $id = realpath($dataFilename);
             $id = urlencode($id);
@@ -209,6 +210,7 @@ class File_Archive_Writer_Zip extends File_Archive_Writer_MemoryArchive
             //If cache failed or file modified since then
             if ($data === false ||
                 $info['mtime'] != $mtime) {
+
                 $data = file_get_contents($dataFilename);
 
                 $info = array(
@@ -230,6 +232,7 @@ class File_Archive_Writer_Zip extends File_Archive_Writer_MemoryArchive
                                     $info['crc'],
                                     $info['nlength']
                    );
+
         }
 
         //If no cache system, use the standard way

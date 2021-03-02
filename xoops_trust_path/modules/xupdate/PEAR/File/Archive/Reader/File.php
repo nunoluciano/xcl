@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Reader that represents a single file
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -155,7 +154,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
             $this->mime = MIME_Type::autoDetect($this->getDataFilename());
             PEAR::popErrorHandling();
 
-            if (PEAR::isError($this->mime)) {
+            if ((new PEAR)->isError($this->mime)) {
                 $this->mime = parent::getMime();
             }
         }
@@ -187,7 +186,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     public function getData($length = -1)
     {
         $error = $this->_ensureFileOpened();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -196,7 +195,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
         }
         if ($length == -1) {
             $contents = '';
-            $blockSize = File_Archive::getOption('blockSize');
+            $blockSize = (new File_Archive)->getOption('blockSize');
             // Ensure that magic_quote_runtime isn't set,
             // if we don't want to have corrupted archives.
             $saveMagicQuotes = get_magic_quotes_runtime();
@@ -221,7 +220,7 @@ class File_Archive_Reader_File extends File_Archive_Reader
     public function skip($length = -1)
     {
         $error = $this->_ensureFileOpened();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 

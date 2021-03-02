@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Write to several writers
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -55,11 +54,11 @@ class File_Archive_Writer_Multi extends File_Archive_Writer
         $globalError = null;
         foreach ($this->writers as $key => $foo) {
             $error = $this->writers[$key]->newFile($filename, $stat, $mime);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 $globalError = $error;
             }
         }
-        if (PEAR::isError($globalError)) {
+        if ((new PEAR)->isError($globalError)) {
             return $globalError;
         }
     }
@@ -84,11 +83,11 @@ class File_Archive_Writer_Multi extends File_Archive_Writer
         $globalError = null;
         foreach ($this->writers as $key => $foo) {
             $error = $this->writers[$key]->writeData($data);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 $globalError = $error;
             }
         }
-        if (PEAR::isError($globalError)) {
+        if ((new PEAR)->isError($globalError)) {
             return $globalError;
         }
     }
@@ -101,11 +100,11 @@ class File_Archive_Writer_Multi extends File_Archive_Writer
         $globalError = null;
         foreach ($this->writers as $key => $foo) {
             $error = $this->writers[$key]->writeFile($filename);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 $globalError = $error;
             }
         }
-        if (PEAR::isError($globalError)) {
+        if ((new PEAR)->isError($globalError)) {
             return $globalError;
         }
     }
@@ -118,11 +117,11 @@ class File_Archive_Writer_Multi extends File_Archive_Writer
         $globalError = null;
         foreach ($this->writers as $key => $foo) {
             $error = $this->writers[$key]->close();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 $globalError = $error;
             }
         }
-        if (PEAR::isError($globalError)) {
+        if ((new PEAR)->isError($globalError)) {
             return $globalError;
         }
     }

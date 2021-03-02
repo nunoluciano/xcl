@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Send the files attached to a mail.
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -156,7 +155,7 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
     public function newFile($filename, $stat, $mime = "application/octet-stream")
     {
         $error = $this->addCurrentData();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -181,11 +180,11 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
     public function close()
     {
         $error = parent::close();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
         $error = $this->addCurrentData();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 

@@ -1,13 +1,12 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * This reader caches the files of another reader
  * It allow fast access to files. This is usefull if the access to the reader
  * is slow (HTTP, FTP...), but will need more IO if the file is only extracted
  *
  * PHP versions 4 and 5
- *
+ * PHP version 7 (Nuno Luciano aka gigamaster)
+
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -139,7 +138,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     {
         if ($this->fromSource) {
             $data = $this->source->getData($length);
-            if (PEAR::isError($data)) {
+            if ((new PEAR)->isError($data)) {
                 return $data;
             }
 
@@ -161,7 +160,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
                 return fread($this->tmpFile, $length);
             } else {
                 $contents = '';
-                $blockSize = File_Archive::getOption('blockSize');
+                $blockSize = (new File_Archive)->getOption('blockSize');
                 while (!feof($this->tmpFile)) {
                     $contents .= fread($this->tmpFile, $blockSize);
                 }
@@ -241,7 +240,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     public function makeAppendWriter()
     {
         $writer = $this->source->makeAppendWriter();
-        if (!PEAR::isError($writer)) {
+        if (!(new PEAR)->isError($writer)) {
             $this->_closeAndReset();
         }
 
@@ -253,7 +252,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     public function makeWriterRemoveFiles($pred)
     {
         $writer = $this->source->makeWriterRemoveFiles($pred);
-        if (!PEAR::isError($writer)) {
+        if (!(new PEAR)->isError($writer)) {
             $this->_closeAndReset();
         }
         return $writer;
@@ -264,7 +263,7 @@ class File_Archive_Reader_Cache extends File_Archive_Reader
     public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         $writer = $this->source->makeWriterRemoveBlocks($blocks, $seek);
-        if (!PEAR::isError($writer)) {
+        if (!(new PEAR)->isError($writer)) {
             $this->_closeAndReset();
         }
         return $writer;

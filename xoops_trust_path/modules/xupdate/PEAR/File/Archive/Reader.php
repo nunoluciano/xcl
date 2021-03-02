@@ -7,6 +7,7 @@
  * A reader is a compilation of serveral files that can be read
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -67,7 +68,7 @@ class File_Archive_Reader
 
         if ($close) {
             $error = $this->close();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }
@@ -141,11 +142,11 @@ class File_Archive_Reader
     public function getFileList()
     {
         $result = array();
-        while (($error = $this->next()) === true) {
+        while ( ($error = $this->next()) === true) {
             $result[] = $this->getFilename();
         }
         $this->close();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         } else {
             return $result;
@@ -207,7 +208,7 @@ class File_Archive_Reader
     public function skip($length = -1)
     {
         $data = $this->getData($length);
-        if (PEAR::isError($data)) {
+        if ((new PEAR)->isError($data)) {
             return $data;
         } else {
             return strlen($data);
@@ -254,26 +255,26 @@ class File_Archive_Reader
      */
     public function sendData(&$writer, $bufferSize = 0)
     {
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
         if ($bufferSize <= 0) {
-            $bufferSize = File_Archive::getOption('blockSize');
+            $bufferSize = (new File_Archive)->getOption('blockSize');
         }
 
         $filename = $this->getDataFilename();
         if ($filename !== null) {
             $error = $writer->writeFile($filename);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         } else {
             while (($data = $this->getData($bufferSize)) !== null) {
-                if (PEAR::isError($data)) {
+                if ((new PEAR)->isError($data)) {
                     return $data;
                 }
                 $error = $writer->writeData($data);
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
             }
@@ -291,7 +292,7 @@ class File_Archive_Reader
      */
     public function extract(&$writer, $autoClose = true, $bufferSize = 0)
     {
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             $this->close();
             return $writer;
         }
@@ -308,11 +309,11 @@ class File_Archive_Reader
                 $this->getStat(),
                 $mime
             );
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 break;
             }
             $error = $this->sendData($writer, $bufferSize);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 break;
             }
         }
@@ -320,7 +321,7 @@ class File_Archive_Reader
         if ($autoClose) {
             $writer->close();
         }
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
     }
@@ -338,23 +339,23 @@ class File_Archive_Reader
     public function extractFile($filename, &$writer,
                          $autoClose = true, $bufferSize = 0)
     {
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
 
         if (($error = $this->select($filename)) === true) {
             $result = $this->sendData($writer, $bufferSize);
-            if (!PEAR::isError($result)) {
+            if (!(new PEAR)->isError($result)) {
                 $result = true;
             }
-        } elseif ($error === false) {
+        } else if ($error === false) {
             $result = PEAR::raiseError("File $filename not found");
         } else {
             $result = $error;
         }
         if ($autoClose) {
             $error = $writer->close();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }
@@ -406,7 +407,7 @@ class File_Archive_Reader
     public function remove()
     {
         $writer = $this->makeWriterRemove();
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
         $writer->close();

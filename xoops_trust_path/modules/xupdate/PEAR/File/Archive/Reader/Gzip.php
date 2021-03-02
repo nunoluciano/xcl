@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Uncompress a file that was compressed in the Gzip format
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -82,7 +81,7 @@ class File_Archive_Reader_Gzip extends File_Archive_Reader_Archive
             $this->tmpName = null;
             $this->gzfile = gzopen($dataFilename, 'r');
         } else {
-            $this->tmpName = tempnam(File_Archive::getOption('tmpDirectory'), 'far');
+            $this->tmpName = tempnam((new File_Archive)->getOption('tmpDirectory'), 'far');
 
             //Generate the tmp data
             $dest = new File_Archive_Writer_Files();

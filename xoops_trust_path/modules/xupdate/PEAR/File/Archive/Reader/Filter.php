@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Filter out the files that do not respect a given predicat
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -72,7 +71,7 @@ class File_Archive_Reader_Filter extends File_Archive_Reader_Relay
     {
         if ($close) {
             $error = $this->close();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }

@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * A reader that appears exactly as another does
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -45,7 +44,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
      */
     public $source;
 
-    public function __construct(&$source)
+    function File_Archive_Reader_Relay(&$source)
     {
         $this->source =& $source;
     }
@@ -129,7 +128,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     public function makeAppendWriter()
     {
         $writer = $this->source->makeAppendWriter();
-        if (!PEAR::isError($writer)) {
+        if (!(new PEAR)->isError($writer)) {
             $this->close();
         }
         return $writer;
@@ -140,7 +139,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     public function makeWriterRemoveFiles($pred)
     {
         $writer = $this->source->makeWriterRemoveFiles($pred);
-        if (!PEAR::isError($writer)) {
+        if (!(new PEAR)->isError($writer)) {
             $this->close();
         }
         return $writer;
@@ -151,7 +150,7 @@ class File_Archive_Reader_Relay extends File_Archive_Reader
     public function makeWriterRemoveBlocks($blocks, $seek = 0)
     {
         $writer = $this->source->makeWriterRemoveBlocks($blocks, $seek);
-        if (!PEAR::isError($writer)) {
+        if (!(new PEAR)->isError($writer)) {
             $this->close();
         }
         return $writer;

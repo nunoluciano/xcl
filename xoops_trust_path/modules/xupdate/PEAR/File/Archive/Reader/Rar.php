@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Read a rar archive, requires PECL rar extension
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -52,7 +51,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
     public function next()
     {
         $error = parent::next();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -62,7 +61,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
                 $this->rarTmpName = null;
                 $this->rarFile = rar_open($dataFilename);
             } else {
-                $this->rarTmpName = tempnam(File_Archive::getOption('tmpDirectory'), 'far');
+                $this->rarTmpName = tempnam((new File_Archive)->getOption('tmpDirectory'), 'far');
 
                 //Generate the tmp data
                 $dest = new File_Archive_Writer_Files();
@@ -130,7 +129,7 @@ class File_Archive_Reader_Rar extends File_Archive_Reader_Archive
             return;
         }
         if ($this->entryTmpName === null) {
-            $this->entryTmpName = tempnam(File_Archive::getOption('tmpDirectory'), 'far');
+            $this->entryTmpName = tempnam((new File_Archive)->getOption('tmpDirectory'), 'far');
         }
         $this->rarEntry->extract(false, $this->entryTmpName);
         $this->fileReader = new File_Archive_Reader_File(

@@ -4,6 +4,7 @@
  * Part of MIME_Type
  *
  * PHP version 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * @category File
  * @package  MIME_Type
@@ -14,7 +15,7 @@
 
 require_once 'PEAR.php';
 
-$_fileCmd = &PEAR::getStaticProperty('MIME_Type', 'fileCmd');
+$_fileCmd = (new PEAR)->getStaticProperty('MIME_Type', 'fileCmd');
 $_fileCmd = 'file';
 
 /**

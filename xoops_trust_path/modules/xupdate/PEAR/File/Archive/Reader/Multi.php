@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Regroups several readers to make them appear as a single one
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -71,7 +70,7 @@ class File_Archive_Reader_Multi extends File_Archive_Reader_Relay
 
             if (($error = $this->source->next()) === false) {
                 $error = $this->source->close();
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
                 $this->currentIndex++;

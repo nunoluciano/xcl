@@ -1,12 +1,11 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Read a CAB file without uncompressing the data
  * This is not intented to be used directly by the end user, but by the cab reader
  * which adds the uncompression layer
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -82,13 +81,13 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
     public function next()
     {
         $error = parent::next();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
         if ($this->header === null) {
             $error = $this->_readHeader();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
 
@@ -96,7 +95,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
             ;
         } else {
             $error = $this->skip();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
 
@@ -148,7 +147,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         */
 
         $this->header = $this->source->getData(36);
-        if (PEAR::isError($this->header)) {
+        if ((new PEAR)->isError($this->header)) {
             return $this->header;
         }
         if (strlen($this->header) != 36) {
@@ -186,7 +185,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
             */
 
             $folder = $this->source->getData(8 + $this->header['resFolder']);
-            if (PEAR::isError($folder)) {
+            if ((new PEAR)->isError($folder)) {
                 return $folder;
             }
             if (strlen($folder) != 8 + $this->header['resFolder']) {
@@ -209,7 +208,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
                 u1  szName[];           name of this file
             */
             $file = $this->source->getData(16);
-            if (PEAR::isError($file)) {
+            if ((new PEAR)->isError($file)) {
                 return $file;
             }
             if (strlen($file) != 16) {
@@ -261,7 +260,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
             u1  ab[cbData];     compressed data bytes
         */
         $data = $this->source->getData(8 + $this->header['resData']);
-        if (PEAR::isError($data)) {
+        if ((new PEAR)->isError($data)) {
             return $data;
         }
         if (strlen($data) != 8 + $this->header['resData']) {
@@ -270,7 +269,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
 
         $data = unpack('Vsum/Ssize/SuSize', $data);
         $this->data = $this->source->getData($data['size']);
-        if (PEAR::isError($this->data)) {
+        if ((new PEAR)->isError($this->data)) {
             return $this->data;
         }
         if (strlen($this->data) != $data['size']) {
@@ -302,7 +301,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         //And while it's not enough, read the next block
         while (strlen($data) < $length) {
             $error = $this->_readDataBlock();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
 
@@ -327,7 +326,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         $data = null;
         while ($skipped < $length) {
             $data = $this->source->getData(8 + $this->header['resData']);
-            if (PEAR::isError($data)) {
+            if ((new PEAR)->isError($data)) {
                 return $data;
             }
             if (strlen($data) != 8 + $this->header['resData']) {
@@ -338,7 +337,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
             $skipped += $data['uSize'];
             if ($skipped < $length) {
                 $error = $this->source->skip($data['size']);
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
                 if ($error != $data['size']) {
@@ -348,7 +347,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         }
         if ($data !== null) {
             $this->data = $this->source->getData($data['size']);
-            if (PEAR::isError($this->data)) {
+            if ((new PEAR)->isError($this->data)) {
                 return $this->data;
             }
             if (strlen($this->data) != $data['size']) {
@@ -356,7 +355,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
             }
 
             $error = $this->_uncompressData($data);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }
@@ -399,11 +398,11 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         $folderOffset = $this->folders[$this->folderIndex]['start'];
         $currentOffset = $this->source->tell();
         $error = $this->source->rewind($currentOffset - $folderOffset);
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
         $error = $this->_folderSkip($file['offset'] - $length);
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
         return $length;
@@ -478,7 +477,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
         }
         if ($this->header === null) {
             $error = $this->_readHeader();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }
@@ -506,13 +505,13 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
 
                         if ($fileIndex == $this->fileIndex) {
                             $error = $this->rewind();
-                            if (PEAR::isError($error)) {
+                            if ((new PEAR)->isError($error)) {
                                 return $error;
                             }
                         } else {
                             while ($this->fileIndex < $fileIndex) {
                                 $error = $this->next();
-                                if (PEAR::isError($error)) {
+                                if ((new PEAR)->isError($error)) {
                                     return $error;
                                 }
                             }
@@ -527,7 +526,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
                         } else {
                             $error = $this->skip($offset - $currentOffset);
                         }
-                        if (PEAR::isError($error)) {
+                        if ((new PEAR)->isError($error)) {
                             return $error;
                         }
 
@@ -540,7 +539,7 @@ class File_Archive_Reader_Cab extends File_Archive_Reader_Archive
                         //And move to the right file
                         while ($this->fileIndex < $fileIndex) {
                             $error = $this->next();
-                            if (PEAR::isError($error)) {
+                            if ((new PEAR)->isError($error)) {
                                 return $error;
                             }
                         }

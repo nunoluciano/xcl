@@ -3,6 +3,7 @@
  * Read a file saved in Ar file format
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -201,7 +202,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
         } else {
             $this->_nbBytesLeft -= $length;
             $data = $this->source->getData($length);
-            if (PEAR::isError($data)) {
+            if ((new PEAR)->isError($data)) {
                 return $data;
             }
             if (strlen($data) != $length) {
@@ -226,7 +227,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
         } else {
             $this->_nbBytesLeft -= $length;
             $skipped = $this->source->skip($length);
-            if (PEAR::isError($skipped)) {
+            if ((new PEAR)->isError($skipped)) {
                 return $skipped;
             }
             if ($skipped != $length) {
@@ -250,7 +251,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
             return 0;
         } else {
             $rewinded = $this->source->rewind($length);
-            if (!PEAR::isError($rewinded)) {
+            if (!(new PEAR)->isError($rewinded)) {
                 $this->_nbBytesLeft += $rewinded;
             }
             return $rewinded;
@@ -350,7 +351,7 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
         $stat = $this->_currentStat;
 
         $writer = $this->makeWriterRemove();
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
 
@@ -367,15 +368,14 @@ class File_Archive_Reader_Ar extends File_Archive_Reader_Archive
     {
         require_once "File/Archive/Writer/Ar.php";
 
-        while (($error = $this->next()) === true) {
-        }
-        if (PEAR::isError($error)) {
+        while (($error = $this->next()) === true) { }
+        if ((new PEAR)->isError($error)) {
             $this->close();
             return $error;
         }
 
         $innerWriter = $this->source->makeWriterRemoveBlocks(array());
-        if (PEAR::isError($innerWriter)) {
+        if ((new PEAR)->isError($innerWriter)) {
             return $innerWriter;
         }
 

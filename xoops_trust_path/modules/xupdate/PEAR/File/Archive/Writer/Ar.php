@@ -3,6 +3,7 @@
  * Write data to a file and save as an ar
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -112,7 +113,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
      */
     public function arFooter($filename, $size)
     {
-        $size = (strlen($filename) > 16) ? $size + strlen($filename) : $size;
+        $size = (strlen ($filename) > 16) ? $size + strlen($filename) : $size;
 
         return ($size % 2 == 1) ? "\n" : "";
     }
@@ -169,7 +170,7 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
         $this->_currentFilename = basename($filename);
         $this->_currentStat = $stat;
 
-        if (!$this->_useBuffer) {
+        if(!$this->_useBuffer) {
             return $this->innerWriter->writeData($this->arHeader($filename, $stat));
         }
     }

@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * ZIP archive reader
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -93,7 +92,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         if ($this->header !== null && $this->data === null) {
             $toSkip = $this->header['CLen'];
             $error = $this->source->skip($toSkip);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }
@@ -108,20 +107,20 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             $header = $this->source->getData(4);
         }
         // Sometimes this header is used to tag the data descriptor section
-        if ($header == "\x50\x4b\x07\x08") {
+        if($header == "\x50\x4b\x07\x08") { 
             // Read out the data descriptor (always 12 bytes)
             $this->source->getData(12);
 
             // Get a new header from the file
             $header = $this->source->getData(4);
         }
-        if (PEAR::isError($header)) {
+        if ((new PEAR)->isError($header)) {
             return $header;
         }
         if ($header == "\x50\x4b\x03\x04") {
             //New entry
             $header = $this->source->getData(26);
-            if (PEAR::isError($header)) {
+            if ((new PEAR)->isError($header)) {
                 return $header;
             }
             $this->header = unpack(
@@ -165,7 +164,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
                     ($this->header['Time'] & 0x07E0) >> 5,          //minute
                     ($this->header['Time'] & 0x001F) >> 1,          //second
                     ($this->header['Date'] & 0x01E0) >> 5,          //month
-                    ($this->header['Date'] & 0x001F),          //day
+                    ($this->header['Date'] & 0x001F)     ,          //day
                    (($this->header['Date'] & 0xFE00) >> 9) + 1980   //year
                 )
             );
@@ -175,7 +174,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             $this->currentFilename = $this->source->getData($this->header['File']);
 
             $error = $this->source->skip($this->header['Extra']);
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
 
@@ -209,7 +208,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         }
 
         $error = $this->uncompressData();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
         $result = substr($this->data, $this->offset, $actualLength);
@@ -257,7 +256,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         }
 
         $this->data = $this->source->getData($this->header['CLen']);
-        if (PEAR::isError($this->data)) {
+        if ((new PEAR)->isError($this->data)) {
             return $this->data;
         }
         if ($this->header['Method'] == 8) {
@@ -312,7 +311,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
                 }
             }
         }
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -330,7 +329,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         $writer = new File_Archive_Writer_Zip(null,
             $this->source->makeWriterRemoveBlocks($blocks, -$seek)
         );
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
 
@@ -371,7 +370,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         $stat = $this->currentStat;
 
         $writer = $this->makeWriterRemove();
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
 
@@ -389,9 +388,8 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     {
         require_once "File/Archive/Writer/Zip.php";
 
-        while (($error = $this->next()) === true) {
-        }
-        if (PEAR::isError($error)) {
+        while (($error = $this->next()) === true) { }
+        if ((new PEAR)->isError($error)) {
             $this->close();
             return $error;
         }
@@ -425,6 +423,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
         }
 
         while ($nbSkipped > 0) {
+
             $nbRewind = $this->source->rewind(min(100, $nbSkipped));
             while ($nbRewind >= -4) {
                 if ($nbRewind-- && $this->source->getData(1) == "\x50" &&
@@ -448,14 +447,14 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
     public function readCentralDirectory()
     {
         $nbSkipped = $this->seekToEndOfCentralDirectory();
-        if (PEAR::isError($nbSkipped)) {
+        if ((new PEAR)->isError($nbSkipped)) {
             return $nbSkipped;
         }
 
         $this->source->skip(12);
         $offset = $this->source->getData(4);
         $nbSkipped += 16;
-        if (PEAR::isError($offset)) {
+        if ((new PEAR)->isError($offset)) {
             return $offset;
         }
 
@@ -472,7 +471,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             $header = $this->source->getData(16);
             $nbSkipped += 32;
 
-            if (PEAR::isError($header)) {
+            if ((new PEAR)->isError($header)) {
                 return $header;
             }
 

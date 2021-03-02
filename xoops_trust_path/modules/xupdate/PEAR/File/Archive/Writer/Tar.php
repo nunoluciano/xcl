@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Write the files as a TAR archive
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -145,7 +144,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
                 $this->stats[7] = strlen($this->buffer);
 
                 $header = $this->tarHeader($this->filename, $this->stats);
-                if (PEAR::isError($header)) {
+                if ((new PEAR)->isError($header)) {
                     return $header;
                 }
                 $this->innerWriter->writeData($header);
@@ -164,7 +163,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
                      $mime = "application/octet-stream")
     {
         $err = $this->flush();
-        if (PEAR::isError($err)) {
+        if ((new PEAR)->isError($err)) {
             return $err;
         }
 
@@ -174,7 +173,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
 
         if (!$this->useBuffer) {
             $header = $this->tarHeader($filename, $stats);
-            if (PEAR::isError($header)) {
+            if ((new PEAR)->isError($header)) {
                 return $header;
             }
             return $this->innerWriter->writeData($header);
@@ -187,7 +186,7 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
     public function close()
     {
         $err = $this->flush();
-        if (PEAR::isError($err)) {
+        if ((new PEAR)->isError($err)) {
             return $err;
         }
         $this->innerWriter->writeData(pack("a1024", ""));

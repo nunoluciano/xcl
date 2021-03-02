@@ -7,6 +7,7 @@
  * File/Archive/* directories
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -126,7 +127,7 @@ class File_Archive
      */
     public function setOption($name, $value)
     {
-        $option =& File_Archive::_option($name);
+        $option =& (new File_Archive)->_option($name);
         $option = $value;
         if ($name == 'cache' && $value !== null) {
             //TODO: ask to Cache_Lite to allow that
@@ -139,7 +140,7 @@ class File_Archive
      */
     public function getOption($name)
     {
-        return File_Archive::_option($name);
+        return (new File_Archive)->_option($name);
     }
 
     /**
@@ -257,7 +258,7 @@ class File_Archive
     public function readSource(&$source, $URL, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
-        return File_Archive::_readSource($source, $URL, $reachable, $baseDir,
+        return (new File_Archive)->_readSource($source, $URL, $reachable, $baseDir,
                   $symbolic, $uncompression, $directoryDepth);
     }
 
@@ -271,16 +272,16 @@ class File_Archive
     public function _readSource(&$toConvert, $URL, &$reachable, &$baseDir, $symbolic = null,
                   $uncompression = 0, $directoryDepth = -1)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
         if (is_array($URL)) {
             $converted = array();
-            foreach ($URL as $key => $foo) {
-                $converted[] =& File_Archive::_convertToReader($URL[$key]);
+            foreach($URL as $key => $foo) {
+                $converted[] =& (new File_Archive)->_convertToReader($URL[$key]);
             }
-            return File_Archive::readMulti($converted);
+            return (new File_Archive)->readMulti($converted);
         }
 
         //No need to uncompress more than $directoryDepth
@@ -293,7 +294,7 @@ class File_Archive
         }
 
         require_once 'File/Archive/Reader.php';
-        $std = File_Archive_Reader::getStandardURL($URL);
+        $std = (new File_Archive_Reader)->getStandardURL($URL);
 
         //Modify the symbolic name if necessary
         $slashPos = strrpos($std, '/');
@@ -322,10 +323,10 @@ class File_Archive
                 array('[^/]*', '[^/]'),
                 preg_quote($lastFile)
             );
-            $result = File_Archive::_readSource($source, $baseFile,
+            $result = (new File_Archive)->_readSource($source, $baseFile,
                                                 $reachable, $baseDir, null, 0, -1);
-            return File_Archive::filter(
-                    File_Archive::predPreg('/^'.$regexp.'$/'),
+            return (new File_Archive)->filter(
+                    (new File_Archive)->predPreg('/^'.$regexp.'$/'),
                     $result
                    );
         }
@@ -348,7 +349,7 @@ class File_Archive
                 require_once 'File/Archive/Reader/Filter.php';
                 require_once 'File/Archive/Predicate/MaxDepth.php';
 
-                $tmp =& File_Archive::filter(
+                $tmp =& (new File_Archive)->filter(
                     new File_Archive_Predicate_MaxDepth($directoryDepth),
                     $result
                 );
@@ -369,7 +370,7 @@ class File_Archive
             }
 
         //If the URL can be interpreted as a file, and we are reading from the file system
-        } elseif (is_file($URL) && substr($URL, -1)!='/' && $source === null) {
+        } else if (is_file($URL) && substr($URL, -1)!='/' && $source === null) {
             require_once "File/Archive/Reader/File.php";
             $result = new File_Archive_Reader_File($URL, $realSymbolic);
 
@@ -400,7 +401,7 @@ class File_Archive
                     $extension = substr($file, $dotPos+1);
                 }
             } while ($pos < strlen($realPath) &&
-                (!File_Archive::isKnownExtension($extension) ||
+                (!(new File_Archive)->isKnownExtension($extension) ||
                  (is_dir($file) && $source==null)));
 
             $reachable = $file;
@@ -423,7 +424,7 @@ class File_Archive
 
             //Select the requested folder in the uncompress reader
             $isDir = $result->setBaseDir($std);
-            if (PEAR::isError($isDir)) {
+            if ((new PEAR)->isError($isDir)) {
                 return $isDir;
             }
             if ($isDir && $symbolic==null) {
@@ -461,10 +462,10 @@ class File_Archive
             }
         }
 
-        $cacheCondition = File_Archive::getOption('cacheCondition');
+        $cacheCondition = (new File_Archive)->getOption('cacheCondition');
         if ($cacheCondition !== false &&
             preg_match($cacheCondition, $URL)) {
-            $tmp =& File_Archive::cache($result);
+            $tmp =& (new File_Archive)->cache($result);
             unset($result);
             $result =& $tmp;
         }
@@ -475,7 +476,7 @@ class File_Archive
                   $uncompression = 0, $directoryDepth = -1)
     {
         $source = null;
-        return File_Archive::readSource($source, $URL, $symbolic, $uncompression, $directoryDepth);
+        return (new File_Archive)->readSource($source, $URL, $symbolic, $uncompression, $directoryDepth);
     }
 
     /**
@@ -491,7 +492,7 @@ class File_Archive
      * @param string $name Index of the file in the $_FILES array
      * @return File_Archive_Reader File reader on the uploaded file
      */
-    public function readUploadedFile($name)
+    function readUploadedFile($name)
     {
         if (!isset($_FILES[$name])) {
             return PEAR::raiseError("File $name has not been uploaded");
@@ -548,8 +549,8 @@ class File_Archive
      */
     public function cache(&$toConvert)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
 
@@ -567,21 +568,21 @@ class File_Archive
     public function &_convertToReader(&$source)
     {
         if (is_string($source)) {
-            $cacheCondition = File_Archive::getOption('cacheCondition');
+            $cacheCondition = (new File_Archive)->getOption('cacheCondition');
             if ($cacheCondition !== false &&
                 preg_match($cacheCondition, $source)) {
-                $obj = File_Archive::cache(File_Archive::read($source));
+                $obj = (new File_Archive)->cache((new File_Archive)->read($source));
                 return $obj;
             } else {
-                $obj = File_Archive::read($source);
+                $obj = (new File_Archive)->read($source);
                 return $obj;
             }
-        } elseif (is_array($source)) {
-            return File_Archive::readMulti($source);
+        } else if (is_array($source)) {
+            return (new File_Archive)->readMulti($source);
         } else {
             return $source;
         }
-    }
+     }
 
     /**
      * Try to interpret the object as a writer
@@ -593,12 +594,12 @@ class File_Archive
     public function &_convertToWriter(&$dest)
     {
         if (is_string($dest)) {
-            $obj =& File_Archive::appender($dest);
+            $obj =& (new File_Archive)->appender($dest);
             return $obj;
-        } elseif (is_array($dest)) {
+        } else if (is_array($dest)) {
             require_once 'File/Archive/Writer/Multi.php';
             $writer = new File_Archive_Writer_Multi();
-            foreach ($dest as $key => $foo) {
+            foreach($dest as $key => $foo) {
                 $writer->addWriter($dest[$key]);
             }
             return $writer;
@@ -650,19 +651,19 @@ class File_Archive
      */
     public function readArchive($extension, &$toConvert, $sourceOpened = false)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
 
-        switch ($extension) {
+        switch($extension) {
         case 'tgz':
-            return File_Archive::readArchive('tar',
-                    File_Archive::readArchive('gz', $source, $sourceOpened)
+            return (new File_Archive)->readArchive('tar',
+                    (new File_Archive)->readArchive('gz', $source, $sourceOpened)
                     );
         case 'tbz':
-            return File_Archive::readArchive('tar',
-                    File_Archive::readArchive('bz2', $source, $sourceOpened)
+            return (new File_Archive)->readArchive('tar',
+                    (new File_Archive)->readArchive('bz2', $source, $sourceOpened)
                     );
         case 'tar':
             require_once 'File/Archive/Reader/Tar.php';
@@ -727,15 +728,15 @@ class File_Archive
      * @param array $sources Array of strings or readers that will be added to
      *        the multi reader. If the parameter is a string, a reader will be
      *        built thanks to the read function
-     * @see   File_Archive_Reader_Multi, File_Archive::read()
+     * @see   File_Archive_Reader_Multi, (new File_Archive)->read()
      */
     public function readMulti($sources = array())
     {
         require_once "File/Archive/Reader/Multi.php";
         $result = new File_Archive_Reader_Multi();
         foreach ($sources as $index => $foo) {
-            $s =& File_Archive::_convertToReader($sources[$index]);
-            if (PEAR::isError($s)) {
+            $s =& (new File_Archive)->_convertToReader($sources[$index]);
+            if ((new PEAR)->isError($s)) {
                 return $s;
             } else {
                 $result->addSource($s);
@@ -758,8 +759,8 @@ class File_Archive
      */
     public function readConcat(&$toConvert, $filename, $stat=array(), $mime=null)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
 
@@ -782,8 +783,8 @@ class File_Archive
      */
     public function changeName($function, &$toConvert)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
 
@@ -801,8 +802,8 @@ class File_Archive
      */
     public function filter($predicate, &$toConvert)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
 
@@ -1064,7 +1065,7 @@ class File_Archive
     public function toMemory()
     {
         $v = '';
-        return File_Archive::toVariable($v);
+        return (new File_Archive)->toVariable($v);
     }
     public function toVariable(&$v)
     {
@@ -1079,13 +1080,13 @@ class File_Archive
      */
     public function toMulti(&$aC, &$bC)
     {
-        $a =& File_Archive::_convertToWriter($aC);
-        $b =& File_Archive::_convertToWriter($bC);
+        $a =& (new File_Archive)->_convertToWriter($aC);
+        $b =& (new File_Archive)->_convertToWriter($bC);
 
-        if (PEAR::isError($a)) {
+        if ((new PEAR)->isError($a)) {
             return $a;
         }
-        if (PEAR::isError($b)) {
+        if ((new PEAR)->isError($b)) {
             return $b;
         }
 
@@ -1125,8 +1126,8 @@ class File_Archive
     public function toArchive($filename, &$toConvert, $type = null,
                        $stat = array(), $autoClose = true)
     {
-        $innerWriter =& File_Archive::_convertToWriter($toConvert);
-        if (PEAR::isError($innerWriter)) {
+        $innerWriter =& (new File_Archive)->_convertToWriter($toConvert);
+        if ((new PEAR)->isError($innerWriter)) {
             return $innerWriter;
         }
         $shortcuts = array("tgz"   , "tbz"    );
@@ -1141,13 +1142,13 @@ class File_Archive
         if ($innerWriter !== null) {
             $writer =& $innerWriter;
         } else {
-            $writer = File_Archive::toFiles();
+            $writer = (new File_Archive)->toFiles();
         }
         $nbCompressions = 0;
         $currentFilename = $filename;
         while (($extension = array_pop($extensions)) !== null) {
             unset($next);
-            switch ($extension) {
+            switch($extension) {
             case "tar":
                 require_once "File/Archive/Writer/Tar.php";
                 $next = new File_Archive_Writer_Tar(
@@ -1229,11 +1230,11 @@ class File_Archive
      */
     public function extract(&$sourceToConvert, &$destToConvert, $autoClose = true, $bufferSize = 0)
     {
-        $source =& File_Archive::_convertToReader($sourceToConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($sourceToConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
-        $dest =& File_Archive::_convertToWriter($destToConvert);
+        $dest =& (new File_Archive)->_convertToWriter($destToConvert);
         return $source->extract($dest, $autoClose, $bufferSize);
     }
 
@@ -1269,33 +1270,33 @@ class File_Archive
     public function appenderFromSource(&$toConvert, $URL = null, $unique = null,
                                  $type = null, $stat = array())
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
         if ($unique == null) {
-            $unique = File_Archive::getOption("appendRemoveDuplicates");
+            $unique = (new File_Archive)->getOption("appendRemoveDuplicates");
         }
 
         //Do not report the fact that the archive does not exist as an error
-        PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
+        (new PEAR)->pushErrorHandling(PEAR_ERROR_RETURN);
 
         if ($URL === null) {
             $result =& $source;
         } else {
             if ($type === null) {
-                $result = File_Archive::_readSource($source, $URL.'/', $reachable, $baseDir);
+                $result = (new File_Archive)->_readSource($source, $URL.'/', $reachable, $baseDir);
             } else {
-                $result = File_Archive::readArchive(
+                $result = (new File_Archive)->readArchive(
                             $type,
-                            File_Archive::_readSource($source, $URL, $reachable, $baseDir)
+                            (new File_Archive)->_readSource($source, $URL, $reachable, $baseDir)
                           );
             }
         }
 
-        PEAR::popErrorHandling();
+        (new PEAR)->popErrorHandling();
 
-        if (!PEAR::isError($result)) {
+        if (!(new PEAR)->isError($result)) {
             if ($unique) {
                 require_once "File/Archive/Writer/UniqueAppender.php";
                 return new File_Archive_Writer_UniqueAppender($result);
@@ -1311,38 +1312,38 @@ class File_Archive
             if ($source !== null) {
                 $writer =& $source->makeWriter();
             } else {
-                $writer =& File_Archive::toFiles();
+                $writer =& (new File_Archive)->toFiles();
             }
-            if (PEAR::isError($writer)) {
+            if ((new PEAR)->isError($writer)) {
                 return $writer;
             }
 
-            PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
-            $result = File_Archive::toArchive($reachable, $writer, $type);
-            PEAR::popErrorHandling();
+            (new PEAR)->pushErrorHandling(PEAR_ERROR_RETURN);
+            $result = (new File_Archive)->toArchive($reachable, $writer, $type);
+            (new PEAR)->popErrorHandling();
 
-            if (PEAR::isError($result)) {
-                $result = File_Archive::toFiles($reachable);
+            if ((new PEAR)->isError($result)) {
+                $result = (new File_Archive)->toFiles($reachable);
             }
         } else {
-            $reachedSource = File_Archive::readSource($source, $reachable);
-            if (PEAR::isError($reachedSource)) {
+            $reachedSource = (new File_Archive)->readSource($source, $reachable);
+            if ((new PEAR)->isError($reachedSource)) {
                 return $reachedSource;
             }
             $writer = $reachedSource->makeWriter();
-            if (PEAR::isError($writer)) {
+            if ((new PEAR)->isError($writer)) {
                 return $writer;
             }
 
-            PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
-            $result = File_Archive::toArchive($baseDir, $writer, $type);
-            PEAR::popErrorHandling();
+            (new PEAR)->pushErrorHandling(PEAR_ERROR_RETURN);
+            $result = (new File_Archive)->toArchive($baseDir, $writer, $type);
+            (new PEAR)->popErrorHandling();
 
-            if (PEAR::isError($result)) {
+            if ((new PEAR)->isError($result)) {
                 require_once "File/Archive/Writer/AddBaseName.php";
                 $result = new File_Archive_Writer_AddBaseName(
                                        $baseDir, $writer);
-                if (PEAR::isError($result)) {
+                if ((new PEAR)->isError($result)) {
                     return $result;
                 }
             }
@@ -1361,7 +1362,7 @@ class File_Archive
     public function appender($URL, $unique = null, $type = null, $stat = array())
     {
         $source = null;
-        return File_Archive::appenderFromSource($source, $URL, $unique, $type, $stat);
+        return (new File_Archive)->appenderFromSource($source, $URL, $unique, $type, $stat);
     }
 
     /**
@@ -1375,8 +1376,8 @@ class File_Archive
      */
     public function removeFromSource(&$pred, &$toConvert, $URL = null)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
         if ($URL === null) {
@@ -1385,11 +1386,11 @@ class File_Archive
             if (substr($URL, -1) !== '/') {
                 $URL .= '/';
             }
-            $result = File_Archive::readSource($source, $URL);
+            $result = (new File_Archive)->readSource($source, $URL);
         }
 
         $writer = $result->makeWriterRemoveFiles($pred);
-        if (PEAR::isError($writer)) {
+        if ((new PEAR)->isError($writer)) {
             return $writer;
         }
         $writer->close();
@@ -1404,7 +1405,7 @@ class File_Archive
     public function remove($pred, $URL)
     {
         $source = null;
-        return File_Archive::removeFromSource($pred, $source, $URL);
+        return (new File_Archive)->removeFromSource($pred, $source, $URL);
     }
 
     /**
@@ -1415,8 +1416,8 @@ class File_Archive
      */
     public function removeDuplicatesFromSource(&$toConvert, $URL = null)
     {
-        $source =& File_Archive::_convertToReader($toConvert);
-        if (PEAR::isError($source)) {
+        $source =& (new File_Archive)->_convertToReader($toConvert);
+        if ((new PEAR)->isError($source)) {
             return $source;
         }
         if ($URL !== null && substr($URL, -1) != '/') {
@@ -1424,13 +1425,13 @@ class File_Archive
         }
 
         if ($source === null) {
-            $source = File_Archive::read($URL);
+            $source = (new File_Archive)->read($URL);
         }
 
         require_once "File/Archive/Predicate/Duplicate.php";
         $pred = new File_Archive_Predicate_Duplicate($source);
         $source->close();
-        return File_Archive::removeFromSource(
+        return (new File_Archive)->removeFromSource(
             $pred,
             $source,
             null
@@ -1443,6 +1444,7 @@ class File_Archive
     public function removeDuplicates($URL)
     {
         $source = null;
-        return File_Archive::removeDuplicatesFromSource($source, $URL);
+        return (new File_Archive)->removeDuplicatesFromSource($source, $URL);
     }
 }
+

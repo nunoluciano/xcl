@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Base class for all the archive readers (that read from a single file)
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -74,7 +73,7 @@ class File_Archive_Reader_Archive extends File_Archive_Reader
     }
 
 //PUBLIC
-    public function __construct(&$source, $sourceOpened = false)
+    function File_Archive_Reader_Archive(&$source, $sourceOpened = false)
     {
         $this->source =& $source;
         $this->sourceOpened = $this->sourceInitiallyOpened = $sourceOpened;

@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * A reader that concatene the data of the files of a source
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -66,7 +65,7 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
         if (isset($this->stat[7])) {
             $this->stat['size'] = $this->stat[7];
         }
-        if (PEAR::isError($error) || PEAR::isError($source->close())) {
+        if ((new PEAR)->isError($error) || (new PEAR)->isError($source->close())) {
             die("Error in File_Archive_Reader_Concat constructor ".
                 '('.$error->getMessage().'), cannot continue');
         }
@@ -118,13 +117,13 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
             $sourceData = $this->source->getData(
                 $length==-1 ? -1 : $length - strlen($result)
             );
-            if (PEAR::isError($sourceData)) {
+            if ((new PEAR)->isError($sourceData)) {
                 return $sourceData;
             }
 
             if ($sourceData === null) {
                 $error = $this->source->next();
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
                 if (!$error) {
@@ -145,14 +144,14 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
         $skipped = 0;
         while ($skipped < $length) {
             $sourceSkipped = $this->source->skip($length);
-            if (PEAR::isError($sourceSkipped)) {
+            if ((new PEAR)->isError($sourceSkipped)) {
                 return $skipped;
             }
             $skipped += $sourceSkipped;
             $filePos += $sourceSkipped;
             if ($sourceSkipped < $length) {
                 $error = $this->source->next();
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
                 if (!$error) {

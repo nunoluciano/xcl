@@ -1,11 +1,10 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Add a directory to the public name of all the files of a reader
  *
  * PHP versions 4 and 5
- *
+ * PHP version 7 (Nuno Luciano aka gigamaster)
+
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -48,7 +47,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
      *
      * @param File_Archive_Reader &$source The archive reader to relay
      */
-    public function __construct(&$source)
+    function File_Archive_Reader_ChangeName(&$source)
     {
         parent::File_Archive_Reader_Relay($source);
     }
@@ -151,7 +150,7 @@ class File_Archive_Reader_ChangeName extends File_Archive_Reader_Relay
 
             if ($close) {
                 $error = $this->close();
-                if (PEAR::isError($error)) {
+                if ((new PEAR)->isError($error)) {
                     return $error;
                 }
             }

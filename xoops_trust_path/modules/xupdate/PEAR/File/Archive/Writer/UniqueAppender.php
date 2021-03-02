@@ -1,7 +1,8 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
-/**
+ /**
+ * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
+ *
  * A writer wrapper that will remove the files the eventual duplicate
  * files from the reader to keep only the new ones
  * When calling newFile, the file with the highest index in the reader
@@ -123,7 +124,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
     public function close()
     {
         $error = $this->writer->close();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -131,7 +132,7 @@ class File_Archive_Writer_UniqueAppender extends File_Archive_Writer
             $tmp = $this->reader->makeWriterRemoveFiles(
                 new File_Archive_Predicate_Index($this->toDelete)
             );
-            if (PEAR::isError($tmp)) {
+            if ((new PEAR)->isError($tmp)) {
                 return $tmp;
             }
 

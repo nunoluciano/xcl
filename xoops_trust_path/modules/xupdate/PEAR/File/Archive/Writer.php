@@ -5,6 +5,7 @@
  * Base class for any writer
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -102,7 +103,7 @@ class File_Archive_Writer
         }
         while (!feof($handle)) {
             $error = $this->writeData(fread($handle, 102400));
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }

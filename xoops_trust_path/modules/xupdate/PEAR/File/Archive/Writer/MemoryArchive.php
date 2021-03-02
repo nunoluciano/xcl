@@ -1,11 +1,10 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Base class for all the archiveWriters that can only work on complete files
  * (the write data function may be called with small chunks of data)
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -82,12 +81,12 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     {
         if ($this->nbFiles == 0) {
             $error = $this->sendHeader();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         } else {
             $error = $this->flush();
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
         }
@@ -105,11 +104,11 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     public function close()
     {
         $error = $this->flush();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
         $error = $this->sendFooter();
-        if (PEAR::isError($error)) {
+        if ((new PEAR)->isError($error)) {
             return $error;
         }
 
@@ -133,7 +132,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
                                  $this->currentStat,
                                  $this->buffer);
             }
-            if (PEAR::isError($error)) {
+            if ((new PEAR)->isError($error)) {
                 return $error;
             }
 

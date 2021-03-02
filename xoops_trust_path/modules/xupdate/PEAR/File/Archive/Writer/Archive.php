@@ -1,11 +1,10 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Base class for all the transformation writers that will generate one single
  * file
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -91,7 +90,7 @@ class File_Archive_Writer_Archive extends File_Archive_Writer
                 unset($this->emptyFolders[$current]);
             }
             $err = $this->_newFile($filename, $stat, $mime);
-            if (PEAR::isError($err)) {
+            if ((new PEAR)->isError($err)) {
                 return $err;
             }
         }
@@ -116,7 +115,7 @@ class File_Archive_Writer_Archive extends File_Archive_Writer
     {
         foreach ($this->emptyFolders as $folder => $info) {
             $err = $this->_newFile($folder, $info[0], $info[1]);
-            if (PEAR::isError($err)) {
+            if ((new PEAR)->isError($err)) {
                 return $err;
             }
         }
