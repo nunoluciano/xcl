@@ -35,7 +35,6 @@
     <{/if}>
 
 
-<hr>
 
     <p class="text-right">
         <a class="btn" href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>">
@@ -58,6 +57,11 @@
     <{if $post.can_reply}>
         <{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_REPLYTHISPOST quick_form_mode="reply" subject_raw=$post.subject_raw}>
     <{/if}>
+
+
+    <{* ------- Notification *}>
+
+    <{include file='db:system_notification_select.html'}>
 
 
 
@@ -163,6 +167,4 @@
     </form>
 
 
-<hr class="notification">
 
-<{include file='db:system_notification_select.html'}>

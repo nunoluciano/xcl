@@ -44,16 +44,17 @@
             </div>
             <{/if}>
 
-            <{if !empty($xoops_contents)}>
+
             <div self="size-x3 sm-first p-4 sm-p-0" data-tooltip="(first on small screen)">
-                <div class="content"><{$xoops_contents}></div>
+            <{if !empty($xoops_contents)}>
+            <div class="content"><{$xoops_contents}></div>
+                <{else}>
+                <{include file="$xoops_theme/component/front_page.html"}>
+                <{/if}>
             </div>
-            <{else}>
-
-           
 
 
-            <{/if}>
+
 
             <{if $xoops_showrblock==1}>
             <div self="size-x1 p-4 sm-p-0">

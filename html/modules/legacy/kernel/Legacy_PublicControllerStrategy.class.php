@@ -37,7 +37,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
             $mid = $this->mController->mRoot->mContext->mXoopsModule->get('mid');
         } else {
             //
-            // If you does not have module_contoller, this request is to toppage or other pages of toppage.
+            // If you don't have module_contoller, this request is to toppage or other pages of toppage.
             //
 
             // $mid = preg_match("/index\.php$/i", xoops_getenv('PHP_SELF')) ? -1 : 0;

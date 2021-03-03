@@ -14,9 +14,12 @@
 
 
         <{* ------- User profile column with tabs *}>
-        <div self="size-x3 ml-4 right">
+        <div self="size-x2 ml-4 right">
 
-            <div self="size-x1" class="profile-timeline">
+            <div self="size-x1 top" class="profile-timeline">
+
+                <h3 class="block-title"><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}></h3>
+
 
                 <{* ------- start module search results loop *}>
 
