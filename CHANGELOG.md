@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+[unreleased] 2021-03-03
+
+### Added
+
+✅ Component front page   
+
+### Changed  
+
+✅ Default Theme Neumorphism (WIP)  
+✅ Theme default front page     
+✅ Templates of modules    
+
 [unreleased] 2021-02-21
 
 ### Added
