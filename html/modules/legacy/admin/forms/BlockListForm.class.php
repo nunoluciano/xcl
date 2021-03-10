@@ -64,9 +64,9 @@ class Legacy_BlockListForm extends XCube_ActionForm
         //
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addVar('maxlength', '255');
+        $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addVar('maxlength', '191');
 
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['weight']->setDependsByArray(['required', 'intRange']);

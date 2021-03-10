@@ -769,7 +769,12 @@ class snoopy
                 $this->response_code = $currentHeader;
             }
 
-            if (preg_match('/Content-Encoding: gzip/', $currentHeader)) {
+            //!Fix to test
+            // The check for gzip-encoded content in responses should be case-insensitive, per RFC 2616.
+            // Patch by Evan Anderson
+            // - if (preg_match('/Content-Encoding: gzip/', $currentHeader)) {
+
+            if (preg_match("/Content-Encoding: gzip/i", $currentHeader)) {
                 $is_gzipped = true;
             }
 

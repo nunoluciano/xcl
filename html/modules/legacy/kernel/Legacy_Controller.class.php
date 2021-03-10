@@ -1222,8 +1222,10 @@ class Legacy_Controller extends XCube_Controller
                 [
                     'xoops_sitename'   =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
                     'sitename'         =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
-                    'langcode'         =>_LANGCODE, 'charset' =>_CHARSET,
-                    'time'             =>$time, 'url' =>$url,
+                    'langcode'         =>_LANGCODE,
+                    'charset'          =>_CHARSET,
+                    'time'             =>$time,
+                    'url'              =>$url,
                     'message'          =>$displayMessage,
                     'lang_ifnotreload' =>sprintf(_IFNOTRELOAD, $url)
                 ]

@@ -45,9 +45,9 @@ class Legacy_BlockEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addVar('maxlength', '255');
+        $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addVar('maxlength', '191');
 
         $this->mFieldProperties['side'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['side']->setDependsByArray(['required', 'objectExist']);

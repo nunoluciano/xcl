@@ -59,7 +59,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract
                 mb_http_output('pass');
             }
             pico_common_utf8_encode_recursive($this->assign);
-            header('Content-Type:text/xml; charset=utf-8');
+            header('Content-Type:text/xml; charset=UTF-8');
         } else {
             $this->template_name = $this->mydirname . '_main_latestcontents.html';
             $this->is_need_header_footer = true;

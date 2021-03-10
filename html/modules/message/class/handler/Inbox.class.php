@@ -13,7 +13,7 @@ class MessageInboxObject extends XoopsSimpleObject
         $this->initVar('inbox_id', XOBJ_DTYPE_INT, 0);
         $this->initVar('uid', XOBJ_DTYPE_INT, 0, true);
         $this->initVar('from_uid', XOBJ_DTYPE_INT, 0, true);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('message', XOBJ_DTYPE_TEXT, '', true);
         $this->initVar('utime', XOBJ_DTYPE_INT, time(), true);
         $this->initVar('is_read', XOBJ_DTYPE_INT, 0);

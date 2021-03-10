@@ -112,7 +112,7 @@ class xoops_elFinder {
 	public function checkLogin($session) {
 		// login/logout/status
 		if (isset($_GET['login']) || isset($_GET['logout']) || isset($_GET['status'])) {
-			header('Content-Type: application/json; charset=utf-8');
+			header('Content-Type: application/json; charset=UTF-8');
 			header('Cache-Control: no-store, no-cache, must-revalidate');
 			header('Cache-Control: post-check=0, pre-check=0', false);
 			header('Pragma: no-cache');
@@ -626,7 +626,7 @@ EOD;
 				$message = implode($sep, $msg);
 				if ('UTF-8' !== strtoupper(_CHARSET)) {
 					ini_set('default_charset', _CHARSET);
-					if (version_compare(PHP_VERSION, '5.6', '<')) {
+					if (PHP_VERSION_ID < 50600) {
 						ini_set('mbstring.internal_encoding', _CHARSET);
 					} else if (ini_get('mbstring.internal_encoding')) {
 						@ini_set('mbstring.internal_encoding', '');
@@ -645,7 +645,7 @@ EOD;
 			
 				if ('UTF-8' !== strtoupper(_CHARSET)) {
 					ini_set('default_charset', 'UTF-8');
-					if (version_compare(PHP_VERSION, '5.6', '<')) {
+					if (PHP_VERSION_ID < 50600) {
 						ini_set('mbstring.internal_encoding', 'UTF-8');
 					} else if (ini_get('mbstring.internal_encoding')) {
 						@ini_set('mbstring.internal_encoding', '');
@@ -797,13 +797,13 @@ EOD;
 			$config_handler = xoops_getHandler('config');
 			$xoopsConfig = $config_handler->getConfigsByCat(XOOPS_CONF);
 			$uname = $xoopsConfig['anonymous'];
-			if ('utf8' === self::$dbCharset && 'UTF-8' !== strtoupper(_CHARSET)) {
+			if ('UTF-8' === self::$dbCharset && 'UTF-8' !== strtoupper(_CHARSET)) {
 				$uname = mb_convert_encoding($uname, 'UTF-8', _CHARSET);
 			}
 		} else {
 			$query = 'SELECT `uname` FROM `'.$db->prefix('users').'` WHERE uid=' . $uid . ' LIMIT 1';
 			if ($result = $db->query($query)) {
-				list($uname) = $db->fetchRow($result);
+				[$uname] = $db->fetchRow($result);
 			}
 			if ('' === (string)$uname) {
 				return self::getUnameByUid(0);
@@ -821,7 +821,7 @@ EOD;
 	 * @param string $charset
 	 * @return bool
 	 */
-	public static function dbSetCharset($charset = 'utf8') {
+	public static function dbSetCharset($charset = 'UTF-8') {
 		static $link = null;
 		if (null === $link) {
 			$db = XoopsDatabaseFactory::getDatabaseConnection();

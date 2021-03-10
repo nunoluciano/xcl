@@ -43,9 +43,9 @@ class LegacyNewblocksObject extends XoopsSimpleObject
         $this->initVar('bid', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('mid', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('func_num', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('options', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('options', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('name', XOBJ_DTYPE_STRING, '', true, 150);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('content', XOBJ_DTYPE_TEXT, '', true);
         $this->initVar('side', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('weight', XOBJ_DTYPE_INT, '0', true);

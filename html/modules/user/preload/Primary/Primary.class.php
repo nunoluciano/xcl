@@ -134,7 +134,7 @@ class User_Utils
     /**
      * check pass colmun length of users table
      *
-     * @return     bool Users pass column length is fixed (VARCHAR(255))
+     * @return     bool Users pass column length is fixed (VARCHAR(191))
      */
     public static function checkUsersPassColumnLength()
     {
@@ -146,7 +146,7 @@ class User_Utils
             $sql = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA="'.XOOPS_DB_NAME.'" AND TABLE_NAME="'.$db->prefix('users').'" AND COLUMN_NAME="pass"';
             if ($res = $db->query($sql)) {
                 $type = $db->fetchRow($res);
-                if (preg_replace('/[^0-9]/', '', $type[0]) > 255) {
+                if (preg_replace('/[^0-9]/', '', $type[0]) > 191) {
                     $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(191) NOT NULL DEFAULT ""';
                     $res = $db->queryF($sql);
                 } else {

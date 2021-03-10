@@ -26,7 +26,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         $this->initVar('tpl_module', XOBJ_DTYPE_STRING, '', true, 25);
         $this->initVar('tpl_tplset', XOBJ_DTYPE_STRING, '', true, 50);
         $this->initVar('tpl_file', XOBJ_DTYPE_STRING, '', true, 50);
-        $this->initVar('tpl_desc', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('tpl_desc', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('tpl_lastmodified', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('tpl_lastimported', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('tpl_type', XOBJ_DTYPE_STRING, '', true, 20);

@@ -109,7 +109,9 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		include_once $d3dTrustDir.'/class/d3diaryConf.class.php';
 
 		$this->d3dConf = D3diaryConf::getInstance($mydirname, 0, 'photolist');
-		if (! is_object($this->d3dConf)) return false;
+		if (! is_object($this->d3dConf)) {
+            return false;
+        }
 
 		xoops_elFinder::dbSetCharset('utf8');
 		
@@ -193,7 +195,9 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function updateCache($path, $stat) {
 		$stat = parent::updateCache($path, $stat);
-		if ($stat && 'directory' !== $stat['mime']) $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath']) . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']) );
+		if ($stat && 'directory' !== $stat['mime']) {
+            $stat['_localpath'] = str_replace(XOOPS_ROOT_PATH, 'R', realpath($this->options['filePath']) . DIRECTORY_SEPARATOR . str_replace($this->options['URL'], '', $stat['url']));
+        }
 		return $this->cache[$path] = $stat;
 	}
 
@@ -210,7 +214,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		if ('_' === $path) {
 			$cid = 'root';
 		} else {
-			list($cid) = explode('_', substr($path, 1), 2);
+			[$cid] = explode('_', substr($path, 1), 2);
 		}
 
 		$row_def = [
@@ -262,7 +266,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 				$cids = [$cid];
 			}
 			
-			list($photos) = $this->d3dConf->func->get_photolist($arr_uids, $uid, 0, 0, ['cids' => $cids, 'enc' => 'UTF-8']);
+			[$photos] = $this->d3dConf->func->get_photolist($arr_uids, $uid, 0, 0, ['cids' => $cids, 'enc' => 'UTF-8']);
 			if ($photos) {
 				foreach($photos as $photo) {
 					$realpath = realpath($this->options['filePath'].$photo['pname']);
@@ -311,7 +315,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function tmbname($stat) {
 		$path = $this->decode($stat['hash']);
-		list(, $lid) = explode('_', substr($path, 1), 2);
+		[, $lid] = explode('_', substr($path, 1), 2);
 		return $this->encode($lid).$stat['ts'].'.png';
 	}
 
@@ -339,7 +343,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 		if ('_' === $path) {
 			return '';
 		} else {
-			list($cid, $name) = explode('_', substr($path, 1), 2);
+			[$cid, $name] = explode('_', substr($path, 1), 2);
 			return $name;
 		}
 	}
@@ -497,7 +501,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 			}
 		} elseif ('root' !== $cid) {
 			// photos
-			list($photos) = $this->d3dConf->func->get_photolist([], $uid, 1, 0, ['pid' => $pid, 'enc' => 'UTF-8']);
+			[$photos] = $this->d3dConf->func->get_photolist([], $uid, 1, 0, ['pid' => $pid, 'enc' => 'UTF-8']);
 			
 			if ($photos) {
 				$realpath = realpath($this->options['filePath'].$photos[0]['pname']);
@@ -548,7 +552,7 @@ class elFinderVolumeXoopsD3diary extends elFinderVolumeDriver {
 	 **/
 	protected function readlink($path) {
 		if ('_' !== $path) {
-			list(, $name) = explode('_', substr($path, 1), 2);
+			[, $name] = explode('_', substr($path, 1), 2);
 			if ($name) {
 				return realpath($this->options['filePath'] . $name);
 			}

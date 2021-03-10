@@ -36,8 +36,8 @@ class LegacyRender_TplsetEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['tplset_desc'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['tplset_desc']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['tplset_desc']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_TPLSET_DESC, '255');
-        $this->mFieldProperties['tplset_desc']->addVar('maxlength', 255);
+        $this->mFieldProperties['tplset_desc']->addMessage('maxlength', _AD_LEGACYRENDER_ERROR_MAXLENGTH, _AD_LEGACYRENDER_LANG_TPLSET_DESC, '191');
+        $this->mFieldProperties['tplset_desc']->addVar('maxlength', 191);
     }
 
     public function load(&$obj)

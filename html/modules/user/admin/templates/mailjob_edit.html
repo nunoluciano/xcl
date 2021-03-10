@@ -44,7 +44,7 @@
     <tr>
       <td class="head"><{$smarty.const._AD_USER_LANG_TITLE}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=title value=$actionForm->get('title') size=32 maxlength=255}>
+        <{xoops_input type=text name=title value=$actionForm->get('title') size=32 maxlength=191}>
       </td>
     </tr>
     <tr>
@@ -57,13 +57,13 @@
     <tr>
       <td class="head"><{$smarty.const._AD_USER_LANG_FROM_NAME}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=from_name value=$actionForm->get('from_name') size=32 maxlength=255}>
+        <{xoops_input type=text name=from_name value=$actionForm->get('from_name') size=32 maxlength=191}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._AD_USER_LANG_FROM_EMAIL}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=from_email value=$actionForm->get('from_email') size=32 maxlength=255}>
+        <{xoops_input type=text name=from_email value=$actionForm->get('from_email') size=32 maxlength=191}>
       </td>
     </tr>
     <tr>

@@ -232,7 +232,7 @@ if (!class_exists('XoopsGTicket')) {
             $form  = '';
             foreach ($tmp_array as $key => $val) {
                 if (is_array($val)) {
-                    list($tmp_table, $tmp_form) = $this->extract_post_recursive($key_name . '[' . htmlspecialchars($key, ENT_QUOTES) . ']', $val);
+                    [$tmp_table, $tmp_form] = $this->extract_post_recursive($key_name . '[' . htmlspecialchars($key, ENT_QUOTES) . ']', $val);
                     $table .= $tmp_table;
                     $form  .= $tmp_form;
                 } else {

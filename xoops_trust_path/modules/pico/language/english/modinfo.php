@@ -27,7 +27,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     // configurations
     define($constpref . '_USE_WRAPSMODE', 'enable wraps mode');
     define($constpref . '_ERR_DOCUMENT_404', 'Redirect to custom page for Error:404 ');
-    define($constpref . '_ERR_DOCUMENT_404DSC', 'The path of the page to dislay when the content could not be found on the server.<br/>Repalaces header "xoops_root_path" by "' . XOOPS_ROOT_PATH . '" and "xoops_trust_path" by "' . XOOPS_TRUST_PATH . '"');
+    define($constpref.'_ERR_DOCUMENT_404DSC','The Web server returns the HTTP 404 - File not found error message when it cannot retrieve the page that was requested.<br>This option can replace the "head" with e.g. "xoops_root_path" with "'.XOOPS_ROOT_PATH.'"/404.html and "xoops_trust_path" with "'.XOOPS_TRUST_PATH.'"/404.html');
     define($constpref . '_USE_REWRITE', 'enable mod_rewrite mode');
     define($constpref . '_USE_REWRITEDSC', 'Rename .htaccess.rewrite_wraps(with wraps) or htaccess.rewrite_normal(without wraps) to .htaccess under XOOPS_ROOT_PATH/modules/(dirname)/');
     define($constpref . '_WRAPSAUTOREGIST', 'enable auto-registering HTML wrapped files into DB as contents');

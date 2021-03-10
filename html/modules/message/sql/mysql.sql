@@ -28,6 +28,6 @@ CREATE TABLE {prefix}_{dirname}_users (
   `tomail` int(1) unsigned NOT NULL default '0',
   `viewmsm` int(1) unsigned NOT NULL default '0',
   `pagenum` int(2) unsigned NOT NULL default '0',
-  `blacklist` varchar(255) NOT NULL default '',
+  `blacklist` varchar(191) NOT NULL default '',
   PRIMARY KEY  (`uid`)
 ) ENGINE = InnoDB ;

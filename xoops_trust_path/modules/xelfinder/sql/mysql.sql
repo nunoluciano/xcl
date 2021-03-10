@@ -1,7 +1,7 @@
 CREATE TABLE `file` (
   `file_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(191) NOT NULL DEFAULT '',
   `size` bigint(20) unsigned NOT NULL DEFAULT '0',
   `ctime` int(10) unsigned NOT NULL DEFAULT '0',
   `mtime` int(10) unsigned NOT NULL DEFAULT '0',
@@ -10,12 +10,12 @@ CREATE TABLE `file` (
   `uid` int(10) unsigned NOT NULL DEFAULT '0',
   `gid` int(10) unsigned NOT NULL DEFAULT '0',
   `home_of` int(10) DEFAULT NULL,
-  `mime` varchar(255) NOT NULL DEFAULT 'unknown',
+  `mime` varchar(191) NOT NULL DEFAULT 'unknown',
   `width` int(11) NOT NULL DEFAULT '0',
   `height` int(11) NOT NULL DEFAULT '0',
-  `gids` varchar(255) NOT NULL DEFAULT '',
-  `mime_filter` varchar(255) NOT NULL DEFAULT '',
-  `local_path` varchar(255) NOT NULL DEFAULT '',
+  `gids` varchar(191) NOT NULL DEFAULT '',
+  `mime_filter` varchar(191) NOT NULL DEFAULT '',
+  `local_path` varchar(191) NOT NULL DEFAULT '',
   PRIMARY KEY (`file_id`),
   UNIQUE KEY `parent_name` (`parent_id`,`name`),
   KEY `parent_id` (`parent_id`)
@@ -31,7 +31,7 @@ CREATE TABLE `link` (
   `title` varchar(191) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mid_key_val` (`mid`,`param`,`val`),
-  KEY `uri` (`uri`(255)),
+  KEY `uri` (`uri`(191)),
   KEY `file_id` (`file_id`)
 ) ENGINE=InnoDB ;
 
