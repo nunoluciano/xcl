@@ -1,0 +1,23 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+    <h1><{$smarty.const._MD_LEIMG_LANG_THUMBNAIL_DELETE}></h1>
+
+
+<div class="alert alert-warning"><{$smarty.const._MD_LEIMG_MESSAGE_CONFIRM_DELETE}></div>
+
+<form class="form-horizontal"  action="./index.php?action=ThumbnailDelete" method="post">
+  <div class="control-group">
+  <label><{$smarty.const._MD_LEIMG_LANG_THUMBNAIL_ID}></label>
+  <div class="controls"><{$object->getShow('thumbnail_id')}></div>
+  </div>
+    <div class="form-actions">
+      <{xoops_token form=$actionForm}>
+      <{xoops_input type=hidden name=thumbnail_id value=$actionForm->get('thumbnail_id')}>
+      <button class="btn" type="submit" class="formButton" value="<{$smarty.const._DELETE}>"><{$smarty.const._DELETE}></button>
+      <button type="submit" class="formButton" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel"><{$smarty.const._CANCEL}></button>
+    </div>
+</form>
+
+

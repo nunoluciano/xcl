@@ -1,0 +1,142 @@
+<{assign var=groupId value=$object->getShow('group_id')}>
+
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <svg class="i-home" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg></a>
+    <li><a href="<{xoops_cooluri dirname=$dirname}>"><{$smarty.const._MD_LEGROUP_LANG_GROUP}></a>
+    <li aria-current="page"><{$smarty.const._LIST}>
+</ul>
+
+
+
+<section layout="column my-4 sm-first" name="category-top" class="bg-color">
+
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="svg -ui-icon">
+        <path d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7z" fill="currentColor">
+        </path>
+    </svg><{$object->getShow('title')}> [<{$object->getShowPublicity()}>] </h2>
+
+    <div><{$object->getShow('description')}></div>
+
+
+    <div layout="row center-right">
+        <{if $object->isMember($xoops_userid, ('Lenum_GroupRank::ASSOCIATE'))}>
+        <a href="<{xoops_cooluri dirname=$dirname dataname=member data_id=$object->getMyMemberId() action=delete}>" class="btn btn-danger">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="i-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"></path>
+            </svg> <{$smarty.const._MD_LEGROUP_LANG_RESIGN}></a>
+        <{elseif $object->isMember($xoops_userid, ('Lenum_GroupRank::ASSOCIATE'), ('Lenum_WorkflowStatus::PROGRESS'))}>
+        <{else}>
+        <a href="<{xoops_cooluri dirname=$dirname dataname=member action=edit query="group_id=`$groupId`"}>" class="btn btn-danger">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="i-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"></path>
+            </svg>
+            <{$smarty.const._MD_LEGROUP_LANG_JOIN}></a>
+        <{/if}>
+        <{if $isEditor===true}>
+        <a class="btn" href="<{xoops_cooluri dirname=$dirname dataname=group action=edit data_id=$object->get('group_id')}>">
+            <svg class="i-edit-title" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <path d="M2 26h28v2H2z" fill="currentColor"></path>
+                <path d="M25.4 9c.8-.8.8-2 0-2.8l-3.6-3.6c-.8-.8-2-.8-2.8 0l-15 15V24h6.4l15-15zm-5-5L24 7.6l-3 3L17.4 7l3-3zM6 22v-3.6l10-10l3.6 3.6l-10 10H6z" fill="currentColor"></path>
+            </svg> <{$smarty.const._MD_LEGROUP_LANG_GROUP_EDIT}></a>
+        <{/if}>
+    </div>
+
+</section>
+
+
+
+<!-- Group Member List -->
+<section layout="column my-4 sm-first" name="group-members" class="bg-color">
+
+    <h2><{$smarty.const._MD_LEGROUP_LANG_MEMBER}> (<{$object->countMembers()}>)</h2>
+
+    <div layout="row center-right">
+
+    <{if $object->isMember($xoops_userid, 7)}>
+    <a href="<{xoops_cooluri dirname=$dirname dataname=member action=add query="group_id=`$groupId`"}>" class="btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-member-new">
+            <path d="M21.1 12.5l1.4 1.41l-6.53 6.59L12.5 17l1.4-1.41l2.07 2.08l5.13-5.17M10 17l3 3H3v-2c0-2.21 3.58-4 8-4l1.89.11L10 17m1-13a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4z" fill="currentColor">
+            </path>
+        </svg> <{$smarty.const._MD_LEGROUP_LANG_ADD_A_NEW_MEMBER}></a>
+    <{/if}>
+
+    <a href="<{xoops_cooluri dirname=$dirname dataname=member action=list query="group_id=`$groupId`"}>" class="btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-member">
+            <path d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7z" fill="currentColor">
+            </path>
+        </svg> <{$smarty.const._MD_LEGROUP_LANG_MEMBER}></a>
+
+    <{if $object->countMembers(null, 5)>0 && $object->getMyRank()>=7}>
+    <a href="<{xoops_cooluri dirname=$dirname dataname=member query="group_id=$groupId"}>" class="btn btn-warning">
+        <i class="icon-ok"></i> <{$smarty.const._MD_LEGROUP_LANG_NOT_APPROVED}></a>
+    <{/if}>
+    </div>
+
+
+    <article>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-user-time">
+            <path d="M10.63 14.1a6.998 6.998 0 0 1 9.27-3.47a6.998 6.998 0 0 1 3.47 9.27A6.98 6.98 0 0 1 17 24c-2.7 0-5.17-1.56-6.33-4H1v-2c.06-1.14.84-2.07 2.34-2.82S6.72 14.04 9 14c.57 0 1.11.05 1.63.1M9 4c1.12.03 2.06.42 2.81 1.17S12.93 6.86 12.93 8c0 1.14-.37 2.08-1.12 2.83c-.75.75-1.69 1.12-2.81 1.12s-2.06-.37-2.81-1.12C5.44 10.08 5.07 9.14 5.07 8c0-1.14.37-2.08 1.12-2.83C6.94 4.42 7.88 4.03 9 4m8 18a5 5 0 0 0 5-5a5 5 0 0 0-5-5a5 5 0 0 0-5 5a5 5 0 0 0 5 5m-1-8h1.5v2.82l2.44 1.41l-.75 1.3L16 17.69V14z" fill="currentColor"></path>
+        </svg> <{$smarty.const._MD_LEGROUP_LANG_RECENT_MEMBERS}></h3>
+        <ul>
+            <{foreach item=member from=$object->mMember}>
+                <{if $member->getShow('status')==9 || $object->getMyRank()>=constant('Lenum_GroupRank::STAFF')}>
+                    <li><{$member->getShow('uid')|xoops_user:"user_name"}></li>
+                <{/if}>
+            <{/foreach}>
+        </ul>
+    </article>
+
+
+</section>
+
+
+<{foreach item=client from=$clients.data key=k}>
+<!-- Group Client Data -->
+<section layout="column my-4 sm-first" name="clients-data" class="bg-color" id="clientList">
+
+        <h2><{$clients.title[$k]}>
+            <a href="<{xoops_cooluri dirname=$clients.dirname[$k] dataname=$clients.dataname[$k] action=list query="category_id=`$groupId`"}>" class="btn">
+                <i class="icon-list"></i></a>
+            <{if $clients.isEditor[$k]==true}>
+            <a href="<{xoops_cooluri dirname=$clients.dirname[$k] dataname=$clients.dataname[$k] action=edit query="category_id=`$groupId`"}>" class="btn">
+                <i class="icon-pencil"></i><{$smarty.const._EDIT}></a>
+            <{/if}>
+        </h2>
+
+        <{foreach item=item from=$clients.data[$k]}>
+            <{include file="`$clients.template_name[$k]`" data=$item}>
+        <{/foreach}>
+
+</section>
+<{/foreach}>
+
+
+<{if $object->isMember($xoops_userid, constant('Lenum_GroupRank::OWNER'))}>
+<!-- Policy Edit link -->
+<section layout="column my-4 sm-first" name="user-group-policy" class="bg-color">
+
+    <h2><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="i-user-policy">
+        <path d="M22 17v-.5a2.5 2.5 0 0 0-5 0v.5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h5c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1m-1 0h-3v-.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v.5M8 8c0-2.21 1.79-4 4-4s4 1.79 4 4s-1.79 4-4 4s-4-1.79-4-4m6 12H4v-2c0-2.21 3.58-4 8-4c1.27 0 2.46.15 3.53.41c-.21.41-.38.84-.46 1.3c-.65.55-1.07 1.37-1.07 2.29v2z" fill="currentColor">
+        </path>
+    </svg> <{$smarty.const._MD_LEGROUP_LANG_EDIT_POLICY}></h2>
+
+    <ul>
+        <{foreach item=client from=$clientList key=k}>
+        <li><a href="<{xoops_cooluri dirname=$dirname dataname=policy action=edit query="dirname=`$client.dirname`&dataname=`$client.dataname`&group_id=$groupId"}>">
+            <{$client.dirname}> - <{$client.dataname}></a>
+        </li>
+        <{/foreach}>
+    </ul>
+
+</section>
+<{/if}>
+
+
