@@ -23,7 +23,7 @@ class PicoControllerDiffHistories extends PicoControllerAbstract
         parent::execute($request);
 
         $cat_data = $this->currentCategoryObj->getData();
-        $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+        $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 
         // get $history_profile from the id
         $older_profile = pico_get_content_history_profile($this->mydirname, $request['older_history_id']);

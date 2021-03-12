@@ -47,7 +47,9 @@ class PicoControllerAbstract
     public function render($target = null)
     {
         require_once XOOPS_ROOT_PATH . '/class/template.php';
+
         $tpl = new XoopsTpl();
+
         $tpl->assign($this->getAssign());
         $tpl->assign('xoops_module_header', pico_main_render_moduleheader($this->mydirname, $GLOBALS['xoopsModuleConfig'], $this->getHtmlHeader()));
         $tpl->display($this->getTemplateName());

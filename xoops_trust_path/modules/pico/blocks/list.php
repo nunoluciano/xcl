@@ -26,6 +26,7 @@ function b_pico_list_show($options)
 {
     // options
     $mytrustdirname = basename(dirname(__DIR__));
+
     $mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
     $categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
     $selected_order = empty($options[2]) || !in_array($options[2], b_pico_list_allowed_order(), true) ? 'o.created_time DESC' : $options[2];
@@ -70,7 +71,7 @@ function b_pico_list_show($options)
     $config_handler = &xoops_gethandler('config');
     $configs = $config_handler->getConfigList($module->mid());
 
-    // constpref
+    // const pref
     $constpref = '_MB_' . strtoupper($mydirname);
 
     // make an array named 'block'
@@ -89,7 +90,9 @@ function b_pico_list_show($options)
     if (empty($options['disable_renderer'])) {
         // render it
         require_once XOOPS_ROOT_PATH . '/class/template.php';
+
         $tpl = new XoopsTpl();
+
         $tpl->assign('block', $block);
         $ret['content'] = $tpl->fetch($this_template);
         return $ret;
@@ -103,6 +106,7 @@ function b_pico_list_edit($options)
 {
     // options
     $mytrustdirname = basename(dirname(__DIR__));
+
     $mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
     $categories = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
     $selected_order = empty($options[2]) || !in_array($options[2], b_pico_list_allowed_order(), true) ? 'o.created_time DESC' : $options[2];
@@ -115,7 +119,9 @@ function b_pico_list_edit($options)
     }
 
     require_once XOOPS_ROOT_PATH . '/class/template.php';
+
     $tpl = new XoopsTpl();
+
     $tpl->assign(
         [
             'mydirname' => $mydirname,

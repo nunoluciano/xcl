@@ -11,34 +11,42 @@ require dirname(__DIR__) . '/include/common_prepend.inc.php';
 
 // redirecting for wraps mode and restoring after redirection
 if ($xoopsModuleConfig['use_wraps_mode']) {
-	$uriMapper->redirect4WrapsPreview();
+    $uriMapper->redirect4WrapsPreview();
 }
 
 // deciding controller
 if (!empty($_POST['contentman_preview'])) {
-	$controller_class = 'PicoControllerPreviewContent';
+    $controller_class = 'PicoControllerPreviewContent';
 } else if (!empty($_POST['contentman_copyfromwaiting'])) {
-	$controller_class = 'PicoControllerCopywaitingContent';
+    $controller_class = 'PicoControllerCopywaitingContent';
 } else if (!empty($_POST['contentman_delete'])) {
-	$controller_class = 'PicoControllerDeleteContent';
+    $controller_class = 'PicoControllerDeleteContent';
 } else if (!empty($_POST['contentman_post'])) {
-	$controller_class = 'PicoControllerUpdateContent';
+    $controller_class = 'PicoControllerUpdateContent';
 } else {
-	$controller_class = 'PicoControllerEditContent';
+    $controller_class = 'PicoControllerEditContent';
 }
 
 require_once dirname(__DIR__) . '/class/' . $controller_class . '.class.php';
+
 $controller = new $controller_class($currentCategoryObj);
+
 $controller->execute($picoRequest);
 
 // render
 if ($controller->isNeedHeaderFooter()) {
-	$xoopsOption['template_main'] = $controller->getTemplateName();
-	include XOOPS_ROOT_PATH . '/header.php';
-	$xoopsTpl->assign($controller->getAssign());
-	$xoopsTpl->assign('xoops_module_header', pico_main_render_moduleheader($mydirname, $xoopsModuleConfig, $controller->getHtmlHeader()) . $xoopsTpl->get_template_vars('xoops_module_header'));
-	include XOOPS_ROOT_PATH . '/footer.php';
+
+    $xoopsOption['template_main'] = $controller->getTemplateName();
+
+    include XOOPS_ROOT_PATH . '/header.php';
+
+    $xoopsTpl->assign($controller->getAssign());
+
+    $xoopsTpl->assign('xoops_module_header', pico_main_render_moduleheader($mydirname, $xoopsModuleConfig, $controller->getHtmlHeader()) . $xoopsTpl->get_template_vars('xoops_module_header'));
+
+    include XOOPS_ROOT_PATH . '/footer.php';
+
 } else {
-	$controller->render();
+    $controller->render();
 }
 exit;

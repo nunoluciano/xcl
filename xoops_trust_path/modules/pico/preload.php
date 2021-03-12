@@ -1,8 +1,12 @@
 <?php
 
-if (!defined('XOOPS_ROOT_PATH')) exit;
+if (!defined('XOOPS_ROOT_PATH')) {
+    exit;
+}
 
-if (!preg_match('/^[0-9a-zA-Z_-]+$/', $mydirname)) exit;
+if (!preg_match('/^[0-9a-zA-Z_-]+$/', $mydirname)) {
+    exit;
+}
 
 if (!class_exists('PicoPreloadBase')) {
 
@@ -13,25 +17,26 @@ if (!class_exists('PicoPreloadBase')) {
         public function postFilter()
         {
             $this->mRoot->mDelegateManager->add('Legacy_BackendAction.GetRSSItems', [&$this, 'getRSSItems']);
+
             $this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', [$this, 'ckeditor4PreBuild']);
         }
 
         public function getRSSItems(&$items)
         {
             /*		$mydirname = $this->mydirname ;
-        $module_handler =& xoops_gethandler( 'module' ) ;
-        $xoopsModule =& $module_handler->getByDirname( $this->mydirname ) ;
-        $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection() ;
-        $_GET['page'] = 'rss' ;
-        include dirname(__FILE__).'/main/index.php' ;
+            $module_handler =& xoops_gethandler( 'module' ) ;
+            $xoopsModule =& $module_handler->getByDirname( $this->mydirname ) ;
+            $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection() ;
+            $_GET['page'] = 'rss' ;
+            include dirname(__FILE__).'/main/index.php' ;
 
-        $items[] = array(
-            'pubdate' => time() ,
-            'title' => $this->mydirname ,
-            'link' => 'link' ,
-            'description' => 'desc' ,
-            'guid' => 'guid' ,
-        ) ;*/
+            $items[] = array(
+                'pubdate' => time() ,
+                'title' => $this->mydirname ,
+                'link' => 'link' ,
+                'description' => 'desc' ,
+                'guid' => 'guid' ,
+            ) ;*/
         }
 
         public function ckeditor4PreBuild(&$params)

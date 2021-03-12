@@ -12,7 +12,9 @@ function b_pico_mywaitings_show($options)
     }
 
     $db = XoopsDatabaseFactory::getDatabaseConnection();
+
     (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
+
     $uid = is_object(@$xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 
     $module_handler = &xoops_gethandler('module');
@@ -40,6 +42,7 @@ function b_pico_mywaitings_show($options)
         ];
     }
 
+    // const pref
     $constpref = '_MB_' . strtoupper($mydirname);
 
     $block = [
@@ -51,8 +54,11 @@ function b_pico_mywaitings_show($options)
     ];
 
     if (empty($options['disable_renderer'])) {
+
         require_once XOOPS_ROOT_PATH . '/class/template.php';
+
         $tpl = new XoopsTpl();
+
         $tpl->assign('block', $block);
         $ret['content'] = $tpl->fetch($this_template);
         return $ret;
@@ -64,6 +70,7 @@ function b_pico_mywaitings_show($options)
 function b_pico_mywaitings_edit($options)
 {
     $mydirname = empty($options[0]) ? 'pico' : $options[0];
+
     $this_template = empty($options[1]) ? 'db:' . $mydirname . '_block_mywaitings.html' : trim($options[1]);
 
     if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {

@@ -5,7 +5,9 @@ require_once dirname(__DIR__) . '/include/common_functions.php';
 require_once dirname(__DIR__) . '/include/transact_functions.php';
 require_once dirname(__DIR__) . '/include/import_functions.php';
 require_once dirname(__DIR__) . '/class/gtickets.php';
+
 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
+
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 
@@ -99,8 +101,11 @@ if (!empty($_POST['do_clearbodycache'])) {
 //
 
 xoops_cp_header();
+
 include __DIR__ . '/mymenu.php';
+
 $tpl = new XoopsTpl();
+
 $tpl->assign(
     [
         'mydirname' => $mydirname,
@@ -112,5 +117,7 @@ $tpl->assign(
         'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
     ]
 );
+
 $tpl->display('db:' . $mydirname . '_admin_import.html');
+
 xoops_cp_footer();

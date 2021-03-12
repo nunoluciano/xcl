@@ -17,29 +17,41 @@ require dirname(__DIR__) . '/include/common_prepend.inc.php';
 $picoRequest = $uriMapper->modifyRequest($picoRequest, $currentCategoryObj);
 
 if ('content' == $picoRequest['controller']) {
-	// content (viewcontent)
-	require_once dirname(__DIR__) . '/class/PicoControllerGetContent.class.php';
-	$controller = new PicoControllerGetContent($currentCategoryObj);
+    // content (viewcontent)
+    require_once dirname(__DIR__) . '/class/PicoControllerGetContent.class.php';
+
+    $controller = new PicoControllerGetContent($currentCategoryObj);
+
 } else if ('htmlwrapped' == $picoRequest['controller']) {
-	// just html wrapping (viewcontent)
-	require_once dirname(__DIR__) . '/class/PicoControllerGetHtmlwrapped.class.php';
-	$controller = new PicoControllerGetHtmlwrapped($currentCategoryObj);
+    // just html wrapping (viewcontent)
+    require_once dirname(__DIR__) . '/class/PicoControllerGetHtmlwrapped.class.php';
+
+    $controller = new PicoControllerGetHtmlwrapped($currentCategoryObj);
+
 } else if ('category' == $picoRequest['controller']) {
-	// category (subcategories and contents)
-	require_once dirname(__DIR__) . '/class/PicoControllerGetCategory.class.php';
-	$controller = new PicoControllerGetCategory($currentCategoryObj);
+    // category (subcategories and contents)
+    require_once dirname(__DIR__) . '/class/PicoControllerGetCategory.class.php';
+
+    $controller = new PicoControllerGetCategory($currentCategoryObj);
+
 } else if ('latestcontents' == $picoRequest['controller']) {
-	// latestcontents under the category (mainly for rss)
-	require_once dirname(__DIR__) . '/class/PicoControllerGetLatestcontents.class.php';
-	$controller = new PicoControllerGetLatestcontents($currentCategoryObj);
+    // latestcontents under the category (mainly for rss)
+    require_once dirname(__DIR__) . '/class/PicoControllerGetLatestcontents.class.php';
+
+    $controller = new PicoControllerGetLatestcontents($currentCategoryObj);
+
 } else if ('querycontents' == $picoRequest['controller']) {
-	// querycontents (tag etc)
-	require_once dirname(__DIR__) . '/class/PicoControllerQueryContents.class.php';
-	$controller = new PicoControllerQueryContents($currentCategoryObj);
+    // querycontents (tag etc)
+    require_once dirname(__DIR__) . '/class/PicoControllerQueryContents.class.php';
+
+    $controller = new PicoControllerQueryContents($currentCategoryObj);
+
 } else {
-	// menu
-	require_once dirname(__DIR__) . '/class/PicoControllerGetMenu.class.php';
-	$controller = new PicoControllerGetMenu($currentCategoryObj);
+    // menu
+    require_once dirname(__DIR__) . '/class/PicoControllerGetMenu.class.php';
+
+    $controller = new PicoControllerGetMenu($currentCategoryObj);
+
 }
 
 // execute
@@ -47,12 +59,18 @@ $controller->execute($picoRequest);
 
 // render
 if ($controller->isNeedHeaderFooter()) {
-	$xoopsOption['template_main'] = $controller->getTemplateName();
-	include XOOPS_ROOT_PATH . '/header.php';
-	$xoopsTpl->assign($controller->getAssign());
-	$xoopsTpl->assign('xoops_module_header', pico_main_render_moduleheader($mydirname, $xoopsModuleConfig, $controller->getHtmlHeader()) . $xoopsTpl->get_template_vars('xoops_module_header'));
-	include XOOPS_ROOT_PATH . '/footer.php';
+
+    $xoopsOption['template_main'] = $controller->getTemplateName();
+
+    include XOOPS_ROOT_PATH . '/header.php';
+
+    $xoopsTpl->assign($controller->getAssign());
+
+    $xoopsTpl->assign('xoops_module_header', pico_main_render_moduleheader($mydirname, $xoopsModuleConfig, $controller->getHtmlHeader()) . $xoopsTpl->get_template_vars('xoops_module_header'));
+
+    include XOOPS_ROOT_PATH . '/footer.php';
+
 } else {
-	$controller->render();
+    $controller->render();
 }
 exit;

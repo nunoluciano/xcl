@@ -39,7 +39,7 @@ class PicoAutoRegisterWraps
         return 0;
     }
 
-    // protected
+    // protected ?
     public function getRegisteringWeight($cat_id, $vpath): int
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -49,7 +49,7 @@ class PicoAutoRegisterWraps
         return $weight + 1;
     }
 
-    // protected
+    // protected ?
     public function getInsertSQL($cat_id, $vpath): string
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -91,7 +91,7 @@ class PicoAutoRegisterWraps
         return false;
     }
 
-    // protected
+    // protected ?
     public function removeContent($content_id): void
     {
         // delete transaction
@@ -145,8 +145,11 @@ class PicoAutoRegisterWraps
     public function registerByCatvpath($category_row): int
     {
         $cat_id = (int)$category_row['cat_id'];
+
         $cat_vpath = str_replace('..', '', $category_row['cat_vpath']);
+
         $wrap_dir = $this->wrap_base . $cat_vpath;
+
         $affected_rows = 0;
         // trigger: mtime of the directory
         if (is_dir($wrap_dir) && filemtime($wrap_dir) > $category_row['cat_vpath_mtime']) {

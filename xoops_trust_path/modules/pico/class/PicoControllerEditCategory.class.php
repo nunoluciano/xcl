@@ -28,7 +28,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
 
         // $categoryObj (not parent)
         $picoPermission = &PicoPermission::getInstance();
-        $categoryObj    = new PicoCategory($this->mydirname, $request['cat_id'], $picoPermission->getPermissions($this->mydirname), 'makecategory' === $page, $this->currentCategoryObj);
+        $categoryObj = new PicoCategory($this->mydirname, $request['cat_id'], $picoPermission->getPermissions($this->mydirname), 'makecategory' === $page, $this->currentCategoryObj);
 
         // check existence
         if ($categoryObj->isError()) {
@@ -37,10 +37,10 @@ class PicoControllerEditCategory extends PicoControllerAbstract
         }
 
         // fetch data from DB
-        $cat_data                            = $categoryObj->getData();
-        $this->assign['category_base']       = $categoryObj->getData4html(true);
+        $cat_data = $categoryObj->getData();
+        $this->assign['category_base'] = $categoryObj->getData4html(true);
         $this->categoryObjs['category_base'] = &$categoryObj;
-        $this->assign['category']            = $categoryObj->getData4edit();
+        $this->assign['category'] = $categoryObj->getData4edit();
 
         // permission check
         if ('makecategory' === $page) {
@@ -55,8 +55,8 @@ class PicoControllerEditCategory extends PicoControllerAbstract
         }
 
         // category list can be read for category jumpbox etc.
-        $categoryHandler                     = new PicoCategoryHandler($this->mydirname, $this->permissions);
-        $categories                          = $categoryHandler->getAllCategories();
+        $categoryHandler = new PicoCategoryHandler($this->mydirname, $this->permissions);
+        $categories = $categoryHandler->getAllCategories();
         $this->assign['categories_can_post'] = [];
         foreach ($categories as $tmpObj) {
             $tmp_data = $tmpObj->getData();
@@ -67,7 +67,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract
         }
 
         // breadcrumbs
-        $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+        $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
         if ('makecategory' === $page) {
             $breadcrumbsObj->appendPath('', _MD_PICO_LINK_MAKECATEGORY);
             $this->assign['xoops_pagetitle'] = _MD_PICO_LINK_MAKECATEGORY;
@@ -79,14 +79,14 @@ class PicoControllerEditCategory extends PicoControllerAbstract
         $this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();
 
         // misc assigns
-        $this->assign['page']                          = $page;
-        $this->assign['formtitle']                     = 'makecategory' === $page ? _MD_PICO_LINK_MAKECATEGORY : _MD_PICO_CATEGORYMANAGER;
-        $this->assign['gticket_hidden']                = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
-        $this->assign['category']['option_desc']       = $this->getCategoryOptions4edit();
+        $this->assign['page'] = $page;
+        $this->assign['formtitle'] = 'makecategory' === $page ? _MD_PICO_LINK_MAKECATEGORY : _MD_PICO_CATEGORYMANAGER;
+        $this->assign['gticket_hidden'] = $GLOBALS['xoopsGTicket']->getTicketHtml(__LINE__, 1800, 'pico');
+        $this->assign['category']['option_desc'] = $this->getCategoryOptions4edit();
         $this->assign['category']['wraps_directories'] = ['' => '---'] + pico_main_get_wraps_directories_recursively($this->mydirname, '/');
 
         // views
-        $this->template_name         = $this->mydirname . '_main_category_form.html';
+        $this->template_name = $this->mydirname . '_main_category_form.html';
         $this->is_need_header_footer = true;
     }
 

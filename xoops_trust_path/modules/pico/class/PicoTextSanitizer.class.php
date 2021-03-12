@@ -6,10 +6,10 @@ class PicoTextSanitizer extends MyTextSanitizer
 {
     public $nbsp = 0;
 
-/*    public function __construct()
-    {
-        parent::__construct();
-    }*/
+    /*    public function __construct()
+        {
+            parent::__construct();
+        }*/
 
     public static function &sGetInstance()
     {
@@ -106,7 +106,7 @@ class PicoTextSanitizer extends MyTextSanitizer
     // additional pre filters
     public function prepareXcode($text)
     {
-        $patterns     = [
+        $patterns = [
             '#\n?\[code\]\r?\n?#',
             '#\n?\[\/code\]\r?\n?#',
             '#\n?\[quote\]\r?\n?#',
@@ -125,19 +125,19 @@ class PicoTextSanitizer extends MyTextSanitizer
     public function postCodeDecode($text, $image)
     {
         $removal_tags = ['[summary]', '[/summary]' /*, '[pagebreak]'*/];
-        $text         = str_replace($removal_tags, '', $text);
+        $text = str_replace($removal_tags, '', $text);
 
-        $patterns     = [];
+        $patterns = [];
         $replacements = [];
 
         // [siteimg]
-        $patterns[]     = "/\[siteimg align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
-        $patterns[]     = "/\[siteimg]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
+        $patterns[] = "/\[siteimg align=(['\"]?)(left|center|right)\\1]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
+        $patterns[] = "/\[siteimg]([^\"\(\)\?\&'<>]*)\[\/siteimg\]/sU";
         $replacements[] = '<img src="' . XOOPS_URL . '/\\3" align="\\2" alt="" />';
         $replacements[] = '<img src="' . XOOPS_URL . '/\\1" alt="" />';
 
         // [quote sitecite=]
-        $patterns[]     = "/\[quote sitecite=([^\"'<>]*)\]/sU";
+        $patterns[] = "/\[quote sitecite=([^\"'<>]*)\]/sU";
         $replacements[] = _QUOTEC . '<div class="xoopsQuote"><blockquote cite="' . XOOPS_URL . '/\\1">';
 
         // [quote cite=] (TODO)
@@ -152,14 +152,14 @@ class PicoTextSanitizer extends MyTextSanitizer
         if ($this->nbsp) {
             $patterns = ['  ', '\"'];
             $replaces = [' &nbsp;', '"'];
-            $text     = substr(preg_replace('/\>.*\</sU', "str_replace(\$patterns,\$replaces,'\\0')", ">$text<"), 1, -1);
+            $text = substr(preg_replace('/\>.*\</sU', "str_replace(\$patterns,\$replaces,'\\0')", ">$text<"), 1, -1);
         }
         return $text;
     }
 
     public function extractSummary($text)
     {
-        $patterns[]     = "/^(.*)\[summary\](.*)\[\/summary\](.*)$/sU";
+        $patterns[] = "/^(.*)\[summary\](.*)\[\/summary\](.*)$/sU";
         $replacements[] = '$2';
 
         return preg_replace($patterns, $replacements, $text);
@@ -189,15 +189,15 @@ class PicoTextSanitizer extends MyTextSanitizer
             $text = htmlspecialchars(str_replace('\"', '"', $text), ENT_QUOTES);
         }
 
-        $patterns[]     = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
+        $patterns[] = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
         $replacements[] = '<span style="color: #\\2;">\\3</span>';
-        $patterns[]     = "/\[b](.*)\[\/b\]/sU";
+        $patterns[] = "/\[b](.*)\[\/b\]/sU";
         $replacements[] = '<strong>\\1</strong>';
-        $patterns[]     = "/\[i](.*)\[\/i\]/sU";
+        $patterns[] = "/\[i](.*)\[\/i\]/sU";
         $replacements[] = '<i>\\1</i>';
-        $patterns[]     = "/\[u](.*)\[\/u\]/sU";
+        $patterns[] = "/\[u](.*)\[\/u\]/sU";
         $replacements[] = '<span style="text-decoration:underline">\\1</span>';
-        $patterns[]     = "/\[d](.*)\[\/d\]/sU";
+        $patterns[] = "/\[d](.*)\[\/d\]/sU";
         $replacements[] = '<del>\\1</del>';
 
         return preg_replace($patterns, $replacements, $text);
@@ -209,15 +209,15 @@ class PicoTextSanitizer extends MyTextSanitizer
             return $text;
         }
 
-        $html  = '';
-        $navi  = '';
-        $ids   = [];
+        $html = '';
+        $navi = '';
+        $ids = [];
         $parts = explode('[pagebreak]', $text);
         foreach ($parts as $i => $part) {
-            $id    = $mydirname . '_pagebreak_' . $i;
+            $id = $mydirname . '_pagebreak_' . $i;
             $ids[] = "'$id'";
-            $html  .= '<div id="' . $id . '">' . $part . '</div>';
-            $navi  .= '<span id="navi_' . $id . '" class="selected"></span>' . "\n";
+            $html .= '<div id="' . $id . '">' . $part . '</div>';
+            $navi .= '<span id="navi_' . $id . '" class="selected"></span>' . "\n";
         }
 
         $js = '

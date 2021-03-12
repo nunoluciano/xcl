@@ -2,19 +2,23 @@
 
 // language file (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
+
 if (!file_exists($langmanpath)) {
     die('install the module UI-Components');
 }
+
 require_once($langmanpath);
-$langman = &D3LanguageManager::getInstance();
+
+$langman = D3LanguageManager::getInstance();
+
 $langman->read('modinfo.php', $mydirname, $mytrustdirname, false);
 
 $constpref = '_MI_' . strtoupper($mydirname);
 
 $modversion['name'] = $mydirname;
 $modversion['description'] = constant($constpref . '_DESC');
-$modversion['version'] = '2.4.0';
-$modversion['detailed_version'] = '2.4.0.0';
+$modversion['version'] = '2.31';
+$modversion['detailed_version'] = '2.3.1.0';
 $modversion['credits'] = 'PEAK Corp.';
 $modversion['author'] = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/)<br>Update by XOOPS-X (10) and refactor code by @gigamaster';
 $modversion['cube_style'] = true;
@@ -46,6 +50,7 @@ $modversion['hasMain'] = 1;
 
 // Submenu (just for mainmenu)
 $modversion['sub'] = [];
+
 if (is_object(@$GLOBALS['xoopsModule']) && $GLOBALS['xoopsModule']->getVar('dirname') === $mydirname) {
 	require_once __DIR__ . '/include/common_functions.php';
 	$modversion['sub'] = pico_common_get_submenu($mydirname);
@@ -538,6 +543,7 @@ $modversion['config'][] = [
 
 // Notification
 $modversion['hasNotification'] = 1;
+
 $modversion['notification'] = [
     'lookup_file' => 'notification.php',
     'lookup_func' => "{$mydirname}_notify_iteminfo",
@@ -609,6 +615,6 @@ $modversion['onUpdate'] = 'onupdate.php';
 $modversion['onUninstall'] = 'onuninstall.php';
 
 // keep block's options
-if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && 'modulesadmin' === $_POST['fct'] && 'update_ok' === $_POST['op'] && $_POST['dirname'] === $modversion['dirname']) {
+/*if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && 'modulesadmin' === $_POST['fct'] && 'update_ok' === $_POST['op'] && $_POST['dirname'] === $modversion['dirname']) {
 	include __DIR__ . '/include/x20_keepblockoptions.inc.php';
-}
+}*/

@@ -8,6 +8,7 @@ require_once dirname(__DIR__) . '/include/history_functions.php';
 require_once dirname(__DIR__) . '/class/PicoTextSanitizer.class.php';
 require_once dirname(__DIR__) . '/class/gtickets.php';
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+
 $myts = &PicoTextSanitizer::sGetInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -61,8 +62,8 @@ if (!empty($_POST['extras_output']) && is_array(@$_POST['action_selects'])) {
         $out = mb_convert_encoding($out, _MD_PICO_CSVENCODING, _CHARSET);
     }
 
-    header('Cache-Control: public'); // for IE7
-    header('Pragma: public'); // for IE7
+    header('Cache-Control: public'); // for IE
+    header('Pragma: public'); // for IE
     header('Content-Type: application/force-download');
     header('Content-Disposition: attachment; filename=' . $mydirname . '_extras_' . date('Ymd') . '.csv');
     header('Content-Description: File Transfer');
@@ -141,8 +142,11 @@ while ($extra_row = $db->fetchArray($ers)) {
 //
 
 xoops_cp_header();
+
 include __DIR__ . '/mymenu.php';
+
 $tpl = new XoopsTpl();
+
 $tpl->assign(
     [
         'mydirname' => $mydirname,
@@ -159,11 +163,13 @@ $tpl->assign(
         'gticket_hidden' => $xoopsGTicket->getTicketHtml(__LINE__, 1800, 'pico_admin'),
     ]
 );
+
 if ($extra_id) {
     $tpl->display('db:' . $mydirname . '_admin_extras_detail.html');
 } else {
     $tpl->display('db:' . $mydirname . '_admin_extras.html');
 }
+
 xoops_cp_footer();
 
 //

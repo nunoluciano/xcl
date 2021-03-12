@@ -168,7 +168,7 @@ class PicoFormProcessBySmartyBase
         // read language files for this plugin
         $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
         require_once($langmanpath);
-        $langman = &D3LanguageManager::getInstance();
+        $langman = D3LanguageManager::getInstance();
         $langman->read($filename . '.php', $this->mydirname, 'pico');
     }
 

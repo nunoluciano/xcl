@@ -7,6 +7,7 @@ require_once dirname(__DIR__) . '/include/import_functions.php';
 require_once dirname(__DIR__) . '/include/history_functions.php';
 require_once dirname(__DIR__) . '/class/PicoTextSanitizer.class.php';
 require_once dirname(__DIR__) . '/class/gtickets.php';
+
 $myts = &PicoTextSanitizer::sGetInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -222,4 +223,5 @@ $tpl->assign(
     ]
 );
 $tpl->display('db:' . $mydirname . '_admin_contents.html');
+
 xoops_cp_footer();

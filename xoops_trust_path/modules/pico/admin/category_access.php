@@ -2,6 +2,7 @@
 
 require_once dirname(__DIR__) . '/include/common_functions.php';
 require_once dirname(__DIR__) . '/class/gtickets.php';
+
 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -26,7 +27,7 @@ if (!empty($_POST['independentpermission_update']) && 0 != $cat_id) {
         redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
     }
     if (!empty($_POST['independentpermission'])) {
-        // update permission_id of categories has the same permission_id and childlen of the category
+        // update permission_id of categories has the same permission_id and children of the category
         $whr_cid = !empty($redundants['subcategories_ids_cs']) ? 'cat_id IN (' . $redundants['subcategories_ids_cs'] . $cat_id . ')' : 'cat_id=' . $cat_id;
         $db->queryF('UPDATE ' . $db->prefix($mydirname . '_categories') . " SET cat_permission_id=$cat_id WHERE cat_permission_id=$cat_permission_id AND ($whr_cid)");
     } else {
@@ -206,4 +207,5 @@ $tpl->assign(
     ]
 );
 $tpl->display('db:' . $mydirname . '_admin_category_access.html');
+
 xoops_cp_footer();

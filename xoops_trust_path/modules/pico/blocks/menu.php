@@ -48,7 +48,7 @@ function b_pico_menu_show($options)
     $config_handler = &xoops_gethandler('config');
     $configs = $config_handler->getConfigList($module->mid());
 
-    // constpref
+    // const pref
     $constpref = '_MB_' . strtoupper($mydirname);
 
     // make an array named 'block'
@@ -72,7 +72,7 @@ function b_pico_menu_show($options)
         return $ret;
     }
 
-// just assign it
+    // just assign it
     return $block;
 }
 
@@ -80,6 +80,7 @@ function b_pico_menu_edit($options)
 {
     // options
     $mytrustdirname = basename(dirname(__DIR__));
+
     $mydirname = empty($options[0]) ? $mytrustdirname : $options[0];
     $cat_ids = '' === trim(@$options[1]) ? [] : array_map('intval', explode(',', $options[1]));
     $this_template = empty($options[2]) ? 'db:' . $mydirname . '_block_menu.html' : trim($options[2]);
@@ -89,7 +90,9 @@ function b_pico_menu_edit($options)
     }
 
     require_once XOOPS_ROOT_PATH . '/class/template.php';
+
     $tpl = new XoopsTpl();
+
     $tpl->assign(
         [
             'mydirname' => $mydirname,

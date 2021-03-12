@@ -17,6 +17,7 @@ class FormProcessByHtml
     {
         // register validators
         $this->validator_dir = __DIR__ . '/validators';
+
         if ($handler = @opendir($this->validator_dir)) {
             while (false !== ($file = readdir($handler))) {
                 if (strpos($file, '.') === 0) {
@@ -35,6 +36,7 @@ class FormProcessByHtml
 
         // get name="..." from the form
         preg_match_all('#<[^>]+name=([\'"]?)([^\'" ]+)\\1[^>]*>#iU', $this->form_html, $matches, PREG_SET_ORDER);
+
         $tags = [];
         foreach ($matches as $match) {
             $tags[] = [$match[0], $match[2]];
@@ -506,7 +508,9 @@ class FormProcessByHtml
         }
 
         [$before, $options_html_tmp] = explode($attribs['tags'][0], $form_html, 2);
+
         [$options_html, $after] = explode('</select>', $options_html_tmp, 2);
+
         $new_options_html = str_replace('selected="selected"', '', $options_html);
         foreach ($values as $value) {
             $value4html = htmlspecialchars($value, ENT_QUOTES);

@@ -31,7 +31,7 @@ function b_pico_content_show($options)
     // module config (overridden)
     $configs = $contentObj->categoryObj->getOverriddenModConfig();
 
-    // constpref
+    // const pref
     $constpref = '_MB_' . strtoupper($mydirname);
 
     // assigning (process_body)
@@ -59,7 +59,9 @@ function b_pico_content_show($options)
     if (empty($options['disable_renderer'])) {
         // render it
         require_once XOOPS_ROOT_PATH . '/class/template.php';
+
         $tpl = new XoopsTpl();
+
         $tpl->assign('block', $block);
         $ret['content'] = $tpl->fetch($this_template);
         return $ret;
@@ -85,7 +87,9 @@ function b_pico_content_edit($options)
 
     // get content_title
     $db = XoopsDatabaseFactory::getDatabaseConnection();
+
     (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
+
     $contents = [0 => '--'];
     $result = $db->query('SELECT content_id,subject,c.cat_depth_in_tree FROM ' . $db->prefix($mydirname . '_contents') . ' o LEFT JOIN ' . $db->prefix($mydirname . '_categories') . ' c ON o.cat_id=c.cat_id ORDER BY c.cat_order_in_tree,o.weight');
     while (list($id, $sbj, $depth) = $db->fetchRow($result)) {
@@ -93,7 +97,9 @@ function b_pico_content_edit($options)
     }
 
     require_once XOOPS_ROOT_PATH . '/class/template.php';
+
     $tpl = new XoopsTpl();
+
     $tpl->assign(
         [
             'mydirname' => $mydirname,

@@ -3,21 +3,21 @@
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php';
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoFormProcessBySmartyBase.class.php';
 
-
 function smarty_function_formmail($params, &$smarty)
 {
-	$controller = new PicoFormProcessBySmartyFormmail();
-	$controller->parseParameters($params);
+    $controller = new PicoFormProcessBySmartyFormmail();
 
-	// toEmails from 'adminmail'
-	if (empty($controller->toEmails)) {
-		if ('' != trim($GLOBALS['xoopsConfig']['adminmail'])) {
-			$controller->toEmails[] = $GLOBALS['xoopsConfig']['adminmail'];
-		}
-	}
+    $controller->parseParameters($params);
 
-	if ($controller->countValidToEmails() <= 0) die('Set a valid email address by adding to="(email)" inside &lt;{' . $controller->mypluginname . '}&gt;');
-	$controller->execute($params, $smarty);
+    // toEmails from 'adminmail'
+    if (empty($controller->toEmails) && '' != trim($GLOBALS['xoopsConfig']['adminmail'])) {
+        $controller->toEmails[] = $GLOBALS['xoopsConfig']['adminmail'];
+    }
+
+    if ($controller->countValidToEmails() <= 0) {
+        die('Set a valid email address by adding to="(email)" inside &lt;{' . $controller->mypluginname . '}&gt;');
+    }
+    $controller->execute($params, $smarty);
 }
 
 class PicoFormProcessBySmartyFormmail extends PicoFormProcessBySmartyBase
