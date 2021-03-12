@@ -1,7 +1,13 @@
 <?php
 
-eval(' function xoops_module_install_' . $mydirname . '( $module ) { return altsys_oninstall_base( $module , \'' . $mydirname . '\' ) ; } ');
+eval(' function xoops_module_install_' . $mydirname . '( $module ) { return altsys_oninstall_base( $module , "' . $mydirname . '" ) ; } ');
 
+if (!function_exists('altsys_oninstall_base')) {
+    /**
+     * @param $module
+     * @param $mydirname
+     * @return bool
+     */
 
 if (!function_exists('altsys_oninstall_base')) {
     function altsys_oninstall_base($module, $mydirname)
@@ -12,14 +18,17 @@ if (!function_exists('altsys_oninstall_base')) {
 
         // for Cube 2.1
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $root =& XCube_Root::getSingleton();
+            $root = XCube_Root::getSingleton();
             $root->mDelegateManager->add('Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success', 'altsys_message_append_oninstall');
             $ret = [];
-        } else if (!is_array($ret)) {
-            $ret = [];
+        } else {
+            if (!is_array($ret)) {
+                $ret = [];
+            }
         }
 
-        $db =& XoopsDatabaseFactory::getDatabaseConnection();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+
         $mid = $module->getVar('mid');
 
         // ALTSYS SPECIFIC PART
@@ -31,9 +40,10 @@ if (!function_exists('altsys_oninstall_base')) {
         $sql_file_path = __DIR__ . '/sql/mysql.sql';
         $prefix_mod = $db->prefix() . '_' . $mydirname;
         if (file_exists($sql_file_path)) {
-            $ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path) . '</b>.<br> Creating tables...';
+            //$ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path) . '</b>.<br> Creating tables...';
+ $ret[] = 'SQL file found at <b>' . htmlspecialchars($sql_file_path, ENT_QUOTES | ENT_HTML5) . '</b>.<br /> Creating tables...';
 
-            if (file_exists(XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php')) {
+            if (is_file(XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php')) {
                 include_once XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php';
                 $sqlutil = new OldSqlUtility();
             } else {
@@ -64,17 +74,17 @@ if (!function_exists('altsys_oninstall_base')) {
         }
 
         // TEMPLATES
-        $tplfile_handler =& xoops_gethandler('tplfile');
+        $tplfile_handler = xoops_gethandler('tplfile');
         $tpl_path = __DIR__ . '/templates';
         if ($handler = @opendir($tpl_path . '/')) {
             while (false !== ($file = readdir($handler))) {
-                if ('.' === substr($file, 0, 1)) {
+                if ('.' == substr($file, 0, 1)) {
                     continue;
                 }
                 $file_path = $tpl_path . '/' . $file;
                 if (is_file($file_path)) {
                     $mtime = (int)@filemtime($file_path);
-                    $tplfile =& $tplfile_handler->create();
+                    $tplfile = $tplfile_handler->create();
                     $tplfile->setVar('tpl_source', file_get_contents($file_path), true);
                     $tplfile->setVar('tpl_refid', $mid);
                     $tplfile->setVar('tpl_tplset', 'default');

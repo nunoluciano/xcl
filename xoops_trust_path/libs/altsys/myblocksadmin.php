@@ -5,11 +5,11 @@
 //                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
-require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php';
-require_once __DIR__ . '/include/gtickets.php';
-include_once __DIR__ . '/include/altsys_functions.php';
-include_once __DIR__ . '/include/mygrouppermform.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
+require_once __DIR__.'/class/AltsysBreadcrumbs.class.php' ;
+require_once __DIR__.'/include/gtickets.php' ;
+include_once __DIR__.'/include/altsys_functions.php' ;
+include_once __DIR__.'/include/mygrouppermform.php' ;
+include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
 
 // language file
 altsys_include_language_file('myblocksadmin');

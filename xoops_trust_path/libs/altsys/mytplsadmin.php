@@ -12,20 +12,20 @@ include_once __DIR__ . '/include/tpls_functions.php';
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
-$module_handler =& xoops_gethandler('module');
-$module =& $module_handler->getByDirname('altsys');
+$module_handler = xoops_gethandler('module');
+$module = $module_handler->getByDirname('altsys');
 if (!is_object($module)) {
     die('install altsys');
 }
-$moduleperm_handler =& xoops_gethandler('groupperm');
+$moduleperm_handler = xoops_gethandler('groupperm');
 if (!is_object(@$xoopsUser) || !$moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $xoopsUser->getGroups())) {
     die('only admin of altsys can access this area');
 }
 
 
 // initials
-$db =& XoopsDatabaseFactory::getDatabaseConnection();
-(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
+(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 
 // language file
 altsys_include_language_file('mytplsadmin');
@@ -36,10 +36,10 @@ if (!is_object($xoopsModule)) {
 }
 
 // set target_module if specified by $_GET['dirname']
-$module_handler =& xoops_gethandler('module');
+$module_handler = xoops_gethandler('module');
 if (!empty($_GET['dirname'])) {
     $dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['dirname']);
-    $target_module =& $module_handler->getByDirname($dirname);
+    $target_module = $module_handler->getByDirname($dirname);
 }
 
 if (!empty($target_module) && is_object($target_module)) {
@@ -49,7 +49,7 @@ if (!empty($target_module) && is_object($target_module)) {
     $target_dirname4sql = addslashes($target_dirname);
     $target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0);
     //$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
-} elseif (@$_GET['dirname'] === '_custom') {
+} elseif (@$_GET['dirname'] == '_custom') {
     // custom template
     $target_mid = 0;
     $target_dirname = '_custom';
@@ -166,7 +166,7 @@ if (is_array(@$_POST['del_do'])) {
             }
 
             $tplset_from = $myts->stripSlashesGPC($tplset_from_tmp);
-            if ($tplset_from === 'default' && $target_dirname !== '_custom') {
+            if ($tplset_from == 'default' && $target_dirname != '_custom') {
                 tplsadmin_die(_MYTPLSADMIN_ERR_CANTREMOVEDEFAULT, $target_dirname);
             }
             if (empty($_POST["{$tplset_from}_check"])) {
@@ -204,8 +204,8 @@ if (is_array(@$_POST['del_do'])) {
 //************//
 
 // javascript
-$_MYTPLSADMIN_ERR_INVALIDTPLSET = htmlspecialchars(_MYTPLSADMIN_ERR_INVALIDTPLSET);
-$_MYTPLSADMIN_ERR_NOTPLFILE = htmlspecialchars(_MYTPLSADMIN_ERR_NOTPLFILE);
+$_MYTPLSADMIN_ERR_INVALIDTPLSET = htmlspecialchars(_MYTPLSADMIN_ERR_INVALIDTPLSET, ENT_QUOTES | ENT_HTML5);
+$_MYTPLSADMIN_ERR_NOTPLFILE = htmlspecialchars(_MYTPLSADMIN_ERR_NOTPLFILE, ENT_QUOTES | ENT_HTML5);
 $javascript = <<<EOD
 <script type="text/javascript">
 	function altsys_mytpladmin_check_copy_submit(msg, id, selcheck) {
@@ -233,7 +233,7 @@ $javascript = <<<EOD
 EOD;
 
 // get tplsets
-$tplset_handler =& xoops_gethandler('tplset');
+$tplset_handler = xoops_gethandler('tplset');
 $tplsets = array_keys($tplset_handler->getList());
 $sql = 'SELECT distinct tpl_tplset FROM ' . $db->prefix('tplfile') . " ORDER BY tpl_tplset='default' DESC,tpl_tplset";
 $srs = $db->query($sql);
@@ -277,7 +277,7 @@ echo $javascript;
 altsys_include_mymenu();
 
 // breadcrumbs
-$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 if ($breadcrumbsObj->hasPaths()) {
     $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsadmin', _MI_ALTSYS_MENU_MYTPLSADMIN);
     $breadcrumbsObj->appendPath('', $target_mname);
@@ -287,7 +287,7 @@ echo "<hr>
         <h2>" . _MYTPLSADMIN_H3_MODULE . " : $target_mname</h2>\n";
 
 // link to create a new custom template
-if ($target_dirname === '_custom') {
+if ($target_dirname == '_custom') {
     echo "<a href='index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default'>" . _MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE . "</a>\n";
 }
 
@@ -310,7 +310,7 @@ $fingerprint_classes = ['', ' fingerprint1', ' fingerprint2', ' fingerprint3', '
 
 // template ROWS
 while (list($tpl_file, $tpl_desc, $type, $count) = $db->fetchRow($frs)) {
-    $evenodd = @$evenodd === 'even' ? 'odd' : 'even';
+    $evenodd = @$evenodd == 'even' ? 'odd' : 'even';
     $fingerprints = [];
 
     // information about the template

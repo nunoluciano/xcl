@@ -12,8 +12,8 @@ include_once __DIR__ . '/include/altsys_functions.php';
 
 
 // this page can be called only from altsys
-if ('altsys' !== $xoopsModule->getVar('dirname')) {
-    die('this page can be called only from UI Components');
+if ('altsys' != $xoopsModule->getVar('dirname')) {
+    die('this page can be called only from altsys');
 }
 
 
@@ -49,7 +49,7 @@ while (ob_get_level() > 0) {
         break;
     }
 }
-$trs = $xoopsDB->query('SELECT distinct tpl_file,tpl_source,tpl_lastmodified FROM ' . $xoopsDB->prefix('tplfile') . ' NATURAL LEFT JOIN ' . $xoopsDB->prefix('tplsource') . " WHERE tpl_tplset='" . addslashes($tplset) . "' ORDER BY tpl_file");
+$trs = $xoopsDB->query('SELECT DISTINCT tpl_file,tpl_source,tpl_lastmodified FROM ' . $xoopsDB->prefix('tplfile') . ' NATURAL LEFT JOIN ' . $xoopsDB->prefix('tplsource') . " WHERE tpl_tplset='" . addslashes($tplset) . "' ORDER BY tpl_file");
 if ($xoopsDB->getRowsNum($trs) <= 0) {
     die(_TPLSADMIN_ERR_INVALIDTPLSET);
 }

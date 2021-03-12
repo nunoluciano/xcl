@@ -6,10 +6,10 @@ function altsys_set_module_config()
 {
     global $altsysModuleConfig, $altsysModuleId;
 
-    $module_handler = &xoops_gethandler('module');
-    $module = &$module_handler->getByDirname('altsys');
+    $module_handler = xoops_gethandler('module');
+    $module = $module_handler->getByDirname('altsys');
     if (is_object($module)) {
-        $config_handler = &xoops_gethandler('config');
+        $config_handler = xoops_gethandler('config');
         $altsysModuleConfig = $config_handler->getConfigList($module->getVar('mid'));
         $altsysModuleId = $module->getVar('mid');
     } else {
@@ -35,7 +35,7 @@ function altsys_include_mymenu()
     ];
 
     foreach ($mymenu_find_paths as $mymenu_find_path) {
-        if (file_exists($mymenu_find_path)) {
+        if (is_file($mymenu_find_path)) {
             include $mymenu_find_path;
             break;
         }
@@ -43,17 +43,20 @@ function altsys_include_mymenu()
 }
 
 
+/**
+ * @param $type
+ */
 function altsys_include_language_file($type)
 {
     $mylang = $GLOBALS['xoopsConfig']['language'];
 
-    if (file_exists(XOOPS_ROOT_PATH . '/modules/altsys/language/' . $mylang . '/' . $type . '.php')) {
+    if (is_file(XOOPS_ROOT_PATH . '/modules/altsys/language/' . $mylang . '/' . $type . '.php')) {
         include_once XOOPS_ROOT_PATH . '/modules/altsys/language/' . $mylang . '/' . $type . '.php';
-    } elseif (file_exists(XOOPS_TRUST_PATH . '/libs/altsys/language/' . $mylang . '/' . $type . '.php')) {
+    } elseif (is_file(XOOPS_TRUST_PATH . '/libs/altsys/language/' . $mylang . '/' . $type . '.php')) {
         include_once XOOPS_TRUST_PATH . '/libs/altsys/language/' . $mylang . '/' . $type . '.php';
-    } elseif (file_exists(XOOPS_ROOT_PATH . '/modules/altsys/language/english/' . $type . '.php')) {
+    } elseif (is_file(XOOPS_ROOT_PATH . '/modules/altsys/language/english/' . $type . '.php')) {
         include_once XOOPS_ROOT_PATH . '/modules/altsys/language/english/' . $type . '.php';
-    } elseif (file_exists(XOOPS_TRUST_PATH . '/libs/altsys/language/english/' . $type . '.php')) {
+    } elseif (is_file(XOOPS_TRUST_PATH . '/libs/altsys/language/english/' . $type . '.php')) {
         include_once XOOPS_TRUST_PATH . '/libs/altsys/language/english/' . $type . '.php';
     }
 }
@@ -61,6 +64,9 @@ function altsys_include_language_file($type)
 define('ALTSYS_CORE_TYPE_XCL21', 16); // XOOPS Cube 2.1 Legacy
 
 
+/**
+ * @return int|null
+ */
 function altsys_get_core_type()
 {
     static $result = null;
@@ -72,12 +78,19 @@ function altsys_get_core_type()
     return $result;
 }
 
+/**
+ * @param $mid
+ * @return string
+ */
 
 function altsys_get_link2modpreferences( $mid )
 {
     return XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $mid;
 }
 
+/**
+ * @param $tpl_id
+ */
 
 function altsys_template_touch($tpl_id)
 {
@@ -89,10 +102,12 @@ function altsys_clear_templates_c()
 {
     $dh = opendir(XOOPS_COMPILE_PATH);
     while ($file = readdir($dh)) {
-        if ('.' == substr($file, 0, 1)) {
+
+	if ('.' == mb_substr($file, 0, 1)) {
             continue;
         }
-        if ('.php' != substr($file, -4)) {
+
+	if ('.php' != mb_substr($file, -4)) {
             continue;
         }
         @unlink(XOOPS_COMPILE_PATH . '/' . $file);

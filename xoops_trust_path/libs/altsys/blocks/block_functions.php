@@ -59,14 +59,7 @@ function b_altsys_admin_menu_show($options)
         @include XOOPS_ROOT_PATH . '/modules/' . $dirname . '/' . @$modinfo['adminmenu'];
         // from admin_menu.php etc.
 
-//        $adminmenu = array_merge( $adminmenu, $adminmenu4altsys ) ;
-
-        $ver = (float)PHP_VERSION;
-        if ($ver > 5.6) {
-            $adminmenu = array_merge([], $adminmenu, $adminmenu4altsys);
-        } elseif ($ver >= 7.4) {
-            $adminmenu = array_merge($adminmenu, $adminmenu4altsys);
-        }
+        $adminmenu = array_merge($adminmenu, $adminmenu4altsys);
 
         foreach ($adminmenu as $sub) {
             $link = empty($sub['altsys_link']) ? $sub['link'] : $sub['altsys_link'];
@@ -74,16 +67,16 @@ function b_altsys_admin_menu_show($options)
                 continue;
             }
             $submenus4assign[] = [
-                'title' => $myts->makeTboxData4Show($sub['title']),
-                'url' => XOOPS_URL . '/modules/' . $dirname . '/' . htmlspecialchars($link, ENT_QUOTES),
+            'title' => $myts->makeTboxData4Show($sub['title']),
+            'url' => XOOPS_URL . '/modules/' . $dirname . '/' . htmlspecialchars($link, ENT_QUOTES),
             ];
         }
 
         // for modules overriding Module.class.php (eg. Analyzer for XC)
         if (empty($submenus4assign) && defined('XOOPS_CUBE_LEGACY') && !empty($modinfo['cube_style'])) {
-            $module_handler =& xoops_gethandler('module');
-            $module =& $module_handler->get($mid);
-            $moduleObj =& Legacy_Utils::createModule($module);
+            $module_handler = xoops_gethandler('module');
+            $module = $module_handler->get($mid);
+            $moduleObj = Legacy_Utils::createModule($module);
             $modinfo['adminindex'] = $moduleObj->getAdminIndex();
             $modinfo['adminindex_absolute'] = true;
             foreach ($moduleObj->getAdminMenu() as $sub) {
@@ -91,8 +84,8 @@ function b_altsys_admin_menu_show($options)
                     continue;
                 }
                 $submenus4assign[] = [
-                    'title' => $myts->makeTboxData4Show($sub['title']),
-                    'url' => 0 === strncmp($sub['link'], 'http', 4) ? htmlspecialchars($sub['link'], ENT_QUOTES) : XOOPS_URL . '/modules/' . $dirname . '/' . htmlspecialchars($sub['link'], ENT_QUOTES),
+                'title' => $myts->makeTboxData4Show($sub['title']),
+                'url' => 0 === strncmp($sub['link'], 'http', 4) ? htmlspecialchars($sub['link'], ENT_QUOTES) : XOOPS_URL . '/modules/' . $dirname . '/' . htmlspecialchars($sub['link'], ENT_QUOTES),
                 ];
             }
         } elseif (empty($adminmenu4altsys)) {
@@ -154,9 +147,9 @@ function b_altsys_admin_menu_edit($options)
     }
 
     $form = "
-		<input type='hidden' name='options[0]' value='$mydirname' />
+		<input type='hidden' name='options[0]' value='$mydirname'>
 		<label for='this_template'>" . _MB_ALTSYS_THISTEMPLATE . "</label>&nbsp;:
-		<input type='text' size='60' name='options[1]' id='this_template' value='" . htmlspecialchars($this_template, ENT_QUOTES) . "' />
+		<input type='text' size='60' name='options[1]' id='this_template' value='" . htmlspecialchars($this_template, ENT_QUOTES) . "'>
 		<br>
 	\n";
 

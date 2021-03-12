@@ -39,8 +39,9 @@ class AltsysFormCheckboxGroup extends XoopsFormCheckbox
      */
     public function __construct($caption, $name, $include_anon=false, $value=null)
     {
-        $this->XoopsFormCheckbox($caption, $name, $value);
-        $member_handler =& xoops_gethandler('member');
+    
+		parent::__construct($caption, $name, $value);
+        $member_handler = xoops_gethandler('member');
         if (!$include_anon) {
             $options = $member_handler->getGroupList(new Criteria('groupid', XOOPS_GROUP_ANONYMOUS, '!='));
         } else {

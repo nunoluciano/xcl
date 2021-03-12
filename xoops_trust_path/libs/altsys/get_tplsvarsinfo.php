@@ -12,8 +12,8 @@ include_once __DIR__ . '/include/altsys_functions.php';
 
 
 // this page can be called only from altsys
-if ('altsys' !== $xoopsModule->getVar('dirname')) {
-    die('this page can be called only from UI Components');
+if ('altsys' != $xoopsModule->getVar('dirname')) {
+    die('this page can be called only from altsys');
 }
 
 
@@ -32,6 +32,11 @@ if (!preg_match('/^[0-9A-Za-z._-]+$/', $site_name)) {
 // FUNCTIONS
 //
 
+/**
+ * @param $var_name
+ * @param $var_value
+ * @param $sum_array_name
+ */
 function convert_array2info_recursive($var_name, $var_value, $sum_array_name)
 {
     switch (gettype($var_value)) {
@@ -51,7 +56,8 @@ function convert_array2info_recursive($var_name, $var_value, $sum_array_name)
         case 'integer':
         case 'float':
         case 'double':
-            $GLOBALS[$sum_array_name][$var_name] = (string) $var_value;
+            $GLOBALS[$sum_array_name][$var_name] = (string)$var_value;
+
             return;
         case 'null':
             $GLOBALS[$sum_array_name][$var_name] = '(null)';
@@ -64,17 +70,21 @@ function convert_array2info_recursive($var_name, $var_value, $sum_array_name)
     }
 }
 
-
+/**
+ * @param $mxi_name
+ * @param $file_entries
+ * @return string
+ */
 function get_mxi_body($mxi_name, $file_entries)
 {
     global $site_name;
 
     return '<macromedia-extension name="XOOPS-' . $site_name . ' ' . $mxi_name . '" version="1.0" type="Suite" requires-restart="true">
-	<products>
-		<product name="Dreamweaver" version="6" primary="true" />
-	</products>
-	<author name="GIJOE"/>
-	<license-agreement><![CDATA[
+    <products>
+        <product name="Dreamweaver" version="6" primary="true" />
+    </products>
+    <author name="GIJOE"/>
+    <license-agreement><![CDATA[
 
 XoopsDWSnipettets is published under the CC-GNU LGPL
 https://creativecommons.org/licenses/LGPL/2.1/
@@ -113,14 +123,16 @@ $tplsvarsinfo_total = [];
 
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
     while (false !== ($file = readdir($handler))) {
-
         // skip files other than tplsvars_* files
-        if (strpos($file, 'tplsvars_') !== 0) {
+
+        if ('tplsvars_' !== mb_substr($file, 0, 9)) {
             continue;
         }
 
         // 'tplsvars_'.(randomized 4byte).'_'.(tpl_file)
-        $tpl_name = substr($file, 14);
+
+        $tpl_name = mb_substr($file, 14);
+
         if (!preg_match('/^[%0-9A-Za-z._-]+$/', $tpl_name)) {
             continue;
         }
@@ -132,10 +144,11 @@ if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
         }
         $GLOBALS['tplsvarsinfo'] = [];
         convert_array2info_recursive('', $tplsvars, 'tplsvarsinfo');
-        if (strpos($tpl_name, '%') !== false) {
+
+        if (mb_strstr($tpl_name, '%')) {
             $mod_name = 'theme_etc';
         } else {
-            [$mod_name] = explode('_', $tpl_name);
+            list($mod_name) = explode('_', $tpl_name);
         }
         $tplsvarsinfo_mod_tpl[$mod_name][$tpl_name] = $tplsvarsinfo;
         $tplsvarsinfo_total = array_merge($tplsvarsinfo_total, $tplsvarsinfo);
@@ -186,12 +199,14 @@ if (!empty($do_download)) {
     }
     // make files for each tplsvars
     foreach ($tplsvarsinfo_total as $key => $val) {
-        $name = substr($key, 1);
-        $tpv = xoops_substr($val, 0, 256);
-        $description = htmlspecialchars(xoops_utf8_encode($tpv), ENT_QUOTES);
+        $name = mb_substr($key, 1);
+
+        $description = htmlspecialchars(xoops_utf8_encode(xoops_substr($val, 0, 191)), ENT_QUOTES);
+
         $snippet_body = sprintf($snippet_format, $name, $description);
 
-        $file_name = str_replace('.', '_', $key) . '.csn';
+        $file_name = strtr($key, '.', '_') . '.csn';
+
         $downloader->addFileData($snippet_body, $dw_snippets_dirname . '/' . $file_name);
     }
 
@@ -200,8 +215,10 @@ if (!empty($do_download)) {
         $file_entries = '';
         foreach ($tplsvarsinfo_tpl as $tpl_name => $tplsvarsinfo) {
             foreach ($tplsvarsinfo as $key => $val) {
-                $name = substr($key, 1);
-                $file_name = str_replace('.', '_', $key) . '.csn';
+                $name = mb_substr($key, 1);
+
+                $file_name = strtr($key, '.', '_') . '.csn';
+
                 $file_entries .= "\t\t" . '<file name="' . $dw_snippets_dirname . '/' . $file_name . '" destination="$Dreamweaver/Configuration/Snippets/XOOPS-' . $site_name . '/' . $tpl_name . '" />' . "\n";
             }
         }

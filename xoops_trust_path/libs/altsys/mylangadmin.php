@@ -13,21 +13,21 @@ include_once __DIR__ . '/class/D3LanguageManager.class.php';
 
 
 // only groups have 'module_admin' of 'altsys' can do that.
-$module_handler =& xoops_gethandler('module');
-$module =& $module_handler->getByDirname('altsys');
+$module_handler = xoops_gethandler('module');
+$module = $module_handler->getByDirname('altsys');
 if (!is_object($module)) {
     die('install altsys');
 }
-$moduleperm_handler =& xoops_gethandler('groupperm');
+$moduleperm_handler = xoops_gethandler('groupperm');
 if (!is_object(@$xoopsUser) || !$moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $xoopsUser->getGroups())) {
     die('only admin of altsys can access this area');
 }
 
 
 // initials
-$db =& XoopsDatabaseFactory::getDatabaseConnection();
-(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
-$langman =& D3LanguageManager::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
+(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+$langman = D3LanguageManager::getInstance();
 
 // language file of this controller
 altsys_include_language_file('mylangadmin');
@@ -38,10 +38,10 @@ if (!is_object($xoopsModule)) {
 }
 
 // set target_module if specified by $_GET['dirname']
-$module_handler =& xoops_gethandler('module');
+$module_handler = xoops_gethandler('module');
 if (!empty($_GET['dirname'])) {
     $dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['dirname']);
-    $target_module =& $module_handler->getByDirname($dirname);
+    $target_module = $module_handler->getByDirname($dirname);
 }
 
 if (!empty($target_module) && is_object($target_module)) {
@@ -96,7 +96,7 @@ if (!is_dir($base_dir)) {
 $dh = opendir($base_dir);
 if ($dh) {
     while ($file = readdir($dh)) {
-        if ('.' == substr($file, 0, 1)) {
+        if ('.' == mb_substr($file, 0, 1)) {
             continue;
         }
         if (is_dir("$base_dir/$file")) {
@@ -122,7 +122,7 @@ $lang_files = [];
 $dh = opendir($lang_base_dir);
 if ($dh) {
     while ($file = readdir($dh)) {
-        if ('.' == substr($file, 0, 1)) {
+        if ('.' == mb_substr($file, 0, 1)) {
             continue;
         }
         if ('index.html' == $file) {
@@ -152,7 +152,7 @@ list($langfile_names, $constpref, $already_read) = altsys_mylangadmin_get_consta
 // get user_values should be overridden
 $langfile_constants = [];
 foreach ($langfile_names as $name) {
-    list($value) = $db->fetchRow($db->query('SELECT value FROM ' . $db->prefix('altsys_language_constants') . " WHERE mid=$target_mid AND language='$target_lang4sql' AND name='" . addslashes($name) . "'"));
+    [$value] = $db->fetchRow($db->query('SELECT value FROM ' . $db->prefix('altsys_language_constants') . " WHERE mid=$target_mid AND language='$target_lang4sql' AND name='" . addslashes($name) . "'"));
     $langfile_constants[$name] = $value;
 }
 
@@ -161,7 +161,7 @@ if ($langman->my_language) {
     $mylang_unique_path = $langman->my_language . '/modules/' . $target_dirname . '/' . $target_lang . '/' . $target_file;
     $mylang_constants = array_map('htmlspecialchars', altsys_mylangadmin_get_constants_by_pcre($mylang_unique_path));
     foreach ($mylang_constants as $key => $val) {
-        if (!array_key_exists($key, $langfile_constants)) {
+         if (!array_key_exists($key, $langfile_constants)) {
             $langfile_constants[$key] = null;
             define($key, _MYLANGADMIN_NOTE_ADDEDBYMYLANG);
         }
@@ -249,33 +249,12 @@ if (ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type()) {
         // the preload disabled
         $notice4disp = sprintf(_MYLANGADMIN_FMT_HOWTOENABLED3LANGMAN4XCL, 'SetupAltsysLangMgr.class.php', 'XOOPS_ROOT_PATH/preload');
     }
-
-    // X2 core etc
 }
-/* else {
-    $notice4disp = _MYLANGADMIN_MSG_HOWTOENABLED3LANGMAN4X2.'<br>' ;
-    $notice4disp .= '
-		<h4>include/common.php</h4>
-		<pre>
-        <strike>if ( file_exists(XOOPS_ROOT_PATH."/modules/"...."/main.php") ) {
-            include_once XOOPS_ROOT_PATH."/modules/"...."/main.php";
-        } else {
-            if ( file_exists(XOOPS_ROOT_PATH..../english/main.php") ) {
-                include_once XOOPS_ROOT_PATH..../english/main.php";
-            }
-        }</strike>
-        require_once XOOPS_TRUST_PATH."/libs/altsys/class/D3LanguageManager.class.php" ;
-        $langman =& D3LanguageManager::getInstance() ;
-        $langman->read( "main.php" , $xoopsModule->getVar("dirname") ) ;
-		</pre>
-	' ;
-} */
 
 
 //
 // display stage
 //
-
 
 xoops_cp_header();
 
@@ -283,14 +262,16 @@ xoops_cp_header();
 altsys_include_mymenu();
 
 // breadcrumbs
-$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 if ($breadcrumbsObj->hasPaths()) {
     $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mylangadmin', _MI_ALTSYS_MENU_MYLANGADMIN);
     $breadcrumbsObj->appendPath('', $target_mname);
 }
 
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
+
 $tpl = new D3Tpl();
+
 $tpl->assign(
     [
         'target_dirname' => $target_dirname,

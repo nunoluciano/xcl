@@ -8,6 +8,12 @@
  * Purpose:  Fetches templates from a database
  * -------------------------------------------------------------
  */
+/**
+ * @param $tpl_name
+ * @param mixed $tpl_source
+ * @param mixed $smarty
+ * @return bool
+ */
 function smarty_resource_db_source($tpl_name, &$tpl_source, &$smarty)
 {
     if (!$tpl = smarty_resource_db_tplinfo($tpl_name)) {
@@ -16,13 +22,20 @@ function smarty_resource_db_source($tpl_name, &$tpl_source, &$smarty)
     if (is_object($tpl)) {
         $tpl_source = $tpl->getVar('tpl_source', 'n');
     } else {
-        $fp = fopen($tpl, 'r');
+        $fp = fopen($tpl, 'rb');
+
         $tpl_source = fread($fp, filesize($tpl));
         fclose($fp);
     }
     return true;
 }
 
+/**
+ * @param $tpl_name
+ * @param mixed $tpl_timestamp
+ * @param mixed $smarty
+ * @return bool
+ */
 function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, &$smarty)
 {
     if (!$tpl = smarty_resource_db_tplinfo($tpl_name)) {
@@ -36,17 +49,30 @@ function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, &$smarty)
     return true;
 }
 
+/**
+ * @param $tpl_name
+ * @param mixed $smarty
+ * @return bool
+ */
 function smarty_resource_db_secure($tpl_name, &$smarty)
 {
     // assume all templates are secure
     return true;
 }
 
+/**
+ * @param $tpl_name
+ * @param mixed $smarty
+ */
 function smarty_resource_db_trusted($tpl_name, &$smarty)
 {
     // not used for templates
 }
 
+/**
+ * @param $tpl_name
+ * @return bool|mixed|string
+ */
 function smarty_resource_db_tplinfo($tpl_name)
 {
     static $cache = [];
@@ -59,9 +85,9 @@ function smarty_resource_db_tplinfo($tpl_name)
     //$theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
     $theme = $xoopsConfig['theme_set'] ?? 'default';
 
-    $tplfile_handler =& xoops_gethandler('tplfile');
+    $tplfile_handler = xoops_gethandler('tplfile');
     // If we're not using the "default" template set, then get the templates from the DB
-    if ('default' !== $tplset) {
+    if ('default' != $tplset) {
         $tplobj = $tplfile_handler->find($tplset, null, null, null, $tpl_name, true);
         if (count($tplobj)) {
             return $cache[$tpl_name] = $tplobj[0];
@@ -84,7 +110,7 @@ function smarty_resource_db_tplinfo($tpl_name)
         // If no custom version exists, get the tpl from its default location
         $filepath = XOOPS_ROOT_PATH . "/modules/$module/templates/$blockpath$tpl_name";
         if (!file_exists($filepath)) {
-            return $cache[$tpl_name] = $tplobj ;
+            return $cache[$tpl_name] = $tplobj;
         }
     }
     return $cache[$tpl_name] = $filepath;

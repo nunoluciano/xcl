@@ -5,16 +5,15 @@
 //                       GIJOE <https://www.peak.ne.jp/>                      //
 // ------------------------------------------------------------------------- //
 
-require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php' ;
-include_once __DIR__ . '/include/gtickets.php' ;
-include_once __DIR__ . '/include/altsys_functions.php' ;
-
+require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php';
+include_once __DIR__ . '/include/gtickets.php';
+include_once __DIR__ . '/include/altsys_functions.php';
 
 // this page can be called only from altsys
 // if( $xoopsModule->getVar('dirname') != 'altsys' ) die( 'this page can be called only from altsys' ) ;
 
 // language file
-altsys_include_language_file('compilehookadmin') ;
+altsys_include_language_file('compilehookadmin');
 
 //
 // DEFINITIONS
@@ -23,13 +22,13 @@ altsys_include_language_file('compilehookadmin') ;
 $compile_hooks = [
 
     'enclosebycomment' => [
-        'pre' => '<!-- begin altsys_tplsadmin %s -->' ,
-        'post' => '<!-- end altsys_tplsadmin %s -->' ,
-        'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT ,
-        'dt' => _TPLSADMIN_DT_ENCLOSEBYCOMMENT ,
-        'dd' => _TPLSADMIN_DD_ENCLOSEBYCOMMENT ,
-        'conf_msg' => _TPLSADMIN_CNF_ENCLOSEBYCOMMENT ,
-        'skip_theme' => true ,
+        'pre' => '<!-- begin altsys_tplsadmin %s -->',
+        'post' => '<!-- end altsys_tplsadmin %s -->',
+        'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT,
+        'dt' => _TPLSADMIN_DT_ENCLOSEBYCOMMENT,
+        'dd' => _TPLSADMIN_DD_ENCLOSEBYCOMMENT,
+        'conf_msg' => _TPLSADMIN_CNF_ENCLOSEBYCOMMENT,
+        'skip_theme' => true,
     ],
 
     'enclosebybordereddiv' => [
@@ -70,120 +69,134 @@ $compile_hooks = [
 //
 
 // clearing files in templates_c/
-if (! empty($_POST['clearcache']) || ! empty($_POST['cleartplsvars'])) {
+if (!empty($_POST['clearcache']) || !empty($_POST['cleartplsvars'])) {
     // Ticket Check
-    if (! $xoopsGTicket->check()) {
-        redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
+
+    if (!$xoopsGTicket->check()) {
+        redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
     }
 
     if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
         while (false !== ($file = readdir($handler))) {
             if (! empty($_POST['clearcache'])) {
                 // judging template cache '*.php'
-                if ('.php' !== substr($file, -4)) {
-                    continue ;
+
+                if ('.php' !== mb_substr($file, -4)) {
+                    continue;
                 }
             } else {
                 // judging tplsvars cache 'tplsvars_*'
-                if ('tplsvars_' !== substr($file, 0, 9)) {
-                    continue ;
+
+                if ('tplsvars_' !== mb_substr($file, 0, 9)) {
+                    continue;
                 }
             }
 
-            $file_path = XOOPS_COMPILE_PATH . '/' . $file ;
-            @unlink($file_path) ;
+            $file_path = XOOPS_COMPILE_PATH . '/' . $file;
+
+            @unlink($file_path);
         }
-        redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 1, _TPLSADMIN_MSG_CLEARCACHE) ;
-        exit ;
+
+        redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 1, _TPLSADMIN_MSG_CLEARCACHE);
+
+        exit;
     }
 
-    die('XOOPS_COMPILE_PATH cannot be opened') ;
+    exit('XOOPS_COMPILE_PATH cannot be opened');
 }
 
 // append hooking commands
 foreach ($compile_hooks as $command => $compile_hook) {
-    if (! empty($_POST[$command])) {
+    if (!empty($_POST[$command])) {
         // Ticket Check
-        if (! $xoopsGTicket->check()) {
-            redirect_header(XOOPS_URL.'/', 3, $xoopsGTicket->getErrors());
+
+        if (!$xoopsGTicket->check()) {
+            redirect_header(XOOPS_URL . '/', 3, $xoopsGTicket->getErrors());
         }
 
         if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
-            $file_count = 0 ;
+            $file_count = 0;
+
             while (false !== ($file = readdir($handler))) {
 
                 // skip /. /.. and hidden files
                 if ('.' == $file[0]) {
-                    continue ;
+                    continue;
                 }
 
                 // skip if the extension is not .html.php
-                if ('.html.php' != substr($file, -9)) {
-                    continue ;
+
+                if ('.html.php' != mb_substr($file, -9)) {
+                    continue;
                 }
 
                 // skip theme.html when comment-mode or div-mode
-                if ($compile_hook['skip_theme'] && '%theme.html.php' == substr($file, -15)) {
-                    $skip_mode = true ;
+
+                if ($compile_hook['skip_theme'] && '%theme.html.php' == mb_substr($file, -15)) {
+                    $skip_mode = true;
                 } else {
-                    $skip_mode = false ;
+                    $skip_mode = false;
                 }
 
-                $file_path = XOOPS_COMPILE_PATH . '/' . $file ;
-                $file_bodies = file($file_path) ;
+                $file_path = XOOPS_COMPILE_PATH . '/' . $file;
+
+                $file_bodies = file($file_path);
 
                 // remove lines inserted by compilehookadmin
-                // saves memory
-                // if (strstr($file_bodies[0], 'altsys')) {
-                if (false !== strpos($file_bodies[0], 'altsys')) {
-                    array_shift($file_bodies) ;
+
+                if (mb_strstr($file_bodies[0], 'altsys')) {
+                    array_shift($file_bodies);
                 }
-                // saves memory
-                // if (strstr($file_bodies[count($file_bodies)-1], 'altsys')) {
-                if (false !== strpos($file_bodies[count($file_bodies) - 1], 'altsys')) {
-                    array_pop($file_bodies) ;
-                    $file_bodies[count($file_bodies)-1] = rtrim($file_bodies[count($file_bodies)-1]) ;
+
+                if (mb_strstr($file_bodies[count($file_bodies) - 1], 'altsys')) {
+                    array_pop($file_bodies);
+
+                    $file_bodies[count($file_bodies) - 1] = rtrim($file_bodies[count($file_bodies) - 1]);
                 }
 
                 // get the name of the source template from Smarty's comment
                 if (preg_match('/compiled from (\S+)/', $file_bodies[1], $regs)) {
-                    $tpl_name = $regs[1] ;
+                    $tpl_name = $regs[1];
                 } else {
-                    $tpl_name = '__FILE__' ;
+                    $tpl_name = '__FILE__';
                 }
 
-                $fw = fopen($file_path, 'w') ;
+                $fw = fopen($file_path, 'wb');
 
                 // insert "pre" command before the compiled cache
-                if ($compile_hook['pre'] && ! $skip_mode) {
-                    fwrite($fw, sprintf($compile_hook['pre'], htmlspecialchars($tpl_name, ENT_QUOTES)) . "\r\n") ;
+
+                if ($compile_hook['pre'] && !$skip_mode) {
+                    fwrite($fw, sprintf($compile_hook['pre'], htmlspecialchars($tpl_name, ENT_QUOTES)) . "\r\n");
                 }
 
                 // rest of template cache
                 foreach ($file_bodies as $line) {
-                    fwrite($fw, $line) ;
+                    fwrite($fw, $line);
                 }
 
                 // insert "post" command after the compiled cache
-                if ($compile_hook['post'] && ! $skip_mode) {
-                    fwrite($fw, "\r\n" . sprintf($compile_hook['post'], htmlspecialchars($tpl_name, ENT_QUOTES))) ;
+
+                if ($compile_hook['post'] && !$skip_mode) {
+                    fwrite($fw, "\r\n" . sprintf($compile_hook['post'], htmlspecialchars($tpl_name, ENT_QUOTES)));
                 }
 
-                fclose($fw) ;
+                fclose($fw);
 
-                $file_count ++ ;
+                $file_count++;
             }
 
             if ($file_count > 0) {
-                redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, sprintf($compile_hook['success_msg'], $file_count)) ;
-                exit ;
+                redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, sprintf($compile_hook['success_msg'], $file_count));
+
+                exit;
             }
 
-            redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, _TPLSADMIN_MSG_CREATECOMPILECACHEFIRST) ;
-            exit ;
+            redirect_header('?mode=admin&lib=altsys&page=compilehookadmin', 3, _TPLSADMIN_MSG_CREATECOMPILECACHEFIRST);
+
+            exit;
         }
 
-        die('XOOPS_COMPILE_PATH cannot be opened') ;
+        die('XOOPS_COMPILE_PATH cannot be opened');
     }
 }
 
@@ -194,25 +207,26 @@ foreach ($compile_hooks as $command => $compile_hook) {
 //
 
 // count template vars & compiled caches
-$compiledcache_num = 0 ;
-$tplsvars_num = 0 ;
+$compiledcache_num = 0;
+$tplsvars_num = 0;
 if ($handler = opendir(XOOPS_COMPILE_PATH . '/')) {
     while (false !== ($file = readdir($handler))) {
         if (0 === strncmp($file, 'tplsvars_', 9)) {
-            $tplsvars_num ++ ;
-        } elseif ('.php' === substr($file, -4)) {
-            $compiledcache_num ++ ;
+            $tplsvars_num++;
+        } elseif ('.php' === mb_substr($file, -4)) {
+            $compiledcache_num++;
         }
     }
 }
 
 // get tplsets
-$sql = 'SELECT tplset_name,COUNT(distinct tpl_file) FROM ' . $xoopsDB->prefix('tplset') . ' LEFT JOIN ' . $xoopsDB->prefix('tplfile') . " ON tplset_name=tpl_tplset GROUP BY tpl_tplset ORDER BY tpl_tplset='default' DESC,tpl_tplset" ;
+$sql = 'SELECT tplset_name,COUNT(DISTINCT tpl_file) FROM ' . $xoopsDB->prefix('tplset') . ' LEFT JOIN ' . $xoopsDB->prefix('tplfile') . " ON tplset_name=tpl_tplset GROUP BY tpl_tplset ORDER BY tpl_tplset='default' DESC,tpl_tplset";
 $srs = $xoopsDB->query($sql);
-$tplset_options = "<option value=''>----</option>\n" ;
+$tplset_options = "<option value=''>----</option>\n";
 while (list($tplset, $tpl_count) = $xoopsDB->fetchRow($srs)) {
-    $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES) ;
-    $tplset_options .= "<option value='$tplset4disp'>$tplset4disp ($tpl_count)</option>\n" ;
+    $tplset4disp = htmlspecialchars($tplset, ENT_QUOTES);
+
+    $tplset_options .= "<option value='$tplset4disp'>$tplset4disp ($tpl_count)</option>\n";
 }
 
 
@@ -222,14 +236,14 @@ while (list($tplset, $tpl_count) = $xoopsDB->fetchRow($srs)) {
 // FORM STAGE
 //
 
-xoops_cp_header() ;
+xoops_cp_header();
 
 // mymenu
-altsys_include_mymenu() ;
+altsys_include_mymenu();
 
 // breadcrumbs
-$breadcrumbsObj =& AltsysBreadcrumbs::getInstance() ;
-$breadcrumbsObj->appendPath(XOOPS_URL.'/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=compilehookadmin', _MI_ALTSYS_MENU_COMPILEHOOKADMIN) ;
+$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+$breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=compilehookadmin', _MI_ALTSYS_MENU_COMPILEHOOKADMIN);
 
 echo "
 <hr>

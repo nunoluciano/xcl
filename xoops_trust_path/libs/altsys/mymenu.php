@@ -20,8 +20,7 @@ include __DIR__ . '/admin_menu.php';
 $adminmenu = array_merge($adminmenu, $adminmenu4altsys);
 
 $mymenu_uri = empty($mymenu_fake_uri) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
-$mymenu_link = substr(strstr($mymenu_uri, '/admin/'), 1);
-
+$mymenu_link = mb_substr(mb_strstr($mymenu_uri, '/admin/'), 1);
 
 // xoops_breadcrumbs
 //$GLOBALS['dirname'] = array( array( 'url' => XOOPS_URL.'/modules/altsys/admin/index.php' , 'name' => $xoopsModule->getVar('name') ) ) ;
@@ -38,7 +37,7 @@ foreach (array_keys($adminmenu) as $i) {
 }
 if (empty($adminmenu_hilighted)) {
     foreach (array_keys($adminmenu) as $i) {
-        if (stripos($mymenu_uri, $adminmenu[$i]['link']) !== false) {
+        if (mb_stristr($mymenu_uri, $adminmenu[$i]['link'])) {
             $adminmenu[$i]['selected'] = true;
 //			$GLOBALS['altsysXoopsBreadcrumbs'][] = array( 'url' => XOOPS_URL."/modules/altsys/".htmlspecialchars($adminmenu[$i]['link'],ENT_QUOTES) , 'name' => htmlspecialchars( $adminmenu[$i]['title'] , ENT_QUOTES ) ) ;
             break;
@@ -48,7 +47,7 @@ if (empty($adminmenu_hilighted)) {
 
 // link conversion from relative to absolute
 foreach (array_keys($adminmenu) as $i) {
-    if (stripos($adminmenu[$i]['link'], XOOPS_URL) === false) {
+    if (false === mb_stristr($adminmenu[$i]['link'], XOOPS_URL)) {
         $adminmenu[$i]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[$i]['link'];
        // $adminmenu[$i]['name'] = XOOPS_URL . "/modules/$mydirname/index.php";
     }

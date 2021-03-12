@@ -6,11 +6,11 @@ include_once __DIR__ . '/include/altsys_functions.php';
 altsys_include_language_file('modinfo');
 
 $modversion['name'] = _MI_ALTSYS_MODULENAME;
-$modversion['version'] = '0.82';
-$modversion['detailed_version'] = '0.83.0';
+$modversion['version'] = '2.30';
+$modversion['detailed_version'] = '2.30.0';
 $modversion['description'] = _MI_ALTSYS_MODULEDESC;
-$modversion['credits'] = 'PEAK Corp.';
-$modversion['author'] = 'GIJ=CHECKMATE<br>PEAK Corp.(https://www.peak.ne.jp/), XOOPS X Distribution(https://github.com/XoopsX)';
+$modversion['credits'] = 'PEAK Corp., Mamba (Xoops), Gigamaster (XCL)';
+$modversion['author'] = 'GIJ=CHECKMATE<br>PEAK Corp.(https://www.peak.ne.jp/), XOOPSCube Project XCL Distribution(https://github.com/xoopscube)';
 $modversion['license'] = 'GPL see LICENSE';
 $modversion['cube_style'] = true;
 $modversion['help'] = "help.html";
@@ -104,8 +104,3 @@ $modversion['hasNotification'] = 0;
 $modversion['onInstall'] = 'include/oninstall.php';
 $modversion['onUpdate'] = 'include/onupdate.php';
 $modversion['onUninstall'] = 'include/onuninstall.php';
-
-// keep block's options
-if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && 'modulesadmin' == $_POST['fct'] && 'update_ok' == $_POST['op'] && $_POST['dirname'] == $modversion['dirname']) {
-    include __DIR__ . '/include/x20_keepblockoptions.inc.php';
-}

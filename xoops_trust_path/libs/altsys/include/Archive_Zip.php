@@ -364,7 +364,7 @@ class Archive_Zip
         $v_list = [];
         if (1 != $this->_list($v_list)) {
             unset($v_list);
-            return(0);
+            return 0;
         }
 
         return $v_list;
@@ -415,7 +415,7 @@ class Archive_Zip
 
         // ----- Check archive
         if (!$this->_checkFormat()) {
-            return(0);
+            return 0;
         }
 
         // ----- Set default values
@@ -444,7 +444,7 @@ class Archive_Zip
         $v_list = [];
         if (1 != $this->_extractByRule($v_list, $p_params)) {
             unset($v_list);
-            return(0);
+            return 0;
         }
 
         return $v_list;
@@ -480,7 +480,7 @@ class Archive_Zip
 
         // ----- Check archive
         if (!$this->_checkFormat()) {
-            return(0);
+            return 0;
         }
 
         // ----- Set default values
@@ -510,7 +510,7 @@ class Archive_Zip
         $v_list = [];
         if (1 != $this->_deleteByRule($v_list, $p_params)) {
             unset($v_list);
-            return(0);
+            return 0;
         }
 
         return $v_list;
@@ -534,7 +534,7 @@ class Archive_Zip
 
         // ----- Check archive
         if (!$this->_checkFormat()) {
-            return(0);
+            return 0;
         }
 
         // ----- Default properties
@@ -589,7 +589,7 @@ class Archive_Zip
 
         // ----- Look if the $p_archive is a Archive_Zip object
         if ((is_object($p_archive))
-            && ('archive_zip' == strtolower(get_class($p_archive)))) {
+            && ('archive_zip' == mb_strtolower(get_class($p_archive)))) {
             $v_result = $this->_duplicate($p_archive->_zipname);
         }
 
@@ -637,12 +637,12 @@ class Archive_Zip
 
         // ----- Check archive
         if (!$this->_checkFormat()) {
-            return(0);
+            return 0;
         }
 
         // ----- Look if the $p_archive_to_add is a Archive_Zip object
         if ((is_object($p_archive_to_add))
-            && ('archive_zip' == strtolower(get_class($p_archive_to_add)))) {
+            && ('archive_zip' == mb_strtolower(get_class($p_archive_to_add)))) {
             $v_result = $this->_merge($p_archive_to_add);
         }
 
@@ -696,13 +696,13 @@ class Archive_Zip
         for (reset($v_const_list);
              list($v_key, $v_value) = each($v_const_list);) {
             if ('ARCHIVE_ZIP_ERR_'
-                == substr($v_key, 0, strlen('ARCHIVE_ZIP_ERR_'))) {
+               == mb_substr($v_key, 0, mb_strlen('ARCHIVE_ZIP_ERR_'))) {
                 $v_error_list[$v_key] = $v_value;
             }
         }
 
         // ----- Search the name form the code value
-        $v_key=array_search($this->_error_code, $v_error_list, true);
+        $v_key = array_search($this->_error_code, $v_error_list, true);
         if (false != $v_key) {
             $v_value = $v_key;
         } else {
@@ -710,7 +710,7 @@ class Archive_Zip
         }
 
         if ($p_with_code) {
-            return($v_value.' ('.$this->_error_code.')');
+            return($v_value .' ('.$this->_error_code.')');
         } else {
             return($v_value);
         }
@@ -3565,20 +3565,19 @@ class Archive_Zip
      */
   public function _tool_TranslateWinPath($p_path, $p_remove_disk_letter=true)
   {
-      if (stristr(php_uname(), 'windows')) {
-          // ----- Look for potential disk letter
+	  if (mb_stristr(php_uname(), 'windows')) {
+      // ----- Look for potential disk letter
       if (($p_remove_disk_letter)
-          && (false != ($v_position = strpos($p_path, ':')))) {
-          $p_path = substr($p_path, $v_position+1);
+          && (false != ($v_position = mb_strpos($p_path, ':')))) {
+          $p_path = mb_substr($p_path, $v_position + 1);
       }
       // ----- Change potential windows directory separator
-      if ((strpos($p_path, '\\') > 0) || ('\\' == substr($p_path, 0, 1))) {
-          $p_path = strtr($p_path, '\\', '/');
-      }
+            if ((mb_strpos($p_path, '\\') > 0) || ('\\' == mb_substr($p_path, 0, 1))) {
+                $p_path = strtr($p_path, '\\', '/');
+            }
       }
       return $p_path;
   }
   // ---------------------------------------------------------------------------
 }
-  // End of class
-;
+// End of class

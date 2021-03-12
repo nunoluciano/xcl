@@ -2,56 +2,124 @@
 
 // notification handler for D3 modules
 
-require_once XOOPS_ROOT_PATH . '/include/notification_functions.php' ;
+require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
+/**
+ * Class D3NotificationHandler
+ */
 class D3NotificationHandler
 {
     //HACK by domifara for php5.3+
-//function &getInstance( $conn = null )
-public static function &getInstance($conn = null)
-{
-    static $instance ;
-    if (! isset($instance)) {
-        $instance = new D3NotificationHandler() ;
-    }
-    return $instance ;
-}
 
+    //function getInstance( $conn = null )
+
+    /**
+     * @param null $conn
+     * @return \D3NotificationHandler
+     */
+
+    public static function getInstance($conn = null)
+    {
+        static $instance;
+
+        if (!isset($instance)) {
+            $instance = new self();
+        }
+
+        return $instance;
+    }
+
+    /**
+     * @param        $mydirname
+     * @param string $mytrustdirname
+     * @return mixed|string
+     */
 
     public function getMailTemplateDir($mydirname, $mytrustdirname = '')
     {
-        global $xoopsConfig ;
+        global $xoopsConfig;
 
-        $mydirpath = XOOPS_ROOT_PATH.'/modules/'.$mydirname ;
-        $mytrustdirpath = XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname ;
-        $language = empty($xoopsConfig['language']) ? 'english' : $xoopsConfig['language'] ;
+        $mydirpath = XOOPS_ROOT_PATH . '/modules/' . $mydirname;
+
+        $mytrustdirpath = XOOPS_TRUST_PATH . '/modules/' . $mytrustdirname;
+
+        $language = empty($xoopsConfig['language']) ? 'english' : $xoopsConfig['language'];
 
         $search_paths = [
-        "$mydirpath/language/$language/mail_template/" ,
-        "$mytrustdirpath/language/$language/mail_template/" ,
-        "$mydirpath/language/english/mail_template/" ,
-        "$mytrustdirpath/language/english/mail_template/" ,
+            "$mydirpath/language/$language/mail_template/",
+            "$mytrustdirpath/language/$language/mail_template/",
+            "$mydirpath/language/english/mail_template/",
+            "$mytrustdirpath/language/english/mail_template/",
         ];
 
-        $mail_template_dir = "$mytrustdirpath/language/english/mail_template/" ;
+        $mail_template_dir = "$mytrustdirpath/language/english/mail_template/";
+
         foreach ($search_paths as $path) {
             if (file_exists($path)) {
-                $mail_template_dir = $path ;
-                break ;
+                $mail_template_dir = $path;
+
+                break;
             }
         }
 
-        return $mail_template_dir ;
+        return $mail_template_dir;
     }
 
+    /**
+     * @param       $mydirname
+     * @param       $mytrustdirname
+     * @param       $category
+     * @param       $item_id
+     * @param       $event
+     * @param array $extra_tags
+     * @param array $user_list
+     * @param null  $omit_user_id
+     * @return bool|void
+     */
 
-    public function triggerEvent($mydirname, $mytrustdirname, $category, $item_id, $event, $extra_tags= [], $user_list= [], $omit_user_id=null)
+    public function triggerEvent($mydirname, $mytrustdirname, $category, $item_id, $event, $extra_tags = [], $user_list = [], $omit_user_id = null)
     {
-        $module_hanlder =& xoops_gethandler('module') ;
-        $module =& $module_hanlder->getByDirname($mydirname) ;
+        $module_handler = xoops_gethandler('module');
 
-        $notification_handler =& xoops_gethandler('notification') ;
-        $mail_template_dir = $this->getMailTemplateDir($mydirname, $mytrustdirname) ;
+        $module = $module_handler->getByDirname($mydirname);
+
+        $notification_handler = xoops_gethandler('notification');
+
+        $mail_template_dir = $this->getMailTemplateDir($mydirname, $mytrustdirname);
+
+        // calling a delegate before
+
+        if (class_exists('XCube_DelegateUtils')) {
+            $force_return = false;
+
+            XCube_DelegateUtils::raiseEvent(
+                'D3NotificationHandler.Trigger',
+                new XCube_Ref($category),
+                new XCube_Ref($event),
+                new XCube_Ref($item_id),
+                new XCube_Ref($extra_tags),
+                new XCube_Ref($module),
+                new XCube_Ref($user_list),
+                new XCube_Ref($omit_user_id),
+                $module->getInfo('notification'),
+                new XCube_Ref($force_return),
+                new XCube_Ref($mail_template_dir),
+                $mydirname,
+                $mytrustdirname
+            );
+
+            if ($force_return) {
+                return;
+            }
+        }
+
+        $mid = $module->getVar('mid');
+
+        // Check if event is enabled
+
+        $configHandler = xoops_getHandler('config');
+
+        $mod_config = $configHandler->getConfigsByCat(0, $mid);
 
     // calling a delegate before
     if (class_exists('XCube_DelegateUtils')) {
@@ -94,15 +162,21 @@ public static function &getInstance($conn = null)
         $mode_criteria->add(new Criteria('not_mode', XOOPS_NOTIFICATION_MODE_SENDONCETHENDELETE), 'OR');
         $mode_criteria->add(new Criteria('not_mode', XOOPS_NOTIFICATION_MODE_SENDONCETHENWAIT), 'OR');
         $criteria->add($mode_criteria);
-        $notifications =& $notification_handler->getObjects($criteria);
+
+        $notifications = &$notification_handler->getObjects($criteria);
+
         if (empty($notifications)) {
             return;
         }
 
-    // Add some tag substitutions here
-    $tags = [];
-    // {X_ITEM_NAME} {X_ITEM_URL} {X_ITEM_TYPE} from lookup_func are disabled
-    $tags['X_MODULE'] = $module->getVar('name', 'n');
+        // Add some tag substitutions here
+
+        $tags = [];
+
+        // {X_ITEM_NAME} {X_ITEM_URL} {X_ITEM_TYPE} from lookup_func are disabled
+
+        $tags['X_MODULE'] = $module->getVar('name', 'n');
+
         $tags['X_MODULE_URL'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/';
         $tags['X_NOTIFY_CATEGORY'] = $category;
         $tags['X_NOTIFY_EVENT'] = $event;
@@ -116,12 +190,15 @@ public static function &getInstance($conn = null)
         foreach ($notifications as $notification) {
             $send_uid = $notification->getVar('not_uid');
             if ((empty($omit_user_id) || $send_uid != $omit_user_id)
-        &&
-        (!$user_list || isset($user_list[$send_uid]))) {
+                && (!$user_list || isset($user_list[$send_uid]))) {
                 // user-specific tags
-            //$tags['X_UNSUBSCRIBE_URL'] = 'TODO';
-            // TODO: don't show unsubscribe link if it is 'one-time' ??
-            $tags['X_UNSUBSCRIBE_URL'] = XOOPS_URL . '/notifications.php';
+
+                //$tags['X_UNSUBSCRIBE_URL'] = 'TODO';
+
+                // TODO: don't show unsubscribe link if it is 'one-time' ??
+
+                $tags['X_UNSUBSCRIBE_URL'] = XOOPS_URL . '/notifications.php';
+
                 $tags = array_merge($tags, $extra_tags);
 
                 $notification->notifyUser($mail_template_dir, $template, $subject, $tags);

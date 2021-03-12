@@ -1,27 +1,39 @@
 <?php
 // $Id: MyBlocksAdmin.class.php ,ver 0.0.7.1 2011/02/15 02:55:00 domifara Exp $
 
+/**
+ * Class MyBlocksAdmin
+ */
 class MyBlocksAdmin
 {
-
     public $db;
+
     public $lang;
+
     public $cachetime_options = [];
+
     public $ctype_options = [];
+
     public $type_options = [];
+
     public $target_mid = 0;
+
     public $target_dirname = '';
+
     public $target_mname = '';
+
     public $block_configs = [];
+
     public $preview_request = [];
 
     public function MyBlocksAadmin()
-    { }
-
+    {
+    }
 
     public function construct()
     {
-        $this->db = &XoopsDatabaseFactory::getDatabaseConnection();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
+
         $this->lang = @$GLOBALS['xoopsConfig']['language'];
 
         $this->cachetime_options = [
@@ -55,90 +67,145 @@ class MyBlocksAdmin
     }
 
     //HACK by domifara for php5.3+
-    //function &getInstance()
-    public static function &getInstance()
+
+    //function getInstance()
+
+    /**
+     * @return \MyBlocksAdmin
+     */
+
+    public static function getInstance()
     {
         static $instance;
+
         if (!isset($instance)) {
-            $instance = new MyBlocksAdmin();
+            $instance = new self();
+
             $instance->construct();
         }
+
         return $instance;
     }
 
-
     // virtual
+
     public function checkPermission()
     {
         // only groups have 'module_admin' of 'altsys' can do that.
-        $module_handler = &xoops_gethandler('module');
-        $module = &$module_handler->getByDirname('altsys');
-        $moduleperm_handler = &xoops_gethandler('groupperm');
+
+        $module_handler = xoops_gethandler('module');
+
+        $module = $module_handler->getByDirname('altsys');
+
+        $moduleperm_handler = xoops_gethandler('groupperm');
+
         if (!is_object(@$GLOBALS['xoopsUser']) || !$moduleperm_handler->checkRight('module_admin', $module->getVar('mid'), $GLOBALS['xoopsUser']->getGroups())) {
             die('only admin of UI Components can access this area');
         }
     }
 
+    /**
+     * @param $xoopsModule
+     */
 
     public function init($xoopsModule)
     {
         // altsys "module" MODE
+
         if ('altsys' == $xoopsModule->getVar('dirname')) {
             // set target_module if specified by $_GET['dirname']
-            $module_handler = &xoops_gethandler('module');
+
+            $module_handler = xoops_gethandler('module');
+
             if (!empty($_GET['dirname'])) {
                 $dirname = preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['dirname']);
+
                 $target_module = &$module_handler->getByDirname($dirname);
             }
 
             if (is_object(@$target_module)) {
                 // module's blocks
+
                 $this->target_mid = $target_module->getVar('mid');
+
                 $this->target_mname = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0);
+
                 $this->target_dirname = $target_module->getVar('dirname');
+
                 $modinfo = $target_module->getInfo();
+
                 // breadcrumbs
-                $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+
+                $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+
                 $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN');
+
                 $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=' . $this->target_dirname, $this->target_mname);
             } else {
                 // custom blocks
+
                 $this->target_mid = 0;
+
                 $this->target_mname = _MI_ALTSYS_MENU_CUSTOMBLOCKS;
+
                 $this->target_dirname = '__CustomBlocks__';
+
                 // breadcrumbs
-                $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+
+                $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+
                 $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN');
+
                 $breadcrumbsObj->appendPath(XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=' . $this->target_dirname, '_MI_ALTSYS_MENU_CUSTOMBLOCKS');
             }
         } else {
             // myblocksadmin as a library
+
             $this->target_mid = $xoopsModule->getVar('mid');
+
             $this->target_mname = $xoopsModule->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $xoopsModule->getVar('version') / 100.0);
+
             $this->target_dirname = $xoopsModule->getVar('dirname');
+
             $mod_url = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname');
+
             $modinfo = $xoopsModule->getInfo();
-            $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+
+            $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+
             $breadcrumbsObj->appendPath($mod_url . '/' . @$modinfo['adminindex'], $this->target_mname);
+
             $breadcrumbsObj->appendPath($mod_url . '/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', _MD_A_MYBLOCKSADMIN_BLOCKADMIN);
         }
 
         // read xoops_version.php of the target
+
         $this->block_configs = $this->get_block_configs();
     }
 
-
     // virtual
+
+    /**
+     * @param $block
+     * @return bool
+     */
+
     public function canEdit($block)
     {
         return true;
     }
 
-
     // virtual
+
+    /**
+     * @param $block
+     * @return bool
+     */
+
     public function canDelete($block)
     {
         // can delete if it is a cloned block
+
         if ('D' == $block->getVar('block_type') || 'C' == $block->getVar('block_type')) {
             return true;
         }
@@ -146,19 +213,27 @@ class MyBlocksAdmin
         return false;
     }
 
-
     // virtual
+
     // ret 0 : cannot
     // ret 1 : forced by altsys or system
     // ret 2 : can_clone
+
+    /**
+     * @param $block
+     * @return int
+     */
+
     public function canClone($block)
     {
         // can clone link if it is marked as cloneable block
+
         if ('D' == $block->getVar('block_type') || 'C' == $block->getVar('block_type')) {
             return 2;
         }
 
-// $modversion['blocks'][n]['can_clone']
+        // $modversion['blocks'][n]['can_clone']
+
         foreach ($this->block_configs as $bconf) {
             if ($block->getVar('show_func') == @$bconf['show_func'] && $block->getVar('func_file') == @$bconf['file'] && (empty($bconf['template']) || $block->getVar('template') == @$bconf['template'])) {
                 if (!empty($bconf['can_clone'])) {
@@ -174,51 +249,74 @@ class MyBlocksAdmin
         return 0;
     }
 
-
     // virtual
+
     // options
+
+    /**
+     * @param $block_data
+     * @return bool|string
+     */
+
     public function renderCell4BlockOptions($block_data)
     {
         $bid = (int)$block_data['bid'];
 
         //HACK by domifara
+
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+
+            $block = $handler->create(false);
+
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
         }
+
         return $block->getOptions();
     }
 
-
     // virtual
+
     // link blocks - modules
+
+    /**
+     * @param $block_data
+     * @return string
+     */
+
     public function renderCell4BlockModuleLink($block_data)
     {
         $bid = (int)$block_data['bid'];
 
         // get selected targets
+
         if (is_array(@$block_data['bmodule'])) {
-            // bmodule originated from request (preview etc.)
+            // bmodule origined from request (preview etc.)
+
             $selected_mids = $block_data['bmodule'];
         } else {
-            // originated from the table of `block_module_link`
+            // origined from the table of `block_module_link`
+
             $result = $this->db->query('SELECT module_id FROM ' . $this->db->prefix('block_module_link') . " WHERE block_id='$bid'");
+
             $selected_mids = [];
+
             while (list($selected_mid) = $this->db->fetchRow($result)) {
                 $selected_mids[] = (int)$selected_mid;
             }
+
             if (empty($selected_mids)) {
                 $selected_mids = [0];
             } // all pages
         }
 
         // get all targets
-        $module_handler = &xoops_gethandler('module');
+        $module_handler = xoops_gethandler('module');
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
+
         $module_list = $module_handler->getList($criteria);
         $module_list = [-1 => _MD_A_MYBLOCKSADMIN_TOPPAGE, 0 => _MD_A_MYBLOCKSADMIN_ALLPAGES] + $module_list;
 
@@ -226,6 +324,7 @@ class MyBlocksAdmin
         $module_options = '';
         foreach ($module_list as $mid => $mname) {
             $mname = htmlspecialchars($mname);
+//$mname = htmlspecialchars($mname, ENT_QUOTES | ENT_HTML5);
             if (in_array($mid, $selected_mids, true)) {
                 $module_options .= "<option value='$mid' selected='selected'>$mname</option>\n";
             } else {
@@ -244,6 +343,11 @@ class MyBlocksAdmin
 
     // virtual
     // group_permission - 'block_read'
+
+    /**
+     * @param $block_data
+     * @return string
+     */
     public function renderCell4BlockReadGroupPerm($block_data)
     {
         $bid = (int)$block_data['bid'];
@@ -265,7 +369,7 @@ class MyBlocksAdmin
         }
 
         // get all targets
-        $group_handler = &xoops_gethandler('group');
+        $group_handler = xoops_gethandler('group');
         $groups = $group_handler->getObjects();
 
         // build options
@@ -273,7 +377,8 @@ class MyBlocksAdmin
         foreach ($groups as $group) {
             $gid = $group->getVar('groupid');
             $gname = $group->getVar('name', 's');
-            // NOte: do not apply here a strict third parameter !
+            //!Fix Note: do not apply here a strict third parameter !?
+			//if (in_array($gid, $selected_gids, true)) {
             if (in_array($gid, $selected_gids)) {
                 $group_options .= "<option value='$gid' selected='selected'>$gname</option>\n";
             } else {
@@ -292,6 +397,11 @@ class MyBlocksAdmin
 
     // virtual
     // visible and side
+
+    /**
+     * @param $block_data
+     * @return string
+     */
     public function renderCell4BlockPosition($block_data)
     {
         $bid = (int)$block_data['bid'];
@@ -337,28 +447,28 @@ class MyBlocksAdmin
 
         return "
 				<div title='Block-Left'>
-					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_LEFT . "' class='blockposition' $ssel0 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_LEFT . ";' />
+					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_LEFT . "' class='blockposition' $ssel0 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_LEFT . ";'>
 				</div>
 				<div>-</div>
 				<div title='Center-Block-Left'>
-					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_LEFT . "' class='blockposition' $ssel2 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_LEFT . ";' />
+					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_LEFT . "' class='blockposition' $ssel2 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_LEFT . ";'>
 				</div>
 				<div title='Center-Block-Center'>
-					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_CENTER . "' class='blockposition' $ssel3 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_CENTER . ";' />
+					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_CENTER . "' class='blockposition' $ssel3 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_CENTER . ";'>
 				</div>
 				<div title='Center-Block-Right'>
-					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_RIGHT . "' class='blockposition' $ssel4 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_RIGHT . ";' />
+					<input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_RIGHT . "' class='blockposition' $ssel4 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_RIGHT . ";'>
 				</div>
 				<div>-</div>
 				<div title='Block-Right'>
-					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";' />
+					<input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";'>
 				</div>
 
 				<div style='width:45px;' title='Block-Extra'>
-					<input type='text' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid' />
+					<input type='text' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid'>
 				</div>
 				<div title='" . _NONE . "'>
-					<input type='radio' name='sides[$bid]' value='-1' class='blockposition ui-input-red' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;' />
+					<input type='radio' name='sides[$bid]' value='-1' class='blockposition ui-input-red' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;'>
 				</div>
 	";
     }
@@ -375,13 +485,13 @@ class MyBlocksAdmin
         $block_arr = [];
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block'); //add
+            $handler = xoops_gethandler('block'); //add
         }
         while ($myrow = $this->db->fetchArray($result)) {
 
             //HACK by domifara
             if (defined('XOOPS_CUBE_LEGACY')) {
-                $block_one = &$handler->create(false);
+                $block_one = $handler->create(false);
                 $block_one->assignVars($myrow);
                 $block_arr[] = &$block_one;
             } else {
@@ -433,6 +543,9 @@ class MyBlocksAdmin
         $tpl->display('db:altsys_main_myblocksadmin_list.html');
     }
 
+    /**
+     * @return array
+     */
 
     public function get_block_configs()
     {
@@ -462,7 +575,7 @@ class MyBlocksAdmin
         while ($myrow = $this->db->fetchArray($result)) {
             //HACK by domifara
             if (defined('XOOPS_CUBE_LEGACY')) {
-                $block_one = &$handler->create(false);
+                $block_one = $handler->create(false);
                 $block_one->assignVars($myrow);
                 $block_arr[] = &$block_one;
             } else {
@@ -487,6 +600,18 @@ class MyBlocksAdmin
         echo $form->render();
     }
 
+    /**
+     * @param       $bid
+     * @param       $bside
+     * @param       $bweight
+     * @param       $bvisible
+     * @param       $btitle
+     * @param       $bcontent
+     * @param       $bctype
+     * @param       $bcachetime
+     * @param array $options
+     * @return string
+     */
 
     public function update_block($bid, $bside, $bweight, $bvisible, $btitle, $bcontent, $bctype, $bcachetime, $options = [])
     {
@@ -494,8 +619,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block = $handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -514,6 +639,9 @@ class MyBlocksAdmin
             $block->setVar('c_type', $bctype);
         }
         $block->setVar('bcachetime', $bcachetime);
+
+//!Fix Test
+// if ($options && is_array($options)) {
         if (is_array($options) && count($options) > 0) {
             $block->setVar('options', implode('|', $options));
         }
@@ -522,10 +650,12 @@ class MyBlocksAdmin
             $block->setVar('name', $name);
         }
         $msg = _MD_A_MYBLOCKSADMIN_DBUPDATED;
+
         if (false !== $block->store()) {
             include_once XOOPS_ROOT_PATH . '/class/template.php';
             $xoopsTpl = new XoopsTpl();
             $xoopsTpl->xoops_setCaching(2);
+
             if ('' !== $block->getVar('template')) {
                 if ($xoopsTpl->is_cached('db:' . $block->getVar('template'))) {
                     if (!$xoopsTpl->clear_cache('db:' . $block->getVar('template'))) {
@@ -545,8 +675,14 @@ class MyBlocksAdmin
         return $msg;
     }
 
-
     // virtual
+
+    /**
+     * @param int               $bid
+     * @param $bmodules
+     */
+
+
     public function updateBlockModuleLink($bid, $bmodules)
     {
         $bid = (int)$bid;
@@ -561,8 +697,13 @@ class MyBlocksAdmin
         }
     }
 
-
     // virtual
+
+    /**
+     * @param int               $bid
+     * @param $req_gids
+     */
+
     public function updateBlockReadGroupPerm($bid, $req_gids)
     {
         $bid = (int)$bid;
@@ -594,6 +735,9 @@ class MyBlocksAdmin
         }
     }
 
+  /**
+     * @return string
+     */
 
     public function do_order()
     {
@@ -613,11 +757,15 @@ class MyBlocksAdmin
         return _MD_A_MYBLOCKSADMIN_DBUPDATED;
     }
 
+   /**
+     * @param int               $bid
+     * @return array
+     */
 
     public function fetchRequest4Block($bid)
     {
         $bid = (int)$bid;
-        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
+        (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 
         if (@$_POST['extra_sides'][$bid] > 0) {
             $_POST['sides'][$bid] = (int)$_POST['extra_sides'][$bid];
@@ -645,6 +793,10 @@ class MyBlocksAdmin
         ];
     }
 
+   /**
+     * @param int               $bid
+     * @return string
+     */
 
     public function do_delete($bid)
     {
@@ -652,8 +804,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block = $handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -671,6 +823,9 @@ class MyBlocksAdmin
     }
 
     //HACK add by domifara
+    /**
+     * @param int               $bid
+     */
     public function do_deleteBlockReadGroupPerm($bid)
     {
         $bid = (int)$bid;
@@ -679,6 +834,9 @@ class MyBlocksAdmin
         $this->db->query($sql);
     }
 
+    /**
+     * @param int               $bid
+     */
     public function form_delete($bid)
     {
         $bid = (int)$bid;
@@ -686,8 +844,10 @@ class MyBlocksAdmin
         //HACK by domifara
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+
+            $handler = xoops_gethandler('block');
+
+            $block = $handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -701,7 +861,7 @@ class MyBlocksAdmin
         }
 
         // breadcrumbs
-        $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+        $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
         $breadcrumbsObj->appendPath('', _DELETE);
 
         xoops_confirm(['op' => 'delete_ok'] + $GLOBALS['xoopsGTicket']->getTicketArray(__LINE__, 1800, 'myblocksadmin'), "?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=$this->target_dirname&amp;bid=$bid", sprintf(_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK, $block->getVar('title')));
@@ -716,8 +876,9 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+
+            $block = $handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -743,7 +904,7 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $cblock = &$handler->create(false);
+            $cblock = $handler->create(false);
         } else {
             $cblock = new XoopsBlock();
         }
@@ -773,6 +934,10 @@ class MyBlocksAdmin
         return _MD_A_MYBLOCKSADMIN_DBUPDATED;
     }
 
+    /**
+     * @param $mid
+     * @return int
+     */
 
     public function find_func_num_vacancy($mid)
     {
@@ -785,6 +950,10 @@ class MyBlocksAdmin
         return $func_num > 128 ? $func_num : 255;
     }
 
+    /**
+     * @param int               $bid
+     * @return string
+     */
 
     public function do_edit($bid)
     {
@@ -795,8 +964,8 @@ class MyBlocksAdmin
 
             //HACK by domifara
             if (defined('XOOPS_CUBE_LEGACY')) {
-                $handler = &xoops_gethandler('block');
-                $new_block = &$handler->create(false);
+                $handler = xoops_gethandler('block');
+                $new_block = $handler->create(false);
             } else {
                 $new_block = new XoopsBlock();
             }
@@ -828,6 +997,10 @@ class MyBlocksAdmin
         return $msg;
     }
 
+    /**
+     * @param        $bid
+     * @param string $mode
+     */
 
     public function form_edit($bid, $mode = 'edit')
     {
@@ -835,8 +1008,8 @@ class MyBlocksAdmin
 
         //HACK by domifara
         if (defined('XOOPS_CUBE_LEGACY')) {
-            $handler = &xoops_gethandler('block');
-            $block = &$handler->create(false);
+            $handler = xoops_gethandler('block');
+            $block = $handler->create(false);
             $block->load($bid);
         } else {
             $block = new XoopsBlock($bid);
@@ -856,7 +1029,7 @@ class MyBlocksAdmin
                 $button_value = _MD_A_MYBLOCKSADMIN_BTN_CLONE;
                 $next_op = 'clone_ok';
                 // breadcrumbs
-                $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+                $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
                 $breadcrumbsObj->appendPath('', _MD_A_MYBLOCKSADMIN_CLONEFORM);
                 break;
             case 'new':
@@ -864,7 +1037,7 @@ class MyBlocksAdmin
                 $button_value = _MD_A_MYBLOCKSADMIN_BTN_NEW;
                 $next_op = 'new_ok';
                 // breadcrumbs
-                $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+                $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
                 $breadcrumbsObj->appendPath('', _MD_A_MYBLOCKSADMIN_NEWFORM);
                 break;
             case 'edit':
@@ -873,16 +1046,18 @@ class MyBlocksAdmin
                 $button_value = _MD_A_MYBLOCKSADMIN_BTN_EDIT;
                 $next_op = 'edit_ok';
                 // breadcrumbs
-                $breadcrumbsObj = &AltsysBreadcrumbs::getInstance();
+                $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
                 $breadcrumbsObj->appendPath('', _MD_A_MYBLOCKSADMIN_EDITFORM);
                 break;
         }
-
+//!Fix test
+// $is_custom = in_array($block->getVar('block_type'), ['C', 'E'], true) ? true : false;
         $is_custom = in_array($block->getVar('block_type'), ['C', 'E']);
         $block_template = $block->getVar('template', 'n');
         $block_template_tplset = '';
 
         if (!$is_custom && $block_template) {
+
             // find template of the block
             $tplfile_handler = &xoops_gethandler('tplfile');
             $found_templates = $tplfile_handler->find($GLOBALS['xoopsConfig']['template_set'], 'block', null, null, $block_template);
@@ -920,7 +1095,7 @@ class MyBlocksAdmin
             'cell_group_perm' =>  $this->renderCell4BlockReadGroupPerm($block_data),
             'cell_options' => $this->renderCell4BlockOptions($block_data),
             'content_preview' => $this->previewContent($block_data),
-                        ] + $block_data;
+            ] + $block_data;
 
         // display
         require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
@@ -952,8 +1127,8 @@ class MyBlocksAdmin
 
         if (defined('XOOPS_CUBE_LEGACY')) {
             $tpl->display('db:altsys_main_myblocksadmin_edit_4legacy.html');
-        } else {
-            $tpl->display('db:altsys_main_myblocksadmin_edit.html');
+ //       } else {
+ //           $tpl->display('db:altsys_main_myblocksadmin_edit.html');
         }
         return;
     }
@@ -962,6 +1137,10 @@ class MyBlocksAdmin
 //    {
 //        return file_exists(XOOPS_ROOT_PATH . '/common/fckeditor/fckeditor.js');
 //    }
+    /**
+     * @param $block_data
+     * @return string
+     */
 
     public function previewContent($block_data)
     {
@@ -978,8 +1157,8 @@ class MyBlocksAdmin
         //TODO : need no hook block at this
         $block = new XoopsBlock($bid);
         /*
-    $handler =& xoops_gethandler('block');
-    $block =& $handler->create(false) ;
+    $handler = xoops_gethandler('block');
+    $block = $handler->create(false) ;
     $block->load($bid) ;
 */
 
@@ -998,6 +1177,10 @@ class MyBlocksAdmin
         return $ret;
     }
 
+    /**
+     * @param $bctype
+     * @return mixed|string
+     */
 
     public function get_blockname_from_ctype($bctype)
     {
@@ -1007,7 +1190,8 @@ class MyBlocksAdmin
             'N' => _MD_A_MYBLOCKSADMIN_CTYPE_NOSMILE,
             'P' => _MD_A_MYBLOCKSADMIN_CTYPE_PHP,
         ];
-
+//!Fix test
+// return isset($ctypes[$bctype]) ? $ctypes[$bctype] : _MD_A_MYBLOCKSADMIN_CTYPE_SMILE;
         return $ctypes[$bctype] ?? _MD_A_MYBLOCKSADMIN_CTYPE_SMILE;
     }
 
@@ -1021,6 +1205,7 @@ class MyBlocksAdmin
 
         $msg = '';
         $bid = (int)@$_GET['bid'];
+
         if (!empty($_POST['preview'])) {
             // preview
             $this->preview_request = $this->fetchRequest4Block($bid);

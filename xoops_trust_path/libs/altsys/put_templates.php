@@ -11,7 +11,7 @@ include_once __DIR__ . '/include/tpls_functions.php';
 
 
 // this page can be called only from altsys
-if ('altsys' !== $xoopsModule->getVar('dirname')) {
+if ('altsys' != $xoopsModule->getVar('dirname')) {
     die('this page can be called only from altsys');
 }
 
@@ -20,7 +20,7 @@ if ('altsys' !== $xoopsModule->getVar('dirname')) {
 altsys_include_language_file('compilehookadmin');
 
 
-$db =& XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 if (empty($_FILES['tplset_archive']['tmp_name']) || !is_uploaded_file($_FILES['tplset_archive']['tmp_name'])) {
     die(_TPLSADMIN_ERR_NOTUPLOADED);
@@ -41,8 +41,9 @@ while (ob_get_level() > 0) {
 // EXTRACT STAGE
 //
 
-$orig_filename4check = strtolower($_FILES['tplset_archive']['name']);
-if ('.zip' == strtolower(substr($orig_filename4check, -4))) {
+$orig_filename4check = mb_strtolower($_FILES['tplset_archive']['name']);
+if ('.zip' == mb_strtolower(mb_substr($orig_filename4check, -4))) {
+    // zip
 
     // zip
     require_once __DIR__ . '/include/Archive_Zip.php';
@@ -52,12 +53,15 @@ if ('.zip' == strtolower(substr($orig_filename4check, -4))) {
         die($reader->errorName());
     }
     $do_upload = true;
-} elseif ('.tgz' == substr($orig_filename4check, -4) || '.tar.gz' == substr($orig_filename4check, -7)) {
+} elseif ('.tgz' == mb_substr($orig_filename4check, -4) || '.tar.gz' == mb_substr($orig_filename4check, -7)) {
+    // tar.gz
 
     // tar.gz
     require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
     $tar = new tar();
-    $tar->openTar($_FILES['tplset_archive']['tmp_name']);
+
+    $tar->openTAR($_FILES['tplset_archive']['tmp_name']);
+
     $files = [];
     foreach ($tar->files as $id => $info) {
         $files[] = [
@@ -90,8 +94,10 @@ foreach ($files as $file) {
     if (!empty($file['folder'])) {
         continue;
     }
-    $pos = strrpos($file['filename'], '/');
-    $tpl_file = false === $pos ? $file['filename'] : substr($file['filename'], $pos + 1);
+
+    $pos = mb_strrpos($file['filename'], '/');
+
+    $tpl_file = false === $pos ? $file['filename'] : mb_substr($file['filename'], $pos + 1);
 
     if (tplsadmin_import_data($tplset, $tpl_file, rtrim($file['content']), $file['mtime'])) {
         $imported++;
