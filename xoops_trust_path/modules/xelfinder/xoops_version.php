@@ -2,7 +2,9 @@
 
 // language file (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH.'/libs/altsys/class/D3LanguageManager.class.php' ;
-if( ! file_exists( $langmanpath ) ) die( 'install the latest altsys' ) ;
+if( ! file_exists( $langmanpath ) ) {
+	die( 'install the latest altsys' );
+}
 require_once( $langmanpath ) ;
 $langman = D3LanguageManager::getInstance() ;
 $langman->read( 'modinfo.php' , $mydirname , $mytrustdirname , false ) ;
@@ -13,6 +15,7 @@ $modversion['name'] = 'xelFinder' ;
 //$modversion['name'] = $constpref.'_NAME') ;
 $modversion['description'] = constant($constpref.'_DESC');
 $modversion['version'] = 2.57 ;
+$modversion['detailed_version'] = '2.57.0';
 $modversion['credits'] = 'Hypweb.net';
 $modversion['author'] = 'nao-pon';
 $modversion['cube_style'] = true;

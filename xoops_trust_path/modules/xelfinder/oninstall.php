@@ -16,11 +16,12 @@ function xelfinder_oninstall_base( $module , $mydirname )
 		$root = XCube_Root::getSingleton();
 		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleInstall.' . ucfirst($mydirname) . '.Success' , 'xelfinder_message_append_oninstall' ) ;
 		$ret = [];
-	} else {
-		if( ! is_array( $ret ) ) $ret = [];
-	}
+        } else if( ! is_array( $ret ) ) {
+        $ret = [];
+    }
 
-	$db = Database::getInstance() ;
+	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+
 	$mid = $module->getVar('mid') ;
 
 	// TABLES (loading mysql.sql)
@@ -38,27 +39,32 @@ function xelfinder_oninstall_base( $module , $mydirname )
 		}
 
 		$sql_query = trim( file_get_contents( $sql_file_path ) ) ;
+
 		$sqlutil->splitMySqlFile( $pieces , $sql_query ) ;
+
 		$created_tables = [];
-		if( is_array( $pieces ) ) foreach( $pieces as $piece ) {
-			$prefixed_query = $sqlutil->prefixQuery( $piece , $prefix_mod ) ;
-			if( ! $prefixed_query ) {
-				$ret[] = 'Invalid SQL <b>' . htmlspecialchars($piece, ENT_COMPAT, _CHARSET) . '</b><br>';
-				return false ;
-			}
-			if( ! $db->query( $prefixed_query[0] ) ) {
-				$ret[] = '<b>'.htmlspecialchars($db->error(), ENT_COMPAT, _CHARSET).'</b><br>' ;
-				//var_dump( $db->error() ) ;
-				return false ;
-			} else {
-				if( ! in_array( $prefixed_query[4] , $created_tables ) ) {
-					$ret[] = 'Table <b>'.htmlspecialchars($prefix_mod.'_'.$prefixed_query[4], ENT_COMPAT, _CHARSET).'</b> created.<br>';
-					$created_tables[] = $prefixed_query[4];
-				} else {
-					$ret[] = 'Data inserted to table <b>'.htmlspecialchars($prefix_mod.'_'.$prefixed_query[4], ENT_COMPAT, _CHARSET).'</b>.</br />';
-				}
-			}
-		}
+
+		if( is_array( $pieces ) ) {
+            foreach ($pieces as $piece) {
+                $prefixed_query = $sqlutil->prefixQuery($piece, $prefix_mod);
+                if (!$prefixed_query) {
+                    $ret[] = 'Invalid SQL <b>' . htmlspecialchars($piece, ENT_COMPAT, _CHARSET) . '</b><br>';
+                    return false;
+                }
+                if (!$db->query($prefixed_query[0])) {
+                    $ret[] = '<b>' . htmlspecialchars($db->error(), ENT_COMPAT, _CHARSET) . '</b><br>';
+                    //var_dump( $db->error() ) ;
+                    return false;
+                } else {
+                    if (!in_array($prefixed_query[4], $created_tables)) {
+                        $ret[] = 'Table <b>' . htmlspecialchars($prefix_mod . '_' . $prefixed_query[4], ENT_COMPAT, _CHARSET) . '</b> created.<br>';
+                        $created_tables[] = $prefixed_query[4];
+                    } else {
+                        $ret[] = 'Data inserted to table <b>' . htmlspecialchars($prefix_mod . '_' . $prefixed_query[4], ENT_COMPAT, _CHARSET) . '</b>.</br />';
+                    }
+                }
+            }
+        }
 	}
 
 	// TEMPLATES
@@ -85,9 +91,11 @@ function xelfinder_oninstall_base( $module , $mydirname )
 				} else {
 					$tplid = $tplfile->getVar( 'tpl_id' ) ;
 					$ret[] = 'Template <b>'.htmlspecialchars($mydirname.'_'.$file, ENT_COMPAT, _CHARSET).'</b> added to the database. (ID: <b>'.$tplid.'</b>)<br>';
+
 					// generate compiled file
 					include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
 					include_once XOOPS_ROOT_PATH.'/class/template.php' ;
+
 					if( ! xoops_template_touch( $tplid ) ) {
 						$ret[] = '<span style="color:#ff0000;">ERROR: Failed compiling template <b>'.htmlspecialchars($mydirname.'_'.$file, ENT_COMPAT, _CHARSET).'</b>.</span><br>';
 					} else {

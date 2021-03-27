@@ -17,15 +17,19 @@ function xelfinder_onupdate_base( $module , $mydirname )
 		$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUpdate.' . ucfirst($mydirname) . '.Success', 'xelfinder_message_append_onupdate' ) ;
 		$msgs = [];
 	} else {
-		if( ! is_array( $msgs ) ) $msgs = [];
+		if( ! is_array( $msgs ) ) {
+            $msgs = [];
+        }
 	}
 
 	$db = Database::getInstance() ;
+
 	$mid = $module->getVar('mid') ;
 
 
 	// TABLES (write here ALTER TABLE etc. if necessary)
 	$query = 'SELECT `gids` FROM ' . $db->prefix($mydirname . '_file') ;
+
 	if(! $db->query($query)) {
 		$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` ADD `gids` VARCHAR( 255 ) NOT NULL');
 	}
@@ -36,7 +40,9 @@ function xelfinder_onupdate_base( $module , $mydirname )
 	if (file_exists($cache_dir . '/lastupdate.dat')) {
 		$lastupdate = @unserialize(file_get_contents($cache_dir . '/lastupdate.dat'));
 	}
-	if (! is_numeric($lastupdate)) $lastupdate = 0;
+	if (! is_numeric($lastupdate)) {
+        $lastupdate = 0;
+    }
 	file_put_contents($cache_dir . '/lastupdate.dat', serialize($module->getVar('version')));
 
 	// from v 0.10
@@ -90,7 +96,7 @@ function xelfinder_onupdate_base( $module , $mydirname )
 		$dat = $db->fetchArray($res);
 		if (NULL === $dat['Default']) {
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `parent_id` `parent_id` INT( 10 ) UNSIGNED NOT NULL DEFAULT \'0\'');
-			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `name` `name` varchar(255) NOT NULL DEFAULT \'\'');
+			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `name` `name` varchar(191) NOT NULL DEFAULT \'\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `size` `size` int(10) unsigned NOT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `ctime` `ctime` int(10) unsigned NOT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `mtime` `mtime` int(10) unsigned NOT NULL DEFAULT \'0\'');
@@ -100,18 +106,18 @@ function xelfinder_onupdate_base( $module , $mydirname )
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `home_of` `home_of` int(10) DEFAULT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `width` `width` int(11) NOT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `height` `height` int(11) NOT NULL DEFAULT \'0\'');
-			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `gids` `gids` varchar(255) NOT NULL DEFAULT \'\'');
-			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `mime_filter` `mime_filter` varchar(255) NOT NULL DEFAULT \'\'');
-			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `local_path` `local_path` varchar(255) NOT NULL DEFAULT \'\'');
+			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `gids` `gids` varchar(191) NOT NULL DEFAULT \'\'');
+			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `mime_filter` `mime_filter` varchar(191) NOT NULL DEFAULT \'\'');
+			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_file') . '` CHANGE `local_path` `local_path` varchar(191) NOT NULL DEFAULT \'\'');
 			// link
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_link') . '` CHANGE `file_id` `file_id` int(11) NOT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_link') . '` CHANGE `mid` `mid` int(10) unsigned NOT NULL DEFAULT \'0\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_link') . '` CHANGE `param` `param` varchar(25) NOT NULL DEFAULT \'\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_link') . '` CHANGE `val` `val` varchar(25) NOT NULL DEFAULT \'\'');
-			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_link') . '` CHANGE `title` `title` varchar(255) NOT NULL DEFAULT \'\'');
+			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_link') . '` CHANGE `title` `title` varchar(191) NOT NULL DEFAULT \'\'');
 			// userdat
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_userdat') . '` CHANGE `uid` `uid` int(10) unsigned NOT NULL DEFAULT \'0\'');
-			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_userdat') . '` CHANGE `key` `key` varchar(255) NOT NULL DEFAULT \'\'');
+			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_userdat') . '` CHANGE `key` `key` varchar(191) NOT NULL DEFAULT \'\'');
 			$db->queryF('ALTER TABLE `'.$db->prefix($mydirname . '_userdat') . '` CHANGE `mtime` `mtime` int(10) unsigned NOT NULL DEFAULT \'0\'');
 		}
 	}

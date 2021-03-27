@@ -797,7 +797,7 @@ EOD;
 			$config_handler = xoops_getHandler('config');
 			$xoopsConfig = $config_handler->getConfigsByCat(XOOPS_CONF);
 			$uname = $xoopsConfig['anonymous'];
-			if ('UTF-8' === self::$dbCharset && 'UTF-8' !== strtoupper(_CHARSET)) {
+			if ('utf8' === self::$dbCharset && 'UTF-8' !== strtoupper(_CHARSET)) {
 				$uname = mb_convert_encoding($uname, 'UTF-8', _CHARSET);
 			}
 		} else {
@@ -914,7 +914,7 @@ EOD;
 			}
 			// RMV-NOTIFY
 			// Perform some maintenance of notification records
-			$notification_handler = xoops_getHandler('notification');
+			$notification_handler =& xoops_getHandler('notification');
 			$notification_handler->doLoginMaintenance($user->getVar('uid'));
 		} else {
 			return false;
