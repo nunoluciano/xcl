@@ -2,93 +2,115 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
-<{if $actionForm->hasError()}>
-<div class="errorMsg">
-  <ul>
-    <{foreach item=message from=$actionForm->getErrorMessages()}>
-    <li><{$message}></li>
-    <{/foreach}>
-  </ul>
-</div>
-<{/if}>
 
-<form action="#" method="post" autocomplete="off">
+
+    <{if $actionForm->hasError()}>
+    <div class="errorMsg">
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li class="alert alert-secondary" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 100 100"><path d="M91.17 81.374l.006-.004l-.139-.24c-.068-.128-.134-.257-.216-.375l-37.69-65.283c-.611-1.109-1.776-1.87-3.133-1.87c-1.47 0-2.731.887-3.285 2.153l-.004-.002L9.312 80.529l.036.021a3.553 3.553 0 0 0-.82 2.257a3.59 3.59 0 0 0 3.588 3.59h75.767a3.59 3.59 0 0 0 3.589-3.589c0-.511-.11-.994-.302-1.434zm-41.135-1.757c-2.874 0-5.201-2.257-5.201-5.13c0-2.874 2.326-5.2 5.201-5.2c2.803 0 5.13 2.325 5.13 5.2a5.123 5.123 0 0 1-5.13 5.13zm5.13-45.367v28.299h-.002l.002.016c0 1.173-.95 2.094-2.094 2.094l-.014-.001v.001h-6.093c-1.174 0-2.123-.921-2.123-2.094l.002-.016h-.002V34.326c-.001-.026-.008-.051-.008-.077c0-1.117.865-1.996 1.935-2.078v-.016h6.288v.001c1.149.007 2.074.897 2.103 2.039h.005v.055h.001z" fill="orange"/></svg>
+            <{$message}></li>
+        <{/foreach}>
+    </ul>
+    </div>
+    <{/if}>
+
+
+<form action="#" method="post" autocomplete="off" class="card">
 <{xoops_token form=$actionForm}>
-<table class="outer" width="100%">
-  <tr>
-    <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_USERREG}></th>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_NICKNAME}></td>
-    <td class="<{cycle values="odd,even"}>"><{xoops_input maxlength=25 name=uname value=$actionForm->get('uname')}></td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email')}><br />
-      <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
-    <td class="<{cycle values="odd,even"}>"><{xoops_input name=url size=30 maxlength=100 value=$actionForm->get('url')}></td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <select name="timezone_offset">
-        <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_PASSWORD}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input type=password name=pass value=$actionForm->get('pass') size=10 maxlength=32}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_VERIFYPASS}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input type=password name=vpass value=$actionForm->get('vpass') size=10 maxlength=32}>
-    </td>
-  </tr>
 
-<{* ---- Inserted - XCube Legacy 2.1.6RC1 - 23Sep2008  ---- *}>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <label><{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
-      <label><{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
-    </td>
-  </tr>
-<{* ---- /Inserted ---- *}>
+
+<div class="card-header"><h3><{$smarty.const._MD_USER_LANG_USERREG}></h3></div>
+
+<div class="card-body">
+
+    <div class="form-group">
+        <label for="uname"><{$smarty.const._MD_USER_LANG_NICKNAME}></label>
+        <{xoops_input class="form-control" maxlength=30 name=uname value=$actionForm->get('uname')}>
+    </div>
+
+
+    <div class="form-group">
+        <label for="email"> <{$smarty.const._MD_USER_LANG_EMAIL}></label>
+        <{xoops_input  class="form-control" name=email size=30 maxlength=60 value=$actionForm->get('email')}>
+    </div>
+
+
+    <div class="form-group form-check">
+        <{xoops_input class="form-check-input" type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}>
+        <label class="form-check-label" for="user_viewemail"><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
+    </div>
+
+
+    <div class="form-group">
+    <label for="url"><{$smarty.const._MD_USER_LANG_WEBSITE}></label>
+    <{xoops_input class="form-control" name=url size=30 maxlength=100 value=$actionForm->get('url')}>
+    </div>
+
+    <div class="form-group">
+    <label for="timezone_offset"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></label>
+    <select name="timezone_offset" class="form-control">
+        <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+    <label for="pass"><{$smarty.const._MD_USER_LANG_PASSWORD}></label>
+    <{xoops_input class="form-control" type=password name=pass value=$actionForm->get('pass') size=10 maxlength=32}>
+    </div>
+
+    <div class="form-group">
+    <label for="vpass"><{$smarty.const._MD_USER_LANG_VERIFYPASS}></label>
+    <{xoops_input class="form-control" type=password name=vpass value=$actionForm->get('vpass') size=10 maxlength=32}>
+    </div>
+
+    <div class="form-group">
+    <label class="form-check-label" for="user_mailok"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></label>
+
+    <div class="form-check form-check-inline">
+        <{xoops_input class="form-check-input" type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}>
+        <label class="form-check-label" for="inlineCheckbox1"><{$smarty.const._YES}></label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <{xoops_input class="form-check-input" type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}>
+        <label class="form-check-label" for="inlineCheckbox2"><{$smarty.const._NO}></label>
+      </div>
+
+    </div>
+
 
   <{if $enableAgree}>
-  <tr>
-    <td class="head"><{$smarty.const._MD_USER_LANG_DISCLAIMER}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_textarea name=disclaimer rows=8 cols=50 readonly=true value=$disclaimer}><br />
-      <label><{xoops_input type=checkbox name=agree value=1 default=$actionForm->get('agree')}> <{$smarty.const._MD_USER_MESSAGE_IAGREE}></label>
-    </td>
-  </tr>
+ <hr>
+  <div class="form-group">
+    <label for="disclaimer"><{$smarty.const._MD_USER_LANG_DISCLAIMER}></label>
+    <{xoops_textarea class="form-control" name=disclaimer rows=8 cols=50 readonly=true value=$disclaimer}>
+  </div>
+
+  <div class="form-group form-check">
+    <{xoops_input class="form-check-input" type=checkbox name=agree value=1 default=$actionForm->get('agree')}>
+    <label class="form-check-label" for="agree"><{$smarty.const._MD_USER_MESSAGE_IAGREE}></label>
+  </div>
+  <hr>
   <{/if}>
 
-  <{if $validators}>
-  <{foreach from=$validators item=validator}>
-  <tr>
-    <td class="head"><{$validator.caption}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{$validator.element}>
-    </td>
-  </tr>
-  <{/foreach}>
-  <{/if}>
 
-  <tr>
-    <td colspan="2" class="foot" style="text-align:center;">
-      <input type="submit" value="<{$smarty.const._MD_USER_LANG_SUBMIT}>" />
-    </td>
-  </tr>
-</table>
+
+<{if $validators}>
+    <{foreach from=$validators item=validator}>
+  
+    <div class="m-auto"><strong><{$validator.caption}></strong> : <{$validator.element}></div>
+ 
+    <{/foreach}>
+<{/if}>
+
+</div>
+
+<div class="card-footer text-center">
+    <!-- <input type="submit" value="<{$smarty.const._MD_USER_LANG_SUBMIT}>" /> -->
+    <button type="submit" id="alertToast" class="btn btn-primary" value="<{$smarty.const._MD_USER_LANG_SUBMIT}>"><{$smarty.const._MD_USER_LANG_SUBMIT}></button>
+</div>
+      
 </form>

@@ -143,21 +143,6 @@
     <{/if}>
 
 
-    <{* ----- Forum topics images *}>
-
-    <{if $topic.sticky}>
-    <{assign var="topic_icon_src" value="`$mod_imageurl`/topic_sticky`$topic.bit_new`.gif"}>
-    <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
-
-    <{elseif $topic.invisible}>
-    <{assign var="topic_icon_src" value="`$mod_imageurl`/topic_invisible.gif"}>
-    <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
-
-    <{else}>
-    <{assign var="topic_icon_src" value="`$mod_imageurl`/topic_`$topic.bit_new``$topic.bit_hot`.gif"}>
-    <{assign var="topic_icon_alt" value=""}>
-    <{/if}>
-
 
     <{* ----- List Forum Topics *}>
 
@@ -166,6 +151,19 @@
 
         <{foreach item=topic from=$topics}>
 
+        <{* ToDO theme component for Forum topics images
+            NOTE : Must assign icons within topic loop ! *}>
+
+        <{if $topic.sticky}>
+        <{assign var="topic_icon_src" value="`$mod_imageurl`/topic_sticky`$topic.bit_new`.gif"}>
+        <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
+        <{elseif $topic.invisible}>
+        <{assign var="topic_icon_src" value="`$mod_imageurl`/topic_invisible.gif"}>
+        <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
+        <{else}>
+        <{assign var="topic_icon_src" value="`$mod_imageurl`/topic_`$topic.bit_new``$topic.bit_hot`.gif"}>
+        <{assign var="topic_icon_alt" value=""}>
+        <{/if}>
         <article layout="column sm-column mb-4" name="forum-topics-list" class="bg-color">
 
             <div layout="row center-justify pt-2">
@@ -186,7 +184,8 @@
                     <{/if}>
 
                     <{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
-                    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
+                    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
+                        <img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
                     <{/if}>
                     <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>"><{$topic.title}></a>
                     <{$topic.topic_page_jump}>

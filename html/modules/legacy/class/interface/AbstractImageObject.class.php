@@ -11,7 +11,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 {
-    const IMAGE_TAG = '<img src="%s" width="%d" height="%d" alt="%s" />';
+    const IMAGE_TAG = '<img src="%s" width="%d" height="%d" alt="%s">';
     const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
 </object>';
 
@@ -30,7 +30,7 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
     public function __construct()
     {
         $this->initVar('image_id', XOBJ_DTYPE_INT, 0, false);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('uid', XOBJ_DTYPE_INT, '', false);
         $this->initVar('dirname', XOBJ_DTYPE_STRING, '', false);
         $this->initVar('dataname', XOBJ_DTYPE_STRING, '', false);

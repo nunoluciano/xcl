@@ -1,10 +1,10 @@
 <?php
 
-foreach ($this->v('checks') as $check) {
+foreach ( $this->v( 'checks' ) as $check ) {
 
-    echo $check . '<br>';
+	echo $check . '<br>';
 }
 
 ?>
 
-<div class="confirmInfo"><?php $this->e('message') ?></div>
+<div class="confirmInfo"><?php $this->e( 'message' ) ?></div>

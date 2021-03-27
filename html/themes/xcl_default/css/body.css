@@ -2,11 +2,11 @@
 /* 	Toggle comment of display block - none */
 
 .ui-dev-mode {
-    background          : #0a0a0a;
-    color               : #00CCFF;
+    background          : rgb(10, 10, 10);
+    color               : rgb(0, 204, 255);
     font-size           : 12px;
-    /*display             : block;*/
-    display             : none;
+    display             : block;
+     /*display             : none; */
 }
 
 /* -------------------- -------------------- -------------------- FONT-FAMILY */
@@ -68,8 +68,8 @@ bottom-right corner where the horizontal and vertical scrollbars meet */
 
 html,
 body {
-	background          : #232831;
-	color               : #abc;
+	background          : rgb(35, 40, 49);
+	color               : rgb(170, 187, 204);
     font-family         : "system", sans-serif;
 	font-size           : 15px;
 	font-weight         : 300;
@@ -223,4 +223,18 @@ blockquote,
 
 [class*="shadow"] {
     transition          : all 0.2s ease;
+}
+
+ul.layout-list {
+    list-style-type     : none;
+    display             : block;
+    flex-basis: auto;
+    margin              : 0 0 .25em;
+    padding             : .25em;
+}
+ul.layout-list li {
+    margin              : .15em;
+    /*white-space         : nowrap;*/
+    /*overflow            : hidden;*/
+    /*text-overflow       : ellipsis;*/
 }

@@ -1,7 +1,14 @@
 <?php
-// $Id: welcome.php,v 1.4 2008/09/22 13:52:22 kilica Exp $
+/**
+ * @package XCL
+ * @subpackage Installer
+ * @version 2.3
+ * @author Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 $content =
-    '<div class="ui-tab-wrap">
+	'<div class="ui-tab-wrap">
 	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked="">
 	<label for="ui-tab1">About</label>
 

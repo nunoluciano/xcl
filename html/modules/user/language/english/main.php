@@ -17,9 +17,7 @@ define('_MD_USER_ERROR_REQUIRED', '{0} is required.');
 define('_MD_USER_ERROR_SEND_MAIL', 'Email transmission failed. Please contact site administrator.');
 define('_MD_USER_ERROR_TIMEZONE', 'TimeZone');
 define('_MD_USER_ERROR_UNEEDAGREE', 'Sorry, you have to agree to our disclaimer to get registered.');
-define('_MD_USER_ERROR_YOURREGMAILNG',
-       'You are now registered. However, we were unable to send the activation mail to your email account due to an internal error that had occurred on our server. We are sorry for the inconvenience, please send the webmaster an email notifying him/her of the situation.'
-);
+define('_MD_USER_ERROR_YOURREGMAILNG','You are now registered. However, we were unable to send the activation mail to your email account due to an internal error that had occurred on our server. We are sorry for the inconvenience, please send the webmaster an email notifying him/her of the situation.');
 define('_MD_USER_LANG_ALLABOUT', 'All about %s');
 define('_MD_USER_LANG_ASSIGN', 'Assign');
 define('_MD_USER_LANG_ATTACHSIG', 'Always attach my signature');

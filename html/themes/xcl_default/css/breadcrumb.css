@@ -22,7 +22,7 @@ ul.breadcrumb {
     display             : flex;
     background          : rgba(0, 0, 0, 0.2);
     background          : linear-gradient(130deg, rgb(30, 36, 48), rgb(35, 35, 45));
-    border              :  1px solid #263849;
+    border              : 1px solid #263849;
     border-radius       : 7px;
     box-shadow          : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
     6px 6px 15px 3px rgba(45, 50, 60, 1),

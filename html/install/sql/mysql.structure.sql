@@ -1,13 +1,12 @@
-# phpMyAdmin MySQL-Dump
-# version 2.3.2
-# http://www.phpmyadmin.net/ (download page)
-#
-# Host: localhost
-# Generation Time: Jan 09, 2003 at 12:35 AM
-# Server version: 3.23.54
-# PHP Version: 4.2.2
-# Database : `xoops2`
-# --------------------------------------------------------
+/**
+ * @package XCL
+ * @subpackage Installer
+ * @version 2.3
+ * @author Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
+
 
 #
 # Table structure for table `avatar`
@@ -51,8 +50,8 @@ CREATE TABLE banner
     imptotal   mediumint(8) unsigned NOT NULL default '0',
     impmade    mediumint(8) unsigned NOT NULL default '0',
     clicks     mediumint(8) unsigned NOT NULL default '0',
-    imageurl   varchar(255)          NOT NULL default '',
-    clickurl   varchar(255)          NOT NULL default '',
+    imageurl   varchar(191)          NOT NULL default '',
+    clickurl   varchar(191)          NOT NULL default '',
     date       int(10)               NOT NULL default '0',
     htmlbanner tinyint(1)            NOT NULL default '0',
     htmlcode   text                  NOT NULL,
@@ -71,7 +70,7 @@ CREATE TABLE bannerclient
     cid       smallint(5) unsigned NOT NULL auto_increment,
     name      varchar(60)          NOT NULL default '',
     contact   varchar(60)          NOT NULL default '',
-    email     varchar(255)         NOT NULL default '',
+    email     varchar(191)         NOT NULL default '',
     login     varchar(10)          NOT NULL default '',
     passwd    varchar(10)          NOT NULL default '',
     extrainfo text                 NOT NULL,
@@ -126,11 +125,11 @@ CREATE TABLE xoopscomments
     com_modified int(10) unsigned      NOT NULL default '0',
     com_uid      mediumint(8) unsigned NOT NULL default '0',
     com_ip       varchar(15)           NOT NULL default '',
-    com_title    varchar(255)          NOT NULL default '',
+    com_title    varchar(191)          NOT NULL default '',
     com_text     text                  NOT NULL,
     com_sig      tinyint(1) unsigned   NOT NULL default '0',
     com_status   tinyint(1) unsigned   NOT NULL default '0',
-    com_exparams varchar(255)          NOT NULL default '',
+    com_exparams varchar(191)          NOT NULL default '',
     dohtml       tinyint(1) unsigned   NOT NULL default '0',
     dosmiley     tinyint(1) unsigned   NOT NULL default '0',
     doxcode      tinyint(1) unsigned   NOT NULL default '0',
@@ -176,9 +175,9 @@ CREATE TABLE config
     conf_modid     smallint(5) unsigned NOT NULL default '0',
     conf_catid     smallint(5) unsigned NOT NULL default '0',
     conf_name      varchar(25)          NOT NULL default '',
-    conf_title     varchar(255)         NOT NULL default '',
+    conf_title     varchar(191)         NOT NULL default '',
     conf_value     text                 NOT NULL,
-    conf_desc      varchar(255)         NOT NULL default '',
+    conf_desc      varchar(191)         NOT NULL default '',
     conf_formtype  varchar(15)          NOT NULL default '',
     conf_valuetype varchar(10)          NOT NULL default '',
     conf_order     smallint(5) unsigned NOT NULL default '0',
@@ -207,8 +206,8 @@ CREATE TABLE configcategory
 CREATE TABLE `configoption`
 (
     confop_id    mediumint(8) unsigned NOT NULL auto_increment,
-    confop_name  varchar(255)          NOT NULL default '',
-    confop_value varchar(255)          NOT NULL default '',
+    confop_name  varchar(191)          NOT NULL default '',
+    confop_value varchar(191)          NOT NULL default '',
     conf_id      smallint(5) unsigned  NOT NULL default '0',
     PRIMARY KEY (confop_id),
     KEY conf_id (conf_id)
@@ -271,7 +270,7 @@ CREATE TABLE `image`
 (
     image_id       mediumint(8) unsigned NOT NULL auto_increment,
     image_name     varchar(30)           NOT NULL default '',
-    image_nicename varchar(255)          NOT NULL default '',
+    image_nicename varchar(191)          NOT NULL default '',
     image_mimetype varchar(30)           NOT NULL default '',
     image_created  int(10) unsigned      NOT NULL default '0',
     image_display  tinyint(1) unsigned   NOT NULL default '0',
@@ -401,9 +400,9 @@ CREATE TABLE `newblocks`
     bid           mediumint(8) unsigned NOT NULL auto_increment,
     mid           smallint(5) unsigned  NOT NULL default '0',
     func_num      tinyint(3) unsigned   NOT NULL default '0',
-    options       varchar(255)          NOT NULL default '',
+    options       varchar(191)          NOT NULL default '',
     name          varchar(150)          NOT NULL default '',
-    title         varchar(255)          NOT NULL default '',
+    title         varchar(191)          NOT NULL default '',
     content       text                  NOT NULL,
     side          tinyint(1) unsigned   NOT NULL default '0',
     weight        smallint(5) unsigned  NOT NULL default '0',
@@ -449,7 +448,7 @@ CREATE TABLE `priv_msgs`
 (
     msg_id      mediumint(8) unsigned NOT NULL auto_increment,
     msg_image   varchar(100)                   default NULL,
-    subject     varchar(255)          NOT NULL default '',
+    subject     varchar(191)          NOT NULL default '',
     from_userid mediumint(8) unsigned NOT NULL default '0',
     to_userid   mediumint(8) unsigned NOT NULL default '0',
     msg_time    int(10) unsigned      NOT NULL default '0',
@@ -473,7 +472,7 @@ CREATE TABLE `ranks`
     rank_min     mediumint(8) unsigned NOT NULL default '0',
     rank_max     mediumint(8) unsigned NOT NULL default '0',
     rank_special tinyint(1) unsigned   NOT NULL default '0',
-    rank_image   varchar(255)                   default NULL,
+    rank_image   varchar(191)                   default NULL,
     PRIMARY KEY (rank_id),
     KEY rank_min (rank_min),
     KEY rank_max (rank_max),
@@ -520,7 +519,7 @@ CREATE TABLE `tplset`
 (
     tplset_id      int(7) unsigned  NOT NULL auto_increment,
     tplset_name    varchar(50)      NOT NULL default '',
-    tplset_desc    varchar(255)     NOT NULL default '',
+    tplset_desc    varchar(191)     NOT NULL default '',
     tplset_credits text             NOT NULL,
     tplset_created int(10) unsigned NOT NULL default '0',
     PRIMARY KEY (tplset_id)
@@ -538,7 +537,7 @@ CREATE TABLE `tplfile`
     tpl_module       varchar(25)           NOT NULL default '',
     tpl_tplset       varchar(50)           NOT NULL default '',
     tpl_file         varchar(50)           NOT NULL default '',
-    tpl_desc         varchar(255)          NOT NULL default '',
+    tpl_desc         varchar(191)          NOT NULL default '',
     tpl_lastmodified int(10) unsigned      NOT NULL default '0',
     tpl_lastimported int(10) unsigned      NOT NULL default '0',
     tpl_type         varchar(20)           NOT NULL default '',
@@ -569,7 +568,7 @@ CREATE TABLE `users`
     uid             mediumint(8) unsigned NOT NULL auto_increment,
     name            varchar(60)           NOT NULL default '',
     uname           varchar(25)           NOT NULL default '',
-    email           varchar(255)          NOT NULL default '',
+    email           varchar(191)          NOT NULL default '',
     url             varchar(100)          NOT NULL default '',
     user_avatar     varchar(30)           NOT NULL default 'blank.gif',
     user_regdate    int(10) unsigned      NOT NULL default '0',
@@ -581,7 +580,7 @@ CREATE TABLE `users`
     user_aim        varchar(18)           NOT NULL default '',
     user_yim        varchar(25)           NOT NULL default '',
     user_msnm       varchar(100)          NOT NULL default '',
-    pass            varchar(255)          NOT NULL default '',
+    pass            varchar(191)          NOT NULL default '',
     posts           mediumint(8) unsigned NOT NULL default '0',
     attachsig       tinyint(1) unsigned   NOT NULL default '0',
     `rank`          smallint(5) unsigned  NOT NULL default '0',

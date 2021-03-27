@@ -18,6 +18,7 @@
 
 /* -------------------- -------------------- -------------------- -------------------- NOTIFICATION */
 
+.errorMsg,
 .confirmInfo,
 .confirmError,
 .confirmMsg,
@@ -35,7 +36,7 @@
 	margin: 3em 1em;
 	padding: 2em 4em;
 }
-
+.resultMsg,
 .confirmInfo {
 	color: #6b94c5;
 	border: 1px solid #6b94c5;
@@ -43,16 +44,15 @@
 	background-size: 30px 30px;
 
 }
-
-.confirmError,
-.confirmMsg {
+.errorMsg,
+.confirmError {
 	color: #ff6633;
 	border: 1px solid #ff6633;
 	background: url(img/icon-alert.svg) no-repeat 1em 1.5em;
 	background-size: 30px 30px;
 
 }
-
+.confirmMsg,
 .confirmOk {
 	color: #00cc00;
 	border: 1px solid #00cc00;

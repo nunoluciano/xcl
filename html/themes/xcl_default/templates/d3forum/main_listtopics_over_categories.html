@@ -1,4 +1,7 @@
 <{* Dev-Mode Toggle *}>
+<{* TODO template db: and custom icon set *}>
+
+<{include file="$xoops_theme/templates/d3forum/inc_topic_icon.html"}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
     <{if $mod_config.show_breadcrumbs}>
@@ -27,6 +30,7 @@
     <{* ------- Search filter *}>
 
         <form action="<{$mod_url}>/index.php" method="get">
+
             <div layout="row center-center">
             <{$forum_selection_sort}>
                 <input type="hidden" name="cat_ids" value="<{$cat_ids}>">
@@ -65,9 +69,7 @@
     </nav>
     <{/if}>
 
-<{* TODO template db: and custom icon set *}>
 
-<{include file="$xoops_theme/templates/d3forum/inc_topic_icon.html"}>
 
     <!-- start forum main table -->
     <table class="table bg-color">

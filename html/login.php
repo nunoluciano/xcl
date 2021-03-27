@@ -34,10 +34,11 @@ if ('' == $username || '' == $password) {
 
 $header = '<html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" />
+    <meta charset="UTF-8">
     <meta http-equiv="content-language" content="'._LANGCODE.'" />
+    
     <title>'.htmlspecialchars($xoopsConfig['sitename']).'</title>
-    <link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/themes/xcl_default/style.css" />
 ';
 $style = getcss($xoopsConfig['theme_set']);
 if ('' == $style) {
@@ -97,7 +98,7 @@ if ('dologin' == $op) {
             echo '<div style="text-align:center;"><input value="'._CLOSE.'" type="button" onclick="document.window.opener.location.reload();document.window.close();" /></div>';
         }
     } else {
-        xoops_error(_US_INCORRECTLOGIN.'<br><a href="login.php">'._BACK.'</a>');
+        xoops_error('<div style="text-align:center;">'._US_INCORRECTLOGIN.'<br><a href="login.php">'._BACK.'</a></div>');
     }
 }
 
@@ -125,7 +126,4 @@ if ('login' == $op) {
     ';
 }
 
-echo '
-  </body>
-</html>
-';
+echo '</body></html>';

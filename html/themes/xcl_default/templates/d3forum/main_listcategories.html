@@ -1,5 +1,7 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<div class="ui-dev-mode"><{$smarty.template}> </div>
+<{* TODO template db: and custom icon set *}>
+
 
 <{if $mod_config.show_breadcrumbs}>
     <ul class="breadcrumb" aria-label="breadcrumb">
@@ -17,7 +19,6 @@
             </svg> <{$smarty.const._MD_D3FORUM_TOP}></a>
     </ul>
 <{/if}>
-
 
 
     <{* ------- Top Message *}>
@@ -64,7 +65,6 @@
         </a>
     </div>
     <{* ------- /Admin Action controller *}>
-
 
 
 
@@ -168,6 +168,7 @@
             </div>
             <{* ------- /Admin Manager *}>
 
+
         </section>
 
         <{/if}>
@@ -203,10 +204,10 @@
 
 
 
-<{* ------- Notification *}>
+    <{* ------- Notification *}>
 
-<hr class="notification">
+    <hr class="notification">
 
-<{include file='db:system_notification_select.html'}>
+    <{include file='db:system_notification_select.html'}>
 
 

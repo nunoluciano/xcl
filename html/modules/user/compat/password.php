@@ -23,15 +23,16 @@ namespace {
 
     if (!function_exists('password_hash')) {
 
-        /**
-         * Hash the password using the specified algorithm
-         *
-         * @param string $password The password to hash
-         * @param int    $algo     The algorithm to use (Defined by PASSWORD_* constants)
-         * @param array  $options  The options for the algorithm to use
-         *
-         * @return string|false The hashed password, or false on error.
-         */
+	    /**
+	     * Hash the password using the specified algorithm
+	     *
+	     * @param string $password The password to hash
+	     * @param int $algo The algorithm to use (Defined by PASSWORD_* constants)
+	     * @param array $options The options for the algorithm to use
+	     *
+	     * @return string|false The hashed password, or false on error.
+	     * @throws Exception
+	     */
         function password_hash($password, $algo, array $options = []) {
             if (!function_exists('crypt')) {
                 trigger_error('Crypt must be loaded for password_hash to function', E_USER_WARNING);
@@ -132,9 +133,9 @@ namespace {
                     $buffer_length = PasswordCompat\binary\_strlen($buffer);
                     for ($i = 0; $i < $raw_salt_len; $i++) {
                         if ($i < $buffer_length) {
-                            $buffer[$i] = $buffer[$i] ^ chr(mt_rand(0, 255));
+                            $buffer[$i] = $buffer[$i] ^ chr(random_int(0, 255));
                         } else {
-                            $buffer .= chr(mt_rand(0, 255));
+                            $buffer .= chr(random_int(0, 255));
                         }
                     }
                 }
@@ -189,7 +190,7 @@ namespace {
             if ('$2y$' == PasswordCompat\binary\_substr($hash, 0, 4) && 60 == PasswordCompat\binary\_strlen($hash)) {
                 $return['algo'] = PASSWORD_BCRYPT;
                 $return['algoName'] = 'bcrypt';
-                list($cost) = sscanf($hash, '$2y$%d$');
+                [ $cost ] = sscanf( $hash, '$2y$%d$' );
                 $return['options']['cost'] = $cost;
             }
             return $return;
