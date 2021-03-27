@@ -316,8 +316,7 @@ function xoops_template_create($resource_type, $resource_name, &$template_source
             return true;
         }
     }
-//    else {
-//    }
+
     return false;
 }
 

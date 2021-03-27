@@ -2,7 +2,7 @@
 /**
  *
  * @package XCube
- * @version $Id: XCube_HttpContext.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
+ * @version v 1.5
  * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  *

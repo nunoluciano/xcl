@@ -90,7 +90,7 @@ if (!defined('XOOPS_C_DATABASE_INCLUDED')) {
 
 /**
  * Only for backward compatibility
- *
+ * Use instead  eg: $db = &XoopsDatabaseFactory::getDatabaseConnection();
  * @deprecated
  */
 class Database

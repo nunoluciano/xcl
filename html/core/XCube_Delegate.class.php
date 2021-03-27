@@ -601,7 +601,7 @@ class XCube_DelegateUtils
      *       XCube_DelegateUtils::raiseEvent("Module.A.Exception.Null");
      *     \endcode
      *
-     *     The uppering code equals the following code;
+     *     The upper code equals the following code;
      *
      *     \code
      *       {
@@ -623,7 +623,7 @@ class XCube_DelegateUtils
      *	      }
      *     \endcode
      *
-     *      In this case, other class never calls the event.
+     *      In this case, another class never calls the event.
      *
      *      \code
      *        //
@@ -636,7 +636,7 @@ class XCube_DelegateUtils
      *
      *     Other classes may call only ClassA::check();
      *
-     * @param 1st  Delaget Name
+     * @param 1st  Delegate Name
      * @param 2nd and more : Delegate function parameters
      * @return bool
      */

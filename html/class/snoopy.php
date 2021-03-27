@@ -994,13 +994,15 @@ class snoopy
                 reset($formvars);
                 foreach ($formvars as $key => $val) {
                     if (is_array($val) || is_object($val)) {
-                        while (list($cur_key, $cur_val) = each($val)) {
-                            $postdata .= urlencode($key) . '[]=' . urlencode($cur_val) . '&';
+                        foreach ($val as $cur_key => $cur_val) {
+                        //!Fix - TODO test : $postdata .= urlencode($key) ."[$cur_key]=". urlencode($cur_val)."&";
+                        $postdata .= urlencode($key) ."%5B$cur_key%5D=". urlencode($cur_val)."&";
                         }
                     } else {
                         $postdata .= urlencode($key) . '=' . urlencode($val) . '&';
                     }
                 }
+                $postdata = substr($postdata, 0, strlen($postdata) - 1);
                 break;
 
             case 'multipart/form-data':
