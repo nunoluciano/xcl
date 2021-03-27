@@ -1,4 +1,14 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 // language file (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
@@ -18,8 +28,8 @@ $constpref = '_MI_' . strtoupper($mydirname);
 $modversion['name'] = $mydirname;
 $modversion['description'] = constant($constpref . '_DESC');
 $modversion['version'] = '2.31';
-$modversion['detailed_version'] = '2.3.1.0';
-$modversion['credits'] = 'PEAK Corp.';
+$modversion['detailed_version'] = '2.31.0';
+$modversion['credits'] = 'PEAK Corp. (Legacy). Gigamaster (XCL 2.3)';
 $modversion['author'] = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/)<br>Update by XOOPS-X (10) and refactor code by @gigamaster';
 $modversion['cube_style'] = true;
 $modversion['help'] = 'help.html';

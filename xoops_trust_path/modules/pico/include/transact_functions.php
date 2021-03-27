@@ -1,4 +1,14 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 // this file can be included from transaction procedures
 
@@ -51,7 +61,7 @@ function pico_delete_category($mydirname, $cat_id, $delete_also_contents = true)
     }
 
     // delete notifications about this category
-    $notification_handler = &xoops_gethandler('notification');
+    $notification_handler =& xoops_gethandler('notification');
 
     $notification_handler->unsubscribeByItem($xoopsModule->getVar('mid'), 'category', $cat_id);
 

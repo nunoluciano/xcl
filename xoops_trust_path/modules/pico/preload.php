@@ -1,4 +1,14 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;
@@ -42,8 +52,11 @@ if (!class_exists('PicoPreloadBase')) {
         public function ckeditor4PreBuild(&$params)
         {
             $mObj = $this->mRoot->mContext->mXoopsModule;
+
             if (is_a($mObj, 'XoopsModule') && 'pico' === $mObj->get('trust_dirname')) {
+
                 $params['allowhtml'] = true;
+
                 if (!isset($params['switcher'])) {
                     $id = $params['id'];
                     $params['switcher'] = <<<EOD

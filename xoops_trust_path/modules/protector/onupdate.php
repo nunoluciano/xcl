@@ -1,9 +1,20 @@
 <?php
+/**
+ * Protector module for XCL
+ *
+ * @package XCL
+ * @subpackage Protector Administration Security
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 eval(' function xoops_module_update_'.$mydirname . '( $module ) { return protector_onupdate_base( $module , \'' . $mydirname . '\' ) ; } ') ;
 
 
 if (! function_exists('protector_onupdate_base')) {
+
     function protector_onupdate_base($module, $mydirname)
     {
         // transations on module update
@@ -21,8 +32,9 @@ if (! function_exists('protector_onupdate_base')) {
         }
     }
 
-        $db =& Database::getInstance() ;
-        $mid = $module->getVar('mid') ;
+	    $db = &XoopsDatabaseFactory::getDatabaseConnection();
+
+	    $mid = $module->getVar('mid') ;
 
     // TABLES (write here ALTER TABLE etc. if necessary)
 
@@ -31,7 +43,7 @@ if (! function_exists('protector_onupdate_base')) {
         if (($result = $db->query($check_sql)) && ($myrow = $db->fetchArray($result)) && 'varchar(30)' == @$myrow['Type']) {
             $db->queryF('ALTER TABLE ' . $db->prefix('config') . " MODIFY `conf_title` varchar(191) NOT NULL default '', MODIFY `conf_desc` varchar(191) NOT NULL default ''") ;
         }
-        list(, $create_string) = $db->fetchRow($db->query('SHOW CREATE TABLE ' . $db->prefix('config'))) ;
+        [ , $create_string ] = $db->fetchRow( $db->query( 'SHOW CREATE TABLE ' . $db->prefix( 'config' ) ) );
         foreach (explode('KEY', $create_string) as $line) {
             if (preg_match('/(\`conf\_title_\d+\`) \(\`conf\_title\`\)/', $line, $regs)) {
                 $db->query('ALTER TABLE ' . $db->prefix('config') . ' DROP KEY ' . $regs[1]) ;
@@ -40,7 +52,7 @@ if (! function_exists('protector_onupdate_base')) {
         $db->query('ALTER TABLE ' . $db->prefix('config') . ' ADD KEY `conf_title` (`conf_title`)') ;
 
     // 2.x -> 3.0
-    list(, $create_string) = $db->fetchRow($db->query('SHOW CREATE TABLE ' . $db->prefix($mydirname . '_log'))) ;
+    [ , $create_string ] = $db->fetchRow( $db->query( 'SHOW CREATE TABLE ' . $db->prefix( $mydirname . '_log' ) ) );
         if (preg_match('/timestamp\(/i', $create_string)) {
             $db->query('ALTER TABLE ' . $db->prefix($mydirname . '_log') . ' MODIFY `timestamp` DATETIME') ;
         }

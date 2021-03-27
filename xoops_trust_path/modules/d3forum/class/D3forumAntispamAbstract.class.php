@@ -1,64 +1,72 @@
 <?php
+/**
+ * D3Forum module for XCL
+ *
+ * @package XCL
+ * @subpackage D3Forum
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
-class D3forumAntispamAbstract
-{
+class D3forumAntispamAbstract {
 
-    public $errors = [];
+	public $errors = [];
 
-    public function getErrors4Html()
-    {
-        $ret = '';
-        foreach ($this->errors as $error) {
-            $ret .= '<span style="color:#f00;">' . htmlspecialchars($error) . '</span><br>';
-        }
+	public function getErrors4Html() {
+		$ret = '';
 
-        return $ret;
-    }
+		foreach ( $this->errors as $error ) {
+			$ret .= '<span style="color:#f00;">' . htmlspecialchars( $error ) . '</span><br>';
+		}
 
-    public function getHtml4Assign()
-    {
-        return [
-            'html_in_form'            => '',
-            'js_global'               => '',
-            'js_in_validate_function' => '',
-        ];
-    }
+		return $ret;
+	}
 
-    public function checkValidate()
-    {
-        return true;
-    }
+	public function getHtml4Assign() {
+		return [
+			'html_in_form'            => '',
+			'js_global'               => '',
+			'js_in_validate_function' => '',
+		];
+	}
 
-    public function isMobile()
-    {
-        if (class_exists('Wizin_User')) {
-            // WizMobile (gusagi)
-            $user =& Wizin_User::getSingleton();
-            return $user->bIsMobile;
-        }
+	public function checkValidate() {
+		return true;
+	}
 
-        if (defined('HYP_K_TAI_RENDER') && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2) {
-            // hyp_common ktai-renderer (nao-pon)
-            return true;
-        }
+	public function isMobile() {
+		if ( class_exists( 'Wizin_User' ) ) {
+			// WizMobile (gusagi)
+			$user =& Wizin_User::getSingleton();
 
-        return false;
-    }
+			return $user->bIsMobile;
+		}
 
-    public function setVar($key, $val)
-    {
-        if (property_exists($this, $key)) {
-            $this->$key = $val;
-            return true;
-        }
-        return false;
-    }
+		if ( defined( 'HYP_K_TAI_RENDER' ) && HYP_K_TAI_RENDER && HYP_K_TAI_RENDER != 2 ) {
+			// hyp_common ktai-renderer (nao-pon)
+			return true;
+		}
 
-    public function getVar($key)
-    {
-        if (property_exists($this, $key)) {
-            return $this->$key;
-        }
-        return null;
-    }
+		return false;
+	}
+
+	public function setVar( $key, $val ) {
+		if ( property_exists( $this, $key ) ) {
+			$this->$key = $val;
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public function getVar( $key ) {
+		if ( property_exists( $this, $key ) ) {
+			return $this->$key;
+		}
+
+		return null;
+	}
 }

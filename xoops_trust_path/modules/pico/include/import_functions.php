@@ -1,4 +1,14 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 $GLOBALS['pico_tables'] = [
     'category_permissions' => [
@@ -123,7 +133,9 @@ function pico_import_from_smartsection($mydirname, $import_mid)
     $module_handler = &xoops_gethandler('module');
     $module = &$module_handler->get($import_mid);
     $from_tables = $module->getInfo('tables');
-    if (5 != count($from_tables)) pico_import_errordie();
+    if (5 != count($from_tables)) {
+	    pico_import_errordie();
+    }
     $target_dirname = $module->getVar('dirname');
 
     // categories
@@ -155,7 +167,9 @@ function pico_import_from_smartsection($mydirname, $import_mid)
     $from_table = $db->prefix($from_tables[1]);
     $db->query("DELETE FROM `$to_table`");
     $irs = $db->query("INSERT INTO `$to_table` (content_id,cat_id,weight,created_time,modified_time,subject,visible,approval,allow_comment,show_in_navi,show_in_menu,htmlheader,body,poster_uid,modifier_uid,viewed,/*1*/body_waiting,body_cached,subject_waiting,htmlheader_waiting) SELECT itemid,categoryid,weight,datesub,datesub,title,status=2,status<>1,cancomment,1,1,'',CONCAT(summary,body),uid,uid,counter,/*1*/dohtml,dosmiley,doxcode,dobr FROM `$from_table`");
-    if (!$irs) pico_import_errordie();
+    if (!$irs) {
+	    pico_import_errordie();
+    }
 
     // update filters for DB contents
     $db->query("UPDATE `$to_table` SET filters=CONCAT(filters,'|htmlspecialchars') WHERE ! body_waiting");
@@ -172,8 +186,12 @@ function pico_import_from_tinyd($mydirname, $import_mid)
     // get name of `contents` table
     $module_handler = &xoops_gethandler('module');
     $module = &$module_handler->get($import_mid);
-    list($from_table_base) = $module->getInfo('tables');
-    if (empty($from_table_base)) pico_import_errordie();
+
+    [ $from_table_base ] = $module->getInfo( 'tables' );
+
+    if (empty($from_table_base)) {
+	    pico_import_errordie();
+    }
     $target_dirname = $module->getVar('dirname');
 
     // categories
@@ -190,7 +208,9 @@ function pico_import_from_tinyd($mydirname, $import_mid)
     $from_table = $db->prefix($from_table_base);
     $db->query("DELETE FROM `$to_table`");
     $irs = $db->query("INSERT INTO `$to_table` (content_id,cat_id,weight,created_time,modified_time,subject,visible,allow_comment,show_in_navi,show_in_menu,htmlheader,body,filters,body_waiting,body_cached,redundants,htmlheader_waiting) SELECT storyid,0,blockid,UNIX_TIMESTAMP(created),UNIX_TIMESTAMP(last_modified),title,visible,!nocomments,1,submenu,html_header,`text`,nohtml,nosmiley,nobreaks,address,'' FROM `$from_table`");
-    if (!$irs) pico_import_errordie();
+    if (!$irs) {
+	    pico_import_errordie();
+    }
 
     // update filters for DB contents
     $db->query("UPDATE `$to_table` SET filters='textwiki' WHERE filters='16'");
@@ -224,7 +244,9 @@ function pico_import_from_pico($mydirname, $import_mid)
         $columns4sql = implode(',', $columns);
         $db->query("DELETE FROM `$to_table`");
         $irs = $db->query("INSERT INTO `$to_table` ($columns4sql) SELECT $columns4sql FROM `$from_table`");
-        if (!$irs) pico_import_errordie();
+        if (!$irs) {
+	        pico_import_errordie();
+        }
     }
 }
 
@@ -249,5 +271,7 @@ function pico_import_a_content_from_pico($mydirname, $import_mid, $content_id)
     $from_table = $db->prefix($from_module->getVar('dirname') . '_content_votes');
     $columns4sql = implode(',', array_diff($GLOBALS['pico_tables']['content_votes'], ['vote_id', 'content_id']));
     $irs = $db->query("INSERT INTO `$to_table` ($columns4sql,content_id) SELECT $columns4sql,$new_content_id FROM `$from_table` WHERE content_id=" . (int)$content_id);
-    if (!$irs) pico_import_errordie();
+    if (!$irs) {
+	    pico_import_errordie();
+    }
 }

@@ -1,6 +1,14 @@
 <?php
-
-/********* mymenu for D3 modules always require altsys ********/
+/**
+ * Protector module for XCL - Administration panel.
+ *
+ * @package XCL
+ * @subpackage Protector Administration Security
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 // Deny direct access
 if ('mymenu' === preg_replace('/[^a-zA-Z0-9_-]/', '', @$_GET['page'])) {
@@ -19,7 +27,7 @@ if (!file_exists($langmanpath)) {
 }
 
 require_once($langmanpath);
-$langman = &D3LanguageManager::getInstance();
+$langman = D3LanguageManager::getInstance();
 $langman->read('modinfo.php', $mydirname, $mytrustdirname);
 
 include dirname(__DIR__) . '/admin_menu.php';

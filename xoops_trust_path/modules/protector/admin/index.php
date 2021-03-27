@@ -1,8 +1,20 @@
 <?php
+/**
+ * Protector module for XCL - Administration panel.
+ *
+ * @package XCL
+ * @subpackage Protector Administration Security
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 require_once XOOPS_ROOT_PATH.'/class/pagenav.php';
 require_once dirname(__DIR__) . '/class/gtickets.php';
+
 (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &MyTextSanitizer::getInstance();
+
 $db = &Database::getInstance();
 
 // GET vars

@@ -1,4 +1,14 @@
 <?php
+/**
+ * Protector module for XCL
+ *
+ * @package XCL
+ * @subpackage Protector Administration Security
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 // language file (modinfo.php)
 if (file_exists(__DIR__ . '/language/' . @$GLOBALS['xoopsConfig']['language'] . '/modinfo.php')) {
@@ -11,8 +21,8 @@ $constpref = '_MI_'.strtoupper($mydirname);
 $modversion['name'] = constant($constpref.'_NAME');
 $modversion['description'] = constant($constpref.'_DESC');
 $modversion['version'] = '2.31';
-$modversion['detailed_version'] = '2.3.0.0';
-$modversion['credits'] = 'PEAK Corp. version 3.54';
+$modversion['detailed_version'] = '2.31.0';
+$modversion['credits'] = 'PEAK Corp. (v.3.54). Gigamaster (XCL v.2.3)';
 $modversion['author'] = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';
 $modversion['cube_style'] = true;
 $modversion['help'] = 'help.html';

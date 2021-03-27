@@ -1,4 +1,14 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 require_once __DIR__ . '/PicoTextSanitizer.class.php';
 require_once __DIR__ . '/PicoModelCategory.class.php';
@@ -193,6 +203,7 @@ class PicoContent
         $myts = &PicoTextSanitizer::sGetInstance();
         $user_handler = &xoops_gethandler('user');
         $mod_config = $this->categoryObj->getOverriddenModConfig();
+
         $cat_data = $this->categoryObj->getData();
 
         // poster & modifier uname
@@ -249,7 +260,9 @@ class PicoContent
 
         // process each filters
         $text = $content4assign['body_raw'];
+
         $filters = explode('|', $content4assign['filters']);
+
         foreach (array_keys($filters) as $i) {
             $filter = trim($filters[$i]);
             if (empty($filter)) {
@@ -267,9 +280,13 @@ class PicoContent
                         $filters[$j] = '';
                     }
                 }
+
                 require_once dirname(__DIR__) . '/class/PicoTextSanitizer.class.php';
+
                 $myts = &PicoTextSanitizer::sGetInstance();
+
                 $text = $myts->displayTarea($text, 1, $smiley, 1, 1, $nl2br);
+
                 $text = $myts->pageBreak($this->mydirname, $text, $content4assign);
                 continue;
             }

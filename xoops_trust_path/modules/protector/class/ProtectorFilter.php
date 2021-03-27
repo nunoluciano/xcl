@@ -1,4 +1,14 @@
 <?php
+/**
+ * Protector module for XCL
+ *
+ * @package XCL
+ * @subpackage Protector Administration Security
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 // Abstract of each filter classes
 class ProtectorFilterAbstract
@@ -7,7 +17,7 @@ class ProtectorFilterAbstract
 
     public function __construct()
     {
-        $this->protector =& Protector::getInstance() ;
+        $this->protector = Protector::getInstance() ;
         $lang = empty($GLOBALS['xoopsConfig']['language']) ? @$this->protector->_conf['default_lang'] : $GLOBALS['xoopsConfig']['language'] ;
         @include_once dirname(__DIR__) . '/language/' . $lang . '/main.php' ;
         if (! defined('_MD_PROTECTOR_YOUAREBADIP')) {
