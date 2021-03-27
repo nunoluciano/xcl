@@ -1,21 +1,27 @@
 <?php
-// ------------------------------------------------------------------------- //
-//                       myblocksadmin.php (altsys)                          //
-//                - XOOPS block admin for each modules -                     //
-//                       GIJOE <https://www.peak.ne.jp/>                      //
-// ------------------------------------------------------------------------- //
+/**
+ * Altsys library (UI-Components) for D3 modules
+ * Admin Blocks of each module
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
-require_once __DIR__.'/class/AltsysBreadcrumbs.class.php' ;
-require_once __DIR__.'/include/gtickets.php' ;
-include_once __DIR__.'/include/altsys_functions.php' ;
-include_once __DIR__.'/include/mygrouppermform.php' ;
-include_once XOOPS_ROOT_PATH.'/class/xoopsblock.php' ;
+
+require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php';
+require_once __DIR__ . '/include/gtickets.php';
+include_once __DIR__ . '/include/altsys_functions.php';
+include_once __DIR__ . '/include/mygrouppermform.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 
 // language file
-altsys_include_language_file('myblocksadmin');
-altsys_get_core_type ( ALTSYS_CORE_TYPE_XCL21 );
-        include_once __DIR__ .'/class/MyBlocksAdminForXCL21.class.php' ;
-        $myba =& MyBlocksAdminForXCL21::getInstance() ;
+altsys_include_language_file( 'myblocksadmin' );
+altsys_get_core_type( ALTSYS_CORE_TYPE_XCL21 );
+include_once __DIR__ . '/class/MyBlocksAdminForXCL21.class.php';
+$myba =& MyBlocksAdminForXCL21::getInstance();
 
 
 // fork by core types
@@ -35,15 +41,15 @@ altsys_get_core_type ( ALTSYS_CORE_TYPE_XCL21 );
 $myba->checkPermission();
 
 // set parameters target_mid , target_dirname etc.
-$myba->init($xoopsModule);
+$myba->init( $xoopsModule );
 
 
 //
 // transaction stage
 //
 
-if (!empty($_POST)) {
-    $myba->processPost();
+if ( ! empty( $_POST ) ) {
+	$myba->processPost();
 }
 
 //

@@ -1,23 +1,24 @@
 <?php
-
-// notification handler for D3 modules
+/**
+ * Altsys library (UI-Components) for D3 modules
+ * Notification handler for D3 modules
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 
-/**
- * Class D3NotificationHandler
- */
 class D3NotificationHandler
 {
-    //HACK by domifara for php5.3+
-
-    //function getInstance( $conn = null )
 
     /**
      * @param null $conn
      * @return \D3NotificationHandler
      */
-
     public static function getInstance($conn = null)
     {
         static $instance;
@@ -29,12 +30,12 @@ class D3NotificationHandler
         return $instance;
     }
 
+
     /**
      * @param        $mydirname
      * @param string $mytrustdirname
      * @return mixed|string
      */
-
     public function getMailTemplateDir($mydirname, $mytrustdirname = '')
     {
         global $xoopsConfig;
@@ -65,6 +66,7 @@ class D3NotificationHandler
         return $mail_template_dir;
     }
 
+
     /**
      * @param       $mydirname
      * @param       $mytrustdirname
@@ -76,23 +78,22 @@ class D3NotificationHandler
      * @param null  $omit_user_id
      * @return bool|void
      */
-
     public function triggerEvent($mydirname, $mytrustdirname, $category, $item_id, $event, $extra_tags = [], $user_list = [], $omit_user_id = null)
     {
-        $module_handler = xoops_gethandler('module');
+        $module_handler =& xoops_gethandler('module');
 
-        $module = $module_handler->getByDirname($mydirname);
+        $module =& $module_handler->getByDirname($mydirname);
 
         $notification_handler = xoops_gethandler('notification');
 
         $mail_template_dir = $this->getMailTemplateDir($mydirname, $mytrustdirname);
 
         // calling a delegate before
-
         if (class_exists('XCube_DelegateUtils')) {
             $force_return = false;
 
-            XCube_DelegateUtils::raiseEvent(
+            //!FIX deprecated XCube_DelegateUtils::raiseEvent(). Use call()
+	            XCube_DelegateUtils::call(
                 'D3NotificationHandler.Trigger',
                 new XCube_Ref($category),
                 new XCube_Ref($event),
@@ -117,14 +118,28 @@ class D3NotificationHandler
 
         // Check if event is enabled
 
-        $configHandler = xoops_getHandler('config');
+        $configHandler =& xoops_getHandler('config');
 
-        $mod_config = $configHandler->getConfigsByCat(0, $mid);
+        $mod_config =& $configHandler->getConfigsByCat(0, $mid);
 
     // calling a delegate before
     if (class_exists('XCube_DelegateUtils')) {
-        $force_return = false ;
-        XCube_DelegateUtils::raiseEvent('D3NotificationHandler.Trigger', new XCube_Ref($category), new XCube_Ref($event), new XCube_Ref($item_id), new XCube_Ref($extra_tags), new XCube_Ref($module), new XCube_Ref($user_list), new XCube_Ref($omit_user_id), $module->getInfo('notification'), new XCube_Ref($force_return), new XCube_Ref($mail_template_dir), $mydirname, $mytrustdirname) ;
+
+        //!FIX deprecated XCube_DelegateUtils::raiseEvent(). Use call()
+	        XCube_DelegateUtils::call(
+        	'D3NotificationHandler.Trigger',
+	        new XCube_Ref($category),
+	        new XCube_Ref($event),
+	        new XCube_Ref($item_id),
+	        new XCube_Ref($extra_tags),
+	        new XCube_Ref($module),
+	        new XCube_Ref($user_list),
+	        new XCube_Ref($omit_user_id),
+	        $module->getInfo('notification'),
+	        new XCube_Ref($force_return),
+	        new XCube_Ref($mail_template_dir),
+	        $mydirname,
+	        $mytrustdirname) ;
         if ($force_return) {
             return ;
         }
@@ -174,7 +189,6 @@ class D3NotificationHandler
         $tags = [];
 
         // {X_ITEM_NAME} {X_ITEM_URL} {X_ITEM_TYPE} from lookup_func are disabled
-
         $tags['X_MODULE'] = $module->getVar('name', 'n');
 
         $tags['X_MODULE_URL'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/';
@@ -192,8 +206,7 @@ class D3NotificationHandler
             if ((empty($omit_user_id) || $send_uid != $omit_user_id)
                 && (!$user_list || isset($user_list[$send_uid]))) {
                 // user-specific tags
-
-                //$tags['X_UNSUBSCRIBE_URL'] = 'TODO';
+                // $tags['X_UNSUBSCRIBE_URL'] = 'TODO';
 
                 // TODO: don't show unsubscribe link if it is 'one-time' ??
 

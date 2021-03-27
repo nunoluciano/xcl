@@ -1,8 +1,15 @@
 <?php
-
 /**
+ * Altsys library (UI-Components) for D3 modules
  * Class d3utilities
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
+
 class d3utilities
 {
 
@@ -16,9 +23,6 @@ class d3utilities
     public $page_name = '' ; // controller's name  eg) page=(controller) in URI
     public $action_base_hiddens = [];
 
-    //HACK by domifara
-
-    //  public function D3Utilities( $mydirname , $table_body , $primary_key , $cols , $page_name , $action_base_hiddens )
 
     /**
      * d3utilities constructor.
@@ -29,7 +33,6 @@ class d3utilities
      * @param $page_name
      * @param $action_base_hiddens
      */
-
     public function __construct($mydirname, $table_body, $primary_key, $cols, $page_name, $action_base_hiddens)
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -61,7 +64,6 @@ class d3utilities
      * @param $name
      * @return mixed
      */
-
     public function get_language_constant($name)
     {
         return constant(mb_strtoupper('_MD_A_' . $this->dirname . '_' . $this->page_name . '_' . $name));
@@ -72,7 +74,6 @@ class d3utilities
      * @param $col
      * @return string
      */
-
     public function get_set4sql($value, $col)
     {
         switch ($col['type']) {
@@ -98,12 +99,10 @@ class d3utilities
         }
     }
 
-    // single update or insert
-
     /**
+     * Single update or insert
      * @return array
      */
-
     public function insert()
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -134,12 +133,10 @@ class d3utilities
         }
     }
 
-    // multiple update
-
     /**
+     * Multiple update
      * @return array
      */
-
     public function update()
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -191,7 +188,6 @@ class d3utilities
      * @param bool $delete_notifications
      * @return array
      */
-
     public function delete($delete_comments = false, $delete_notifications = false)
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -228,7 +224,6 @@ class d3utilities
     /**
      * @return int
      */
-
     public function init_default_values()
     {
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -259,7 +254,6 @@ class d3utilities
     /**
      * @return array
      */
-
     public function get_view_edit()
     {
         $id = $this->init_default_values();
@@ -308,7 +302,6 @@ class d3utilities
      * @param $controllers
      * @return string
      */
-
     public function get_control_form($controllers)
     {
         $hiddens = '';
@@ -343,7 +336,6 @@ class d3utilities
      * @param $current_value
      * @return string
      */
-
     public function get_select($name, $options, $current_value)
     {
         $ret = "<select name='" . htmlspecialchars($name, ENT_QUOTES) . "'>\n";

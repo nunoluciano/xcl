@@ -1,8 +1,15 @@
 <?php
-
 /**
+ * Altsys library (UI-Components) for D3 modules
  * Class D3LanguageManager
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
+
 class D3LanguageManager
 {
     public $default_language = 'english';
@@ -17,14 +24,10 @@ class D3LanguageManager
 
     public $my_language = false;
 
-    //HACK by domifara
-
-    //public function D3LanguageManager()
 
     /**
      * D3LanguageManager constructor.
      */
-
     public function __construct()
     {
         $this->language = preg_replace('/[^0-9a-zA-Z_-]/', '', @$GLOBALS['xoopsConfig']['language']);
@@ -38,15 +41,11 @@ class D3LanguageManager
         }
     }
 
-    //HACK by domifara for php5.3+
-
-    //function getInstance( $conn = null )
 
     /**
      * @param null $conn
      * @return \D3LanguageManager
      */
-
     public static function getInstance($conn = null)
     {
         static $instance;
@@ -64,7 +63,6 @@ class D3LanguageManager
      * @param null $mytrustdirname
      * @param bool $read_once
      */
-
     public function read($resource, $mydirname, $mytrustdirname = null, $read_once = true)
     {
         $d3file = XOOPS_ROOT_PATH . '/modules/' . $mydirname . '/mytrustdirname.php';
@@ -82,7 +80,6 @@ class D3LanguageManager
         $root_file = XOOPS_ROOT_PATH . '/modules/' . $mydirname . '/language/' . $this->language . '/' . $resource;
 
         // language overriding by XOOPS_ROOT_PATH/my_language
-
         if ($this->my_language) {
             $mylang_file = $this->my_language . '/modules/' . $mydirname . '/' . $this->language . '/' . $resource;
 
@@ -97,7 +94,6 @@ class D3LanguageManager
 
         if (empty($mytrustdirname)) {
             // conventional module
-
             $default_file = XOOPS_ROOT_PATH . '/modules/' . $mydirname . '/language/' . $this->default_language . '/' . $resource;
 
             if (is_file($cache_file)) {
@@ -111,7 +107,6 @@ class D3LanguageManager
             }
         } else {
             // D3 modules
-
             $trust_file = XOOPS_TRUST_PATH . '/modules/' . $mytrustdirname . '/language/' . $this->language . '/' . $resource;
 
             $default_file = XOOPS_TRUST_PATH . '/modules/' . $mytrustdirname . '/language/' . $this->default_language . '/' . $resource;
@@ -127,8 +122,7 @@ class D3LanguageManager
                     require $trust_file;
                 }
             } elseif (is_file($default_file)) {
-                // fall back english
-
+                // fall back to english
                 if ($read_once) {
                     require_once $default_file;
                 } else {
@@ -148,7 +142,6 @@ class D3LanguageManager
      * @param null $language
      * @return string
      */
-
     public function getCacheFileName($resource, $mydirname, $language = null)
     {
         if (empty($language)) {

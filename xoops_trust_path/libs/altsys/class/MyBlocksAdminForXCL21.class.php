@@ -1,62 +1,61 @@
 <?php
-// $Id: MyBlocksAdminForXCL21.class.php ,ver 0.0.7.1 2011/01/27 16:10:00 domifara Exp $
-
-require_once dirname(__FILE__).'/MyBlocksAdmin.class.php' ;
-
 /**
+ * Altsys library (UI-Components) for D3 modules
  * Class MyBlocksAdminForXCL21
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Domifara, Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
-class MyBlocksAdminForXCL21 extends MyBlocksAdmin
-{
 
+require_once __DIR__ . '/MyBlocksAdmin.class.php';
 
-    public function MyBlocksAadminForXCL21()
-    {
-    }
+class MyBlocksAdminForXCL21 extends MyBlocksAdmin {
 
-//HACK by domifara for php5.3+
-//function &getInstance()
-public static function &getInstance()
-{
-    static $instance;
-    if (!isset($instance)) {
+	public function MyBlocksAadminForXCL21() {
+	}
 
-		$instance = new self();
-      
-        $instance->construct() ;
-    }
-    return $instance;
-}
-    /**
-     * @param $block_data
-     * @return mixed
-     */
+	public static function &getInstance() {
+		static $instance;
+		if ( ! isset( $instance ) ) {
 
+			$instance = new self();
 
-// virtual
-// options
-public function renderCell4BlockOptions($block_data)
-{
-    // if ($this->target_dirname && '_' !== substr($this->target_dirname, 0, 1)) {
-    if ($this->target_dirname && '_' !== $this->target_dirname[0]) {
-        $langman = D3LanguageManager::getInstance() ;
-        $langman->read('admin.php', $this->target_dirname) ;
-    }
+			$instance->construct();
+		}
 
-    $bid = (int)$block_data['bid'];
+		return $instance;
+	}
 
-	//HACK by domifara
-	//	$block = new XoopsBlock( $bid ) ;
-    $handler = xoops_gethandler('block');
-    $block = $handler->create(false) ;
-    $block->load($bid) ;
+	/**
+	 * Virtual options
+	 *
+	 * @param $block_data
+	 *
+	 * @return false|mixed|string|null
+	 */
+	public function renderCell4BlockOptions( $block_data ) {
+		// if ($this->target_dirname && '_' !== substr($this->target_dirname, 0, 1)) {
+		if ( $this->target_dirname && '_' !== $this->target_dirname[0] ) {
+			$langman = D3LanguageManager::getInstance();
+			$langman->read( 'admin.php', $this->target_dirname );
+		}
 
-    $legacy_block = Legacy_Utils::createBlockProcedure($block) ;
-    return $legacy_block->getOptionForm() ;
-}
+		$bid = (int) $block_data['bid'];
 
-    // public function checkFck()
-    // {
-    //     return (! altsysUtils::isInstalledXclHtmleditor() && file_exists(XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js'));
-    // }
+		$handler = xoops_gethandler( 'block' );
+		$block   = $handler->create( false );
+		$block->load( $bid );
+
+		$legacy_block = Legacy_Utils::createBlockProcedure( $block );
+
+		return $legacy_block->getOptionForm();
+	}
+
+	// public function checkFck()
+	// {
+	//     return (! altsysUtils::isInstalledXclHtmleditor() && file_exists(XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js'));
+	// }
 }

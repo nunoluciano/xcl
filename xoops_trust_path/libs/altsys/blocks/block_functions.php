@@ -1,4 +1,14 @@
 <?php
+/**
+ * Altsys library (UI-Components) for D3 modules
+ *
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 require_once dirname(__DIR__) . '/include/altsys_functions.php';
 
@@ -7,6 +17,7 @@ function b_altsys_admin_menu_show($options)
     global $xoopsUser;
 
     $mydirname = empty($options[0]) ? 'altsys' : $options[0];
+
     $this_template = empty($options[1]) ? 'db:' . $mydirname . '_block_admin_menu.html' : trim($options[1]);
 
     if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {
@@ -31,14 +42,21 @@ function b_altsys_admin_menu_show($options)
     }
 
     $db =& XoopsDatabaseFactory::getDatabaseConnection();
+
     (method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
 
     $module_handler =& xoops_gethandler('module');
+
     $current_module =& $module_handler->getByDirname($mydirname);
+
     $config_handler =& xoops_gethandler('config');
+
     $current_configs = $config_handler->getConfigList($current_module->mid());
+
     $moduleperm_handler =& xoops_gethandler('groupperm');
+
     $admin_mids = $moduleperm_handler->getItemIds('module_admin', $xoopsUser->getGroups());
+
     $modules = $module_handler->getObjects(new Criteria('mid', '(' . implode(',', $admin_mids) . ')', 'IN'), true);
 
     $block = [
@@ -49,13 +67,21 @@ function b_altsys_admin_menu_show($options)
     ];
 
     foreach ($modules as $mod) {
+
         $mid = (int)$mod->getVar('mid');
+
         $dirname = $mod->getVar('dirname');
+
         $modinfo = $mod->getInfo();
+
         $submenus4assign = [];
+
         $adminmenu = [];
+
         $adminmenu4altsys = [];
+
         unset($adminmenu_use_altsys);
+
         @include XOOPS_ROOT_PATH . '/modules/' . $dirname . '/' . @$modinfo['adminmenu'];
         // from admin_menu.php etc.
 
@@ -74,11 +100,17 @@ function b_altsys_admin_menu_show($options)
 
         // for modules overriding Module.class.php (eg. Analyzer for XC)
         if (empty($submenus4assign) && defined('XOOPS_CUBE_LEGACY') && !empty($modinfo['cube_style'])) {
+
             $module_handler = xoops_gethandler('module');
+
             $module = $module_handler->get($mid);
+
             $moduleObj = Legacy_Utils::createModule($module);
+
             $modinfo['adminindex'] = $moduleObj->getAdminIndex();
+
             $modinfo['adminindex_absolute'] = true;
+
             foreach ($moduleObj->getAdminMenu() as $sub) {
                 if (false === @$sub['show']) {
                     continue;
@@ -130,9 +162,13 @@ function b_altsys_admin_menu_show($options)
     }
 
     require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
+
     $tpl = new D3Tpl();
+
     $tpl->assign('block', $block);
+
     $ret['content'] = $tpl->fetch($this_template);
+
     return $ret;
 }
 
@@ -140,6 +176,7 @@ function b_altsys_admin_menu_show($options)
 function b_altsys_admin_menu_edit($options)
 {
     $mydirname = empty($options[0]) ? 'd3forum' : $options[0];
+
     $this_template = empty($options[1]) ? 'db:' . $mydirname . '_block_admin_menu.html' : trim($options[1]);
 
     if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {

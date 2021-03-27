@@ -1,36 +1,41 @@
 <?php
-
-if (!defined('XOOPS_ROOT_PATH')) {
-    exit;
-}
-
-if (!defined('XOOPS_TRUST_PATH') || XOOPS_TRUST_PATH == '') {
-    header('Location: ' . XOOPS_URL . '/modules/altsys/setup_xoops_trust_path.php');
-
-    exit;
-}
-
-define('ALTSYS_MYLANGUAGE_ROOT_PATH', XOOPS_ROOT_PATH . '/my_language');
-
 /**
+ * Altsys library (UI-Components) for D3 modules
  * Class SetupAltsysLangMgr
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Domifara, Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
-class SetupAltsysLangMgr extends XCube_ActionFilter
-{
-    public function preFilter()
-    {
-        $this->mController->mCreateLanguageManager->add('SetupAltsysLangMgr::createLanguageManager');
-    }
 
-    /**
-     * @param $languageName
-     * @param mixed $langManager
-     */
+if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
+	exit;
+}
 
-    public function createLanguageManager(&$langManager, $languageName)
-    {
-        $langManager = new AltsysLangMgr_LanguageManager();
-    }
+if ( ! defined( 'XOOPS_TRUST_PATH' ) || XOOPS_TRUST_PATH == '' ) {
+	header( 'Location: ' . XOOPS_URL . '/modules/altsys/setup_xoops_trust_path.php' );
+
+	exit;
+}
+
+define( 'ALTSYS_MYLANGUAGE_ROOT_PATH', XOOPS_ROOT_PATH . '/my_language' );
+
+
+class SetupAltsysLangMgr extends XCube_ActionFilter {
+	public function preFilter() {
+		$this->mController->mCreateLanguageManager->add( 'SetupAltsysLangMgr::createLanguageManager' );
+	}
+
+	/**
+	 * @param $languageName
+	 * @param mixed $langManager
+	 */
+
+	public function createLanguageManager( &$langManager, $languageName ) {
+		$langManager = new AltsysLangMgr_LanguageManager();
+	}
 }
 
 
@@ -40,94 +45,88 @@ require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/Legacy_LanguageManager.cl
 /**
  * Class AltsysLangMgr_LanguageManager
  */
-class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager
-{
-    public $langman = null;
+class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager {
+	public $langman = null;
 
-    public $theme_lang_checked = false;
+	public $theme_lang_checked = false;
 
-    public function prepare()
-    {
-        $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
+	public function prepare() {
+		$langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';
 
-        if (!is_file($langmanpath)) {
-            die('install the latest altsys');
-        }
+		if ( ! is_file( $langmanpath ) ) {
+			die( 'install the latest altsys' );
+		}
 
-        require_once $langmanpath;
+		require_once $langmanpath;
 
-        $this->langman = D3LanguageManager::getInstance();
+		$this->langman = D3LanguageManager::getInstance();
 
-        $this->langman->language = $this->mLanguageName;
+		$this->langman->language = $this->mLanguageName;
 
-        parent::prepare();
-    }
+		parent::prepare();
+	}
 
-    /**
-     * @param $dirname
-     * @param $fileBodyName
-     */
+	/**
+	 * @param $dirname
+	 * @param $fileBodyName
+	 */
+	public function _loadLanguage( $dirname, $fileBodyName ) {
+		// read/check once (selected_theme)/language/(lang).php
+		if ( ! $this->theme_lang_checked ) {
 
-    public function _loadLanguage($dirname, $fileBodyName)
-    {
-        // read/check once (selected_theme)/language/(lang).php
-        if (! $this->theme_lang_checked) {
+			$root = XCube_Root::getSingleton();
 
-            $root = XCube_Root::getSingleton();
+			if ( ! empty( $root->mContext->mXoopsConfig['theme_set'] ) ) {
 
-            if (!empty($root->mContext->mXoopsConfig['theme_set'])) {
+				$langdir = XOOPS_THEME_PATH . '/' . $root->mContext->mXoopsConfig['theme_set'] . '/language';
+				if ( file_exists( $langdir ) ) {
+					$langfile = $langdir . '/' . $this->mLanguageName . '.php';
+					$engfile  = $langdir . '/english.php';
 
-                $langdir = XOOPS_THEME_PATH.'/'.$root->mContext->mXoopsConfig['theme_set'].'/language';
-                if (file_exists($langdir)) {
-                    $langfile = $langdir .'/' . $this->mLanguageName . '.php';
-                    $engfile = $langdir.'/english.php';
+					if ( is_file( $langfile ) ) {
+						require_once $langfile;
+					} elseif ( is_file( $engfile ) ) {
+						require_once $engfile;
+					}
+				}
+				$this->theme_lang_checked = true;
+			}
+		}
 
-                    if (is_file($langfile)) {
-                        require_once $langfile;
-                    } elseif (is_file($engfile)) {
-                        require_once $engfile;
-                    }
-                }
-                $this->theme_lang_checked = true;
-            }
-        }
+		// read normal
+		$this->langman->read( $fileBodyName . '.php', $dirname );
+	}
 
-        // read normal
-        $this->langman->read($fileBodyName.'.php', $dirname);
-    }
+	/**
+	 * @param $type
+	 */
+	public function loadPageTypeMessageCatalog( $type ) {
+		// I dare not to use langman...
+		if ( false === mb_strpos( $type, '.' ) && $this->langman->my_language ) {
+			$mylang_file = $this->langman->my_language . '/' . $this->mLanguageName . '/' . $type . '.php';
 
-    /**
-     * @param $type
-     */
-    public function loadPageTypeMessageCatalog($type)
-    {
-        // I dare not to use langman...
-		if (false === mb_strpos($type, '.') && $this->langman->my_language) {
-            $mylang_file = $this->langman->my_language .  '/' .$this->mLanguageName. '/' .$type. '.php';
-            
-		if (is_file($mylang_file)) {
-                require_once $mylang_file;
-            }
-        }
+			if ( is_file( $mylang_file ) ) {
+				require_once $mylang_file;
+			}
+		}
 
-        $original_error_level = error_reporting();
+		$original_error_level = error_reporting();
 
-        error_reporting($original_error_level & ~ E_NOTICE);
-        parent::loadPageTypeMessageCatalog($type);
+		error_reporting( $original_error_level & ~E_NOTICE );
+		parent::loadPageTypeMessageCatalog( $type );
 
-        error_reporting($original_error_level);
+		error_reporting( $original_error_level );
 
-    }
+	}
 
-    public function loadGlobalMessageCatalog()
-    {
-        $this->_loadLanguage('legacy', 'global');
+	public function loadGlobalMessageCatalog() {
+		$this->_loadLanguage( 'legacy', 'global' );
 
-        //
-        // Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.
-        //
-        if (!defined('XOOPS_USE_MULTIBYTES')) {
-            define('XOOPS_USE_MULTIBYTES', 0);
-        }
-    }
+		//
+		// Now, if XOOPS_USE_MULTIBYTES isn't defined, set zero to it.
+		//
+		if ( ! defined( 'XOOPS_USE_MULTIBYTES' ) ) {
+			define( 'XOOPS_USE_MULTIBYTES', 0 );
+		}
+	}
 }

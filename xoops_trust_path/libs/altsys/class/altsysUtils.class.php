@@ -1,8 +1,15 @@
 <?php
-
 /**
+ * Altsys library (UI-Components) for D3 modules
  * Class altsysUtils
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
+
 class altsysUtils
 {
     /**
@@ -10,7 +17,6 @@ class altsysUtils
      * @param bool $doRegist
      * @return array
      */
-
     public static function getDelegateCallbackClassNames($name, $doRegist = true)
     {
         $names = [];
@@ -48,7 +54,6 @@ class altsysUtils
     /**
      * @return bool
      */
-
     public static function isInstalledXclHtmleditor()
     {
         if (defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>=')) {
@@ -70,7 +75,6 @@ class altsysUtils
      * @param bool $double_encode
      * @return mixed|string
      */
-
     public static function htmlSpecialChars($str, $flags = ENT_COMPAT, $encoding = null, $double_encode = true)
     {
         static $php523 = null;

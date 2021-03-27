@@ -1,13 +1,15 @@
 <?php
-
-/*
-* AltSys
-* singleton for xoops_breadcrumbs
-*/
-
 /**
- * Class AltsysBreadcrumbs
+ * Altsys library (UI-Components) for D3 modules
+ * Class AltsysBreadcrumbs - singleton for xoops_breadcrumbs
+ * @package XCL
+ * @subpackage Altsys
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
+
 class AltsysBreadcrumbs
 {
     public $paths = [];
@@ -15,19 +17,14 @@ class AltsysBreadcrumbs
     /**
      * AltsysBreadcrumbs constructor.
      */
-
     public function __construct()
     {
     }
 
-    //HACK by domifara for php5.3+
-
-    //function getInstance()
-
     /**
+     * function getInstance()
      * @return \AltsysBreadcrumbs
      */
-
     public static function getInstance()
     {
         static $instance;
@@ -42,7 +39,6 @@ class AltsysBreadcrumbs
     /**
      * @return array
      */
-
     public function getXoopsBreadcrumbs()
     {
         $ret = [];
@@ -65,13 +61,11 @@ class AltsysBreadcrumbs
         return $ret;
     }
 
-    // all data should be escaped
-
     /**
+     * all data should be escaped
      * @param        $url_or_path
      * @param string $name
      */
-
     public function appendPath($url_or_path, $name = '...')
     {
         if (is_array($url_or_path)) {
@@ -93,7 +87,6 @@ class AltsysBreadcrumbs
     /**
      * @return bool
      */
-
     public function hasPaths()
     {
         return !empty($this->paths);
