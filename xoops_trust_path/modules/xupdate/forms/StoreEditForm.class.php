@@ -1,9 +1,14 @@
 <?php
 /**
- * @file
- * @package xupdate
- * @version $Id$
-**/
+ * X-Update package management for XCL
+ *
+ * @package XCL
+ * @subpackage Xupdate
+ * @version 2.3
+ * @author Naoki Sawada, Naoki Okino, Gigamaster (XCL 2.3)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;
@@ -69,18 +74,18 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
         $this->mFieldProperties['name'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['name']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME);
-        $this->mFieldProperties['name']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '255');
-        $this->mFieldProperties['name']->addVar('maxlength', '255');
+        $this->mFieldProperties['name']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '191');
+        $this->mFieldProperties['name']->addVar('maxlength', '191');
         $this->mFieldProperties['contents'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['contents']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['contents']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_NAME);
-        $this->mFieldProperties['contents']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '255');
-        $this->mFieldProperties['contents']->addVar('maxlength', '255');
+        $this->mFieldProperties['contents']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_NAME, '191');
+        $this->mFieldProperties['contents']->addVar('maxlength', '191');
         $this->mFieldProperties['addon_url'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['addon_url']->setDependsByArray(['required', 'maxlength']);
         $this->mFieldProperties['addon_url']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_ADDON_URL);
-        $this->mFieldProperties['addon_url']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_ADDON_URL, '255');
-        $this->mFieldProperties['addon_url']->addVar('maxlength', '255');
+        $this->mFieldProperties['addon_url']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_ADDON_URL, '191');
+        $this->mFieldProperties['addon_url']->addVar('maxlength', '191');
 
         $this->mFieldProperties['setting_type'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['setting_type']->setDependsByArray(['required']);
@@ -89,8 +94,8 @@ class Xupdate_StoreEditForm extends XCube_ActionForm
         $this->mFieldProperties['theme_url'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['theme_url']->setDependsByArray(array('required','maxlength'));
         $this->mFieldProperties['theme_url']->addMessage('required', _MD_XUPDATE_ERROR_REQUIRED, _MD_XUPDATE_LANG_THEME_URL);
-        $this->mFieldProperties['theme_url']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_THEME_URL, '255');
-        $this->mFieldProperties['theme_url']->addVar('maxlength', '255');
+        $this->mFieldProperties['theme_url']->addMessage('maxlength', _MD_XUPDATE_ERROR_MAXLENGTH, _MD_XUPDATE_LANG_THEME_URL, '191');
+        $this->mFieldProperties['theme_url']->addVar('maxlength', '191');
 */
         $this->mFieldProperties['reg_unixtime'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['reg_unixtime']->setDependsByArray(['required']);

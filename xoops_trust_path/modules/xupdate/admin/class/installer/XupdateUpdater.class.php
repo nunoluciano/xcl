@@ -1,9 +1,14 @@
 <?php
 /**
- * @file
- * @package xupdate
- * @version $Id$
-**/
+ * X-Update package management for XCL
+ *
+ * @package XCL
+ * @subpackage Xupdate
+ * @version 2.3
+ * @author Naoki Sawada, Naoki Okino, Gigamaster (XCL 2.3)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;
@@ -83,7 +88,7 @@ class Xupdate_Updater
     
         $sql = 'SELECT contents FROM '.$table ;
         if (! $db->query($sql)) {
-            $sql = 'ALTER TABLE '.$table.' ADD contents varchar(255) NOT NULL default \'\'';
+            $sql = 'ALTER TABLE '.$table.' ADD contents varchar(191) NOT NULL default \'\'';
             if ($db->query($sql)) {
                 $this->mLog->addReport('Success updated '.$table.' - ADD contents');
             } else {
@@ -114,17 +119,17 @@ class Xupdate_Updater
         $db =& $root->mController->getDB();
         $table = $db->prefix($this->_mCurrentXoopsModule->get('dirname') . '_modulestore');
     
-        $sql = 'ALTER TABLE '.$table.' CHANGE dirname dirname varchar(255) NOT NULL default \'\'';
+        $sql = 'ALTER TABLE '.$table.' CHANGE dirname dirname varchar(191) NOT NULL default \'\'';
         if ($db->query($sql)) {
-            $this->mLog->addReport('Success updated '.$table.' - `dirname` VARCHAR( 255 )');
+            $this->mLog->addReport('Success updated '.$table.' - `dirname` VARCHAR( 191 )');
         } else {
-            $this->mLog->addError('Error update '.$table.' - `dirname` VARCHAR( 255 )');
+            $this->mLog->addError('Error update '.$table.' - `dirname` VARCHAR( 191 )');
         }
-        $sql = 'ALTER TABLE '.$table.' CHANGE trust_dirname trust_dirname varchar(255) default \'\'';
+        $sql = 'ALTER TABLE '.$table.' CHANGE trust_dirname trust_dirname varchar(191) default \'\'';
         if ($db->query($sql)) {
-            $this->mLog->addReport('Success updated '.$table.' - `trust_dirname` VARCHAR( 255 )');
+            $this->mLog->addReport('Success updated '.$table.' - `trust_dirname` VARCHAR( 191 )');
         } else {
-            $this->mLog->addError('Error update '.$table.' - `trust_dirname` VARCHAR( 255 )');
+            $this->mLog->addError('Error update '.$table.' - `trust_dirname` VARCHAR( 191 )');
         }
     
         if (!$this->_mForceMode && $this->mLog->hasError()) {

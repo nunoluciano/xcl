@@ -1,11 +1,13 @@
 <?php
 /**
+ * X-Update package management for XCL
  *
- * @package Legacy
- * @version $Id: ModuleUpdateAction.class.php,v 1.3 2008/09/25 15:11:54 kilica Exp $
+ * @package XCL
+ * @subpackage Xupdate
+ * @version 2.3
+ * @author Naoki Sawada, Naoki Okino, Kilica, Gigamaster (XCL 2.3)
  * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

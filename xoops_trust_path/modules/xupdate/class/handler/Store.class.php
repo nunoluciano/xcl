@@ -1,9 +1,14 @@
 <?php
 /**
- * @file
- * @package xupdate
- * @version $Id$
-**/
+ * X-Update package management for XCL
+ *
+ * @package XCL
+ * @subpackage Xupdate
+ * @version 2.3
+ * @author Naoki Sawada, Naoki Okino, Gigamaster (XCL 2.3)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;
@@ -24,9 +29,9 @@ class Xupdate_StoreObject extends XoopsSimpleObject
     public function __construct()
     {
         $this->initVar('sid', XOBJ_DTYPE_INT, '0', false);
-        $this->initVar('name', XOBJ_DTYPE_STRING, '', false, 255);
-        $this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 255);
-        $this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('name', XOBJ_DTYPE_STRING, '', false, 191);
+        $this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 191);
+        $this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('setting_type', XOBJ_DTYPE_INT, '0', false);
         $this->initVar('reg_unixtime', XOBJ_DTYPE_INT, '0', false);
     }

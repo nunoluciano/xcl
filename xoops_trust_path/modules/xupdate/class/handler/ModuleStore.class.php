@@ -1,4 +1,15 @@
 <?php
+/**
+ * X-Update package management for XCL
+ *
+ * @package XCL
+ * @subpackage Xupdate
+ * @version 2.3
+ * @author Naoki Sawada, Naoki Okino, Gigamaster (XCL 2.3)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -39,8 +50,8 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         $this->initVar('replicatable', XOBJ_DTYPE_INT, '0', false);
         $this->initVar('description', XOBJ_DTYPE_STRING, '', false);
         $this->initVar('unzipdirlevel', XOBJ_DTYPE_INT, '0', false);
-        $this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 255);
-        $this->initVar('detail_url', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('addon_url', XOBJ_DTYPE_STRING, '', false, 191);
+        $this->initVar('detail_url', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('options', XOBJ_DTYPE_TEXT, '', false);
         
         // ver >= 0.06
@@ -48,7 +59,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject
         $this->initVar('hasupdate', XOBJ_DTYPE_INT, '0', false);
         
         // ver >= 0.11
-        $this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('contents', XOBJ_DTYPE_STRING, '', false, 191);
 
         // ver >= 0.60
         $this->initVar('category_id', XOBJ_DTYPE_INT, '0', false);
