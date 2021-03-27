@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+
+[lint version] 2021-03-27
+
+### Added  
+
+✅ Default templates  
+✅ Inline svg  
+✅ SVG logo  
+
+### Update  
+
+✅ class, common, core    
+✅ install wizard, modules, themes    
+✅ default themes (templates)   
+✅ language 🚧 fr utf-8 #238   
+✅ d3 modules (forum, pico, protector)  
+✅ xelfinder  
+✅ xupdate   
+
+###  Fixed  
+
+✅ Deprecated DB   
+✅ Default templates       
+✅ Install Wizard SQL  
+✅ Notice and Warning D3 modules 
+
+
 [unreleased] 2021-03-03
 
 ### Added
@@ -75,15 +102,15 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
-- Protector deprecated mymenu inline
-- Extra tags from default templates
-- CSS classes of Bootstrap 4
-- Xoops.css
+✅ Protector deprecated mymenu inline   
+✅ Extra tags from default templates   
+✅ CSS classes of Bootstrap 4   
+✅ Xoops.css   
 
 ### Update
 
-- Icon Bundle
-- Settings
+- Icon Bundle (WIP)
+- Settings (WIP)
 
 [unreleased] 2020-07-11
 
@@ -311,7 +338,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - D3Forum refactor code
 - D3Forum english catalog
-- [WIP] D3Forum templates
+- [WIP] D3Forum templates    
 ✅ custom layout  
 ✅ top  breadcrumbs  
 ✅ topics and posts table  
