@@ -7,36 +7,56 @@
  * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
-$content .=
-	"<u><b>Qu'est-ce que c'est ?</b></u>
-<p>
-<b>XOOPS Cube Legacy</b> est basé sur un script de portail dynamique O.O. (Orienté Objet) écrit en PHP.
-XOOPS Cube Legacy supporte un certain nombre de base de données,
-ce qui fait de XOOPS Cube Legacy l'outil idéal pour le développement de petits et grands sites communautaires
-dynamiques, portails intranet de sociétés, portails d'entreprise, blogs et beaucoup plus encore.
-</p>
-<p>
-XOOPS Cube Legacy est publié sous les termes de la <a href='https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt' target='_blank'>GNU General Public License (GPL - Licence Grand Public)</a> et libre d'utilisation et de modification.
-Il est librement redistribuable tant que vous vous soumettez aux termes de distribution GPL.
-</p>
-<u><b>Conditions</b></u>
-<p>
-<ul>
-<li>Serveur WWW (<a href='http://www.apache.org/' target='_blank'>Apache</a>, IIS, Roxen, etc)</li>
-<li><a href='http://www.php.net/' target='_blank'>PHP</a> 4.3.2 ou plus</li>
-<li>Base de données <a href='http://www.mysql.com/' target='_blank'>MySQL</a> 3.23.XX</li>
-</ul>
-</p>
-<u><b>Avant l'installation</b></u>
-<ul>
-<li>Installez correctement votre serveur WWW, PHP et base de données.</li>
-<li>Préparez une base de données pour votre site XOOPS Cube.</li>
-<li>Préparez un compte utilisateur avec le droit l'accès à la base de données.</li>
-<li>Changez les propriétés des répertoires uploads/, cache/ et templates_c/ et le fichier mainfile.php en mode écriture.</li>
-<li>Autorisez les cookies et le JavaScript de votre navigateur.</li>
-</ul>
-<u><b>Installation</b></u>
-<p>
-Suivez les instructions de cet assistant d'installation.
-</p>
-";
+
+$content =
+	'<div class="ui-tab-wrap">
+	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked="">
+	<label for="ui-tab1">About</label>
+
+	<input type="radio" id="ui-tab2" name="ui-tabGroup1" class="ui-tab">
+	<label for="ui-tab2">License</label>
+
+	<input type="radio" id="ui-tab3" name="ui-tabGroup1" class="ui-tab">
+    <label for="ui-tab3">Conditions</label>
+
+    <div class="ui-tab-content">
+    <p><b>XCL</b> est une <strong>Plateforme d\'application Web</strong> avec une architecture modulaire
+     faisant de XCL un outil idéal pour développer des sites Web communautaires dynamiques de petite à grande taille,
+     portails intra-entreprise, portails d\'entreprise, blogs et bien plus encore.
+    </p>
+    </div>
+
+    <div class="ui-tab-content">
+    <p>
+    Le le noyau Cube est publié sous les termes de la <a href="https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt" target="_blank" rel="external">New BSD License</a>.
+    Il est librement redistribuable tant que vous respectez les termes de distribution New BSD License.
+    </p>
+    <p>
+    Les modules XCL (D3) sont publiés sous les termes de la <a href="https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a>.
+    Ils sont librement redistribuablea tant que vous respectez les termes de distribution GPL.
+    </p>
+    </div>
+
+    <div class="ui-tab-content">
+    <p>
+    </p><ul>
+    <li><a href="https://www.apache.org/" target="_blank" rel="external">Apache</a>, <a href="https://www.nginx.com/" target="_blank" rel="external">Nginx</a> ou tout autre serveur Web.</li>
+    <li><a href="https://www.php.net/" target="_blank" rel="external">PHP7</a> ou supérieure</li>
+    <li><a href="https://www.mysql.com/" target="_blank" rel="external">MySQL</a> ou <a href="https://mariadb.org/" target="_blank" rel="external">MariaDB</a> Base de données 5.6.x ou supérieure</li>
+    </ul>
+    <p></p>
+    </div>
+</div>
+    <h3>Liste de contrôle pour l\'installation</h3>
+    <p><input type="checkbox" required=""> Configurer serveur Web, PHP7 et base de données SQL.
+    </p><p><input type="checkbox" required=""> Base de données utilisant <em>utf8mb4_general_ci</em> collation, utilisateur et mot de passe.
+    </p><p>Rendre les répertoires et les fichiers accessibles en écriture :
+    </p><p><input type="checkbox" required=""> html/uploads/
+    </p><p><input type="checkbox" required=""> xoops_trust_path/cache/
+    </p><p><input type="checkbox" required=""> xoops_trust_path/templates_c/
+    </p><p><input type="checkbox" required=""> html/mainfile.php
+    </p><p>Paramètres du navigateur Web
+    </p><p><input type="checkbox" required=""> Activer les options: cookies et JavaScript.
+    </p><h3>Installation</h3>
+    <p>Cliquez sur suivant et poursuivez les instructions supplémentaires fournies par l\'assistant d\'installation.</p>
+';
