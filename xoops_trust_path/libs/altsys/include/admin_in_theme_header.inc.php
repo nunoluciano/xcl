@@ -32,7 +32,7 @@ $xoopsTpl->assign( [
 ] );
 
 // Meta tags
-$config_handler = xoops_gethandler( 'config' );
+$config_handler =& xoops_gethandler( 'config' );
 $criteria       = new CriteriaCompo( new Criteria( 'conf_modid', 0 ) );
 $criteria->add( new Criteria( 'conf_catid', XOOPS_CONF_METAFOOTER ) );
 $config = $config_handler->getConfigs( $criteria, true );
@@ -48,8 +48,8 @@ foreach ( array_keys( $config ) as $i ) {
 
 //HACK by domifara
 if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-	$handler    = xoops_gethandler( 'block' );
-	$xoopsblock = $handler->create( false );
+	$handler    =& xoops_gethandler( 'block' );
+	$xoopsblock =& $handler->create( false );
 } else {
 	$xoopsblock = new XoopsBlock();
 }
@@ -64,10 +64,10 @@ if ( is_object( $xoopsUser ) ) {
 	] );
 	if ( is_object( @$xoopsModule ) ) {
 		if ( 1 == $xoopsModule->getVar( 'mid' ) && 'preferences' == @$_GET['fct'] && 'showmod' == @$_GET['op'] && ! empty( $_GET['mod'] ) ) {
-			$module_handler = xoops_gethandler( 'module' );
+			$module_handler =& xoops_gethandler( 'module' );
 			$target_module  = $module_handler->get( (int) $_GET['mod'] );
 		} else {
-			$target_module = $xoopsModule;
+			$target_module =& $xoopsModule;
 		}
 
 		// set page title
@@ -145,7 +145,7 @@ if ( ! empty( $blockids ) ) {
 
 //HACK by domifara
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$block = $handler->create( false );
+			$block =& $handler->create( false );
 			$block->assignVars( $myrow );
 		} else {
 			$block = new XoopsBlock( $myrow );

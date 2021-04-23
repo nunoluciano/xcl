@@ -59,7 +59,7 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager {
 
 		require_once $langmanpath;
 
-		$this->langman = D3LanguageManager::getInstance();
+		$this->langman =& D3LanguageManager::getInstance();
 
 		$this->langman->language = $this->mLanguageName;
 

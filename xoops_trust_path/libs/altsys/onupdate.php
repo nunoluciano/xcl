@@ -38,13 +38,13 @@ if ( ! function_exists( 'altsys_onupdate_base' ) ) {
 		// configs (Though I know it is not a recommended way...)
 		$check_sql = 'SHOW COLUMNS FROM ' . $db->prefix( 'config' ) . " LIKE 'conf_title'";
 		if ( ( $result = $db->query( $check_sql ) ) && ( $myrow = $db->fetchArray( $result ) ) && 'varchar(30)' === @$myrow['Type'] ) {
-			$db->queryF( 'ALTER TABLE ' . $db->prefix( 'config' ) . " MODIFY `conf_title` varchar(255) NOT NULL default '', MODIFY `conf_desc` varchar(255) NOT NULL default ''" );
+			$db->queryF( 'ALTER TABLE ' . $db->prefix( 'config' ) . " MODIFY `conf_title` varchar(191) NOT NULL default '', MODIFY `conf_desc` varchar(191) NOT NULL default ''" );
 		}
 
 		// 0.4 -> 0.5
 		$check_sql = 'SELECT COUNT(*) FROM ' . $db->prefix( $mydirname . '_language_constants' );
 		if ( ! $db->query( $check_sql ) ) {
-			$db->queryF( 'CREATE TABLE ' . $db->prefix( $mydirname . '_language_constants' ) . " (mid smallint(5) unsigned NOT NULL default 0,language varchar(32) NOT NULL default '',name varchar(255) NOT NULL default '',value text,PRIMARY KEY (mid,language,name)) ENGINE=InnoDB" );
+			$db->queryF( 'CREATE TABLE ' . $db->prefix( $mydirname . '_language_constants' ) . " (mid smallint(5) unsigned NOT NULL default 0,language varchar(32) NOT NULL default '',name varchar(191) NOT NULL default '',value text,PRIMARY KEY (mid,language,name)) ENGINE=InnoDB" );
 		}
 
 
@@ -99,3 +99,4 @@ if ( ! function_exists( 'altsys_onupdate_base' ) ) {
 		// use mLog->addWarning() or mLog->addError() if necessary
 	}
 }
+

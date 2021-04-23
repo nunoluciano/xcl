@@ -20,12 +20,12 @@
 function tplsadmin_save_tplsvars( $file, $smarty ) {
 	$tplsvars_file = 'tplsvars_';
 
-	$tplsvars_file .= mb_substr( md5( mb_substr( XOOPS_DB_PASS, 0, 4 ) ), 0, 4 ) . '_';
+	$tplsvars_file .= substr( md5( substr( XOOPS_DB_PASS, 0, 4 ) ), 0, 4 ) . '_';
 
 	if ( 0 === strncmp( $file, 'db:', 3 ) ) {
-		$tplsvars_file .= mb_substr( $file, 3 );
+		$tplsvars_file .= substr( $file, 3 );
 	} elseif ( 0 === strncmp( $file, 'file:', 5 ) ) {
-		$tplsvars_file .= strtr( mb_substr( $file, 5 ), '/', '%' );
+		$tplsvars_file .= strtr( substr( $file, 5 ), '/', '%' );
 	} else {
 		$tplsvars_file .= strtr( $file, '/', '%' );
 	}

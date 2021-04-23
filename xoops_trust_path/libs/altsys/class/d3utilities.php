@@ -35,7 +35,7 @@ class d3utilities
      */
     public function __construct($mydirname, $table_body, $primary_key, $cols, $page_name, $action_base_hiddens)
     {
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
 
         $this->dirname = \basename(\dirname(__DIR__));
 
@@ -47,9 +47,9 @@ class d3utilities
 
         $this->cols = $cols;
 
-        $module_handler = xoops_gethandler('module');
+        $module_handler =& xoops_gethandler('module');
 
-        $module = $module_handler->getByDirname($this->mydirname);
+        $module =& $module_handler->getByDirname($this->mydirname);
 
         if (!empty($module)) {
             $this->mid = (int)$module->getVar('mid');
@@ -105,7 +105,7 @@ class d3utilities
      */
     public function insert()
     {
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
 
         $id = $this->init_default_values();
 
@@ -139,7 +139,7 @@ class d3utilities
      */
     public function update()
     {
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
 
         // search appropriate column for getting primary_key
         foreach ($this->cols as $col) {
@@ -190,7 +190,7 @@ class d3utilities
      */
     public function delete($delete_comments = false, $delete_notifications = false)
     {
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
 
         $ret = [];
         foreach (array_keys($_POST['admin_main_checkboxes']) as $id) {
@@ -226,7 +226,7 @@ class d3utilities
      */
     public function init_default_values()
     {
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
 
         if (@$_GET['id']) {
             $id = (int)$_GET['id'];

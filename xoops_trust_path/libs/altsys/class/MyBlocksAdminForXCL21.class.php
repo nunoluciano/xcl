@@ -39,23 +39,19 @@ class MyBlocksAdminForXCL21 extends MyBlocksAdmin {
 	public function renderCell4BlockOptions( $block_data ) {
 		// if ($this->target_dirname && '_' !== substr($this->target_dirname, 0, 1)) {
 		if ( $this->target_dirname && '_' !== $this->target_dirname[0] ) {
-			$langman = D3LanguageManager::getInstance();
+			$langman =& D3LanguageManager::getInstance();
 			$langman->read( 'admin.php', $this->target_dirname );
 		}
 
 		$bid = (int) $block_data['bid'];
 
-		$handler = xoops_gethandler( 'block' );
-		$block   = $handler->create( false );
+		$handler =& xoops_gethandler( 'block' );
+		$block   =& $handler->create( false );
 		$block->load( $bid );
 
-		$legacy_block = Legacy_Utils::createBlockProcedure( $block );
+		$legacy_block =& Legacy_Utils::createBlockProcedure( $block );
 
 		return $legacy_block->getOptionForm();
 	}
 
-	// public function checkFck()
-	// {
-	//     return (! altsysUtils::isInstalledXclHtmleditor() && file_exists(XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js'));
-	// }
 }

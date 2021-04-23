@@ -23,7 +23,8 @@ include_once __DIR__ . '/altsys_functions.php';
  * @return bool
  */
 function tplsadmin_import_data( $tplset, $tpl_file, $tpl_source, $lastmodified = 0 ) {
-	$db = XoopsDatabaseFactory::getDatabaseConnection();
+
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 
 	// check the file is valid template
 
@@ -107,8 +108,6 @@ function tplsadmin_copy_templates_db2db( $tplset_from, $tplset_to, $whr_append =
 	global $db;
 
 	// get tplfile and tplsource
-	$result = $db->query( "SELECT tpl_refid,tpl_module,'" . addslashes( $tplset_to ) . "',tpl_file,tpl_desc,tpl_lastmodified,tpl_lastimported,tpl_type,tpl_source FROM " . $db->prefix( 'tplfile' ) . ' NATURAL LEFT JOIN '
-	                      . $db->prefix( 'tplsource' ) . " WHERE tpl_tplset='" . addslashes( $tplset_from ) . "' AND ($whr_append)" );
 
 	$result = $db->query( "SELECT tpl_refid,tpl_module,'"
 	                      . addslashes( $tplset_to )
@@ -120,7 +119,7 @@ function tplsadmin_copy_templates_db2db( $tplset_from, $tplset_to, $whr_append =
 	                      . addslashes( $tplset_from )
 	                      . "' AND ($whr_append)" );
 
-	while ( false !== ( $row = $db->fetchArray( $result ) ) ) {
+	while ($row = $db->fetchArray($result)) {
 		$tpl_source = array_pop( $row );
 
 		$drs = $db->query( 'SELECT tpl_id FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $tplset_to ) . "' AND ($whr_append) AND tpl_file='" . addslashes( $row['tpl_file'] ) . "' AND tpl_refid='" . addslashes( $row['tpl_refid'] ) . "'" );
@@ -165,6 +164,7 @@ function tplsadmin_copy_templates_db2db( $tplset_from, $tplset_to, $whr_append =
 	}
 }
 
+
 /**
  * @param        $tplset_to
  * @param string $whr_append
@@ -177,7 +177,7 @@ function tplsadmin_copy_templates_f2db( $tplset_to, $whr_append = '1' ) {
 
 	$result = $db->query( 'SELECT * FROM ' . $db->prefix( 'tplfile' ) . "  WHERE tpl_tplset='default' AND ($whr_append)" );
 
-	while ( false !== ( $row = $db->fetchArray( $result ) ) ) {
+	while ($row = $db->fetchArray($result)) {
 		$basefilepath = tplsadmin_get_basefilepath( $row['tpl_module'], $row['tpl_type'], $row['tpl_file'] );
 
 		$tpl_source = rtrim( implode( '', file( $basefilepath ) ) );
@@ -248,13 +248,13 @@ function tplsadmin_get_basefilepath( $dirname, $type, $tpl_file ) {
 	if ( defined( 'ALTSYS_TPLSADMIN_BASEPATH' ) ) {
 		// Special hook
 
-		$path = ALTSYS_TPLSADMIN_BASEPATH . '/' . mb_substr( $tpl_file, mb_strlen( $dirname ) + 1 );
+		$path = ALTSYS_TPLSADMIN_BASEPATH . '/' . substr( $tpl_file, strlen( $dirname ) + 1 );
 	} elseif ( $mytrustdirname || @include XOOPS_ROOT_PATH . '/modules/' . $dirname . '/mytrustdirname.php' ) {
 		// D3 module base
 		if ( ! empty( $mytrustdirname ) ) {
 			$mid_path = 'altsys' == $mytrustdirname ? '/libs/' : '/modules/';
 
-			$path = XOOPS_TRUST_PATH . $mid_path . $mytrustdirname . '/templates/' . ( 'block' == $type ? 'blocks/' : '' ) . mb_substr( $tpl_file, mb_strlen( $dirname ) + 1 );
+			$path = XOOPS_TRUST_PATH . $mid_path . $mytrustdirname . '/templates/' . ( 'block' == $type ? 'blocks/' : '' ) . substr( $tpl_file, strlen( $dirname ) + 1 );
 
 			//new for xcck etc.other trust_module
 

@@ -128,13 +128,13 @@ if ( $handler = opendir( XOOPS_COMPILE_PATH . '/' ) ) {
 	while ( false !== ( $file = readdir( $handler ) ) ) {
 		// skip files other than tplsvars_* files
 
-		if ( 'tplsvars_' !== mb_substr( $file, 0, 9 ) ) {
+		if ( 'tplsvars_' !== substr( $file, 0, 9 ) ) {
 			continue;
 		}
 
 		// 'tplsvars_'.(randomized 4byte).'_'.(tpl_file)
 
-		$tpl_name = mb_substr( $file, 14 );
+		$tpl_name = substr( $file, 14 );
 
 		if ( ! preg_match( '/^[%0-9A-Za-z._-]+$/', $tpl_name ) ) {
 			continue;

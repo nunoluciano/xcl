@@ -15,12 +15,11 @@ altsys_set_module_config();
 function altsys_set_module_config() {
 	global $altsysModuleConfig, $altsysModuleId;
 
-	$module_handler = xoops_gethandler( 'module' );
-
-	$module = $module_handler->getByDirname( 'altsys' );
+	$module_handler =& xoops_gethandler( 'module' );
+	$module =& $module_handler->getByDirname( 'altsys' );
 
 	if ( is_object( $module ) ) {
-		$config_handler     = xoops_gethandler( 'config' );
+		$config_handler     =& xoops_gethandler( 'config' );
 		$altsysModuleConfig = $config_handler->getConfigList( $module->getVar( 'mid' ) );
 		$altsysModuleId     = $module->getVar( 'mid' );
 	} else {
@@ -100,6 +99,7 @@ function altsys_get_link2modpreferences( $mid ) {
  */
 
 function altsys_template_touch( $tpl_id ) {
+	// just touch the template
 	xoops_template_touch( $tpl_id );
 }
 
@@ -108,11 +108,11 @@ function altsys_clear_templates_c() {
 	$dh = opendir( XOOPS_COMPILE_PATH );
 	while ( $file = readdir( $dh ) ) {
 
-		if ( '.' == mb_substr( $file, 0, 1 ) ) {
+		if ( '.' == substr( $file, 0, 1 ) ) {
 			continue;
 		}
 
-		if ( '.php' != mb_substr( $file, - 4 ) ) {
+		if ( '.php' != substr( $file, - 4 ) ) {
 			continue;
 		}
 		@unlink( XOOPS_COMPILE_PATH . '/' . $file );

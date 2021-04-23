@@ -5,6 +5,7 @@ $mytrustdirpath = __DIR__;
 
 // language files
 $language = empty( $GLOBALS['xoopsConfig']['language'] ) ? 'english' : $GLOBALS['xoopsConfig']['language'];
+
 if ( file_exists( "$mydirpath/language/$language/blocks.php" ) ) {
 	// user customized language file (already read by class/xoopsblock.php etc)
 	// include_once "$mydirpath/language/$language/blocks.php" ;

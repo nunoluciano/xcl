@@ -101,11 +101,11 @@ function b_altsys_admin_menu_show($options)
         // for modules overriding Module.class.php (eg. Analyzer for XC)
         if (empty($submenus4assign) && defined('XOOPS_CUBE_LEGACY') && !empty($modinfo['cube_style'])) {
 
-            $module_handler = xoops_gethandler('module');
+            $module_handler =& xoops_gethandler('module');
 
-            $module = $module_handler->get($mid);
+            $module =& $module_handler->get($mid);
 
-            $moduleObj = Legacy_Utils::createModule($module);
+            $moduleObj =& Legacy_Utils::createModule($module);
 
             $modinfo['adminindex'] = $moduleObj->getAdminIndex();
 

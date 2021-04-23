@@ -36,7 +36,7 @@ class MyBlocksAdmin {
 	}
 
 	public function construct() {
-		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 
 		$this->lang = @$GLOBALS['xoopsConfig']['language'];
 
@@ -111,12 +111,12 @@ class MyBlocksAdmin {
 		if ( 'altsys' == $xoopsModule->getVar( 'dirname' ) ) {
 			// set target_module if specified by $_GET['dirname']
 
-			$module_handler = xoops_gethandler( 'module' );
+			$module_handler =& xoops_gethandler( 'module' );
 
 			if ( ! empty( $_GET['dirname'] ) ) {
 				$dirname = preg_replace( '/[^0-9a-zA-Z_-]/', '', $_GET['dirname'] );
 
-				$target_module = &$module_handler->getByDirname( $dirname );
+				$target_module =& $module_handler->getByDirname( $dirname );
 			}
 
 			if ( is_object( @$target_module ) ) {
@@ -131,7 +131,7 @@ class MyBlocksAdmin {
 				$modinfo = $target_module->getInfo();
 
 				// breadcrumbs
-				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
 
 				$breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN' );
 
@@ -145,7 +145,7 @@ class MyBlocksAdmin {
 				$this->target_dirname = '__CustomBlocks__';
 
 				// breadcrumbs
-				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
 
 				$breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN' );
 
@@ -163,7 +163,7 @@ class MyBlocksAdmin {
 
 			$modinfo = $xoopsModule->getInfo();
 
-			$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+			$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
 
 			$breadcrumbsObj->appendPath( $mod_url . '/' . @$modinfo['adminindex'], $this->target_mname );
 
@@ -288,7 +288,7 @@ class MyBlocksAdmin {
 		}
 
 		// get all targets
-		$module_handler = xoops_gethandler( 'module' );
+		$module_handler =& xoops_gethandler( 'module' );
 		$criteria       = new CriteriaCompo( new Criteria( 'hasmain', 1 ) );
 		$criteria->add( new Criteria( 'isactive', 1 ) );
 
@@ -457,13 +457,13 @@ class MyBlocksAdmin {
 		$block_arr = [];
 
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = xoops_gethandler( 'block' ); //add
+			$handler =& xoops_gethandler( 'block' ); //add
 		}
 		while ( $myrow = $this->db->fetchArray( $result ) ) {
 			if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-				$block_one = $handler->create( false );
+				$block_one =& $handler->create( false );
 				$block_one->assignVars( $myrow );
-				$block_arr[] = &$block_one;
+				$block_arr[] =& $block_one;
 			} else {
 				$block_arr[] = new XoopsBlock( $myrow );
 			}
@@ -537,13 +537,13 @@ class MyBlocksAdmin {
 		$block_arr = [];
 
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = &xoops_gethandler( 'block' ); //add
+			$handler =& xoops_gethandler( 'block' ); //add
 		}
 		while ( $myrow = $this->db->fetchArray( $result ) ) {
 			if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-				$block_one = $handler->create( false );
+				$block_one =& $handler->create( false );
 				$block_one->assignVars( $myrow );
-				$block_arr[] = &$block_one;
+				$block_arr[] =& $block_one;
 			} else {
 				$block_arr[] = new XoopsBlock( $myrow );
 			}
@@ -584,8 +584,8 @@ class MyBlocksAdmin {
 
 		//HACK by domifara
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = xoops_gethandler( 'block' );
-			$block   = $handler->create( false );
+			$handler =& xoops_gethandler( 'block' );
+			$block   =& $handler->create( false );
 			$block->load( $bid );
 		} else {
 			$block = new XoopsBlock( $bid );
@@ -616,12 +616,12 @@ class MyBlocksAdmin {
 		}
 		$msg = _MD_A_MYBLOCKSADMIN_DBUPDATED;
 
-		if ( false !== $block->store() ) {
+		if ( false != $block->store() ) {
 			include_once XOOPS_ROOT_PATH . '/class/template.php';
 			$xoopsTpl = new XoopsTpl();
 			$xoopsTpl->xoops_setCaching( 2 );
 
-			if ( '' !== $block->getVar( 'template' ) ) {
+			if ( '' != $block->getVar( 'template' ) ) {
 				if ( $xoopsTpl->is_cached( 'db:' . $block->getVar( 'template' ) ) ) {
 					if ( ! $xoopsTpl->clear_cache( 'db:' . $block->getVar( 'template' ) ) ) {
 						$msg = 'Unable to clear cache for block ID' . $bid;
@@ -647,8 +647,6 @@ class MyBlocksAdmin {
 	 * @param int $bid
 	 * @param $bmodules
 	 */
-
-
 	public function updateBlockModuleLink( $bid, $bmodules ) {
 		$bid   = (int) $bid;
 		$table = $this->db->prefix( 'block_module_link' );
@@ -763,8 +761,8 @@ class MyBlocksAdmin {
 		$bid = (int) $bid;
 
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = xoops_gethandler( 'block' );
-			$block   = $handler->create( false );
+			$handler =& xoops_gethandler( 'block' );
+			$block   =& $handler->create( false );
 			$block->load( $bid );
 		} else {
 			$block = new XoopsBlock( $bid );
@@ -801,8 +799,8 @@ class MyBlocksAdmin {
 		$bid = (int) $bid;
 
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = xoops_gethandler( 'block' );
-			$block   = $handler->create( false );
+			$handler =& xoops_gethandler( 'block' );
+			$block   =& $handler->create( false );
 			$block->load( $bid );
 		} else {
 			$block = new XoopsBlock( $bid );
@@ -816,7 +814,7 @@ class MyBlocksAdmin {
 		}
 
 		// breadcrumbs
-		$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+		$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
 		$breadcrumbsObj->appendPath( '', _DELETE );
 
 		xoops_confirm( [ 'op' => 'delete_ok' ] + $GLOBALS['xoopsGTicket']->getTicketArray( __LINE__, 1800, 'myblocksadmin' ), "?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=$this->target_dirname&amp;bid=$bid", sprintf( _MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK, $block->getVar( 'title' ) ) );
@@ -829,8 +827,8 @@ class MyBlocksAdmin {
 		$request = $this->fetchRequest4Block( $bid );
 
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = xoops_gethandler( 'block' );
-			$block   = $handler->create( false );
+			$handler =& xoops_gethandler( 'block' );
+			$block   =& $handler->create( false );
 			$block->load( $bid );
 		} else {
 			$block = new XoopsBlock( $bid );
@@ -856,7 +854,7 @@ class MyBlocksAdmin {
 
 		//HACK by domifara
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$cblock = $handler->create( false );
+			$cblock =& $handler->create( false );
 		} else {
 			$cblock = new XoopsBlock();
 		}
@@ -914,8 +912,8 @@ class MyBlocksAdmin {
 			// new custom block
 
 			if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-				$handler   = xoops_gethandler( 'block' );
-				$new_block = $handler->create( false );
+				$handler   =& xoops_gethandler( 'block' );
+				$new_block =& $handler->create( false );
 			} else {
 				$new_block = new XoopsBlock();
 			}
@@ -951,14 +949,13 @@ class MyBlocksAdmin {
 	 * @param        $bid
 	 * @param string $mode
 	 */
-
 	public function form_edit( $bid, $mode = 'edit' ) {
 		$bid = (int) $bid;
 
 		//HACK by domifara
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
-			$handler = xoops_gethandler( 'block' );
-			$block   = $handler->create( false );
+			$handler =& xoops_gethandler( 'block' );
+			$block   =& $handler->create( false );
 			$block->load( $bid );
 		} else {
 			$block = new XoopsBlock( $bid );
@@ -978,7 +975,7 @@ class MyBlocksAdmin {
 				$button_value = _MD_A_MYBLOCKSADMIN_BTN_CLONE;
 				$next_op      = 'clone_ok';
 				// breadcrumbs
-				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
 				$breadcrumbsObj->appendPath( '', _MD_A_MYBLOCKSADMIN_CLONEFORM );
 				break;
 			case 'new':
@@ -995,7 +992,7 @@ class MyBlocksAdmin {
 				$button_value = _MD_A_MYBLOCKSADMIN_BTN_EDIT;
 				$next_op      = 'edit_ok';
 				// breadcrumbs
-				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
 				$breadcrumbsObj->appendPath( '', _MD_A_MYBLOCKSADMIN_EDITFORM );
 				break;
 		}
@@ -1008,8 +1005,8 @@ class MyBlocksAdmin {
 		if ( ! $is_custom && $block_template ) {
 
 			// find template of the block
-			$tplfile_handler       = &xoops_gethandler( 'tplfile' );
-			$found_templates       = $tplfile_handler->find( $GLOBALS['xoopsConfig']['template_set'], 'block', null, null, $block_template );
+			$tplfile_handler       =& xoops_gethandler( 'tplfile' );
+			$found_templates       =& $tplfile_handler->find( $GLOBALS['xoopsConfig']['template_set'], 'block', null, null, $block_template );
 			$block_template_tplset = count( $found_templates ) > 0 ? $GLOBALS['xoopsConfig']['template_set'] : 'default';
 		}
 		//HACK by domifara
@@ -1106,8 +1103,8 @@ class MyBlocksAdmin {
 		//TODO : need no hook block at this
 		$block = new XoopsBlock( $bid );
 		/*
-			$handler = xoops_gethandler('block');
-			$block = $handler->create(false) ;
+			$handler =& xoops_gethandler('block');
+			$block =& $handler->create(false) ;
 			$block->load($bid) ;
 		*/
 
