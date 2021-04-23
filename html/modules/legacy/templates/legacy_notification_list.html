@@ -1,9 +1,22 @@
-<h4><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></h4>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<ul class="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg"></a></li>
+    <li><a href="<{$xoops_url}>/user.php">Profile</a></li>
+    <li aria-current="page"><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></li>
+</ul>
+
+<h3 class="block-title">
+    <img class="svg notification" src="<{$xoops_url}>/images/icons/notification.svg"> <{$smarty.const._NOT_ACTIVENOTIFICATIONS}></h3>
+
 <form name="notificationlist" action="notifications.php" method="post">
   <{xoops_token form=$actionForm}>
-  <table class="outer">
-    <tr>
-      <th><input name="allbox" id="allbox" onclick="xoopsCheckAll('notificationlist', 'allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>" /></th>
+
+  <table class="table outer bg-color">
+    <tr class="bg-color">
+      <th><input name="allbox" id="allbox" onclick="xoopsCheckAll('notificationlist', 'allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>"></th>
       <th><{$smarty.const._NOT_EVENT}></th>
       <th><{$smarty.const._NOT_CATEGORY}></th>
       <th><{$smarty.const._NOT_ITEMID}></th>

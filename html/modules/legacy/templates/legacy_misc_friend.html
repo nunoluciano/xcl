@@ -1,3 +1,7 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <{if $actionForm->hasError()}>
 <div class="errorMsg">
   <ul>
@@ -7,9 +11,10 @@
   </ul>
 </div>
 <{/if}>
+
 <form action="./misc.php?type=friend" method="post">
   <{xoops_token form=$actionForm}>
-  <table  width="100%" class="outer" cellspacing="1">
+  <table class="table">
     <tr>
       <th colspan="2"><{$smarty.const._MB_LEGACY_LANG_RECOMMENDSITE}></th>
     </tr>

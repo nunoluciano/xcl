@@ -25,7 +25,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     //Hack for url, email ...., the anchor is for having a link on [_More...]
     echo "<a name='moresmiley'></a><img src='".XOOPS_URL."/images/url.gif' alt='url' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeUrl(\"$textarea_id\", \"".htmlspecialchars(_ENTERURL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ENTERWEBTITLE, ENT_QUOTES) . "\");'/>
-    &nbsp;<img src='".XOOPS_URL."/images/email.gif' alt='email' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeEmail(\"$textarea_id\", \"".htmlspecialchars(_ENTEREMAIL, ENT_QUOTES)."\");' />
+    &nbsp;<img src='".XOOPS_URL."/images/email.svg' alt='email' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeEmail(\"$textarea_id\", \"".htmlspecialchars(_ENTEREMAIL, ENT_QUOTES)."\");' />
     &nbsp;<img src='".XOOPS_URL."/images/imgsrc.gif' alt='imgsrc' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeImg(\"$textarea_id\", \"".htmlspecialchars(_ENTERIMGURL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ENTERIMGPOS, ENT_QUOTES) . '", "'
          . htmlspecialchars(_IMGPOSRORL, ENT_QUOTES) . '", "'

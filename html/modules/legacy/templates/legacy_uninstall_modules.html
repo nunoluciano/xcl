@@ -9,7 +9,7 @@
 <!-- !TODO : Fix this to default package stylesheet ! -->
 
 <link rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
-
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
 <style>
 body {
 	margin : 2em;
@@ -42,9 +42,16 @@ width							: 1.5em; /* Size icon to text */
 </head>
 <body>
 
+
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 	<div class="wrapper-delete">
 		<h2><{$smarty.const._UNINSTALL}></h2>
-			<h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-delete"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z" fill="currentColor"></path></svg></h3>
+			<h3>
+				<img class="svg package-uninstall" src="<{$xoops_url}>/images/icons/uninstall.svg">
+			</h3>
 		<h4><{$smarty.const._UNINSTALL_CONFIRM}></h4>
 		<p><{$lang_ifnotreload}></p>
 		<form action="<{$xoops_url}>/index.php" method="post">

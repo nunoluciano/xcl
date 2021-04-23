@@ -1,6 +1,14 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+    <li><a href="index.php">
+    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
+    <li><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>
+    <li aria-current="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
+</ul>
 
 
 

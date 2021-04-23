@@ -113,7 +113,7 @@ class MyTextSanitizer
     {
         $text = $this->mTextFilter->makeClickable($text);
 
-        // RaiseEvent : 'MyTextSanitizer.MakeClickablePostFilter'
+        //  RaiseEvent : 'MyTextSanitizer.MakeClickablePostFilter'
         //  Delegate may convert output text with quickApplyFilter rule
         //  Args :
         //      'string'       [I/O] : Text to convert;
@@ -194,7 +194,9 @@ class MyTextSanitizer
      * @param   string  $text
      * @return  string
      **/
-    public function &addSlashes($text)
+    // Only variables can be returned by reference
+    // public function &addSlashes($text)
+	public function addSlashes($text)
     {
         return addslashes($text);
     }

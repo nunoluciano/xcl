@@ -62,7 +62,8 @@
     [type=search]{-webkit-appearance:textfield;outline-offset:-2px}
     [type=search]::-webkit-search-decoration{-webkit-appearance:none}
     ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
-
+    /* SVGs fallback to the current text color */
+    svg:not([fill]) {fill: currentColor;}
 /* -------------------- -------------------- -------------------- -------------------- LAYOUT */
 
 :root {
@@ -814,7 +815,7 @@ html {
         padding: var(--ui-space-1)!important;
     }
 }
-
+/* Large Screen Device lg- */
 @media screen and (max-width: 64em) {
     [self*=lg-full] {
         -ms-flex: 1 1 100% !important;
@@ -843,7 +844,7 @@ html {
         display: inherit
     }
 }
-
+/* Medium Screen Device md- */
 @media screen and (max-width: 52em) {
     [self*=md-full] {
         -ms-flex: 1 1 100% !important;
@@ -881,7 +882,7 @@ html {
         padding: var(--ui-space-4)!important;
     }
 }
-
+/* Small Screen Device sm- */
 @media screen and (max-width: 40em) {
     [self*=sm-full] {
         -ms-flex: 1 1 100% !important;

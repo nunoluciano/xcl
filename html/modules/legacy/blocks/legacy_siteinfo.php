@@ -45,10 +45,10 @@ function b_legacy_siteinfo_show($options)
                     $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '<a href="'
                                                                                                                                                      . XOOPS_URL . '/modules/message/index.php?action=new&to_userid='
                                                                                                                                                      . $userinfo['uid'] . '"><img src="'
-                                                                                                                                                     . XOOPS_URL . '/images/icons/pm_small.gif" border="0" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
+                                                                                                                                                     . XOOPS_URL . '/images/icons/email.svg" border="0" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
                 } else {
                     if ($userinfo['user_viewemail']) {
-                        $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '<a href="mailto:' . $userinfo['email'] . '"><img src="' . XOOPS_URL . '/images/icons/em_small.gif" border="0" width="16" height="14" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
+                        $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '<a href="mailto:' . $userinfo['email'] . '"><img src="' . XOOPS_URL . '/images/icons/email.svg" border="0" width="16" height="14" alt="" /></a>', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
                     } else {
                         $block['groups'][$i]['users'][] = ['id' => $userinfo['uid'], 'name' => $myts->htmlspecialchars($userinfo['uname']), 'msglink' => '&nbsp;', 'avatar' => XOOPS_UPLOAD_URL . '/' . $userinfo['user_avatar']];
                     }

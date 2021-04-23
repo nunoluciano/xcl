@@ -85,6 +85,9 @@ if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     //    It is synonym of $xoopsOption['nocommon']=1;
     //    But $xoopsOption['nocommon'] is deprecated.
     //
+	if (file_exists( XOOPS_TRUST_PATH.'/vendor/autoload.php')) {
+	require_once XOOPS_TRUST_PATH.'/vendor/autoload.php';
+	}
     if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
         include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
         include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';

@@ -222,21 +222,21 @@ class XoopsComments extends XoopsObject
         if (null !== $this->getVar('icon') && '' !== $this->getVar('icon')) {
             $subject_image = "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . '/images/subject/' . $this->getVar('icon') . "' alt='' />";
         } else {
-            $subject_image =  "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . "/images/icons/no_posticon.gif' alt='' />";
+            $subject_image =  "<a name='".$this->getVar('comment_id') . "' id='" . $this->getVar('comment_id') . "'></a><img src='" . XOOPS_URL . "/images/icons/no_posticon.svg' alt='' />";
         }
         if ($adminview) {
-            $ip_image = "<img src='".XOOPS_URL."/images/icons/ip.gif' alt='".$this->getVar('ip') . "' />";
+            $ip_image = "<img src='".XOOPS_URL."/images/icons/ip-network.svg' alt='".$this->getVar('ip') . "' />";
         } else {
-            $ip_image = "<img src='".XOOPS_URL."/images/icons/ip.gif' alt='' />";
+            $ip_image = "<img src='".XOOPS_URL."/images/icons/ip-network.svg' alt='' />";
         }
         if ($adminview || ($xoopsUser && $this->getVar('user_id') == $xoopsUser->getVar('uid'))) {
-            $edit_image = "<a href='editcomment.php?comment_id=".$this->getVar('comment_id') . '&amp;mode=' . $mode . '&amp;order=' . (int)$order . "'><img src='" . XOOPS_URL . "/images/icons/edit.gif' alt='" . _EDIT . "' /></a>";
+            $edit_image = "<a href='editcomment.php?comment_id=".$this->getVar('comment_id') . '&amp;mode=' . $mode . '&amp;order=' . (int)$order . "'><img src='" . XOOPS_URL . "/images/icons/edit.svg' alt='" . _EDIT . "' /></a>";
         }
         if ($xoopsConfig['anonpost'] || $xoopsUser) {
-            $reply_image = "<a href='replycomment.php?comment_id=".$this->getVar('comment_id') . '&amp;mode=' . $mode . '&amp;order=' . (int)$order . "'><img src='" . XOOPS_URL . "/images/icons/reply.gif' alt='" . _REPLY . "' /></a>";
+            $reply_image = "<a href='replycomment.php?comment_id=".$this->getVar('comment_id') . '&amp;mode=' . $mode . '&amp;order=' . (int)$order . "'><img src='" . XOOPS_URL . "/images/icons/reply.svg' alt='" . _REPLY . "' /></a>";
         }
         if ($adminview) {
-            $delete_image = "<a href='deletecomment.php?comment_id=".$this->getVar('comment_id') . '&amp;mode=' . $mode . '&amp;order=' . (int)$order . "'><img src='" . XOOPS_URL . "/images/icons/delete.gif' alt='" . _DELETE . "' /></a>";
+            $delete_image = "<a href='deletecomment.php?comment_id=".$this->getVar('comment_id') . '&amp;mode=' . $mode . '&amp;order=' . (int)$order . "'><img src='" . XOOPS_URL . "/images/icons/delete.svg' alt='" . _DELETE . "' /></a>";
         }
 
         if ($poster) {
@@ -260,25 +260,25 @@ class XoopsComments extends XoopsObject
             } else {
                 $online_image = '';
             }
-            $profile_image = "<a href='".XOOPS_URL . '/userinfo.php?uid=' . $poster->getVar('uid') . "'><img src='" . XOOPS_URL . "/images/icons/profile.gif' alt='" . _PROFILE . "' /></a>";
+            $profile_image = "<a href='".XOOPS_URL . '/userinfo.php?uid=' . $poster->getVar('uid') . "'><img src='" . XOOPS_URL . "/images/icons/user.svg' alt='" . _PROFILE . "' /></a>";
             if ($xoopsUser) {
-                $pm_image =  "<a href='javascript:openWithSelfMain(\"".XOOPS_URL . '/pmlite.php?send2=1&amp;to_userid=' . $poster->getVar('uid') . "\",\"pmlite\",450,370);'><img src='" . XOOPS_URL . "/images/icons/pm.gif' alt='" . sprintf(_SENDPMTO, $poster->getVar('uname', 'E')) . "' /></a>";
+                $pm_image =  "<a href='javascript:openWithSelfMain(\"".XOOPS_URL . '/pmlite.php?send2=1&amp;to_userid=' . $poster->getVar('uid') . "\",\"pmlite\",450,370);'><img src='" . XOOPS_URL . "/images/icons/email.svg' alt='" . sprintf(_SENDPMTO, $poster->getVar('uname', 'E')) . "' /></a>";
             } else {
                 $pm_image = '';
             }
             if ($poster->getVar('user_viewemail')) {
-                $email_image = "<a href='mailto:".$poster->getVar('email', 'E') . "'><img src='" . XOOPS_URL . "/images/icons/email.gif' alt='" . sprintf(_SENDEMAILTO, $poster->getVar('uname', 'E')) . "' /></a>";
+                $email_image = "<a href='mailto:".$poster->getVar('email', 'E') . "'><img src='" . XOOPS_URL . "/images/icons/email.svg' alt='" . sprintf(_SENDEMAILTO, $poster->getVar('uname', 'E')) . "' /></a>";
             } else {
                 $email_image = '';
             }
             $posterurl = $poster->getVar('url');
             if ('' !== $posterurl) {
-                $www_image = "<a href='$posterurl' rel='external'><img src='".XOOPS_URL."/images/icons/www.gif' alt='"._VISITWEBSITE."' /></a>";
+                $www_image = "<a href='$posterurl' rel='external'><img src='".XOOPS_URL."/images/icons/web.svg' alt='"._VISITWEBSITE."' /></a>";
             } else {
                 $www_image = '';
             }
             if ('' !== $poster->getVar('user_icq')) {
-                $icq_image = "<a href='https://wwp.icq.com/scripts/search.dll?to=".$poster->getVar('user_icq', 'E') . "'><img src='" . XOOPS_URL . "/images/icons/icq_add.gif' alt='" . _ADD . "' /></a>";
+                $icq_image = "<a href='https://wwp.icq.com/scripts/search.dll?to=".$poster->getVar('user_icq', 'E') . "'><img src='" . XOOPS_URL . "/images/icons/icq.svg' alt='" . _ADD . "' /></a>";
             } else {
                 $icq_image = '';
             }
@@ -325,7 +325,7 @@ class XoopsComments extends XoopsObject
         if ('' !== $this->getVar('icon')) {
             $icon = 'subject/' . $this->getVar('icon', 'E');
         } else {
-            $icon = 'icons/no_posticon.gif';
+            $icon = 'icons/no_posticon.svg';
         }
         echo "<tr class='$bg' align='left'><td>".$prefix."<img src='".XOOPS_URL . '/images/'
              . $icon . "'>&nbsp;<a href='" . xoops_getenv('PHP_SELF') . '?item_id='

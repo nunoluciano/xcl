@@ -30,23 +30,23 @@
   <tr>
     <{if $xoops_iscommentadmin == true}>
       <td class="even">
-        <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$lang_edit}>" title="<{$lang_edit}>" /></a>
-        <a href="<{$deletecomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/delete.gif" alt="<{$lang_delete}>" title="<{$lang_delete}>" /></a>
+        <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/edit.svg" alt="<{$lang_edit}>" title="<{$lang_edit}>" /></a>
+        <a href="<{$deletecomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/delete.svg" alt="<{$lang_delete}>" title="<{$lang_delete}>" /></a>
       </td>
       <td class="even" align="right">
-        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
+        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.svg" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
       </td>
     <{elseif $xoops_isuser == true && $xoops_userid == $comment.poster.id}>
       <td class="even">
-        <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/edit.gif" alt="<{$lang_edit}>" title="<{$lang_edit}>" /></a>
+        <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/edit.svg" alt="<{$lang_edit}>" title="<{$lang_edit}>" /></a>
       </td>
       <td class="even" align="right">
-        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
+        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.svg" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
       </td>
     <{elseif $xoops_isuser == true || ($xoops_isuser == false && $com_anonpost == true)}>
       <td class="even"></td>
       <td class="even" align="right">
-        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.gif" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
+        <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>"><img src="<{$xoops_url}>/images/icons/reply.svg" alt="<{$lang_reply}>" title="<{$lang_reply}>" /></a>
       </td>
     <{else}>
       <td class="even"> </td>

@@ -411,11 +411,11 @@ class XoopsCommentRenderer
         if ('' !== $icon_image) {
             $icon_image = htmlspecialchars($icon_image);
             if ((false !== $this->_doIconCheck) && !file_exists(XOOPS_URL . '/images/subject/' . $icon_image)) {
-                return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.gif" alt="" />';
+                return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.svg" alt="" />';
             }
 
             return '<img src="'.XOOPS_URL.'/images/subject/'.$icon_image.'" alt="" />';
         }
-        return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.gif" alt="" />';
+        return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.svg" alt="" />';
     }
 }

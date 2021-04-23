@@ -589,7 +589,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                         $item['image'] = XOOPS_URL . '/modules/' . $this->mXoopsModule->get('dirname') . '/' . $result['image'];
                     }
                 } else {
-                    $item['image'] = XOOPS_URL . '/images/icons/posticon2.gif';
+                    $item['image'] = XOOPS_URL . '/images/icons/file.svg';
                 }
 
                 $item['link'] = XOOPS_URL . '/modules/' . $this->mXoopsModule->get('dirname') . '/' . $result['link'];
