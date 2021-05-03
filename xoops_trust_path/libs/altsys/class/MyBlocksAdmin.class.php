@@ -2,12 +2,12 @@
 /**
  * Altsys library (UI-Components) for D3 modules
  * Class MyBlocksAdmin
- * @package XCL
- * @subpackage Altsys
- * @version 2.3
- * @author Gijoe (Peak), Domifara, Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @package    Altsys
+ * @version    2.3
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
 
 
@@ -89,7 +89,7 @@ class MyBlocksAdmin {
 	 * Virtual
 	 */
 	public function checkPermission() {
-		// only groups have 'module_admin' of 'altsys' can do that.
+		// only groups with 'module_admin' permissions.
 		$module_handler =& xoops_gethandler( 'module' );
 
 		$module =& $module_handler->getByDirname( 'altsys' );
@@ -131,7 +131,7 @@ class MyBlocksAdmin {
 				$modinfo = $target_module->getInfo();
 
 				// breadcrumbs
-				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 
 				$breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN' );
 
@@ -145,7 +145,7 @@ class MyBlocksAdmin {
 				$this->target_dirname = '__CustomBlocks__';
 
 				// breadcrumbs
-				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 
 				$breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN' );
 
@@ -163,7 +163,7 @@ class MyBlocksAdmin {
 
 			$modinfo = $xoopsModule->getInfo();
 
-			$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+			$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 
 			$breadcrumbsObj->appendPath( $mod_url . '/' . @$modinfo['adminindex'], $this->target_mname );
 
@@ -195,11 +195,7 @@ class MyBlocksAdmin {
 
 	public function canDelete( $block ) {
 		// can delete if it is a cloned block
-		if ( 'D' == $block->getVar( 'block_type' ) || 'C' == $block->getVar( 'block_type' ) ) {
-			return true;
-		}
-
-		return false;
+		return 'D' == $block->getVar( 'block_type' ) || 'C' == $block->getVar( 'block_type' );
 	}
 
 	/**
@@ -307,12 +303,10 @@ class MyBlocksAdmin {
 			}
 		}
 
-		$ret = "
+		return "
 				<select name='bmodules[$bid][]' size='5' multiple='multiple'>
 					$module_options
 				</select>";
-
-		return $ret;
 	}
 
 	/**
@@ -360,12 +354,10 @@ class MyBlocksAdmin {
 			}
 		}
 
-		$ret = "
+		return "
 				<select name='bgroups[$bid][]' size='5' multiple='multiple'>
 					$group_options
 				</select>";
-
-		return $ret;
 	}
 
 	/**
@@ -814,7 +806,7 @@ class MyBlocksAdmin {
 		}
 
 		// breadcrumbs
-		$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+		$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 		$breadcrumbsObj->appendPath( '', _DELETE );
 
 		xoops_confirm( [ 'op' => 'delete_ok' ] + $GLOBALS['xoopsGTicket']->getTicketArray( __LINE__, 1800, 'myblocksadmin' ), "?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=$this->target_dirname&amp;bid=$bid", sprintf( _MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK, $block->getVar( 'title' ) ) );
@@ -975,7 +967,7 @@ class MyBlocksAdmin {
 				$button_value = _MD_A_MYBLOCKSADMIN_BTN_CLONE;
 				$next_op      = 'clone_ok';
 				// breadcrumbs
-				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 				$breadcrumbsObj->appendPath( '', _MD_A_MYBLOCKSADMIN_CLONEFORM );
 				break;
 			case 'new':
@@ -992,7 +984,7 @@ class MyBlocksAdmin {
 				$button_value = _MD_A_MYBLOCKSADMIN_BTN_EDIT;
 				$next_op      = 'edit_ok';
 				// breadcrumbs
-				$breadcrumbsObj =& AltsysBreadcrumbs::getInstance();
+				$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 				$breadcrumbsObj->appendPath( '', _MD_A_MYBLOCKSADMIN_EDITFORM );
 				break;
 		}
@@ -1156,7 +1148,9 @@ class MyBlocksAdmin {
 			$_GET['op']            = str_replace( '_ok', '', @$_POST['op'] );
 
 			return; // continue ;
-		} elseif ( 'order' == @$_POST['op'] ) {
+		}
+
+		if ( 'order' == @$_POST['op'] ) {
 			// order ok
 			$msg = $this->do_order();
 		} elseif ( 'delete_ok' == @$_POST['op'] ) {
