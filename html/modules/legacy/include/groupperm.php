@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2000 XOOPS.org  <https://www.xoops.org/>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
- * This file has been moved from XOOPS2 for some things which need
+ * @brief This file has been moved from XOOPS2 for some things which need
  * full-compatibility with XOOPS2.
  *
  */

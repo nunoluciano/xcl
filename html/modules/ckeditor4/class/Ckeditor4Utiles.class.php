@@ -138,7 +138,7 @@ class Ckeditor4_Utils
 							$uploadTo = $xelMisc->getHash($uploadTo);
 						}
 					}
-					$imgSize = (intval($conf['imgShowSize'])) ? 200 : intval($conf['imgShowSize']);
+					$imgSize = ( (int) $conf['imgShowSize'] ) ? 200 : (int) $conf['imgShowSize'];
 				} else {
 					$uploadTo = false;
 				}

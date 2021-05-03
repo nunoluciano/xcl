@@ -52,8 +52,8 @@ define('LEGACY_EXPRESSION_OR', 'or');
   *   This class don't receive $criteria as reference.
   *
   * \note
-  *   We planned modifying old Criteria of XOOPS2 for Legacy generations. But,
-  *   old Criteria class has some fatal problems for this plan unfortunately.
+  *   We planned modifying old Criteria of XOOPS2 for Legacy generations.
+  *   But, old Criteria class has some fatal problems for this plan unfortunately.
   *   Plus, it's manner violation that old class are patched to fundamental defect
   *   if it come to have two different class characteristics. Therefore we should
   *   make new Criteria that is like old Criteria.

@@ -956,7 +956,7 @@ class Legacy_Controller extends XCube_Controller
         $isAdmin=false;
         if (is_object($this->mRoot->mContext->mXoopsUser)) {
             if (null !== $this->mRoot->mContext->mModule && $this->mRoot->mContext->mModule->isActive()) {
-                // @todo I depend on Legacy Module Controller.
+                // @todo depend on Legacy Module Controller.
                 $mid = $this->mRoot->mContext->mXoopsModule->getVar('mid');
             } else {
                 $mid = 1;    ///< @todo Do not use literal directly!

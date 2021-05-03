@@ -135,6 +135,8 @@ $modversion['templates'][49]['file'] = 'legacy_inc_tag_cloud.html';
 $modversion['templates'][49]['description'] = 'legacy_tag_cloud default template';
 $modversion['templates'][50]['file'] = 'legacy_redirect_function.html';
 $modversion['templates'][50]['description'] = 'Replace direct Xoops2 system';
+$modversion['templates'][51]['file'] = 'legacy_front_page.html';
+$modversion['templates'][51]['description'] = 'Replace top page if not module content selected.';
 
 // Menu
 $modversion['hasMain'] = 0;
@@ -181,7 +183,7 @@ $modversion['blocks'][5]['name'] = _MI_LEGACY_BLOCK_SITEINFO_NAME;
 $modversion['blocks'][5]['description'] = _MI_LEGACY_BLOCK_SITEINFO_DESC;
 $modversion['blocks'][5]['show_func'] = 'b_legacy_siteinfo_show';
 $modversion['blocks'][5]['edit_func'] = 'b_legacy_siteinfo_edit';
-$modversion['blocks'][5]['options'] = '320|190|s_poweredby.png|1';
+$modversion['blocks'][5]['options'] = '320|270|s_poweredby.png|1';
 $modversion['blocks'][5]['template'] = 'legacy_block_siteinfo.html';
 $modversion['blocks'][5]['show_all_module'] = true;
 

@@ -486,7 +486,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
         /*
         *  Search AdminMenu
-        *  Poyfill if not PHP 7.3.0 // XCLBug #163 @Gigamaster
+        *  Polyfill if not PHP 7.3.0 // XCLBug #163 @Gigamaster
         */
         if (!function_exists('is_countable')) {
 

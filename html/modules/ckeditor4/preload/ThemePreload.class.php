@@ -1,5 +1,7 @@
 <?php
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+	exit();
+}
 
 /**
  * themes/[theme]/ckeditor4/preload.class.php Preload to load if present

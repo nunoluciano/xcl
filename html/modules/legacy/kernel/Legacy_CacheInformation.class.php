@@ -115,8 +115,8 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
     public $mModule = null;
 
     /**
-     * The current URL used as a base for a cache file name. This should be
-     * modified by modules to not make extra cache files.
+     * The current URL used as a base for a cache file name.
+     * This should be modified by modules to not make extra cache files.
      *
      * @access public
      * @var string
