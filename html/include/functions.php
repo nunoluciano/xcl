@@ -1,19 +1,17 @@
 <?php
 /**
- * *
- *  * Xoops functions
- *  *
- *  * @package    Legacy
- *  * @subpackage core
- *  * @author     Original Authors: Mumincacao
- *  * @author     Other Authors : Kazumi Ono (aka onokazu)
- *  * @copyright  2005-2021 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.6 2008/10/03 03:23:27 mumincacao, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Xoops functions (compatibility)
+ * @package Legacy
+ * @subpackage core
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Mumincacao
+ * @author Kazumi Ono (aka onokazu)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief Functions for Compatibility with Xoops 2
  */
+
 // ################## Various functions from here ################
 
 /**
@@ -330,7 +328,11 @@ function formatURL($url)
 {
     $url = trim($url);
     if ($url !== '') {
-        if ((!preg_match('/^http[s]*:\/\//i', $url)) && (!preg_match('/^ftp*:\/\//i', $url)) && (!preg_match('/^ed2k*:\/\//i', $url))) {
+        if ((!preg_match('/^http[s]*:\/\//i', $url))
+            && (!preg_match('/^ftp*:\/\//i', $url))
+			/* InterPlanetary File System (IPFS) is a protocol and peer-to-peer network */
+            && (!preg_match('/^ipfs*:\/\//i', $url))
+            && (!preg_match('/^ed2k*:\/\//i', $url))) {
             $url = 'https://'.$url;
         }
     }

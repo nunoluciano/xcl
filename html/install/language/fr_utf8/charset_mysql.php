@@ -1,14 +1,4 @@
 <?php
-/**
- * Installer default charset_mysql
- * @package XCL
- * @subpackage Installer
- * @version 2.3
- * @author Gigamaster (XCL)
- * @date 2020/05/27 15:10:28
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- */
 
 if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
 	exit();

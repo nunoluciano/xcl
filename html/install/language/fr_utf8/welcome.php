@@ -1,13 +1,4 @@
 <?php
-/**
- * @package XCL
- * @subpackage Installer
- * @version 2.3
- * @author Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- */
-
 $content =
 	'<div class="ui-tab-wrap">
 	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked="">

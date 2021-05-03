@@ -1,5 +1,4 @@
 <?php
-
 $content =
 	'<div class = "confirmInfo"> La dernière étape du programme permet une installation automatiquement des modules requis par XCL.<br>
 Votre nouvelle plateforme d\'application Web XCL sera opérationnelle! </div>

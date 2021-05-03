@@ -3,11 +3,11 @@
  * cache_manager for XOOPS installer
  * @package XCL
  * @subpackage Installer
- * @version 2.3
- * @author Gigamaster (XCL)
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
  * @author Haruki Setoyama  <haruki@planewave.org>
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
 

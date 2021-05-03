@@ -1,20 +1,7 @@
 <?php
-/**
- * Installer Wizard - Step mainfile.php
- * @package XCL
- * @subpackage Installer
- * @version 2.3
- * @author Gigamaster (XCL)
- * @author Kilica (Legacy)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- */
-
-
 // checking XOOPS_ROOT_PATH and XOOPS_URL
 include_once '../mainfile.php';
 
-// "
 $detected = str_replace( array( '\\', '/install' ), array( '/', '' ), getcwd() );
 if ( '/' === substr( $detected, - 1 ) ) {
 	$detected = substr( $detected, 0, - 1 );

@@ -4,12 +4,11 @@
  * @package XCL
  * @subpackage Installer
  * @version 2.3
- * @author Gusagi (Legacy) and Gigamaster (XCL)
- * @author Haruki Setoyama  <haruki@planewave.org>
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Gusagi (Legacy), Haruki Setoyama  <haruki@planewave.org>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
-
 
 include_once XOOPS_ROOT_PATH . '/class/logger.php';
 include_once XOOPS_ROOT_PATH . '/class/database/databasefactory.php';

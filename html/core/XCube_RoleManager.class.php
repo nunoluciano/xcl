@@ -1,31 +1,27 @@
 <?php
 /**
- *
+ * XCube_RoleManager.class.php
  * @package XCube
- * @version $Id: XCube_RoleManager.class.php,v 1.3 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito, 2008/10/12 04:30:27
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief The provider class which handles role information with the store.
  */
 
-/**
- * The provider class which handles role informations with the store.
- */
-class XCube_RoleManager
-{
-    public function getRolesForUser($username = null)
-    {
-    }
+class XCube_RoleManager {
+	public function getRolesForUser( $username = null ) {
+	}
 }
 
 /**
  * The utility class which handles role information without the root object.
  */
-class XCube_Role
-{
-    public function getRolesForUser($username = null)
-    {
-        $root =& XCube_Root::getSingleton();
-        return $root->mRoleManager->getRolesForUser($username);
-    }
+class XCube_Role {
+	public function getRolesForUser( $username = null ) {
+		$root =& XCube_Root::getSingleton();
+
+		return $root->mRoleManager->getRolesForUser( $username );
+	}
 }

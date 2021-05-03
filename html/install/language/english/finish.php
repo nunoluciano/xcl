@@ -1,5 +1,4 @@
 <?php
-
 $content =
 	'<div class="confirmInfo">XCL installer last step allows you to install automatically all the core modules.<br>
 Your new XCL web application platform will be up and running!</div>

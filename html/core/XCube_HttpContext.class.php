@@ -1,236 +1,226 @@
 <?php
 /**
- *
+ * XCube_HttpContext.class.php
  * @package XCube
- * @version v 1.5
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief Encapsulates major HTTP specific information about a HTTP request
  */
 
-define('XCUBE_CONTEXT_TYPE_DEFAULT', 'web_browser');
-define('XCUBE_CONTEXT_TYPE_WEB_SERVICE', 'web_service');
+define( 'XCUBE_CONTEXT_TYPE_DEFAULT', 'web_browser' );
+define( 'XCUBE_CONTEXT_TYPE_WEB_SERVICE', 'web_service' );
 
-/**
- * Encapsulates major HTTP specific information about a HTTP request.
- */
-class XCube_HttpContext
-{
-    /**
-     * Hashmap that can be used to organize and share data. Use setAttribute()
-     * and get Attribute() to access this member property. But, direct access
-     * is allowed, because it is impossible to handle reference well on older PHP versions.
-     * Array
-     * @var
-     * @access protected
-     */
-    public $mAttributes = [];
 
-    /**
-     * The object which enables to read the request values.
-     *
-     * @access XCube_AbstractRequest
-     */
-    public $mRequest;
+class XCube_HttpContext {
+	/**
+	 * Hashmap that can be used to organize and share data. Use setAttribute()
+	 * and get Attribute() to access this member property. But, direct access
+	 * is allowed, because it is impossible to handle reference well on older PHP versions.
+	 * Array
+	 * @var
+	 * @access protected
+	 */
+	public $mAttributes = [];
 
-    /**
-     * @var XCube_Principal
-     */
-    public $mUser;
+	/**
+	 * The object which enables to read the request values.
+	 *
+	 * @access XCube_AbstractRequest
+	 */
+	public $mRequest;
 
-    /**
-     * String which expresses the type of the current request.
-     * @var string
-     */
-    public $mType = XCUBE_CONTEXT_TYPE_DEFAULT;
+	/**
+	 * @var XCube_Principal
+	 */
+	public $mUser;
 
-    /**
-     * The theme is one in one time of request.
-     * A decided theme is registered with this property
-     *
-     * @access private
-     */
-    public $mThemeName;
+	/**
+	 * String which expresses the type of the current request.
+	 * @var string
+	 */
+	public $mType = XCUBE_CONTEXT_TYPE_DEFAULT;
 
-    public function __construct()
-    {
-    }
+	/**
+	 * The theme is one in one time of request.
+	 * A decided theme is registered with this property
+	 *
+	 * @access private
+	 */
+	public $mThemeName;
 
-    /**
-     * Sets $value with $key to attributes. Use direct access to $mAttributes
-     * if references are must, because PHP4 can't handle reference in the
-     * signature of this member function.
-     *
-     * @param string $key
-     * @param mixed $value
-     */
-    public function setAttribute($key, $value)
-    {
-        $this->mAttributes[$key] = $value;
-    }
+	public function __construct() {
+	}
 
-    /**
-     * Gets a value indicating whether the value specified by $key exists.
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function hasAttribute($key)
-    {
-        return isset($this->mAttributes[$key]);
-    }
+	/**
+	 * Sets $value with $key to attributes. Use direct access to $mAttributes
+	 * if references are must, because PHP4 can't handle reference in the
+	 * signature of this member function.
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	public function setAttribute( $key, $value ) {
+		$this->mAttributes[ $key ] = $value;
+	}
 
-    /**
-     * Gets a value of attributes with $key. If the value specified by $key
-     * doesn't exist in attributes, gets null.
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function getAttribute($key)
-    {
-        return isset($this->mAttributes[$key]) ? $this->mAttributes[$key] : null;
-    }
+	/**
+	 * Gets a value indicating whether the value specified by $key exists.
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed
+	 */
+	public function hasAttribute( $key ) {
+		return isset( $this->mAttributes[ $key ] );
+	}
 
-    /**
-     * Sets the object which has a interface of XCube_AbstractRequest.
-     *
-     * @param XCube_AbstractRequest $request
-     */
-    public function setRequest(&$request)
-    {
-        $this->mRequest =& $request;
-    }
+	/**
+	 * Gets a value of attributes with $key. If the value specified by $key
+	 * doesn't exist in attributes, gets null.
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed
+	 */
+	public function getAttribute( $key ) {
+		return isset( $this->mAttributes[ $key ] ) ? $this->mAttributes[ $key ] : null;
+	}
 
-    /**
-     * Gets the object which has a interface of XCube_AbstractRequest.
-     *
-     * @return XCube_AbstractRequest
-     */
-    public function &getRequest()
-    {
-        return $this->mRequest;
-    }
+	/**
+	 * Sets the object which has a interface of XCube_AbstractRequest.
+	 *
+	 * @param XCube_AbstractRequest $request
+	 */
+	public function setRequest( &$request ) {
+		$this->mRequest =& $request;
+	}
 
-    /**
-     * Sets the object which has a interface of XCube_Principal.
-     * XCube_AbstractPrincipal
-     * @param  $principal
-     */
-    public function setUser(&$principal)
-    {
-        $this->mUser =& $principal;
-    }
+	/**
+	 * Gets the object which has a interface of XCube_AbstractRequest.
+	 *
+	 * @return XCube_AbstractRequest
+	 */
+	public function &getRequest() {
+		return $this->mRequest;
+	}
 
-    /**
-     * Gets the object which has a interface of XCube_Principal.
-     *
-     * @return \XCube_Principal
-     */
-    public function &getUser()
-    {
-        return $this->mUser;
-    }
+	/**
+	 * Sets the object which has a interface of XCube_Principal.
+	 * XCube_AbstractPrincipal
+	 *
+	 * @param  $principal
+	 */
+	public function setUser( &$principal ) {
+		$this->mUser =& $principal;
+	}
 
-    /**
-     * Set the theme name.
-     *
-     * @param string $theme
-     * @deprecated
-     */
-    public function setThemeName($theme)
-    {
-        $this->mThemeName = $theme;
-    }
+	/**
+	 * Gets the object which has a interface of XCube_Principal.
+	 *
+	 * @return \XCube_Principal
+	 */
+	public function &getUser() {
+		return $this->mUser;
+	}
 
-    /**
-     * Return the theme name.
-     *
-     * @return string
-     * @deprecated
-     */
-    public function getThemeName()
-    {
-        return $this->mThemeName;
-    }
+	/**
+	 * Set the theme name.
+	 *
+	 * @param string $theme
+	 *
+	 * @deprecated
+	 */
+	public function setThemeName( $theme ) {
+		$this->mThemeName = $theme;
+	}
+
+	/**
+	 * Return the theme name.
+	 *
+	 * @return string
+	 * @deprecated
+	 */
+	public function getThemeName() {
+		return $this->mThemeName;
+	}
 }
 
 /**
  * This is an interface for request classes.
  */
-class XCube_AbstractRequest
-{
-    /**
-     * Gets a value of the current request.
-     *
-     * @param $key
-     * @return mixed
-     */
-    public function getRequest($key)
-    {
-        return null;
-    }
+class XCube_AbstractRequest {
+	/**
+	 * Gets a value of the current request.
+	 *
+	 * @param $key
+	 *
+	 * @return mixed
+	 */
+	public function getRequest( $key ) {
+		return null;
+	}
 }
 
 /**
  * Enables a program to read the HTTP values through XCubeAbstractRequest
  * interface.
  */
-class XCube_HttpRequest extends XCube_AbstractRequest
-{
-    /**
-     * Gets a value of the current HTTP request.
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function getRequest($key)
-    {
-        if (!isset($_GET[$key]) && !isset($_POST[$key])) {
-            return null;
-        }
-        return isset($_GET[$key]) ? $_GET[$key] : $_POST[$key];
-    }
+class XCube_HttpRequest extends XCube_AbstractRequest {
+	/**
+	 * Gets a value of the current HTTP request.
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed
+	 */
+	public function getRequest( $key ) {
+		if ( ! isset( $_GET[ $key ] ) && ! isset( $_POST[ $key ] ) ) {
+			return null;
+		}
 
-    /**
-     * Supports getRequest().
-     * Array
-     * @private
-     * @param  $arr
-     * @return array
-     */
-    public function _getArrayRequest($arr)
-    {
-        //trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
-        return $arr;
-    }
+		return isset( $_GET[ $key ] ) ? $_GET[ $key ] : $_POST[ $key ];
+	}
+
+	/**
+	 * Supports getRequest().
+	 * Array
+	 * @private
+	 *
+	 * @param  $arr
+	 *
+	 * @return array
+	 */
+	public function _getArrayRequest( $arr ) {
+		//trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
+		return $arr;
+	}
 }
 
 /**
  * A kind of request objects. This class is free to register values.
  */
-class XCube_GenericRequest extends XCube_AbstractRequest
-{
-    /**
-     * Hash map which stores registered values.
-     * Array
-     * @var
-     */
-    public $mAttributes = [];
+class XCube_GenericRequest extends XCube_AbstractRequest {
+	/**
+	 * Hash map which stores registered values.
+	 * Array
+	 * @var
+	 */
+	public $mAttributes = [];
 
-    public function __construct($arr = null)
-    {
-        if (is_array($arr)) {
-            $this->mAttributes = $arr;
-        }
-    }
+	public function __construct( $arr = null ) {
+		if ( is_array( $arr ) ) {
+			$this->mAttributes = $arr;
+		}
+	}
 
-    public function getRequest($key)
-    {
-        if (!isset($this->mAttributes[$key])) {
-            return null;
-        }
+	public function getRequest( $key ) {
+		if ( ! isset( $this->mAttributes[ $key ] ) ) {
+			return null;
+		}
 
-        return $this->mAttributes[$key];
-    }
+		return $this->mAttributes[ $key ];
+	}
 }

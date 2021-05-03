@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <!-- ===========================
     XOOPS Cube Theme : XCL Installer Wizard
-    Distribution : XCL 2.3 Alpha
+    Distribution : XCL 2.3  PHP7
     Version : 1.0.0
     Author : Nuno Luciano aka Gigamaster
     Date : 2020-04-29
