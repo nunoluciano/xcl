@@ -1,18 +1,15 @@
 <?php
 /**
- * *
- *  * tar Class
- *  *
- *  * @package    class
- *  * @subpackage core
- *  * @author     Original Authors: Josh Barger <joshb@npt.com>
- *  * @author     Other Authors : onokazu
- *  * @copyright  2005-2021 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * tar Class
+ * @package    class
+ * @subpackage core
+ * @author     Josh Barger <joshb@npt.com>
+ * @author     onokazu
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
+ * @link       https://github.com/xoopscube/xcl
  */
 
 

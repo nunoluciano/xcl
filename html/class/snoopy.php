@@ -1,18 +1,15 @@
 <?php
 /**
- * *
- *  * Snoopy - the PHP net client
- *  *
- *  * @package    kernel
- *  * @subpackage util
- *  * @author     Original Authors: Monte Ohrt <monte@ohrt.com>
- *  * @author     Other Authors : Gigamaster
- *  * @copyright  1999-2014
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    2.0.1 Release: @package_230@
- *  * @link       https://snoopy.sourceforge.net/
- * *
+ * Snoopy - the PHP net client
+ * @package    kernel
+ * @subpackage util
+ * @author     Monte Ohrt <monte@ohrt.com>
+ * @author     Gigamaster
+ * @copyright  1999-2021
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @version    @package_230@
+ * @link       https://snoopy.sourceforge.net/
  */
 
 class snoopy
@@ -131,7 +128,8 @@ class snoopy
                     exit;
                 }
                 $this->port = 443;
-            case 'http':
+	            break;
+	        case 'http':
                 $this->scheme = strtolower($URI_PARTS['scheme']);
                 $this->host = $URI_PARTS['host'];
                 if (!empty($URI_PARTS['port'])) {
@@ -927,6 +925,8 @@ class snoopy
                 STREAM_CLIENT_CONNECT,
                 $context);
         } else {
+            //!Fix
+            // TODO - Test
             $fp = fsockopen(
                 $host,
                 $port,
@@ -995,8 +995,8 @@ class snoopy
                 foreach ($formvars as $key => $val) {
                     if (is_array($val) || is_object($val)) {
                         foreach ($val as $cur_key => $cur_val) {
-                        //!Fix - TODO test : $postdata .= urlencode($key) ."[$cur_key]=". urlencode($cur_val)."&";
-                        $postdata .= urlencode($key) ."%5B$cur_key%5D=". urlencode($cur_val)."&";
+                        $postdata .= urlencode($key) ."[$cur_key]=". urlencode($cur_val)."&";
+                        //!Fix Todo - test this : $postdata .= urlencode($key) ."%5B$cur_key%5D=". urlencode($cur_val)."&";
                         }
                     } else {
                         $postdata .= urlencode($key) . '=' . urlencode($val) . '&';

@@ -1,18 +1,15 @@
 <?php
 /**
- * *
- *  * Abstract base class for forms
- *  *
- *  * @package    kernel
- *  * @subpackage form
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Abstract base class for forms
+ * @package    kernel
+ * @subpackage form
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @version    2.3.0 @Gigamaster 2020 XCL PHP7
+ * @link       https://github.com/xoopscube/xcl
  */
 
 class XoopsForm

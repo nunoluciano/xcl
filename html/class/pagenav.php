@@ -1,18 +1,15 @@
 <?php
 /**
- * *
- *  * Class to facilitate navigation in a multi page document/list
- *  *
- *  * @package    kernel
- *  * @subpackage util
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Class to facilitate navigation in a multi page document/list
+ * @package    kernel
+ * @subpackage util
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2000-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @version    2.3
+ * @link       https://github.com/xoopscube/xcl
  */
 
 class XoopsPageNav

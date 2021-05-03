@@ -1,18 +1,15 @@
 <?php
 /**
- * *
- *  * Xml Tag Handler
- *  *
- *  * @package    kernel
- *  * @subpackage xml
- *  * @author     Original Authors: Ken Egervari, Remi Michalski
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Xml Tag Handler
+ * @package    kernel
+ * @subpackage xml
+ * @author     Ken Egervari, Remi Michalski
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @version    2.3
+ * @link       https://github.com/xoopscube/xcl
  */
 
 class XmlTagHandler
