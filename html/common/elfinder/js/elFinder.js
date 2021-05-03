@@ -239,7 +239,7 @@ var elFinder = function(elm, opts, bootCallback) {
 		
 		/**
 		 * elFinder node height
-		 * Number: pixcel or String: Number + "%"
+		 * Number: pixel or String: Number + "%"
 		 *
 		 * @type Number | String
 		 * @default 400
