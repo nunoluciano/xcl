@@ -10,28 +10,28 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
 
-function smarty_function_d3pipes($params, &$smarty)
-{
-    $dirname = @$params['dir'] . @$params['dirname'];
-    $pipe_id = @$params['id'] + @$params['pipe_id'];
-    $max = empty($params['max']) ? 10 : (int)$params['max'];
+function smarty_function_d3pipes( $params, &$smarty ) {
+	$dirname = @$params['dir'] . @$params['dirname'];
+	$pipe_id = @$params['id'] + @$params['pipe_id'];
+	$max     = empty( $params['max'] ) ? 10 : (int) $params['max'];
 
-    if (empty($pipe_id)) {
-        echo 'error smarty_function_pico [specify pipe_id]';
-        return;
-    }
+	if ( empty( $pipe_id ) ) {
+		echo 'error smarty_function_pico [specify pipe_id]';
 
-    if (empty($dirname)) {
-        $dirname = 'd3pipes';
-    }
+		return;
+	}
 
-    $mydirname = $dirname;
+	if ( empty( $dirname ) ) {
+		$dirname = 'd3pipes';
+	}
 
-    $mydirpath = XOOPS_ROOT_PATH . '/modules/' . $dirname;
+	$mydirname = $dirname;
 
-    require XOOPS_TRUST_PATH . '/modules/d3pipes/blocks.php';
+	$mydirpath = XOOPS_ROOT_PATH . '/modules/' . $dirname;
 
-    $block = b_d3pipes_async_show([$dirname, '', $pipe_id, $max]);
+	require XOOPS_TRUST_PATH . '/modules/d3pipes/blocks.php';
 
-    echo @$block['content'];
+	$block = b_d3pipes_async_show( [ $dirname, '', $pipe_id, $max ] );
+
+	echo @$block['content'];
 }

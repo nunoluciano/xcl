@@ -10,36 +10,37 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
 
-function smarty_function_pico_subcattree($params, &$smarty)
-{
-    $mydirname = @$params['dir'] . @$params['dirname'];
-    $cat_id = @$params['id'] + @$params['cat_id'];
-    $var_name = @$params['item'] . @$params['assign'];
+function smarty_function_pico_subcattree( $params, &$smarty ) {
+	$mydirname = @$params['dir'] . @$params['dirname'];
+	$cat_id    = @$params['id'] + @$params['cat_id'];
+	$var_name  = @$params['item'] . @$params['assign'];
 
-    if (empty($var_name)) {
-        echo 'error ' . __FUNCTION__ . ' [specify item]';
-        return;
-    }
+	if ( empty( $var_name ) ) {
+		echo 'error ' . __FUNCTION__ . ' [specify item]';
 
-    if (empty($mydirname)) {
-        $mydirname = $smarty->get_template_vars('mydirname');
-    }
-    if (empty($mydirname)) {
-        echo 'error ' . __FUNCTION__ . ' [specify dirname]';
-        return;
-    }
+		return;
+	}
 
-    $db = XoopsDatabaseFactory::getDatabaseConnection();
+	if ( empty( $mydirname ) ) {
+		$mydirname = $smarty->get_template_vars( 'mydirname' );
+	}
+	if ( empty( $mydirname ) ) {
+		echo 'error ' . __FUNCTION__ . ' [specify dirname]';
 
-    $sql = 'SELECT c.cat_redundants FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE c.cat_id=$cat_id";
+		return;
+	}
 
-    [$redundants_serialized] = $db->fetchRow($db->query($sql));
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-    $redundants = pico_common_unserialize($redundants_serialized);
+	$sql = 'SELECT c.cat_redundants FROM ' . $db->prefix( $mydirname . '_categories' ) . " c WHERE c.cat_id=$cat_id";
 
-    if (empty($redundants)) {
-        $redundants = [];
-    }
+	[ $redundants_serialized ] = $db->fetchRow( $db->query( $sql ) );
 
-    $smarty->assign($var_name, $redundants);
+	$redundants = pico_common_unserialize( $redundants_serialized );
+
+	if ( empty( $redundants ) ) {
+		$redundants = [];
+	}
+
+	$smarty->assign( $var_name, $redundants );
 }
