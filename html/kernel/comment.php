@@ -2,11 +2,11 @@
 /**
  * comment class object
  * @package    kernel
- * @version    2.3
+ * @version    2.3.1
  * @author     Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
  * @author     Minahito, 2007
  * @author     Kazumi Ono (aka onokazu)
- * @copyright  Copyright 2000-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @copyright  Copyright 2000-2021 XOOPSCube Project
  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
