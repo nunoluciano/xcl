@@ -33,96 +33,91 @@ require_once "File/Archive/Writer.php";
 /**
  * Write to several writers
  */
-class File_Archive_Writer_Multi extends File_Archive_Writer
-{
-    /**
-     * @var File_Archive_Writer_Writer Data will be copied to these two writers
-     * @access private
-     */
-    public $writers;
+class File_Archive_Writer_Multi extends File_Archive_Writer {
+	/**
+	 * @var File_Archive_Writer_Writer Data will be copied to these two writers
+	 * @access private
+	 */
+	public $writers;
 
-    public function addWriter(&$writer)
-    {
-        $this->writers[] =& $writer;
-    }
+	public function addWriter( &$writer ) {
+		$this->writers[] =& $writer;
+	}
 
-    /**
-     * @see File_Archive_Writer::newFile()
-     */
-    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
-    {
-        $globalError = null;
-        foreach ($this->writers as $key => $foo) {
-            $error = $this->writers[$key]->newFile($filename, $stat, $mime);
-            if ((new PEAR)->isError($error)) {
-                $globalError = $error;
-            }
-        }
-        if ((new PEAR)->isError($globalError)) {
-            return $globalError;
-        }
-    }
-    /**
-     * @see File_Archive_Writer::newFileNeedsMIME()
-     */
-    public function newFileNeedsMIME()
-    {
-        foreach ($this->writers as $key => $foo) {
-            if ($this->writers[$key]->newFileNeedsMIME()) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * @see File_Archive_Writer::newFile()
+	 */
+	public function newFile( $filename, $stat = array(), $mime = "application/octet-stream" ) {
+		$globalError = null;
+		foreach ( $this->writers as $key => $foo ) {
+			$error = $this->writers[ $key ]->newFile( $filename, $stat, $mime );
+			if ( ( new PEAR )->isError( $error ) ) {
+				$globalError = $error;
+			}
+		}
+		if ( ( new PEAR )->isError( $globalError ) ) {
+			return $globalError;
+		}
+	}
 
-    /**
-     * @see File_Archive_Writer::writeData()
-     */
-    public function writeData($data)
-    {
-        $globalError = null;
-        foreach ($this->writers as $key => $foo) {
-            $error = $this->writers[$key]->writeData($data);
-            if ((new PEAR)->isError($error)) {
-                $globalError = $error;
-            }
-        }
-        if ((new PEAR)->isError($globalError)) {
-            return $globalError;
-        }
-    }
+	/**
+	 * @see File_Archive_Writer::newFileNeedsMIME()
+	 */
+	public function newFileNeedsMIME() {
+		foreach ( $this->writers as $key => $foo ) {
+			if ( $this->writers[ $key ]->newFileNeedsMIME() ) {
+				return true;
+			}
+		}
 
-    /**
-     * @see File_Archive_Writer::writeFile()
-     */
-    public function writeFile($filename)
-    {
-        $globalError = null;
-        foreach ($this->writers as $key => $foo) {
-            $error = $this->writers[$key]->writeFile($filename);
-            if ((new PEAR)->isError($error)) {
-                $globalError = $error;
-            }
-        }
-        if ((new PEAR)->isError($globalError)) {
-            return $globalError;
-        }
-    }
+		return false;
+	}
 
-    /**
-     * @see File_Archive_Writer::close()
-     */
-    public function close()
-    {
-        $globalError = null;
-        foreach ($this->writers as $key => $foo) {
-            $error = $this->writers[$key]->close();
-            if ((new PEAR)->isError($error)) {
-                $globalError = $error;
-            }
-        }
-        if ((new PEAR)->isError($globalError)) {
-            return $globalError;
-        }
-    }
+	/**
+	 * @see File_Archive_Writer::writeData()
+	 */
+	public function writeData( $data ) {
+		$globalError = null;
+		foreach ( $this->writers as $key => $foo ) {
+			$error = $this->writers[ $key ]->writeData( $data );
+			if ( ( new PEAR )->isError( $error ) ) {
+				$globalError = $error;
+			}
+		}
+		if ( ( new PEAR )->isError( $globalError ) ) {
+			return $globalError;
+		}
+	}
+
+	/**
+	 * @see File_Archive_Writer::writeFile()
+	 */
+	public function writeFile( $filename ) {
+		$globalError = null;
+		foreach ( $this->writers as $key => $foo ) {
+			$error = $this->writers[ $key ]->writeFile( $filename );
+			if ( ( new PEAR )->isError( $error ) ) {
+				$globalError = $error;
+			}
+		}
+		if ( ( new PEAR )->isError( $globalError ) ) {
+			return $globalError;
+		}
+	}
+
+	/**
+	 * @see File_Archive_Writer::close()
+	 */
+	public function close() {
+		$globalError = null;
+		foreach ( $this->writers as $key => $foo ) {
+			$error = $this->writers[ $key ]->close();
+			if ( ( new PEAR )->isError( $error ) ) {
+				$globalError = $error;
+			}
+		}
+		if ( ( new PEAR )->isError( $globalError ) ) {
+			return $globalError;
+		}
+	}
 }

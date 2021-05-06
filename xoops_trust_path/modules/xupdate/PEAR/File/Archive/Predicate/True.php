@@ -35,13 +35,11 @@ require_once "File/Archive/Predicate.php";
 /**
  * Always evaluate to true
  */
-class File_Archive_Predicate_True extends File_Archive_Predicate
-{
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        return true;
-    }
+class File_Archive_Predicate_True extends File_Archive_Predicate {
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		return true;
+	}
 }

@@ -37,18 +37,17 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_Not extends File_Archive_Predicate
-{
-    public $pred;
-    public function __construct($pred)
-    {
-        $this->pred = $pred;
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        return !$this->pred->isTrue($source);
-    }
+class File_Archive_Predicate_Not extends File_Archive_Predicate {
+	public $pred;
+
+	public function __construct( $pred ) {
+		$this->pred = $pred;
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		return ! $this->pred->isTrue( $source );
+	}
 }

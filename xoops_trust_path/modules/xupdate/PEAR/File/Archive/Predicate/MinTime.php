@@ -39,24 +39,23 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_MinTime extends File_Archive_Predicate
-{
-    public $minTime = 0;
+class File_Archive_Predicate_MinTime extends File_Archive_Predicate {
+	public $minTime = 0;
 
-    /**
-     * @param int $minTime Unix timestamp of the minimal modification date of
-     *        the files
-     */
-    public function __construct($minTime)
-    {
-        $this->minTime = $minTime;
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        $stat = $source->getStat();
-        return !isset($stat[9]) || $stat[9]>=$this->minTime;
-    }
+	/**
+	 * @param int $minTime Unix timestamp of the minimal modification date of
+	 *        the files
+	 */
+	public function __construct( $minTime ) {
+		$this->minTime = $minTime;
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		$stat = $source->getStat();
+
+		return ! isset( $stat[9] ) || $stat[9] >= $this->minTime;
+	}
 }

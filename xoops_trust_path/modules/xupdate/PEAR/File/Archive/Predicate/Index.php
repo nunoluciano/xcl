@@ -39,23 +39,21 @@ require_once "File/Archive/Predicate.php";
  * The array has the indexes in key (so you may want to call
  * array_flip if your array has indexes as value)
  */
-class File_Archive_Predicate_Index extends File_Archive_Predicate
-{
-    public $indexes;
-    public $pos = 0;
+class File_Archive_Predicate_Index extends File_Archive_Predicate {
+	public $indexes;
+	public $pos = 0;
 
-    /**
-     * @param $extensions array or comma separated string of allowed extensions
-     */
-    public function __construct($indexes)
-    {
-        $this->indexes = $indexes;
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        return isset($this->indexes[$this->pos++]);
-    }
+	/**
+	 * @param $extensions array or comma separated string of allowed extensions
+	 */
+	public function __construct( $indexes ) {
+		$this->indexes = $indexes;
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		return isset( $this->indexes[ $this->pos ++ ] );
+	}
 }

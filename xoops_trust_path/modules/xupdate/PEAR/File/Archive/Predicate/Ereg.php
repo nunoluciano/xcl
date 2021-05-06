@@ -37,22 +37,20 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter ereg
  */
-class File_Archive_Predicate_Ereg extends File_Archive_Predicate
-{
-    public $ereg;
+class File_Archive_Predicate_Ereg extends File_Archive_Predicate {
+	public $ereg;
 
-    /**
-     * @param string $ereg is the regular expression
-     */
-    public function __construct($ereg)
-    {
-        $this->ereg = $ereg;
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        return (bool)ereg($this->ereg, $source->getFilename());
-    }
+	/**
+	 * @param string $ereg is the regular expression
+	 */
+	public function __construct( $ereg ) {
+		$this->ereg = $ereg;
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		return (bool) ereg( $this->ereg, $source->getFilename() );
+	}
 }

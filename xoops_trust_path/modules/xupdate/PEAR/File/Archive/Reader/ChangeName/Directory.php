@@ -43,55 +43,52 @@ require_once "File/Archive/Reader/ChangeName.php";
  *     )
  *  ) is a reader containing files a.txt and bar/b.txt
  */
-class File_Archive_Reader_ChangeName_Directory extends File_Archive_Reader_ChangeName
-{
-    public $oldBaseName;
-    public $newBaseName;
+class File_Archive_Reader_ChangeName_Directory extends File_Archive_Reader_ChangeName {
+	public $oldBaseName;
+	public $newBaseName;
 
-    public function __construct($oldBaseName, $newBaseName, &$source)
-    {
-        parent::File_Archive_Reader_ChangeName($source);
-        $this->oldBaseName = $this->getStandardURL($oldBaseName);
-        if (substr($this->oldBaseName, -1) == '/') {
-            $this->oldBaseName = substr($this->oldBaseName, 0, -1);
-        }
+	public function __construct( $oldBaseName, $newBaseName, &$source ) {
+		parent::File_Archive_Reader_ChangeName( $source );
+		$this->oldBaseName = $this->getStandardURL( $oldBaseName );
+		if ( substr( $this->oldBaseName, - 1 ) == '/' ) {
+			$this->oldBaseName = substr( $this->oldBaseName, 0, - 1 );
+		}
 
-        $this->newBaseName = $this->getStandardURL($newBaseName);
-        if (substr($this->newBaseName, -1) == '/') {
-            $this->newBaseName = substr($this->newBaseName, 0, -1);
-        }
-    }
+		$this->newBaseName = $this->getStandardURL( $newBaseName );
+		if ( substr( $this->newBaseName, - 1 ) == '/' ) {
+			$this->newBaseName = substr( $this->newBaseName, 0, - 1 );
+		}
+	}
 
-    public function modifyName($name)
-    {
-        if (empty($this->oldBaseName) ||
-          !strncmp($name, $this->oldBaseName.'/', strlen($this->oldBaseName)+1) ||
-           strcmp($name, $this->oldBaseName) == 0) {
-            return $this->newBaseName.
-                   (
-                    empty($this->newBaseName) ||
-                    strlen($name)<=strlen($this->oldBaseName)+1 ?
-                    '' : '/'
-                   ).
-                   substr($name, strlen($this->oldBaseName)+1);
-        } else {
-            return $name;
-        }
-    }
-    public function unmodifyName($name)
-    {
-        if (empty($this->newBaseName) ||
-          !strncmp($name, $this->newBaseName.'/', strlen($this->newBaseName)+1) ||
-           strcmp($name, $this->newBaseName) == 0) {
-            return $this->oldBaseName.
-                   (
-                    empty($this->oldBaseName) ||
-                    strlen($name)<=strlen($this->newBaseName)+1 ?
-                    '' : '/'
-                   ).
-                   substr($name, strlen($this->newBaseName)+1);
-        } else {
-            return $name;
-        }
-    }
+	public function modifyName( $name ) {
+		if ( empty( $this->oldBaseName ) ||
+		     ! strncmp( $name, $this->oldBaseName . '/', strlen( $this->oldBaseName ) + 1 ) ||
+		     strcmp( $name, $this->oldBaseName ) == 0 ) {
+			return $this->newBaseName .
+			       (
+			       empty( $this->newBaseName ) ||
+			       strlen( $name ) <= strlen( $this->oldBaseName ) + 1 ?
+				       '' : '/'
+			       ) .
+			       substr( $name, strlen( $this->oldBaseName ) + 1 );
+		} else {
+			return $name;
+		}
+	}
+
+	public function unmodifyName( $name ) {
+		if ( empty( $this->newBaseName ) ||
+		     ! strncmp( $name, $this->newBaseName . '/', strlen( $this->newBaseName ) + 1 ) ||
+		     strcmp( $name, $this->newBaseName ) == 0 ) {
+			return $this->oldBaseName .
+			       (
+			       empty( $this->oldBaseName ) ||
+			       strlen( $name ) <= strlen( $this->newBaseName ) + 1 ?
+				       '' : '/'
+			       ) .
+			       substr( $name, strlen( $this->newBaseName ) + 1 );
+		} else {
+			return $name;
+		}
+	}
 }

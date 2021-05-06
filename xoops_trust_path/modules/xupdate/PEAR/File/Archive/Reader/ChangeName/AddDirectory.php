@@ -43,44 +43,41 @@ require_once "File/Archive/Reader/ChangeName.php";
  *     )
  *  ) is a reader containing files bar/a.txt and bar/foo/b.txt
  */
-class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_ChangeName
-{
-    public $baseName;
-    public function __construct($baseName, &$source)
-    {
-        parent::File_Archive_Reader_ChangeName($source);
-        $this->baseName = $this->getStandardURL($baseName);
-    }
+class File_Archive_Reader_ChangeName_AddDirectory extends File_Archive_Reader_ChangeName {
+	public $baseName;
 
-    /**
-     * Modify the name by adding baseName to it
-     */
-    public function modifyName($name)
-    {
-        return $this->baseName.
-               (empty($this->baseName) || empty($name) ? '': '/').
-               $name;
-    }
+	public function __construct( $baseName, &$source ) {
+		parent::File_Archive_Reader_ChangeName( $source );
+		$this->baseName = $this->getStandardURL( $baseName );
+	}
 
-    /**
-     * Remove baseName from the name
-     * Return false if the name doesn't start with baseName
-     */
-    public function unmodifyName($name)
-    {
-        if (strncmp($name, $this->baseName.'/', strlen($this->baseName)+1) == 0) {
-            $res = substr($name, strlen($this->baseName)+1);
-            if ($res === false) {
-                return '';
-            } else {
-                return $res;
-            }
-        } elseif (empty($this->baseName)) {
-            return $name;
-        } elseif ($name == $this->baseName) {
-            return '';
-        } else {
-            return false;
-        }
-    }
+	/**
+	 * Modify the name by adding baseName to it
+	 */
+	public function modifyName( $name ) {
+		return $this->baseName .
+		       ( empty( $this->baseName ) || empty( $name ) ? '' : '/' ) .
+		       $name;
+	}
+
+	/**
+	 * Remove baseName from the name
+	 * Return false if the name doesn't start with baseName
+	 */
+	public function unmodifyName( $name ) {
+		if ( strncmp( $name, $this->baseName . '/', strlen( $this->baseName ) + 1 ) == 0 ) {
+			$res = substr( $name, strlen( $this->baseName ) + 1 );
+			if ( $res === false ) {
+				return '';
+			} else {
+				return $res;
+			}
+		} elseif ( empty( $this->baseName ) ) {
+			return $name;
+		} elseif ( $name == $this->baseName ) {
+			return '';
+		} else {
+			return false;
+		}
+	}
 }

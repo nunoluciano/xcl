@@ -33,60 +33,59 @@ require_once "File/Archive/Reader/Relay.php";
 /**
  * Regroups several readers to make them appear as a single one
  */
-class File_Archive_Reader_Multi extends File_Archive_Reader_Relay
-{
-    /**
-     * @var Array All the sources regrouped in this reader
-     * @access private
-     */
-    public $sources = array();
-    /**
-     * @var Int Index of the source being read currently
-     * @access private
-     */
-    public $currentIndex = 0;
+class File_Archive_Reader_Multi extends File_Archive_Reader_Relay {
+	/**
+	 * @var Array All the sources regrouped in this reader
+	 * @access private
+	 */
+	public $sources = array();
+	/**
+	 * @var Int Index of the source being read currently
+	 * @access private
+	 */
+	public $currentIndex = 0;
 
-    public function __construct()
-    {
-        parent::File_Archive_Reader_Relay($tmp = null);
-    }
+	public function __construct() {
+		parent::File_Archive_Reader_Relay( $tmp = null );
+	}
 
-    /**
-     * Add a new reader to the list of readers
-     * @param File_Archive_Reader $source The source to add
-     */
-    public function addSource(&$source)
-    {
-        $this->sources[] =& $source;
-    }
+	/**
+	 * Add a new reader to the list of readers
+	 *
+	 * @param File_Archive_Reader $source The source to add
+	 */
+	public function addSource( &$source ) {
+		$this->sources[] =& $source;
+	}
 
-    /**
-     * @see File_Archive_Reader::next()
-     */
-    public function next()
-    {
-        while (array_key_exists($this->currentIndex, $this->sources)) {
-            $this->source =& $this->sources[$this->currentIndex];
+	/**
+	 * @see File_Archive_Reader::next()
+	 */
+	public function next() {
+		while ( array_key_exists( $this->currentIndex, $this->sources ) ) {
+			$this->source =& $this->sources[ $this->currentIndex ];
 
-            if (($error = $this->source->next()) === false) {
-                $error = $this->source->close();
-                if ((new PEAR)->isError($error)) {
-                    return $error;
-                }
-                $this->currentIndex++;
-            } else {
-                return $error;
-            }
-        }
-        return false;
-    }
-    /**
-     * @see File_Archive_Reader::close()
-     */
-    public function close()
-    {
-        $error = parent::close();
-        $this->currentIndex = 0;
-        return $error;
-    }
+			if ( ( $error = $this->source->next() ) === false ) {
+				$error = $this->source->close();
+				if ( ( new PEAR )->isError( $error ) ) {
+					return $error;
+				}
+				$this->currentIndex ++;
+			} else {
+				return $error;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @see File_Archive_Reader::close()
+	 */
+	public function close() {
+		$error              = parent::close();
+		$this->currentIndex = 0;
+
+		return $error;
+	}
 }

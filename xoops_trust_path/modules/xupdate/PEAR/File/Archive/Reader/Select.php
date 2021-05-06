@@ -33,28 +33,25 @@ require_once "File/Archive/Reader/Relay.php";
 /**
  * Reader that keeps the files selected by File_Archive::select function
  */
-class File_Archive_Reader_Select extends File_Archive_Reader_Relay
-{
-    /**
-     * @var File_Archive_Reader_Predicat
-     * @access private
-     */
-    public $filename;
+class File_Archive_Reader_Select extends File_Archive_Reader_Relay {
+	/**
+	 * @var File_Archive_Reader_Predicat
+	 * @access private
+	 */
+	public $filename;
 
-    /**
-     * $source is the reader to filter
-     */
-    public function __construct($filename, &$source)
-    {
-        parent::File_Archive_Reader_Relay($source);
-        $this->filename = $filename;
-    }
+	/**
+	 * $source is the reader to filter
+	 */
+	public function __construct( $filename, &$source ) {
+		parent::File_Archive_Reader_Relay( $source );
+		$this->filename = $filename;
+	}
 
-    /**
-     * @see File_Archive_Reader::next()
-     */
-    public function next()
-    {
-        return $this->source->select($this->filename, false);
-    }
+	/**
+	 * @see File_Archive_Reader::next()
+	 */
+	public function next() {
+		return $this->source->select( $this->filename, false );
+	}
 }

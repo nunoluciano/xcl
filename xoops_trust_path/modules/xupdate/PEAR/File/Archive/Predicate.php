@@ -41,16 +41,15 @@ require_once "File/Archive/Reader.php";
  *
  * @see File_Archive_Reader_Filter
  */
-class File_Archive_Predicate
-{
-    /**
-     * Indicates whether the current file from the reader should be kept
-     *
-     * @param File_Archive_Reader $source Reader which will be filtered
-     * @return bool False if the current file must be filtered out
-     */
-    public function isTrue(&$source)
-    {
-        return PEAR::raiseError("Predicat abstract function call");
-    }
+class File_Archive_Predicate {
+	/**
+	 * Indicates whether the current file from the reader should be kept
+	 *
+	 * @param File_Archive_Reader $source Reader which will be filtered
+	 *
+	 * @return bool False if the current file must be filtered out
+	 */
+	public function isTrue( &$source ) {
+		return PEAR::raiseError( "Predicat abstract function call" );
+	}
 }

@@ -33,63 +33,62 @@ require_once "File/Archive/Reader.php";
 /**
  * Base class for all the archive readers (that read from a single file)
  */
-class File_Archive_Reader_Archive extends File_Archive_Reader
-{
-    /**
-     * @var    File_Archive_Reader Single file source that contains the archive
-     *         to uncompress
-     * @access protected
-     */
-    public $source = null;
+class File_Archive_Reader_Archive extends File_Archive_Reader {
+	/**
+	 * @var    File_Archive_Reader Single file source that contains the archive
+	 *         to uncompress
+	 * @access protected
+	 */
+	public $source = null;
 
-    /**
-     * @var    bool Indicate whether the $source is currently opened
-     * @access private
-     */
-    public $sourceOpened = false;
+	/**
+	 * @var    bool Indicate whether the $source is currently opened
+	 * @access private
+	 */
+	public $sourceOpened = false;
 
-    /**
-     * The source was let in this state at the end
-     *
-     * @var    bool Indicate whether the $source was given opened
-     * @access private
-     */
-    public $sourceInitiallyOpened;
+	/**
+	 * The source was let in this state at the end
+	 *
+	 * @var    bool Indicate whether the $source was given opened
+	 * @access private
+	 */
+	public $sourceInitiallyOpened;
 
 //ABSTRACT
-    /**
-     * @see File_Archive_Reader::next()
-     *
-     * Open the source if necessary
-     */
-    public function next()
-    {
-        if (!$this->sourceOpened && ($error = $this->source->next()) !== true) {
-            return $error;
-        }
 
-        $this->sourceOpened = true;
-        return true;
-    }
+	/**
+	 * @see File_Archive_Reader::next()
+	 *
+	 * Open the source if necessary
+	 */
+	public function next() {
+		if ( ! $this->sourceOpened && ( $error = $this->source->next() ) !== true ) {
+			return $error;
+		}
+
+		$this->sourceOpened = true;
+
+		return true;
+	}
 
 //PUBLIC
-    function File_Archive_Reader_Archive(&$source, $sourceOpened = false)
-    {
-        $this->source =& $source;
-        $this->sourceOpened = $this->sourceInitiallyOpened = $sourceOpened;
-    }
-    /**
-     * Close the source if it was given closed in the constructor
-     *
-     * @see File_Archive_Reader::close()
-     */
-    public function close()
-    {
-        if (!$this->sourceInitiallyOpened && $this->sourceOpened) {
-            $this->sourceOpened = false;
-            if ($this->source !== null) {
-                return $this->source->close();
-            }
-        }
-    }
+	function File_Archive_Reader_Archive( &$source, $sourceOpened = false ) {
+		$this->source       =& $source;
+		$this->sourceOpened = $this->sourceInitiallyOpened = $sourceOpened;
+	}
+
+	/**
+	 * Close the source if it was given closed in the constructor
+	 *
+	 * @see File_Archive_Reader::close()
+	 */
+	public function close() {
+		if ( ! $this->sourceInitiallyOpened && $this->sourceOpened ) {
+			$this->sourceOpened = false;
+			if ( $this->source !== null ) {
+				return $this->source->close();
+			}
+		}
+	}
 }

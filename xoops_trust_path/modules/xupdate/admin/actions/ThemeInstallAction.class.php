@@ -10,8 +10,8 @@
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    exit;
+if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
+	exit;
 }
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractInstallAction.class.php';
@@ -21,14 +21,12 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractInstallAction.class.php';
  *
  * @property mixed downloadUrlFormat
  */
-class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractInstallAction
-{
-    public function __construct()
-    {
-        parent::__construct();
-        $this->contents = 'theme';
-        $this->action = 'ThemeStore';
-        $this->currentMenu = _MI_XUPDATE_ADMENU_THEME;
-        $this->my_dir_path = XOOPS_ROOT_PATH . '/themes';
-    }
+class Xupdate_Admin_ThemeInstallAction extends Xupdate_AbstractInstallAction {
+	public function __construct() {
+		parent::__construct();
+		$this->contents    = 'theme';
+		$this->action      = 'ThemeStore';
+		$this->currentMenu = _MI_XUPDATE_ADMENU_THEME;
+		$this->my_dir_path = XOOPS_ROOT_PATH . '/themes';
+	}
 }

@@ -43,45 +43,44 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_Custom extends File_Archive_Predicate
-{
-    public $expression;
-    public $useName;
-    public $useStat;
-    public $useMIME;
+class File_Archive_Predicate_Custom extends File_Archive_Predicate {
+	public $expression;
+	public $useName;
+	public $useStat;
+	public $useMIME;
 
-    /**
-     * @param string $expression PHP code that evaluates too a boolean
-     *        It can use the $source variable. If return is ommited, it will be
-     *        added to the begining of the expression. A ; will also be added at
-     *        the end so that you don't need to write it
-     */
-    public function __construct($expression)
-    {
-        $this->expression = $expression.";";
-        if (strpos($this->expression, "return") === false) {
-            $this->expression = "return ".$this->expression;
-        }
-        $this->useName = (strpos($this->expression, '$name') !== false);
-        $this->useStat = (strpos($this->expression, '$stat') !== false);
-        $this->useMIME = (strpos($this->expression, '$mime') !== false);
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        if ($this->useName) {
-            $name = $source->getFilename();
-        }
-        if ($this->useStat) {
-            $stat = $source->getStat();
-            $size = $stat[7];
-            $time = (isset($stat[9]) ? $stat[9] : null);
-        }
-        if ($this->useMIME) {
-            $mime = $source->getMIME();
-        }
-        return (bool)eval($this->expression);
-    }
+	/**
+	 * @param string $expression PHP code that evaluates too a boolean
+	 *        It can use the $source variable. If return is ommited, it will be
+	 *        added to the begining of the expression. A ; will also be added at
+	 *        the end so that you don't need to write it
+	 */
+	public function __construct( $expression ) {
+		$this->expression = $expression . ";";
+		if ( strpos( $this->expression, "return" ) === false ) {
+			$this->expression = "return " . $this->expression;
+		}
+		$this->useName = ( strpos( $this->expression, '$name' ) !== false );
+		$this->useStat = ( strpos( $this->expression, '$stat' ) !== false );
+		$this->useMIME = ( strpos( $this->expression, '$mime' ) !== false );
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		if ( $this->useName ) {
+			$name = $source->getFilename();
+		}
+		if ( $this->useStat ) {
+			$stat = $source->getStat();
+			$size = $stat[7];
+			$time = ( isset( $stat[9] ) ? $stat[9] : null );
+		}
+		if ( $this->useMIME ) {
+			$mime = $source->getMIME();
+		}
+
+		return (bool) eval( $this->expression );
+	}
 }

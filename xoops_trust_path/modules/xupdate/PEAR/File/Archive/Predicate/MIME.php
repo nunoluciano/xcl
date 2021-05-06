@@ -38,37 +38,36 @@ require_once "MIME/Type.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_MIME extends File_Archive_Predicate
-{
-    public $mimes;
+class File_Archive_Predicate_MIME extends File_Archive_Predicate {
+	public $mimes;
 
-    /**
-     * @param $extensions array or comma separated string of allowed extensions
-     */
-    public function __construct($mimes)
-    {
-        if (is_string($mimes)) {
-            $this->mimes = explode(",", $mimes);
-        } else {
-            $this->mimes = $mimes;
-        }
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        $sourceMIME = $source->getMIME();
-        foreach ($this->mimes as $mime) {
-            if (MIME_Type::isWildcard($mime)) {
-                $result = MIME_Type::wildcardMatch($mime, $sourceMIME);
-            } else {
-                $result = ($mime == $sourceMIME);
-            }
-            if ($result !== false) {
-                return $result;
-            }
-        }
-        return false;
-    }
+	/**
+	 * @param $extensions array or comma separated string of allowed extensions
+	 */
+	public function __construct( $mimes ) {
+		if ( is_string( $mimes ) ) {
+			$this->mimes = explode( ",", $mimes );
+		} else {
+			$this->mimes = $mimes;
+		}
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		$sourceMIME = $source->getMIME();
+		foreach ( $this->mimes as $mime ) {
+			if ( MIME_Type::isWildcard( $mime ) ) {
+				$result = MIME_Type::wildcardMatch( $mime, $sourceMIME );
+			} else {
+				$result = ( $mime == $sourceMIME );
+			}
+			if ( $result !== false ) {
+				return $result;
+			}
+		}
+
+		return false;
+	}
 }

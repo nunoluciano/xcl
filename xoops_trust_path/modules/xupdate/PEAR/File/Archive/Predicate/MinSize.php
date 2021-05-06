@@ -37,23 +37,22 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_MinSize extends File_Archive_Predicate
-{
-    public $minSize = 0;
+class File_Archive_Predicate_MinSize extends File_Archive_Predicate {
+	public $minSize = 0;
 
-    /**
-     * @param int $minSize minimal size of the file (in Bytes)
-     */
-    public function __construct($minSize)
-    {
-        $this->minSize = $minSize;
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        $stat = $source->getStat();
-        return !isset($stat[7]) || $stat[7]>=$this->minSize;
-    }
+	/**
+	 * @param int $minSize minimal size of the file (in Bytes)
+	 */
+	public function __construct( $minSize ) {
+		$this->minSize = $minSize;
+	}
+
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		$stat = $source->getStat();
+
+		return ! isset( $stat[7] ) || $stat[7] >= $this->minSize;
+	}
 }

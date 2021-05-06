@@ -35,17 +35,16 @@ require_once "File/Archive/Predicate.php";
 /**
  * Evaluates to true only once, and then always to false
  */
-class File_Archive_Predicate_Current extends File_Archive_Predicate
-{
-    public $value = true;
+class File_Archive_Predicate_Current extends File_Archive_Predicate {
+	public $value = true;
 
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        $tmp = $this->value;
-        $this->value = false;
-        return $tmp;
-    }
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		$tmp         = $this->value;
+		$this->value = false;
+
+		return $tmp;
+	}
 }

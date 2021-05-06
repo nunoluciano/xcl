@@ -35,17 +35,15 @@ require_once "File/Archive/Reader/ChangeName.php";
 /**
  * Discard the directory structure in a reader
  */
-class File_Archive_Reader_ChangeName_Callback extends File_Archive_Reader_ChangeName
-{
-    public $function;
-    public function __construct($function, &$source)
-    {
-        parent::File_Archive_Reader_ChangeName($source);
-        $this->function = $function;
-    }
+class File_Archive_Reader_ChangeName_Callback extends File_Archive_Reader_ChangeName {
+	public $function;
 
-    public function modifyName($name)
-    {
-        return call_user_func($function, $name);
-    }
+	public function __construct( $function, &$source ) {
+		parent::File_Archive_Reader_ChangeName( $source );
+		$this->function = $function;
+	}
+
+	public function modifyName( $name ) {
+		return call_user_func( $function, $name );
+	}
 }
