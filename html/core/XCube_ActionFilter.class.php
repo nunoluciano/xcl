@@ -1,11 +1,12 @@
 <?php
 /**
  * XCube_ActionFilter.class.php
+ * This class is an abstract class.
  * @package XCube
  * @version 2.3.0
  * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
  * @author Minahito, 2008/10/12 04:30:27
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
  * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @public
  * @brief [Abstract] Used for initialization, post-processing and other purposes by the controller.
@@ -21,9 +22,6 @@
  *
  *    Two member functions are called by the controller at the proper time.
  *    The timing is different for each controller.
- *
- * \par Abstract Class
- *    This class is an abstract class.
  */
 
 class XCube_ActionFilter {

@@ -5,7 +5,7 @@
  * @version   2.3.0
  * @author    Gigamaster, XCL 2020 PHP7
  * @author    Minahito, 2008/10/12 04:30:27
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
  * @license   https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
  */
 
