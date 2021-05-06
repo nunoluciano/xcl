@@ -7,7 +7,6 @@
  * @author     Gigamaster
  * @copyright  1999-2021
  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @version    @package_230@
  * @link       https://snoopy.sourceforge.net/
  */

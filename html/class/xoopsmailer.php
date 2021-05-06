@@ -7,9 +7,7 @@
  * @author     Kazumi Ono (aka onokazu)
  * @copyright  2005-2021 The XOOPSCube Project
  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @version    v 1.5 2008/08/28 14:22:16 minahito, Release: @package_230@
- * @link       https://github.com/xoopscube/xcl
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
