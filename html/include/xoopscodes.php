@@ -7,8 +7,8 @@
  * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
  * @author Minahito
  * @author Kazumi Ono (aka onokazu)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
- * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  * @brief displays xoopsCode buttons and target textarea to which xoopscodes are inserted
  * $textarea_id is a unique id of the target textarea
  */
