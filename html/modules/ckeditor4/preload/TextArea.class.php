@@ -1,13 +1,20 @@
 <?php
 /**
- * @file
- * @package ckeditor4
- * @version $Id$
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     original: Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+	exit();
+}
 
-require_once dirname(dirname(__FILE__)) . '/class/Ckeditor4Utiles.class.php';
+require_once dirname( __FILE__, 2 ) . '/class/Ckeditor4Utiles.class.php';
 
 class ckeditor4_TextArea extends Ckeditor4_ParentTextArea
 {

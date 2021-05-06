@@ -1,4 +1,14 @@
 <?php
+/**
+ * XPress module for XCL
+ * @package    XPress
+ * @version    5.7 @package_231@
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     original: Toemon <http://ja.xpressme.info>
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
 
 function xoops_module_update_ckeditor4()
 {

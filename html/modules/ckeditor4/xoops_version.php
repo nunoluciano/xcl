@@ -1,20 +1,27 @@
 <?php
 /**
- * @file
- * @package ckeditor4
- * @version $Id$
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     original: Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+	exit();
+}
 
 //
-// Define a basic manifesto.
+// Module manifesto.
 //
 $modversion['name'] = _MI_CKEDITOR4_LANG_CKEDITOR4;
 $modversion['version'] = 2.31;
 $modversion['description'] = 'v4.14.0 [ 04-03-2020 ] '._MI_CKEDITOR4_DESC_CKEDITOR4;
-$modversion['author'] = "nao-pon https://xoops.hypweb.net/";
-$modversion['credits'] = "Naoki Sawada aka nao-pon";
+$modversion['author'] = "Naoki Sawada (aka nao-pon). Nuno Luciano (aka gigamaster), 2020 XCL PHP7 ";
+$modversion['credits'] = "Naoki Sawada (aka nao-pon) https://xoops.hypweb.net/";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL";
 $modversion['official'] = 0;
@@ -24,17 +31,10 @@ $modversion['dirname'] = "ckeditor4";
 $modversion['cube_style'] = true;
 $modversion['disable_legacy_2nd_installer'] = false;
 
-// TODO After you made your SQL, remove the following comment-out.
-// $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
-##[cubson:tables]
-##[/cubson:tables]
-
 //
-// Templates. You must never change [cubson] chunk to get the help of cubson.
+// Templates
 //
 $modversion['templates'][]['file'] = 'ckeditor4_textarea.html';
-##[cubson:templates]
-##[/cubson:templates]
 
 //
 // Admin panel setting

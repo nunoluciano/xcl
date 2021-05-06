@@ -1,4 +1,14 @@
 <?php
+/**
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     original: Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
 	exit;
@@ -42,7 +52,7 @@ class Ckeditor4_Utils
 			}
 		}
 		if ($key) {
-			return (isset($conf[$key])) ? $conf[$key] : null;
+			return $conf[ $key ] ?? null;
 		} else {
 			return $conf;
 		}
@@ -81,9 +91,9 @@ class Ckeditor4_Utils
 
 		$params['name'] = trim($params['name']);
 		$params['class'] = isset($params['class']) ? trim($params['class']) : '';
-		$params['cols'] = isset($params['cols']) ? intval($params['cols']) : self::DHTMLTAREA_DEFAULT_COLS;
-		$params['rows'] = isset($params['rows']) ? intval($params['rows']) : self::DHTMLTAREA_DEFAULT_ROWS;
-		$params['value'] = isset($params['value']) ? $params['value'] : '';
+		$params['cols'] = isset($params['cols']) ? (int) $params['cols'] : self::DHTMLTAREA_DEFAULT_COLS;
+		$params['rows'] = isset($params['rows']) ? (int) $params['rows'] : self::DHTMLTAREA_DEFAULT_ROWS;
+		$params['value'] = $params['value'] ?? '';
 		$params['id'] = isset($params['id']) ? trim($params['id']) : self::DHTMLTAREA_DEFID_PREFIX . $params['name'];
 		$params['editor'] = isset($params['editor']) ? trim($params['editor']) : 'bbcode';
 		$params['toolbar'] = isset($params['toolbar']) ? trim($params['toolbar']) : null;
@@ -102,7 +112,7 @@ class Ckeditor4_Utils
 			}
 		}
 
-		// rlazy registering & call pre build delegate
+		// lazy registering & call pre build delegate
 		if (defined('XOOPS_CUBE_LEGACY')) {
 			$delegate = new XCube_Delegate();
 			$delegate->register('Ckeditor4.Utils.PreBuild_ckconfig');
@@ -204,7 +214,7 @@ class Ckeditor4_Utils
 			);
 
 			$config['contentsCss'] = array();
-			$config['removePlugins'] = 'save,newpage,forms,preview,print,about';  // Gigamaster remove 'about'
+			$config['removePlugins'] = 'save,newpage,forms,preview,print,about';  // TODO Gigamaster remove 'about'
 			$config['extraPlugins'] = '';
 			if (defined('XOOPS_CUBE_LEGACY')) {
 				$delegate->register('Ckeditor4.Utils.PreParseBuild_ckconfig');

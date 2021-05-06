@@ -1,4 +1,15 @@
 <?php
+/**
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     original: Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
 	exit();
 }
