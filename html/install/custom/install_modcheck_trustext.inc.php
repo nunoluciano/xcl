@@ -1,13 +1,14 @@
 <?php
 /**
  * @package XCL
- * @subpackage Installer
+ * @subpackage Installation Wizard
  * @version 2.3
  * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
  * @author Kilica (Legacy)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @copyright Copyright 2005-2021 XOOPSCube Project
  * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
+
 // checking XOOPS_ROOT_PATH and XOOPS_URL
 include_once '../mainfile.php';
 

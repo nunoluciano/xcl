@@ -1,4 +1,14 @@
 <?php
+/**
+ * @package XCL
+ * @subpackage Installation Wizard
+ * @version 2.3
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Kilica (Legacy)
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
+
 // replace theme_default
 require_once dirname( __DIR__ ) . '/wizards/install_insertData.inc.php';
 

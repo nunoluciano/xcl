@@ -1,4 +1,5 @@
 <?php
+
 // checking XOOPS_ROOT_PATH and XOOPS_URL
 include_once '../mainfile.php';
 

@@ -23,7 +23,7 @@ $content =
     Il est librement redistribuable tant que vous respectez les termes de distribution New BSD License.
     </p>
     <p>
-    Les modules XCL (D3) sont publiés sous les termes de la <a href="https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a>.
+    Les modules XCL (D3) sont publiés sous les termes de la <a href="https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a>.
     Ils sont librement redistribuablea tant que vous respectez les termes de distribution GPL.
     </p>
     </div>

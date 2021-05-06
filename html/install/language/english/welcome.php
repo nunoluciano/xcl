@@ -23,7 +23,7 @@ $content =
     It is free to redistribute as long as you abide by the distribution terms of the New BSD License.
     </p>
     <p>
-    The XOOPS Cube Legacy modules are released under the terms of the <a href="https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a> and is free to use and modify.
+    The XOOPS Cube Legacy modules are released under the terms of the <a href="https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a> and is free to use and modify.
     It is free to redistribute as long as you abide by the distribution terms of the GPL.
     </p>
     </div>
