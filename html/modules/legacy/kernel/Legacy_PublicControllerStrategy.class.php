@@ -4,7 +4,7 @@
  * @package Legacy
  * @version $Id: Legacy_PublicControllerStrategy.class.php,v 1.7 2008/11/14 09:45:23 mumincacao Exp $
  * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 

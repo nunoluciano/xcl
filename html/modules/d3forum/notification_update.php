@@ -1,4 +1,5 @@
 <?php
+
 require '../../mainfile.php' ;
 
 if( ! defined( 'XOOPS_TRUST_PATH' ) ) {

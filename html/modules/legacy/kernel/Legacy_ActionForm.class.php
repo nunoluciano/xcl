@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_ActionForm.class.php,v 1.4 2008/09/25 15:11:58 kilica Exp $
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  */
 
@@ -32,6 +32,7 @@ class Legacy_ActionForm extends XCube_ActionForm
      */
     public function __construct()
     {
+    	 //parent::__construct();
         parent::XCube_ActionForm();
     }
 }

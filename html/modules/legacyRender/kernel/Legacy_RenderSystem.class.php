@@ -99,8 +99,8 @@ class Legacy_XoopsTpl extends XoopsTpl
 /**
  * Compatible render system with XOOPS 2 Themes & Templates.
  *
- * This manages theme and main render-target directly. And, this realizes
- * variable-sharing-mechanism with using smarty.
+ * @brief This allows you to directly manage the theme and the main rendering target.
+ * And, this implements the variable-sharing-mechanism using Smarty Template Engine.
  */
 class Legacy_RenderSystem extends XCube_RenderSystem
 {
@@ -604,7 +604,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     /**
      * @TODO This function is not cool!
      * @param bool $isDialog
-     * @return \Legacy_DialogRenderTarget|\Legacy_ThemeRenderTarget
+     * @return Legacy_DialogRenderTarget|Legacy_ThemeRenderTarget
      */
     public function &getThemeRenderTarget($isDialog = false)
     {

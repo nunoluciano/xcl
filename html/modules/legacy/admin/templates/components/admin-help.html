@@ -43,10 +43,11 @@
                 duration: 300
             }
         });
-        // Open Help
-        // Module directory name = $legacy_module or $xoops_dirname it's better for D3modules
-        // Help article of module = $adminHelp ( assigned in parent template )
-        // Help&dirname=legacy&file=block.html
+        // How to Open Help
+        // 1. Module directory name =  $xoops_dirname ( also for D3modules )
+        // 2. Help article of module = $adminHelp ( assigned in parent template )
+        //    Assign module help section#id or article#id to display with jquery ajax
+        // 3. Help&dirname=legacy&file=block.html
         $( "#open-help" ).on( "click", function() {
             event.preventDefault();
 
