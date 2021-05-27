@@ -1,117 +1,113 @@
 <?php
 /**
- *
+ * XCube_Service.class.php
  * @package XCube
- * @version $Id: XCube_Service.class.php,v 1.4 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito, 2008/10/12 04:30:27
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @public
+ * @brief [Abstract] This class is a collection for functions.
+ * @bug This class does NOT work perfectly. It's fatal...
+ * @todo Improve XCube Service for SOAP and REST
  */
 
 /**
  * @param $definition
+ *
  * @return array|null
  * @internal
  * @brief This is a kind of MACRO like C for XCube_Service.
  */
-function S_PUBLIC_FUNC($definition)
-{
-    $pos = strpos($definition, '(');
-    if ($pos > 0) {
-        $params = [];
-        foreach (explode(',', substr($definition, $pos + 1, -1)) as $t_param) {
-            if ($t_param) {
-                list($k, $v) = explode(' ', trim($t_param));
-                $params[$k] = $v;
-            }
-        }
-        $ret = ['in' => $params];
-        list($ret['out'], $ret['name']) = explode(' ', substr($definition, 0, $pos));
-        return $ret;
-    }
-    return null;
+function S_PUBLIC_FUNC( $definition ) {
+	$pos = strpos( $definition, '(' );
+	if ( $pos > 0 ) {
+		$params = [];
+		foreach ( explode( ',', substr( $definition, $pos + 1, - 1 ) ) as $t_param ) {
+			if ( $t_param ) {
+				list( $k, $v ) = explode( ' ', trim( $t_param ) );
+				$params[ $k ] = $v;
+			}
+		}
+		$ret = [ 'in' => $params ];
+		list( $ret['out'], $ret['name'] ) = explode( ' ', substr( $definition, 0, $pos ) );
+
+		return $ret;
+	}
+
+	return null;
 }
 
-/**
- * @public
- * @brief [Abstract] This class is a collection for functions.
- *
- * @bug This class does NOT work perfectly. It's fatal...
- * @todo Fix fatal bugs.
- */
-class XCube_Service
-{
-    /**
-     * @protected
-     * @brief string
-     */
-    public $mServiceName = '';
 
-    /**
-     * @protected
-     * @brief string
-     */
-    public $mNameSpace = '';
+class XCube_Service {
+	/**
+	 * @protected
+	 * @brief string
+	 */
+	public $mServiceName = '';
 
-    /**
-     * @protected
-     */
-    public $mClassName = 'XCube_Service';
+	/**
+	 * @protected
+	 * @brief string
+	 */
+	public $mNameSpace = '';
 
-    /**
-     * @protected
-     * @brief XCube_ActionStrategy(?) --- 'deprecated'
-     * @deprecated
-     */
-    public $_mActionStrategy;
+	/**
+	 * @protected
+	 */
+	public $mClassName = 'XCube_Service';
 
-    public $_mTypes = [];
+	/**
+	 * @protected
+	 * @brief XCube_ActionStrategy(?) --- 'deprecated'
+	 * @deprecated
+	 */
+	public $_mActionStrategy;
 
-    public $_mFunctions = [];
+	public $_mTypes = [];
 
-    public function __construct()
-    {
-    }
+	public $_mFunctions = [];
 
-    public function prepare()
-    {
-    }
+	public function __construct() {
+	}
 
-    public function addType($className)
-    {
-        $this->_mTypes[] = $className;
-    }
+	public function prepare() {
+	}
 
-    public function addFunction()
-    {
-        $args = func_get_args();
-        $n = func_num_args();
-        $arg0 = &$args[0];
+	public function addType( $className ) {
+		$this->_mTypes[] = $className;
+	}
 
-        if (3 === $n) {
-            $this->_addFunctionStandard($arg0, $args[1], $args[2]);
-        } elseif (1 === $n && is_array($arg0)) {
-            $this->_addFunctionStandard($arg0['name'], $arg0['in'], $arg0['out']);
-        }
-    }
+	public function addFunction() {
+		$args = func_get_args();
+		$n    = func_num_args();
+		$arg0 = &$args[0];
 
-    public function _addFunctionStandard($name, $in, $out)
-    {
-        $this->_mFunctions[$name] = [
-            'out' => $out,
-            'name' => $name,
-            'in' => $in
-        ];
-    }
+		if ( 3 === $n ) {
+			$this->_addFunctionStandard( $arg0, $args[1], $args[2] );
+		} elseif ( 1 === $n && is_array( $arg0 ) ) {
+			$this->_addFunctionStandard( $arg0['name'], $arg0['in'], $arg0['out'] );
+		}
+	}
 
-    /**
-     * XCube_Procedure
-     * @var   string $name
-     * @param  $procedure
-     */
-    public function register($name, &$procedure)
-    {
-    }
+	public function _addFunctionStandard( $name, $in, $out ) {
+		$this->_mFunctions[ $name ] = [
+			'out'  => $out,
+			'name' => $name,
+			'in'   => $in
+		];
+	}
+
+	/**
+	 * XCube_Procedure
+	 *
+	 * @param  $procedure
+	 *
+	 * @var   string $name
+	 */
+	public function register( $name, &$procedure ) {
+	}
 }
 
 /**
@@ -121,44 +117,36 @@ class XCube_Service
  * This class is the adapter of a service class.
  * I give a caller the interface that resembled NUSOAP.
  */
-class XCube_AbstractServiceClient
-{
-    public $mService;
-    public $mClientErrorStr;
+class XCube_AbstractServiceClient {
+	public $mService;
+	public $mClientErrorStr;
 
-    public $mUser;
+	public $mUser;
 
-    public function __construct(&$service)
-    {
-        $this->mService =& $service;
-    }
+	public function __construct( &$service ) {
+		$this->mService =& $service;
+	}
 
-    public function prepare()
-    {
-    }
+	public function prepare() {
+	}
 
-    public function setUser(&$user)
-    {
-        $this->mUser =& $user;
-    }
+	public function setUser( &$user ) {
+		$this->mUser =& $user;
+	}
 
-    public function call($operation, $params)
-    {
-    }
+	public function call( $operation, $params ) {
+	}
 
-    public function getOperationData($operation)
-    {
-    }
+	public function getOperationData( $operation ) {
+	}
 
-    public function setError($message)
-    {
-        $this->mClientErrorStr = $message;
-    }
+	public function setError( $message ) {
+		$this->mClientErrorStr = $message;
+	}
 
-    public function getError()
-    {
-        return !empty($this->mClientErrorStr) ? $this->mClientErrorStr : $this->mService->mErrorStr;
-    }
+	public function getError() {
+		return ! empty( $this->mClientErrorStr ) ? $this->mClientErrorStr : $this->mService->mErrorStr;
+	}
 }
 
 /**
@@ -170,33 +158,33 @@ class XCube_AbstractServiceClient
  * enable the service logic to get values by the request object. After calls,
  * restores the original request object.
  */
-class XCube_ServiceClient extends XCube_AbstractServiceClient
-{
-    public function call($operation, $params)
-    {
-        $this->mClientErrorStr = null;
+class XCube_ServiceClient extends XCube_AbstractServiceClient {
+	public function call( $operation, $params ) {
+		$this->mClientErrorStr = null;
 
-        if (!is_object($this->mService)) {
-            $this->mClientErrorStr = 'This instance is not connected to service';
-            return null;
-        }
+		if ( ! is_object( $this->mService ) ) {
+			$this->mClientErrorStr = 'This instance is not connected to service';
 
-        $root =& XCube_Root::getSingleton();
-        $request_bak =& $root->mContext->mRequest;
-        unset($root->mContext->mRequest);
+			return null;
+		}
 
-        $root->mContext->mRequest = new XCube_GenericRequest($params);
+		$root        =& XCube_Root::getSingleton();
+		$request_bak =& $root->mContext->mRequest;
+		unset( $root->mContext->mRequest );
 
-        if (isset($this->mService->_mFunctions[$operation])) {
-            $ret = call_user_func([$this->mService, $operation]);
+		$root->mContext->mRequest = new XCube_GenericRequest( $params );
 
-            unset($root->mContext->mRequest);
-            $root->mContext->mRequest =& $request_bak;
+		if ( isset( $this->mService->_mFunctions[ $operation ] ) ) {
+			$ret = call_user_func( [ $this->mService, $operation ] );
 
-            return $ret;
-        }
+			unset( $root->mContext->mRequest );
+			$root->mContext->mRequest =& $request_bak;
 
-        $this->mClientErrorStr = "operation ${operation} not present.";
-        return null;
-    }
+			return $ret;
+		}
+
+		$this->mClientErrorStr = "operation ${operation} not present.";
+
+		return null;
+	}
 }

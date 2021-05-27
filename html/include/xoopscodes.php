@@ -1,31 +1,25 @@
 <?php
 /**
- * *
- *  * Xoops Control panel header
- *  *
- *  * @package    Legacy
- *  * @subpackage core
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.1 2007/05/15 02:34:18 minahito, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Xoops Codes Textarea
+ * @package Legacy
+ * @subpackage core
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito
+ * @author Kazumi Ono (aka onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @brief displays xoopsCode buttons and target textarea to which xoopscodes are inserted
+ * $textarea_id is a unique id of the target textarea
  */
 
-/*
-*  displayes xoopsCode buttons and target textarea to which xoopscodes are inserted
-*  $textarea_id is a unique id of the target textarea
-*/
 function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
 {
     $hiddentext = isset($suffix) ? 'xoopsHiddenText'.trim($suffix) : 'xoopsHiddenText';
     //Hack for url, email ...., the anchor is for having a link on [_More...]
     echo "<a name='moresmiley'></a><img src='".XOOPS_URL."/images/url.gif' alt='url' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeUrl(\"$textarea_id\", \"".htmlspecialchars(_ENTERURL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ENTERWEBTITLE, ENT_QUOTES) . "\");'/>
-    &nbsp;<img src='".XOOPS_URL."/images/email.gif' alt='email' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeEmail(\"$textarea_id\", \"".htmlspecialchars(_ENTEREMAIL, ENT_QUOTES)."\");' />
+    &nbsp;<img src='".XOOPS_URL."/images/email.svg' alt='email' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeEmail(\"$textarea_id\", \"".htmlspecialchars(_ENTEREMAIL, ENT_QUOTES)."\");' />
     &nbsp;<img src='".XOOPS_URL."/images/imgsrc.gif' alt='imgsrc' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeImg(\"$textarea_id\", \"".htmlspecialchars(_ENTERIMGURL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ENTERIMGPOS, ENT_QUOTES) . '", "'
          . htmlspecialchars(_IMGPOSRORL, ENT_QUOTES) . '", "'
@@ -93,11 +87,10 @@ function xoopsSmilies($textarea_id)
             }
         }
     } else {
-        $count = count($smiles);
-        for ($i = 0; $i < $count; $i++) {
-            if (1 == $smiles[$i]['display']) {
+        foreach ($smiles as $iValue) {
+            if (1 == $iValue['display']) {
                 //hack bis
-                echo "<img src='".XOOPS_UPLOAD_URL . '/' . htmlspecialchars($smiles[$i]['smile_url']) . "' border='0' onmouseover='style.cursor=\"hand\"' alt='' onclick='xoopsCodeSmilie(\"" . $textarea_id . '", " ' . $smiles[$i]['code'] . " \");' />";
+                echo "<img src='".XOOPS_UPLOAD_URL . '/' . htmlspecialchars($iValue['smile_url']) . "' border='0' onmouseover='style.cursor=\"hand\"' alt='' onclick='xoopsCodeSmilie(\"" . $textarea_id . '", " ' . $iValue['code'] . " \");' />";
             //fin du hack
             }
         }

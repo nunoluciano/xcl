@@ -1,27 +1,18 @@
 <?php
 /**
- * *
- *  * Class to "clean up" text for various uses
- *  *
- *  * Singleton
- *  *
- *  * @package    kernel
- *  * @subpackage core
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Class to "clean up" text for various uses
+ * Singleton
+ * @package    kernel
+ * @subpackage core
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2000-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 class MyTextSanitizer
 {
-    /**
-     *
-     */
     public $censorConf;
 
     /**
@@ -113,7 +104,7 @@ class MyTextSanitizer
     {
         $text = $this->mTextFilter->makeClickable($text);
 
-        // RaiseEvent : 'MyTextSanitizer.MakeClickablePostFilter'
+        //  RaiseEvent : 'MyTextSanitizer.MakeClickablePostFilter'
         //  Delegate may convert output text with quickApplyFilter rule
         //  Args :
         //      'string'       [I/O] : Text to convert;
@@ -194,7 +185,9 @@ class MyTextSanitizer
      * @param   string  $text
      * @return  string
      **/
-    public function &addSlashes($text)
+    // Only variables can be returned by reference
+    // public function &addSlashes($text)
+	public function addSlashes($text)
     {
         return addslashes($text);
     }
@@ -396,8 +389,7 @@ class MyTextSanitizer
 
     public function makeTboxData4Show($text, $smiley=0)
     {
-        $text = $this->mTextFilter->toShow($text, true);
-        return $text;
+	    return $this->mTextFilter->toShow($text, true);
     }
 
     public function makeTboxData4Edit($text)

@@ -1,58 +1,58 @@
 <?php
 /**
- * *
- *  * Form simple text field
- *  *
- *  * @package    kernel
- *  * @subpackage form
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Form simple text field
+ * @package    kernel
+ * @subpackage form
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0 @Gigamaster 2020 XCL PHP7
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
+/**
+ * A simple text field
+ */
 class XoopsFormText extends XoopsFormElement
 {
-
     /**
      * Size
-     * @var	int
-     * @access	private
+     *
+     * @var int
+     * @access private
      */
     public $_size;
 
     /**
      * Maximum length of the text
-     * @var	int
-     * @access	private
+     *
+     * @var int
+     * @access private
      */
     public $_maxlength;
 
     /**
      * Initial text
-     * @var	string
-     * @access	private
+     *
+     * @var string
+     * @access private
      */
     public $_value;
 
     /**
      * Constructor
      *
-     * @param	string	$caption	Caption
-     * @param	string	$name       "name" attribute
-     * @param	int		$size	    Size
-     * @param	int		$maxlength	Maximum length of text
-     * @param	string  $value      Initial text
+     * @param string $caption   Caption
+     * @param string $name      "name" attribute
+     * @param int    $size      Size
+     * @param int    $maxlength Maximum length of text
+     * @param string $value     Initial text
      */
-    public function __construct($caption, $name, $size, $maxlength, $value= '')
+    public function __construct($caption, $name, $size, $maxlength, $value = '')
     {
         $this->setCaption($caption);
         $this->setName($name);
@@ -68,7 +68,7 @@ class XoopsFormText extends XoopsFormElement
     /**
      * Get size
      *
-     * @return	int
+     * @return int
      */
     public function getSize()
     {
@@ -78,7 +78,7 @@ class XoopsFormText extends XoopsFormElement
     /**
      * Get maximum text length
      *
-     * @return	int
+     * @return int
      */
     public function getMaxlength()
     {
@@ -86,7 +86,7 @@ class XoopsFormText extends XoopsFormElement
     }
 
     /**
-     * Get initial text value
+     * Get initial content
      *
      * @return  string
      */

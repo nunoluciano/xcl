@@ -1,11 +1,17 @@
 <?php
-// $Id: xoopsmodule.php,v 1.1 2007/05/15 02:34:21 minahito Exp $
+/**
+ * This file is for backward compatibility only
+ * Load the new object class
+ * @package    kernel
+ * @subpackage core
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
-/**
- * this file is for backward compatibility only
- *
- * load the new module class
- **/
+
 require_once XOOPS_ROOT_PATH.'/kernel/module.php';

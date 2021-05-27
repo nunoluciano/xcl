@@ -1,20 +1,15 @@
 <?php
 
 /**
- * *
- *  * Removes comment and splits large sql files into individual queries
- *  *
- *  * Function from phpMyAdmin (https://phpwizard.net/projects/phpMyAdmin/)
- *  *
- *  * @package    database
- *  * @author     Original Authors : Gandon, Kazumi Ono (Onokazu)
- *  * @author     Other Authors : Minahito, Gigamaster
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Removes comment and splits large sql files into individual queries
+ * Function from phpMyAdmin (https://phpwizard.net/projects/phpMyAdmin/)
+ * @package    database
+ * @author     Gandon, Kazumi Ono (Onokazu)
+ * @author     Minahito,2007/05/15 
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 class sqlutility

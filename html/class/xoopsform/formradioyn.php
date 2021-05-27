@@ -1,20 +1,14 @@
 <?php
 /**
- * *
- *  * Form radio buttons  Yes/No
- *  *
- *  * A pair of radio buttons labelled _YES and _NO with values 1 and 0
- *  *
- *  * @package    kernel
- *  * @subpackage form
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Form radio buttons  Yes/No
+ * A pair of radio buttons labelled _YES and _NO with values 1 and 0
+ * @package    kernel
+ * @subpackage form
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0 @Gigamaster 2020 XCL PHP7
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

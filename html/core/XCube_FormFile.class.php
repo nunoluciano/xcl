@@ -1,343 +1,337 @@
 <?php
 /**
- *
+ * XCube_FormFile.class.php
  * @package XCube
- * @version $Id: XCube_FormFile.class.php,v 1.3 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito, 2008/10/12 04:30:27
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief WARNING:
+ * This class is a simple wrapper class to process the uploaded file.
+ * However, we need to examine the position of this class. We are aiming at the simple file tree.
+ * This class is just a helper. We believe that the Cube system should not provide inappropriate help.
+ * We put this class in root/class for the advancement of this project.
+ * But, we should move it to another directory in a later stage.
  */
+
 
 //define("XCUBE_FORMFILE_PREVMASK", "0022");
-define('XCUBE_FORMFILE_CHMOD', 0644);
+define( 'XCUBE_FORMFILE_CHMOD', 0644 );
 
-/**
- * WARNING:
- * This class is simple wrapper class for proccessing the file uploaded.
- * However, we have to examine the position of this class. We aim to simple file tree.
- * This class is only helper. We think that Cube system shouldn't offer misc helper.
- *
- * We put this class in root/class for the progress of this project. But, we will move
- * this to other directory in the future.
- */
-class XCube_FormFile
-{
-    public $mName;
 
-    public $mKey;
+class XCube_FormFile {
+	public $mName;
 
-    public $mContentType;
+	public $mKey;
 
-    public $mFileName;
-    public $mFileSize=0;
+	public $mContentType;
 
-    public $_mTmpFileName;
+	public $mFileName;
+	public $mFileSize = 0;
 
-    public $mUploadFileFlag=false;
+	public $_mTmpFileName;
 
-    public function __construct($name = null, $key = null)
-    {
-        $this->mName = $name;
-        $this->mKey = $key;
-    }
+	public $mUploadFileFlag = false;
 
-    /**
-     * Fetch necessary information from $_FILES by $mName
-     */
-    public function fetch()
-    {
-        if ($this->mName && isset($_FILES[$this->mName])) {
-            if (null !== $this->mKey) {
-                $this->setFileName($_FILES[$this->mName]['name'][$this->mKey]);
-                $this->setContentType($_FILES[$this->mName]['type'][$this->mKey]);
-                $this->setFileSize($_FILES[$this->mName]['size'][$this->mKey]);
-                $this->_mTmpFileName = $_FILES[$this->mName]['tmp_name'][$this->mKey];
-            } else {
-                $this->setFileName($_FILES[$this->mName]['name']);
-                $this->setContentType($_FILES[$this->mName]['type']);
-                $this->setFileSize($_FILES[$this->mName]['size']);
-                $this->_mTmpFileName = $_FILES[$this->mName]['tmp_name'];
-            }
+	public function __construct( $name = null, $key = null ) {
+		$this->mName = $name;
+		$this->mKey  = $key;
+	}
 
-            if ($this->getFileSize()>0) {
-                $this->mUploadFileFlag=true;
-            }
-        }
-    }
+	/**
+	 * Fetch necessary information from $_FILES by $mName
+	 */
+	public function fetch() {
+		if ( $this->mName && isset( $_FILES[ $this->mName ] ) ) {
+			if ( null !== $this->mKey ) {
+				$this->setFileName( $_FILES[ $this->mName ]['name'][ $this->mKey ] );
+				$this->setContentType( $_FILES[ $this->mName ]['type'][ $this->mKey ] );
+				$this->setFileSize( $_FILES[ $this->mName ]['size'][ $this->mKey ] );
+				$this->_mTmpFileName = $_FILES[ $this->mName ]['tmp_name'][ $this->mKey ];
+			} else {
+				$this->setFileName( $_FILES[ $this->mName ]['name'] );
+				$this->setContentType( $_FILES[ $this->mName ]['type'] );
+				$this->setFileSize( $_FILES[ $this->mName ]['size'] );
+				$this->_mTmpFileName = $_FILES[ $this->mName ]['tmp_name'];
+			}
 
-    public function hasUploadFile()
-    {
-        return $this->mUploadFileFlag;
-    }
+			if ( $this->getFileSize() > 0 ) {
+				$this->mUploadFileFlag = true;
+			}
+		}
+	}
 
-    /**
-     * Return content type
-     * @return string
-    */
-    public function getContentType()
-    {
-        return $this->mContentType;
-    }
+	public function hasUploadFile() {
+		return $this->mUploadFileFlag;
+	}
 
-    public function getFileData()
-    {
-        // Now, implementing.
-    }
+	/**
+	 * Return content type
+	 * @return string
+	 */
+	public function getContentType() {
+		return $this->mContentType;
+	}
 
-    /**
-     * Return file name.
-     * @return string
-    */
-    public function getFileName()
-    {
-        return $this->mFileName;
-    }
+	public function getFileData() {
+		// Now, implementing.
+	}
 
-    /**
-     * Return file size.
-     * @return int
-     */
-    public function getFileSize()
-    {
-        return $this->mFileSize;
-    }
+	/**
+	 * Return file name.
+	 * @return string
+	 */
+	public function getFileName() {
+		return $this->mFileName;
+	}
 
-    /**
-     * Return extension from file name.
-     * @return string
-     */
-    public function getExtension()
-    {
-        $ret = null;
-        $filename=$this->getFileName();
-        if (preg_match("/\.([a-z0-9\.]+)$/i", $filename, $match)) {
-            $ret=$match[1];
-        }
+	/**
+	 * Return file size.
+	 * @return int
+	 */
+	public function getFileSize() {
+		return $this->mFileSize;
+	}
 
-        return $ret;
-    }
+	/**
+	 * Return extension from file name.
+	 * @return string
+	 */
+	public function getExtension() {
+		$ret      = null;
+		$filename = $this->getFileName();
+		if ( preg_match( "/\.([a-z0-9\.]+)$/i", $filename, $match ) ) {
+			$ret = $match[1];
+		}
 
-    /**
-     * Set extension.
-     * @param $ext
-     * @return string
-     */
-    public function setExtension($ext)
-    {
-        $filename=$this->getFileName();
-        if (preg_match("/(.+)\.\w+$/", $filename, $match)) {
-            $this->setFileName($match[1].".${ext}");
-        }
-    }
+		return $ret;
+	}
 
-    /**
-     * Set content type
-     * @param string $contenttype
-     */
-    public function setContentType($contenttype)
-    {
-        $this->mContentType=$contenttype;
-    }
+	/**
+	 * Set extension.
+	 *
+	 * @param $ext
+	 *
+	 * @return string
+	 */
+	public function setExtension( $ext ) {
+		$filename = $this->getFileName();
+		if ( preg_match( "/(.+)\.\w+$/", $filename, $match ) ) {
+			$this->setFileName( $match[1] . ".${ext}" );
+		}
+	}
 
-    /**
-     * Set file name
-     * @param string $filename
-     */
-    public function setFileName($filename)
-    {
-        $this->mFileName = $filename;
-    }
+	/**
+	 * Set content type
+	 *
+	 * @param string $contenttype
+	 */
+	public function setContentType( $contenttype ) {
+		$this->mContentType = $contenttype;
+	}
 
-    /**
-     * Set file size
-     * @param int $filesize
-     */
-    public function setFileSize($filesize)
-    {
-        $this->mFileSize = $filesize;
-    }
+	/**
+	 * Set file name
+	 *
+	 * @param string $filename
+	 */
+	public function setFileName( $filename ) {
+		$this->mFileName = $filename;
+	}
 
-    /**
-     * Set file body name. The extension is never changed.
-     * @param string $bodyname
-     */
-    public function setBodyName($bodyname)
-    {
-        $this->setFileName($bodyname . '.' . $this->getExtension());
-    }
+	/**
+	 * Set file size
+	 *
+	 * @param int $filesize
+	 */
+	public function setFileSize( $filesize ) {
+		$this->mFileSize = $filesize;
+	}
 
-    /**
-     * Get file body name.
-     * @return string
-     */
-    public function getBodyName()
-    {
-        if (preg_match("/(.+)\.\w+$/", $this->getFileName(), $match)) {
-            return $match[1];
-        }
+	/**
+	 * Set file body name. The extension is never changed.
+	 *
+	 * @param string $bodyname
+	 */
+	public function setBodyName( $bodyname ) {
+		$this->setFileName( $bodyname . '.' . $this->getExtension() );
+	}
 
-        return null;
-    }
+	/**
+	 * Get file body name.
+	 * @return string
+	 */
+	public function getBodyName() {
+		if ( preg_match( "/(.+)\.\w+$/", $this->getFileName(), $match ) ) {
+			return $match[1];
+		}
 
-    /**
-     * Set random string to file body name. The extension is never changed.
-     * @param string $prefix Prefix for random string.
-     * @param string $salt   Salt for generating token.
-     */
-    public function setRandomToBodyName($prefix, $salt='')
-    {
-        $filename = $prefix . $this->_getRandomString($salt) . '.' . $this->getExtension();
-        $this->setFileName($filename);
-    }
+		return null;
+	}
 
-    /**
-     * Set random string to file body name. The extension is changed.
-     * @param string $prefix Prefix for random string.
-     * @param string $salt   Salt for generating token.
-     */
-    public function setRandomToFilename($prefix, $salt='')
-    {
-        $filename = $prefix . $this->_getRandomString($salt);
-        $this->setFileName($filename);
-    }
+	/**
+	 * Set random string to file body name. The extension is never changed.
+	 *
+	 * @param string $prefix Prefix for random string.
+	 * @param string $salt Salt for generating token.
+	 */
+	public function setRandomToBodyName( $prefix, $salt = '' ) {
+		$filename = $prefix . $this->_getRandomString( $salt ) . '.' . $this->getExtension();
+		$this->setFileName( $filename );
+	}
 
-    /**
-     * @brief Generate random string.
-     * @param string $salt Salt for generating token.
-     * @return string
-     */
-    public function _getRandomString($salt='')
-    {
-        if (empty($salt)) {
-            $root=&XCube_Root::getSingleton();
-            $salt = $root->getSiteConfig('Cube', 'Salt');
-        }
-        mt_srand(microtime() * 1000000);
-        return md5($salt . mt_rand());
-    }
+	/**
+	 * Set random string to file body name. The extension is changed.
+	 *
+	 * @param string $prefix Prefix for random string.
+	 * @param string $salt Salt for generating token.
+	 */
+	public function setRandomToFilename( $prefix, $salt = '' ) {
+		$filename = $prefix . $this->_getRandomString( $salt );
+		$this->setFileName( $filename );
+	}
 
-    /**
-     * Name this, and store it. If the name is specified as complete file name, store it as the same name.
-     * If the name is specified as directory name, store it as the own name to the directory specified.
-     *
-     * @param Directory $file path or file path.
-     * @return bool
-     */
-    public function saveAs($file)
-    {
-        $destFile = '';
-        if (preg_match("#\/$#", $file)) {
-            $destFile = $file . $this->getFileName();
-        } elseif (is_dir($file)) {
-            $destFile = $file . '/' . $this->getFileName();
-        } else {
-            $destFile = $file;
-        }
+	/**
+	 * @brief Generate random string.
+	 *
+	 * @param string $salt Salt for generating token.
+	 *
+	 * @return string
+	 */
+	public function _getRandomString( $salt = '' ) {
+		if ( empty( $salt ) ) {
+			$root =& XCube_Root::getSingleton();
+			$salt = $root->getSiteConfig( 'Cube', 'Salt' );
+		}
+		mt_srand( microtime() * 1000000 );
 
-        $ret = move_uploaded_file($this->_mTmpFileName, $destFile);
+		return md5( $salt . mt_rand() );
+	}
 
-//		$prevMask = @umask(XCUBE_FORMFILE_PREVMASK);
-//		@umask($prevMask);
-        @chmod($destFile, XCUBE_FORMFILE_CHMOD);
+	/**
+	 * Name this, and store it. If the name is specified as complete file name, store it as the same name.
+	 * If the name is specified as directory name, store it as the own name to the directory specified.
+	 *
+	 * @param Directory $file path or file path.
+	 *
+	 * @return bool
+	 */
+	public function saveAs( $file ) {
+		$destFile = '';
+		if ( preg_match( "#\/$#", $file ) ) {
+			$destFile = $file . $this->getFileName();
+		} elseif ( is_dir( $file ) ) {
+			$destFile = $file . '/' . $this->getFileName();
+		} else {
+			$destFile = $file;
+		}
 
-        return $ret;
-    }
+		$ret = move_uploaded_file( $this->_mTmpFileName, $destFile );
 
-    /**
-     * Set random string to file body name, and store it. The extension is never changed.
-     * @param Directory $dir    for store.
-     * @param string    $prefix Prefix for random string.
-     * @param string    $salt   Salt for generating token.
-     * @return bool
-     *@see saveAs()
-     * @see setRandomToBodyName()
-     */
-    public function saveAsRandBody($dir, $prefix='', $salt='')
-    {
-        $this->setRandomToBodyName($prefix, $salt);
-        return $this->saveAs($dir);
-    }
+		// $prevMask = @umask(XCUBE_FORMFILE_PREVMASK);
+		// @umask($prevMask);
+		@chmod( $destFile, XCUBE_FORMFILE_CHMOD );
 
-    /**
-     * Set random string to file name, and store it. The extension is never changed.
-     * @param Directory $dir    for store.
-     * @param string    $prefix Prefix for random string.
-     * @param string    $salt   Salt for generating token.
-     * @return bool
-     *@see saveAs()
-     * @see setRandomToFileName()
-     */
-    public function saveAsRand($dir, $prefix='', $salt='')
-    {
-        $this->setRandomToFileName($prefix, $salt);
-        return $this->saveAs($dir);
-    }
+		return $ret;
+	}
+
+	/**
+	 * Set random string to file body name, and store it. The extension is never changed.
+	 *
+	 * @param Directory $dir for store.
+	 * @param string $prefix Prefix for random string.
+	 * @param string $salt Salt for generating token.
+	 *
+	 * @return bool
+	 * @see saveAs()
+	 * @see setRandomToBodyName()
+	 */
+	public function saveAsRandBody( $dir, $prefix = '', $salt = '' ) {
+		$this->setRandomToBodyName( $prefix, $salt );
+
+		return $this->saveAs( $dir );
+	}
+
+	/**
+	 * Set random string to file name, and store it. The extension is never changed.
+	 *
+	 * @param Directory $dir for store.
+	 * @param string $prefix Prefix for random string.
+	 * @param string $salt Salt for generating token.
+	 *
+	 * @return bool
+	 * @see saveAs()
+	 * @see setRandomToFileName()
+	 */
+	public function saveAsRand( $dir, $prefix = '', $salt = '' ) {
+		$this->setRandomToFileName( $prefix, $salt );
+
+		return $this->saveAs( $dir );
+	}
 }
 
 /**
  * The sub-class of XCube_FormFile to handle image upload file easily.
  */
-class XCube_FormImageFile extends XCube_FormFile
-{
-    public function fetch()
-    {
-        parent::fetch();
+class XCube_FormImageFile extends XCube_FormFile {
+	public function fetch() {
+		parent::fetch();
 
-        if ($this->hasUploadFile() && !$this->_checkFormat()) {
-            $this->mUploadFileFlag = false;
-        }
-    }
+		if ( $this->hasUploadFile() && ! $this->_checkFormat() ) {
+			$this->mUploadFileFlag = false;
+		}
+	}
 
-    /**
-     * Gets a width of the uploaded file.
-     * @return int
-     */
-    public function getWidth()
-    {
-        list($width, $height, $type, $attr)=getimagesize($this->_mTmpFileName);
-        return $width;
-    }
+	/**
+	 * Gets a width of the uploaded file.
+	 * @return int
+	 */
+	public function getWidth() {
+		[ $width, $height, $type, $attr ] = getimagesize( $this->_mTmpFileName );
 
-    /**
-     * Gets a height of the uploaded file.
-     * @return int
-     */
-    public function getHeight()
-    {
-        list($width, $height, $type, $attr)=getimagesize($this->_mTmpFileName);
-        return $height;
-    }
+		return $width;
+	}
 
-    /**
-     * Gets a value indicating whether a format of the uploaded file is allowed.
-     * @access private
-     * @return bool
-     */
-    public function _checkFormat()
-    {
-        if (!$this->hasUploadFile()) {
-            return false;
-        }
+	/**
+	 * Gets a height of the uploaded file.
+	 * @return int
+	 */
+	public function getHeight() {
+		[ $width, $height, $type, $attr ] = getimagesize( $this->_mTmpFileName );
 
-        list($width, $height, $type, $attr)=getimagesize($this->_mTmpFileName);
+		return $height;
+	}
 
-        switch ($type) {
-            case IMAGETYPE_GIF:
-                $this->setExtension('gif');
-                break;
+	/**
+	 * Gets a value indicating whether a format of the uploaded file is allowed.
+	 * @access private
+	 * @return bool
+	 */
+	public function _checkFormat() {
+		if ( ! $this->hasUploadFile() ) {
+			return false;
+		}
 
-            case IMAGETYPE_JPEG:
-                $this->setExtension('jpg');
-                break;
+		[ $width, $height, $type, $attr ] = getimagesize( $this->_mTmpFileName );
 
-            case IMAGETYPE_PNG:
-                $this->setExtension('png');
-                break;
+		switch ( $type ) {
+			case IMAGETYPE_GIF:
+				$this->setExtension( 'gif' );
+				break;
 
-            default:
-                return false;
-        }
+			case IMAGETYPE_JPEG:
+				$this->setExtension( 'jpg' );
+				break;
 
-        return true;
-    }
+			case IMAGETYPE_PNG:
+				$this->setExtension( 'png' );
+				break;
+
+			default:
+				return false;
+		}
+
+		return true;
+	}
 }

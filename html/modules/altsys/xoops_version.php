@@ -1,4 +1,13 @@
 <?php
+/**
+ * Altsys library (UI-Components) for D3 modules
+ * @package    Altsys
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPSCube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ */
 
 if (! defined('XOOPS_TRUST_PATH')) {
     die('set XOOPS_TRUST_PATH into mainfile.php') ;

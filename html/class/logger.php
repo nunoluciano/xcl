@@ -1,24 +1,19 @@
 <?php
 /**
- * *
- *  * Collects information for a page request
- *  *
- *  * Singleton: There can be only one instance of this class and it must
- *  * be accessed through the {@link instance()} method!
- *  * records information about database queries, blocks, and execution time
- *  * and can display it as HTML
- *  *
- *  * @package    kernel
- *  * @subpackage core
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Collects information for a page request
+ * Singleton: There can be only one instance of this class and it must
+ * be accessed through the {@link instance()} method!
+ * records information about database queries, blocks, and execution time
+ * and can display it as HTML
+ * @package    kernel
+ * @subpackage core
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2000-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
+
 
 class XoopsLogger
 {

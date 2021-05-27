@@ -1,11 +1,13 @@
 <?php
 /**
- *
+ * Session
  * @package Legacy
- * @version $Id: session.php,v 1.5 2008/09/25 15:12:44 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @subpackage core
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author kilica
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

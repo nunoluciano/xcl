@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * connection to a mysql database
- *  *
- *  * @package    kernel
- *  * @subpackage database
- *  * @author     Original Author Kazumi Ono,
- *  * @author     Other Authors
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * connection to a mysql database
+ * @package    kernel
+ * @subpackage database
+ * @author     Original Author Kazumi Ono,
+ * @author     Other Authors
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -53,7 +48,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
             return false;
         }
 
-        if (XOOPS_DB_PCONNECT == 1 && version_compare(PHP_VERSION, '5.3.0', '>=')) {
+        if (XOOPS_DB_PCONNECT == 1 && PHP_VERSION_ID >= 50300 ) {
             mysqli_real_connect($this->conn, 'p:'.XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, null, null, null, MYSQLI_CLIENT_FOUND_ROWS);
         } else {
             mysqli_real_connect($this->conn, XOOPS_DB_HOST, XOOPS_DB_USER, XOOPS_DB_PASS, null, null, null, MYSQLI_CLIENT_FOUND_ROWS);
@@ -380,7 +375,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
                     break;
 
                 case 'd':
-                    $replaces[$i]=floatval(func_get_arg($i + 1));
+                    $replaces[$i]= (float)func_get_arg($i + 1);
                     break;
 
                 case 'b':

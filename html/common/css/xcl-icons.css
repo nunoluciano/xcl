@@ -7,6 +7,10 @@
 	URL : https://github.com/xoopscube/xcl/
 
 -------------------- -------------------- -------------------- -------------------- ICONS */
+/* SVGs fallback to the current text color */
+svg:not([fill]) {
+    fill: currentColor;
+}
 
 .svg-icon {
     width: 1em;

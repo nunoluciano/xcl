@@ -1,20 +1,14 @@
 <?php
 /**
- * *
- *  * Comment new
- *  *
- *  * form render buffer using Legacy_RenderSystem
- *  *
- *  * @package    Legacy
- *  * @subpackage comment
- *  * @author     Original Authors: Minahito
- *  * @author     Other Authors : Kazumi Ono (aka onokazu)
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.2 2008/03/14 16:28:37 minahito, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Comment new
+ * @package Legacy
+ * @subpackage comment
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito
+ * @author Kazumi Ono (aka onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 //

@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * Xoops Tree
- *  *
- *  * @package    class
- *  * @subpackage core
- *  * @author     Original Authors: Minahito
- *  * @author     Other Authors : Kazumi Ono (aka onokazu)
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.1 2007/05/15 02:34:21 minahito, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Xoops Tree
+ * @package    class
+ * @subpackage core
+ * @author     Minahito
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 class XoopsTree

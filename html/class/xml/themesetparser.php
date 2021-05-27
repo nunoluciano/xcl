@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * Theme set parser
- *  *
- *  * @package    kernel
- *  * @subpackage xml
- *  * @author     Original Author
- *  * @author     Other Authors
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Theme set parser
+ * @package    kernel
+ * @subpackage xml
+ * @author     Original Author
+ * @author     Other Authors
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

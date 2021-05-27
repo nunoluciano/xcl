@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * Display comments
- *  *
- *  * @package    kernel
- *  * @subpackage comment
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Display comments
+ * @package    kernel
+ * @subpackage comment
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 class XoopsCommentRenderer
@@ -411,11 +406,11 @@ class XoopsCommentRenderer
         if ('' !== $icon_image) {
             $icon_image = htmlspecialchars($icon_image);
             if ((false !== $this->_doIconCheck) && !file_exists(XOOPS_URL . '/images/subject/' . $icon_image)) {
-                return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.gif" alt="" />';
+                return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.svg" alt="" />';
             }
 
             return '<img src="'.XOOPS_URL.'/images/subject/'.$icon_image.'" alt="" />';
         }
-        return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.gif" alt="" />';
+        return '<img src="'.XOOPS_URL.'/images/icons/no_posticon.svg" alt="" />';
     }
 }

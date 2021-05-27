@@ -1,22 +1,22 @@
 <?php
 /**
- *
+ * Xoops Control panel header
  * @package Legacy
- * @version $Id: cp_header.php,v 1.3 2008/09/25 15:12:45 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @subpackage core
+ * @version 2.3.0
+ * @author kilica
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @brief  This file was entirely rewritten by the XOOPS Cube Legacy project for
+ * keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>
  */
-/*------------------------------------------------------------------------*
- |  This file was entirely rewritten by the XOOPS Cube Legacy project for |
- |   keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>        |
- *------------------------------------------------------------------------*/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     //
     // Strange code? This file is used from files in admin directories having no include "mainfile.php".
-    // Ummm..., such uses is deprecated in Legacy.
+    // Ummm..., this is deprecated  since XOOPS Cube Legacy.
     //
+
     /*
      * If you use open_basedir in php.ini and use file_exists for file outside open_basedir path,
      * you will not be warned at log and file_exists returns false even if file really exists.
@@ -49,7 +49,3 @@ $strategy =new Legacy_AdminControllerStrategy($root->mController);
 $root->mController->setStrategy($strategy);
 $root->mController->setupModuleContext();
 $root->mController->_mStrategy->setupModuleLanguage();    //< Umm...
-
-//
-// TODO
-//

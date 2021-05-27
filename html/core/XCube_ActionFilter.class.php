@@ -1,86 +1,78 @@
 <?php
 /**
- *
+ * XCube_ActionFilter.class.php
+ * This class is an abstract class.
  * @package XCube
- * @version $Id: XCube_ActionFilter.class.php,v 1.5 2008/10/12 04:30:27 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
- */
-
-/**
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito, 2008/10/12 04:30:27
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @public
- * @brief [Abstract] Used for initialization, post-processing and others by the controller.
+ * @brief [Abstract] Used for initialization, post-processing and other purposes by the controller.
  *
  *    This class is chained and called by the initialization procedure of the
- *    controller class. Developers or users can use the subclass of this class for
- *    dynamic customizing.
+ *    controller class. Developers or users can use the subclass to customize dynamically.
  *
- *    Users usually don't need to add on filters because each controllers should
- *    have initialization code enough. This class is used to the case of special
- *    customizing by modules and users.
+ *    Users usually do not need to add filters because each controller
+ *    have sufficient initialization code.
+ *    This class is used in case of special customization of modules and users.
  *
- *    Each controllers should not use this class to their initialization procedure.
+ *    A controller must not use this class in its initialization procedure.
  *
- *    Two member functions are called by the controller at the special timing.
- *    These timing is different in each controllers.
- *
- * \par Abstract Class
- *    This class is an abstract class.
+ *    Two member functions are called by the controller at the proper time.
+ *    The timing is different for each controller.
  */
-class XCube_ActionFilter
-{
-    /**
-     * @protected
-     * @brief [READ ONLY] XCube_Controller
-     */
-    public $mController;
 
-    /**
-     * @protected
-     * @brief [READ ONLY] XCube_Root
-     */
-    public $mRoot;
+class XCube_ActionFilter {
+	/**
+	 * @protected
+	 * @brief [READ ONLY] XCube_Controller
+	 */
+	public $mController;
 
-    /**
-     * @public
-     * @brief Constructor.
-     * @param $controller XCube_Controller
-     */
-    public function __construct(&$controller)
-    {
-        $this->mController =& $controller;
-        $this->mRoot =& $this->mController->mRoot;
-    }
+	/**
+	 * @protected
+	 * @brief [READ ONLY] XCube_Root
+	 */
+	public $mRoot;
 
-    /**
-     * @public
-     * @brief [Abstract] Executes the logic, when the controller executes preFilter().
-     * @remarks
-     *     This method is called earliest in the controller's initialization process, so
-     *     some of filters may not be called if these filters are registered later.
-     */
-    public function preFilter()
-    {
-    }
+	/**
+	 * @public
+	 * @brief Constructor.
+	 *
+	 * @param $controller XCube_Controller
+	 */
+	public function __construct( &$controller ) {
+		$this->mController =& $controller;
+		$this->mRoot       =& $this->mController->mRoot;
+	}
 
-    /**
-     * @public
-     * @brief [Abstract] Executes the logic, when the controller executes preBlockFilter().
-     * @remarks
-     *      Each controller has different timing when it calls preBlockFilter().
-     */
-    public function preBlockFilter()
-    {
-    }
+	/**
+	 * @public
+	 * @brief [Abstract] Executes the logic, when the controller executes preFilter().
+	 * @remarks
+	 *     This method is called at the very beginning of the controller initialization process,
+	 *     some of the filters may not be called if these filters are registered later.
+	 */
+	public function preFilter() {
+	}
 
-    /**
-     * @public
-     * @brief [Abstract] Executes the logic, when the controller executes postFilter().
-     * @remarks
-     *      Each controller has different timing when it calls postFilter().
-     */
-    public function postFilter()
-    {
-    }
+	/**
+	 * @public
+	 * @brief [Abstract] Executes the logic, when the controller executes preBlockFilter().
+	 * @remarks
+	 *      Each controller has different timing when it calls preBlockFilter().
+	 */
+	public function preBlockFilter() {
+	}
+
+	/**
+	 * @public
+	 * @brief [Abstract] Executes the logic, when the controller executes postFilter().
+	 * @remarks
+	 *      Each controller has different timing when it calls postFilter().
+	 */
+	public function postFilter() {
+	}
 }

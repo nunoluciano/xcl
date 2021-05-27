@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * Smarty Template engine
- *  *
- *  * @package    kernel
- *  * @subpackage core
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Smarty Template engine
+ * @package    kernel
+ * @subpackage core
+ * @author     Kazumi Ono (aka onokazu)
+ * @author     Minahito
+ * @copyright  2000-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 if (!defined('SMARTY_DIR')) {
@@ -316,8 +311,7 @@ function xoops_template_create($resource_type, $resource_name, &$template_source
             return true;
         }
     }
-//    else {
-//    }
+
     return false;
 }
 

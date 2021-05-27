@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * send email through PHP's "mail()" function
- *  *
- *  * @package    class
- *  * @subpackage mail
- *  * @author     Original Author: Jochen Buennagel
- *  * @author     Other Authors : Minahito
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * send email through PHP's "mail()" function
+ * @package    class
+ * @subpackage mail
+ * @author     Jochen Buennagel
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -34,7 +29,6 @@ require_once(XOOPS_ROOT_PATH . '/class/mail/phpmailer/class.phpmailer.php');
  * to suit your setting. Later this will be possible through the admin panel.
  *
  * @todo    Make a page in the admin panel for setting mailer preferences.
- *
  */
 class xoopsmultimailer extends PHPMailer
 {

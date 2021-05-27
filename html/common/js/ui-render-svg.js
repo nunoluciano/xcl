@@ -11,7 +11,7 @@
      * @param   {Id} imgID
      * @param   {ClasseName} img.class='svg'
      * @param   {imgURL} img src='ui-icon-*name*.svg'
-     * @returns {SVG} svg class="svg-ui-icon"
+     * @returns {SVG} class="svg-ui-icon"
      *
      * !TODO
      * Output svg with custom class="svg-ui-icon"
@@ -38,13 +38,13 @@
             }
             // Add classes to the new inline SVG
             if (typeof imgClass !== 'undefined') {
-                $svg = $svg.attr('class', `${imgClass} -ui-icon`);
+                $svg = $svg.attr('class', `${imgClass}-ui-icon`);
             }
 
             // Remove XML tags as per http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
 
-            // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+            // Check if the viewport is set, if the viewport is not set the SVG won't scale.
             if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
                 $svg.attr(`viewBox 0 0  ${$svg.attr('height')} ${$svg.attr('width')}`);
             }

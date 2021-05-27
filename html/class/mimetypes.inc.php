@@ -1,21 +1,15 @@
 <?php
 /**
- * *
- *  * Extension to mimetype lookup table
- *  *
- *  * This file is provided as an helper for objects who need to perform filename to mimetype translations.
- *  * Common types have been provided, but feel free to add your own one if you need it.
- *  *
- *  * @package    kernel
- *  * @subpackage core
- *  * @author     Original Authors: Skalpa Keo
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Extension to mimetype lookup table
+ * This file is provided as an helper for objects who need to perform filename to mimetype translations.
+ * Common types have been provided, but feel free to add your own one if you need it.
+ * @package    kernel
+ * @subpackage core
+ * @author     Minahito
+ * @author     Skalpa Keo
+ * @copyright  2000-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 return [

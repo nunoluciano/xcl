@@ -1,11 +1,12 @@
 <?php
 /**
- *
+ * Cube core init
  * @package Legacy
- * @version $Id: cubecore_init.php,v 1.3 2008/09/25 15:12:45 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * @subpackage core
+ * @version 2.3.0
+ * @author kilica
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 if (!defined('XOOPS_MAINFILE_INCLUDED')) {
@@ -16,7 +17,6 @@ if (!defined('XOOPS_TRUST_PATH')) {
     exit();
 }
 
-
 /**
  * This constant validates this system is XOOPS Cube, for module developers.
  */
@@ -26,7 +26,7 @@ define('XOOPS_CUBE_LEGACY', true);
  * This constant validates this system is XOOPS Cube, for module developers.
  * ex) if(defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>='))
  */
-define('LEGACY_BASE_VERSION', '2.3.0.0'); // ! XOOPS Cube version
+define('LEGACY_BASE_VERSION', '2.3.1.1'); // ! XOOPS Cube version
 
 require_once XOOPS_ROOT_PATH . '/core/XCube_Root.class.php';
 require_once XOOPS_ROOT_PATH . '/core/XCube_Controller.class.php';
@@ -34,7 +34,7 @@ require_once XOOPS_ROOT_PATH . '/core/libs/IniHandler.class.php';
 
 //
 // TODO We have to move the following lines to an appropriate place.
-//		(We may not need the following constants)
+//		(We may not need the following constants here)
 //
 
 define('XCUBE_SITE_SETTING_FILE', XOOPS_TRUST_PATH . '/settings/site_default.ini');

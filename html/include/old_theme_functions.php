@@ -1,18 +1,14 @@
 <?php
 /**
- * *
- *  * Old theme functions
- *  *
- *  * @package    Legacy
- *  * @subpackage core
- *  * @author     Original Authors: Minahito
- *  * @author     Other Authors : Kazumi Ono (aka onokazu)
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.1 2007/05/15 02:34:18 minahito, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * @TODO remove old theme functions XCL 2.3.0
+ * @package Legacy
+ * @subpackage core
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito
+ * @author Kazumi Ono (aka onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 // These are needed when viewing old modules (that don't use Smarty template files) when a theme that use Smarty templates are selected.

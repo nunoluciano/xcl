@@ -1,19 +1,15 @@
 <?php
 /**
- * *
- *  * Error handler class
- *  *
- *  * @package    kernel
- *  * @subpackage core
- *  * @author     Original Authors: Michael van Dam
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Error handler class
+ * @package    kernel
+ * @subpackage core
+ * @author     Minahito
+ * @author     Michael van Dam
+ * @copyright  2000-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
+
 
 class XoopsErrorHandler
 {

@@ -3,10 +3,6 @@ function xoopsGetElementById(id){
         return (document.getElementById(id));
     } else if (document.all) {
         return (document.all[id]);
-    } else {
-        if ((navigator.appname.indexOf("Netscape") !== -1) && parseInt(navigator.appversion === 4)) {
-            return (document.layers[id]);
-        }
     }
 }
 
@@ -53,16 +49,43 @@ function xoopsPrintag(tagid) {
 }
 
 
-function openWithSelfMain(url, name, width, height, returnwindow) {
-    var options = "width=" + width + ",height=" + height + ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no";
-    new_window = window.open(url, name, options);
-    window.self.name = "main";
-    new_window.document.clear();
-    new_window.focus();
-    if (returnwindow != null) {
-        return new_window;
+/*
+    Usage Example:
+    openWithSelfMain('https://github.com/xoopscube','XOOPS Cube','900','500');
+    Location = null is useless because modern browsers now prevent, by default, hiding the address bar for security reasons (phishing)
+*/
+function openWithSelfMain(url, title, w, h) {
+    // Fixes dual-screen position                         Most browsers      Firefox
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+    width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+    var newWindow = window.open(url, title,
+        'scrollbars=yes, ' +
+        'width=' + w + ', ' +
+        'height=' + h + ', ' +
+        'top=' + top + ', ' +
+        'left=' + left + ',' +
+        'titlebar=no,toolbar=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=no');
+
+    // Puts focus on the newWindow
+    if (window.focus) {
+        newWindow.focus();
     }
 }
+
+
+
+
+
+
+
+
+
 
 function setElementColor(id, color){
     xoopsGetElementById(id).style.color = "#" + color;
@@ -426,3 +449,109 @@ function xoopsValidate(subjectId, textareaId, submitId, plzCompletePhrase, msgTo
         return true;
     }
 }
+
+/**
+ * Load CSS and JS from modules templates. Usage :
+    var ScriptLoader = new xScriptLoader([
+        XOOPS_URL+"/common/js/simplemodal/css/basic.css",
+        XOOPS_URL+"/common/js/simplemodal/js/jquery.simplemodal.js",
+        XOOPS_URL+"/common/js/simplemodal/js/basic.js",
+    ]);
+     ScriptLoader.loadFiles();
+ * @type {xScriptLoader}
+ */
+
+var xScriptLoader = (function () {
+    function xScriptLoader(files)
+    {
+        var _this = this;
+        this.log = function (t)
+        {
+            console.log("ScriptLoader: " + t);
+        };
+        this.withNoCache = function (filename)
+        {
+            if (filename.indexOf("?") === -1)
+                filename += "?no_cache=" + new Date().getTime();
+            else
+                filename += "&no_cache=" + new Date().getTime();
+            return filename;
+        };
+        this.loadStyle = function (filename)
+        {
+            // HTMLLinkElement
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = _this.withNoCache(filename);
+            _this.log('Loading style ' + filename);
+            link.onload = function ()
+            {
+                _this.log('Loaded style "' + filename + '".');
+            };
+            link.onerror = function ()
+            {
+                _this.log('Error loading style "' + filename + '".');
+            };
+            _this.m_head.appendChild(link);
+        };
+        this.loadScript = function (i)
+        {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = _this.withNoCache(_this.m_js_files[i]);
+            var loadNextScript = function ()
+            {
+                if (i + 1 < _this.m_js_files.length)
+                {
+                    _this.loadScript(i + 1);
+                }
+            };
+            script.onload = function ()
+            {
+                _this.log('Loaded script "' + _this.m_js_files[i] + '".');
+                loadNextScript();
+            };
+            script.onerror = function ()
+            {
+                _this.log('Error loading script "' + _this.m_js_files[i] + '".');
+                loadNextScript();
+            };
+            _this.log('Loading script "' + _this.m_js_files[i] + '".');
+            _this.m_head.appendChild(script);
+        };
+        this.loadFiles = function ()
+        {
+            // this.log(this.m_css_files);
+            // this.log(this.m_js_files);
+            for (var i = 0; i < _this.m_css_files.length; ++i)
+                _this.loadStyle(_this.m_css_files[i]);
+            _this.loadScript(0);
+        };
+        this.m_js_files = [];
+        this.m_css_files = [];
+        this.m_head = document.getElementsByTagName("head")[0];
+        // this.m_head = document.head; // IE9+ only
+        function endsWith(str, suffix)
+        {
+            if (str === null || suffix === null)
+                return false;
+            return str.indexOf(suffix, str.length - suffix.length) !== -1;
+        }
+        for (var i = 0; i < files.length; ++i)
+        {
+            if (endsWith(files[i], ".css"))
+            {
+                this.m_css_files.push(files[i]);
+            }
+            else if (endsWith(files[i], ".js"))
+            {
+                this.m_js_files.push(files[i]);
+            }
+            else
+                this.log('Error unknown filetype "' + files[i] + '".');
+        }
+    }
+    return xScriptLoader;
+})
+();

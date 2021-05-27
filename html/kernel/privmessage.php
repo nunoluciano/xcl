@@ -1,45 +1,24 @@
 <?php
-// $Id: privmessage.php,v 1.1 2007/05/15 02:34:38 minahito Exp $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://xoopscube.jp/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
+/**
+ * private message class object
+ * and handler class
+ * @package    kernel
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author     Minahito
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  Copyright 2000-2021 XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 /**
- * {description}
- *
  * @package		kernel
- *
  * @author		Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 The XOOPS Project (https://www.xoops.org)
- *
- * @version		$Revision: 1.1 $ - $Date: 2007/05/15 02:34:38 $
  */
 class XoopsPrivmessage extends XoopsObject
 {
@@ -52,7 +31,7 @@ class XoopsPrivmessage extends XoopsObject
         parent::__construct();
         $this->initVar('msg_id', XOBJ_DTYPE_INT, null, false);
         $this->initVar('msg_image', XOBJ_DTYPE_OTHER, 'icon1.gif', false, 100);
-        $this->initVar('subject', XOBJ_DTYPE_TXTBOX, null, true, 255);
+        $this->initVar('subject', XOBJ_DTYPE_TXTBOX, null, true, 191);
         $this->initVar('from_userid', XOBJ_DTYPE_INT, null, true);
         $this->initVar('to_userid', XOBJ_DTYPE_INT, null, true);
         $this->initVar('msg_time', XOBJ_DTYPE_OTHER, time(), false);
@@ -78,17 +57,11 @@ class XoopsPrivmessage extends XoopsObject
 }
 
 /**
- * XOOPS private message handler class.
- * 
  * This class is responsible for providing data access mechanisms to the data source
  * of XOOPS private message class objects.
- *
  * @package		kernel
- *
  * @author		Kazumi Ono	<onokazu@xoops.org>
  * @copyright	copyright (c) 2000-2003 The XOOPS Project (https://www.xoops.org)
- *
- * @version		$Revision: 1.1 $ - $Date: 2007/05/15 02:34:38 $
  */
 class XoopsPrivmessageHandler extends XoopsObjectHandler
 {

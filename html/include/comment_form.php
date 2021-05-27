@@ -1,18 +1,14 @@
 <?php
 /**
- * *
- *  * Comment form
- *  *
- *  * @package    Legacy
- *  * @subpackage comment
- *  * @author     Original Authors: Minahito
- *  * @author     Other Authors : Kazumi Ono (aka onokazu)
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    v 1.1 2007/05/15 02:34:18 minahito, Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Comment form
+ * @package Legacy
+ * @subpackage comment
+ * @version 2.3.0
+ * @author Nuno Luciano (aka Gigamaster), 2020 XCL PHP7
+ * @author Minahito
+ * @author Kazumi Ono (aka onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project  <https://github.com/xoopscube/>
+ * @license   Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH') || !is_object($xoopsModule)) {
@@ -45,7 +41,7 @@ $cform = new XoopsThemeForm(_CM_POSTCOMMENT, 'commentform', 'comment_post.php');
     $cform->addElement(new XoopsFormLabel(_CM_COMRULES, $rule_text));
 }
 
-$cform->addElement(new XoopsFormText(_CM_TITLE, 'com_title', 50, 255, $com_title), true);
+$cform->addElement(new XoopsFormText(_CM_TITLE, 'com_title', 50, 191, $com_title), true);
 $icons_radio = new XoopsFormRadio(_MESSAGEICON, 'com_icon', $com_icon);
 $subject_icons = XoopsLists::getSubjectsList();
 

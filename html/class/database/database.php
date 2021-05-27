@@ -1,18 +1,13 @@
 <?php
 /**
- * *
- *  * Defines abstract database wrapper class
- *  *
- *  * @package    kernel
- *  * @subpackage database
- *  * @author     Original Author : Kazumi Ono
- *  * @author     Other Authors : Minahito
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Defines abstract database wrapper class
+ * @package    kernel
+ * @subpackage database
+ * @author     Original Author : Kazumi Ono
+ * @author     Minahito
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @version    2.3.0
  */
 
 /**
@@ -90,7 +85,7 @@ if (!defined('XOOPS_C_DATABASE_INCLUDED')) {
 
 /**
  * Only for backward compatibility
- *
+ * Use instead  eg: $db = &XoopsDatabaseFactory::getDatabaseConnection();
  * @deprecated
  */
 class Database
