@@ -7,6 +7,7 @@
 ## /////////////////////// — XCL : : Web Application Platform
 
 
+⚡ 🔨 🎨 [WIP] LOCAL-FIRST / Refactoring UI-X 2.3.1
 
 
 ##### :computer: The Minimum Requirements

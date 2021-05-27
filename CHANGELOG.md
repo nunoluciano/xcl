@@ -5,107 +5,110 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
+[lint version] 2021-05-27
+
+⚡ 🔨 🎨 [WIP] LOCAL-FIRST / Refactoring UI-X 2.3.1
 
 [lint version] 2021-03-27
 
-### Added  
+### Added
 
-✅ Default templates  
-✅ Inline svg  
-✅ SVG logo  
+✅ Default templates
+✅ Inline svg
+✅ SVG logo
 
-### Update  
+### Update
 
-✅ class, common, core    
-✅ install wizard, modules, themes    
-✅ default themes (templates)   
-✅ language 🚧 fr utf-8 #238   
-✅ d3 modules (forum, pico, protector)  
-✅ xelfinder  
-✅ xupdate   
+✅ class, common, core
+✅ install wizard, modules, themes
+✅ default themes (templates)
+✅ language 🚧 fr utf-8 #238
+✅ d3 modules (forum, pico, protector)
+✅ xelfinder
+✅ xupdate
 
-###  Fixed  
+###  Fixed
 
-✅ Deprecated DB   
-✅ Default templates       
-✅ Install Wizard SQL  
-✅ Notice and Warning D3 modules 
+✅ Deprecated DB
+✅ Default templates
+✅ Install Wizard SQL
+✅ Notice and Warning D3 modules
 
 
 [unreleased] 2021-03-03
 
 ### Added
 
-✅ Component front page   
+✅ Component front page
 
-### Changed  
+### Changed
 
-✅ Default Theme Neumorphism (WIP)  
-✅ Theme default front page     
-✅ Templates of modules    
+✅ Default Theme Neumorphism (WIP)
+✅ Theme default front page
+✅ Templates of modules
 
 [unreleased] 2021-02-21
 
 ### Added
 
-✅ CKEditor Setting Editor UI Color   
-✅ Default Theme Neumorphism (WIP) #232  
-✅ Theme built with XCLayout Helper #229  
-✅ Templates breadcrumbs #220  
-✅ Templates (D3Forum, Pico) #218  
-✅ Templates Blocks (Users, Online, Themes)  
-✅ Template Refirect Functions [50 legacy] #223  
-✅ SVG inline icons  
-✅ Smarty constants to Pico menu (En,Ja)  
-✅ Smarty breadcrumbs to D3 modules  
-✅ Render blocks admin to D3 modules  
-✅ Render preferences to D3 modules  
-✅ URL Rewriting - XCL Cool URI #234  
-   
+✅ CKEditor Setting Editor UI Color
+✅ Default Theme Neumorphism (WIP) #232
+✅ Theme built with XCLayout Helper #229
+✅ Templates breadcrumbs #220
+✅ Templates (D3Forum, Pico) #218
+✅ Templates Blocks (Users, Online, Themes)
+✅ Template Refirect Functions [50 legacy] #223
+✅ SVG inline icons
+✅ Smarty constants to Pico menu (En,Ja)
+✅ Smarty breadcrumbs to D3 modules
+✅ Render blocks admin to D3 modules
+✅ Render preferences to D3 modules
+✅ URL Rewriting - XCL Cool URI #234
+
 ### Changed
-   
-✅ Copyright 2021  
-✅ English constant (User)  
-✅ Form input number (max 100)  
-✅ Javascript popup centered  
-✅ Render Preferences of D3 modules  
-✅ SQL utf8mb4 varchar 255 to 191  
-✅ UI Avatar #217  
-✅ UI Backend breadcrumbs #220  
-✅ UI Frontend breadcrumbs #220  
-✅ XCL Default Theme Neumorphism  
-✅ XCLayout Helper Flexbox  
+
+✅ Copyright 2021
+✅ English constant (User)
+✅ Form input number (max 100)
+✅ Javascript popup centered
+✅ Render Preferences of D3 modules
+✅ SQL utf8mb4 varchar 255 to 191
+✅ UI Avatar #217
+✅ UI Backend breadcrumbs #220
+✅ UI Frontend breadcrumbs #220
+✅ XCL Default Theme Neumorphism
+✅ XCLayout Helper Flexbox
 
 ###  Fixed
 
-✅ Altsys fix stric check (blocks permissions)  
-✅ Admin Theme typos  
-✅ Admin SVG icons (bold, linear)  
-✅ CSS excludes ckeditor (breaks layout with raw javascript)  
-✅ Debugger nav (Graph)  
-✅ D3Forum category configs unserialize  
-✅ Fix d3forum_wysiwyg_body  
-✅ Help load with ajax (modal)  
-✅ Modules icons (SVG with custom dirname)  
-✅ Module filter (smarty single quote)  
-✅ Module list (form removed from component)  
-✅ Module Pico frontend overridable options  
-✅ Protector advisory protocol check  
-✅ Protector apache_get_version  
-✅ Protector breadcrumbs and nav #220  
-✅ User avatar (check if empty) #217  
-✅ SQL InnoDB utf8mb4 varchar 255 to 191  
-✅ Switch 'diff from file'  
-✅ Templates (inc) #233  
-✅ XCLayout Helper fix margin negative  
-✅ XCLayout Helper fix spacing   
+✅ Altsys fix stric check (blocks permissions)
+✅ Admin Theme typos
+✅ Admin SVG icons (bold, linear)
+✅ CSS excludes ckeditor (breaks layout with raw javascript)
+✅ Debugger nav (Graph)
+✅ D3Forum category configs unserialize
+✅ Fix d3forum_wysiwyg_body
+✅ Help load with ajax (modal)
+✅ Modules icons (SVG with custom dirname)
+✅ Module filter (smarty single quote)
+✅ Module list (form removed from component)
+✅ Module Pico frontend overridable options
+✅ Protector advisory protocol check
+✅ Protector apache_get_version
+✅ Protector breadcrumbs and nav #220
+✅ User avatar (check if empty) #217
+✅ SQL InnoDB utf8mb4 varchar 255 to 191
+✅ Switch 'diff from file'
+✅ Templates (inc) #233
+✅ XCLayout Helper fix margin negative
+✅ XCLayout Helper fix spacing
 
 ### Removed
 
-✅ Protector deprecated mymenu inline   
-✅ Extra tags from default templates   
-✅ CSS classes of Bootstrap 4   
-✅ Xoops.css   
+✅ Protector deprecated mymenu inline
+✅ Extra tags from default templates
+✅ CSS classes of Bootstrap 4
+✅ Xoops.css
 
 ### Update
 
@@ -338,18 +341,18 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - D3Forum refactor code
 - D3Forum english catalog
-- [WIP] D3Forum templates    
-✅ custom layout  
-✅ top  breadcrumbs  
-✅ topics and posts table  
-✅ post within a card  
-✅ card header, body, footer  
-✅ card footer with child nav (flex wrap)  
-✅ pagination  
-✅ external comments  
-✅ inline SVG icons  
-✅ modify post forms  
-✅ advanced research  
+- [WIP] D3Forum templates
+✅ custom layout
+✅ top  breadcrumbs
+✅ topics and posts table
+✅ post within a card
+✅ card header, body, footer
+✅ card footer with child nav (flex wrap)
+✅ pagination
+✅ external comments
+✅ inline SVG icons
+✅ modify post forms
+✅ advanced research
 
 ###  Fixed
 
