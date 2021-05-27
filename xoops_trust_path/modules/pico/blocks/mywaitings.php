@@ -1,82 +1,99 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
-function b_pico_mywaitings_show($options)
-{
-    global $xoopsUser;
+function b_pico_mywaitings_show( $options ) {
+	global $xoopsUser;
 
-    $mydirname = empty($options[0]) ? 'pico' : $options[0];
-    $this_template = empty($options[1]) ? 'db:' . $mydirname . '_block_mywaitings.html' : trim($options[1]);
+	$mydirname     = empty( $options[0] ) ? 'pico' : $options[0];
+	$this_template = empty( $options[1] ) ? 'db:' . $mydirname . '_block_mywaitings.html' : trim( $options[1] );
 
-    if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {
-        die('Invalid mydirname');
-    }
+	if ( preg_match( '/[^0-9a-zA-Z_-]/', $mydirname ) ) {
+		die( 'Invalid mydirname' );
+	}
 
-    $db = XoopsDatabaseFactory::getDatabaseConnection();
-    (method_exists('MyTextSanitizer', 'sGetInstance') and $myts = &MyTextSanitizer::sGetInstance()) || $myts = &(new MyTextSanitizer)->getInstance();
-    $uid = is_object(@$xoopsUser) ? $xoopsUser->getVar('uid') : 0;
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-    $module_handler = &xoops_gethandler('module');
-    $module = &$module_handler->getByDirname($mydirname);
-    $config_handler = &xoops_gethandler('config');
-    $configs = $config_handler->getConfigList($module->mid());
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &( new MyTextSanitizer )->getInstance();
 
-    $sql = 'SELECT o.content_id,o.subject_waiting,o.modified_time FROM ' . $db->prefix($mydirname . '_contents') . " o WHERE ((o.poster_uid=$uid AND !visible) OR (o.modifier_uid=$uid AND visible)) AND approval=0 ORDER BY o.modified_time DESC";
-    if (!$result = $db->query($sql)) {
-        echo $db->logger->dumpQueries();
-        exit;
-    }
+	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar( 'uid' ) : 0;
 
-    if ($db->getRowsNum($result) <= 0) {
-        return [];
-    }
+	$module_handler = &xoops_gethandler( 'module' );
+	$module         = &$module_handler->getByDirname( $mydirname );
+	$config_handler = &xoops_gethandler( 'config' );
+	$configs        = $config_handler->getConfigList( $module->mid() );
 
-    $contents4assign = [];
-    while ($content_row = $db->fetchArray($result)) {
-        $contents4assign[] = [
-            'id' => $content_row['content_id'],
-            'subject_waiting_raw' => $content_row['subject_waiting'],
-            'modified_time' => $content_row['modified_time'],
-            'modified_time_formatted' => formatTimestamp($content_row['modified_time']),
-        ];
-    }
+	$sql = 'SELECT o.content_id,o.subject_waiting,o.modified_time FROM ' . $db->prefix( $mydirname . '_contents' ) . " o WHERE ((o.poster_uid=$uid AND !visible) OR (o.modifier_uid=$uid AND visible)) AND approval=0 ORDER BY o.modified_time DESC";
+	if ( ! $result = $db->query( $sql ) ) {
+		echo $db->logger->dumpQueries();
+		exit;
+	}
 
-    $constpref = '_MB_' . strtoupper($mydirname);
+	if ( $db->getRowsNum( $result ) <= 0 ) {
+		return [];
+	}
 
-    $block = [
-        'mydirname' => $mydirname,
-        'mod_url' => XOOPS_URL . '/modules/' . $mydirname,
-        'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
-        'mod_config' => $configs,
-        'contents' => $contents4assign,
-    ];
+	$contents4assign = [];
+	while ( $content_row = $db->fetchArray( $result ) ) {
+		$contents4assign[] = [
+			'id'                      => $content_row['content_id'],
+			'subject_waiting_raw'     => $content_row['subject_waiting'],
+			'modified_time'           => $content_row['modified_time'],
+			'modified_time_formatted' => formatTimestamp( $content_row['modified_time'] ),
+		];
+	}
 
-    if (empty($options['disable_renderer'])) {
-        require_once XOOPS_ROOT_PATH . '/class/template.php';
-        $tpl = new XoopsTpl();
-        $tpl->assign('block', $block);
-        $ret['content'] = $tpl->fetch($this_template);
-        return $ret;
-    }
+	// const pref
+	$constpref = '_MB_' . strtoupper( $mydirname );
 
-    return $block;
+	$block = [
+		'mydirname'    => $mydirname,
+		'mod_url'      => XOOPS_URL . '/modules/' . $mydirname,
+		'mod_imageurl' => XOOPS_URL . '/modules/' . $mydirname . '/' . $configs['images_dir'],
+		'mod_config'   => $configs,
+		'contents'     => $contents4assign,
+	];
+
+	if ( empty( $options['disable_renderer'] ) ) {
+
+		require_once XOOPS_ROOT_PATH . '/class/template.php';
+
+		$tpl = new XoopsTpl();
+
+		$tpl->assign( 'block', $block );
+		$ret['content'] = $tpl->fetch( $this_template );
+
+		return $ret;
+	}
+
+	return $block;
 }
 
-function b_pico_mywaitings_edit($options)
-{
-    $mydirname = empty($options[0]) ? 'pico' : $options[0];
-    $this_template = empty($options[1]) ? 'db:' . $mydirname . '_block_mywaitings.html' : trim($options[1]);
+function b_pico_mywaitings_edit( $options ) {
+	$mydirname = empty( $options[0] ) ? 'pico' : $options[0];
 
-    if (preg_match('/[^0-9a-zA-Z_-]/', $mydirname)) {
-        die('Invalid mydirname');
-    }
+	$this_template = empty( $options[1] ) ? 'db:' . $mydirname . '_block_mywaitings.html' : trim( $options[1] );
 
-    require_once XOOPS_ROOT_PATH . '/class/template.php';
-    $tpl = new XoopsTpl();
-    $tpl->assign(
-        [
-            'mydirname' => $mydirname,
-            'this_template' => $this_template,
-        ]
-    );
-    return $tpl->fetch('db:' . $mydirname . '_blockedit_mywaitings.html');
+	if ( preg_match( '/[^0-9a-zA-Z_-]/', $mydirname ) ) {
+		die( 'Invalid mydirname' );
+	}
+
+	require_once XOOPS_ROOT_PATH . '/class/template.php';
+	$tpl = new XoopsTpl();
+	$tpl->assign(
+		[
+			'mydirname'     => $mydirname,
+			'this_template' => $this_template,
+		]
+	);
+
+	return $tpl->fetch( 'db:' . $mydirname . '_blockedit_mywaitings.html' );
 }

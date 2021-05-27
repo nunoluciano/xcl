@@ -2,53 +2,37 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 
-<h4><{$smarty.const._LOGIN}></h4>
 
 
-<form action="<{$xoops_url}>/user.php" method="post">
+
+<form action="<{$xoops_url}>/user.php" method="post" class="card">
 <{xoops_input type=hidden name=op value=login}>
 <{xoops_input type=hidden name=xoops_redirect value=$redirect_page}>
 
-
-
-    <div class="form-group">
-        <label for="formGroupExampleInput"><{$smarty.const._USERNAME}></label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-        <{xoops_input type=text name=uname size=25 maxlength=25 value=$usercookie}>
-    </div>
-    <div class="form-group">
-        <label for="formGroupExampleInput2"><{$smarty.const._PASSWORD}></label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-        <{xoops_input type=password name=pass size=30 maxlength=32}>
+    <div class="card-header">
+        <h3><{$smarty.const._LOGIN}></h3>
     </div>
 
-    <input type="submit" value="<{$smarty.const._LOGIN}>" />
+        <div class=" card-body">
 
-    <hr>
+            <div class="form-group">
+                <label for="uname"><{$smarty.const._USERNAME}></label>
+            
+                <{xoops_input type=text class="form-control" name=uname size=25 maxlength=25 value=$usercookie}>
+            </div>
+            <div class="form-group">
+                <label for="pass"><{$smarty.const._PASSWORD}></label>
+                <{xoops_input type=password class="form-control" name=pass size=30 maxlength=32}>
+            </div>
 
-<table class="outer">
+            <input type="submit" value="<{$smarty.const._LOGIN}>" />
 
-  <tr>
-    <td class="head"><{$smarty.const._USERNAME}></td>
-    <td class="<{cycle values="odd,even"}>">
-      <{xoops_input type=text name=uname size=25 maxlength=25 value=$usercookie}>
-    </td>
-  </tr>
-  <tr>
-    <td class="head"><{$smarty.const._PASSWORD}></td>
-    <td class="<{cycle values="odd,even"}>">
-     <{xoops_input type=password name=pass size=30 maxlength=32}>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="foot" style="text-align:center;">
-      <input type="submit" value="<{$smarty.const._LOGIN}>" />
-    </td>
-  </tr>
-</table>
+            <hr>
+
+        <{if $allowRegister}>
+            <div class="card-footer"><a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a></div>
+        <{/if}>
+
+        </div>
+
 </form>
-
-<{if $allowRegister}>
-  <div style="text-align:center;"><a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a></div>
-<{/if}>
-

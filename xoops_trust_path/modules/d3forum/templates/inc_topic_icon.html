@@ -1,0 +1,11 @@
+<!-- Smarty assign images to forum topic -->
+<{if $topic.sticky}>
+<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_sticky`$topic.bit_new`.gif"}>
+<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
+<{elseif $topic.invisible}>
+<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_invisible.gif"}>
+<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
+<{else}>
+<{assign var="topic_icon_src" value="`$mod_imageurl`/topic_`$topic.bit_new``$topic.bit_hot`.gif"}>
+<{assign var="topic_icon_alt" value=""}>
+<{/if}>

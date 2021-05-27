@@ -46,6 +46,7 @@
 		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16"></a>
 	</p>
 </div>
+
 <{if $category.desc}><p class="d3f_info"><{$category.desc}></p><{/if}>
 
 <{if $category.subcategories}>
@@ -53,9 +54,16 @@
 <ul class="d3f_subcategories">
 <{foreach item="subcategory" from=$category.subcategories}>
 	<li>
-		<a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>"><img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.gif" alt="<{$subcategory.title}>" width="16" height="16"> <{$subcategory.title}></a> (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>, <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)
-		<{if $xoops_isadmin}><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>"><img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" width="16" height="16"></a><{/if}>
-		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1"><img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16"></a>
+		<a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>">
+            <img src="<{$mod_imageurl}>/category_<{$subcategory.bit_new}>.gif" alt="<{$subcategory.title}>" width="16" height="16"> <{$subcategory.title}></a>
+        (<{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <{$subcategory.topics_count_in_tree}>,
+        <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <{$subcategory.posts_count_in_tree}>)
+		<{if $xoops_isadmin}>
+        <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>">
+            <img src="<{$mod_imageurl}>/icon_pencil22.gif" alt="<{$smarty.const._EDIT}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>" width="16" height="16"></a>
+        <{/if}>
+		<a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1">
+            <img src="<{$mod_imageurl}>/icon_rss.gif" alt="RSS" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>" width="16" height="16"></a>
 	</li>
 <{/foreach}>
 </ul>

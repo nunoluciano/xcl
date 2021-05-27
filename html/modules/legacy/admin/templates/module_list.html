@@ -1,8 +1,11 @@
 <div class="adminnavi" aria-label="breadcrumb">
-  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+  &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
 </div>
 
+
+<{*  Assign module help section#id to display with jquery ajax *}>
 <{assign var="adminHelp" value="$legacy_module article#help-intro"}>
 <{include file="./components/admin-help.html" }>
 
@@ -36,7 +39,10 @@
 	</div>
 	<{/if}>
 
-<{*  display module filer *}>
+<{*  display module filter *}>
+<form method="post" action="" role="search">
+    <{xoops_token form=$actionForm}>
+
 <div class="module-filter" style="display: none">
 <{include file="./components/module-filter.html" }>
 </div>

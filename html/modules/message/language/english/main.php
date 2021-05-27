@@ -57,9 +57,9 @@ define('_MD_MESSAGE_SETTINGS_MSG3', 'change settings');
 define('_MD_MESSAGE_SETTINGS_MSG4', 'Fail updating !');
 define('_MD_MESSAGE_SETTINGS_MSG5', 'You cannot use private message. Please modify settings.');
 define('_MD_MESSAGE_SETTINGS_MSG6', 'The selected user cannot receive the message.');
-define('_MD_MESSAGE_SETTINGS_MSG7', 'The message is displayed in mail.');
-define('_MD_MESSAGE_SETTINGS_MSG8', 'Number of messages displayed per page');
-define('_MD_MESSAGE_SETTINGS_MSG9', 'Use default module settings if value is 0.');
+define('_MD_MESSAGE_SETTINGS_MSG7', 'Display message in the mail.');
+define('_MD_MESSAGE_SETTINGS_MSG8', 'Number of messages per page');
+define('_MD_MESSAGE_SETTINGS_MSG9', 'Default settings (15) if value is 0.');
 define('_MD_MESSAGE_SETTINGS_MSG10', 'Blacklist');
 define('_MD_MESSAGE_SETTINGS_MSG11', 'Separate User IDs with a comma.');
 define('_MD_MESSAGE_SETTINGS_MSG12', '{0} was added to the blacklist.');
@@ -83,6 +83,6 @@ define('_MD_MESSAGE_SEARCH', 'Search');
 
 if (!defined('LEGACY_MAIL_LANG')) {
     define('LEGACY_MAIL_LANG', 'en');
-    define('LEGACY_MAIL_CHAR', 'iso-8859-1');
-    define('LEGACY_MAIL_ENCO', '7bit');
+    define('LEGACY_MAIL_CHAR', 'iso-8859-1'); // UTF-8
+    define('LEGACY_MAIL_ENCO', '7bit'); // 8bit
 }

@@ -1,21 +1,20 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: AbstractModuleInstallAction.class.php,v 1.3 2008/09/25 15:11:35 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * AbstractModuleInstallAction.class.php
+ * This is abstract class for 3 action classes that are Install, Update and Uninstall.
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
  if (!defined('XOOPS_ROOT_PATH')) {
      exit();
  }
 
-/**
- * This is abstract class for 3 action classes that are Install, Update and
- * Uninstall.
- */
 class Legacy_AbstractModuleInstallAction extends Legacy_Action
 {
     /**

@@ -1,20 +1,30 @@
 <{* ---------- Include Vendor Scripts *}>
+<script defer src="<{$xoops_imageurl}>js/plugins.js"></script>
 <script defer src="<{$xoops_url}>/common/js/ui-scroller.js"></script>
 <script defer src="<{$xoops_url}>/common/js/prismjs/prism.js"></script>
 <script>
-    var btn = $('#navtop');
-
+    var btop = $('#navtop');
     $(window).scroll(function() {
         if ($(window).scrollTop() > 300) {
-            btn.addClass('show');
+            btop.addClass('show');
         } else {
-            btn.removeClass('show');
+            btop.removeClass('show');
         }
     });
-
-    btn.on('click', function(e) {
+    btop.on('click', function(e) {
         e.preventDefault();
         $('html, body').animate({scrollTop:0}, '300');
     });
 
+    $("#arrow_container").click( function(event){
+        event.preventDefault();
+        if ( $(this).hasClass("isDown") ) {
+            $("#nav-admin").stop().animate({marginTop:"-100px"}, 200);
+        } else {
+            $("#nav-admin").stop().animate({marginTop:"0px"}, 200);
+        }
+        $(this).toggleClass("isDown");
+        return false;
+    });
 </script>
+

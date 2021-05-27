@@ -1,8 +1,14 @@
-/*
-$Id: config.js ver0.04 2011/5/21 11:56:00 domifara Exp $
-Copyright (c) 2003-2009, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or https://ckeditor.com/license
-*/
+/**
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     domifara, 2011/5/21
+ * @author     original: Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
 
 CKEDITOR.editorConfig = function (config) {
 	// Define changes to default configuration here. For example:

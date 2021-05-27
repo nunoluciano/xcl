@@ -5,6 +5,7 @@
  * Always evaluate to false
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -36,13 +37,11 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_False extends File_Archive_Predicate
-{
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        return false;
-    }
+class File_Archive_Predicate_False extends File_Archive_Predicate {
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		return false;
+	}
 }

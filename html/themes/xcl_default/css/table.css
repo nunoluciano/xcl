@@ -7,7 +7,7 @@
  *  * @package    XCL230
  *  * @author     Original Author <author@example.com>
  *  * @author     Other Authors <another@example.com>
- *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @copyright  2005-2021 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    Release: @package_230@
@@ -18,142 +18,7 @@
 
 /* -------------------- -------------------- -------------------- -------------------- Tabs */
 
-.ui-tab-wrap {
 
-	background-color: hsl(210, 15%, 28%); /* transition color */
-	border-radius: 7px;
-    box-shadow: 0 5px 5px hsl(210deg 10% 12% / 90%);
-	display: flex;
-	flex-wrap: wrap;
-	list-style: none;
-	margin: 1em 0;
-	max-width: 100%;
-	position: relative;
-	transition: 0.3s box-shadow ease;
-    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
-}
-
-.ui-tab {
-	display: none;
-}
-
-.ui-tab:checked:nth-of-type(1) ~ .ui-tab-content:nth-of-type(1),
-.ui-tab:checked:nth-of-type(2) ~ .ui-tab-content:nth-of-type(2),
-.ui-tab:checked:nth-of-type(3) ~ .ui-tab-content:nth-of-type(3),
-.ui-tab:checked:nth-of-type(4) ~ .ui-tab-content:nth-of-type(4),
-.ui-tab:checked:nth-of-type(5) ~ .ui-tab-content:nth-of-type(5),
-.ui-tab:checked:nth-of-type(6) ~ .ui-tab-content:nth-of-type(6),
-.ui-tab:checked:nth-of-type(7) ~ .ui-tab-content:nth-of-type(7) {
-	border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-	opacity: 1;
-	transition: 0.5s opacity ease-in, 0.8s transform ease;
-	position: relative;
-	top: 0;
-	z-index: 10;
-	transform: translateY(0px);
-    /* background-color: hsl(210, 15%, 18%); */
-    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
-
-}
-
-
-
-/* .ui-tab:last-of-type + label {
-    width: 40px;
-} */
-
-/* .ui-tab:checked + label, */
- a.nav-link.active{
-
-	background-color: hsl(210, 15%, 18%);
-	cursor: default;
-    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
-}
-
-.ui-tab:checked + label:hover {
-
-	box-shadow: 0 -1px 0 #face74 inset;
-	/* background-color:#face74; */
-
-}
-
-.ui-tab + label {
-	background-color: hsl(210, 15%, 28%);
-	border-radius: 7px 7px 0 0;
-	/* box-shadow: 0 -1px 0 transparent inset; */
-	color: #fff;
-	cursor: pointer;
-	display: block;
-	flex-grow: 3;
-	height: 40px;
-	text-align: center;
-	text-decoration: none;
-	transition: 0.3s background-color ease, 0.3s box-shadow ease;
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-    -ms-user-select: none;
-    box-shadow: inset 0px 5px 10px 0px hsl(215, 15%, 21%), 0px 5px 1px hsl(215, 17%, 10%)
-
-}
-.ui-tab:first-of-type:not(:last-of-type) + label {
-	border-radius: 7px 0 0 0;
-}
-
-.ui-tab:not(:first-of-type):not(:last-of-type) + label {
-	border-radius: 0;
-}
-
-.ui-tab:last-of-type:not(:first-of-type) + label {
-	border-radius: 0 7px 0 0;
-}
-
-/* .ui-tab-wrap .ui-tab .nav-link :last-of-type {
-    border-top-right-radius: 7px;
-
-} */
-.ui-tab:not(:first-of-type):not(:last-of-type) + label:active,
-.ui-tab:not(:first-of-type):not(:last-of-type) + label:focus,
-.ui-tab:not(:first-of-type):not(:last-of-type) + label:hover{
-    border-radius: 0;
-}
-.ui-tab:first-of-type:not(:last-of-type) + label:active,
-.ui-tab:first-of-type:not(:last-of-type) + label:focus,
-.ui-tab:first-of-type:not(:last-of-type) + label:hover {
-    border-radius: 7px 0 0 0;
-}
-.ui-tab:last-of-type + label:active,
-.ui-tab:last-of-type + label:focus,
-.ui-tab:last-of-type + label:hover{
-    border-radius: 0 7px 0 0;
-}
-.ui-tab + label:hover {
-	background-color: hsl(210, 15%, 12%);
-	box-shadow: 0 -1px 0 #face74 inset;
-}
-
-.ui-tab-wrap .nav-link {
-    display     : block;
-    height      : 100%;
-    width       : 100%;
-    line-height: 40px;
-}
-
-.ui-tab-content {
-
-	background-color: transparent;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	left: 0;
-	right: 0;
-	opacity: 0;
-	padding: 1em;
-	position: absolute;
-	transform: translateY(-3px);
-	width: 100%;
-	z-index: -1;
-
+table {
+    width: 100%;
 }

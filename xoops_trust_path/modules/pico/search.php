@@ -1,62 +1,67 @@
 <?php
+/**
+ * Pico content management D3 module for XCL
+ *
+ * @package XCL
+ * @subpackage Pico
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
 require_once __DIR__ . '/include/common_functions.php';
 require_once __DIR__ . '/class/PicoTextSanitizer.class.php';
 require_once __DIR__ . '/class/PicoModelContent.class.php';
 
-eval('
-
-function ' . $mydirname . '_global_search( $keywords , $andor , $limit , $offset , $uid )
-{
-	return pico_global_search_base( \'' . $mydirname . '\' , $keywords , $andor , $limit , $offset , $uid ) ;
-}
-
-'
-);
+eval( 'function ' . $mydirname . '_global_search( $keywords , $andor , $limit , $offset , $uid ) {	return pico_global_search_base( \'' . $mydirname . '\' , $keywords , $andor , $limit , $offset , $uid ) ;}' );
 
 
-if (!function_exists('pico_global_search_base')) {
+if ( ! function_exists( 'pico_global_search_base' ) ) {
 
-	function pico_global_search_base($mydirname, $keywords, $andor, $limit, $offset, $uid)
-	{
+	function pico_global_search_base( $mydirname, $keywords, $andor, $limit, $offset, $uid ) {
 		// get this module's config
-		$module_handler = &xoops_gethandler('module');
-		$module = &$module_handler->getByDirname($mydirname);
-		$config_handler = &xoops_gethandler('config');
-		$configs = $config_handler->getConfigList($module->mid());
+		$module_handler = xoops_gethandler( 'module' );
+
+		$module = $module_handler->getByDirname( $mydirname );
+
+		$config_handler = xoops_gethandler( 'config' );
+
+		$configs = $config_handler->getConfigList( $module->mid() );
 
 		// check xmobile or not
 		$is_xmobile = false;
-		if (function_exists('debug_backtrace') && ($backtrace = debug_backtrace()) && strpos($backtrace[2]['file'], '/xmobile/actions/') !== false) {
-            $is_xmobile = true;
-        }
+
+		if ( function_exists( 'debug_backtrace' ) && ( $backtrace = debug_backtrace() ) && strpos( $backtrace[2]['file'], '/xmobile/actions/' ) !== false ) {
+			$is_xmobile = true;
+		}
 
 		// XOOPS Search module
-		$showcontext = empty($_GET['showcontext']) ? 0 : 1;
+		$showcontext = empty( $_GET['showcontext'] ) ? 0 : 1;
 
 		// where by uid
-		if (!empty($uid)) {
-			if (empty($configs['search_by_uid'])) {
+		if ( ! empty( $uid ) ) {
+			if ( empty( $configs['search_by_uid'] ) ) {
 				return [];
 			}
-			$whr_uid = 'o.poster_uid=' . (int)$uid;
+			$whr_uid = 'o.poster_uid=' . (int) $uid;
 		} else {
 			$whr_uid = '1';
 		}
 
 		// where by keywords
-		if (is_array($keywords) && count($keywords) > 0) {
-			switch (strtolower($andor)) {
+		if ( is_array( $keywords ) && count( $keywords ) > 0 ) {
+			switch ( strtolower( $andor ) ) {
 				case 'and':
 					$whr_kw = '';
-					foreach ($keywords as $keyword) {
+					foreach ( $keywords as $keyword ) {
 						$whr_kw .= "(`for_search` LIKE '%$keyword%') AND ";
 					}
 					$whr_kw .= '1';
 					break;
 				case 'or':
 					$whr_kw = '';
-					foreach ($keywords as $keyword) {
+					foreach ( $keywords as $keyword ) {
 						$whr_kw .= "(`for_search` LIKE '%$keyword%') OR ";
 					}
 					$whr_kw .= '0';
@@ -69,30 +74,32 @@ if (!function_exists('pico_global_search_base')) {
 			$whr_kw = 1;
 		}
 
-		$content_handler = new PicoContentHandler($mydirname);
-		$contents4assign = $content_handler->getContents4assign("($whr_kw) AND ($whr_uid)", 'created_time DESC', $offset, $limit, false);
+		$content_handler = new PicoContentHandler( $mydirname );
+
+		$contents4assign = $content_handler->getContents4assign( "($whr_kw) AND ($whr_uid)", 'created_time DESC', $offset, $limit, false );
 
 		$ret = [];
-		foreach ($contents4assign as $content) {
+
+		foreach ( $contents4assign as $content ) {
 			// get context for module "search"
-			if (function_exists('search_make_context') && $showcontext && $content['can_readfull']) {
-				$full_context = strip_tags(@$content['body_cached']);
-				if (function_exists('easiestml')) {
-                    $full_context = easiestml($full_context);
-                }
-				$context = search_make_context($full_context, $keywords);
+			if ( function_exists( 'search_make_context' ) && $showcontext && $content['can_readfull'] ) {
+				$full_context = strip_tags( @$content['body_cached'] );
+				if ( function_exists( 'easiestml' ) ) {
+					$full_context = easiestml( $full_context );
+				}
+				$context = search_make_context( $full_context, $keywords );
 			} else {
 				$context = '';
 			}
 
 			$ret[] = [
-				'image' => '',
-				'link' => $is_xmobile ? 'index.php?cat_id=' . $content['cat_id'] . '&content_id=' . $content['content_id'] : pico_common_make_content_link4html($configs, $content),
-				'title' => $content['subject'],
-				'time' => $content['created_time'],
-				'uid' => empty($configs['search_by_uid']) ? 0 : $content['poster_uid'],
+				'image'   => '',
+				'link'    => $is_xmobile ? 'index.php?cat_id=' . $content['cat_id'] . '&content_id=' . $content['content_id'] : pico_common_make_content_link4html( $configs, $content ),
+				'title'   => $content['subject'],
+				'time'    => $content['created_time'],
+				'uid'     => empty( $configs['search_by_uid'] ) ? 0 : $content['poster_uid'],
 				'context' => $context,
-            ];
+			];
 		}
 
 		return $ret;

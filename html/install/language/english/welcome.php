@@ -1,7 +1,6 @@
 <?php
-// $Id: welcome.php,v 1.4 2008/09/22 13:52:22 kilica Exp $
 $content =
-    '<div class="ui-tab-wrap">
+	'<div class="ui-tab-wrap">
 	<input type="radio" id="ui-tab1" name="ui-tabGroup1" class="ui-tab" checked="">
 	<label for="ui-tab1">About</label>
 
@@ -24,7 +23,7 @@ $content =
     It is free to redistribute as long as you abide by the distribution terms of the New BSD License.
     </p>
     <p>
-    The XOOPS Cube Legacy modules are released under the terms of the <a href="https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a> and is free to use and modify.
+    The XOOPS Cube Legacy modules are released under the terms of the <a href="https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt" target="_blank" rel="external">GNU General Public License (GPL)</a> and is free to use and modify.
     It is free to redistribute as long as you abide by the distribution terms of the GPL.
     </p>
     </div>

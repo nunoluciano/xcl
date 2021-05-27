@@ -1,17 +1,15 @@
 <?php
 /**
- * *
- *  * Default settings for install
- *  *
- *  * @package    Legacy
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2005-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Default settings
+ * @package    Legacy
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Minahito
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @link       https://github.com/xoopscube/
  */
 
 if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
@@ -85,6 +83,10 @@ if ( !defined('XOOPS_MAINFILE_INCLUDED') ) {
     //    It is synonym of $xoopsOption['nocommon']=1;
     //    But $xoopsOption['nocommon'] is deprecated.
     //
+	// Composer /vendor/autoload
+	if (file_exists( XOOPS_TRUST_PATH.'/vendor/autoload.php')) {
+	require_once XOOPS_TRUST_PATH.'/vendor/autoload.php';
+	}
     if (!defined('_LEGACY_PREVENT_LOAD_CORE_') && XOOPS_ROOT_PATH != '') {
         include XOOPS_TRUST_PATH.'/modules/protector/include/precheck.inc.php' ;
         include_once XOOPS_ROOT_PATH.'/include/cubecore_init.php';

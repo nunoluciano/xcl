@@ -4,7 +4,7 @@
  * @package Legacy
  * @version $Id: Legacy_Controller.class.php,v 1.22 2008/11/14 09:45:23 mumincacao Exp $
  * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
@@ -16,7 +16,7 @@ if (!defined('XOOPS_TRUST_PATH')) {
     exit();
 }
 
-define('LEGACY_MODULE_VERSION', '2.3');
+define('LEGACY_MODULE_VERSION', '2.3.1');
 
 define('LEGACY_CONTROLLER_STATE_PUBLIC', 1);
 define('LEGACY_CONTROLLER_STATE_ADMIN', 2);
@@ -956,7 +956,7 @@ class Legacy_Controller extends XCube_Controller
         $isAdmin=false;
         if (is_object($this->mRoot->mContext->mXoopsUser)) {
             if (null !== $this->mRoot->mContext->mModule && $this->mRoot->mContext->mModule->isActive()) {
-                // @todo I depend on Legacy Module Controller.
+                // @todo depend on Legacy Module Controller.
                 $mid = $this->mRoot->mContext->mXoopsModule->getVar('mid');
             } else {
                 $mid = 1;    ///< @todo Do not use literal directly!
@@ -1222,8 +1222,10 @@ class Legacy_Controller extends XCube_Controller
                 [
                     'xoops_sitename'   =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
                     'sitename'         =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
-                    'langcode'         =>_LANGCODE, 'charset' =>_CHARSET,
-                    'time'             =>$time, 'url' =>$url,
+                    'langcode'         =>_LANGCODE,
+                    'charset'          =>_CHARSET,
+                    'time'             =>$time,
+                    'url'              =>$url,
                     'message'          =>$displayMessage,
                     'lang_ifnotreload' =>sprintf(_IFNOTRELOAD, $url)
                 ]

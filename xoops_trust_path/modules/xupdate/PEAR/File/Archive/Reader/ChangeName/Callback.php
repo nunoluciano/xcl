@@ -5,6 +5,7 @@
  * Add a directory to the public name of all the files of a reader
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -34,17 +35,15 @@ require_once "File/Archive/Reader/ChangeName.php";
 /**
  * Discard the directory structure in a reader
  */
-class File_Archive_Reader_ChangeName_Callback extends File_Archive_Reader_ChangeName
-{
-    public $function;
-    public function __construct($function, &$source)
-    {
-        parent::File_Archive_Reader_ChangeName($source);
-        $this->function = $function;
-    }
+class File_Archive_Reader_ChangeName_Callback extends File_Archive_Reader_ChangeName {
+	public $function;
 
-    public function modifyName($name)
-    {
-        return call_user_func($function, $name);
-    }
+	public function __construct( $function, &$source ) {
+		parent::File_Archive_Reader_ChangeName( $source );
+		$this->function = $function;
+	}
+
+	public function modifyName( $name ) {
+		return call_user_func( $function, $name );
+	}
 }

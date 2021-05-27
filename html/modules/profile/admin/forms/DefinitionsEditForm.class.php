@@ -57,9 +57,9 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
     
         $this->mFieldProperties['label'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['label']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['label']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_LABEL, '255');
-        $this->mFieldProperties['label']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_LABEL, '255');
-        $this->mFieldProperties['label']->addVar('maxlength', '255');
+        $this->mFieldProperties['label']->addMessage('required', _MD_PROFILE_ERROR_REQUIRED, _MD_PROFILE_LANG_LABEL, '191');
+        $this->mFieldProperties['label']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_LABEL, '191');
+        $this->mFieldProperties['label']->addVar('maxlength', '191');
     
         $this->mFieldProperties['type'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['type']->setDependsByArray(['maxlength']);
@@ -69,8 +69,8 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
     
         $this->mFieldProperties['validation'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['validation']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['validation']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_VALIDATION, '255');
-        $this->mFieldProperties['validation']->addVar('maxlength', '255');
+        $this->mFieldProperties['validation']->addMessage('maxlength', _MD_PROFILE_ERROR_MAXLENGTH, _MD_PROFILE_LANG_VALIDATION, '191');
+        $this->mFieldProperties['validation']->addVar('maxlength', '191');
     
         $this->mFieldProperties['weight'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['weight']->setDependsByArray(['required']);

@@ -1,0 +1,91 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <svg class="i-home" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg></a>
+    <li><a href="<{xoops_cooluri dirname=$dirname}>"><{$smarty.const._MD_LEGROUP_LANG_GROUP}></a>
+    <li aria-current="page"> <{$smarty.const._LIST}>
+</ul>
+
+
+
+<section layout="column my-4 sm-first" name="group-list" class="bg-color">
+
+    <h1><{$smarty.const._MD_LEGROUP_LANG_GROUP}> — <{$smarty.const._LIST}></h1>
+
+    <{if $xoops_isuser}>
+    <a class="btn" href="<{xoops_cooluri dirname=$dirname dataname=$dataname action=edit}>" self="right">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-group">
+            <path d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7z" fill="currentColor">
+            </path>
+        </svg> <{$smarty.const._MD_LEGROUP_LANG_ADD_A_NEW_GROUP}></a>
+    <{/if}>
+
+
+    <{if count($objects) > 0}>
+
+    <article class="timeline" layout="column">
+
+        <{foreach item=obj from=$objects}>
+
+        <h3 class="title">
+            <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname data_id=$obj->get('group_id')}>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-group-list" style="vertical-align: -.25em;">
+                <path d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7z" fill="currentColor">
+            </path>
+            </svg> <{$obj->getShow('title')}></a>
+        </h3>
+
+
+        <div layout="row center-justify sm-column">
+
+            <div self="size-1of2" class="shadow-in">
+
+                <{if $obj->getShow('publicity')==0}>
+                <span self="mx-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-group-lock">
+                    <path d="M22 17v-.5a2.5 2.5 0 0 0-5 0v.5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h5c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1m-1 0h-3v-.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v.5M8 8c0-2.21 1.79-4 4-4s4 1.79 4 4s-1.79 4-4 4s-4-1.79-4-4m6 12H4v-2c0-2.21 3.58-4 8-4c1.27 0 2.46.15 3.53.41c-.21.41-.38.84-.46 1.3c-.65.55-1.07 1.37-1.07 2.29v2z" fill="currentColor">
+                    </path>
+                </svg> <{$smarty.const._MD_LEGROUP_LANG_CLOSED}></span>
+                <{/if}>
+
+                <span self="mx-2">
+                <{$smarty.const._MD_LEGROUP_LANG_MEMBER}>
+                <span class="badge"><{$obj->countMembers()}></span>
+                </span>
+
+                <span self="mx-2">
+                <{$smarty.const._MD_LEGROUP_LANG_POSTTIME}> <time class="badge"><{$obj->getShow('posttime')|xoops_formattimestamp:m}></time>
+                </span>
+
+            </div>
+
+                <{if $obj->countMembers(null, 5)>0 && $obj->getMyRank()>=7}>
+                    <div self="right">
+                    <{assign var=groupId value=$obj->getShow('group_id')}>
+                    <a href="<{xoops_cooluri dirname=$dirname dataname=member query="group_id=$groupId"}>" class="btn btn-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="i-member-add">
+                            <path d="M18 21l-3-3l3-3v2h4v2h-4v2M10 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c1.15 0 2.25.12 3.24.34A5.964 5.964 0 0 0 12 18c0 .7.12 1.37.34 2H2v-2c0-2.21 3.58-4 8-4z" fill="currentColor">
+                            </path>
+                        </svg> <{$smarty.const._MD_LEGROUP_LANG_APPROVAL_REQUIRED}></a>
+                    </div>
+                <{/if}>
+
+        </div>
+
+        <{/foreach}>
+
+
+    </article>
+
+    <div class="pagenavi" layout="row center-center my-4"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+
+    <{/if}>
+
+
+</section>

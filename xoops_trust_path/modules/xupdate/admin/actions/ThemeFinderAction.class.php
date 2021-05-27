@@ -1,16 +1,21 @@
 <?php
-
 /**
- * @file
- * @package xupdate
- * @version $Id$
- **/
+ * X-Update package management for XCL
+ *
+ * @package XCL
+ * @subpackage Xupdate
+ * @version 2.3
+ * @author Naoki Sawada, Naoki Okino, Gigamaster (XCL 2.3)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    exit;
+if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
+	exit;
 }
 
 require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
+
 /***
  * @internal
  * This action shows the list of selectable themes to user.
@@ -26,77 +31,74 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
  * LegacyRender module. If you want to check the concept of this strategy, see
  * ThemeSelect preload in Legacy module.
  */
-class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction
-{
-    const THEME_FINDER_API_VERSION = '1';
+class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction {
+	const THEME_FINDER_API_VERSION = '1';
 
-    protected $themeFinderUrl = 'http://cmsthemefinder.com/store/enter_store.php';
+	protected $themeFinderUrl = 'http://cmsthemefinder.com/store/enter_store.php';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+	public function __construct() {
+		parent::__construct();
+	}
 
-    public function prepare()
-    {
-        if (true === defined('TP_THEME_FINDER_URL')) {
-            $this->themeFinderUrl = TP_THEME_FINDER_URL; // デバッグ用
-        }
-        parent::prepare();
-        return true;
-    }
+	public function prepare() {
+		if ( true === defined( 'TP_THEME_FINDER_URL' ) ) {
+			$this->themeFinderUrl = TP_THEME_FINDER_URL; // デバッグ用
+		}
+		parent::prepare();
 
-    /**
-     * _setupActionForm
-     *
-     * @param   void
-     *
-     * @return  void
-     **/
-    public function _setupActionForm()
-    { }
-    /**
-     * getDefaultView
-     *
-     * @param	void
-     *
-     * @return	Enum
-     **/
-    public function getDefaultView()
-    {
-        $jQuery = $this->mRoot->mContext->getAttribute('headerScript');
-        //$jQuery->addLibrary('/modules/'.$this->mAsset->mDirname.'/admin/js/ThemeFinder.js', true);
-        $src = <<< HTML
+		return true;
+	}
+
+	/**
+	 * _setupActionForm
+	 *
+	 * @param void
+	 *
+	 * @return  void
+	 **/
+	public function _setupActionForm() {
+	}
+
+	/**
+	 * getDefaultView
+	 *
+	 * @param void
+	 *
+	 * @return    Enum
+	 **/
+	public function getDefaultView() {
+		$jQuery = $this->mRoot->mContext->getAttribute( 'headerScript' );
+		//$jQuery->addLibrary('/modules/'.$this->mAsset->mDirname.'/admin/js/ThemeFinder.js', true);
+		$src = <<< HTML
 jQuery(function($){
 	$('#themeFinderIframe').show();
 	$('#themeFinderForm').submit().remove();
 });
 HTML;
-        $jQuery->addScript($src, false);
+		$jQuery->addScript( $src, false );
 
-        return XUPDATE_FRAME_VIEW_INDEX;
-    }
+		return XUPDATE_FRAME_VIEW_INDEX;
+	}
 
-    /**
-     * executeViewIndex
-     *
-     * @param	XCube_RenderTarget	&$render
-     *
-     * @return	void
-     **/
-    public function executeViewIndex(&$render)
-    {
-        $render->setTemplateName('admin_themefinder.html');
+	/**
+	 * executeViewIndex
+	 *
+	 * @param XCube_RenderTarget    &$render
+	 *
+	 * @return    void
+	 **/
+	public function executeViewIndex( &$render ) {
+		$render->setTemplateName( 'admin_themefinder.html' );
 
-        $render->setAttribute('mod_config', $this->mod_config);
-        $render->setAttribute('xupdate_writable', $this->Xupdate->params['is_writable']);
+		$render->setAttribute( 'mod_config', $this->mod_config );
+		$render->setAttribute( 'xupdate_writable', $this->Xupdate->params['is_writable'] );
 
-        //$render->setAttribute('actionForm', $this->mActionForm);
-        $render->setAttribute('adminMenu', $this->mModule->getAdminMenu());
-        $render->setAttribute('currentMenu', _MI_XUPDATE_ADMENU_THEMEFINDER);
+		//$render->setAttribute('actionForm', $this->mActionForm);
+		$render->setAttribute( 'adminMenu', $this->mModule->getAdminMenu() );
+		$render->setAttribute( 'currentMenu', _MI_XUPDATE_ADMENU_THEMEFINDER );
 
-        $render->setAttribute('themeFinderUrl', Xupdate_Utils::toShow($this->themeFinderUrl));
-        $render->setAttribute('themeFinderApiVersion', self::THEME_FINDER_API_VERSION);
-        $render->setAttribute('addonManagerInstallUrl', Xupdate_Utils::toShow(XOOPS_MODULE_URL . '/' . $this->mAsset->mDirname . '/admin/index.php?action=ThemeFinderInstall&target_type=Theme&target_key='));
-    }
+		$render->setAttribute( 'themeFinderUrl', Xupdate_Utils::toShow( $this->themeFinderUrl ) );
+		$render->setAttribute( 'themeFinderApiVersion', self::THEME_FINDER_API_VERSION );
+		$render->setAttribute( 'addonManagerInstallUrl', Xupdate_Utils::toShow( XOOPS_MODULE_URL . '/' . $this->mAsset->mDirname . '/admin/index.php?action=ThemeFinderInstall&target_type=Theme&target_key=' ) );
+	}
 }

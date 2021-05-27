@@ -7,7 +7,7 @@
  *  * @package    XCL230
  *  * @author     Original Author <author@example.com>
  *  * @author     Other Authors <another@example.com>
- *  * @copyright  2005-2020 The XOOPSCube Project
+ *  * @copyright  2005-2021 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    Release: @package_230@
@@ -17,19 +17,19 @@
  */
 /* -------------------- -------------------- -------------------- -------------------- NAV */
 
-
+ul.menu-shadow-out,
 ul#usermenu {
     display         : block;
     list-style-type : none;
     margin          : 0;
     padding         : 0;
 }
-
+ul.menu-shadow-out li,
 ul#usermenu li {
     text-decoration : none;
     margin-bottom   : 0.25em;
 }
-
+ul.menu-shadow-out li a,
 ul#usermenu li a {
     color           : #abc;
     display         : block;
@@ -41,11 +41,14 @@ ul#usermenu li a {
     transition      : all .3s;
 }
 
+ul.menu-shadow-out li:hover > a,
 ul#usermenu li:hover > a {
     color           : #face74;
 
 }
-
+    ul.menu-shadow-out li a:active,
+    ul.menu-shadow-out li a:focus,
+    ul.menu-shadow-out li a:hover,
     ul#usermenu li a:active,
     ul#usermenu li a:focus,
     ul#usermenu li a:hover {
@@ -65,3 +68,65 @@ ul#usermenu li:hover > a {
     .userMenuEmail,
     .userMenuAdmin {
     }
+
+
+
+/* ---------- ---------- ---------- Admin Nav */
+
+div.nav-sticky {
+    position: fixed;
+    height: 15px;
+    width: 250px;
+    top: 0;
+    right: 100px;
+    z-index:100
+}
+#nav-admin {
+    width: 250px;
+    height: 115px;
+    margin: -100px 0 0 calc(100% - 280px);
+    position: absolute;
+    background: rgba(25, 79, 113, 0.5);
+    display: block;
+}
+
+#arrow_container {
+    width: 250px;
+    height: 15px;
+    margin: -5px 0 0 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+#down {
+    background: #00CCFF;
+}
+
+#button {
+    width: 240px;
+    margin: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #999999;
+}
+
+#button:hover {
+    background: RGBa(99, 159, 217, 0.4);
+}
+
+.scroll {
+    height: 20px;
+    margin: 0px 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #999999;
+    text-align: left;
+}
+
+.arrow {
+    width: 15px;
+    height: 5px;
+    margin: 5px 0 0 -webkit-calc(50% - 5px);
+    position: relative;
+}

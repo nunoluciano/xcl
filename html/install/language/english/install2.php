@@ -1,17 +1,17 @@
 <?php
-// $Id: install2.php,v 1.1 2007/05/15 02:34:22 minahito Exp $
-define('_INSTALL_WEBMASTER', 'Webmasters');
-define('_INSTALL_WEBMASTERD', 'Webmasters of this site');
-define('_INSTALL_REGUSERS', 'Registered Users');
-define('_INSTALL_REGUSERSD', 'Registered Users Group');
-define('_INSTALL_ANONUSERS', 'Anonymous Users');
-define('_INSTALL_ANONUSERSD', 'Anonymous Users Group');
 
-define('_INSTALL_ANON', 'Anonymous');
+define( '_INSTALL_WEBMASTER', 'Webmasters' );
+define( '_INSTALL_WEBMASTERD', 'Webmasters of this site' );
+define( '_INSTALL_REGUSERS', 'Registered Users' );
+define( '_INSTALL_REGUSERSD', 'Registered Users Group' );
+define( '_INSTALL_ANONUSERS', 'Anonymous Users' );
+define( '_INSTALL_ANONUSERSD', 'Anonymous Users Group' );
+
+define( '_INSTALL_ANON', 'Anonymous' );
 
 define(
-    '_INSTALL_DISCLMR',
-    'While the administrators and moderators of this site will attempt to remove
+	'_INSTALL_DISCLMR',
+	'While the administrators and moderators of this site will attempt to remove
 or edit any generally objectionable material as quickly as possible, it is
 impossible to review every message. Therefore you acknowledge that all posts
 made to this site express the views and opinions of the author and not the

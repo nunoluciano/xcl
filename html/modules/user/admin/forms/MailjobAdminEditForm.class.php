@@ -40,9 +40,9 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
     
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['title']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addVar('maxlength', '255');
+        $this->mFieldProperties['title']->addMessage('required', _MD_USER_ERROR_REQUIRED, _AD_USER_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, _AD_USER_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addVar('maxlength', '191');
     
         $this->mFieldProperties['body'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['body']->setDependsByArray(['required']);
@@ -50,13 +50,13 @@ class User_MailjobAdminEditForm extends XCube_ActionForm
     
         $this->mFieldProperties['from_name'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['from_name']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['from_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '255');
-        $this->mFieldProperties['from_name']->addVar('maxlength', '255');
+        $this->mFieldProperties['from_name']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '191');
+        $this->mFieldProperties['from_name']->addVar('maxlength', '191');
     
         $this->mFieldProperties['from_email'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['from_email']->setDependsByArray(['maxlength', 'email']);
-        $this->mFieldProperties['from_email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '255');
-        $this->mFieldProperties['from_email']->addVar('maxlength', '255');
+        $this->mFieldProperties['from_email']->addMessage('maxlength', _MD_USER_ERROR_MAXLENGTH, '191');
+        $this->mFieldProperties['from_email']->addVar('maxlength', '191');
         $this->mFieldProperties['from_email']->addMessage('email', _AD_USER_ERROR_EMAIL, _AD_USER_LANG_FROM_EMAIL);
     }
     

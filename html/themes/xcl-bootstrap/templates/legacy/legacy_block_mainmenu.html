@@ -6,7 +6,7 @@
 <{foreach item=module from=$block.modules}>
       <li class="list-group-item"><a class="menuMain" href="<{$xoops_url}>/modules/<{$module.directory}>/"><{$module.name}></a></li>
     <{foreach item=sublink from=$module.sublinks}>
-            <li class="list-group-item"><a class="menuSub ml-4" href="<{$sublink.url}>"><{$sublink.name}></a></li>
+            <li class="list-group-item"><a class="menuSub ml-3" href="<{$sublink.url}>"><{$sublink.name}></a></li>
     <{/foreach}>
 <{/foreach}>
 </ul>

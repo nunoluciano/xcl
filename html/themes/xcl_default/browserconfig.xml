@@ -3,10 +3,10 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square70x70logo src="./favicon_package/mstile-70x70logo.png"/>
-            <square150x150logo src="./favicon_package/mstile-150x150logo.png"/>
-            <wide310x150logo src="./favicon_package/mstile-310x150logo.png"/>
-            <square310x310logo src="./favicon_package/mstile-310x310.png"/>
+            <square70x70logo src="./img/mstile-70x70logo.png"/>
+            <square150x150logo src="./img/mstile-150x150logo.png"/>
+            <wide310x150logo src="./img/mstile-310x150logo.png"/>
+            <square310x310logo src="./img/mstile-310x310.png"/>
         </tile>
     </msapplication>
 </browserconfig>

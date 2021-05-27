@@ -1,12 +1,4 @@
 <?php
-/**
- *
- * @package Legacy
- * @version $Id: install_updateModules.inc.php,v 1.3 2008/09/25 15:12:30 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
- */
-$b_next = ['updateModules_go', _INSTALL_L137];
+$b_next  = [ 'updateModules_go', _INSTALL_L137 ];
 $content = '<p>' . _INSTALL_L141 . "</p>\n";
 include './install_tpl.php';

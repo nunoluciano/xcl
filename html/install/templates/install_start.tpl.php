@@ -1,11 +1,11 @@
 <?php
 
-if (isset($message)) {
+if ( isset( $message ) ) {
 
-    $this->e('message');
+	$this->e( 'message' );
 
 } else {
 
-    $this->e('welcome');
+	$this->e( 'welcome' );
 
 }

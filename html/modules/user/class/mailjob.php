@@ -33,10 +33,10 @@ class UserMailjobObject extends XoopsSimpleObject
             $this->mVars = $initVars;
         } else {
             $this->initVar('mailjob_id', XOBJ_DTYPE_INT, '', false);
-            $this->initVar('title', XOBJ_DTYPE_STRING, '', true, 255);
+            $this->initVar('title', XOBJ_DTYPE_STRING, '', true, 191);
             $this->initVar('body', XOBJ_DTYPE_TEXT, '', true);
-            $this->initVar('from_name', XOBJ_DTYPE_STRING, '', false, 255);
-            $this->initVar('from_email', XOBJ_DTYPE_STRING, '', false, 255);
+            $this->initVar('from_name', XOBJ_DTYPE_STRING, '', false, 191);
+            $this->initVar('from_email', XOBJ_DTYPE_STRING, '', false, 191);
             $this->initVar('is_pm', XOBJ_DTYPE_BOOL, '0', true);
             $this->initVar('is_mail', XOBJ_DTYPE_BOOL, '0', true);
             $this->initVar('create_unixtime', XOBJ_DTYPE_INT, time(), true);

@@ -1,15 +1,13 @@
 <?php
-/**
- * @file
- * @package mydhtml
- * @version $Id$
- */
 
 define('_MI_CKEDITOR4_LANG_CKEDITOR4', 'CKEditor 4');
 define('_MI_CKEDITOR4_DESC_CKEDITOR4', 'CKEditor Wysiwig Editor for XCL. Full version with plugins for BBCode and XelFinder - File Manager');
 
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN', 'Toolbar for Admin');
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN_DESC', 'CKEditor\'s "config.toolbar" for admin.');
+
+define('_MI_CKEDITOR4_TOOLBAR_UI_COLOR', 'Toolbar UI Color');
+define('_MI_CKEDITOR4_TOOLBAR_UI_COLOR_DESC', 'Setting Editor UI Color with hexadecimal color code eg. #405060 has RGB values of of R:64, G:80, B:96 and is composed of 25.1% red, 31.4% green and 37.6% blue. <a href="https://www.colorhexa.com/" target="_blank">ColorHexa</a>');
 
 define('_MI_CKEDITOR4_SPECIAL_GROUPS', 'Special groups');
 define('_MI_CKEDITOR4_SPECIAL_GROUPS_DESC', '');

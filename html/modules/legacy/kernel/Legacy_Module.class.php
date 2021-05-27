@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Module.class.php,v 1.6 2008/09/25 15:11:59 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
@@ -427,7 +427,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         $this->mXoopsModule->loadAdminMenu();
 
         /*
-        * Poyfill if not PHP >= 7.3.0 // XCL 2.3.0 Bug fix #163 @gigamaster
+        * Polyfill if not PHP >= 7.3.0 // XCL 2.3.0 Bug fix #163 @gigamaster
         */
         if (!function_exists('is_countable')) {
 
@@ -486,7 +486,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
         /*
         *  Search AdminMenu
-        *  Poyfill if not PHP 7.3.0 // XCLBug #163 @Gigamaster
+        *  Polyfill if not PHP 7.3.0 // XCLBug #163 @Gigamaster
         */
         if (!function_exists('is_countable')) {
 
@@ -589,7 +589,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                         $item['image'] = XOOPS_URL . '/modules/' . $this->mXoopsModule->get('dirname') . '/' . $result['image'];
                     }
                 } else {
-                    $item['image'] = XOOPS_URL . '/images/icons/posticon2.gif';
+                    $item['image'] = XOOPS_URL . '/images/icons/file.svg';
                 }
 
                 $item['link'] = XOOPS_URL . '/modules/' . $this->mXoopsModule->get('dirname') . '/' . $result['link'];

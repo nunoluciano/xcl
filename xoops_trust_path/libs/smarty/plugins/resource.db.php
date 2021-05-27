@@ -32,7 +32,7 @@ function smarty_resource_db_systemTpl($tpl_name)
     return $tpl_name;
 }
 
-function smarty_resource_db_source($tpl_name, &$tpl_source, $smarty)
+function smarty_resource_db_source($tpl_name, &$tpl_source, &$smarty)
 {
     $tpl_name = smarty_resource_db_systemTpl($tpl_name);
     if (!$tpl = smarty_resource_db_tplinfo($tpl_name, $smarty)) {
@@ -46,7 +46,7 @@ function smarty_resource_db_source($tpl_name, &$tpl_source, $smarty)
     return true;
 }
 
-function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, $smarty)
+function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, &$smarty)
 {
     $tpl_name = smarty_resource_db_systemTpl($tpl_name);
     if (!$tpl = smarty_resource_db_tplinfo($tpl_name, $smarty)) {
@@ -60,13 +60,13 @@ function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, $smarty)
     return true;
 }
 
-function smarty_resource_db_secure($tpl_name, $smarty)
+function smarty_resource_db_secure($tpl_name, &$smarty)
 {
     // assume all templates are secure
     return true;
 }
 
-function smarty_resource_db_trusted($tpl_name, $smarty)
+function smarty_resource_db_trusted($tpl_name, &$smarty)
 {
     // not used for templates
 }
@@ -141,8 +141,9 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
             case 'THEMED3':
                 // check templates under themes/(theme)/templates/(trust based template)
                 if ($mytrustdirname && $dir_cache['d3'][$mytrustdirname] && $base_tpl_name) {
-                    $filepath = $theme . $mytrustdirname . '/' . $base_tpl_name ;
-                    if (is_file($filepath)) {
+                   // $filepath = $theme . $mytrustdirname . '/' . $base_tpl_name ;
+          			$filepath = $theme . $dirname . '/' . $base_tpl_name ;          
+					if (is_file($filepath)) {
                         return $cache[$tpl_name] = $filepath ;
                     }
                 }
@@ -161,8 +162,9 @@ function smarty_resource_db_tplinfo($tpl_name, $smarty)
             case 'THEMEDEFAULTD3':
                 // check templates under themes/(theme prefix)_default/templates/(trust based template)
                 if ($theme_default && $mytrustdirname && $dir_cache['def_d3'][$mytrustdirname] && $base_tpl_name) {
-                    $filepath = $theme_default . $mytrustdirname . '/' . $base_tpl_name ;
-                    if (is_file($filepath)) {
+                    //$filepath = $theme_default . $mytrustdirname . '/' . $base_tpl_name ;
+      				$filepath = $theme_default . $dirname . '/' . $base_tpl_name ;              
+					if (is_file($filepath)) {
                         return $cache[$tpl_name] = $filepath ;
                     }
                 }
@@ -201,7 +203,7 @@ class Legacy_ResourcedbUtils
 {
     public static function getModuleTemplatePath(XoopsTplfile $tplObj)
     {
-        $block = ($tplObj->getVar('tpl_type') == 'block') ? '/blocks' : null;
+        $block = ($tplObj->getVar('tpl_type') === 'block') ? '/blocks' : null;
         $dirname = $tplObj->getVar('tpl_module');
         $modulePath = $dirname.'/templates'.$block;
 
@@ -251,14 +253,16 @@ class Legacy_ResourcedbUtils
     {
         if ($filepath = self::getModuleTemplatePath($tplObj)) {
             $file_modified = filemtime($filepath);
-            if (($file_modified > $tplObj->getVar('tpl_lastmodified')) && false !== $fp = fopen($filepath, 'r')) {
-                $handler = xoops_gethandler('tplfile');
-                $filesource = fread($fp, filesize($filepath));
-                fclose($fp);
-                $tplObj->setVar('tpl_source', $filesource, true);
-                $tplObj->setVar('tpl_lastmodified', time());
-                $tplObj->setVar('tpl_lastimported', time());
-                $handler->forceUpdate($tplObj);
+            if ($file_modified > $tplObj->getVar('tpl_lastmodified')) {
+                if (false != $fp = fopen($filepath, 'r')) {
+                    $handler = xoops_gethandler('tplfile');
+                    $filesource = fread($fp, filesize($filepath));
+                    fclose($fp);
+                    $tplObj->setVar('tpl_source', $filesource, true);
+                    $tplObj->setVar('tpl_lastmodified', time());
+                    $tplObj->setVar('tpl_lastimported', time());
+                    $handler->forceUpdate($tplObj);
+                }
             }
         }
     }

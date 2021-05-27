@@ -55,12 +55,12 @@ class Profile_FieldTypeString implements Profile_iFieldType
 
     public function getTableQuery()
     {
-        return 'VARCHAR(255) NOT NULL';
+        return 'VARCHAR(191) NOT NULL';
     }
 
     public function setInitVar(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** string ***/ $default)
     {
-        $obj->initVar($key, $this->getXObjType(), $default, false, 255);
+        $obj->initVar($key, $this->getXObjType(), $default, false, 191);
     }
 
     public function getDefault(/*** string ***/ $option)

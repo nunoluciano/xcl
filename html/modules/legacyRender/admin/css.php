@@ -10,7 +10,7 @@ $root =& XCube_Root::getSingleton();
 unset($root->mContext->mXoopsModule);
 
 //
-// @todo Why does this file know Legacy_RenderSystem?
+// @Todo Why does this file know Legacy_RenderSystem?
 //
 
 function Legacy_modifier_css_theme($string)

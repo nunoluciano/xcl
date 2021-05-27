@@ -11,7 +11,7 @@ $mydirpath = basename(dirname(__DIR__)) ;
 
 $modversion['name'] = _MI_MESSAGE_NAME;
 $modversion['dirname'] = basename(__DIR__);
-$modversion['version'] = '2.4';
+$modversion['version'] = '2.40';
 $modversion['description'] = _MI_MESSAGE_DESC;
 $modversion['author'] = 'Marijuana';
 $modversion['credits'] = 'XOOPS Cube Project';

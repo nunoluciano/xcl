@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <!-- ===========================
     XOOPS Cube Theme : XCL Installer Wizard
-    Distribution : XCL 2.3 Alpha
+    Distribution : XCL 2.3  PHP7
     Version : 1.0.0
     Author : Nuno Luciano aka Gigamaster
     Date : 2020-04-29
@@ -12,11 +12,9 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo _INSTALL_CHARSET ?>">
 
-    <title>XOOPS Cube Install Wizard</title>
+    <title>XCL Install Wizard</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link type="text/css" rel="stylesheet" media="all" href="../xoops.css">
 
     <link type="text/css" rel="stylesheet" media="all" href="style.css">
 
@@ -59,8 +57,8 @@
                              height="1.5em" style="color: rgb(250, 206, 116); transform: rotate(360deg);"
                              preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                         <path
-                            d="M21.406 6.086l-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035c-.028.014-.058.023-.084.04c-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01l9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095L18.538 7L12 9.905l-1.308-.581L5.463 7L12 4.095zM4 16.351V8.539l7 3.111v7.811l-7-3.11zm9 3.11V11.65l7-3.111v7.812l-7 3.11z"
-                            fill="currentColor">
+                                d="M21.406 6.086l-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035c-.028.014-.058.023-.084.04c-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01l9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095L18.538 7L12 9.905l-1.308-.581L5.463 7L12 4.095zM4 16.351V8.539l7 3.111v7.811l-7-3.11zm9 3.11V11.65l7-3.111v7.812l-7 3.11z"
+                                fill="currentColor">
                         </path></svg>
                     </span>
                     XCL Installer Wizard
@@ -87,19 +85,19 @@
 
         <main class="column2x">
 
-            <?php if (!empty($title)) { ?>
+			<?php if ( ! empty( $title ) ) { ?>
 
                 <h3><?php echo $title; ?></h3>
 
-            <?php } ?>
+			<?php } ?>
 
             <div class="maincontents"><?php echo $content; ?></div>
 
             <footer>
 
-                <?php echo b_back($b_back); ?>&nbsp;&nbsp;&nbsp;
-                <?php echo b_reload($b_reload); ?>&nbsp;&nbsp;&nbsp;
-                <?php echo b_next($b_next); ?>
+				<?php echo b_back( $b_back ); ?>&nbsp;&nbsp;&nbsp;
+				<?php echo b_reload( $b_reload ); ?>&nbsp;&nbsp;&nbsp;
+				<?php echo b_next( $b_next ); ?>
 
             </footer>
         </main>

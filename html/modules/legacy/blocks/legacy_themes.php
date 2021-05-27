@@ -1,25 +1,21 @@
 <?php
 /**
- *
+ * legacy_themes.php
+ * XOOPS2
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @author    Kazumi Ono (AKA onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ */
+
+/**
  * @param $options
  * @return array|null
- * @copyright Copyright (c) 2000 XOOPS.org  <https://www.xoops.org/>
- * @license   https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- * @package   XOOPS2
- * @version   $Id: legacy_themes.php,v 1.3 2008/09/25 15:12:13 kilica Exp $
- */
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-//  This file has been modified for Legacy from XOOPS2 System module block   //
-// ------------------------------------------------------------------------- //
-
+ * */
 function b_legacy_themes_show($options)
 {
     global $xoopsConfig;
@@ -68,12 +64,12 @@ function b_legacy_themes_edit($options)
     if (1 == $options[0]) {
         $chk = ' checked="checked"';
     }
-    $form .= '<input type="radio" name="options[0]" id="display-yes" value="1"'.$chk.'><label for="display-yes">'._YES.'</label>';
+    $form .= '<input type="radio" name="options[0]" id="display-yes" value="1" '.$chk.'><label for="display-yes">'._YES.'</label>';
     $chk = '';
     if (0 == $options[0]) {
         $chk = ' checked="checked"';
     }
-    $form .= '<input type="radio" name="options[0]" id="display-no" value="0"'.$chk.'><label for="display-no">'._NO.'</label></div>';
+    $form .= '<input type="radio" name="options[0]" id="display-no" value="0" '.$chk.'><label for="display-no">'._NO.'</label></div>';
     $form .= '<div><label for="screenshot">'._MB_LEGACY_LANG_THWIDTH.' </label>';
     $form .= '<input type="text" name="options[1]" id="screenshot" size="3" value="'.$options[1].'"></div>';
     return $form;

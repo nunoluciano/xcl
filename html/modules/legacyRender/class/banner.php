@@ -21,8 +21,8 @@ class LegacyRenderBannerObject extends XoopsSimpleObject
         $this->initVar('imptotal', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('impmade', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('clicks', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('imageurl', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('clickurl', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('imageurl', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('clickurl', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('date', XOBJ_DTYPE_INT, time(), true);
         $this->initVar('htmlbanner', XOBJ_DTYPE_BOOL, '0', true);
         $this->initVar('htmlcode', XOBJ_DTYPE_TEXT, '', true);

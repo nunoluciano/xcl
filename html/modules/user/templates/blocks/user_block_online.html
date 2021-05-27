@@ -1,7 +1,45 @@
-<div id="online-users"><{$block.online_total}><br><br>
-<{$smarty.const._MB_USER_MEMBERS}>: <{$block.online_members}><br>
-<{$smarty.const._MB_USER_GUESTS}>: <{$block.online_guests}><br><br>
-<{foreach item=member from=$block.online_member_list}>
-<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>"><{$member.uname}></a>
-    <{/foreach}></div>
-<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+<style>
+    .block-online {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(21,25,27,0.74); /* Background Transparent */
+        justify-content: center; /* Alignment of all items on the main axis */
+        align-items:center; /* Place items around the center */
+    }
+    .block-online-user {
+        max-width: 95%;
+        width: 90%;
+        height: auto;
+        /*border: 1px solid rgba(21,25,27,0.93);*/
+    }
+    .block-online-avatar {
+        background-color: rgb(10 11 12 / 27%);
+        flex-direction: row;
+        justify-content: space-between;
+        display: flex;
+        padding: 0.25em 2em 0.25em 0.74em;
+        margin-bottom:0.42em;
+        border-radius: 7px;
+        box-shadow: 2px 2px 2px 2px rgb(10 11 12 / 27%); /*box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];*/
+    }
+</style>
+
+<div id="online-users" class="block-online" >
+    <div class="block-online-user"><{$block.online_total}></div>
+    <section class="block-online-user"><{$smarty.const._MB_USER_MEMBERS}>: <{$block.online_members}></section>
+    <section class="block-online-user"><{$smarty.const._MB_USER_GUESTS}>: <{$block.online_guests}></section>
+    <{foreach item=member from=$block.online_member_list}>
+    <section class="block-online-user">
+        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>" class="block-online-avatar">
+            <img src="<{$member.uid|xoops_user_avatarize}>" alt=" <{$member.uname}>" height="32" class="ui-avatar-32" />
+            <span><{$member.uname}></span>
+        </a>
+    </section>
+    <{/foreach}>
+    <footer class="block-online-user">
+        <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+    </footer>
+</div>

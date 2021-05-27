@@ -6,6 +6,7 @@
  * given as constructor parameters evaluate to true
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -38,46 +39,43 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_Or extends File_Archive_Predicate
-{
-    /**
-     * @var Array List of File_Archive_Predicate objects given as an argument
-     * @access private
-     */
-    public $preds;
+class File_Archive_Predicate_Or extends File_Archive_Predicate {
+	/**
+	 * @var Array List of File_Archive_Predicate objects given as an argument
+	 * @access private
+	 */
+	public $preds;
 
-    /**
-     * Build the predicate using the optional File_Archive_Predicates given as
-     * arguments
-     *
-     * Example:
-     *   new File_Archive_Predicate_And($pred1, $pred2, $pred3)
-     */
-    public function File_Archive_Predicate_And()
-    {
-        $this->preds = func_get_args();
-    }
+	/**
+	 * Build the predicate using the optional File_Archive_Predicates given as
+	 * arguments
+	 *
+	 * Example:
+	 *   new File_Archive_Predicate_And($pred1, $pred2, $pred3)
+	 */
+	public function File_Archive_Predicate_And() {
+		$this->preds = func_get_args();
+	}
 
-    /**
-     * Add a new predicate to the list
-     *
-     * @param File_Archive_Predicate The predicate to add
-     */
-    public function addPredicate($pred)
-    {
-        $this->preds[] = $pred;
-    }
+	/**
+	 * Add a new predicate to the list
+	 *
+	 * @param File_Archive_Predicate The predicate to add
+	 */
+	public function addPredicate( $pred ) {
+		$this->preds[] = $pred;
+	}
 
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        foreach ($this->preds as $p) {
-            if ($p->isTrue($source)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		foreach ( $this->preds as $p ) {
+			if ( $p->isTrue( $source ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

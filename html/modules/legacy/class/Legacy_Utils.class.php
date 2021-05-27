@@ -4,7 +4,7 @@
  * @package Legacy
  * @version $Id: Legacy_Utils.class.php,v 1.5 2008/09/25 15:11:21 kilica Exp $
  * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
@@ -170,7 +170,7 @@ class Legacy_Utils
      */
     public static function convertVersionIntToFloat($version)
     {
-        return round((float)(intval($version) / 100), 2);
+        return round((float)( (int) $version / 100), 2);
     }
 
     /**

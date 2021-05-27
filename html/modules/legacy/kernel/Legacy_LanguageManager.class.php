@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_LanguageManager.class.php,v 1.6 2008/09/25 15:11:57 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
@@ -58,7 +58,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
             ini_set('mbstring.substitute_character', 'none');
             ini_set('default_charset', _CHARSET);
             ini_set('mbstring.substitute_character', 'none');
-            if (version_compare(PHP_VERSION, '5.6', '<')) {
+            if (PHP_VERSION_ID < 50600) {
                 ini_set('mbstring.http_input', 'pass');
                 ini_set('mbstring.http_output', 'pass');
             } else {
@@ -248,10 +248,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     public function encodeUTF8($text)
     {
-        if (XOOPS_USE_MULTIBYTES == 1) {
-            if (function_exists('mb_convert_encoding')) {
-                return mb_convert_encoding($text, 'UTF-8', _CHARSET);
-            }
+        if ((XOOPS_USE_MULTIBYTES == 1) && function_exists('mb_convert_encoding')) {
+            return mb_convert_encoding($text, 'UTF-8', _CHARSET);
         }
 
         return utf8_encode($text);
@@ -259,10 +257,8 @@ class Legacy_LanguageManager extends XCube_LanguageManager
 
     public function decodeUTF8($text)
     {
-        if (XOOPS_USE_MULTIBYTES == 1) {
-            if (function_exists('mb_convert_encoding')) {
-                return mb_convert_encoding($text, _CHARSET, 'UTF-8');
-            }
+        if ((XOOPS_USE_MULTIBYTES == 1) && function_exists('mb_convert_encoding')) {
+            return mb_convert_encoding($text, _CHARSET, 'UTF-8');
         }
 
         return utf8_decode($text);

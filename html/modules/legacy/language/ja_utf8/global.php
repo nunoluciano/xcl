@@ -100,8 +100,8 @@ define('_OPTIONS', 'オプション');
 define('_QUOTE', '引用');      //-no use
 define('_LIST', '一覧');
 define('_LOGIN', 'ログイン');
-define('_USERNAME', 'ユーザ名: ');
-define('_PASSWORD', 'パスワード: ');
+define('_USERNAME', 'ユーザ名');
+define('_PASSWORD', 'パスワード');
 define('_SELECT', '選択');
 define('_IMAGE', '画像');
 define('_SEND', '送信');

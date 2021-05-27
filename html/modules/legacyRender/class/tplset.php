@@ -34,7 +34,7 @@ class LegacyRenderTplsetObject extends XoopsSimpleObject
         }
         $this->initVar('tplset_id', XOBJ_DTYPE_INT, '', true);
         $this->initVar('tplset_name', XOBJ_DTYPE_STRING, '', true, 50);
-        $this->initVar('tplset_desc', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('tplset_desc', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('tplset_credits', XOBJ_DTYPE_TEXT, '', true);
         $this->initVar('tplset_created', XOBJ_DTYPE_INT, time(), true);
         $initVars=$this->mVars;

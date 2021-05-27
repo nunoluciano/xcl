@@ -1,19 +1,16 @@
 <?php
 /**
- * *
- *  * Client Banners
- *  *
- *  * Function to let your client login the stats
- *  *
- *  * @package    legacy
- *  * @author     Original Authors: Kazumi Ono (aka onokazu)
- *  * @author     Other Authors : Minahito
- *  * @copyright  2000-2020 The XOOPSCube Project
- *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
- *  * @version    Release: @package_230@
- *  * @link       https://github.com/xoopscube/xcl
- * *
+ * Client Banners
+ * Function to let your client login to the stats
+ * @package    Legacy
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Minahito
+ * @author     Kazumi Ono (aka onokazu)
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @link       https://github.com/xoopscube/
  */
 
 include 'mainfile.php';
@@ -23,12 +20,12 @@ function clientlogin()
     global $xoopsDB, $xoopsLogger, $xoopsConfig;
     include('header.php');
     echo "<style type='text/css'>
-                body {background-color : #fcfcfc;color: #000000;font-weight: normal;font-size: 12px;font-family: Trebuchet MS,Verdana, Arial, Helvetica, sans-serif;margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;}
-                .redirect {width: 70%;margin: 110px;text-align: center;padding: 15px;text-align:center;border: #e0e0e0 1px solid;color: #666666;background-color: #f6f6f6;text-align: center;}
-                .redirect a:link {color: #666666;text-decoration: none;font-weight: bold;}
-                .redirect a:visited {color: #666666;text-decoration: none;font-weight: bold;}
-                .redirect a:hover {color: #999999;text-decoration: underline;font-weight: bold;}
-                hr {height: 3px;border: 3px #E18A00 solid;filter : Alpha(Opacity=100,FinishOpacity=10,Style=2);width: 95%;}
+                body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;}
+                .redirect {width: 70%;margin: 110px;text-align: center;padding: 15px;text-align:center;text-align: center;}
+                .redirect a:link {text-decoration: none;font-weight: bold;}
+                .redirect a:visited {text-decoration: none;font-weight: bold;}
+                .redirect a:hover {text-decoration: underline;font-weight: bold;}
+                hr {height: 3px;border: 1px #E18A00 solid;filter : Alpha(Opacity=100,FinishOpacity=10,Style=2);width: 95%;}
                 font.bigtext { font-size: 16px; font-weight: bold; }
         </style>
 

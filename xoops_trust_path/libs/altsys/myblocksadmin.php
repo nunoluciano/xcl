@@ -1,9 +1,15 @@
 <?php
-// ------------------------------------------------------------------------- //
-//                       myblocksadmin.php (altsys)                          //
-//                - XOOPS block admin for each modules -                     //
-//                       GIJOE <https://www.peak.ne.jp/>                      //
-// ------------------------------------------------------------------------- //
+/**
+ * Altsys library (UI-Components) for D3 modules
+ * Admin Blocks of each module
+ * @package    Altsys
+ * @version    2.3
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
+
 
 require_once __DIR__ . '/class/AltsysBreadcrumbs.class.php';
 require_once __DIR__ . '/include/gtickets.php';
@@ -12,10 +18,14 @@ include_once __DIR__ . '/include/mygrouppermform.php';
 include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 
 // language file
-altsys_include_language_file('myblocksadmin');
+altsys_include_language_file( 'myblocksadmin' );
+altsys_get_core_type( ALTSYS_CORE_TYPE_XCL21 );
+include_once __DIR__ . '/class/MyBlocksAdminForXCL21.class.php';
+$myba =& MyBlocksAdminForXCL21::getInstance();
+
 
 // fork by core types
-switch (altsys_get_core_type()) {
+/*switch (altsys_get_core_type()) {
 
         case ALTSYS_CORE_TYPE_XCL21 :
             include_once __DIR__ .'/class/MyBlocksAdminForXCL21.class.php' ;
@@ -26,20 +36,20 @@ switch (altsys_get_core_type()) {
         include_once __DIR__ . '/class/MyBlocksAdmin.class.php';
         $myba = &MyBlocksAdmin::getInstance();
         break;
-}
+}*/
 // permission
 $myba->checkPermission();
 
 // set parameters target_mid , target_dirname etc.
-$myba->init($xoopsModule);
+$myba->init( $xoopsModule );
 
 
 //
 // transaction stage
 //
 
-if (!empty($_POST)) {
-    $myba->processPost();
+if ( ! empty( $_POST ) ) {
+	$myba->processPost();
 }
 
 //

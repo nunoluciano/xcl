@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: Legacy_CacheInformation.class.php,v 1.4 2008/09/25 15:12:00 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
@@ -115,8 +115,8 @@ class Legacy_ModuleCacheInformation extends Legacy_AbstractCacheInformation
     public $mModule = null;
 
     /**
-     * The current URL used as a base for a cache file name. This should be
-     * modified by modules to not make extra cache files.
+     * The current URL used as a base for a cache file name.
+     * This should be modified by modules to not make extra cache files.
      *
      * @access public
      * @var string

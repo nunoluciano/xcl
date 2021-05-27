@@ -3,13 +3,14 @@
  *
  * @package Legacy
  * @version $Id: xoops_version.php,v 1.13 2008/09/25 14:31:43 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
 $modversion['name'] = _MI_LEGACY_NAME;
-$modversion['version'] = '2.3.0';
+$modversion['version'] = '2.31';
+$modversion['detailed_version'] = '2.31.0' ;
 $modversion['description'] = _MI_LEGACY_NAME_DESC;
 $modversion['author'] = '';
 $modversion['credits'] = 'XOOPS Cube Project';
@@ -132,6 +133,10 @@ $modversion['templates'][48]['file'] = 'legacy_inc_tag_select.html';
 $modversion['templates'][48]['description'] = 'legacy_tag_select default template';
 $modversion['templates'][49]['file'] = 'legacy_inc_tag_cloud.html';
 $modversion['templates'][49]['description'] = 'legacy_tag_cloud default template';
+$modversion['templates'][50]['file'] = 'legacy_redirect_function.html';
+$modversion['templates'][50]['description'] = 'Replace direct Xoops2 system';
+$modversion['templates'][51]['file'] = 'legacy_front_page.html';
+$modversion['templates'][51]['description'] = 'Replace top page if not module content selected.';
 
 // Menu
 $modversion['hasMain'] = 0;
@@ -178,7 +183,7 @@ $modversion['blocks'][5]['name'] = _MI_LEGACY_BLOCK_SITEINFO_NAME;
 $modversion['blocks'][5]['description'] = _MI_LEGACY_BLOCK_SITEINFO_DESC;
 $modversion['blocks'][5]['show_func'] = 'b_legacy_siteinfo_show';
 $modversion['blocks'][5]['edit_func'] = 'b_legacy_siteinfo_edit';
-$modversion['blocks'][5]['options'] = '320|190|s_poweredby.png|1';
+$modversion['blocks'][5]['options'] = '320|270|s_poweredby.png|1';
 $modversion['blocks'][5]['template'] = 'legacy_block_siteinfo.html';
 $modversion['blocks'][5]['show_all_module'] = true;
 
@@ -204,6 +209,8 @@ $modversion['blocks'][8]['file'] = 'legacy_themes.php';
 $modversion['blocks'][8]['name'] = _MI_LEGACY_BLOCK_THEMES_NAME;
 $modversion['blocks'][8]['description'] = _MI_LEGACY_BLOCK_THEMES_DESC;
 $modversion['blocks'][8]['show_func'] = 'b_legacy_themes_show';
-$modversion['blocks'][8]['options'] = '0|80';
+$modversion['blocks'][8]['options'] = '1|240';
 $modversion['blocks'][8]['edit_func'] = 'b_legacy_themes_edit';
 $modversion['blocks'][8]['template'] = 'legacy_block_themes.html';
+$modversion['blocks'][8]['visible_any'] = true;
+$modversion['blocks'][8]['show_all_module'] = true;

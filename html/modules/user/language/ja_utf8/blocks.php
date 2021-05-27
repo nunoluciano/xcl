@@ -1,6 +1,6 @@
 <?php
-define('_MB_USER_USERNAME', 'ユーザー名:');
-define('_MB_USER_PASSWORD', 'パスワード:');
+define('_MB_USER_USERNAME', 'ユーザー名');
+define('_MB_USER_PASSWORD', 'パスワード');
 define('_MB_USER_LOGIN', 'ログイン');
 define('_MB_USER_LOSTPASS', 'パスワード紛失');
 define('_MB_USER_USERREG', '新規登録');

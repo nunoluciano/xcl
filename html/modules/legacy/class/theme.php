@@ -4,7 +4,7 @@
  * @package Legacy
  * @version $Id: theme.php,v 1.4 2008/09/25 15:11:21 kilica Exp $
  * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  */
 
@@ -28,20 +28,20 @@ class LegacyThemeObject extends XoopsSimpleObject
             $this->mVars = $initVars;
             return;
         }
-        $this->initVar('name', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('dirname', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('screenshot', XOBJ_DTYPE_STRING, '', false, 255);
-        $this->initVar('description', XOBJ_DTYPE_STRING, '', false, 255);
-        $this->initVar('format', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('render_system', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('themeoptions', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('name', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('dirname', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('screenshot', XOBJ_DTYPE_STRING, '', false, 191);
+        $this->initVar('description', XOBJ_DTYPE_STRING, '', false, 191);
+        $this->initVar('format', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('render_system', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('themeoptions', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('version', XOBJ_DTYPE_STRING, '', true, 32);
         $this->initVar('author', XOBJ_DTYPE_STRING, '', true, 64);
-        $this->initVar('url', XOBJ_DTYPE_STRING, '', true, 255);
-        $this->initVar('license', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('url', XOBJ_DTYPE_STRING, '', true, 191);
+        $this->initVar('license', XOBJ_DTYPE_STRING, '', true, 191);
 
         // For TYPO
-        $this->initVar('licence', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('licence', XOBJ_DTYPE_STRING, '', true, 191);
         $initVars = $this->mVars;
     }
 }

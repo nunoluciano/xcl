@@ -17,9 +17,7 @@ define('_MD_USER_ERROR_REQUIRED', '{0} is required.');
 define('_MD_USER_ERROR_SEND_MAIL', 'Email transmission failed. Please contact site administrator.');
 define('_MD_USER_ERROR_TIMEZONE', 'TimeZone');
 define('_MD_USER_ERROR_UNEEDAGREE', 'Sorry, you have to agree to our disclaimer to get registered.');
-define('_MD_USER_ERROR_YOURREGMAILNG',
-       'You are now registered. However, we were unable to send the activation mail to your email account due to an internal error that had occurred on our server. We are sorry for the inconvenience, please send the webmaster an email notifying him/her of the situation.'
-);
+define('_MD_USER_ERROR_YOURREGMAILNG','You are now registered. However, we were unable to send the activation mail to your email account due to an internal error that had occurred on our server. We are sorry for the inconvenience, please send the webmaster an email notifying him/her of the situation.');
 define('_MD_USER_LANG_ALLABOUT', 'All about %s');
 define('_MD_USER_LANG_ASSIGN', 'Assign');
 define('_MD_USER_LANG_ATTACHSIG', 'Always attach my signature');
@@ -51,8 +49,8 @@ define('_MD_USER_LANG_NEWUSERREGAT', 'New user registration at %s');
 define('_MD_USER_LANG_NICKNAME', 'Username');
 define('_MD_USER_LANG_NICKNAMETAKEN', 'Username has been taken.');
 define('_MD_USER_LANG_NO', 'No');
-define('_MD_USER_LANG_NOACTTPADM', 'The selected user has been deactivated or has not been activated yet.');
-define('_MD_USER_LANG_NOPROBLEM', 'No problem. Simply enter the e-mail address we have on file for your account.');
+define('_MD_USER_LANG_NOACTTPADM', 'The selected user account has been deactivated or has not been activated yet.');
+define('_MD_USER_LANG_NOPROBLEM', 'If you have lost your password, enter your email below.<br>Check your email inbox and click on the link in the email to reset the Lost Password and recover your account.');
 define('_MD_USER_LANG_NOREGISTER', 'Sorry, we are currently closed for new user registrations.');
 define('_MD_USER_LANG_NOTIFY', 'Notifications');
 define('_MD_USER_LANG_NOTIFY_METHOD', 'Notification Method : When you monitor e.g. a forum, how would you like to receive notifications of updates?');

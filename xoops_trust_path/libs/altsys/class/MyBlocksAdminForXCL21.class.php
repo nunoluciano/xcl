@@ -1,52 +1,57 @@
 <?php
-// $Id: MyBlocksAdminForXCL21.class.php ,ver 0.0.7.1 2011/01/27 16:10:00 domifara Exp $
+/**
+ * Altsys library (UI-Components) for D3 modules
+ * Class MyBlocksAdminForXCL21
+ * @package    Altsys
+ * @version    2.3
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
-require_once dirname(__FILE__).'/MyBlocksAdmin.class.php' ;
+require_once __DIR__ . '/MyBlocksAdmin.class.php';
 
-class MyBlocksAdminForXCL21 extends MyBlocksAdmin
-{
+class MyBlocksAdminForXCL21 extends MyBlocksAdmin {
 
+	public function MyBlocksAadminForXCL21() {
+	}
 
-    public function MyBlocksAadminForXCL21()
-    {
-    }
+	public static function &getInstance() {
+		static $instance;
+		if ( ! isset( $instance ) ) {
 
-//HACK by domifara for php5.3+
-//function &getInstance()
-public static function &getInstance()
-{
-    static $instance;
-    if (!isset($instance)) {
-        $instance = new MyBlocksAdminForXCL21();
-        $instance->construct() ;
-    }
-    return $instance;
-}
+			$instance = new self();
 
+			$instance->construct();
+		}
 
-// virtual
-// options
-public function renderCell4BlockOptions($block_data)
-{
-    if ($this->target_dirname && '_' !== substr($this->target_dirname, 0, 1)) {
-        $langman =& D3LanguageManager::getInstance() ;
-        $langman->read('admin.php', $this->target_dirname) ;
-    }
+		return $instance;
+	}
 
-    $bid = (int)$block_data['bid'];
+	/**
+	 * Virtual options
+	 *
+	 * @param $block_data
+	 *
+	 * @return false|mixed|string|null
+	 */
+	public function renderCell4BlockOptions( $block_data ) {
+		// if ($this->target_dirname && '_' !== substr($this->target_dirname, 0, 1)) {
+		if ( $this->target_dirname && '_' !== $this->target_dirname[0] ) {
+			$langman =& D3LanguageManager::getInstance();
+			$langman->read( 'admin.php', $this->target_dirname );
+		}
 
-//HACK by domifara
-//	$block = new XoopsBlock( $bid ) ;
-    $handler =& xoops_gethandler('block');
-    $block =& $handler->create(false) ;
-    $block->load($bid) ;
+		$bid = (int) $block_data['bid'];
 
-    $legacy_block =& Legacy_Utils::createBlockProcedure($block) ;
-    return $legacy_block->getOptionForm() ;
-}
+		$handler =& xoops_gethandler( 'block' );
+		$block   =& $handler->create( false );
+		$block->load( $bid );
 
-    // public function checkFck()
-    // {
-    //     return (! altsysUtils::isInstalledXclHtmleditor() && file_exists(XOOPS_ROOT_PATH.'/common/fckeditor/fckeditor.js'));
-    // }
+		$legacy_block =& Legacy_Utils::createBlockProcedure( $block );
+
+		return $legacy_block->getOptionForm();
+	}
+
 }

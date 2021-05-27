@@ -1,3 +1,7 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
 <{if $actionForm->hasError()}>
 <div class="errorMsg">
   <ul>
@@ -10,11 +14,11 @@
 
 <form action="<{$smarty.const.XOOPS_URL}>/search.php" method="get">
   <{xoops_input type=hidden name=action value=results}>
-  <table class="outer" cellspacing="1" width="100%">
+  <table class="outer bg-color" >
     <tr>
       <td class="head"><{$smarty.const._SR_KEYWORDS}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=query size=30 maxlength=255 value=$actionForm->get('query')}>
+        <{xoops_input type=text name=query size=30 maxlength=191 value=$actionForm->get('query')}>
       </td>
     </tr>
     <tr>

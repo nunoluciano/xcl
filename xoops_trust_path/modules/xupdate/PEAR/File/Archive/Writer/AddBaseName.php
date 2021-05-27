@@ -1,10 +1,9 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
-
 /**
  * Writer wrapper that adds a directory to the written file
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -34,67 +33,59 @@ require_once "File/Archive/Writer.php";
 /**
  * Writer wrapper that adds a directory to the written file
  */
-class File_Archive_Writer_AddBaseName
-{
-    public $writer;
-    public $baseName;
+class File_Archive_Writer_AddBaseName {
+	public $writer;
+	public $baseName;
 
-    public function __construct($baseName, &$writer)
-    {
-        if (substr($baseName, -1) == '/') {
-            $this->baseName = $baseName;
-        } else {
-            $this->baseName = $baseName.'/';
-        }
+	public function __construct( $baseName, &$writer ) {
+		if ( substr( $baseName, - 1 ) == '/' ) {
+			$this->baseName = $baseName;
+		} else {
+			$this->baseName = $baseName . '/';
+		}
 
-        $this->writer =& $writer;
-    }
+		$this->writer =& $writer;
+	}
 
-    /**
-     * @see File_Archive_Writer::newFile()
-     */
-    public function newFile($filename, $stat = array(), $mime = "application/octet-stream")
-    {
-        $this->writer->newFile($this->baseName.$filename, $stat, $mime);
-    }
+	/**
+	 * @see File_Archive_Writer::newFile()
+	 */
+	public function newFile( $filename, $stat = array(), $mime = "application/octet-stream" ) {
+		$this->writer->newFile( $this->baseName . $filename, $stat, $mime );
+	}
 
-    /**
-     * @see File_Archive_Writer::newFromTempFile()
-     */
-    public function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
-    {
-        $this->writer->newFromTempFile($tmpfile, $this->baseName.$filename, $stat, $mime);
-    }
+	/**
+	 * @see File_Archive_Writer::newFromTempFile()
+	 */
+	public function newFromTempFile( $tmpfile, $filename, $stat = array(), $mime = "application/octet-stream" ) {
+		$this->writer->newFromTempFile( $tmpfile, $this->baseName . $filename, $stat, $mime );
+	}
 
-    /**
-     * @see File_Archive_Writer::newFileNeedsMIME()
-     */
-    public function newFileNeedsMIME()
-    {
-        return $this->writer->newFileNeedsMIME();
-    }
+	/**
+	 * @see File_Archive_Writer::newFileNeedsMIME()
+	 */
+	public function newFileNeedsMIME() {
+		return $this->writer->newFileNeedsMIME();
+	}
 
-    /**
-     * @see File_Archive_Writer::writeData()
-     */
-    public function writeData($data)
-    {
-        $this->writer->writeData($data);
-    }
+	/**
+	 * @see File_Archive_Writer::writeData()
+	 */
+	public function writeData( $data ) {
+		$this->writer->writeData( $data );
+	}
 
-    /**
-     * @see File_Archive_Writer::writeFile()
-     */
-    public function writeFile($filename)
-    {
-        $this->writer->writeFile($filename);
-    }
+	/**
+	 * @see File_Archive_Writer::writeFile()
+	 */
+	public function writeFile( $filename ) {
+		$this->writer->writeFile( $filename );
+	}
 
-    /**
-     * @see File_Archive_Writer::close()
-     */
-    public function close()
-    {
-        $this->writer->close();
-    }
+	/**
+	 * @see File_Archive_Writer::close()
+	 */
+	public function close() {
+		$this->writer->close();
+	}
 }

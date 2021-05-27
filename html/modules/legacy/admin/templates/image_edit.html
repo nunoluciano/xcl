@@ -1,5 +1,6 @@
 <div class="adminnavi" aria-label="breadcrumb">
-  <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+  &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
   &raquo;&raquo; <a href="./index.php?action=ImageList&amp;imgcat_id=<{$actionForm->get('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}></a>
   <{if $actionForm->get('image_id')}>
@@ -68,7 +69,7 @@
     <tr>
       <td class="head"><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=image_nicename value=$actionForm->get('image_nicename') size=30 maxlength=255}>
+        <{xoops_input type=text name=image_nicename value=$actionForm->get('image_nicename') size=30 maxlength=191}>
       </td>
     </tr>
     <tr>

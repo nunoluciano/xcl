@@ -1,5 +1,9 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <div class='confirmMsg'>
-  <h4><{$smarty.const._NOT_DELETINGNOTIFICATIONS}></h4>
+  <h4>
+      <img class="svg notification" src="<{$xoops_url}>/images/icons/notification.svg"> <{$smarty.const._NOT_DELETINGNOTIFICATIONS}></h4>
   <form action="notifications.php" method="post">
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=delete value=1}>

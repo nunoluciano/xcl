@@ -2,11 +2,11 @@
 // $Id: global.php,v 1.1 2007/05/15 02:35:28 minahito Exp $
 
 define('_TOKEN_ERROR', 'Alert ! This prevent you from instantiating a malformed request or post. Please, submit again to confirm!');
-define('_SYSTEM_MODULE_ERROR', 'Following Modules are not installed.');
+define('_SYSTEM_MODULE_ERROR', 'Following modules are required.');
 define('_INSTALL', 'Install');
 define('_UNINSTALL', 'Uninstall');
-define('_SYS_MODULE_UNINSTALLED', 'Required(Not Installed)');
-define('_SYS_MODULE_DISABLED', 'Required(Disabled)');
+define('_SYS_MODULE_UNINSTALLED', 'Required (Not Installed)');
+define('_SYS_MODULE_DISABLED', 'Required (Disabled)');
 define('_SYS_RECOMMENDED_MODULES', 'Recommended Module');
 define('_SYS_OPTION_MODULES', 'Optional Module');
 define('_UNINSTALL_CONFIRM', 'Are you sure to uninstall system module?');
@@ -24,7 +24,7 @@ define('_DISABLESMILEY', 'Disable smiley');
 define('_DISABLEHTML', 'Disable html');
 define('_PREVIEW', 'Preview');
 
-define('_GO', 'Go!');
+define('_GO', 'Apply');
 define('_NESTED', 'Nested');
 define('_NOCOMMENTS', 'No Comments');
 define('_FLAT', 'Flat');
@@ -32,7 +32,7 @@ define('_THREADED', 'Threaded');
 define('_OLDESTFIRST', 'Oldest First');
 define('_NEWESTFIRST', 'Newest First');
 define('_MORE', 'more...');
-define('_MULTIPAGE', 'To have your article span multiple pages, insert the word <font color=red>[pagebreak]</font> (with brackets) in the article.');
+define('_MULTIPAGE', 'To have your article span multiple pages, insert the word <span style="color:red">[pagebreak]</span> (with brackets) in the article.');
 define('_IFNOTRELOAD', "If the page does not automatically reload, please [ <a href='%s'>click here</a> ]");
 define('_WARNINSTALL2', 'WARNING: Directory %s exists on your server. Please remove this directory for security reasons.');
 define('_WARNINWRITEABLE', 'WARNING: File %s is writeable by the server. Please change the permission of this file for security reasons. in Unix (444), in Win32 (read-only)');
@@ -101,8 +101,8 @@ define('_OPTIONS', 'Options');
 define('_QUOTE', 'Quote');
 define('_LIST', 'List');
 define('_LOGIN', 'User Login');
-define('_USERNAME', 'Username: ');
-define('_PASSWORD', 'Password: ');
+define('_USERNAME', 'Username');
+define('_PASSWORD', 'Password');
 define('_SELECT', 'Select');
 define('_IMAGE', 'Image');
 define('_SEND', 'Send');

@@ -1,26 +1,19 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="<{$xoops_url}>/">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                    </svg></a>
-                </li>
-            <li class="breadcrumb-item">
-                <a href="index.php">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-inbox-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3.81 4.063A1.5 1.5 0 0 1 4.98 3.5h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1-.78.624l-3.7-4.624a.5.5 0 0 0-.39-.188H4.98a.5.5 0 0 0-.39.188L.89 9.312a.5.5 0 1 1-.78-.624l3.7-4.625z"/>
-                        <path fill-rule="evenodd" d="M.125 8.67A.5.5 0 0 1 .5 8.5h5A.5.5 0 0 1 6 9c0 .828.625 2 2 2s2-1.172 2-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .496.562l-.39 3.124a1.5 1.5 0 0 1-1.489 1.314H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
-                    </svg> <{$smarty.const._MI_MESSAGE_NAME}></a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE1}></li>
-        </ol>
-    </nav>
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/">
+        <svg class="i-home" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg></a>
+    <li><a href="index.php">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-inbox-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3.81 4.063A1.5 1.5 0 0 1 4.98 3.5h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1-.78.624l-3.7-4.624a.5.5 0 0 0-.39-.188H4.98a.5.5 0 0 0-.39.188L.89 9.312a.5.5 0 1 1-.78-.624l3.7-4.625z"/>
+            <path fill-rule="evenodd" d="M.125 8.67A.5.5 0 0 1 .5 8.5h5A.5.5 0 0 1 6 9c0 .828.625 2 2 2s2-1.172 2-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .496.562l-.39 3.124a1.5 1.5 0 0 1-1.489 1.314H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
+        </svg> <{$smarty.const._MI_MESSAGE_NAME}></a>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE1}>
+</ul>
 
 
 <form action="index.php?action=new" method="post">
@@ -32,8 +25,6 @@
     <div class="ui-tab-wrap">
 
     <{include file="$xoops_theme/templates/message/inc_compo_nav.html"}>
-
-    <{* ------- /card-header *}>
 
     <div class="ui-tab-content">
 
@@ -48,20 +39,14 @@
 
 
         <{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
+            <div layout="column">
+                <h3><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$mActionForm->getShow('title')}></h3>
+                <p><{$smarty.const._MD_MESSAGE_TEMPLATE2}> : <{$mActionForm->getShow('uname')}>
+                <br><{$smarty.const._MD_MESSAGE_TEMPLATE4}></p>
 
-            <div self="row">
-            <label self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
-            <div self="row"><{$mActionForm->getShow('uname')}></div>
-            </div>
-
-            <div self="row">
-            <label self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></label>
-            <div self="row"><{$mActionForm->getShow('title')}></div>
-            </div>
-
-            <div self="row">
-            <label self="row"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></label>
-            <div self="row"><{$mActionForm->getShow('note', 'toShowTarea')}></div>
+                <blockquote class="bg-color">
+                <{$mActionForm->getShow('note', 'toShowTarea')}>
+                </blockquote>
             </div>
         <hr>
         <{/if}>
@@ -90,8 +75,8 @@
     </div>
 
     <div layout="row center-center">
-        <{legacy_button class="btn btn-outline-primary btn-sm mr-2" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
-        <{legacy_button class="btn btn-primary btn-sm" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+        <{legacy_button class="btn" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+        <{legacy_button class="btn" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
     </div>
 
 </div>

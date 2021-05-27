@@ -11,6 +11,9 @@ define('_MI_CKEDITOR4_DESC_CKEDITOR4', "https://ckeditor.com/");
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN', '管理者用ツールバー');
 define('_MI_CKEDITOR4_TOOLBAR_ADMIN_DESC', '管理者向け、CKEditor の config.toolbar の設定');
 
+define('_MI_CKEDITOR4_TOOLBAR_UI_COLOR', 'Toolbar UI Color');
+define('_MI_CKEDITOR4_TOOLBAR_UI_COLOR_DESC', 'Setting Editor UI Color with hexadecimal color code eg. #405060 has RGB values of of R:64, G:80, B:96 and is composed of 25.1% red, 31.4% green and 37.6% blue. <a href="https://www.colorhexa.com/" target="_blank">ColorHexa</a>');
+
 define('_MI_CKEDITOR4_SPECIAL_GROUPS', '特定グループ');
 define('_MI_CKEDITOR4_SPECIAL_GROUPS_DESC', '');
 

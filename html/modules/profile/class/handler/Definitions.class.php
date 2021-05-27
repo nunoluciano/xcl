@@ -25,9 +25,9 @@ class Profile_DefinitionsObject extends XoopsSimpleObject
     {
         $this->initVar('field_id', XOBJ_DTYPE_INT, '', false);
         $this->initVar('field_name', XOBJ_DTYPE_STRING, '', false, 32);
-        $this->initVar('label', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('label', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('type', XOBJ_DTYPE_STRING, '', false, 32);
-        $this->initVar('validation', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('validation', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('required', XOBJ_DTYPE_BOOL, 0, false);
         $this->initVar('show_form', XOBJ_DTYPE_BOOL, 1, false);
         $this->initVar('weight', XOBJ_DTYPE_INT, 10, false);

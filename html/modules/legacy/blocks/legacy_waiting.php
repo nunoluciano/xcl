@@ -1,16 +1,18 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: legacy_waiting.php,v 1.3 2008/09/25 15:12:12 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * legacy_waiting.php
+ * XOOPS2
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @author    Kazumi Ono (AKA onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief     This file was entirely rewritten by the XOOPS Cube Legacy project for
+ * keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>
  */
-/*------------------------------------------------------------------------*
- |  This file was entirely rewritten by the XOOPS Cube Legacy project for |
- |   keeping compatibility with XOOPS 2.0.x <https://www.xoops.org>        |
- *------------------------------------------------------------------------*/
 
 function b_legacy_waiting_show()
 {

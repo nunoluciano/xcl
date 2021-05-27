@@ -23,13 +23,13 @@ define('_MB_LEGACY_COMPEND', 'Comments');
 define('_MB_LEGACY_RECO', 'Recommend Us');
 define('_MB_LEGACY_PWWIDTH', 'Pop-Up Window Width');
 define('_MB_LEGACY_PWHEIGHT', 'Pop-Up Window Height');
-define('_MB_LEGACY_LOGO', 'Logo image file under %s directory');  // %s is your root image directory name
+define('_MB_LEGACY_LOGO', 'Logo image file under directory %s');  // %s is your root image directory name
 define('_MB_LEGACY_SADMIN', 'Show admin groups');
 define('_MB_LEGACY_DISPLAYC', 'Display %s comments');
 
 define('_MB_LEGACY_LANG_NUMTHEME', '%s themes');
 define('_MB_LEGACY_LANG_THSHOW', 'Display screenshot image');
-define('_MB_LEGACY_LANG_THWIDTH', 'Screenshot image width');
+define('_MB_LEGACY_LANG_THWIDTH', 'Screenshot image width (px or %)');
 
 define('_MB_LEGACY_LANG_RECOMMENDSITE', 'Recommend this Site to a Friend');
 

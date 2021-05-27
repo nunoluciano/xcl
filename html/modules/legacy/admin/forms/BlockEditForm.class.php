@@ -1,11 +1,13 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: BlockEditForm.class.php,v 1.5 2008/10/26 04:21:37 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * BlockEditForm.class.php
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    minahito, 2008/10/26
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -45,9 +47,9 @@ class Legacy_BlockEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '255');
-        $this->mFieldProperties['title']->addVar('maxlength', '255');
+        $this->mFieldProperties['title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TITLE, '191');
+        $this->mFieldProperties['title']->addVar('maxlength', '191');
 
         $this->mFieldProperties['side'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['side']->setDependsByArray(['required', 'objectExist']);

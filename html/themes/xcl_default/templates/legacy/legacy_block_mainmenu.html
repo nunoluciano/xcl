@@ -59,7 +59,10 @@
                 </li>
                 <{foreach item=sublink from=$module.sublinks}>
                     <li><a class="menuSub" href="<{$sublink.url}>">
-                            <{$sublink.name}>
+                        <{* Smarty Truncate for Modules sub-links eg: D3Forum and Pico
+                        This truncates a variable to a character length, the default is 80.
+                        As an optional second parameter, you can specify a string of text to display at the end if the variable was truncated. *}>
+                            <{$sublink.name|truncate:32}>
                         </a>
                     </li>
                     <{/foreach}>

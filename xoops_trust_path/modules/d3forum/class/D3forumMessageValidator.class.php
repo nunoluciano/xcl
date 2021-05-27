@@ -1,38 +1,49 @@
 <?php
+/**
+ * D3Forum module for XCL
+ *
+ * @package XCL
+ * @subpackage D3Forum
+ * @version 2.3
+ * @author Gijoe (Peak), Gigamaster (XCL)
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ */
 
-class D3forumMessageValidator
-{
+class D3forumMessageValidator {
 
-    public $errors = [];
+	public $errors = [];
 
-    public function get_errors4html()
-    {
-        $ret = '';
-        foreach ($this->errors as $error) {
-            $ret .= '<span style="color:#f00;">' . htmlspecialchars($error) . '</span><br>';
-        }
+	public function get_errors4html() {
+		$ret = '';
+		foreach ( $this->errors as $error ) {
+			$ret .= '<span style="color:#f00;">' . htmlspecialchars( $error ) . '</span><br>';
+		}
 
-        return $ret;
-    }
+		return $ret;
+	}
 
-    public function validate_by_rendered($html)
-    {
-        $fragments  = explode('<div', $html);
-        $nest_level = 0;
-        foreach ($fragments as $fragment) {
-            $nest_level -= substr_count($fragment, '</div>');
-            if ($nest_level < 0) {
-                $this->errors[] = _MD_D3FORUM_ERR_TOOMANYDIVEND;
-                return false;
-            }
-            $nest_level++;
-        }
-        if (1 !== $nest_level) {
-            $this->errors[] = _MD_D3FORUM_ERR_TOOMANYDIVBEGIN;
-            return false;
-        }
+	public function validate_by_rendered( $html ) {
+		$fragments = explode( '<div', $html );
 
-        return true;
-    }
+		$nest_level = 0;
+
+		foreach ( $fragments as $fragment ) {
+			$nest_level -= substr_count( $fragment, '</div>' );
+			if ( $nest_level < 0 ) {
+				$this->errors[] = _MD_D3FORUM_ERR_TOOMANYDIVEND;
+
+				return false;
+			}
+			$nest_level ++;
+		}
+		if ( 1 !== $nest_level ) {
+			$this->errors[] = _MD_D3FORUM_ERR_TOOMANYDIVBEGIN;
+
+			return false;
+		}
+
+		return true;
+	}
 
 }

@@ -55,7 +55,7 @@
 
     html,
     body {
-        background      : var(  --ui-body-background    );
+        background      : #23272F;
         color           : var(  --ui-body-color         );
 
         font-family     : var(  --ui-font-family        );
@@ -74,7 +74,9 @@
     }
 
     body {
-        transition      : background 500ms ease-in-out, color 200ms ease;
+        background      : var(  --ui-body-background    );
+        /* Removed Background white Flash transition */
+        /*transition      : background 500ms ease-in-out, color 200ms ease;*/
     }
 
     .ui-dev-mode {

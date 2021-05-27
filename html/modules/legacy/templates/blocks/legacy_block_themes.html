@@ -9,9 +9,9 @@
   <{else}>
     <select id="xoops_theme_select" name="xoops_theme_select" onchange="submit();" size="3">
   <{/if}>
-  <{foreach item=theme_option from=$block.theme_options}>
-      <option value="<{$theme_option.name}>!-!<{$theme_option.screenshot}>" <{$theme_option.selected}> ><{$theme_option.name}></option>
-  <{/foreach}>
+      <{foreach item=theme_option from=$block.theme_options}>
+          <option value="<{$theme_option.name}>!-!<{$theme_option.screenshot}>" <{$theme_option.selected}> ><{$theme_option.name}></option>
+      <{/foreach}>
     </select>
   <{if $block.mode==1}>
     <input type="submit" value="<{$smarty.const._GO}>" />

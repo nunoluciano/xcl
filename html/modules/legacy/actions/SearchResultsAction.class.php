@@ -1,11 +1,13 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: SearchResultsAction.class.php,v 1.3 2008/09/25 15:12:06 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * SearchAction.class.php
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -45,7 +47,8 @@ class Legacy_SearchResultsAction extends Legacy_Action
 
     public function hasPermission(&$controller, &$xoopsUser)
     {
-        if (1 !== $this->mConfig['enable_search']) {
+        // Avoid strict check !
+        if (1 != $this->mConfig['enable_search']) {
             $controller->executeRedirect(XOOPS_URL . '/', 3, _MD_LEGACY_ERROR_SEARCH_NOT_ENABLED);
             return false;
         }

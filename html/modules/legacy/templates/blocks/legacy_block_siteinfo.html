@@ -1,4 +1,4 @@
-<table class="outer" cellspacing="0">
+<table class="outer">
 <{if $block.showgroups == true}>
 <{foreach item=group from=$block.groups}>
   <tr>
@@ -20,7 +20,7 @@
 </table>
 <br>
 <div style="margin: 3px; text-align:center;">
-  <img src="<{$block.logourl}>" alt="" border="0" /><br>
+  <img src="<{$block.logourl}>" alt="" /><br>
 <{if $block.recoomendtime != 0}>
   <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>
 <{/if}>

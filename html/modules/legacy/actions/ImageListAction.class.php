@@ -1,11 +1,12 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: ImageListAction.class.php,v 1.6 2008/09/25 14:31:45 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * ImageListAction.class.php
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

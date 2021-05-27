@@ -5,6 +5,7 @@
  * Keep only the files that have a specific extension
  *
  * PHP versions 4 and 5
+ * PHP version 7 (Nuno Luciano aka gigamaster)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -36,34 +37,32 @@ require_once "File/Archive/Predicate.php";
  *
  * @see        File_Archive_Predicate, File_Archive_Reader_Filter
  */
-class File_Archive_Predicate_Extension extends File_Archive_Predicate
-{
-    public $extensions;
+class File_Archive_Predicate_Extension extends File_Archive_Predicate {
+	public $extensions;
 
-    /**
-     * @param $extensions array or comma separated string of allowed extensions
-     */
-    public function __construct($extensions)
-    {
-        if (is_string($extensions)) {
-            $this->extensions = explode(",", $extensions);
-        } else {
-            $this->extensions = $extensions;
-        }
-    }
-    /**
-     * @see File_Archive_Predicate::isTrue()
-     */
-    public function isTrue(&$source)
-    {
-        $filename = $source->getFilename();
-        $pos = strrpos($filename, '.');
-        $extension = "";
-        if ($pos !== false) {
-            $extension = strtolower(substr($filename, $pos+1));
-        }
-        $result = in_array($extension, $this->extensions);
+	/**
+	 * @param $extensions array or comma separated string of allowed extensions
+	 */
+	public function __construct( $extensions ) {
+		if ( is_string( $extensions ) ) {
+			$this->extensions = explode( ",", $extensions );
+		} else {
+			$this->extensions = $extensions;
+		}
+	}
 
-        return $result;
-    }
+	/**
+	 * @see File_Archive_Predicate::isTrue()
+	 */
+	public function isTrue( &$source ) {
+		$filename  = $source->getFilename();
+		$pos       = strrpos( $filename, '.' );
+		$extension = "";
+		if ( $pos !== false ) {
+			$extension = strtolower( substr( $filename, $pos + 1 ) );
+		}
+		$result = in_array( $extension, $this->extensions );
+
+		return $result;
+	}
 }

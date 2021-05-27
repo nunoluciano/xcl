@@ -4,7 +4,7 @@
  * @package Legacy
  * @version $Id: Waiting.class.php,v 1.3 2008/09/25 15:12:44 kilica Exp $
  * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @license https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  *
  */
 
@@ -75,7 +75,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/mydownloads/admin/index.php?op=listBrokenDownloads';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_BFLS;
                 $modules[] = $blockVal;
             }
@@ -93,7 +93,7 @@ class Legacy_Waiting extends XCube_ActionFilter
         if ($result) {
             $blockVal = [];
             $blockVal['adminlink'] = XOOPS_URL . '/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=0&amp;com_status=1';
-            list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+            [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
             $blockVal['lang_linkname'] =_MB_LEGACY_COMPEND;
             $modules[] = $blockVal;
         }

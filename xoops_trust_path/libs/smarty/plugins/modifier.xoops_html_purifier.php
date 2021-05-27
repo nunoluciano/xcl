@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: modifier.xoops_html_purifier.php,v 1.0 2010/03/25 15:12:36 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
+ * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
  * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
  *
  */
@@ -34,7 +34,7 @@ function smarty_modifier_xoops_html_purifier($html, $ecoding=null, $doctype=null
         $config->set('HTML.Doctype', $doctype);
     }
 
-    if ($_conv = ($encoding !== 'UTF-8' && function_exists('mb_convert_encoding'))) {
+    if ($_conv = ($encoding != 'UTF-8' && function_exists('mb_convert_encoding'))) {
         $_substitute = mb_substitute_character();
         mb_substitute_character('none');
         $html = mb_convert_encoding($html, 'UTF-8', $encoding);

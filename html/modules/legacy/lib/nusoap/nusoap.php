@@ -149,7 +149,7 @@ class nusoap_base
     * @var      string
     * @access   public
     */
-    public $soap_defencoding = 'ISO-8859-1';
+    public $soap_defencoding = 'UTF-8';
     //var $soap_defencoding = 'UTF-8';
 
     /**
@@ -8321,4 +8321,4 @@ if (!extension_loaded('soap')) {
     {
     }
 }
-?>
+

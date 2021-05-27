@@ -1,6 +1,12 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="index.php">
+        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}>
+</ul>
+
 <h2><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}></h2>
 
 <form action="index.php?action=blacklist" method="post" name="adduser">

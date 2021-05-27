@@ -1,34 +1,23 @@
 <?php
 /**
- *
- * @package XOOPS2
- * @version $Id: legacy_usermenu.php,v 1.3 2008/09/25 15:12:13 kilica Exp $
- * @copyright Copyright (c) 2000 XOOPS.org  <https://www.xoops.org/>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * legacy_usermenu.php
+ * XOOPS2
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @author    Kazumi Ono (AKA onokazu)
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief     This function is called back to display the user menu.
+ * [Template Variables]
+ *  $block.uid ... Curent user id for the menu.
+ *  $block.flagShowInbox ... If there is the pm module, set true.
+ *  $block.inbox_url ... Return url to access inbox of pm.
+ *  $block.new_messages ... amount of unread messages.
  */
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <https://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-// Author: Kazumi Ono (AKA onokazu)                                          //
-// URL: https://www.myweb.ne.jp/, https://www.xoops.org/, https://jp.xoops.org/ //
-// Project: The XOOPS Project                                                //
-// ------------------------------------------------------------------------- //
-//  This file has been modified for Legacy from XOOPS2 System module block   //
-// ------------------------------------------------------------------------- //
 
-
- /**
-  * This function is called back to display the user menu.
-  * 
-  * [Template Variables]
-  *  $block.uid ... Curent user id for the menu.
-  *  $block.flagShowInbox ... If there is the pm module, set true.
-  *  $block.inbox_url ... Return url to access inbox of pm.
-  *  $block.new_messages ... amount of unread messages.
-  */
 function b_legacy_usermenu_show()
 {
     $root =& XCube_Root::getSingleton();

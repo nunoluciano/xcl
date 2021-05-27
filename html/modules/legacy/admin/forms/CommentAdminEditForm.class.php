@@ -1,11 +1,13 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: CommentAdminEditForm.class.php,v 1.3 2008/09/25 15:11:08 kilica Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * CommentAdminEditForm.class.php
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    kilica, 2008/09/25
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -53,9 +55,9 @@ class Legacy_AbstractCommentAdminEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['com_title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addVar('maxlength', '255');
+        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addVar('maxlength', '191');
 
         $this->mFieldProperties['com_text'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_text']->setDependsByArray(['required']);

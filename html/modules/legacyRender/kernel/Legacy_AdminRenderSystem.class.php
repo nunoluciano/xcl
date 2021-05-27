@@ -51,12 +51,11 @@ class Legacy_AdminSmarty extends Smarty
         $this->right_delimiter = '}>';
         $this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
 
-        //
-        // [TODO]
-        //	If we don't set true to the following flag, a user can not recover
-        // with deleting additional theme. But, a user should to select true or
-        // false by site_custom.ini.php.
-        //
+	    /**
+	     * @brief force_compile
+	     * If we don't set true to the following flag, a user can't recover deleting a Theme.
+	     * However, this option can be defined =true or =false in "site_custom.ini.php"
+	     */
         $this->force_compile = false;
     }
     
@@ -99,7 +98,7 @@ class Legacy_AdminSmarty extends Smarty
 
 /**
  * @brief The specific FILE-TYPE render-system.
- * @todo We depend on Legacy_RenderSystem that an add-in module defines. We must stop this situation.
+ * @todo We depend on Legacy_RenderSystem which an add-on module defines. We need to put an end to this situation.
  */
 class Legacy_AdminRenderSystem extends Legacy_RenderSystem
 {
@@ -123,8 +122,10 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $this->mSmarty->register_modifier('theme', 'Legacy_modifier_theme');
         $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
-        // !TODO - get global smarty module and uid for theme design :
-        // <{$uid|xoops_user:"uname"}>, <{$uid|xoops_user:"name"}>, <{$uid|xoops_user:"email"}>, <{$uid|xoops_user:"last_login"}>
+        /**
+         * @todo - get global smarty module and uid for theme design :
+         * @brief <{$uid|xoops_user:"uname"}>, <{$uid|xoops_user:"name"}>, <{$uid|xoops_user:"email"}>, <{$uid|xoops_user:"last_login"}>
+         */
         global $xoopsUser, $xoopsModule, $xoopsOption, $xoopsConfig;
         $dirname = is_object( @$xoopsModule ) ? $xoopsModule->getVar('dirname') : '' ;
         $modname = is_object( @$xoopsModule ) ? $xoopsModule->getVar('name') : '' ;
@@ -305,7 +306,7 @@ function Legacy_function_stylesheet($params, &$smarty)
         return;
     }
     
-    $media = (isset($params['media'])) ? $params['media'] : 'all';
+    $media = $params['media'] ?? 'all';
 
     $infoArr = Legacy_get_override_file($file, 'stylesheets/');
 
@@ -347,7 +348,8 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
     $moduleObject =& $root->mContext->mXoopsModule;
 
     if ($isSpDirname && is_object($moduleObject) && 'legacy' == $moduleObject->get('dirname') && isset($_REQUEST['dirname'])) {
-        $dirname = xoops_getrequest('dirname');
+        //$dirname = xoops_getrequest('dirname');
+	    $root->mContext->mRequest->getRequest($dirname);
         if (preg_match('/^[a-z0-9_]+$/i', $dirname)) {
             $handler = xoops_gethandler('module');
             $moduleObject =& $handler->getByDirname($dirname);

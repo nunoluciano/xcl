@@ -1,11 +1,13 @@
 <?php
 /**
- *
- * @package Legacy
- * @version $Id: Legacy_Updater.class.php,v 1.3 2008/10/26 04:00:40 minahito Exp $
- * @copyright Copyright 2005-2020 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
- *
+ * Legacy_Updater.class.php
+ * @package   Legacy
+ * @version   2.3.0
+ * @author    Gigamaster, XCL 2020 PHP7
+ * @author    minahito, 2008/10/26
+ * @copyright Copyright 2005-2021 XOOPSCube Project
+ * @license   https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license   https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -148,7 +150,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
     }
 
     /**
-     * @brief extend config_title and config_desc size in config table.
+     * @brief match config_title and config_desc size in config table.
      * @author kilica
      */
     public function _extendConfigTitleSize()
@@ -157,7 +159,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         $db =& $root->mController->getDB();
         $table = $db->prefix('config');
 
-        $sql = 'ALTER TABLE `'. $table .'` MODIFY `conf_title` varchar(255) NOT NULL default "", MODIFY `conf_desc` varchar(255) NOT NULL default ""';
+        $sql = 'ALTER TABLE `'. $table .'` MODIFY `conf_title` varchar(191) NOT NULL default "", MODIFY `conf_desc` varchar(191) NOT NULL default ""';
 
         if ($db->query($sql)) {
             $this->mLog->addReport(XCube_Utils::formatString(_AD_LEGACY_MESSAGE_EXTEND_CONFIG_TITLE_SIZE_SUCCESSFUL, $table));

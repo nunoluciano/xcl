@@ -1,0 +1,281 @@
+<ul class="breadcrumb" aria-label="breadcrumb">
+    <li><a href="<{$xoops_url}>/" title="<{$smarty.const._YOURHOME}>">
+        <svg class="i-home" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg></a>
+    <li aria-current="page">
+    <{$smarty.const._VISITWEBSITE}>
+</ul>
+<script>Prism.highlightAll();</script>
+<style>
+.front-page div [self] {
+    background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    border          : 1px solid rgb(44, 50, 60);
+    border-radius   : 10px;
+    margin          : .5em;
+    padding         : 1em;
+}
+.ui-accordion .ui-accordion-header {
+    display         : block;
+    cursor          : pointer;
+    position        : relative;
+    margin          : 2px 0 0 0;
+    padding         : .5em .5em .5em .7em;
+    font-size       : 100%;
+    outline         : 0;
+}
+.ui-widget-content {
+	border          : 1px solid rgb(44, 50, 60);
+	background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+	color           : #abc;
+}
+.ui-widget-content a {
+    color           : #face74;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+	border          : 1px solid rgb(44, 50, 60);
+	font-weight     : normal;
+	color           : #abc;
+	transition      : all 0.3s ease 0s;
+}
+.ui-accordion .ui-accordion-header {
+	background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    border          : 1px solid rgb(44, 50, 60);
+	border-radius   : 7px;
+    box-shadow      : inset 0px 5px 10px 0px hsl(215deg 15% 21%), 1px 2px 3px hsl(215deg 17% 10%);
+    font-weight     : 300;
+}
+    .ui-widget-header, .ui-state-active {
+    color           : #face74;
+}
+</style>
+<script>
+$( function() {
+    $( "#accordion-sortable" )
+    .accordion({
+        header: "> div > h3"
+    })
+    .sortable({
+        axis: "y",
+        handle: "h3",
+        stop: function( event, ui ) {
+        // IE doesn't register the blur when sorting
+        // so trigger focusout handlers to remove .ui-state-focus
+        ui.item.children( "h3" ).triggerHandler( "focusout" );
+        // Refresh accordion to handle new order
+        $( this ).accordion( "refresh" );
+        }
+    });
+} );
+</script>
+
+
+<div layout="column my-4" class="front-page">
+
+
+
+    <div self="size-x1" class="bg-color">
+        <h2><{$smarty.const._YOURHOME}></h2>
+    </div>
+
+
+
+    <div layout="row center-stretch my-4 sm-column">
+
+        <div self="top mr-4 sm-last">
+
+
+            <h3>Accordion Sortable</h3>
+            <p>Drag the header to re-order panels.</p>
+
+                <!-- toggle display -->
+                <p><input class='switch' type='checkbox' name='accordion-sortable' onclick="slideToggle('.accordion-sortable', this)" value='0'>
+                <label for='accordion-sortable'> View source code</label></p>
+                <!--  display code -->
+                <div class="accordion-sortable" style="display:none">
+                    <pre>
+                    <code class="lang-js">
+                    $( function() {
+                        $( "#accordion-sortable" )
+                        .accordion({
+                            header: "> div > h3"
+                        })
+                        .sortable({
+                            axis: "y",
+                            handle: "h3",
+                            stop: function( event, ui ) {
+                            // IE doesn't register the blur when sorting
+                            // so trigger focusout handlers to remove .ui-state-focus
+                            ui.item.children( "h3" ).triggerHandler( "focusout" );
+
+                            // Refresh accordion to handle new order
+                            $( this ).accordion( "refresh" );
+                            }
+                        });
+                    } );
+                    </code>
+                    </pre>
+                </div>
+                <!-- /toggle code accordion -->
+
+
+
+        </div>
+        <!-- /top sm-last on mobile device -->
+
+        <div self="top sm-first">
+
+            <div id="accordion-sortable">
+                <div class="group">
+                    <h3>Section 1</h3>
+                    <div><p>jQuery UI includes a robust CSS Framework designed for building custom jQuery widgets.</p>
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>Section 2</h3>
+                    <div><p>The framework includes classes that cover a wide array of common user interface needs, and can be manipulated using <a href="https://jqueryui.com/themeroller/" title="ThemeRoller - interactive builder" target="_blank">jQuery UI ThemeRoller</a>.</p>
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>Section 3</h3>
+                    <div><p>By building your UI components using the jQuery UI CSS Framework, you will be adopting shared markup conventions and allowing for ease of code integration across the plugin community at large</p>
+
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>Section 4</h3>
+                    <div><p>You can read more about jQuery UI theming at the jQuery Learning Center.</p>
+                        <ul>
+                            <li><a href="https://learn.jquery.com/jquery-ui/theming/" title="Learning center - Theming jQuery UI" target="_blank">Theming jQuery UI</a></li>
+                            <li><a href="https://jqueryui.com/themeroller/" title="ThemeRoller - interactive builder" target="_blank">jQuery UI interactive builder</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /accordion-sortable -->
+
+        </div><!-- /top sm-first on mobile device -->
+
+    </div><!-- /row and sm-column -->
+
+
+<!-- Layout -->
+<div self="size-x1 mb-4" class="bg-color">
+    <h2>Layout</h2>
+    <p>XCL-UI is defined with two custom HTML attributes.</p>
+    <p><span class="badge">layout</span> — used on container(parent) element to set the layout of its children (column or row)<br>
+    <span class="badge">self</span> — used on container(child) element to set size, align or order of display for element itself</p>
+    <!-- toggle display -->
+    <p><input class='switch' type='checkbox' name='layout-self' onclick="slideToggle('.layout-self', this)" value='0'>
+    <label for="layout-self"> View source code</label></p>
+
+    <!--  display code -->
+    <div class="layout-self" style="display:none">
+    <pre>
+        <code class="lang-html"><!--
+    <div layout="direction vertically-horizontally reverse">
+        <div self="size align order display">
+            ...
+        </div>
+    </div>
+        --></code>
+        </pre>
+    </div>
+</div>
+
+
+<!-- Layout column and row -->
+<div layout="row center-center my-2">
+
+    <fieldset layout="column" self="size-1of3">
+    <legend>column</legend>
+        <div self="left" title="div self=left">1 left</div>
+        <div self="center" title="div self=center">2 center </div>
+        <div self="right" title="div self=right">3 right</div>
+    </fieldset>
+
+    <fieldset layout="row" self="size-x1">
+        <legend>row</legend>
+        <div layout="row center-stretch">
+            <div self="size-1of2" class="shadow-out" title="div self=size-1of2 class=shadow-out">shadow-out</div>
+            <div self="size-x1" class="shadow-in" title="div self=size-x1 class=shadow-in">shadow-in</div>
+        </div>
+    </fieldset>
+
+</div>
+
+
+
+<!-- Layout Row with class "shadow-in" and child self size -->
+<fieldset layout="rows my-4" self="size-x1">
+    <legend>rows</legend>
+    <div layout="rows mt-4" class="shadow-in">
+
+        <div self="size-1of5">size-1of5 [width: 20%]</div>
+        <div self="size-1of4">size-1of4 [width: 25%]</div>
+        <div self="size-1of3">size-1of3 [width: 33.33%]</div>
+        <div self="size-1of2">self=size-1of2 [width: 50%]</div>
+        <div self="center m-n2">self=center m-n2 [margin negative 2]</div>
+
+        <div layout="row center-justify" class="shadow-out">
+            <span class="bg-color2">Row center-justify class=shadow-out</span>
+            <span class="bg-color3">justify</span>
+        </div>
+
+    </div>
+</fieldset>
+
+
+<hr name="spacing and media query">
+
+
+    <div self="size-x1" class="bg-color">
+        <h2>Spacing and Responsive Layout</h2>
+    </div>
+
+
+
+    <!-- Spacing and Responsive Layout -->
+    <div layout="row sm-column" name="Spacing and Media Query>">
+
+        <!-- Spacing -->
+        <div self="size-1of2">
+            <p>Margin <span class="badge">m-</span> and padding <span class="badge">p-</span> values <span class="badge">1 to 5</span> increment property by <span class="badge">.25em</span><br> <span class="badge">m-n1</span>counter-increment' property.</p>
+            <ul>
+                <li><span class="badge">m- or p-</span>1 to 5
+                <li><span class="badge">mt- or pt-</span> top
+                <li><span class="badge">ml- or pl-</span> left
+                <li><span class="badge">mr- or pr-</span> right
+                <li><span class="badge">mb- or pb-</span> bottom
+                <li><span class="badge">my- or py-</span> vertical
+                <li><span class="badge">mx- or mx-</span> horizontal
+                <li><span class="badge">m*- or p*-auto</span> property to auto
+            </ul>
+        </div>
+
+
+        <!-- Responsive Layout -->
+        <div self="size-x1">
+            <h3>Responsive layout</h3>
+            <p>Media query prefixes</p>
+            <p>Set item size to match viewport <span class="badge">full</span> width (100%)
+                or <span class="badge">half</span> width (50%)</p>
+            <ul>
+                <li><span class="badge">sm- (max-width: 40em)</span>
+                <li><span class="badge">md- (max-width: 52em)</span>
+                <li><span class="badge">lg- (max-width: 64em)</span>
+            </ul>
+        </div>
+
+    </div>
+    <!-- /Spacing and Responsive Layout -->
+
+
+
+</div>

@@ -56,4 +56,4 @@ define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM', 'Install Complete!');
 define('_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING', 'Remove {0} directory to block anonymous attackers trying to use the installer.');
 define('_MD_LEGACY_MESSAGE_LOGGEDOUT', 'You are now logged out.');
 define('_MD_LEGACY_MESSAGE_LOGIN_SUCCESS', 'Login successful');
-define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', 'Thank you for your visit to our site!');
+define('_MD_LEGACY_MESSAGE_THANKYOUFORVISIT', 'Thank you for your visit!');

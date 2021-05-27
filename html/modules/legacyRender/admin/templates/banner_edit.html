@@ -1,5 +1,6 @@
 <div class="adminnavi">
-  <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
+  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+  &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
   <{if $actionForm->get('bid')}>
     &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_EDIT}></span>
@@ -71,13 +72,13 @@
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_IMAGEURL}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=imageurl value=$actionForm->get('imageurl') size=70 maxlength=255}>
+        <{xoops_input type=text name=imageurl value=$actionForm->get('imageurl') size=70 maxlength=191}>
       </td>
     </tr>
     <tr>
       <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKURL}></td>
       <td class="<{cycle values="odd,even"}>">
-        <{xoops_input type=text name=clickurl value=$actionForm->get('clickurl') size=70 maxlength=255}>
+        <{xoops_input type=text name=clickurl value=$actionForm->get('clickurl') size=70 maxlength=191}>
       </td>
     </tr>
     <tr>

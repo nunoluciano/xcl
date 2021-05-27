@@ -1,11 +1,10 @@
 <{* Dev-Mode Toggle *}>
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
 <ol>
 <{foreach item=post from=$block.posts}>
 
-	<li style="margin:1px;">
+	<li style="margin:1px;" class="<{cycle values="posteven,postodd"}>>
     <{* <{if $post.forum_id == 1}>
         <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$post.external_link_id}>#post_id<{$post.id}>">
     <{elseif $post.forum_id == 2}>

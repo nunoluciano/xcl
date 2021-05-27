@@ -1,30 +1,30 @@
-  
-  
-[![Project Status: WIP – User Interface and SQL InnoDB utf8mb4 in progress.](https://www.repostatus.org/badges/latest/wip.svg)](https://github.com/xoopscube/xcl) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl) [![License](https://poser.pugx.org/phpunit/phpunit/license)](https://github.com/xoopscube/xcl/blob/master/BSD_license.txt)  
 
-  
-  
-## /////////////////////// — XCL : : Web Application Platform  
+
+[![Project Status: WIP – User Interface and SQL InnoDB utf8mb4 in progress.](https://www.repostatus.org/badges/latest/wip.svg)](https://github.com/xoopscube/xcl) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl) [![License](https://poser.pugx.org/phpunit/phpunit/license)](https://github.com/xoopscube/xcl/blob/master/BSD_license.txt)
 
 
 
+## /////////////////////// — XCL : : Web Application Platform
 
-##### :computer: The Minimum Requirements  
-  
-  
 
-          Apache, Nginx, etc.  
-          PHP 7.2.x  
-          MySQL 5.6, MariaDB  
-          InnoDB utf8 / utf8mb4  
- 
-   
-  
-    
-    
+
+
+##### :computer: The Minimum Requirements
+
+
+
+          Apache, Nginx, etc.
+          PHP 7.2.x
+          MySQL 5.6, MariaDB
+          InnoDB utf8 / utf8mb4
+
+
+
+
+
 ## /////////////////////// — Table of Contents
-  
-  
+
+
 
 <details><summary>Click to expand</summary>
 
@@ -33,103 +33,103 @@
 - [Supported Platforms](#introduction)
 - [Usage](#wizard-installer)
 - [Features](#xcl-features)
-- [API](#api)  
+- [API](#api)
 - [License](#open-source-licenses)
 - [Contributing](#contributing)
 - [Big Thanks](#big-thanks)
-  
+
 
 </details>
-  
-  
 
-         [WIP] Master  – XCL 2.3.0 alpha : User Interface and SQL InnoDB utf8mb4 in progress !    
+
+
+         [WIP] Master  – XCL 2.3.0 alpha : User Interface and SQL InnoDB utf8mb4 in progress !
     	 [WIP] Develop – XCL 2.3.0 alpha Smarty 3 !
-   
+
 
 ## /////////////////////// — Overview
 
 
-### Introduction  
+### Introduction
 
-**XOOPSCube** is a web application platform and **XCL** is a user-friendly package with modules ready-to-use. Wether you plan to create your own personal or corporate community website with news, forums, blog, photo album or gallery, portfolio, etc. **XCL** will run smoothly on any AMP environment – the most popular open-source cross-platform web server solution stack consisting of Apache, MySQL, and PHP available for Linux, MacOS and Windows.  
+**XOOPSCube** is a web application platform and **XCL** is a user-friendly package with modules ready-to-use. Whether you plan to create your own personal or corporate community website with news, forums, blog, photo album or gallery, portfolio, etc. **XCL** will run smoothly on any AMP environment – the most popular open-source cross-platform web server solution stack consisting of Apache, MySQL, and PHP available for Linux, macOS and Windows.
 
-### Wizard Installer  
+### Wizard Installer
 
-Clone this repo or download XCL and unzip in your web server's public directory (e.g. /var/www/html/, /public_html/).  
-Launch your browser and follow the XCL Wizard Installer step-by-step process to complete the installation ( 2min ).  
- 
+Clone this repo or download XCL and unzip in your web server's public directory (e.g. /var/www/html/, /public_html/).
+Launch your browser and follow the XCL Wizard Installer step-by-step process to complete the installation ( 2min ).
+
 <img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="XCL Web App Wizard Installer" title="XCL Web App Wizard Installer" />
 
-### Web App Module Management  
+### Web App Module Management
 
-After you complete the Wizard process, there are lots of options to customize your web app platform : select the modules to install, add modules blocks or custom blocks (HTML, Smarty, HTML) to specifc pages, change users and group permissions, customize meta tags (SEO) and localization. X-Update provides a simple click-and-run solution to get all the necessary protection and functionality at the right time. Get and deploy themes, preloads (i.e. plugins), and modules updates.  
- 
- 
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />   
+After you complete the Wizard process, there are lots of options to customize your web app platform : select the modules to install, add modules blocks or custom blocks (HTML, Smarty, HTML) to specific pages, change users and group permissions, customize meta tags (SEO) and localization. X-Update provides a simple click-and-run solution to get all the necessary protection and functionality at the right time. Get and deploy themes, preloads (i.e. plugins), and modules updates.
 
-  
-  
-  
-  
+
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="XCL Admin Module Management" title="XCL Admin Module Management" />
+
+
+
+
+
 ## /////////////////////// — The Features
 
 
-### XCL features  
+### XCL features
 
-Below is a list of some key elements:   
+Below is a list of some key elements:
 
 * Easy Wizard installation
 * Modular architecture
 * Essential third-party modules (Blog, Forum, Photo, Wordpress, Wiki)
 * Private Message and notification
-* Must-have built-in advanced search 
+* Must-have built-in advanced search
 * Extensions (preloads to customize functionality)
 * Simple Cube Core to build up a custom cms
-* Debug function for easy development 
+* Debug function for easy development
 * User and Group-based granular permission system
-* Translation support and user-interface for localization  
+* Translation support and user-interface for localization
 * CMS with custom headers and style changes as needed
 * Smarty Template engine and caching mechanism
 * Themes and Templates management
 * Embedded WYSIWYG HTML Editor
 * File-manger with remote drives (Dropbox, One Drive, Google Drive,...)
-* Free choice of CSS, Javascript and PHP frameworks  
-  
-  
-  
-  
+* Free choice of CSS, Javascript and PHP frameworks
+
+
+
+
 ## /////////////////////// — The Documentation
 
 
-### API  
+### API
 
-**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform. 
+**XCL** 2.3.x development aims to avoid constraining new designs with legacy backwards compatibility issues and to simplify the design process to extend the Web Application Platform.
 Still, the XOOPS Cube Legacy API documentation generated by Apigen 2.7.0
 
 http://xoopscube.org/documentation/api
 
-  
-  
-  
+
+
+
 ## /////////////////////// — The License
 
 
 ### Open source licenses
 
-#### :page_with_curl: XOOPS Cube  
+#### :page_with_curl: XOOPS Cube
 
-XOOPS Cube was started from scratch and the **Cube Core** source code is released under the [BSD licence](https://github.com/xoopscube/xcl/blob/master/BSD_license.txt).
+XOOPS Cube was started from scratch, and the **Cube Core** source code is released under the [BSD licence](https://github.com/xoopscube/xcl/blob/master/BSD_license.txt).
 
- 
-#### :page_with_curl: Legacy Package  
+
+#### :page_with_curl: Legacy Package
 
 The Legacy Package source code which is one set of base modules to ensure backwards compatibility is released under a [GPL licence](https://raw.githubusercontent.com/xoopscube/xcl/master/GPL_V2.txt).
 
-  
-  
-  
-## /////////////////////// — The Contributors  
+
+
+
+## /////////////////////// — The Contributors
 
 
 ### Contributing
@@ -137,17 +137,17 @@ The Legacy Package source code which is one set of base modules to ensure backwa
 10key, Aaki, Argon, Asunta, Bandit-x, Beduino, Bindi, Bluemooninc, Domifara, Fugafuga, Gara, Gigamaster, GIJOE, Gusagi, Halt, Hamanaka, Hiroki, Hypweb (Nao-pon), Hxrr, JardaR, Jidaikobo, Kilica, kimura363, Leco, Lumbago, Marijuana, Marine, Mat, Matchan, Metal, Mikhail Miguel, Minahito, Moegiiro, Mumincacao, Masarap, Naao, Nao-pon, Neko88, Nobunobu, Nor, Nbuy (Nobu), Ohsepoa, OhYear, Ohwada, Okuhiki, Onokazu, Orrisroot, Otneg, Plusangel, Pcboy, Roger, RyujiAMANO, Sacchan,  Sak-Axyz, Salamander, Shige-p, Shiraga, Slayer_cg, Sohgo, Sow, Suin, Toemon, Tokitam, Tohokuaiki, Tom_g3x, Tomoro, Wanderer, Wanikoo.
 
 
------  
+-----
 
-### Big Thanks   
+### Big Thanks
 
 
-<p align=center>[JetBrains](https://www.jetbrains.com/) is an active participant in the [Open Source community](https://www.jetbrains.com/opensource/).  
+<p align="center">[JetBrains](https://www.jetbrains.com/) is an active participant in the [Open Source community](https://www.jetbrains.com/opensource/).
 Big thanks to the JetBrains Team for supporting XOOPSCube Project ^_^/  </p>
 
-<p align=center><img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/logo/jetbrains-logo-variant-3-256.png" alt="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" title="Big thanks to the JetBrains Team for supporting XOOPSCube Projec" /></p>
+<p align=center><img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/logo/jetbrains-logo-variant-3-256.png" alt="Big thanks to the JetBrains Team for supporting XOOPSCube Project" title="Big thanks to the JetBrains Team for supporting XOOPSCube Project" /></p>
 
------  
+-----
 
 ### Contribution
 
@@ -156,18 +156,18 @@ Everyone benefits from every [enhancement request](https://github.com/xoopscube/
 
 
 
-**The XOOPS Cube Project** and distributions have been developed and supported by a volunteer group with a multidisciplinary focus providing a variety of different perspectives and ideas to consider in further development and design. The Core values are integrity, innovation, passion and respect.  
-  
-    
-      
-      —///////////////////////— 
-      
+**The XOOPS Cube Project** and distributions have been developed and supported by a volunteer group with a multidisciplinary focus providing a variety of different perspectives and ideas to consider in further development and design. The Core values are integrity, innovation, passion and respect.
+
+
+
+      —///////////////////////—
+
 _When you know who you are, you know what to do, you know what story to tell, and the stories that you want to hear and see. We share the essential knowledge and understanding of “open source” necessary to create tools that encourage creativity and free speech._
-                           
-                           
->"Learn everything you can.  
-Try everything that comes along.  
-Look at everything there is to see.  
-Search, experiment, make mistakes, fail, stand up.  
-Turn religious, turn conservative, turn radical.  
-And then forget all about it and find your way to create."  
+
+
+>"Learn everything you can.
+Try everything that comes along.
+Look at everything there is to see.
+Search, experiment, make mistakes, fail, stand up.
+Turn religious, turn conservative, turn radical.
+And then forget all about it and find your way to create."

@@ -1,11 +1,11 @@
 <?php
 
-foreach ($this->v('reports') as $report) {
+foreach ( $this->v( 'reports' ) as $report ) {
 
-    echo $report . '<br>';
+	echo $report . '<br>';
 
 }
 
 ?>
 
-<div class="confirmOk"><?php $this->e('message') ?></div>
+<div class="confirmOk"><?php $this->e( 'message' ) ?></div>

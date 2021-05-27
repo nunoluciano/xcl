@@ -1,76 +1,93 @@
-.breadcrumb {
-    background: rgba(0, 0, 0, 0.2);
-    background: linear-gradient(130deg, rgb(30, 36, 48), rgb(35, 35, 45));
-    border:  1px solid #263849;
-    border-radius: 7px;
-	margin: 0 0 2em;
-    padding: .25em;
-    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+/*
+ * *
+ *  * XCL UI Breadcrumb Navigation
+ *  *
+ *  * Truncate long link names and auto-resize to display elements within breadcrumb container.
+ *  *
+ *  * @package    XCL231
+ *  * @author     Nuno Luciano (aka gigamaster)
+ *  * @copyright  2005-2021 The XOOPSCube Project
+ *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ *  * @version    Release: @package_231@
+ *  * @link       https://github.com/xoopscube/xcl
+ *  * *
+ *
+ */
+
+/* -------------------- -------------------- -------------------- -------------------- BREADCRUMB NAVIGATION */
+
+ul.breadcrumb {
+    list-style-type     : none;
+    display             : flex;
+    background          : rgba(0, 0, 0, 0.2);
+    background          : linear-gradient(130deg, rgb(30, 36, 48), rgb(35, 35, 45));
+    border              : 1px solid #263849;
+    border-radius       : 7px;
+    box-shadow          : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
     6px 6px 15px 3px rgba(45, 50, 60, 1),
-    inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
-    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+    inset -5px -5px 8px 0 rgba(47, 65, 74, 0.4),
+    inset -1px -2px 2px 0 rgba(45, 50, 60, 0.4),
     -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
-    max-width: max-content;
+    margin              : 0 0 .25em;
+    padding             : .25em;
+    width               : fit-content;
+    /* Required by Firefox */
+    width               : -moz-fit-content;
+    max-width           : 57.5em;
 }
 
-.breadcrumb ol {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+ul.breadcrumb li {
+    margin              : .15em;
+    white-space         : nowrap;
+    overflow            : hidden;
+    text-overflow       : ellipsis;
 }
 
-.breadcrumb li {
-    display: inline-block;
-    margin-right: 2px;
+ul.breadcrumb li a {
+    display             : block;
+    border              : 1px solid rgb(44, 50, 60);
+    border-radius       : 5px;
+    background          : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    box-shadow          : inset 0 5px 10px 0 hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
+    padding             : .5em 1.25em;
+    transition          : all .3s;
 }
 
-/* .breadcrumb li:before {
-	content: "\2000";
-	position: absolute;
-} */
-
-.breadcrumb li:not(:last-child):after {
-	content: "";
-	display: inline-block;
-}
-
-.breadcrumb li a {
-    display: inline-block;
-    border: 1px solid rgb(44, 50, 60);
-    border-radius: 5px;
-    background: linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
-    box-shadow: inset 0px 5px 10px 0px hsl(215, 15%, 21%), 1px 2px 3px hsl(215, 17%, 10%);
-    padding: .5em 1.25em;
-    transition: all .3s;
-}
-
-.breadcrumb a:focus,
-.breadcrumb a:hover {
-	/* outline: 1px solid; */
-	/* outline-offset: 1px; */
-    text-decoration: none;
-    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
+ul.breadcrumb li a:focus,
+ul.breadcrumb li a:hover,
+    /* Last element without a link */
+ul.breadcrumb li+[aria-current],
+    /* Last element with a link */
+ul.breadcrumb li [aria-current]:last-of-type {
+    box-shadow          : inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
     5px 5px 10px 3px rgb(45, 50, 60),
-    inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
-    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
+    inset -5px -5px 8px 0 rgba(47, 65, 74, 0.4),
+    inset -1px -2px 2px 0 rgba(45, 50, 60, 0.4),
     -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
+    padding             : .5em 1.25em;
+}
+ul.breadcrumb li [aria-current],
+ul.breadcrumb li [aria-current]:hover,
+ul.breadcrumb li [aria-current]:focus {
+    color               : #face74;
+}
+    /* Do Not Truncate home and module top category*/
+ul.breadcrumb li:nth-child(n+3) > a {
+    white-space         : nowrap;
+    overflow            : hidden;
+    text-overflow       : ellipsis;
+}
+    /* Do Not Shrink home and module top category*/
+ul.breadcrumb li:nth-child(-n+2) {
+    flex                : 0 0 auto;
+}
+ul.breadcrumb li:nth-last-child(1) {
+    text-overflow       : clip;
+    overflow            : visible;
 }
 
-li.breadcrumb-item:last-child {
-	/* outline: 1px solid; */
-    /* outline-offset: 1px; */
-    color:#face74;
-    text-decoration: none;
-    box-shadow: inset 5px 5px 8px 1px rgba(0, 0, 0, 0.4),
-    5px 5px 10px 3px rgb(45, 50, 60),
-    inset -5px -5px 8px 0px rgba(47, 65, 74, 0.4),
-    inset -1px -2px 2px 0px rgba(45, 50, 60, 0.4),
-    -6px -6px 10px 3px rgba(45, 50, 60, 0.5);
-    padding:0.5em 1em
-}
-
-.breadcrumb [aria-current],
-.breadcrumb [aria-current]:hover,
-.breadcrumb [aria-current]:focus {
-	color:#face74;
+ul.breadcrumb li:last-child {
+    flex                : 0 0 auto;
+    color               : #face74;
 }
