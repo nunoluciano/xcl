@@ -3,7 +3,7 @@
  * @file
  * @brief The page controller in the directory
  * @package profile
- * @version $Id$
+ * @version 2.3
  */
 
 require_once '../../mainfile.php';

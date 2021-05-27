@@ -1,4 +1,5 @@
 <?php
+
 define('_MD_PROFILE_LANG_FIELD_TIP1', 'String - allows a series of characters to be stored.');
 define('_MD_PROFILE_LANG_FIELD_TIP2', 'Text - textarea with editor.');
 define('_MD_PROFILE_LANG_FIELD_TIP3', 'Int (Integers) - allows value containing only decimal digits.');

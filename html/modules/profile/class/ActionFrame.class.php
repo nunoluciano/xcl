@@ -1,8 +1,19 @@
 <?php
+/**
+ * @package    profile
+ * @version    2.3.1
+ * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Kilica
+ * @copyright  2005-2021 The XOOPSCube Project
+ * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @link       https://github.com/xoopscube/
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
+
 /*
 define ("PROFILE_FRAME_PERFORM_SUCCESS", 1);
 define ("PROFILE_FRAME_PERFORM_FAIL", 2);
@@ -16,6 +27,7 @@ define ("PROFILE_FRAME_VIEW_INPUT", 5);
 define ("PROFILE_FRAME_VIEW_PREVIEW", 6);
 define ("PROFILE_FRAME_VIEW_CANCEL", 7);
 */
+
 class Profile_ActionFrame
 {
     public $mActionName = null;

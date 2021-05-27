@@ -1,9 +1,4 @@
 <?php
-/**
- * @file
- * @package xupdate
- * @version $Id$
-**/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit;

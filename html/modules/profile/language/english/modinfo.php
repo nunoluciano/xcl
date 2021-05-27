@@ -1,7 +1,5 @@
 <?php
-/**
- * 2012-5-2: Update by Yoshi.Sakai
- */
+
 define('_MI_PROFILE_DESC_PROFILE', 'Profile editor module');
 define('_MI_PROFILE_KEYWORD_DEFINITIONS_CREATE', 'Personalize User Account registration form by generating custom fields.');
 define('_MI_PROFILE_KEYWORD_DEFINITIONS_LIST', 'Profile fields');

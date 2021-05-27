@@ -1,9 +1,4 @@
 <?php
-/**
- * @file
- * @package xupdate
- * @version $Id$
-**/
 
 if (! defined('XOOPS_TRUST_PATH')) {
     die('set XOOPS_TRUST_PATH into mainfile.php') ;

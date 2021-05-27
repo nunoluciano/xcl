@@ -42,7 +42,7 @@
          * Edit settings of --ui-root.css line 150
          * --ui-dev-mode : block; // or none
          */
-        $("div.ui-dev-mode").attr('title', 'The template file name. Edit display --ui-root.css liine 150.');
+        $("div.ui-dev-mode").attr('title', 'The template file name. Edit display --ui-root.css line 150.');
 
     });
         // addEventListener('load', () => {

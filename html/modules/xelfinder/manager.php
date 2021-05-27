@@ -1,4 +1,5 @@
 <?php
+
 if (! defined('XOOPS_ROOT_PATH')) {
 	include dirname( __FILE__, 3 ) . '/mainfile.php';
 }
