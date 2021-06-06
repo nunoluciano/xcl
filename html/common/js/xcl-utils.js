@@ -1,18 +1,28 @@
-// HOW TO USE USE X-UTILS
+/**
+ * X -UTILS
+ *
+ * How to use
+ * 1 - ? Place any jQuery/helper plugins above document ready ?
+ * 2 - ? Place any instance in document ready function bellow ?
+ *
+ * Summary
+ *
+ * - Avoid Console Errors
+ * - jquery.cookie
+ * - Alert user of unsaved changes to form before unload
+ * - LocalStorage : Prefers-color-scheme
+ * - Reusable slide Toggle
+ * - Dropdown Menu
+ * - Layout View Switch
+ * - Context Menu
+ * - jQuery Scroll Smooth
+ * - Scroll to Top (NavTop)
 
-// 1 - 🔺 Place any jQuery/helper plugins above document ready 🔺
-// 2 - 🔻 Place any instance in document ready function bellow 🔻
-//
-// Summary
-// - Avoid Console Errors
-// - Reusable Toggle
-// - Context Menu
-// - jQuery Scroll Smooth
-// - Nav to Top
+ */
 
-
-
-// Avoid `console` errors in browsers that lack a console.
+/**
+ * Avoid `console` errors in browsers that lack a console.
+ */
 (function() {
     var method;
     var noop = function () {};
@@ -54,45 +64,102 @@ function slideToggle(className, obj) {
     $(className).slideToggle(500,"easeInOutCubic", obj.checked );
 }
 
+/**
+ * LocalStorage : Prefers-color-scheme
+ * Dark or Light Theme
+ *
+ * How To Use
+ * 1. Add to body
+     <label class="theme-switch" for="checkbox">
+     <input type="checkbox" id="checkbox">
+     </label>
+ * 2. Add to CSS :
+     :root {
+    --bg-color: #fec150;
+    }
+ * 3. Add to CSS :
+     [data-theme="dark"] {
+     --bg-color: #111;
+     }
+ * Customize the input and CSS
+ */
+// Get the theme switch input
+const themeToggle = document.querySelector(
+    '.theme-switch input[type="checkbox"]'
+);
+// Function to switch the theme based on input checked or not
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+        document.documentElement.setAttribute("data-theme", "light");
+    }
+}
+// Add an event listener to switch the theme
+themeToggle.addEventListener("change", switchTheme, false);
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute("data-theme", "dark");
 
+        // Set theme preference to dark
+        localStorage.setItem("theme", "dark");
+    } else {
+        document.documentElement.setAttribute("data-theme", "light");
 
-// 1 - 🔺 Place any jQuery/helper plugins above document ready 🔺
-// 2 - 🔻 Place any instance in document ready function bellow 🔻
+        // Set theme preference to light
+        localStorage.setItem("theme", "light");
+    }
+}
+// Get the theme from localStorage
+const currentTheme = localStorage.getItem("theme");
+// If the current local storage item can be found
+if (currentTheme) {
+    // Set the body data-theme attribute
+    document.documentElement.setAttribute("data-theme", currentTheme);
+// If the current theme is dark, set the theme toggle
+    if (currentTheme === "dark") {
+        themeToggle.checked = true;
+    }
+}
+
+// 1 - ? Place any jQuery/helper plugins above document ready ?
+/* ------------------------------------------------------------ */
+// 2 - ? Place any instance in document ready function bellow ?
 
 
 $(document).ready(function () {
 
     /**
-     * Reusable Dropdown Menu
+     * Dropdown Menu
      *
      * How to use
-     * 1) Add an element with class="xdropdown"
-     * 2) Add a link with class="xdropdown-toggle"
-     * 3) Add an element with class="xdropdown-content"
+     * 1) Add an element with class="ui-dropdown"
+     * 2) Add a link with class="ui-dropdown-toggle"
+     * 3) Add an element with class="ui-dropdown-content"
      *
-     <div class="xdropdown">
-        <a href="#" class="xdropdown-toggle"> Menu</a>
-        <div class="xdropdown-content">
+     <div class="ui-dropdown">
+        <a href="#" class="ui-dropdown-toggle"> Menu</a>
+        <div class="ui-dropdown-content">
         <a href="#">1HTML</a>
         </div>
      </div>
      */
-	$( ".xdropdown" ).on( "click", ".xdropdown-toggle", function(event) {
+	$( ".ui-dropdown" ).on( "click", ".ui-dropdown-toggle", function(event) {
         event.preventDefault();
-		$('.xdropdown').removeClass('xopen');
+		$('.ui-dropdown').removeClass('xopen');
 		$(this).parent().toggleClass('xopen');
 	});
 
     $(document).on("click", function(event){
-        var $trigger = $(".xdropdown");
+        var $trigger = $(".ui-dropdown");
         if($trigger !== event.target && !$trigger.has(event.target).length){
-            $(".xdropdown").removeClass("xopen");
+            $(".ui-dropdown").removeClass("xopen");
         }
     });
 
 
     /**
-     * Reusable View Switch
+     * Layout View Switch
      *
      * How To Use
      * 1) Add two buttons or icons
@@ -118,7 +185,7 @@ $(document).ready(function () {
 
 
     /**
-     * Reusable Scroll Smooth
+     * Scroll Smooth
      *
      * How To Use
      * jQuery Scroll Smooth selects all links with hashes
@@ -163,7 +230,8 @@ $(document).ready(function () {
      * Scroll To Top
      *
      * How To Use
-     * Add a div with id=navtop
+     * 1. Add a div with id=navtop
+     * 2. Customize CSS
      */
         var btop = $('#navtop');
         $(window).scroll(function() {
@@ -192,12 +260,5 @@ $(document).ready(function () {
 
 
 //--- document ready function
+
 });
-
-
-
-
-
-
-
-
