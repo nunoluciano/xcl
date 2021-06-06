@@ -289,22 +289,22 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
     [layout*=sm-p] {padding: var(--ui-space-1)!important;}
 }
 /* Large Screen Device lg- */
-@media screen and (max-width: 64em) {
+@media screen and (min-width: 52em) {
     [self*=lg-full] {-ms-flex: 1 1 100% !important;flex: 1 1 100% !important;width: 100%;max-width: 100%}
     [self*=lg-half] {-ms-flex: 1 1 50% !important;flex: 1 1 50% !important;width: 50%;max-width: 50%}
     [self~=lg-first] {-ms-flex-order: -1;order: -1}
     [self~=lg-last] {-ms-flex-order: 999;order: 999}
-    [self~=lg-hide] {display: none}
-    [self~=lg-show] {display: inherit}
+    [self~=lg-hide] {display: none!important}
+    [self~=lg-show] {display: inherit!important}
 }
 /* Medium Screen Device md- */
-@media screen and (max-width: 52em) {
+@media screen and (max-width: 51em) {
     [self*=md-full] {-ms-flex: 1 1 100% !important;flex: 1 1 100% !important;width: 100%;max-width: 100%}
     [self*=md-half] {-ms-flex: 1 1 50% !important;flex: 1 1 50% !important;width: 50%;max-width: 50%}
     [self~=md-first] {-ms-flex-order: -1;order: -1}
     [self~=md-last] {-ms-flex-order: 999;order: 999}
-    [self~=md-hide] {display: none}
-    [self~=md-show] {display: inherit}
+    [self~=md-hide] {display: none!important}
+    [self~=md-show] {display: inherit!important}
     [self*=md-m] {margin : var(--ui-space-4)!important;}
     [self*=md-n] {margin : var(--ui-space-4)!important;}
     [self*=md-p] {padding: var(--ui-space-4)!important;}
@@ -315,8 +315,8 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
     [self*=sm-half] {-ms-flex: 1 1 50% !important;flex: 1 1 50% !important;width: 50%;max-width: 50%}
     [self~=sm-first] {-ms-flex-order: -1;order: -1}
     [self~=sm-last] {-ms-flex-order: 999;order: 999}
-    [self~=sm-hide] {display: none}
-    [self~=sm-show] {display: inherit}
+    [self~="sm-hide"] {display: none}
+    [self~="sm-show"] {display: inherit!important}
     [self*=sm-m] {margin : var(--ui-space-1)!important;}
     [self*=sm-n] {margin : var(--ui-space-1)!important;}
     [self*=sm-p] {padding: var(--ui-space-1)!important;}
