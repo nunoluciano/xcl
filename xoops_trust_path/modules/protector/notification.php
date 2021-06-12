@@ -1,12 +1,7 @@
 <?php
 
-eval( '
-function ' . $mydirname . '_notify_iteminfo( $category, $item_id )
-{
-	return protector_notify_base( \'' . $mydirname . '\' , $category , $item_id ) ;
-}
-'
-);
+eval( 'function ' . $mydirname . '_notify_iteminfo( $category, $item_id )
+{return protector_notify_base( \'' . $mydirname . '\' , $category , $item_id ) ;}' );
 
 if ( ! function_exists( 'protector_notify_base' ) ) {
 

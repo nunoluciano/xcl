@@ -2,12 +2,12 @@
 /**
  * Protector module for XCL - Administration panel.
  *
- * @package XCL
- * @subpackage Protector Administration Security
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @package    Protector
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
@@ -128,7 +128,7 @@ include __DIR__ . '/mymenu.php';
 
 // title
 echo "<div class='ui-card-main'>\n
-        <h2>" . $xoopsModule->name() . "</h3>\n";
+        <h2>" . $xoopsModule->name() . "</h2>\n";
 
 // configs writable check
 if ( ! is_writable( dirname( __DIR__ ) . '/configs' ) ) {
@@ -184,8 +184,7 @@ echo "
     </td>
   </tr>
 </table>
-</form>
-";
+</form>";
 
 // header of log listing
 echo "
