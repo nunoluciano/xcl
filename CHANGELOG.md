@@ -5,117 +5,162 @@ All notable changes to this project will be documented in this file.
 - Format based on [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
-[lint version] 2021-05-27
+---
+## [unreleased] 2021-06-12
 
-⚡ 🔨 🎨 [WIP] LOCAL-FIRST / Refactoring UI-X 2.3.1
+### Changed
 
-[lint version] 2021-03-27
-
-### Added
-
-✅ Default templates
-✅ Inline svg
-✅ SVG logo
+- X-Util rename ui-nav-top
+- X-Util prevent tabs from scrolling
+- Component admin-help
+- Abstract Category Object
+- Abstract Group Object
+- column side
+- comment
+- comment status
+- enum.class
+- Render System Banner setup
+- Database Factory getDatabaseConnection
 
 ### Update
 
-✅ class, common, core
-✅ install wizard, modules, themes
-✅ default themes (templates)
-✅ language 🚧 fr utf-8 #238
-✅ d3 modules (forum, pico, protector)
-✅ xelfinder
-✅ xupdate
+📦 ⬆️ UPDATE X-elFinder 2.58
+- [VD:abstract] Fixed #3151 support RAR5 lib
+- [cmd:fullscreen] Fixed #3177 wrong fullscreen button caption
+- [js:core] Supports cookie samesite attribute
+- [VD:SFTP] Add new SFTP driver, via phpseclib library
+- [js:core] Fixed #3193 auto-detection of baseUrl
+- [js:upload] Fixed upload bug (#3264)
+- [VD:abstract,php] make the thumbnail support webp (#3265)
+- [php:core] Fixed #3250 error only variables can be passed by reference
+- [VD:abstract] add 'phar:*' => 'text/x-php' into 'staticMineMap'
+- [VD:abstract] Fixed #3181 add an option uploadMaxMkdirs
+- [php:core] Add cwd param to proc_open (#3281)
+- [VD:abstract] Bugfix of an option mimeDetect (#3291)
+- [UI] Fixed #3302 problem of d&d when copy of UI command is disabled
+- And some minor bug fixes
 
-###  Fixed
 
-✅ Deprecated DB
-✅ Default templates
-✅ Install Wizard SQL
-✅ Notice and Warning D3 modules
+---
+## [unreleased] 2021-06-07
 
+⚡ 🔨 🎨 [WIP] LOCALSTORAGE / Refactoring UI-X 2.3.1
 
-[unreleased] 2021-03-03
+---
+## [lint version] 2021-05-27
+
+⚡ 🔨 🎨 [WIP] LOCAL-FIRST / Refactoring UI-X 2.3.1
+
+---
+## [lint version] 2021-03-27
 
 ### Added
 
-✅ Component front page
+- Default templates
+- Inline svg
+- SVG logo
 
-### Changed
+### Update
 
-✅ Default Theme Neumorphism (WIP)
-✅ Theme default front page
-✅ Templates of modules
-
-[unreleased] 2021-02-21
-
-### Added
-
-✅ CKEditor Setting Editor UI Color
-✅ Default Theme Neumorphism (WIP) #232
-✅ Theme built with XCLayout Helper #229
-✅ Templates breadcrumbs #220
-✅ Templates (D3Forum, Pico) #218
-✅ Templates Blocks (Users, Online, Themes)
-✅ Template Refirect Functions [50 legacy] #223
-✅ SVG inline icons
-✅ Smarty constants to Pico menu (En,Ja)
-✅ Smarty breadcrumbs to D3 modules
-✅ Render blocks admin to D3 modules
-✅ Render preferences to D3 modules
-✅ URL Rewriting - XCL Cool URI #234
-
-### Changed
-
-✅ Copyright 2021
-✅ English constant (User)
-✅ Form input number (max 100)
-✅ Javascript popup centered
-✅ Render Preferences of D3 modules
-✅ SQL utf8mb4 varchar 255 to 191
-✅ UI Avatar #217
-✅ UI Backend breadcrumbs #220
-✅ UI Frontend breadcrumbs #220
-✅ XCL Default Theme Neumorphism
-✅ XCLayout Helper Flexbox
+- class, common, core
+- install wizard, modules, themes
+- default themes (templates)
+- language 🚧 fr utf-8 #238
+- d3 modules (forum, pico, protector)
+- xelfinder
+- xupdate
 
 ###  Fixed
 
-✅ Altsys fix stric check (blocks permissions)
-✅ Admin Theme typos
-✅ Admin SVG icons (bold, linear)
-✅ CSS excludes ckeditor (breaks layout with raw javascript)
-✅ Debugger nav (Graph)
-✅ D3Forum category configs unserialize
-✅ Fix d3forum_wysiwyg_body
-✅ Help load with ajax (modal)
-✅ Modules icons (SVG with custom dirname)
-✅ Module filter (smarty single quote)
-✅ Module list (form removed from component)
-✅ Module Pico frontend overridable options
-✅ Protector advisory protocol check
-✅ Protector apache_get_version
-✅ Protector breadcrumbs and nav #220
-✅ User avatar (check if empty) #217
-✅ SQL InnoDB utf8mb4 varchar 255 to 191
-✅ Switch 'diff from file'
-✅ Templates (inc) #233
-✅ XCLayout Helper fix margin negative
-✅ XCLayout Helper fix spacing
+- D3 Deprecated DB
+- Default templates
+- Install Wizard SQL
+- Notice and Warning D3 modules
+
+---
+## [unreleased] 2021-03-03
+
+### Added
+
+- Component front page
+
+### Changed
+
+- Default Theme Neumorphism (WIP)
+- Theme default front page
+- Templates of modules
+
+---
+## [unreleased] 2021-02-21
+
+### Added
+
+- CKEditor Setting Editor UI Color
+- Default Theme Neumorphism (WIP) #232
+- Theme built with XCLayout Helper #229
+- Templates breadcrumbs #220
+- Templates (D3Forum, Pico) #218
+- Templates Blocks (Users, Online, Themes)
+- Template Refirect Functions [50 legacy] #223
+- SVG inline icons
+- Smarty constants to Pico menu (En,Ja)
+- Smarty breadcrumbs to D3 modules
+- Render blocks admin to D3 modules
+- Render preferences to D3 modules
+- URL Rewriting - XCL Cool URI #234
+
+### Changed
+
+- Copyright 2021
+- English constant (User)
+- Form input number (max 100)
+- Javascript popup centered
+- Render Preferences of D3 modules
+- SQL utf8mb4 varchar 255 to 191
+- UI Avatar #217
+- UI Backend breadcrumbs #220
+- UI Frontend breadcrumbs #220
+- XCL Default Theme Neumorphism
+- XCLayout Helper Flexbox
+
+###  Fixed
+
+- Altsys fix stric check (blocks permissions)
+- Admin Theme typos
+- Admin SVG icons (bold, linear)
+- CSS excludes ckeditor (breaks layout with raw javascript)
+- Debugger nav (Graph)
+- D3Forum category configs unserialize
+- Fix d3forum_wysiwyg_body
+- Help load with ajax (modal)
+- Modules icons (SVG with custom dirname)
+- Module filter (smarty single quote)
+- Module list (form removed from component)
+- Module Pico frontend overridable options
+- Protector advisory protocol check
+- Protector apache_get_version
+- Protector breadcrumbs and nav #220
+- User avatar (check if empty) #217
+- SQL InnoDB utf8mb4 varchar 255 to 191
+- Switch 'diff from file'
+- Templates (inc) #233
+- XCLayout Helper fix margin negative
+- XCLayout Helper fix spacing
 
 ### Removed
 
-✅ Protector deprecated mymenu inline
-✅ Extra tags from default templates
-✅ CSS classes of Bootstrap 4
-✅ Xoops.css
+- Protector deprecated mymenu inline
+- Extra tags from default templates
+- CSS classes of Bootstrap 4
+- Xoops.css
 
 ### Update
 
 - Icon Bundle (WIP)
 - Settings (WIP)
 
-[unreleased] 2020-07-11
+---
+## [unreleased] 2020-07-11
 
 ### Added
 
@@ -159,8 +204,8 @@ All notable changes to this project will be documented in this file.
 -  xelFinder 2.57 settings for XCL
 
 
-
-[unreleased] 2020-07-05
+---
+## [unreleased] 2020-07-05
 
 ### Added
 
@@ -197,7 +242,8 @@ All notable changes to this project will be documented in this file.
 -  xelFinder 2.57 @nao-pon
 Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
-[unreleased] 2020-07-03
+---
+## [unreleased] 2020-07-03
 
 ### Added
 
@@ -230,8 +276,8 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - XCL Bootstrap default
 
-
-[unreleased] 2020-07-01
+---
+## [unreleased] 2020-07-01
 
 ### Added
 
@@ -284,8 +330,8 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - xElFinder
 
-
-[unreleased] 2020-06-25
+---
+## [unreleased] 2020-06-25
 
 ### Added
 
@@ -326,8 +372,8 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Module Message 2.4.0 @gigamaster
 - xElFinder @Naoki Sawada
 
-
-[unreleased] 2020-06-19
+---
+## [unreleased] 2020-06-19
 
 ### Added
 
@@ -366,8 +412,8 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - D3 CSS classes
 - HTML4 tags
 
-
-[unreleased] 2020-06-10
+---
+## [unreleased] 2020-06-10
 
 ### Added
 
@@ -406,7 +452,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - xoops_module_get_admin_menu
 - xoops_module_write_admin_menu
 
-
+---
 ## [unreleased] 2020-06-08
 
 ### Added
@@ -464,7 +510,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - jQuery 3.5.1
 
-
+---
 ## [unreleased] 2020-05-29
 
 ### Added
@@ -511,7 +557,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - SVG Render from admin script
 - CSS custom properties
 
-
+---
 ## [unreleased] 2020-05-11
 
 ### Added
@@ -549,7 +595,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Theme Grid Flex Boilerplate
 - Theme Legacy_default
 
-
+---
 ## [unreleased] 2020-04-29
 
 ### Added
@@ -602,7 +648,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - X-elFinder version 2.56
 
-
+---
 ## [unreleased] 2020-02-29
 
 ### Added
@@ -629,7 +675,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - X-elFinder version 2.53
 
-
+---
 ## [unreleased] 2019-12-19
 
 ### Added
@@ -686,7 +732,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - HTML Purifier HTML5 attributes
 - Standards Compliant HTML Filtering
 
-
+---
 ## [unreleased] 2019-11-29
 
 ### Added
@@ -720,7 +766,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - HTML Purifier 4.12.0 - Standards Compliant HTML Filtering
 - Xupdate Store phpseclib-2.0.23
 
-
+---
 ## [unreleased] 2019-11-15
 
 ### Added
@@ -796,6 +842,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - XelFinder v2.50
 
 
+---
 ## [unreleased] 2019-10-19
 
 ### Added
@@ -874,7 +921,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Pico Preferences #150
 - xelFinder Preferences #150
 
-
+---
 ## [unreleased] - 2019-10-09
 
 ### Changed
@@ -899,7 +946,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Catalog english : install, legacy, profile, stdCache, user
 - xelfinder version 2.50 by Naoki Sawada aka nao-pon
 
-
+---
 ## [unreleased] - 2019-10-07
 
 ### Added
@@ -922,7 +969,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - XCL and modules version (legacy,profile,stdCache,user)
 - modules doc/help
 
-
+---
 ## [unreleased] - 2019-09-25
 
 ### Removed
@@ -938,7 +985,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 
 - HTML Purifier 4.11.0
 
-
+---
 ## [unreleased] - 2019-04-30
 
 ### Added
@@ -947,7 +994,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Hack by Ryuji to prevent Legacy_redirect if AdelieDebug
 - Fixes Pico Category
 
-
+---
 ## [unreleased] - 2019-04-18
 
 ### Added
@@ -977,7 +1024,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - smarty compiler class [#32](https://github.com/xoopscube/xcl/issues/82)
 - ckeditor smarty function [#31](https://github.com/xoopscube/xcl/issues/31)
 
-
+---
 ## [unreleased] - 2019-04-12
 
 ### Deprecated
@@ -993,7 +1040,7 @@ Note : for Nginx, go to module preferences and checkbox to "Not use PathInfo"
 - Sync branches
 - Sync Trust Path
 
-
+---
 ## [unreleased] - 2019-02-11
 
 **XCL 2.3.0 Update to PHP7:**
