@@ -11,7 +11,7 @@ try {
 
 	// needed for case insensitive search to work, due to broken UTF-8 support in PHP
 	ini_set( 'default_charset', 'UTF-8' );
-	if (PHP_VERSION_ID < 50600) {
+	if ( version_compare( PHP_VERSION, '5.6', '<' ) ) {
 		ini_set( 'mbstring.internal_encoding', 'UTF-8' );
 		ini_set( 'mbstring.http_input', 'pass' );
 		ini_set( 'mbstring.http_output', 'pass' );
@@ -112,7 +112,7 @@ try {
 	$xoops_elFinder->setLogfile( $debug ? XOOPS_TRUST_PATH . '/cache/elfinder.log.txt' : '' );
 
 	// HTTP request header origin
-	$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+	$origin = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
 	if ( $origin && $origin === $xoops_elFinder->getMyOrigin() ) {
 		$origin = '';
 	}

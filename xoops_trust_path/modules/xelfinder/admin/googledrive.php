@@ -1,4 +1,13 @@
 <?php
+/**
+ * X-elFinder module for XCL
+ * @package    XelFinder
+ * @version    2.3.1
+ * @author     Gigamaster, 2021-04-02 XCL PHP7
+ * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ */
 
 $php54up = false;
 $vendor  = false;

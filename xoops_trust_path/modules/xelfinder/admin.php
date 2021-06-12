@@ -1,6 +1,6 @@
 <?php
 ini_set( 'default_charset', _CHARSET );
-if (PHP_VERSION_ID < 50600) {
+if ( version_compare( PHP_VERSION, '5.6', '<' ) ) {
 	ini_set( 'mbstring.internal_encoding', _CHARSET );
 } else {
 	@ini_set( 'mbstring.internal_encoding', '' );
