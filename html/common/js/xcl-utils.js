@@ -16,7 +16,7 @@
  * - Layout View Switch
  * - Context Menu
  * - jQuery Scroll Smooth
- * - Scroll to Top (NavTop)
+ * - Scroll to Top (ui-nav-top)
 
  */
 
@@ -96,7 +96,11 @@ function switchTheme(e) {
     }
 }
 // Add an event listener to switch the theme
-themeToggle.addEventListener("change", switchTheme, false);
+//var themeToggle = document.getElementById('overlayBtn');
+if(themeToggle){
+    themeToggle.addEventListener('change', switchTheme, false);
+}
+//themeToggle.addEventListener("change", switchTheme, false);
 function switchTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute("data-theme", "dark");
@@ -117,7 +121,8 @@ if (currentTheme) {
     // Set the body data-theme attribute
     document.documentElement.setAttribute("data-theme", currentTheme);
 // If the current theme is dark, set the theme toggle
-    if (currentTheme === "dark") {
+    if (themeToggle && currentTheme === "dark") {
+
         themeToggle.checked = true;
     }
 }
@@ -194,6 +199,7 @@ $(document).ready(function () {
         // Remove links that don't actually link to anything
         .not('[href="#"]')
         .not('[href="#0"]')
+        .not('a[href*="#tab"]') // prevent tab links to scroll
         .click(function(event) {
             // On-page links
             if (
@@ -230,10 +236,10 @@ $(document).ready(function () {
      * Scroll To Top
      *
      * How To Use
-     * 1. Add a div with id=navtop
+     * 1. Add a div with id=ui-nav-top
      * 2. Customize CSS
      */
-        var btop = $('#navtop');
+        var btop = $('#ui-nav-top');
         $(window).scroll(function() {
             if ($(window).scrollTop() > 300) {
                 btop.addClass('show');

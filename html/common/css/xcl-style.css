@@ -68,11 +68,11 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
 
     /*	-------------------- -------------------- SPACE */
     /* Calculate relative margin and padding from "space-unit" eg.: calc(var(--ui-space-unit) * 1);
-    For a "space-unit" of "16px" the variables --ui-space-[1 to 9] are = 4, 6, 8, 10, 12, 16, 24, 32 and 48px
+    For a "space-unit" of "16px" the variables --ui-space-[1 to 9] are = 4, 6, 8, 10, 12, 16, 24, 32 and 40px
     Usage : padding : var( --ui-space-6);  = 16 pixels */
     --ui-space-no       : 0;    /* Remove any space ( padding or margin ) */
     --ui-space-unit     : 16px; /* Default space-unit to calculate space vars */
-    /* Space in pixels = 4, 6, 8, 10, 12, 16, 24, 32, 48 */
+    /* Space in pixels = 4, 6, 8, 10, 12, 16, 24, 32, 40 */
     --ui-space-1        : calc(var(--ui-space-unit) * 0.25);
     --ui-space-2        : calc(var(--ui-space-unit) * 0.375);
     --ui-space-3        : calc(var(--ui-space-unit) * 0.5);
@@ -81,7 +81,7 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
     --ui-space-6        : calc(var(--ui-space-unit) * 1);
     --ui-space-7        : calc(var(--ui-space-unit) * 1.5);
     --ui-space-8        : calc(var(--ui-space-unit) * 2);
-    --ui-space-9        : calc(var(--ui-space-unit) * 3);
+    --ui-space-9        : calc(var(--ui-space-unit) * 2.5);
 }
 /*	-------------------- -------------------- Block Admin Action link with icon */
 .admin:hover {--edit-opacity: 1;}
@@ -266,17 +266,33 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
 [self~=radius-pill] {border-radius: 50rem !important}
 [self~=radius-0] {border-radius: 0 !important}
 
-/* -------------------- -------------------- -------------------- -------------------- MEDIA QUERY */
+/* -------------------- -------------------- MEDIA QUERY */
+/*------------------------------------------
+    Responsive Grid Media Queries - 1280, 1024, 768, 480
+    1280-1024   - desktop (default grid)
+    1024-768    - tablet landscape
+    768-480     - tablet
+    480-less    - phone landscape & smaller
+    320px—480px    : Mobile devices
+    481px—768px    : iPads, Tablets
+    769px—1024px   : Small screens, laptops
+    1025px—1200px  : Desktops, large screens
+    1201px or more : Extra large screens, TV
+--------------------------------------------*/
+
+/* Large Screen Device lg- 1024 px */
 @media screen and (max-width: 64em) {
     [layout*=lg-row] {-ms-flex-direction: row;flex-direction: row}
     [layout*=lg-column] {-ms-flex-direction: column;flex-direction: column}
     [layout*=lg-columns], [layout*=lg-rows] {-ms-flex-wrap: wrap;flex-wrap: wrap}
 }
+/* Medium Screen Device md- 832px */
 @media screen and (max-width: 52em) {
     [layout*=md-row] {-ms-flex-direction: row;flex-direction: row}
     [layout*=md-column] {-ms-flex-direction: column;flex-direction: column}
     [layout*=md-columns], [layout*=md-rows] {-ms-flex-wrap: wrap;flex-wrap: wrap}
 }
+/* Small Screen Device sm- 640px */
 @media screen and (max-width: 40em) {
     html, body {margin: 0;}
     main, section, article {padding: var(--ui-space-1)!important;margin:0;}
@@ -322,21 +338,23 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
     [self*=sm-p] {padding: var(--ui-space-1)!important;}
 }
 /* cursor */
+.alias           { cursor: alias; }
 .auto            { cursor: auto; }
-.default         { cursor: default; }
-.none            { cursor: none; }
+.cell            { cursor: cell; }
 .context-menu    { cursor: context-menu; }
+.copy            { cursor: copy; }
+.crosshair       { cursor: crosshair; }
+.default         { cursor: default; }
+.grab            { cursor: grab; }
+.grabbing        { cursor: grabbing; }
 .help            { cursor: help; }
 .pointer         { cursor: pointer; }
 .progress        { cursor: progress; }
 .wait            { cursor: wait; }
-.cell            { cursor: cell; }
-.crosshair       { cursor: crosshair; }
 .text            { cursor: text; }
 .vertical-text   { cursor: vertical-text; }
-.alias           { cursor: alias; }
-.copy            { cursor: copy; }
 .move            { cursor: move; }
+.none            { cursor: none; }
 .no-drop         { cursor: no-drop; }
 .not-allowed     { cursor: not-allowed; }
 .all-scroll      { cursor: all-scroll; }
@@ -354,6 +372,8 @@ svg:not([fill]) {fill: currentColor;} /* SVGs fallback to the current text color
 .sw-resize       { cursor: sw-resize; }
 .nesw-resize     { cursor: nesw-resize; }
 .nwse-resize     { cursor: nwse-resize; }
+.zoom-in         { cursor: zoom-in; }
+.zoom-out        { cursor: zoom-out; }
 .cursor-image {cursor: url(../../images/icons/arrow-left.svg), auto;} /* cursor with custom image:
 /* WebKit only cursors:
 -webkit-zoom-in
