@@ -750,7 +750,10 @@ function &xoops_gethandler($name, $optional = false)
         $handler = null;
     XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
     if ($handler) {
-        return $handlers[$name] =& $handler;
+        // return $handlers[$name] =& $handler; !Fix NOTICE: Only variable references should be returned by reference
+	    $var = $handlers[ $name ] =& $handler;
+
+	    return $var;
     }
 
     // internal Class handler exist

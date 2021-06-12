@@ -23,7 +23,7 @@
       <td class="head"><{$field->getShow('label')}></td>
       <td class="<{cycle values="odd,even"}>">
       	<{if $field->get('type')=="string"}>
-        <{xoops_input type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))  size=40 maxlength=255}>
+        <{xoops_input type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))  size=40 maxlength=191}>
         <{elseif $field->get('type')=="int"}>
         <{xoops_input type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name')) size=15 maxlength=11}>
         <{elseif $field->get('type')=="text"}>

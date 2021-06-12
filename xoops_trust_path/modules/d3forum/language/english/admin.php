@@ -47,5 +47,3 @@ define('_MD_A_D3FORUM_HELP_COMIMPORTFROM','Default system Comments will be impor
 // post_histories
 define('_MD_A_D3FORUM_H2_POSTHISTORIES','Histories of editing/deleting posts');
 define('_MD_A_D3FORUM_LINK_REFERDELETED','Deleted');
-
-?>

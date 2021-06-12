@@ -3,11 +3,11 @@
  * Altsys library (UI-Components) for D3 modules
  *
  * @package    Altsys
- * @version    2.3
+ * @version    2.3.1
  * @author     Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 function altsys_admin_in_theme( $s ) {
@@ -26,8 +26,7 @@ function altsys_admin_in_theme( $s ) {
 		return $s;
 	}
 
-	// redirect
-	//!Fix
+	//!Fix redirect
 	//strpos - Find the position of the first occurrence of a substring in a string
 	//mb_strstr - Finds first occurrence of a string within another
 	//if (strpos($s, '<meta http-equiv="Refresh" ') !== false) {

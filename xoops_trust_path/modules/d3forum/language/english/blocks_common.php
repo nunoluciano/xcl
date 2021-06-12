@@ -17,5 +17,3 @@ define('_MB_D3FORUM_ORDERREPLIESD', 'Most commented first');
 define('_MB_D3FORUM_ORDERVOTESD', 'Most voted first');
 define('_MB_D3FORUM_ORDERPOINTSD', 'Most scored first');
 define('_MB_D3FORUM_ORDERAVERAGED', 'Highest average scores first');
-
-?>

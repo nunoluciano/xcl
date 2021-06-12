@@ -2,12 +2,13 @@
 /**
  * Pico content management D3 module for XCL
  *
- * @package XCL
- * @subpackage Pico
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @package    Pico
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPSCube Project 
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @brief      you can override this class by specifying your sub class into the preferences
  */
 
 define( 'PICO_EXTRA_FIELDS_PREFIX', 'extra_fields_' );
@@ -18,7 +19,6 @@ define( 'PICO_EXTRA_IMAGES_PREFIX_SHORT', 'ei_' );
 define( 'PICO_EXTRA_IMAGES_FMT', '%s_%s_%s' );
 define( 'PICO_EXTRA_IMAGES_REMOVAL_COMMAND', 'remove.gif' );
 
-// you can override this class by specifying your sub class into the preferences
 
 class PicoExtraFields {
 

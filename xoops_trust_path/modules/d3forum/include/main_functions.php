@@ -1,18 +1,16 @@
 <?php
 /**
  * D3Forum module for XCL
- *
- * @package XCL
- * @subpackage D3Forum
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * This file can be included only from main or admin (not from blocks)
+ * @package    D3Forum
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPSCube Project 
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @brief      add fields for tree structure into $posts or $categories
  */
 
-// this file can be included only from main or admin (not from blocks)
-
-// add fields for tree structure into $posts or $categories
 function d3forum_make_treeinformations( $data ) {
 	$previous_depth = - 1;
 

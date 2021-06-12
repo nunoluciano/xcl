@@ -3,11 +3,11 @@
  * Altsys library (UI-Components) for D3 modules
  * Admin in theme. This is a mimic file from header.php
  * @package    Altsys
- * @version    2.3
+ * @version    2.3.1
  * @author     Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 require_once dirname( __DIR__ ) . '/class/AltsysBreadcrumbs.class.php';
@@ -41,12 +41,12 @@ foreach ( array_keys( $config ) as $i ) {
 	$xoopsTpl->assign( 'xoops_' . $config[ $i ]->getVar( 'conf_name' ), $config[ $i ]->getConfValueForOutput() );
 }
 
-//unset($config);
+// unset($config);
 // Weird, but need extra <script> tags for 2.0.x themes
-//$xoopsTpl->assign('xoops_js', '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--');
+// $xoopsTpl->assign('xoops_js', '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--');
 // get all blocks and assign to smarty
 
-//HACK by domifara
+// HACK by domifara
 if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 	$handler    =& xoops_gethandler( 'block' );
 	$xoopsblock =& $handler->create( false );
@@ -103,7 +103,8 @@ if ( is_object( $xoopsUser ) ) {
 				@include $mod_path . '/' . $modinfo['adminmenu'];
 				if ( is_array( @$adminmenu ) ) {
 					foreach ( $adminmenu as $eachmenu ) {
-						if ( strstr( $_SERVER['REQUEST_URI'], $eachmenu['link'] ) ) {
+						//if ( strstr( $_SERVER['REQUEST_URI'], $eachmenu['link'] ) ) {
+						if ( false !== strpos( $_SERVER['REQUEST_URI'], $eachmenu['link'] ) ) {
 							$xoops_breadcrumbs[] = [ 'name' => $eachmenu['title'] ];
 							break;
 						}

@@ -120,7 +120,7 @@ define('_MD_D3FORUM_ERR_TOOMANYDIVBEGIN','Too many [quote] or <div>');
 define('_MD_D3FORUM_ERR_TOOMANYDIVEND','Too many [/quote] or </div>');
 
 // D3forumAntispam classes
-define('_MD_D3FORUM_ERR_TURNJAVASCRIPTON','Post again after turning JavaScript of your browser.');
+define('_MD_D3FORUM_ERR_TURNJAVASCRIPTON','Post again after enable JavaScript in your browser - <a href="https://www.enable-javascript.com/" target="_blank">How to enable Javascript</a>');
 define('_MD_D3FORUM_LABEL_JAPANESEINPUTYOMI','');
 define('_MD_D3FORUM_ERR_JAPANESENOTINPUT','');
 define('_MD_D3FORUM_ERR_JAPANESEINCORRECT','');
@@ -165,8 +165,8 @@ define('_MD_D3FORUM_MSG_NOMATCH','No match');
 define('_MD_D3FORUM_FMT_SEARCHHITS','hits %s items');
 
 // module top (done)
-define('_MD_D3FORUM_TOTALTOPICSCOUNT','Total topics');
-define('_MD_D3FORUM_TOTALPOSTSCOUNT','Total posts');
+define('_MD_D3FORUM_TOTALTOPICSCOUNT','Topics');
+define('_MD_D3FORUM_TOTALPOSTSCOUNT','Posts');
 define('_MD_D3FORUM_TIMENOW','Local time');
 define('_MD_D3FORUM_LASTVISIT','You last visited');
 
@@ -181,8 +181,8 @@ define('_MD_D3FORUM_TOPICINVISIBLE','Invisible topic (Only admins and moderators
 
 // PERMISSION ERRORS (check done)
 define('_MD_D3FORUM_ERR_SPECIFYFORUM','Forum must be specified');
-define('_MD_D3FORUM_ERR_EXISTSFORUM','Invalid id of forum specified');
-define('_MD_D3FORUM_ERR_EXISTSCATEGORY','Invalid id of category specified');
+define('_MD_D3FORUM_ERR_EXISTSFORUM','Invalid id specified for forum');
+define('_MD_D3FORUM_ERR_EXISTSCATEGORY','Invalid id specified for the category');
 define('_MD_D3FORUM_ERR_SQL','SQL Error occurred in ');
 define('_MD_D3FORUM_ERR_READPOST','You cannot access the specified post');
 define('_MD_D3FORUM_ERR_READTOPIC','You cannot access the specified topic');
@@ -253,7 +253,7 @@ define('_MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM','Copy this topic into another for
 
 // delete (check done)
 define('_MD_D3FORUM_DELNOTALLOWED','You cannot delete this post');
-define('_MD_D3FORUM_DELTIMELIMITED','Sorry, time has been expired to delete this post');
+define('_MD_D3FORUM_DELTIMELIMITED','Sorry, the time to delete this post is expired.');
 define('_MD_D3FORUM_DELCHILDEXISTS','Sorry, the parent posts cannot be removed.');
 define('_MD_D3FORUM_CONFIRM_AREUSUREDEL','Are you sure you want to delete this post and all its child posts?');
 define('_MD_D3FORUM_CONFIRM_AREUSUREDELONE','Are you sure you want to delete this post?');
@@ -262,7 +262,7 @@ define('_MD_D3FORUM_ERR_GUESTPASSMISMATCH','Invaild password');
 
 // cut&paste posts (check done)
 define('_MD_D3FORUM_CUTPASTEPOSTS','Cut and paste posts') ;
-define('_MD_D3FORUM_ERR_NOSPECIFICID','post_id or forum_id should be specified.') ;
+define('_MD_D3FORUM_ERR_NOSPECIFICID','post_id or forum_id must be specified.') ;
 define('_MD_D3FORUM_ERR_PIDNOTEXIST','Specified post_id does not exist') ;
 define('_MD_D3FORUM_ERR_CUTPASTENOTADMINOFDESTINATION','You are not moderator of designated forum') ;
 define('_MD_D3FORUM_ERR_PIDLOOP','parent/child loop error') ;
@@ -303,8 +303,8 @@ define('_MD_D3FORUM_TH_FORUMDESC','Forum desc');
 define('_MD_D3FORUM_TH_FORUMOPTIONS','Forum options');
 define('_MD_D3FORUM_TH_EXTERNALLINKFORMAT','Format for comment-integration');
 define('_MD_D3FORUM_HELP_EXTERNALLINKFORMAT','leave blank for ordinary forums. If you write URI with %s started from  {XOOPS_URL}/modules/ , it will be the template linking to the sources. Native comment-integrated modules will set this field automatically.');
-define('_MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM','Move this forum into the other forum');
-define('_MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM','Copy this forum into the other forum');
+define('_MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM','Move this forum into another forum');
+define('_MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM','Copy this forum into another forum');
 
 // makecategory and categorymanager
 define('_MD_D3FORUM_CATEGORYMANAGER','Category Manager');
@@ -334,5 +334,3 @@ define('_MD_D3FORUM_BA_MSG_CONFIRM','Notice: this action affects all topics/post
 // multi-byte spaces separated by ,
 // (don't define for single space languages)
 //define('_MD_D3FORUM_MULTIBYTESPACES',' ') ;
-
-?>

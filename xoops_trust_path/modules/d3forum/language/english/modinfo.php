@@ -1,6 +1,8 @@
 <?php
 
-if (defined('FOR_XOOPS_LANG_CHECKER')) $mydirname = 'd3forum';
+if (defined('FOR_XOOPS_LANG_CHECKER')) {
+	$mydirname = 'd3forum';
+}
 $constpref = '_MI_' . strtoupper($mydirname);
 
 if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {

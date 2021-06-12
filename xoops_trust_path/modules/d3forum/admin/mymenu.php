@@ -1,7 +1,13 @@
 <?php
-
 /**
  * mymenu for D3 modules always require altsys
+ *
+ * @package    D3Forum
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 // Deny direct access
@@ -9,17 +15,11 @@ if ( 'mymenu' == preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] ) ) {
 	exit;
 }
 
-// Skip for ORETEKI XOOPS
-/*if (defined('XOOPS_ORETEKI')) {
-    return;
-}*/
-
 global $xoopsModule;
 
 if ( ! is_object( $xoopsModule ) ) {
 	die( '$xoopsModule is not set' );
 }
-
 
 // language files (modinfo.php)
 $langmanpath = XOOPS_TRUST_PATH . '/libs/altsys/class/D3LanguageManager.class.php';

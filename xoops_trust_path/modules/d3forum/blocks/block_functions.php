@@ -2,12 +2,13 @@
 /**
  * D3Forum module for XCL
  *
- * @package XCL
- * @subpackage D3Forum
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @package    D3Forum
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Naoki Sawada (aka Nao-pon)
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPSCube Project 
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 function b_d3forum_list_forums_show( $options ) {
@@ -23,7 +24,6 @@ function b_d3forum_list_forums_show( $options ) {
 		die( 'Invalid mydirname' );
 	}
 
-	//$db =& Database::getInstance();
 	$db = &XoopsDatabaseFactory::getDatabaseConnection();
 
 	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
@@ -148,11 +148,11 @@ function b_d3forum_list_topics_show( $options ) {
 
 	$max_topics = empty( $options[1] ) ? 10 : (int) $options[1];
 
-	$show_fullsize = empty( $options[2] ) ? false : true;
+	$show_fullsize = ! empty( $options[2] );
 
 	$now_order = empty( $options[3] ) ? 'time' : trim( $options[3] );
 
-	$is_markup = empty( $options[4] ) ? false : true;
+	$is_markup = ! empty( $options[4] );
 
 	$categories = empty( $options[5] ) ? [] : explode( ',', $options[5] );
 
@@ -164,7 +164,6 @@ function b_d3forum_list_topics_show( $options ) {
 		die( 'Invalid mydirname' );
 	}
 
-	//$db =& Database::getInstance();
 	$db = &XoopsDatabaseFactory::getDatabaseConnection();
 
 	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();

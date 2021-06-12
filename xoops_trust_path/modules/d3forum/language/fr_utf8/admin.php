@@ -49,5 +49,3 @@ define('_MD_A_D3FORUM_HELP_COMIMPORTFROM','Les commentaires de XOOPS seront impo
 // post_histories
 define('_MD_A_D3FORUM_H2_POSTHISTORIES','Historique de l\'édition/suppression de messages');
 define('_MD_A_D3FORUM_LINK_REFERDELETED','Supprimé');
-
-?>

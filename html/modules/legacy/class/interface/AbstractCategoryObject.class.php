@@ -31,7 +31,7 @@ abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
     public function __construct()
     {
         $this->initVar('cat_id', XOBJ_DTYPE_INT, '', false);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('p_id', XOBJ_DTYPE_INT, '0', false);
         $this->initVar('modules', XOBJ_DTYPE_TEXT, '', false);
         $this->initVar('description', XOBJ_DTYPE_TEXT, '', false);

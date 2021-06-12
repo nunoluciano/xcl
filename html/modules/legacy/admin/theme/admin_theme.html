@@ -23,9 +23,9 @@
 	<meta http-equiv="content-language" content="<{$xoops_langcode}>">
 	<meta http-equiv="content-script-type" content="text/javascript">
 	<meta http-equiv="content-style-type" content="text/css">
-	<meta name="description" content="XCL Admin Dashboard">
+	<meta name="description" content="Admin Dashboard">
 	<meta name="author" content="Nuno Luciano aka Gigamaster">
-	<meta name="generator" content="XOOPS Cube">
+	<meta name="generator" content="XOOPSCube">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Admin : <{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
 
@@ -67,10 +67,12 @@
 
 		<!-- <script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script> -->
 
+
 </head>
 
 <body>
-
+<{assign var="adminHelp" value="legacy/admin/index.php?action=Help&dirname=`$xoops_dirname` article#help-overview"}>
+<{include file="../templates/components/admin-help.html"}>
 <{* ---------- ---------- ---------- ---------- ---------- Grid Admin Dashboard *}>
 
 <div class="grid" id="container">
@@ -146,14 +148,18 @@
 	</main><{* /Main *}>
 
 
-	<{* ---------- ---------- ---------- ---------- ---------- Footer
+	<{* ---------- ---------- ---------- ---------- ---------- Footer*}>
 
-	<footer class="footer">
+
+	<div class="footer">-xoops_dirname:<{$xoops_dirname}>--<a href="#" id="open-help"><{$smarty.const._HELP}></a>---
 		Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>
 		<p><span class="footer-copy">&copy;</span> 2005-2020 <a href="https://github.com/xoopscube/" target="_blank" rel="external" class="footer-credits">The XOOPS Cube Project</a></p>
 		<p><a href="#container" class="footer-link">Back To Top</a></p>
-	</footer>
-    *}>
+
+
+
+	</div>
+
 	</div><{* /Grid *}>
 
     <script src="<{'js/script.js'|theme}>"></script>

@@ -33,7 +33,7 @@ abstract class Legacy_AbstractGroupObject extends XoopsSimpleObject
     public function __construct()
     {
         $this->initVar('group_id', XOBJ_DTYPE_INT, '', false);
-        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
+        $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 191);
         $this->initVar('description', XOBJ_DTYPE_TEXT, '', false);
         $this->initVar('posttime', XOBJ_DTYPE_INT, time(), false);
     }

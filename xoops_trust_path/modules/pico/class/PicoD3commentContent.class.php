@@ -1,19 +1,19 @@
 <?php
 /**
  * Pico content management D3 module for XCL
- *
- * @package XCL
- * @subpackage Pico
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * Class for d3forum comment integration
+ * @package    Pico
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPSCube Project 
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 require_once dirname( __DIR__ ) . '/include/common_functions.php';
 require_once XOOPS_TRUST_PATH . '/modules/d3forum/class/D3commentAbstract.class.php';
 
-// class for d3forum comment integration
+
 class PicoD3commentContent extends D3commentAbstract {
 
 	public function fetchSummary( $external_link_id ) {

@@ -1,2 +1,2 @@
 <?php
-	$mytrustdirname = 'pico' ;
+$mytrustdirname = 'pico' ;

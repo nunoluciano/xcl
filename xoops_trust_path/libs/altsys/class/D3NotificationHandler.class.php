@@ -3,11 +3,11 @@
  * Altsys library (UI-Components) for D3 modules
  * Notification handler for D3 modules
  * @package    Altsys
- * @version    2.3
+ * @version    2.3.1
  * @author     Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
@@ -92,7 +92,7 @@ class D3NotificationHandler
         if (class_exists('XCube_DelegateUtils')) {
             $force_return = false;
 
-            //!FIX deprecated XCube_DelegateUtils::raiseEvent(). Use call()
+            //Gigamaster fixed deprecated XCube_DelegateUtils::raiseEvent(). Use call()
 	            XCube_DelegateUtils::call(
                 'D3NotificationHandler.Trigger',
                 new XCube_Ref($category),
@@ -125,7 +125,7 @@ class D3NotificationHandler
     // calling a delegate before
     if (class_exists('XCube_DelegateUtils')) {
 
-        //!FIX deprecated XCube_DelegateUtils::raiseEvent(). Use call()
+        //Gigamaster fixed deprecated XCube_DelegateUtils::raiseEvent(). Use call()
 	        XCube_DelegateUtils::call(
         	'D3NotificationHandler.Trigger',
 	        new XCube_Ref($category),

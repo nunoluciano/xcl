@@ -205,8 +205,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             // TODO this process depends on XOOPS 2.0.x.
             //
             $this->_mIsActiveBanner = $configs['banners'];
-            if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE === true) {
-                if (1 === $configs['banners']) {
+            if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
+                if (1 == $configs['banners']) {
                     $mTpl->assign('xoops_banner', xoops_getbanner());
                 } else {
                     $mTpl->assign('xoops_banner', '&nbsp;');
@@ -415,8 +415,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // If this site has the setting of banner.
         // TODO this process depends on XOOPS 2.0.x.
         //
-        if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE === false) {
-            $vars['xoops_banner'] = (1 === $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;';
+        if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == false) {
+            $vars['xoops_banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;';
         }
 
         $mTpl->assign($vars);

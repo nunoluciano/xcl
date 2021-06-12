@@ -2,12 +2,12 @@
 /**
  * D3Forum module for XCL
  *
- * @package XCL
- * @subpackage D3Forum
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @package    D3Forum
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 $cat_id = (int) @$_GET['cat_id'];
@@ -24,7 +24,6 @@ $sql = 'SELECT COUNT(*) FROM ' . $db->prefix( $mydirname . '_posts' );
 
 // get last visit
 if ( $uid > 0 ) {
-	//$db =& Database::getInstance();
 	$db = &XoopsDatabaseFactory::getDatabaseConnection();
 
 	$lv_result = $db->query( 'SELECT MAX(u2t_time) FROM ' . $db->prefix( $mydirname . '_users2topics' ) . " WHERE uid='$uid'" );

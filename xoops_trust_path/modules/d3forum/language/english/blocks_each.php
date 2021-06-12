@@ -24,5 +24,3 @@ define($constpref . '_ALT_UNSOLVED', 'Unsolved topic');
 define($constpref . '_ALT_MARKED', 'Marked topic');
 
 }
-
-?>

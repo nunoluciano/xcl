@@ -1,21 +1,18 @@
 <?php
 /**
  * D3Forum module for XCL
- *
- * @package XCL
- * @subpackage D3Forum
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * This file can be included from d3forum's blocks.
+ * @package    D3Forum
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPSCube Project 
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
-
-// this file can be included from d3forum's blocks.
 
 function d3forum_get_forums_can_read( $mydirname ) {
 	global $xoopsUser;
 
-	//$db =& Database::getInstance();
 	$db = &XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( is_object( $xoopsUser ) ) {

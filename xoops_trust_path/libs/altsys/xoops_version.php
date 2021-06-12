@@ -3,11 +3,11 @@
  * Altsys library (UI-Components) for D3 modules
  *
  * @package    Altsys
- * @version    2.3
+ * @version    2.3.1
  * @author     Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license    https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
 include_once __DIR__ . '/include/altsys_functions.php';
@@ -16,8 +16,8 @@ include_once __DIR__ . '/include/altsys_functions.php';
 altsys_include_language_file( 'modinfo' );
 
 $modversion['name']             = _MI_ALTSYS_MODULENAME;
-$modversion['version']          = '2.30';
-$modversion['detailed_version'] = '2.30.0';
+$modversion['version']          = '2.31';
+$modversion['detailed_version'] = '2.31.0';
 $modversion['description']      = _MI_ALTSYS_MODULEDESC;
 $modversion['credits']          = 'PEAK Corp., Mamba (Xoops), Gigamaster (XCL)';
 $modversion['author']           = 'GIJ=CHECKMATE<br>PEAK Corp.(https://www.peak.ne.jp/), XOOPSCube Project XCL Distribution(https://github.com/xoopscube)';

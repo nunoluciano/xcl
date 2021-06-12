@@ -13,7 +13,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_NAME', 'pico' );
 
 	// A brief description of this module
-	define( $constpref . '_DESC', 'Content management with CKEditor, versioning with revision history, diff and granular permissions.' );
+	define( $constpref . '_DESC', 'Content management with CKEditor, versioning, revision history, diff and granular permissions.' );
 
 	// admin menus
 	define( $constpref . '_ADMENU_CONTENTSADMIN', 'Contents' );
@@ -27,45 +27,45 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_ADMENU_MYPREFERENCES', 'Preferences' );
 
 	// configurations
-	define( $constpref . '_USE_WRAPSMODE', 'enable wraps mode' );
-	define( $constpref . '_ERR_DOCUMENT_404', 'Redirect to custom page for Error:404 ' );
-	define( $constpref . '_ERR_DOCUMENT_404DSC', 'The Web server returns the HTTP 404 - File not found error message when it cannot retrieve the page that was requested.<br>This option can replace the "head" with e.g. "xoops_root_path" with "' . XOOPS_ROOT_PATH . '"/404.html and "xoops_trust_path" with "' . XOOPS_TRUST_PATH . '"/404.html' );
-	define( $constpref . '_USE_REWRITE', 'enable mod_rewrite mode' );
-	define( $constpref . '_USE_REWRITEDSC', 'Rename .htaccess.rewrite_wraps(with wraps) or htaccess.rewrite_normal(without wraps) to .htaccess under XOOPS_ROOT_PATH/modules/(dirname)/' );
-	define( $constpref . '_WRAPSAUTOREGIST', 'enable auto-registering HTML wrapped files into DB as contents' );
-	define( $constpref . '_AUTOREGISTCLASS', 'class name to register/unregister HTML wrapped files' );
+	define( $constpref . '_USE_WRAPSMODE', 'Enable wraps mode. All content should be wrapped in a div' );
+	define( $constpref . '_ERR_DOCUMENT_404', 'Custom page for error : 404 Not Found ' );
+	define( $constpref . '_ERR_DOCUMENT_404DSC', 'Example: <b>xoops_root_path/404.html</b> redirects to public root path <b>' . XOOPS_ROOT_PATH . '/404.html</b> and<br> <b>xoops_trust_path/404.html</b> redirects to trust patht <b>' . XOOPS_TRUST_PATH . '/404.html</b>' );
+	define( $constpref . '_USE_REWRITE', 'Enable mod_rewrite' );
+	define( $constpref . '_USE_REWRITEDSC', 'Rename .htaccess.rewrite_wraps (with wraps) or htaccess.rewrite_normal (without wraps) to .htaccess under XOOPS_ROOT_PATH/modules/(dirname)/' );
+	define( $constpref . '_WRAPSAUTOREGIST', 'Enable auto-registering HTML wrapped files into DB as contents' );
+	define( $constpref . '_AUTOREGISTCLASS', 'Class name to register/unregister HTML wrapped files' );
 	define( $constpref . '_TOP_MESSAGE', 'Description of TOP category' );
 	define( $constpref . '_TOP_MESSAGEDEFAULT', '' );
-	define( $constpref . '_MENUINMODULETOP', 'Display menu(index) in the top of this module' );
+	define( $constpref . '_MENUINMODULETOP', 'Display menu (index) in the top of this module' );
 	define( $constpref . '_LISTASINDEX', "Display contents index in category's top" );
-	define( $constpref . '_LISTASINDEXDSC', 'YES means auto made list is displayed in the top of the category. NO means a content with the highest priority is displayeed instead auto made list' );
+	define( $constpref . '_LISTASINDEXDSC', 'YES - a table of contents (TOC) is auto-generated and displayed on the main page.<br> NO - the content with the highest priority (order, weight) is displayed instead of TOC.' );
 	define( $constpref . '_SHOW_BREADCRUMBS', 'Display the breadcrumbs' );
 	define( $constpref . '_SHOW_PAGENAVI', 'Display the page navigation' );
 	define( $constpref . '_SHOW_PRINTICON', 'Display the printer friendly icon' );
 	define( $constpref . '_SHOW_TELLAFRIEND', 'Display tell a friend icon' );
 	define( $constpref . '_SEARCHBYUID', 'Enable the concept of authorship' );
-	define( $constpref . '_SEARCHBYUIDDSC', 'Publications will be listed in user profile. This option can be turned off for static content.' );
+	define( $constpref . '_SEARCHBYUIDDSC', 'Publications are listed in user profile. This option can be turned off for static content.' );
 	define( $constpref . '_USE_TAFMODULE', 'Use the module "tellafriend".' );
 	define( $constpref . '_FILTERS', 'Default filter set' );
-	define( $constpref . '_FILTERSDSC', 'Specified filter names separated by "|" (pipe). Exemple: xcode|smiley|nl2br|textwiki' );
+	define( $constpref . '_FILTERSDSC', 'Specified filter names separated by "|" (pipe). Example: xcode|smiley|nl2br|textwiki' );
 	define( $constpref . '_FILTERSDEFAULT', '' );
 	define( $constpref . '_FILTERSF', 'Forced filters' );
 	define( $constpref . '_FILTERSFDSC', 'input filter names separated with ,(comma). filter:LAST means the filter is passed in the last phase. The other filters are passed in the first phase.' );
 	define( $constpref . '_FILTERSP', 'Prohibited filters' );
 	define( $constpref . '_FILTERSPDSC', 'Select filter names separated with ,(comma).' );
 	define( $constpref . '_SUBMENU_SC', 'Show contents in submenu' );
-	define( $constpref . '_SUBMENU_SCDSC', 'Only categories are displayed in default. If you turn this on, contents marked "menu" will be displayed also' );
-	define( $constpref . '_SITEMAP_SC', 'Show contents in sitemap module' );
-	define( $constpref . '_USE_VOTE', 'use the feature of VOTE' );
+	define( $constpref . '_SUBMENU_SCDSC', 'In the default mode, only the categories are displayed. If you activate this function, the content marked "menu" will also be displayed.' );
+	define( $constpref . '_SITEMAP_SC', 'Display the content in the sitemap module' );
+	define( $constpref . '_USE_VOTE', 'Use the VOTE function' );
 	define( $constpref . '_GUESTVOTE_IVL', 'Vote from guests' );
-	define( $constpref . '_GUESTVOTE_IVLDSC', 'Set this 0, to disable voting from guest. The other this number means time(sec.) to allow second post from the same IP.' );
-	define( $constpref . '_HTMLHEADER', 'common HTML header' );
-	define( $constpref . '_ALLOWEACHHEAD', 'specify HTML headers for each contents' );
+	define( $constpref . '_GUESTVOTE_IVLDSC', 'Set this value to 0, to disable guest voting. Any other number refers to the time (sec.) needed to allow a second message from the same IP.' );
+	define( $constpref . '_HTMLHEADER', 'Common HTML header' );
+	define( $constpref . '_ALLOWEACHHEAD', 'Allow custom HTML header (CSS, JS) for each content' );
 	define( $constpref . '_CSS_URI', 'URI of CSS file for this module' );
-	define( $constpref . '_CSS_URIDSC', 'relative or absolute path can be set. default: {mod_url}/index.php?page=main_css' );
+	define( $constpref . '_CSS_URIDSC', 'a relative or absolute path can be defined. Default value: {mod_url}/index.php?page=main_css' );
 	define( $constpref . '_IMAGES_DIR', 'Directory for image files' );
-	define( $constpref . '_IMAGES_DIRDSC', 'relative path should be set in the module directory. default: images' );
-	define( $constpref . '_BODY_EDITOR', 'Editor for body' );
+	define( $constpref . '_IMAGES_DIRDSC', 'the relative path should be defined in the module directory. Default value : images' );
+	define( $constpref . '_BODY_EDITOR', 'WYSIWYG HTML editor to simplify the content creation' );
 	define( $constpref . '_HTMLPR_EXCEPT', 'Select Trusted Users Groups.' );
 	define( $constpref . '_HTMLPR_EXCEPTDSC', 'HTML sanitization with HTMLPurifier to secure against XSS attacks.' );
 	define( $constpref . '_HISTORY_P_C', 'How many revisions are stored in DB' );

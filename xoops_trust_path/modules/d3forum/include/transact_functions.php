@@ -1,20 +1,17 @@
 <?php
 /**
  * D3Forum module for XCL
- *
- * @package XCL
- * @subpackage D3Forum
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright Copyright 2005-2021 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * This file can be included from transaction procedures
+ * @package    D3Forum
+ * @version    2.3.1
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  Copyright 2005-2021 XOOPS Cube Project
+ * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @brief      Call back for comment integration
  */
 
-// this file can be included from transaction procedures
-
-// call back for comment integration
 function d3forum_main_d3comment_callback( $mydirname, $topic_id, $mode = 'update', $post_id = 0 ) {
-	//$db =& Database::getInstance();
 	$db = &XoopsDatabaseFactory::getDatabaseConnection();
 
 	$topic_id = (int) $topic_id;

@@ -1,11 +1,11 @@
 <?php
 /**
- *
+ * XCube Ini Handler
  * @package XCube
- * @version $Id: XCube_IniHandler.class.php,v 1.0
- * @copyright Copyright 2005-2010 XOOPS Cube Project  <https://github.com/xoopscube/legacy>
- * @license https://github.com/xoopscube/legacy/blob/master/docs/bsd_licenses.txt Modified BSD license
- *
+ * @version 2.3.1
+ * @copyright Copyright 2005-2021 XOOPS Cube Project
+ * @license Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
+ * @brief Id XCube_IniHandler.class.php,v 1.0
  */
 
 

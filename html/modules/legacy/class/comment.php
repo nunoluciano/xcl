@@ -35,11 +35,11 @@ class LegacyCommentObject extends XoopsSimpleObject
         $this->initVar('com_modified', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('com_uid', XOBJ_DTYPE_INT, '0', true);
         $this->initVar('com_ip', XOBJ_DTYPE_STRING, '', true, 15);
-        $this->initVar('com_title', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('com_title', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('com_text', XOBJ_DTYPE_TEXT, '', true);
         $this->initVar('com_sig', XOBJ_DTYPE_BOOL, '0', true);
         $this->initVar('com_status', XOBJ_DTYPE_INT, '1', true);
-        $this->initVar('com_exparams', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('com_exparams', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('dohtml', XOBJ_DTYPE_BOOL, '0', true);
         $this->initVar('dosmiley', XOBJ_DTYPE_BOOL, '1', true);
         $this->initVar('doxcode', XOBJ_DTYPE_BOOL, '1', true);
