@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file.
 
 ### Update
 
-📦 ⬆️ UPDATE X-elFinder 2.58
+📦 ⬆️ UPDATE X-elFinder 2.58 @nao-pon
 - [VD:abstract] Fixed #3151 support RAR5 lib
 - [cmd:fullscreen] Fixed #3177 wrong fullscreen button caption
 - [js:core] Supports cookie samesite attribute
