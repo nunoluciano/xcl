@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
+## [unreleased] 2021-06-14
+
+📦 ⬆️ UPDATE @gigamaster merge X-elFinder 2.59 (@nao-pon)
+
+---
 ## [unreleased] 2021-06-12
 
 ### Changed
