@@ -297,12 +297,16 @@ while ( ob_get_level() && @ob_end_clean() ) {
 
         <script src="<?php echo $myurl ?>/include/js/commands/perm.js?v=<?php echo $xelfVer ?>"></script>
         <script src="<?php echo $myurl ?>/include/js/commands/auth.js?v=<?php echo $xelfVer ?>"></script>
+
+
+
         <script src="<?php echo $optionsJs ?>" charset="UTF-8"></script>
         <script src="<?php echo $myurl ?>/include/js/manager.js?v=<?php echo $xelfVer ?>" charset="UTF-8"></script>
         <script type="text/javascript" charset="UTF-8">
             var callbackFunc = <?php echo $callback ?>;
         </script>
 		<?php echo $managerJs ?>
+
     </head>
     <body style="margin:0;padding:0;">
     <!-- Element where elFinder will be created (REQUIRED) -->

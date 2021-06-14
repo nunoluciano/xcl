@@ -3,7 +3,7 @@
  * X-elFinder module for XCL
  * @package    XelFinder
  * @version    2.3.1
- * @author     Gigamaster, 2021-04-02 XCL PHP7
+ * @author     Gigamaster, 2021-06-13 XCL PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  Copyright 2005-2021 XOOPS Cube Project
  * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
@@ -23,8 +23,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['name'] = 'xelFinder';
 //$modversion['name'] = $constpref.'_NAME') ;
 $modversion['description']      = constant( $constpref . '_DESC' );
-$modversion['version']          = 2.58;
-$modversion['detailed_version'] = '2.58.0';
+$modversion['version']          = 2.59;
+$modversion['detailed_version'] = '2.59.0';
 $modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7';
 $modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
 $modversion['cube_style']       = true;

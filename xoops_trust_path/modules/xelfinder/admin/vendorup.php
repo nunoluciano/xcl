@@ -1,4 +1,5 @@
 <?php
+
 if ( ! empty ( $_POST ['doupdate'] ) ) {
 	global $xoopsConfig;
 	while ( ob_get_level() && @ ob_end_clean() ) {

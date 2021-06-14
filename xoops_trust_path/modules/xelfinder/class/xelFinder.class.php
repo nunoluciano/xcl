@@ -47,7 +47,7 @@ class xelFinder extends elFinder {
 			$phashes = [];
 		}
 
-		if ( false != ( $volume = $this->volume( $targets[0] ) ) ) {
+		if (($volume = $this->volume($targets[0])) != false) {
 			if ( method_exists( $volume, 'savePerm' ) ) {
 				if ( $volume->commandDisabled( 'perm' ) ) {
 					return [ 'error' => $this->error( self::ERROR_PERM_DENIED ) ];

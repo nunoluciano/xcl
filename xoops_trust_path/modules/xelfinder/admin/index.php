@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'XOOPS_MODULE_PATH' ) ) {
 	define( 'XOOPS_MODULE_PATH', XOOPS_ROOT_PATH . '/modules' );
 }
