@@ -34,7 +34,7 @@ svg:not([fill]) {
     /* icon color for mask */
     background-color    : green;
     color               : red;
-    background-repeat: no-repeat;
+    background-repeat   : no-repeat;
     display             : inline-block;
     height              : 24px;
     width               : 24px;
